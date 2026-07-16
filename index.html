@@ -899,8 +899,9 @@ function markWordReviewed(word, interval) {if(!checkAccess("词汇复习"))retur
 
 function renderReview(c) {
   const today = new Date().toISOString().split('T')[0];
-  const todayTopics = topicCalendar.filter(tc => tc.date === today);
-  const pastTopics = topicCalendar.filter(tc => tc.date < today);
+  const tcEntries = Object.entries(topicCalendar).map(([date, val]) => ({date, ...val}));
+  const todayTopics = tcEntries.filter(tc => tc.date === today);
+  const pastTopics = tcEntries.filter(tc => tc.date < today);
   let html = `<div class="card"><div class="card-header"><h2>🧠 艾宾浩斯复习</h2><span class="badge">间隔重复 · 话题+词汇</span></div><div style="padding:16px;">`;
   // 今日任务
   html += `<div style="margin-bottom:20px;"><div style="font-size:14px;font-weight:700;color:var(--primary);margin-bottom:10px;">📅 今日学习任务 (${today})</div>`;
