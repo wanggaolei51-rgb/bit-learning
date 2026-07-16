@@ -139,7 +139,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   .quick-grid{grid-template-columns:repeat(2,1fr)}
   .content{padding:14px}
 }
-</style>
+
+.clickable-word{cursor:pointer;border-bottom:1px dotted rgba(0,212,170,.4);transition:all .2s;padding:0 1px}
+.clickable-word:hover{background:rgba(0,212,170,.2);border-radius:3px;border-bottom-color:var(--primary)}
+#wordPopupOverlay{animation:fadeIn .2s ease}@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.mind-level2{display:none;animation:slideDown .3s ease}.mind-level3{display:none;animation:slideDown .3s ease}@keyframes slideDown{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:translateY(0)}}.ebbing-point{transition:all .2s}.ebbing-point:hover{r:7;filter:drop-shadow(0 0 4px var(--primary))}</style>
 </head>
 <body>
 <div class="app">
@@ -694,6 +698,7 @@ function render(){
     case "manage":t.innerText="⚙️ 课程管理";renderManage(c);break;
     case "stats":t.innerText="📊 数据统计";renderStats(c);break;
     case "game":t.innerText="🎮 百词斩";renderGame(c);break;
+    case "mindmap":t.innerText="🗺️ 思维导图";renderMindMap(c);break;
     default:t.innerText="🏠 主页";renderHome(c);
   }
   window.scrollTo(0,0);
@@ -702,7 +707,7 @@ function updateNav(){document.querySelectorAll(".nav-list li").forEach(li=>{li.c
 
 function renderHome(c){
   const today=new Date().toISOString().slice(0,10),td=learningHistory[today],tdn=td?td.vocabNew.length:0;
-  c.innerHTML=`<div class="welcome-banner" style="background:linear-gradient(135deg,rgba(0,212,170,.15),rgba(59,130,246,.1));border:1px solid rgba(0,212,170,.25);position:relative;"><div id="homeMemberBadge" style="position:absolute;top:8px;right:8px;font-size:11px;padding:3px 8px;border-radius:6px;"></div><div style="display:flex;align-items:center;gap:16px;margin-bottom:12px;"><div style="width:56px;height:56px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div><div><h2 style="font-size:22px;color:var(--primary);margin-bottom:4px">LEO-BIR</h2><p style="color:var(--text-dim);font-size:13px">Bahasa Indonesia Learning · 印尼语学习平台</p></div></div><p style="color:var(--text-dim);font-size:13px;margin-bottom:8px;line-height:1.8">📚 专为印尼语学习者打造的智能学习平台，融合艾宾浩斯记忆曲线、百词斩游戏化练习、三关生词本系统。<br>🎯 支持 印尼语↔中文↔英文 三语对照，按日历规划每日学习进度。<br>🔍 关键词：印尼语学习、Bahasa Indonesia、三语翻译、艾宾浩斯记忆、百词斩、印尼语词汇、商务印尼语<br>📞 联系：087713858880</p><div style="font-size:11px;color:var(--text-dim);margin-top:12px;padding-top:10px;border-top:1px solid rgba(0,212,170,.15)"><strong style="color:var(--primary)">版本迭代记录：</strong><br>V2.4 (2026-07-16) 修复复习页面、增强艾宾浩斯互动、界面品牌化<br>V2.3 (2026-07-16) 超级管理员面板、艾宾浩斯复习、百词斩错题报告<br>V2.2 (2026-07-15) 会员系统（非会员3次限制、试用24小时、年费1年）<br>V2.1 (2026-07-15) 三关生词本、百词斩游戏（印中选/中选印/拼写）<br>V2.0 (2026-07-14) 完全重写SPA、日历学习、翻译、词汇录入、话题系统</div></div><div class="quick-grid"><div class="quick-btn" onclick="navigate('translate')"><span class="icon">🌐</span><div class="label">翻译</div></div><div class="quick-btn" onclick="navigate('input')"><span class="icon">📝</span><div class="label">词汇录入</div></div><div class="quick-btn" onclick="navigate('wordbank')"><span class="icon">📚</span><div class="label">生词本</div></div><div class="quick-btn" onclick="navigate('review')"><span class="icon">🧠</span><div class="label">复习</div></div><div class="quick-btn" onclick="navigate('vocabulary')"><span class="icon">📖</span><div class="label">词汇库</div></div><div class="quick-btn" onclick="navigate('quiz')"><span class="icon">🎮</span><div class="label">百词斩</div></div></div><div class="card"><div class="card-header"><h2>📅 学习日历</h2><span class="badge">点击日期查看</span></div>${renderCalHTML()}</div>`;
+  c.innerHTML=`<div class="welcome-banner" style="background:linear-gradient(135deg,rgba(0,212,170,.15),rgba(59,130,246,.1));border:1px solid rgba(0,212,170,.25);position:relative;"><div id="homeMemberBadge" style="position:absolute;top:8px;right:8px;font-size:11px;padding:3px 8px;border-radius:6px;"></div><div style="display:flex;align-items:center;gap:16px;margin-bottom:12px;"><div style="width:56px;height:56px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div><div><h2 style="font-size:22px;color:var(--primary);margin-bottom:4px">LEO-BIR</h2><p style="color:var(--text-dim);font-size:13px">Bahasa Indonesia Learning · 印尼语学习平台</p></div></div></div><div class="quick-grid"><div class="quick-btn" onclick="navigate('translate')"><span class="icon">🌐</span><div class="label">翻译</div></div><div class="quick-btn" onclick="navigate('input')"><span class="icon">📝</span><div class="label">词汇录入</div></div><div class="quick-btn" onclick="navigate('wordbank')"><span class="icon">📚</span><div class="label">生词本</div></div><div class="quick-btn" onclick="navigate('review')"><span class="icon">🧠</span><div class="label">复习</div></div><div class="quick-btn" onclick="navigate('vocabulary')"><span class="icon">📖</span><div class="label">词汇库</div></div><div class="quick-btn" onclick="navigate('quiz')"><span class="icon">🎮</span><div class="label">百词斩</div></div></div><div class="card"><div class="card-header"><h2>📅 学习日历</h2><span class="badge">点击日期查看</span></div>${renderCalHTML()}</div>`;
   attachCalEvents();
 }
 
@@ -968,7 +973,61 @@ function renderReview(c) {
   }
   html += `</div>`;
   
-  // === 到期词汇复习 ===
+// === 艾宾浩斯记忆曲线 SVG ===
+  html += `<div style="margin-bottom:20px;border-top:1px solid var(--border);padding-top:16px;">
+    <div style="font-size:14px;font-weight:700;color:var(--primary);margin-bottom:10px;">📈 艾宾浩斯记忆曲线</div>
+    <div style="font-size:12px;color:var(--text-dim);margin-bottom:10px;">基于2026-07-14学习起点 · 点击复习点查看思维导图</div>
+    <div style="background:var(--bg-elev);border-radius:10px;padding:12px;position:relative;">
+      <svg viewBox="0 0 600 280" style="width:100%;height:auto;">
+        <!-- 背景网格 -->
+        <defs>
+          <pattern id="grid" width="50" height="28" patternUnits="userSpaceOnUse">
+            <path d="M 50 0 L 0 0 0 28" fill="none" stroke="rgba(255,255,255,.05)" stroke-width="1"/>
+          </pattern>
+        </defs>
+        <rect width="600" height="280" fill="url(#grid)"/>
+        
+        <!-- 坐标轴 -->
+        <line x1="50" y1="240" x2="580" y2="240" stroke="var(--text-dim)" stroke-width="1"/>
+        <line x1="50" y1="240" x2="50" y2="20" stroke="var(--text-dim)" stroke-width="1"/>
+        
+        <!-- Y轴标签 -->
+        <text x="20" y="245" fill="var(--text-dim)" font-size="10">0%</text>
+        <text x="15" y="125" fill="var(--text-dim)" font-size="10">50%</text>
+        <text x="10" y="25" fill="var(--text-dim)" font-size="10">100%</text>
+        <text x="15" y="15" fill="var(--primary)" font-size="11" font-weight="bold">记忆保留率</text>
+        
+        <!-- X轴标签 -->
+        <text x="280" y="265" fill="var(--text-dim)" font-size="10" text-anchor="middle">天数（自学习日起）</text>
+        ${[0,1,2,4,7,15,30,60,90].map(d => `<text x="${50 + d * 5.5}" y="255" fill="var(--text-dim)" font-size="9" text-anchor="middle">${d}</text>`).join('')}
+        
+        <!-- 遗忘曲线 -->
+        <path d="M 50,20 ${Array.from({length:91},(_,i)=>{const x=50+i*5.5;const y=20+220*(1-Math.exp(-i/10));return `L ${x},${y}`;}).join(' ')}" 
+              fill="none" stroke="var(--primary)" stroke-width="2" opacity="0.8"/>
+        
+        <!-- 复习间隔点 -->
+        ${[1,2,4,7,15,30,60,90].map(d => {
+          const x = 50 + d * 5.5;
+          const y = 20 + 220 * (1 - Math.exp(-d/10));
+          const isReviewed = learningHistory['2026-07-14'] && learningHistory['2026-07-14'].reviews && learningHistory['2026-07-14'].reviews.length > 0;
+          const color = isReviewed ? 'var(--success)' : 'var(--accent)';
+          return `<circle cx="${x}" cy="${y}" r="5" fill="${color}" stroke="#fff" stroke-width="2" class="ebbing-point" data-day="${d}" style="cursor:pointer"/>
+                  <text x="${x}" y="${y-10}" fill="${color}" font-size="9" text-anchor="middle">${d}天</text>`;
+        }).join('')}
+        
+        <!-- 今天标记 -->
+        <line x1="${50 + 3 * 5.5}" y1="20" x2="${50 + 3 * 5.5}" y2="240" stroke="var(--danger)" stroke-width="1" stroke-dasharray="4,4" opacity="0.5"/>
+        <text x="${50 + 3 * 5.5}" y="15" fill="var(--danger)" font-size="9" text-anchor="middle">今天</text>
+      </svg>
+    </div>
+    <div style="display:flex;gap:12px;margin-top:8px;font-size:11px;color:var(--text-dim);">
+      <span><span style="display:inline-block;width:8px;height:8px;background:var(--success);border-radius:50%;margin-right:4px;"></span>已复习</span>
+      <span><span style="display:inline-block;width:8px;height:8px;background:var(--accent);border-radius:50%;margin-right:4px;"></span>待复习</span>
+      <span><span style="display:inline-block;width:8px;height:8px;background:var(--danger);border-radius:50%;margin-right:4px;"></span>今天</span>
+    </div>
+  </div>`;
+
+    // === 到期词汇复习 ===
   html += `<div style="margin-bottom:20px;border-top:1px solid var(--border);padding-top:16px;"><div style="font-size:14px;font-weight:700;color:var(--danger);margin-bottom:10px;">📚 到期词汇复习</div>`;
   const dueWords = [];
   wordBank.forEach(w => {
@@ -1127,6 +1186,12 @@ document.addEventListener("DOMContentLoaded",()=>{
   const menuBtn=document.getElementById("menuBtn"),sidebar=document.getElementById("sidebar");
   if(menuBtn)menuBtn.addEventListener("click",()=>sidebar.classList.toggle("open"));
   document.getElementById("main").addEventListener("click",(e)=>{if(window.innerWidth<=768&&sidebar.classList.contains("open"))sidebar.classList.remove("open");});
+  // clickable-word 事件委托
+  document.getElementById("appContent").addEventListener("click",(e)=>{
+    const w = e.target.closest(".clickable-word");
+    if(w) showWordPopup(w.dataset.word);
+  });
+
   document.addEventListener("click",(e)=>{if(!e.target.closest(".vocab-card")&&!e.target.closest(".word-card"))document.getElementById("tooltip").classList.remove("show");});
 });
 
@@ -2116,7 +2181,7 @@ function renderTopicDetail(c, ds, topicInfo) {
       html += `<div style="margin-bottom:14px;border:1px solid var(--border);border-radius:10px;overflow:hidden"><div style="background:var(--bg-elev);padding:10px 14px;display:flex;align-items:center;gap:8px"><span style="font-size:18px">${sc.icon}</span><span style="font-size:14px;font-weight:600;color:var(--text)">${sc.title}</span></div><div style="padding:12px 14px;">`;
       sc.dialogue.forEach(d => {
         const isA = d.speaker === "A";
-        html += `<div style="display:flex;gap:8px;margin:6px 0;${isA ? '' : 'flex-direction:row-reverse'}"><div style="width:28px;height:28px;border-radius:50%;background:${isA ? 'var(--primary)' : 'var(--accent)'};display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#000">${d.speaker}</div><div style="max-width:70%;padding:8px 12px;border-radius:10px;font-size:13px;line-height:1.5;${isA ? 'background:var(--bg-elev);border:1px solid var(--border)' : 'background:rgba(0,212,170,.1);border:1px solid rgba(0,212,170,.2)'}"><div style="color:var(--text);margin-bottom:4px">${d.text}</div><div style="font-size:11px;color:var(--text-dim);border-top:1px solid var(--border);padding-top:4px;margin-top:4px">${d.trans}</div></div></div>`;
+        html += `<div style="display:flex;gap:8px;margin:6px 0;${isA ? '' : 'flex-direction:row-reverse'}"><div style="width:28px;height:28px;border-radius:50%;background:${isA ? 'var(--primary)' : 'var(--accent)'};display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#000">${d.speaker}</div><div style="max-width:70%;padding:8px 12px;border-radius:10px;font-size:13px;line-height:1.5;${isA ? 'background:var(--bg-elev);border:1px solid var(--border)' : 'background:rgba(0,212,170,.1);border:1px solid rgba(0,212,170,.2)'}"><div style="color:var(--text);margin-bottom:4px">${wrapClickableWords(d.text)}</div><div style="font-size:11px;color:var(--text-dim);border-top:1px solid var(--border);padding-top:4px;margin-top:4px">${d.trans}</div></div></div>`;
       });
       html += `</div></div>`;
     });
@@ -2125,7 +2190,7 @@ function renderTopicDetail(c, ds, topicInfo) {
     // === Day 3: Speeches ===
     html += `<div style="background:rgba(59,130,246,.06);border-radius:10px;padding:16px;margin-bottom:16px;border:1px solid var(--border)"><div style="font-size:15px;color:var(--info);font-weight:700;margin-bottom:12px">🎤 第三阶段：演讲+复习 (Day 3/3)</div>`;
     topic.speeches.forEach((sp, spi) => {
-      html += `<div style="margin-bottom:14px;border:1px solid var(--border);border-radius:10px;overflow:hidden"><div style="background:var(--bg-elev);padding:10px 14px;display:flex;align-items:center;gap:8px"><span style="font-size:18px">${sp.icon}</span><div><div style="font-size:14px;font-weight:600;color:var(--text)">${sp.title}</div><div style="font-size:11px;color:var(--text-dim)">${sp.words}词 · ${sp.time}秒</div></div></div><div style="padding:14px;font-size:13px;line-height:1.8;color:var(--text);background:var(--bg-card);border-radius:0 0 8px 8px">${sp.content}</div></div>`;
+      html += `<div style="margin-bottom:14px;border:1px solid var(--border);border-radius:10px;overflow:hidden"><div style="background:var(--bg-elev);padding:10px 14px;display:flex;align-items:center;gap:8px"><span style="font-size:18px">${sp.icon}</span><div><div style="font-size:14px;font-weight:600;color:var(--text)">${sp.title}</div><div style="font-size:11px;color:var(--text-dim)">${sp.words}词 · ${sp.time}秒</div></div></div><div style="padding:14px;font-size:13px;line-height:1.8;color:var(--text);background:var(--bg-card);border-radius:0 0 8px 8px">${wrapClickableWords(sp.content)}</div></div>`;
     });
     html += `<div style="margin-top:16px;padding:12px;background:rgba(34,197,94,.08);border-radius:8px;border:1px solid rgba(34,197,94,.3)"><div style="font-size:13px;color:var(--success)">✅ 恭喜！已完成三天综合学习！</div><div style="font-size:12px;color:var(--text-dim);margin-top:6px">建议：使用「百词斩」检测掌握程度，使用「艾宾浩斯复习」巩固记忆。</div></div>`;
     html += `</div>`;
@@ -2168,7 +2233,7 @@ function renderTopicDetail(c, ds, topicInfo) {
       const s = topic.scenes[i];
       html += `<div style="background:var(--bg-elev);border-radius:10px;padding:16px;margin-bottom:12px;border:1px solid var(--border)"><div style="display:flex;align-items:center;gap:8px;margin-bottom:10px"><span style="font-size:18px">${s.icon}</span><strong style="color:var(--primary);font-size:14px">${s.title}</strong></div>`;
       s.dialogue.forEach(d => {
-        html += `<div style="display:flex;gap:10px;margin:8px 0;padding:8px;background:var(--bg-card);border-radius:6px"><div style="font-weight:700;color:var(--primary);min-width:30px;font-size:12px">${d.speaker}:</div><div style="flex:1"><div style="font-size:13px;color:var(--text)">${d.text}</div><div style="font-size:11px;color:var(--text-dim);margin-top:3px;border-left:2px solid var(--primary-dim);padding-left:6px">${d.trans}</div></div></div>`;
+        html += `<div style="display:flex;gap:10px;margin:8px 0;padding:8px;background:var(--bg-card);border-radius:6px"><div style="font-weight:700;color:var(--primary);min-width:30px;font-size:12px">${d.speaker}:</div><div style="flex:1"><div style="font-size:13px;color:var(--text)">${wrapClickableWords(d.text)}</div><div style="font-size:11px;color:var(--text-dim);margin-top:3px;border-left:2px solid var(--primary-dim);padding-left:6px">${d.trans}</div></div></div>`;
       });
       html += `</div>`;
     }
@@ -2177,7 +2242,7 @@ function renderTopicDetail(c, ds, topicInfo) {
     html += `<h3 style="color:var(--primary);margin:16px 0 10px;font-size:15px">🎤 1分钟演讲</h3>`;
     for (let i = 0; i < topic.speeches.length; i++) {
       const sp = topic.speeches[i];
-      html += `<div style="background:var(--bg-elev);border-radius:10px;padding:16px;margin-bottom:12px;border:1px solid var(--border)"><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><span style="font-size:18px">${sp.icon}</span><strong style="color:var(--primary);font-size:14px">${sp.title}</strong></div><div style="display:flex;gap:8px;margin-bottom:10px;font-size:11px;color:var(--text-dim)"><span style="background:rgba(0,212,170,.1);padding:2px 8px;border-radius:8px">⏱️ ~${sp.time}秒</span><span style="background:rgba(0,212,170,.1);padding:2px 8px;border-radius:8px">📝 ~${sp.words}词</span></div><div style="font-size:13px;line-height:1.8;color:var(--text);background:var(--bg-card);padding:12px;border-radius:8px">${sp.content}</div></div>`;
+      html += `<div style="background:var(--bg-elev);border-radius:10px;padding:16px;margin-bottom:12px;border:1px solid var(--border)"><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><span style="font-size:18px">${sp.icon}</span><strong style="color:var(--primary);font-size:14px">${sp.title}</strong></div><div style="display:flex;gap:8px;margin-bottom:10px;font-size:11px;color:var(--text-dim)"><span style="background:rgba(0,212,170,.1);padding:2px 8px;border-radius:8px">⏱️ ~${sp.time}秒</span><span style="background:rgba(0,212,170,.1);padding:2px 8px;border-radius:8px">📝 ~${sp.words}词</span></div><div style="font-size:13px;line-height:1.8;color:var(--text);background:var(--bg-card);padding:12px;border-radius:8px">${wrapClickableWords(sp.content)}</div></div>`;
     }
     html += `<div style="margin-top:16px;padding:12px;background:rgba(34,197,94,.08);border-radius:8px;border:1px solid rgba(34,197,94,.3)"><div style="font-size:13px;color:var(--success)">✅ 完成三天学习！进入复习队列。</div><div style="font-size:12px;color:var(--text-dim);margin-top:6px">建议：使用「能力测试」检测掌握程度，使用「艾宾浩斯复习」巩固记忆。</div></div>`;
   }
@@ -2307,6 +2372,191 @@ function renderVersion(c){
     </div>
   </div>`;
 }
+
+
+// ===== 单词点击翻译弹窗 =====
+function wrapClickableWords(text){
+  return text.replace(/([a-zA-ZÀ-ɏḀ-ỿ]+)/g,'<span class="clickable-word" data-word="$1">$1</span>');
+}
+
+function showWordPopup(word){
+  const clean = word.toLowerCase().replace(/[^a-z]/g,'');
+  let v = vocabDB[clean] || vocabDB[word.toLowerCase()];
+  
+  // 前缀去除查找
+  if(!v && clean.length>3){
+    const prefixes = [['me','meng','meny','men','mem','me'],['ber','be'],['di'],['ter'],['pe','peng','peny','pen','pem'],['se']];
+    for(const group of prefixes){
+      for(const p of group){
+        if(clean.startsWith(p) && clean.length>p.length+2){
+          const root = clean.slice(p.length);
+          v = vocabDB[root];
+          if(v) break;
+          const changes = {m:'p',n:'t',ng:'k',ny:'s',r:''};
+          for(const [to,from] of Object.entries(changes)){
+            if(root.startsWith(to)){
+              v = vocabDB[from+root.slice(to.length)];
+              if(v) break;
+            }
+          }
+        }
+        if(v) break;
+      }
+      if(v) break;
+    }
+  }
+  
+  let existing = document.getElementById('wordPopupOverlay');
+  if(existing) existing.remove();
+  
+  const overlay = document.createElement('div');
+  overlay.id = 'wordPopupOverlay';
+  overlay.style.cssText = 'position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.6);z-index:9998;display:flex;align-items:center;justify-content:center;padding:16px;';
+  
+  const inWB = v ? wordBank.some(w=>w.id===v.id||w.id===clean) : false;
+  
+  let cardHTML = `<div id="wordPopupCard" style="background:var(--bg-card);border-radius:16px;padding:20px;max-width:320px;width:100%;border:1px solid var(--border);box-shadow:var(--shadow);position:relative;z-index:9999;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+      <div style="font-size:18px;font-weight:700;color:var(--primary);">${word}</div>
+      <button id="wordPopupClose" style="background:none;border:none;color:var(--text-dim);font-size:20px;cursor:pointer;padding:0;width:28px;height:28px;display:flex;align-items:center;justify-content:center;">✕</button>
+    </div>`;
+  
+  if(v){
+    cardHTML += `<div style="margin-bottom:12px;"><div style="font-size:13px;color:var(--text-dim);margin-bottom:4px;">IPA</div><div style="font-size:15px;color:var(--text);">${v.ipa||'/'}</div></div>
+    <div style="margin-bottom:12px;"><div style="font-size:13px;color:var(--text-dim);margin-bottom:4px;">中文</div><div style="font-size:15px;color:var(--primary);font-weight:600;">${v.cn}</div></div>
+    <div style="margin-bottom:16px;"><div style="font-size:13px;color:var(--text-dim);margin-bottom:4px;">English</div><div style="font-size:14px;color:var(--text);">${v.en||'-'}</div></div>
+    ${v.root?`<div style="font-size:12px;color:var(--text-dim);margin-bottom:16px;">词根: ${v.root}</div>`:''}
+    <button id="wordPopupAddBtn" data-wid="${v.id}" style="width:100%;padding:10px;background:${inWB?'var(--bg-elev)':'var(--primary)'};color:${inWB?'var(--text-dim)':'#0a0e17'};border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;" ${inWB?'disabled':''}>${inWB?'✅ 已在生词本':'📚 加入生词本'}</button>`;
+  } else {
+    cardHTML += `<div style="text-align:center;padding:20px 0;"><div style="font-size:36px;margin-bottom:12px;">🔍</div><div style="font-size:14px;color:var(--text-dim);margin-bottom:8px;">「${word}」未收录</div><div style="font-size:12px;color:var(--text-dim);">可手动添加到词汇库</div></div>`;
+  }
+  
+  cardHTML += `</div>`;
+  overlay.innerHTML = cardHTML;
+  
+  // 事件绑定（避免内联onclick）
+  overlay.addEventListener('click',(e)=>{
+    if(e.target===overlay) closeWordPopup();
+  });
+  const closeBtn = document.getElementById('wordPopupClose');
+  if(closeBtn) closeBtn.addEventListener('click',closeWordPopup);
+  const addBtn = document.getElementById('wordPopupAddBtn');
+  if(addBtn) addBtn.addEventListener('click',()=>addToWBFromPopup(addBtn.dataset.wid));
+  
+  document.body.appendChild(overlay);
+}
+
+function closeWordPopup(){
+  const el = document.getElementById('wordPopupOverlay');
+  if(el) el.remove();
+}
+
+function addToWBFromPopup(wordId){
+  const v = vocabDB[wordId];
+  if(!v) return;
+  if(wordBank.some(w=>w.id===v.id)){
+    showToast('已在生词本');
+    return;
+  }
+  wordBank.push({id:v.id,zh:v.cn,en:v.en||'',ipa:v.ipa||'',root:v.root||'',passed:{},addTime:Date.now()});
+  saveWB();
+  updateStats();
+  showToast(`已加入: ${v.cn}`);
+  closeWordPopup();
+}
+
+
+// === 思维导图（三级展开）===
+function renderMindMap(c){
+  const r = parseRoute();
+  const topicKey = r.param || 'meet';
+  const topic = topicData[topicKey];
+  
+  if(!topic){
+    c.innerHTML = `<div class="card"><div style="padding:20px;text-align:center;"><div style="font-size:48px;margin-bottom:12px;">🗺️</div><div style="font-size:16px;color:var(--text);">选择话题查看思维导图</div></div></div>`;
+    return;
+  }
+  
+  let html = `<div class="card"><div class="card-header"><h2>🗺️ 思维导图 · ${topic.title}</h2><span class="badge">三级展开</span></div><div style="padding:16px;">`;
+  
+  // 一级：日期节点
+  const dates = topicCalendarEntries.filter(e => e.topic === topicKey).map(e => e.date);
+  dates.forEach((date, di) => {
+    const dayNum = di + 1;
+    const tc = topicCalendar[date];
+    html += `<div style="margin-bottom:16px;border:1px solid var(--border);border-radius:12px;overflow:hidden;">
+      <div onclick="toggleMindLevel(this)" style="padding:14px;background:linear-gradient(90deg,var(--bg-elev),transparent);cursor:pointer;display:flex;align-items:center;gap:10px;">
+        <span style="font-size:20px;">📅</span>
+        <div style="flex:1">
+          <div style="font-size:14px;font-weight:700;color:var(--primary);">Day ${dayNum} · ${date}</div>
+          <div style="font-size:12px;color:var(--text-dim);">${tc ? tc.label : '学习内容'}</div>
+        </div>
+        <span class="mind-toggle" style="font-size:18px;color:var(--text-dim);transition:transform .3s;">▼</span>
+      </div>
+      <div class="mind-level2" style="display:none;padding:0 14px 14px;">`;
+    
+    // 二级：内容类型
+    if(dayNum === 1){
+      // 词汇语法
+      html += `<div style="margin-bottom:10px;">
+        <div onclick="toggleMindLevel(this)" style="padding:10px;background:var(--bg-card);border-radius:8px;cursor:pointer;display:flex;align-items:center;gap:8px;">
+          <span>📚</span><span style="font-weight:600;">词汇与语法</span><span class="mind-toggle" style="margin-left:auto;font-size:14px;">▼</span>
+        </div>
+        <div class="mind-level3" style="display:none;padding:8px 0 0 28px;">
+          <div style="font-size:13px;color:var(--text);margin-bottom:6px;"><strong>${topic.grammar.title}</strong></div>
+          ${topic.grammar.rules.map((rule, i) => `<div style="font-size:12px;color:var(--text-dim);margin:3px 0;padding-left:8px;border-left:2px solid var(--primary);">${i+1}. ${rule}</div>`).join('')}
+        </div>
+      </div>`;
+    }
+    
+    // 场景对话（Day 1和Day 2都有）
+    if(dayNum <= 2 && topic.scenes){
+      html += `<div style="margin-bottom:10px;">
+        <div onclick="toggleMindLevel(this)" style="padding:10px;background:var(--bg-card);border-radius:8px;cursor:pointer;display:flex;align-items:center;gap:8px;">
+          <span>🎭</span><span style="font-weight:600;">场景对话 (${topic.scenes.length}个)</span><span class="mind-toggle" style="margin-left:auto;font-size:14px;">▼</span>
+        </div>
+        <div class="mind-level3" style="display:none;padding:8px 0 0 28px;">
+          ${topic.scenes.map((scene, i) => `<div style="font-size:12px;color:var(--text);margin:4px 0;"><span style="color:var(--info);">${scene.icon}</span> ${scene.title}</div>`).join('')}
+        </div>
+      </div>`;
+    }
+    
+    // 演讲（Day 3）
+    if(dayNum === 3 && topic.speeches){
+      html += `<div style="margin-bottom:10px;">
+        <div onclick="toggleMindLevel(this)" style="padding:10px;background:var(--bg-card);border-radius:8px;cursor:pointer;display:flex;align-items:center;gap:8px;">
+          <span>🎤</span><span style="font-weight:600;">演讲 (${topic.speeches.length}篇)</span><span class="mind-toggle" style="margin-left:auto;font-size:14px;">▼</span>
+        </div>
+        <div class="mind-level3" style="display:none;padding:8px 0 0 28px;">
+          ${topic.speeches.map((sp, i) => `<div style="font-size:12px;color:var(--text);margin:4px 0;"><span style="color:var(--accent);">${sp.icon}</span> ${sp.title} (${sp.words}词)</div>`).join('')}
+        </div>
+      </div>`;
+    }
+    
+    html += `</div></div>`;
+  });
+  
+  html += `</div></div>`;
+  c.innerHTML = html;
+}
+
+function toggleMindLevel(el){
+  const level2 = el.nextElementSibling;
+  if(!level2) return;
+  const isHidden = level2.style.display === 'none';
+  level2.style.display = isHidden ? 'block' : 'none';
+  const toggle = el.querySelector('.mind-toggle');
+  if(toggle) toggle.style.transform = isHidden ? 'rotate(180deg)' : 'rotate(0deg)';
+}
+
+// 艾宾浩斯曲线复习点点击事件（事件委托）
+document.addEventListener('click', function(e){
+  const point = e.target.closest('.ebbing-point');
+  if(point){
+    const day = point.dataset.day;
+    navigate('mindmap');
+  }
+});
 </script>
 </body>
 </html>
