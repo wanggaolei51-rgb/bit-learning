@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<title>LEO-BIR V2.5</title>
+<title>LEO-BIR V2.6</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -147,7 +147,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="sidebar-header">
     <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <h1>LEO-BIR</h1>
-    <div class="ver">Bahasa Indonesia Learning · 印尼语学习</div>
+    <div class="ver">LEO-BIR V2.6 · C3课程系统</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -631,7 +631,31 @@ const vocabDB = {
 'semua':{ipa:'/səˈmua/',cn:'全部/所有',en:'all / everyone',root:'mua + se-',tag:'基础词汇'},
 'ada':{ipa:'/ˈada/',cn:'有/存在',en:'there is / exist',root:'ada',tag:'基础词汇'},
 'jangan':{ipa:'/ˈdʒaŋan/',cn:'不要/别',en:'don\'t',root:'jangan',tag:'祈使词'},
-'atau':{ipa:'/ˈatau/',cn:'或者',en:'or',root:'atau',tag:'基础词汇'}
+'atau':{ipa:'/ˈatau/',cn:'或者',en:'or',root:'atau',tag:'基础词汇'},
+'kenal':{ipa:'/ˈkɛnal/',cn:'认识/知道',en:'know',root:'kenal',tag:'介绍'},
+'perkenal':{ipa:'/pərˈkɛnal/',cn:'介绍',en:'introduce',root:'perkenal',tag:'介绍'},
+'memperkenalkan':{ipa:'/məmpərˈkɛnalkan/',cn:'介绍（正式）',en:'to introduce',root:'perkenal',tag:'介绍'},
+'mengenal':{ipa:'/məˈŋɛnal/',cn:'认识（动词）',en:'to know',root:'kenal',tag:'介绍'},
+'dikenal':{ipa:'/diˈkɛnal/',cn:'被认识/闻名',en:'known',root:'kenal',tag:'介绍'},
+'terkenal':{ipa:'/tərˈkɛnal/',cn:'著名的',en:'famous',root:'kenal',tag:'介绍'},
+'sapa':{ipa:'/ˈsapə/',cn:'打招呼',en:'greet',root:'sapa',tag:'介绍'},
+'menyapa':{ipa:'/məˈɲapə/',cn:'打招呼（动词）',en:'to greet',root:'sapa',tag:'介绍'},
+'tulis':{ipa:'/ˈtulis/',cn:'写',en:'write',root:'tulis',tag:'介绍'},
+'menulis':{ipa:'/məˈnulis/',cn:'写（动词）',en:'to write',root:'tulis',tag:'介绍'},
+'ditulis':{ipa:'/diˈtulis/',cn:'被写',en:'written',root:'tulis',tag:'介绍'},
+'cari':{ipa:'/ˈtʃari/',cn:'找/寻找',en:'search',root:'cari',tag:'介绍'},
+'mencari':{ipa:'/mənˈtʃari/',cn:'寻找',en:'to search',root:'cari',tag:'介绍'},
+'jual':{ipa:'/ˈdʒual/',cn:'卖',en:'sell',root:'jual',tag:'介绍'},
+'menjual':{ipa:'/mənˈdʒual/',cn:'卖（动词）',en:'to sell',root:'jual',tag:'介绍'},
+'dijual':{ipa:'/diˈdʒual/',cn:'被卖/在售',en:'for sale',root:'jual',tag:'介绍'},
+'tanggung':{ipa:'/ˈtaŋɡuŋ/',cn:'承担/负责',en:'responsible',root:'tanggung',tag:'介绍'},
+'tanggung jawab':{ipa:'/ˈtaŋɡuŋ ˈdʒawab/',cn:'责任',en:'responsibility',root:'tanggung+jawab',tag:'介绍'},
+'operasi':{ipa:'/oˈpɛrasi/',cn:'运营/操作',en:'operation',root:'operasi',tag:'介绍'},
+'kapasitas':{ipa:'/kaˈpasitas/',cn:'产能/容量',en:'capacity',root:'kapasitas',tag:'介绍'},
+'tahunan':{ipa:'/taˈhunan/',cn:'每年的',en:'annual',root:'tahun',tag:'介绍'},
+'integrasi':{ipa:'/inˈtɛɡrasi/',cn:'一体化/整合',en:'integration',root:'integrasi',tag:'介绍'},
+'berinvestasi':{ipa:'/bərinˈvɛstasi/',cn:'投资',en:'to invest',root:'investasi',tag:'介绍'},
+'kerja sama':{ipa:'/ˈkɛrdʒa ˈsama/',cn:'合作',en:'cooperation',root:'kerja+sama',tag:'介绍'}
 };
 
 
@@ -1902,12 +1926,152 @@ const topicData = {
         "content": "Wah, apa kabar, Pak Budi? Sudah berapa lama kita tidak bertemu? Sepertinya sudah hampir setahun, ya, sejak konferensi pertambangan di Jakarta tahun lalu. Saya sangat senang bisa berjumpa dengan Anda lagi di Morowali. Sejak terakhir kita bertemu, perusahaan Anda pastilah telah berkembang pesat. Kami baru saja menyelesaikan pembangkit listrik tenaga surya dan sedang berusaha meningkatkan efisiensi smelter kami. Saya banyak berpikir tentang rencana ekspansi ke bisnis aluminium dan berharap bisa berdiskusi dengan Anda mengenai peluang kerja sama di bidang tersebut. Mari kita berkumpul nanti malam untuk makan malam bersama dan menyusun strategi lebih lanjut. Senang rasanya bisa bersama Anda lagi!"
       }
     ]
+  },
+  "introduce": {
+    "title": "话题2: 介绍 / Memperkenalkan",
+    "icon": "🙋",
+    "days": 3,
+    "grammar": {
+      "title": "me- 前缀",
+      "rules": [
+        "Rule 1: p → m — perkenal → memperkenalkan ('介绍')",
+        "Rule 2: t → n — tulis → menulis ('写')",
+        "Rule 3: k → ng — kenal → mengenal ('认识')",
+        "Rule 4: s → ny — sapa → menyapa ('打招呼')",
+        "Rule 5: c → ny — cari → mencari ('寻找')",
+        "Rule 6: j → ny — jual → menjual ('卖')",
+        "Rule 7: d/di- 被动前缀 — dikenal ('被认识')、ditulis ('被写')",
+        "Rule 8: ter- 前缀 — terkenal ('著名的')、terdapat ('存在')"
+      ],
+      "examples": [
+        "kenal /ˈkɛnal/ (v.) → mengenal /məˈŋɛnal/ (v.) = '认识'",
+        "perkenal /pərˈkɛnal/ (v.) → memperkenalkan /məmpərˈkɛnalkan/ (v.) = '介绍'",
+        "sapa /ˈsapə/ (v.) → menyapa /məˈɲapə/ (v.) = '打招呼'",
+        "tulis /ˈtulis/ (v.) → menulis /məˈnulis/ (v.) = '写'",
+        "kenal → dikenal /diˈkɛnal/ = '被认识'",
+        "kenal → terkenal /tərˈkɛnal/ = '著名的'"
+      ]
+    },
+    "scenes": [
+      {
+        "title": "自我介绍（正式场合）",
+        "icon": "🏛️",
+        "dialogue": [
+          {"speaker": "A", "text": "Selamat pagi. Perkenalkan, nama saya [Nama], General Manager PT [Nama Perusahaan]. Saya bertanggung jawab atas operasi smelter di kawasan industri ini.", "trans": "早上好。请允许我介绍，我是[姓名]，[公司名称]总经理。我负责该工业园区的冶炼厂运营。"},
+          {"speaker": "B", "text": "Senang mengenal Anda, Pak/Bu [Nama]. Apa yang dapat Anda ceritakan tentang perusahaan Anda?", "trans": "很高兴认识您，[姓名]先生/女士。您能介绍一下您的公司吗？"},
+          {"speaker": "A", "text": "Perusahaan kami adalah produsen utama nikel dan kobalt di Indonesia. Kami memiliki fasilitas pengolahan lengkap dari tambang hingga produk akhir.", "trans": "我们公司的是印尼主要的镍和钴生产商。我们拥有从矿山到最终产品的完整加工设施。"},
+          {"speaker": "B", "text": "Sangat mengesankan. Berapa lama Anda sudah beroperasi di sini?", "trans": "非常令人印象深刻。您在这里运营多久了？"},
+          {"speaker": "A", "text": "Sudah tujuh tahun. Kami mulai dari nol dan sekarang memiliki lebih dari 5.000 karyawan.", "trans": "已经七年了。我们从零开始，现在拥有超过5000名员工。"}
+        ]
+      },
+      {
+        "title": "介绍同事（办公室）",
+        "icon": "🏭",
+        "dialogue": [
+          {"speaker": "A", "text": "Pak/Bu [Nama], izinkan saya memperkenalkan rekan kerja saya, Pak/Bu [Nama B]. Beliau adalah Kepala Teknik kami.", "trans": "[姓名]先生/女士，请允许我介绍我的同事，[姓名B]先生/女士。他是我们的技术主管。"},
+          {"speaker": "B", "text": "Senang bertemu dengan Anda, Pak/Bu [Nama]. Saya bertanggung jawab atas pemeliharaan peralatan dan optimalisasi proses.", "trans": "很高兴见到您，[姓名]先生/女士。我负责设备维护和工艺优化。"},
+          {"speaker": "C", "text": "Senang juga, Pak/Bu [Nama B]. Saya mendengar banyak hal baik tentang tim teknik Anda.", "trans": "我也很高兴，[姓名B]先生/女士。我听说了很多关于您技术团队的好事。"},
+          {"speaker": "B", "text": "Terima kasih. Kami selalu berusaha memberikan yang terbaik. Jika ada masalah teknis, silakan hubungi saya kapan saja.", "trans": "谢谢。我们总是努力做到最好。如果有技术问题，请随时联系我。"}
+        ]
+      },
+      {
+        "title": "介绍下属给上级",
+        "icon": "👔",
+        "dialogue": [
+          {"speaker": "A", "text": "Bapak Direktur, izinkan saya memperkenalkan tim manajemen saya. Ini Pak [Nama], Kepala Produksi.", "trans": "董事长，请允许我介绍我的管理团队。这是[姓名]先生，生产主管。"},
+          {"speaker": "B", "text": "Selamat siang, Pak Direktur. Nama saya [Nama]. Saya sudah bekerja di sini selama lima tahun.", "trans": "下午好，董事长。我叫[姓名]。我已经在这里工作五年了。"},
+          {"speaker": "C", "text": "Baik, Pak [Nama]. Bagaimana performa produksi bulan ini?", "trans": "好的，[姓名]先生。本月生产表现如何？"},
+          {"speaker": "B", "text": "Alhamdulillah, kami mencapai target 105% dari rencana, Pak. Semua lini berjalan lancar.", "trans": "感谢真主，我们达到了计划的105%目标，先生。所有生产线运行顺利。"},
+          {"speaker": "C", "text": "Bagus sekali. Terus pertahankan.", "trans": "非常好。继续保持。"}
+        ]
+      },
+      {
+        "title": "商务会面介绍",
+        "icon": "🤝",
+        "dialogue": [
+          {"speaker": "A", "text": "Selamat sore, Pak/Bu. Saya [Nama] dari departemen pemasaran. Perkenalkan rekan saya, Bu [Nama B] dari keuangan.", "trans": "下午好，先生/女士。我是市场部的[姓名]。请允许我介绍我的同事，财务部的[姓名B]女士。"},
+          {"speaker": "B", "text": "Senang bertemu dengan Anda. Saya menangani anggaran dan analisis investasi untuk proyek-proyek baru.", "trans": "很高兴见到您。我负责新项目的预算和投资分析。"},
+          {"speaker": "C", "text": "Senang juga. Kami sedang mencari mitra untuk proyek pembangkit listrik tenaga surya 200MW.", "trans": "我也很高兴。我们正在寻找200MW太阳能电站项目的合作伙伴。"},
+          {"speaker": "B", "text": "Menarik sekali. Boleh saya minta proposalnya? Saya akan meninjaunya bersama tim.", "trans": "非常有趣。能给我一份提案吗？我会和团队一起审阅。"}
+        ]
+      },
+      {
+        "title": "朋友介绍（非正式）",
+        "icon": "🍻",
+        "dialogue": [
+          {"speaker": "A", "text": "Halo guys, ini teman saya [Nama]. Dia baru pindah ke Morowali dari Jakarta.", "trans": "嗨伙计们，这是我的朋友[姓名]。他刚从雅加达搬到莫罗瓦利。"},
+          {"speaker": "B", "text": "Halo [Nama]! Selamat datang di Morowali. Sudah adaptasi dengan cuaca panasnya?", "trans": "嗨[姓名]！欢迎来到莫罗瓦利。适应这里的炎热天气了吗？"},
+          {"speaker": "C", "text": "Halo semua. Masih agak kaget sih, panasnya beda dari Jakarta. Tapi pemandangannya bagus banget.", "trans": "嗨大家好。还有点震惊，热度和雅加达不一样。但风景非常美。"},
+          {"speaker": "B", "text": "Nanti kita ajak keliling ya. Ada pantai bagus di dekat sini.", "trans": "回头我们带你转转。这附近有很好的海滩。"},
+          {"speaker": "C", "text": "Wah, asik! Makasih ya udah disambut ramah.", "trans": "哇，太棒了！谢谢你们的热情欢迎。"}
+        ]
+      },
+      {
+        "title": "介绍公司给访客",
+        "icon": "🏢",
+        "dialogue": [
+          {"speaker": "A", "text": "Selamat datang di PT [Nama Perusahaan]. Izinkan saya memperkenalkan perusahaan kami secara singkat.", "trans": "欢迎来到[公司名称]。请允许我简要介绍一下我们公司。"},
+          {"speaker": "A", "text": "Kami adalah perusahaan pengolahan nikel terintegrasi, mulai dari penambangan, pengolahan, hingga produksi baterai lithium.", "trans": "我们是一家一体化镍加工公司，从采矿、加工到锂电池生产。"},
+          {"speaker": "B", "text": "Berapa kapasitas produksi tahunan Anda?", "trans": "你们的年产能是多少？"},
+          {"speaker": "A", "text": "Saat ini kami memproduksi 150.000 ton nikel per tahun, dan sedang membangun fasilitas baru untuk mencapai 300.000 ton.", "trans": "目前我们年产15万吨镍，正在建设新设施以达到30万吨。"},
+          {"speaker": "B", "text": "Sangat mengesankan. Berapa jumlah karyawan Anda?", "trans": "非常令人印象深刻。你们有多少员工？"},
+          {"speaker": "A", "text": "Total sekitar 12.000 orang, termasuk karyawan lokal dan ekspatriat dari berbagai negara.", "trans": "总共约12000人，包括本地员工和来自各国的外籍员工。"}
+        ]
+      }
+    ],
+    "speeches": [
+      {
+        "title": "自我介绍（正式）",
+        "icon": "🏛️",
+        "words": 148,
+        "time": 55,
+        "content": "Selamat pagi, Bapak/Ibu yang terhormat. Perkenalkan, nama saya [Nama], General Manager PT [Nama Perusahaan]. Saya bertanggung jawab atas operasi smelter dan pengembangan proyek di kawasan industri Morowali. Perusahaan kami telah beroperasi selama tujuh tahun dan memiliki lebih dari lima ribu karyawan. Kami berkomitmen untuk menciptakan lapangan kerja dan berkontribusi pada pembangunan ekonomi daerah. Terima kasih atas kesempatan ini untuk memperkenalkan diri. Saya sangat menghargai dukungan dari semua pihak."
+      },
+      {
+        "title": "介绍公司（商务）",
+        "icon": "🏢",
+        "words": 152,
+        "time": 58,
+        "content": "Selamat sore, para mitra dan investor yang terhormat. Izinkan saya memperkenalkan PT [Nama Perusahaan]. Kami adalah produsen nikel dan kobalt terbesar di Indonesia dengan kapasitas tahunan seratus lima puluh ribu ton. Fasilitas kami mencakup penambangan, pengolahan, dan produksi baterai lithium. Kami mempekerjakan dua belas ribu orang dan berinvestasi dalam teknologi ramah lingkungan. Visi kami adalah menjadi pemain global dalam rantai pasok baterai kendaraan listrik. Kami terbuka untuk kerja sama strategis dengan mitra internasional."
+      },
+      {
+        "title": "欢迎致辞（工厂参观）",
+        "icon": "🏭",
+        "words": 145,
+        "time": 55,
+        "content": "Selamat datang di fasilitas produksi kami. Saya [Nama], Kepala Operasional. Hari ini saya akan memperkenalkan proses produksi nikel dari tambang hingga produk akhir. Smelter kami menggunakan teknologi HPAL terkini dengan efisiensi energi tinggi. Kami memiliki dua puluh lima ribu karyawan lokal dan berkomitmen pada keselamatan kerja. Selama tujuh tahun operasi, kami telah mencapai nol kecelakaan fatal. Silakan ikuti saya untuk melihat fasilitas pengolahan dan area kontrol pusat."
+      },
+      {
+        "title": "介绍团队（项目启动会）",
+        "icon": "👥",
+        "words": 150,
+        "time": 57,
+        "content": "Selamat pagi, rekan-rekan sekalian. Hari ini saya ingin memperkenalkan tim proyek pembangkit listrik tenaga surya dua ratus MW. Tim ini dipimpin oleh Pak [Nama] sebagai Project Manager, dengan dukungan tim teknik dari tiga negara. Pak [Nama] memiliki pengalaman lima belas tahun dalam pembangkit listrik terbarukan. Tim keuangan dipimpin oleh Bu [Nama] yang sudah menangani proyek infrastruktur besar di Asia Tenggara. Saya yakin dengan kerja sama tim yang solid, proyek ini akan selesai tepat waktu dan sesuai anggaran."
+      },
+      {
+        "title": "介绍产品（客户会议）",
+        "icon": "🔋",
+        "words": 148,
+        "time": 56,
+        "content": "Selamat sore, para pelanggan yang terhormat. Izinkan saya memperkenalkan produk nikel sulfat kelas baterai kami. Produk ini memiliki kemurnian tinggi dan sesuai dengan standar industri baterai kendaraan listrik global. Kapasitas produksi tahunan kami mencapai lima puluh ribu ton, dengan rencana ekspansi menjadi seratus ribu ton dalam dua tahun. Kami telah bekerja sama dengan produsen baterai terkemuka dari Korea, Jepang, dan China. Produk kami telah lolos sertifikasi internasional dan siap memasuki pasar global."
+      },
+      {
+        "title": "节日问候与介绍（开斋节）",
+        "icon": "🌙",
+        "words": 142,
+        "time": 54,
+        "content": "Assalamualaikum warahmatullahi wabarakatuh. Selamat Hari Raya Idul Fitri, Mohon Maaf Lahir dan Batin. Saya [Nama], General Manager. Di momen istimewa ini, izinkan saya memperkenalkan program kesejahteraan karyawan baru kami. Program ini mencakup asuransi kesehatan, beasiswa pendidikan untuk anak karyawan, dan fasilitas olahraga. Kami telah berinvestasi lima miliar rupiah untuk program ini. Karena keberhasilan perusahaan tidak terlepas dari kesejahteraan keluarga besar kita. Selamat merayakan bersama keluarga tercinta."
+      }
+    ]
   }
 };
 
 
 const topicCalendar = {
-  "2026-07-16": {topic: "meet", day: 1, label: "词汇+语法+场景对话+演讲+复习", allDays: true}
+  "2026-07-16": {topic: "meet", day: 1, label: "词汇+语法+场景对话+演讲+复习", allDays: true},
+  "2026-07-17": {topic: "introduce", day: 1, label: "词汇+语法+语型"},
+  "2026-07-18": {topic: "introduce", day: 2, label: "复习+语型+对话"},
+  "2026-07-19": {topic: "introduce", day: 3, label: "复习+演讲"}
 };
 
 function getTopicForDate(ds) {
@@ -2096,9 +2260,20 @@ function renderAbout(c){
 }
 
 function renderVersion(c){
-  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录</h2><span class="badge">V2.5</span></div>
+  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录</h2><span class="badge">V2.6</span></div>
     <div style="padding:16px;">
       <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
+        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V2.6 (2026-07-17)</div>
+        <div style="font-size:13px;color:var(--text);line-height:1.8">
+        • C3课程系统：话题2「介绍/Memperkenalkan」生成<br>
+        • C3逻辑：Day1词汇语法+语型 → Day2复习+语型对话 → Day3复习+演讲<br>
+        • me-前缀语法：8条规则（p→m/t→n/k→ng/s→ny/c→ny/j→ny/di-/ter-）<br>
+        • 新增24个核心词汇（kenal/perkenal/memperkenalkan/mengenal等）<br>
+        • 6个场景对话（自我介绍/介绍同事/介绍下属/商务会面/朋友/公司介绍）<br>
+        • 6篇1分钟演讲（自我介绍/介绍公司/欢迎致辞/介绍团队/介绍产品/节日问候）
+        </div>
+      </div>
+      <div style="margin-bottom:14px;padding:14px;background:var(--bg-elev);border-radius:10px;border-left:3px solid var(--primary)">
         <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V2.5 (2026-07-16)</div>
         <div style="font-size:13px;color:var(--text);line-height:1.8">
         • 头像品牌化：使用真实头像<br>
