@@ -147,7 +147,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="sidebar-header">
     <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <h1>LEO-BIR</h1>
-    <div class="ver">LEO-BIR V2.5 · 印尼语智能学习</div>
+    <div class="ver">Bahasa Indonesia Learning · 印尼语学习</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -177,6 +177,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
       <li data-route="vocabulary"><span style="margin-right:8px">📖</span>词汇库</li>
       <li data-route="review"><span style="margin-right:8px">🧠</span>复习</li>
       <li data-route="member"><span style="margin-right:8px">👑</span>会员中心</li>
+      <li data-route="about"><span style="margin-right:8px">📋</span>关于LEO-BIR</li>
+      <li data-route="version"><span style="margin-right:8px">📜</span>版本记录</li>
     </ul>
   </div>
   <div class="sidebar-section" style="padding:14px 18px;font-size:11px;color:var(--text-dim);line-height:1.8">
@@ -196,6 +198,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="tt-w" id="ttw"></div>
   <div class="tt-i" id="tti"></div>
   <div class="tt-t" id="ttt"></div>
+  <div class="tt-r" id="ttr"></div>
+</div>
+<div class="toast" id="toast"></div>
+<script>
 const vocabDB = {
 'Selamat':{ipa:'/səˈlamat/',cn:'安全/祝...',en:'safe / congratulations',root:'salamat (Arabic)',tag:'问候语'},
 'pagi':{ipa:'/ˈpaɡi/',cn:'早上',en:'morning',root:'pagi',tag:'时间词'},
@@ -656,7 +662,7 @@ function render(){
     case "wordbank":t.innerText="📚 生词本";renderWordBank(c);break;
     case "quiz":t.innerText="🎯 能力测试";renderQuiz(c);break;
     case "vocabulary":t.innerText="📖 词汇库";renderVocabulary(c);break;
-    case "review":t.innerText="🧠 复习";renderReview(c);break;
+    case "review":t.innerText="🔄 复习";renderReview(c);break;
     case "member":t.innerText="👑 会员中心";renderMember(c);break;
     case "about":t.innerText="📋 关于";renderAbout(c);break;
     case "version":t.innerText="📜 版本";renderVersion(c);break;
@@ -664,7 +670,6 @@ function render(){
     case "manage":t.innerText="⚙️ 课程管理";renderManage(c);break;
     case "stats":t.innerText="📊 数据统计";renderStats(c);break;
     case "game":t.innerText="🎮 百词斩";renderGame(c);break;
-    case "mindmap":t.innerText="🧠 思维导图";renderMindMap(c,r.param);break;
     default:t.innerText="🏠 主页";renderHome(c);
   }
   window.scrollTo(0,0);
@@ -673,7 +678,7 @@ function updateNav(){document.querySelectorAll(".nav-list li").forEach(li=>{li.c
 
 function renderHome(c){
   const today=new Date().toISOString().slice(0,10),td=learningHistory[today],tdn=td?td.vocabNew.length:0;
-  c.innerHTML=`<div class="welcome-banner" style="background:linear-gradient(135deg,rgba(0,212,170,.15),rgba(59,130,246,.1));border:1px solid rgba(0,212,170,.25);position:relative;"><div id="homeMemberBadge" style="position:absolute;top:8px;right:8px;font-size:11px;padding:3px 8px;border-radius:6px;"></div><div style="display:flex;align-items:center;gap:16px;margin-bottom:12px;"><div style="width:56px;height:56px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);display:flex;align-items:center;justify-content:center;font-size:28px">🗨️</div><div><h2 style="font-size:22px;color:var(--primary);margin-bottom:4px">LEO-BIR</h2><p style="color:var(--text-dim);font-size:13px">LEO-BIR V2.5 · 印尼语智能学习平台</p></div></div><p style="color:var(--text-dim);font-size:13px;margin-bottom:8px;line-height:1.8">📚 专为印尼语学习者打造的智能学习平台，融合艾宾浩斯记忆曲线、百词斩游戏化练习、三关生词本系统。<br>🎯 支持 印尼语↔中文↔英文 三语对照，按日历规划每日学习进度。<br>🔍 关键词：印尼语学习、Bahasa Indonesia、三语翻译、艾宾浩斯记忆、百词斩、印尼语词汇、商务印尼语<br>📞 联系：087713858880</p><div style="font-size:11px;color:var(--text-dim);margin-top:12px;padding-top:10px;border-top:1px solid rgba(0,212,170,.15)"><strong style="color:var(--primary)">版本迭代记录：</strong><br>V2.4 (2026-07-16) 修复复习页面、增强艾宾浩斯互动、界面品牌化<br>V2.3 (2026-07-16) 超级管理员面板、艾宾浩斯复习、百词斩错题报告<br>V2.2 (2026-07-15) 会员系统（非会员3次限制、试用24小时、年费1年）<br>V2.1 (2026-07-15) 三关生词本、百词斩游戏（印中选/中选印/拼写）<br>V2.0 (2026-07-14) 完全重写SPA、日历学习、翻译、词汇录入、话题系统</div></div><div class="quick-grid"><div class="quick-btn" onclick="navigate('translate')"><span class="icon">🌐</span><div class="label">翻译</div></div><div class="quick-btn" onclick="navigate('input')"><span class="icon">📝</span><div class="label">词汇录入</div></div><div class="quick-btn" onclick="navigate('wordbank')"><span class="icon">📚</span><div class="label">生词本</div></div><div class="quick-btn" onclick="navigate('review')"><span class="icon">🧠</span><div class="label">复习</div></div><div class="quick-btn" onclick="navigate('vocabulary')"><span class="icon">📖</span><div class="label">词汇库</div></div><div class="quick-btn" onclick="navigate('quiz')"><span class="icon">🎮</span><div class="label">百词斩</div></div></div><div class="card"><div class="card-header"><h2>📅 学习日历</h2><span class="badge">点击日期查看</span></div>${renderCalHTML()}</div>`;
+  c.innerHTML=`<div class="welcome-banner" style="background:linear-gradient(135deg,rgba(0,212,170,.15),rgba(59,130,246,.1));border:1px solid rgba(0,212,170,.25);position:relative;"><div id="homeMemberBadge" style="position:absolute;top:8px;right:8px;font-size:11px;padding:3px 8px;border-radius:6px;"></div><div style="display:flex;align-items:center;gap:16px;margin-bottom:12px;"><div style="width:56px;height:56px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div><div><h2 style="font-size:22px;color:var(--primary);margin-bottom:4px">LEO-BIR</h2><p style="color:var(--text-dim);font-size:13px">Bahasa Indonesia Learning · 印尼语学习平台</p></div></div><p style="color:var(--text-dim);font-size:13px;margin-bottom:8px;line-height:1.8">📚 专为印尼语学习者打造的智能学习平台，融合艾宾浩斯记忆曲线、百词斩游戏化练习、三关生词本系统。<br>🎯 支持 印尼语↔中文↔英文 三语对照，按日历规划每日学习进度。<br>🔍 关键词：印尼语学习、Bahasa Indonesia、三语翻译、艾宾浩斯记忆、百词斩、印尼语词汇、商务印尼语<br>📞 联系：087713858880</p><div style="font-size:11px;color:var(--text-dim);margin-top:12px;padding-top:10px;border-top:1px solid rgba(0,212,170,.15)"><strong style="color:var(--primary)">版本迭代记录：</strong><br>V2.4 (2026-07-16) 修复复习页面、增强艾宾浩斯互动、界面品牌化<br>V2.3 (2026-07-16) 超级管理员面板、艾宾浩斯复习、百词斩错题报告<br>V2.2 (2026-07-15) 会员系统（非会员3次限制、试用24小时、年费1年）<br>V2.1 (2026-07-15) 三关生词本、百词斩游戏（印中选/中选印/拼写）<br>V2.0 (2026-07-14) 完全重写SPA、日历学习、翻译、词汇录入、话题系统</div></div><div class="quick-grid"><div class="quick-btn" onclick="navigate('translate')"><span class="icon">🌐</span><div class="label">翻译</div></div><div class="quick-btn" onclick="navigate('input')"><span class="icon">📝</span><div class="label">词汇录入</div></div><div class="quick-btn" onclick="navigate('wordbank')"><span class="icon">📚</span><div class="label">生词本</div></div><div class="quick-btn" onclick="navigate('review')"><span class="icon">🧠</span><div class="label">复习</div></div><div class="quick-btn" onclick="navigate('vocabulary')"><span class="icon">📖</span><div class="label">词汇库</div></div><div class="quick-btn" onclick="navigate('quiz')"><span class="icon">🎮</span><div class="label">百词斩</div></div></div><div class="card"><div class="card-header"><h2>📅 学习日历</h2><span class="badge">点击日期查看</span></div>${renderCalHTML()}</div>`;
   attachCalEvents();
 }
 
@@ -769,10 +774,8 @@ function renderWBList(){
     const id2zhIcon = p.id2zh ? '✅' : '❌';
     const zh2idIcon = p.zh2id ? '✅' : '❌';
     const spellIcon = p.spell ? '✅' : '❌';
-    h+=`<div class="wb-item" data-word="${w.word}"><div><div class="wb-w">${w.word} <span class="wb-i">${w.ipa||""}</span></div><div class="wb-m">🇨🇳 ${w.cn||""}</div><div class="wb-m" style="font-size:11px">📅 ${w.date} | 印选:${id2zhIcon} 中选:${zh2idIcon} 拼写:${spellIcon}</div><div class="wb-act"><button class="wb-mas" onclick="playWBGame('${w.word}')">🎮 练习</button><button class="wb-del" data-index="${i}">🗑️ 彻底删除</button>${canRemove ? `<button class="wb-mas" style="background:var(--success)" data-remove="${i}">✅ 已掌握移除</button>` : ''}</div></div></div>`;
+    h+=`<div class="wb-item"><div><div class="wb-w">${w.word} <span class="wb-i">${w.ipa||""}</span></div><div class="wb-m">🇨🇳 ${w.cn||""}</div><div class="wb-m" style="font-size:11px">📅 ${w.date} | 印选:${id2zhIcon} 中选:${zh2idIcon} 拼写:${spellIcon}</div><div class="wb-act"><button class="wb-mas" onclick="playWBGame('${w.word}')">🎮 练习</button><button class="wb-del" onclick="delWB(${i})">🗑️ 彻底删除</button>${canRemove ? `<button class="wb-mas" style="background:var(--success)" onclick="removeMasteredWB(${i})">✅ 已掌握移除</button>` : ''}</div></div></div>`;
   });c.innerHTML=h;
-  c.querySelectorAll('.wb-del').forEach(btn=>{btn.addEventListener('click',function(e){e.stopPropagation();const idx=parseInt(this.dataset.index);if(!confirm('确定彻底删除该单词?'))return;wordBank.splice(idx,1);saveWB();renderWBList();updateStats();showToast('已彻底删除');});});
-  c.querySelectorAll('[data-remove]').forEach(btn=>{btn.addEventListener('click',function(e){e.stopPropagation();const idx=parseInt(this.dataset.remove);const w=wordBank[idx];if(!w)return;const p=w.passed||{};if(!p.id2zh||!p.zh2id||!p.spell){showToast('未过三关，不能移除');return;}if(!confirm('确定已掌握并移除?'))return;wordBank.splice(idx,1);saveWB();renderWBList();updateStats();showToast('已掌握移除');});});
 }
 function addWB(word,ipa,cn,en,root,tag){if(!checkAccess("添加生词"))return;if(wordBank.find(w=>w.word.toLowerCase()===word.toLowerCase())){showToast("已在生词本");return;}wordBank.unshift({word,ipa:ipa||"—",cn:cn||"—",en:en||"—",root:root||"—",tag:tag||"—",date:new Date().toISOString().slice(0,10),mastered:false});saveWB();showToast("「"+word+"」已保存");updateStats();}
 function toggleWB(i){wordBank[i].mastered=!wordBank[i].mastered;saveWB();renderWBList();updateStats();}
@@ -976,102 +979,8 @@ function renderReview(c) {
     html += `<div style="padding:8px;background:var(--bg-elev);border-radius:8px;margin-bottom:6px;"><div style="font-size:13px;color:var(--text);font-weight:600;">${d ? d.title : tc.topic}</div><div style="font-size:11px;color:var(--text-dim);margin-top:4px;">下次复习: ${nextReviews.join(', ') || '已完成全部周期'}</div></div>`;
   });
   html += `</div></div></div>`;
-  
-  // === 艾宾浩斯记忆曲线可视化 ===
-  html += `<div style="margin-top:20px;border-top:1px solid var(--border);padding-top:16px;"><div style="font-size:14px;font-weight:700;color:var(--primary);margin-bottom:12px;">📈 艾宾浩斯记忆曲线</div>`;
-  
-  const startDate = "2026-07-14";
-  const startTime = new Date(startDate).getTime();
-  const intervals = [1,2,4,7,15,30,60,90];
-  const todayTime = new Date(today).getTime();
-  const dayMs = 86400000;
-  
-  // 生成90天数据点
-  let curveData = [];
-  for(let d=0; d<=90; d++) {
-    const t = d;
-    const R = 100 * Math.exp(-t/10); // 艾宾浩斯遗忘曲线 R=100*e^(-t/10)
-    curveData.push({day:d, retention:R});
-  }
-  
-  // 复习日期
-  const reviewDates = intervals.map(iv => {
-    const rd = new Date(startDate);
-    rd.setDate(rd.getDate() + iv);
-    return {interval:iv, date:rd.toISOString().split('T')[0], day:iv};
-  });
-  
-  // SVG绘制
-  const svgW = 720, svgH = 240, padL=40, padR=20, padT=20, padB=40;
-  const chartW = svgW - padL - padR, chartH = svgH - padT - padB;
-  
-  let pathD = "";
-  curveData.forEach((pt, i) => {
-    const x = padL + (pt.day / 90) * chartW;
-    const y = padT + chartH - (pt.retention / 100) * chartH;
-    pathD += (i === 0 ? "M" : "L") + x + "," + y;
-  });
-  
-  // 复习点标注
-  let reviewDots = "";
-  reviewDates.forEach(rd => {
-    const x = padL + (rd.day / 90) * chartW;
-    const y = padT + chartH - (100 * Math.exp(-rd.day/10) / 100) * chartH;
-    const isPast = new Date(rd.date) <= new Date(today);
-    const color = isPast ? "var(--success)" : "var(--primary)";
-    reviewDots += `<circle cx="${x}" cy="${y}" r="6" fill="${color}" stroke="var(--bg)" stroke-width="2" style="cursor:pointer;"
-      onclick="navigate('mindmap','${rd.date}')"
-      onmouseenter="showEbbingTooltip(event,'${rd.date}','第${rd.interval}天复习')"
-      onmouseleave="hideEbbingTooltip()"
-    /><text x="${x}" y="${y-12}" text-anchor="middle" fill="var(--text-dim)" font-size="10">${rd.interval}d</text>`;
-  });
-  
-  // 今日标记
-  const todayDays = Math.floor((todayTime - startTime) / dayMs);
-  if(todayDays >= 0 && todayDays <= 90) {
-    const tx = padL + (todayDays / 90) * chartW;
-    reviewDots += `<line x1="${tx}" y1="${padT}" x2="${tx}" y2="${padT+chartH}" stroke="var(--accent)" stroke-width="1" stroke-dasharray="4,4" opacity="0.6"/><text x="${tx}" y="${padT+chartH+16}" text-anchor="middle" fill="var(--accent)" font-size="10">今天</text>`;
-  }
-  
-  html += `<div style="position:relative;"><svg viewBox="0 0 ${svgW} ${svgH}" style="width:100%;max-width:720px;">
-    <!-- 背景网格 -->
-    <line x1="${padL}" y1="${padT+chartH/2}" x2="${padL+chartW}" y2="${padT+chartH/2}" stroke="var(--border)" stroke-width="0.5" opacity="0.5"/>
-    <line x1="${padL}" y1="${padT+chartH*0.75}" x2="${padL+chartW}" y2="${padT+chartH*0.75}" stroke="var(--border)" stroke-width="0.5" opacity="0.5"/>
-    <!-- 坐标轴 -->
-    <line x1="${padL}" y1="${padT+chartH}" x2="${padL+chartW}" y2="${padT+chartH}" stroke="var(--text-dim)" stroke-width="1"/>
-    <line x1="${padL}" y1="${padT}" x2="${padL}" y2="${padT+chartH}" stroke="var(--text-dim)" stroke-width="1"/>
-    <!-- Y轴标签 -->
-    <text x="${padL-8}" y="${padT+4}" text-anchor="end" fill="var(--text-dim)" font-size="10">100%</text>
-    <text x="${padL-8}" y="${padT+chartH/2+4}" text-anchor="end" fill="var(--text-dim)" font-size="10">50%</text>
-    <text x="${padL-8}" y="${padT+chartH+4}" text-anchor="end" fill="var(--text-dim)" font-size="10">0%</text>
-    <!-- X轴标签 -->
-    <text x="${padL}" y="${padT+chartH+16}" text-anchor="middle" fill="var(--text-dim)" font-size="10">Day 0</text>
-    <text x="${padL+chartW/2}" y="${padT+chartH+16}" text-anchor="middle" fill="var(--text-dim)" font-size="10">Day 45</text>
-    <text x="${padL+chartW}" y="${padT+chartH+16}" text-anchor="middle" fill="var(--text-dim)" font-size="10">Day 90</text>
-    <!-- 遗忘曲线 -->
-    <path d="${pathD}" fill="none" stroke="var(--primary)" stroke-width="2" opacity="0.8"/>
-    <!-- 复习点 -->
-    ${reviewDots}
-  </svg></div>`;
-  
-  html += `<div style="margin-top:8px;display:flex;gap:16px;font-size:11px;color:var(--text-dim);">
-    <span><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--success);margin-right:4px;"></span>已完成复习</span>
-    <span><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--primary);margin-right:4px;"></span>待复习</span>
-    <span><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--accent);margin-right:4px;"></span>今天</span>
-  </div></div>`;
-  
   c.innerHTML = html;
 }
-
-function showEbbingTooltip(e, date, label){
-  let t = document.getElementById('ebbingTooltip');
-  if(!t){t=document.createElement('div');t.id='ebbingTooltip';t.style.cssText='position:fixed;background:var(--bg-card);border:1px solid var(--primary);border-radius:8px;padding:8px 12px;font-size:12px;z-index:1000;pointer-events:none;box-shadow:0 4px 12px rgba(0,0,0,.3);';document.body.appendChild(t);}
-  t.innerHTML=\`<div style="color:var(--primary);font-weight:700">${label}</div><div style="color:var(--text-dim);font-size:11px">日期: ${date}</div><div style="color:var(--text-dim);font-size:11px">点击查看思维导图</div>\`;
-  t.style.left=(e.clientX+12)+'px';
-  t.style.top=(e.clientY-12)+'px';
-  t.style.display='block';
-}
-function hideEbbingTooltip(){const t=document.getElementById('ebbingTooltip');if(t)t.style.display='none';}
 
 function renderRList() {
   const c = document.getElementById("reviewList");
@@ -1268,7 +1177,7 @@ function renderMember(c) {
   const status = getMemberStatus();
   let html = `<div class="card"><div class="card-header"><h2>👑 会员中心</h2><span class="badge" style="background:${status.color}20;color:${status.color}">${status.label}</span></div>`;
   if (status.valid) {
-    html += `<div style="padding:16px;"><div style="font-size:14px;color:var(--text);margin-bottom:12px">🗨️ ${memberInfo.username || '会员'}</div>`;
+    html += `<div style="padding:16px;"><div style="font-size:14px;color:var(--text);margin-bottom:12px">👤 ${memberInfo.username || '会员'}</div>`;
     if (memberInfo.type === 'trial') html += `<div style="font-size:13px;color:var(--text-dim);margin-bottom:16px">试用期至：${new Date(memberInfo.trialEnd).toLocaleString('zh-CN')}</div>`;
     if (memberInfo.type === 'paid') html += `<div style="font-size:13px;color:var(--text-dim);margin-bottom:16px">有效期至：${new Date(memberInfo.paidEnd).toLocaleString('zh-CN')}</div>`;
     if (memberInfo.isAdmin) {
@@ -2161,11 +2070,8 @@ attachCalEvents = function() {
     });
   });
 };
-Date(ds);
-      if (tinfo || learningHistory[ds]) navigate("date", ds);
-    });
-  });
-};
+
+
 function renderAbout(c){
   c.innerHTML=`<div class="card"><div class="card-header"><h2>📋 关于 LEO-BIR</h2><span class="badge">印尼语学习平台</span></div>
     <div style="padding:16px;line-height:1.8;font-size:13px;color:var(--text)">
@@ -2179,15 +2085,12 @@ function renderAbout(c){
       • 🌐 三语翻译：印尼语↔中文↔英文<br>
       • 📅 日历学习：按天规划学习进度<br>
       • 🧠 艾宾浩斯复习：智能记忆曲线提醒<br>
-      • 🎯 百词斩：游戏化词汇练习（印中选/中选印/拼写）<br>
+      • 🎯 百词斩：游戏化词汇练习<br>
       • 📚 生词本：三关系统（答对三关才能移除）<br>
       • 📖 词汇库：话题分类核心词汇</p>
       <p style="margin-bottom:12px"><strong>适用场景：</strong><br>
-      商务印尼语、日常对话、冶炼工业园区专业场景、政府汇报、演讲致辞</p>
+      商务印尼语、日常对话、冶炼工业园区专业场景</p>
       <p><strong>联系方式：</strong> 087713858880</p>
-      <div style="margin-top:16px;padding:12px;background:rgba(0,212,170,.08);border-radius:8px;border:1px solid rgba(0,212,170,.2)">
-        <div style="font-size:12px;color:var(--text-dim)">🔍 搜索关键词：印尼语学习、Bahasa Indonesia、三语翻译、艾宾浩斯记忆、百词斩、印尼语词汇、商务印尼语、冶炼印尼语、Morowali</div>
-      </div>
     </div>
   </div>`;
 }
@@ -2198,37 +2101,29 @@ function renderVersion(c){
       <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
         <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V2.5 (2026-07-16)</div>
         <div style="font-size:13px;color:var(--text);line-height:1.8">
-        • 头像品牌化：首页左上角使用真实头像<br>
-        • 艾宾浩斯记忆曲线：可视化复习时间点，hover显示信息，点击跳转思维导图<br>
-        • 生词本删除：修复彻底删除功能，使用事件委托绑定<br>
-        • 导航优化：新增"关于LEO-BIR"和"版本记录"按钮<br>
-        • 主页精简：移除版本信息，聚焦核心功能入口
+        • 头像品牌化：使用真实头像<br>
+        • 导航优化：新增"关于LEO-BIR"和"版本记录"入口
         </div>
       </div>
       <div style="margin-bottom:14px;padding:14px;background:var(--bg-elev);border-radius:10px;border-left:3px solid var(--accent)">
         <div style="font-size:15px;font-weight:700;color:var(--accent);margin-bottom:6px">V2.4 (2026-07-16)</div>
         <div style="font-size:13px;color:var(--text);line-height:1.8">
-        • 修复复习页面 Object.entries 类型错误<br>
-        • 增强艾宾浩斯复习：4板块（今日任务+记忆曲线+词汇复习+日历）<br>
-        • 界面品牌化：LEO-BIR主页名、搜索关键词、联系方式<br>
-        • 整合学习计划：7月17/18内容合并到16号综合学习日
+        • 修复复习页面错误<br>
+        • 增强艾宾浩斯复习4板块<br>
+        • 界面品牌化
         </div>
       </div>
       <div style="margin-bottom:14px;padding:14px;background:var(--bg-elev);border-radius:10px;border-left:3px solid var(--info)">
         <div style="font-size:15px;font-weight:700;color:var(--info);margin-bottom:6px">V2.3 (2026-07-16)</div>
-        <div style="font-size:13px;color:var(--text);line-height:1.8">
-        • 超级管理员面板（百度网盘密码验证）<br>
-        • 艾宾浩斯复习页面骨架<br>
-        • 百词斩错题报告、模式切换、下一组新词
-        </div>
+        <div style="font-size:13px;color:var(--text);line-height:1.8">超级管理员面板、艾宾浩斯复习骨架、百词斩错题报告</div>
       </div>
       <div style="margin-bottom:14px;padding:14px;background:var(--bg-elev);border-radius:10px;border-left:3px solid var(--text-dim)">
         <div style="font-size:15px;font-weight:700;color:var(--text-dim);margin-bottom:6px">V2.2 (2026-07-15)</div>
-        <div style="font-size:13px;color:var(--text);line-height:1.8">会员系统：非会员3次限制、试用24小时、年费1年</div>
+        <div style="font-size:13px;color:var(--text);line-height:1.8">会员系统</div>
       </div>
       <div style="margin-bottom:14px;padding:14px;background:var(--bg-elev);border-radius:10px;border-left:3px solid var(--text-dim)">
         <div style="font-size:15px;font-weight:700;color:var(--text-dim);margin-bottom:6px">V2.1 (2026-07-15)</div>
-        <div style="font-size:13px;color:var(--text);line-height:1.8">三关生词本、百词斩游戏（印中选/中选印/拼写）</div>
+        <div style="font-size:13px;color:var(--text);line-height:1.8">三关生词本、百词斩游戏</div>
       </div>
       <div style="padding:14px;background:var(--bg-elev);border-radius:10px;border-left:3px solid var(--text-dim)">
         <div style="font-size:15px;font-weight:700;color:var(--text-dim);margin-bottom:6px">V2.0 (2026-07-14)</div>
@@ -2236,135 +2131,6 @@ function renderVersion(c){
       </div>
     </div>
   </div>`;
-}
-
- if (tinfo || learningHistory[ds]) navigate("date", ds);
-    });
-  });
-};
-Date(ds);
-      if (tinfo || learningHistory[ds]) navigate("date", ds);
-    });
-  });
-};
-
-
-function renderMindMap(c, date){
-  const topic = topicData["meet"];
-  const tc = topicCalendar["2026-07-16"];
-  if(!date) date = "2026-07-16";
-  
-  let html = `<div class="date-detail"><button class="back-btn" onclick="navigate('review')">← 返回复习</button>`;
-  html += `<div class="card"><div class="card-header"><h2>🧠 复习思维导图</h2><span class="badge">${date} · 三级展开</span></div><div style="padding:16px;">`;
-  
-  // 三级展开结构
-  html += `<div style="margin-bottom:16px;">`;
-  
-  // 一级：日期节点
-  html += `<div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;padding:12px;background:var(--bg-elev);border-radius:10px;border:1px solid var(--primary);cursor:pointer;"
-    onclick="toggleMindLevel(this)">
-    <div style="width:32px;height:32px;border-radius:50%;background:var(--primary);display:flex;align-items:center;justify-content:center;font-size:16px;color:#000;font-weight:700;">📅</div>
-    <div style="flex:1;"><div style="font-size:15px;font-weight:700;color:var(--primary)">${date} · 第1天复习</div><div style="font-size:12px;color:var(--text-dim)">话题：${topic.title} · 点击展开</div></div>
-    <div style="font-size:18px;color:var(--primary);transition:transform .2s;" class="mind-toggle">▼</div>
-  </div>`;
-  
-  // 二级容器（默认展开）
-  html += `<div class="mind-level2" style="padding-left:24px;">`;
-  
-  // 二级：词汇语法
-  html += `<div style="margin-bottom:8px;">`;
-  html += `<div style="display:flex;align-items:center;gap:8px;padding:10px;background:var(--bg-card);border-radius:8px;border:1px solid var(--border);cursor:pointer;"
-    onclick="toggleMindLevel(this)">
-    <div style="width:24px;height:24px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;font-size:12px;color:#000;font-weight:700;">1</div>
-    <div style="flex:1;"><div style="font-size:14px;font-weight:600;color:var(--text)">📖 词汇 + 语法</div><div style="font-size:11px;color:var(--text-dim)">ber- 前缀规则 · 22个核心词汇</div></div>
-    <div style="font-size:14px;color:var(--primary);transition:transform .2s;" class="mind-toggle">▼</div>
-  </div>`;
-  
-  // 三级：词汇语法详情
-  html += `<div class="mind-level3" style="padding-left:20px;margin-top:6px;">`;
-  html += `<div style="padding:10px;background:var(--bg-elev);border-radius:8px;margin-bottom:6px;">`;
-  html += `<div style="font-size:13px;color:var(--primary);font-weight:600;margin-bottom:6px;">📋 ber- 前缀规则</div>`;
-  topic.grammar.rules.forEach(r => {
-    html += `<div style="font-size:12px;color:var(--text);margin:3px 0;padding-left:8px;border-left:2px solid var(--primary);">${r}</div>`;
-  });
-  html += `<div style="margin-top:8px;font-size:12px;color:var(--text-dim);">💡 例：temu /ˈtɛmu/ → bertemu /bərˈtɛmu/ = "见面"</div>`;
-  html += `</div>`;
-  
-  // 核心词汇列表
-  html += `<div style="padding:10px;background:var(--bg-elev);border-radius:8px;">`;
-  html += `<div style="font-size:13px;color:var(--primary);font-weight:600;margin-bottom:6px;">🎯 核心词汇（22词）</div>`;
-  const keyWords = ["bertemu","berdiskusi","berjumpa","berkumpul","berbicara","berkerja","berjalan","bersemangat","berusaha","berpikir","bersama-sama","berkembang","beroperasi","berkelanjutan","berharap","bersinergi","berkaitan","berkomunikasi","berlibur","bermain","berdagang","berencana"];
-  html += `<div style="display:flex;flex-wrap:wrap;gap:6px;">`;
-  keyWords.forEach(w => {
-    const key = Object.keys(vocabDB).find(k => k.toLowerCase() === w.toLowerCase());
-    if(key) {
-      const v = vocabDB[key];
-      html += `<span style="display:inline-block;padding:3px 8px;background:var(--bg-card);border-radius:4px;font-size:11px;color:var(--text);border:1px solid var(--border);">${key} <span style="color:var(--text-dim)">→ ${v.cn}</span></span>`;
-    }
-  });
-  html += `</div></div>`;
-  html += `</div>`; // end level3
-  html += `</div>`; // end level2 item
-  
-  // 二级：场景对话
-  html += `<div style="margin-bottom:8px;">`;
-  html += `<div style="display:flex;align-items:center;gap:8px;padding:10px;background:var(--bg-card);border-radius:8px;border:1px solid var(--border);cursor:pointer;"
-    onclick="toggleMindLevel(this)">
-    <div style="width:24px;height:24px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;font-size:12px;color:#000;font-weight:700;">2</div>
-    <div style="flex:1;"><div style="font-size:14px;font-weight:600;color:var(--text)">🎭 场景对话</div><div style="font-size:11px;color:var(--text-dim)">6个场景 · 政府/同事/下属/商务/朋友/重逢</div></div>
-    <div style="font-size:14px;color:var(--primary);transition:transform .2s;" class="mind-toggle">▼</div>
-  </div>`;
-  
-  html += `<div class="mind-level3" style="padding-left:20px;margin-top:6px;">`;
-  topic.scenes.forEach((sc, i) => {
-    html += `<div style="padding:8px;background:var(--bg-elev);border-radius:8px;margin-bottom:6px;">`;
-    html += `<div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:4px;">${sc.icon} ${sc.title}</div>`;
-    sc.dialogue.forEach(d => {
-      html += `<div style="font-size:11px;color:var(--text-dim);margin:2px 0;padding-left:8px;"><strong>${d.speaker}:</strong> ${d.text}</div>`;
-    });
-    html += `</div>`;
-  });
-  html += `</div>`; // end level3
-  html += `</div>`; // end level2 item
-  
-  // 二级：演讲
-  html += `<div style="margin-bottom:8px;">`;
-  html += `<div style="display:flex;align-items:center;gap:8px;padding:10px;background:var(--bg-card);border-radius:8px;border:1px solid var(--border);cursor:pointer;"
-    onclick="toggleMindLevel(this)">
-    <div style="width:24px;height:24px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;font-size:12px;color:#000;font-weight:700;">3</div>
-    <div style="flex:1;"><div style="font-size:14px;font-weight:600;color:var(--text)">🎤 演讲稿</div><div style="font-size:11px;color:var(--text-dim)">6篇演讲 · 130-160词 · 50-60秒</div></div>
-    <div style="font-size:14px;color:var(--primary);transition:transform .2s;" class="mind-toggle">▼</div>
-  </div>`;
-  
-  html += `<div class="mind-level3" style="padding-left:20px;margin-top:6px;">`;
-  topic.speeches.forEach((sp, i) => {
-    html += `<div style="padding:10px;background:var(--bg-elev);border-radius:8px;margin-bottom:6px;">`;
-    html += `<div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:4px;">${sp.icon} ${sp.title}</div>`;
-    html += `<div style="font-size:11px;color:var(--text-dim);margin-bottom:4px;">${sp.words}词 · ${sp.time}秒</div>`;
-    html += `<div style="font-size:12px;color:var(--text);line-height:1.6;">${sp.content.substring(0,120)}...</div>`;
-    html += `</div>`;
-  });
-  html += `</div>`; // end level3
-  html += `</div>`; // end level2 item
-  
-  html += `</div>`; // end level2 container
-  html += `</div>`; // end level1 container
-  
-  html += `</div></div></div>`;
-  c.innerHTML = html;
-}
-
-function toggleMindLevel(el){
-  const next = el.nextElementSibling;
-  if(!next) return;
-  const toggle = el.querySelector('.mind-toggle');
-  if(next.style.display === 'none'){
-    next.style.display = 'block';
-    if(toggle) toggle.style.transform = 'rotate(0deg)';
-  } else {
-    next.style.display = 'none';
-    if(toggle) toggle.style.transform = 'rotate(-90deg)';
-  }
 }
 </script>
 </body>
