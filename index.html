@@ -655,6 +655,7 @@ function render(){
     case "quiz":t.innerText="🎯 能力测试";renderQuiz(c);break;
     case "vocabulary":t.innerText="📖 词汇库";renderVocabulary(c);break;
     case "review":t.innerText="🔄 复习";renderReview(c);break;
+    case "game":t.innerText="🎮 百词斩";renderGame(c);break;
     default:t.innerText="🏠 主页";renderHome(c);
   }
   window.scrollTo(0,0);
@@ -671,6 +672,7 @@ function renderHome(c){
     <div class="quick-btn" onclick="navigate('quiz')"><span class="icon">🎯</span><div class="label">能力测试</div></div>
     <div class="quick-btn" onclick="navigate('vocabulary')"><span class="icon">📖</span><div class="label">词汇库</div></div>
     <div class="quick-btn" onclick="navigate('review')"><span class="icon">🔄</span><div class="label">艾宾浩斯复习</div></div>
+    <div class="quick-btn" onclick="navigate('game')"><span class="icon">🎮</span><div class="label">百词斩</div></div>
   </div>
   <div class="card"><div class="card-header"><h2>📅 学习日历</h2><span class="badge">点击日期查看</span></div>${renderCalHTML()}</div>`;
   attachCalEvents();
@@ -987,7 +989,7 @@ function updateStats(){
 }
 
 document.addEventListener("DOMContentLoaded",()=>{
-  initHistory();render();updateStats();
+  initHistory();initWordBank();render();updateStats();
   window.addEventListener("hashchange",render);
   document.querySelectorAll(".nav-list li").forEach(li=>{li.addEventListener("click",()=>{const r=li.dataset.route;if(r)navigate(r);});});
   const menuBtn=document.getElementById("menuBtn"),sidebar=document.getElementById("sidebar");
@@ -1000,6 +1002,349 @@ document.addEventListener("DOMContentLoaded",()=>{
 
 
 
+
+// ===== BIR V2.1 艾宾浩斯动态复习 + 三关生词本系统 =====
+
+let wordStats = JSON.parse(localStorage.getItem("bir_ws3") || "{}");
+let gameState = { mode: 'id2zh', pool: [], current: null, q: 0, correct: 0, wrong: 0, total: 10, streak: 0 };
+
+function saveWordStats() { localStorage.setItem("bir_ws3", JSON.stringify(wordStats)); }
+
+function initWordBank() {
+  let changed = false;
+  Object.keys(vocabDB).forEach(k => {
+    const v = vocabDB[k];
+    if (!v.cn) return;
+    const existing = wordBank.find(w => w.word.toLowerCase() === k.toLowerCase());
+    if (!existing) {
+      wordBank.push({
+        word: k, ipa: v.ipa || "—", cn: v.cn || "—", en: v.en || "—",
+        root: v.root || "—", tag: v.tag || "—",
+        date: new Date().toISOString().slice(0,10),
+        mastered: false,
+        passed: { id2zh: false, zh2id: false, spell: false },
+        stats: { id2zh: {c:0,w:0}, zh2id: {c:0,w:0}, spell: {c:0,w:0}, totalWrong: 0 },
+        reviews: [], nextReview: null, lastReview: null
+      });
+      changed = true;
+    } else if (!existing.passed) {
+      existing.passed = { id2zh: false, zh2id: false, spell: false };
+      existing.stats = { id2zh: {c:0,w:0}, zh2id: {c:0,w:0}, spell: {c:0,w:0}, totalWrong: 0 };
+      changed = true;
+    }
+  });
+  if (changed) { saveWB(); saveWordStats(); }
+}
+
+function getWordStat(word) {
+  if (!wordStats[word]) {
+    wordStats[word] = { id2zh: {c:0,w:0}, zh2id: {c:0,w:0}, spell: {c:0,w:0}, totalWrong: 0 };
+  }
+  return wordStats[word];
+}
+
+function getDynamicInterval(word) {
+  const st = getWordStat(word);
+  const total = st.id2zh.c + st.id2zh.w + st.zh2id.c + st.zh2id.w + st.spell.c + st.spell.w;
+  const wrong = st.id2zh.w + st.zh2id.w + st.spell.w;
+  const rate = total > 0 ? wrong / total : 0.5;
+  const base = [1, 2, 4, 7, 15, 30, 60, 90];
+  let factor = 1;
+  if (rate > 0.5) factor = 0.5;
+  else if (rate > 0.3) factor = 0.7;
+  else if (rate > 0.1) factor = 0.9;
+  return base.map(iv => Math.max(1, Math.round(iv * factor)));
+}
+
+function recordGameResult(word, mode, isCorrect) {
+  const st = getWordStat(word);
+  if (isCorrect) { st[mode].c++; } else { st[mode].w++; st.totalWrong++; }
+  saveWordStats();
+  const wb = wordBank.find(w => w.word.toLowerCase() === word.toLowerCase());
+  if (wb) { wb.stats = JSON.parse(JSON.stringify(st)); saveWB(); }
+}
+
+function checkAllPassed(word) {
+  const wb = wordBank.find(w => w.word.toLowerCase() === word.toLowerCase());
+  if (!wb || !wb.passed) return false;
+  return wb.passed.id2zh && wb.passed.zh2id && wb.passed.spell;
+}
+
+function checkCanRemove(word) { return checkAllPassed(word); }
+function getWBItem(word) { return wordBank.find(w => w.word.toLowerCase() === word.toLowerCase()); }
+
+function renderGame(c) {
+  c.innerHTML = `<div class="card"><div class="card-header"><h2>🎮 百词斩复习</h2><span class="badge">艾宾浩斯动态间隔</span></div>
+  <div id="gameArea"><div style="text-align:center;padding:30px;color:var(--text-dim)">
+    <div style="font-size:48px;margin-bottom:10px">🎮</div><div style="font-size:14px;margin-bottom:20px">选择复习模式，系统会根据你的错误率动态调整复习间隔</div>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+      <button class="trans-btn" onclick="startGame('id2zh')">🇮🇩→🇨🇳 印尼选中</button>
+      <button class="trans-btn" onclick="startGame('zh2id')">🇨🇳→🇮🇩 中选中</button>
+      <button class="trans-btn" onclick="startGame('spell')">✏️ 拼写</button>
+    </div>
+    <div style="margin-top:20px;font-size:12px;color:var(--text-dim)">错误率高的词会自动缩短复习间隔，强化记忆</div>
+  </div></div></div>`;
+}
+
+function startGame(mode) {
+  const now = Date.now();
+  let candidates = wordBank.filter(w => {
+    if (!w.cn || checkAllPassed(w.word)) return false;
+    const st = getWordStat(w.word);
+    const total = st.id2zh.c + st.id2zh.w + st.zh2id.c + st.zh2id.w + st.spell.c + st.spell.w;
+    if (total === 0) return true;
+    const days = Math.floor((now - new Date(w.date).getTime()) / 86400000);
+    const intervals = getDynamicInterval(w.word);
+    for (let iv of intervals) { if (days >= iv && days < iv + 2) return true; }
+    if (days > 90) return true;
+    return false;
+  });
+  if (candidates.length < 10) {
+    const extra = wordBank.filter(w => w.cn && !checkAllPassed(w.word) && !candidates.includes(w));
+    candidates = candidates.concat(extra).slice(0, 20);
+  }
+  if (candidates.length === 0) {
+    document.getElementById("gameArea").innerHTML = `<div style="text-align:center;padding:40px;color:var(--text-dim)"><div style="font-size:48px">🎉</div><div>所有词汇三关已通过！</div></div>`;
+    return;
+  }
+  candidates.sort((a, b) => {
+    const sa = getWordStat(a.word), sb = getWordStat(b.word);
+    return (sb.id2zh.w + sb.zh2id.w + sb.spell.w) - (sa.id2zh.w + sa.zh2id.w + sa.spell.w);
+  });
+  gameState = { mode, pool: candidates.slice(0, Math.min(10, candidates.length)), current: null, q: 0, correct: 0, wrong: 0, total: Math.min(10, candidates.length), streak: 0 };
+  showGameQ();
+}
+
+function showGameQ() {
+  if (gameState.q >= gameState.total) { showGameResult(); return; }
+  const w = gameState.pool[gameState.q];
+  gameState.current = w;
+  const area = document.getElementById("gameArea");
+  const st = getWordStat(w.word);
+  const total = st.id2zh.c + st.id2zh.w + st.zh2id.c + st.zh2id.w + st.spell.c + st.spell.w;
+  const wrongRate = total > 0 ? (st.id2zh.w + st.zh2id.w + st.spell.w) / total : 0.5;
+  const urgency = wrongRate > 0.5 ? '🔴' : wrongRate > 0.2 ? '🟡' : '🟢';
+
+  if (gameState.mode === 'id2zh') {
+    const allWords = wordBank.filter(x => x.cn && x.word !== w.word).map(x => x.cn);
+    const wrong = [];
+    while (wrong.length < 3 && allWords.length) {
+      const r = allWords[Math.floor(Math.random() * allWords.length)];
+      if (!wrong.includes(r) && r !== w.cn) wrong.push(r);
+    }
+    const opts = [w.cn, ...wrong].sort(() => Math.random() - 0.5);
+    area.innerHTML = `<div style="margin-bottom:12px;font-size:13px;color:var(--text-dim)">${gameState.q+1}/${gameState.total} · ${urgency} 错误率${Math.round(wrongRate*100)}%</div>
+      <div class="quiz-card"><div class="q-text" style="font-size:18px">「${w.word}」${w.ipa ? `<span style="font-size:13px;color:var(--text-dim)">${w.ipa}</span>` : ''}</div>
+      <div style="font-size:12px;color:var(--text-dim);margin-bottom:10px">选择正确的中文释义</div>
+      ${opts.map((opt, i) => `<div class="q-opt" onclick="ansGameQ('${opt.replace(/'/g, "\\'")}', '${w.cn.replace(/'/g, "\\'")}', this)">${String.fromCharCode(65+i)}. ${opt}</div>`).join('')}
+      </div>`;
+  } else if (gameState.mode === 'zh2id') {
+    const allWords = wordBank.filter(x => x.word !== w.word).map(x => x.word);
+    const wrong = [];
+    while (wrong.length < 3 && allWords.length) {
+      const r = allWords[Math.floor(Math.random() * allWords.length)];
+      if (!wrong.includes(r) && r !== w.word) wrong.push(r);
+    }
+    const opts = [w.word, ...wrong].sort(() => Math.random() - 0.5);
+    area.innerHTML = `<div style="margin-bottom:12px;font-size:13px;color:var(--text-dim)">${gameState.q+1}/${gameState.total} · ${urgency} 错误率${Math.round(wrongRate*100)}%</div>
+      <div class="quiz-card"><div class="q-text" style="font-size:18px">「${w.cn}」</div>
+      <div style="font-size:12px;color:var(--text-dim);margin-bottom:10px">选择正确的印尼语单词</div>
+      ${opts.map((opt, i) => `<div class="q-opt" onclick="ansGameQ('${opt.replace(/'/g, "\\'")}', '${w.word.replace(/'/g, "\\'")}', this)">${String.fromCharCode(65+i)}. ${opt}</div>`).join('')}
+      </div>`;
+  } else {
+    area.innerHTML = `<div style="margin-bottom:12px;font-size:13px;color:var(--text-dim)">${gameState.q+1}/${gameState.total} · ${urgency} 错误率${Math.round(wrongRate*100)}%</div>
+      <div class="quiz-card"><div class="q-text" style="font-size:18px">「${w.cn}」</div>
+      <div style="font-size:12px;color:var(--text-dim);margin-bottom:10px">请拼写出对应的印尼语单词</div>
+      <div style="font-size:11px;color:var(--accent);margin-bottom:10px">提示: IPA ${w.ipa || '—'} | 词根: ${w.root || '—'}</div>
+      <input type="text" id="spellInput" style="width:100%;padding:10px;background:var(--bg-elev);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:14px" placeholder="输入印尼语..." autocomplete="off" />
+      <div style="margin-top:10px"><button class="trans-btn" onclick="submitSpell('${w.word.replace(/'/g, "\\'")}', '${w.cn.replace(/'/g, "\\'")}')">提交</button></div>
+      </div>`;
+    setTimeout(() => { const inp = document.getElementById("spellInput"); if (inp) inp.focus(); }, 50);
+  }
+}
+
+function ansGameQ(sel, correct, el) {
+  const opts = el.parentElement.querySelectorAll(".q-opt");
+  opts.forEach(o => o.style.pointerEvents = "none");
+  const ok = sel === correct;
+  if (ok) {
+    el.style.background = "rgba(34,197,94,.2)"; el.style.borderColor = "var(--success)"; el.style.color = "var(--success)";
+    gameState.correct++; gameState.streak++;
+    showToast(`✅ 正确！连对${gameState.streak}题`);
+  } else {
+    el.style.background = "rgba(239,68,68,.2)"; el.style.borderColor = "var(--danger)"; el.style.color = "var(--danger)";
+    opts.forEach(o => { if (o.innerText.includes(correct)) { o.style.background = "rgba(34,197,94,.2)"; o.style.borderColor = "var(--success)"; o.style.color = "var(--success)"; } });
+    gameState.wrong++; gameState.streak = 0;
+    showToast(`❌ 错误！正确答案是「${correct}」`);
+  }
+  recordGameResult(gameState.current.word, gameState.mode, ok);
+  if (ok) {
+    const wb = getWBItem(gameState.current.word);
+    if (wb) { wb.passed[gameState.mode] = true; saveWB(); }
+  }
+  gameState.q++;
+  setTimeout(() => showGameQ(), 1500);
+}
+
+function submitSpell(correctWord, correctCn) {
+  const inp = document.getElementById("spellInput");
+  if (!inp) return;
+  const val = inp.value.trim().toLowerCase();
+  const ok = val === correctWord.toLowerCase();
+  if (ok) {
+    showToast(`✅ 拼写正确！`);
+    recordGameResult(correctWord, 'spell', true);
+    const wb = getWBItem(correctWord);
+    if (wb) { wb.passed.spell = true; saveWB(); }
+  } else {
+    showToast(`❌ 错误！正确答案是「${correctWord}」`);
+    recordGameResult(correctWord, 'spell', false);
+    const area = document.getElementById("gameArea");
+    area.innerHTML += `<div style="margin-top:10px;padding:10px;background:rgba(239,68,68,.1);border-radius:8px;color:var(--danger);font-size:13px">正确答案: ${correctWord}</div>`;
+  }
+  gameState.q++;
+  setTimeout(() => showGameQ(), ok ? 1000 : 2000);
+}
+
+function showGameResult() {
+  const pct = gameState.total > 0 ? Math.round((gameState.correct / gameState.total) * 100) : 0;
+  const msg = pct >= 80 ? "优秀！" : pct >= 60 ? "不错！" : "需多练习！";
+  const newPassed = gameState.pool.filter(w => checkAllPassed(w.word)).length;
+  document.getElementById("gameArea").innerHTML = `<div style="text-align:center;padding:30px">
+    <div style="font-size:56px;margin-bottom:10px">${pct >= 80 ? "🎉" : pct >= 60 ? "👍" : "💪"}</div>
+    <div style="font-size:28px;font-weight:700;color:var(--primary)">${pct}%</div>
+    <div style="color:var(--text-dim);margin:8px 0">${gameState.correct}/${gameState.total} 正确 · ${gameState.wrong} 错误</div>
+    <div style="color:var(--text);margin-bottom:10px">${msg}</div>
+    <div style="font-size:13px;color:var(--success);margin-bottom:16px">${newPassed > 0 ? `本次通关 ${newPassed} 个词！` : ""}</div>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+      <button class="trans-btn" onclick="startGame('id2zh')">再来一局 (印尼→中)</button>
+      <button class="trans-btn" onclick="startGame('zh2id')">再来一局 (中→印尼)</button>
+      <button class="trans-btn" onclick="startGame('spell')">再来一局 (拼写)</button>
+    </div></div>`;
+}
+
+// ===== 覆盖生词本系统 =====
+function addWB(word,ipa,cn,en,root,tag){
+  if(wordBank.find(w=>w.word.toLowerCase()===word.toLowerCase())){showToast("已在生词本");return;}
+  const item = {word,ipa:ipa||"—",cn:cn||"—",en:en||"—",root:root||"—",tag:tag||"—",date:new Date().toISOString().slice(0,10),mastered:false,passed:{id2zh:false,zh2id:false,spell:false},stats:{id2zh:{c:0,w:0},zh2id:{c:0,w:0},spell:{c:0,w:0},totalWrong:0},reviews:[],nextReview:null,lastReview:null};
+  wordBank.unshift(item); saveWB(); saveWordStats();
+  showToast("「"+word+"」已保存"); updateStats();
+}
+
+function parseVocab(){
+  const input=document.getElementById("vInput").value.trim();if(!input){showToast("请先输入");return;}
+  const lines=input.split(/[\s,]+/).map(s=>s.trim()).filter(s=>s);
+  const resultDiv=document.getElementById("vResult");resultDiv.style.display="block";resultDiv.classList.add("show");
+  let found=0,pending=0;let html=`<div style="display:grid;grid-template-columns:1fr;gap:8px;margin-top:12px">`;
+  lines.forEach(word=>{const key=Object.keys(vocabDB).find(k=>k.toLowerCase()===word.toLowerCase());if(key){found++;const v=vocabDB[key];html+=`<div style="padding:12px;background:rgba(34,197,94,.08);border-radius:8px;border-left:3px solid var(--success)"><div style="font-weight:700;color:var("primary")">${key} <span style="color:var(--text-dim);font-weight:400">${v.ipa||""}</span></div><div style="font-size:12px;color:var(--text-dim);margin-top:3px">🇨🇳 ${v.cn||""}</div></div>`;
+      if (!wordBank.find(w=> w.word.toLowerCase() === key.toLowerCase())) {
+        wordBank.push({word:key,ipa:v.ipa||"—",cn:v.cn||"—",en:v.en||"—",root:v.root||"—",tag:v.tag||"—",date:new Date().toISOString().slice(0,10),mastered:false,passed:{id2zh:false,zh2id:false,spell:false},stats:{id2zh:{c:0,w:0},zh2id:{c:0,w:0},spell:{c:0,w:0},totalWrong:0},reviews:[],nextReview:null,lastReview:null});
+      }
+    }else{pending++;html+=`<div style="padding:12px;background:rgba(239,68,68,.08);border-radius:8px;border-left:3px solid var(--danger)"><div style="font-weight:700">${word}</div><div style="font-size:12px;color:var(--text-dim)">⏳ 待补充</div></div>`;}});
+  html+=`</div>`;html+=`<div style="margin-top:14px;font-size:13px;color:var(--text-dim)">✅ ${found} · ⏳ ${pending} · 总计 ${lines.length}</div>`;
+  resultDiv.innerHTML=html;
+  const ds=new Date().toISOString().slice(0,10);if(!learningHistory[ds])learningHistory[ds]={vocabNew:[],vocabReview:[],translations:0,notes:""};lines.forEach(w=>{const key=Object.keys(vocabDB).find(k=>k.toLowerCase()===w.toLowerCase());if(key&&!learningHistory[ds].vocabNew.includes(key))learningHistory[ds].vocabNew.push(key);});saveHistory();saveWB();saveWordStats();updateStats();showToast("录入 "+found+" 词");
+}
+
+function renderWordBank(c){
+  const passed = wordBank.filter(w=>{const p=w.passed||{id2zh:false,zh2id:false,spell:false};return p.id2zh&&p.zh2id&&p.spell;}).length;
+  const inProgress = wordBank.length - passed;
+  c.innerHTML=`<div class="card"><div class="card-header"><h2>📚 生词本</h2><span class="badge">${wordBank.length}词</span></div>
+    <div class="wb-toolbar"><button class="btn-exp" onclick="exportWB()">📥 导出</button><button class="btn-clr" onclick="clearWB()">🗑️ 清空</button></div>
+    <div style="display:flex;gap:20px;margin-bottom:14px;font-size:13px;color:var(--text-dim)">
+      <span>📦 <strong style="color:var(--primary)">${wordBank.length}</strong></span>
+      <span>✅ <strong style="color:var(--success)">${passed}</strong> (三关全过)</span>
+      <span>🔄 <strong style="color:var(--accent)">${inProgress}</strong> (进行中)</span>
+    </div>
+    <div class="wb-list" id="wbList"></div></div>`;
+  renderWBList();
+}
+
+function renderWBList(){
+  const c=document.getElementById("wbList");if(!c)return;if(!wordBank.length){c.innerHTML=`<div class="wb-empty"><div class="big">📚</div><div>生词本为空</div></div>`;return;}
+  let h="";wordBank.forEach((w,i)=>{
+    const p = w.passed || {id2zh:false,zh2id:false,spell:false};
+    const allDone = p.id2zh && p.zh2id && p.spell;
+    const progress = (p.id2zh?1:0)+(p.zh2id?1:0)+(p.spell?1:0);
+    h+=`<div class="wb-item" style="${allDone?'border-color:var(--success);opacity:.7':''}"><div><div class="wb-w">${w.word} <span class="wb-i">${w.ipa||""}</span></div><div class="wb-m">🇨🇳 ${w.cn||""}</div>
+      <div style="display:flex;gap:6px;margin-top:6px;font-size:11px">
+        <span style="padding:2px 6px;border-radius:4px;background:${p.id2zh?'rgba(34,197,94,.15)':'rgba(239,68,68,.08)'};color:${p.id2zh?'var(--success)':'var(--danger)'}">🇮🇩→🇨🇳 ${p.id2zh?'✅':'❌'}</span>
+        <span style="padding:2px 6px;border-radius:4px;background:${p.zh2id?'rgba(34,197,94,.15)':'rgba(239,68,68,.08)'};color:${p.zh2id?'var(--success)':'var(--danger)'}">🇨🇳→🇮🇩 ${p.zh2id?'✅':'❌'}</span>
+        <span style="padding:2px 6px;border-radius:4px;background:${p.spell?'rgba(34,197,94,.15)':'rgba(239,68,68,.08)'};color:${p.spell?'var(--success)':'var(--danger)'}">✏️ ${p.spell?'✅':'❌'}</span>
+        <span style="color:var(--text-dim)">${progress}/3</span>
+      </div>
+      <div class="wb-act">
+        <button class="wb-mas" onclick="playWBGame(${i})">🎮 练习</button>
+        <button class="wb-del" onclick="delWB(${i})">🗑️</button>
+      </div></div></div>`;
+  });c.innerHTML=h;
+}
+
+function playWBGame(i) {
+  const w = wordBank[i]; if (!w) return;
+  const p = w.passed || {id2zh:false,zh2id:false,spell:false};
+  let mode = 'id2zh';
+  if (!p.id2zh) mode = 'id2zh';
+  else if (!p.zh2id) mode = 'zh2id';
+  else if (!p.spell) mode = 'spell';
+  else mode = 'id2zh';
+  navigate('game'); setTimeout(() => startGame(mode), 300);
+}
+
+function delWB(i){
+  const w = wordBank[i]; if (!w) return;
+  const p = w.passed || {id2zh:false,zh2id:false,spell:false};
+  if (!(p.id2zh && p.zh2id && p.spell)) { showToast("❌ 三关未全过，不能移除！"); return; }
+  if(!confirm("三关已通过，确认删除?"))return;
+  wordBank.splice(i,1);saveWB();renderWBList();updateStats();showToast("已删除");
+}
+
+function exportWB(){
+  if(!wordBank.length){showToast("为空");return;}
+  let t=`📚 BIR生词本—${new Date().toISOString().slice(0,10)}\n\n=== 三关全过 ===\n`;
+  wordBank.filter(w=>{const p=w.passed||{id2zh:false,zh2id:false,spell:false};return p.id2zh&&p.zh2id&&p.spell;}).forEach((w,i)=>{t+=`${i+1}. ${w.word} ${w.ipa}\n  🇨🇳${w.cn}\n`; });
+  t+=`\n=== 进行中 ===\n`;
+  wordBank.filter(w=>{const p=w.passed||{id2zh:false,zh2id:false,spell:false};return !(p.id2zh&&p.zh2id&&p.spell);}).forEach((w,i)=>{const p=w.passed||{id2zh:false,zh2id:false,spell:false};t+=`${i+1}. ${w.word} ${w.ipa}\n  🇨🇳${w.cn}\n  进度: 🇮🇩→🇨🇳${p.id2zh?'✅':'❌'} 🇨🇳→🇮🇩${p.zh2id?'✅':'❌'} ✏️${p.spell?'✅':'❌'}\n`; });
+  navigator.clipboard.writeText(t).then(()=>showToast("已复制"));
+}
+
+function toggleWB(i){ /* 已废弃：改为三关系统 */ }
+
+function getWordReviewItems() {
+  const now = Date.now();
+  const items = [];
+  wordBank.forEach(w => {
+    if (checkAllPassed(w.word)) return;
+    const days = Math.floor((now - new Date(w.date).getTime()) / 86400000);
+    const intervals = getDynamicInterval(w.word);
+    let matchedInterval = null;
+    for (let iv of intervals) { if (days >= iv && days < iv + 2) { matchedInterval = iv; break; } }
+    if (!matchedInterval && days > 90) matchedInterval = 90;
+    if (matchedInterval) {
+      const reviewed = w.reviews && w.reviews.find(r => r.interval === matchedInterval);
+      if (!reviewed) {
+        items.push({ ...w, daysSince: days, interval: matchedInterval, due: true, type: 'word' });
+      }
+    }
+  });
+  return items.sort((a, b) => b.daysSince - a.daysSince);
+}
+
+function markWordReviewed(word, interval) {
+  const w = wordBank.find(x => x.word === word);
+  if (w) {
+    if (!w.reviews) w.reviews = [];
+    w.reviews.push({ interval, date: new Date().toISOString().slice(0,10) });
+    w.lastReview = new Date().toISOString().slice(0,10);
+    const intervals = getDynamicInterval(word);
+    const nextIdx = intervals.indexOf(interval) + 1;
+    if (nextIdx < intervals.length) {
+      const nextDate = new Date(); nextDate.setDate(nextDate.getDate() + intervals[nextIdx]);
+      w.nextReview = nextDate.toISOString().slice(0,10);
+    }
+    saveWB();
+  }
+}
 const topicData = {
   "meet": {
     "title": "话题1: 见面 / Bertemu",
