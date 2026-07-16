@@ -788,11 +788,175 @@ function renderVocabulary(c){
 function setFilter(tag){currentFilter=tag;renderVGrid();document.querySelectorAll(".vocab-filter button").forEach(b=>b.classList.toggle("active",b.innerText===(tag==="all"?"全部":tag)));}
 function renderVGrid(){const c=document.getElementById("vocabGrid");if(!c)return;let w=Object.entries(vocabDB);if(currentFilter!=="all")w=w.filter(([k,v])=>v.tag===currentFilter);let h="";w.forEach(([k,v])=>{h+=`<div class="vocab-card" onclick="showTip('${k.replace(/'/g,"\'")}')"><div class="vc-w">${k}</div><div class="vc-i">${v.ipa||""}</div><div class="vc-m">🇨🇳 ${v.cn||""}</div></div>`;});c.innerHTML=h;}
 
-function renderReview(c){
-  c.innerHTML=`<div class="card"><div class="card-header"><h2>🔄 艾宾浩斯复习</h2><span class="badge">间隔重复</span></div><div id="reviewList"></div></div>`;
+
+// ===== 艾宾浩斯记忆曲线 · 话题深度结合复习系统 =====
+// 间隔: 1, 2, 4, 7, 15, 30, 60, 90 天
+const EBBINGHAUS_INTERVALS = [1, 2, 4, 7, 15, 30, 60, 90];
+
+let topicHistory = JSON.parse(localStorage.getItem("bir_topic_h") || "[]");
+
+function saveTopicHistory() {
+  localStorage.setItem("bir_topic_h", JSON.stringify(topicHistory));
+}
+
+function recordTopicStudy(date, topicKey, dayNum) {
+  const existing = topicHistory.find(t => t.date === date && t.topic === topicKey && t.day === dayNum);
+  if (!existing) {
+    topicHistory.push({ date, topic: topicKey, day: dayNum, completed: true, ts: Date.now() });
+    saveTopicHistory();
+  }
+}
+
+function getTopicReviewItems() {
+  const now = new Date();
+  const items = [];
+  topicHistory.forEach(t => {
+    const studyDate = new Date(t.date);
+    const daysDiff = Math.floor((now - studyDate) / 86400000);
+    EBBINGHAUS_INTERVALS.forEach(interval => {
+      if (daysDiff >= interval && daysDiff < interval + 3) {
+        const reviewed = t.reviews && t.reviews.find(r => r.interval === interval);
+        if (!reviewed) {
+          items.push({ ...t, daysSince: daysDiff, interval, due: true, type: 'topic' });
+        }
+      }
+    });
+  });
+  return items.sort((a, b) => b.daysSince - a.daysSince);
+}
+
+function markTopicReviewed(date, topicKey, dayNum, interval) {
+  const t = topicHistory.find(t => t.date === date && t.topic === topicKey && t.day === dayNum);
+  if (t) {
+    if (!t.reviews) t.reviews = [];
+    t.reviews.push({ interval, date: new Date().toISOString().slice(0,10), ts: Date.now() });
+    saveTopicHistory();
+  }
+}
+
+function getWordReviewItems() {
+  const now = Date.now();
+  const items = [];
+  wordBank.forEach(w => {
+    if (w.mastered) return;
+    const days = Math.floor((now - new Date(w.date).getTime()) / 86400000);
+    let matchedInterval = null;
+    for (let iv of EBBINGHAUS_INTERVALS) {
+      if (days >= iv && days < iv + 2) {
+        matchedInterval = iv;
+        break;
+      }
+    }
+    if (!matchedInterval && days > 90) matchedInterval = 90;
+    if (matchedInterval) {
+      const reviewed = w.reviews && w.reviews.find(r => r.interval === matchedInterval);
+      if (!reviewed) {
+        items.push({ ...w, daysSince: days, interval: matchedInterval, due: true, type: 'word' });
+      }
+    }
+  });
+  return items.sort((a, b) => b.daysSince - a.daysSince);
+}
+
+function markWordReviewed(word, interval) {
+  const w = wordBank.find(x => x.word === word);
+  if (w) {
+    if (!w.reviews) w.reviews = [];
+    w.reviews.push({ interval, date: new Date().toISOString().slice(0,10) });
+    saveWB();
+  }
+}
+
+function renderReview(c) {
+  c.innerHTML = `<div class="card"><div class="card-header"><h2>🧠 艾宾浩斯复习</h2><span class="badge">间隔重复 · 话题+词汇</span></div><div id="reviewList"></div></div>`;
   renderRList();
 }
-function renderRList(){const c=document.getElementById("reviewList");if(!c)return;const now=Date.now();let items=[];wordBank.forEach(w=>{if(w.mastered)return;const days=Math.floor((now-new Date(w.date).getTime())/86400000);items.push({...w,days});});items.sort((a,b)=>b.days-a.days);if(!items.length){c.innerHTML=`<div style="text-align:center;padding:40px;color:var(--text-dim)"><div style="font-size:48px;margin-bottom:10px">🎉</div>暂无待复习</div>`;return;}let h=`<div style="font-size:13px;color:var(--text-dim);margin-bottom:12px">共${items.length}个待复习</div>`;items.forEach(w=>{h+=`<div class="review-card"><span class="r-due">${w.days}天前</span><span class="r-word">${w.word}</span><span class="r-mean">${w.cn}</span></div>`;});c.innerHTML=h;}
+
+function renderRList() {
+  const c = document.getElementById("reviewList");
+  if (!c) return;
+  
+  const topicItems = getTopicReviewItems();
+  const wordItems = getWordReviewItems();
+  const allItems = [...topicItems, ...wordItems];
+  
+  if (!allItems.length) {
+    c.innerHTML = `<div style="text-align:center;padding:40px;color:var(--text-dim)"><div style="font-size:48px;margin-bottom:10px">🎉</div><div>暂无待复习项目</div><div style="font-size:12px;margin-top:8px">艾宾浩斯间隔: 1→2→4→7→15→30→60→90天</div></div>`;
+    return;
+  }
+  
+  let h = `<div style="font-size:13px;color:var(--text-dim);margin-bottom:12px">共 ${allItems.length} 个复习项 · 基于艾宾浩斯遗忘曲线</div>`;
+  
+  const byTopic = {};
+  const wordOnly = [];
+  
+  allItems.forEach(item => {
+    if (item.type === 'topic') {
+      const key = item.topic + '_' + item.date;
+      if (!byTopic[key]) {
+        byTopic[key] = { topic: item.topic, date: item.date, daysSince: item.daysSince, items: [] };
+      }
+      byTopic[key].items.push(item);
+    } else {
+      wordOnly.push(item);
+    }
+  });
+  
+  Object.values(byTopic).forEach(group => {
+    const topic = topicData[group.topic];
+    const dayLabels = group.items.map(i => `Day ${i.day}`).join(', ');
+    const intervals = group.items.map(i => `${i.interval}天`).join(', ');
+    const urgency = group.daysSince > 30 ? 'danger' : group.daysSince > 7 ? 'accent' : 'primary';
+    const color = urgency === 'danger' ? 'var(--danger)' : urgency === 'accent' ? 'var(--accent)' : 'var(--primary)';
+    
+    h += `<div style="background:var(--bg-elev);border-radius:10px;padding:16px;margin-bottom:12px;border:1px solid var(--border);border-left:3px solid ${color}">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="font-size:20px">${topic ? topic.icon : '📚'}</span>
+          <strong style="color:var(--text);font-size:14px">${topic ? topic.title : group.topic}</strong>
+        </div>
+        <span style="font-size:11px;padding:2px 8px;border-radius:8px;background:rgba(239,68,68,.1);color:${color}">${group.daysSince}天前学过</span>
+      </div>
+      <div style="font-size:12px;color:var(--text-dim);margin-bottom:8px">
+        需要复习: ${dayLabels} · 间隔: ${intervals}
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        ${group.items.map(item => `<button class="trans-btn" style="font-size:12px;padding:6px 12px" onclick="doTopicReview('${group.date}', '${group.topic}', ${item.day}, ${item.interval})">复习 Day ${item.day}</button>`).join('')}
+      </div>
+    </div>`;
+  });
+  
+  if (wordOnly.length) {
+    h += `<div style="margin-top:16px;margin-bottom:10px;font-size:14px;color:var(--primary);font-weight:600">📚 生词本词汇复习</div>`;
+    wordOnly.forEach(w => {
+      const color = w.daysSince > 30 ? 'var(--danger)' : w.daysSince > 7 ? 'var(--accent)' : 'var(--primary)';
+      h += `<div class="review-card" style="border-left:3px solid ${color}">
+        <span class="r-due" style="background:${color}20;color:${color}">${w.interval}天间隔</span>
+        <span class="r-word">${w.word}</span>
+        <span class="r-mean">${w.cn}</span>
+        <button onclick="doWordReview('${w.word.replace(/'/g, "\'")}', ${w.interval})" style="margin-left:auto;padding:4px 10px;border-radius:4px;border:none;background:var(--primary);color:#000;font-size:11px;cursor:pointer">✅ 完成</button>
+      </div>`;
+    });
+  }
+  
+  c.innerHTML = h;
+}
+
+function doTopicReview(date, topicKey, day, interval) {
+  markTopicReviewed(date, topicKey, day, interval);
+  showToast(`✅ 已标记话题复习完成`);
+  renderRList();
+  updateStats();
+}
+
+function doWordReview(word, interval) {
+  markWordReviewed(word, interval);
+  showToast(`✅ 「${word}」复习完成`);
+  renderRList();
+  updateStats();
+}
+
+
 
 function stripAffixes(word){
   const patterns=[{regex:/^ber([aiueo])/,affix:"ber-",rootPos:3,type:"ber-前缀"},{regex:/^ber/,affix:"ber-",rootPos:3,type:"ber-前缀"},{regex:/^me([mnptkwglrsyhj])/,affix:"me-",rootPos:2,type:"me-前缀"},{regex:/^mem/,affix:"me-",rootPos:3,type:"me-前缀"},{regex:/^men/,affix:"me-",rootPos:3,type:"me-前缀"},{regex:/^meng/,affix:"me-",rootPos:4,type:"me-前缀"},{regex:/^meny/,affix:"me-",rootPos:4,type:"me-前缀"},{regex:/^pe/,affix:"pe-",rootPos:2,type:"pe-前缀"},{regex:/^per/,affix:"per-",rootPos:3,type:"per-前缀"},{regex:/^ter/,affix:"ter-",rootPos:3,type:"ter-前缀"},{regex:/^di/,affix:"di-",rootPos:2,type:"di-前缀"},{regex:/^se/,affix:"se-",rootPos:2,type:"se-前缀"},{regex:/kan$/,affix:"-kan",rootPos:-3,type:"-kan后缀"},{regex:/i$/,affix:"-i",rootPos:-1,type:"-i后缀"},{regex:/an$/,affix:"-an",rootPos:-2,type:"-an后缀"}];
