@@ -835,6 +835,345 @@ document.addEventListener("DOMContentLoaded",()=>{
 
 
 
+
+const topicData = {
+  "meet": {
+    "title": "话题1: 见面 / Bertemu",
+    "icon": "🤝",
+    "days": 3,
+    "grammar": {
+      "title": "ber- 前缀",
+      "rules": [
+        "Rule 1: 名词/形容词 → 动词 — 表示拥有、使用、成为、被...覆盖",
+        "Rule 2: 动词 → 相互/交互动作 — 表示双方之间的动作",
+        "Rule 3: ber- 不发生辅音变化 — 不像 me-（p→m, t→n, k→ng），ber- 直接加在词根前",
+        "Rule 4: 特殊不规则 — belajar (ajar'教' → be-ajar → belajar'学习')"
+      ],
+      "examples": [
+        "kerja /ˈkɛrdʒa/ (n.) → berkerja /bəˈkɛrdʒa/ (v.) = '去工作'",
+        "jalan /ˈdʒalan/ (n.) → berjalan /bərˈdʒalan/ (v.) = '走路'",
+        "temu /ˈtɛmu/ (n.) → bertemu /bərˈtɛmu/ (v.) = '见面'"
+      ]
+    },
+    "scenes": [
+      {
+        "title": "正式初次见面（政府/官员）",
+        "icon": "🏛️",
+        "dialogue": [
+          {
+            "speaker": "A",
+            "text": "Selamat pagi, Bapak/Ibu Menteri. Perkenalkan, nama saya [Nama], General Manager PT [Nama Perusahaan] yang beroperasi di kawasan industri Morowali, Sulawesi Tengah.",
+            "trans": "早上好，部长先生/女士。请允许我介绍，我是[姓名]，[公司名称]总经理，公司在莫罗瓦利工业园区运营。"
+          },
+          {
+            "speaker": "B",
+            "text": "Selamat pagi. Apa kabar? Senang sekali dapat bertemu dengan Anda.",
+            "trans": "早上好。你好吗？很高兴见到您。"
+          },
+          {
+            "speaker": "A",
+            "text": "Baik, terima kasih. Perusahaan kami ingin berdiskusi mengenai pengembangan berkelanjutan.",
+            "trans": "很好，谢谢。我们公司想讨论可持续发展。"
+          },
+          {
+            "speaker": "B",
+            "text": "Baik, mari kita masuk ke ruang rapat.",
+            "trans": "好的，我们进会议室吧。"
+          }
+        ]
+      },
+      {
+        "title": "日常同事见面（工厂/办公室）",
+        "icon": "🏭",
+        "dialogue": [
+          {
+            "speaker": "A",
+            "text": "Selamat pagi, Pak/Bu! Sudah sarapan?",
+            "trans": "早上好，先生/女士！吃过早餐了吗？"
+          },
+          {
+            "speaker": "B",
+            "text": "Pagi! Sudah, tadi di kantin. Kamu?",
+            "trans": "早！吃过了，刚在食堂。你呢？"
+          },
+          {
+            "speaker": "A",
+            "text": "Saya juga sudah. Hari ini kita ada rapat pukul sepuluh, ya?",
+            "trans": "我也吃过了。今天十点有会议，对吧？"
+          },
+          {
+            "speaker": "B",
+            "text": "Iya, jangan lupa bawa laporan kemarin.",
+            "trans": "对，别忘了带上昨天的报告。"
+          }
+        ]
+      },
+      {
+        "title": "与下属/员工打招呼（简短指令）",
+        "icon": "👷",
+        "dialogue": [
+          {
+            "speaker": "A",
+            "text": "Halo, teman-teman! Selamat pagi. Senang melihat kalian semua hadir tepat waktu dan siap untuk bekerja.",
+            "trans": "大家好！早上好。很高兴看到大家都准时出勤并准备好工作。"
+          },
+          {
+            "speaker": "B",
+            "text": "Selamat pagi, Pak! Kami sudah siap.",
+            "trans": "早上好，先生！我们已准备好。"
+          },
+          {
+            "speaker": "A",
+            "text": "Hari ini, tim maintenance harus berkumpul di gudang peralatan pukul delapan untuk melakukan inspeksi rutin.",
+            "trans": "今天，维修团队八点必须在设备仓库集合进行例行检查。"
+          },
+          {
+            "speaker": "B",
+            "text": "Baik, Pak. Kami akan berkumpul tepat waktu.",
+            "trans": "好的，先生。我们会准时集合。"
+          }
+        ]
+      },
+      {
+        "title": "商务会议与合作伙伴/供应商",
+        "icon": "🤝",
+        "dialogue": [
+          {
+            "speaker": "A",
+            "text": "Selamat siang, para mitra bisnis yang terhormat. Terima kasih telah meluangkan waktu untuk bertemu dengan kami hari ini.",
+            "trans": "中午好，尊敬的合作伙伴。感谢您今天抽出时间与我们见面。"
+          },
+          {
+            "speaker": "B",
+            "text": "Terima kasih kembali. Kami senang dapat berdiskusi dengan Anda.",
+            "trans": "同样感谢。我们很高兴能与您讨论。"
+          },
+          {
+            "speaker": "A",
+            "text": "Seperti yang Bapak/Ibu ketahui, perusahaan kami telah beroperasi di Indonesia selama lebih dari lima tahun dan selalu berusaha menjaga standar kualitas tertinggi.",
+            "trans": "如您所知，我们公司在印尼运营已超过五年，始终致力于保持最高质量标准。"
+          },
+          {
+            "speaker": "B",
+            "text": "Kami sangat menghargai dedikasi Anda. Mari kita mulai pembahasan.",
+            "trans": "我们非常赞赏您的敬业精神。让我们开始讨论吧。"
+          }
+        ]
+      },
+      {
+        "title": "非正式朋友见面",
+        "icon": "☕",
+        "dialogue": [
+          {
+            "speaker": "A",
+            "text": "Halo, Bro! Lama tidak bertemu. Gimana kabarmu?",
+            "trans": "嘿，兄弟！好久不见。你怎么样？"
+          },
+          {
+            "speaker": "B",
+            "text": "Halo! Kabar baik. Kamu sendiri?",
+            "trans": "嘿！我很好。你自己呢？"
+          },
+          {
+            "speaker": "A",
+            "text": "Aku juga baik. Akhir-akhir ini sibuk bekerja di proyek smelter baru, jadi belum sempat berlibur.",
+            "trans": "我也很好。最近在忙新冶炼厂项目，所以还没机会度假。"
+          },
+          {
+            "speaker": "B",
+            "text": "Wah, pasti seru banget! Yuk, kita makan siang bersama dan berdiskusi santai.",
+            "trans": "哇，一定很有趣！来吧，我们一起吃午饭，轻松聊聊。"
+          }
+        ]
+      },
+      {
+        "title": "久别重逢",
+        "icon": "🎉",
+        "dialogue": [
+          {
+            "speaker": "A",
+            "text": "Wah, apa kabar, Pak Budi? Sudah berapa lama kita tidak bertemu?",
+            "trans": "哇，Budi先生，你好吗？我们多久没见了？"
+          },
+          {
+            "speaker": "B",
+            "text": "Sepertinya sudah hampir setahun, ya, sejak konferensi pertambangan di Jakarta tahun lalu.",
+            "trans": "好像快一年了，自去年雅加达矿业会议以来。"
+          },
+          {
+            "speaker": "A",
+            "text": "Saya sangat senang bisa berjumpa dengan Anda lagi di Morowali. Perusahaan Anda pastilah telah berkembang pesat.",
+            "trans": "很高兴能在莫罗瓦利再次见到您。贵公司一定发展迅速。"
+          },
+          {
+            "speaker": "B",
+            "text": "Terima kasih. Kami baru saja menyelesaikan pembangkit listrik tenaga surya dan sedang berusaha meningkatkan efisiensi smelter kami.",
+            "trans": "谢谢。我们刚完成太阳能发电厂，正努力提升冶炼厂效率。"
+          }
+        ]
+      }
+    ],
+    "speeches": [
+      {
+        "title": "正式初次见面（与政府/官员）",
+        "icon": "🏛️",
+        "words": 160,
+        "time": 60,
+        "content": "Selamat pagi, Bapak/Ibu Menteri. Perkenalkan, nama saya [Nama], General Manager PT [Nama Perusahaan] yang beroperasi di kawasan industri Morowali, Sulawesi Tengah. Perusahaan kami bergerak di bidang pengolahan nikel dari hulu hingga hilir, mulai dari tambang, smelter, hingga produksi baterai lithium. Kami sangat bersemangat untuk berdiskusi dengan pemerintah daerah mengenai rencana pengembangan berkelanjutan. Selama beberapa tahun terakhir, perusahaan kami telah berkembang pesat dan saat ini mempekerjakan lebih dari sepuluh ribu karyawan. Kami berharap dapat bersinergi dengan pemerintah untuk menciptakan lapangan kerja yang lebih luas. Terima kasih atas kesempatan untuk bertemu dan berbicara langsung dengan Bapak/Ibu hari ini. Saya yakin kerja sama ini akan berjalan dengan baik."
+      },
+      {
+        "title": "日常同事见面（工厂晨会）",
+        "icon": "🏭",
+        "words": 140,
+        "time": 55,
+        "content": "Selamat pagi, rekan-rekan sekalian. Semoga kita semua dalam keadaan sehat dan bersemangat untuk bekerja hari ini. Seperti yang sudah kita diskusikan dalam rapat kemarin, proyek pembangunan smelter baru akan segera berjalan dan kita perlu berkumpul lagi pukul sepuluh untuk membahas timeline yang lebih detail. Selama proses ini, saya ingin kita semua berpikir kreatif dan berusaha mencari solusi terbaik agar proyek ini dapat berjalan lancar. Jika ada rekan yang ingin bertanya atau berdiskusi, jangan ragu untuk menghampiri saya. Mari kita bersama-sama mewujudkan target produksi! Semangat pagi!"
+      },
+      {
+        "title": "与下属/员工打招呼（简短指令）",
+        "icon": "👷",
+        "words": 130,
+        "time": 50,
+        "content": "Halo, teman-teman! Selamat pagi. Saya senang melihat kalian semua hadir tepat waktu dan siap untuk bekerja. Hari ini, tim maintenance harus berkumpul di gudang peralatan pukul delapan untuk melakukan inspeksi rutin. Saya harap kalian berpikir matang sebelum memutuskan apa pun yang berkaitan dengan keselamatan kerja. Selama bertugas, jangan lupa untuk selalu berkomunikasi dengan rekan sejawat dan bertanya jika ada hal yang kurang jelas. Proses produksi harus berjalan sesuai prosedur standar, dan kita semua perlu berusaha keras untuk menjaga kualitas produk tetap prima. Terima kasih atas dedikasi kalian. Mari kita mulai!"
+      },
+      {
+        "title": "商务会议与合作伙伴/供应商",
+        "icon": "🤝",
+        "words": 145,
+        "time": 60,
+        "content": "Selamat siang, para mitra bisnis yang terhormat. Terima kasih telah meluangkan waktu untuk bertemu dengan kami hari ini. Seperti yang Bapak/Ibu ketahui, perusahaan kami telah beroperasi di Indonesia selama lebih dari lima tahun dan selalu berusaha menjaga standar kualitas tertinggi. Saat ini, kami sedang berencana untuk memperluas kapasitas produksi smelter dan berharap dapat bersinergi dengan perusahaan Anda dalam pengadaan peralatan teknologi terbaru. Kami sangat terbuka untuk berdiskusi mengenai syarat dan ketentuan kerja sama yang saling menguntungkan. Selama negosiasi ini, kami berpikir bahwa transparansi dan kejujuran adalah fondasi terpenting dalam setiap hubungan bisnis yang berkelanjutan. Mari kita bersama-sama menemukan solusi terbaik untuk kemitraan jangka panjang ini."
+      },
+      {
+        "title": "非正式朋友见面",
+        "icon": "☕",
+        "words": 135,
+        "time": 55,
+        "content": "Halo, Bro! Lama tidak bertemu. Gimana kabarmu? Saya dengar kamu baru saja berlibur ke Bali bersama keluarga. Wah, pasti seru banget! Saya sendiri akhir-akhir ini sibuk bekerja di proyek smelter baru, jadi belum sempat berlibur. Tapi hari ini, saya ingin berkumpul dengan kalian semua untuk makan siang bersama dan berdiskusi santai mengenai rencana liburan akhir tahun nanti. Saya sudah berpikir untuk pergi ke Lombok, tapi masih bingung mau berapa lama di sana. Kalau kamu punya saran, jangan ragu untuk berkata ya! Oh ya, kapan kita bisa bermain badminton lagi? Sudah lama kita tidak bersama-sama olahraga. Yuk, kita janjian minggu depan!"
+      },
+      {
+        "title": "久别重逢",
+        "icon": "🎉",
+        "words": 145,
+        "time": 60,
+        "content": "Wah, apa kabar, Pak Budi? Sudah berapa lama kita tidak bertemu? Sepertinya sudah hampir setahun, ya, sejak konferensi pertambangan di Jakarta tahun lalu. Saya sangat senang bisa berjumpa dengan Anda lagi di Morowali. Sejak terakhir kita bertemu, perusahaan Anda pastilah telah berkembang pesat. Kami baru saja menyelesaikan pembangkit listrik tenaga surya dan sedang berusaha meningkatkan efisiensi smelter kami. Saya banyak berpikir tentang rencana ekspansi ke bisnis aluminium dan berharap bisa berdiskusi dengan Anda mengenai peluang kerja sama di bidang tersebut. Mari kita berkumpul nanti malam untuk makan malam bersama dan menyusun strategi lebih lanjut. Senang rasanya bisa bersama Anda lagi!"
+      }
+    ]
+  }
+};
+
+
+const topicCalendar = {
+  "2026-07-16": {topic: "meet", day: 1, label: "词汇+语法"},
+  "2026-07-17": {topic: "meet", day: 2, label: "场景对话"},
+  "2026-07-18": {topic: "meet", day: 3, label: "演讲+复习"}
+};
+
+function getTopicForDate(ds) {
+  return topicCalendar[ds] || null;
+}
+
+function renderTopicDetail(c, ds, topicInfo) {
+  const topic = topicData[topicInfo.topic];
+  const day = topicInfo.day;
+  let html = `<div class="date-detail"><button class="back-btn" onclick="navigate('home')">← 返回</button>`;
+  html += `<div class="card"><div class="card-header"><h2>${topic.icon} ${topic.title}</h2><span class="badge">Day ${day}/3 · ${topicInfo.label}</span></div>`;
+  
+  if (day === 1) {
+    // Day 1: Grammar + Vocabulary
+    html += `<div style="background:rgba(0,212,170,.08);border-radius:10px;padding:16px;margin-bottom:16px;border-left:3px solid var(--primary)"><h3 style="color:var(--primary);margin-bottom:10px;font-size:15px">📖 ${topic.grammar.title}</h3>`;
+    topic.grammar.rules.forEach(r => {
+      html += `<div style="font-size:13px;color:var(--text);margin:6px 0;padding:6px 0;border-bottom:1px solid var(--border)">• ${r}</div>`;
+    });
+    html += `<div style="margin-top:12px;padding:10px;background:var(--bg-elev);border-radius:8px;font-size:13px">`;
+    topic.grammar.examples.forEach(e => {
+      html += `<div style="margin:4px 0;color:var(--text-dim)">${e}</div>`;
+    });
+    html += `</div></div>`;
+    // Show key vocabulary for this topic
+    html += `<h3 style="color:var(--primary);margin:16px 0 10px;font-size:15px">🎯 话题核心词汇</h3><div class="word-grid">`;
+    const keyWords = ["bertemu","berdiskusi","berjumpa","berkumpul","berbicara","berkerja","berjalan","bersemangat","berusaha","berpikir","bersama-sama","berkembang","beroperasi","berkelanjutan","berharap","bersinergi","berkaitan","berkomunikasi","berlibur","bermain","berdagang","berencana"];
+    keyWords.forEach(w => {
+      const key = Object.keys(vocabDB).find(k => k.toLowerCase() === w.toLowerCase());
+      if (key) {
+        const v = vocabDB[key];
+        html += `<div class="word-card" onclick="showTip('${key.replace(/'/g,"\'")}')"><div class="w-word">${key} <span class="w-ipa">${v.ipa||""}</span></div><div class="w-mean">🇨🇳 ${v.cn||""}</div></div>`;
+      }
+    });
+    html += `</div>`;
+  } else if (day === 2) {
+    // Day 2: Scenes 1-3 (or 4-6 based on day)
+    const sceneStart = 0;
+    const sceneEnd = 3;
+    html += `<h3 style="color:var(--primary);margin:16px 0 10px;font-size:15px">💬 场景对话 (${sceneStart+1}-${sceneEnd})</h3>`;
+    for (let i = sceneStart; i < sceneEnd && i < topic.scenes.length; i++) {
+      const s = topic.scenes[i];
+      html += `<div style="background:var(--bg-elev);border-radius:10px;padding:16px;margin-bottom:12px;border:1px solid var(--border)"><div style="display:flex;align-items:center;gap:8px;margin-bottom:10px"><span style="font-size:18px">${s.icon}</span><strong style="color:var(--primary);font-size:14px">${s.title}</strong></div>`;
+      s.dialogue.forEach(d => {
+        html += `<div style="display:flex;gap:10px;margin:8px 0;padding:8px;background:var(--bg-card);border-radius:6px"><div style="font-weight:700;color:var(--primary);min-width:30px;font-size:12px">${d.speaker}:</div><div style="flex:1"><div style="font-size:13px;color:var(--text)">${d.text}</div><div style="font-size:11px;color:var(--text-dim);margin-top:3px;border-left:2px solid var(--primary-dim);padding-left:6px">${d.trans}</div></div></div>`;
+      });
+      html += `</div>`;
+    }
+  } else {
+    // Day 3: Speeches + Review
+    html += `<h3 style="color:var(--primary);margin:16px 0 10px;font-size:15px">🎤 1分钟演讲</h3>`;
+    for (let i = 0; i < topic.speeches.length; i++) {
+      const sp = topic.speeches[i];
+      html += `<div style="background:var(--bg-elev);border-radius:10px;padding:16px;margin-bottom:12px;border:1px solid var(--border)"><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><span style="font-size:18px">${sp.icon}</span><strong style="color:var(--primary);font-size:14px">${sp.title}</strong></div><div style="display:flex;gap:8px;margin-bottom:10px;font-size:11px;color:var(--text-dim)"><span style="background:rgba(0,212,170,.1);padding:2px 8px;border-radius:8px">⏱️ ~${sp.time}秒</span><span style="background:rgba(0,212,170,.1);padding:2px 8px;border-radius:8px">📝 ~${sp.words}词</span></div><div style="font-size:13px;line-height:1.8;color:var(--text);background:var(--bg-card);padding:12px;border-radius:8px">${sp.content}</div></div>`;
+    }
+    html += `<div style="margin-top:16px;padding:12px;background:rgba(34,197,94,.08);border-radius:8px;border:1px solid rgba(34,197,94,.3)"><div style="font-size:13px;color:var(--success)">✅ 完成三天学习！进入复习队列。</div><div style="font-size:12px;color:var(--text-dim);margin-top:6px">建议：使用「能力测试」检测掌握程度，使用「艾宾浩斯复习」巩固记忆。</div></div>`;
+  }
+  
+  html += `</div></div>`;
+  c.innerHTML = html;
+}
+
+// 修改renderDateDetail以支持话题
+const originalRenderDateDetail = renderDateDetail;
+renderDateDetail = function(c, ds) {
+  const topicInfo = getTopicForDate(ds);
+  if (topicInfo) {
+    renderTopicDetail(c, ds, topicInfo);
+    return;
+  }
+  originalRenderDateDetail(c, ds);
+};
+
+// 修改renderCalHTML以标记话题日期
+const originalRenderCalHTML = renderCalHTML;
+renderCalHTML = function() {
+  const y = currentDate.getFullYear(), m = currentDate.getMonth();
+  const fd = new Date(y, m, 1).getDay(), td = new Date(y, m+1, 0).getDate();
+  const tds = new Date().toISOString().slice(0,10), wd = ["日","一","二","三","四","五","六"];
+  let h = `<div class="cal-wrap"><div class="cal-header"><button class="cal-nav" onclick="changeMonth(-1)">◀</button><h3>${y}年${m+1}月</h3><button class="cal-nav" onclick="changeMonth(1)">▶</button></div><div class="cal-grid">`;
+  wd.forEach(d => h += `<div class="cal-wd">${d}</div>`);
+  for (let i = 0; i < fd; i++) h += `<div class="cal-day" style="background:transparent;cursor:default"></div>`;
+  for (let d = 1; d <= td; d++) {
+    const ds = `${y}-${String(m+1).padStart(2,"0")}-${String(d).padStart(2,"0")}`;
+    const data = learningHistory[ds], ist = ds === tds, hd = data && (data.vocabNew.length || data.vocabReview.length || data.translations);
+    const tinfo = getTopicForDate(ds);
+    let dots = "";
+    if (data) {
+      if (data.vocabNew.length) dots += `<span class="ddot neww"></span>`;
+      if (data.vocabReview.length) dots += `<span class="ddot rev"></span>`;
+      if (data.translations) dots += `<span class="ddot"></span>`;
+    }
+    if (tinfo) dots += `<span class="ddot" style="background:var(--accent)"></span>`;
+    h += `<div class="cal-day ${ist ? "today" : ""} ${hd || tinfo ? "has-data" : ""}" data-date="${ds}"><div class="dnum">${d}</div><div class="ddots">${dots}</div></div>`;
+  }
+  h += `</div><div class="cal-legend"><span><span class="ddot neww" style="display:inline-block"></span> 新词</span><span><span class="ddot rev" style="display:inline-block"></span> 复习</span><span><span class="ddot" style="display:inline-block"></span> 翻译</span><span><span class="ddot" style="display:inline-block;background:var(--accent)"></span> 话题</span><span>⬤ 今天</span></div></div>`;
+  return h;
+};
+
+// 修改attachCalEvents以支持话题点击
+const originalAttachCalEvents = attachCalEvents;
+attachCalEvents = function() {
+  document.querySelectorAll(".cal-day[data-date]").forEach(el => {
+    el.addEventListener("click", () => {
+      const ds = el.dataset.date;
+      const tinfo = getTopicForDate(ds);
+      if (tinfo || learningHistory[ds]) navigate("date", ds);
+    });
+  });
+};
 </script>
 </body>
 </html>
