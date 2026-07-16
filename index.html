@@ -172,6 +172,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
       <li data-route="quiz"><span style="margin-right:8px">🎯</span>能力测试</li>
       <li data-route="vocabulary"><span style="margin-right:8px">📖</span>词汇库</li>
       <li data-route="review"><span style="margin-right:8px">🔄</span>艾宾浩斯复习</li>
+      <li data-route="member"><span style="margin-right:8px">👑</span>会员中心</li>
     </ul>
   </div>
   <div class="sidebar-section" style="padding:14px 18px;font-size:11px;color:var(--text-dim);line-height:1.8">
@@ -182,7 +183,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="topbar">
     <button class="menu-btn" id="menuBtn">☰</button>
     <div class="topbar-title" id="pageTitle">🏠 主页</div>
-    <div></div>
+    <div id="memberBadge" style="margin-left:auto;font-size:12px;padding:4px 10px;border-radius:8px;cursor:pointer;" onclick="navigate('member')"></div>
   </div>
   <div class="content" id="appContent"></div>
 </main>
@@ -655,16 +656,17 @@ function render(){
     case "quiz":t.innerText="🎯 能力测试";renderQuiz(c);break;
     case "vocabulary":t.innerText="📖 词汇库";renderVocabulary(c);break;
     case "review":t.innerText="🔄 复习";renderReview(c);break;
+    case "member":t.innerText="👑 会员中心";renderMember(c);break;
     case "game":t.innerText="🎮 百词斩";renderGame(c);break;
     default:t.innerText="🏠 主页";renderHome(c);
   }
   window.scrollTo(0,0);
 }
-function updateNav(){document.querySelectorAll(".nav-list li").forEach(li=>{li.classList.toggle("active",li.dataset.route===currentRoute)})}
+function updateNav(){document.querySelectorAll(".nav-list li").forEach(li=>{li.classList.toggle("active",li.dataset.route===currentRoute)}); const s=getMemberStatus(); const mb=document.getElementById("memberBadge");if(mb){mb.style.background=s.color+"20";mb.style.color=s.color;mb.textContent=s.label;} const hmb=document.getElementById("homeMemberBadge");if(hmb){hmb.style.background=s.color+"20";hmb.style.color=s.color;hmb.textContent=s.label;}}
 
 function renderHome(c){
   const today=new Date().toISOString().slice(0,10),td=learningHistory[today],tdn=td?td.vocabNew.length:0;
-  c.innerHTML=`<div class="welcome-banner"><h2>👋 Selamat datang!</h2><p>今天是 ${today}。${tdn>0?"今日已学"+tdn+"词，":""}继续加油！</p></div>
+  c.innerHTML=`<div class="welcome-banner" style="position:relative;"><div id="homeMemberBadge" style="position:absolute;top:8px;right:8px;font-size:11px;padding:3px 8px;border-radius:6px;"></div><h2>👋 Selamat datang!</h2><p>今天是 ${today}。${tdn>0?"今日已学"+tdn+"词，":""}继续加油！</p></div>
   <div class="quick-grid">
     <div class="quick-btn" onclick="navigate('translate')"><span class="icon">🌐</span><div class="label">翻译</div></div>
     <div class="quick-btn" onclick="navigate('input')"><span class="icon">📝</span><div class="label">词汇录入</div></div>
@@ -711,7 +713,7 @@ function renderTranslate(c){
   document.getElementById("tInput").addEventListener("keydown",e=>{if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();doTranslate()}});
 }
 
-async function doTranslate(){
+async function doTranslate(){if(!checkAccess("翻译"))return;
   const input=document.getElementById("tInput").value.trim();if(!input)return;
   const resultDiv=document.getElementById("tResult");resultDiv.innerHTML=`<div style="color:var(--text-dim);padding:20px;text-align:center">翻译中...</div>`;resultDiv.classList.add("show");
   const fromLang=document.getElementById("tFrom").value,toLang=document.getElementById("tTo").value;
@@ -746,7 +748,7 @@ function clearTrans(){document.getElementById("tInput").value="";document.getEle
 function renderInput(c){
   c.innerHTML=`<div class="card"><div class="card-header"><h2>📝 词汇录入</h2><span class="badge">批量输入</span></div><div class="vinput-area"><textarea class="vinput-ta" id="vInput" placeholder="每行一个单词..."></textarea><div class="vinput-btns"><button class="btn-parse" onclick="parseVocab()">🔍 解析</button><button class="btn-clear" onclick="document.getElementById('vInput').value='';document.getElementById('vResult').style.display='none'">清空</button></div><div class="vinput-res" id="vResult"></div></div></div>`;
 }
-function parseVocab(){
+function parseVocab(){if(!checkAccess("词汇录入"))return;
   const input=document.getElementById("vInput").value.trim();if(!input){showToast("请先输入");return;}
   const lines=input.split(/[\s,]+/).map(s=>s.trim()).filter(s=>s);
   const resultDiv=document.getElementById("vResult");resultDiv.style.display="block";resultDiv.classList.add("show");
@@ -766,11 +768,11 @@ function renderWBList(){
   const c=document.getElementById("wbList");if(!c)return;if(!wordBank.length){c.innerHTML=`<div class="wb-empty"><div class="big">📚</div><div>生词本为空</div></div>`;return;}
   let h="";wordBank.forEach((w,i)=>{h+=`<div class="wb-item"><div><div class="wb-w">${w.word} <span class="wb-i">${w.ipa||""}</span></div><div class="wb-m">🇨🇳 ${w.cn||""}</div><div class="wb-m" style="font-size:11px">📅 ${w.date}</div><div class="wb-act"><button class="wb-mas" onclick="toggleWB(${i})">${w.mastered?"🔄 取消":"✅ 掌握"}</button><button class="wb-del" onclick="delWB(${i})">🗑️</button></div></div></div>`;});c.innerHTML=h;
 }
-function addWB(word,ipa,cn,en,root,tag){if(wordBank.find(w=>w.word.toLowerCase()===word.toLowerCase())){showToast("已在生词本");return;}wordBank.unshift({word,ipa:ipa||"—",cn:cn||"—",en:en||"—",root:root||"—",tag:tag||"—",date:new Date().toISOString().slice(0,10),mastered:false});saveWB();showToast("「"+word+"」已保存");updateStats();}
+function addWB(word,ipa,cn,en,root,tag){if(!checkAccess("添加生词"))return;if(wordBank.find(w=>w.word.toLowerCase()===word.toLowerCase())){showToast("已在生词本");return;}wordBank.unshift({word,ipa:ipa||"—",cn:cn||"—",en:en||"—",root:root||"—",tag:tag||"—",date:new Date().toISOString().slice(0,10),mastered:false});saveWB();showToast("「"+word+"」已保存");updateStats();}
 function toggleWB(i){wordBank[i].mastered=!wordBank[i].mastered;saveWB();renderWBList();updateStats();}
-function delWB(i){if(!confirm("删除?"))return;wordBank.splice(i,1);saveWB();renderWBList();updateStats();}
-function exportWB(){if(!wordBank.length){showToast("为空");return;}let t="📚 BIR生词本—"+new Date().toISOString().slice(0,10)+"\n";wordBank.forEach((w,i)=>{t+=(i+1)+". "+w.word+" "+w.ipa+"\n🇨🇳"+w.cn+" | 状态:"+(w.mastered?"✅":"🔄")+"";});navigator.clipboard.writeText(t).then(()=>showToast("已复制"));}
-function clearWB(){if(!confirm("清空?"))return;wordBank=[];saveWB();renderWBList();updateStats();showToast("已清空");}
+function delWB(i){if(!checkAccess("删除生词"))return;if(!confirm("删除?"))return;wordBank.splice(i,1);saveWB();renderWBList();updateStats();}
+function exportWB(){if(!checkAccess("导出"))return;if(!wordBank.length){showToast("为空");return;}let t="📚 BIR生词本—"+new Date().toISOString().slice(0,10)+"\n";wordBank.forEach((w,i)=>{t+=(i+1)+". "+w.word+" "+w.ipa+"\n🇨🇳"+w.cn+" | 状态:"+(w.mastered?"✅":"🔄")+"";});navigator.clipboard.writeText(t).then(()=>showToast("已复制"));}
+function clearWB(){if(!checkAccess("清空"))return;if(!confirm("清空?"))return;wordBank=[];saveWB();renderWBList();updateStats();showToast("已清空");}
 
 function renderQuiz(c){
   quizState={q:0,correct:0,total:5,done:0};const pool=Object.keys(vocabDB).filter(k=>vocabDB[k].cn);const sel=[];
@@ -827,7 +829,7 @@ function getTopicReviewItems() {
   return items.sort((a, b) => b.daysSince - a.daysSince);
 }
 
-function markTopicReviewed(date, topicKey, dayNum, interval) {
+function markTopicReviewed(date, topicKey, dayNum, interval) {if(!checkAccess("话题复习"))return;
   const t = topicHistory.find(t => t.date === date && t.topic === topicKey && t.day === dayNum);
   if (t) {
     if (!t.reviews) t.reviews = [];
@@ -860,7 +862,7 @@ function getWordReviewItems() {
   return items.sort((a, b) => b.daysSince - a.daysSince);
 }
 
-function markWordReviewed(word, interval) {
+function markWordReviewed(word, interval) {if(!checkAccess("词汇复习"))return;
   const w = wordBank.find(x => x.word === word);
   if (w) {
     if (!w.reviews) w.reviews = [];
@@ -989,7 +991,7 @@ function updateStats(){
 }
 
 document.addEventListener("DOMContentLoaded",()=>{
-  initHistory();initWordBank();render();updateStats();
+  initHistory();initWordBank();initMember();render();updateStats();
   window.addEventListener("hashchange",render);
   document.querySelectorAll(".nav-list li").forEach(li=>{li.addEventListener("click",()=>{const r=li.dataset.route;if(r)navigate(r);});});
   const menuBtn=document.getElementById("menuBtn"),sidebar=document.getElementById("sidebar");
@@ -1006,6 +1008,90 @@ document.addEventListener("DOMContentLoaded",()=>{
 // ===== BIR V2.1 艾宾浩斯动态复习 + 三关生词本系统 =====
 
 let wordStats = JSON.parse(localStorage.getItem("bir_ws3") || "{}");
+let memberInfo = JSON.parse(localStorage.getItem("bir_member") || "null");
+
+function initMember() {
+  if (!memberInfo) {
+    memberInfo = { username: null, type: null, trialStart: null, trialEnd: null, paidStart: null, paidEnd: null, clickCount: 0, isAdmin: false };
+    saveMember();
+  }
+  checkMemberExpiry();
+}
+function checkMemberExpiry() {
+  const now = new Date();
+  if (memberInfo.type === 'trial' && memberInfo.trialEnd && now > new Date(memberInfo.trialEnd)) { memberInfo.type = 'expired'; memberInfo.trialEnd = null; saveMember(); }
+  if (memberInfo.type === 'paid' && memberInfo.paidEnd && now > new Date(memberInfo.paidEnd)) { memberInfo.type = 'expired'; memberInfo.paidEnd = null; saveMember(); }
+}
+function saveMember() { localStorage.setItem("bir_member", JSON.stringify(memberInfo)); }
+function isMemberValid() { checkMemberExpiry(); if (!memberInfo) return false; if (memberInfo.isAdmin) return true; if (memberInfo.type === 'trial' || memberInfo.type === 'paid') return true; return false; }
+function getMemberStatus() {
+  checkMemberExpiry();
+  if (!memberInfo || !memberInfo.type || memberInfo.type === 'expired') return { valid: false, label: '非会员', color: 'var(--danger)' };
+  if (memberInfo.isAdmin) return { valid: true, label: '超级管理员', color: 'var(--accent)' };
+  if (memberInfo.type === 'trial') { const h = Math.max(0, Math.floor((new Date(memberInfo.trialEnd) - new Date()) / 3600000)); return { valid: true, label: `试用(${h}h)`, color: 'var(--info)' }; }
+  if (memberInfo.type === 'paid') { const d = Math.max(0, Math.floor((new Date(memberInfo.paidEnd) - new Date()) / 86400000)); return { valid: true, label: `年费(${d}天)`, color: 'var(--success)' }; }
+  return { valid: false, label: '非会员', color: 'var(--danger)' };
+}
+function checkAccess(action) {
+  if (isMemberValid()) return true;
+  memberInfo.clickCount = (memberInfo.clickCount || 0) + 1;
+  saveMember();
+  const remain = 3 - memberInfo.clickCount;
+  if (memberInfo.clickCount <= 3) { showToast(`非会员可用${remain}次，请升级会员`); return true; }
+  showMemberRequired(action); return false;
+}
+function showMemberRequired(action) {
+  const modal = document.createElement('div'); modal.id = 'memberModal'; modal.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.8);z-index:10000;display:flex;align-items:center;justify-content:center;';
+  modal.innerHTML = `<div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:24px;max-width:320px;width:90%;text-align:center;">
+    <div style="font-size:48px;margin-bottom:10px">🔒</div>
+    <div style="font-size:16px;font-weight:700;color:var(--text);margin-bottom:8px">非会员限制</div>
+    <div style="font-size:13px;color:var(--text-dim);margin-bottom:16px">免费试用已用完，升级会员解锁全部功能</div>
+    <div style="display:flex;gap:8px;flex-direction:column;">
+      <button class="trans-btn" onclick="closeMemberModal();navigate('member');">前往会员中心</button>
+      <button class="trans-btn" style="background:transparent;color:var(--text-dim)" onclick="closeMemberModal()">稍后</button>
+    </div>
+  </div>`;
+  document.body.appendChild(modal);
+}
+function closeMemberModal() { const m = document.getElementById('memberModal'); if (m) m.remove(); }
+function loginMember(username, password) {
+  if (username === 'Chinarenwgl' && password === 'Youlu@123') {
+    memberInfo = { username: 'Chinarenwgl', type: 'admin', isAdmin: true, trialStart: null, trialEnd: null, paidStart: null, paidEnd: null, clickCount: 0 };
+    saveMember(); showToast('✅ 超级管理员登录成功'); return true;
+  }
+  showToast('❌ 账号或密码错误'); return false;
+}
+function applyTrial() {
+  const now = new Date(); const end = new Date(now.getTime() + 24 * 3600000);
+  memberInfo = { ...memberInfo, type: 'trial', trialStart: now.toISOString(), trialEnd: end.toISOString(), clickCount: 0 };
+  saveMember(); showToast('✅ 试用会员已激活，24小时'); navigate('member');
+}
+function renderMember(c) {
+  const status = getMemberStatus();
+  let html = `<div class="card"><div class="card-header"><h2>👑 会员中心</h2><span class="badge" style="background:${status.color}20;color:${status.color}">${status.label}</span></div>`;
+  if (status.valid) {
+    html += `<div style="padding:16px;"><div style="font-size:14px;color:var(--text);margin-bottom:12px">👤 ${memberInfo.username || '会员'}</div>`;
+    if (memberInfo.type === 'trial') html += `<div style="font-size:13px;color:var(--text-dim);margin-bottom:16px">试用期至：${new Date(memberInfo.trialEnd).toLocaleString('zh-CN')}</div>`;
+    if (memberInfo.type === 'paid') html += `<div style="font-size:13px;color:var(--text-dim);margin-bottom:16px">有效期至：${new Date(memberInfo.paidEnd).toLocaleString('zh-CN')}</div>`;
+    html += `<button class="trans-btn" onclick="logoutMember()">退出登录</button></div>`;
+  } else {
+    html += `<div style="padding:16px;"><div style="font-size:13px;color:var(--text-dim);margin-bottom:16px;text-align:center">非会员仅可试用3次，升级会员解锁全部功能</div>
+    <div style="margin-bottom:16px;"><div style="font-size:12px;color:var(--text-dim);margin-bottom:4px">账号</div>
+    <input type="text" id="loginUser" placeholder="用户名" style="width:100%;padding:8px;background:var(--bg-elev);border:1px solid var(--border);border-radius:8px;color:var(--text);margin-bottom:8px;">
+    <div style="font-size:12px;color:var(--text-dim);margin-bottom:4px">密码</div>
+    <input type="password" id="loginPass" placeholder="密码" style="width:100%;padding:8px;background:var(--bg-elev);border:1px solid var(--border);border-radius:8px;color:var(--text);">
+    <button class="trans-btn" style="margin-top:10px;width:100%" onclick="doLogin()">登录</button></div>
+    <div style="border-top:1px solid var(--border);padding-top:16px;text-align:center;"><div style="font-size:13px;color:var(--text);margin-bottom:8px">新用户？</div>
+    <button class="trans-btn" style="background:transparent;border:1px solid var(--primary);color:var(--primary)" onclick="applyTrial()">🎁 免费试用1天</button></div>
+    <div style="border-top:1px solid var(--border);padding-top:16px;margin-top:16px;text-align:center;"><div style="font-size:13px;color:var(--text);margin-bottom:8px">升级年费会员</div>
+    <div style="background:var(--bg-elev);border-radius:8px;padding:16px;margin-bottom:8px;"><div style="font-size:24px;margin-bottom:8px">💎</div><div style="font-size:13px;color:var(--text-dim)">年费会员尊享全部功能</div><div style="font-size:12px;color:var(--accent);margin-top:8px">请扫描下方二维码支付</div>
+    <div style="margin-top:10px;padding:10px;background:var(--bg);border-radius:8px;"><div style="font-size:12px;color:var(--text-dim)">📷 二维码位置</div><div style="font-size:11px;color:var(--text-dim);margin-top:4px">（请替换 assets/qr-code.png）</div></div></div></div></div>`;
+  }
+  html += `</div>`; c.innerHTML = html;
+}
+function doLogin() { const u = document.getElementById('loginUser').value.trim(); const p = document.getElementById('loginPass').value.trim(); if (!u || !p) { showToast('请输入账号密码'); return; } if (loginMember(u, p)) { renderMember(document.getElementById('app')); } }
+function logoutMember() { memberInfo = { username: null, type: null, trialStart: null, trialEnd: null, paidStart: null, paidEnd: null, clickCount: 0, isAdmin: false }; saveMember(); showToast('已退出'); navigate('member'); }
+
 let gameState = { mode: 'id2zh', pool: [], current: null, q: 0, correct: 0, wrong: 0, total: 10, streak: 0 };
 
 function saveWordStats() { localStorage.setItem("bir_ws3", JSON.stringify(wordStats)); }
@@ -1086,7 +1172,7 @@ function renderGame(c) {
   </div></div></div>`;
 }
 
-function startGame(mode) {
+function startGame(mode) {if(!checkAccess("百词斩"))return;
   const now = Date.now();
   let candidates = wordBank.filter(w => {
     if (!w.cn || checkAllPassed(w.word)) return false;
@@ -1163,7 +1249,7 @@ function showGameQ() {
   }
 }
 
-function ansGameQ(sel, correct, el) {
+function ansGameQ(sel, correct, el) {if(!checkAccess("答题"))return;
   const opts = el.parentElement.querySelectorAll(".q-opt");
   opts.forEach(o => o.style.pointerEvents = "none");
   const ok = sel === correct;
@@ -1186,7 +1272,7 @@ function ansGameQ(sel, correct, el) {
   setTimeout(() => showGameQ(), 1500);
 }
 
-function submitSpell(correctWord, correctCn) {
+function submitSpell(correctWord, correctCn) {if(!checkAccess("拼写"))return;
   const inp = document.getElementById("spellInput");
   if (!inp) return;
   const val = inp.value.trim().toLowerCase();
@@ -1280,7 +1366,7 @@ function renderWBList(){
   });c.innerHTML=h;
 }
 
-function playWBGame(i) {
+function playWBGame(i) {if(!checkAccess("生词练习"))return;
   const w = wordBank[i]; if (!w) return;
   const p = w.passed || {id2zh:false,zh2id:false,spell:false};
   let mode = 'id2zh';
