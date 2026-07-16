@@ -182,7 +182,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
 <main class="main" id="main">
   <div class="topbar">
     <button class="menu-btn" id="menuBtn">☰</button>
-    <div class="topbar-title" id="pageTitle">🏠 主页</div>
+    <button class="menu-btn" id="backBtn" style="display:none;margin-right:8px;" onclick="navigate('home')">←</button><div class="topbar-title" id="pageTitle">🏠 主页</div>
     <div id="memberBadge" style="margin-left:auto;font-size:12px;padding:4px 10px;border-radius:8px;cursor:pointer;" onclick="navigate('member')"></div>
   </div>
   <div class="content" id="appContent"></div>
@@ -657,6 +657,9 @@ function render(){
     case "vocabulary":t.innerText="📖 词汇库";renderVocabulary(c);break;
     case "review":t.innerText="🔄 复习";renderReview(c);break;
     case "member":t.innerText="👑 会员中心";renderMember(c);break;
+    case "upload":t.innerText="📤 上传资料";renderUpload(c);break;
+    case "manage":t.innerText="⚙️ 课程管理";renderManage(c);break;
+    case "stats":t.innerText="📊 数据统计";renderStats(c);break;
     case "game":t.innerText="🎮 百词斩";renderGame(c);break;
     default:t.innerText="🏠 主页";renderHome(c);
   }
@@ -1028,6 +1031,7 @@ function getMemberStatus() {
   checkMemberExpiry();
   if (!memberInfo || !memberInfo.type || memberInfo.type === 'expired') return { valid: false, label: '非会员', color: 'var(--danger)' };
   if (memberInfo.isAdmin) return { valid: true, label: '超级管理员', color: 'var(--accent)' };
+  if (memberInfo.type === 'trial')
   if (memberInfo.type === 'trial') { const h = Math.max(0, Math.floor((new Date(memberInfo.trialEnd) - new Date()) / 3600000)); return { valid: true, label: `试用(${h}h)`, color: 'var(--info)' }; }
   if (memberInfo.type === 'paid') { const d = Math.max(0, Math.floor((new Date(memberInfo.paidEnd) - new Date()) / 86400000)); return { valid: true, label: `年费(${d}天)`, color: 'var(--success)' }; }
   return { valid: false, label: '非会员', color: 'var(--danger)' };
@@ -1073,7 +1077,16 @@ function renderMember(c) {
     html += `<div style="padding:16px;"><div style="font-size:14px;color:var(--text);margin-bottom:12px">👤 ${memberInfo.username || '会员'}</div>`;
     if (memberInfo.type === 'trial') html += `<div style="font-size:13px;color:var(--text-dim);margin-bottom:16px">试用期至：${new Date(memberInfo.trialEnd).toLocaleString('zh-CN')}</div>`;
     if (memberInfo.type === 'paid') html += `<div style="font-size:13px;color:var(--text-dim);margin-bottom:16px">有效期至：${new Date(memberInfo.paidEnd).toLocaleString('zh-CN')}</div>`;
-    html += `<button class="trans-btn" onclick="logoutMember()">退出登录</button></div>`;
+    if (memberInfo.isAdmin) {
+      html += `<div style="border-top:1px solid var(--border);padding-top:16px;margin-top:16px;"><div style="font-size:14px;color:var(--accent);margin-bottom:12px;font-weight:700">🔧 管理控制台</div>
+      <div style="display:flex;gap:8px;flex-direction:column;">
+        <button class="trans-btn" onclick="navigate('upload')">📤 上传课程资料</button>
+        <button class="trans-btn" onclick="navigate('manage')">⚙️ 课程管理</button>
+        <button class="trans-btn" onclick="navigate('stats')">📊 学习数据统计</button>
+        <button class="trans-btn" onclick="resetAllData()" style="background:var(--danger)">🗑️ 重置所有数据</button>
+      </div></div>`;
+    }
+    html += `<button class="trans-btn" style="margin-top:16px;" onclick="logoutMember()">退出登录</button></div>`;
   } else {
     html += `<div style="padding:16px;"><div style="font-size:13px;color:var(--text-dim);margin-bottom:16px;text-align:center">非会员仅可试用3次，升级会员解锁全部功能</div>
     <div style="margin-bottom:16px;"><div style="font-size:12px;color:var(--text-dim);margin-bottom:4px">账号</div>
@@ -1091,6 +1104,89 @@ function renderMember(c) {
 }
 function doLogin() { const u = document.getElementById('loginUser').value.trim(); const p = document.getElementById('loginPass').value.trim(); if (!u || !p) { showToast('请输入账号密码'); return; } if (loginMember(u, p)) { renderMember(document.getElementById('app')); } }
 function logoutMember() { memberInfo = { username: null, type: null, trialStart: null, trialEnd: null, paidStart: null, paidEnd: null, clickCount: 0, isAdmin: false }; saveMember(); showToast('已退出'); navigate('member'); }
+function renderUpload(c) {
+  if (!memberInfo.isAdmin) { navigate('member'); return; }
+  c.innerHTML = `<div class="card"><div class="card-header"><h2>📤 上传课程资料</h2></div><div style="padding:16px;">
+    <div style="margin-bottom:16px;"><div style="font-size:13px;color:var(--text-dim);margin-bottom:8px;">上传词汇表 (CSV格式: 印尼语,中文,词性)</div>
+    <textarea id="uploadCsv" rows="8" style="width:100%;background:var(--bg-elev);border:1px solid var(--border);border-radius:8px;padding:8px;color:var(--text);font-family:monospace;font-size:12px;" placeholder="selamat,你好,int
+apa kabar,你好吗,phrase"></textarea>
+    <button class="trans-btn" style="margin-top:8px;" onclick="importCsv()">导入词汇</button></div>
+    <div style="margin-bottom:16px;border-top:1px solid var(--border);padding-top:16px;"><div style="font-size:13px;color:var(--text-dim);margin-bottom:8px;">上传话题内容 (JSON格式)</div>
+    <textarea id="uploadTopic" rows="8" style="width:100%;background:var(--bg-elev);border:1px solid var(--border);border-radius:8px;padding:8px;color:var(--text);font-family:monospace;font-size:12px;" placeholder='[{&quot;date&quot;:&quot;2026-07-20&quot;,&quot;title&quot;:&quot;新话题&quot;,&quot;content&quot;:&quot;...&quot;}]'></textarea>
+    <button class="trans-btn" style="margin-top:8px;" onclick="importTopic()">导入话题</button></div>
+  </div></div>`;
+}
+function renderManage(c) {
+  if (!memberInfo.isAdmin) { navigate('member'); return; }
+  let html = `<div class="card"><div class="card-header"><h2>⚙️ 课程管理</h2></div><div style="padding:16px;">`;
+  html += `<div style="margin-bottom:16px;"><div style="font-size:14px;color:var(--text);margin-bottom:8px;font-weight:700">📅 话题日历</div>`;
+  topicCalendar.forEach(t => {
+    const d = topicData[t.topic];
+    html += `<div style="display:flex;justify-content:space-between;align-items:center;padding:8px;background:var(--bg-elev);border-radius:8px;margin-bottom:6px;"><span style="font-size:13px;">${t.date} · ${d ? d.title : t.topic}</span><button class="btn-small" onclick="deleteTopic('${t.date}')">删除</button></div>`;
+  });
+  html += `</div><div style="margin-bottom:16px;border-top:1px solid var(--border);padding-top:16px;"><div style="font-size:14px;color:var(--text);margin-bottom:8px;font-weight:700">📚 词汇库统计</div>
+  <div style="font-size:13px;color:var(--text-dim);">总词汇量: ${vocabDB.length}</div>
+  <div style="font-size:13px;color:var(--text-dim);">生词本: ${Object.keys(wordBank).length}</div>
+  <div style="font-size:13px;color:var(--text-dim);">学习记录: ${Object.keys(learningHistory).length} 天</div></div>`;
+  html += `</div></div>`;
+  c.innerHTML = html;
+}
+function renderStats(c) {
+  if (!memberInfo.isAdmin) { navigate('member'); return; }
+  const totalWords = Object.keys(wordBank).length;
+  const mastered = Object.values(wordBank).filter(w => w.passed && w.passed.id2zh && w.passed.zh2id && w.passed.spell).length;
+  const totalGames = Object.values(wordStats).reduce((s, v) => s + (v.totalWrong || 0) + Object.values(v).reduce((a, m) => a + (m.c || 0), 0), 0);
+  c.innerHTML = `<div class="card"><div class="card-header"><h2>📊 学习数据统计</h2></div><div style="padding:16px;">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;">
+    <div style="background:var(--bg-elev);border-radius:8px;padding:12px;text-align:center;"><div style="font-size:24px;font-weight:700;color:var(--primary)">${totalWords}</div><div style="font-size:12px;color:var(--text-dim);">生词总数</div></div>
+    <div style="background:var(--bg-elev);border-radius:8px;padding:12px;text-align:center;"><div style="font-size:24px;font-weight:700;color:var(--success)">${mastered}</div><div style="font-size:12px;color:var(--text-dim);">已掌握</div></div>
+    <div style="background:var(--bg-elev);border-radius:8px;padding:12px;text-align:center;"><div style="font-size:24px;font-weight:700;color:var(--info)">${totalGames}</div><div style="font-size:12px;color:var(--text-dim);">游戏次数</div></div>
+    <div style="background:var(--bg-elev);border-radius:8px;padding:12px;text-align:center;"><div style="font-size:24px;font-weight:700;color:var(--accent)">${Object.keys(learningHistory).length}</div><div style="font-size:12px;color:var(--text-dim);">学习天数</div></div>
+  </div>
+  <div style="border-top:1px solid var(--border);padding-top:16px;"><div style="font-size:14px;color:var(--text);margin-bottom:8px;font-weight:700">🎯 各模式正确率</div>
+  <div style="font-size:13px;color:var(--text-dim);">印选中: ${getModeAccuracy('id2zh')}%</div>
+  <div style="font-size:13px;color:var(--text-dim);">中选印: ${getModeAccuracy('zh2id')}%</div>
+  <div style="font-size:13px;color:var(--text-dim);">拼写: ${getModeAccuracy('spell')}%</div></div>
+  </div></div>`;
+}
+function getModeAccuracy(mode) {
+  let totalC = 0, totalW = 0;
+  Object.values(wordStats).forEach(s => { if (s[mode]) { totalC += s[mode].c || 0; totalW += s[mode].w || 0; } });
+  if (totalC + totalW === 0) return 0;
+  return Math.round(totalC / (totalC + totalW) * 100);
+}
+function importCsv() {
+  const csv = document.getElementById('uploadCsv').value.trim();
+  if (!csv) { showToast('请输入数据'); return; }
+  let count = 0;
+  csv.split('\n').forEach(line => {
+    const parts = line.split(',');
+    if (parts.length >= 2) { addWB(parts[0].trim(), parts[1].trim()); count++; }
+  });
+  showToast(`导入 ${count} 个词汇`);
+}
+function importTopic() {
+  const json = document.getElementById('uploadTopic').value.trim();
+  if (!json) { showToast('请输入数据'); return; }
+  try {
+    const topics = JSON.parse(json);
+    topics.forEach(t => { if (t.date && t.title) { topicData[t.date] = t; if (!topicCalendar.find(tc => tc.date === t.date)) topicCalendar.push({ date: t.date, topic: t.date }); } });
+    topicCalendar.sort((a, b) => a.date.localeCompare(b.date));
+    showToast(`导入 ${topics.length} 个话题`);
+  } catch (e) { showToast('JSON格式错误'); }
+}
+function deleteTopic(date) {
+  topicCalendar = topicCalendar.filter(t => t.date !== date);
+  delete topicData[date];
+  showToast('已删除'); renderManage(document.getElementById('app'));
+}
+function resetAllData() {
+  if (!confirm('确定要重置所有学习数据？此操作不可恢复！')) return;
+  localStorage.removeItem('bir_h3'); localStorage.removeItem('bir_wb3'); localStorage.removeItem('bir_ws3');
+  learningHistory = {}; wordBank = {}; wordStats = {};
+  showToast('所有数据已重置'); navigate('home');
+}
+
 
 let gameState = { mode: 'id2zh', pool: [], current: null, q: 0, correct: 0, wrong: 0, total: 10, streak: 0 };
 
