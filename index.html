@@ -1903,9 +1903,7 @@ const topicData = {
 
 
 const topicCalendar = {
-  "2026-07-16": {topic: "meet", day: 1, label: "词汇+语法"},
-  "2026-07-17": {topic: "meet", day: 2, label: "场景对话"},
-  "2026-07-18": {topic: "meet", day: 3, label: "演讲+复习"}
+  "2026-07-16": {topic: "meet", day: 1, label: "词汇+语法+场景对话+演讲+复习", allDays: true}
 };
 
 function getTopicForDate(ds) {
@@ -1916,6 +1914,59 @@ function renderTopicDetail(c, ds, topicInfo) {
   const topic = topicData[topicInfo.topic];
   const day = topicInfo.day;
   let html = `<div class="date-detail"><button class="back-btn" onclick="navigate('home')">← 返回</button>`;
+  
+  // 2026-07-16 特殊处理：显示全部三天内容
+  if (ds === "2026-07-16" || topicInfo.allDays) {
+    html += `<div class="card"><div class="card-header"><h2>${topic.icon} ${topic.title}</h2><span class="badge">综合学习日 · 全部内容</span></div>`;
+    html += `<div style="background:rgba(0,212,170,.08);border-radius:10px;padding:16px;margin-bottom:16px;border-left:3px solid var(--primary)"><div style="font-size:14px;color:var(--primary);font-weight:700;margin-bottom:8px">📋 今日学习计划</div><div style="font-size:13px;color:var(--text)">今天需要完成全部三天的学习内容：词汇语法 → 场景对话 → 演讲复习。建议分阶段学习，每完成一阶段休息10分钟。</div></div>`;
+    
+    // === Day 1: Grammar + Vocabulary ===
+    html += `<div style="background:rgba(0,212,170,.06);border-radius:10px;padding:16px;margin-bottom:16px;border:1px solid var(--border)"><div style="font-size:15px;color:var(--primary);font-weight:700;margin-bottom:12px">📖 第一阶段：词汇+语法 (Day 1/3)</div>`;
+    html += `<div style="background:rgba(0,212,170,.08);border-radius:10px;padding:16px;margin-bottom:16px;border-left:3px solid var(--primary)"><h3 style="color:var(--primary);margin-bottom:10px;font-size:15px">📖 ${topic.grammar.title}</h3>`;
+    topic.grammar.rules.forEach(r => {
+      html += `<div style="font-size:13px;color:var(--text);margin:6px 0;padding:6px 0;border-bottom:1px solid var(--border)">• ${r}</div>`;
+    });
+    html += `<div style="margin-top:12px;padding:10px;background:var(--bg-elev);border-radius:8px;font-size:13px">`;
+    topic.grammar.examples.forEach(e => {
+      html += `<div style="margin:4px 0;color:var(--text-dim)">${e}</div>`;
+    });
+    html += `</div></div>`;
+    html += `<h3 style="color:var(--primary);margin:16px 0 10px;font-size:15px">🎯 话题核心词汇</h3><div class="word-grid">`;
+    const keyWords1 = ["bertemu","berdiskusi","berjumpa","berkumpul","berbicara","berkerja","berjalan","bersemangat","berusaha","berpikir","bersama-sama","berkembang","beroperasi","berkelanjutan","berharap","bersinergi","berkaitan","berkomunikasi","berlibur","bermain","berdagang","berencana"];
+    keyWords1.forEach(w => {
+      const key = Object.keys(vocabDB).find(k => k.toLowerCase() === w.toLowerCase());
+      if (key) {
+        const v = vocabDB[key];
+        html += `<div class="word-card" onclick="showTip('${key.replace(/'/g,"\'")}')"><div class="w-word">${key} <span class="w-ipa">${v.ipa||""}</span></div><div class="w-mean">🇨🇳 ${v.cn||""}</div></div>`;
+      }
+    });
+    html += `</div></div>`;
+    
+    // === Day 2: Scenes ===
+    html += `<div style="background:rgba(245,158,11,.06);border-radius:10px;padding:16px;margin-bottom:16px;border:1px solid var(--border)"><div style="font-size:15px;color:var(--accent);font-weight:700;margin-bottom:12px">🎭 第二阶段：场景对话 (Day 2/3)</div>`;
+    topic.scenes.forEach((sc, si) => {
+      html += `<div style="margin-bottom:14px;border:1px solid var(--border);border-radius:10px;overflow:hidden"><div style="background:var(--bg-elev);padding:10px 14px;display:flex;align-items:center;gap:8px"><span style="font-size:18px">${sc.icon}</span><span style="font-size:14px;font-weight:600;color:var(--text)">${sc.title}</span></div><div style="padding:12px 14px;">`;
+      sc.dialogue.forEach(d => {
+        const isA = d.speaker === "A";
+        html += `<div style="display:flex;gap:8px;margin:6px 0;${isA ? '' : 'flex-direction:row-reverse'}"><div style="width:28px;height:28px;border-radius:50%;background:${isA ? 'var(--primary)' : 'var(--accent)'};display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#000">${d.speaker}</div><div style="max-width:70%;padding:8px 12px;border-radius:10px;font-size:13px;line-height:1.5;${isA ? 'background:var(--bg-elev);border:1px solid var(--border)' : 'background:rgba(0,212,170,.1);border:1px solid rgba(0,212,170,.2)'}"><div style="color:var(--text);margin-bottom:4px">${d.text}</div><div style="font-size:11px;color:var(--text-dim);border-top:1px solid var(--border);padding-top:4px;margin-top:4px">${d.trans}</div></div></div>`;
+      });
+      html += `</div></div>`;
+    });
+    html += `</div>`;
+    
+    // === Day 3: Speeches ===
+    html += `<div style="background:rgba(59,130,246,.06);border-radius:10px;padding:16px;margin-bottom:16px;border:1px solid var(--border)"><div style="font-size:15px;color:var(--info);font-weight:700;margin-bottom:12px">🎤 第三阶段：演讲+复习 (Day 3/3)</div>`;
+    topic.speeches.forEach((sp, spi) => {
+      html += `<div style="margin-bottom:14px;border:1px solid var(--border);border-radius:10px;overflow:hidden"><div style="background:var(--bg-elev);padding:10px 14px;display:flex;align-items:center;gap:8px"><span style="font-size:18px">${sp.icon}</span><div><div style="font-size:14px;font-weight:600;color:var(--text)">${sp.title}</div><div style="font-size:11px;color:var(--text-dim)">${sp.words}词 · ${sp.time}秒</div></div></div><div style="padding:14px;font-size:13px;line-height:1.8;color:var(--text);background:var(--bg-card);border-radius:0 0 8px 8px">${sp.content}</div></div>`;
+    });
+    html += `<div style="margin-top:16px;padding:12px;background:rgba(34,197,94,.08);border-radius:8px;border:1px solid rgba(34,197,94,.3)"><div style="font-size:13px;color:var(--success)">✅ 恭喜！已完成三天综合学习！</div><div style="font-size:12px;color:var(--text-dim);margin-top:6px">建议：使用「百词斩」检测掌握程度，使用「艾宾浩斯复习」巩固记忆。</div></div>`;
+    html += `</div>`;
+    
+    html += `</div></div>`;
+    c.innerHTML = html;
+    return;
+  }
+  
   html += `<div class="card"><div class="card-header"><h2>${topic.icon} ${topic.title}</h2><span class="badge">Day ${day}/3 · ${topicInfo.label}</span></div>`;
   
   if (day === 1) {
