@@ -3,7 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BIR V2.0</title>
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>BIR V2.3</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -143,7 +146,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
 <aside class="sidebar" id="sidebar">
   <div class="sidebar-header">
     <h1>🇮🇩 BIR</h1>
-    <div class="ver">Bahasa Indonesia Resources V2.0</div>
+    <div class="ver">Bahasa Indonesia Resources V2.3</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -776,7 +779,7 @@ function renderWBList(){
     const id2zhIcon = p.id2zh ? '✅' : '❌';
     const zh2idIcon = p.zh2id ? '✅' : '❌';
     const spellIcon = p.spell ? '✅' : '❌';
-    h+=`<div class="wb-item"><div><div class="wb-w">${w.word} <span class="wb-i">${w.ipa||""}</span></div><div class="wb-m">🇨🇳 ${w.cn||""}</div><div class="wb-m" style="font-size:11px">📅 ${w.date} | 印选:${id2zhIcon} 中选:${zh2idIcon} 拼写:${spellIcon}</div><div class="wb-act"><button class="wb-mas" onclick="playWBGame('${w.word}')">🎮 练习</button><button class="wb-del" onclick="delWB(${i})">🗑️ 删除</button>${canRemove ? `<button class="wb-mas" style="background:var(--success)" onclick="removeMasteredWB(${i})">✅ 移除</button>` : ''}</div></div></div>`;
+    h+=`<div class="wb-item"><div><div class="wb-w">${w.word} <span class="wb-i">${w.ipa||""}</span></div><div class="wb-m">🇨🇳 ${w.cn||""}</div><div class="wb-m" style="font-size:11px">📅 ${w.date} | 印选:${id2zhIcon} 中选:${zh2idIcon} 拼写:${spellIcon}</div><div class="wb-act"><button class="wb-mas" onclick="playWBGame('${w.word}')">🎮 练习</button><button class="wb-del" onclick="delWB(${i})">🗑️ 彻底删除</button>${canRemove ? `<button class="wb-mas" style="background:var(--success)" onclick="removeMasteredWB(${i})">✅ 已掌握移除</button>` : ''}</div></div></div>`;
   });c.innerHTML=h;
 }
 function addWB(word,ipa,cn,en,root,tag){if(!checkAccess("添加生词"))return;if(wordBank.find(w=>w.word.toLowerCase()===word.toLowerCase())){showToast("已在生词本");return;}wordBank.unshift({word,ipa:ipa||"—",cn:cn||"—",en:en||"—",root:root||"—",tag:tag||"—",date:new Date().toISOString().slice(0,10),mastered:false});saveWB();showToast("「"+word+"」已保存");updateStats();}
