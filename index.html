@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<title>BIR V2.3</title>
+<title>LEO-BIR V2.4</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -145,8 +145,9 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
 <div class="app">
 <aside class="sidebar" id="sidebar">
   <div class="sidebar-header">
-    <h1>🇮🇩 BIR</h1>
-    <div class="ver">Bahasa Indonesia Resources V2.3</div>
+    <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:28px">👤</div>
+    <h1>LEO-BIR</h1>
+    <div class="ver">Bahasa Indonesia Learning · 印尼语学习</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -174,7 +175,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
       <li data-route="wordbank"><span style="margin-right:8px">📚</span>生词本</li>
       <li data-route="quiz"><span style="margin-right:8px">🎯</span>能力测试</li>
       <li data-route="vocabulary"><span style="margin-right:8px">📖</span>词汇库</li>
-      <li data-route="review"><span style="margin-right:8px">🔄</span>艾宾浩斯复习</li>
+      <li data-route="review"><span style="margin-right:8px">🧠</span>复习</li>
       <li data-route="member"><span style="margin-right:8px">👑</span>会员中心</li>
     </ul>
   </div>
@@ -673,17 +674,7 @@ function updateNav(){document.querySelectorAll(".nav-list li").forEach(li=>{li.c
 
 function renderHome(c){
   const today=new Date().toISOString().slice(0,10),td=learningHistory[today],tdn=td?td.vocabNew.length:0;
-  c.innerHTML=`<div class="welcome-banner" style="position:relative;"><div id="homeMemberBadge" style="position:absolute;top:8px;right:8px;font-size:11px;padding:3px 8px;border-radius:6px;"></div><h2>👋 Selamat datang!</h2><p>今天是 ${today}。${tdn>0?"今日已学"+tdn+"词，":""}继续加油！</p></div>
-  <div class="quick-grid">
-    <div class="quick-btn" onclick="navigate('translate')"><span class="icon">🌐</span><div class="label">翻译</div></div>
-    <div class="quick-btn" onclick="navigate('input')"><span class="icon">📝</span><div class="label">词汇录入</div></div>
-    <div class="quick-btn" onclick="navigate('wordbank')"><span class="icon">📚</span><div class="label">生词本(${wordBank.length})</div></div>
-    <div class="quick-btn" onclick="navigate('quiz')"><span class="icon">🎯</span><div class="label">能力测试</div></div>
-    <div class="quick-btn" onclick="navigate('vocabulary')"><span class="icon">📖</span><div class="label">词汇库</div></div>
-    <div class="quick-btn" onclick="navigate('review')"><span class="icon">🔄</span><div class="label">艾宾浩斯复习</div></div>
-    <div class="quick-btn" onclick="navigate('game')"><span class="icon">🎮</span><div class="label">百词斩</div></div>
-  </div>
-  <div class="card"><div class="card-header"><h2>📅 学习日历</h2><span class="badge">点击日期查看</span></div>${renderCalHTML()}</div>`;
+  c.innerHTML=`<div class="welcome-banner" style="background:linear-gradient(135deg,rgba(0,212,170,.15),rgba(59,130,246,.1));border:1px solid rgba(0,212,170,.25);position:relative;"><div id="homeMemberBadge" style="position:absolute;top:8px;right:8px;font-size:11px;padding:3px 8px;border-radius:6px;"></div><div style="display:flex;align-items:center;gap:16px;margin-bottom:12px;"><div style="width:56px;height:56px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);display:flex;align-items:center;justify-content:center;font-size:28px">👤</div><div><h2 style="font-size:22px;color:var(--primary);margin-bottom:4px">LEO-BIR</h2><p style="color:var(--text-dim);font-size:13px">Bahasa Indonesia Learning · 印尼语学习平台</p></div></div><p style="color:var(--text-dim);font-size:13px;margin-bottom:8px;line-height:1.8">📚 专为印尼语学习者打造的智能学习平台，融合艾宾浩斯记忆曲线、百词斩游戏化练习、三关生词本系统。<br>🎯 支持 印尼语↔中文↔英文 三语对照，按日历规划每日学习进度。<br>🔍 关键词：印尼语学习、Bahasa Indonesia、三语翻译、艾宾浩斯记忆、百词斩、印尼语词汇、商务印尼语<br>📞 联系：087713858880</p><div style="font-size:11px;color:var(--text-dim);margin-top:12px;padding-top:10px;border-top:1px solid rgba(0,212,170,.15)"><strong style="color:var(--primary)">版本迭代记录：</strong><br>V2.4 (2026-07-16) 修复复习页面、增强艾宾浩斯互动、界面品牌化<br>V2.3 (2026-07-16) 超级管理员面板、艾宾浩斯复习、百词斩错题报告<br>V2.2 (2026-07-15) 会员系统（非会员3次限制、试用24小时、年费1年）<br>V2.1 (2026-07-15) 三关生词本、百词斩游戏（印中选/中选印/拼写）<br>V2.0 (2026-07-14) 完全重写SPA、日历学习、翻译、词汇录入、话题系统</div></div><div class="quick-grid"><div class="quick-btn" onclick="navigate('translate')"><span class="icon">🌐</span><div class="label">翻译</div></div><div class="quick-btn" onclick="navigate('input')"><span class="icon">📝</span><div class="label">词汇录入</div></div><div class="quick-btn" onclick="navigate('wordbank')"><span class="icon">📚</span><div class="label">生词本</div></div><div class="quick-btn" onclick="navigate('review')"><span class="icon">🧠</span><div class="label">复习</div></div><div class="quick-btn" onclick="navigate('vocabulary')"><span class="icon">📖</span><div class="label">词汇库</div></div><div class="quick-btn" onclick="navigate('quiz')"><span class="icon">🎮</span><div class="label">百词斩</div></div></div><div class="card"><div class="card-header"><h2>📅 学习日历</h2><span class="badge">点击日期查看</span></div>${renderCalHTML()}</div>`;
   attachCalEvents();
 }
 
@@ -796,7 +787,7 @@ function removeMasteredWB(i) {
   updateStats();
   showToast('✅ 已掌握，从生词本移除');
 }
-function delWB(i){if(!checkAccess("删除生词"))return;if(!confirm("删除?"))return;wordBank.splice(i,1);saveWB();renderWBList();updateStats();}
+function delWB(i){if(!confirm("确定彻底删除?"))return;wordBank.splice(i,1);saveWB();renderWBList();updateStats();showToast("已彻底删除");}
 function exportWB(){if(!checkAccess("导出"))return;if(!wordBank.length){showToast("为空");return;}let t="📚 BIR生词本—"+new Date().toISOString().slice(0,10)+"\n";wordBank.forEach((w,i)=>{t+=(i+1)+". "+w.word+" "+w.ipa+"\n🇨🇳"+w.cn+" | 状态:"+(w.mastered?"✅":"🔄")+"";});navigator.clipboard.writeText(t).then(()=>showToast("已复制"));}
 function clearWB(){if(!checkAccess("清空"))return;if(!confirm("清空?"))return;wordBank=[];saveWB();renderWBList();updateStats();showToast("已清空");}
 
@@ -902,8 +893,9 @@ function renderReview(c) {
   const tcEntries = Object.entries(topicCalendar).map(([date, val]) => ({date, ...val}));
   const todayTopics = tcEntries.filter(tc => tc.date === today);
   const pastTopics = tcEntries.filter(tc => tc.date < today);
-  let html = `<div class="card"><div class="card-header"><h2>🧠 艾宾浩斯复习</h2><span class="badge">间隔重复 · 话题+词汇</span></div><div style="padding:16px;">`;
-  // 今日任务
+  let html = `<div class="card"><div class="card-header"><h2>🧠 艾宾浩斯复习</h2><span class="badge">间隔重复 · 智能提醒</span></div><div style="padding:16px;">`;
+  
+  // === 今日学习任务 ===
   html += `<div style="margin-bottom:20px;"><div style="font-size:14px;font-weight:700;color:var(--primary);margin-bottom:10px;">📅 今日学习任务 (${today})</div>`;
   if (todayTopics.length) {
     todayTopics.forEach(tc => {
@@ -915,32 +907,67 @@ function renderReview(c) {
     html += `<div style="font-size:13px;color:var(--text-dim);padding:10px;">今日无新课程，去复习吧！</div>`;
   }
   html += `</div>`;
-  // 艾宾浩斯词汇提醒
-  html += `<div style="margin-bottom:20px;border-top:1px solid var(--border);padding-top:16px;"><div style="font-size:14px;font-weight:700;color:var(--accent);margin-bottom:10px;">🧠 艾宾浩斯提醒</div>`;
-  const reviewItems = [];
+  
+  // === 艾宾浩斯记忆曲线复习（基于学习历史）===
+  html += `<div style="margin-bottom:20px;border-top:1px solid var(--border);padding-top:16px;"><div style="font-size:14px;font-weight:700;color:var(--accent);margin-bottom:10px;">🧠 艾宾浩斯记忆曲线复习</div>`;
+  const intervals = [1, 2, 4, 7, 15, 30, 60, 90];
+  const ebbinghausItems = [];
+  
+  // 从learningHistory中提取所有已学习的话题
+  Object.entries(learningHistory).forEach(([date, record]) => {
+    if (record && record.topics) {
+      record.topics.forEach(topic => {
+        const topicDate = new Date(date);
+        intervals.forEach((iv, idx) => {
+          const reviewDate = new Date(topicDate);
+          reviewDate.setDate(reviewDate.getDate() + iv);
+          const rdStr = reviewDate.toISOString().split('T')[0];
+          if (rdStr === today) {
+            const d = topicData[topic];
+            ebbinghausItems.push({ topic, date, day: iv, title: d ? d.title : topic, desc: d ? d.desc : '' });
+          }
+        });
+      });
+    }
+  });
+  
+  if (ebbinghausItems.length) {
+    ebbinghausItems.forEach(item => {
+      html += `<div style="display:flex;justify-content:space-between;align-items:center;padding:10px;background:var(--bg-elev);border-radius:8px;margin-bottom:8px;border-left:3px solid var(--accent);"><div><div style="font-size:13px;color:var(--text);font-weight:600;">${item.title}</div><div style="font-size:11px;color:var(--text-dim);">学习于 ${item.date} · 第${item.day}天复习</div></div><button class="trans-btn btn-small" onclick="navigate('date','${item.date}')">去复习</button></div>`;
+    });
+  } else {
+    html += `<div style="font-size:13px;color:var(--text-dim);padding:10px;">今日无艾宾浩斯复习任务，继续学习新内容！</div>`;
+  }
+  html += `</div>`;
+  
+  // === 到期词汇复习 ===
+  html += `<div style="margin-bottom:20px;border-top:1px solid var(--border);padding-top:16px;"><div style="font-size:14px;font-weight:700;color:var(--danger);margin-bottom:10px;">📚 到期词汇复习</div>`;
+  const dueWords = [];
   wordBank.forEach(w => {
     if (w.nextReview) {
       const due = new Date(w.nextReview) <= new Date(today);
       if (due) {
         const stat = wordStats[w.word] || {};
         const totalWrong = (stat.id2zh?.w || 0) + (stat.zh2id?.w || 0) + (stat.spell?.w || 0);
-        reviewItems.push({ word: w.word, w, totalWrong });
+        dueWords.push({ word: w.word, w, totalWrong });
       }
     }
   });
-  reviewItems.sort((a, b) => b.totalWrong - a.totalWrong);
-  if (reviewItems.length) {
-    reviewItems.slice(0, 10).forEach(item => {
+  dueWords.sort((a, b) => b.totalWrong - a.totalWrong);
+  if (dueWords.length) {
+    dueWords.slice(0, 10).forEach(item => {
       const w = item.w;
-      html += `<div style="display:flex;justify-content:space-between;align-items:center;padding:8px;background:var(--bg-elev);border-radius:8px;margin-bottom:6px;"><div><span style="font-size:13px;color:var(--text);font-weight:600;">${w.word}</span> <span style="font-size:11px;color:var(--text-dim);">→ ${w.cn}</span></div><button class="trans-btn btn-small" onclick="playWBGame('${item.word}')">复习</button></div>`;
+      const stat = wordStats[w.word] || {};
+      const wrongRate = ((stat.id2zh?.w || 0) + (stat.zh2id?.w || 0) + (stat.spell?.w || 0)) / ((stat.id2zh?.t || 1) + (stat.zh2id?.t || 1) + (stat.spell?.t || 1)) * 100;
+      html += `<div style="display:flex;justify-content:space-between;align-items:center;padding:8px;background:var(--bg-elev);border-radius:8px;margin-bottom:6px;"><div><span style="font-size:13px;color:var(--text);font-weight:600;">${w.word}</span> <span style="font-size:11px;color:var(--text-dim);">→ ${w.cn}</span><br><span style="font-size:10px;color:${wrongRate > 50 ? 'var(--danger)' : 'var(--accent)'}">错误率 ${Math.round(wrongRate)}%</span></div><button class="trans-btn btn-small" onclick="playWBGame('${item.word}')">立即复习</button></div>`;
     });
   } else {
-    html += `<div style="font-size:13px;color:var(--text-dim);padding:10px;">暂无到期复习词汇 👍</div>`;
+    html += `<div style="font-size:13px;color:var(--text-dim);padding:10px;">暂无到期词汇 👍</div>`;
   }
   html += `</div>`;
-  // 话题复习计划
-  html += `<div style="border-top:1px solid var(--border);padding-top:16px;"><div style="font-size:14px;font-weight:700;color:var(--info);margin-bottom:10px;">📚 话题复习计划</div>`;
-  const intervals = [1, 2, 4, 7, 15, 30, 60, 90];
+  
+  // === 话题复习日历 ===
+  html += `<div style="border-top:1px solid var(--border);padding-top:16px;"><div style="font-size:14px;font-weight:700;color:var(--info);margin-bottom:10px;">📅 话题复习日历</div>`;
   pastTopics.slice(-5).forEach(tc => {
     const d = topicData[tc.topic];
     const topicDate = new Date(tc.date);
