@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<title>LEO-BIR V2.7.1</title>
+<title>LEO-BIR V2.7.2</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -928,6 +928,8 @@ function renderReview(c) {
   const pastTopics = tcEntries.filter(tc => tc.date < today);
   let html = `<div class="card"><div class="card-header"><h2>🧠 艾宾浩斯复习</h2><span class="badge">间隔重复 · 智能提醒</span></div><div style="padding:16px;">`;
   
+  // === 返回艾宾浩斯曲线 ===
+  html += `<div style="margin-bottom:12px;"><button onclick="scrollToEbbingCurve()" style="background:var(--primary);color:var(--bg);border:none;padding:8px 16px;border-radius:8px;cursor:pointer;font-size:13px;font-weight:600;">📈 查看艾宾浩斯曲线</button></div>`;
   // === 今日学习任务 ===
   html += `<div style="margin-bottom:20px;"><div style="font-size:14px;font-weight:700;color:var(--primary);margin-bottom:10px;">📅 今日学习任务 (${today})</div>`;
   if (todayTopics.length) {
@@ -973,8 +975,7 @@ function renderReview(c) {
   }
   html += `</div>`;
   
-// === 艾宾浩斯记忆曲线 SVG V2：所有学习日期的复习点 ===
-  // 收集所有学习日期
+// === 艾宾浩斯记忆曲线 SVG V3：内联事件 + 更宽布局 ===
   // 收集所有学习日期（topicCalendar + learningHistory中已学习的日期）
   const topicDates = Object.keys(topicCalendar);
   const historyDates = Object.keys(learningHistory).filter(d => {
@@ -985,19 +986,18 @@ function renderReview(c) {
   const firstDate = new Date(learnDates[0] || '2026-07-14');
   const todayDate = new Date(today);
   const futureDate = new Date(todayDate);
-  futureDate.setDate(todayDate.getDate() + 45); // 显示未来45天
+  futureDate.setDate(todayDate.getDate() + 45);
   
-  // 计算总天数范围
   const totalDays = Math.ceil((futureDate - firstDate) / (1000 * 60 * 60 * 24)) + 1;
-  const svgWidth = 600;
-  const leftMargin = 50;
-  const rightMargin = 20;
-  const usableWidth = svgWidth - leftMargin - rightMargin;
-  const dayWidth = usableWidth / totalDays;
+  const dayWidth = 20; // 每天20px，更清晰
+  const leftMargin = 60;
+  const rightMargin = 40;
+  const svgWidth = Math.max(800, leftMargin + totalDays * dayWidth + rightMargin);
+  const svgHeight = 360;
   
-  // 收集所有学习日期和复习点
+  // 收集复习点
   const allPoints = [];
-  const learnDatePoints = []; // 学习日期标记
+  const learnDatePoints = [];
   
   learnDates.forEach(ld => {
     const baseDate = new Date(ld);
@@ -1006,83 +1006,62 @@ function renderReview(c) {
     const topicInfo = topicCalendar[ld];
     const topicItem = topicInfo ? topicData[topicInfo.topic] : null;
     
-    // 学习日期标记点
+    const isToday = ld === today;
+    const isPast = ld < today;
+    const color = isToday ? 'var(--danger)' : (isPast ? 'var(--primary)' : 'var(--info)');
+    
     learnDatePoints.push({
       x, dateStr: ld, topicTitle: topicItem ? topicItem.title : '学习内容',
-      label: topicInfo ? topicInfo.label : '',
-      dayNum: daysFromFirst
+      label: topicInfo ? topicInfo.label : '', color
     });
     
-    // 复习间隔
     [1, 2, 4, 7, 15, 30, 60, 90].forEach(interval => {
       const reviewDate = new Date(baseDate);
       reviewDate.setDate(baseDate.getDate() + interval);
       const reviewStr = reviewDate.toISOString().split('T')[0];
       
-      // 只显示在范围内的复习点
       if (reviewDate >= firstDate && reviewDate <= futureDate) {
         const rDaysFromFirst = Math.ceil((reviewDate - firstDate) / (1000 * 60 * 60 * 24));
         const rx = leftMargin + rDaysFromFirst * dayWidth;
-        
-        // 基于遗忘曲线计算Y位置
-        // 从学习日开始经过interval天后的记忆保留率
         const retention = Math.exp(-interval / 10);
         const ry = 20 + 220 * (1 - retention);
         
-        // 状态判断
-        const isToday = reviewStr === today;
-        const isPast = reviewStr < today;
+        const isRToday = reviewStr === today;
+        const isRPast = reviewStr < today;
         const isReviewed = learningHistory[reviewStr] && learningHistory[reviewStr].reviews && learningHistory[reviewStr].reviews.length > 0;
         
-        // 确定颜色
-        let color = 'var(--text-dim)';
-        if (isToday) color = 'var(--danger)';
-        else if (isReviewed) color = 'var(--success)';
-        else if (isPast) color = 'var(--accent)';
+        let rColor = 'var(--text-dim)';
+        if (isRToday) rColor = 'var(--danger)';
+        else if (isReviewed) rColor = 'var(--success)';
+        else if (isRPast) rColor = 'var(--accent)';
         
-        let status = isReviewed ? '✅已复习' : (isToday ? '⏰今天' : (isPast ? '⚠️待复习' : '📅未来'));
+        let status = isReviewed ? '✅已复习' : (isRToday ? '⏰今天' : (isRPast ? '⚠️待复习' : '📅未来'));
+        let content = topicItem ? `${topicItem.title} (${topicInfo.day || 1}天课程)` : '已学内容';
         
-        // 内容描述
-        let content = '';
-        if (topicItem) {
-          content = `${topicItem.title} (${topicInfo.day || 1}天课程)`;
-        } else {
-          content = '已学内容';
-        }
-        
-        // 路由
         let route = '';
-        if (topicCalendar[reviewStr]) {
-          route = `date/${reviewStr}`;
-        } else if (isPast || isToday) {
-          route = 'review';
-        }
+        if (topicCalendar[reviewStr]) route = `date/${reviewStr}`;
+        else if (isRPast || isRToday) route = 'review';
         
         allPoints.push({
           x: rx, y: ry, interval, reviewStr, baseDate: ld,
           topicTitle: topicItem ? topicItem.title : '已学内容',
-          content, status, color, isToday, isPast, isReviewed, route,
-          daysFromFirst: rDaysFromFirst, baseDays: daysFromFirst
+          content, status, color: rColor, route
         });
       }
     });
   });
   
-  // 处理同一天多个复习点的堆叠（垂直偏移）
+  // 同一天复习点垂直堆叠
   const pointsByDate = {};
   allPoints.forEach(p => {
     if (!pointsByDate[p.reviewStr]) pointsByDate[p.reviewStr] = [];
     pointsByDate[p.reviewStr].push(p);
   });
-  
   Object.values(pointsByDate).forEach(group => {
     if (group.length > 1) {
-      const offsetStep = 14; // 每个点垂直偏移14px
-      const totalOffset = (group.length - 1) * offsetStep;
+      const offsetStep = 18;
       group.forEach((p, i) => {
-        p.yOffset = i * offsetStep - totalOffset / 2; // 居中偏移
-        p.finalY = p.y + p.yOffset;
-        // 确保不超出边界
+        p.finalY = p.y + (i - (group.length - 1) / 2) * offsetStep;
         if (p.finalY < 15) p.finalY = 15;
         if (p.finalY > 250) p.finalY = 250;
       });
@@ -1091,7 +1070,7 @@ function renderReview(c) {
     }
   });
   
-  // 生成刻度标签（每5天一个）
+  // 刻度标签
   const tickDates = [];
   for (let d = 0; d <= totalDays; d += 5) {
     const tickDate = new Date(firstDate);
@@ -1102,12 +1081,11 @@ function renderReview(c) {
     tickDates.push({ x: tickX, label: shortLabel, dateStr: tickStr });
   }
   
-  // 生成SVG
   html += `<div style="margin-bottom:20px;border-top:1px solid var(--border);padding-top:16px;">
     <div style="font-size:14px;font-weight:700;color:var(--primary);margin-bottom:10px;">📈 艾宾浩斯记忆曲线 — 全学习周期复习计划</div>
-    <div style="font-size:12px;color:var(--text-dim);margin-bottom:10px;">${learnDates.length}个学习日期 · 悬停2秒查看复习详情 · 点击跳转学习</div>
+    <div style="font-size:12px;color:var(--text-dim);margin-bottom:10px;">${learnDates.length}个学习日期 · 悬停2秒查看复习详情 · 点击跳转学习 · 左右滑动查看更多</div>
     <div style="background:var(--bg-elev);border-radius:10px;padding:12px;position:relative;overflow-x:auto;" id="ebbingCurveContainer">
-      <svg viewBox="0 0 600 360" style="width:100%;min-width:600px;height:auto;" id="ebbingSvg">
+      <svg viewBox="0 0 ${svgWidth} ${svgHeight}" style="width:100%;min-width:${svgWidth}px;height:auto;" id="ebbingSvg">
         <defs>
           <pattern id="grid" width="50" height="28" patternUnits="userSpaceOnUse">
             <path d="M 50 0 L 0 0 0 28" fill="none" stroke="rgba(255,255,255,.05)" stroke-width="1"/>
@@ -1116,66 +1094,73 @@ function renderReview(c) {
             <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
             <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
           </filter>
-          <filter id="glow-lg">
-            <feGaussianBlur stdDeviation="5" result="coloredBlur"/>
-            <feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge>
-          </filter>
         </defs>
-        <rect width="600" height="360" fill="url(#grid)"/>
+        <rect width="${svgWidth}" height="${svgHeight}" fill="url(#grid)"/>
         
         <!-- 坐标轴 -->
-        <line x1="50" y1="260" x2="580" y2="260" stroke="var(--text-dim)" stroke-width="1"/>
-        <line x1="50" y1="260" x2="50" y2="20" stroke="var(--text-dim)" stroke-width="1"/>
+        <line x1="${leftMargin}" y1="260" x2="${svgWidth - rightMargin}" y2="260" stroke="var(--text-dim)" stroke-width="1"/>
+        <line x1="${leftMargin}" y1="260" x2="${leftMargin}" y2="20" stroke="var(--text-dim)" stroke-width="1"/>
         
-        <!-- Y轴标签（记忆保留率） -->
-        <text x="20" y="265" fill="var(--text-dim)" font-size="10">0%</text>
-        <text x="15" y="145" fill="var(--text-dim)" font-size="10">50%</text>
-        <text x="10" y="25" fill="var(--text-dim)" font-size="10">100%</text>
-        <text x="10" y="15" fill="var(--primary)" font-size="11" font-weight="bold">记忆保留率</text>
+        <!-- Y轴标签 -->
+        <text x="${leftMargin-30}" y="265" fill="var(--text-dim)" font-size="10">0%</text>
+        <text x="${leftMargin-35}" y="145" fill="var(--text-dim)" font-size="10">50%</text>
+        <text x="${leftMargin-40}" y="25" fill="var(--text-dim)" font-size="10">100%</text>
+        <text x="${leftMargin-40}" y="15" fill="var(--primary)" font-size="11" font-weight="bold">记忆保留率</text>
         
         <!-- X轴标签 -->
-        <text x="300" y="285" fill="var(--text-dim)" font-size="10" text-anchor="middle">学习日期 → 复习日期</text>
+        <text x="${svgWidth/2}" y="285" fill="var(--text-dim)" font-size="10" text-anchor="middle">学习日期 → 复习日期（左右滑动）</text>
         
         <!-- 日期刻度 -->
         ${tickDates.map(t => `
           <line x1="${t.x}" y1="260" x2="${t.x}" y2="265" stroke="var(--text-dim)" stroke-width="1"/>
-          <text x="${t.x}" y="278" fill="var(--text-dim)" font-size="9" text-anchor="middle" ${t.dateStr === today ? 'font-weight="bold" fill="var(--danger)"' : ''}>${t.label}${t.dateStr === today ? ' (今天)' : ''}</text>
+          <text x="${t.x}" y="278" fill="${t.dateStr === today ? 'var(--danger)' : 'var(--text-dim)'}" font-size="9" text-anchor="middle" ${t.dateStr === today ? 'font-weight="bold"' : ''}>${t.label}${t.dateStr === today ? ' (今天)' : ''}</text>
         `).join('')}
         
-        <!-- 遗忘曲线（从最早学习日开始） -->
-        <path d="M 50,20 ${Array.from({length:totalDays+1},(_,i)=>{const x=leftMargin+i*dayWidth;const y=20+220*(1-Math.exp(-i/10));return `L ${x},${y}`;}).join(' ')}" 
+        <!-- 遗忘曲线 -->
+        <path d="M ${leftMargin},20 ${Array.from({length:totalDays+1},(_,i)=>{const x=leftMargin+i*dayWidth;const y=20+220*(1-Math.exp(-i/10));return `L ${x},${y}`;}).join(' ')}" 
               fill="none" stroke="var(--primary)" stroke-width="2" opacity="0.6" filter="url(#glow)"/>
         
-        <!-- 今天虚线标记 -->
-        <line x1="${leftMargin + Math.ceil((todayDate - firstDate) / (1000*60*60*24)) * dayWidth}" y1="20" x2="${leftMargin + Math.ceil((todayDate - firstDate) / (1000*60*60*24)) * dayWidth}" y2="260" 
+        <!-- 今天虚线 -->
+        <line x1="${leftMargin + Math.ceil((todayDate - firstDate) / (1000*60*60*24)) * dayWidth}" y1="20" 
+              x2="${leftMargin + Math.ceil((todayDate - firstDate) / (1000*60*60*24)) * dayWidth}" y2="260" 
               stroke="var(--danger)" stroke-width="1" stroke-dasharray="4,4" opacity="0.5"/>
-        <!-- 学习日期标记（底部大点） -->
-        ${learnDatePoints.map(ldp => {
-          const isToday = ldp.dateStr === today;
-          const isPast = ldp.dateStr < today;
-          const color = isToday ? 'var(--danger)' : (isPast ? 'var(--primary)' : 'var(--info)');
-          return `
-          <g class="learn-point-group" data-date="${ldp.dateStr}" data-title="${ldp.topicTitle}" data-label="${ldp.label}" style="cursor:pointer">
-            <line x1="${ldp.x}" y1="260" x2="${ldp.x}" y2="290" stroke="${color}" stroke-width="2" stroke-dasharray="2,2" opacity="0.5"/>
-            <circle cx="${ldp.x}" cy="295" r="7" fill="${color}" stroke="#fff" stroke-width="2" filter="url(#glow)"/>
-            <text x="${ldp.x}" y="315" fill="${color}" font-size="9" text-anchor="middle" font-weight="bold">${ldp.dateStr.slice(5)}</text>
-            <text x="${ldp.x}" y="328" fill="var(--text-dim)" font-size="8" text-anchor="middle">${ldp.topicTitle}</text>
-          </g>`;
-        }).join('')}
         
-        <!-- 复习点（散布在曲线上） -->
-        ${allPoints.map(p => {
-          return `
-          <g class="ebbing-group" data-review="${p.reviewStr}" data-base="${p.baseDate}" data-interval="${p.interval}" 
-                data-content="${p.content}" data-status="${p.status}" data-route="${p.route}" 
-                style="cursor:pointer">
-            <!-- 连接线（从学习日到复习点） -->
+        <!-- 学习日期标记（底部） -->
+        ${learnDatePoints.map(ldp => `
+          <g class="learn-point-group" 
+             onmouseenter="showEbbingTooltip(this,event)" 
+             onmouseleave="hideEbbingTooltip()" 
+             onclick="clickEbbingPoint(this,event)"
+             data-date="${ldp.dateStr}" 
+             data-title="${ldp.topicTitle}" 
+             data-label="${ldp.label}"
+             style="cursor:pointer">
+            <line x1="${ldp.x}" y1="260" x2="${ldp.x}" y2="295" stroke="${ldp.color}" stroke-width="2" stroke-dasharray="2,2" opacity="0.4"/>
+            <circle cx="${ldp.x}" cy="300" r="6" fill="${ldp.color}" stroke="#fff" stroke-width="2" filter="url(#glow)"/>
+            <text x="${ldp.x}" y="318" fill="${ldp.color}" font-size="9" text-anchor="middle" font-weight="bold">${ldp.dateStr.slice(5)}</text>
+            <text x="${ldp.x}" y="332" fill="var(--text-dim)" font-size="8" text-anchor="middle">${ldp.topicTitle}</text>
+          </g>
+        `).join('')}
+        
+        <!-- 复习点（曲线上） -->
+        ${allPoints.map(p => `
+          <g class="ebbing-group" 
+             onmouseenter="showEbbingTooltip(this,event)" 
+             onmouseleave="hideEbbingTooltip()" 
+             onclick="clickEbbingPoint(this,event)"
+             data-review="${p.reviewStr}" 
+             data-base="${p.baseDate}" 
+             data-interval="${p.interval}"
+             data-content="${p.content}" 
+             data-status="${p.status}" 
+             data-route="${p.route}"
+             style="cursor:pointer">
+            <!-- 连接线到时间轴 -->
             <line x1="${p.x}" y1="${p.finalY}" x2="${p.x}" y2="260" stroke="${p.color}" stroke-width="1" stroke-dasharray="3,3" opacity="0.3"/>
-            <circle cx="${p.x}" cy="${p.finalY}" r="5" fill="${p.color}" stroke="#fff" stroke-width="1.5" class="ebbing-point" filter="url(#glow)"/>
-            <!-- 间隔标签（小字） -->
+            <circle cx="${p.x}" cy="${p.finalY}" r="5" fill="${p.color}" stroke="#fff" stroke-width="1.5" filter="url(#glow)"/>
             <text x="${p.x}" y="${p.finalY - 10}" fill="${p.color}" font-size="8" text-anchor="middle" font-weight="bold">+${p.interval}</text>
-          </g>`;
-        }).join('')}
+          </g>
+        `).join('')}
       </svg>
       
       <!-- Tooltip -->
@@ -1231,126 +1216,126 @@ function renderReview(c) {
   });
   html += `</div></div></div>`;
   c.innerHTML = html;
-  attachEbbingEvents();
+  
 }
 
 // ===== 艾宾浩斯曲线事件绑定（悬停2秒tooltip + 点击跳转） =====
-function attachEbbingEvents(){
-  const container = document.getElementById('ebbingCurveContainer');
-  if(!container) return;
+// ===== 艾宾浩斯曲线全局事件函数（供 SVG 内联 onmouseenter/onclick 调用） =====
+let ebbingHoverTimer = null;
+let ebbingCurrentEl = null;
+
+function showEbbingTooltip(el, evt){
+  ebbingCurrentEl = el;
+  if(ebbingHoverTimer) clearTimeout(ebbingHoverTimer);
+  
+  ebbingHoverTimer = setTimeout(() => {
+    if(ebbingCurrentEl !== el) return;
+    
+    const tooltip = document.getElementById('ebbingTooltip');
+    const titleEl = document.getElementById('ebbingTooltipTitle');
+    const contentEl = document.getElementById('ebbingTooltipContent');
+    const metaEl = document.getElementById('ebbingTooltipMeta');
+    const statusEl = document.getElementById('ebbingTooltipStatus');
+    
+    if(!tooltip || !titleEl || !contentEl) return;
+    
+    if(el.classList.contains('learn-point-group')){
+      const date = el.dataset.date || '';
+      const title = el.dataset.title || '';
+      const label = el.dataset.label || '';
+      
+      titleEl.textContent = `学习日 · ${date}`;
+      contentEl.textContent = title || '学习内容';
+      metaEl.textContent = label || '';
+      statusEl.textContent = '点击跳转学习';
+    } else {
+      const reviewDate = el.dataset.review || '';
+      const baseDate = el.dataset.base || '';
+      const interval = el.dataset.interval || '';
+      const content = el.dataset.content || '';
+      const status = el.dataset.status || '';
+      
+      titleEl.textContent = `复习 · ${reviewDate} (${baseDate} +${interval}天)`;
+      contentEl.textContent = content || '已学内容';
+      metaEl.textContent = `原学习日: ${baseDate}`;
+      statusEl.textContent = `${status} · 点击跳转`;
+    }
+    
+    tooltip.style.display = 'block';
+    tooltip.style.opacity = '1';
+    
+    const rect = el.getBoundingClientRect();
+    const container = document.getElementById('ebbingCurveContainer');
+    if(!container) return;
+    const containerRect = container.getBoundingClientRect();
+    
+    let left = rect.left - containerRect.left + rect.width/2 - tooltip.offsetWidth/2;
+    let top = rect.top - containerRect.top - tooltip.offsetHeight - 10;
+    
+    if(left < 0) left = 0;
+    if(left + tooltip.offsetWidth > container.offsetWidth) left = container.offsetWidth - tooltip.offsetWidth;
+    if(top < 0) top = rect.top - containerRect.top + rect.height + 10;
+    
+    tooltip.style.left = left + 'px';
+    tooltip.style.top = top + 'px';
+  }, 2000);
+}
+
+function hideEbbingTooltip(){
+  if(ebbingHoverTimer){
+    clearTimeout(ebbingHoverTimer);
+    ebbingHoverTimer = null;
+  }
+  ebbingCurrentEl = null;
   
   const tooltip = document.getElementById('ebbingTooltip');
-  const titleEl = document.getElementById('ebbingTooltipTitle');
-  const contentEl = document.getElementById('ebbingTooltipContent');
-  const metaEl = document.getElementById('ebbingTooltipMeta');
-  const statusEl = document.getElementById('ebbingTooltipStatus');
+  if(tooltip){
+    tooltip.style.opacity = '0';
+    setTimeout(() => { if(tooltip) tooltip.style.display = 'none'; }, 200);
+  }
+}
+
+function clickEbbingPoint(el, evt){
+  if(evt) evt.stopPropagation();
+  hideEbbingTooltip();
   
-  let hoverTimer = null;
-  let currentTarget = null;
+  const route = el.dataset.route || '';
+  const reviewDate = el.dataset.review || '';
+  const interval = el.dataset.interval || '';
   
-  function showTooltip(target, buildFn){
-    if(hoverTimer) clearTimeout(hoverTimer);
-    currentTarget = target;
-    
-    hoverTimer = setTimeout(() => {
-      if(currentTarget !== target) return;
-      
-      buildFn();
-      
-      tooltip.style.display = 'block';
-      tooltip.style.opacity = '1';
-      
-      const rect = target.getBoundingClientRect();
-      const containerRect = container.getBoundingClientRect();
-      let left = rect.left - containerRect.left + rect.width/2 - tooltip.offsetWidth/2;
-      let top = rect.top - containerRect.top - tooltip.offsetHeight - 10;
-      
-      if(left < 0) left = 0;
-      if(left + tooltip.offsetWidth > container.offsetWidth) left = container.offsetWidth - tooltip.offsetWidth;
-      if(top < 0) top = rect.top - containerRect.top + rect.height + 10;
-      
-      tooltip.style.left = left + 'px';
-      tooltip.style.top = top + 'px';
-    }, 2000);
+  if(!route){
+    showToast('暂无学习内容');
+    return;
   }
   
-  function hideTooltip(){
-    if(hoverTimer){
-      clearTimeout(hoverTimer);
-      hoverTimer = null;
-    }
-    currentTarget = null;
-    if(tooltip){
-      tooltip.style.opacity = '0';
-      setTimeout(() => { tooltip.style.display = 'none'; }, 200);
-    }
-  }
-  
-  // 复习点悬停
-  container.querySelectorAll('.ebbing-group').forEach(group => {
-    group.addEventListener('mouseenter', () => {
-      showTooltip(group, () => {
-        const reviewDate = group.dataset.review;
-        const baseDate = group.dataset.base;
-        const interval = group.dataset.interval;
-        const content = group.dataset.content;
-        const status = group.dataset.status;
-        const route = group.dataset.route;
-        
-        titleEl.textContent = `复习 · ${reviewDate} (${baseDate} +${interval}天)`;
-        contentEl.textContent = content || '已学内容';
-        metaEl.textContent = `原学习日: ${baseDate}`;
-        statusEl.textContent = `${status} ${route ? '· 点击跳转' : ''}`;
-      });
-    });
-    
-    group.addEventListener('mouseleave', hideTooltip);
-    
-    group.addEventListener('click', () => {
-      const route = group.dataset.route;
-      const reviewDate = group.dataset.review;
-      const interval = group.dataset.interval;
-      
-      if(!route){
-        showToast(`${reviewDate} 暂无学习内容`);
-        return;
-      }
-      
-      if(route === 'review'){
-        showToast(`复习 ${reviewDate} (${interval}天后) 内容`);
+  if(el.classList.contains('learn-point-group')){
+    const date = el.dataset.date || '';
+    navigate(`date/${date}`);
+  } else if(route === 'review'){
+    showToast(`复习 ${reviewDate} (${interval}天后) 内容`);
+    if(location.hash !== '#review'){
+      navigate('review');
+      setTimeout(()=>{
         const reviewSection = document.querySelector('.card');
         if(reviewSection) reviewSection.scrollIntoView({behavior:'smooth'});
-      } else if(route.startsWith('date/')){
-        navigate(route);
-      } else {
-        navigate(route);
-      }
-    });
-  });
-  
-  // 学习日期点悬停
-  container.querySelectorAll('.learn-point-group').forEach(group => {
-    group.addEventListener('mouseenter', () => {
-      showTooltip(group, () => {
-        const date = group.dataset.date;
-        const title = group.dataset.title;
-        const label = group.dataset.label;
-        
-        titleEl.textContent = `学习日 · ${date}`;
-        contentEl.textContent = title || '学习内容';
-        metaEl.textContent = label || '';
-        statusEl.textContent = '点击跳转学习';
-      });
-    });
-    
-    group.addEventListener('mouseleave', hideTooltip);
-    
-    group.addEventListener('click', () => {
-      const date = group.dataset.date;
-      navigate(`date/${date}`);
-    });
-  });
+      }, 300);
+    } else {
+      const reviewSection = document.querySelector('.card');
+      if(reviewSection) reviewSection.scrollIntoView({behavior:'smooth'});
+    }
+  } else if(route.startsWith('date/')){
+    navigate(route);
+  } else {
+    navigate(route);
+  }
 }
+
+function scrollToEbbingCurve(){
+  const container = document.getElementById('ebbingCurveContainer');
+  if(container) container.scrollIntoView({behavior:'smooth'});
+}
+
+
 
 
 
