@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<title>LEO-BIR V2.7.2</title>
+<title>LEO-BIR V2.7.3</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -692,6 +692,7 @@ function render(){
     case "vocabulary":t.innerText="📖 词汇库";renderVocabulary(c);break;
     case "review":t.innerText="🔄 复习";renderReview(c);break;
     case "member":t.innerText="👑 会员中心";renderMember(c);break;
+      case "membermanage": t.innerText="👥 会员管理"; renderMemberManage(c); break;
     case "about":t.innerText="📋 关于";renderAbout(c);break;
     case "version":t.innerText="📜 版本";renderVersion(c);break;
     case "upload":t.innerText="📤 上传资料";renderUpload(c);break;
@@ -975,7 +976,7 @@ function renderReview(c) {
   }
   html += `</div>`;
   
-// === 艾宾浩斯记忆曲线 SVG V3：内联事件 + 更宽布局 ===
+// === 艾宾浩斯记忆曲线 SVG V4：曲线 + 列表形式，纵向排列复习内容 ===
   // 收集所有学习日期（topicCalendar + learningHistory中已学习的日期）
   const topicDates = Object.keys(topicCalendar);
   const historyDates = Object.keys(learningHistory).filter(d => {
@@ -989,15 +990,17 @@ function renderReview(c) {
   futureDate.setDate(todayDate.getDate() + 45);
   
   const totalDays = Math.ceil((futureDate - firstDate) / (1000 * 60 * 60 * 24)) + 1;
-  const dayWidth = 20; // 每天20px，更清晰
+  const dayWidth = 20;
   const leftMargin = 60;
   const rightMargin = 40;
   const svgWidth = Math.max(800, leftMargin + totalDays * dayWidth + rightMargin);
-  const svgHeight = 360;
+  const svgHeight = 300;
   
   // 收集复习点
   const allPoints = [];
   const learnDatePoints = [];
+  // 按日期分组的复习清单
+  const reviewListByDate = {};
   
   learnDates.forEach(ld => {
     const baseDate = new Date(ld);
@@ -1024,7 +1027,7 @@ function renderReview(c) {
         const rDaysFromFirst = Math.ceil((reviewDate - firstDate) / (1000 * 60 * 60 * 24));
         const rx = leftMargin + rDaysFromFirst * dayWidth;
         const retention = Math.exp(-interval / 10);
-        const ry = 20 + 220 * (1 - retention);
+        const ry = 20 + 180 * (1 - retention);
         
         const isRToday = reviewStr === today;
         const isRPast = reviewStr < today;
@@ -1047,6 +1050,24 @@ function renderReview(c) {
           topicTitle: topicItem ? topicItem.title : '已学内容',
           content, status, color: rColor, route
         });
+        
+        // 添加到复习清单
+        if (!reviewListByDate[reviewStr]) {
+          reviewListByDate[reviewStr] = {
+            dateStr: reviewStr,
+            isToday: isRToday,
+            isPast: isRPast,
+            items: []
+          };
+        }
+        reviewListByDate[reviewStr].items.push({
+          baseDate: ld,
+          interval,
+          content,
+          status,
+          color: rColor,
+          route
+        });
       }
     });
   });
@@ -1063,7 +1084,7 @@ function renderReview(c) {
       group.forEach((p, i) => {
         p.finalY = p.y + (i - (group.length - 1) / 2) * offsetStep;
         if (p.finalY < 15) p.finalY = 15;
-        if (p.finalY > 250) p.finalY = 250;
+        if (p.finalY > 220) p.finalY = 220;
       });
     } else {
       group[0].finalY = group[0].y;
@@ -1081,9 +1102,11 @@ function renderReview(c) {
     tickDates.push({ x: tickX, label: shortLabel, dateStr: tickStr });
   }
   
-  html += `<div style="margin-bottom:20px;border-top:1px solid var(--border);padding-top:16px;">
-    <div style="font-size:14px;font-weight:700;color:var(--primary);margin-bottom:10px;">📈 艾宾浩斯记忆曲线 — 全学习周期复习计划</div>
-    <div style="font-size:12px;color:var(--text-dim);margin-bottom:10px;">${learnDates.length}个学习日期 · 悬停2秒查看复习详情 · 点击跳转学习 · 左右滑动查看更多</div>
+  // 生成SVG（简化版，无底部文本，避免堆叠）
+    const ebbingPath = Array.from({length:totalDays+1},(_,i) => {const x=leftMargin+i*dayWidth;const y=20+180*(1-Math.exp(-i/10));return 'L ' + x + ',' + y;}).join(' ');
+html += `<div style="margin-bottom:20px;border-top:1px solid var(--border);padding-top:16px;">
+    <div style="font-size:14px;font-weight:700;color:var(--primary);margin-bottom:10px;">📈 艾宾浩斯记忆曲线</div>
+    <div style="font-size:12px;color:var(--text-dim);margin-bottom:10px;">${learnDates.length}个学习日期 · 悬停2秒查看详情 · 点击跳转 · 左右滑动</div>
     <div style="background:var(--bg-elev);border-radius:10px;padding:12px;position:relative;overflow-x:auto;" id="ebbingCurveContainer">
       <svg viewBox="0 0 ${svgWidth} ${svgHeight}" style="width:100%;min-width:${svgWidth}px;height:auto;" id="ebbingSvg">
         <defs>
@@ -1098,34 +1121,30 @@ function renderReview(c) {
         <rect width="${svgWidth}" height="${svgHeight}" fill="url(#grid)"/>
         
         <!-- 坐标轴 -->
-        <line x1="${leftMargin}" y1="260" x2="${svgWidth - rightMargin}" y2="260" stroke="var(--text-dim)" stroke-width="1"/>
-        <line x1="${leftMargin}" y1="260" x2="${leftMargin}" y2="20" stroke="var(--text-dim)" stroke-width="1"/>
+        <line x1="${leftMargin}" y1="220" x2="${svgWidth - rightMargin}" y2="220" stroke="var(--text-dim)" stroke-width="1"/>
+        <line x1="${leftMargin}" y1="220" x2="${leftMargin}" y2="20" stroke="var(--text-dim)" stroke-width="1"/>
         
         <!-- Y轴标签 -->
-        <text x="${leftMargin-30}" y="265" fill="var(--text-dim)" font-size="10">0%</text>
-        <text x="${leftMargin-35}" y="145" fill="var(--text-dim)" font-size="10">50%</text>
+        <text x="${leftMargin-30}" y="225" fill="var(--text-dim)" font-size="10">0%</text>
+        <text x="${leftMargin-35}" y="125" fill="var(--text-dim)" font-size="10">50%</text>
         <text x="${leftMargin-40}" y="25" fill="var(--text-dim)" font-size="10">100%</text>
-        <text x="${leftMargin-40}" y="15" fill="var(--primary)" font-size="11" font-weight="bold">记忆保留率</text>
-        
-        <!-- X轴标签 -->
-        <text x="${svgWidth/2}" y="285" fill="var(--text-dim)" font-size="10" text-anchor="middle">学习日期 → 复习日期（左右滑动）</text>
         
         <!-- 日期刻度 -->
         ${tickDates.map(t => `
-          <line x1="${t.x}" y1="260" x2="${t.x}" y2="265" stroke="var(--text-dim)" stroke-width="1"/>
-          <text x="${t.x}" y="278" fill="${t.dateStr === today ? 'var(--danger)' : 'var(--text-dim)'}" font-size="9" text-anchor="middle" ${t.dateStr === today ? 'font-weight="bold"' : ''}>${t.label}${t.dateStr === today ? ' (今天)' : ''}</text>
+          <line x1="${t.x}" y1="220" x2="${t.x}" y2="225" stroke="var(--text-dim)" stroke-width="1"/>
+          <text x="${t.x}" y="238" fill="${t.dateStr === today ? 'var(--danger)' : 'var(--text-dim)'}" font-size="9" text-anchor="middle" ${t.dateStr === today ? 'font-weight="bold"' : ''}>${t.label}${t.dateStr === today ? ' (今天)' : ''}</text>
         `).join('')}
         
         <!-- 遗忘曲线 -->
-        <path d="M ${leftMargin},20 ${Array.from({length:totalDays+1},(_,i)=>{const x=leftMargin+i*dayWidth;const y=20+220*(1-Math.exp(-i/10));return `L ${x},${y}`;}).join(' ')}" 
+        <path d="M ${leftMargin},20 ${ebbingPath}" 
               fill="none" stroke="var(--primary)" stroke-width="2" opacity="0.6" filter="url(#glow)"/>
         
         <!-- 今天虚线 -->
         <line x1="${leftMargin + Math.ceil((todayDate - firstDate) / (1000*60*60*24)) * dayWidth}" y1="20" 
-              x2="${leftMargin + Math.ceil((todayDate - firstDate) / (1000*60*60*24)) * dayWidth}" y2="260" 
+              x2="${leftMargin + Math.ceil((todayDate - firstDate) / (1000*60*60*24)) * dayWidth}" y2="220" 
               stroke="var(--danger)" stroke-width="1" stroke-dasharray="4,4" opacity="0.5"/>
         
-        <!-- 学习日期标记（底部） -->
+        <!-- 学习日期标记（底部小点，无文本） -->
         ${learnDatePoints.map(ldp => `
           <g class="learn-point-group" 
              onmouseenter="showEbbingTooltip(this,event)" 
@@ -1135,10 +1154,8 @@ function renderReview(c) {
              data-title="${ldp.topicTitle}" 
              data-label="${ldp.label}"
              style="cursor:pointer">
-            <line x1="${ldp.x}" y1="260" x2="${ldp.x}" y2="295" stroke="${ldp.color}" stroke-width="2" stroke-dasharray="2,2" opacity="0.4"/>
-            <circle cx="${ldp.x}" cy="300" r="6" fill="${ldp.color}" stroke="#fff" stroke-width="2" filter="url(#glow)"/>
-            <text x="${ldp.x}" y="318" fill="${ldp.color}" font-size="9" text-anchor="middle" font-weight="bold">${ldp.dateStr.slice(5)}</text>
-            <text x="${ldp.x}" y="332" fill="var(--text-dim)" font-size="8" text-anchor="middle">${ldp.topicTitle}</text>
+            <line x1="${ldp.x}" y1="220" x2="${ldp.x}" y2="240" stroke="${ldp.color}" stroke-width="2" stroke-dasharray="2,2" opacity="0.4"/>
+            <circle cx="${ldp.x}" cy="245" r="5" fill="${ldp.color}" stroke="#fff" stroke-width="1.5" filter="url(#glow)"/>
           </g>
         `).join('')}
         
@@ -1156,9 +1173,9 @@ function renderReview(c) {
              data-route="${p.route}"
              style="cursor:pointer">
             <!-- 连接线到时间轴 -->
-            <line x1="${p.x}" y1="${p.finalY}" x2="${p.x}" y2="260" stroke="${p.color}" stroke-width="1" stroke-dasharray="3,3" opacity="0.3"/>
-            <circle cx="${p.x}" cy="${p.finalY}" r="5" fill="${p.color}" stroke="#fff" stroke-width="1.5" filter="url(#glow)"/>
-            <text x="${p.x}" y="${p.finalY - 10}" fill="${p.color}" font-size="8" text-anchor="middle" font-weight="bold">+${p.interval}</text>
+            <line x1="${p.x}" y1="${p.finalY}" x2="${p.x}" y2="220" stroke="${p.color}" stroke-width="1" stroke-dasharray="3,3" opacity="0.3"/>
+            <circle cx="${p.x}" cy="${p.finalY}" r="4" fill="${p.color}" stroke="#fff" stroke-width="1" filter="url(#glow)"/>
+            <text x="${p.x}" y="${p.finalY - 8}" fill="${p.color}" font-size="7" text-anchor="middle" font-weight="bold">+${p.interval}</text>
           </g>
         `).join('')}
       </svg>
@@ -1180,7 +1197,48 @@ function renderReview(c) {
     </div>
   </div>`;
 
-  // === 到期词汇复习 ===
+  // === 复习清单（列表形式，纵向排列所有复习内容） ===
+  html += `<div style="margin-bottom:20px;border-top:1px solid var(--border);padding-top:16px;">
+    <div style="font-size:14px;font-weight:700;color:var(--primary);margin-bottom:10px;">📋 复习清单</div>
+    <div style="font-size:12px;color:var(--text-dim);margin-bottom:10px;">按日期分组，纵向排列所有复习内容，清晰不重叠</div>`;
+  
+  // 按日期排序
+  const sortedReviewDates = Object.keys(reviewListByDate).sort();
+  if (sortedReviewDates.length === 0) {
+    html += `<div style="font-size:13px;color:var(--text-dim);padding:10px;">暂无复习计划</div>`;
+  } else {
+    sortedReviewDates.forEach(dateStr => {
+      const group = reviewListByDate[dateStr];
+      const isToday = dateStr === today;
+      const isPast = dateStr < today;
+      const dateColor = isToday ? 'var(--danger)' : (isPast ? 'var(--accent)' : 'var(--text-dim)');
+      
+      html += `<div style="margin-bottom:12px;background:var(--bg-elev);border-radius:10px;border:1px solid var(--border);overflow:hidden;">
+        <div style="padding:10px 14px;background:var(--bg-card);border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;">
+          <div style="font-size:13px;font-weight:700;color:${dateColor};">${dateStr} ${isToday ? '⏰ 今天' : ''}</div>
+          <div style="font-size:11px;color:var(--text-dim);">${group.items.length}项复习</div>
+        </div>
+        <div style="padding:8px 14px;">`;
+      
+      group.items.forEach(item => {
+        html += `<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.05);">
+          <div>
+            <div style="font-size:13px;color:var(--text);">${item.content}</div>
+            <div style="font-size:11px;color:var(--text-dim);">原学习日: ${item.baseDate} · +${item.interval}天</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <span style="font-size:11px;color:${item.color};">${item.status}</span>
+            ${item.route ? `<button style="padding:4px 10px;background:var(--primary);color:var(--bg);border:none;border-radius:6px;cursor:pointer;font-size:11px;" onclick="navigate('${item.route === 'review' ? 'review' : item.route}')">去学习</button>` : ''}
+          </div>
+        </div>`;
+      });
+      
+      html += `</div></div>`;
+    });
+  }
+  
+  html += `</div>`;
+// === 到期词汇复习 ===
   html += `<div style="margin-bottom:20px;border-top:1px solid var(--border);padding-top:16px;"><div style="font-size:14px;font-weight:700;color:var(--danger);margin-bottom:10px;">📚 到期词汇复习</div>`;
   const dueWords = [];
   wordBank.forEach(w => {
@@ -1552,7 +1610,8 @@ function renderMember(c) {
         <button class="trans-btn" onclick="navigate('manage')">⚙️ 课程管理</button>
         <button class="trans-btn" onclick="navigate('stats')">📊 学习数据统计</button>
         <button class="trans-btn" onclick="resetAllData()" style="background:var(--danger)">🗑️ 重置所有数据</button>
-      </div></div>`;
+
+        <button class="trans-btn" onclick="navigate('membermanage')">👥 会员管理</button>      </div></div>`;
     }
     html += `<button class="trans-btn" style="margin-top:16px;" onclick="logoutMember()">退出登录</button></div>`;
   } else {
@@ -1572,6 +1631,109 @@ function renderMember(c) {
 }
 function doLogin() { const u = document.getElementById('loginUser').value.trim(); const p = document.getElementById('loginPass').value.trim(); if (!u || !p) { showToast('请输入账号密码'); return; } if (loginMember(u, p)) { renderMember(document.getElementById('app')); } }
 function logoutMember() { memberInfo = { username: null, type: null, trialStart: null, trialEnd: null, paidStart: null, paidEnd: null, clickCount: 0, isAdmin: false }; saveMember(); showToast('已退出'); navigate('member'); }
+
+// === 会员管理功能（超级管理员） ===
+function getAllMembers() {
+  return JSON.parse(localStorage.getItem('bir_members') || '{}');
+}
+
+function saveAllMembers(members) {
+  localStorage.setItem('bir_members', JSON.stringify(members));
+}
+
+function addMember(username, password, expiry, note) {
+  const members = getAllMembers();
+  if (members[username]) {
+    showToast('账号已存在');
+    return false;
+  }
+  members[username] = {
+    password,
+    expiry: expiry || '',
+    note: note || '',
+    createdAt: new Date().toISOString()
+  };
+  saveAllMembers(members);
+  showToast('会员添加成功');
+  return true;
+}
+
+function deleteMember(username) {
+  const members = getAllMembers();
+  if (!members[username]) {
+    showToast('会员不存在');
+    return false;
+  }
+  delete members[username];
+  saveAllMembers(members);
+  showToast('会员已删除');
+  return true;
+}
+
+function renderMemberManage(c) {
+  if (!memberInfo.isAdmin) { navigate('member'); return; }
+  
+  const members = getAllMembers();
+  let html = `<div class="card"><div class="card-header"><h2>👥 会员管理</h2></div><div style="padding:16px;">`;
+  
+  // 添加会员表单
+  html += `<div style="margin-bottom:20px;padding:16px;background:var(--bg-elev);border-radius:10px;border:1px solid var(--border);">
+    <div style="font-size:14px;font-weight:700;color:var(--primary);margin-bottom:12px;">➕ 添加会员</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;">
+      <div><div style="font-size:11px;color:var(--text-dim);margin-bottom:4px;">账号</div>
+        <input type="text" id="newMemberUser" placeholder="用户名" style="width:100%;padding:8px;background:var(--bg);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:13px;"></div>
+      <div><div style="font-size:11px;color:var(--text-dim);margin-bottom:4px;">密码</div>
+        <input type="text" id="newMemberPass" placeholder="密码" style="width:100%;padding:8px;background:var(--bg);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:13px;"></div>
+      <div><div style="font-size:11px;color:var(--text-dim);margin-bottom:4px;">时限</div>
+        <input type="date" id="newMemberExpiry" style="width:100%;padding:8px;background:var(--bg);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:13px;"></div>
+      <div><div style="font-size:11px;color:var(--text-dim);margin-bottom:4px;">备注</div>
+        <input type="text" id="newMemberNote" placeholder="备注" style="width:100%;padding:8px;background:var(--bg);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:13px;"></div>
+    </div>
+    <button class="trans-btn" style="width:100%;" onclick="doAddMember()">添加会员</button>
+  </div>`;
+  
+  // 会员列表
+  html += `<div style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:12px;">📋 会员列表</div>`;
+  
+  const memberList = Object.entries(members);
+  if (memberList.length === 0) {
+    html += `<div style="font-size:13px;color:var(--text-dim);padding:10px;">暂无会员</div>`;
+  } else {
+    memberList.forEach(([username, info]) => {
+      const isExpired = info.expiry && new Date(info.expiry) < new Date();
+      html += `<div style="display:flex;justify-content:space-between;align-items:center;padding:10px;background:var(--bg-elev);border-radius:8px;margin-bottom:8px;border-left:3px solid ${isExpired ? 'var(--danger)' : 'var(--success)'};">
+        <div>
+          <div style="font-size:13px;color:var(--text);font-weight:600;">${username}</div>
+          <div style="font-size:11px;color:var(--text-dim);">时限: ${info.expiry || '无'} ${isExpired ? '(已过期)' : ''}</div>
+          ${info.note ? `<div style="font-size:11px;color:var(--text-dim);">备注: ${info.note}</div>` : ''}
+        </div>
+        <button style="padding:4px 10px;background:var(--danger);color:#fff;border:none;border-radius:6px;cursor:pointer;font-size:11px;" onclick="doDeleteMember('${username}')">删除</button>
+      </div>`;
+    });
+  }
+  
+  html += `</div></div>`;
+  c.innerHTML = html;
+}
+
+function doAddMember() {
+  const u = document.getElementById('newMemberUser').value.trim();
+  const p = document.getElementById('newMemberPass').value.trim();
+  const e = document.getElementById('newMemberExpiry').value;
+  const n = document.getElementById('newMemberNote').value.trim();
+  
+  if (!u || !p) { showToast('请输入账号和密码'); return; }
+  addMember(u, p, e, n);
+  renderMemberManage(document.getElementById('app'));
+}
+
+function doDeleteMember(username) {
+  if (!confirm(`确定删除会员 ${username}？`)) return;
+  deleteMember(username);
+  renderMemberManage(document.getElementById('app'));
+}
+
+
 function renderUpload(c) {
   if (!memberInfo.isAdmin) { navigate('member'); return; }
   c.innerHTML = `<div class="card"><div class="card-header"><h2>📤 上传课程资料</h2></div><div style="padding:16px;">
