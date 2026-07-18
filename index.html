@@ -1623,13 +1623,39 @@ function speak(text,lang){if(!window.speechSynthesis){showToast("不支持语音
 function showToast(msg){const t=document.getElementById("toast");t.innerText=msg;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),2500);}
 
 function updateStats(){
-  const sNew=Object.values(learningHistory).reduce((a,h)=>a+h.vocabNew.length,0);
-  const sRev=Object.values(learningHistory).reduce((a,h)=>a+h.vocabReview.length,0);
-  const sTotal=Object.keys(vocabDB).length;
+  // 累计新词（去重）
+  const allNew = new Set();
+  const allRev = new Set();
+  Object.values(learningHistory).forEach(h => {
+    if(h.vocabNew) h.vocabNew.forEach(w => allNew.add(w));
+    if(h.vocabReview) h.vocabReview.forEach(w => allRev.add(w));
+  });
+  const sNew = allNew.size;
+  const sRev = allRev.size;
+  const sTotal = Object.keys(vocabDB).length;
+  
+  // 连续学习天数
+  const dates = Object.keys(learningHistory).sort();
+  let streak = 0;
+  const today = new Date().toISOString().slice(0,10);
+  const yesterday = new Date(Date.now()-86400000).toISOString().slice(0,10);
+  if(dates.includes(today)) streak = 1;
+  else if(dates.includes(yesterday)) streak = 1;
+  let checkDate = new Date(Date.now()-(streak?0:86400000));
+  while(true){
+    const ds = checkDate.toISOString().slice(0,10);
+    if(!dates.includes(ds)) break;
+    const hasActivity = learningHistory[ds] && (learningHistory[ds].vocabNew.length||learningHistory[ds].vocabReview.length||learningHistory[ds].translations);
+    if(!hasActivity) break;
+    streak++;
+    checkDate = new Date(checkDate.getTime()-86400000);
+  }
+  
   const e1=document.getElementById("s-new");if(e1)e1.innerText=sNew;
   const e2=document.getElementById("s-rev");if(e2)e2.innerText=sRev;
   const e3=document.getElementById("s-total");if(e3)e3.innerText=sTotal;
-  const e4=document.getElementById("sidebar-today");if(e4)e4.innerText=new Date().toISOString().slice(0,10);
+  const e4=document.getElementById("sidebar-streak");if(e4)e4.innerText=streak;
+  const e5=document.getElementById("sidebar-today");if(e5)e5.innerText=today;
 }
 
 document.addEventListener("DOMContentLoaded",()=>{
@@ -1716,32 +1742,35 @@ function loginMember(username, password) {
   
   // 检查已注册的会员
   const members = getAllMembers();
-  if (members[username]) {
-    if (members[username].password === password) {
-      const expiry = members[username].expiry;
-      if (expiry && new Date(expiry) < new Date()) {
-        showToast('❌ 会员账号已过期'); return false;
-      }
-      memberInfo = { 
-        username: username, 
-        type: 'member', 
-        isAdmin: false, 
-        trialStart: null, 
-        trialEnd: null, 
-        paidStart: new Date().toISOString().slice(0,10), 
-        paidEnd: expiry, 
-        clickCount: 0,
-        note: members[username].note || ''
-      };
-      saveMember(); 
-      showToast(`✅ 会员 ${username} 登录成功`); 
-      return true;
-    } else {
-      showToast('❌ 密码错误'); return false;
-    }
+  const member = members[username];
+  
+  if (!member) {
+    showToast('❌ 账号不存在，请先注册'); return false;
   }
   
-  showToast('❌ 账号不存在'); return false;
+  if (member.password !== password) {
+    showToast('❌ 密码错误，请检查大小写和特殊字符'); return false;
+  }
+  
+  const expiry = member.expiry;
+  if (expiry && new Date(expiry) < new Date()) {
+    showToast('❌ 会员账号已过期'); return false;
+  }
+  
+  memberInfo = { 
+    username: username, 
+    type: 'member', 
+    isAdmin: false, 
+    trialStart: null, 
+    trialEnd: null, 
+    paidStart: new Date().toISOString().slice(0,10), 
+    paidEnd: expiry, 
+    clickCount: 0,
+    note: member.note || ''
+  };
+  saveMember(); 
+  showToast(`✅ 会员 ${username} 登录成功`); 
+  return true;
 }
 
 function applyTrial() {
@@ -1836,7 +1865,7 @@ function renderMemberManage(c) {
       <div><div style="font-size:11px;color:var(--text-dim);margin-bottom:4px;">账号</div>
         <input type="text" id="newMemberUser" placeholder="用户名" style="width:100%;padding:8px;background:var(--bg);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:13px;"></div>
       <div><div style="font-size:11px;color:var(--text-dim);margin-bottom:4px;">密码</div>
-        <input type="text" id="newMemberPass" placeholder="密码" style="width:100%;padding:8px;background:var(--bg);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:13px;"></div>
+        <input type="password" id="newMemberPass" placeholder="密码" style="width:100%;padding:8px;background:var(--bg);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:13px;"></div>
       <div><div style="font-size:11px;color:var(--text-dim);margin-bottom:4px;">时限</div>
         <input type="date" id="newMemberExpiry" style="width:100%;padding:8px;background:var(--bg);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:13px;"></div>
       <div><div style="font-size:11px;color:var(--text-dim);margin-bottom:4px;">备注</div>
@@ -2773,7 +2802,7 @@ function renderTopicDetail(c, ds, topicInfo) {
       sc.dialogue.forEach(d => {
         const isA = d.speaker === "A";
         const safeText = d.text.replace(/'/g, "\'");
-        html += `<div style="display:flex;gap:8px;margin:6px 0;${isA ? '' : 'flex-direction:row-reverse'}"><div style="width:28px;height:28px;border-radius:50%;background:${isA ? 'var(--primary)' : 'var(--accent)'};display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#000">${d.speaker}</div><div style="max-width:70%;padding:8px 12px;border-radius:10px;font-size:13px;line-height:1.5;${isA ? 'background:var(--bg-elev);border:1px solid var(--border)' : 'background:rgba(0,212,170,.1);border:1px solid rgba(0,212,170,.2)'})"><div style="color:var(--text);margin-bottom:4px;display:flex;align-items:center;flex-wrap:wrap;">${wrapClickableWords(d.text)}<button onclick="speakIndonesian('${safeText}')" style="background:none;border:none;color:var(--primary);cursor:pointer;font-size:14px;padding:2px 4px;margin-left:4px;" title="朗读印尼语">🔊</button></div><div style="font-size:11px;color:var(--text-dim);border-top:1px solid var(--border);padding-top:4px;margin-top:4px">${d.trans || ''}</div></div></div>`;
+        html += `<div style="display:flex;gap:8px;margin:6px 0;${isA ? '' : 'flex-direction:row-reverse'}"><div style="width:28px;height:28px;border-radius:50%;background:${isA ? 'var(--primary)' : 'var(--accent)'};display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#000">${d.speaker}</div><div style="max-width:70%;padding:8px 12px;border-radius:10px;font-size:13px;line-height:1.5;${isA ? 'background:var(--bg-elev);border:1px solid var(--border)' : 'background:rgba(0,212,170,.1);border:1px solid rgba(0,212,170,.2)'}"><div style="color:var(--text);margin-bottom:4px;display:flex;align-items:center;flex-wrap:wrap;">${wrapClickableWords(d.text)}<button onclick="speakIndonesian('${safeText}')" style="background:none;border:none;color:var(--primary);cursor:pointer;font-size:14px;padding:2px 4px;margin-left:4px;" title="朗读印尼语">🔊</button></div><div style="font-size:11px;color:var(--text-dim);border-top:1px solid var(--border);padding-top:4px;margin-top:4px">${d.trans || ''}</div></div></div>`;
       });
       html += `</div></div>`;
     });
@@ -2961,6 +2990,7 @@ function stopVoiceInput() {
 
 function sendAIChat(text) {
   if(!text || !text.trim()) return;
+  text = text.trim();
   
   const chatArea = document.getElementById('aiChatArea');
   if(!chatArea) return;
@@ -2969,25 +2999,100 @@ function sendAIChat(text) {
   chatArea.innerHTML += `<div style="display:flex;justify-content:flex-end;margin:8px 0;"><div style="background:var(--primary);color:#0a0e17;padding:8px 12px;border-radius:12px 12px 0 12px;max-width:80%;font-size:13px;">${text}</div></div>`;
   chatArea.scrollTop = chatArea.scrollHeight;
   
-  // 模拟AI回复（实际使用时需要调用后端API）
-  setTimeout(() => {
-    const responses = [
-      'Baik, saya mengerti. Mari kita lanjutkan belajar Bahasa Indonesia.',
-      'Terima kasih! Anda sudah berbicara dengan baik dalam Bahasa Indonesia.',
-      'Bagus sekali! Pertanyaan Anda sangat menarik.',
-      'Mari kita latih pengucapan kata ini: ' + text.split(' ').slice(0,3).join(' '),
-      'Saya senang bisa membantu Anda belajar Bahasa Indonesia.'
-    ];
-    const reply = responses[Math.floor(Math.random() * responses.length)];
-    
-    chatArea.innerHTML += `<div style="display:flex;justify-content:flex-start;margin:8px 0;"><div style="background:var(--bg-elev);color:var(--text);padding:8px 12px;border-radius:12px 12px 12px 0;max-width:80%;font-size:13px;border:1px solid var(--border);"><div style="font-size:11px;color:var(--primary);margin-bottom:2px;">🤖 AI Assistant</div>${reply}<button onclick="speakIndonesian('${reply.replace(/'/g, "\'")}')" style="background:none;border:none;color:var(--primary);cursor:pointer;font-size:12px;padding:2px;margin-left:4px;" title="朗读">🔊</button></div></div>`;
-    chatArea.scrollTop = chatArea.scrollHeight;
-    
-    // 自动朗读AI回复
-    speakIndonesian(reply);
-    
-    aiChatHistory.push({user: text, ai: reply});
-  }, 1000);
+  // 显示加载中
+  const loadingId = 'ai-loading-' + Date.now();
+  chatArea.innerHTML += `<div id="${loadingId}" style="display:flex;justify-content:flex-start;margin:8px 0;"><div style="background:var(--bg-elev);color:var(--text);padding:8px 12px;border-radius:12px 12px 12px 0;max-width:80%;font-size:13px;border:1px solid var(--border);"><div style="font-size:11px;color:var(--primary);margin-bottom:2px;">🤖 AI Assistant</div>⏳ 思考中...</div></div>`;
+  chatArea.scrollTop = chatArea.scrollHeight;
+  
+  // 智能回复逻辑
+  const lowerText = text.toLowerCase();
+  
+  // 1. 检查是否是单词查询
+  const cleanWord = text.replace(/[^a-zA-Z]/g, '').toLowerCase();
+  let vocabMatch = vocabDB[cleanWord];
+  if(!vocabMatch && text.length < 20){
+    // 尝试前缀查找
+    const prefixes = ['me','meng','meny','men','mem','ber','be','di','ter','pe','peng','peny','pen','pem','se'];
+    for(const p of prefixes){
+      if(cleanWord.startsWith(p) && cleanWord.length > p.length + 2){
+        const root = cleanWord.slice(p.length);
+        if(vocabDB[root]){ vocabMatch = vocabDB[root]; break; }
+      }
+    }
+  }
+  
+  if(vocabMatch){
+    const reply = `Kata "${text}" dalam Bahasa Indonesia:
+• Arti: ${vocabMatch.cn}
+• English: ${vocabMatch.en || '-'}
+• IPA: ${vocabMatch.ipa || '/'}
+• ${vocabMatch.root ? 'Asal kata: ' + vocabMatch.root : ''}`.trim();
+    showAIReply(reply, text, loadingId);
+    return;
+  }
+  
+  // 2. 使用翻译API获取印尼语回复
+  const q = encodeURIComponent(text);
+  fetch(`https://api.mymemory.translated.net/get?q=${q}&langpair=zh-CN|id`)
+    .then(r => r.json())
+    .then(data => {
+      let reply = '';
+      if(data && data.responseData && data.responseData.translatedText){
+        const translated = data.responseData.translatedText;
+        reply = `${translated}
+
+（中文原文：${text}）`;
+      } else {
+        reply = generateAIReply(text);
+      }
+      showAIReply(reply, text, loadingId);
+    })
+    .catch(() => {
+      const reply = generateAIReply(text);
+      showAIReply(reply, text, loadingId);
+    });
+}
+
+function generateAIReply(text){
+  const lower = text.toLowerCase();
+  if(/你好|您好|hi|hello|hey/.test(lower)){
+    return `Halo! Selamat datang! Saya asisten belajar Bahasa Indonesia Anda. Apa yang ingin Anda pelajari hari ini?\n\n（你好！欢迎！我是你的印尼语学习助手。今天你想学什么？）`;
+  }
+  if(/谢谢|terima kasih|thanks/.test(lower)){
+    return `Sama-sama! Senang bisa membantu Anda.\n\n（不客气！很高兴能帮助您。）`;
+  }
+  if(/再见|selamat tinggal|bye|goodbye/.test(lower)){
+    return `Selamat tinggal! Semoga harimu menyenangkan!\n\n（再见！祝您有愉快的一天！）`;
+  }
+  if(/名字|nama|name/.test(lower)){
+    return `Nama saya LEO-BIR Assistant. Saya di sini untuk membantu Anda belajar Bahasa Indonesia.\n\n（我的名字是LEO-BIR助手。我在这里帮助您学习印尼语。）`;
+  }
+  if(/怎么|如何|bagaimana|how/.test(lower)){
+    return `Bagaimana cara mengucapkannya? Mari kita latih bersama-sama!\n\n（怎么发音？让我们一起练习！）`;
+  }
+  return `Baik, saya mengerti. Mari kita lanjutkan belajar Bahasa Indonesia bersama-sama. Anda bisa bertanya tentang kosakata atau percakapan.
+
+（好的，我明白了。让我们一起继续学习印尼语。您可以询问词汇或对话。）`;
+}
+
+function showAIReply(reply, userText, loadingId){
+  const chatArea = document.getElementById('aiChatArea');
+  if(!chatArea) return;
+  
+  const loadingEl = document.getElementById(loadingId);
+  if(loadingEl) loadingEl.remove();
+  
+  const safeReply = reply.replace(/'/g, "\'");
+  chatArea.innerHTML += `<div style="display:flex;justify-content:flex-start;margin:8px 0;"><div style="background:var(--bg-elev);color:var(--text);padding:8px 12px;border-radius:12px 12px 12px 0;max-width:80%;font-size:13px;border:1px solid var(--border);"><div style="font-size:11px;color:var(--primary);margin-bottom:2px;">🤖 AI Assistant</div><div style="white-space:pre-line;">${reply}</div><button onclick="speakIndonesian('${safeReply.split('\n')[0]}')" style="background:none;border:none;color:var(--primary);cursor:pointer;font-size:12px;padding:2px;margin-left:4px;" title="朗读印尼语">🔊</button></div></div>`;
+  chatArea.scrollTop = chatArea.scrollHeight;
+  
+  // 自动朗读（只朗读印尼语部分）
+  const idPart = reply.split('（')[0].trim();
+  if(idPart) speakIndonesian(idPart);
+  
+  if(typeof aiChatHistory !== 'undefined'){
+    aiChatHistory.push({user: userText, ai: reply});
+  }
 }
 
 function renderAIChat(c) {
@@ -3201,7 +3306,7 @@ function doWordQuery(word){
       <button onclick="document.getElementById('wordQueryOverlay').remove()" style="background:none;border:none;color:var(--text-dim);font-size:20px;cursor:pointer;">✕</button>
     </div>
     <div id="queryResult" style="font-size:13px;color:var(--text);">
-      <div style="text-align:center;padding:20px;">⏳ 查询中...</div>
+      <div style="text-align:center;padding:20px;">⏳ 正在联网查询...</div>
     </div>
   </div>`;
   document.body.appendChild(overlay);
@@ -3219,14 +3324,30 @@ function doWordQuery(word){
     resultHtml += `<div style="margin-bottom:12px;"><div style="font-size:12px;color:var(--text-dim);margin-bottom:4px;">🇬🇧 English</div><div style="font-size:14px;color:var(--text);">${v.en||'-'}</div></div>`;
     resultHtml += `<div style="margin-bottom:12px;"><div style="font-size:12px;color:var(--text-dim);margin-bottom:4px;">🇮🇩 Bahasa Indonesia</div><div style="font-size:14px;color:var(--text);">${word} (原始形式)</div></div>`;
     if(v.root) resultHtml += `<div style="font-size:11px;color:var(--text-dim);margin-top:8px;">词根: ${v.root}</div>`;
-  } else {
-    resultHtml += `<div style="text-align:center;padding:20px;"><div style="font-size:36px;margin-bottom:12px;">📖</div><div style="font-size:14px;color:var(--text-dim);">该词汇暂未收录详细信息</div><div style="font-size:12px;color:var(--text-dim);margin-top:8px;">建议通过"词汇录入"功能添加</div></div>`;
   }
   
+  // 在线查询API - MyMemory
+  const q = encodeURIComponent(word);
+  const id2zh = `https://api.mymemory.translated.net/get?q=${q}&langpair=id|zh-CN`;
+  const zh2id = `https://api.mymemory.translated.net/get?q=${q}&langpair=zh-CN|id`;
+  
+  resultHtml += `<div style="margin-top:16px;border-top:1px solid var(--border);padding-top:12px;"><div style="font-size:12px;font-weight:600;color:var(--primary);margin-bottom:8px;">🌐 在线查询结果</div><div id="onlineResult">查询中...</div></div>`;
   document.getElementById('queryResult').innerHTML = resultHtml;
-}
-
-function closeWordPopup(){
+  
+  // 调用API
+  fetch(id2zh)
+    .then(r => r.json())
+    .then(data => {
+      let html = '';
+      if(data && data.responseData && data.responseData.translatedText){
+        html += `<div style="margin-bottom:8px;padding:8px;background:rgba(59,130,246,.1);border-radius:6px;"><div style="font-size:11px;color:var(--text-dim);">🇮🇩→🇨🇳 印尼语→中文</div><div style="font-size:14px;color:var(--text);font-weight:600;">${data.responseData.translatedText}</div></div>`;
+      }
+      document.getElementById('onlineResult').innerHTML = html || '<div style="color:var(--text-dim);font-size:12px;">暂无在线结果</div>';
+    })
+    .catch(err => {
+      document.getElementById('onlineResult').innerHTML = '<div style="color:var(--text-dim);font-size:12px;">网络查询失败，请检查网络连接</div>';
+    });
+}function closeWordPopup(){
   const el = document.getElementById('wordPopupOverlay');
   if(el) el.remove();
 }
