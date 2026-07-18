@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<title>LEO-BIR V2.7.3</title>
+<title>LEO-BIR V3.0.3</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -151,7 +151,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="sidebar-header">
     <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <h1>LEO-BIR</h1>
-    <div class="ver">LEO-BIR V2.7 · 艾宾浩斯增强</div>
+    <div class="ver">LEO-BIR V3.0 · 艾宾浩斯增强</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -177,9 +177,10 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
       <li data-route="translate"><span style="margin-right:8px">🌐</span>翻译</li>
       <li data-route="input"><span style="margin-right:8px">📝</span>词汇录入</li>
       <li data-route="wordbank"><span style="margin-right:8px">📚</span>生词本</li>
-      <li data-route="quiz"><span style="margin-right:8px">🎯</span>能力测试</li>
+      <li data-route="quiz"><span style="margin-right:8px">🎯</span>课时测试</li>
       <li data-route="vocabulary"><span style="margin-right:8px">📖</span>词汇库</li>
       <li data-route="review"><span style="margin-right:8px">🧠</span>复习</li>
+      <li data-route="aichat"><span style="margin-right:8px">🤖</span>AI对话</li>
       <li data-route="member"><span style="margin-right:8px">👑</span>会员中心</li>
       <li data-route="about"><span style="margin-right:8px">📋</span>关于LEO-BIR</li>
       <li data-route="version"><span style="margin-right:8px">📜</span>版本记录</li>
@@ -688,10 +689,12 @@ function render(){
     case "translate":t.innerText="🌐 翻译";renderTranslate(c);break;
     case "input":t.innerText="📝 词汇录入";renderInput(c);break;
     case "wordbank":t.innerText="📚 生词本";renderWordBank(c);break;
-    case "quiz":t.innerText="🎯 能力测试";renderQuiz(c);break;
+    case "quiz":t.innerText="🎯 课时测试";renderDailyQuiz(c);break;
     case "vocabulary":t.innerText="📖 词汇库";renderVocabulary(c);break;
     case "review":t.innerText="🔄 复习";renderReview(c);break;
+    case "aichat":t.innerText="🤖 AI对话";renderAIChat(c);break;
     case "member":t.innerText="👑 会员中心";renderMember(c);break;
+      case "topicquiz":t.innerText="🎯 话题测试";renderTopicQuiz(c,p);break;
       case "membermanage": t.innerText="👥 会员管理"; renderMemberManage(c); break;
     case "about":t.innerText="📋 关于";renderAbout(c);break;
     case "version":t.innerText="📜 版本";renderVersion(c);break;
@@ -824,6 +827,89 @@ function removeMasteredWB(i) {
 function delWB(i){if(!confirm("确定彻底删除?"))return;wordBank.splice(i,1);saveWB();renderWBList();updateStats();showToast("已彻底删除");}
 function exportWB(){if(!checkAccess("导出"))return;if(!wordBank.length){showToast("为空");return;}let t="📚 BIR生词本—"+new Date().toISOString().slice(0,10)+"\n";wordBank.forEach((w,i)=>{t+=(i+1)+". "+w.word+" "+w.ipa+"\n🇨🇳"+w.cn+" | 状态:"+(w.mastered?"✅":"🔄")+"";});navigator.clipboard.writeText(t).then(()=>showToast("已复制"));}
 function clearWB(){if(!checkAccess("清空"))return;if(!confirm("清空?"))return;wordBank=[];saveWB();renderWBList();updateStats();showToast("已清空");}
+
+function renderDailyQuiz(c) {
+  const today = new Date().toISOString().slice(0,10);
+  const tc = topicCalendar.find(t => t.date === today);
+  
+  if (!tc) {
+    c.innerHTML = `<div class="card"><div class="card-header"><h2>🎯 今日课时测试</h2></div><div style="padding:20px;text-align:center;color:var(--text-dim);">今日没有安排课程</div></div>`;
+    return;
+  }
+  
+  const topic = topicData[tc.topic];
+  if (!topic) {
+    c.innerHTML = `<div class="card"><div class="card-header"><h2>🎯 今日课时测试</h2></div><div style="padding:20px;text-align:center;color:var(--text-dim);">话题数据未找到</div></div>`;
+    return;
+  }
+  
+  // 获取今日课程的词汇
+  const todayWords = [];
+  if (learningHistory[today] && learningHistory[today].vocabNew) {
+    learningHistory[today].vocabNew.forEach(w => {
+      if (vocabDB[w]) todayWords.push({word: w, data: vocabDB[w]});
+    });
+  }
+  
+  // 如果没有今日词汇，使用话题相关词汇
+  if (todayWords.length === 0) {
+    const topicWords = Object.keys(vocabDB).filter(k => {
+      const v = vocabDB[k];
+      return v.tag && (v.tag.includes(tc.topic) || tc.topic.includes(v.tag));
+    }).slice(0, 10);
+    topicWords.forEach(w => todayWords.push({word: w, data: vocabDB[w]}));
+  }
+  
+  if (todayWords.length === 0) {
+    c.innerHTML = `<div class="card"><div class="card-header"><h2>🎯 今日课时测试</h2></div><div style="padding:20px;text-align:center;color:var(--text-dim);">暂无今日词汇，请先学习课程</div></div>`;
+    return;
+  }
+  
+  // 生成测试题
+  const questions = todayWords.slice(0, 5).map(w => {
+    const wrong = Object.keys(vocabDB).filter(k => k !== w.word && vocabDB[k].cn).slice(0, 3).map(k => vocabDB[k].cn);
+    return {word: w.word, data: w.data, wrong};
+  });
+  
+  quizState = {q: 0, correct: 0, total: questions.length, done: 0, questions};
+  
+  c.innerHTML = `<div class="card"><div class="card-header"><h2>🎯 ${tc.date} 课时测试 · ${topic.title || tc.topic}</h2><span class="badge">${questions.length}题</span></div><div id="quizArea" style="padding:16px;"></div></div>`;
+  showQuizQ();
+}
+
+function renderTopicQuiz(c, topicKey) {
+  const topic = topicData[topicKey];
+  if (!topic) {
+    c.innerHTML = `<div class="card"><div class="card-header"><h2>🎯 话题测试</h2></div><div style="padding:20px;text-align:center;color:var(--text-dim);">话题不存在</div></div>`;
+    return;
+  }
+  
+  // 获取话题相关词汇
+  const topicWords = [];
+  Object.keys(vocabDB).forEach(k => {
+    const v = vocabDB[k];
+    if (v.tag && (v.tag.includes(topicKey) || topicKey.includes(v.tag))) {
+      topicWords.push({word: k, data: v});
+    }
+  });
+  
+  if (topicWords.length === 0) {
+    c.innerHTML = `<div class="card"><div class="card-header"><h2>🎯 ${topic.title || topicKey} 测试</h2></div><div style="padding:20px;text-align:center;color:var(--text-dim);">该话题暂无词汇</div></div>`;
+    return;
+  }
+  
+  // 随机选5题
+  const shuffled = topicWords.sort(() => Math.random() - 0.5).slice(0, 5);
+  const questions = shuffled.map(w => {
+    const wrong = Object.keys(vocabDB).filter(k => k !== w.word && vocabDB[k].cn).slice(0, 3).map(k => vocabDB[k].cn);
+    return {word: w.word, data: w.data, wrong};
+  });
+  
+  quizState = {q: 0, correct: 0, total: questions.length, done: 0, questions};
+  
+  c.innerHTML = `<div class="card"><div class="card-header"><h2>🎯 ${topic.title || topicKey} 测试</h2><span class="badge">${questions.length}题</span></div><div id="quizArea" style="padding:16px;"></div></div>`;
+  showQuizQ();
+}
 
 function renderQuiz(c){
   quizState={q:0,correct:0,total:5,done:0};const pool=Object.keys(vocabDB).filter(k=>vocabDB[k].cn);const sel=[];
@@ -1499,6 +1585,39 @@ function showTip(word){
   setTimeout(()=>tt.classList.remove("show"),3000);
 }
 
+
+// ===== 语音朗读功能 =====
+function speakText(text, lang='id-ID') {
+  if (!window.speechSynthesis) {
+    showToast('❌ 浏览器不支持语音朗读');
+    return;
+  }
+  const utterance = new SpeechSynthesisUtterance(text);
+  utterance.lang = lang;
+  utterance.rate = 0.9;
+  utterance.pitch = 1;
+  window.speechSynthesis.speak(utterance);
+}
+
+function speakIndonesian(text) {
+  speakText(text, 'id-ID');
+}
+
+function speakEnglish(text) {
+  speakText(text, 'en-US');
+}
+
+function speakChinese(text) {
+  speakText(text, 'zh-CN');
+}
+
+// 播放按钮HTML
+function speakBtn(text, lang='id') {
+  const langMap = {id:'id-ID', en:'en-US', zh:'zh-CN'};
+  const l = langMap[lang] || 'id-ID';
+  return `<button onclick="speakText('${text.replace(/'/g, "\'")}', '${l}')" style="background:none;border:none;color:var(--primary);cursor:pointer;font-size:14px;padding:2px 6px;margin-left:4px;" title="朗读">🔊</button>`;
+}
+
 function speak(text,lang){if(!window.speechSynthesis){showToast("不支持语音");return;}const u=new SpeechSynthesisUtterance(text);u.lang=lang==="id"?"id-ID":lang==="zh"?"zh-CN":"en-US";u.rate=0.9;window.speechSynthesis.speak(u);}
 
 function showToast(msg){const t=document.getElementById("toast");t.innerText=msg;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),2500);}
@@ -1585,12 +1704,46 @@ function showMemberRequired(action) {
 }
 function closeMemberModal() { const m = document.getElementById('memberModal'); if (m) m.remove(); }
 function loginMember(username, password) {
+  if (!username || !password) {
+    showToast('❌ 请输入账号和密码'); return false;
+  }
+  
+  // 超级管理员
   if (username === 'Chinarenwgl' && password === 'Youlu@123') {
     memberInfo = { username: 'Chinarenwgl', type: 'admin', isAdmin: true, trialStart: null, trialEnd: null, paidStart: null, paidEnd: null, clickCount: 0 };
     saveMember(); showToast('✅ 超级管理员登录成功'); return true;
   }
-  showToast('❌ 账号或密码错误'); return false;
+  
+  // 检查已注册的会员
+  const members = getAllMembers();
+  if (members[username]) {
+    if (members[username].password === password) {
+      const expiry = members[username].expiry;
+      if (expiry && new Date(expiry) < new Date()) {
+        showToast('❌ 会员账号已过期'); return false;
+      }
+      memberInfo = { 
+        username: username, 
+        type: 'member', 
+        isAdmin: false, 
+        trialStart: null, 
+        trialEnd: null, 
+        paidStart: new Date().toISOString().slice(0,10), 
+        paidEnd: expiry, 
+        clickCount: 0,
+        note: members[username].note || ''
+      };
+      saveMember(); 
+      showToast(`✅ 会员 ${username} 登录成功`); 
+      return true;
+    } else {
+      showToast('❌ 密码错误'); return false;
+    }
+  }
+  
+  showToast('❌ 账号不存在'); return false;
 }
+
 function applyTrial() {
   const now = new Date(); const end = new Date(now.getTime() + 24 * 3600000);
   memberInfo = { ...memberInfo, type: 'trial', trialStart: now.toISOString(), trialEnd: end.toISOString(), clickCount: 0 };
@@ -2588,7 +2741,7 @@ function renderTopicDetail(c, ds, topicInfo) {
   
   // 2026-07-16 特殊处理：显示全部三天内容
   if (ds === "2026-07-16" || topicInfo.allDays) {
-    html += `<div class="card"><div class="card-header"><h2>${topic.icon} ${topic.title}</h2><span class="badge">综合学习日 · 全部内容</span></div>`;
+    html += `<div class="card"><div class="card-header" style="flex-wrap:wrap;gap:8px;"><h2>${topic.icon} ${topic.title}</h2><div style="display:flex;gap:8px;align-items:center;"><span class="badge">综合学习日 · 全部内容</span><button onclick="navigate('topicquiz','${topicKey}')" class="trans-btn btn-small" style="font-size:12px;">🎯 话题测试</button></div></div>`;
     html += `<div style="background:rgba(0,212,170,.08);border-radius:10px;padding:16px;margin-bottom:16px;border-left:3px solid var(--primary)"><div style="font-size:14px;color:var(--primary);font-weight:700;margin-bottom:8px">📋 今日学习计划</div><div style="font-size:13px;color:var(--text)">今天需要完成全部三天的学习内容：词汇语法 → 场景对话 → 演讲复习。建议分阶段学习，每完成一阶段休息10分钟。</div></div>`;
     
     // === Day 1: Grammar + Vocabulary ===
@@ -2619,7 +2772,8 @@ function renderTopicDetail(c, ds, topicInfo) {
       html += `<div style="margin-bottom:14px;border:1px solid var(--border);border-radius:10px;overflow:hidden"><div style="background:var(--bg-elev);padding:10px 14px;display:flex;align-items:center;gap:8px"><span style="font-size:18px">${sc.icon}</span><span style="font-size:14px;font-weight:600;color:var(--text)">${sc.title}</span></div><div style="padding:12px 14px;">`;
       sc.dialogue.forEach(d => {
         const isA = d.speaker === "A";
-        html += `<div style="display:flex;gap:8px;margin:6px 0;${isA ? '' : 'flex-direction:row-reverse'}"><div style="width:28px;height:28px;border-radius:50%;background:${isA ? 'var(--primary)' : 'var(--accent)'};display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#000">${d.speaker}</div><div style="max-width:70%;padding:8px 12px;border-radius:10px;font-size:13px;line-height:1.5;${isA ? 'background:var(--bg-elev);border:1px solid var(--border)' : 'background:rgba(0,212,170,.1);border:1px solid rgba(0,212,170,.2)'}"><div style="color:var(--text);margin-bottom:4px">${wrapClickableWords(d.text)}</div><div style="font-size:11px;color:var(--text-dim);border-top:1px solid var(--border);padding-top:4px;margin-top:4px">${d.trans}</div></div></div>`;
+        const safeText = d.text.replace(/'/g, "\'");
+        html += `<div style="display:flex;gap:8px;margin:6px 0;${isA ? '' : 'flex-direction:row-reverse'}"><div style="width:28px;height:28px;border-radius:50%;background:${isA ? 'var(--primary)' : 'var(--accent)'};display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#000">${d.speaker}</div><div style="max-width:70%;padding:8px 12px;border-radius:10px;font-size:13px;line-height:1.5;${isA ? 'background:var(--bg-elev);border:1px solid var(--border)' : 'background:rgba(0,212,170,.1);border:1px solid rgba(0,212,170,.2)'})"><div style="color:var(--text);margin-bottom:4px;display:flex;align-items:center;flex-wrap:wrap;">${wrapClickableWords(d.text)}<button onclick="speakIndonesian('${safeText}')" style="background:none;border:none;color:var(--primary);cursor:pointer;font-size:14px;padding:2px 4px;margin-left:4px;" title="朗读印尼语">🔊</button></div><div style="font-size:11px;color:var(--text-dim);border-top:1px solid var(--border);padding-top:4px;margin-top:4px">${d.trans || ''}</div></div></div>`;
       });
       html += `</div></div>`;
     });
@@ -2738,6 +2892,122 @@ attachCalEvents = function() {
   });
 };
 
+
+
+// ===== AI对话功能 =====
+let aiChatHistory = [];
+let isRecording = false;
+let recognition = null;
+
+function initAIChat() {
+  // 检查浏览器支持
+  if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+    console.log('Speech recognition not supported');
+  }
+}
+
+function startVoiceInput() {
+  if (!window.speechSynthesis) {
+    showToast('❌ 浏览器不支持语音识别');
+    return;
+  }
+  
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SpeechRecognition) {
+    showToast('❌ 浏览器不支持语音识别，请手动输入');
+    return;
+  }
+  
+  recognition = new SpeechRecognition();
+  recognition.lang = 'id-ID'; // 印尼语
+  recognition.continuous = false;
+  recognition.interimResults = false;
+  
+  recognition.onstart = () => {
+    isRecording = true;
+    showToast('🎤 正在聆听...');
+    const btn = document.getElementById('aiVoiceBtn');
+    if(btn) btn.style.background = 'var(--danger)';
+  };
+  
+  recognition.onresult = (event) => {
+    const text = event.results[0][0].transcript;
+    const input = document.getElementById('aiChatInput');
+    if(input) input.value = text;
+    sendAIChat(text);
+  };
+  
+  recognition.onerror = (event) => {
+    console.error('Speech recognition error', event.error);
+    showToast('❌ 语音识别出错: ' + event.error);
+    isRecording = false;
+    const btn = document.getElementById('aiVoiceBtn');
+    if(btn) btn.style.background = 'var(--primary)';
+  };
+  
+  recognition.onend = () => {
+    isRecording = false;
+    const btn = document.getElementById('aiVoiceBtn');
+    if(btn) btn.style.background = 'var(--primary)';
+  };
+  
+  recognition.start();
+}
+
+function stopVoiceInput() {
+  if(recognition) recognition.stop();
+  isRecording = false;
+}
+
+function sendAIChat(text) {
+  if(!text || !text.trim()) return;
+  
+  const chatArea = document.getElementById('aiChatArea');
+  if(!chatArea) return;
+  
+  // 添加用户消息
+  chatArea.innerHTML += `<div style="display:flex;justify-content:flex-end;margin:8px 0;"><div style="background:var(--primary);color:#0a0e17;padding:8px 12px;border-radius:12px 12px 0 12px;max-width:80%;font-size:13px;">${text}</div></div>`;
+  chatArea.scrollTop = chatArea.scrollHeight;
+  
+  // 模拟AI回复（实际使用时需要调用后端API）
+  setTimeout(() => {
+    const responses = [
+      'Baik, saya mengerti. Mari kita lanjutkan belajar Bahasa Indonesia.',
+      'Terima kasih! Anda sudah berbicara dengan baik dalam Bahasa Indonesia.',
+      'Bagus sekali! Pertanyaan Anda sangat menarik.',
+      'Mari kita latih pengucapan kata ini: ' + text.split(' ').slice(0,3).join(' '),
+      'Saya senang bisa membantu Anda belajar Bahasa Indonesia.'
+    ];
+    const reply = responses[Math.floor(Math.random() * responses.length)];
+    
+    chatArea.innerHTML += `<div style="display:flex;justify-content:flex-start;margin:8px 0;"><div style="background:var(--bg-elev);color:var(--text);padding:8px 12px;border-radius:12px 12px 12px 0;max-width:80%;font-size:13px;border:1px solid var(--border);"><div style="font-size:11px;color:var(--primary);margin-bottom:2px;">🤖 AI Assistant</div>${reply}<button onclick="speakIndonesian('${reply.replace(/'/g, "\'")}')" style="background:none;border:none;color:var(--primary);cursor:pointer;font-size:12px;padding:2px;margin-left:4px;" title="朗读">🔊</button></div></div>`;
+    chatArea.scrollTop = chatArea.scrollHeight;
+    
+    // 自动朗读AI回复
+    speakIndonesian(reply);
+    
+    aiChatHistory.push({user: text, ai: reply});
+  }, 1000);
+}
+
+function renderAIChat(c) {
+  c.innerHTML = `<div class="card"><div class="card-header"><h2>🤖 AI 印尼语对话</h2></div><div style="padding:16px;">
+    <div style="background:var(--bg-elev);border-radius:12px;padding:12px;margin-bottom:16px;font-size:12px;color:var(--text-dim);">
+      💡 提示：按住下方麦克风按钮说话，AI会用印尼语回复您。也可以手动输入文字。
+    </div>
+    <div id="aiChatArea" style="height:300px;overflow-y:auto;background:var(--bg);border-radius:12px;padding:12px;margin-bottom:12px;border:1px solid var(--border);">
+      <div style="text-align:center;padding:20px;color:var(--text-dim);font-size:13px;">
+        <div style="font-size:32px;margin-bottom:8px;">🎙️</div>
+        点击下方麦克风开始对话
+      </div>
+    </div>
+    <div style="display:flex;gap:8px;">
+      <input type="text" id="aiChatInput" placeholder="输入印尼语或按麦克风说话..." style="flex:1;padding:10px;background:var(--bg-elev);border:1px solid var(--border);border-radius:10px;color:var(--text);font-size:13px;" onkeypress="if(event.key==='Enter'){sendAIChat(this.value);this.value='';}">
+      <button id="aiVoiceBtn" onmousedown="startVoiceInput()" onmouseup="stopVoiceInput()" ontouchstart="startVoiceInput()" ontouchend="stopVoiceInput()" style="padding:10px 14px;background:var(--primary);color:#0a0e17;border:none;border-radius:10px;cursor:pointer;font-size:16px;" title="按住说话">🎤</button>
+      <button onclick="const inp=document.getElementById('aiChatInput');if(inp){sendAIChat(inp.value);inp.value='';}" style="padding:10px 14px;background:var(--accent);color:#0a0e17;border:none;border-radius:10px;cursor:pointer;font-size:14px;">发送</button>
+    </div>
+  </div></div>`;
+}
 
 function renderAbout(c){
   c.innerHTML=`<div class="card"><div class="card-header"><h2>📋 关于 LEO-BIR</h2><span class="badge">印尼语学习平台</span></div>
@@ -2862,36 +3132,98 @@ function showWordPopup(word){
   overlay.style.cssText = 'position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.6);z-index:9998;display:flex;align-items:center;justify-content:center;padding:16px;';
   
   const inWB = v ? wordBank.some(w=>w.id===v.id||w.id===clean) : false;
+  const wid = v ? v.id : clean;
   
-  let cardHTML = `<div id="wordPopupCard" style="background:var(--bg-card);border-radius:16px;padding:20px;max-width:320px;width:100%;border:1px solid var(--border);box-shadow:var(--shadow);position:relative;z-index:9999;">
+  let cardHTML = `<div id="wordPopupCard" style="background:var(--bg-card);border-radius:16px;padding:20px;max-width:360px;width:100%;border:1px solid var(--border);box-shadow:var(--shadow);position:relative;z-index:9999;max-height:90vh;overflow-y:auto;">
     <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
       <div style="font-size:18px;font-weight:700;color:var(--primary);">${word}</div>
       <button id="wordPopupClose" style="background:none;border:none;color:var(--text-dim);font-size:20px;cursor:pointer;padding:0;width:28px;height:28px;display:flex;align-items:center;justify-content:center;">✕</button>
     </div>`;
   
   if(v){
-    cardHTML += `<div style="margin-bottom:12px;"><div style="font-size:13px;color:var(--text-dim);margin-bottom:4px;">IPA</div><div style="font-size:15px;color:var(--text);">${v.ipa||'/'}</div></div>
-    <div style="margin-bottom:12px;"><div style="font-size:13px;color:var(--text-dim);margin-bottom:4px;">中文</div><div style="font-size:15px;color:var(--primary);font-weight:600;">${v.cn}</div></div>
-    <div style="margin-bottom:16px;"><div style="font-size:13px;color:var(--text-dim);margin-bottom:4px;">English</div><div style="font-size:14px;color:var(--text);">${v.en||'-'}</div></div>
-    ${v.root?`<div style="font-size:12px;color:var(--text-dim);margin-bottom:16px;">词根: ${v.root}</div>`:''}
-    <button id="wordPopupAddBtn" data-wid="${v.id}" style="width:100%;padding:10px;background:${inWB?'var(--bg-elev)':'var(--primary)'};color:${inWB?'var(--text-dim)':'#0a0e17'};border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;" ${inWB?'disabled':''}>${inWB?'✅ 已在生词本':'📚 加入生词本'}</button>`;
+    cardHTML += `<div style="margin-bottom:10px;"><div style="font-size:12px;color:var(--text-dim);margin-bottom:2px;">IPA</div><div style="font-size:14px;color:var(--text);">${v.ipa||'/'}</div></div>
+    <div style="margin-bottom:10px;"><div style="font-size:12px;color:var(--text-dim);margin-bottom:2px;">中文</div><div style="font-size:15px;color:var(--primary);font-weight:600;">${v.cn}</div></div>
+    <div style="margin-bottom:10px;"><div style="font-size:12px;color:var(--text-dim);margin-bottom:2px;">English</div><div style="font-size:13px;color:var(--text);">${v.en||'-'}</div></div>
+    ${v.root?`<div style="font-size:11px;color:var(--text-dim);margin-bottom:12px;">词根: ${v.root}</div>`:''}
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;padding:8px;background:var(--bg-elev);border-radius:8px;">
+      <input type="checkbox" id="wbCheck" ${inWB?'checked disabled':''} style="width:16px;height:16px;cursor:pointer;">
+      <label for="wbCheck" style="font-size:13px;color:var(--text);cursor:pointer;">加入生词本</label>
+    </div>
+    <button id="wordPopupQueryBtn" data-word="${word}" style="width:100%;padding:8px;background:var(--info);color:#fff;border:none;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;margin-bottom:8px;">🔍 查询更多（三语）</button>
+    <button id="wordPopupAddBtn" data-wid="${wid}" style="width:100%;padding:10px;background:${inWB?'var(--bg-elev)':'var(--primary)'};color:${inWB?'var(--text-dim)':'#0a0e17'};border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;" ${inWB?'disabled':''}>${inWB?'✅ 已在生词本':'📚 加入生词本'}</button>`;
   } else {
-    cardHTML += `<div style="text-align:center;padding:20px 0;"><div style="font-size:36px;margin-bottom:12px;">🔍</div><div style="font-size:14px;color:var(--text-dim);margin-bottom:8px;">「${word}」未收录</div><div style="font-size:12px;color:var(--text-dim);">可手动添加到词汇库</div></div>`;
+    cardHTML += `<div style="text-align:center;padding:20px 0;"><div style="font-size:36px;margin-bottom:12px;">🔍</div><div style="font-size:14px;color:var(--text-dim);margin-bottom:8px;">「${word}」未收录</div><div style="font-size:12px;color:var(--text-dim);margin-bottom:12px;">可手动添加到词汇库</div>
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;padding:8px;background:var(--bg-elev);border-radius:8px;">
+      <input type="checkbox" id="wbCheck" style="width:16px;height:16px;cursor:pointer;">
+      <label for="wbCheck" style="font-size:13px;color:var(--text);cursor:pointer;">加入生词本</label>
+    </div>
+    <button id="wordPopupQueryBtn" data-word="${word}" style="width:100%;padding:8px;background:var(--info);color:#fff;border:none;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;margin-bottom:8px;">🔍 查询更多（三语）</button>
+    <button id="wordPopupAddBtn" data-wid="${clean}" style="width:100%;padding:10px;background:var(--primary);color:#0a0e17;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;">📚 加入生词本</button></div>`;
   }
   
   cardHTML += `</div>`;
   overlay.innerHTML = cardHTML;
+  document.body.appendChild(overlay);
   
-  // 事件绑定（避免内联onclick）
+  // 事件绑定（必须在appendChild之后！）
+  const closeBtn = document.getElementById('wordPopupClose');
+  if(closeBtn){
+    closeBtn.addEventListener('click', closeWordPopup);
+    closeBtn.addEventListener('touchend', (e)=>{e.preventDefault();closeWordPopup();});
+  }
+  
+  const addBtn = document.getElementById('wordPopupAddBtn');
+  if(addBtn) addBtn.addEventListener('click',()=>{
+    const wid = addBtn.dataset.wid;
+    addToWBFromPopup(wid);
+    const cb = document.getElementById('wbCheck');
+    if(cb) cb.checked = true;
+  });
+  
+  const queryBtn = document.getElementById('wordPopupQueryBtn');
+  if(queryBtn) queryBtn.addEventListener('click',()=>{
+    const w = queryBtn.dataset.word;
+    doWordQuery(w);
+  });
+  
   overlay.addEventListener('click',(e)=>{
     if(e.target===overlay) closeWordPopup();
   });
-  const closeBtn = document.getElementById('wordPopupClose');
-  if(closeBtn) closeBtn.addEventListener('click',closeWordPopup);
-  const addBtn = document.getElementById('wordPopupAddBtn');
-  if(addBtn) addBtn.addEventListener('click',()=>addToWBFromPopup(addBtn.dataset.wid));
-  
+}
+
+function doWordQuery(word){
+  const overlay = document.createElement('div');
+  overlay.id = 'wordQueryOverlay';
+  overlay.style.cssText = 'position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.7);z-index:10000;display:flex;align-items:center;justify-content:center;padding:16px;';
+  overlay.innerHTML = `<div style="background:var(--bg-card);border-radius:16px;padding:20px;max-width:400px;width:100%;border:1px solid var(--border);max-height:90vh;overflow-y:auto;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+      <div style="font-size:16px;font-weight:700;color:var(--primary);">🔍 "${word}" 三语查询</div>
+      <button onclick="document.getElementById('wordQueryOverlay').remove()" style="background:none;border:none;color:var(--text-dim);font-size:20px;cursor:pointer;">✕</button>
+    </div>
+    <div id="queryResult" style="font-size:13px;color:var(--text);">
+      <div style="text-align:center;padding:20px;">⏳ 查询中...</div>
+    </div>
+  </div>`;
   document.body.appendChild(overlay);
+  
+  const clean = word.toLowerCase().replace(/[^a-z]/g,'');
+  let v = vocabDB[clean] || vocabDB[word.toLowerCase()];
+  let resultHtml = '';
+  
+  if(v){
+    resultHtml += `<div style="margin-bottom:12px;padding:10px;background:var(--bg-elev);border-radius:8px;">
+      <div style="font-size:14px;font-weight:600;color:var(--primary);margin-bottom:4px;">${word}</div>
+      <div style="font-size:12px;color:var(--text-dim);">IPA: ${v.ipa||'/'}</div>
+    </div>`;
+    resultHtml += `<div style="margin-bottom:12px;"><div style="font-size:12px;color:var(--text-dim);margin-bottom:4px;">🇨🇳 中文</div><div style="font-size:15px;color:var(--text);font-weight:600;">${v.cn}</div></div>`;
+    resultHtml += `<div style="margin-bottom:12px;"><div style="font-size:12px;color:var(--text-dim);margin-bottom:4px;">🇬🇧 English</div><div style="font-size:14px;color:var(--text);">${v.en||'-'}</div></div>`;
+    resultHtml += `<div style="margin-bottom:12px;"><div style="font-size:12px;color:var(--text-dim);margin-bottom:4px;">🇮🇩 Bahasa Indonesia</div><div style="font-size:14px;color:var(--text);">${word} (原始形式)</div></div>`;
+    if(v.root) resultHtml += `<div style="font-size:11px;color:var(--text-dim);margin-top:8px;">词根: ${v.root}</div>`;
+  } else {
+    resultHtml += `<div style="text-align:center;padding:20px;"><div style="font-size:36px;margin-bottom:12px;">📖</div><div style="font-size:14px;color:var(--text-dim);">该词汇暂未收录详细信息</div><div style="font-size:12px;color:var(--text-dim);margin-top:8px;">建议通过"词汇录入"功能添加</div></div>`;
+  }
+  
+  document.getElementById('queryResult').innerHTML = resultHtml;
 }
 
 function closeWordPopup(){
