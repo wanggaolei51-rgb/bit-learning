@@ -12,7 +12,7 @@
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh}
 .app{display:flex;min-height:100vh}
-.sidebar{width:260px;background:var(--bg-elev);border-right:1px solid var(--border);display:flex;flex-direction:column;position:fixed;height:100vh;z-index:100;transition:transform .3s}
+.sidebar{width:260px;background:var(--bg-elev);border-right:1px solid var(--border);display:flex;flex-direction:column;position:fixed;height:100vh;z-index:100;transition:transform .3s;overflow-y:auto;scrollbar-width:none;-ms-overflow-style:none}
 .sidebar-header{padding:22px 18px;border-bottom:1px solid var(--border);text-align:center}
 .sidebar-header h1{font-size:18px;color:var(--primary);font-weight:700}
 .sidebar-header .ver{font-size:11px;color:var(--text-dim);margin-top:4px}
@@ -47,7 +47,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
 .cal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
 .cal-header h3{font-size:16px;color:var(--primary);margin:0}
 .cal-nav{background:var(--bg-elev);border:1px solid var(--border);color:var(--text);padding:5px 12px;border-radius:6px;cursor:pointer;font-size:13px}
-.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;text-align:center}
+.sidebar::-webkit-scrollbar{display:none}.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;text-align:center}
 .cal-wd{font-size:11px;color:var(--text-dim);padding:8px 2px;font-weight:600}
 .cal-day{padding:8px 2px;border-radius:8px;cursor:pointer;font-size:13px;transition:all .15s;min-height:52px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--bg-elev);border:1px solid transparent}
 .cal-day:hover{background:rgba(0,212,170,.1);border-color:rgba(0,212,170,.25)}
@@ -1625,39 +1625,13 @@ function speak(text,lang){if(!window.speechSynthesis){showToast("不支持语音
 function showToast(msg){const t=document.getElementById("toast");t.innerText=msg;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),2500);}
 
 function updateStats(){
-  // 累计新词（去重）
-  const allNew = new Set();
-  const allRev = new Set();
-  Object.values(learningHistory).forEach(h => {
-    if(h.vocabNew) h.vocabNew.forEach(w => allNew.add(w));
-    if(h.vocabReview) h.vocabReview.forEach(w => allRev.add(w));
-  });
-  const sNew = allNew.size;
-  const sRev = allRev.size;
-  const sTotal = Object.keys(vocabDB).length;
-  
-  // 连续学习天数
-  const dates = Object.keys(learningHistory).sort();
-  let streak = 0;
-  const today = new Date().toISOString().slice(0,10);
-  const yesterday = new Date(Date.now()-86400000).toISOString().slice(0,10);
-  if(dates.includes(today)) streak = 1;
-  else if(dates.includes(yesterday)) streak = 1;
-  let checkDate = new Date(Date.now()-(streak?0:86400000));
-  while(true){
-    const ds = checkDate.toISOString().slice(0,10);
-    if(!dates.includes(ds)) break;
-    const hasActivity = learningHistory[ds] && (learningHistory[ds].vocabNew.length||learningHistory[ds].vocabReview.length||learningHistory[ds].translations);
-    if(!hasActivity) break;
-    streak++;
-    checkDate = new Date(checkDate.getTime()-86400000);
-  }
-  
+  const sNew=Object.values(learningHistory).reduce((a,h)=>a+h.vocabNew.length,0);
+  const sRev=Object.values(learningHistory).reduce((a,h)=>a+h.vocabReview.length,0);
+  const sTotal=Object.keys(vocabDB).length;
   const e1=document.getElementById("s-new");if(e1)e1.innerText=sNew;
   const e2=document.getElementById("s-rev");if(e2)e2.innerText=sRev;
   const e3=document.getElementById("s-total");if(e3)e3.innerText=sTotal;
-  const e4=document.getElementById("sidebar-streak");if(e4)e4.innerText=streak;
-  const e5=document.getElementById("sidebar-today");if(e5)e5.innerText=today;
+  const e4=document.getElementById("sidebar-today");if(e4)e4.innerText=new Date().toISOString().slice(0,10);
 }
 
 document.addEventListener("DOMContentLoaded",()=>{
@@ -1744,35 +1718,32 @@ function loginMember(username, password) {
   
   // 检查已注册的会员
   const members = getAllMembers();
-  const member = members[username];
-  
-  if (!member) {
-    showToast('❌ 账号不存在，请先注册'); return false;
+  if (members[username]) {
+    if (members[username].password === password) {
+      const expiry = members[username].expiry;
+      if (expiry && new Date(expiry) < new Date()) {
+        showToast('❌ 会员账号已过期'); return false;
+      }
+      memberInfo = { 
+        username: username, 
+        type: 'member', 
+        isAdmin: false, 
+        trialStart: null, 
+        trialEnd: null, 
+        paidStart: new Date().toISOString().slice(0,10), 
+        paidEnd: expiry, 
+        clickCount: 0,
+        note: members[username].note || ''
+      };
+      saveMember(); 
+      showToast(`✅ 会员 ${username} 登录成功`); 
+      return true;
+    } else {
+      showToast('❌ 密码错误'); return false;
+    }
   }
   
-  if (member.password !== password) {
-    showToast('❌ 密码错误，请检查大小写和特殊字符'); return false;
-  }
-  
-  const expiry = member.expiry;
-  if (expiry && new Date(expiry) < new Date()) {
-    showToast('❌ 会员账号已过期'); return false;
-  }
-  
-  memberInfo = { 
-    username: username, 
-    type: 'member', 
-    isAdmin: false, 
-    trialStart: null, 
-    trialEnd: null, 
-    paidStart: new Date().toISOString().slice(0,10), 
-    paidEnd: expiry, 
-    clickCount: 0,
-    note: member.note || ''
-  };
-  saveMember(); 
-  showToast(`✅ 会员 ${username} 登录成功`); 
-  return true;
+  showToast('❌ 账号不存在'); return false;
 }
 
 function applyTrial() {
@@ -1867,7 +1838,7 @@ function renderMemberManage(c) {
       <div><div style="font-size:11px;color:var(--text-dim);margin-bottom:4px;">账号</div>
         <input type="text" id="newMemberUser" placeholder="用户名" style="width:100%;padding:8px;background:var(--bg);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:13px;"></div>
       <div><div style="font-size:11px;color:var(--text-dim);margin-bottom:4px;">密码</div>
-        <input type="password" id="newMemberPass" placeholder="密码" style="width:100%;padding:8px;background:var(--bg);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:13px;"></div>
+        <input type="text" id="newMemberPass" placeholder="密码" style="width:100%;padding:8px;background:var(--bg);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:13px;"></div>
       <div><div style="font-size:11px;color:var(--text-dim);margin-bottom:4px;">时限</div>
         <input type="date" id="newMemberExpiry" style="width:100%;padding:8px;background:var(--bg);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:13px;"></div>
       <div><div style="font-size:11px;color:var(--text-dim);margin-bottom:4px;">备注</div>
@@ -2575,21 +2546,24 @@ const topicData = {
         "icon": "🏛️",
         "words": 160,
         "time": 60,
-        "content": "Selamat pagi, Bapak/Ibu Menteri. Perkenalkan, nama saya [Nama], General Manager PT [Nama Perusahaan] yang beroperasi di kawasan industri Morowali, Sulawesi Tengah. Perusahaan kami bergerak di bidang pengolahan nikel dari hulu hingga hilir, mulai dari tambang, smelter, hingga produksi baterai lithium. Kami sangat bersemangat untuk berdiskusi dengan pemerintah daerah mengenai rencana pengembangan berkelanjutan. Selama beberapa tahun terakhir, perusahaan kami telah berkembang pesat dan saat ini mempekerjakan lebih dari sepuluh ribu karyawan. Kami berharap dapat bersinergi dengan pemerintah untuk menciptakan lapangan kerja yang lebih luas. Terima kasih atas kesempatan untuk bertemu dan berbicara langsung dengan Bapak/Ibu hari ini. Saya yakin kerja sama ini akan berjalan dengan baik."
+        "content": "Selamat pagi, Bapak/Ibu Menteri. Perkenalkan, nama saya [Nama], General Manager PT [Nama Perusahaan] yang beroperasi di kawasan industri Morowali, Sulawesi Tengah. Perusahaan kami bergerak di bidang pengolahan nikel dari hulu hingga hilir, mulai dari tambang, smelter, hingga produksi baterai lithium. Kami sangat bersemangat untuk berdiskusi dengan pemerintah daerah mengenai rencana pengembangan berkelanjutan. Selama beberapa tahun terakhir, perusahaan kami telah berkembang pesat dan saat ini mempekerjakan lebih dari sepuluh ribu karyawan. Kami berharap dapat bersinergi dengan pemerintah untuk menciptakan lapangan kerja yang lebih luas. Terima kasih atas kesempatan untuk bertemu dan berbicara langsung dengan Bapak/Ibu hari ini. Saya yakin kerja sama ini akan berjalan dengan baik.",
+        "trans": "早上好，部长先生/女士。请允许我自我介绍，我叫[姓名]，是位于中苏拉威西莫罗瓦利工业园区的PT[公司名称]的总经理。我们公司从事从上游到下游的镍加工业务，从矿山、冶炼厂到锂电池生产。我们非常期待与地方政府讨论可持续发展计划。在过去几年里，我们公司发展迅速，目前雇佣了一万多名员工。我们希望与政府协同合作，创造更广泛的就业机会。感谢您今天给我与先生/女士直接会面和交谈的机会。我相信这次合作将会顺利进行。"
       },
       {
         "title": "日常同事见面（工厂晨会）",
         "icon": "🏭",
         "words": 140,
         "time": 55,
-        "content": "Selamat pagi, rekan-rekan sekalian. Semoga kita semua dalam keadaan sehat dan bersemangat untuk bekerja hari ini. Seperti yang sudah kita diskusikan dalam rapat kemarin, proyek pembangunan smelter baru akan segera berjalan dan kita perlu berkumpul lagi pukul sepuluh untuk membahas timeline yang lebih detail. Selama proses ini, saya ingin kita semua berpikir kreatif dan berusaha mencari solusi terbaik agar proyek ini dapat berjalan lancar. Jika ada rekan yang ingin bertanya atau berdiskusi, jangan ragu untuk menghampiri saya. Mari kita bersama-sama mewujudkan target produksi! Semangat pagi!"
+        "content": "Selamat pagi, rekan-rekan sekalian. Semoga kita semua dalam keadaan sehat dan bersemangat untuk bekerja hari ini. Seperti yang sudah kita diskusikan dalam rapat kemarin, proyek pembangunan smelter baru akan segera berjalan dan kita perlu berkumpul lagi pukul sepuluh untuk membahas timeline yang lebih detail. Selama proses ini, saya ingin kita semua berpikir kreatif dan berusaha mencari solusi terbaik agar proyek ini dapat berjalan lancar. Jika ada rekan yang ingin bertanya atau berdiskusi, jangan ragu untuk menghampiri saya. Mari kita bersama-sama mewujudkan target produksi! Semangat pagi!",
+        "trans": "早上好，各位同事。祝愿我们大家身体健康，精神饱满地投入今天的工作。正如我们在昨天的会议中讨论的那样，新冶炼厂建设项目即将启动，我们需要在十点再次集合，讨论更详细的时间表。在这个过程中，我希望我们大家都能发挥创造性思维，努力寻找最佳解决方案，使这个项目能够顺利进行。如果有同事想要提问或讨论，请随时来找我。让我们一起实现生产目标！早上好！"
       },
       {
         "title": "与下属/员工打招呼（简短指令）",
         "icon": "👷",
         "words": 130,
         "time": 50,
-        "content": "Halo, teman-teman! Selamat pagi. Saya senang melihat kalian semua hadir tepat waktu dan siap untuk bekerja. Hari ini, tim maintenance harus berkumpul di gudang peralatan pukul delapan untuk melakukan inspeksi rutin. Saya harap kalian berpikir matang sebelum memutuskan apa pun yang berkaitan dengan keselamatan kerja. Selama bertugas, jangan lupa untuk selalu berkomunikasi dengan rekan sejawat dan bertanya jika ada hal yang kurang jelas. Proses produksi harus berjalan sesuai prosedur standar, dan kita semua perlu berusaha keras untuk menjaga kualitas produk tetap prima. Terima kasih atas dedikasi kalian. Mari kita mulai!"
+        "content": "Halo, teman-teman! Selamat pagi. Saya senang melihat kalian semua hadir tepat waktu dan siap untuk bekerja. Hari ini, tim maintenance harus berkumpul di gudang peralatan pukul delapan untuk melakukan inspeksi rutin. Saya harap kalian berpikir matang sebelum memutuskan apa pun yang berkaitan dengan keselamatan kerja. Selama bertugas, jangan lupa untuk selalu berkomunikasi dengan rekan sejawat dan bertanya jika ada hal yang kurang jelas. Proses produksi harus berjalan sesuai prosedur standar, dan kita semua perlu berusaha keras untuk menjaga kualitas produk tetap prima. Terima kasih atas dedikasi kalian. Mari kita mulai!",
+        "trans": "大家好！早上好。我很高兴看到你们所有人都准时到达并准备好工作。今天，维护团队必须在八点前往工具仓库集合，进行例行检查。我希望你们在做出任何与工作安全相关的决定之前都能深思熟虑。在值班期间，别忘了始终与同事沟通，如果有不清楚的事情要提问。生产流程必须按照标准程序运行，我们所有人都需要努力工作，保持产品质量一流。感谢你们的奉献。让我们开始吧！"
       },
       {
         "title": "商务会议与合作伙伴/供应商",
@@ -2813,8 +2787,7 @@ function renderTopicDetail(c, ds, topicInfo) {
     // === Day 3: Speeches ===
     html += `<div style="background:rgba(59,130,246,.06);border-radius:10px;padding:16px;margin-bottom:16px;border:1px solid var(--border)"><div style="font-size:15px;color:var(--info);font-weight:700;margin-bottom:12px">🎤 第三阶段：演讲+复习 (Day 3/3)</div>`;
     topic.speeches.forEach((sp, spi) => {
-      const spSafe = sp.content.replace(/'/g, "\'");
-      html += `<div style="margin-bottom:14px;border:1px solid var(--border);border-radius:10px;overflow:hidden"><div style="background:var(--bg-elev);padding:10px 14px;display:flex;align-items:center;gap:8px"><span style="font-size:18px">${sp.icon}</span><div><div style="font-size:14px;font-weight:600;color:var(--text)">${sp.title}</div><div style="font-size:11px;color:var(--text-dim)">${sp.words}词 · ${sp.time}秒</div></div><button onclick="speakIndonesian('${spSafe}')" style="margin-left:auto;background:none;border:none;color:var(--primary);cursor:pointer;font-size:16px;" title="朗读">🔊</button></div><div style="padding:14px;font-size:13px;line-height:1.8;color:var(--text);background:var(--bg-card);border-radius:0 0 8px 8px">${wrapClickableWords(sp.content)}</div>${sp.trans ? `<div style="padding:8px 14px;font-size:12px;color:var(--text-dim);background:rgba(0,212,170,.05);border-top:1px solid var(--border)">🇨🇳 ${sp.trans}</div>` : ''}</div>`;
+      html += `<div style="margin-bottom:14px;border:1px solid var(--border);border-radius:10px;overflow:hidden"><div style="background:var(--bg-elev);padding:10px 14px;display:flex;align-items:center;gap:8px"><span style="font-size:18px">${sp.icon}</span><div><div style="font-size:14px;font-weight:600;color:var(--text)">${sp.title}</div><div style="font-size:11px;color:var(--text-dim)">${sp.words}词 · ${sp.time}秒</div></div></div><div style="padding:14px;font-size:13px;line-height:1.8;color:var(--text);background:var(--bg-card);border-radius:0 0 8px 8px">${wrapClickableWords(sp.content)}</div></div>`;
     });
     html += `<div style="margin-top:16px;padding:12px;background:rgba(34,197,94,.08);border-radius:8px;border:1px solid rgba(34,197,94,.3)"><div style="font-size:13px;color:var(--success)">✅ 恭喜！已完成三天综合学习！</div><div style="font-size:12px;color:var(--text-dim);margin-top:6px">建议：使用「百词斩」检测掌握程度，使用「艾宾浩斯复习」巩固记忆。</div></div>`;
     html += `</div>`;
@@ -2857,8 +2830,7 @@ function renderTopicDetail(c, ds, topicInfo) {
       const s = topic.scenes[i];
       html += `<div style="background:var(--bg-elev);border-radius:10px;padding:16px;margin-bottom:12px;border:1px solid var(--border)"><div style="display:flex;align-items:center;gap:8px;margin-bottom:10px"><span style="font-size:18px">${s.icon}</span><strong style="color:var(--primary);font-size:14px">${s.title}</strong></div>`;
       s.dialogue.forEach(d => {
-        const dSafe = d.text.replace(/'/g, "\'");
-        html += `<div style="display:flex;gap:10px;margin:8px 0;padding:8px;background:var(--bg-card);border-radius:6px"><div style="font-weight:700;color:var(--primary);min-width:30px;font-size:12px">${d.speaker}:</div><div style="flex:1"><div style="font-size:13px;color:var(--text)">${wrapClickableWords(d.text)}</div><div style="font-size:11px;color:var(--text-dim);margin-top:3px;border-left:2px solid var(--primary-dim);padding-left:6px">${d.trans || ''}</div></div><button onclick="speakIndonesian('${dSafe}')" style="background:none;border:none;color:var(--primary);cursor:pointer;font-size:14px;padding:2px;" title="朗读">🔊</button></div>`;
+        html += `<div style="display:flex;gap:10px;margin:8px 0;padding:8px;background:var(--bg-card);border-radius:6px"><div style="font-weight:700;color:var(--primary);min-width:30px;font-size:12px">${d.speaker}:</div><div style="flex:1"><div style="font-size:13px;color:var(--text)">${wrapClickableWords(d.text)}</div><div style="font-size:11px;color:var(--text-dim);margin-top:3px;border-left:2px solid var(--primary-dim);padding-left:6px">${d.trans}</div></div></div>`;
       });
       html += `</div>`;
     }
@@ -2994,7 +2966,6 @@ function stopVoiceInput() {
 
 function sendAIChat(text) {
   if(!text || !text.trim()) return;
-  text = text.trim();
   
   const chatArea = document.getElementById('aiChatArea');
   if(!chatArea) return;
@@ -3003,100 +2974,25 @@ function sendAIChat(text) {
   chatArea.innerHTML += `<div style="display:flex;justify-content:flex-end;margin:8px 0;"><div style="background:var(--primary);color:#0a0e17;padding:8px 12px;border-radius:12px 12px 0 12px;max-width:80%;font-size:13px;">${text}</div></div>`;
   chatArea.scrollTop = chatArea.scrollHeight;
   
-  // 显示加载中
-  const loadingId = 'ai-loading-' + Date.now();
-  chatArea.innerHTML += `<div id="${loadingId}" style="display:flex;justify-content:flex-start;margin:8px 0;"><div style="background:var(--bg-elev);color:var(--text);padding:8px 12px;border-radius:12px 12px 12px 0;max-width:80%;font-size:13px;border:1px solid var(--border);"><div style="font-size:11px;color:var(--primary);margin-bottom:2px;">🤖 AI Assistant</div>⏳ 思考中...</div></div>`;
-  chatArea.scrollTop = chatArea.scrollHeight;
-  
-  // 智能回复逻辑
-  const lowerText = text.toLowerCase();
-  
-  // 1. 检查是否是单词查询
-  const cleanWord = text.replace(/[^a-zA-Z]/g, '').toLowerCase();
-  let vocabMatch = vocabDB[cleanWord];
-  if(!vocabMatch && text.length < 20){
-    // 尝试前缀查找
-    const prefixes = ['me','meng','meny','men','mem','ber','be','di','ter','pe','peng','peny','pen','pem','se'];
-    for(const p of prefixes){
-      if(cleanWord.startsWith(p) && cleanWord.length > p.length + 2){
-        const root = cleanWord.slice(p.length);
-        if(vocabDB[root]){ vocabMatch = vocabDB[root]; break; }
-      }
-    }
-  }
-  
-  if(vocabMatch){
-    const reply = `Kata "${text}" dalam Bahasa Indonesia:
-• Arti: ${vocabMatch.cn}
-• English: ${vocabMatch.en || '-'}
-• IPA: ${vocabMatch.ipa || '/'}
-• ${vocabMatch.root ? 'Asal kata: ' + vocabMatch.root : ''}`.trim();
-    showAIReply(reply, text, loadingId);
-    return;
-  }
-  
-  // 2. 使用翻译API获取印尼语回复
-  const q = encodeURIComponent(text);
-  fetch(`https://api.mymemory.translated.net/get?q=${q}&langpair=zh-CN|id`)
-    .then(r => r.json())
-    .then(data => {
-      let reply = '';
-      if(data && data.responseData && data.responseData.translatedText){
-        const translated = data.responseData.translatedText;
-        reply = `${translated}
-
-（中文原文：${text}）`;
-      } else {
-        reply = generateAIReply(text);
-      }
-      showAIReply(reply, text, loadingId);
-    })
-    .catch(() => {
-      const reply = generateAIReply(text);
-      showAIReply(reply, text, loadingId);
-    });
-}
-
-function generateAIReply(text){
-  const lower = text.toLowerCase();
-  if(/你好|您好|hi|hello|hey/.test(lower)){
-    return `Halo! Selamat datang! Saya asisten belajar Bahasa Indonesia Anda. Apa yang ingin Anda pelajari hari ini?\n\n（你好！欢迎！我是你的印尼语学习助手。今天你想学什么？）`;
-  }
-  if(/谢谢|terima kasih|thanks/.test(lower)){
-    return `Sama-sama! Senang bisa membantu Anda.\n\n（不客气！很高兴能帮助您。）`;
-  }
-  if(/再见|selamat tinggal|bye|goodbye/.test(lower)){
-    return `Selamat tinggal! Semoga harimu menyenangkan!\n\n（再见！祝您有愉快的一天！）`;
-  }
-  if(/名字|nama|name/.test(lower)){
-    return `Nama saya LEO-BIR Assistant. Saya di sini untuk membantu Anda belajar Bahasa Indonesia.\n\n（我的名字是LEO-BIR助手。我在这里帮助您学习印尼语。）`;
-  }
-  if(/怎么|如何|bagaimana|how/.test(lower)){
-    return `Bagaimana cara mengucapkannya? Mari kita latih bersama-sama!\n\n（怎么发音？让我们一起练习！）`;
-  }
-  return `Baik, saya mengerti. Mari kita lanjutkan belajar Bahasa Indonesia bersama-sama. Anda bisa bertanya tentang kosakata atau percakapan.
-
-（好的，我明白了。让我们一起继续学习印尼语。您可以询问词汇或对话。）`;
-}
-
-function showAIReply(reply, userText, loadingId){
-  const chatArea = document.getElementById('aiChatArea');
-  if(!chatArea) return;
-  
-  const loadingEl = document.getElementById(loadingId);
-  if(loadingEl) loadingEl.remove();
-  
-  const safeReply = reply.replace(/'/g, "\'");
-  chatArea.innerHTML += `<div style="display:flex;justify-content:flex-start;margin:8px 0;"><div style="background:var(--bg-elev);color:var(--text);padding:8px 12px;border-radius:12px 12px 12px 0;max-width:80%;font-size:13px;border:1px solid var(--border);"><div style="font-size:11px;color:var(--primary);margin-bottom:2px;">🤖 AI Assistant</div><div style="white-space:pre-line;">${reply}</div><button onclick="speakIndonesian('${safeReply.split('\n')[0]}')" style="background:none;border:none;color:var(--primary);cursor:pointer;font-size:12px;padding:2px;margin-left:4px;" title="朗读印尼语">🔊</button></div></div>`;
-  chatArea.scrollTop = chatArea.scrollHeight;
-  
-  // 自动朗读（只朗读印尼语部分）
-  const idPart = reply.split('（')[0].trim();
-  if(idPart) speakIndonesian(idPart);
-  
-  if(typeof aiChatHistory !== 'undefined'){
-    aiChatHistory.push({user: userText, ai: reply});
-  }
+  // 模拟AI回复（实际使用时需要调用后端API）
+  setTimeout(() => {
+    const responses = [
+      'Baik, saya mengerti. Mari kita lanjutkan belajar Bahasa Indonesia.',
+      'Terima kasih! Anda sudah berbicara dengan baik dalam Bahasa Indonesia.',
+      'Bagus sekali! Pertanyaan Anda sangat menarik.',
+      'Mari kita latih pengucapan kata ini: ' + text.split(' ').slice(0,3).join(' '),
+      'Saya senang bisa membantu Anda belajar Bahasa Indonesia.'
+    ];
+    const reply = responses[Math.floor(Math.random() * responses.length)];
+    
+    chatArea.innerHTML += `<div style="display:flex;justify-content:flex-start;margin:8px 0;"><div style="background:var(--bg-elev);color:var(--text);padding:8px 12px;border-radius:12px 12px 12px 0;max-width:80%;font-size:13px;border:1px solid var(--border);"><div style="font-size:11px;color:var(--primary);margin-bottom:2px;">🤖 AI Assistant</div>${reply}<button onclick="speakIndonesian('${reply.replace(/'/g, "\'")}')" style="background:none;border:none;color:var(--primary);cursor:pointer;font-size:12px;padding:2px;margin-left:4px;" title="朗读">🔊</button></div></div>`;
+    chatArea.scrollTop = chatArea.scrollHeight;
+    
+    // 自动朗读AI回复
+    speakIndonesian(reply);
+    
+    aiChatHistory.push({user: text, ai: reply});
+  }, 1000);
 }
 
 function renderAIChat(c) {
@@ -3310,7 +3206,7 @@ function doWordQuery(word){
       <button onclick="document.getElementById('wordQueryOverlay').remove()" style="background:none;border:none;color:var(--text-dim);font-size:20px;cursor:pointer;">✕</button>
     </div>
     <div id="queryResult" style="font-size:13px;color:var(--text);">
-      <div style="text-align:center;padding:20px;">⏳ 正在联网查询...</div>
+      <div style="text-align:center;padding:20px;">⏳ 查询中...</div>
     </div>
   </div>`;
   document.body.appendChild(overlay);
@@ -3328,30 +3224,51 @@ function doWordQuery(word){
     resultHtml += `<div style="margin-bottom:12px;"><div style="font-size:12px;color:var(--text-dim);margin-bottom:4px;">🇬🇧 English</div><div style="font-size:14px;color:var(--text);">${v.en||'-'}</div></div>`;
     resultHtml += `<div style="margin-bottom:12px;"><div style="font-size:12px;color:var(--text-dim);margin-bottom:4px;">🇮🇩 Bahasa Indonesia</div><div style="font-size:14px;color:var(--text);">${word} (原始形式)</div></div>`;
     if(v.root) resultHtml += `<div style="font-size:11px;color:var(--text-dim);margin-top:8px;">词根: ${v.root}</div>`;
+  } else {
+    resultHtml += `<div style="text-align:center;padding:20px;"><div style="font-size:36px;margin-bottom:12px;">📖</div><div style="font-size:14px;color:var(--text-dim);">该词汇暂未收录详细信息</div><div style="font-size:12px;color:var(--text-dim);margin-top:8px;">建议通过"词汇录入"功能添加</div></div>`;
   }
   
-  // 在线查询API - MyMemory
-  const q = encodeURIComponent(word);
-  const id2zh = `https://api.mymemory.translated.net/get?q=${q}&langpair=id|zh-CN`;
-  const zh2id = `https://api.mymemory.translated.net/get?q=${q}&langpair=zh-CN|id`;
-  
-  resultHtml += `<div style="margin-top:16px;border-top:1px solid var(--border);padding-top:12px;"><div style="font-size:12px;font-weight:600;color:var(--primary);margin-bottom:8px;">🌐 在线查询结果</div><div id="onlineResult">查询中...</div></div>`;
   document.getElementById('queryResult').innerHTML = resultHtml;
   
-  // 调用API
-  fetch(id2zh)
-    .then(r => r.json())
-    .then(data => {
+  // 在线查询API - MyMemory (高质量免费翻译)
+  const q = encodeURIComponent(word);
+  const id2zh = `https://api.mymemory.translated.net/get?q=${q}&langpair=id|zh-CN`;
+  const id2en = `https://api.mymemory.translated.net/get?q=${q}&langpair=id|en`;
+  
+  resultHtml += `<div style="margin-top:16px;border-top:1px solid var(--border);padding-top:12px;"><div style="font-size:12px;font-weight:600;color:var(--primary);margin-bottom:8px;">🌐 在线查询结果</div><div id="onlineResult"><div style="text-align:center;padding:12px;"><div style="font-size:24px;margin-bottom:8px;">⏳</div><div style="font-size:12px;color:var(--text-dim);">正在查询中...</div></div></div></div>`;
+  document.getElementById('queryResult').innerHTML = resultHtml;
+  
+  // 同时查询印尼语→中文和印尼语→英文
+  Promise.all([
+    fetch(id2zh).then(r => r.json()).catch(() => null),
+    fetch(id2en).then(r => r.json()).catch(() => null)
+  ])
+    .then(([zhData, enData]) => {
       let html = '';
-      if(data && data.responseData && data.responseData.translatedText){
-        html += `<div style="margin-bottom:8px;padding:8px;background:rgba(59,130,246,.1);border-radius:6px;"><div style="font-size:11px;color:var(--text-dim);">🇮🇩→🇨🇳 印尼语→中文</div><div style="font-size:14px;color:var(--text);font-weight:600;">${data.responseData.translatedText}</div></div>`;
+      let hasResult = false;
+      
+      if(zhData && zhData.responseData && zhData.responseData.translatedText && zhData.responseData.translatedText !== word){
+        html += `<div style="margin-bottom:10px;padding:10px;background:rgba(59,130,246,.1);border-radius:8px;border-left:3px solid var(--info);"><div style="font-size:11px;color:var(--text-dim);margin-bottom:4px;">🇮🇩→🇨🇳 印尼语→中文</div><div style="font-size:15px;color:var(--text);font-weight:600;">${zhData.responseData.translatedText}</div><div style="font-size:10px;color:var(--text-dim);margin-top:4px;">via MyMemory API</div></div>`;
+        hasResult = true;
       }
-      document.getElementById('onlineResult').innerHTML = html || '<div style="color:var(--text-dim);font-size:12px;">暂无在线结果</div>';
+      
+      if(enData && enData.responseData && enData.responseData.translatedText && enData.responseData.translatedText !== word){
+        html += `<div style="margin-bottom:10px;padding:10px;background:rgba(34,197,94,.1);border-radius:8px;border-left:3px solid var(--success);"><div style="font-size:11px;color:var(--text-dim);margin-bottom:4px;">🇮🇩→🇬🇧 印尼语→English</div><div style="font-size:14px;color:var(--text);">${enData.responseData.translatedText}</div></div>`;
+        hasResult = true;
+      }
+      
+      if(!hasResult){
+        html = '<div style="text-align:center;padding:16px;"><div style="font-size:24px;margin-bottom:8px;">📖</div><div style="font-size:13px;color:var(--text-dim);">在线查询暂无结果</div><div style="font-size:11px;color:var(--text-dim);margin-top:4px;">请使用本地词汇库或稍后重试</div></div>';
+      }
+      
+      document.getElementById('onlineResult').innerHTML = html;
     })
     .catch(err => {
-      document.getElementById('onlineResult').innerHTML = '<div style="color:var(--text-dim);font-size:12px;">网络查询失败，请检查网络连接</div>';
+      document.getElementById('onlineResult').innerHTML = '<div style="text-align:center;padding:16px;"><div style="font-size:24px;margin-bottom:8px;">⚠️</div><div style="font-size:13px;color:var(--text-dim);">网络查询失败</div><div style="font-size:11px;color:var(--text-dim);margin-top:4px;">请检查网络连接后重试</div></div>';
     });
-}function closeWordPopup(){
+}
+
+function closeWordPopup(){
   const el = document.getElementById('wordPopupOverlay');
   if(el) el.remove();
 }
