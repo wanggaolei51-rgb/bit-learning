@@ -151,7 +151,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="sidebar-header">
     <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <h1>LEO-BIR</h1>
-    <div class="ver">LEO-BIR V3.0 · 艾宾浩斯增强</div>
+    <div class="ver">LEO-BIR V3.0.3 · 艾宾浩斯增强</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -1660,7 +1660,7 @@ function updateStats(){
   const e1=document.getElementById("s-new");if(e1)e1.innerText=sNew;
   const e2=document.getElementById("s-rev");if(e2)e2.innerText=sRev;
   const e3=document.getElementById("s-total");if(e3)e3.innerText=sTotal;
-  const e4=document.getElementById("sidebar-streak");if(e4)e4.innerText=streak;
+  const e4=document.getElementById("s-streak");if(e4)e4.innerText=streak;
   const e5=document.getElementById("sidebar-today");if(e5)e5.innerText=today;
 }
 
@@ -2949,7 +2949,7 @@ function renderTopicDetail(c, ds, topicInfo) {
       html += `<div style="margin-bottom:14px;border:1px solid var(--border);border-radius:10px;overflow:hidden"><div style="background:var(--bg-elev);padding:10px 14px;display:flex;align-items:center;gap:8px"><span style="font-size:18px">${sc.icon}</span><span style="font-size:14px;font-weight:600;color:var(--text)">${sc.title}</span></div><div style="padding:12px 14px;">`;
       sc.dialogue.forEach(d => {
         const isA = d.speaker === "A";
-        const safeText = d.text.replace(/'/g, "\'");
+        const safeText = d.text.replace(/'/g, "\\'");
         html += `<div style="display:flex;gap:8px;margin:6px 0;${isA ? '' : 'flex-direction:row-reverse'}"><div style="width:28px;height:28px;border-radius:50%;background:${isA ? 'var(--primary)' : 'var(--accent)'};display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#000">${d.speaker}</div><div style="max-width:70%;padding:8px 12px;border-radius:10px;font-size:13px;line-height:1.5;${isA ? 'background:var(--bg-elev);border:1px solid var(--border)' : 'background:rgba(0,212,170,.1);border:1px solid rgba(0,212,170,.2)'}"><div style="color:var(--text);margin-bottom:4px;display:flex;align-items:center;flex-wrap:wrap;">${wrapClickableWords(d.text)}<button onclick="speakIndonesian('${safeText}')" style="background:none;border:none;color:var(--primary);cursor:pointer;font-size:14px;padding:2px 4px;margin-left:4px;" title="朗读印尼语">🔊</button></div><div style="font-size:11px;color:var(--text-dim);border-top:1px solid var(--border);padding-top:4px;margin-top:4px">${d.trans || ''}</div></div></div>`;
       });
       html += `</div></div>`;
@@ -2959,7 +2959,7 @@ function renderTopicDetail(c, ds, topicInfo) {
     // === Day 3: Speeches ===
     html += `<div style="background:rgba(59,130,246,.06);border-radius:10px;padding:16px;margin-bottom:16px;border:1px solid var(--border)"><div style="font-size:15px;color:var(--info);font-weight:700;margin-bottom:12px">🎤 第三阶段：演讲+复习 (Day 3/3)</div>`;
     topic.speeches.forEach((sp, spi) => {
-      const spSafe = sp.content.replace(/'/g, "\'");
+      const spSafe = sp.content.replace(/'/g, "\\'");
       html += `<div style="margin-bottom:14px;border:1px solid var(--border);border-radius:10px;overflow:hidden"><div style="background:var(--bg-elev);padding:10px 14px;display:flex;align-items:center;gap:8px;justify-content:space-between;"><div style="display:flex;align-items:center;gap:8px;"><span style="font-size:18px">${sp.icon}</span><div><div style="font-size:14px;font-weight:600;color:var(--text)">${sp.title}</div><div style="font-size:11px;color:var(--text-dim)">${sp.words}词 · ${sp.time}秒</div></div></div><button onclick="speakIndonesian('${spSafe}')" style="background:none;border:none;color:var(--primary);cursor:pointer;font-size:14px;padding:4px 8px;border-radius:6px;background:rgba(0,212,170,.1);" title="朗读印尼语原文">🔊 朗读</button></div><div style="padding:14px;font-size:13px;line-height:1.8;color:var(--text);background:var(--bg-card);border-radius:0 0 8px 8px"><div style="margin-bottom:8px;">${wrapClickableWords(sp.content)}</div><div style="font-size:12px;color:var(--text-dim);border-top:1px solid var(--border);padding-top:8px;margin-top:8px;">🇨🇳 翻译: ${sp.trans || '翻译加载中...'}</div></div></div>`;
     });
     html += `<div style="margin-top:16px;padding:12px;background:rgba(34,197,94,.08);border-radius:8px;border:1px solid rgba(34,197,94,.3)"><div style="font-size:13px;color:var(--success)">✅ 恭喜！已完成三天综合学习！</div><div style="font-size:12px;color:var(--text-dim);margin-top:6px">建议：使用「百词斩」检测掌握程度，使用「艾宾浩斯复习」巩固记忆。</div></div>`;
@@ -3005,7 +3005,7 @@ function renderTopicDetail(c, ds, topicInfo) {
       const s = topic.scenes[i];
       html += `<div style="background:var(--bg-elev);border-radius:10px;padding:16px;margin-bottom:12px;border:1px solid var(--border)"><div style="display:flex;align-items:center;gap:8px;margin-bottom:10px"><span style="font-size:18px">${s.icon}</span><strong style="color:var(--primary);font-size:14px">${s.title}</strong></div>`;
       s.dialogue.forEach(d => {
-        const dSafe = d.text.replace(/'/g, "\'");
+        const dSafe = d.text.replace(/'/g, "\\'");
         html += `<div style="display:flex;gap:10px;margin:8px 0;padding:8px;background:var(--bg-card);border-radius:6px"><div style="font-weight:700;color:var(--primary);min-width:30px;font-size:12px">${d.speaker}:</div><div style="flex:1"><div style="font-size:13px;color:var(--text);display:flex;align-items:center;flex-wrap:wrap;">${wrapClickableWords(d.text)}<button onclick="speakIndonesian('${dSafe}')" style="background:none;border:none;color:var(--primary);cursor:pointer;font-size:14px;padding:2px 4px;margin-left:4px;" title="朗读">🔊</button></div><div style="font-size:11px;color:var(--text-dim);margin-top:3px;border-left:2px solid var(--primary-dim);padding-left:6px">${d.trans || ''}</div></div></div>`;
       });
       html += `</div>`;
@@ -3015,7 +3015,7 @@ function renderTopicDetail(c, ds, topicInfo) {
     html += `<h3 style="color:var(--primary);margin:16px 0 10px;font-size:15px">🎤 1分钟演讲</h3>`;
     for (let i = 0; i < topic.speeches.length; i++) {
       const sp = topic.speeches[i];
-      html += `<div style="background:var(--bg-elev);border-radius:10px;padding:16px;margin-bottom:12px;border:1px solid var(--border)"><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;justify-content:space-between;"><div style="display:flex;align-items:center;gap:8px;"><span style="font-size:18px">${sp.icon}</span><strong style="color:var(--primary);font-size:14px">${sp.title}</strong></div><button onclick="speakIndonesian('${sp.content.replace(/'/g,"\'")}')" style="background:none;border:none;color:var(--primary);cursor:pointer;font-size:14px;padding:4px 8px;border-radius:6px;background:rgba(0,212,170,.1);" title="朗读印尼语原文">🔊 朗读</button></div><div style="display:flex;gap:8px;margin-bottom:10px;font-size:11px;color:var(--text-dim)"><span style="background:rgba(0,212,170,.1);padding:2px 8px;border-radius:8px">⏱️ ~${sp.time}秒</span><span style="background:rgba(0,212,170,.1);padding:2px 8px;border-radius:8px">📝 ~${sp.words}词</span></div><div style="font-size:13px;line-height:1.8;color:var(--text);background:var(--bg-card);padding:12px;border-radius:8px">${wrapClickableWords(sp.content)}</div><div style="font-size:12px;color:var(--text-dim);border-top:1px solid var(--border);padding-top:8px;margin-top:8px;">🇨🇳 翻译: ${sp.trans || '翻译加载中...'}</div></div>`;
+      html += `<div style="background:var(--bg-elev);border-radius:10px;padding:16px;margin-bottom:12px;border:1px solid var(--border)"><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;justify-content:space-between;"><div style="display:flex;align-items:center;gap:8px;"><span style="font-size:18px">${sp.icon}</span><strong style="color:var(--primary);font-size:14px">${sp.title}</strong></div><button onclick="speakIndonesian('${sp.content.replace(/'/g,"\\'")}')" style="background:none;border:none;color:var(--primary);cursor:pointer;font-size:14px;padding:4px 8px;border-radius:6px;background:rgba(0,212,170,.1);" title="朗读印尼语原文">🔊 朗读</button></div><div style="display:flex;gap:8px;margin-bottom:10px;font-size:11px;color:var(--text-dim)"><span style="background:rgba(0,212,170,.1);padding:2px 8px;border-radius:8px">⏱️ ~${sp.time}秒</span><span style="background:rgba(0,212,170,.1);padding:2px 8px;border-radius:8px">📝 ~${sp.words}词</span></div><div style="font-size:13px;line-height:1.8;color:var(--text);background:var(--bg-card);padding:12px;border-radius:8px">${wrapClickableWords(sp.content)}</div><div style="font-size:12px;color:var(--text-dim);border-top:1px solid var(--border);padding-top:8px;margin-top:8px;">🇨🇳 翻译: ${sp.trans || '翻译加载中...'}</div></div>`;
     }
     html += `<div style="margin-top:16px;padding:12px;background:rgba(34,197,94,.08);border-radius:8px;border:1px solid rgba(34,197,94,.3)"><div style="font-size:13px;color:var(--success)">✅ 完成三天学习！进入复习队列。</div><div style="font-size:12px;color:var(--text-dim);margin-top:6px">建议：使用「能力测试」检测掌握程度，使用「艾宾浩斯复习」巩固记忆。</div></div>`;
   }
@@ -3396,7 +3396,7 @@ function showWordPopup(word){
   overlay.id = 'wordPopupOverlay';
   overlay.style.cssText = 'position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.6);z-index:9998;display:flex;align-items:center;justify-content:center;padding:16px;';
   
-  const inWB = v ? wordBank.some(w=>w.id===v.id||w.id===clean) : false;
+  const inWB = v ? wordBank.some(w=>w.word===v.id||w.id===v.id||w.id===clean) : false;
   const wid = v ? v.id : clean;
   
   let cardHTML = `<div id="wordPopupCard" style="background:var(--bg-card);border-radius:16px;padding:20px;max-width:360px;width:100%;border:1px solid var(--border);box-shadow:var(--shadow);position:relative;z-index:9999;max-height:90vh;overflow-y:auto;">
@@ -3406,32 +3406,56 @@ function showWordPopup(word){
     </div>`;
   
   if(v){
+    // === 已收录单词：直接显示完整信息 ===
     cardHTML += `<div style="margin-bottom:10px;"><div style="font-size:12px;color:var(--text-dim);margin-bottom:2px;">IPA</div><div style="font-size:14px;color:var(--text);">${v.ipa||'/'}</div></div>
     <div style="margin-bottom:10px;"><div style="font-size:12px;color:var(--text-dim);margin-bottom:2px;">中文</div><div style="font-size:15px;color:var(--primary);font-weight:600;">${v.cn}</div></div>
     <div style="margin-bottom:10px;"><div style="font-size:12px;color:var(--text-dim);margin-bottom:2px;">English</div><div style="font-size:13px;color:var(--text);">${v.en||'-'}</div></div>
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;"><button onclick="speakIndonesian('${word.replace(/'/g,"\\'")}')" style="background:none;border:none;color:var(--primary);cursor:pointer;font-size:14px;padding:4px 8px;border-radius:6px;background:rgba(0,212,170,.1);" title="朗读">🔊 朗读</button></div>
     ${v.root?`<div style="font-size:11px;color:var(--text-dim);margin-bottom:12px;">词根: ${v.root}</div>`:''}
-    <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;padding:8px;background:var(--bg-elev);border-radius:8px;">
-      <input type="checkbox" id="wbCheck" ${inWB?'checked disabled':''} style="width:16px;height:16px;cursor:pointer;">
-      <label for="wbCheck" style="font-size:13px;color:var(--text);cursor:pointer;">加入生词本</label>
-    </div>
-    <button id="wordPopupQueryBtn" data-word="${word}" style="width:100%;padding:8px;background:var(--info);color:#fff;border:none;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;margin-bottom:8px;">🔍 查询更多（三语）</button>
     <button id="wordPopupAddBtn" data-wid="${wid}" style="width:100%;padding:10px;background:${inWB?'var(--bg-elev)':'var(--primary)'};color:${inWB?'var(--text-dim)':'#0a0e17'};border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;" ${inWB?'disabled':''}>${inWB?'✅ 已在生词本':'📚 加入生词本'}</button>`;
   } else {
-    cardHTML += `<div style="text-align:center;padding:20px 0;"><div style="font-size:36px;margin-bottom:12px;">🔍</div><div style="font-size:14px;color:var(--text-dim);margin-bottom:8px;">「${word}」未收录</div><div style="font-size:12px;color:var(--text-dim);margin-bottom:12px;">可在线查询或手动录入</div>
-    <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;padding:8px;background:var(--bg-elev);border-radius:8px;">
-      <input type="checkbox" id="wbCheck" style="width:16px;height:16px;cursor:pointer;">
-      <label for="wbCheck" style="font-size:13px;color:var(--text);cursor:pointer;">加入生词本</label>
-    </div>
-    <button id="wordPopupQueryBtn" data-word="${word}" style="width:100%;padding:8px;background:var(--info);color:#fff;border:none;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;margin-bottom:8px;">🔍 查询更多（三语）</button>
-    <button id="wordPopupInputBtn" data-word="${word}" style="width:100%;padding:8px;background:var(--accent);color:#0a0e17;border:none;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;margin-bottom:8px;">📝 录入词汇</button>
-    <button id="wordPopupAddBtn" data-wid="${clean}" data-word="${word}" style="width:100%;padding:10px;background:var(--primary);color:#0a0e17;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;">📚 加入生词本</button></div>`;
+    // === 未收录单词：显示加载中，后台自动查询 ===
+    cardHTML += `<div style="text-align:center;padding:20px 0;"><div style="font-size:36px;margin-bottom:12px;">🔍</div><div style="font-size:14px;color:var(--text-dim);margin-bottom:8px;">「${word}」未收录</div><div id="autoQueryStatus" style="font-size:12px;color:var(--primary);margin-bottom:12px;">⏳ 正在在线查询...</div>
+    <div id="autoQueryResult" style="margin-bottom:12px;"></div>
+    <button id="wordPopupInputBtn" data-word="${word}" style="width:100%;padding:8px;background:var(--accent);color:#0a0e17;border:none;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;margin-bottom:8px;">📝 手动录入词汇</button></div>`;
+    
+    // 后台自动查询
+    setTimeout(()=>{
+      Promise.all([gTrans(word,'id','zh-CN'),gTrans(word,'id','en')]).then(([zhText,enText])=>{
+        const statusEl = document.getElementById('autoQueryStatus');
+        const resultEl = document.getElementById('autoQueryResult');
+        if(!statusEl || !resultEl) return;
+        
+        if(zhText || enText){
+          statusEl.innerText = '✅ 查询成功，已自动加入生词本';
+          statusEl.style.color = 'var(--success)';
+          let rh = '';
+          if(zhText) rh += `<div style="margin-bottom:8px;padding:10px;background:rgba(59,130,246,.1);border-radius:8px;"><div style="font-size:11px;color:var(--text-dim);">🇮🇩→🇨🇳</div><div style="font-size:15px;color:var(--text);font-weight:600;">${zhText}</div></div>`;
+          if(enText) rh += `<div style="margin-bottom:8px;padding:10px;background:rgba(34,197,94,.1);border-radius:8px;"><div style="font-size:11px;color:var(--text-dim);">🇮🇩→🇬🇧</div><div style="font-size:14px;color:var(--text);">${enText}</div></div>`;
+          resultEl.innerHTML = rh;
+          
+          // 自动加入生词本
+          if(!wordBank.some(w=>w.word===word)){
+            wordBank.push({id:word,word:word,zh:zhText||word,en:enText||'',ipa:'—',root:'—',passed:{},addTime:Date.now()});
+            saveWB();
+            updateStats();
+          }
+        } else {
+          statusEl.innerText = '⚠️ 在线查询无结果，请手动录入';
+          statusEl.style.color = 'var(--accent)';
+        }
+      }).catch(()=>{
+        const statusEl = document.getElementById('autoQueryStatus');
+        if(statusEl){ statusEl.innerText = '⚠️ 查询失败，请手动录入'; statusEl.style.color = 'var(--accent)'; }
+      });
+    }, 100);
   }
   
   cardHTML += `</div>`;
   overlay.innerHTML = cardHTML;
   document.body.appendChild(overlay);
   
-  // 事件绑定（必须在appendChild之后！）
+  // 事件绑定
   const closeBtn = document.getElementById('wordPopupClose');
   if(closeBtn){
     closeBtn.addEventListener('click', closeWordPopup);
@@ -3442,14 +3466,6 @@ function showWordPopup(word){
   if(addBtn) addBtn.addEventListener('click',()=>{
     const wid = addBtn.dataset.wid;
     addToWBFromPopup(wid);
-    const cb = document.getElementById('wbCheck');
-    if(cb) cb.checked = true;
-  });
-  
-  const queryBtn = document.getElementById('wordPopupQueryBtn');
-  if(queryBtn) queryBtn.addEventListener('click',()=>{
-    const w = queryBtn.dataset.word;
-    doWordQuery(w);
   });
   
   const inputBtn = document.getElementById('wordPopupInputBtn');
@@ -3457,10 +3473,7 @@ function showWordPopup(word){
     const w = inputBtn.dataset.word;
     closeWordPopup();
     navigate('input');
-    setTimeout(()=>{
-      const vInput = document.getElementById('vInput');
-      if(vInput) vInput.value = w;
-    }, 300);
+    setTimeout(()=>{ const vInput=document.getElementById('vInput'); if(vInput) vInput.value=w; }, 300);
   });
   
   overlay.addEventListener('click',(e)=>{
