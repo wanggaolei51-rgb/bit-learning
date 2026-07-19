@@ -2931,7 +2931,9 @@ function renderTopicDetail(c, ds, topicInfo) {
     });
     html += `</div></div>`;
     html += `<h3 style="color:var(--primary);margin:16px 0 10px;font-size:15px">🎯 话题核心词汇</h3><div class="word-grid">`;
-    const keyWords1 = ["bertemu","berdiskusi","berjumpa","berkumpul","berbicara","berkerja","berjalan","bersemangat","berusaha","berpikir","bersama-sama","berkembang","beroperasi","berkelanjutan","berharap","bersinergi","berkaitan","berkomunikasi","berlibur","bermain","berdagang","berencana"];
+    const keyWords1 = topicInfo.topic === "directions" 
+      ? ["lurus","belok","kanan","kiri","depan","belakang","atas","bawah","jalan","peta","tunjuk","jauh","dekat","lokasi","posisi","arah","tujuan","dari","ke","di","sini","sana","situ","sebelah","perempatan","pertigaan","gerbang","pelabuhan","bandara","terminal","hotel"]
+      : ["bertemu","berdiskusi","berjumpa","berkumpul","berbicara","berkerja","berjalan","bersemangat","berusaha","berpikir","bersama-sama","berkembang","beroperasi","berkelanjutan","berharap","bersinergi","berkaitan","berkomunikasi","berlibur","bermain","berdagang","berencana"];
     keyWords1.forEach(w => {
       const key = Object.keys(vocabDB).find(k => k.toLowerCase() === w.toLowerCase());
       if (key) {
@@ -2983,7 +2985,9 @@ function renderTopicDetail(c, ds, topicInfo) {
     html += `</div></div>`;
     // Show key vocabulary for this topic
     html += `<h3 style="color:var(--primary);margin:16px 0 10px;font-size:15px">🎯 话题核心词汇</h3><div class="word-grid">`;
-    const keyWords = ["bertemu","berdiskusi","berjumpa","berkumpul","berbicara","berkerja","berjalan","bersemangat","berusaha","berpikir","bersama-sama","berkembang","beroperasi","berkelanjutan","berharap","bersinergi","berkaitan","berkomunikasi","berlibur","bermain","berdagang","berencana"];
+    const keyWords = topicInfo.topic === "directions"
+      ? ["lurus","belok","kanan","kiri","depan","belakang","atas","bawah","jalan","peta","tunjuk","jauh","dekat","lokasi","posisi","arah","tujuan","dari","ke","di","sini","sana","situ","sebelah","perempatan","pertigaan","gerbang","pelabuhan","bandara","terminal","hotel"]
+      : ["bertemu","berdiskusi","berjumpa","berkumpul","berbicara","berkerja","berjalan","bersemangat","berusaha","berpikir","bersama-sama","berkembang","beroperasi","berkelanjutan","berharap","bersinergi","berkaitan","berkomunikasi","berlibur","bermain","berdagang","berencana"];
     keyWords.forEach(w => {
       const key = Object.keys(vocabDB).find(k => k.toLowerCase() === w.toLowerCase());
       if (key) {
@@ -3011,7 +3015,7 @@ function renderTopicDetail(c, ds, topicInfo) {
     html += `<h3 style="color:var(--primary);margin:16px 0 10px;font-size:15px">🎤 1分钟演讲</h3>`;
     for (let i = 0; i < topic.speeches.length; i++) {
       const sp = topic.speeches[i];
-      html += `<div style="background:var(--bg-elev);border-radius:10px;padding:16px;margin-bottom:12px;border:1px solid var(--border)"><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><span style="font-size:18px">${sp.icon}</span><strong style="color:var(--primary);font-size:14px">${sp.title}</strong></div><div style="display:flex;gap:8px;margin-bottom:10px;font-size:11px;color:var(--text-dim)"><span style="background:rgba(0,212,170,.1);padding:2px 8px;border-radius:8px">⏱️ ~${sp.time}秒</span><span style="background:rgba(0,212,170,.1);padding:2px 8px;border-radius:8px">📝 ~${sp.words}词</span></div><div style="font-size:13px;line-height:1.8;color:var(--text);background:var(--bg-card);padding:12px;border-radius:8px">${wrapClickableWords(sp.content)}</div></div>`;
+      html += `<div style="background:var(--bg-elev);border-radius:10px;padding:16px;margin-bottom:12px;border:1px solid var(--border)"><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><span style="font-size:18px">${sp.icon}</span><strong style="color:var(--primary);font-size:14px">${sp.title}</strong></div><div style="display:flex;gap:8px;margin-bottom:10px;font-size:11px;color:var(--text-dim)"><span style="background:rgba(0,212,170,.1);padding:2px 8px;border-radius:8px">⏱️ ~${sp.time}秒</span><span style="background:rgba(0,212,170,.1);padding:2px 8px;border-radius:8px">📝 ~${sp.words}词</span></div><div style="font-size:13px;line-height:1.8;color:var(--text);background:var(--bg-card);padding:12px;border-radius:8px">${wrapClickableWords(sp.content)}</div><div style="display:flex;align-items:center;gap:8px;margin-top:8px;padding-top:8px;border-top:1px solid var(--border);"><button onclick="speakIndonesian('${sp.content.replace(/'/g,"\'")}')" style="background:none;border:none;color:var(--primary);cursor:pointer;font-size:14px;padding:2px 4px;" title="朗读全文">🔊 朗读</button><span style="font-size:12px;color:var(--text-dim);">${sp.trans || '翻译加载中...'}</span></div></div>`;
     }
     html += `<div style="margin-top:16px;padding:12px;background:rgba(34,197,94,.08);border-radius:8px;border:1px solid rgba(34,197,94,.3)"><div style="font-size:13px;color:var(--success)">✅ 完成三天学习！进入复习队列。</div><div style="font-size:12px;color:var(--text-dim);margin-top:6px">建议：使用「能力测试」检测掌握程度，使用「艾宾浩斯复习」巩固记忆。</div></div>`;
   }
