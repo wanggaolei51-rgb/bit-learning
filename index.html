@@ -165,7 +165,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
       <div class="stat-card" onclick="location.hash='wordbank'">
         <div class="num" id="s-total">0</div><div class="lab">累计</div>
       </div>
-      <div class="stat-card">
+      <div class="stat-card" onclick="showCultivationInfo()" style="cursor:pointer;" title="点击查看修仙等级">
         <div class="num" id="s-streak">1</div><div class="lab">连续天数</div>
       </div>
     </div>
@@ -1785,6 +1785,127 @@ function getCultivationBadge() {
   
   svg += `</svg>`;
   return svg;
+}
+
+function showCultivationInfo() {
+  const info = getCultivationInfo();
+  const c = document.getElementById('appContent');
+  if (!c) return;
+  
+  // 计算升级进度
+  let nextLevelInfo = null;
+  let progressPercent = 0;
+  let progressText = '';
+  
+  if (memberInfo && memberInfo.loginTime) {
+    const loginTime = new Date(memberInfo.loginTime);
+    const now = new Date();
+    const hoursPassed = Math.floor((now - loginTime) / 3600000);
+    const currentLevel = Math.min(Math.floor(hoursPassed / 24) + 1, 15);
+    const hoursInCurrentLevel = hoursPassed % 24;
+    progressPercent = Math.round((hoursInCurrentLevel / 24) * 100);
+    
+    if (currentLevel < 15) {
+      const nextLevelName = CULTIVATION_LEVELS[currentLevel].name;
+      const hoursRemaining = 24 - hoursInCurrentLevel;
+      nextLevelInfo = { name: nextLevelName, hoursRemaining };
+      progressText = `已修炼 ${hoursPassed} 小时，当前第 ${hoursInCurrentLevel}/24 小时`;
+    } else {
+      progressText = '已达到最高境界 · 道主';
+      progressPercent = 100;
+    }
+  } else {
+    progressText = '尚未开始修炼，登录后激活修仙等级';
+  }
+  
+  // 生成等级列表 HTML
+  let levelsHtml = '';
+  CULTIVATION_LEVELS.forEach((lvl, idx) => {
+    const levelNum = idx + 1;
+    const isCurrent = levelNum === info.level;
+    const isPast = levelNum < info.level;
+    const isFuture = levelNum > info.level;
+    
+    let statusIcon = isCurrent ? '⚡' : (isPast ? '✅' : '○');
+    let opacity = isCurrent ? '1' : (isPast ? '0.6' : '0.3');
+    let borderColor = isCurrent ? lvl.color : 'var(--border)';
+    let bgStyle = isCurrent ? `background:rgba(0,212,170,.08);border-left:3px solid ${lvl.color}` : '';
+    
+    // 花瓣图案
+    const petalCount = ((levelNum - 1) % 5) + 1;
+    let flowerIcon = '●';
+    if (petalCount >= 2) flowerIcon = '❀';
+    if (petalCount >= 5) flowerIcon = '✿';
+    
+    levelsHtml += `
+      <div style="padding:10px 14px;margin-bottom:6px;border-radius:8px;border:1px solid ${borderColor};opacity:${opacity};${bgStyle};display:flex;align-items:center;gap:10px;"
+           onmouseenter="this.style.opacity='1'" onmouseleave="this.style.opacity='${opacity}'">
+        <div style="font-size:16px;width:24px;text-align:center">${statusIcon}</div>
+        <div style="flex:1">
+          <div style="font-size:13px;font-weight:600;color:${isCurrent ? lvl.color : 'var(--text)'};">${levelNum}. ${lvl.name}</div>
+          <div style="font-size:11px;color:var(--text-dim)">第 ${Math.floor((levelNum-1)/5)+1} 周期 · ${flowerIcon} ${petalCount}瓣</div>
+        </div>
+        <div style="font-size:11px;color:var(--text-dim)">${levelNum * 24}h</div>
+      </div>
+    `;
+  });
+  
+  c.innerHTML = `
+    <div class="card">
+      <div class="card-header" style="flex-wrap:wrap;gap:8px;">
+        <h2>🎋 修仙等级</h2>
+        <span class="badge" style="background:${info.color}20;color:${info.color}">${info.level > 0 ? info.name : '凡人'}</span>
+      </div>
+      <div style="padding:16px;">
+        
+        <!-- 当前等级信息 -->
+        <div style="background:var(--bg-elev);border-radius:12px;padding:20px;margin-bottom:20px;text-align:center;border:1px solid var(--border);">
+          <div style="font-size:48px;margin-bottom:8px">${getCultivationBadge()}</div>
+          <div style="font-size:24px;font-weight:700;color:${info.color};margin-bottom:4px;text-shadow:${info.glow}">${info.name}</div>
+          <div style="font-size:13px;color:var(--text-dim);margin-bottom:12px">${info.level > 0 ? '第 ' + info.level + ' 级' : '未激活'}</div>
+          
+          <!-- 进度条 -->
+          <div style="background:var(--bg-card);border-radius:8px;height:8px;overflow:hidden;margin-bottom:8px;">
+            <div style="background:${info.color};width:${progressPercent}%;height:100%;transition:width .3s;box-shadow:${info.glow}"></div>
+          </div>
+          <div style="font-size:12px;color:var(--text-dim)">${progressText}</div>
+          
+          ${nextLevelInfo ? `<div style="margin-top:12px;padding:10px;background:rgba(0,212,170,.06);border-radius:8px;font-size:13px;color:var(--primary)">⏱️ 距 ${nextLevelInfo.name} 还需 ${nextLevelInfo.hoursRemaining} 小时</div>` : ''}
+        </div>
+        
+        <!-- 升级规则说明 -->
+        <div style="margin-bottom:20px;">
+          <div style="font-size:14px;font-weight:600;color:var(--primary);margin-bottom:10px">📜 升级规则</div>
+          <div style="font-size:13px;color:var(--text);line-height:1.8;background:var(--bg-elev);border-radius:10px;padding:14px;border:1px solid var(--border);">
+            • 自登录之时起，每修炼 <strong>24 小时</strong> 自动升一级<br>
+            • 共 <strong>15 个境界</strong>，从凡人直至道主<br>
+            • 每 <strong>5 级</strong> 为一个周期，花瓣成花后重置<br>
+            • 花瓣数随等级递增（1→2→3→4→5→花→1→...）<br>
+            • 颜色随境界提升逐步华丽：灰→白→绿→青→蓝→紫→粉→红→橙→金→亮金→白金→紫金→彩虹→七彩
+          </div>
+        </div>
+        
+        <!-- 等级列表 -->
+        <div>
+          <div style="font-size:14px;font-weight:600;color:var(--primary);margin-bottom:10px">📋 境界全览</div>
+          <div style="max-height:400px;overflow-y:auto;padding-right:4px;">${levelsHtml}</div>
+        </div>
+        
+      </div>
+    </div>
+  `;
+  
+  // 更新页面标题
+  const t = document.getElementById('pageTitle');
+  if (t) t.innerText = '🎋 修仙等级';
+  currentRoute = 'cultivation';
+  updateNav();
+  
+  // 移动端关闭侧边栏
+  const sidebar = document.getElementById('sidebar');
+  if (sidebar && window.innerWidth <= 768) sidebar.classList.remove('open');
+  
+  window.scrollTo(0, 0);
 }
 
 function getMemberDisplay() {
