@@ -711,7 +711,7 @@ function render(){
   }
   window.scrollTo(0,0);
 }
-function updateNav(){document.querySelectorAll(".nav-list li").forEach(li=>{li.classList.toggle("active",li.dataset.route===currentRoute)}); const s=getMemberStatus(); const mb=document.getElementById("memberBadge");if(mb){mb.style.background=s.color+"20";mb.style.color=s.color;mb.textContent=s.label;} const hmb=document.getElementById("homeMemberBadge");if(hmb){hmb.style.background=s.color+"20";hmb.style.color=s.color;hmb.textContent=s.label;}}
+function updateNav(){document.querySelectorAll(".nav-list li").forEach(li=>{li.classList.toggle("active",li.dataset.route===currentRoute)}); const s=getMemberDisplay(); const mb=document.getElementById("memberBadge");if(mb){mb.style.background=s.color+"20";mb.style.color=s.color;mb.innerHTML=s.label;} const hmb=document.getElementById("homeMemberBadge");if(hmb){hmb.style.background=s.color+"20";hmb.style.color=s.color;hmb.innerHTML=s.label;}}
 
 function renderHome(c){
   const today=new Date().toISOString().slice(0,10),td=learningHistory[today],tdn=td?td.vocabNew.length:0;
@@ -834,7 +834,7 @@ function clearWB(){if(!checkAccess("清空"))return;if(!confirm("清空?"))retur
 
 function renderDailyQuiz(c) {
   const today = new Date().toISOString().slice(0,10);
-  const tc = topicCalendar.find(t => t.date === today);
+  const tc = topicCalendar[today] || Object.values(topicCalendar).find(t => t.date === today);
   
   if (!tc) {
     c.innerHTML = `<div class="card"><div class="card-header"><h2>🎯 今日课时测试</h2></div><div style="padding:20px;text-align:center;color:var(--text-dim);">今日没有安排课程</div></div>`;
@@ -877,7 +877,7 @@ function renderDailyQuiz(c) {
   
   quizState = {q: 0, correct: 0, total: questions.length, done: 0, questions};
   
-  c.innerHTML = `<div class="card"><div class="card-header"><h2>🎯 ${tc.date} 课时测试 · ${topic.title || tc.topic}</h2><span class="badge">${questions.length}题</span></div><div id="quizArea" style="padding:16px;"></div></div>`;
+  c.innerHTML = `<div class="card"><div class="card-header"><h2>🎯 ${today} 课时测试 · ${topic.title || tc.topic}</h2><span class="badge">${questions.length}题</span></div><div id="quizArea" style="padding:16px;"></div></div>`;
   showQuizQ();
 }
 
@@ -1714,11 +1714,89 @@ function getMemberStatus() {
   checkMemberExpiry();
   if (!memberInfo || !memberInfo.type || memberInfo.type === 'expired') return { valid: false, label: '非会员', color: 'var(--danger)' };
   if (memberInfo.isAdmin) return { valid: true, label: '超级管理员', color: 'var(--accent)' };
-  if (memberInfo.type === 'trial')
   if (memberInfo.type === 'trial') { const h = Math.max(0, Math.floor((new Date(memberInfo.trialEnd) - new Date()) / 3600000)); return { valid: true, label: `试用(${h}h)`, color: 'var(--info)' }; }
   if (memberInfo.type === 'paid') { const d = Math.max(0, Math.floor((new Date(memberInfo.paidEnd) - new Date()) / 86400000)); return { valid: true, label: `年费(${d}天)`, color: 'var(--success)' }; }
+  if (memberInfo.type === 'member') { const d = memberInfo.paidEnd ? Math.max(0, Math.floor((new Date(memberInfo.paidEnd) - new Date()) / 86400000)) : '∞'; return { valid: true, label: `会员(${d}天)`, color: 'var(--primary)' }; }
   return { valid: false, label: '非会员', color: 'var(--danger)' };
 }
+// ===== 修仙等级系统 =====
+const CULTIVATION_LEVELS = [
+  {name: '凡人', color: '#888888', glow: 'none'},
+  {name: '炼气', color: '#e5e7eb', glow: '0 0 5px #e5e7eb'},
+  {name: '筑基', color: '#22c55e', glow: '0 0 8px #22c55e'},
+  {name: '金丹', color: '#06b6d4', glow: '0 0 10px #06b6d4'},
+  {name: '元婴', color: '#3b82f6', glow: '0 0 12px #3b82f6'},
+  {name: '化神', color: '#8b5cf6', glow: '0 0 15px #8b5cf6'},
+  {name: '炼虚', color: '#ec4899', glow: '0 0 15px #ec4899'},
+  {name: '合体', color: '#ef4444', glow: '0 0 18px #ef4444'},
+  {name: '大乘', color: '#f97316', glow: '0 0 18px #f97316'},
+  {name: '渡劫', color: '#f59e0b', glow: '0 0 20px #f59e0b'},
+  {name: '真仙', color: '#ffd700', glow: '0 0 22px #ffd700'},
+  {name: '金仙', color: '#c0c0c0', glow: '0 0 22px #c0c0c0'},
+  {name: '太乙', color: '#a855f7', glow: '0 0 25px #a855f7'},
+  {name: '大罗', color: 'linear-gradient(90deg,#ff0000,#ff7f00,#ffff00,#00ff00,#0000ff,#4b0082,#9400d3)', glow: '0 0 30px rgba(255,255,255,0.5)'},
+  {name: '道主', color: '#ffffff', glow: '0 0 40px rgba(255,255,255,0.8)'}
+];
+
+function getCultivationInfo() {
+  if (!memberInfo || !memberInfo.loginTime) return { level: 0, name: '凡人', color: '#888888', petals: 1, cycle: 0 };
+  const loginTime = new Date(memberInfo.loginTime);
+  const now = new Date();
+  const hoursPassed = Math.floor((now - loginTime) / 3600000);
+  const level = Math.min(Math.floor(hoursPassed / 24) + 1, 15);
+  const cycleLevel = ((level - 1) % 5) + 1; // 1-5 within each cycle
+  const cycle = Math.floor((level - 1) / 5); // 0, 1, 2
+  const info = CULTIVATION_LEVELS[level - 1];
+  return { level, name: info.name, color: info.color, glow: info.glow, petals: cycleLevel, cycle };
+}
+
+function getCultivationBadge() {
+  const info = getCultivationInfo();
+  if (info.level <= 0) return '';
+  
+  // Generate flower SVG
+  const petalCount = info.petals;
+  const isDaoMaster = info.level >= 15;
+  const isDaluo = info.level >= 14;
+  
+  let svg = `<svg width="32" height="32" viewBox="0 0 32 32" style="vertical-align:middle;margin-left:4px;">`;
+  
+  // Draw petals
+  for (let i = 0; i < petalCount; i++) {
+    const angle = (360 / petalCount) * i - 90;
+    const rad = angle * Math.PI / 180;
+    const x = 16 + 8 * Math.cos(rad);
+    const y = 16 + 8 * Math.sin(rad);
+    svg += `<circle cx="${x}" cy="${y}" r="3" fill="${isDaluo ? 'url(#rainbow)' : info.color}" opacity="0.9"/>`;
+  }
+  
+  // Center
+  svg += `<circle cx="16" cy="16" r="${petalCount >= 5 ? 5 : 4}" fill="${isDaoMaster ? '#fff' : info.color}" stroke="${isDaoMaster ? 'gold' : 'none'}" stroke-width="${isDaoMaster ? 1 : 0}"/>`;
+  
+  // Level number in center for small petals
+  if (petalCount < 5) {
+    svg += `<text x="16" y="18" text-anchor="middle" fill="#000" font-size="8" font-weight="bold">${info.level}</text>`;
+  }
+  
+  // Rainbow gradient for 大罗
+  if (isDaluo) {
+    svg += `<defs><linearGradient id="rainbow" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#ff0000"/><stop offset="16%" stop-color="#ff7f00"/><stop offset="33%" stop-color="#ffff00"/><stop offset="50%" stop-color="#00ff00"/><stop offset="66%" stop-color="#0000ff"/><stop offset="83%" stop-color="#4b0082"/><stop offset="100%" stop-color="#9400d3"/></linearGradient></defs>`;
+  }
+  
+  svg += `</svg>`;
+  return svg;
+}
+
+function getMemberDisplay() {
+  const base = getMemberStatus();
+  const cult = getCultivationInfo();
+  if (!base.valid) return base;
+  
+  const badge = getCultivationBadge();
+  const label = `${base.label} · ${cult.name}${badge}`;
+  return { ...base, label, cultivation: cult };
+}
+
 function checkAccess(action) {
   if (isMemberValid()) return true;
   memberInfo.clickCount = (memberInfo.clickCount || 0) + 1;
@@ -1748,7 +1826,7 @@ function loginMember(username, password) {
   
   // 超级管理员
   if (username === 'Chinarenwgl' && password === 'Youlu@123') {
-    memberInfo = { username: 'Chinarenwgl', type: 'admin', isAdmin: true, trialStart: null, trialEnd: null, paidStart: null, paidEnd: null, clickCount: 0 };
+    memberInfo = { username: 'Chinarenwgl', type: 'admin', isAdmin: true, trialStart: null, trialEnd: null, paidStart: null, paidEnd: null, clickCount: 0, loginTime: new Date().toISOString() };
     saveMember(); showToast('✅ 超级管理员登录成功'); return true;
   }
   
@@ -1778,7 +1856,8 @@ function loginMember(username, password) {
     paidStart: new Date().toISOString().slice(0,10), 
     paidEnd: expiry, 
     clickCount: 0,
-    note: member.note || ''
+    note: member.note || '',
+    loginTime: new Date().toISOString()
   };
   saveMember(); 
   showToast(`✅ 会员 ${username} 登录成功`); 
@@ -1787,7 +1866,7 @@ function loginMember(username, password) {
 
 function applyTrial() {
   const now = new Date(); const end = new Date(now.getTime() + 24 * 3600000);
-  memberInfo = { ...memberInfo, type: 'trial', trialStart: now.toISOString(), trialEnd: end.toISOString(), clickCount: 0 };
+  memberInfo = { ...memberInfo, type: 'trial', trialStart: now.toISOString(), trialEnd: end.toISOString(), clickCount: 0, loginTime: now.toISOString() };
   saveMember(); showToast('✅ 试用会员已激活，24小时'); navigate('member');
 }
 function renderMember(c) {
@@ -3301,7 +3380,57 @@ function renderAbout(c){
 }
 
 function renderVersion(c){
-  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录</h2><span class="badge">V2.7</span></div>
+  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录</h2><span class="badge">V3.0.4</span></div>
+    <div style="padding:16px;">
+      <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
+        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V3.0.4 (2026-07-19)</div>
+        <div style="font-size:13px;color:var(--text);line-height:1.8">
+        • 修复课时测试无法运行: topicCalendar对象访问方式错误<br>
+        • 修复会员登录后右上角不显示: 新增'member'类型状态处理<br>
+        • 新增修仙等级系统: 每24小时自动升级，15级至道主<br>
+        • 修仙花瓣勋章: 每级花瓣数递增，每5级成花，颜色随等级变化<br>
+        • 版本记录同步更新至V3.0.4
+        </div>
+      </div>
+      <div style="margin-bottom:14px;padding:14px;background:var(--bg-elev);border-radius:10px;border-left:3px solid var(--accent)">
+        <div style="font-size:15px;font-weight:700;color:var(--accent);margin-bottom:6px">V3.0.3 (2026-07-19)</div>
+        <div style="font-size:13px;color:var(--text);line-height:1.8">
+        • 修复连续学习天数统计逻辑错误<br>
+        • 修复朗读只能播放一次: 增加speechSynthesis.cancel()+resume()<br>
+        • 修复课时测试点击无反应: HTML属性转义错误\'→&#39;<br>
+        • 删除showQuizQ重复定义3处，保留唯一函数
+        </div>
+      </div>
+      <div style="margin-bottom:14px;padding:14px;background:var(--bg-elev);border-radius:10px;border-left:3px solid var(--accent)">
+        <div style="font-size:15px;font-weight:700;color:var(--accent);margin-bottom:6px">V3.0.2 (2026-07-19)</div>
+        <div style="font-size:13px;color:var(--text);line-height:1.8">
+        • AI对话翻译API: MyMemory→Google Translate(gTrans)<br>
+        • 演讲朗读按钮移至标题行<br>
+        • C3话题(directions)专用词汇录入
+        </div>
+      </div>
+      <div style="margin-bottom:14px;padding:14px;background:var(--bg-elev);border-radius:10px;border-left:3px solid var(--accent)">
+        <div style="font-size:15px;font-weight:700;color:var(--accent);margin-bottom:6px">V3.0.1 (2026-07-19)</div>
+        <div style="font-size:13px;color:var(--text);line-height:1.8">
+        • 修复朗读转义错误导致点击无反应<br>
+        • 修复连续学习天数DOM ID不匹配<br>
+        • 重构showWordPopup: 已收录/未收录分流处理<br>
+        • 版本同步更新至V3.0.3
+        </div>
+      </div>
+      <div style="margin-bottom:14px;padding:14px;background:var(--bg-elev);border-radius:10px;border-left:3px solid var(--accent)">
+        <div style="font-size:15px;font-weight:700;color:var(--accent);margin-bottom:6px">V3.0 (2026-07-19)</div>
+        <div style="font-size:13px;color:var(--text);line-height:1.8">
+        • 单词弹窗关闭按钮修复<br>
+        • 在线单词查询接入真实翻译API<br>
+        • 演讲短文补充完整中文翻译<br>
+        • 会员登录密码验证修复<br>
+        • 学习统计去重修复<br>
+        • 语音朗读按钮全面添加<br>
+        • 左侧导航栏滚动条修复<br>
+        • showQuizQ函数补入
+        </div>
+      </div>
     <div style="padding:16px;">
       <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
         <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V2.7 (2026-07-17)</div>
