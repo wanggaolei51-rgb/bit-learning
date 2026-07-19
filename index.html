@@ -3182,14 +3182,11 @@ function sendAIChat(text) {
     return;
   }
   
-  // 2. 使用翻译API获取印尼语回复
-  const q = encodeURIComponent(text);
-  fetch(`https://api.mymemory.translated.net/get?q=${q}&langpair=zh-CN|id`)
-    .then(r => r.json())
-    .then(data => {
+  // 2. 使用gTrans翻译获取印尼语回复
+  gTrans(text, 'zh-CN', 'id')
+    .then(translated => {
       let reply = '';
-      if(data && data.responseData && data.responseData.translatedText){
-        const translated = data.responseData.translatedText;
+      if(translated && translated !== text){
         reply = `${translated}
 
 （中文原文：${text}）`;
