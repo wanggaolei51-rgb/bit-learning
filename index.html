@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<title>LEO-BIR V3.0.3</title>
+<title>LEO-BIR V4.0</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -151,7 +151,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="sidebar-header">
     <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <h1>LEO-BIR</h1>
-    <div class="ver">LEO-BIR V3.0.3 · 艾宾浩斯增强</div>
+    <div class="ver">LEO-BIR V4.0 · 全面词缀梳理</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -1775,70 +1775,159 @@ let wordStats = JSON.parse(localStorage.getItem("bir_ws3") || "{}");
 
 // ===== 词根射击游戏数据 =====
 const PREFIX_DATA = {
-  'ber': { label: 'ber-前缀', desc: '表示"拥有/处于某种状态/做某事"', roots: [
-    {root: 'jalan', full: 'berjalan', cn: '行走'}, {root: 'diskusi', full: 'berdiskusi', cn: '讨论'},
-    {root: 'kumpul', full: 'berkumpul', cn: '聚集'}, {root: 'pikir', full: 'berpikir', cn: '思考'},
-    {root: 'usaha', full: 'berusaha', cn: '努力'}, {root: 'tanya', full: 'bertanya', cn: '提问'},
-    {root: 'semangat', full: 'bersemangat', cn: '有精神'}, {root: 'kerja', full: 'berkerja', cn: '工作'},
-    {root: 'operasi', full: 'beroperasi', cn: '运营'}, {root: 'kelanjutan', full: 'berkelanjutan', cn: '持续'}
-  ]},
-  'me': { label: 'me-前缀', desc: '表示"使动/做某事"', roots: [
-    {root: 'lakukan', full: 'melakukan', cn: '执行'}, {root: 'cari', full: 'mencari', cn: '寻找'},
-    {root: 'miliki', full: 'memiliki', cn: '拥有'}, {root: 'wujudkan', full: 'mewujudkan', cn: '实现'},
-    {root: 'hampiri', full: 'menghampiri', cn: '接近'}, {root: 'temani', full: 'menemani', cn: '陪伴'},
-    {root: 'genai', full: 'mengenai', cn: '关于'}, {root: 'bahas', full: 'membahas', cn: '讨论'},
-    {root: 'siapkan', full: 'menyiapkan', cn: '准备'}, {root: 'genal', full: 'mengenal', cn: '认识'}
-  ]},
-  'mem': { label: 'mem-前缀', desc: 'me- + p开头的词根', roots: [
-    {root: 'bahas', full: 'membahas', cn: '讨论'}, {root: 'perkenal', full: 'memperkenalkan', cn: '介绍'},
+  // ==== me- 主动语态前缀组（按词根首字母变体）====
+  'mem-': { label: 'mem- (p/b/f)', desc: 'me- + p/b/f 开头的词根 → mem-', roots: [
+    {root: 'baca', full: 'membaca', cn: '读'}, {root: 'buat', full: 'membuat', cn: '制作'},
+    {root: 'bantu', full: 'membantu', cn: '帮助'}, {root: 'bayar', full: 'membayar', cn: '支付'},
+    {root: 'foto', full: 'memfoto', cn: '拍照'}, {root: 'perbaiki', full: 'memperbaiki', cn: '修理'},
+    {root: 'percaya', full: 'mempercayai', cn: '相信'}, {root: 'perkenal', full: 'memperkenalkan', cn: '介绍'},
     {root: 'punyai', full: 'mempunyai', cn: '拥有'}, {root: 'produksi', full: 'memproduksi', cn: '生产'},
-    {root: 'perbaiki', full: 'memperbaiki', cn: '修理'}, {root: 'percaya', full: 'mempercayai', cn: '相信'}
+    {root: 'perlu', full: 'memerlukan', cn: '需要'}, {root: 'buka', full: 'membuka', cn: '打开'}
   ]},
-  'men': { label: 'men-前缀', desc: 'me- + t/c/d/j开头的词根', roots: [
-    {root: 'hampiri', full: 'menghampiri', cn: '接近'}, {root: 'temani', full: 'menemani', cn: '陪伴'},
-    {root: 'curigai', full: 'mencurigai', cn: '怀疑'}, {root: 'dengar', full: 'mendengar', cn: '听'},
-    {root: 'jawab', full: 'menjawab', cn: '回答'}, {root: 'ulis', full: 'menulis', cn: '写'}
+  'men-': { label: 'men- (t/c/d/j)', desc: 'me- + t/c/d/j 开头的词根 → men-', roots: [
+    {root: 'ulis', full: 'menulis', cn: '写'}, {root: 'dengar', full: 'mendengar', cn: '听'},
+    {root: 'jawab', full: 'menjawab', cn: '回答'}, {root: 'jual', full: 'menjual', cn: '卖'},
+    {root: 'cari', full: 'mencari', cn: '寻找'}, {root: 'curi', full: 'mencuri', cn: '偷'},
+    {root: 'tangkap', full: 'menangkap', cn: '抓'}, {root: 'tari', full: 'menari', cn: '跳舞'},
+    {root: 'dapat', full: 'mendapat', cn: '获得'}, {root: 'cuci', full: 'mencuci', cn: '洗'},
+    {root: 'jelas', full: 'menjelaskan', cn: '解释'}, {root: 'temu', full: 'menemukan', cn: '发现'}
   ]},
-  'meng': { label: 'meng-前缀', desc: 'me- + k/g/h开头的词根', roots: [
-    {root: 'genai', full: 'mengenai', cn: '关于'}, {root: 'gambar', full: 'menggambar', cn: '画画'},
-    {root: 'hormat', full: 'menghormat', cn: '尊敬'}, {root: 'gunakan', full: 'menggunakan', cn: '使用'},
-    {root: 'ubah', full: 'mengubah', cn: '改变'}, {root: 'irim', full: 'mengirim', cn: '发送'}
+  'meng-': { label: 'meng- (k/g/h/元音)', desc: 'me- + k/g/h/元音 开头的词根 → meng-', roots: [
+    {root: 'gunakan', full: 'menggunakan', cn: '使用'}, {root: 'gambar', full: 'menggambar', cn: '画画'},
+    {root: 'hormat', full: 'menghormat', cn: '尊敬'}, {root: 'ambil', full: 'mengambil', cn: '拿'},
+    {root: 'ubah', full: 'mengubah', cn: '改变'}, {root: 'irim', full: 'mengirim', cn: '发送'},
+    {root: 'kata', full: 'mengatakan', cn: '说'}, {root: 'ganggu', full: 'mengganggu', cn: '打扰'},
+    {root: 'hitung', full: 'menghitung', cn: '计算'}, {root: 'enal', full: 'mengenal', cn: '认识'},
+    {root: 'operasi', full: 'mengoperasi', cn: '操作'}, {root: 'impor', full: 'mengimpor', cn: '进口'}
   ]},
-  'meny': { label: 'meny-前缀', desc: 'me- + s开头的词根', roots: [
-    {root: 'siapkan', full: 'menyiapkan', cn: '准备'}, {root: 'alurkan', full: 'menyalurkan', cn: '输送'},
-    {root: 'umbang', full: 'menyumbang', cn: '贡献'}, {root: 'ertai', full: 'menyertai', cn: '参加'}
+  'meny-': { label: 'meny- (s)', desc: 'me- + s 开头的词根 → meny-', roots: [
+    {root: 'impan', full: 'menyimpan', cn: '保存'}, {root: 'iap', full: 'menyiapkan', cn: '准备'},
+    {root: 'umbang', full: 'menyumbang', cn: '贡献'}, {root: 'ertai', full: 'menyertai', cn: '参加'},
+    {root: 'alur', full: 'menyalurkan', cn: '输送'}, {root: 'uar', full: 'menyuarkan', cn: '广播'},
+    {root: 'elamat', full: 'menyelamatkan', cn: '拯救'}, {root: 'embuh', full: 'menyembuhkan', cn: '治愈'},
+    {root: 'ebab', full: 'menyebabkan', cn: '导致'}, {root: 'impan', full: 'menyimpan', cn: '储存'}
   ]},
-  'pe': { label: 'pe-前缀', desc: '表示"做某事的人/物"', roots: [
-    {root: 'lajar', full: 'pelajar', cn: '学生'}, {root: 'kerja', full: 'pekerja', cn: '工人'},
-    {root: 'buat', full: 'pembuat', cn: '制造者'}, {root: 'jual', full: 'penjual', cn: '卖家'}
+  'me-': { label: 'me- (l/r/w/y)', desc: 'me- + l/r/w/y 开头的词根 → me-', roots: [
+    {root: 'lakukan', full: 'melakukan', cn: '执行'}, {root: 'rawat', full: 'merawat', cn: '照顾'},
+    {root: 'warna', full: 'mewarnai', cn: '上色'}, {root: 'yakini', full: 'meyakini', cn: '确信'},
+    {root: 'wujud', full: 'mewujudkan', cn: '实现'}, {root: 'lepas', full: 'melepaskan', cn: '释放'},
+    {root: 'rusak', full: 'merusak', cn: '破坏'}, {root: 'lihat', full: 'melihat', cn: '看见'},
+    {root: 'lantik', full: 'melantik', cn: '任命'}, {root: 'rongrong', full: 'merongrong', cn: '侵蚀'}
   ]},
-  'ter': { label: 'ter-前缀', desc: '表示"最/被/意外"', roots: [
+  
+  // ==== pe- 施事者前缀组（按词根首字母变体）====
+  'pem-': { label: 'pem- (p/b/f)', desc: 'pe- + p/b/f 开头的词根 → pem-', roots: [
+    {root: 'buat', full: 'pembuat', cn: '制造者'}, {root: 'bantu', full: 'pembantu', cn: '助手'},
+    {root: 'beli', full: 'pembeli', cn: '买家'}, {root: 'foto', full: 'pemfoto', cn: '摄影师'},
+    {root: 'periksa', full: 'pemeriksa', cn: '检查者'}, {root: 'pungut', full: 'pemungut', cn: '收集者'}
+  ]},
+  'pen-': { label: 'pen- (t/c/d/j)', desc: 'pe- + t/c/d/j 开头的词根 → pen-', roots: [
+    {root: 'ulis', full: 'penulis', cn: '作家'}, {root: 'jual', full: 'penjual', cn: '卖家'},
+    {root: 'dengar', full: 'pendengar', cn: '听众'}, {root: 'cari', full: 'pencari', cn: '搜索者'},
+    {root: 'jara', full: 'penjara', cn: '监狱'}, {root: 'tangkap', full: 'penangkap', cn: '捕捉者'}
+  ]},
+  'peng-': { label: 'peng- (k/g/h/元音)', desc: 'pe- + k/g/h/元音 开头的词根 → peng-', roots: [
+    {root: 'guna', full: 'pengguna', cn: '用户'}, {root: 'gambar', full: 'penggambar', cn: '画家'},
+    {root: 'hormat', full: 'penghormat', cn: '尊敬者'}, {root: 'obat', full: 'pengobat', cn: '治疗者'},
+    {root: 'guna', full: 'penggunaan', cn: '使用'}, {root: 'ikut', full: 'pengikut', cn: '追随者'}
+  ]},
+  'peny-': { label: 'peny- (s)', desc: 'pe- + s 开头的词根 → peny-', roots: [
+    {root: 'air', full: 'penyair', cn: '诗人'}, {root: 'akit', full: 'penyakit', cn: '疾病'},
+    {root: 'umbang', full: 'penyumbang', cn: '捐助者'}, {root: 'elamat', full: 'penyelamat', cn: '救世主'}
+  ]},
+  'pe-': { label: 'pe- (l/r/w/y)', desc: 'pe- + l/r/w/y 开头的词根 → pe-', roots: [
+    {root: 'lajar', full: 'pelajar', cn: '学生'}, {root: 'rawat', full: 'perawat', cn: '护士'},
+    {root: 'warna', full: 'pewarna', cn: '颜料'}, {root: 'kerja', full: 'pekerja', cn: '工人'},
+    {root: 'jalan', full: 'pejalan', cn: '行人'}, {root: 'lantik', full: 'pelantik', cn: '任命者'}
+  ]},
+  
+  // ==== ber- 组 ====
+  'ber-': { label: 'ber- 标准', desc: '表示"拥有/做/处于"', roots: [
+    {root: 'jalan', full: 'berjalan', cn: '行走'}, {root: 'pikir', full: 'berpikir', cn: '思考'},
+    {root: 'kumpul', full: 'berkumpul', cn: '聚集'}, {root: 'diskusi', full: 'berdiskusi', cn: '讨论'},
+    {root: 'usaha', full: 'berusaha', cn: '努力'}, {root: 'tanya', full: 'bertanya', cn: '提问'},
+    {root: 'semangat', full: 'bersemangat', cn: '有精神'}, {root: 'operasi', full: 'beroperasi', cn: '运营'},
+    {root: 'kelanjutan', full: 'berkelanjutan', cn: '持续'}, {root: 'arti', full: 'berarti', cn: '意味着'}
+  ]},
+  'be-': { label: 'be- (r省略)', desc: 'ber- + r 开头的词根，省略 r → be-', roots: [
+    {root: 'kerja', full: 'bekerja', cn: '工作'}, {root: 'rita', full: 'berita', cn: '新闻'},
+    {root: 'rangkat', full: 'berangkat', cn: '出发'}, {root: 'rbeda', full: 'berbeda', cn: '不同'},
+    {root: 'rgabung', full: 'bergabung', cn: '加入'}, {root: 'rbicara', full: 'berbicara', cn: '谈话'}
+  ]},
+  'bel-': { label: 'bel- (特殊组合)', desc: 'be- + l 开头的词根，看似 bel-', roots: [
+    {root: 'ajar', full: 'belajar', cn: '学习'}, {root: 'lok', full: 'bellok', cn: '弯曲(方言)'}
+  ]},
+  
+  // ==== ter- / di- / se- / ke- / per- 组 ====
+  'ter-': { label: 'ter- (最/被动/意外)', desc: '表示"最/被/意外"', roots: [
     {root: 'baik', full: 'terbaik', cn: '最好的'}, {root: 'buruk', full: 'terburuk', cn: '最坏的'},
-    {root: 'kena', full: 'terkena', cn: '被击中'}, {root: 'tuju', full: 'tertuju', cn: '被针对'}
+    {root: 'kena', full: 'terkena', cn: '被击中'}, {root: 'tuju', full: 'tertuju', cn: '被针对'},
+    {root: 'tulis', full: 'tertulis', cn: '被写'}, {root: 'baca', full: 'terbaca', cn: '被读'},
+    {root: 'tawa', full: 'tertawa', cn: '笑出声'}, {root: 'kejut', full: 'terkejut', cn: '吃惊'},
+    {root: 'hormat', full: 'terhormat', cn: '受尊敬的'}, {root: 'kenal', full: 'terkenal', cn: '著名的'}
   ]},
-  'se': { label: 'se-前缀', desc: '表示"一个/同样/完全"', roots: [
-    {root: 'suai', full: 'sesuai', cn: '适合'}, {root: 'ring', full: 'sering', cn: '经常'},
-    {root: 'mua', full: 'semua', cn: '全部'}, {root: 'orang', full: 'seorang', cn: '一个人'}
-  ]},
-  'di': { label: 'di-前缀', desc: '被动语态', roots: [
+  'di-': { label: 'di- (被动语态)', desc: '被动语态前缀', roots: [
     {root: 'buat', full: 'dibuat', cn: '被制作'}, {root: 'lihat', full: 'dilihat', cn: '被看见'},
-    {root: 'baca', full: 'dibaca', cn: '被读'}, {root: 'makan', full: 'dimakan', cn: '被吃'}
+    {root: 'baca', full: 'dibaca', cn: '被读'}, {root: 'makan', full: 'dimakan', cn: '被吃'},
+    {root: 'tulis', full: 'ditulis', cn: '被写'}, {root: 'kirim', full: 'dikirim', cn: '被发送'},
+    {root: 'pakai', full: 'dipakai', cn: '被使用'}, {root: 'jual', full: 'dijual', cn: '被卖'}
+  ]},
+  'se-': { label: 'se- (一个/同样)', desc: '表示"一个/全部/同样"', roots: [
+    {root: 'orang', full: 'seorang', cn: '一个人'}, {root: 'mua', full: 'semua', cn: '全部'},
+    {root: 'suai', full: 'sesuai', cn: '适合'}, {root: 'ring', full: 'sering', cn: '经常'},
+    {root: 'bentar', full: 'sebentar', cn: '一会儿'}, {root: 'kali', full: 'sekali', cn: '一次'},
+    {root: 'jak', full: 'sejak', cn: '自从'}, {root: 'karang', full: 'sekarang', cn: '现在'}
+  ]},
+  'ke-': { label: 'ke- (向/变成)', desc: '表示"向/变成/过度"', roots: [
+    {root: 'pada', full: 'kepada', cn: '向'}, {root: 'hilang', full: 'kehilangan', cn: '丢失'},
+    {root: 'mari', full: 'kemari', cn: '来这里'}, {root: 'banyakan', full: 'kebanyakan', cn: '过多'},
+    {root: 'cil', full: 'kecil', cn: '小'}, {root: 'luar', full: 'keluar', cn: '出去'}
+  ]},
+  'per-': { label: 'per- (使动)', desc: '表示"使/更加/反复"', roots: [
+    {root: 'baik', full: 'perbaiki', cn: '修理'}, {root: 'kenal', full: 'perkenalkan', cn: '介绍'},
+    {root: 'luas', full: 'perluas', cn: '扩展'}, {root: 'tahui', full: 'pertahankan', cn: '保卫'},
+    {root: 'besar', full: 'perbesar', cn: '放大'}, {root: 'panjang', full: 'perpanjang', cn: '延长'}
+  ]},
+  'pel-': { label: 'pel- (pe-变体)', desc: 'pe- + l 开头的词根 → pel-', roots: [
+    {root: 'ajar', full: 'pelajar', cn: '学生'}, {root: 'hara', full: 'pelihara', cn: '照顾'},
+    {root: 'uang', full: 'peluang', cn: '机会'}, {root: 'opor', full: 'pelopor', cn: '先驱'}
   ]}
 };
 
 const SUFFIX_DATA = {
-  '-an': { label: '-an后缀', desc: '表示"名词化/结果/集合"', roots: [
+  '-an': { label: '-an 名词化', desc: '名词化/结果/集合', roots: [
     {root: 'makan', full: 'makanan', cn: '食物'}, {root: 'minum', full: 'minuman', cn: '饮料'},
     {root: 'baca', full: 'bacaan', cn: '读物'}, {root: 'tulis', full: 'tulisan', cn: '文章'},
-    {root: 'kerja', full: 'kerjaan', cn: '工作'}, {root: 'budaya', full: 'kebudayaan', cn: '文化'}
+    {root: 'kerja', full: 'kerjaan', cn: '工作'}, {root: 'budaya', full: 'kebudayaan', cn: '文化'},
+    {root: 'main', full: 'mainan', cn: '玩具'}, {root: 'pakaian', full: 'pakaian', cn: '衣服'},
+    {root: 'bangun', full: 'bangunan', cn: '建筑'}, {root: 'duduk', full: 'dudukan', cn: '座位'}
   ]},
-  '-kan': { label: '-kan后缀', desc: '表示"使动/为某人做"', roots: [
-    {root: 'makan', full: 'makanan', cn: '喂食'}, {root: 'tahu', full: 'tahukan', cn: '告知'},
-    {root: 'buka', full: 'bukakan', cn: '打开'}, {root: 'tulis', full: 'tuliskan', cn: '写下'}
+  '-kan': { label: '-kan 使动', desc: '使动/为某人做', roots: [
+    {root: 'duduk', full: 'dudukkan', cn: '使坐下'}, {root: 'tahu', full: 'tahukan', cn: '告知'},
+    {root: 'buka', full: 'bukakan', cn: '打开'}, {root: 'tulis', full: 'tuliskan', cn: '写下'},
+    {root: 'makan', full: 'makanan', cn: '喂食'}, {root: 'baca', full: 'bacakan', cn: '朗读'},
+    {root: 'beri', full: 'berikan', cn: '给'}, {root: 'lihat', full: 'lihatkan', cn: '展示'}
   ]},
-  '-i': { label: '-i后缀', desc: '表示"反复/给予/朝向"', roots: [
+  '-i': { label: '-i 反复/朝向', desc: '反复/给予/朝向', roots: [
     {root: 'tulis', full: 'tulisi', cn: '填写'}, {root: 'hampir', full: 'hampiri', cn: '接近'},
-    {root: 'tangis', full: 'tangisi', cn: '哭泣'}, {root: 'kaji', full: 'kajii', cn: '研究'}
+    {root: 'tangis', full: 'tangisi', cn: '哭泣'}, {root: 'kaji', full: 'kajii', cn: '研究'},
+    {root: 'buku', full: 'bukui', cn: '记录'}, {root: 'rumah', full: 'rumahi', cn: '家化'},
+    {root: 'sewa', full: 'sewai', cn: '出租'}, {root: 'tanya', full: 'tanyai', cn: '询问'}
+  ]},
+  '-lah': { label: '-lah 强调', desc: '强调语气', roots: [
+    {root: 'mari', full: 'marilah', cn: '来吧'}, {root: 'dengar', full: 'dengarlah', cn: '听吧'},
+    {root: 'lihat', full: 'lihatlah', cn: '看吧'}, {root: 'pergi', full: 'pergilah', cn: '去吧'},
+    {root: 'baca', full: 'bacalah', cn: '读吧'}, {root: 'masuk', full: 'masuklah', cn: '进来吧'}
+  ]},
+  '-nya': { label: '-nya 所有格', desc: '所有格/定指', roots: [
+    {root: 'buku', full: 'bukunya', cn: '他的书'}, {root: 'rumah', full: 'rumahnya', cn: '他的家'},
+    {root: 'sekolah', full: 'sekolahnya', cn: '他的学校'}, {root: 'nama', full: 'namanya', cn: '他的名字'},
+    {root: 'mobil', full: 'mobilnya', cn: '他的车'}, {root: 'anak', full: 'anaknya', cn: '他的孩子'}
+  ]},
+  '-pun': { label: '-pun 即使', desc: '即使/也', roots: [
+    {root: 'bagaimana', full: 'bagaimanapun', cn: '无论如何'}, {root: 'walaupun', full: 'walaupun', cn: '即使'},
+    {root: 'meski', full: 'meskipun', cn: '尽管'}, {root: 'kendati', full: 'kendatipun', cn: '虽然'},
+    {root: 'biar', full: 'biarpun', cn: '即使'}, {root: 'walau', full: 'walaupun', cn: '虽然'}
   ]}
 };
 
@@ -3664,8 +3753,19 @@ function renderAbout(c){
 }
 
 function renderVersion(c){
-  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录</h2><span class="badge">V3.0.4</span></div>
+  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录</h2><span class="badge">V4.0</span></div>
     <div style="padding:16px;">
+      <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
+        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.0 (2026-07-19)</div>
+        <div style="font-size:13px;color:var(--text);line-height:1.8">
+        • 全面梳理印尼语词缀系统（BIO语法审核）<br>
+        • 前缀按语法规则分类：mem-/men-/meng-/meny-/me-/pem-/pen-/peng-/peny-/pe-/ber-/be-/bel-/ter-/di-/se-/ke-/per-/pel-<br>
+        • 后缀新增：-lah/-nya/-pun，原有-an/-kan/-i扩充<br>
+        • 每个词缀标注适用词根首字母规则（如 mem- → p/b/f）<br>
+        • 词根射击游戏选项与印尼语语法完全对应<br>
+        • 版本号升级至 V4.0
+        </div>
+      </div>
       <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
         <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V3.0.4 (2026-07-19)</div>
         <div style="font-size:13px;color:var(--text);line-height:1.8">
