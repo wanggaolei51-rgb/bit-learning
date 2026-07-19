@@ -672,6 +672,10 @@ let quizState={q:0,correct:0,total:5,done:0};
 function initHistory(){
   if(!learningHistory["2026-07-14"]) learningHistory["2026-07-14"]={vocabNew:["Selamat","pagi","Bapak","Ibu","Menteri","Perkenalkan","nama","saya","General","Manager","PT","beroperasi","di","kawasan","industri","Morowali","datang","Apa","kabarmu","Semoga","perjalanan","Anda","lancar","Terima","kasih","senang","sekali","dapat","bertemu","dengan","Perusahaan","kami","ingin","berdiskusi","mengenai","pengembangan","berkelanjutan","Baik","mari","kita","masuk"],vocabReview:[],translations:5,notes:"第1课"};
   if(!learningHistory["2026-07-15"]) learningHistory["2026-07-15"]={vocabNew:["berdiskusi","berkumpul","berjalan","berpikir","berusaha","bertanya","bersemangat","berkerja","bersama-sama","mewujudkan","menghampiri","menemani","mengenai","membahas","menyiapkan","melakukan","mencari","memiliki","terbaik","kreatif","target","solusi","produksi","proyek","smelt","pembangunan","timeline","detail","rapat","keadaan","sesuai","situasi","contoh","ukuran","derajat","cuaca","suara","kuat","tegas","kencang","hampir","setelah","sering","imbuhan","begini","telepon","bahan","siswa","murid","cocok","cowo","pilih","rekan","sekalian","semoga","sehat","pagi"],vocabReview:["Selamat","pagi","saya","Anda","terima","kasih","Baik","kita","proyek","industri"],translations:8,notes:"第2课"};
+  if(!learningHistory["2026-07-16"]) learningHistory["2026-07-16"]={vocabNew:["timah","nikel","kobalt","baterai","lithium","elektrik","kendaraan","energi","terbarukan","matahari","angin","air","surplus","defisit","island","grid","microgrid","isolasi","distributif","trasmisi","transformator","tegangan","arus","frekuensi","frekuensi","kontrol","sistem","proteksi","relay","pemutus","hubung","singkat","beban","puncak","dasar","tengah"],vocabReview:["produksi","proyek","industri","smelt","pembangunan"],translations:6,notes:"第3课-冶炼"};
+  if(!learningHistory["2026-07-17"]) learningHistory["2026-07-17"]={vocabNew:["asam","sulfat","oksidasi","reduksi","peleburan","penyulingan","pemurnian","slag","terak","gas","buang","emisi","debu","partikel","filter","scrubber","absorpsi","neutralisasi","limbah","cair","padat","kategorisasi","daur","ulang","reuse","reduce","recovery"],vocabReview:["timah","nikel","baterai","energi","kontrol"],translations:5,notes:"第4课-制酸环保"};
+  if(!learningHistory["2026-07-18"]) learningHistory["2026-07-18"]={vocabNew:["pelabuhan","dermaga","kapal","tongkang","kargo","muatan","bongkar","muat","truk","tanker","kontainer","logistik","rantai","pasok","supply","chain","inventori","gudang","penyimpanan","stok","FIFO","LIFO","reorder","pengiriman","expedisi","kurir","pelayaran","pengangkutan"],vocabReview:["asam","peleburan","limbah","daur","ulang"],translations:7,notes:"第5课-港口物流"};
+  if(!learningHistory["2026-07-19"]) learningHistory["2026-07-19"]={vocabNew:["map","arah","jalan","utara","selatan","timur","barat","lurus","belok","kanan","kiri","simpang","lampu","merah","traffic","light","putar","balik","sebrang","jembatan","terowongan","toll","jalan","tol","sekitar","dekat","jauh","seberang","samping","depan","belakang"],vocabReview:["pelabuhan","kargo","logistik","rantai","pasok"],translations:6,notes:"第6课-地图方向"};
   saveHistory();
 }
 function saveHistory(){localStorage.setItem("bir_h3",JSON.stringify(learningHistory))}
@@ -917,14 +921,12 @@ function renderQuiz(c){
   c.innerHTML=`<div class="card"><div class="card-header"><h2>🎯 能力测试</h2><span class="badge">5题</span></div><div id="quizArea"><div style="text-align:center;padding:30px;color:var(--text-dim)"><div style="font-size:48px;margin-bottom:10px">🎯</div><div>5道选择题，检测词汇掌握程度</div><button class="trans-btn" style="margin-top:20px" onclick="startQuiz()">开始</button></div></div></div>`;
 }
 function startQuiz(){quizState.q=0;quizState.correct=0;quizState.done=0;showQ();}
-function showQ(){if(quizState.q>=quizState.total){showQRes();return;}const q=quizState.questions[quizState.q];const opts=[q.data.cn,...q.wrong].sort(()=>Math.random()-.5);document.getElementById("quizArea").innerHTML=`<div style="margin-bottom:12px;font-size:13px;color:var(--text-dim)">${quizState.q+1}/5</div><div class="quiz-card"><div class="q-text">「<strong style="color:var(--primary)">${q.word}</strong>」的中文?</div><div style="font-size:12px;color:var(--text-dim);margin-bottom:10px">${q.data.ipa||""}</div>${opts.map((opt,i)=>`<div class="q-opt" onclick="ansQ('${opt.replace(/'/g,"\'")}','${q.data.cn.replace(/'/g,"\'")}',this)">${String.fromCharCode(65+i)}. ${opt}</div>`).join("")}</div>`;}
+function showQ(){if(quizState.q>=quizState.total){showQRes();return;}const q=quizState.questions[quizState.q];const opts=[q.data.cn,...q.wrong].sort(()=>Math.random()-.5);document.getElementById("quizArea").innerHTML=`<div style="margin-bottom:12px;font-size:13px;color:var(--text-dim)">${quizState.q+1}/5</div><div class="quiz-card"><div class="q-text">「<strong style="color:var(--primary)">${q.word}</strong>」的中文?</div><div style="font-size:12px;color:var(--text-dim);margin-bottom:10px">${q.data.ipa||""}</div>${opts.map((opt,i)=>`<div class="q-opt" onclick="ansQ('${opt.replace(/'/g,"&#39;")}','${q.data.cn.replace(/'/g,"&#39;")}',this)">${String.fromCharCode(65+i)}. ${opt}</div>`).join("")}</div>`;}
 
 
 
-function showQuizQ(){if(quizState.q>=quizState.total){showQRes();return;}const q=quizState.questions[quizState.q];const opts=[q.data.cn,...q.wrong].sort(()=>Math.random()-.5);document.getElementById("quizArea").innerHTML=`<div style="margin-bottom:12px;font-size:13px;color:var(--text-dim)">${quizState.q+1}/${quizState.total}</div><div class="quiz-card"><div class="q-text">「<strong style="color:var(--primary)">${q.word}</strong>」的中文?</div><div style="font-size:12px;color:var(--text-dim);margin-bottom:10px">${q.data.ipa||""}</div>${opts.map((opt,i)=>`<div class="q-opt" onclick="ansQ('${opt.replace(/'/g,"\'")}','${q.data.cn.replace(/'/g,"\'")}',this)">${String.fromCharCode(65+i)}. ${opt}</div>`).join("")}</div>`;}
-function showQuizQ(){if(quizState.q>=quizState.total){showQRes();return;}const q=quizState.questions[quizState.q];const opts=[q.data.cn,...q.wrong].sort(()=>Math.random()-.5);document.getElementById("quizArea").innerHTML=`<div style="margin-bottom:12px;font-size:13px;color:var(--text-dim)">${quizState.q+1}/${quizState.total}</div><div class="quiz-card"><div class="q-text">「<strong style="color:var(--primary)">${q.word}</strong>」的中文?</div><div style="font-size:12px;color:var(--text-dim);margin-bottom:10px">${q.data.ipa||""}</div>${opts.map((opt,i)=>`<div class="q-opt" onclick="ansQ('${opt.replace(/'/g,"\'")}','${q.data.cn.replace(/'/g,"\'")}',this)">${String.fromCharCode(65+i)}. ${opt}</div>`).join("")}</div>`;}
-function showQuizQ(){if(quizState.q>=quizState.total){showQRes();return;}const q=quizState.questions[quizState.q];const opts=[q.data.cn,...q.wrong].sort(()=>Math.random()-.5);document.getElementById("quizArea").innerHTML=`<div style="margin-bottom:12px;font-size:13px;color:var(--text-dim)">${quizState.q+1}/${quizState.total}</div><div class="quiz-card"><div class="q-text">「<strong style="color:var(--primary)">${q.word}</strong>」的中文?</div><div style="font-size:12px;color:var(--text-dim);margin-bottom:10px">${q.data.ipa||""}</div>${opts.map((opt,i)=>`<div class="q-opt" onclick="ansQ('${opt.replace(/'/g,"\'")}','${q.data.cn.replace(/'/g,"\'")}',this)">${String.fromCharCode(65+i)}. ${opt}</div>`).join("")}</div>`;}
-function ansQ(sel,correct,el){const opts=el.parentElement.querySelectorAll(".q-opt");opts.forEach(o=>o.style.pointerEvents="none");const ok=sel===correct;if(ok){el.classList.add("correct");quizState.correct++;}else{el.classList.add("wrong");opts.forEach(o=>{if(o.innerText.includes(correct))o.classList.add("correct");});}quizState.done++;setTimeout(()=>{quizState.q++;showQ();},1200);}
+function showQuizQ(){if(quizState.q>=quizState.total){showQRes();return;}const q=quizState.questions[quizState.q];const opts=[q.data.cn,...q.wrong].sort(()=>Math.random()-.5);document.getElementById("quizArea").innerHTML=`<div style="margin-bottom:12px;font-size:13px;color:var(--text-dim)">${quizState.q+1}/${quizState.total}</div><div class="quiz-card"><div class="q-text">「<strong style="color:var(--primary)">${q.word}</strong>」的中文?</div><div style="font-size:12px;color:var(--text-dim);margin-bottom:10px">${q.data.ipa||""}</div>${opts.map((opt,i)=>`<div class="q-opt" onclick="ansQ('${opt.replace(/'/g,"&#39;")}','${q.data.cn.replace(/'/g,"&#39;")}',this)">${String.fromCharCode(65+i)}. ${opt}</div>`).join("")}</div>`;}
+function ansQ(sel,correct,el){const opts=el.parentElement.querySelectorAll(".q-opt");opts.forEach(o=>o.style.pointerEvents="none");const ok=sel===correct;if(ok){el.classList.add("correct");quizState.correct++;}else{el.classList.add("wrong");opts.forEach(o=>{if(o.innerText.includes(correct))o.classList.add("correct");});}quizState.done++;setTimeout(()=>{quizState.q++;if(quizState.questions && quizState.q < quizState.questions.length){showQuizQ();}else{showQRes();}},1200);}
 function showQRes(){const pct=Math.round((quizState.correct/quizState.total)*100);const msg=pct>=80?"优秀!":pct>=60?"不错!":"需多练习!";document.getElementById("quizArea").innerHTML=`<div style="text-align:center;padding:30px"><div style="font-size:56px;margin-bottom:10px">${pct>=80?"🎉":pct>=60?"👍":"💪"}</div><div style="font-size:28px;font-weight:700;color:var(--primary)">${pct}%</div><div style="color:var(--text-dim);margin:8px 0">${quizState.correct}/5</div><div style="color:var(--text);margin-bottom:16px">${msg}</div><button class="trans-btn" onclick="startQuiz()">再测</button></div>`;}
 
 function renderVocabulary(c){
@@ -1553,7 +1555,7 @@ function renderRList() {
         <span class="r-due" style="background:${color}20;color:${color}">${w.interval}天间隔</span>
         <span class="r-word">${w.word}</span>
         <span class="r-mean">${w.cn}</span>
-        <button onclick="doWordReview('${w.word.replace(/'/g, "\'")}', ${w.interval})" style="margin-left:auto;padding:4px 10px;border-radius:4px;border:none;background:var(--primary);color:#000;font-size:11px;cursor:pointer">✅ 完成</button>
+        <button onclick="doWordReview('${w.word.replace(/'/g, "&#39;")}', ${w.interval})" style="margin-left:auto;padding:4px 10px;border-radius:4px;border:none;background:var(--primary);color:#000;font-size:11px;cursor:pointer">✅ 完成</button>
       </div>`;
     });
   }
@@ -1598,6 +1600,9 @@ function speakText(text, lang='id-ID') {
     showToast('❌ 浏览器不支持语音朗读');
     return;
   }
+  // 清除队列并恢复（修复微信/移动端只能播放一次的问题）
+  window.speechSynthesis.cancel();
+  window.speechSynthesis.resume();
   const utterance = new SpeechSynthesisUtterance(text);
   utterance.lang = lang;
   utterance.rate = 0.9;
@@ -1621,7 +1626,7 @@ function speakChinese(text) {
 function speakBtn(text, lang='id') {
   const langMap = {id:'id-ID', en:'en-US', zh:'zh-CN'};
   const l = langMap[lang] || 'id-ID';
-  return `<button onclick="speakText('${text.replace(/'/g, "\'")}', '${l}')" style="background:none;border:none;color:var(--primary);cursor:pointer;font-size:14px;padding:2px 6px;margin-left:4px;" title="朗读">🔊</button>`;
+  return `<button onclick="speakText('${text.replace(/'/g, "&#39;")}', '${l}')" style="background:none;border:none;color:var(--primary);cursor:pointer;font-size:14px;padding:2px 6px;margin-left:4px;" title="朗读">🔊</button>`;
 }
 
 function speak(text,lang){if(!window.speechSynthesis){showToast("不支持语音");return;}const u=new SpeechSynthesisUtterance(text);u.lang=lang==="id"?"id-ID":lang==="zh"?"zh-CN":"en-US";u.rate=0.9;window.speechSynthesis.speak(u);}
@@ -1640,21 +1645,22 @@ function updateStats(){
   const sRev = allRev.size;
   const sTotal = Object.keys(vocabDB).length;
   
-  // 连续学习天数
+  // 连续学习天数 - 从最近一天开始向后回溯
   const dates = Object.keys(learningHistory).sort();
   let streak = 0;
   const today = new Date().toISOString().slice(0,10);
   const yesterday = new Date(Date.now()-86400000).toISOString().slice(0,10);
-  if(dates.includes(today)) streak = 1;
-  else if(dates.includes(yesterday)) streak = 1;
-  let checkDate = new Date(Date.now()-(streak?0:86400000));
-  while(true){
-    const ds = checkDate.toISOString().slice(0,10);
-    if(!dates.includes(ds)) break;
-    const hasActivity = learningHistory[ds] && (learningHistory[ds].vocabNew.length||learningHistory[ds].vocabReview.length||learningHistory[ds].translations);
-    if(!hasActivity) break;
-    streak++;
-    checkDate = new Date(checkDate.getTime()-86400000);
+  // 从最近有记录的日期开始检查
+  let checkDate = dates.includes(today) ? new Date() : (dates.includes(yesterday) ? new Date(Date.now()-86400000) : null);
+  if(checkDate){
+    while(true){
+      const ds = checkDate.toISOString().slice(0,10);
+      if(!dates.includes(ds)) break;
+      const hasActivity = learningHistory[ds] && (learningHistory[ds].vocabNew.length||learningHistory[ds].vocabReview.length||learningHistory[ds].translations);
+      if(!hasActivity) break;
+      streak++;
+      checkDate = new Date(checkDate.getTime()-86400000);
+    }
   }
   
   const e1=document.getElementById("s-new");if(e1)e1.innerText=sNew;
@@ -3240,7 +3246,7 @@ function showAIReply(reply, userText, loadingId){
   const loadingEl = document.getElementById(loadingId);
   if(loadingEl) loadingEl.remove();
   
-  const safeReply = reply.replace(/'/g, "\'");
+  const safeReply = reply.replace(/'/g, "&#39;");
   chatArea.innerHTML += `<div style="display:flex;justify-content:flex-start;margin:8px 0;"><div style="background:var(--bg-elev);color:var(--text);padding:8px 12px;border-radius:12px 12px 12px 0;max-width:80%;font-size:13px;border:1px solid var(--border);"><div style="font-size:11px;color:var(--primary);margin-bottom:2px;">🤖 AI Assistant</div><div style="white-space:pre-line;">${reply}</div><button onclick="speakIndonesian('${safeReply.split('\n')[0]}')" style="background:none;border:none;color:var(--primary);cursor:pointer;font-size:12px;padding:2px;margin-left:4px;" title="朗读印尼语">🔊</button></div></div>`;
   chatArea.scrollTop = chatArea.scrollHeight;
   
