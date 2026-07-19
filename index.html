@@ -2960,7 +2960,7 @@ function renderTopicDetail(c, ds, topicInfo) {
     html += `<div style="background:rgba(59,130,246,.06);border-radius:10px;padding:16px;margin-bottom:16px;border:1px solid var(--border)"><div style="font-size:15px;color:var(--info);font-weight:700;margin-bottom:12px">🎤 第三阶段：演讲+复习 (Day 3/3)</div>`;
     topic.speeches.forEach((sp, spi) => {
       const spSafe = sp.content.replace(/'/g, "\'");
-      html += `<div style="margin-bottom:14px;border:1px solid var(--border);border-radius:10px;overflow:hidden"><div style="background:var(--bg-elev);padding:10px 14px;display:flex;align-items:center;gap:8px"><span style="font-size:18px">${sp.icon}</span><div><div style="font-size:14px;font-weight:600;color:var(--text)">${sp.title}</div><div style="font-size:11px;color:var(--text-dim)">${sp.words}词 · ${sp.time}秒</div></div></div><div style="padding:14px;font-size:13px;line-height:1.8;color:var(--text);background:var(--bg-card);border-radius:0 0 8px 8px"><div style="margin-bottom:8px;">${wrapClickableWords(sp.content)}</div><div style="display:flex;align-items:center;gap:8px;margin-top:8px;padding-top:8px;border-top:1px solid var(--border);"><button onclick="speakIndonesian('${spSafe}')" style="background:none;border:none;color:var(--primary);cursor:pointer;font-size:14px;padding:2px 4px;" title="朗读全文">🔊 朗读</button><span style="font-size:12px;color:var(--text-dim);">${sp.trans || '翻译加载中...'}</span></div></div></div>`;
+      html += `<div style="margin-bottom:14px;border:1px solid var(--border);border-radius:10px;overflow:hidden"><div style="background:var(--bg-elev);padding:10px 14px;display:flex;align-items:center;gap:8px;justify-content:space-between;"><div style="display:flex;align-items:center;gap:8px;"><span style="font-size:18px">${sp.icon}</span><div><div style="font-size:14px;font-weight:600;color:var(--text)">${sp.title}</div><div style="font-size:11px;color:var(--text-dim)">${sp.words}词 · ${sp.time}秒</div></div></div><button onclick="speakIndonesian('${spSafe}')" style="background:none;border:none;color:var(--primary);cursor:pointer;font-size:14px;padding:4px 8px;border-radius:6px;background:rgba(0,212,170,.1);" title="朗读印尼语原文">🔊 朗读</button></div><div style="padding:14px;font-size:13px;line-height:1.8;color:var(--text);background:var(--bg-card);border-radius:0 0 8px 8px"><div style="margin-bottom:8px;">${wrapClickableWords(sp.content)}</div><div style="font-size:12px;color:var(--text-dim);border-top:1px solid var(--border);padding-top:8px;margin-top:8px;">🇨🇳 翻译: ${sp.trans || '翻译加载中...'}</div></div></div>`;
     });
     html += `<div style="margin-top:16px;padding:12px;background:rgba(34,197,94,.08);border-radius:8px;border:1px solid rgba(34,197,94,.3)"><div style="font-size:13px;color:var(--success)">✅ 恭喜！已完成三天综合学习！</div><div style="font-size:12px;color:var(--text-dim);margin-top:6px">建议：使用「百词斩」检测掌握程度，使用「艾宾浩斯复习」巩固记忆。</div></div>`;
     html += `</div>`;
@@ -3015,7 +3015,7 @@ function renderTopicDetail(c, ds, topicInfo) {
     html += `<h3 style="color:var(--primary);margin:16px 0 10px;font-size:15px">🎤 1分钟演讲</h3>`;
     for (let i = 0; i < topic.speeches.length; i++) {
       const sp = topic.speeches[i];
-      html += `<div style="background:var(--bg-elev);border-radius:10px;padding:16px;margin-bottom:12px;border:1px solid var(--border)"><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><span style="font-size:18px">${sp.icon}</span><strong style="color:var(--primary);font-size:14px">${sp.title}</strong></div><div style="display:flex;gap:8px;margin-bottom:10px;font-size:11px;color:var(--text-dim)"><span style="background:rgba(0,212,170,.1);padding:2px 8px;border-radius:8px">⏱️ ~${sp.time}秒</span><span style="background:rgba(0,212,170,.1);padding:2px 8px;border-radius:8px">📝 ~${sp.words}词</span></div><div style="font-size:13px;line-height:1.8;color:var(--text);background:var(--bg-card);padding:12px;border-radius:8px">${wrapClickableWords(sp.content)}</div><div style="display:flex;align-items:center;gap:8px;margin-top:8px;padding-top:8px;border-top:1px solid var(--border);"><button onclick="speakIndonesian('${sp.content.replace(/'/g,"\'")}')" style="background:none;border:none;color:var(--primary);cursor:pointer;font-size:14px;padding:2px 4px;" title="朗读全文">🔊 朗读</button><span style="font-size:12px;color:var(--text-dim);">${sp.trans || '翻译加载中...'}</span></div></div>`;
+      html += `<div style="background:var(--bg-elev);border-radius:10px;padding:16px;margin-bottom:12px;border:1px solid var(--border)"><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;justify-content:space-between;"><div style="display:flex;align-items:center;gap:8px;"><span style="font-size:18px">${sp.icon}</span><strong style="color:var(--primary);font-size:14px">${sp.title}</strong></div><button onclick="speakIndonesian('${sp.content.replace(/'/g,"\'")}')" style="background:none;border:none;color:var(--primary);cursor:pointer;font-size:14px;padding:4px 8px;border-radius:6px;background:rgba(0,212,170,.1);" title="朗读印尼语原文">🔊 朗读</button></div><div style="display:flex;gap:8px;margin-bottom:10px;font-size:11px;color:var(--text-dim)"><span style="background:rgba(0,212,170,.1);padding:2px 8px;border-radius:8px">⏱️ ~${sp.time}秒</span><span style="background:rgba(0,212,170,.1);padding:2px 8px;border-radius:8px">📝 ~${sp.words}词</span></div><div style="font-size:13px;line-height:1.8;color:var(--text);background:var(--bg-card);padding:12px;border-radius:8px">${wrapClickableWords(sp.content)}</div><div style="font-size:12px;color:var(--text-dim);border-top:1px solid var(--border);padding-top:8px;margin-top:8px;">🇨🇳 翻译: ${sp.trans || '翻译加载中...'}</div></div>`;
     }
     html += `<div style="margin-top:16px;padding:12px;background:rgba(34,197,94,.08);border-radius:8px;border:1px solid rgba(34,197,94,.3)"><div style="font-size:13px;color:var(--success)">✅ 完成三天学习！进入复习队列。</div><div style="font-size:12px;color:var(--text-dim);margin-top:6px">建议：使用「能力测试」检测掌握程度，使用「艾宾浩斯复习」巩固记忆。</div></div>`;
   }
@@ -3417,13 +3417,14 @@ function showWordPopup(word){
     <button id="wordPopupQueryBtn" data-word="${word}" style="width:100%;padding:8px;background:var(--info);color:#fff;border:none;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;margin-bottom:8px;">🔍 查询更多（三语）</button>
     <button id="wordPopupAddBtn" data-wid="${wid}" style="width:100%;padding:10px;background:${inWB?'var(--bg-elev)':'var(--primary)'};color:${inWB?'var(--text-dim)':'#0a0e17'};border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;" ${inWB?'disabled':''}>${inWB?'✅ 已在生词本':'📚 加入生词本'}</button>`;
   } else {
-    cardHTML += `<div style="text-align:center;padding:20px 0;"><div style="font-size:36px;margin-bottom:12px;">🔍</div><div style="font-size:14px;color:var(--text-dim);margin-bottom:8px;">「${word}」未收录</div><div style="font-size:12px;color:var(--text-dim);margin-bottom:12px;">可手动添加到词汇库</div>
+    cardHTML += `<div style="text-align:center;padding:20px 0;"><div style="font-size:36px;margin-bottom:12px;">🔍</div><div style="font-size:14px;color:var(--text-dim);margin-bottom:8px;">「${word}」未收录</div><div style="font-size:12px;color:var(--text-dim);margin-bottom:12px;">可在线查询或手动录入</div>
     <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;padding:8px;background:var(--bg-elev);border-radius:8px;">
       <input type="checkbox" id="wbCheck" style="width:16px;height:16px;cursor:pointer;">
       <label for="wbCheck" style="font-size:13px;color:var(--text);cursor:pointer;">加入生词本</label>
     </div>
     <button id="wordPopupQueryBtn" data-word="${word}" style="width:100%;padding:8px;background:var(--info);color:#fff;border:none;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;margin-bottom:8px;">🔍 查询更多（三语）</button>
-    <button id="wordPopupAddBtn" data-wid="${clean}" style="width:100%;padding:10px;background:var(--primary);color:#0a0e17;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;">📚 加入生词本</button></div>`;
+    <button id="wordPopupInputBtn" data-word="${word}" style="width:100%;padding:8px;background:var(--accent);color:#0a0e17;border:none;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;margin-bottom:8px;">📝 录入词汇</button>
+    <button id="wordPopupAddBtn" data-wid="${clean}" data-word="${word}" style="width:100%;padding:10px;background:var(--primary);color:#0a0e17;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;">📚 加入生词本</button></div>`;
   }
   
   cardHTML += `</div>`;
@@ -3449,6 +3450,17 @@ function showWordPopup(word){
   if(queryBtn) queryBtn.addEventListener('click',()=>{
     const w = queryBtn.dataset.word;
     doWordQuery(w);
+  });
+  
+  const inputBtn = document.getElementById('wordPopupInputBtn');
+  if(inputBtn) inputBtn.addEventListener('click',()=>{
+    const w = inputBtn.dataset.word;
+    closeWordPopup();
+    navigate('input');
+    setTimeout(()=>{
+      const vInput = document.getElementById('vInput');
+      if(vInput) vInput.value = w;
+    }, 300);
   });
   
   overlay.addEventListener('click',(e)=>{
@@ -3490,35 +3502,35 @@ function doWordQuery(word){
   
   document.getElementById('queryResult').innerHTML = resultHtml;
   
-  // 在线查询API - MyMemory (高质量免费翻译)
-  const q = encodeURIComponent(word);
-  const id2zh = `https://api.mymemory.translated.net/get?q=${q}&langpair=id|zh-CN`;
-  const id2en = `https://api.mymemory.translated.net/get?q=${q}&langpair=id|en`;
-  
-  resultHtml += `<div style="margin-top:16px;border-top:1px solid var(--border);padding-top:12px;"><div style="font-size:12px;font-weight:600;color:var(--primary);margin-bottom:8px;">🌐 在线查询结果</div><div id="onlineResult"><div style="text-align:center;padding:12px;"><div style="font-size:24px;margin-bottom:8px;">⏳</div><div style="font-size:12px;color:var(--text-dim);">正在查询中...</div></div></div></div>`;
+  // 在线查询API - Google Translate (更高质量)
+  resultHtml += `<div style="margin-top:16px;border-top:1px solid var(--border);padding-top:12px;"><div style="font-size:12px;font-weight:600;color:var(--primary);margin-bottom:8px;">🌐 在线查询结果 (Google Translate)</div><div id="onlineResult"><div style="text-align:center;padding:12px;"><div style="font-size:24px;margin-bottom:8px;">⏳</div><div style="font-size:12px;color:var(--text-dim);">正在查询中...</div></div></div></div>`;
   document.getElementById('queryResult').innerHTML = resultHtml;
   
   // 同时查询印尼语→中文和印尼语→英文
   Promise.all([
-    fetch(id2zh).then(r => r.json()).catch(() => null),
-    fetch(id2en).then(r => r.json()).catch(() => null)
+    gTrans(word, 'id', 'zh-CN'),
+    gTrans(word, 'id', 'en')
   ])
-    .then(([zhData, enData]) => {
+    .then(([zhText, enText]) => {
       let html = '';
       let hasResult = false;
       
-      if(zhData && zhData.responseData && zhData.responseData.translatedText && zhData.responseData.translatedText !== word){
-        html += `<div style="margin-bottom:10px;padding:10px;background:rgba(59,130,246,.1);border-radius:8px;border-left:3px solid var(--info);"><div style="font-size:11px;color:var(--text-dim);margin-bottom:4px;">🇮🇩→🇨🇳 印尼语→中文</div><div style="font-size:15px;color:var(--text);font-weight:600;">${zhData.responseData.translatedText}</div><div style="font-size:10px;color:var(--text-dim);margin-top:4px;">via MyMemory API</div></div>`;
+      if(zhText && zhText !== word){
+        html += `<div style="margin-bottom:10px;padding:10px;background:rgba(59,130,246,.1);border-radius:8px;border-left:3px solid var(--info);"><div style="font-size:11px;color:var(--text-dim);margin-bottom:4px;">🇮🇩→🇨🇳 印尼语→中文</div><div style="font-size:15px;color:var(--text);font-weight:600;">${zhText}</div><div style="font-size:10px;color:var(--text-dim);margin-top:4px;">via Google Translate</div></div>`;
         hasResult = true;
+        // 缓存查询结果供生词本使用
+        window._lastQueryResult = {word: word, zh: zhText, en: enText || ''};
       }
       
-      if(enData && enData.responseData && enData.responseData.translatedText && enData.responseData.translatedText !== word){
-        html += `<div style="margin-bottom:10px;padding:10px;background:rgba(34,197,94,.1);border-radius:8px;border-left:3px solid var(--success);"><div style="font-size:11px;color:var(--text-dim);margin-bottom:4px;">🇮🇩→🇬🇧 印尼语→English</div><div style="font-size:14px;color:var(--text);">${enData.responseData.translatedText}</div></div>`;
+      if(enText && enText !== word){
+        html += `<div style="margin-bottom:10px;padding:10px;background:rgba(34,197,94,.1);border-radius:8px;border-left:3px solid var(--success);"><div style="font-size:11px;color:var(--text-dim);margin-bottom:4px;">🇮🇩→🇬🇧 印尼语→English</div><div style="font-size:14px;color:var(--text);">${enText}</div></div>`;
         hasResult = true;
+        if(!window._lastQueryResult) window._lastQueryResult = {word: word, zh: '', en: enText};
+        else window._lastQueryResult.en = enText;
       }
       
       if(!hasResult){
-        html = '<div style="text-align:center;padding:16px;"><div style="font-size:24px;margin-bottom:8px;">📖</div><div style="font-size:13px;color:var(--text-dim);">在线查询暂无结果</div><div style="font-size:11px;color:var(--text-dim);margin-top:4px;">请使用本地词汇库或稍后重试</div></div>';
+        html = '<div style="text-align:center;padding:16px;"><div style="font-size:24px;margin-bottom:8px;">📖</div><div style="font-size:13px;color:var(--text-dim);">在线查询暂无结果</div><div style="font-size:11px;color:var(--text-dim);margin-top:4px;">请使用「词汇录入」功能手动添加</div></div>';
       }
       
       document.getElementById('onlineResult').innerHTML = html;
@@ -3535,16 +3547,34 @@ function closeWordPopup(){
 
 function addToWBFromPopup(wordId){
   const v = vocabDB[wordId];
-  if(!v) return;
-  if(wordBank.some(w=>w.id===v.id)){
-    showToast('已在生词本');
+  if(v){
+    if(wordBank.some(w=>w.id===v.id)){
+      showToast('已在生词本');
+      return;
+    }
+    wordBank.push({id:v.id,word:v.id,zh:v.cn,en:v.en||'',ipa:v.ipa||'',root:v.root||'',passed:{},addTime:Date.now()});
+    saveWB();
+    updateStats();
+    showToast(`已加入: ${v.cn}`);
+    closeWordPopup();
     return;
   }
-  wordBank.push({id:v.id,zh:v.cn,en:v.en||'',ipa:v.ipa||'',root:v.root||'',passed:{},addTime:Date.now()});
-  saveWB();
-  updateStats();
-  showToast(`已加入: ${v.cn}`);
-  closeWordPopup();
+  // 未收录单词：尝试使用最近一次查询结果或在线查询
+  const lastQuery = window._lastQueryResult;
+  if(lastQuery && lastQuery.word === wordId){
+    if(wordBank.some(w=>w.word===wordId)){
+      showToast('已在生词本');
+      return;
+    }
+    wordBank.push({id:wordId,word:wordId,zh:lastQuery.zh||wordId,en:lastQuery.en||'',ipa:'—',root:'—',passed:{},addTime:Date.now()});
+    saveWB();
+    updateStats();
+    showToast(`已加入: ${lastQuery.zh || wordId}`);
+    closeWordPopup();
+    return;
+  }
+  // 无查询结果，提示先查询
+  showToast('请先点击「查询更多」获取翻译');
 }
 
 
