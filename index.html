@@ -1817,7 +1817,7 @@ function renderMember(c) {
   }
   html += `</div>`; c.innerHTML = html;
 }
-function doLogin() { const u = document.getElementById('loginUser').value.trim(); const p = document.getElementById('loginPass').value.trim(); if (!u || !p) { showToast('请输入账号密码'); return; } if (loginMember(u, p)) { renderMember(document.getElementById('app')); } }
+function doLogin() { const u = document.getElementById('loginUser').value.trim(); const p = document.getElementById('loginPass').value.trim(); if (!u || !p) { showToast('请输入账号密码'); return; } if (loginMember(u, p)) { updateNav(); renderMember(document.getElementById('app')); } }
 function logoutMember() { memberInfo = { username: null, type: null, trialStart: null, trialEnd: null, paidStart: null, paidEnd: null, clickCount: 0, isAdmin: false }; saveMember(); showToast('已退出'); navigate('member'); }
 
 // === 会员管理功能（超级管理员） ===
@@ -2603,21 +2603,24 @@ const topicData = {
         "icon": "🤝",
         "words": 145,
         "time": 60,
-        "content": "Selamat siang, para mitra bisnis yang terhormat. Terima kasih telah meluangkan waktu untuk bertemu dengan kami hari ini. Seperti yang Bapak/Ibu ketahui, perusahaan kami telah beroperasi di Indonesia selama lebih dari lima tahun dan selalu berusaha menjaga standar kualitas tertinggi. Saat ini, kami sedang berencana untuk memperluas kapasitas produksi smelter dan berharap dapat bersinergi dengan perusahaan Anda dalam pengadaan peralatan teknologi terbaru. Kami sangat terbuka untuk berdiskusi mengenai syarat dan ketentuan kerja sama yang saling menguntungkan. Selama negosiasi ini, kami berpikir bahwa transparansi dan kejujuran adalah fondasi terpenting dalam setiap hubungan bisnis yang berkelanjutan. Mari kita bersama-sama menemukan solusi terbaik untuk kemitraan jangka panjang ini."
+        "content": "Selamat siang, para mitra bisnis yang terhormat. Terima kasih telah meluangkan waktu untuk bertemu dengan kami hari ini. Seperti yang Bapak/Ibu ketahui, perusahaan kami telah beroperasi di Indonesia selama lebih dari lima tahun dan selalu berusaha menjaga standar kualitas tertinggi. Saat ini, kami sedang berencana untuk memperluas kapasitas produksi smelter dan berharap dapat bersinergi dengan perusahaan Anda dalam pengadaan peralatan teknologi terbaru. Kami sangat terbuka untuk berdiskusi mengenai syarat dan ketentuan kerja sama yang saling menguntungkan. Selama negosiasi ini, kami berpikir bahwa transparansi dan kejujuran adalah fondasi terpenting dalam setiap hubungan bisnis yang berkelanjutan. Mari kita bersama-sama menemukan solusi terbaik untuk kemitraan jangka panjang ini.",
+        "trans": "中午好，尊敬的合作伙伴。感谢您今天抽出时间与我们见面。如您所知，我们公司在印尼运营已超过五年，始终致力于保持最高质量标准。目前，我们正计划扩大冶炼厂产能，希望能与贵公司在采购最新技术设备方面开展合作。我们非常愿意就互利共赢的合作条款和条件进行讨论。在这次谈判中，我们认为透明和诚信是任何可持续业务关系中最重要的基础。让我们一起为这一长期合作寻找最佳解决方案。"
       },
       {
         "title": "非正式朋友见面",
         "icon": "☕",
         "words": 135,
         "time": 55,
-        "content": "Halo, Bro! Lama tidak bertemu. Gimana kabarmu? Saya dengar kamu baru saja berlibur ke Bali bersama keluarga. Wah, pasti seru banget! Saya sendiri akhir-akhir ini sibuk bekerja di proyek smelter baru, jadi belum sempat berlibur. Tapi hari ini, saya ingin berkumpul dengan kalian semua untuk makan siang bersama dan berdiskusi santai mengenai rencana liburan akhir tahun nanti. Saya sudah berpikir untuk pergi ke Lombok, tapi masih bingung mau berapa lama di sana. Kalau kamu punya saran, jangan ragu untuk berkata ya! Oh ya, kapan kita bisa bermain badminton lagi? Sudah lama kita tidak bersama-sama olahraga. Yuk, kita janjian minggu depan!"
+        "content": "Halo, Bro! Lama tidak bertemu. Gimana kabarmu? Saya dengar kamu baru saja berlibur ke Bali bersama keluarga. Wah, pasti seru banget! Saya sendiri akhir-akhir ini sibuk bekerja di proyek smelter baru, jadi belum sempat berlibur. Tapi hari ini, saya ingin berkumpul dengan kalian semua untuk makan siang bersama dan berdiskusi santai mengenai rencana liburan akhir tahun nanti. Saya sudah berpikir untuk pergi ke Lombok, tapi masih bingung mau berapa lama di sana. Kalau kamu punya saran, jangan ragu untuk berkata ya! Oh ya, kapan kita bisa bermain badminton lagi? Sudah lama kita tidak bersama-sama olahraga. Yuk, kita janjian minggu depan!",
+        "trans": "嘿，兄弟！好久不见。你怎么样？我听说你刚和家人去了巴厘岛度假。哇，一定很有趣！我自己最近在忙新冶炼厂项目，所以还没机会度假。但今天，我想和大家一起吃午饭，轻松聊聊年底的度假计划。我已经在考虑去龙目岛，但还在纠结要在那里待多久。如果你有建议，尽管说！对了，我们什么时候可以再打羽毛球？好久没一起运动了。来吧，我们约下周！"
       },
       {
         "title": "久别重逢",
         "icon": "🎉",
         "words": 145,
         "time": 60,
-        "content": "Wah, apa kabar, Pak Budi? Sudah berapa lama kita tidak bertemu? Sepertinya sudah hampir setahun, ya, sejak konferensi pertambangan di Jakarta tahun lalu. Saya sangat senang bisa berjumpa dengan Anda lagi di Morowali. Sejak terakhir kita bertemu, perusahaan Anda pastilah telah berkembang pesat. Kami baru saja menyelesaikan pembangkit listrik tenaga surya dan sedang berusaha meningkatkan efisiensi smelter kami. Saya banyak berpikir tentang rencana ekspansi ke bisnis aluminium dan berharap bisa berdiskusi dengan Anda mengenai peluang kerja sama di bidang tersebut. Mari kita berkumpul nanti malam untuk makan malam bersama dan menyusun strategi lebih lanjut. Senang rasanya bisa bersama Anda lagi!"
+        "content": "Wah, apa kabar, Pak Budi? Sudah berapa lama kita tidak bertemu? Sepertinya sudah hampir setahun, ya, sejak konferensi pertambangan di Jakarta tahun lalu. Saya sangat senang bisa berjumpa dengan Anda lagi di Morowali. Sejak terakhir kita bertemu, perusahaan Anda pastilah telah berkembang pesat. Kami baru saja menyelesaikan pembangkit listrik tenaga surya dan sedang berusaha meningkatkan efisiensi smelter kami. Saya banyak berpikir tentang rencana ekspansi ke bisnis aluminium dan berharap bisa berdiskusi dengan Anda mengenai peluang kerja sama di bidang tersebut. Mari kita berkumpul nanti malam untuk makan malam bersama dan menyusun strategi lebih lanjut. Senang rasanya bisa bersama Anda lagi!",
+        "trans": "哇，Budi先生，你好吗？我们多久没见了？好像快一年了，自去年雅加达矿业会议以来。很高兴能在莫罗瓦利再次见到您。贵公司一定发展迅速。我们刚完成太阳能发电厂，正努力提升冶炼厂效率。我一直在考虑扩展到铝业务，希望能与您讨论该领域的合作机会。今晚我们一起吃晚饭，进一步制定策略吧。很高兴能再次与您相聚！"
       }
     ]
   },
@@ -2719,53 +2722,187 @@ const topicData = {
         "icon": "🏛️",
         "words": 148,
         "time": 55,
-        "content": "Selamat pagi, Bapak/Ibu yang terhormat. Perkenalkan, nama saya [Nama], General Manager PT [Nama Perusahaan]. Saya bertanggung jawab atas operasi smelter dan pengembangan proyek di kawasan industri Morowali. Perusahaan kami telah beroperasi selama tujuh tahun dan memiliki lebih dari lima ribu karyawan. Kami berkomitmen untuk menciptakan lapangan kerja dan berkontribusi pada pembangunan ekonomi daerah. Terima kasih atas kesempatan ini untuk memperkenalkan diri. Saya sangat menghargai dukungan dari semua pihak."
+        "content": "Selamat pagi, Bapak/Ibu yang terhormat. Perkenalkan, nama saya [Nama], General Manager PT [Nama Perusahaan]. Saya bertanggung jawab atas operasi smelter dan pengembangan proyek di kawasan industri Morowali. Perusahaan kami telah beroperasi selama tujuh tahun dan memiliki lebih dari lima ribu karyawan. Kami berkomitmen untuk menciptakan lapangan kerja dan berkontribusi pada pembangunan ekonomi daerah. Terima kasih atas kesempatan ini untuk memperkenalkan diri. Saya sangat menghargai dukungan dari semua pihak.",
+        "trans": "早上好，尊敬的各位。请允许我介绍，我叫[姓名]，是[公司名称]的总经理。我负责莫罗瓦利工业园区的冶炼厂运营和项目开发。我们公司已经运营了七年，拥有超过五千名员工。我们致力于创造就业机会，为地方经济发展做出贡献。感谢您给我这次自我介绍的机会。我非常感谢各方的支持。"
       },
       {
         "title": "介绍公司（商务）",
         "icon": "🏢",
         "words": 152,
         "time": 58,
-        "content": "Selamat sore, para mitra dan investor yang terhormat. Izinkan saya memperkenalkan PT [Nama Perusahaan]. Kami adalah produsen nikel dan kobalt terbesar di Indonesia dengan kapasitas tahunan seratus lima puluh ribu ton. Fasilitas kami mencakup penambangan, pengolahan, dan produksi baterai lithium. Kami mempekerjakan dua belas ribu orang dan berinvestasi dalam teknologi ramah lingkungan. Visi kami adalah menjadi pemain global dalam rantai pasok baterai kendaraan listrik. Kami terbuka untuk kerja sama strategis dengan mitra internasional."
+        "content": "Selamat sore, para mitra dan investor yang terhormat. Izinkan saya memperkenalkan PT [Nama Perusahaan]. Kami adalah produsen nikel dan kobalt terbesar di Indonesia dengan kapasitas tahunan seratus lima puluh ribu ton. Fasilitas kami mencakup penambangan, pengolahan, dan produksi baterai lithium. Kami mempekerjakan dua belas ribu orang dan berinvestasi dalam teknologi ramah lingkungan. Visi kami adalah menjadi pemain global dalam rantai pasok baterai kendaraan listrik. Kami terbuka untuk kerja sama strategis dengan mitra internasional.",
+        "trans": "下午好，尊敬的合作伙伴和投资者。请允许我介绍[公司名称]。我们是印尼最大的镍和钴生产商，年产能达15万吨。我们的设施涵盖采矿、加工和锂电池生产。我们雇佣了1.2万人，并投资于环保技术。我们的愿景是成为全球电动汽车电池供应链的重要参与者。我们欢迎与国际战略合作伙伴开展合作。"
       },
       {
         "title": "欢迎致辞（工厂参观）",
         "icon": "🏭",
         "words": 145,
         "time": 55,
-        "content": "Selamat datang di fasilitas produksi kami. Saya [Nama], Kepala Operasional. Hari ini saya akan memperkenalkan proses produksi nikel dari tambang hingga produk akhir. Smelter kami menggunakan teknologi HPAL terkini dengan efisiensi energi tinggi. Kami memiliki dua puluh lima ribu karyawan lokal dan berkomitmen pada keselamatan kerja. Selama tujuh tahun operasi, kami telah mencapai nol kecelakaan fatal. Silakan ikuti saya untuk melihat fasilitas pengolahan dan area kontrol pusat."
+        "content": "Selamat datang di fasilitas produksi kami. Saya [Nama], Kepala Operasional. Hari ini saya akan memperkenalkan proses produksi nikel dari tambang hingga produk akhir. Smelter kami menggunakan teknologi HPAL terkini dengan efisiensi energi tinggi. Kami memiliki dua puluh lima ribu karyawan lokal dan berkomitmen pada keselamatan kerja. Selama tujuh tahun operasi, kami telah mencapai nol kecelakaan fatal. Silakan ikuti saya untuk melihat fasilitas pengolahan dan area kontrol pusat.",
+        "trans": "欢迎来到我们的生产设施。我是[姓名]，运营主管。今天我将向大家介绍从矿山到最终产品的镍生产流程。我们的冶炼厂采用最新的HPAL技术，能效高。我们拥有2.5万名本地员工，并致力于工作安全。在七年运营中，我们已实现零致命事故。请跟我来参观加工设施和控制中心。"
       },
       {
         "title": "介绍团队（项目启动会）",
         "icon": "👥",
         "words": 150,
         "time": 57,
-        "content": "Selamat pagi, rekan-rekan sekalian. Hari ini saya ingin memperkenalkan tim proyek pembangkit listrik tenaga surya dua ratus MW. Tim ini dipimpin oleh Pak [Nama] sebagai Project Manager, dengan dukungan tim teknik dari tiga negara. Pak [Nama] memiliki pengalaman lima belas tahun dalam pembangkit listrik terbarukan. Tim keuangan dipimpin oleh Bu [Nama] yang sudah menangani proyek infrastruktur besar di Asia Tenggara. Saya yakin dengan kerja sama tim yang solid, proyek ini akan selesai tepat waktu dan sesuai anggaran."
+        "content": "Selamat pagi, rekan-rekan sekalian. Hari ini saya ingin memperkenalkan tim proyek pembangkit listrik tenaga surya dua ratus MW. Tim ini dipimpin oleh Pak [Nama] sebagai Project Manager, dengan dukungan tim teknik dari tiga negara. Pak [Nama] memiliki pengalaman lima belas tahun dalam pembangkit listrik terbarukan. Tim keuangan dipimpin oleh Bu [Nama] yang sudah menangani proyek infrastruktur besar di Asia Tenggara. Saya yakin dengan kerja sama tim yang solid, proyek ini akan selesai tepat waktu dan sesuai anggaran.",
+        "trans": "早上好，各位同事。今天我想介绍200MW太阳能电站项目团队。该团队由[姓名]先生担任项目经理，并有来自三个国家的工程团队提供支持。[姓名]先生在可再生能源电站领域拥有15年经验。财务团队由[姓名]女士领导，她曾负责东南亚大型基础设施项目。我相信凭借团队的紧密合作，该项目将按时按预算完成。"
       },
       {
         "title": "介绍产品（客户会议）",
         "icon": "🔋",
         "words": 148,
         "time": 56,
-        "content": "Selamat sore, para pelanggan yang terhormat. Izinkan saya memperkenalkan produk nikel sulfat kelas baterai kami. Produk ini memiliki kemurnian tinggi dan sesuai dengan standar industri baterai kendaraan listrik global. Kapasitas produksi tahunan kami mencapai lima puluh ribu ton, dengan rencana ekspansi menjadi seratus ribu ton dalam dua tahun. Kami telah bekerja sama dengan produsen baterai terkemuka dari Korea, Jepang, dan China. Produk kami telah lolos sertifikasi internasional dan siap memasuki pasar global."
+        "content": "Selamat sore, para pelanggan yang terhormat. Izinkan saya memperkenalkan produk nikel sulfat kelas baterai kami. Produk ini memiliki kemurnian tinggi dan sesuai dengan standar industri baterai kendaraan listrik global. Kapasitas produksi tahunan kami mencapai lima puluh ribu ton, dengan rencana ekspansi menjadi seratus ribu ton dalam dua tahun. Kami telah bekerja sama dengan produsen baterai terkemuka dari Korea, Jepang, dan China. Produk kami telah lolos sertifikasi internasional dan siap memasuki pasar global.",
+        "trans": "下午好，尊敬的客户们。请允许我介绍我们的电池级硫酸镍产品。该产品纯度高，符合全球电动汽车电池行业标准。我们年产能达5万吨，计划两年内扩建至10万吨。我们已与韩国、日本和中国的领先电池制造商建立了合作关系。我们的产品已通过国际认证，准备进入全球市场。"
       },
       {
         "title": "节日问候与介绍（开斋节）",
         "icon": "🌙",
         "words": 142,
         "time": 54,
-        "content": "Assalamualaikum warahmatullahi wabarakatuh. Selamat Hari Raya Idul Fitri, Mohon Maaf Lahir dan Batin. Saya [Nama], General Manager. Di momen istimewa ini, izinkan saya memperkenalkan program kesejahteraan karyawan baru kami. Program ini mencakup asuransi kesehatan, beasiswa pendidikan untuk anak karyawan, dan fasilitas olahraga. Kami telah berinvestasi lima miliar rupiah untuk program ini. Karena keberhasilan perusahaan tidak terlepas dari kesejahteraan keluarga besar kita. Selamat merayakan bersama keluarga tercinta."
+        "content": "Assalamualaikum warahmatullahi wabarakatuh. Selamat Hari Raya Idul Fitri, Mohon Maaf Lahir dan Batin. Saya [Nama], General Manager. Di momen istimewa ini, izinkan saya memperkenalkan program kesejahteraan karyawan baru kami. Program ini mencakup asuransi kesehatan, beasiswa pendidikan untuk anak karyawan, dan fasilitas olahraga. Kami telah berinvestasi lima miliar rupiah untuk program ini. Karena keberhasilan perusahaan tidak terlepas dari kesejahteraan keluarga besar kita. Selamat merayakan bersama keluarga tercinta.",
+        "trans": "祝大家平安，愿真主的仁慈和祝福与你们同在。开斋节快乐，衷心请求宽恕身体和心灵上的过错。我是[姓名]，总经理。在这个特殊时刻，请允许我介绍我们新的员工福利计划。该计划包括医疗保险、员工子女教育奖学金和体育设施。我们已为该计划投资50亿印尼盾。因为公司的成功离不开我们大家庭的福祉。祝大家与心爱的家人一起欢度节日。"
       }
     ]
-  }
-};
+  },
+  "directions": {
+    "title": "话题3: 印尼地图学习和问路问地方 / Arah dan Peta",
+    "icon": "🗺️",
+    "days": 3,
+    "grammar": {
+      "title": "方位与位置表达",
+      "rules": [
+        "Rule 1: di + 地点 = 在某地 — di kantin (在食堂)、di Jakarta (在雅加达)",
+        "Rule 2: ke + 地点 = 去某地 — ke pabrik (去工厂)、ke Indonesia (去印尼)",
+        "Rule 3: dari + 地点 = 从某地 — dari China (从中国)、dari hotel (从酒店)",
+        "Rule 4: di sini (这里)、di sana (那里)、di situ (那边) — 指示代词+地点",
+        "Rule 5: sebelah + 方位 = 在某边 — sebelah kiri (左边)、sebelah kanan (右边)",
+        "Rule 6: depan (前面)、belakang (后面)、atas (上面)、bawah (下面)",
+        "Rule 7: 用 'berapa lama' 问时间距离、'berapa jauh' 问空间距离",
+        "Rule 8: lurus (直走)、belok kiri (左转)、belok kanan (右转)、putar balik (掉头)"
+      ],
+      "examples": [
+        "Di mana kantor pos? /di ˈmana ˈkantor pos/ = '邮局在哪里？'",
+        "Ke sana lurus, lalu belok kiri. /kə ˈsana ˈlurus, ˈlalu ˈbɛlok ˈkiri/ = '那边直走，然后左转。'",
+        "Dari sini ke bandara berapa jam? /ˈdari ˈsini kə banˈdara bəˈrapa ˈdʒam/ = '从这里到机场要多久？'",
+        "Di sebelah kanan ada bank. /di səˈbɛlah ˈkanan ˈada baŋk/ = '右边有一家银行。'",
+        "Toko itu di depan stasiun. /ˈtoko ˈitu di ˈdɛpan staˈsiun/ = '那家店在车站前面。'",
+        "Bisa tunjukkan di peta? /ˈbisa ˈtundʒukkan di ˈpɛta/ = '能在地图上指一下吗？'"
+      ]
+    },
+    "scenes": [
+      {
+        "title": "问路到工厂/园区",
+        "icon": "🏭",
+        "dialogue": [
+          {"speaker": "A", "text": "Permisi, Pak. Bisa tolong tunjukkan jalan ke kawasan industri Morowali?", "trans": "打扰一下，先生。能指一下去莫罗瓦利工业园区的路吗？"},
+          {"speaker": "B", "text": "Tentu. Dari sini lurus sekitar lima kilometer, lalu belok kanan di pertigaan besar. Nanti Anda akan melihat papan nama kawasan industri di sebelah kiri.", "trans": "当然。从这里直走大约五公里，然后在大路口右转。之后你会看到工业园区标牌在左边。"},
+          {"speaker": "A", "text": "Kalau naik taksi, berapa lama perjalanannya?", "trans": "如果坐出租车，要多久？"},
+          {"speaker": "B", "text": "Kurang lebih tiga puluh menit, tergantung macet. Kalau macet, bisa satu jam.", "trans": "大约三十分钟，看堵车情况。如果堵车，可能要一小时。"},
+          {"speaker": "A", "text": "Terima kasih banyak. Apakah ada aplikasi peta yang bisa saya gunakan di sini?", "trans": "非常感谢。这里有什么地图应用可以用吗？"},
+          {"speaker": "B", "text": "Ya, Google Maps bisa. Tapi kalau di dalam kawasan, peta internal perusahaan lebih akurat.", "trans": "有，Google Maps可以用。但在园区内，公司内部地图更准确。"}
+        ]
+      },
+      {
+        "title": "在市区问路（找餐厅/酒店）",
+        "icon": "🏙️",
+        "dialogue": [
+          {"speaker": "A", "text": "Maaf, saya mau ke hotel Hyatt. Di mana ya?", "trans": "不好意思，我想去凯悦酒店。在哪里？"},
+          {"speaker": "B", "text": "Oh, hotel itu di pusat kota. Naik angkot nomor lima, turun di halte depan mall.", "trans": "哦，那家酒店在市中心。坐5号小公交，在商场前的站下车。"},
+          {"speaker": "A", "text": "Kalau jalan kaki berapa menit?", "trans": "步行要多久？"},
+          {"speaker": "B", "text": "Dari sini sekitar dua puluh menit. Tapi cuaca panas, lebih baik naik ojek online.", "trans": "从这里大约二十分钟。但天气热，最好叫网约车。"},
+          {"speaker": "A", "text": "Baik, saya pakai Grab saja. Terima kasih!", "trans": "好的，我用Grab吧。谢谢！"},
+          {"speaker": "B", "text": "Sama-sama. Hati-hati di jalan!", "trans": "不客气。路上小心！"}
+        ]
+      },
+      {
+        "title": "在机场问路（去市区/换汇）",
+        "icon": "✈️",
+        "dialogue": [
+          {"speaker": "A", "text": "Selamat pagi. Saya baru datang dari China. Bisa bantu saya?", "trans": "早上好。我刚从中国来。能帮我一下吗？"},
+          {"speaker": "B", "text": "Selamat datang! Tentu, ada yang bisa saya bantu?", "trans": "欢迎！当然，有什么可以帮您的？"},
+          {"speaker": "A", "text": "Di mana tempat tukar uang? Dan bagaimana cara ke hotel di pusat kota?", "trans": "换钱的地方在哪里？还有怎么去市中心的酒店？"},
+          {"speaker": "B", "text": "Tempat tukar uang di lantai dua, sebelah kanan dari lift. Untuk ke kota, ada bus bandara di depan terminal.", "trans": "换钱处在二楼，电梯右边。去市区的话，航站楼前有机场大巴。"},
+          {"speaker": "A", "text": "Berapa tarif busnya?", "trans": "车票多少钱？"},
+          {"speaker": "B", "text": "Tujuh puluh lima ribu rupiah. Perjalanan sekitar empat puluh lima menit.", "trans": "七万五千印尼盾。车程大约四十五分钟。"}
+        ]
+      },
+      {
+        "title": "问同事附近设施",
+        "icon": "🍽️",
+        "dialogue": [
+          {"speaker": "A", "text": "Bro, di dekat sini ada tempat makan enak nggak? Saya bosan kantin.", "trans": "兄弟，这附近有什么好吃的吗？我吃腻了食堂。"},
+          {"speaker": "B", "text": "Ada warung Padang di belakang kantor, masakannya enak dan murah. Jalan kaki lima menit.", "trans": "办公楼后面有家巴东餐馆，菜好吃又便宜。步行五分钟。"},
+          {"speaker": "A", "text": "Wah, boleh juga. Ada minimarket juga nggak? Mau beli air mineral.", "trans": "哇，不错。有便利店吗？想买矿泉水。"},
+          {"speaker": "B", "text": "Ada, di sebelah warung. Buka dua puluh empat jam.", "trans": "有，在餐馆旁边。二十四小时营业。"},
+          {"speaker": "A", "text": "Oke, makasih infonya!", "trans": "好的，谢谢信息！"},
+          {"speaker": "B", "text": "Sama-sama. Jangan lupa bawa payung, nanti hujan.", "trans": "不客气。别忘了带伞，等下要下雨。"}
+        ]
+      },
+      {
+        "title": "使用地图导航",
+        "icon": "📱",
+        "dialogue": [
+          {"speaker": "A", "text": "Pak, bisakah Anda tunjukkan lokasi pabrik baru di peta?", "trans": "先生，您能在地图上指一下新工厂的位置吗？"},
+          {"speaker": "B", "text": "Tentu. Ini peta kawasan industri. Pabrik baru kita di sebelah timur, dekat pelabuhan.", "trans": "当然。这是工业园区地图。我们的新工厂在东边，靠近港口。"},
+          {"speaker": "A", "text": "Jadi dari gerbang utama lurus sampai perempatan, lalu belok kanan?", "trans": "所以从大门直走到十字路口，然后右转？"},
+          {"speaker": "B", "text": "Betul. Nanti Anda lihat gedung tinggi di sebelah kiri, itu kantor pusat. Pabriknya di belakang.", "trans": "对。之后你会看到左边有栋高楼，那是总部。工厂在后面。"},
+          {"speaker": "A", "text": "Baik, saya catat. Berapa lama dari sini ke sana naik mobil?", "trans": "好的，我记下了。从这里开车过去要多久？"},
+          {"speaker": "B", "text": "Kurang lebih sepuluh menit. Jalanannya bagus, sudah diaspal.", "trans": "大约十分钟。路况很好，已经铺了沥青。"}
+        ]
+      },
+      {
+        "title": "迷路后求助",
+        "icon": "😰",
+        "dialogue": [
+          {"speaker": "A", "text": "Maaf, saya tersesat. Saya mau ke PT [Nama Perusahaan] tapi tidak tahu jalannya.", "trans": "不好意思，我迷路了。我想去[公司名称]但不知道路。"},
+          {"speaker": "B", "text": "Jangan khawatir. PT itu di jalan [Nama Jalan]. Dari sini Anda lurus dua ratus meter, lalu belok kiri.", "trans": "别担心。那家公司在[路名]路上。从这里直走两百米，然后左转。"},
+          {"speaker": "A", "text": "Sebelah kiri atau kanan?", "trans": "左边还是右边？"},
+          {"speaker": "B", "text": "Sebelah kanan. Gedungnya tinggi, warna biru. Nggak akan ketinggalan.", "trans": "右边。楼很高，蓝色的。不会错过的。"},
+          {"speaker": "A", "text": "Terima kasih banyak! Saya hampir putar balik.", "trans": "非常感谢！我差点要掉头回去了。"},
+          {"speaker": "B", "text": "Sama-sama. Kalau masih bingung, tanya satpam di depan. Mereka tahu semua alamat di sini.", "trans": "不客气。如果还糊涂，问前面的保安。他们知道这里所有地址。"}
+        ]
+      }
+    ],
+    "speeches": [
+      {
+        "title": "介绍印尼地理与工业园区位置",
+        "icon": "🗺️",
+        "words": 155,
+        "time": 60,
+        "content": "Selamat pagi, rekan-rekan. Hari ini saya ingin memperkenalkan letak geografis Indonesia dan posisi strategis kawasan industri kita. Indonesia adalah negara kepulauan terbesar di dunia, terletak di antara Samudra Pasifik dan Hindia. Kawasan industri Morowali berada di Sulawesi Tengah, dekat dengan jalur perdagangan internasional. Dari Jakarta, kita bisa naik pesawat selama dua setengah jam ke Palu, lalu lanjut perjalanan darat tiga jam ke Morowali. Lokasi ini sangat strategis karena dekat dengan tambang nikel dan pelabuhan laut dalam. Perusahaan kami memiliki fasilitas di tiga lokasi: pabrik pengolahan di Morowali, kantor pusat di Jakarta, dan kantor perwakilan di Shanghai. Untuk koordinasi antar lokasi, kita menggunakan sistem manajemen berbasis cloud. Saya harap semua karyawan memahami peta operasional kita agar komunikasi antar pabrik lebih efisien.",
+        "trans": "早上好，各位同事。今天我想介绍一下印度尼西亚的地理位置和我们工业园区的战略位置。印尼是世界上最大的群岛国家，位于太平洋和印度洋之间。莫罗瓦利工业园区位于中苏拉威西，靠近国际贸易航线。从雅加达，我们可以坐飞机两个半小时到帕卢，然后继续三小时陆路到莫罗瓦利。这个位置非常战略，因为靠近镍矿和深水港。我们公司在三个地点有设施：莫罗瓦利的加工厂、雅加达总部和上海代表处。为了跨地点协调，我们使用基于云的管理系统。我希望所有员工了解我们的运营地图，以便工厂之间的沟通更高效。"
+      },
+      {
+        "title": "指路说明（工厂参观引导）",
+        "icon": "🏭",
+        "words": 148,
+        "time": 58,
+        "content": "Selamat datang di fasilitas produksi kami. Izinkan saya menjelaskan rute kunjungan hari ini. Dari gerbang utama, kita akan lurus sepanjang jalan utama sekitar lima ratus meter. Di sebelah kiri Anda akan melihat gudang bahan baku, dan di sebelah kanan adalah area parkir karyawan. Lalu kita belok kanan di pertigaan pertama. Di depan sana gedung tinggi berwarna putih adalah kantor administrasi. Di belakangnya ada pabrik pengolahan nikel dan laboratorium kualitas. Perjalanan dari gerbang ke pabrik sekitar sepuluh menit dengan mobil. Saya harap Anda mengikuti rute yang sudah ditentukan untuk keselamatan. Jangan memasuki area produksi tanpa izin dan selalu kenakan perlengkapan keselamatan. Setelah tur pabrik, kita akan kembali ke ruang rapat untuk presentasi lebih lanjut.",
+        "trans": "欢迎来到我们的生产设施。请允许我解释今天的参观路线。从大门开始，我们将沿着主路直走约五百米。左边您会看到原材料仓库，右边是员工停车场。然后我们在第一个路口右转。前面那栋白色高楼是行政办公楼。后面是镍加工厂和质量实验室。从大门到工厂车程约十分钟。我希望您遵循指定路线以确保安全。未经许可请勿进入生产区域，并始终佩戴安全装备。工厂参观结束后，我们将返回会议室进行进一步演示。"
+      },
+      {
+        "title": "问路指南（新员工入职培训）",
+        "icon": "👋",
+        "words": 142,
+        "time": 55,
+        "content": "Halo, rekan-rekan baru! Selamat bergabung di perusahaan kami. Saya tahu pertama kali di Morowali pasti banyak yang bingung dengan jalan dan lokasi. Jadi saya ingin berbagi tips penting. Pertama, selalu simpalah nomor satpam dan rekan kerja yang sudah lama di sini. Kedua, unduh aplikasi Google Maps dan peta internal perusahaan sebelum keluar. Ketiga, jika tersesat, jangan ragu bertanya kepada warga lokal, mereka sangat ramah. Keempat, hati-hati dengan ojek online, pastikan nomor plat dan nama pengemudi sesuai aplikasi. Dari kantor ke pasar tradisional sekitar lima belas menit, ke rumah sakit dua puluh menit, dan ke bandara tiga jam. Saya harap kalian cepat beradaptasi dan menikmati hidup di Morowali. Selamat bekerja!",
+        "trans": "嗨，新同事们！欢迎来到我们公司。我知道第一次来莫罗瓦利肯定对道路和地点很困惑。所以我想分享一些重要提示。第一，始终保存保安和资深同事的号码。第二，出门前下载Google Maps和公司内部地图应用。第三，如果迷路了，不要犹豫问当地居民，他们很友好。第四，小心网约车，确保车牌和司机姓名与APP一致。从办公室到传统市场约十五分钟，到医院二十分钟，到机场三小时。我希望你们能快速适应并享受莫罗瓦利的生活。工作顺利！"
+      }
+    ]
+  },};
 
 
-const topicCalendar = {
+  const topicCalendar = {
   "2026-07-16": {topic: "meet", day: 1, label: "词汇+语法+场景对话+演讲+复习", allDays: true},
   "2026-07-17": {topic: "introduce", day: 1, label: "词汇+语法+语型"},
   "2026-07-18": {topic: "introduce", day: 2, label: "复习+语型+对话"},
-  "2026-07-19": {topic: "introduce", day: 3, label: "复习+演讲"}
+  "2026-07-19": {topic: "introduce", day: 3, label: "复习+演讲"},
+  "2026-07-20": {topic: "directions", day: 1, label: "词汇+语法+问路基础"},
+  "2026-07-21": {topic: "directions", day: 2, label: "复习+指路对话+地图阅读"},
+  "2026-07-22": {topic: "directions", day: 3, label: "复习+演讲+印尼地理"}
 };
 
 function getTopicForDate(ds) {
