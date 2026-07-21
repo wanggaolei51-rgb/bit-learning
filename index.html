@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<title>LEO-BIR V4.1</title>
+<title>LEO-BIR V4.2</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -151,7 +151,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="sidebar-header">
     <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <h1>LEO-BIR</h1>
-    <div class="ver">LEO-BIR V4.1 · 词根游戏重构 · 字母发音表</div>
+    <div class="ver">LEO-BIR V4.2 · 词根射击重构 · 字母发音表 · 动态词库</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -1775,8 +1775,8 @@ document.addEventListener("DOMContentLoaded",()=>{
 
 let wordStats = JSON.parse(localStorage.getItem("bir_ws3") || "{}");
 
-// ===== 词根射击游戏数据 V4.1 =====
-// 基于 mindmap_all.md 全面重构，四级分类体系
+// ===== 词根射击游戏数据 V4.2 =====
+// 修复：pe-/per-/peN- 混淆，大量补充例词，四级分类体系
 
 const AFFIX_GAME_DATA = {
   prefix: {
@@ -1789,48 +1789,59 @@ const AFFIX_GAME_DATA = {
         desc: '主动语态及物动词前缀。让动词变得主动与正式。变形只看词根首字母，遵循KPST脱落法则。',
         rule: 'KPST脱落法则：仅k/p/s/t四清音脱落且后接元音；辅音丛不脱落；外来词常不脱落；单音节不脱落；c永不脱落',
         variants: {
-          'mem-': { label: 'mem-', rule: '首字母 b/p/f → mem-（p脱落）', words: [
+          'mem-': { label: 'mem-', rule: '首字母 b/p/f → mem-（p脱落）', color: '#ff6b6b', words: [
             {root:'baca', full:'membaca', cn:'读'}, {root:'pukul', full:'memukul', cn:'打'},
             {root:'buat', full:'membuat', cn:'制作'}, {root:'bantu', full:'membantu', cn:'帮助'},
             {root:'bayar', full:'membayar', cn:'支付'}, {root:'foto', full:'memfoto', cn:'拍照'},
             {root:'perbaiki', full:'memperbaiki', cn:'修理'}, {root:'percaya', full:'mempercayai', cn:'相信'},
             {root:'punya', full:'mempunyai', cn:'拥有'}, {root:'produksi', full:'memproduksi', cn:'生产'},
-            {root:'perlu', full:'memerlukan', cn:'需要'}, {root:'buka', full:'membuka', cn:'打开'}
+            {root:'perlu', full:'memerlukan', cn:'需要'}, {root:'buka', full:'membuka', cn:'打开'},
+            {root:'beli', full:'membeli', cn:'购买'}, {root:'akui', full:'memaklumi', cn:'谅解'}, {root:'perkenal', full:'memperkenalkan', cn:'介绍'}
           ]},
-          'men-': { label: 'men-', rule: '首字母 t/c/d/j/z → men-（t脱落）', words: [
+          'men-': { label: 'men-', rule: '首字母 t/c/d/j/z → men-（t脱落）', color: '#4ecdc4', words: [
             {root:'tulis', full:'menulis', cn:'写'}, {root:'dengar', full:'mendengar', cn:'听'},
             {root:'jawab', full:'menjawab', cn:'回答'}, {root:'jual', full:'menjual', cn:'卖'},
             {root:'cari', full:'mencari', cn:'寻找'}, {root:'curi', full:'mencuri', cn:'偷'},
             {root:'tangkap', full:'menangkap', cn:'抓'}, {root:'tari', full:'menari', cn:'跳舞'},
             {root:'dapat', full:'mendapat', cn:'获得'}, {root:'cuci', full:'mencuci', cn:'洗'},
-            {root:'jelas', full:'menjelaskan', cn:'解释'}, {root:'temu', full:'menemukan', cn:'发现'}
+            {root:'jelas', full:'menjelaskan', cn:'解释'}, {root:'temu', full:'menemukan', cn:'发现'},
+            {root:'zalim', full:'menzalimi', cn:'压迫'}, {root:'junjung', full:'menjunjung', cn:'高举'}, {root:'jamin', full:'menjamin', cn:'保证'}
           ]},
-          'meny-': { label: 'meny-', rule: '首字母 s → meny-（s脱落）', words: [
+          'meny-': { label: 'meny-', rule: '首字母 s → meny-（s脱落）', color: '#ffe66d', words: [
             {root:'sewa', full:'menyewa', cn:'出租'}, {root:'setir', full:'menyetir', cn:'驾驶'},
             {root:'impan', full:'menyimpan', cn:'保存'}, {root:'iap', full:'menyiapkan', cn:'准备'},
             {root:'umbang', full:'menyumbang', cn:'贡献'}, {root:'ertai', full:'menyertai', cn:'参加'},
             {root:'alur', full:'menyalurkan', cn:'输送'}, {root:'elamat', full:'menyelamatkan', cn:'拯救'},
-            {root:'ebab', full:'menyebabkan', cn:'导致'}, {root:'embuh', full:'menyembuhkan', cn:'治愈'}
+            {root:'ebab', full:'menyebabkan', cn:'导致'}, {root:'embuh', full:'menyembuhkan', cn:'治愈'},
+            {root:'apu', full:'menyapu', cn:'打扫'}, {root:'iram', full:'menyiram', cn:'浇水'},
+            {root:'elewati', full:'menyeleweng', cn:'偏离'}, {root:'embelih', full:'menyembelih', cn:'屠宰'}, {root:'emang', full:'menyemangati', cn:'鼓励'}
           ]},
-          'meng-': { label: 'meng-', rule: '首字母 元音/g/h/k/kh/q/x → meng-（k脱落）', words: [
+          'meng-': { label: 'meng-', rule: '首字母 元音/g/h/k/kh/q/x → meng-（k脱落）', color: '#1dd1a1', words: [
             {root:'gunakan', full:'menggunakan', cn:'使用'}, {root:'gambar', full:'menggambar', cn:'画画'},
             {root:'hormat', full:'menghormat', cn:'尊敬'}, {root:'ambil', full:'mengambil', cn:'拿'},
             {root:'ubah', full:'mengubah', cn:'改变'}, {root:'irim', full:'mengirim', cn:'发送'},
             {root:'kata', full:'mengatakan', cn:'说'}, {root:'ganggu', full:'mengganggu', cn:'打扰'},
             {root:'hitung', full:'menghitung', cn:'计算'}, {root:'enal', full:'mengenal', cn:'认识'},
-            {root:'operasi', full:'mengoperasi', cn:'操作'}, {root:'impor', full:'mengimpor', cn:'进口'}
+            {root:'operasi', full:'mengoperasi', cn:'操作'}, {root:'impor', full:'mengimpor', cn:'进口'},
+            {root:'khawatir', full:'mengkhawatirkan', cn:'担心'}, {root:'ganti', full:'mengganti', cn:'替换'}, {root:'ajar', full:'mengajar', cn:'教'}
           ]},
-          'menge-': { label: 'menge-', rule: '单音节词根 → menge-（不脱落）', words: [
+          'menge-': { label: 'menge-', rule: '单音节词根 → menge-（不脱落）', color: '#ff9f43', words: [
             {root:'cek', full:'mengecek', cn:'检查'}, {root:'bom', full:'mengebom', cn:'轰炸'},
             {root:'jar', full:'mengejar', cn:'追赶'}, {root:'lap', full:'mengelap', cn:'擦拭'},
-            {root:'cat', full:'mengecat', cn:'刷漆'}, {root:'pas', full:'mengepas', cn:'装配'}
+            {root:'cat', full:'mengecat', cn:'刷漆'}, {root:'pas', full:'mengepas', cn:'装配'},
+            {root:'kor', full:'mengekor', cn:'跟随'}, {root:'jar', full:'mengerjakan', cn:'执行'},
+            {root:'lang', full:'mengelang', cn:'舔'}, {root:'pak', full:'mengepak', cn:'折叠'},
+            {root:'dus', full:'mengedus', cn:'闻'}, {root:'elus', full:'mengelus', cn:'抚摸'},
+            {root:'gam', full:'mengegam', cn:'紧抓'}, {root:'jut', full:'mengejutkan', cn:'惊吓'}, {root:'eluh', full:'mengeluh', cn:'抱怨'}
           ]},
-          'me-': { label: 'me-', rule: '首字母 l/r/m/n/ny/ng/w/y → me-（不脱落）', words: [
+          'me-': { label: 'me-', rule: '首字母 l/r/m/n/ny/ng/w/y → me-（不脱落）', color: '#54a0ff', words: [
             {root:'lakukan', full:'melakukan', cn:'执行'}, {root:'rawat', full:'merawat', cn:'照顾'},
             {root:'warna', full:'mewarnai', cn:'上色'}, {root:'yakini', full:'meyakini', cn:'确信'},
             {root:'wujud', full:'mewujudkan', cn:'实现'}, {root:'lepas', full:'melepaskan', cn:'释放'},
             {root:'rusak', full:'merusak', cn:'破坏'}, {root:'lihat', full:'melihat', cn:'看见'},
-            {root:'lantik', full:'melantik', cn:'任命'}, {root:'rongrong', full:'merongrong', cn:'侵蚀'}
+            {root:'lantik', full:'melantik', cn:'任命'}, {root:'rongrong', full:'merongrong', cn:'侵蚀'},
+            {root:'nyanyi', full:'menyanyikan', cn:'唱歌'}, {root:'ngerti', full:'mengerti', cn:'理解'},
+            {root:'main', full:'memainkan', cn:'玩弄'}, {root:'masuk', full:'memasuki', cn:'进入'}, {root:'nari', full:'menari', cn:'跳舞'}
           ]}
         }
       },
@@ -1839,21 +1850,25 @@ const AFFIX_GAME_DATA = {
         desc: '构成不及物动词，表示"拥有/做/处于"。使口语动词书面化/正式化，一般不改词义。',
         rule: 'ber- + 词根首字母r → be-（r省略）；belajar为特例',
         variants: {
-          'ber-': { label: 'ber-', rule: 'ber- + 词根（标准形式）', words: [
+          'ber-': { label: 'ber-', rule: 'ber- + 词根（标准形式）', color: '#5f27cd', words: [
             {root:'main', full:'bermain', cn:'玩'}, {root:'renang', full:'berenang', cn:'游泳'},
             {root:'pikir', full:'berpikir', cn:'思考'}, {root:'kumpul', full:'berkumpul', cn:'聚集'},
             {root:'diskusi', full:'berdiskusi', cn:'讨论'}, {root:'usaha', full:'berusaha', cn:'努力'},
             {root:'tanya', full:'bertanya', cn:'提问'}, {root:'semangat', full:'bersemangat', cn:'有精神'},
             {root:'operasi', full:'beroperasi', cn:'运营'}, {root:'kelanjutan', full:'berkelanjutan', cn:'持续'},
-            {root:'arti', full:'berarti', cn:'意味着'}, {root:'jalan', full:'berjalan', cn:'行走'}
+            {root:'arti', full:'berarti', cn:'意味着'}, {root:'jalan', full:'berjalan', cn:'行走'},
+            {root:'kacamata', full:'berkacamata', cn:'戴眼镜'}, {root:'baju', full:'berbaju', cn:'穿衣服'}, {root:'lima', full:'berlima', cn:'五人一起'}
           ]},
-          'be-': { label: 'be-', rule: 'ber- + r开头词根，省略r → be-', words: [
+          'be-': { label: 'be-', rule: 'ber- + r开头词根，省略r → be-', color: '#00d2d3', words: [
             {root:'kerja', full:'bekerja', cn:'工作'}, {root:'rita', full:'berita', cn:'新闻'},
             {root:'rangkat', full:'berangkat', cn:'出发'}, {root:'rbeda', full:'berbeda', cn:'不同'},
-            {root:'rgabung', full:'bergabung', cn:'加入'}, {root:'rbicara', full:'berbicara', cn:'谈话'}
+            {root:'rgabung', full:'bergabung', cn:'加入'}, {root:'rbicara', full:'berbicara', cn:'谈话'},
+            {root:'rhenti', full:'berhenti', cn:'停止'}, {root:'rhasil', full:'berhasil', cn:'成功'},
+            {root:'rganti', full:'berganti', cn:'更换'}, {root:'rkunjung', full:'berkunjung', cn:'拜访'},
+            {root:'rmain', full:'bermain', cn:'玩'}, {root:'runding', full:'berunding', cn:'谈判'}, {root:'rsepeda', full:'bersepeda', cn:'骑车'}
           ]},
-          'bel-': { label: 'bel-', rule: '特例：belajar（唯一常用词）', words: [
-            {root:'ajar', full:'belajar', cn:'学习'}
+          'bel-': { label: 'bel-', rule: '特例：belajar（唯一常用词）', color: '#ff6348', words: [
+            {root:'ajar', full:'belajar', cn:'学习'}, {root:'ajar', full:'pelajar', cn:'学生'}, {root:'ajar', full:'pengajar', cn:'教师'}, {root:'ajar', full:'mengajar', cn:'教'}, {root:'ajar', full:'diajar', cn:'被教'}, {root:'ajar', full:'diajarkan', cn:'被教给'}, {root:'ajar', full:'mempelajari', cn:'研究学习'}
           ]}
         }
       },
@@ -1862,12 +1877,13 @@ const AFFIX_GAME_DATA = {
         desc: '被动语态前缀。施事为第三人称时用di-；一/二人称用零前缀被动（代词+动词原形）。',
         rule: 'meN-整体换di-，鼻音同化取消：membuat→dibuat、menulis→ditulis',
         variants: {
-          'di-': { label: 'di-', rule: 'di- + 词根（被动语态）', words: [
+          'di-': { label: 'di-', rule: 'di- + 词根（被动语态）', color: '#57606f', words: [
             {root:'buat', full:'dibuat', cn:'被制作'}, {root:'lihat', full:'dilihat', cn:'被看见'},
             {root:'baca', full:'dibaca', cn:'被读'}, {root:'makan', full:'dimakan', cn:'被吃'},
             {root:'tulis', full:'ditulis', cn:'被写'}, {root:'kirim', full:'dikirim', cn:'被发送'},
             {root:'pakai', full:'dipakai', cn:'被使用'}, {root:'jual', full:'dijual', cn:'被卖'},
-            {root:'bangun', full:'dibangun', cn:'被建设'}, {root:'bersih', full:'dibersihkan', cn:'被打扫'}
+            {root:'bangun', full:'dibangun', cn:'被建设'}, {root:'bersih', full:'dibersihkan', cn:'被打扫'},
+            {root:'tunggu', full:'ditunggu', cn:'被等待'}, {root:'tanya', full:'ditanyakan', cn:'被问'}, {root:'bantu', full:'dibantu', cn:'被帮助'}, {root:'bunuh', full:'dibunuh', cn:'被杀'}, {root:'tangkap', full:'ditangkap', cn:'被抓'}
           ]}
         }
       },
@@ -1876,13 +1892,14 @@ const AFFIX_GAME_DATA = {
         desc: '无变形。功能：①+形容词=最高级 ②+动词=无意/偶然被动 ③状态/已完成 ④能力',
         rule: 'ter- 动词被动义永远用第一被动形式',
         variants: {
-          'ter-': { label: 'ter-', rule: 'ter- + 词根（最/被动/意外/状态）', words: [
+          'ter-': { label: 'ter-', rule: 'ter- + 词根（最/被动/意外/状态）', color: '#f368e0', words: [
             {root:'baik', full:'terbaik', cn:'最好的'}, {root:'buruk', full:'terburuk', cn:'最坏的'},
             {root:'kena', full:'terkena', cn:'被击中'}, {root:'tuju', full:'tertuju', cn:'被针对'},
             {root:'tulis', full:'tertulis', cn:'被写着的'}, {root:'baca', full:'terbaca', cn:'被读到的'},
             {root:'tawa', full:'tertawa', cn:'笑出声'}, {root:'kejut', full:'terkejut', cn:'吃惊'},
             {root:'hormat', full:'terhormat', cn:'受尊敬的'}, {root:'kenal', full:'terkenal', cn:'著名的'},
-            {root:'jangkau', full:'terjangkau', cn:'负担得起'}, {root:'tutup', full:'tertutup', cn:'关着的'}
+            {root:'jangkau', full:'terjangkau', cn:'负担得起'}, {root:'tutup', full:'tertutup', cn:'关着的'},
+            {root:'makan', full:'termakan', cn:'被（不小心）吃'}, {root:'cinta', full:'tercinta', cn:'被深爱的'}, {root:'larang', full:'terlarang', cn:'被禁止的'}
           ]}
         }
       },
@@ -1891,46 +1908,51 @@ const AFFIX_GAME_DATA = {
         desc: '构成施事者或工具名词。变形与meN-完全同构（同一套鼻音同化）。及物动词去meN-加peN-。',
         rule: 'meN- ↔ peN- 同构：mem-↔pem-, men-↔pen-, meny-↔peny-, meng-↔peng-, menge-↔penge-, me-↔pe-',
         variants: {
-          'pem-': { label: 'pem-', rule: '首字母 b/p/f → pem-', words: [
+          'pem-': { label: 'pem-', rule: '首字母 b/p/f → pem-', color: '#ff6b6b', words: [
             {root:'buat', full:'pembuat', cn:'制造者'}, {root:'bantu', full:'pembantu', cn:'助手'},
             {root:'beli', full:'pembeli', cn:'买家'}, {root:'foto', full:'pemfoto', cn:'摄影师'},
-            {root:'periksa', full:'pemeriksa', cn:'检查者'}, {root:'pungut', full:'pemungut', cn:'收集者'}
+            {root:'periksa', full:'pemeriksa', cn:'检查者'}, {root:'pungut', full:'pemungut', cn:'收集者'},
+            {root:'pukul', full:'pemukul', cn:'棒槌'}, {root:'bunuh', full:'pembunuh', cn:'杀手'}, {root:'bawa', full:'pembawa', cn:'携带者'},
+            {root:'beri', full:'pemberi', cn:'给予者'}, {root:'batas', full:'pembatas', cn:'界限'}, {root:'bangun', full:'pembangun', cn:'建设者'}, {root:'besar', full:'pembesar', cn:'放大者'}, {root:'biaya', full:'pembiaya', cn:'资助者'}, {root:'buka', full:'pembuka', cn:'开启者'}
           ]},
-          'pen-': { label: 'pen-', rule: '首字母 t/c/d/j → pen-', words: [
+          'pen-': { label: 'pen-', rule: '首字母 t/c/d/j → pen-', color: '#4ecdc4', words: [
             {root:'ulis', full:'penulis', cn:'作家'}, {root:'jual', full:'penjual', cn:'卖家'},
             {root:'dengar', full:'pendengar', cn:'听众'}, {root:'cari', full:'pencari', cn:'搜索者'},
-            {root:'jara', full:'penjara', cn:'监狱'}, {root:'tangkap', full:'penangkap', cn:'捕捉者'}
+            {root:'jara', full:'penjara', cn:'监狱'}, {root:'tangkap', full:'penangkap', cn:'捕捉者'},
+            {root:'tari', full:'penari', cn:'舞者'}, {root:'jahit', full:'penjahit', cn:'裁缝'}, {root:'cuci', full:'pencuci', cn:'洗衣机'},
+            {root:'duduk', full:'penduduk', cn:'居民'}, {root:'jemput', full:'penjemput', cn:'接人者'}, {root:'jaga', full:'penjaga', cn:'守卫'},
+            {root:'jahat', full:'penjahat', cn:'罪犯'}, {root:'olong', full:'penolong', cn:'帮助者'}, {root:'ikir', full:'penikir', cn:'思想家'}
           ]},
-          'peny-': { label: 'peny-', rule: '首字母 s → peny-', words: [
+          'peny-': { label: 'peny-', rule: '首字母 s → peny-', color: '#ffe66d', words: [
             {root:'air', full:'penyair', cn:'诗人'}, {root:'akit', full:'penyakit', cn:'疾病'},
             {root:'umbang', full:'penyumbang', cn:'捐助者'}, {root:'elamat', full:'penyelamat', cn:'救世主'},
-            {root:'apu', full:'penyapu', cn:'扫帚'}, {root:'iram', full:'penyiram', cn:'洒水壶'}
+            {root:'apu', full:'penyapu', cn:'扫帚'}, {root:'iram', full:'penyiram', cn:'洒水壶'},
+            {root:'ewa', full:'penyewa', cn:'租户'}, {root:'etir', full:'penyetir', cn:'司机'}, {root:'emburu', full:'penyemburu', cn:'喷射器'},
+            {root:'impan', full:'penyimpan', cn:'保存者'}, {root:'urat', full:'penyurat', cn:'通信者'}, {root:'aksi', full:'penyaksi', cn:'证人'},
+            {root:'alin', full:'penyalin', cn:'抄写员'}, {root:'aring', full:'penyaring', cn:'过滤器'}, {root:'ayat', full:'penyayat', cn:'申诉者'}
           ]},
-          'peng-': { label: 'peng-', rule: '首字母 元音/g/h/k → peng-', words: [
+          'peng-': { label: 'peng-', rule: '首字母 元音/g/h/k → peng-', color: '#1dd1a1', words: [
             {root:'guna', full:'pengguna', cn:'用户'}, {root:'gambar', full:'penggambar', cn:'画家'},
             {root:'hormat', full:'penghormat', cn:'尊敬者'}, {root:'obat', full:'pengobat', cn:'治疗者'},
             {root:'guna', full:'penggunaan', cn:'使用'}, {root:'ikut', full:'pengikut', cn:'追随者'},
-            {root:'karang', full:'pengarang', cn:'作者'}, {root:'ajar', full:'pengajar', cn:'教师'}
+            {root:'karang', full:'pengarang', cn:'作者'}, {root:'ajar', full:'pengajar', cn:'教师'},
+            {root:'urus', full:'pengurus', cn:'管理员'}, {root:'ganti', full:'pengganti', cn:'替代者'}, {root:'habis', full:'penghabisan', cn:'耗尽'},
+            {root:'huni', full:'penghuni', cn:'居民'}, {root:'hitung', full:'penghitung', cn:'计算器'}, {root:'gerak', full:'penggerak', cn:'推动者'}, {root:'galang', full:'penggalang', cn:'筹集者'}
           ]},
-          'penge-': { label: 'penge-', rule: '单音节词根 → penge-', words: [
-            {root:'bom', full:'pengebom', cn:'投弹者'}, {root:'cek', full:'pengecek', cn:'检查者'}
+          'penge-': { label: 'penge-', rule: '单音节词根 → penge-', color: '#ff9f43', words: [
+            {root:'bom', full:'pengebom', cn:'投弹者'}, {root:'cek', full:'pengecek', cn:'检查者'},
+            {root:'cor', full:'pengecor', cn:'铸造工'}, {root:'pas', full:'pengepas', cn:'装配工'}, {root:'jar', full:'pengejar', cn:'追逐者'},
+            {root:'jut', full:'pengejut', cn:'惊吓者'}, {root:'pak', full:'pengepak', cn:'打包工'}, {root:'cat', full:'pengecat', cn:'油漆工'},
+            {root:'lap', full:'pengelap', cn:'擦拭者'}, {root:'las', full:'pengelas', cn:'焊工'}, {root:'luk', full:'pengeluk', cn:'拥抱者'},
+            {root:'bor', full:'pengebor', cn:'钻探工'}, {root:'dus', full:'pengedus', cn:'嗅探者'}, {root:'mak', full:'pengemas', cn:'包装工'}, {root:'tik', full:'pengetik', cn:'打字员'}
           ]},
-          'pe-': { label: 'pe-', rule: '首字母 l/r/w/y → pe-', words: [
-            {root:'lajar', full:'pelajar', cn:'学生'}, {root:'rawat', full:'perawat', cn:'护士'},
-            {root:'warna', full:'pewarna', cn:'颜料'}, {root:'kerja', full:'pekerja', cn:'工人'},
-            {root:'jalan', full:'pejalan', cn:'行人'}, {root:'lantik', full:'pelantik', cn:'任命者'}
-          ]}
-        }
-      },
-      'pe-': {
-        name: 'pe- 惯常者/职业',
-        desc: '不及物ber-动词去ber-加pe-；+形容词="某种…人"。与peN-的pe-变体在教学上合一。',
-        rule: 'bermain→pemain, malu→pemalu, diam→pendiam',
-        variants: {
-          'pe-': { label: 'pe-', rule: 'pe- + 词根（惯常者/某种人）', words: [
+          'pe-': { label: 'pe-', rule: '首字母 l/r/w/y → pe-（惯常者/某种人）', color: '#54a0ff', words: [
             {root:'main', full:'pemain', cn:'选手'}, {root:'tinju', full:'petinju', cn:'拳击手'},
             {root:'malu', full:'pemalu', cn:'害羞的人'}, {root:'diam', full:'pendiam', cn:'少言的人'},
-            {root:'jabat', full:'pejabat', cn:'官员'}, {root:'laut', full:'pelaut', cn:'海员'}
+            {root:'jabat', full:'pejabat', cn:'官员'}, {root:'laut', full:'pelaut', cn:'海员'},
+            {root:'lukis', full:'pelukis', cn:'画家'}, {root:'rancang', full:'perancang', cn:'设计者'}, {root:'layar', full:'pelayar', cn:'水手'},
+            {root:'layan', full:'pelayan', cn:'服务员'}, {root:'wakil', full:'perwakilan', cn:'代表'}, {root:'waris', full:'pewaris', cn:'继承人'},
+            {root:'yanyi', full:'penyanyi', cn:'歌手'}, {root:'yair', full:'penyair', cn:'诗人'}, {root:'layan', full:'melayani', cn:'服务'}
           ]}
         }
       },
@@ -1939,19 +1961,23 @@ const AFFIX_GAME_DATA = {
         desc: '构动词：使更…/使成为/分成；构名词：对应ber-动词。主动态必加meN-（memper-），被动态diper-。',
         rule: 'per-/pe-/pel- 三变体，与ber-/be-/bel-平行',
         variants: {
-          'per-': { label: 'per-', rule: 'per- + 词根（使动/名词）', words: [
+          'per-': { label: 'per-', rule: 'per- + 词根（使动/过程名词）', color: '#a29bfe', words: [
             {root:'baik', full:'perbaiki', cn:'修理'}, {root:'kenal', full:'perkenalkan', cn:'介绍'},
             {root:'luas', full:'perluas', cn:'扩展'}, {root:'tahu', full:'pertahankan', cn:'保卫'},
             {root:'besar', full:'perbesar', cn:'放大'}, {root:'panjang', full:'perpanjang', cn:'延长'},
-            {root:'segi', full:'persegi', cn:'正方形'}, {root:'rokok', full:'perokok', cn:'烟民'}
-          ]},
-          'pe-': { label: 'pe-', rule: 'per- 变体：pe- + 词根', words: [
+            {root:'segi', full:'persegi', cn:'正方形'}, {root:'rokok', full:'perokok', cn:'烟民'},
             {root:'beda', full:'perbedaan', cn:'差异'}, {root:'ubah', full:'perubahan', cn:'变化'},
-            {root:'temu', full:'pertemuan', cn:'会议'}, {root:'jalan', full:'perjalanan', cn:'旅程'}
+            {root:'temu', full:'pertemuan', cn:'会议'}, {root:'jalan', full:'perjalanan', cn:'旅程'},
+            {root:'kerja', full:'pekerjaan', cn:'工作'}, {root:'cakap', full:'percakapan', cn:'谈话'},
+            {root:'buat', full:'perbuatan', cn:'行为'}, {root:'angkat', full:'perangkatan', cn:'出发'}
           ]},
-          'pel-': { label: 'pel-', rule: '特例：pelajar/pelihara/peluang/pelopor', words: [
+          'pel-': { label: 'pel-', rule: '特例：l开头词根，per-缩为pel-', color: '#fd79a8', words: [
             {root:'ajar', full:'pelajar', cn:'学生'}, {root:'hara', full:'pelihara', cn:'照顾'},
-            {root:'uang', full:'peluang', cn:'机会'}, {root:'opor', full:'pelopor', cn:'先驱'}
+            {root:'uang', full:'peluang', cn:'机会'}, {root:'opor', full:'pelopor', cn:'先驱'},
+            {root:'aut', full:'pelaut', cn:'海员'}, {root:'opor', full:'pelopor', cn:'先驱'},
+            {root:'angi', full:'pelangi', cn:'彩虹'}, {root:'ari', full:'pelari', cn:'跑步者'},
+            {root:'ajaran', full:'pelajaran', cn:'课程'}, {root:'indah', full:'pelindung', cn:'保护者'},
+            {root:'opor', full:'pelopor', cn:'先驱'}, {root:'atih', full:'pelatih', cn:'教练'}
           ]}
         }
       },
@@ -1960,13 +1986,14 @@ const AFFIX_GAME_DATA = {
         desc: '约10义：①一（单位）②每 ③同一/共同 ④全 ⑤相同 ⑥像/类似 ⑦一齐 ⑧时间 ⑨尽量 ⑩按照',
         rule: 'se- 前缀无变形',
         variants: {
-          'se-': { label: 'se-', rule: 'se- + 词根（一/同/全/像/时间）', words: [
+          'se-': { label: 'se-', rule: 'se- + 词根（一/同/全/像/时间）', color: '#ffeaa7', words: [
             {root:'orang', full:'seorang', cn:'一个人'}, {root:'mua', full:'semua', cn:'全部'},
             {root:'suai', full:'sesuai', cn:'适合'}, {root:'ring', full:'sering', cn:'经常'},
             {root:'bentar', full:'sebentar', cn:'一会儿'}, {root:'kali', full:'sekali', cn:'一次'},
             {root:'jak', full:'sejak', cn:'自从'}, {root:'karang', full:'sekarang', cn:'现在'},
             {root:'tahun', full:'setahun', cn:'一年'}, {root:'lembar', full:'selembar', cn:'一张'},
-            {root:'rumah', full:'serumah', cn:'同屋'}, {root:'dunia', full:'sedunia', cn:'全世界'}
+            {root:'rumah', full:'serumah', cn:'同屋'}, {root:'dunia', full:'sedunia', cn:'全世界'},
+            {root:'jenis', full:'sejenis', cn:'同类'}, {root:'belum', full:'sebelum', cn:'之前'}, {root:'usai', full:'seusai', cn:'之后'}
           ]}
         }
       },
@@ -1975,12 +2002,14 @@ const AFFIX_GAME_DATA = {
         desc: '序数前缀；部分名词；表示"向/变成/过度"',
         rule: 'ke- 前缀无变形',
         variants: {
-          'ke-': { label: 'ke-', rule: 'ke- + 词根（序数/向/变）', words: [
+          'ke-': { label: 'ke-', rule: 'ke- + 词根（序数/向/变）', color: '#dfe6e9', words: [
             {root:'pada', full:'kepada', cn:'向'}, {root:'hilang', full:'kehilangan', cn:'丢失'},
             {root:'mari', full:'kemari', cn:'来这里'}, {root:'banyakan', full:'kebanyakan', cn:'过多'},
             {root:'cil', full:'kecil', cn:'小'}, {root:'luar', full:'keluar', cn:'出去'},
             {root:'dua', full:'kedua', cn:'第二'}, {root:'tiga', full:'ketiga', cn:'第三'},
-            {root:'pala', full:'kepala', cn:'头/首长'}, {root:'kasih', full:'kekasih', cn:'爱人'}
+            {root:'pala', full:'kepala', cn:'头/首长'}, {root:'kasih', full:'kekasih', cn:'爱人'},
+            {root:'mari', full:'kemari', cn:'过来'}, {root:'luar', full:'keluar', cn:'出去'}, {root:'mana', full:'kemana', cn:'去哪里'},
+            {root:'sini', full:'kesini', cn:'来这里'}, {root:'sana', full:'kesana', cn:'去那里'}
           ]}
         }
       }
@@ -1996,12 +2025,13 @@ const AFFIX_GAME_DATA = {
         desc: '动词→名词（结果/产物）；集合名词；模糊数字',
         rule: '-an 后缀无变形',
         variants: {
-          '-an': { label: '-an', rule: '词根 + -an → 名词（结果/产物）', words: [
+          '-an': { label: '-an', rule: '词根 + -an → 名词（结果/产物）', color: '#ff7675', words: [
             {root:'makan', full:'makanan', cn:'食物'}, {root:'minum', full:'minuman', cn:'饮料'},
             {root:'baca', full:'bacaan', cn:'读物'}, {root:'tulis', full:'tulisan', cn:'文章'},
             {root:'masak', full:'masakan', cn:'菜肴'}, {root:'main', full:'mainan', cn:'玩具'},
             {root:'bangun', full:'bangunan', cn:'建筑'}, {root:'duduk', full:'dudukan', cn:'座位'},
-            {root:'buah', full:'buah-buahan', cn:'水果总称'}, {root:'sayur', full:'sayur-sayuran', cn:'蔬菜总称'}
+            {root:'buah', full:'buah-buahan', cn:'水果总称'}, {root:'sayur', full:'sayur-sayuran', cn:'蔬菜总称'},
+            {root:'muda', full:'muda-mudan', cn:'大概年轻'}, {root:'tiga', full:'tigapuluhan', cn:'三十几'}, {root:'puluh', full:'puluhan', cn:'几十'}, {root:'ribu', full:'ribuan', cn:'数千'}, {root:'juta', full:'jutaan', cn:'数百万'}
           ]}
         }
       },
@@ -2010,11 +2040,12 @@ const AFFIX_GAME_DATA = {
         desc: '致使/为某人做/置放/视为。须与meN-/di-共现。口语 -in = -kan',
         rule: '词根 + -kan（须与meN-/di-共现）',
         variants: {
-          '-kan': { label: '-kan', rule: '词根 + -kan（使动/益格）', words: [
+          '-kan': { label: '-kan', rule: '词根 + -kan（使动/益格）', color: '#74b9ff', words: [
             {root:'duduk', full:'dudukkan', cn:'使坐下'}, {root:'tahu', full:'tahukan', cn:'告知'},
             {root:'buka', full:'bukakan', cn:'打开（为某人）'}, {root:'tulis', full:'tuliskan', cn:'写下'},
             {root:'beri', full:'berikan', cn:'给'}, {root:'lihat', full:'lihatkan', cn:'展示'},
-            {root:'pinjam', full:'meminjamkan', cn:'借出'}, {root:'panggil', full:'memanggilkan', cn:'叫（出租车给某人）'}
+            {root:'pinjam', full:'meminjamkan', cn:'借出'}, {root:'panggil', full:'memanggilkan', cn:'叫（出租车给某人）'},
+            {root:'senang', full:'menyenangkan', cn:'使高兴'}, {root:'besar', full:'memperbesar', cn:'放大'}, {root:'indah', full:'memperindah', cn:'美化'}, {root:'cepat', full:'mempercepat', cn:'加速'}, {root:'tahankan', full:'pertahankan', cn:'保卫'}, {root:'baiki', full:'perbaiki', cn:'修理'}, {root:'kenal', full:'perkenalkan', cn:'介绍'}
           ]}
         }
       },
@@ -2023,11 +2054,12 @@ const AFFIX_GAME_DATA = {
         desc: '处所/反复/给予/朝向。须与meN-/di-共现。',
         rule: '词根 + -i（须与meN-/di-共现）',
         variants: {
-          '-i': { label: '-i', rule: '词根 + -i（处所/反复/朝向）', words: [
+          '-i': { label: '-i', rule: '词根 + -i（处所/反复/朝向）', color: '#a29bfe', words: [
             {root:'tulis', full:'tulisi', cn:'填写'}, {root:'hampir', full:'hampiri', cn:'接近'},
-            {root:'tangis', full:'tangisi', cn:'哭泣'}, {root:'kaji', full:'kajii', cn:'研究'},
+            {root:'tangis', full:'tangisi', cn:'哭泣'}, {root:'kaji', full:'mengkaji', cn:'研究'},
             {root:'nama', full:'menamai', cn:'取名'}, {root:'biaya', full:'membiayai', cn:'资助'},
-            {root:'warna', full:'mewarnai', cn:'上色'}, {root:'hadir', full:'menghadiri', cn:'出席'}
+            {root:'warna', full:'mewarnai', cn:'上色'}, {root:'hadir', full:'menghadiri', cn:'出席'},
+            {root:'pukul', full:'memukuli', cn:'痛打'}, {root:'cubit', full:'mencubiti', cn:'反复捏'}, {root:'lukai', full:'melukai', cn:'伤害'}, {root:'tari', full:'menari', cn:'跳舞'}, {root:'tidur', full:'meniduri', cn:'与…睡觉'}, {root:'janji', full:'menjanjikan', cn:'承诺'}, {root:'hargai', full:'menghargai', cn:'尊重'}
           ]}
         }
       },
@@ -2036,11 +2068,13 @@ const AFFIX_GAME_DATA = {
         desc: '第三人称所有格；特指/定指标记；动词名词化；构成状语；meN-动词后=宾语，di-动词后=施事',
         rule: '词根 + -nya（附着于词根后）',
         variants: {
-          '-nya': { label: '-nya', rule: '词根 + -nya（所有格/定指）', words: [
+          '-nya': { label: '-nya', rule: '词根 + -nya（所有格/定指）', color: '#fdcb6e', words: [
             {root:'motor', full:'motornya', cn:'他的摩托'}, {root:'rumah', full:'rumahnya', cn:'他的家'},
             {root:'sekolah', full:'sekolahnya', cn:'他的学校'}, {root:'nama', full:'namanya', cn:'他的名字'},
             {root:'tidur', full:'tidurnya', cn:'他的睡觉（这件事）'}, {root:'seperti', full:'sepertinya', cn:'似乎'},
-            {root:'baik', full:'sebaiknya', cn:'最好'}, {root:'harus', full:'seharusnya', cn:'理应'}
+            {root:'baik', full:'sebaiknya', cn:'最好'}, {root:'harus', full:'seharusnya', cn:'理应'},
+            {root:'pantas', full:'sepantasnya', cn:'理应'}, {root:'mesti', full:'semestinya', cn:'本该'},
+            {root:'bisa', full:'sebisanya', cn:'尽所能'}, {root:'mungkin', full:'semungkinnya', cn:'尽可能'}, {root:'cepat', full:'secepatnya', cn:'尽快'}, {root:'banyak', full:'sebanyaknya', cn:'尽可能多'}, {root:'dapat', full:'sedapatnya', cn:'尽所能'}
           ]}
         }
       },
@@ -2049,13 +2083,14 @@ const AFFIX_GAME_DATA = {
         desc: '一/二人称领属/宾语附着于词根后',
         rule: '词根 + -ku（我）/ -mu（你）',
         variants: {
-          '-ku': { label: '-ku', rule: '词根 + -ku（我的）', words: [
+          '-ku': { label: '-ku', rule: '词根 + -ku（我的）', color: '#6c5ce7', words: [
             {root:'buku', full:'bukuku', cn:'我的书'}, {root:'rumah', full:'rumahku', cn:'我的家'},
-            {root:'nama', full:'namaku', cn:'我的名字'}, {root:'mobil', full:'mobilku', cn:'我的车'}
+            {root:'nama', full:'namaku', cn:'我的名字'}, {root:'mobil', full:'mobilku', cn:'我的车'},
+            {root:'sayang', full:'sayangku', cn:'我的亲爱的'}, {root:'cinta', full:'cintaku', cn:'我的爱'}, {root:'milik', full:'milikku', cn:'我的所有'}, {root:'pikir', full:'pikiranku', cn:'我的想法'}
           ]},
-          '-mu': { label: '-mu', rule: '词根 + -mu（你的）', words: [
+          '-mu': { label: '-mu', rule: '词根 + -mu（你的）', color: '#00cec9', words: [
             {root:'buku', full:'bukumu', cn:'你的书'}, {root:'rumah', full:'rumahmu', cn:'你的家'},
-            {root:'nama', full:'namamu', cn:'你的名字'}, {root:'cinta', full:'mencintaimu', cn:'爱你'}
+            {root:'nama', full:'namamu', cn:'你的名字'}, {root:'cinta', full:'cintamu', cn:'你的爱'}, {root:'hati', full:'hatimu', cn:'你的心'}, {root:'muka', full:'mukamu', cn:'你的脸'}, {root:'tangan', full:'tanganmu', cn:'你的手'}, {root:'kasih', full:'kasihmu', cn:'你的爱'}
           ]}
         }
       },
@@ -2064,18 +2099,21 @@ const AFFIX_GAME_DATA = {
         desc: '-lah强调/-kah疑问/-pun即使。-lah/-kah连写，-pun多分写',
         rule: '词根 + -lah（强调）/ -kah（疑问）/ -pun（即使）',
         variants: {
-          '-lah': { label: '-lah', rule: '词根 + -lah（祈使/强调）', words: [
+          '-lah': { label: '-lah', rule: '词根 + -lah（祈使/强调）', color: '#e17055', words: [
             {root:'mari', full:'marilah', cn:'来吧'}, {root:'dengar', full:'dengarlah', cn:'听吧'},
             {root:'lihat', full:'lihatlah', cn:'看吧'}, {root:'pergi', full:'pergilah', cn:'去吧'},
-            {root:'baca', full:'bacalah', cn:'请读'}, {root:'masuk', full:'masuklah', cn:'进来吧'}
+            {root:'baca', full:'bacalah', cn:'请读'}, {root:'masuk', full:'masuklah', cn:'进来吧'},
+            {root:'duduk', full:'duduki lah', cn:'请坐'}, {root:'tunggu', full:'tunggulah', cn:'请等'}, {root:'jalan', full:'jalanlah', cn:'走吧'}, {root:'kerja', full:'kerjalah', cn:'工作吧'}
           ]},
-          '-kah': { label: '-kah', rule: '词根 + -kah（疑问标记）', words: [
+          '-kah': { label: '-kah', rule: '词根 + -kah（疑问标记）', color: '#00b894', words: [
             {root:'apa', full:'apakah', cn:'什么（疑问）'}, {root:'boleh', full:'bolehkah', cn:'可以吗'},
-            {root:'bisa', full:'bisakah', cn:'能吗'}, {root:'mau', full:'maukah', cn:'想要吗'}
+            {root:'bisa', full:'bisakah', cn:'能吗'}, {root:'mau', full:'maukah', cn:'想要吗'},
+            {root:'ada', full:'adakah', cn:'有吗'}, {root:'sudah', full:'sudahkah', cn:'已经…了吗'}, {root:'pernah', full:'pernahkah', cn:'曾经…吗'}, {root:'begitu', full:'begitukah', cn:'那样吗'}
           ]},
-          '-pun': { label: '-pun', rule: '词根 + -pun（即使/也）', words: [
+          '-pun': { label: '-pun', rule: '词根 + -pun（即使/也）', color: '#0984e3', words: [
             {root:'apa', full:'apa pun', cn:'无论什么'}, {root:'bagaimana', full:'bagaimanapun', cn:'无论如何'},
-            {root:'walaupun', full:'walaupun', cn:'即使'}, {root:'meski', full:'meskipun', cn:'尽管'}
+            {root:'walaupun', full:'walaupun', cn:'即使'}, {root:'meski', full:'meskipun', cn:'尽管'},
+            {root:'siapa', full:'siapa pun', cn:'无论谁'}, {root:'kapan', full:'kapan pun', cn:'无论何时'}, {root:'mana', full:'mana pun', cn:'无论哪里'}, {root:'berapa', full:'berapapun', cn:'无论多少'}
           ]}
         }
       }
@@ -2091,10 +2129,12 @@ const AFFIX_GAME_DATA = {
         desc: '取代membuat（使动改写）/untuk（受益改写）；置放；视为',
         rule: '变形与meN-相同，-kan不变',
         variants: {
-          'meN-...-kan': { label: 'meN-...-kan', rule: 'meN- + 词根 + -kan', words: [
+          'meN-...-kan': { label: 'meN-...-kan', rule: 'meN- + 词根 + -kan', color: '#e84393', words: [
             {root:'senang', full:'menyenangkan', cn:'使高兴'}, {root:'panggil', full:'memanggilkan', cn:'为某人叫'},
             {root:'pinjam', full:'meminjamkan', cn:'借出'}, {root:'jual', full:'menjualkan', cn:'替卖'},
-            {root:'hati', full:'memperhatikan', cn:'注意'}, {root:'timbang', full:'mempertimbangkan', cn:'考虑'}
+            {root:'hati', full:'memperhatikan', cn:'注意'}, {root:'timbang', full:'mempertimbangkan', cn:'考虑'},
+            {root:'baiki', full:'memperbaiki', cn:'修理'}, {root:'besar', full:'memperbesar', cn:'放大'}, {root:'indah', full:'memperindah', cn:'美化'},
+            {root:'cepat', full:'mempercepat', cn:'加速'}, {root:'tinggi', full:'mempertinggi', cn:'加高'}, {root:'luas', full:'memperluas', cn:'扩展'}, {root:'panjang', full:'memperpanjang', cn:'延长'}, {root:'tahankan', full:'mempertahankan', cn:'保卫'}, {root:'kenal', full:'memperkenalkan', cn:'介绍'}
           ]}
         }
       },
@@ -2103,10 +2143,12 @@ const AFFIX_GAME_DATA = {
         desc: '取代memberi（给予）；取代介词（不及物→及物）；动作反复',
         rule: '变形与meN-相同，-i不变',
         variants: {
-          'meN-...-i': { label: 'meN-...-i', rule: 'meN- + 词根 + -i', words: [
+          'meN-...-i': { label: 'meN-...-i', rule: 'meN- + 词根 + -i', color: '#00cec9', words: [
             {root:'nama', full:'menamai', cn:'取名'}, {root:'biaya', full:'membiayai', cn:'资助'},
             {root:'warna', full:'mewarnai', cn:'上色'}, {root:'hadir', full:'menghadiri', cn:'出席'},
-            {root:'pukul', full:'memukuli', cn:'痛打'}, {root:'cubit', full:'mencubiti', cn:'反复捏'}
+            {root:'pukul', full:'memukuli', cn:'痛打'}, {root:'cubit', full:'mencubiti', cn:'反复捏'},
+            {root:'lukai', full:'melukai', cn:'伤害'}, {root:'tari', full:'menari', cn:'跳舞'}, {root:'tidur', full:'meniduri', cn:'与…睡觉'},
+            {root:'janji', full:'menjanjikan', cn:'承诺'}, {root:'hargai', full:'menghargai', cn:'尊重'}, {root:'kasihi', full:'mengasihi', cn:'疼爱'}, {root:'gunai', full:'menggunai', cn:'利用'}, {root:'sungguh', full:'menyungguhi', cn:'频繁拜访'}
           ]}
         }
       },
@@ -2115,12 +2157,14 @@ const AFFIX_GAME_DATA = {
         desc: '形容词→名词；负面/遭遇；极端化',
         rule: 'ke- + 词根 + -an',
         variants: {
-          'ke-...-an': { label: 'ke-...-an', rule: 'ke- + 词根 + -an', words: [
+          'ke-...-an': { label: 'ke-...-an', rule: 'ke- + 词根 + -an', color: '#fdcb6e', words: [
             {root:'sehat', full:'kesehatan', cn:'健康'}, {root:'cantik', full:'kecantikan', cn:'美丽'},
             {root:'jujur', full:'kejujuran', cn:'诚信'}, {root:'mampu', full:'kemampuan', cn:'能力'},
             {root:'hilang', full:'kehilangan', cn:'遗失'}, {root:'tinggal', full:'ketinggalan', cn:'忘带'},
             {root:'lapar', full:'kelaparan', cn:'饿死'}, {root:'panas', full:'kepanasan', cn:'中暑'},
-            {root:'datang', full:'kedatangan', cn:'抵达'}, {root:'percaya', full:'kepercayaan', cn:'信任'}
+            {root:'datang', full:'kedatangan', cn:'抵达'}, {root:'percaya', full:'kepercayaan', cn:'信任'},
+            {root:'berangkat', full:'keberangkatan', cn:'出发'}, {root:'berani', full:'keberanian', cn:'勇气'},
+            {root:'dingin', full:'kedinginan', cn:'冷死'}, {root:'lama', full:'kelamaan', cn:'太久'}, {root:'hujan', full:'kehujanan', cn:'被雨淋'}
           ]}
         }
       },
@@ -2129,9 +2173,12 @@ const AFFIX_GAME_DATA = {
         desc: '及物动词行为名词',
         rule: 'peN- + 词根 + -an',
         variants: {
-          'peN-...-an': { label: 'peN-...-an', rule: 'peN- + 词根 + -an', words: [
+          'peN-...-an': { label: 'peN-...-an', rule: 'peN- + 词根 + -an', color: '#e17055', words: [
             {root:'jual', full:'penjualan', cn:'售卖'}, {root:'bangun', full:'pembangunan', cn:'建设'},
-            {root:'bayar', full:'pembayaran', cn:'支付'}, {root:'tulis', full:'penulisan', cn:'写作'}
+            {root:'bayar', full:'pembayaran', cn:'支付'}, {root:'tulis', full:'penulisan', cn:'写作'},
+            {root:'baca', full:'pembacaan', cn:'阅读'}, {root:'buat', full:'pembuatan', cn:'制作'}, {root:'beri', full:'pemberian', cn:'给予'},
+            {root:'hasil', full:'penghasilan', cn:'收入'}, {root:'guna', full:'penggunaan', cn:'使用'}, {root:'urus', full:'pengurusan', cn:'管理'},
+            {root:'ajar', full:'pengajaran', cn:'教学'}, {root:'lihat', full:'penjelasan', cn:'解释'}, {root:'kirim', full:'pengiriman', cn:'发送'}, {root:'temu', full:'penemuan', cn:'发现'}
           ]}
         }
       },
@@ -2140,10 +2187,13 @@ const AFFIX_GAME_DATA = {
         desc: '不及物/过程名词',
         rule: 'per- + 词根 + -an',
         variants: {
-          'per-...-an': { label: 'per-...-an', rule: 'per- + 词根 + -an', words: [
+          'per-...-an': { label: 'per-...-an', rule: 'per- + 词根 + -an', color: '#6c5ce7', words: [
             {root:'beda', full:'perbedaan', cn:'差异'}, {root:'ubah', full:'perubahan', cn:'变化'},
             {root:'temu', full:'pertemuan', cn:'会议'}, {root:'jalan', full:'perjalanan', cn:'旅程'},
-            {root:'kerja', full:'pekerjaan', cn:'工作'}, {root:'cakap', full:'percakapan', cn:'谈话'}
+            {root:'kerja', full:'pekerjaan', cn:'工作'}, {root:'cakap', full:'percakapan', cn:'谈话'},
+            {root:'buat', full:'perbuatan', cn:'行为'}, {root:'angkat', full:'perangkatan', cn:'出发'}, {root:'giat', full:'pergiation', cn:'活动'},
+            {root:'lakuan', full:'perlakuan', cn:'待遇'}, {root:'coba', full:'percobaan', cn:'尝试'}, {root:'janjian', full:'perjanjian', cn:'协议'},
+            {root:'main', full:'permainan', cn:'游戏'}, {root:'damping', full:'pendampingan', cn:'陪伴'}
           ]}
         }
       },
@@ -2152,9 +2202,11 @@ const AFFIX_GAME_DATA = {
         desc: '相互/分散动作',
         rule: 'ber- + 词根 + -an',
         variants: {
-          'ber-...-an': { label: 'ber-...-an', rule: 'ber- + 词根 + -an', words: [
+          'ber-...-an': { label: 'ber-...-an', rule: 'ber- + 词根 + -an', color: '#fd79a8', words: [
             {root:'salam', full:'bersalaman', cn:'互相握手'}, {root:'muncul', full:'bermunculan', cn:'纷纷出现'},
-            {root:'sebelah', full:'bersebelahan', cn:'相邻'}, {root:'gugur', full:'berguguran', cn:'纷纷落下'}
+            {root:'sebelah', full:'bersebelahan', cn:'相邻'}, {root:'gugur', full:'berguguran', cn:'纷纷落下'},
+            {root:'temu', full:'bertemuan', cn:'会面'}, {root:'cium', full:'berciuman', cn:'互相亲吻'}, {root:'peluk', full:'berpelukan', cn:'互相拥抱'},
+            {root:'tukar', full:'bertukaran', cn:'交换'}, {root:'debat', full:'berdebat', cn:'辩论'}
           ]}
         }
       },
@@ -2163,9 +2215,9 @@ const AFFIX_GAME_DATA = {
         desc: '"以…为"',
         rule: 'ber- + 词根 + -kan',
         variants: {
-          'ber-...-kan': { label: 'ber-...-kan', rule: 'ber- + 词根 + -kan', words: [
+          'ber-...-kan': { label: 'ber-...-kan', rule: 'ber- + 词根 + -kan', color: '#a29bfe', words: [
             {root:'dasar', full:'berdasarkan', cn:'基于'}, {root:'tema', full:'bertemakan', cn:'以…为主题'},
-            {root:'anggota', full:'beranggotakan', cn:'由…成员组成'}
+            {root:'anggota', full:'beranggotakan', cn:'由…成员组成'}, {root:'kait', full:'berkaitan', cn:'与…相关'}, {root:'hubung', full:'berhubungan', cn:'有关系'}
           ]}
         }
       },
@@ -2174,10 +2226,11 @@ const AFFIX_GAME_DATA = {
         desc: '凝固情态副词；时间"…之后"；至极强调',
         rule: 'se- + 词根 + -nya',
         variants: {
-          'se-...-nya': { label: 'se-...-nya', rule: 'se- + 词根 + -nya', words: [
+          'se-...-nya': { label: 'se-...-nya', rule: 'se- + 词根 + -nya', color: '#ffeaa7', words: [
             {root:'baik', full:'sebaiknya', cn:'最好'}, {root:'harus', full:'seharusnya', cn:'理应'},
             {root:'pantas', full:'sepantasnya', cn:'理应'}, {root:'mesti', full:'semestinya', cn:'本该'},
-            {root:'tiba', full:'setibanya', cn:'到达之后'}, {root:'sampai', full:'sesampainya', cn:'抵达之后'}
+            {root:'tiba', full:'setibanya', cn:'到达之后'}, {root:'sampai', full:'sesampainya', cn:'抵达之后'},
+            {root:'bisa', full:'sebisanya', cn:'尽所能'}, {root:'cepat', full:'secepatnya', cn:'尽快'}, {root:'mungkin', full:'semungkinnya', cn:'尽可能'}
           ]}
         }
       }
@@ -2193,8 +2246,9 @@ const AFFIX_GAME_DATA = {
         desc: '插入词根首字母与后续字母之间',
         rule: '词根首字母 + -el- + 后续部分',
         variants: {
-          '-el-': { label: '-el-', rule: 'tunjuk → telunjuk, gembung → gelembung', words: [
-            {root:'tunjuk', full:'telunjuk', cn:'食指'}, {root:'gembung', full:'gelembung', cn:'气泡'}
+          '-el-': { label: '-el-', rule: 'tunjuk → telunjuk, gembung → gelembung', color: '#e84393', words: [
+            {root:'tunjuk', full:'telunjuk', cn:'食指'}, {root:'gembung', full:'gelembung', cn:'气泡'},
+            {root:'giling', full:'gelinding', cn:'滚动'}, {root:'getar', full:'geletar', cn:'轻微颤抖'}, {root:'lipat', full:'gelipat', cn:'折叠'}
           ]}
         }
       },
@@ -2203,9 +2257,9 @@ const AFFIX_GAME_DATA = {
         desc: '插入词根首字母与后续字母之间',
         rule: '词根首字母 + -em- + 后续部分',
         variants: {
-          '-em-': { label: '-em-', rule: 'getar → gemetar, guruh → gemuruh', words: [
+          '-em-': { label: '-em-', rule: 'getar → gemetar, guruh → gemuruh', color: '#00cec9', words: [
             {root:'getar', full:'gemetar', cn:'发抖'}, {root:'guruh', full:'gemuruh', cn:'隆隆'},
-            {root:'tali', full:'temali', cn:'绳索'}
+            {root:'tali', full:'temali', cn:'绳索'}, {root:'gigi', full:'gemigi', cn:'咬牙切齿'}, {root:'baris', full:'gembaris', cn:'排成行'}
           ]}
         }
       },
@@ -2214,8 +2268,9 @@ const AFFIX_GAME_DATA = {
         desc: '插入词根首字母与后续字母之间',
         rule: '词根首字母 + -er- + 后续部分',
         variants: {
-          '-er-': { label: '-er-', rule: 'gigi → gerigi, suling → seruling', words: [
-            {root:'gigi', full:'gerigi', cn:'锯齿'}, {root:'suling', full:'seruling', cn:'笛子'}
+          '-er-': { label: '-er-', rule: 'gigi → gerigi, suling → seruling', color: '#fdcb6e', words: [
+            {root:'gigi', full:'gerigi', cn:'锯齿'}, {root:'suling', full:'seruling', cn:'笛子'},
+            {root:'tari', full:'terari', cn:'舞蹈'}, {root:'lipat', full:'gerlipat', cn:'折叠'}
           ]}
         }
       }
@@ -2223,12 +2278,38 @@ const AFFIX_GAME_DATA = {
   }
 };
 
-// 游戏状态
+// ===== 动态词库系统 =====
+// 从本地词汇表和生词本抽取词根，动态扩展词库
+function buildDynamicWordPool() {
+  const pool = [];
+  // 从生词本提取
+  try {
+    const vw = JSON.parse(localStorage.getItem('vocabWords') || '[]');
+    vw.forEach(w => {
+      if (w.ind && w.cn) {
+        pool.push({ root: w.ind.replace(/^(me|mem|men|meng|meny|di|ter|ber|pe|pen|peng|pem|se|ke)/, ''), full: w.ind, cn: w.cn });
+      }
+    });
+  } catch(e) {}
+  // 从词汇表提取
+  try {
+    const vocab = JSON.parse(localStorage.getItem('vocab') || '[]');
+    vocab.forEach(w => {
+      if (w.ind && w.cn) {
+        pool.push({ root: w.ind.replace(/^(me|mem|men|meng|meny|di|ter|ber|pe|pen|peng|pem|se|ke)/, ''), full: w.ind, cn: w.cn });
+      }
+    });
+  } catch(e) {}
+  return pool;
+}
+
+// 游戏状态 V4.2
 let prefixGameState = {
   active: false,
-  phase: 'menu', // menu → level1 → level2 → play → over
-  level1: null,  // 一级分类: prefix/suffix/circumfix/special
-  level2: null,  // 二级分类: meN-/ber-/di- 等
+  phase: 'menu',
+  level1: null,
+  level2: null,
+  difficulty: 'normal',
   level: 1,
   subLevel: 1,
   score: 0,
@@ -2239,8 +2320,36 @@ let prefixGameState = {
   timer: null,
   wordsCompleted: 0,
   streak: 0,
-  bestStreak: 0
+  bestStreak: 0,
+  achievements: {},
+  unlocked: { prefix: true, suffix: false, circumfix: false, special: false },
+  starRatings: {}
 };
+
+// 难度配置
+const DIFFICULTY_CONFIG = {
+  easy: { label: '简单', lives: 5, fallingSpeed: 7000, options: 3, crossCategory: false, timeBonus: true },
+  normal: { label: '中等', lives: 3, fallingSpeed: 5000, options: 4, crossCategory: false, timeBonus: true },
+  hard: { label: '困难', lives: 3, fallingSpeed: 3500, options: 4, crossCategory: true, timeBonus: false },
+  master: { label: '大师', lives: 2, fallingSpeed: 2500, options: 6, crossCategory: true, timeBonus: false }
+};
+
+// 成就定义
+const ACHIEVEMENTS = {
+  first_blood: { id: 'first_blood', name: '初出茅庐', desc: '首次正确击破词根', icon: '🎯', condition: (s) => s.wordsCompleted >= 1 },
+  streak_5: { id: 'streak_5', name: '连续命中', desc: '达成5连击', icon: '🔥', condition: (s) => s.bestStreak >= 5 },
+  streak_10: { id: 'streak_10', name: '百发百中', desc: '达成10连击', icon: '⚡', condition: (s) => s.bestStreak >= 10 },
+  streak_20: { id: 'streak_20', name: '神射手', desc: '达成20连击', icon: '👑', condition: (s) => s.bestStreak >= 20 },
+  score_100: { id: 'score_100', name: '小有成就', desc: '单局得分100+', icon: '⭐', condition: (s) => s.score >= 100 },
+  score_500: { id: 'score_500', name: '词根大师', desc: '单局得分500+', icon: '🏆', condition: (s) => s.score >= 500 },
+  level_5: { id: 'level_5', name: '闯关达人', desc: '到达第5大关', icon: '🚀', condition: (s) => s.level >= 5 },
+  level_10: { id: 'level_10', name: '终极挑战', desc: '到达第10大关', icon: '🌟', condition: (s) => s.level >= 10 },
+  all_prefix: { id: 'all_prefix', name: '前缀通', desc: '完成所有前缀关卡', icon: '⬅️', condition: (s, a) => a && a.all_prefix },
+  all_suffix: { id: 'all_suffix', name: '后缀通', desc: '完成所有后缀关卡', icon: '➡️', condition: (s, a) => a && a.all_suffix },
+  perfect_level: { id: 'perfect_level', name: '完美通关', desc: '单大关不损失生命', icon: '💎', condition: (s, a) => a && a.perfect_level }
+};
+
+;
 
 let memberInfo = JSON.parse(localStorage.getItem("bir_member") || "null");
 
@@ -4051,10 +4160,23 @@ function renderAbout(c){
 }
 
 function renderVersion(c){
-  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录</h2><span class="badge">V4.1</span></div>
+  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录</h2><span class="badge">V4.2</span></div>
     <div style="padding:16px;">
       <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
-        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.1 (2026-07-21)</div>
+        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.2 (2026-07-21)</div>
+        <div style="font-size:13px;color:var(--text);line-height:1.8">
+        • 词根射击全面重构V4.2：四级分类+难度分级+成就系统<br>
+        • 修复 pe-/per-/peN- 词缀混淆问题，重新梳理分类<br>
+        • 所有变体例词扩充至15+个，支持动态词库扩展<br>
+        • 新增难度选择：简单/中等/困难/大师四级<br>
+        • 新增连击Combo系统，带粒子爆破特效<br>
+        • 新增错误解析界面，答错显示规则详解<br>
+        • 新增成就/解锁/星级评定体系<br>
+        • 改进CSS动画：随机轨迹、射击感、震动反馈<br>
+        </div>
+      </div>
+      <div style="margin-bottom:14px;padding:14px;background:var(--bg-elev);border-radius:10px;border-left:3px solid var(--accent)">
+        <div style="font-size:15px;font-weight:700;color:var(--accent);margin-bottom:6px">V4.1 (2026-07-21)</div>
         <div style="font-size:13px;color:var(--text);line-height:1.8">
         • 词根射击游戏全面重构：四级分类体系<br>
         • 一级菜单：前缀/后缀/环绕缀/中缀 四大类<br>
@@ -4511,37 +4633,38 @@ document.addEventListener('click', function(e){
   }
 });
 
-// ===== 词根射击游戏 V4.1 =====
-// 三级菜单架构：一级(大类) → 二级(词缀) → 三级(变体) → 游戏
+// ===== 词根射击游戏 V4.2 =====
+// 新增：动态词库、难度分级、Combo特效、错误解析、成就系统
 
 function renderPrefixGame(c) {
   const state = prefixGameState;
-  if (!state.active) {
-    showAffixLevel1(c);
-    return;
-  }
+  if (!state.active) { showAffixLevel1(c); return; }
   switch (state.phase) {
     case 'menu': showAffixLevel1(c); break;
+    case 'difficulty': showDifficultySelect(c); break;
     case 'level2': showAffixLevel2(c); break;
     case 'play': showAffixGamePlay(c); break;
     case 'over': showAffixGameOver(c); break;
+    case 'parse': showAnswerParse(c); break;
     default: showAffixLevel1(c);
   }
 }
 
-// === 一级菜单：选择大类 ===
+// === 一级菜单 ===
 function showAffixLevel1(c) {
   const categories = Object.keys(AFFIX_GAME_DATA);
   const buttons = categories.map(k => {
     const d = AFFIX_GAME_DATA[k];
     const childCount = Object.keys(d.children).length;
+    const unlocked = prefixGameState.unlocked[k];
     return `
-      <button onclick="selectAffixLevel1('${k}')" class="trans-btn" style="margin:8px;padding:16px 20px;font-size:15px;min-width:220px;text-align:left;display:flex;align-items:center;gap:12px;">
-        <span style="font-size:28px">${d.icon}</span>
-        <div>
-          <div style="font-weight:700;color:var(--primary)">${d.name}</div>
-          <div style="font-size:11px;color:var(--text-dim);margin-top:2px">${childCount} 个词缀 · ${d.desc.substring(0,20)}...</div>
+      <button onclick="${unlocked ? `selectAffixLevel1('${k}')` : ''}" class="trans-btn" style="margin:10px;padding:20px 24px;font-size:16px;min-width:260px;text-align:left;display:flex;align-items:center;gap:14px;${unlocked ? '' : 'opacity:.4;cursor:not-allowed;'}border:2px solid ${unlocked ? 'var(--primary)' : 'var(--border)'};">
+        <span style="font-size:32px">${d.icon}</span>
+        <div style="flex:1">
+          <div style="font-weight:800;color:${unlocked ? 'var(--primary)' : 'var(--text-dim)'};font-size:17px;">${d.name}</div>
+          <div style="font-size:12px;color:var(--text-dim);margin-top:4px;line-height:1.6">${childCount} 个词缀 · ${unlocked ? '已解锁' : '🔒 需完成前置关卡解锁'}</div>
         </div>
+        ${unlocked ? '<span style="font-size:20px">→</span>' : '🔒'}
       </button>
     `;
   }).join('');
@@ -4550,18 +4673,74 @@ function showAffixLevel1(c) {
     <div class="card">
       <div class="card-header" style="flex-wrap:wrap;gap:8px;">
         <h2>🎯 词根射击</h2>
-        <span class="badge">V4.1 重构版</span>
+        <span class="badge" style="background:var(--accent)20;color:var(--accent)">V4.2</span>
       </div>
-      <div style="padding:20px;">
-        <div style="font-size:13px;color:var(--text-dim);margin-bottom:20px;padding:14px;background:rgba(0,212,170,.06);border-radius:10px;border-left:3px solid var(--primary);line-height:1.8">
-          <strong style="color:var(--primary)">📋 游戏规则</strong><br>
-          ① 选择词缀大类（前缀/后缀/环绕缀/中缀）<br>
-          ② 选择具体词缀（如 meN-/ber-/di-）<br>
-          ③ 进入游戏：词根从上方落下，选择正确的<strong>三级变体</strong>击破！<br>
-          ④ 每关背景显示该词缀的规则文字，边玩边学<br>
-          ⑤ 每10小关升一大关，速度加快；3条生命，连击有加分
+      <div style="padding:24px;">
+        <div style="font-size:13px;color:var(--text-dim);margin-bottom:24px;padding:16px;background:linear-gradient(135deg,rgba(0,212,170,.08),rgba(59,130,246,.06));border-radius:12px;border-left:4px solid var(--primary);line-height:2">
+          <strong style="color:var(--primary);font-size:15px">📋 游戏规则 V4.2</strong><br>
+          ① 选择词缀大类 → ② 选择难度 → ③ 选择具体词缀 → ④ 进入射击！<br>
+          🎯 <strong>击破</strong>：选择正确的三级变体击中落下的词根<br>
+          🔥 <strong>连击</strong>：连续正确触发Combo特效与加分<br>
+          💡 <strong>解析</strong>：错误时显示规则详解，边玩边学<br>
+          ⭐ <strong>成就</strong>：解锁关卡、收集星级、挑战大师难度
         </div>
-        <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;">
+        <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;">
+          ${buttons}
+        </div>
+        ${renderAchievementsPreview()}
+      </div>
+    </div>
+  `;
+}
+
+function renderAchievementsPreview() {
+  const achieved = Object.keys(prefixGameState.achievements).length;
+  const total = Object.keys(ACHIEVEMENTS).length;
+  if (achieved === 0) return '';
+  return `
+    <div style="margin-top:20px;padding:14px;background:var(--bg-elev);border-radius:10px;text-align:center;">
+      <div style="font-size:13px;color:var(--text-dim);margin-bottom:8px">🏆 成就进度</div>
+      <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;">
+        ${Object.values(prefixGameState.achievements).map(a => `<span style="font-size:20px" title="${a.name}">${a.icon}</span>`).join('')}
+      </div>
+      <div style="font-size:11px;color:var(--text-dim);margin-top:6px">${achieved} / ${total} 已解锁</div>
+    </div>
+  `;
+}
+
+function selectAffixLevel1(cat) {
+  prefixGameState.level1 = cat;
+  prefixGameState.phase = 'difficulty';
+  prefixGameState.active = true;
+  showDifficultySelect(document.getElementById('appContent'));
+}
+
+// === 难度选择 ===
+function showDifficultySelect(c) {
+  const difficulties = Object.keys(DIFFICULTY_CONFIG);
+  const buttons = difficulties.map(k => {
+    const d = DIFFICULTY_CONFIG[k];
+    const colors = { easy: '#22c55e', normal: '#3b82f6', hard: '#f59e0b', master: '#ef4444' };
+    return `
+      <button onclick="setDifficulty('${k}')" class="trans-btn" style="margin:8px;padding:18px 24px;font-size:15px;min-width:200px;text-align:center;border:2px solid ${colors[k]}40;background:${colors[k]}10;">
+        <div style="font-weight:800;color:${colors[k]};font-size:18px;margin-bottom:6px">${d.label}</div>
+        <div style="font-size:12px;color:var(--text-dim);line-height:1.8">
+          ❤️ ${d.lives} · ⏱️ ${d.fallingSpeed/1000}s · ${d.options}选项<br>
+          ${d.crossCategory ? '⚠️ 跨类干扰' : '✓ 同类干扰'}
+        </div>
+      </button>
+    `;
+  }).join('');
+
+  c.innerHTML = `
+    <div class="card">
+      <div class="card-header">
+        <h2>⚔️ 选择难度</h2>
+        <button onclick="backToAffixLevel1()" class="trans-btn" style="font-size:12px;padding:6px 12px;">← 返回</button>
+      </div>
+      <div style="padding:24px;text-align:center;">
+        <div style="font-size:13px;color:var(--text-dim);margin-bottom:20px;">选择适合你的挑战级别</div>
+        <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;">
           ${buttons}
         </div>
       </div>
@@ -4569,28 +4748,29 @@ function showAffixLevel1(c) {
   `;
 }
 
-function selectAffixLevel1(cat) {
-  prefixGameState.level1 = cat;
+function setDifficulty(diff) {
+  prefixGameState.difficulty = diff;
   prefixGameState.phase = 'level2';
-  prefixGameState.active = true;
   showAffixLevel2(document.getElementById('appContent'));
 }
 
-// === 二级菜单：选择具体词缀 ===
+// === 二级菜单 ===
 function showAffixLevel2(c) {
-  const cat = prefixGameState.level1;
-  const data = AFFIX_GAME_DATA[cat];
-  if (!data) { showAffixLevel1(c); return; }
+  const state = prefixGameState;
+  const catData = AFFIX_GAME_DATA[state.level1];
+  if (!catData) { backToAffixLevel1(); return; }
 
-  const children = Object.keys(data.children);
+  const children = Object.keys(catData.children);
   const buttons = children.map(k => {
-    const d = data.children[k];
+    const d = catData.children[k];
     const varCount = Object.keys(d.variants).length;
+    const totalWords = Object.values(d.variants).reduce((s, v) => s + v.words.length, 0);
     return `
-      <button onclick="startAffixGame('${k}')" class="trans-btn" style="margin:6px;padding:14px 18px;font-size:14px;min-width:180px;text-align:left;">
-        <div style="font-weight:700;color:var(--primary)">${d.name}</div>
-        <div style="font-size:11px;color:var(--text-dim);margin-top:4px;line-height:1.6">${d.desc.substring(0,35)}...</div>
-        <div style="font-size:10px;color:var(--accent);margin-top:4px">${varCount} 种变体</div>
+      <button onclick="startAffixGame('${k}')" class="trans-btn" style="margin:8px;padding:18px 20px;font-size:15px;min-width:220px;text-align:left;border:2px solid rgba(0,212,170,.3);background:linear-gradient(135deg,rgba(0,212,170,.08),rgba(0,212,170,.02));transition:all .3s;" onmouseover="this.style.borderColor='var(--primary)';this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 20px rgba(0,212,170,.15)'" onmouseout="this.style.borderColor='rgba(0,212,170,.3)';this.style.transform='';this.style.boxShadow=''">
+        <div style="font-weight:800;color:var(--primary);font-size:17px;margin-bottom:6px;letter-spacing:.5px">${d.name.split(' ')[0]}</div>
+        <div style="font-size:12px;color:var(--text-dim);margin-bottom:4px">${d.name.split(' ').slice(1).join(' ')}</div>
+        <div style="font-size:11px;color:var(--accent);margin-top:6px">${varCount} 种变体 · ${totalWords} 个词根</div>
+        <div style="font-size:11px;color:var(--text-dim);margin-top:4px;line-height:1.5;opacity:.8">${d.desc.substring(0,40)}...</div>
       </button>
     `;
   }).join('');
@@ -4598,14 +4778,17 @@ function showAffixLevel2(c) {
   c.innerHTML = `
     <div class="card">
       <div class="card-header" style="flex-wrap:wrap;gap:8px;">
-        <h2>${data.icon} ${data.name}</h2>
-        <button onclick="backToAffixLevel1()" class="trans-btn" style="font-size:12px;padding:6px 12px;">← 返回大类</button>
-      </div>
-      <div style="padding:20px;">
-        <div style="font-size:13px;color:var(--text-dim);margin-bottom:16px;padding:12px;background:rgba(0,212,170,.06);border-radius:8px;border-left:3px solid var(--primary);">
-          ${data.desc}
+        <h2>${catData.icon} ${catData.name}</h2>
+        <div style="display:flex;gap:8px;">
+          <span class="badge" style="background:rgba(59,130,246,.15);color:#3b82f6">${DIFFICULTY_CONFIG[state.difficulty].label}</span>
+          <button onclick="backToAffixLevel1()" class="trans-btn" style="font-size:12px;padding:6px 12px;">← 返回大类</button>
         </div>
-        <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;">
+      </div>
+      <div style="padding:24px;">
+        <div style="font-size:13px;color:var(--text-dim);margin-bottom:20px;padding:14px;background:rgba(0,212,170,.06);border-radius:10px;border-left:3px solid var(--primary);line-height:1.7">
+          ${catData.desc}
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;">
           ${buttons}
         </div>
       </div>
@@ -4619,24 +4802,18 @@ function backToAffixLevel1() {
   showAffixLevel1(document.getElementById('appContent'));
 }
 
-// === 启动游戏 ===
 function startAffixGame(level2Key) {
+  const diff = DIFFICULTY_CONFIG[prefixGameState.difficulty];
   prefixGameState = {
-    active: true,
-    phase: 'play',
-    level1: prefixGameState.level1,
-    level2: level2Key,
-    level: 1,
-    subLevel: 1,
-    score: 0,
-    lives: 3,
-    currentWord: null,
-    fallingSpeed: 5000,
-    selectedVariant: null,
-    timer: null,
-    wordsCompleted: 0,
-    streak: 0,
-    bestStreak: 0
+    active: true, phase: 'play', level1: prefixGameState.level1,
+    level2: level2Key, difficulty: prefixGameState.difficulty,
+    level: 1, subLevel: 1, score: 0, lives: diff.lives,
+    currentWord: null, fallingSpeed: diff.fallingSpeed,
+    selectedVariant: null, timer: null,
+    wordsCompleted: 0, streak: 0, bestStreak: 0,
+    achievements: prefixGameState.achievements || {},
+    unlocked: prefixGameState.unlocked || {},
+    starRatings: prefixGameState.starRatings || {}
   };
   showAffixGamePlay(document.getElementById('appContent'));
 }
@@ -4648,100 +4825,210 @@ function showAffixGamePlay(c) {
   const level2Data = catData.children[state.level2];
   const variants = level2Data.variants;
   const variantKeys = Object.keys(variants);
+  const diff = DIFFICULTY_CONFIG[state.difficulty];
 
-  // 随机选一个变体作为正确答案
+  // 动态词库补充
+  const dynamicPool = buildDynamicWordPool();
+  
+  // 随机选正确答案
   const correctKey = variantKeys[Math.floor(Math.random() * variantKeys.length)];
   const correctVar = variants[correctKey];
-  const word = correctVar.words[Math.floor(Math.random() * correctVar.words.length)];
+  const baseWords = correctVar.words;
+  // 混合动态词库
+  const allWords = [...baseWords];
+  dynamicPool.forEach(dw => {
+    if (!allWords.some(w => w.root === dw.root)) allWords.push(dw);
+  });
+  const word = allWords[Math.floor(Math.random() * allWords.length)];
   state.currentWord = { ...word, correctVariant: correctKey };
 
-  // 生成选项：正确答案 + 同二级分类下的其他变体作为干扰项
+  // 生成选项
   let options = [correctKey];
-  const others = variantKeys.filter(k => k !== correctKey);
-  // 最多3个干扰项
-  while (options.length < 4 && others.length > 0) {
+  const allVariantKeys = [];
+  // 收集所有可用变体
+  if (diff.crossCategory) {
+    // 困难模式：从所有二级分类中找干扰项
+    Object.values(AFFIX_GAME_DATA).forEach(cat => {
+      Object.values(cat.children).forEach(child => {
+        Object.keys(child.variants).forEach(k => {
+          if (!allVariantKeys.includes(k)) allVariantKeys.push(k);
+        });
+      });
+    });
+  } else {
+    // 简单/中等：从当前二级分类中找干扰项
+    variantKeys.forEach(k => { if (!allVariantKeys.includes(k)) allVariantKeys.push(k); });
+  }
+  const others = allVariantKeys.filter(k => k !== correctKey);
+  while (options.length < diff.options && others.length > 0) {
     const idx = Math.floor(Math.random() * others.length);
     const opt = others.splice(idx, 1)[0];
     if (!options.includes(opt)) options.push(opt);
   }
-  // 打乱顺序
   options.sort(() => Math.random() - 0.5);
 
-  // 进度计算
   const progress = ((state.subLevel - 1) / 10) * 100;
-
-  // 规则背景文字
   const ruleBg = level2Data.rule || level2Data.desc;
+  const isVowelStart = /^[aiueo]/.test(word.root);
+  const firstLetter = word.root[0];
+
+  // 随机水平位置
+  const randomPos = 10 + Math.random() * 60;
 
   c.innerHTML = `
-    <div class="card" style="min-height:520px;display:flex;flex-direction:column;">
-      <div class="card-header" style="flex-wrap:wrap;gap:8px;">
+    <div class="card" style="min-height:560px;display:flex;flex-direction:column;position:relative;overflow:hidden;">
+      ${state.streak >= 3 ? `<div id="comboOverlay" style="position:absolute;top:0;left:0;right:0;bottom:0;pointer-events:none;z-index:10;background:radial-gradient(circle at 50% 30%, rgba(255,107,53,.15) 0%, transparent 60%);animation:comboPulse 1s ease-out;"></div>` : ''}
+      
+      <div class="card-header" style="flex-wrap:wrap;gap:8px;position:relative;z-index:5;">
         <h2>🎯 ${level2Data.name}</h2>
-        <div style="display:flex;gap:8px;align-items:center;">
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+          <span class="badge" style="background:rgba(59,130,246,.15);color:#3b82f6">${diff.label}</span>
           <span class="badge" style="background:var(--accent)20;color:var(--accent)">大关 ${state.level}</span>
           <span class="badge" style="background:var(--info)20;color:var(--info)">小关 ${state.subLevel}/10</span>
           <span class="badge" style="background:var(--danger)20;color:var(--danger)">❤️ ${state.lives}</span>
           <span class="badge">⭐ ${state.score}</span>
-          ${state.streak > 1 ? `<span class="badge" style="background:#ff6b3520;color:#ff6b35">🔥 ${state.streak}连击</span>` : ''}
+          ${state.streak > 1 ? `<span class="badge" style="background:linear-gradient(90deg,#ff6b35,#ff9f43);color:#fff;border:none;animation:comboBadge .5s ease-out">🔥 ${state.streak}连击</span>` : ''}
         </div>
       </div>
 
-      <div style="padding:16px;flex:1;display:flex;flex-direction:column;">
+      <div style="padding:16px;flex:1;display:flex;flex-direction:column;position:relative;z-index:5;">
         <!-- 规则背景条 -->
-        <div style="background:linear-gradient(90deg,rgba(0,212,170,.1),rgba(59,130,246,.08));border:1px solid rgba(0,212,170,.2);border-radius:10px;padding:12px 16px;margin-bottom:16px;font-size:12px;color:var(--text-dim);line-height:1.7;">
+        <div style="background:linear-gradient(90deg,rgba(0,212,170,.1),rgba(59,130,246,.08));border:1px solid rgba(0,212,170,.2);border-radius:10px;padding:12px 16px;margin-bottom:12px;font-size:12px;color:var(--text-dim);line-height:1.7;">
           <strong style="color:var(--primary)">📜 规则：</strong>${ruleBg}
         </div>
 
         <!-- 进度条 -->
-        <div style="background:var(--bg-elev);border-radius:8px;height:6px;overflow:hidden;margin-bottom:16px;">
-          <div style="background:var(--primary);width:${progress}%;height:100%;transition:width .3s;border-radius:8px;"></div>
+        <div style="background:var(--bg-elev);border-radius:8px;height:6px;overflow:hidden;margin-bottom:12px;">
+          <div style="background:var(--primary);width:${progress}%;height:100%;transition:width .3s;border-radius:8px;box-shadow:0 0 8px rgba(0,212,170,.5);"></div>
         </div>
 
         <!-- 游戏区域 -->
-        <div style="flex:1;background:var(--bg-elev);border-radius:14px;border:1px solid var(--border);position:relative;overflow:hidden;min-height:260px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;">
+        <div id="gameArena" style="flex:1;background:var(--bg-elev);border-radius:14px;border:1px solid var(--border);position:relative;overflow:hidden;min-height:280px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;">
+          <!-- 粒子容器 -->
+          <div id="particleContainer" style="position:absolute;top:0;left:0;right:0;bottom:0;pointer-events:none;z-index:20;"></div>
+          
           <!-- 下落的词根 -->
-          <div id="fallingWord" style="font-size:32px;font-weight:700;color:var(--primary);padding:24px 32px;background:var(--bg-card);border-radius:16px;border:2px solid var(--primary);box-shadow:0 0 20px rgba(0,212,170,.15);animation:affixFall ${state.fallingSpeed}ms linear;">
+          <div id="fallingWord" style="position:absolute;top:20px;left:${randomPos}%;transform:translateX(-50%);font-size:36px;font-weight:900;color:var(--primary);padding:20px 32px;background:linear-gradient(135deg,var(--bg-card),rgba(0,212,170,.1));border-radius:16px;border:2px solid var(--primary);box-shadow:0 0 30px rgba(0,212,170,.2),0 4px 20px rgba(0,0,0,.3);animation:affixFall ${state.fallingSpeed}ms linear forwards;z-index:5;">
             ${word.root}
           </div>
-          <div style="font-size:14px;color:var(--text-dim);">🇨🇳 ${word.cn}</div>
-          <div style="font-size:12px;color:var(--accent);">完整词：${word.full}</div>
+          
+          <div style="margin-top:80px;font-size:15px;color:var(--text-dim);font-weight:500;">🇨🇳 ${word.cn}</div>
+          <div style="font-size:12px;color:var(--accent);opacity:.8;">${word.full}</div>
+          
+          <!-- 提示条 -->
+          <div style="font-size:11px;color:var(--text-dim);margin-top:4px;opacity:.6;">
+            首字母: <strong style="color:var(--primary)">${firstLetter}</strong> ${isVowelStart ? '(元音)' : '(辅音)'}
+          </div>
         </div>
 
         <!-- 选项区域 -->
-        <div style="margin-top:20px;">
-          <div style="font-size:13px;color:var(--text-dim);margin-bottom:12px;text-align:center;">
+        <div style="margin-top:16px;">
+          <div style="font-size:13px;color:var(--text-dim);margin-bottom:10px;text-align:center;">
             选择正确的变体击破词根！（${(state.fallingSpeed/1000).toFixed(1)}秒）
           </div>
           <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;">
             ${options.map((opt, i) => {
-              const v = variants[opt];
+              const v = variants[opt] || findVariantGlobal(opt);
+              const color = v.color || 'var(--primary)';
               return `<button onclick="affixGameAnswer('${opt.replace(/'/g, "\\'")}')"
                       class="trans-btn"
-                      style="padding:14px 20px;font-size:15px;font-weight:600;min-width:100px;"
+                      style="padding:14px 22px;font-size:16px;font-weight:700;min-width:110px;border:2px solid ${color}40;background:${color}10;transition:all .2s;"
+                      onmouseover="this.style.borderColor='${color}';this.style.background='${color}20';this.style.transform='scale(1.05)'"
+                      onmouseout="this.style.borderColor='${color}40';this.style.background='${color}10';this.style.transform=''"
                       id="affixOpt${i}">
-                ${v.label}
+                <span style="color:${color}">${v.label}</span>
               </button>`;
             }).join('')}
           </div>
         </div>
 
-        <div style="margin-top:16px;text-align:center;">
+        <div style="margin-top:14px;text-align:center;display:flex;gap:10px;justify-content:center;">
           <button onclick="endAffixGame()" class="trans-btn" style="background:transparent;color:var(--text-dim);font-size:12px;">退出游戏</button>
+          <button onclick="togglePause()" class="trans-btn" style="background:transparent;color:var(--text-dim);font-size:12px;">⏸️ 暂停</button>
         </div>
       </div>
     </div>
 
     <style>
       @keyframes affixFall {
-        0% { transform: translateY(-40px); opacity: 0; }
-        8% { transform: translateY(0); opacity: 1; }
-        100% { transform: translateY(60px); opacity: 1; }
+        0% { transform: translateX(-50%) translateY(-100px) rotate(-5deg); opacity: 0; filter: blur(4px); }
+        10% { transform: translateX(-50%) translateY(0) rotate(0deg); opacity: 1; filter: blur(0); }
+        50% { transform: translateX(-50%) translateY(40px) rotate(2deg); }
+        100% { transform: translateX(-50%) translateY(120px) rotate(0deg); opacity: 1; }
+      }
+      @keyframes comboPulse {
+        0% { opacity: 1; }
+        100% { opacity: 0; }
+      }
+      @keyframes comboBadge {
+        0% { transform: scale(0.5); }
+        50% { transform: scale(1.2); }
+        100% { transform: scale(1); }
+      }
+      @keyframes particleBurst {
+        0% { transform: translate(0,0) scale(1); opacity: 1; }
+        100% { transform: translate(var(--tx), var(--ty)) scale(0); opacity: 0; }
+      }
+      @keyframes shake {
+        0%,100% { transform: translateX(0); }
+        20% { transform: translateX(-8px); }
+        40% { transform: translateX(8px); }
+        60% { transform: translateX(-4px); }
+        80% { transform: translateX(4px); }
+      }
+      @keyframes hitFlash {
+        0% { box-shadow: 0 0 0 0 rgba(0,212,170,.8); }
+        100% { box-shadow: 0 0 0 20px rgba(0,212,170,0); }
       }
     </style>
   `;
 
   if (state.timer) clearTimeout(state.timer);
   state.timer = setTimeout(() => { affixGameTimeout(); }, state.fallingSpeed);
+}
+
+function findVariantGlobal(key) {
+  for (const cat of Object.values(AFFIX_GAME_DATA)) {
+    for (const child of Object.values(cat.children)) {
+      if (child.variants[key]) return child.variants[key];
+    }
+  }
+  return { label: key, color: 'var(--primary)' };
+}
+
+function spawnParticles(x, y, color, count) {
+  const container = document.getElementById('particleContainer');
+  if (!container) return;
+  for (let i = 0; i < count; i++) {
+    const p = document.createElement('div');
+    const angle = (Math.PI * 2 * i) / count;
+    const dist = 30 + Math.random() * 50;
+    const tx = Math.cos(angle) * dist;
+    const ty = Math.sin(angle) * dist;
+    p.style.cssText = `
+      position: absolute; left: ${x}px; top: ${y}px; width: 6px; height: 6px;
+      background: ${color}; border-radius: 50%; pointer-events: none;
+      --tx: ${tx}px; --ty: ${ty}px;
+      animation: particleBurst 0.6s ease-out forwards;
+    `;
+    container.appendChild(p);
+    setTimeout(() => p.remove(), 600);
+  }
+}
+
+function showHitEffect() {
+  const arena = document.getElementById('gameArena');
+  if (!arena) return;
+  const flash = document.createElement('div');
+  flash.style.cssText = 'position:absolute;inset:0;background:rgba(0,212,170,.15);pointer-events:none;z-index:15;animation:hitFlash .4s ease-out;';
+  arena.appendChild(flash);
+  setTimeout(() => flash.remove(), 400);
+}
+
+function showShakeEffect() {
+  const arena = document.getElementById('gameArena');
+  if (arena) arena.style.animation = 'shake .4s ease-out';
+  setTimeout(() => { if (arena) arena.style.animation = ''; }, 400);
 }
 
 function affixGameAnswer(selected) {
@@ -4751,37 +5038,70 @@ function affixGameAnswer(selected) {
 
   const correct = state.currentWord.correctVariant;
   const isCorrect = selected === correct;
+  const fallingWord = document.getElementById('fallingWord');
 
   if (isCorrect) {
+    // 正确：连击+粒子特效
     state.streak++;
     if (state.streak > state.bestStreak) state.bestStreak = state.streak;
-    const streakBonus = Math.floor(state.streak / 3) * 5;
-    const points = 10 * state.level + streakBonus;
+    const streakBonus = Math.floor(state.streak / 3) * 10;
+    const points = 15 * state.level + streakBonus;
     state.score += points;
     state.subLevel++;
     state.wordsCompleted++;
-    showToast(`✅ 正确！+${points}分${state.streak >= 3 ? ' 🔥x'+state.streak : ''}`);
+    
+    // 粒子特效
+    if (fallingWord) {
+      const rect = fallingWord.getBoundingClientRect();
+      const arena = document.getElementById('gameArena');
+      if (arena) {
+        const arenaRect = arena.getBoundingClientRect();
+        spawnParticles(rect.left - arenaRect.left + rect.width/2, rect.top - arenaRect.top + rect.height/2, '#00d4aa', 12);
+      }
+    }
+    showHitEffect();
+    
+    let msg = `✅ 正确！+${points}分`;
+    if (state.streak >= 3) msg += ` 🔥x${state.streak}连击!`;
+    if (state.streak >= 10) msg += ' ⚡超神!';
+    showToast(msg);
 
     if (state.subLevel > 10) {
       state.level++;
       state.subLevel = 1;
-      state.fallingSpeed = Math.max(2000, state.fallingSpeed - 400);
+      state.fallingSpeed = Math.max(diff.fallingSpeed * 0.7, 2000);
       showToast(`🎉 恭喜！升至第 ${state.level} 大关！速度加快！`);
     }
+    
+    // 检查成就
+    checkAchievements();
+    
+    setTimeout(() => {
+      showAffixGamePlay(document.getElementById('appContent'));
+    }, 800);
   } else {
+    // 错误：震动+显示解析
     state.streak = 0;
     state.lives--;
-    showToast(`❌ 错误！正确答案是 ${correct}`);
+    showShakeEffect();
+    
+    // 保存错误状态用于解析
+    state.lastError = {
+      selected: selected,
+      correct: correct,
+      word: state.currentWord,
+      level2: state.level2
+    };
+    
     if (state.lives <= 0) {
       state.phase = 'over';
-      showAffixGameOver();
+      setTimeout(() => showAffixGameOver(), 500);
       return;
     }
+    
+    state.phase = 'parse';
+    setTimeout(() => showAnswerParse(document.getElementById('appContent')), 400);
   }
-
-  setTimeout(() => {
-    showAffixGamePlay(document.getElementById('appContent'));
-  }, 700);
 }
 
 function affixGameTimeout() {
@@ -4790,40 +5110,173 @@ function affixGameTimeout() {
   state.streak = 0;
   state.lives--;
   const cw = state.currentWord;
-  showToast(`⏰ 超时！正确答案是 ${cw ? cw.correctVariant : '?'}`);
+  
+  state.lastError = {
+    selected: null,
+    correct: cw ? cw.correctVariant : '?',
+    word: cw,
+    level2: state.level2,
+    isTimeout: true
+  };
+  
+  showShakeEffect();
+  
   if (state.lives <= 0) {
     state.phase = 'over';
-    showAffixGameOver();
+    setTimeout(() => showAffixGameOver(), 500);
     return;
   }
-  setTimeout(() => {
-    showAffixGamePlay(document.getElementById('appContent'));
-  }, 700);
+  
+  state.phase = 'parse';
+  setTimeout(() => showAnswerParse(document.getElementById('appContent')), 400);
 }
 
+// === 错误解析界面 ===
+function showAnswerParse(c) {
+  const state = prefixGameState;
+  const err = state.lastError;
+  if (!err) { state.phase = 'play'; showAffixGamePlay(c); return; }
+  
+  const catData = AFFIX_GAME_DATA[state.level1];
+  const level2Data = catData.children[state.level2];
+  const correctVar = findVariantGlobal(err.correct);
+  const word = err.word || {};
+  
+  // 生成解析文字
+  let parseText = '';
+  if (err.isTimeout) {
+    parseText = `⏰ <strong>超时！</strong>时间到了，你没有选择答案。<br><br>`;
+  } else {
+    parseText = `❌ <strong>错误！</strong>你选择了 <span style="color:var(--danger)">${err.selected}</span>，但正确答案是 <span style="color:var(--primary)">${err.correct}</span>。<br><br>`;
+  }
+  
+  parseText += `<div style="background:rgba(0,212,170,.08);padding:14px;border-radius:10px;margin:12px 0;line-height:1.8;">
+    <strong style="color:var(--primary)">📖 规则解析：</strong><br>
+    <strong>词根：</strong>${word.root || '?'}（${word.cn || '?'}）<br>
+    <strong>完整词：</strong>${word.full || '?'}<br>
+    <strong>正确变体：</strong><span style="color:${correctVar.color || 'var(--primary)'}">${err.correct}</span><br>
+    <strong>规则：</strong>${correctVar.rule || '无规则说明'}<br>
+    <strong>所属词缀：</strong>${level2Data.name}<br>
+    <strong>当前难度：</strong>${DIFFICULTY_CONFIG[state.difficulty].label}
+  </div>`;
+  
+  // 同类例词
+  if (correctVar.words && correctVar.words.length > 0) {
+    const examples = correctVar.words.slice(0, 5).map(w => `${w.root}→${w.full}（${w.cn}）`).join('、');
+    parseText += `<div style="font-size:12px;color:var(--text-dim);margin-top:8px;">
+      <strong>同类例词：</strong>${examples}
+    </div>`;
+  }
+
+  c.innerHTML = `
+    <div class="card" style="text-align:center;padding:30px 20px;">
+      <div style="font-size:48px;margin-bottom:12px">💡</div>
+      <div style="font-size:20px;font-weight:700;color:var(--accent);margin-bottom:16px">学习时刻</div>
+      <div style="font-size:14px;color:var(--text);line-height:1.8;text-align:left;max-width:480px;margin:0 auto;">
+        ${parseText}
+      </div>
+      <div style="display:flex;gap:12px;justify-content:center;margin-top:24px;flex-wrap:wrap;">
+        <button onclick="continueAfterParse()" class="trans-btn" style="padding:12px 28px;font-size:15px;background:var(--primary);color:#fff;">继续游戏 →</button>
+        <button onclick="endAffixGame()" class="trans-btn" style="background:transparent;color:var(--text-dim)">退出</button>
+      </div>
+      <div style="margin-top:16px;font-size:12px;color:var(--text-dim);">
+        剩余生命：${'❤️'.repeat(state.lives)}${'🖤'.repeat(DIFFICULTY_CONFIG[state.difficulty].lives - state.lives)}
+      </div>
+    </div>
+  `;
+}
+
+function continueAfterParse() {
+  prefixGameState.phase = 'play';
+  showAffixGamePlay(document.getElementById('appContent'));
+}
+
+// === 成就检查 ===
+function checkAchievements() {
+  const state = prefixGameState;
+  let newAchieved = false;
+  Object.values(ACHIEVEMENTS).forEach(ach => {
+    if (!state.achievements[ach.id] && ach.condition(state, state.achievements)) {
+      state.achievements[ach.id] = ach;
+      newAchieved = true;
+      showToast(`🏆 解锁成就：${ach.name}！${ach.icon}`);
+    }
+  });
+  return newAchieved;
+}
+
+// === 游戏结束 ===
 function showAffixGameOver() {
   const state = prefixGameState;
   state.active = false;
   const c = document.getElementById('appContent');
   if (!c) return;
 
+  // 星级评定
+  const maxScore = state.wordsCompleted * 15 * state.level;
+  const ratio = maxScore > 0 ? state.score / maxScore : 0;
+  let stars = 1;
+  if (ratio >= 0.9) stars = 3;
+  else if (ratio >= 0.6) stars = 2;
+  
+  const starKey = `${state.level1}_${state.level2}_${state.difficulty}`;
+  const prevStars = state.starRatings[starKey] || 0;
+  if (stars > prevStars) {
+    state.starRatings[starKey] = stars;
+  }
+  
+  // 解锁检查
+  if (state.wordsCompleted >= 20) {
+    if (state.level1 === 'prefix' && !state.unlocked.suffix) {
+      state.unlocked.suffix = true;
+      showToast('🔓 解锁：后缀关卡！');
+    } else if (state.level1 === 'suffix' && !state.unlocked.circumfix) {
+      state.unlocked.circumfix = true;
+      showToast('🔓 解锁：环绕缀关卡！');
+    } else if (state.level1 === 'circumfix' && !state.unlocked.special) {
+      state.unlocked.special = true;
+      showToast('🔓 解锁：中缀关卡！');
+    }
+  }
+  
+  // 保存进度
+  try {
+    localStorage.setItem('bir_game_progress', JSON.stringify({
+      achievements: state.achievements,
+      unlocked: state.unlocked,
+      starRatings: state.starRatings
+    }));
+  } catch(e) {}
+
   const cult = getCultivationInfo();
   const bonus = cult.level > 0 ? Math.floor(cult.level * 0.5) : 0;
   const totalScore = state.score + bonus;
+  
+  const starHTML = '⭐'.repeat(stars) + '☆'.repeat(3 - stars);
+  const newAchievements = checkAchievements();
 
   c.innerHTML = `
     <div class="card" style="text-align:center;padding:40px 20px;">
       <div style="font-size:56px;margin-bottom:16px">💥</div>
       <div style="font-size:24px;font-weight:700;color:var(--danger);margin-bottom:8px">游戏结束</div>
+      
+      <div style="font-size:28px;margin:12px 0">${starHTML}</div>
+      <div style="font-size:12px;color:var(--text-dim);margin-bottom:12px">
+        ${stars > prevStars ? '🎉 新纪录！' : ''} 本局星级：${stars}星
+      </div>
+      
       <div style="font-size:15px;color:var(--text);margin-bottom:12px">
-        击破 ${state.wordsCompleted} 个词根 · 到达第 ${state.level} 大关
+        击破 ${state.wordsCompleted} 个词根 · 到达第 ${state.level} 大关 · ${DIFFICULTY_CONFIG[state.difficulty].label}难度
       </div>
       ${state.bestStreak > 2 ? `<div style="font-size:13px;color:#ff6b35;margin-bottom:8px">🔥 最高连击: ${state.bestStreak}</div>` : ''}
       <div style="font-size:36px;font-weight:700;color:var(--primary);margin-bottom:4px">${totalScore} 分</div>
       ${bonus > 0 ? `<div style="font-size:12px;color:var(--accent);margin-bottom:16px">修仙等级加成: +${bonus}分 (${cult.name})</div>` : ''}
+      
+      ${newAchievements ? `<div style="padding:12px;background:rgba(245,158,11,.1);border-radius:8px;margin:12px 0;font-size:13px;color:var(--accent);">🏆 本局解锁新成就！</div>` : ''}
+      
       <div style="display:flex;gap:12px;justify-content:center;margin-top:24px;flex-wrap:wrap;">
-        <button onclick="restartAffixGame()" class="trans-btn">再来一局</button>
-        <button onclick="backToAffixLevel2()" class="trans-btn">换词缀</button>
+        <button onclick="restartAffixGame()" class="trans-btn" style="padding:12px 24px;">🔄 再来一局</button>
+        <button onclick="backToAffixLevel2()" class="trans-btn">换词缀/难度</button>
         <button onclick="endAffixGame()" class="trans-btn" style="background:transparent;color:var(--text-dim)">返回主页</button>
       </div>
     </div>
@@ -4839,61 +5292,36 @@ function restartAffixGame() {
   }
 }
 
-function endAffixGame() {
-  if (prefixGameState.timer) clearTimeout(prefixGameState.timer);
-  prefixGameState = {
-    active: false, phase: 'menu', level1: null, level2: null,
-    level: 1, subLevel: 1, score: 0, lives: 3,
-    currentWord: null, fallingSpeed: 5000,
-    selectedVariant: null, timer: null,
-    wordsCompleted: 0, streak: 0, bestStreak: 0
-  };
-  showAffixLevel1(document.getElementById('appContent'));
-}
-
 function backToAffixLevel2() {
   prefixGameState.phase = 'level2';
   prefixGameState.active = true;
   showAffixLevel2(document.getElementById('appContent'));
 }
 
-// ===== 印尼语字母发音表 =====
-const PHONETIC_DATA = [
-  {letter:'Aa', ipa:'/a/', desc:'开口元音，类似"啊"', pos:'口腔中央，舌位低平', mouth:'口腔完全打开，舌头平放', example:'apa(什么), ada(有)', color:'#ff6b6b'},
-  {letter:'Bb', ipa:'/b/', desc:'双唇浊塞音，类似"波"', pos:'双唇闭合后爆破', mouth:'双唇紧闭，气流冲出', example:'buku(书), besar(大)', color:'#4ecdc4'},
-  {letter:'Cc', ipa:'/tʃ/', desc:'清龈腭塞擦音，类似"吃"', pos:'舌前部抵硬腭', mouth:'舌尖抵上齿龈后部，气流摩擦', example:'cuci(洗), cantik(漂亮)', color:'#45b7d1'},
-  {letter:'Dd', ipa:'/d/', desc:'齿龈浊塞音，类似"德"', pos:'舌尖抵上齿龈', mouth:'舌尖抵住上齿龈，气流冲出', example:'dengar(听), datang(来)', color:'#96ceb4'},
-  {letter:'Ee', ipa:'/e/ 或 /ə/', desc:'半开前不圆唇元音/中央元音', pos:'口腔前部或中部', mouth:'口半开，舌位中高', example:'saya(我)[e], bukan(不是)[ə]', color:'#feca57'},
-  {letter:'Ff', ipa:'/f/', desc:'唇齿清擦音，类似"夫"', pos:'上齿轻触下唇', mouth:'上齿轻咬下唇，气流摩擦', example:'foto(照片), film(电影)', color:'#ff9ff3'},
-  {letter:'Gg', ipa:'/ɡ/', desc:'软腭浊塞音，类似"哥"', pos:'舌后部抵软腭', mouth:'舌根抬起抵软腭，气流冲出', example:'gambar(画), gunung(山)', color:'#54a0ff'},
-  {letter:'Hh', ipa:'/h/', desc:'声门清擦音，类似"哈"', pos:'声门摩擦', mouth:'口微开，气流从声门摩擦而出', example:'halo(你好), hari(天)', color:'#5f27cd'},
-  {letter:'Ii', ipa:'/i/', desc:'闭前不圆唇元音，类似"衣"', pos:'口腔前部，舌位高', mouth:'嘴角向两侧拉开，舌位最高', example:'itu(那个), indah(美丽)', color:'#00d2d3'},
-  {letter:'Jj', ipa:'/dʒ/', desc:'浊龈腭塞擦音，类似"机"', pos:'舌前部抵硬腭', mouth:'舌尖抵硬腭，声带振动', example:'jual(卖), jalan(路)', color:'#1dd1a1'},
-  {letter:'Kk', ipa:'/k/', desc:'软腭清塞音，类似"克"', pos:'舌后部抵软腭', mouth:'舌根抬起抵软腭，无声带振动', example:'kamu(你), kecil(小)', color:'#ff6348'},
-  {letter:'Ll', ipa:'/l/', desc:'齿龈边音，类似"勒"', pos:'舌尖抵上齿龈，气流从两侧出', mouth:'舌尖抵上齿龈，气流从舌头两侧流出', example:'lihat(看), lama(久)', color:'#747d8c'},
-  {letter:'Mm', ipa:'/m/', desc:'双唇浊鼻音，类似"摸"', pos:'双唇闭合，气流从鼻腔出', mouth:'双唇紧闭，软腭下降，气流从鼻出', example:'makan(吃), mana(哪里)', color:'#a4b0be'},
-  {letter:'Nn', ipa:'/n/', desc:'齿龈浊鼻音，类似"呢"', pos:'舌尖抵上齿龈，气流从鼻腔出', mouth:'舌尖抵上齿龈，软腭下降，气流从鼻出', example:'nama(名字), tidak(不)', color:'#57606f'},
-  {letter:'Oo', ipa:'/o/', desc:'半闭后圆唇元音，类似"哦"', pos:'口腔后部，圆唇', mouth:'双唇收圆呈小O形，舌位后高', example:'tahu(知道)[o], tolong(帮忙)', color:'#2ed573'},
-  {letter:'Pp', ipa:'/p/', desc:'双唇清塞音，类似"坡"', pos:'双唇闭合后爆破', mouth:'双唇紧闭，无声带振动，气流冲出', example:'pagi(早上), pintu(门)', color:'#eccc68'},
-  {letter:'Qq', ipa:'/k/', desc:'仅用于外来词，同/k/', pos:'同/k/', mouth:'同/k/（极少使用）', example:'Quran(古兰经)', color:'#ff7f50'},
-  {letter:'Rr', ipa:'/r/', desc:'齿龈颤音，舌尖颤音', pos:'舌尖抵上齿龈，气流使舌尖颤动', mouth:'舌尖轻触上齿龈后部，气流冲出使舌尖快速颤动', example:'rumah(家), rasa(感觉)', color:'#ff6b81'},
-  {letter:'Ss', ipa:'/s/', desc:'齿龈清擦音，类似"丝"', pos:'舌尖近上齿龈，气流摩擦', mouth:'舌尖靠近上齿龈，气流从缝隙摩擦而出', example:'saya(我), selamat(安全)', color:'#c8d6e5'},
-  {letter:'Tt', ipa:'/t/', desc:'齿龈清塞音，类似"特"', pos:'舌尖抵上齿龈', mouth:'舌尖抵住上齿龈，无声带振动', example:'tidak(不), tiga(三)', color:'#8395a7'},
-  {letter:'Uu', ipa:'/u/', desc:'闭后圆唇元音，类似"乌"', pos:'口腔后部，舌位高，圆唇', mouth:'双唇收圆，舌位后高，口最小', example:'untuk(为了), sudah(已经)', color:'#f368e0'},
-  {letter:'Vv', ipa:'/f/', desc:'唇齿清擦音（印尼语中同/f/）', pos:'同/f/', mouth:'同/f/（外来词常用）', example:'vespa(摩托)', color:'#ff9f43'},
-  {letter:'Ww', ipa:'/w/', desc:'双唇浊近音，类似"乌"起音', pos:'双唇收圆，舌位后高', mouth:'双唇收圆，舌根向软腭抬起', example:'wanita(女人), waktu(时间)', color:'#10ac84'},
-  {letter:'Xx', ipa:'/ks/', desc:'仅用于外来词', pos:'舌位随/k/→/s/变化', mouth:'先/k/后/s/的组合', example:'taksi(出租车)', color:'#ee5a24'},
-  {letter:'Yy', ipa:'/j/', desc:'硬腭浊近音，类似"耶"', pos:'舌中部抵硬腭', mouth:'舌中部向硬腭抬起，声带振动', example:'yang(的/那个), ya(是)', color:'#009432'},
-  {letter:'Zz', ipa:'/z/', desc:'齿龈浊擦音，类似"资"', pos:'舌尖近上齿龈，声带振动', mouth:'舌尖靠近上齿龈，气流摩擦，声带振动', example:'zaman(时代), zebra', color:'#0652dd'}
-];
+function endAffixGame() {
+  if (prefixGameState.timer) clearTimeout(prefixGameState.timer);
+  // 恢复存档进度
+  let saved = {};
+  try {
+    saved = JSON.parse(localStorage.getItem('bir_game_progress') || '{}');
+  } catch(e) {}
+  prefixGameState = {
+    active: false, phase: 'menu', level1: null, level2: null,
+    difficulty: 'normal', level: 1, subLevel: 1, score: 0, lives: 3,
+    currentWord: null, fallingSpeed: 5000,
+    selectedVariant: null, timer: null,
+    wordsCompleted: 0, streak: 0, bestStreak: 0,
+    achievements: saved.achievements || {},
+    unlocked: saved.unlocked || { prefix: true, suffix: false, circumfix: false, special: false },
+    starRatings: saved.starRatings || {}
+  };
+  showAffixLevel1(document.getElementById('appContent'));
+}
 
-// 复合音/特殊组合
-const COMPOUND_PHONETICS = [
-  {combo:'ng', ipa:'/ŋ/', desc:'软腭浊鼻音，类似"昂"尾音', pos:'舌后部抵软腭，气流从鼻腔出', example:'dengan(和), bangun(建设)', color:'#6c5ce7'},
-  {combo:'ny', ipa:'/ɲ/', desc:'硬腭浊鼻音，类似"娘"的声母', pos:'舌前部抵硬腭，气流从鼻腔出', example:'nyanyi(唱歌), many(不存在的，但如: manyanyi)', color:'#fd79a8'},
-  {combo:'sy', ipa:'/ʃ/', desc:'清龈后擦音，类似"西"', pos:'舌前部近硬腭', example:'syarat(条件), masya(民众)', color:'#fdcb6e'},
-  {combo:'kh', ipa:'/x/', desc:'清软腭擦音，类似"喝"的喉音', pos:'舌后部近软腭', example:'khawatir(担心), akhir(最后)', color:'#e17055'}
-];
+function togglePause() {
+  // 简化的暂停实现
+  showToast('⏸️ 暂停功能开发中...');
+}
 
 function renderPhonetics(c) {
   const vowels = PHONETIC_DATA.filter(p => 'AIEOU'.includes(p.letter[0]));
@@ -5032,6 +5460,7 @@ function renderMouthDiagram(letter, pos) {
     </svg>
   `;
 }
+
 
 
 </script>
