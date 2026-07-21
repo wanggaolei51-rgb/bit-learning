@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<title>LEO-BIR V4.0</title>
+<title>LEO-BIR V4.1</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -151,7 +151,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="sidebar-header">
     <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <h1>LEO-BIR</h1>
-    <div class="ver">LEO-BIR V4.0 · 全面词缀梳理</div>
+    <div class="ver">LEO-BIR V4.1 · 词根游戏重构 · 字母发音表</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -182,6 +182,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
       <li data-route="review"><span style="margin-right:8px">🧠</span>复习</li>
       <li data-route="aichat"><span style="margin-right:8px">🤖</span>AI对话</li>
       <li data-route="member"><span style="margin-right:8px">👑</span>会员中心</li>
+      <li data-route="phonetics"><span style="margin-right:8px">🔤</span>字母发音表</li>
       <li data-route="prefixgame"><span style="margin-right:8px">🎯</span>词根射击</li>
       <li data-route="about"><span style="margin-right:8px">📋</span>关于LEO-BIR</li>
       <li data-route="version"><span style="margin-right:8px">📜</span>版本记录</li>
@@ -707,6 +708,7 @@ function render(){
     case "manage":t.innerText="⚙️ 课程管理";renderManage(c);break;
     case "stats":t.innerText="📊 数据统计";renderStats(c);break;
     case "game":t.innerText="🎮 百词斩";renderGame(c);break;
+    case "phonetics":t.innerText="🔤 字母发音表";renderPhonetics(c);break;
     case "prefixgame":t.innerText="🎯 词根射击";renderPrefixGame(c);break;
     case "mindmap":t.innerText="🗺️ 思维导图";renderMindMap(c);break;
     default:t.innerText="🏠 主页";renderHome(c);
@@ -1773,175 +1775,471 @@ document.addEventListener("DOMContentLoaded",()=>{
 
 let wordStats = JSON.parse(localStorage.getItem("bir_ws3") || "{}");
 
-// ===== 词根射击游戏数据 =====
-const PREFIX_DATA = {
-  // ==== me- 主动语态前缀组（按词根首字母变体）====
-  'mem-': { label: 'mem- (p/b/f)', desc: 'me- + p/b/f 开头的词根 → mem-', roots: [
-    {root: 'baca', full: 'membaca', cn: '读'}, {root: 'buat', full: 'membuat', cn: '制作'},
-    {root: 'bantu', full: 'membantu', cn: '帮助'}, {root: 'bayar', full: 'membayar', cn: '支付'},
-    {root: 'foto', full: 'memfoto', cn: '拍照'}, {root: 'perbaiki', full: 'memperbaiki', cn: '修理'},
-    {root: 'percaya', full: 'mempercayai', cn: '相信'}, {root: 'perkenal', full: 'memperkenalkan', cn: '介绍'},
-    {root: 'punyai', full: 'mempunyai', cn: '拥有'}, {root: 'produksi', full: 'memproduksi', cn: '生产'},
-    {root: 'perlu', full: 'memerlukan', cn: '需要'}, {root: 'buka', full: 'membuka', cn: '打开'}
-  ]},
-  'men-': { label: 'men- (t/c/d/j)', desc: 'me- + t/c/d/j 开头的词根 → men-', roots: [
-    {root: 'ulis', full: 'menulis', cn: '写'}, {root: 'dengar', full: 'mendengar', cn: '听'},
-    {root: 'jawab', full: 'menjawab', cn: '回答'}, {root: 'jual', full: 'menjual', cn: '卖'},
-    {root: 'cari', full: 'mencari', cn: '寻找'}, {root: 'curi', full: 'mencuri', cn: '偷'},
-    {root: 'tangkap', full: 'menangkap', cn: '抓'}, {root: 'tari', full: 'menari', cn: '跳舞'},
-    {root: 'dapat', full: 'mendapat', cn: '获得'}, {root: 'cuci', full: 'mencuci', cn: '洗'},
-    {root: 'jelas', full: 'menjelaskan', cn: '解释'}, {root: 'temu', full: 'menemukan', cn: '发现'}
-  ]},
-  'meng-': { label: 'meng- (k/g/h/元音)', desc: 'me- + k/g/h/元音 开头的词根 → meng-', roots: [
-    {root: 'gunakan', full: 'menggunakan', cn: '使用'}, {root: 'gambar', full: 'menggambar', cn: '画画'},
-    {root: 'hormat', full: 'menghormat', cn: '尊敬'}, {root: 'ambil', full: 'mengambil', cn: '拿'},
-    {root: 'ubah', full: 'mengubah', cn: '改变'}, {root: 'irim', full: 'mengirim', cn: '发送'},
-    {root: 'kata', full: 'mengatakan', cn: '说'}, {root: 'ganggu', full: 'mengganggu', cn: '打扰'},
-    {root: 'hitung', full: 'menghitung', cn: '计算'}, {root: 'enal', full: 'mengenal', cn: '认识'},
-    {root: 'operasi', full: 'mengoperasi', cn: '操作'}, {root: 'impor', full: 'mengimpor', cn: '进口'}
-  ]},
-  'meny-': { label: 'meny- (s)', desc: 'me- + s 开头的词根 → meny-', roots: [
-    {root: 'impan', full: 'menyimpan', cn: '保存'}, {root: 'iap', full: 'menyiapkan', cn: '准备'},
-    {root: 'umbang', full: 'menyumbang', cn: '贡献'}, {root: 'ertai', full: 'menyertai', cn: '参加'},
-    {root: 'alur', full: 'menyalurkan', cn: '输送'}, {root: 'uar', full: 'menyuarkan', cn: '广播'},
-    {root: 'elamat', full: 'menyelamatkan', cn: '拯救'}, {root: 'embuh', full: 'menyembuhkan', cn: '治愈'},
-    {root: 'ebab', full: 'menyebabkan', cn: '导致'}, {root: 'impan', full: 'menyimpan', cn: '储存'}
-  ]},
-  'me-': { label: 'me- (l/r/w/y)', desc: 'me- + l/r/w/y 开头的词根 → me-', roots: [
-    {root: 'lakukan', full: 'melakukan', cn: '执行'}, {root: 'rawat', full: 'merawat', cn: '照顾'},
-    {root: 'warna', full: 'mewarnai', cn: '上色'}, {root: 'yakini', full: 'meyakini', cn: '确信'},
-    {root: 'wujud', full: 'mewujudkan', cn: '实现'}, {root: 'lepas', full: 'melepaskan', cn: '释放'},
-    {root: 'rusak', full: 'merusak', cn: '破坏'}, {root: 'lihat', full: 'melihat', cn: '看见'},
-    {root: 'lantik', full: 'melantik', cn: '任命'}, {root: 'rongrong', full: 'merongrong', cn: '侵蚀'}
-  ]},
-  
-  // ==== pe- 施事者前缀组（按词根首字母变体）====
-  'pem-': { label: 'pem- (p/b/f)', desc: 'pe- + p/b/f 开头的词根 → pem-', roots: [
-    {root: 'buat', full: 'pembuat', cn: '制造者'}, {root: 'bantu', full: 'pembantu', cn: '助手'},
-    {root: 'beli', full: 'pembeli', cn: '买家'}, {root: 'foto', full: 'pemfoto', cn: '摄影师'},
-    {root: 'periksa', full: 'pemeriksa', cn: '检查者'}, {root: 'pungut', full: 'pemungut', cn: '收集者'}
-  ]},
-  'pen-': { label: 'pen- (t/c/d/j)', desc: 'pe- + t/c/d/j 开头的词根 → pen-', roots: [
-    {root: 'ulis', full: 'penulis', cn: '作家'}, {root: 'jual', full: 'penjual', cn: '卖家'},
-    {root: 'dengar', full: 'pendengar', cn: '听众'}, {root: 'cari', full: 'pencari', cn: '搜索者'},
-    {root: 'jara', full: 'penjara', cn: '监狱'}, {root: 'tangkap', full: 'penangkap', cn: '捕捉者'}
-  ]},
-  'peng-': { label: 'peng- (k/g/h/元音)', desc: 'pe- + k/g/h/元音 开头的词根 → peng-', roots: [
-    {root: 'guna', full: 'pengguna', cn: '用户'}, {root: 'gambar', full: 'penggambar', cn: '画家'},
-    {root: 'hormat', full: 'penghormat', cn: '尊敬者'}, {root: 'obat', full: 'pengobat', cn: '治疗者'},
-    {root: 'guna', full: 'penggunaan', cn: '使用'}, {root: 'ikut', full: 'pengikut', cn: '追随者'}
-  ]},
-  'peny-': { label: 'peny- (s)', desc: 'pe- + s 开头的词根 → peny-', roots: [
-    {root: 'air', full: 'penyair', cn: '诗人'}, {root: 'akit', full: 'penyakit', cn: '疾病'},
-    {root: 'umbang', full: 'penyumbang', cn: '捐助者'}, {root: 'elamat', full: 'penyelamat', cn: '救世主'}
-  ]},
-  'pe-': { label: 'pe- (l/r/w/y)', desc: 'pe- + l/r/w/y 开头的词根 → pe-', roots: [
-    {root: 'lajar', full: 'pelajar', cn: '学生'}, {root: 'rawat', full: 'perawat', cn: '护士'},
-    {root: 'warna', full: 'pewarna', cn: '颜料'}, {root: 'kerja', full: 'pekerja', cn: '工人'},
-    {root: 'jalan', full: 'pejalan', cn: '行人'}, {root: 'lantik', full: 'pelantik', cn: '任命者'}
-  ]},
-  
-  // ==== ber- 组 ====
-  'ber-': { label: 'ber- 标准', desc: '表示"拥有/做/处于"', roots: [
-    {root: 'jalan', full: 'berjalan', cn: '行走'}, {root: 'pikir', full: 'berpikir', cn: '思考'},
-    {root: 'kumpul', full: 'berkumpul', cn: '聚集'}, {root: 'diskusi', full: 'berdiskusi', cn: '讨论'},
-    {root: 'usaha', full: 'berusaha', cn: '努力'}, {root: 'tanya', full: 'bertanya', cn: '提问'},
-    {root: 'semangat', full: 'bersemangat', cn: '有精神'}, {root: 'operasi', full: 'beroperasi', cn: '运营'},
-    {root: 'kelanjutan', full: 'berkelanjutan', cn: '持续'}, {root: 'arti', full: 'berarti', cn: '意味着'}
-  ]},
-  'be-': { label: 'be- (r省略)', desc: 'ber- + r 开头的词根，省略 r → be-', roots: [
-    {root: 'kerja', full: 'bekerja', cn: '工作'}, {root: 'rita', full: 'berita', cn: '新闻'},
-    {root: 'rangkat', full: 'berangkat', cn: '出发'}, {root: 'rbeda', full: 'berbeda', cn: '不同'},
-    {root: 'rgabung', full: 'bergabung', cn: '加入'}, {root: 'rbicara', full: 'berbicara', cn: '谈话'}
-  ]},
-  'bel-': { label: 'bel- (特殊组合)', desc: 'be- + l 开头的词根，看似 bel-', roots: [
-    {root: 'ajar', full: 'belajar', cn: '学习'}, {root: 'lok', full: 'bellok', cn: '弯曲(方言)'}
-  ]},
-  
-  // ==== ter- / di- / se- / ke- / per- 组 ====
-  'ter-': { label: 'ter- (最/被动/意外)', desc: '表示"最/被/意外"', roots: [
-    {root: 'baik', full: 'terbaik', cn: '最好的'}, {root: 'buruk', full: 'terburuk', cn: '最坏的'},
-    {root: 'kena', full: 'terkena', cn: '被击中'}, {root: 'tuju', full: 'tertuju', cn: '被针对'},
-    {root: 'tulis', full: 'tertulis', cn: '被写'}, {root: 'baca', full: 'terbaca', cn: '被读'},
-    {root: 'tawa', full: 'tertawa', cn: '笑出声'}, {root: 'kejut', full: 'terkejut', cn: '吃惊'},
-    {root: 'hormat', full: 'terhormat', cn: '受尊敬的'}, {root: 'kenal', full: 'terkenal', cn: '著名的'}
-  ]},
-  'di-': { label: 'di- (被动语态)', desc: '被动语态前缀', roots: [
-    {root: 'buat', full: 'dibuat', cn: '被制作'}, {root: 'lihat', full: 'dilihat', cn: '被看见'},
-    {root: 'baca', full: 'dibaca', cn: '被读'}, {root: 'makan', full: 'dimakan', cn: '被吃'},
-    {root: 'tulis', full: 'ditulis', cn: '被写'}, {root: 'kirim', full: 'dikirim', cn: '被发送'},
-    {root: 'pakai', full: 'dipakai', cn: '被使用'}, {root: 'jual', full: 'dijual', cn: '被卖'}
-  ]},
-  'se-': { label: 'se- (一个/同样)', desc: '表示"一个/全部/同样"', roots: [
-    {root: 'orang', full: 'seorang', cn: '一个人'}, {root: 'mua', full: 'semua', cn: '全部'},
-    {root: 'suai', full: 'sesuai', cn: '适合'}, {root: 'ring', full: 'sering', cn: '经常'},
-    {root: 'bentar', full: 'sebentar', cn: '一会儿'}, {root: 'kali', full: 'sekali', cn: '一次'},
-    {root: 'jak', full: 'sejak', cn: '自从'}, {root: 'karang', full: 'sekarang', cn: '现在'}
-  ]},
-  'ke-': { label: 'ke- (向/变成)', desc: '表示"向/变成/过度"', roots: [
-    {root: 'pada', full: 'kepada', cn: '向'}, {root: 'hilang', full: 'kehilangan', cn: '丢失'},
-    {root: 'mari', full: 'kemari', cn: '来这里'}, {root: 'banyakan', full: 'kebanyakan', cn: '过多'},
-    {root: 'cil', full: 'kecil', cn: '小'}, {root: 'luar', full: 'keluar', cn: '出去'}
-  ]},
-  'per-': { label: 'per- (使动)', desc: '表示"使/更加/反复"', roots: [
-    {root: 'baik', full: 'perbaiki', cn: '修理'}, {root: 'kenal', full: 'perkenalkan', cn: '介绍'},
-    {root: 'luas', full: 'perluas', cn: '扩展'}, {root: 'tahui', full: 'pertahankan', cn: '保卫'},
-    {root: 'besar', full: 'perbesar', cn: '放大'}, {root: 'panjang', full: 'perpanjang', cn: '延长'}
-  ]},
-  'pel-': { label: 'pel- (pe-变体)', desc: 'pe- + l 开头的词根 → pel-', roots: [
-    {root: 'ajar', full: 'pelajar', cn: '学生'}, {root: 'hara', full: 'pelihara', cn: '照顾'},
-    {root: 'uang', full: 'peluang', cn: '机会'}, {root: 'opor', full: 'pelopor', cn: '先驱'}
-  ]}
+// ===== 词根射击游戏数据 V4.1 =====
+// 基于 mindmap_all.md 全面重构，四级分类体系
+
+const AFFIX_GAME_DATA = {
+  prefix: {
+    name: '前缀 (Awalan)',
+    icon: '⬅️',
+    desc: '放在词根前面的词缀，改变词性或语态。印尼语前缀是词法变化的核心。',
+    children: {
+      'meN-': {
+        name: 'meN- 主动及物',
+        desc: '主动语态及物动词前缀。让动词变得主动与正式。变形只看词根首字母，遵循KPST脱落法则。',
+        rule: 'KPST脱落法则：仅k/p/s/t四清音脱落且后接元音；辅音丛不脱落；外来词常不脱落；单音节不脱落；c永不脱落',
+        variants: {
+          'mem-': { label: 'mem-', rule: '首字母 b/p/f → mem-（p脱落）', words: [
+            {root:'baca', full:'membaca', cn:'读'}, {root:'pukul', full:'memukul', cn:'打'},
+            {root:'buat', full:'membuat', cn:'制作'}, {root:'bantu', full:'membantu', cn:'帮助'},
+            {root:'bayar', full:'membayar', cn:'支付'}, {root:'foto', full:'memfoto', cn:'拍照'},
+            {root:'perbaiki', full:'memperbaiki', cn:'修理'}, {root:'percaya', full:'mempercayai', cn:'相信'},
+            {root:'punya', full:'mempunyai', cn:'拥有'}, {root:'produksi', full:'memproduksi', cn:'生产'},
+            {root:'perlu', full:'memerlukan', cn:'需要'}, {root:'buka', full:'membuka', cn:'打开'}
+          ]},
+          'men-': { label: 'men-', rule: '首字母 t/c/d/j/z → men-（t脱落）', words: [
+            {root:'tulis', full:'menulis', cn:'写'}, {root:'dengar', full:'mendengar', cn:'听'},
+            {root:'jawab', full:'menjawab', cn:'回答'}, {root:'jual', full:'menjual', cn:'卖'},
+            {root:'cari', full:'mencari', cn:'寻找'}, {root:'curi', full:'mencuri', cn:'偷'},
+            {root:'tangkap', full:'menangkap', cn:'抓'}, {root:'tari', full:'menari', cn:'跳舞'},
+            {root:'dapat', full:'mendapat', cn:'获得'}, {root:'cuci', full:'mencuci', cn:'洗'},
+            {root:'jelas', full:'menjelaskan', cn:'解释'}, {root:'temu', full:'menemukan', cn:'发现'}
+          ]},
+          'meny-': { label: 'meny-', rule: '首字母 s → meny-（s脱落）', words: [
+            {root:'sewa', full:'menyewa', cn:'出租'}, {root:'setir', full:'menyetir', cn:'驾驶'},
+            {root:'impan', full:'menyimpan', cn:'保存'}, {root:'iap', full:'menyiapkan', cn:'准备'},
+            {root:'umbang', full:'menyumbang', cn:'贡献'}, {root:'ertai', full:'menyertai', cn:'参加'},
+            {root:'alur', full:'menyalurkan', cn:'输送'}, {root:'elamat', full:'menyelamatkan', cn:'拯救'},
+            {root:'ebab', full:'menyebabkan', cn:'导致'}, {root:'embuh', full:'menyembuhkan', cn:'治愈'}
+          ]},
+          'meng-': { label: 'meng-', rule: '首字母 元音/g/h/k/kh/q/x → meng-（k脱落）', words: [
+            {root:'gunakan', full:'menggunakan', cn:'使用'}, {root:'gambar', full:'menggambar', cn:'画画'},
+            {root:'hormat', full:'menghormat', cn:'尊敬'}, {root:'ambil', full:'mengambil', cn:'拿'},
+            {root:'ubah', full:'mengubah', cn:'改变'}, {root:'irim', full:'mengirim', cn:'发送'},
+            {root:'kata', full:'mengatakan', cn:'说'}, {root:'ganggu', full:'mengganggu', cn:'打扰'},
+            {root:'hitung', full:'menghitung', cn:'计算'}, {root:'enal', full:'mengenal', cn:'认识'},
+            {root:'operasi', full:'mengoperasi', cn:'操作'}, {root:'impor', full:'mengimpor', cn:'进口'}
+          ]},
+          'menge-': { label: 'menge-', rule: '单音节词根 → menge-（不脱落）', words: [
+            {root:'cek', full:'mengecek', cn:'检查'}, {root:'bom', full:'mengebom', cn:'轰炸'},
+            {root:'jar', full:'mengejar', cn:'追赶'}, {root:'lap', full:'mengelap', cn:'擦拭'},
+            {root:'cat', full:'mengecat', cn:'刷漆'}, {root:'pas', full:'mengepas', cn:'装配'}
+          ]},
+          'me-': { label: 'me-', rule: '首字母 l/r/m/n/ny/ng/w/y → me-（不脱落）', words: [
+            {root:'lakukan', full:'melakukan', cn:'执行'}, {root:'rawat', full:'merawat', cn:'照顾'},
+            {root:'warna', full:'mewarnai', cn:'上色'}, {root:'yakini', full:'meyakini', cn:'确信'},
+            {root:'wujud', full:'mewujudkan', cn:'实现'}, {root:'lepas', full:'melepaskan', cn:'释放'},
+            {root:'rusak', full:'merusak', cn:'破坏'}, {root:'lihat', full:'melihat', cn:'看见'},
+            {root:'lantik', full:'melantik', cn:'任命'}, {root:'rongrong', full:'merongrong', cn:'侵蚀'}
+          ]}
+        }
+      },
+      'ber-': {
+        name: 'ber- 不及物',
+        desc: '构成不及物动词，表示"拥有/做/处于"。使口语动词书面化/正式化，一般不改词义。',
+        rule: 'ber- + 词根首字母r → be-（r省略）；belajar为特例',
+        variants: {
+          'ber-': { label: 'ber-', rule: 'ber- + 词根（标准形式）', words: [
+            {root:'main', full:'bermain', cn:'玩'}, {root:'renang', full:'berenang', cn:'游泳'},
+            {root:'pikir', full:'berpikir', cn:'思考'}, {root:'kumpul', full:'berkumpul', cn:'聚集'},
+            {root:'diskusi', full:'berdiskusi', cn:'讨论'}, {root:'usaha', full:'berusaha', cn:'努力'},
+            {root:'tanya', full:'bertanya', cn:'提问'}, {root:'semangat', full:'bersemangat', cn:'有精神'},
+            {root:'operasi', full:'beroperasi', cn:'运营'}, {root:'kelanjutan', full:'berkelanjutan', cn:'持续'},
+            {root:'arti', full:'berarti', cn:'意味着'}, {root:'jalan', full:'berjalan', cn:'行走'}
+          ]},
+          'be-': { label: 'be-', rule: 'ber- + r开头词根，省略r → be-', words: [
+            {root:'kerja', full:'bekerja', cn:'工作'}, {root:'rita', full:'berita', cn:'新闻'},
+            {root:'rangkat', full:'berangkat', cn:'出发'}, {root:'rbeda', full:'berbeda', cn:'不同'},
+            {root:'rgabung', full:'bergabung', cn:'加入'}, {root:'rbicara', full:'berbicara', cn:'谈话'}
+          ]},
+          'bel-': { label: 'bel-', rule: '特例：belajar（唯一常用词）', words: [
+            {root:'ajar', full:'belajar', cn:'学习'}
+          ]}
+        }
+      },
+      'di-': {
+        name: 'di- 被动语态',
+        desc: '被动语态前缀。施事为第三人称时用di-；一/二人称用零前缀被动（代词+动词原形）。',
+        rule: 'meN-整体换di-，鼻音同化取消：membuat→dibuat、menulis→ditulis',
+        variants: {
+          'di-': { label: 'di-', rule: 'di- + 词根（被动语态）', words: [
+            {root:'buat', full:'dibuat', cn:'被制作'}, {root:'lihat', full:'dilihat', cn:'被看见'},
+            {root:'baca', full:'dibaca', cn:'被读'}, {root:'makan', full:'dimakan', cn:'被吃'},
+            {root:'tulis', full:'ditulis', cn:'被写'}, {root:'kirim', full:'dikirim', cn:'被发送'},
+            {root:'pakai', full:'dipakai', cn:'被使用'}, {root:'jual', full:'dijual', cn:'被卖'},
+            {root:'bangun', full:'dibangun', cn:'被建设'}, {root:'bersih', full:'dibersihkan', cn:'被打扫'}
+          ]}
+        }
+      },
+      'ter-': {
+        name: 'ter- 最级/被动/意外',
+        desc: '无变形。功能：①+形容词=最高级 ②+动词=无意/偶然被动 ③状态/已完成 ④能力',
+        rule: 'ter- 动词被动义永远用第一被动形式',
+        variants: {
+          'ter-': { label: 'ter-', rule: 'ter- + 词根（最/被动/意外/状态）', words: [
+            {root:'baik', full:'terbaik', cn:'最好的'}, {root:'buruk', full:'terburuk', cn:'最坏的'},
+            {root:'kena', full:'terkena', cn:'被击中'}, {root:'tuju', full:'tertuju', cn:'被针对'},
+            {root:'tulis', full:'tertulis', cn:'被写着的'}, {root:'baca', full:'terbaca', cn:'被读到的'},
+            {root:'tawa', full:'tertawa', cn:'笑出声'}, {root:'kejut', full:'terkejut', cn:'吃惊'},
+            {root:'hormat', full:'terhormat', cn:'受尊敬的'}, {root:'kenal', full:'terkenal', cn:'著名的'},
+            {root:'jangkau', full:'terjangkau', cn:'负担得起'}, {root:'tutup', full:'tertutup', cn:'关着的'}
+          ]}
+        }
+      },
+      'peN-': {
+        name: 'peN- 施事/工具名词',
+        desc: '构成施事者或工具名词。变形与meN-完全同构（同一套鼻音同化）。及物动词去meN-加peN-。',
+        rule: 'meN- ↔ peN- 同构：mem-↔pem-, men-↔pen-, meny-↔peny-, meng-↔peng-, menge-↔penge-, me-↔pe-',
+        variants: {
+          'pem-': { label: 'pem-', rule: '首字母 b/p/f → pem-', words: [
+            {root:'buat', full:'pembuat', cn:'制造者'}, {root:'bantu', full:'pembantu', cn:'助手'},
+            {root:'beli', full:'pembeli', cn:'买家'}, {root:'foto', full:'pemfoto', cn:'摄影师'},
+            {root:'periksa', full:'pemeriksa', cn:'检查者'}, {root:'pungut', full:'pemungut', cn:'收集者'}
+          ]},
+          'pen-': { label: 'pen-', rule: '首字母 t/c/d/j → pen-', words: [
+            {root:'ulis', full:'penulis', cn:'作家'}, {root:'jual', full:'penjual', cn:'卖家'},
+            {root:'dengar', full:'pendengar', cn:'听众'}, {root:'cari', full:'pencari', cn:'搜索者'},
+            {root:'jara', full:'penjara', cn:'监狱'}, {root:'tangkap', full:'penangkap', cn:'捕捉者'}
+          ]},
+          'peny-': { label: 'peny-', rule: '首字母 s → peny-', words: [
+            {root:'air', full:'penyair', cn:'诗人'}, {root:'akit', full:'penyakit', cn:'疾病'},
+            {root:'umbang', full:'penyumbang', cn:'捐助者'}, {root:'elamat', full:'penyelamat', cn:'救世主'},
+            {root:'apu', full:'penyapu', cn:'扫帚'}, {root:'iram', full:'penyiram', cn:'洒水壶'}
+          ]},
+          'peng-': { label: 'peng-', rule: '首字母 元音/g/h/k → peng-', words: [
+            {root:'guna', full:'pengguna', cn:'用户'}, {root:'gambar', full:'penggambar', cn:'画家'},
+            {root:'hormat', full:'penghormat', cn:'尊敬者'}, {root:'obat', full:'pengobat', cn:'治疗者'},
+            {root:'guna', full:'penggunaan', cn:'使用'}, {root:'ikut', full:'pengikut', cn:'追随者'},
+            {root:'karang', full:'pengarang', cn:'作者'}, {root:'ajar', full:'pengajar', cn:'教师'}
+          ]},
+          'penge-': { label: 'penge-', rule: '单音节词根 → penge-', words: [
+            {root:'bom', full:'pengebom', cn:'投弹者'}, {root:'cek', full:'pengecek', cn:'检查者'}
+          ]},
+          'pe-': { label: 'pe-', rule: '首字母 l/r/w/y → pe-', words: [
+            {root:'lajar', full:'pelajar', cn:'学生'}, {root:'rawat', full:'perawat', cn:'护士'},
+            {root:'warna', full:'pewarna', cn:'颜料'}, {root:'kerja', full:'pekerja', cn:'工人'},
+            {root:'jalan', full:'pejalan', cn:'行人'}, {root:'lantik', full:'pelantik', cn:'任命者'}
+          ]}
+        }
+      },
+      'pe-': {
+        name: 'pe- 惯常者/职业',
+        desc: '不及物ber-动词去ber-加pe-；+形容词="某种…人"。与peN-的pe-变体在教学上合一。',
+        rule: 'bermain→pemain, malu→pemalu, diam→pendiam',
+        variants: {
+          'pe-': { label: 'pe-', rule: 'pe- + 词根（惯常者/某种人）', words: [
+            {root:'main', full:'pemain', cn:'选手'}, {root:'tinju', full:'petinju', cn:'拳击手'},
+            {root:'malu', full:'pemalu', cn:'害羞的人'}, {root:'diam', full:'pendiam', cn:'少言的人'},
+            {root:'jabat', full:'pejabat', cn:'官员'}, {root:'laut', full:'pelaut', cn:'海员'}
+          ]}
+        }
+      },
+      'per-': {
+        name: 'per- 使动/名词',
+        desc: '构动词：使更…/使成为/分成；构名词：对应ber-动词。主动态必加meN-（memper-），被动态diper-。',
+        rule: 'per-/pe-/pel- 三变体，与ber-/be-/bel-平行',
+        variants: {
+          'per-': { label: 'per-', rule: 'per- + 词根（使动/名词）', words: [
+            {root:'baik', full:'perbaiki', cn:'修理'}, {root:'kenal', full:'perkenalkan', cn:'介绍'},
+            {root:'luas', full:'perluas', cn:'扩展'}, {root:'tahu', full:'pertahankan', cn:'保卫'},
+            {root:'besar', full:'perbesar', cn:'放大'}, {root:'panjang', full:'perpanjang', cn:'延长'},
+            {root:'segi', full:'persegi', cn:'正方形'}, {root:'rokok', full:'perokok', cn:'烟民'}
+          ]},
+          'pe-': { label: 'pe-', rule: 'per- 变体：pe- + 词根', words: [
+            {root:'beda', full:'perbedaan', cn:'差异'}, {root:'ubah', full:'perubahan', cn:'变化'},
+            {root:'temu', full:'pertemuan', cn:'会议'}, {root:'jalan', full:'perjalanan', cn:'旅程'}
+          ]},
+          'pel-': { label: 'pel-', rule: '特例：pelajar/pelihara/peluang/pelopor', words: [
+            {root:'ajar', full:'pelajar', cn:'学生'}, {root:'hara', full:'pelihara', cn:'照顾'},
+            {root:'uang', full:'peluang', cn:'机会'}, {root:'opor', full:'pelopor', cn:'先驱'}
+          ]}
+        }
+      },
+      'se-': {
+        name: 'se- 一/同/全',
+        desc: '约10义：①一（单位）②每 ③同一/共同 ④全 ⑤相同 ⑥像/类似 ⑦一齐 ⑧时间 ⑨尽量 ⑩按照',
+        rule: 'se- 前缀无变形',
+        variants: {
+          'se-': { label: 'se-', rule: 'se- + 词根（一/同/全/像/时间）', words: [
+            {root:'orang', full:'seorang', cn:'一个人'}, {root:'mua', full:'semua', cn:'全部'},
+            {root:'suai', full:'sesuai', cn:'适合'}, {root:'ring', full:'sering', cn:'经常'},
+            {root:'bentar', full:'sebentar', cn:'一会儿'}, {root:'kali', full:'sekali', cn:'一次'},
+            {root:'jak', full:'sejak', cn:'自从'}, {root:'karang', full:'sekarang', cn:'现在'},
+            {root:'tahun', full:'setahun', cn:'一年'}, {root:'lembar', full:'selembar', cn:'一张'},
+            {root:'rumah', full:'serumah', cn:'同屋'}, {root:'dunia', full:'sedunia', cn:'全世界'}
+          ]}
+        }
+      },
+      'ke-': {
+        name: 'ke- 序数/向/变',
+        desc: '序数前缀；部分名词；表示"向/变成/过度"',
+        rule: 'ke- 前缀无变形',
+        variants: {
+          'ke-': { label: 'ke-', rule: 'ke- + 词根（序数/向/变）', words: [
+            {root:'pada', full:'kepada', cn:'向'}, {root:'hilang', full:'kehilangan', cn:'丢失'},
+            {root:'mari', full:'kemari', cn:'来这里'}, {root:'banyakan', full:'kebanyakan', cn:'过多'},
+            {root:'cil', full:'kecil', cn:'小'}, {root:'luar', full:'keluar', cn:'出去'},
+            {root:'dua', full:'kedua', cn:'第二'}, {root:'tiga', full:'ketiga', cn:'第三'},
+            {root:'pala', full:'kepala', cn:'头/首长'}, {root:'kasih', full:'kekasih', cn:'爱人'}
+          ]}
+        }
+      }
+    }
+  },
+  suffix: {
+    name: '后缀 (Akhiran)',
+    icon: '➡️',
+    desc: '放在词根后面的词缀，改变词性或语法功能。',
+    children: {
+      '-an': {
+        name: '-an 名词化',
+        desc: '动词→名词（结果/产物）；集合名词；模糊数字',
+        rule: '-an 后缀无变形',
+        variants: {
+          '-an': { label: '-an', rule: '词根 + -an → 名词（结果/产物）', words: [
+            {root:'makan', full:'makanan', cn:'食物'}, {root:'minum', full:'minuman', cn:'饮料'},
+            {root:'baca', full:'bacaan', cn:'读物'}, {root:'tulis', full:'tulisan', cn:'文章'},
+            {root:'masak', full:'masakan', cn:'菜肴'}, {root:'main', full:'mainan', cn:'玩具'},
+            {root:'bangun', full:'bangunan', cn:'建筑'}, {root:'duduk', full:'dudukan', cn:'座位'},
+            {root:'buah', full:'buah-buahan', cn:'水果总称'}, {root:'sayur', full:'sayur-sayuran', cn:'蔬菜总称'}
+          ]}
+        }
+      },
+      '-kan': {
+        name: '-kan 使动/益格',
+        desc: '致使/为某人做/置放/视为。须与meN-/di-共现。口语 -in = -kan',
+        rule: '词根 + -kan（须与meN-/di-共现）',
+        variants: {
+          '-kan': { label: '-kan', rule: '词根 + -kan（使动/益格）', words: [
+            {root:'duduk', full:'dudukkan', cn:'使坐下'}, {root:'tahu', full:'tahukan', cn:'告知'},
+            {root:'buka', full:'bukakan', cn:'打开（为某人）'}, {root:'tulis', full:'tuliskan', cn:'写下'},
+            {root:'beri', full:'berikan', cn:'给'}, {root:'lihat', full:'lihatkan', cn:'展示'},
+            {root:'pinjam', full:'meminjamkan', cn:'借出'}, {root:'panggil', full:'memanggilkan', cn:'叫（出租车给某人）'}
+          ]}
+        }
+      },
+      '-i': {
+        name: '-i 处所/反复',
+        desc: '处所/反复/给予/朝向。须与meN-/di-共现。',
+        rule: '词根 + -i（须与meN-/di-共现）',
+        variants: {
+          '-i': { label: '-i', rule: '词根 + -i（处所/反复/朝向）', words: [
+            {root:'tulis', full:'tulisi', cn:'填写'}, {root:'hampir', full:'hampiri', cn:'接近'},
+            {root:'tangis', full:'tangisi', cn:'哭泣'}, {root:'kaji', full:'kajii', cn:'研究'},
+            {root:'nama', full:'menamai', cn:'取名'}, {root:'biaya', full:'membiayai', cn:'资助'},
+            {root:'warna', full:'mewarnai', cn:'上色'}, {root:'hadir', full:'menghadiri', cn:'出席'}
+          ]}
+        }
+      },
+      '-nya': {
+        name: '-nya 所有格/定指',
+        desc: '第三人称所有格；特指/定指标记；动词名词化；构成状语；meN-动词后=宾语，di-动词后=施事',
+        rule: '词根 + -nya（附着于词根后）',
+        variants: {
+          '-nya': { label: '-nya', rule: '词根 + -nya（所有格/定指）', words: [
+            {root:'motor', full:'motornya', cn:'他的摩托'}, {root:'rumah', full:'rumahnya', cn:'他的家'},
+            {root:'sekolah', full:'sekolahnya', cn:'他的学校'}, {root:'nama', full:'namanya', cn:'他的名字'},
+            {root:'tidur', full:'tidurnya', cn:'他的睡觉（这件事）'}, {root:'seperti', full:'sepertinya', cn:'似乎'},
+            {root:'baik', full:'sebaiknya', cn:'最好'}, {root:'harus', full:'seharusnya', cn:'理应'}
+          ]}
+        }
+      },
+      '-ku/-mu': {
+        name: '-ku/-mu 人称附着',
+        desc: '一/二人称领属/宾语附着于词根后',
+        rule: '词根 + -ku（我）/ -mu（你）',
+        variants: {
+          '-ku': { label: '-ku', rule: '词根 + -ku（我的）', words: [
+            {root:'buku', full:'bukuku', cn:'我的书'}, {root:'rumah', full:'rumahku', cn:'我的家'},
+            {root:'nama', full:'namaku', cn:'我的名字'}, {root:'mobil', full:'mobilku', cn:'我的车'}
+          ]},
+          '-mu': { label: '-mu', rule: '词根 + -mu（你的）', words: [
+            {root:'buku', full:'bukumu', cn:'你的书'}, {root:'rumah', full:'rumahmu', cn:'你的家'},
+            {root:'nama', full:'namamu', cn:'你的名字'}, {root:'cinta', full:'mencintaimu', cn:'爱你'}
+          ]}
+        }
+      },
+      '-lah/-kah/-pun': {
+        name: '语气附着',
+        desc: '-lah强调/-kah疑问/-pun即使。-lah/-kah连写，-pun多分写',
+        rule: '词根 + -lah（强调）/ -kah（疑问）/ -pun（即使）',
+        variants: {
+          '-lah': { label: '-lah', rule: '词根 + -lah（祈使/强调）', words: [
+            {root:'mari', full:'marilah', cn:'来吧'}, {root:'dengar', full:'dengarlah', cn:'听吧'},
+            {root:'lihat', full:'lihatlah', cn:'看吧'}, {root:'pergi', full:'pergilah', cn:'去吧'},
+            {root:'baca', full:'bacalah', cn:'请读'}, {root:'masuk', full:'masuklah', cn:'进来吧'}
+          ]},
+          '-kah': { label: '-kah', rule: '词根 + -kah（疑问标记）', words: [
+            {root:'apa', full:'apakah', cn:'什么（疑问）'}, {root:'boleh', full:'bolehkah', cn:'可以吗'},
+            {root:'bisa', full:'bisakah', cn:'能吗'}, {root:'mau', full:'maukah', cn:'想要吗'}
+          ]},
+          '-pun': { label: '-pun', rule: '词根 + -pun（即使/也）', words: [
+            {root:'apa', full:'apa pun', cn:'无论什么'}, {root:'bagaimana', full:'bagaimanapun', cn:'无论如何'},
+            {root:'walaupun', full:'walaupun', cn:'即使'}, {root:'meski', full:'meskipun', cn:'尽管'}
+          ]}
+        }
+      }
+    }
+  },
+  circumfix: {
+    name: '环绕缀 (Apitan)',
+    icon: '🔁',
+    desc: '前后缀同时出现，包围词根。印尼语特色词缀结构。',
+    children: {
+      'meN-...-kan': {
+        name: 'meN-...-kan 使动/益格',
+        desc: '取代membuat（使动改写）/untuk（受益改写）；置放；视为',
+        rule: '变形与meN-相同，-kan不变',
+        variants: {
+          'meN-...-kan': { label: 'meN-...-kan', rule: 'meN- + 词根 + -kan', words: [
+            {root:'senang', full:'menyenangkan', cn:'使高兴'}, {root:'panggil', full:'memanggilkan', cn:'为某人叫'},
+            {root:'pinjam', full:'meminjamkan', cn:'借出'}, {root:'jual', full:'menjualkan', cn:'替卖'},
+            {root:'hati', full:'memperhatikan', cn:'注意'}, {root:'timbang', full:'mempertimbangkan', cn:'考虑'}
+          ]}
+        }
+      },
+      'meN-...-i': {
+        name: 'meN-...-i 处所/反复',
+        desc: '取代memberi（给予）；取代介词（不及物→及物）；动作反复',
+        rule: '变形与meN-相同，-i不变',
+        variants: {
+          'meN-...-i': { label: 'meN-...-i', rule: 'meN- + 词根 + -i', words: [
+            {root:'nama', full:'menamai', cn:'取名'}, {root:'biaya', full:'membiayai', cn:'资助'},
+            {root:'warna', full:'mewarnai', cn:'上色'}, {root:'hadir', full:'menghadiri', cn:'出席'},
+            {root:'pukul', full:'memukuli', cn:'痛打'}, {root:'cubit', full:'mencubiti', cn:'反复捏'}
+          ]}
+        }
+      },
+      'ke-...-an': {
+        name: 'ke-...-an 名词化/遭遇',
+        desc: '形容词→名词；负面/遭遇；极端化',
+        rule: 'ke- + 词根 + -an',
+        variants: {
+          'ke-...-an': { label: 'ke-...-an', rule: 'ke- + 词根 + -an', words: [
+            {root:'sehat', full:'kesehatan', cn:'健康'}, {root:'cantik', full:'kecantikan', cn:'美丽'},
+            {root:'jujur', full:'kejujuran', cn:'诚信'}, {root:'mampu', full:'kemampuan', cn:'能力'},
+            {root:'hilang', full:'kehilangan', cn:'遗失'}, {root:'tinggal', full:'ketinggalan', cn:'忘带'},
+            {root:'lapar', full:'kelaparan', cn:'饿死'}, {root:'panas', full:'kepanasan', cn:'中暑'},
+            {root:'datang', full:'kedatangan', cn:'抵达'}, {root:'percaya', full:'kepercayaan', cn:'信任'}
+          ]}
+        }
+      },
+      'peN-...-an': {
+        name: 'peN-...-an 行为名词',
+        desc: '及物动词行为名词',
+        rule: 'peN- + 词根 + -an',
+        variants: {
+          'peN-...-an': { label: 'peN-...-an', rule: 'peN- + 词根 + -an', words: [
+            {root:'jual', full:'penjualan', cn:'售卖'}, {root:'bangun', full:'pembangunan', cn:'建设'},
+            {root:'bayar', full:'pembayaran', cn:'支付'}, {root:'tulis', full:'penulisan', cn:'写作'}
+          ]}
+        }
+      },
+      'per-...-an': {
+        name: 'per-...-an 过程名词',
+        desc: '不及物/过程名词',
+        rule: 'per- + 词根 + -an',
+        variants: {
+          'per-...-an': { label: 'per-...-an', rule: 'per- + 词根 + -an', words: [
+            {root:'beda', full:'perbedaan', cn:'差异'}, {root:'ubah', full:'perubahan', cn:'变化'},
+            {root:'temu', full:'pertemuan', cn:'会议'}, {root:'jalan', full:'perjalanan', cn:'旅程'},
+            {root:'kerja', full:'pekerjaan', cn:'工作'}, {root:'cakap', full:'percakapan', cn:'谈话'}
+          ]}
+        }
+      },
+      'ber-...-an': {
+        name: 'ber-...-an 相互',
+        desc: '相互/分散动作',
+        rule: 'ber- + 词根 + -an',
+        variants: {
+          'ber-...-an': { label: 'ber-...-an', rule: 'ber- + 词根 + -an', words: [
+            {root:'salam', full:'bersalaman', cn:'互相握手'}, {root:'muncul', full:'bermunculan', cn:'纷纷出现'},
+            {root:'sebelah', full:'bersebelahan', cn:'相邻'}, {root:'gugur', full:'berguguran', cn:'纷纷落下'}
+          ]}
+        }
+      },
+      'ber-...-kan': {
+        name: 'ber-...-kan 以...为',
+        desc: '"以…为"',
+        rule: 'ber- + 词根 + -kan',
+        variants: {
+          'ber-...-kan': { label: 'ber-...-kan', rule: 'ber- + 词根 + -kan', words: [
+            {root:'dasar', full:'berdasarkan', cn:'基于'}, {root:'tema', full:'bertemakan', cn:'以…为主题'},
+            {root:'anggota', full:'beranggotakan', cn:'由…成员组成'}
+          ]}
+        }
+      },
+      'se-...-nya': {
+        name: 'se-...-nya 情态副词',
+        desc: '凝固情态副词；时间"…之后"；至极强调',
+        rule: 'se- + 词根 + -nya',
+        variants: {
+          'se-...-nya': { label: 'se-...-nya', rule: 'se- + 词根 + -nya', words: [
+            {root:'baik', full:'sebaiknya', cn:'最好'}, {root:'harus', full:'seharusnya', cn:'理应'},
+            {root:'pantas', full:'sepantasnya', cn:'理应'}, {root:'mesti', full:'semestinya', cn:'本该'},
+            {root:'tiba', full:'setibanya', cn:'到达之后'}, {root:'sampai', full:'sesampainya', cn:'抵达之后'}
+          ]}
+        }
+      }
+    }
+  },
+  special: {
+    name: '中缀/特殊 (Sisipan)',
+    icon: '⭐',
+    desc: '插入词根内部的词缀，全部非能产。印尼语特有现象。',
+    children: {
+      '-el-': {
+        name: '-el- 中缀',
+        desc: '插入词根首字母与后续字母之间',
+        rule: '词根首字母 + -el- + 后续部分',
+        variants: {
+          '-el-': { label: '-el-', rule: 'tunjuk → telunjuk, gembung → gelembung', words: [
+            {root:'tunjuk', full:'telunjuk', cn:'食指'}, {root:'gembung', full:'gelembung', cn:'气泡'}
+          ]}
+        }
+      },
+      '-em-': {
+        name: '-em- 中缀',
+        desc: '插入词根首字母与后续字母之间',
+        rule: '词根首字母 + -em- + 后续部分',
+        variants: {
+          '-em-': { label: '-em-', rule: 'getar → gemetar, guruh → gemuruh', words: [
+            {root:'getar', full:'gemetar', cn:'发抖'}, {root:'guruh', full:'gemuruh', cn:'隆隆'},
+            {root:'tali', full:'temali', cn:'绳索'}
+          ]}
+        }
+      },
+      '-er-': {
+        name: '-er- 中缀',
+        desc: '插入词根首字母与后续字母之间',
+        rule: '词根首字母 + -er- + 后续部分',
+        variants: {
+          '-er-': { label: '-er-', rule: 'gigi → gerigi, suling → seruling', words: [
+            {root:'gigi', full:'gerigi', cn:'锯齿'}, {root:'suling', full:'seruling', cn:'笛子'}
+          ]}
+        }
+      }
+    }
+  }
 };
 
-const SUFFIX_DATA = {
-  '-an': { label: '-an 名词化', desc: '名词化/结果/集合', roots: [
-    {root: 'makan', full: 'makanan', cn: '食物'}, {root: 'minum', full: 'minuman', cn: '饮料'},
-    {root: 'baca', full: 'bacaan', cn: '读物'}, {root: 'tulis', full: 'tulisan', cn: '文章'},
-    {root: 'kerja', full: 'kerjaan', cn: '工作'}, {root: 'budaya', full: 'kebudayaan', cn: '文化'},
-    {root: 'main', full: 'mainan', cn: '玩具'}, {root: 'pakaian', full: 'pakaian', cn: '衣服'},
-    {root: 'bangun', full: 'bangunan', cn: '建筑'}, {root: 'duduk', full: 'dudukan', cn: '座位'}
-  ]},
-  '-kan': { label: '-kan 使动', desc: '使动/为某人做', roots: [
-    {root: 'duduk', full: 'dudukkan', cn: '使坐下'}, {root: 'tahu', full: 'tahukan', cn: '告知'},
-    {root: 'buka', full: 'bukakan', cn: '打开'}, {root: 'tulis', full: 'tuliskan', cn: '写下'},
-    {root: 'makan', full: 'makanan', cn: '喂食'}, {root: 'baca', full: 'bacakan', cn: '朗读'},
-    {root: 'beri', full: 'berikan', cn: '给'}, {root: 'lihat', full: 'lihatkan', cn: '展示'}
-  ]},
-  '-i': { label: '-i 反复/朝向', desc: '反复/给予/朝向', roots: [
-    {root: 'tulis', full: 'tulisi', cn: '填写'}, {root: 'hampir', full: 'hampiri', cn: '接近'},
-    {root: 'tangis', full: 'tangisi', cn: '哭泣'}, {root: 'kaji', full: 'kajii', cn: '研究'},
-    {root: 'buku', full: 'bukui', cn: '记录'}, {root: 'rumah', full: 'rumahi', cn: '家化'},
-    {root: 'sewa', full: 'sewai', cn: '出租'}, {root: 'tanya', full: 'tanyai', cn: '询问'}
-  ]},
-  '-lah': { label: '-lah 强调', desc: '强调语气', roots: [
-    {root: 'mari', full: 'marilah', cn: '来吧'}, {root: 'dengar', full: 'dengarlah', cn: '听吧'},
-    {root: 'lihat', full: 'lihatlah', cn: '看吧'}, {root: 'pergi', full: 'pergilah', cn: '去吧'},
-    {root: 'baca', full: 'bacalah', cn: '读吧'}, {root: 'masuk', full: 'masuklah', cn: '进来吧'}
-  ]},
-  '-nya': { label: '-nya 所有格', desc: '所有格/定指', roots: [
-    {root: 'buku', full: 'bukunya', cn: '他的书'}, {root: 'rumah', full: 'rumahnya', cn: '他的家'},
-    {root: 'sekolah', full: 'sekolahnya', cn: '他的学校'}, {root: 'nama', full: 'namanya', cn: '他的名字'},
-    {root: 'mobil', full: 'mobilnya', cn: '他的车'}, {root: 'anak', full: 'anaknya', cn: '他的孩子'}
-  ]},
-  '-pun': { label: '-pun 即使', desc: '即使/也', roots: [
-    {root: 'bagaimana', full: 'bagaimanapun', cn: '无论如何'}, {root: 'walaupun', full: 'walaupun', cn: '即使'},
-    {root: 'meski', full: 'meskipun', cn: '尽管'}, {root: 'kendati', full: 'kendatipun', cn: '虽然'},
-    {root: 'biar', full: 'biarpun', cn: '即使'}, {root: 'walau', full: 'walaupun', cn: '虽然'}
-  ]}
-};
-
+// 游戏状态
 let prefixGameState = {
   active: false,
+  phase: 'menu', // menu → level1 → level2 → play → over
+  level1: null,  // 一级分类: prefix/suffix/circumfix/special
+  level2: null,  // 二级分类: meN-/ber-/di- 等
   level: 1,
   subLevel: 1,
   score: 0,
   lives: 3,
   currentWord: null,
-  fallingSpeed: 5000, // ms
-  selectedCategory: null,
+  fallingSpeed: 5000,
+  selectedVariant: null,
   timer: null,
-  wordsCompleted: 0
+  wordsCompleted: 0,
+  streak: 0,
+  bestStreak: 0
 };
 
 let memberInfo = JSON.parse(localStorage.getItem("bir_member") || "null");
@@ -3753,10 +4051,24 @@ function renderAbout(c){
 }
 
 function renderVersion(c){
-  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录</h2><span class="badge">V4.0</span></div>
+  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录</h2><span class="badge">V4.1</span></div>
     <div style="padding:16px;">
       <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
-        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.0 (2026-07-19)</div>
+        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.1 (2026-07-21)</div>
+        <div style="font-size:13px;color:var(--text);line-height:1.8">
+        • 词根射击游戏全面重构：四级分类体系<br>
+        • 一级菜单：前缀/后缀/环绕缀/中缀 四大类<br>
+        • 二级菜单：meN-/ber-/di-/ter-/peN- 等具体词缀<br>
+        • 三级变体：mem-/men-/meng-/menge-/me- 等（meN-下属6变体）<br>
+        • 每关背景显示该词缀规则文字，边玩边学<br>
+        • 新增连击系统（Combo）和最高连击记录<br>
+        • 新增「印尼语字母发音表」：26字母+4复合音，含音标/读音/舌位简图<br>
+        • 词库数据基于 mindmap_all.md 全面重编<br>
+        • 版本号升级至 V4.1
+        </div>
+      </div>
+      <div style="margin-bottom:14px;padding:14px;background:var(--bg-elev);border-radius:10px;border-left:3px solid var(--accent)">
+        <div style="font-size:15px;font-weight:700;color:var(--accent);margin-bottom:6px">V4.0 (2026-07-19)</div>
         <div style="font-size:13px;color:var(--text);line-height:1.8">
         • 全面梳理印尼语词缀系统（BIO语法审核）<br>
         • 前缀按语法规则分类：mem-/men-/meng-/meny-/me-/pem-/pen-/peng-/peny-/pe-/ber-/be-/bel-/ter-/di-/se-/ke-/per-/pel-<br>
@@ -4199,300 +4511,528 @@ document.addEventListener('click', function(e){
   }
 });
 
-// ===== 词根射击游戏 =====
+// ===== 词根射击游戏 V4.1 =====
+// 三级菜单架构：一级(大类) → 二级(词缀) → 三级(变体) → 游戏
+
 function renderPrefixGame(c) {
-  if (!prefixGameState.active) {
-    // 显示选择界面
-    showPrefixGameMenu(c);
+  const state = prefixGameState;
+  if (!state.active) {
+    showAffixLevel1(c);
     return;
   }
-  // 如果游戏进行中，继续渲染游戏
-  showPrefixGamePlay(c);
+  switch (state.phase) {
+    case 'menu': showAffixLevel1(c); break;
+    case 'level2': showAffixLevel2(c); break;
+    case 'play': showAffixGamePlay(c); break;
+    case 'over': showAffixGameOver(c); break;
+    default: showAffixLevel1(c);
+  }
 }
 
-function showPrefixGameMenu(c) {
-  // 生成前缀选择按钮
-  let prefixButtons = Object.keys(PREFIX_DATA).map(k => {
-    const d = PREFIX_DATA[k];
+// === 一级菜单：选择大类 ===
+function showAffixLevel1(c) {
+  const categories = Object.keys(AFFIX_GAME_DATA);
+  const buttons = categories.map(k => {
+    const d = AFFIX_GAME_DATA[k];
+    const childCount = Object.keys(d.children).length;
     return `
-      <button onclick="startPrefixGame('${k}')" class="trans-btn" style="margin:6px;padding:10px 16px;font-size:13px;">
-        ${d.label} <span style="color:var(--text-dim);font-size:11px;">${d.roots.length}词</span>
+      <button onclick="selectAffixLevel1('${k}')" class="trans-btn" style="margin:8px;padding:16px 20px;font-size:15px;min-width:220px;text-align:left;display:flex;align-items:center;gap:12px;">
+        <span style="font-size:28px">${d.icon}</span>
+        <div>
+          <div style="font-weight:700;color:var(--primary)">${d.name}</div>
+          <div style="font-size:11px;color:var(--text-dim);margin-top:2px">${childCount} 个词缀 · ${d.desc.substring(0,20)}...</div>
+        </div>
       </button>
     `;
   }).join('');
-  
-  // 生成后缀选择按钮
-  let suffixButtons = Object.keys(SUFFIX_DATA).map(k => {
-    const d = SUFFIX_DATA[k];
-    return `
-      <button onclick="startSuffixGame('${k}')" class="trans-btn" style="margin:6px;padding:10px 16px;font-size:13px;">
-        ${d.label} <span style="color:var(--text-dim);font-size:11px;">${d.roots.length}词</span>
-      </button>
-    `;
-  }).join('');
-  
+
   c.innerHTML = `
     <div class="card">
       <div class="card-header" style="flex-wrap:wrap;gap:8px;">
         <h2>🎯 词根射击</h2>
-        <span class="badge">修仙游戏</span>
+        <span class="badge">V4.1 重构版</span>
       </div>
-      <div style="padding:16px;">
-        <div style="font-size:13px;color:var(--text-dim);margin-bottom:16px;padding:12px;background:rgba(0,212,170,.06);border-radius:8px;border-left:3px solid var(--primary);">
-          📋 选择词缀类型开始游戏。词根从上方落下，点击正确的前后缀将其击破！
+      <div style="padding:20px;">
+        <div style="font-size:13px;color:var(--text-dim);margin-bottom:20px;padding:14px;background:rgba(0,212,170,.06);border-radius:10px;border-left:3px solid var(--primary);line-height:1.8">
+          <strong style="color:var(--primary)">📋 游戏规则</strong><br>
+          ① 选择词缀大类（前缀/后缀/环绕缀/中缀）<br>
+          ② 选择具体词缀（如 meN-/ber-/di-）<br>
+          ③ 进入游戏：词根从上方落下，选择正确的<strong>三级变体</strong>击破！<br>
+          ④ 每关背景显示该词缀的规则文字，边玩边学<br>
+          ⑤ 每10小关升一大关，速度加快；3条生命，连击有加分
         </div>
-        
-        <div style="margin-bottom:20px;">
-          <div style="font-size:14px;font-weight:600;color:var(--primary);margin-bottom:10px">🎴 前缀（Prefix）</div>
-          <div style="display:flex;flex-wrap:wrap;gap:6px;">${prefixButtons}</div>
-        </div>
-        
-        <div style="margin-bottom:20px;">
-          <div style="font-size:14px;font-weight:600;color:var(--primary);margin-bottom:10px">🎴 后缀（Suffix）</div>
-          <div style="display:flex;flex-wrap:wrap;gap:6px;">${suffixButtons}</div>
-        </div>
-        
-        <div style="background:var(--bg-elev);border-radius:10px;padding:14px;border:1px solid var(--border);">
-          <div style="font-size:14px;font-weight:600;color:var(--accent);margin-bottom:8px">📜 游戏规则</div>
-          <div style="font-size:13px;color:var(--text);line-height:1.8">
-            • 词根从上方落下，底部显示正确的前后缀选项<br>
-            • 每击破一个词根过一小关，每10小关升一大关<br>
-            • 初始下落时间 5 秒，每大关减 0.5 秒<br>
-            • 3 条生命，选错或超时扣 1 条<br>
-            • 达到道主级别可解锁隐藏词缀！
-          </div>
+        <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;">
+          ${buttons}
         </div>
       </div>
     </div>
   `;
 }
 
-function startPrefixGame(category) {
-  prefixGameState = {
-    active: true,
-    level: 1,
-    subLevel: 1,
-    score: 0,
-    lives: 3,
-    currentWord: null,
-    fallingSpeed: 5000,
-    selectedCategory: category,
-    isPrefix: true,
-    timer: null,
-    wordsCompleted: 0
-  };
-  showPrefixGamePlay(document.getElementById('appContent'));
+function selectAffixLevel1(cat) {
+  prefixGameState.level1 = cat;
+  prefixGameState.phase = 'level2';
+  prefixGameState.active = true;
+  showAffixLevel2(document.getElementById('appContent'));
 }
 
-function startSuffixGame(category) {
-  prefixGameState = {
-    active: true,
-    level: 1,
-    subLevel: 1,
-    score: 0,
-    lives: 3,
-    currentWord: null,
-    fallingSpeed: 5000,
-    selectedCategory: category,
-    isPrefix: false,
-    timer: null,
-    wordsCompleted: 0
-  };
-  showPrefixGamePlay(document.getElementById('appContent'));
-}
+// === 二级菜单：选择具体词缀 ===
+function showAffixLevel2(c) {
+  const cat = prefixGameState.level1;
+  const data = AFFIX_GAME_DATA[cat];
+  if (!data) { showAffixLevel1(c); return; }
 
-function showPrefixGamePlay(c) {
-  const state = prefixGameState;
-  const data = state.isPrefix ? PREFIX_DATA[state.selectedCategory] : SUFFIX_DATA[state.selectedCategory];
-  if (!data) return;
-  
-  // 随机选一个词根
-  const word = data.roots[Math.floor(Math.random() * data.roots.length)];
-  state.currentWord = word;
-  
-  // 生成选项（包含正确的前缀/后缀和干扰项）
-  const options = generatePrefixOptions(state.selectedCategory, state.isPrefix);
-  
-  // 计算进度
-  const progress = (state.subLevel - 1) * 10;
-  
+  const children = Object.keys(data.children);
+  const buttons = children.map(k => {
+    const d = data.children[k];
+    const varCount = Object.keys(d.variants).length;
+    return `
+      <button onclick="startAffixGame('${k}')" class="trans-btn" style="margin:6px;padding:14px 18px;font-size:14px;min-width:180px;text-align:left;">
+        <div style="font-weight:700;color:var(--primary)">${d.name}</div>
+        <div style="font-size:11px;color:var(--text-dim);margin-top:4px;line-height:1.6">${d.desc.substring(0,35)}...</div>
+        <div style="font-size:10px;color:var(--accent);margin-top:4px">${varCount} 种变体</div>
+      </button>
+    `;
+  }).join('');
+
   c.innerHTML = `
-    <div class="card" style="min-height:500px;display:flex;flex-direction:column;">
+    <div class="card">
       <div class="card-header" style="flex-wrap:wrap;gap:8px;">
-        <h2>🎯 ${data.label}</h2>
+        <h2>${data.icon} ${data.name}</h2>
+        <button onclick="backToAffixLevel1()" class="trans-btn" style="font-size:12px;padding:6px 12px;">← 返回大类</button>
+      </div>
+      <div style="padding:20px;">
+        <div style="font-size:13px;color:var(--text-dim);margin-bottom:16px;padding:12px;background:rgba(0,212,170,.06);border-radius:8px;border-left:3px solid var(--primary);">
+          ${data.desc}
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;">
+          ${buttons}
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function backToAffixLevel1() {
+  prefixGameState.level1 = null;
+  prefixGameState.phase = 'menu';
+  showAffixLevel1(document.getElementById('appContent'));
+}
+
+// === 启动游戏 ===
+function startAffixGame(level2Key) {
+  prefixGameState = {
+    active: true,
+    phase: 'play',
+    level1: prefixGameState.level1,
+    level2: level2Key,
+    level: 1,
+    subLevel: 1,
+    score: 0,
+    lives: 3,
+    currentWord: null,
+    fallingSpeed: 5000,
+    selectedVariant: null,
+    timer: null,
+    wordsCompleted: 0,
+    streak: 0,
+    bestStreak: 0
+  };
+  showAffixGamePlay(document.getElementById('appContent'));
+}
+
+// === 游戏主体 ===
+function showAffixGamePlay(c) {
+  const state = prefixGameState;
+  const catData = AFFIX_GAME_DATA[state.level1];
+  const level2Data = catData.children[state.level2];
+  const variants = level2Data.variants;
+  const variantKeys = Object.keys(variants);
+
+  // 随机选一个变体作为正确答案
+  const correctKey = variantKeys[Math.floor(Math.random() * variantKeys.length)];
+  const correctVar = variants[correctKey];
+  const word = correctVar.words[Math.floor(Math.random() * correctVar.words.length)];
+  state.currentWord = { ...word, correctVariant: correctKey };
+
+  // 生成选项：正确答案 + 同二级分类下的其他变体作为干扰项
+  let options = [correctKey];
+  const others = variantKeys.filter(k => k !== correctKey);
+  // 最多3个干扰项
+  while (options.length < 4 && others.length > 0) {
+    const idx = Math.floor(Math.random() * others.length);
+    const opt = others.splice(idx, 1)[0];
+    if (!options.includes(opt)) options.push(opt);
+  }
+  // 打乱顺序
+  options.sort(() => Math.random() - 0.5);
+
+  // 进度计算
+  const progress = ((state.subLevel - 1) / 10) * 100;
+
+  // 规则背景文字
+  const ruleBg = level2Data.rule || level2Data.desc;
+
+  c.innerHTML = `
+    <div class="card" style="min-height:520px;display:flex;flex-direction:column;">
+      <div class="card-header" style="flex-wrap:wrap;gap:8px;">
+        <h2>🎯 ${level2Data.name}</h2>
         <div style="display:flex;gap:8px;align-items:center;">
           <span class="badge" style="background:var(--accent)20;color:var(--accent)">大关 ${state.level}</span>
           <span class="badge" style="background:var(--info)20;color:var(--info)">小关 ${state.subLevel}/10</span>
           <span class="badge" style="background:var(--danger)20;color:var(--danger)">❤️ ${state.lives}</span>
           <span class="badge">⭐ ${state.score}</span>
+          ${state.streak > 1 ? `<span class="badge" style="background:#ff6b3520;color:#ff6b35">🔥 ${state.streak}连击</span>` : ''}
         </div>
       </div>
-      
+
       <div style="padding:16px;flex:1;display:flex;flex-direction:column;">
-        <!-- 进度条 -->
-        <div style="background:var(--bg-elev);border-radius:8px;height:6px;overflow:hidden;margin-bottom:20px;">
-          <div style="background:var(--primary);width:${progress}%;height:100%;transition:width .3s;"></div>
+        <!-- 规则背景条 -->
+        <div style="background:linear-gradient(90deg,rgba(0,212,170,.1),rgba(59,130,246,.08));border:1px solid rgba(0,212,170,.2);border-radius:10px;padding:12px 16px;margin-bottom:16px;font-size:12px;color:var(--text-dim);line-height:1.7;">
+          <strong style="color:var(--primary)">📜 规则：</strong>${ruleBg}
         </div>
-        
+
+        <!-- 进度条 -->
+        <div style="background:var(--bg-elev);border-radius:8px;height:6px;overflow:hidden;margin-bottom:16px;">
+          <div style="background:var(--primary);width:${progress}%;height:100%;transition:width .3s;border-radius:8px;"></div>
+        </div>
+
         <!-- 游戏区域 -->
-        <div style="flex:1;background:var(--bg-elev);border-radius:12px;border:1px solid var(--border);position:relative;overflow:hidden;min-height:300px;display:flex;flex-direction:column;align-items:center;justify-content:center;">
+        <div style="flex:1;background:var(--bg-elev);border-radius:14px;border:1px solid var(--border);position:relative;overflow:hidden;min-height:260px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;">
           <!-- 下落的词根 -->
-          <div id="fallingWord" style="font-size:28px;font-weight:700;color:var(--primary);padding:20px;background:var(--bg-card);border-radius:12px;border:2px solid var(--primary);animation:fallDown ${state.fallingSpeed}ms linear;">
+          <div id="fallingWord" style="font-size:32px;font-weight:700;color:var(--primary);padding:24px 32px;background:var(--bg-card);border-radius:16px;border:2px solid var(--primary);box-shadow:0 0 20px rgba(0,212,170,.15);animation:affixFall ${state.fallingSpeed}ms linear;">
             ${word.root}
           </div>
-          <div style="font-size:13px;color:var(--text-dim);margin-top:8px;">🇨🇳 ${word.cn}</div>
-          
+          <div style="font-size:14px;color:var(--text-dim);">🇨🇳 ${word.cn}</div>
+          <div style="font-size:12px;color:var(--accent);">完整词：${word.full}</div>
         </div>
-        
+
         <!-- 选项区域 -->
         <div style="margin-top:20px;">
           <div style="font-size:13px;color:var(--text-dim);margin-bottom:12px;text-align:center;">
-            选择正确的前缀/后缀击破词根！（${(state.fallingSpeed/1000).toFixed(1)}秒）
+            选择正确的变体击破词根！（${(state.fallingSpeed/1000).toFixed(1)}秒）
           </div>
           <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;">
-            ${options.map((opt, i) => `
-              <button onclick="prefixGameAnswer('${opt.replace(/'/g, "&#39;")}')" 
-                      class="trans-btn" 
-                      style="padding:12px 24px;font-size:16px;font-weight:600;"
-                      id="prefixOpt${i}">
-                ${opt}
-              </button>
-            `).join('')}
+            ${options.map((opt, i) => {
+              const v = variants[opt];
+              return `<button onclick="affixGameAnswer('${opt.replace(/'/g, "\\'")}')"
+                      class="trans-btn"
+                      style="padding:14px 20px;font-size:15px;font-weight:600;min-width:100px;"
+                      id="affixOpt${i}">
+                ${v.label}
+              </button>`;
+            }).join('')}
           </div>
         </div>
-        
+
         <div style="margin-top:16px;text-align:center;">
-          <button onclick="endPrefixGame()" class="trans-btn" style="background:transparent;color:var(--text-dim);font-size:12px;">退出游戏</button>
+          <button onclick="endAffixGame()" class="trans-btn" style="background:transparent;color:var(--text-dim);font-size:12px;">退出游戏</button>
         </div>
       </div>
     </div>
-    
+
     <style>
-      @keyframes fallDown {
-        0% { transform: translateY(-50px); opacity: 0; }
-        10% { transform: translateY(0); opacity: 1; }
-        100% { transform: translateY(100px); opacity: 1; }
+      @keyframes affixFall {
+        0% { transform: translateY(-40px); opacity: 0; }
+        8% { transform: translateY(0); opacity: 1; }
+        100% { transform: translateY(60px); opacity: 1; }
       }
     </style>
   `;
-  
-  // 设置计时器
+
   if (state.timer) clearTimeout(state.timer);
-  state.timer = setTimeout(() => {
-    prefixGameTimeout();
-  }, state.fallingSpeed);
+  state.timer = setTimeout(() => { affixGameTimeout(); }, state.fallingSpeed);
 }
 
-function generatePrefixOptions(correctCategory, isPrefix) {
-  const allCategories = isPrefix ? Object.keys(PREFIX_DATA) : Object.keys(SUFFIX_DATA);
-  const correct = isPrefix ? correctCategory : correctCategory;
-  
-  // 包含正确答案和3个干扰项
-  let options = [correct];
-  const others = allCategories.filter(c => c !== correct);
-  
-  // 随机选3个干扰项
-  for (let i = 0; i < 3 && i < others.length; i++) {
-    const idx = Math.floor(Math.random() * others.length);
-    const opt = others[idx];
-    if (!options.includes(opt)) {
-      options.push(opt);
-    } else {
-      i--; // 重试
-    }
-  }
-  
-  return options.sort(() => Math.random() - 0.5);
-}
-
-function prefixGameAnswer(selected) {
+function affixGameAnswer(selected) {
   const state = prefixGameState;
-  if (!state.active || !state.currentWord) return;
-  
+  if (!state.active || state.phase !== 'play' || !state.currentWord) return;
   if (state.timer) clearTimeout(state.timer);
-  
-  const correct = state.selectedCategory;
+
+  const correct = state.currentWord.correctVariant;
   const isCorrect = selected === correct;
-  
+
   if (isCorrect) {
-    state.score += 10 * state.level;
+    state.streak++;
+    if (state.streak > state.bestStreak) state.bestStreak = state.streak;
+    const streakBonus = Math.floor(state.streak / 3) * 5;
+    const points = 10 * state.level + streakBonus;
+    state.score += points;
     state.subLevel++;
     state.wordsCompleted++;
-    
-    showToast(`✅ 正确！+${10 * state.level}分`);
-    
-    // 检查是否升大关
+    showToast(`✅ 正确！+${points}分${state.streak >= 3 ? ' 🔥x'+state.streak : ''}`);
+
     if (state.subLevel > 10) {
       state.level++;
       state.subLevel = 1;
-      state.fallingSpeed = Math.max(2000, state.fallingSpeed - 500); // 每大关减0.5秒，最低2秒
+      state.fallingSpeed = Math.max(2000, state.fallingSpeed - 400);
       showToast(`🎉 恭喜！升至第 ${state.level} 大关！速度加快！`);
     }
   } else {
+    state.streak = 0;
     state.lives--;
     showToast(`❌ 错误！正确答案是 ${correct}`);
-    
     if (state.lives <= 0) {
-      showPrefixGameOver();
+      state.phase = 'over';
+      showAffixGameOver();
       return;
     }
   }
-  
-  // 继续下一题
+
   setTimeout(() => {
-    showPrefixGamePlay(document.getElementById('appContent'));
-  }, 800);
+    showAffixGamePlay(document.getElementById('appContent'));
+  }, 700);
 }
 
-function prefixGameTimeout() {
+function affixGameTimeout() {
   const state = prefixGameState;
-  if (!state.active) return;
-  
+  if (!state.active || state.phase !== 'play') return;
+  state.streak = 0;
   state.lives--;
-  showToast(`⏰ 超时！正确答案是 ${state.selectedCategory}`);
-  
+  const cw = state.currentWord;
+  showToast(`⏰ 超时！正确答案是 ${cw ? cw.correctVariant : '?'}`);
   if (state.lives <= 0) {
-    showPrefixGameOver();
+    state.phase = 'over';
+    showAffixGameOver();
     return;
   }
-  
   setTimeout(() => {
-    showPrefixGamePlay(document.getElementById('appContent'));
-  }, 800);
+    showAffixGamePlay(document.getElementById('appContent'));
+  }, 700);
 }
 
-function showPrefixGameOver() {
+function showAffixGameOver() {
   const state = prefixGameState;
   state.active = false;
-  
   const c = document.getElementById('appContent');
   if (!c) return;
-  
+
   const cult = getCultivationInfo();
   const bonus = cult.level > 0 ? Math.floor(cult.level * 0.5) : 0;
-  
+  const totalScore = state.score + bonus;
+
   c.innerHTML = `
     <div class="card" style="text-align:center;padding:40px 20px;">
       <div style="font-size:56px;margin-bottom:16px">💥</div>
       <div style="font-size:24px;font-weight:700;color:var(--danger);margin-bottom:8px">游戏结束</div>
-      <div style="font-size:16px;color:var(--text);margin-bottom:20px">
+      <div style="font-size:15px;color:var(--text);margin-bottom:12px">
         击破 ${state.wordsCompleted} 个词根 · 到达第 ${state.level} 大关
       </div>
-      <div style="font-size:32px;font-weight:700;color:var(--primary);margin-bottom:8px">${state.score} 分</div>
-      ${bonus > 0 ? `<div style="font-size:13px;color:var(--accent);margin-bottom:20px">修仙等级加成: +${bonus}分 (${cult.name})</div>` : ''}
-      <div style="display:flex;gap:12px;justify-content:center;margin-top:24px;">
-        <button onclick="renderPrefixGame(document.getElementById('appContent'))" class="trans-btn">再来一局</button>
-        <button onclick="navigate('home')" class="trans-btn" style="background:transparent;color:var(--text-dim)">返回主页</button>
+      ${state.bestStreak > 2 ? `<div style="font-size:13px;color:#ff6b35;margin-bottom:8px">🔥 最高连击: ${state.bestStreak}</div>` : ''}
+      <div style="font-size:36px;font-weight:700;color:var(--primary);margin-bottom:4px">${totalScore} 分</div>
+      ${bonus > 0 ? `<div style="font-size:12px;color:var(--accent);margin-bottom:16px">修仙等级加成: +${bonus}分 (${cult.name})</div>` : ''}
+      <div style="display:flex;gap:12px;justify-content:center;margin-top:24px;flex-wrap:wrap;">
+        <button onclick="restartAffixGame()" class="trans-btn">再来一局</button>
+        <button onclick="backToAffixLevel2()" class="trans-btn">换词缀</button>
+        <button onclick="endAffixGame()" class="trans-btn" style="background:transparent;color:var(--text-dim)">返回主页</button>
       </div>
     </div>
   `;
 }
 
-function endPrefixGame() {
-  if (prefixGameState.timer) clearTimeout(prefixGameState.timer);
-  prefixGameState.active = false;
-  renderPrefixGame(document.getElementById('appContent'));
+function restartAffixGame() {
+  const state = prefixGameState;
+  if (state.level2) {
+    startAffixGame(state.level2);
+  } else {
+    endAffixGame();
+  }
 }
+
+function endAffixGame() {
+  if (prefixGameState.timer) clearTimeout(prefixGameState.timer);
+  prefixGameState = {
+    active: false, phase: 'menu', level1: null, level2: null,
+    level: 1, subLevel: 1, score: 0, lives: 3,
+    currentWord: null, fallingSpeed: 5000,
+    selectedVariant: null, timer: null,
+    wordsCompleted: 0, streak: 0, bestStreak: 0
+  };
+  showAffixLevel1(document.getElementById('appContent'));
+}
+
+function backToAffixLevel2() {
+  prefixGameState.phase = 'level2';
+  prefixGameState.active = true;
+  showAffixLevel2(document.getElementById('appContent'));
+}
+
+// ===== 印尼语字母发音表 =====
+const PHONETIC_DATA = [
+  {letter:'Aa', ipa:'/a/', desc:'开口元音，类似"啊"', pos:'口腔中央，舌位低平', mouth:'口腔完全打开，舌头平放', example:'apa(什么), ada(有)', color:'#ff6b6b'},
+  {letter:'Bb', ipa:'/b/', desc:'双唇浊塞音，类似"波"', pos:'双唇闭合后爆破', mouth:'双唇紧闭，气流冲出', example:'buku(书), besar(大)', color:'#4ecdc4'},
+  {letter:'Cc', ipa:'/tʃ/', desc:'清龈腭塞擦音，类似"吃"', pos:'舌前部抵硬腭', mouth:'舌尖抵上齿龈后部，气流摩擦', example:'cuci(洗), cantik(漂亮)', color:'#45b7d1'},
+  {letter:'Dd', ipa:'/d/', desc:'齿龈浊塞音，类似"德"', pos:'舌尖抵上齿龈', mouth:'舌尖抵住上齿龈，气流冲出', example:'dengar(听), datang(来)', color:'#96ceb4'},
+  {letter:'Ee', ipa:'/e/ 或 /ə/', desc:'半开前不圆唇元音/中央元音', pos:'口腔前部或中部', mouth:'口半开，舌位中高', example:'saya(我)[e], bukan(不是)[ə]', color:'#feca57'},
+  {letter:'Ff', ipa:'/f/', desc:'唇齿清擦音，类似"夫"', pos:'上齿轻触下唇', mouth:'上齿轻咬下唇，气流摩擦', example:'foto(照片), film(电影)', color:'#ff9ff3'},
+  {letter:'Gg', ipa:'/ɡ/', desc:'软腭浊塞音，类似"哥"', pos:'舌后部抵软腭', mouth:'舌根抬起抵软腭，气流冲出', example:'gambar(画), gunung(山)', color:'#54a0ff'},
+  {letter:'Hh', ipa:'/h/', desc:'声门清擦音，类似"哈"', pos:'声门摩擦', mouth:'口微开，气流从声门摩擦而出', example:'halo(你好), hari(天)', color:'#5f27cd'},
+  {letter:'Ii', ipa:'/i/', desc:'闭前不圆唇元音，类似"衣"', pos:'口腔前部，舌位高', mouth:'嘴角向两侧拉开，舌位最高', example:'itu(那个), indah(美丽)', color:'#00d2d3'},
+  {letter:'Jj', ipa:'/dʒ/', desc:'浊龈腭塞擦音，类似"机"', pos:'舌前部抵硬腭', mouth:'舌尖抵硬腭，声带振动', example:'jual(卖), jalan(路)', color:'#1dd1a1'},
+  {letter:'Kk', ipa:'/k/', desc:'软腭清塞音，类似"克"', pos:'舌后部抵软腭', mouth:'舌根抬起抵软腭，无声带振动', example:'kamu(你), kecil(小)', color:'#ff6348'},
+  {letter:'Ll', ipa:'/l/', desc:'齿龈边音，类似"勒"', pos:'舌尖抵上齿龈，气流从两侧出', mouth:'舌尖抵上齿龈，气流从舌头两侧流出', example:'lihat(看), lama(久)', color:'#747d8c'},
+  {letter:'Mm', ipa:'/m/', desc:'双唇浊鼻音，类似"摸"', pos:'双唇闭合，气流从鼻腔出', mouth:'双唇紧闭，软腭下降，气流从鼻出', example:'makan(吃), mana(哪里)', color:'#a4b0be'},
+  {letter:'Nn', ipa:'/n/', desc:'齿龈浊鼻音，类似"呢"', pos:'舌尖抵上齿龈，气流从鼻腔出', mouth:'舌尖抵上齿龈，软腭下降，气流从鼻出', example:'nama(名字), tidak(不)', color:'#57606f'},
+  {letter:'Oo', ipa:'/o/', desc:'半闭后圆唇元音，类似"哦"', pos:'口腔后部，圆唇', mouth:'双唇收圆呈小O形，舌位后高', example:'tahu(知道)[o], tolong(帮忙)', color:'#2ed573'},
+  {letter:'Pp', ipa:'/p/', desc:'双唇清塞音，类似"坡"', pos:'双唇闭合后爆破', mouth:'双唇紧闭，无声带振动，气流冲出', example:'pagi(早上), pintu(门)', color:'#eccc68'},
+  {letter:'Qq', ipa:'/k/', desc:'仅用于外来词，同/k/', pos:'同/k/', mouth:'同/k/（极少使用）', example:'Quran(古兰经)', color:'#ff7f50'},
+  {letter:'Rr', ipa:'/r/', desc:'齿龈颤音，舌尖颤音', pos:'舌尖抵上齿龈，气流使舌尖颤动', mouth:'舌尖轻触上齿龈后部，气流冲出使舌尖快速颤动', example:'rumah(家), rasa(感觉)', color:'#ff6b81'},
+  {letter:'Ss', ipa:'/s/', desc:'齿龈清擦音，类似"丝"', pos:'舌尖近上齿龈，气流摩擦', mouth:'舌尖靠近上齿龈，气流从缝隙摩擦而出', example:'saya(我), selamat(安全)', color:'#c8d6e5'},
+  {letter:'Tt', ipa:'/t/', desc:'齿龈清塞音，类似"特"', pos:'舌尖抵上齿龈', mouth:'舌尖抵住上齿龈，无声带振动', example:'tidak(不), tiga(三)', color:'#8395a7'},
+  {letter:'Uu', ipa:'/u/', desc:'闭后圆唇元音，类似"乌"', pos:'口腔后部，舌位高，圆唇', mouth:'双唇收圆，舌位后高，口最小', example:'untuk(为了), sudah(已经)', color:'#f368e0'},
+  {letter:'Vv', ipa:'/f/', desc:'唇齿清擦音（印尼语中同/f/）', pos:'同/f/', mouth:'同/f/（外来词常用）', example:'vespa(摩托)', color:'#ff9f43'},
+  {letter:'Ww', ipa:'/w/', desc:'双唇浊近音，类似"乌"起音', pos:'双唇收圆，舌位后高', mouth:'双唇收圆，舌根向软腭抬起', example:'wanita(女人), waktu(时间)', color:'#10ac84'},
+  {letter:'Xx', ipa:'/ks/', desc:'仅用于外来词', pos:'舌位随/k/→/s/变化', mouth:'先/k/后/s/的组合', example:'taksi(出租车)', color:'#ee5a24'},
+  {letter:'Yy', ipa:'/j/', desc:'硬腭浊近音，类似"耶"', pos:'舌中部抵硬腭', mouth:'舌中部向硬腭抬起，声带振动', example:'yang(的/那个), ya(是)', color:'#009432'},
+  {letter:'Zz', ipa:'/z/', desc:'齿龈浊擦音，类似"资"', pos:'舌尖近上齿龈，声带振动', mouth:'舌尖靠近上齿龈，气流摩擦，声带振动', example:'zaman(时代), zebra', color:'#0652dd'}
+];
+
+// 复合音/特殊组合
+const COMPOUND_PHONETICS = [
+  {combo:'ng', ipa:'/ŋ/', desc:'软腭浊鼻音，类似"昂"尾音', pos:'舌后部抵软腭，气流从鼻腔出', example:'dengan(和), bangun(建设)', color:'#6c5ce7'},
+  {combo:'ny', ipa:'/ɲ/', desc:'硬腭浊鼻音，类似"娘"的声母', pos:'舌前部抵硬腭，气流从鼻腔出', example:'nyanyi(唱歌), many(不存在的，但如: manyanyi)', color:'#fd79a8'},
+  {combo:'sy', ipa:'/ʃ/', desc:'清龈后擦音，类似"西"', pos:'舌前部近硬腭', example:'syarat(条件), masya(民众)', color:'#fdcb6e'},
+  {combo:'kh', ipa:'/x/', desc:'清软腭擦音，类似"喝"的喉音', pos:'舌后部近软腭', example:'khawatir(担心), akhir(最后)', color:'#e17055'}
+];
+
+function renderPhonetics(c) {
+  const vowels = PHONETIC_DATA.filter(p => 'AIEOU'.includes(p.letter[0]));
+  const consonants = PHONETIC_DATA.filter(p => !'AIEOU'.includes(p.letter[0]));
+
+  const renderCard = (p, isVowel) => `
+    <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:16px;transition:all .2s;" onmouseover="this.style.borderColor='${p.color}'" onmouseout="this.style.borderColor='var(--border)'">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
+        <div style="width:44px;height:44px;border-radius:50%;background:${p.color}20;border:2px solid ${p.color};display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;color:${p.color}">${p.letter}</div>
+        <div>
+          <div style="font-size:16px;font-weight:700;color:var(--text)">${p.ipa}</div>
+          <div style="font-size:11px;color:var(--text-dim)">${p.desc}</div>
+        </div>
+        <button onclick="speak('${p.letter[0].toLowerCase()}a','id')" class="trans-btn" style="margin-left:auto;padding:6px 10px;font-size:11px;background:rgba(0,212,170,.1);color:var(--primary)">🔊 读音</button>
+      </div>
+      <div style="display:flex;gap:10px;align-items:flex-start;margin-bottom:10px;">
+        <!-- 简化的口腔位置图 -->
+        <div style="width:60px;height:70px;flex-shrink:0;background:var(--bg-elev);border-radius:8px;border:1px solid var(--border);position:relative;overflow:hidden;">
+          ${renderMouthDiagram(p.letter[0].toLowerCase(), p.pos)}
+        </div>
+        <div style="flex:1;font-size:12px;color:var(--text-dim);line-height:1.7">
+          <div><strong style="color:var(--primary)">舌位：</strong>${p.pos}</div>
+          <div><strong style="color:var(--primary)">口型：</strong>${p.mouth}</div>
+        </div>
+      </div>
+      <div style="font-size:12px;color:var(--accent);background:rgba(245,158,11,.08);padding:6px 10px;border-radius:6px;">
+        例：${p.example}
+      </div>
+    </div>
+  `;
+
+  const compoundCards = COMPOUND_PHONETICS.map(p => `
+    <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:16px;" onmouseover="this.style.borderColor='${p.color}'" onmouseout="this.style.borderColor='var(--border)'">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
+        <div style="width:44px;height:44px;border-radius:50%;background:${p.color}20;border:2px solid ${p.color};display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;color:${p.color}">${p.combo}</div>
+        <div>
+          <div style="font-size:16px;font-weight:700;color:var(--text)">${p.ipa}</div>
+          <div style="font-size:11px;color:var(--text-dim)">${p.desc}</div>
+        </div>
+        <button onclick="speak('${p.example.split('(')[0]}','id')" class="trans-btn" style="margin-left:auto;padding:6px 10px;font-size:11px;background:rgba(0,212,170,.1);color:var(--primary)">🔊 读音</button>
+      </div>
+      <div style="font-size:12px;color:var(--text-dim);line-height:1.7">
+        <div><strong style="color:var(--primary)">舌位：</strong>${p.pos}</div>
+      </div>
+      <div style="font-size:12px;color:var(--accent);background:rgba(245,158,11,.08);padding:6px 10px;border-radius:6px;margin-top:8px;">
+        例：${p.example}
+      </div>
+    </div>
+  `).join('');
+
+  c.innerHTML = `
+    <div class="card">
+      <div class="card-header">
+        <h2>🔤 印尼语字母发音表</h2>
+        <span class="badge">26字母+4复合音</span>
+      </div>
+      <div style="padding:16px;">
+        <!-- 说明 -->
+        <div style="font-size:13px;color:var(--text-dim);margin-bottom:20px;padding:14px;background:rgba(0,212,170,.06);border-radius:10px;border-left:3px solid var(--primary);line-height:1.8">
+          <strong style="color:var(--primary)">印尼语拼读规则：</strong><br>
+          • 一字一音，见字读音，几乎无例外<br>
+          • 元音：a i u e o（e有/ə/和/e/两种读法）<br>
+          • 辅音：大部分与英语/拼音相近，r为颤音是特色<br>
+          • 复合音：ng/ny/sy/kh 四个特殊组合需单独掌握<br>
+          • 重音一般在倒数第二音节（penultimate）
+        </div>
+
+        <!-- 元音 -->
+        <div style="margin-bottom:24px;">
+          <div class="section-header" style="margin:20px 0 12px;">
+            <h3>🟢 元音 (Vokal)</h3>
+            <span class="badge green">5个</span>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;">
+            ${vowels.map(p => renderCard(p, true)).join('')}
+          </div>
+        </div>
+
+        <!-- 辅音 -->
+        <div style="margin-bottom:24px;">
+          <div class="section-header" style="margin:20px 0 12px;">
+            <h3>🔵 辅音 (Konsonan)</h3>
+            <span class="badge blue">21个</span>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;">
+            ${consonants.map(p => renderCard(p, false)).join('')}
+          </div>
+        </div>
+
+        <!-- 复合音 -->
+        <div>
+          <div class="section-header" style="margin:20px 0 12px;">
+            <h3>🟣 复合音/特殊组合</h3>
+            <span class="badge purple">4个</span>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;">
+            ${compoundCards}
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+// 简化的口腔位置示意图（SVG）
+function renderMouthDiagram(letter, pos) {
+  // 根据字母返回不同的简化口腔SVG
+  const isVowel = 'aiueo'.includes(letter);
+  const isHigh = 'iu'.includes(letter);
+  const isMid = 'eo'.includes(letter);
+  const isBack = 'uoa'.includes(letter);
+  const isRound = 'uo'.includes(letter);
+
+  let tongueY = 50, mouthOpen = 30;
+  if (isVowel) {
+    if (isHigh) { tongueY = 25; mouthOpen = 20; }
+    else if (isMid) { tongueY = 40; mouthOpen = 35; }
+    else { tongueY = 60; mouthOpen = 50; }
+  }
+
+  const lipColor = isRound ? '#ff6b6b' : '#4ecdc4';
+  const tongueColor = '#ff9f43';
+
+  return `
+    <svg viewBox="0 0 60 70" style="width:100%;height:100%">
+      <!-- 口腔轮廓 -->
+      <ellipse cx="30" cy="35" rx="22" ry="28" fill="#2a3550" stroke="#4a5568" stroke-width="1"/>
+      <!-- 上颚 -->
+      <path d="M 10 20 Q 30 8 50 20" fill="none" stroke="#718096" stroke-width="1.5"/>
+      <!-- 舌头 -->
+      <ellipse cx="${isBack ? 38 : 22}" cy="${tongueY}" rx="12" ry="8" fill="${tongueColor}" opacity="0.8"/>
+      <!-- 下唇 -->
+      <ellipse cx="30" cy="58" rx="${isRound ? 14 : 10}" ry="5" fill="${lipColor}" opacity="0.6"/>
+      <!-- 标记点 -->
+      <circle cx="${isBack ? 38 : 22}" cy="${tongueY}" r="3" fill="#fff" opacity="0.5"/>
+    </svg>
+  `;
+}
+
 
 </script>
 </body>
