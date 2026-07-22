@@ -755,7 +755,7 @@ function initHistory(){
 function saveHistory(){localStorage.setItem("bir_h3",JSON.stringify(learningHistory))}
 function saveWB(){localStorage.setItem("bir_wb3",JSON.stringify(wordBank))}
 
-function parseRoute(){const h=location.hash.replace("#","")||"home";if(h.startsWith("date/"))return{route:"date",param:h.replace("date/","")};return{route:h,param:null}}
+function parseRoute(){const h=location.hash.replace("#","")||"home";if(h.startsWith("date/"))return{route:"date",param:h.replace("date/","")};if(h.startsWith("reviewmindmap/"))return{route:"reviewmindmap",param:h.replace("reviewmindmap/","")};return{route:h,param:null}}
 function navigate(r,p){
   const prev=currentRoute||'home';
   const currentPath=r+(p?('/'+p):'');
@@ -808,7 +808,7 @@ function render(){
     case "game":t.innerText="🎮 百词斩";renderGame(c);break;
     case "phonetics":t.innerText="🔤 字母发音表";renderPhonetics(c);break;
     case "prefixgame":t.innerText="🎯 词根射击";renderPrefixGame(c);break;
-    case "mindmap":t.innerText="🗺️ 思维导图";renderMindMap(c);break;
+    case "reviewmindmap":t.innerText="🗺️ 思维导图复习";renderReviewMindMap(r.param);break;
     default:t.innerText="🏠 主页";renderHome(c);
   }
   window.scrollTo(0,0);
@@ -1266,7 +1266,7 @@ function renderReview(c) {
   if (ebbinghausItems.length) {
     html += `<div style="font-size:12px;color:var(--text-dim);margin-bottom:12px;">根据艾宾浩斯记忆曲线，今天需要复习以下内容：</div>`;
     ebbinghausItems.forEach(item => {
-      html += `<div class="review-date-card" onclick="renderReviewMindMap('${item.learnDate}')" style="display:flex;justify-content:space-between;align-items:center;padding:12px;background:var(--bg-elev);border-radius:10px;margin-bottom:10px;border:1px solid var(--border);border-left:3px solid var(--accent);"><div><div style="font-size:14px;color:var(--text);font-weight:600;">${item.title}</div><div style="font-size:11px;color:var(--text-dim);margin-top:3px;">📅 学习于 ${item.learnDate} · 第${item.day}天复习 · ${item.label}</div></div><span style="font-size:13px;color:var(--accent);font-weight:600;">🗺️ 思维导图 →</span></div>`;
+      html += `<div class="review-date-card" onclick="navigate('reviewmindmap','${item.learnDate}')" style="display:flex;justify-content:space-between;align-items:center;padding:12px;background:var(--bg-elev);border-radius:10px;margin-bottom:10px;border:1px solid var(--border);border-left:3px solid var(--accent);"><div><div style="font-size:14px;color:var(--text);font-weight:600;">${item.title}</div><div style="font-size:11px;color:var(--text-dim);margin-top:3px;">📅 学习于 ${item.learnDate} · 第${item.day}天复习 · ${item.label}</div></div><span style="font-size:13px;color:var(--accent);font-weight:600;">🗺️ 思维导图 →</span></div>`;
     });
   } else {
     html += `<div style="font-size:13px;color:var(--text-dim);padding:12px;background:rgba(0,212,170,.04);border-radius:8px;">今日无艾宾浩斯复习任务，继续学习新内容！</div>`;
@@ -1512,7 +1512,7 @@ html += `<div style="margin-bottom:20px;border-top:1px solid var(--border);paddi
       const tc = topicCalendar[dateStr];
       const topicLabel = tc ? (topicData[tc.topic]?.title || tc.topic) : '已学内容';
       
-      html += `<div class="review-date-card" style="margin-bottom:12px;background:var(--bg-elev);border-radius:10px;border:1px solid var(--border);overflow:hidden;" onclick="renderReviewMindMap('${dateStr}')">
+      html += `<div class="review-date-card" style="margin-bottom:12px;background:var(--bg-elev);border-radius:10px;border:1px solid var(--border);overflow:hidden;" onclick="navigate('reviewmindmap','${dateStr}')">
         <div style="padding:12px 14px;display:flex;justify-content:space-between;align-items:center;">
           <div>
             <div style="font-size:13px;font-weight:700;color:${dateColor};">${dateStr} ${isToday ? '⏰ 今天' : ''}</div>
