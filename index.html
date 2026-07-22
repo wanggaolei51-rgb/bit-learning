@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<title>LEO-BIR V4.3</title>
+<title>LEO-BIR V4.4</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -143,7 +143,41 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
 .clickable-word{cursor:pointer;border-bottom:1px dotted rgba(0,212,170,.4);transition:all .2s;padding:0 1px}
 .clickable-word:hover{background:rgba(0,212,170,.2);border-radius:3px;border-bottom-color:var(--primary)}
 #wordPopupOverlay{animation:fadeIn .2s ease}@keyframes fadeIn{from{opacity:0}to{opacity:1}}
-.mind-level2{display:none;animation:slideDown .3s ease}.mind-level3{display:none;animation:slideDown .3s ease}@keyframes slideDown{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:translateY(0)}}.ebbing-point{transition:all .2s}.ebbing-point:hover{r:7;filter:drop-shadow(0 0 4px var(--primary))}</style>
+.mind-level2{display:none;animation:slideDown .3s ease}.mind-level3{display:none;animation:slideDown .3s ease}@keyframes slideDown{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:translateY(0)}}.ebbing-point{transition:all .2s}.ebbing-point:hover{r:7;filter:drop-shadow(0 0 4px var(--primary))}
+/* ===== 思维导图复习样式 V4.4 ===== */
+.mind-map-container{padding:16px;background:var(--bg-elev);border-radius:12px;border:1px solid var(--border)}
+.mind-center{text-align:center;padding:16px;background:linear-gradient(135deg,var(--primary-dim),var(--primary));border-radius:14px;margin-bottom:20px;color:var(--bg);font-weight:700;font-size:15px}
+.mind-center small{display:block;font-size:12px;opacity:.85;margin-top:4px;font-weight:400}
+.mind-branch{margin-bottom:12px;border-left:3px solid var(--primary);padding-left:12px}
+.mind-l1{cursor:pointer;padding:10px 14px;background:var(--bg-card);border-radius:10px;font-size:14px;font-weight:700;color:var(--primary);display:flex;justify-content:space-between;align-items:center;transition:all .2s}
+.mind-l1:hover{background:var(--border)}
+.mind-l1::after{content:"▶";font-size:10px;color:var(--text-dim);transition:transform .2s}
+.mind-l1.open::after{transform:rotate(90deg)}
+.mind-l2-wrap{padding:8px 0 8px 16px;display:none}
+.mind-l2-wrap.open{display:block;animation:slideDown .3s ease}
+.mind-l2{margin-bottom:8px;padding:10px 12px;background:rgba(0,212,170,.08);border-radius:8px;border:1px solid rgba(0,212,170,.15)}
+.mind-l2-header{font-size:13px;font-weight:600;color:var(--text);margin-bottom:6px;display:flex;align-items:center;gap:8px}
+.mind-l2-header .ipa{color:var(--text-dim);font-size:11px}
+.mind-l2-body{font-size:12px;color:var(--text-dim);line-height:1.6}
+.mind-l3-wrap{padding:6px 0 6px 14px;display:none}
+.mind-l3-wrap.open{display:block;animation:slideDown .3s ease}
+.mind-l3{padding:6px 10px;background:var(--bg-elev);border-radius:6px;margin-bottom:4px;font-size:12px;color:var(--text)}
+.mind-l3-label{font-size:10px;color:var(--primary);font-weight:600;margin-right:6px}
+.mind-stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:8px;margin-bottom:12px}
+.mind-stat-item{text-align:center;padding:10px;background:var(--bg-card);border-radius:8px}
+.mind-stat-num{font-size:18px;font-weight:700;color:var(--primary)}
+.mind-stat-lab{font-size:11px;color:var(--text-dim)}
+.mind-speech-box{padding:12px;background:var(--bg-card);border-radius:10px;margin-bottom:10px}
+.mind-speech-title{font-size:13px;font-weight:700;color:var(--accent);margin-bottom:8px}
+.mind-speech-text{font-size:12px;color:var(--text);line-height:1.8;margin-bottom:6px}
+.mind-speech-trans{font-size:12px;color:var(--text-dim);line-height:1.6;border-left:2px solid var(--primary);padding-left:10px}
+.mind-dialogue-row{padding:8px 10px;background:var(--bg-card);border-radius:8px;margin-bottom:6px}
+.mind-dialogue-sp{font-size:11px;color:var(--primary);font-weight:600;margin-bottom:2px}
+.mind-dialogue-text{font-size:12px;color:var(--text)}
+.mind-dialogue-trans{font-size:11px;color:var(--text-dim);margin-top:2px}
+.review-date-card{cursor:pointer;transition:all .2s}
+.review-date-card:hover{border-color:var(--primary);transform:translateX(4px)}
+</style>
 </head>
 <body>
 <div class="app">
@@ -151,7 +185,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="sidebar-header">
     <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <h1>LEO-BIR</h1>
-    <div class="ver">LEO-BIR V4.3 · 词根射击重构 · 字母发音表 · 动态词库</div>
+    <div class="ver">LEO-BIR V4.4 · 词根射击重构 · 字母发音表 · 动态词库</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -774,11 +808,28 @@ function changeMonth(delta){currentDate.setMonth(currentDate.getMonth()+delta);r
 
 function renderDateDetail(c,ds){
   const data=learningHistory[ds];
+  const tc=getTopicForDate(ds);
+  // 如果有话题日历, 默认显示话题内容(课程), 可切换学习记录
+  if(tc){
+    let html = `<div class="date-detail"><button class="back-btn" onclick="goBack()">← 返回</button>`;
+    if(data && (data.vocabNew.length||data.vocabReview.length||data.translations)){
+      html += `<div style="display:flex;gap:8px;margin-bottom:12px;"><button onclick="showDateStudyRecord('${ds}')" class="trans-btn btn-small" style="font-size:12px;">📋 查看学习记录</button></div>`;
+    }
+    html += `<div id="dateTopicContent_${ds.replace(/-/g,'')}"></div></div>`;
+    c.innerHTML = html;
+    renderTopicDetail(document.getElementById('dateTopicContent_' + ds.replace(/-/g,'')), ds, tc);
+    return;
+  }
   if(!data){
-    const tc=getTopicForDate(ds);
-    if(tc){renderTopicDetail(c,ds,tc);return;}
     c.innerHTML=`<div class="date-detail"><button class="back-btn" onclick="goBack()">← 返回</button><div class="card" style="text-align:center;padding:40px;color:var(--text-dim)">📅 ${ds}<br>暂无记录</div></div>`;return;
   }
+  showDateStudyRecord(ds, c);
+}
+
+function showDateStudyRecord(ds, container){
+  const c = container || document.getElementById('appContent');
+  const data=learningHistory[ds];
+  if(!data){c.innerHTML=`<div class="date-detail"><button class="back-btn" onclick="goBack()">← 返回</button><div class="card" style="text-align:center;padding:40px;color:var(--text-dim)">📅 ${ds}<br>暂无记录</div></div>`;return;}
   let vh="";
   if(data.vocabNew.length){vh+=`<h3 style="color:var(--primary);margin:16px 0 10px;font-size:15px">🆕 新学(${data.vocabNew.length})</h3><div class="word-grid">`;data.vocabNew.forEach(w=>{const v=vocabDB[w.toLowerCase()]||vocabDB[w.charAt(0).toUpperCase()+w.slice(1)]||vocabDB[w];if(v)vh+=`<div class="word-card" onclick="showTip('${w.replace(/'/g,"\'")}')"><div class="w-word">${w} <span class="w-ipa">${v.ipa||""}</span></div><div class="w-mean">🇨🇳 ${v.cn||""}</div></div>`;else vh+=`<div class="word-card"><div class="w-word">${w}</div></div>`;});vh+=`</div>`;}
   if(data.vocabReview.length){vh+=`<h3 style="color:var(--accent);margin:16px 0 10px;font-size:15px">🔄 复习(${data.vocabReview.length})</h3><div class="word-grid">`;data.vocabReview.forEach(w=>{const v=vocabDB[w.toLowerCase()]||vocabDB[w];if(v)vh+=`<div class="word-card" onclick="showTip('${w.replace(/'/g,"\'")}')"><div class="w-word">${w}</div><div class="w-mean">🇨🇳 ${v.cn||""}</div></div>`;else vh+=`<div class="word-card"><div class="w-word">${w}</div></div>`;});vh+=`</div>`;}
@@ -1404,10 +1455,10 @@ html += `<div style="margin-bottom:20px;border-top:1px solid var(--border);paddi
     </div>
   </div>`;
 
-  // === 复习清单（列表形式，纵向排列所有复习内容） ===
+  // === 复习清单 V4.4：按日期分组，点击进入思维导图 ===
   html += `<div style="margin-bottom:20px;border-top:1px solid var(--border);padding-top:16px;">
     <div style="font-size:14px;font-weight:700;color:var(--primary);margin-bottom:10px;">📋 复习清单</div>
-    <div style="font-size:12px;color:var(--text-dim);margin-bottom:10px;">按日期分组，纵向排列所有复习内容，清晰不重叠</div>`;
+    <div style="font-size:12px;color:var(--text-dim);margin-bottom:10px;">按日期分组，点击日期进入思维导图复习</div>`;
   
   // 按日期排序
   const sortedReviewDates = Object.keys(reviewListByDate).sort();
@@ -1419,28 +1470,21 @@ html += `<div style="margin-bottom:20px;border-top:1px solid var(--border);paddi
       const isToday = dateStr === today;
       const isPast = dateStr < today;
       const dateColor = isToday ? 'var(--danger)' : (isPast ? 'var(--accent)' : 'var(--text-dim)');
+      const tc = topicCalendar[dateStr];
+      const topicLabel = tc ? (topicData[tc.topic]?.title || tc.topic) : '已学内容';
       
-      html += `<div style="margin-bottom:12px;background:var(--bg-elev);border-radius:10px;border:1px solid var(--border);overflow:hidden;">
-        <div style="padding:10px 14px;background:var(--bg-card);border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;">
-          <div style="font-size:13px;font-weight:700;color:${dateColor};">${dateStr} ${isToday ? '⏰ 今天' : ''}</div>
-          <div style="font-size:11px;color:var(--text-dim);">${group.items.length}项复习</div>
-        </div>
-        <div style="padding:8px 14px;">`;
-      
-      group.items.forEach(item => {
-        html += `<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.05);">
+      html += `<div class="review-date-card" style="margin-bottom:12px;background:var(--bg-elev);border-radius:10px;border:1px solid var(--border);overflow:hidden;" onclick="renderReviewMindMap('${dateStr}')">
+        <div style="padding:12px 14px;display:flex;justify-content:space-between;align-items:center;">
           <div>
-            <div style="font-size:13px;color:var(--text);">${item.content}</div>
-            <div style="font-size:11px;color:var(--text-dim);">原学习日: ${item.baseDate} · +${item.interval}天</div>
+            <div style="font-size:13px;font-weight:700;color:${dateColor};">${dateStr} ${isToday ? '⏰ 今天' : ''}</div>
+            <div style="font-size:11px;color:var(--text-dim);margin-top:2px;">${topicLabel}</div>
           </div>
-          <div style="display:flex;align-items:center;gap:8px;">
-            <span style="font-size:11px;color:${item.color};">${item.status}</span>
-            ${item.route ? `<button style="padding:4px 10px;background:var(--primary);color:var(--bg);border:none;border-radius:6px;cursor:pointer;font-size:11px;" onclick="navigate('${item.route === 'review' ? 'review' : item.route}')">去学习</button>` : ''}
+          <div style="text-align:right;">
+            <div style="font-size:11px;color:var(--text-dim);">${group.items.length}项复习</div>
+            <div style="font-size:16px;color:var(--primary);">🧠</div>
           </div>
-        </div>`;
-      });
-      
-      html += `</div></div>`;
+        </div>
+      </div>`;
     });
   }
   
@@ -1758,14 +1802,13 @@ function updateStats(){
   const sRev = allRev.size;
   const sTotal = Object.keys(vocabDB).length;
   
-  // 累计学习天数 - 从第一天开始累计所有有学习记录的日期
+  // 累计学习天数 - 从最早学习日期到今天的天数
   const dates = Object.keys(learningHistory).sort();
   let streak = 0;
-  for (const ds of dates) {
-    const h = learningHistory[ds];
-    if (h && (h.vocabNew.length || h.vocabReview.length || h.translations)) {
-      streak++;
-    }
+  if (dates.length > 0) {
+    const firstDate = new Date(dates[0]);
+    const now = new Date();
+    streak = Math.floor((now - firstDate) / (1000 * 60 * 60 * 24)) + 1;
   }
   
   const e1=document.getElementById("s-new");if(e1)e1.innerText=sNew;
@@ -4185,10 +4228,28 @@ function renderAbout(c){
 }
 
 function renderVersion(c){
-  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录</h2><span class="badge">V4.2</span></div>
+  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录</h2><span class="badge">V4.4</span></div>
     <div style="padding:16px;">
       <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
-        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.2 (2026-07-21)</div>
+        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.4 (2026-07-22)</div>
+        <div style="font-size:13px;color:var(--text);line-height:1.8">
+        • 恢复日历课程：有话题日期默认显示话题内容，可切换学习记录<br>
+        • 复习清单改造成思维导图：三级结构（统计→单词→同反义词/例句）<br>
+        • 累计学习天数修正：(今天 - 最早学习日期 + 1)<br>
+        • 新增思维导图CSS样式与折叠交互<br>
+        • BIO/RCO/TSO三方审查机制正式纳入部署流程<br>
+        </div>
+      </div>
+      <div style="margin-bottom:14px;padding:14px;background:var(--bg-elev);border-radius:10px;border-left:3px solid var(--accent)">
+        <div style="font-size:15px;font-weight:700;color:var(--accent);margin-bottom:6px">V4.3 (2026-07-22)</div>
+        <div style="font-size:13px;color:var(--text);line-height:1.8">
+        • 修复复习链接跳转逻辑，统一返回/上一层导航<br>
+        • 优化累计天数计算，修仙进度条添加总体累计<br>
+        • V4.3-hotfix: 删除monkey patch, 修复累计天数标签<br>
+        </div>
+      </div>
+      <div style="margin-bottom:14px;padding:14px;background:var(--bg-elev);border-radius:10px;border-left:3px solid var(--info)">
+        <div style="font-size:15px;font-weight:700;color:var(--info);margin-bottom:6px">V4.2 (2026-07-21)</div>
         <div style="font-size:13px;color:var(--text);line-height:1.8">
         • 词根射击全面重构V4.2：四级分类+难度分级+成就系统<br>
         • 修复 pe-/per-/peN- 词缀混淆问题，重新梳理分类<br>
@@ -5488,6 +5549,208 @@ function renderMouthDiagram(letter, pos) {
 
 
 
+
+// ===== 思维导图复习渲染 V4.4 =====
+function toggleMindLevel(el){
+  el.classList.toggle('open');
+  const wrap = el.nextElementSibling;
+  if(wrap) wrap.classList.toggle('open');
+}
+
+function renderReviewMindMap(dateStr){
+  const c = document.getElementById('appContent');
+  const tc = topicCalendar[dateStr];
+  const topic = tc ? topicData[tc.topic] : null;
+  const day = tc ? tc.day : 1;
+  const hist = learningHistory[dateStr];
+  
+  // 收集当日所有单词
+  const allWords = [];
+  if(hist){
+    hist.vocabNew.forEach(w => { if(!allWords.includes(w)) allWords.push(w); });
+    hist.vocabReview.forEach(w => { if(!allWords.includes(w)) allWords.push(w); });
+  }
+  
+  // 统计词缀词
+  const affixWords = allWords.filter(w => w.toLowerCase().startsWith('ber') || w.toLowerCase().startsWith('me') || w.toLowerCase().startsWith('pe') || w.toLowerCase().startsWith('ter') || w.toLowerCase().startsWith('ke') || w.toLowerCase().startsWith('se'));
+  const normalWords = allWords.filter(w => !affixWords.includes(w));
+  
+  // 统计词缀种类
+  const affixTypes = {};
+  affixWords.forEach(w => {
+    const lw = w.toLowerCase();
+    let prefix = '';
+    if(lw.startsWith('ber')) prefix = 'ber-';
+    else if(lw.startsWith('me')) prefix = 'me-';
+    else if(lw.startsWith('pe')) prefix = 'pe-';
+    else if(lw.startsWith('ter')) prefix = 'ter-';
+    else if(lw.startsWith('ke')) prefix = 'ke-';
+    else if(lw.startsWith('se')) prefix = 'se-';
+    if(prefix){ affixTypes[prefix] = (affixTypes[prefix]||0)+1; }
+  });
+  
+  let html = `<div class="date-detail"><button class="back-btn" onclick="goBack()">← 返回</button>`;
+  html += `<div class="mind-map-container">`;
+  
+  // 中心节点
+  html += `<div class="mind-center">📅 ${dateStr}<small>${topic ? topic.title + ' · Day ' + day : '学习内容'}</small></div>`;
+  
+  // === 一级：词汇统计 ===
+  html += `<div class="mind-branch">`;
+  html += `<div class="mind-l1" onclick="toggleMindLevel(this)">📊 词汇统计</div>`;
+  html += `<div class="mind-l2-wrap">`;
+  html += `<div class="mind-stat-grid">`;
+  html += `<div class="mind-stat-item"><div class="mind-stat-num">${allWords.length}</div><div class="mind-stat-lab">总词汇</div></div>`;
+  html += `<div class="mind-stat-item"><div class="mind-stat-num">${affixWords.length}</div><div class="mind-stat-lab">词缀词</div></div>`;
+  html += `<div class="mind-stat-item"><div class="mind-stat-num">${normalWords.length}</div><div class="mind-stat-lab">普通词</div></div>`;
+  html += `</div>`;
+  
+  // 词缀种类
+  if(Object.keys(affixTypes).length > 0){
+    html += `<div style="font-size:12px;color:var(--text-dim);margin-bottom:6px;">词缀种类分布：</div>`;
+    html += `<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px;">`;
+    Object.entries(affixTypes).forEach(([prefix, count]) => {
+      html += `<span style="padding:4px 10px;background:rgba(0,212,170,.1);border-radius:12px;font-size:12px;color:var(--primary);">${prefix} ${count}个</span>`;
+    });
+    html += `</div>`;
+  }
+  html += `</div></div>`;
+  
+  // === 一级：单词详解 ===
+  if(allWords.length > 0){
+    html += `<div class="mind-branch">`;
+    html += `<div class="mind-l1" onclick="toggleMindLevel(this)">📖 单词详解 (${allWords.length})</div>`;
+    html += `<div class="mind-l2-wrap">`;
+    
+    allWords.forEach((w, idx) => {
+      const v = vocabDB[w.toLowerCase()] || vocabDB[w.charAt(0).toUpperCase()+w.slice(1)] || vocabDB[w];
+      const wordId = 'mindW_' + dateStr.replace(/-/g,'') + '_' + idx;
+      
+      html += `<div class="mind-l2">`;
+      html += `<div class="mind-l2-header" onclick="toggleMindLevel(this)">${w} ${v ? '<span class="ipa">' + (v.ipa||'') + '</span>' : ''}</div>`;
+      html += `<div class="mind-l2-body">`;
+      
+      if(v){
+        html += `🇨🇳 ${v.cn||''} · 🇬🇧 ${v.en||''}<br>`;
+        html += `<span style="font-size:11px;color:var(--text-dim);">${v.pos||''} · ${v.root||''}</span>`;
+        
+        // 三级：同义词/反义词/例句
+        if((v.syn && v.syn.length) || (v.ant && v.ant.length) || (v.ex && v.ex.length)){
+          html += `<div style="margin-top:8px;padding-top:8px;border-top:1px solid var(--border);">`;
+          if(v.syn && v.syn.length){
+            html += `<div class="mind-l3"><span class="mind-l3-label">同义词</span>${v.syn.join(', ')}</div>`;
+          }
+          if(v.ant && v.ant.length){
+            html += `<div class="mind-l3"><span class="mind-l3-label">反义词</span>${v.ant.join(', ')}</div>`;
+          }
+          if(v.ex && v.ex.length){
+            v.ex.forEach(ex => {
+              html += `<div class="mind-l3"><span class="mind-l3-label">例句</span>${ex.id || ex}<br><span style="color:var(--text-dim);">${ex.cn || ''}</span></div>`;
+            });
+          }
+          html += `</div>`;
+        }
+      } else {
+        html += `<span style="font-size:11px;color:var(--text-dim);">词库中暂无详细释义</span>`;
+      }
+      
+      html += `</div></div>`;
+    });
+    
+    html += `</div></div>`;
+  }
+  
+  // === 一级：场景对话 ===
+  if(topic && topic.scenes && topic.scenes.length > 0){
+    html += `<div class="mind-branch">`;
+    html += `<div class="mind-l1" onclick="toggleMindLevel(this)">🗣️ 场景对话 (${topic.scenes.length})</div>`;
+    html += `<div class="mind-l2-wrap">`;
+    
+    topic.scenes.forEach((scene, sIdx) => {
+      html += `<div class="mind-l2">`;
+      html += `<div class="mind-l2-header" onclick="toggleMindLevel(this)">${scene.icon||'💬'} ${scene.title||'场景'}</div>`;
+      html += `<div class="mind-l2-body">`;
+      
+      if(scene.dialogue && scene.dialogue.length > 0){
+        scene.dialogue.forEach(d => {
+          html += `<div class="mind-dialogue-row">`;
+          html += `<div class="mind-dialogue-sp">${d.speaker}</div>`;
+          html += `<div class="mind-dialogue-text">${d.text}</div>`;
+          if(d.trans) html += `<div class="mind-dialogue-trans">${d.trans}</div>`;
+          html += `</div>`;
+        });
+      }
+      
+      html += `</div></div>`;
+    });
+    
+    html += `</div></div>`;
+  }
+  
+  // === 一级：演讲短文 ===
+  if(topic && topic.speech && topic.speech.length > 0){
+    const speech = topic.speech[day - 1] || topic.speech[0];
+    if(speech){
+      html += `<div class="mind-branch">`;
+      html += `<div class="mind-l1" onclick="toggleMindLevel(this)">🎤 演讲短文</div>`;
+      html += `<div class="mind-l2-wrap">`;
+      
+      html += `<div class="mind-speech-box">`;
+      html += `<div class="mind-speech-title">${speech.title || '演讲'}</div>`;
+      if(speech.ind){
+        html += `<div class="mind-speech-text">${speech.ind}</div>`;
+      }
+      if(speech.cn){
+        html += `<div class="mind-speech-trans">${speech.cn}</div>`;
+      }
+      html += `</div>`;
+      
+      html += `</div></div>`;
+    }
+  }
+  
+  // === 一级：语法要点 ===
+  if(topic && topic.grammar){
+    html += `<div class="mind-branch">`;
+    html += `<div class="mind-l1" onclick="toggleMindLevel(this)">📐 语法要点 · ${topic.grammar.title || ''}</div>`;
+    html += `<div class="mind-l2-wrap">`;
+    
+    if(topic.grammar.rules && topic.grammar.rules.length > 0){
+      topic.grammar.rules.forEach((rule, rIdx) => {
+        html += `<div class="mind-l3" style="margin-bottom:6px;"><span class="mind-l3-label">Rule ${rIdx+1}</span>${rule}</div>`;
+      });
+    }
+    
+    if(topic.grammar.examples && topic.grammar.examples.length > 0){
+      html += `<div style="margin-top:8px;padding-top:8px;border-top:1px solid var(--border);">`;
+      html += `<div style="font-size:11px;color:var(--primary);font-weight:600;margin-bottom:4px;">示例</div>`;
+      topic.grammar.examples.forEach(ex => {
+        html += `<div class="mind-l3">${ex}</div>`;
+      });
+      html += `</div>`;
+    }
+    
+    html += `</div></div>`;
+  }
+  
+  // === 学习记录摘要 ===
+  if(hist){
+    html += `<div class="mind-branch">`;
+    html += `<div class="mind-l1" onclick="toggleMindLevel(this)">📋 当日学习记录</div>`;
+    html += `<div class="mind-l2-wrap">`;
+    html += `<div class="mind-stat-grid">`;
+    html += `<div class="mind-stat-item"><div class="mind-stat-num">${hist.vocabNew.length}</div><div class="mind-stat-lab">新学</div></div>`;
+    html += `<div class="mind-stat-item"><div class="mind-stat-num">${hist.vocabReview.length}</div><div class="mind-stat-lab">复习</div></div>`;
+    html += `<div class="mind-stat-item"><div class="mind-stat-num">${hist.translations}</div><div class="mind-stat-lab">翻译</div></div>`;
+    html += `</div>`;
+    if(hist.notes) html += `<div style="font-size:12px;color:var(--text-dim);margin-top:8px;padding:8px;background:var(--bg-card);border-radius:6px;">📝 ${hist.notes}</div>`;
+    html += `</div></div>`;
+  }
+  
+  html += `</div></div>`;
+  c.innerHTML = html;
+  updateTopbarButtons();
+}
 </script>
 </body>
 </html>
