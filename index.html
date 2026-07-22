@@ -166,7 +166,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
         <div class="num" id="s-total">0</div><div class="lab">累计</div>
       </div>
       <div class="stat-card" onclick="showCultivationInfo()" style="cursor:pointer;" title="点击查看修仙等级">
-        <div class="num" id="s-streak">1</div><div class="lab">连续天数</div>
+        <div class="num" id="s-streak">1</div><div class="lab">累计天数</div>
       </div>
     </div>
   </div>
@@ -689,9 +689,10 @@ function saveWB(){localStorage.setItem("bir_wb3",JSON.stringify(wordBank))}
 function parseRoute(){const h=location.hash.replace("#","")||"home";if(h.startsWith("date/"))return{route:"date",param:h.replace("date/","")};return{route:h,param:null}}
 function navigate(r,p){
   const prev=currentRoute||'home';
+  const currentPath=r+(p?('/'+p):'');
   if(p)location.hash=r+"/"+p;else location.hash=r;
-  if(pageHistory.length===0||pageHistory[pageHistory.length-1]!==r){
-    pageHistory.push(r+(p?('/'+p):''));
+  if(pageHistory.length===0||pageHistory[pageHistory.length-1]!==currentPath){
+    pageHistory.push(currentPath);
     if(pageHistory.length>20)pageHistory.shift();
   }
   lastPage=prev;
@@ -1771,7 +1772,7 @@ function updateStats(){
   const e2=document.getElementById("s-rev");if(e2)e2.innerText=sRev;
   const e3=document.getElementById("s-total");if(e3)e3.innerText=sTotal;
   const e4=document.getElementById("s-streak");if(e4)e4.innerText=streak;
-  const e5=document.getElementById("sidebar-today");if(e5)e5.innerText=today;
+  const e5=document.getElementById("sidebar-today");if(e5){const today2=new Date().toISOString().slice(0,10);e5.innerText=today2;}
 }
 
 document.addEventListener("DOMContentLoaded",()=>{
@@ -2477,13 +2478,15 @@ function showCultivationInfo() {
   let nextLevelInfo = null;
   let progressPercent = 0;
   let progressText = '';
+  let hoursPassed = 0;
+  let hoursInCurrentLevel = 0;
   
   if (memberInfo && memberInfo.loginTime) {
     const loginTime = new Date(memberInfo.loginTime);
     const now = new Date();
-    const hoursPassed = Math.floor((now - loginTime) / 3600000);
+    hoursPassed = Math.floor((now - loginTime) / 3600000);
     const currentLevel = Math.min(Math.floor(hoursPassed / 24) + 1, 15);
-    const hoursInCurrentLevel = hoursPassed % 24;
+    hoursInCurrentLevel = hoursPassed % 24;
     progressPercent = Math.round((hoursInCurrentLevel / 24) * 100);
     
     if (currentLevel < 15) {
@@ -3921,17 +3924,6 @@ function renderTopicDetail(c, ds, topicInfo) {
   html += `</div></div>`;
   c.innerHTML = html;
 }
-
-// 修改renderDateDetail以支持话题
-const originalRenderDateDetail = renderDateDetail;
-renderDateDetail = function(c, ds) {
-  const topicInfo = getTopicForDate(ds);
-  if (topicInfo) {
-    renderTopicDetail(c, ds, topicInfo);
-    return;
-  }
-  originalRenderDateDetail(c, ds);
-};
 
 // 修改renderCalHTML以标记话题日期
 const originalRenderCalHTML = renderCalHTML;
