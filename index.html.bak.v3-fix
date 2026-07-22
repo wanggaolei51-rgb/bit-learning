@@ -6,13 +6,13 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<title>LEO-BIR V4.3</title>
+<title>LEO-BIR V3.0.3</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh}
 .app{display:flex;min-height:100vh}
-.sidebar{width:260px;background:var(--bg-elev);border-right:1px solid var(--border);display:flex;flex-direction:column;position:fixed;height:100vh;z-index:100;transition:transform .3s;overflow-y:auto;scrollbar-width:none;-ms-overflow-style:none}
+.sidebar{width:260px;background:var(--bg-elev);border-right:1px solid var(--border);display:flex;flex-direction:column;position:fixed;height:100vh;z-index:100;transition:transform .3s}
 .sidebar-header{padding:22px 18px;border-bottom:1px solid var(--border);text-align:center}
 .sidebar-header h1{font-size:18px;color:var(--primary);font-weight:700}
 .sidebar-header .ver{font-size:11px;color:var(--text-dim);margin-top:4px}
@@ -47,7 +47,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
 .cal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
 .cal-header h3{font-size:16px;color:var(--primary);margin:0}
 .cal-nav{background:var(--bg-elev);border:1px solid var(--border);color:var(--text);padding:5px 12px;border-radius:6px;cursor:pointer;font-size:13px}
-.sidebar::-webkit-scrollbar{display:none}.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;text-align:center}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;text-align:center}
 .cal-wd{font-size:11px;color:var(--text-dim);padding:8px 2px;font-weight:600}
 .cal-day{padding:8px 2px;border-radius:8px;cursor:pointer;font-size:13px;transition:all .15s;min-height:52px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--bg-elev);border:1px solid transparent}
 .cal-day:hover{background:rgba(0,212,170,.1);border-color:rgba(0,212,170,.25)}
@@ -151,7 +151,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="sidebar-header">
     <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <h1>LEO-BIR</h1>
-    <div class="ver">LEO-BIR V4.3 · 词根射击重构 · 字母发音表 · 动态词库</div>
+    <div class="ver">LEO-BIR V3.0 · 艾宾浩斯增强</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -165,7 +165,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
       <div class="stat-card" onclick="location.hash='wordbank'">
         <div class="num" id="s-total">0</div><div class="lab">累计</div>
       </div>
-      <div class="stat-card" onclick="showCultivationInfo()" style="cursor:pointer;" title="点击查看修仙等级">
+      <div class="stat-card">
         <div class="num" id="s-streak">1</div><div class="lab">连续天数</div>
       </div>
     </div>
@@ -182,8 +182,6 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
       <li data-route="review"><span style="margin-right:8px">🧠</span>复习</li>
       <li data-route="aichat"><span style="margin-right:8px">🤖</span>AI对话</li>
       <li data-route="member"><span style="margin-right:8px">👑</span>会员中心</li>
-      <li data-route="phonetics"><span style="margin-right:8px">🔤</span>字母发音表</li>
-      <li data-route="prefixgame"><span style="margin-right:8px">🎯</span>词根射击</li>
       <li data-route="about"><span style="margin-right:8px">📋</span>关于LEO-BIR</li>
       <li data-route="version"><span style="margin-right:8px">📜</span>版本记录</li>
     </ul>
@@ -195,8 +193,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
 <main class="main" id="main">
   <div class="topbar">
     <button class="menu-btn" id="menuBtn">☰</button>
-    <button class="menu-btn" id="homeBtn" style="display:none;margin-right:4px;" onclick="goHome()" title="上一层（主页）">🏠</button>
-    <button class="menu-btn" id="backBtn" style="display:none;margin-right:8px;" onclick="goBack()" title="返回上一页">←</button><div class="topbar-title" id="pageTitle">🏠 主页</div>
+    <button class="menu-btn" id="backBtn" style="display:none;margin-right:8px;" onclick="navigate('home')">←</button><div class="topbar-title" id="pageTitle">🏠 主页</div>
     <div id="memberBadge" style="margin-left:auto;font-size:12px;padding:4px 10px;border-radius:8px;cursor:pointer;" onclick="navigate('member')"></div>
   </div>
   <div class="content" id="appContent"></div>
@@ -671,51 +668,20 @@ let learningHistory=JSON.parse(localStorage.getItem("bir_h3")||"{}");
 let wordBank=JSON.parse(localStorage.getItem("bir_wb3")||"[]");
 let currentRoute="home",currentDate=new Date(2026,6,1),currentFilter="all";
 let quizState={q:0,correct:0,total:5,done:0};
-let pageHistory=['home'];
-let lastPage='home';
 
 function initHistory(){
   if(!learningHistory["2026-07-14"]) learningHistory["2026-07-14"]={vocabNew:["Selamat","pagi","Bapak","Ibu","Menteri","Perkenalkan","nama","saya","General","Manager","PT","beroperasi","di","kawasan","industri","Morowali","datang","Apa","kabarmu","Semoga","perjalanan","Anda","lancar","Terima","kasih","senang","sekali","dapat","bertemu","dengan","Perusahaan","kami","ingin","berdiskusi","mengenai","pengembangan","berkelanjutan","Baik","mari","kita","masuk"],vocabReview:[],translations:5,notes:"第1课"};
   if(!learningHistory["2026-07-15"]) learningHistory["2026-07-15"]={vocabNew:["berdiskusi","berkumpul","berjalan","berpikir","berusaha","bertanya","bersemangat","berkerja","bersama-sama","mewujudkan","menghampiri","menemani","mengenai","membahas","menyiapkan","melakukan","mencari","memiliki","terbaik","kreatif","target","solusi","produksi","proyek","smelt","pembangunan","timeline","detail","rapat","keadaan","sesuai","situasi","contoh","ukuran","derajat","cuaca","suara","kuat","tegas","kencang","hampir","setelah","sering","imbuhan","begini","telepon","bahan","siswa","murid","cocok","cowo","pilih","rekan","sekalian","semoga","sehat","pagi"],vocabReview:["Selamat","pagi","saya","Anda","terima","kasih","Baik","kita","proyek","industri"],translations:8,notes:"第2课"};
-  if(!learningHistory["2026-07-16"]) learningHistory["2026-07-16"]={vocabNew:["timah","nikel","kobalt","baterai","lithium","elektrik","kendaraan","energi","terbarukan","matahari","angin","air","surplus","defisit","island","grid","microgrid","isolasi","distributif","trasmisi","transformator","tegangan","arus","frekuensi","frekuensi","kontrol","sistem","proteksi","relay","pemutus","hubung","singkat","beban","puncak","dasar","tengah"],vocabReview:["produksi","proyek","industri","smelt","pembangunan"],translations:6,notes:"第3课-冶炼"};
-  if(!learningHistory["2026-07-17"]) learningHistory["2026-07-17"]={vocabNew:["asam","sulfat","oksidasi","reduksi","peleburan","penyulingan","pemurnian","slag","terak","gas","buang","emisi","debu","partikel","filter","scrubber","absorpsi","neutralisasi","limbah","cair","padat","kategorisasi","daur","ulang","reuse","reduce","recovery"],vocabReview:["timah","nikel","baterai","energi","kontrol"],translations:5,notes:"第4课-制酸环保"};
-  if(!learningHistory["2026-07-18"]) learningHistory["2026-07-18"]={vocabNew:["pelabuhan","dermaga","kapal","tongkang","kargo","muatan","bongkar","muat","truk","tanker","kontainer","logistik","rantai","pasok","supply","chain","inventori","gudang","penyimpanan","stok","FIFO","LIFO","reorder","pengiriman","expedisi","kurir","pelayaran","pengangkutan"],vocabReview:["asam","peleburan","limbah","daur","ulang"],translations:7,notes:"第5课-港口物流"};
-  if(!learningHistory["2026-07-19"]) learningHistory["2026-07-19"]={vocabNew:["map","arah","jalan","utara","selatan","timur","barat","lurus","belok","kanan","kiri","simpang","lampu","merah","traffic","light","putar","balik","sebrang","jembatan","terowongan","toll","jalan","tol","sekitar","dekat","jauh","seberang","samping","depan","belakang"],vocabReview:["pelabuhan","kargo","logistik","rantai","pasok"],translations:6,notes:"第6课-地图方向"};
   saveHistory();
 }
 function saveHistory(){localStorage.setItem("bir_h3",JSON.stringify(learningHistory))}
 function saveWB(){localStorage.setItem("bir_wb3",JSON.stringify(wordBank))}
 
 function parseRoute(){const h=location.hash.replace("#","")||"home";if(h.startsWith("date/"))return{route:"date",param:h.replace("date/","")};return{route:h,param:null}}
-function navigate(r,p){
-  const prev=currentRoute||'home';
-  if(p)location.hash=r+"/"+p;else location.hash=r;
-  if(pageHistory.length===0||pageHistory[pageHistory.length-1]!==r){
-    pageHistory.push(r+(p?('/'+p):''));
-    if(pageHistory.length>20)pageHistory.shift();
-  }
-  lastPage=prev;
-  updateTopbarButtons();
-}
-function goBack(){
-  if(pageHistory.length>1){
-    pageHistory.pop();
-    const prev=pageHistory[pageHistory.length-1]||'home';
-    const sep=prev.indexOf('/');
-    if(sep>0){location.hash=prev;}else{location.hash=prev;}
-  }else{location.hash='home';}
-}
-function goHome(){pageHistory=['home'];location.hash='home';}
-function updateTopbarButtons(){
-  const homeBtn=document.getElementById('homeBtn');
-  const backBtn=document.getElementById('backBtn');
-  const isHome=currentRoute==='home';
-  if(homeBtn)homeBtn.style.display=isHome?'none':'inline-block';
-  if(backBtn)backBtn.style.display=isHome?'none':'inline-block';
-}
+function navigate(r,p){if(p)location.hash=r+"/"+p;else location.hash=r;const bb=document.getElementById('backBtn');if(bb)bb.style.display=(r==='home')?'none':'inline-block';}
 function render(){
   const r=parseRoute();currentRoute=r.route;updateNav();updateStats();
-  updateTopbarButtons();
+  const bb=document.getElementById('backBtn');if(bb)bb.style.display=(currentRoute==='home')?'none':'inline-block';
   const c=document.getElementById("appContent"),t=document.getElementById("pageTitle");
   switch(r.route){
     case "home":t.innerText="🏠 主页";renderHome(c);break;
@@ -736,19 +702,16 @@ function render(){
     case "manage":t.innerText="⚙️ 课程管理";renderManage(c);break;
     case "stats":t.innerText="📊 数据统计";renderStats(c);break;
     case "game":t.innerText="🎮 百词斩";renderGame(c);break;
-    case "phonetics":t.innerText="🔤 字母发音表";renderPhonetics(c);break;
-    case "prefixgame":t.innerText="🎯 词根射击";renderPrefixGame(c);break;
     case "mindmap":t.innerText="🗺️ 思维导图";renderMindMap(c);break;
     default:t.innerText="🏠 主页";renderHome(c);
   }
   window.scrollTo(0,0);
 }
-function updateNav(){document.querySelectorAll(".nav-list li").forEach(li=>{li.classList.toggle("active",li.dataset.route===currentRoute)}); const s=getMemberDisplay(); const mb=document.getElementById("memberBadge");if(mb){mb.style.background=s.color+"20";mb.style.color=s.color;mb.innerHTML=s.label;} const hmb=document.getElementById("homeMemberBadge");if(hmb){hmb.style.background=s.color+"20";hmb.style.color=s.color;hmb.innerHTML=s.label;}}
+function updateNav(){document.querySelectorAll(".nav-list li").forEach(li=>{li.classList.toggle("active",li.dataset.route===currentRoute)}); const s=getMemberStatus(); const mb=document.getElementById("memberBadge");if(mb){mb.style.background=s.color+"20";mb.style.color=s.color;mb.textContent=s.label;} const hmb=document.getElementById("homeMemberBadge");if(hmb){hmb.style.background=s.color+"20";hmb.style.color=s.color;hmb.textContent=s.label;}}
 
 function renderHome(c){
   const today=new Date().toISOString().slice(0,10),td=learningHistory[today],tdn=td?td.vocabNew.length:0;
-  c.innerHTML=`<div class="welcome-banner" style="background:linear-gradient(135deg,rgba(0,212,170,.15),rgba(59,130,246,.1));border:1px solid rgba(0,212,170,.25);position:relative;"><div id="homeMemberBadge" style="position:absolute;top:8px;right:8px;font-size:11px;padding:3px 8px;border-radius:6px;"></div><div style="display:flex;align-items:center;gap:16px;margin-bottom:12px;"><div style="width:56px;height:56px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div><div><h2 style="font-size:22px;color:var(--primary);margin-bottom:4px">LEO-BIR</h2><p style="color:var(--text-dim);font-size:13px">Bahasa Indonesia Learning · 印尼语学习平台</p></div></div></div><div class="quick-grid"><div class="quick-btn" onclick="navigate('translate')"><span class="icon">🌐</span><div class="label">翻译</div></div><div class="quick-btn" onclick="navigate('input')"><span class="icon">📝</span><div class="label">词汇录入</div></div><div class="quick-btn" onclick="navigate('wordbank')"><span class="icon">📚</span><div class="label">生词本</div></div><div class="quick-btn" onclick="navigate('review')"><span class="icon">🧠</span><div class="label">复习</div></div><div class="quick-btn" onclick="navigate('vocabulary')"><span class="icon">📖</span><div class="label">词汇库</div></div><div class="quick-btn" onclick="navigate('quiz')"><span class="icon">🎮</span><div class="label">百词斩</div></div>
-<div class="quick-btn" onclick="navigate('prefixgame')"><span class="icon">🎯</span><div class="label">词根射击</div></div></div><div class="card"><div class="card-header"><h2>📅 学习日历</h2><span class="badge">点击日期查看</span></div>${renderCalHTML()}</div>`;
+  c.innerHTML=`<div class="welcome-banner" style="background:linear-gradient(135deg,rgba(0,212,170,.15),rgba(59,130,246,.1));border:1px solid rgba(0,212,170,.25);position:relative;"><div id="homeMemberBadge" style="position:absolute;top:8px;right:8px;font-size:11px;padding:3px 8px;border-radius:6px;"></div><div style="display:flex;align-items:center;gap:16px;margin-bottom:12px;"><div style="width:56px;height:56px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div><div><h2 style="font-size:22px;color:var(--primary);margin-bottom:4px">LEO-BIR</h2><p style="color:var(--text-dim);font-size:13px">Bahasa Indonesia Learning · 印尼语学习平台</p></div></div></div><div class="quick-grid"><div class="quick-btn" onclick="navigate('translate')"><span class="icon">🌐</span><div class="label">翻译</div></div><div class="quick-btn" onclick="navigate('input')"><span class="icon">📝</span><div class="label">词汇录入</div></div><div class="quick-btn" onclick="navigate('wordbank')"><span class="icon">📚</span><div class="label">生词本</div></div><div class="quick-btn" onclick="navigate('review')"><span class="icon">🧠</span><div class="label">复习</div></div><div class="quick-btn" onclick="navigate('vocabulary')"><span class="icon">📖</span><div class="label">词汇库</div></div><div class="quick-btn" onclick="navigate('quiz')"><span class="icon">🎮</span><div class="label">百词斩</div></div></div><div class="card"><div class="card-header"><h2>📅 学习日历</h2><span class="badge">点击日期查看</span></div>${renderCalHTML()}</div>`;
   attachCalEvents();
 }
 
@@ -773,15 +736,11 @@ function changeMonth(delta){currentDate.setMonth(currentDate.getMonth()+delta);r
 
 function renderDateDetail(c,ds){
   const data=learningHistory[ds];
-  if(!data){
-    const tc=getTopicForDate(ds);
-    if(tc){renderTopicDetail(c,ds,tc);return;}
-    c.innerHTML=`<div class="date-detail"><button class="back-btn" onclick="goBack()">← 返回</button><div class="card" style="text-align:center;padding:40px;color:var(--text-dim)">📅 ${ds}<br>暂无记录</div></div>`;return;
-  }
+  if(!data){c.innerHTML=`<div class="date-detail"><button class="back-btn" onclick="navigate('home')">← 返回</button><div class="card" style="text-align:center;padding:40px;color:var(--text-dim)">📅 ${ds}<br>暂无记录</div></div>`;return;}
   let vh="";
   if(data.vocabNew.length){vh+=`<h3 style="color:var(--primary);margin:16px 0 10px;font-size:15px">🆕 新学(${data.vocabNew.length})</h3><div class="word-grid">`;data.vocabNew.forEach(w=>{const v=vocabDB[w.toLowerCase()]||vocabDB[w.charAt(0).toUpperCase()+w.slice(1)]||vocabDB[w];if(v)vh+=`<div class="word-card" onclick="showTip('${w.replace(/'/g,"\'")}')"><div class="w-word">${w} <span class="w-ipa">${v.ipa||""}</span></div><div class="w-mean">🇨🇳 ${v.cn||""}</div></div>`;else vh+=`<div class="word-card"><div class="w-word">${w}</div></div>`;});vh+=`</div>`;}
   if(data.vocabReview.length){vh+=`<h3 style="color:var(--accent);margin:16px 0 10px;font-size:15px">🔄 复习(${data.vocabReview.length})</h3><div class="word-grid">`;data.vocabReview.forEach(w=>{const v=vocabDB[w.toLowerCase()]||vocabDB[w];if(v)vh+=`<div class="word-card" onclick="showTip('${w.replace(/'/g,"\'")}')"><div class="w-word">${w}</div><div class="w-mean">🇨🇳 ${v.cn||""}</div></div>`;else vh+=`<div class="word-card"><div class="w-word">${w}</div></div>`;});vh+=`</div>`;}
-  c.innerHTML=`<div class="date-detail"><button class="back-btn" onclick="goBack()">← 返回</button><div class="card"><div class="card-header"><h2>📅 ${ds}</h2><span class="badge">学习记录</span></div>${data.notes?`<div style="background:rgba(0,212,170,.08);border-radius:8px;padding:12px;margin-bottom:14px;border-left:3px solid var(--primary);font-size:13px">${data.notes}</div>`:""}<div style="display:flex;gap:20px;margin-bottom:14px;font-size:13px;color:var(--text-dim)"><span>🆕 <strong style="color:var(--primary)">${data.vocabNew.length}</strong></span><span>🔄 <strong style="color:var(--accent)">${data.vocabReview.length}</strong></span><span>🌐 <strong style="color:var(--info)">${data.translations}</strong></span></div>${vh}</div></div>`;
+  c.innerHTML=`<div class="date-detail"><button class="back-btn" onclick="navigate('home')">← 返回</button><div class="card"><div class="card-header"><h2>📅 ${ds}</h2><span class="badge">学习记录</span></div>${data.notes?`<div style="background:rgba(0,212,170,.08);border-radius:8px;padding:12px;margin-bottom:14px;border-left:3px solid var(--primary);font-size:13px">${data.notes}</div>`:""}<div style="display:flex;gap:20px;margin-bottom:14px;font-size:13px;color:var(--text-dim)"><span>🆕 <strong style="color:var(--primary)">${data.vocabNew.length}</strong></span><span>🔄 <strong style="color:var(--accent)">${data.vocabReview.length}</strong></span><span>🌐 <strong style="color:var(--info)">${data.translations}</strong></span></div>${vh}</div></div>`;
 }
 
 function renderTranslate(c){
@@ -871,125 +830,50 @@ function clearWB(){if(!checkAccess("清空"))return;if(!confirm("清空?"))retur
 
 function renderDailyQuiz(c) {
   const today = new Date().toISOString().slice(0,10);
-  const tc = topicCalendar[today] || Object.values(topicCalendar).find(t => t.date === today);
+  const tc = topicCalendar.find(t => t.date === today);
   
-  // 收集所有可用的话题/课时
-  const availableTopics = [];
-  Object.keys(topicCalendar).forEach(date => {
-    const info = topicCalendar[date];
-    if (info && info.topic) {
-      const topic = topicData[info.topic];
-      if (topic) {
-        availableTopics.push({
-          date: date,
-          topicKey: info.topic,
-          topic: topic,
-          day: info.day || 1,
-          label: info.label || `Day ${info.day || 1}`,
-          isToday: date === today
-        });
-      }
-    }
-  });
-  
-  // 按日期排序
-  availableTopics.sort((a, b) => a.date.localeCompare(b.date));
-  
-  if (availableTopics.length === 0) {
-    c.innerHTML = `<div class="card"><div class="card-header"><h2>🎯 课时测试</h2></div><div style="padding:20px;text-align:center;color:var(--text-dim);">暂无可用课时，请先学习课程</div></div>`;
+  if (!tc) {
+    c.innerHTML = `<div class="card"><div class="card-header"><h2>🎯 今日课时测试</h2></div><div style="padding:20px;text-align:center;color:var(--text-dim);">今日没有安排课程</div></div>`;
     return;
   }
   
-  // 生成话题选择卡片
-  let topicsHtml = availableTopics.map(t => {
-    const isTodayClass = t.isToday ? 'border:2px solid var(--primary);background:rgba(0,212,170,.08);' : '';
-    const todayBadge = t.isToday ? '<span style="background:var(--primary);color:#000;padding:2px 8px;border-radius:6px;font-size:11px;margin-left:8px;">今日</span>' : '';
-    return `
-      <div onclick="startTopicQuiz('${t.topicKey}')" style="padding:14px 16px;margin-bottom:10px;border-radius:10px;border:1px solid var(--border);cursor:pointer;transition:all .2s;${isTodayClass}"
-           onmouseenter="this.style.borderColor='var(--primary)';this.style.transform='translateX(4px)';"
-           onmouseleave="this.style.borderColor='var(--border)';this.style.transform='translateX(0)';"
-      >
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;">
-          <div style="font-size:14px;font-weight:600;color:var(--text);display:flex;align-items:center;">
-            <span style="font-size:18px;margin-right:8px;">${t.topic.icon || '📚'}</span>
-            ${t.topic.title}
-            ${todayBadge}
-          </div>
-          <span style="font-size:12px;color:var(--text-dim);background:var(--bg-elev);padding:2px 8px;border-radius:6px;">Day ${t.day}</span>
-        </div>
-        <div style="font-size:12px;color:var(--text-dim);display:flex;gap:12px;align-items:center;">
-          <span>📅 ${t.date}</span>
-          <span>📝 ${t.label}</span>
-          <span style="margin-left:auto;color:var(--primary);font-weight:500;">点击测试 →</span>
-        </div>
-      </div>
-    `;
-  }).join('');
-  
-  c.innerHTML = `
-    <div class="card">
-      <div class="card-header" style="flex-wrap:wrap;gap:8px;">
-        <h2>🎯 课时测试</h2>
-        <span class="badge">${availableTopics.length}个课时</span>
-      </div>
-      <div style="padding:16px;">
-        <div style="font-size:13px;color:var(--text-dim);margin-bottom:16px;padding:12px;background:rgba(0,212,170,.06);border-radius:8px;border-left:3px solid var(--primary);">
-          📋 选择下方课时进行测试，测试内容根据该课时的词汇和语法生成
-        </div>
-        ${topicsHtml}
-      </div>
-    </div>
-  `;
-}
-
-function startTopicQuiz(topicKey) {
-  const c = document.getElementById('appContent');
-  if (!c) return;
-  
-  const topic = topicData[topicKey];
+  const topic = topicData[tc.topic];
   if (!topic) {
-    showToast('话题不存在');
+    c.innerHTML = `<div class="card"><div class="card-header"><h2>🎯 今日课时测试</h2></div><div style="padding:20px;text-align:center;color:var(--text-dim);">话题数据未找到</div></div>`;
     return;
   }
   
-  // 获取话题相关词汇
-  const topicWords = [];
-  Object.keys(vocabDB).forEach(k => {
-    const v = vocabDB[k];
-    if (v.tag && (v.tag.includes(topicKey) || topicKey.includes(v.tag))) {
-      topicWords.push({word: k, data: v});
-    }
-  });
-  
-  // 如果话题词汇不足，添加所有词汇
-  if (topicWords.length < 5) {
-    Object.keys(vocabDB).forEach(k => {
-      if (!topicWords.find(w => w.word === k)) {
-        topicWords.push({word: k, data: vocabDB[k]});
-      }
+  // 获取今日课程的词汇
+  const todayWords = [];
+  if (learningHistory[today] && learningHistory[today].vocabNew) {
+    learningHistory[today].vocabNew.forEach(w => {
+      if (vocabDB[w]) todayWords.push({word: w, data: vocabDB[w]});
     });
   }
   
-  if (topicWords.length === 0) {
-    c.innerHTML = `<div class="card"><div class="card-header"><h2>🎯 ${topic.title || topicKey} 测试</h2></div><div style="padding:20px;text-align:center;color:var(--text-dim);">该话题暂无词汇</div></div>`;
+  // 如果没有今日词汇，使用话题相关词汇
+  if (todayWords.length === 0) {
+    const topicWords = Object.keys(vocabDB).filter(k => {
+      const v = vocabDB[k];
+      return v.tag && (v.tag.includes(tc.topic) || tc.topic.includes(v.tag));
+    }).slice(0, 10);
+    topicWords.forEach(w => todayWords.push({word: w, data: vocabDB[w]}));
+  }
+  
+  if (todayWords.length === 0) {
+    c.innerHTML = `<div class="card"><div class="card-header"><h2>🎯 今日课时测试</h2></div><div style="padding:20px;text-align:center;color:var(--text-dim);">暂无今日词汇，请先学习课程</div></div>`;
     return;
   }
   
-  // 随机选10题（比之前更多）
-  const shuffled = topicWords.sort(() => Math.random() - 0.5).slice(0, 10);
-  const questions = shuffled.map(w => {
+  // 生成测试题
+  const questions = todayWords.slice(0, 5).map(w => {
     const wrong = Object.keys(vocabDB).filter(k => k !== w.word && vocabDB[k].cn).slice(0, 3).map(k => vocabDB[k].cn);
     return {word: w.word, data: w.data, wrong};
   });
   
   quizState = {q: 0, correct: 0, total: questions.length, done: 0, questions};
   
-  c.innerHTML = `<div class="card"><div class="card-header" style="flex-wrap:wrap;gap:8px;"><h2>🎯 ${topic.title || topicKey} 课时测试</h2><span class="badge">${questions.length}题</span></div><div id="quizArea" style="padding:16px;"></div></div>`;
-  
-  const t = document.getElementById('pageTitle');
-  if (t) t.innerText = `🎯 ${topic.title || topicKey}`;
-  currentRoute = 'topicquiz';
-  updateNav();
+  c.innerHTML = `<div class="card"><div class="card-header"><h2>🎯 ${tc.date} 课时测试 · ${topic.title || tc.topic}</h2><span class="badge">${questions.length}题</span></div><div id="quizArea" style="padding:16px;"></div></div>`;
   showQuizQ();
 }
 
@@ -1033,12 +917,8 @@ function renderQuiz(c){
   c.innerHTML=`<div class="card"><div class="card-header"><h2>🎯 能力测试</h2><span class="badge">5题</span></div><div id="quizArea"><div style="text-align:center;padding:30px;color:var(--text-dim)"><div style="font-size:48px;margin-bottom:10px">🎯</div><div>5道选择题，检测词汇掌握程度</div><button class="trans-btn" style="margin-top:20px" onclick="startQuiz()">开始</button></div></div></div>`;
 }
 function startQuiz(){quizState.q=0;quizState.correct=0;quizState.done=0;showQ();}
-function showQ(){if(quizState.q>=quizState.total){showQRes();return;}const q=quizState.questions[quizState.q];const opts=[q.data.cn,...q.wrong].sort(()=>Math.random()-.5);document.getElementById("quizArea").innerHTML=`<div style="margin-bottom:12px;font-size:13px;color:var(--text-dim)">${quizState.q+1}/5</div><div class="quiz-card"><div class="q-text">「<strong style="color:var(--primary)">${q.word}</strong>」的中文?</div><div style="font-size:12px;color:var(--text-dim);margin-bottom:10px">${q.data.ipa||""}</div>${opts.map((opt,i)=>`<div class="q-opt" onclick="ansQ('${opt.replace(/'/g,"&#39;")}','${q.data.cn.replace(/'/g,"&#39;")}',this)">${String.fromCharCode(65+i)}. ${opt}</div>`).join("")}</div>`;}
-
-
-
-function showQuizQ(){if(quizState.q>=quizState.total){showQRes();return;}const q=quizState.questions[quizState.q];const opts=[q.data.cn,...q.wrong].sort(()=>Math.random()-.5);document.getElementById("quizArea").innerHTML=`<div style="margin-bottom:12px;font-size:13px;color:var(--text-dim)">${quizState.q+1}/${quizState.total}</div><div class="quiz-card"><div class="q-text">「<strong style="color:var(--primary)">${q.word}</strong>」的中文?</div><div style="font-size:12px;color:var(--text-dim);margin-bottom:10px">${q.data.ipa||""}</div>${opts.map((opt,i)=>`<div class="q-opt" onclick="ansQ('${opt.replace(/'/g,"&#39;")}','${q.data.cn.replace(/'/g,"&#39;")}',this)">${String.fromCharCode(65+i)}. ${opt}</div>`).join("")}</div>`;}
-function ansQ(sel,correct,el){const opts=el.parentElement.querySelectorAll(".q-opt");opts.forEach(o=>o.style.pointerEvents="none");const ok=sel===correct;if(ok){el.classList.add("correct");quizState.correct++;}else{el.classList.add("wrong");opts.forEach(o=>{if(o.innerText.includes(correct))o.classList.add("correct");});}quizState.done++;setTimeout(()=>{quizState.q++;if(quizState.questions && quizState.q < quizState.questions.length){showQuizQ();}else{showQRes();}},1200);}
+function showQ(){if(quizState.q>=quizState.total){showQRes();return;}const q=quizState.questions[quizState.q];const opts=[q.data.cn,...q.wrong].sort(()=>Math.random()-.5);document.getElementById("quizArea").innerHTML=`<div style="margin-bottom:12px;font-size:13px;color:var(--text-dim)">${quizState.q+1}/5</div><div class="quiz-card"><div class="q-text">「<strong style="color:var(--primary)">${q.word}</strong>」的中文?</div><div style="font-size:12px;color:var(--text-dim);margin-bottom:10px">${q.data.ipa||""}</div>${opts.map((opt,i)=>`<div class="q-opt" onclick="ansQ('${opt.replace(/'/g,"\'")}','${q.data.cn.replace(/'/g,"\'")}',this)">${String.fromCharCode(65+i)}. ${opt}</div>`).join("")}</div>`;}
+function ansQ(sel,correct,el){const opts=el.parentElement.querySelectorAll(".q-opt");opts.forEach(o=>o.style.pointerEvents="none");const ok=sel===correct;if(ok){el.classList.add("correct");quizState.correct++;}else{el.classList.add("wrong");opts.forEach(o=>{if(o.innerText.includes(correct))o.classList.add("correct");});}quizState.done++;setTimeout(()=>{quizState.q++;showQ();},1200);}
 function showQRes(){const pct=Math.round((quizState.correct/quizState.total)*100);const msg=pct>=80?"优秀!":pct>=60?"不错!":"需多练习!";document.getElementById("quizArea").innerHTML=`<div style="text-align:center;padding:30px"><div style="font-size:56px;margin-bottom:10px">${pct>=80?"🎉":pct>=60?"👍":"💪"}</div><div style="font-size:28px;font-weight:700;color:var(--primary)">${pct}%</div><div style="color:var(--text-dim);margin:8px 0">${quizState.correct}/5</div><div style="color:var(--text);margin-bottom:16px">${msg}</div><button class="trans-btn" onclick="startQuiz()">再测</button></div>`;}
 
 function renderVocabulary(c){
@@ -1667,7 +1547,7 @@ function renderRList() {
         <span class="r-due" style="background:${color}20;color:${color}">${w.interval}天间隔</span>
         <span class="r-word">${w.word}</span>
         <span class="r-mean">${w.cn}</span>
-        <button onclick="doWordReview('${w.word.replace(/'/g, "&#39;")}', ${w.interval})" style="margin-left:auto;padding:4px 10px;border-radius:4px;border:none;background:var(--primary);color:#000;font-size:11px;cursor:pointer">✅ 完成</button>
+        <button onclick="doWordReview('${w.word.replace(/'/g, "\'")}', ${w.interval})" style="margin-left:auto;padding:4px 10px;border-radius:4px;border:none;background:var(--primary);color:#000;font-size:11px;cursor:pointer">✅ 完成</button>
       </div>`;
     });
   }
@@ -1712,9 +1592,6 @@ function speakText(text, lang='id-ID') {
     showToast('❌ 浏览器不支持语音朗读');
     return;
   }
-  // 清除队列并恢复（修复微信/移动端只能播放一次的问题）
-  window.speechSynthesis.cancel();
-  window.speechSynthesis.resume();
   const utterance = new SpeechSynthesisUtterance(text);
   utterance.lang = lang;
   utterance.rate = 0.9;
@@ -1738,7 +1615,7 @@ function speakChinese(text) {
 function speakBtn(text, lang='id') {
   const langMap = {id:'id-ID', en:'en-US', zh:'zh-CN'};
   const l = langMap[lang] || 'id-ID';
-  return `<button onclick="speakText('${text.replace(/'/g, "&#39;")}', '${l}')" style="background:none;border:none;color:var(--primary);cursor:pointer;font-size:14px;padding:2px 6px;margin-left:4px;" title="朗读">🔊</button>`;
+  return `<button onclick="speakText('${text.replace(/'/g, "\'")}', '${l}')" style="background:none;border:none;color:var(--primary);cursor:pointer;font-size:14px;padding:2px 6px;margin-left:4px;" title="朗读">🔊</button>`;
 }
 
 function speak(text,lang){if(!window.speechSynthesis){showToast("不支持语音");return;}const u=new SpeechSynthesisUtterance(text);u.lang=lang==="id"?"id-ID":lang==="zh"?"zh-CN":"en-US";u.rate=0.9;window.speechSynthesis.speak(u);}
@@ -1746,32 +1623,13 @@ function speak(text,lang){if(!window.speechSynthesis){showToast("不支持语音
 function showToast(msg){const t=document.getElementById("toast");t.innerText=msg;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),2500);}
 
 function updateStats(){
-  // 累计新词（去重）
-  const allNew = new Set();
-  const allRev = new Set();
-  Object.values(learningHistory).forEach(h => {
-    if(h.vocabNew) h.vocabNew.forEach(w => allNew.add(w));
-    if(h.vocabReview) h.vocabReview.forEach(w => allRev.add(w));
-  });
-  const sNew = allNew.size;
-  const sRev = allRev.size;
-  const sTotal = Object.keys(vocabDB).length;
-  
-  // 累计学习天数 - 从第一天开始累计所有有学习记录的日期
-  const dates = Object.keys(learningHistory).sort();
-  let streak = 0;
-  for (const ds of dates) {
-    const h = learningHistory[ds];
-    if (h && (h.vocabNew.length || h.vocabReview.length || h.translations)) {
-      streak++;
-    }
-  }
-  
+  const sNew=Object.values(learningHistory).reduce((a,h)=>a+h.vocabNew.length,0);
+  const sRev=Object.values(learningHistory).reduce((a,h)=>a+h.vocabReview.length,0);
+  const sTotal=Object.keys(vocabDB).length;
   const e1=document.getElementById("s-new");if(e1)e1.innerText=sNew;
   const e2=document.getElementById("s-rev");if(e2)e2.innerText=sRev;
   const e3=document.getElementById("s-total");if(e3)e3.innerText=sTotal;
-  const e4=document.getElementById("s-streak");if(e4)e4.innerText=streak;
-  const e5=document.getElementById("sidebar-today");if(e5)e5.innerText=today;
+  const e4=document.getElementById("sidebar-today");if(e4)e4.innerText=new Date().toISOString().slice(0,10);
 }
 
 document.addEventListener("DOMContentLoaded",()=>{
@@ -1798,583 +1656,6 @@ document.addEventListener("DOMContentLoaded",()=>{
 // ===== BIR V2.1 艾宾浩斯动态复习 + 三关生词本系统 =====
 
 let wordStats = JSON.parse(localStorage.getItem("bir_ws3") || "{}");
-
-// ===== 词根射击游戏数据 V4.2 =====
-// 修复：pe-/per-/peN- 混淆，大量补充例词，四级分类体系
-
-const AFFIX_GAME_DATA = {
-  prefix: {
-    name: '前缀 (Awalan)',
-    icon: '⬅️',
-    desc: '放在词根前面的词缀，改变词性或语态。印尼语前缀是词法变化的核心。',
-    children: {
-      'meN-': {
-        name: 'meN- 主动及物',
-        desc: '主动语态及物动词前缀。让动词变得主动与正式。变形只看词根首字母，遵循KPST脱落法则。',
-        rule: 'KPST脱落法则：仅k/p/s/t四清音脱落且后接元音；辅音丛不脱落；外来词常不脱落；单音节不脱落；c永不脱落',
-        variants: {
-          'mem-': { label: 'mem-', rule: '首字母 b/p/f → mem-（p脱落）', color: '#ff6b6b', words: [
-            {root:'baca', full:'membaca', cn:'读'}, {root:'pukul', full:'memukul', cn:'打'},
-            {root:'buat', full:'membuat', cn:'制作'}, {root:'bantu', full:'membantu', cn:'帮助'},
-            {root:'bayar', full:'membayar', cn:'支付'}, {root:'foto', full:'memfoto', cn:'拍照'},
-            {root:'perbaiki', full:'memperbaiki', cn:'修理'}, {root:'percaya', full:'mempercayai', cn:'相信'},
-            {root:'punya', full:'mempunyai', cn:'拥有'}, {root:'produksi', full:'memproduksi', cn:'生产'},
-            {root:'perlu', full:'memerlukan', cn:'需要'}, {root:'buka', full:'membuka', cn:'打开'},
-            {root:'beli', full:'membeli', cn:'购买'}, {root:'akui', full:'memaklumi', cn:'谅解'}, {root:'perkenal', full:'memperkenalkan', cn:'介绍'}
-          ]},
-          'men-': { label: 'men-', rule: '首字母 t/c/d/j/z → men-（t脱落）', color: '#4ecdc4', words: [
-            {root:'tulis', full:'menulis', cn:'写'}, {root:'dengar', full:'mendengar', cn:'听'},
-            {root:'jawab', full:'menjawab', cn:'回答'}, {root:'jual', full:'menjual', cn:'卖'},
-            {root:'cari', full:'mencari', cn:'寻找'}, {root:'curi', full:'mencuri', cn:'偷'},
-            {root:'tangkap', full:'menangkap', cn:'抓'}, {root:'tari', full:'menari', cn:'跳舞'},
-            {root:'dapat', full:'mendapat', cn:'获得'}, {root:'cuci', full:'mencuci', cn:'洗'},
-            {root:'jelas', full:'menjelaskan', cn:'解释'}, {root:'temu', full:'menemukan', cn:'发现'},
-            {root:'zalim', full:'menzalimi', cn:'压迫'}, {root:'junjung', full:'menjunjung', cn:'高举'}, {root:'jamin', full:'menjamin', cn:'保证'}
-          ]},
-          'meny-': { label: 'meny-', rule: '首字母 s → meny-（s脱落）', color: '#ffe66d', words: [
-            {root:'sewa', full:'menyewa', cn:'出租'}, {root:'setir', full:'menyetir', cn:'驾驶'},
-            {root:'impan', full:'menyimpan', cn:'保存'}, {root:'iap', full:'menyiapkan', cn:'准备'},
-            {root:'umbang', full:'menyumbang', cn:'贡献'}, {root:'ertai', full:'menyertai', cn:'参加'},
-            {root:'alur', full:'menyalurkan', cn:'输送'}, {root:'elamat', full:'menyelamatkan', cn:'拯救'},
-            {root:'ebab', full:'menyebabkan', cn:'导致'}, {root:'embuh', full:'menyembuhkan', cn:'治愈'},
-            {root:'apu', full:'menyapu', cn:'打扫'}, {root:'iram', full:'menyiram', cn:'浇水'},
-            {root:'elewati', full:'menyeleweng', cn:'偏离'}, {root:'embelih', full:'menyembelih', cn:'屠宰'}, {root:'emang', full:'menyemangati', cn:'鼓励'}
-          ]},
-          'meng-': { label: 'meng-', rule: '首字母 元音/g/h/k/kh/q/x → meng-（k脱落）', color: '#1dd1a1', words: [
-            {root:'gunakan', full:'menggunakan', cn:'使用'}, {root:'gambar', full:'menggambar', cn:'画画'},
-            {root:'hormat', full:'menghormat', cn:'尊敬'}, {root:'ambil', full:'mengambil', cn:'拿'},
-            {root:'ubah', full:'mengubah', cn:'改变'}, {root:'irim', full:'mengirim', cn:'发送'},
-            {root:'kata', full:'mengatakan', cn:'说'}, {root:'ganggu', full:'mengganggu', cn:'打扰'},
-            {root:'hitung', full:'menghitung', cn:'计算'}, {root:'enal', full:'mengenal', cn:'认识'},
-            {root:'operasi', full:'mengoperasi', cn:'操作'}, {root:'impor', full:'mengimpor', cn:'进口'},
-            {root:'khawatir', full:'mengkhawatirkan', cn:'担心'}, {root:'ganti', full:'mengganti', cn:'替换'}, {root:'ajar', full:'mengajar', cn:'教'}
-          ]},
-          'menge-': { label: 'menge-', rule: '单音节词根 → menge-（不脱落）', color: '#ff9f43', words: [
-            {root:'cek', full:'mengecek', cn:'检查'}, {root:'bom', full:'mengebom', cn:'轰炸'},
-            {root:'jar', full:'mengejar', cn:'追赶'}, {root:'lap', full:'mengelap', cn:'擦拭'},
-            {root:'cat', full:'mengecat', cn:'刷漆'}, {root:'pas', full:'mengepas', cn:'装配'},
-            {root:'kor', full:'mengekor', cn:'跟随'}, {root:'jar', full:'mengerjakan', cn:'执行'},
-            {root:'lang', full:'mengelang', cn:'舔'}, {root:'pak', full:'mengepak', cn:'折叠'},
-            {root:'dus', full:'mengedus', cn:'闻'}, {root:'elus', full:'mengelus', cn:'抚摸'},
-            {root:'gam', full:'mengegam', cn:'紧抓'}, {root:'jut', full:'mengejutkan', cn:'惊吓'}, {root:'eluh', full:'mengeluh', cn:'抱怨'}
-          ]},
-          'me-': { label: 'me-', rule: '首字母 l/r/m/n/ny/ng/w/y → me-（不脱落）', color: '#54a0ff', words: [
-            {root:'lakukan', full:'melakukan', cn:'执行'}, {root:'rawat', full:'merawat', cn:'照顾'},
-            {root:'warna', full:'mewarnai', cn:'上色'}, {root:'yakini', full:'meyakini', cn:'确信'},
-            {root:'wujud', full:'mewujudkan', cn:'实现'}, {root:'lepas', full:'melepaskan', cn:'释放'},
-            {root:'rusak', full:'merusak', cn:'破坏'}, {root:'lihat', full:'melihat', cn:'看见'},
-            {root:'lantik', full:'melantik', cn:'任命'}, {root:'rongrong', full:'merongrong', cn:'侵蚀'},
-            {root:'nyanyi', full:'menyanyikan', cn:'唱歌'}, {root:'ngerti', full:'mengerti', cn:'理解'},
-            {root:'main', full:'memainkan', cn:'玩弄'}, {root:'masuk', full:'memasuki', cn:'进入'}, {root:'nari', full:'menari', cn:'跳舞'}
-          ]}
-        }
-      },
-      'ber-': {
-        name: 'ber- 不及物',
-        desc: '构成不及物动词，表示"拥有/做/处于"。使口语动词书面化/正式化，一般不改词义。',
-        rule: 'ber- + 词根首字母r → be-（r省略）；belajar为特例',
-        variants: {
-          'ber-': { label: 'ber-', rule: 'ber- + 词根（标准形式）', color: '#5f27cd', words: [
-            {root:'main', full:'bermain', cn:'玩'}, {root:'renang', full:'berenang', cn:'游泳'},
-            {root:'pikir', full:'berpikir', cn:'思考'}, {root:'kumpul', full:'berkumpul', cn:'聚集'},
-            {root:'diskusi', full:'berdiskusi', cn:'讨论'}, {root:'usaha', full:'berusaha', cn:'努力'},
-            {root:'tanya', full:'bertanya', cn:'提问'}, {root:'semangat', full:'bersemangat', cn:'有精神'},
-            {root:'operasi', full:'beroperasi', cn:'运营'}, {root:'kelanjutan', full:'berkelanjutan', cn:'持续'},
-            {root:'arti', full:'berarti', cn:'意味着'}, {root:'jalan', full:'berjalan', cn:'行走'},
-            {root:'kacamata', full:'berkacamata', cn:'戴眼镜'}, {root:'baju', full:'berbaju', cn:'穿衣服'}, {root:'lima', full:'berlima', cn:'五人一起'}
-          ]},
-          'be-': { label: 'be-', rule: 'ber- + r开头词根，省略r → be-', color: '#00d2d3', words: [
-            {root:'kerja', full:'bekerja', cn:'工作'}, {root:'rita', full:'berita', cn:'新闻'},
-            {root:'rangkat', full:'berangkat', cn:'出发'}, {root:'rbeda', full:'berbeda', cn:'不同'},
-            {root:'rgabung', full:'bergabung', cn:'加入'}, {root:'rbicara', full:'berbicara', cn:'谈话'},
-            {root:'rhenti', full:'berhenti', cn:'停止'}, {root:'rhasil', full:'berhasil', cn:'成功'},
-            {root:'rganti', full:'berganti', cn:'更换'}, {root:'rkunjung', full:'berkunjung', cn:'拜访'},
-            {root:'rmain', full:'bermain', cn:'玩'}, {root:'runding', full:'berunding', cn:'谈判'}, {root:'rsepeda', full:'bersepeda', cn:'骑车'}
-          ]},
-          'bel-': { label: 'bel-', rule: '特例：belajar（唯一常用词）', color: '#ff6348', words: [
-            {root:'ajar', full:'belajar', cn:'学习'}, {root:'ajar', full:'pelajar', cn:'学生'}, {root:'ajar', full:'pengajar', cn:'教师'}, {root:'ajar', full:'mengajar', cn:'教'}, {root:'ajar', full:'diajar', cn:'被教'}, {root:'ajar', full:'diajarkan', cn:'被教给'}, {root:'ajar', full:'mempelajari', cn:'研究学习'}
-          ]}
-        }
-      },
-      'di-': {
-        name: 'di- 被动语态',
-        desc: '被动语态前缀。施事为第三人称时用di-；一/二人称用零前缀被动（代词+动词原形）。',
-        rule: 'meN-整体换di-，鼻音同化取消：membuat→dibuat、menulis→ditulis',
-        variants: {
-          'di-': { label: 'di-', rule: 'di- + 词根（被动语态）', color: '#57606f', words: [
-            {root:'buat', full:'dibuat', cn:'被制作'}, {root:'lihat', full:'dilihat', cn:'被看见'},
-            {root:'baca', full:'dibaca', cn:'被读'}, {root:'makan', full:'dimakan', cn:'被吃'},
-            {root:'tulis', full:'ditulis', cn:'被写'}, {root:'kirim', full:'dikirim', cn:'被发送'},
-            {root:'pakai', full:'dipakai', cn:'被使用'}, {root:'jual', full:'dijual', cn:'被卖'},
-            {root:'bangun', full:'dibangun', cn:'被建设'}, {root:'bersih', full:'dibersihkan', cn:'被打扫'},
-            {root:'tunggu', full:'ditunggu', cn:'被等待'}, {root:'tanya', full:'ditanyakan', cn:'被问'}, {root:'bantu', full:'dibantu', cn:'被帮助'}, {root:'bunuh', full:'dibunuh', cn:'被杀'}, {root:'tangkap', full:'ditangkap', cn:'被抓'}
-          ]}
-        }
-      },
-      'ter-': {
-        name: 'ter- 最级/被动/意外',
-        desc: '无变形。功能：①+形容词=最高级 ②+动词=无意/偶然被动 ③状态/已完成 ④能力',
-        rule: 'ter- 动词被动义永远用第一被动形式',
-        variants: {
-          'ter-': { label: 'ter-', rule: 'ter- + 词根（最/被动/意外/状态）', color: '#f368e0', words: [
-            {root:'baik', full:'terbaik', cn:'最好的'}, {root:'buruk', full:'terburuk', cn:'最坏的'},
-            {root:'kena', full:'terkena', cn:'被击中'}, {root:'tuju', full:'tertuju', cn:'被针对'},
-            {root:'tulis', full:'tertulis', cn:'被写着的'}, {root:'baca', full:'terbaca', cn:'被读到的'},
-            {root:'tawa', full:'tertawa', cn:'笑出声'}, {root:'kejut', full:'terkejut', cn:'吃惊'},
-            {root:'hormat', full:'terhormat', cn:'受尊敬的'}, {root:'kenal', full:'terkenal', cn:'著名的'},
-            {root:'jangkau', full:'terjangkau', cn:'负担得起'}, {root:'tutup', full:'tertutup', cn:'关着的'},
-            {root:'makan', full:'termakan', cn:'被（不小心）吃'}, {root:'cinta', full:'tercinta', cn:'被深爱的'}, {root:'larang', full:'terlarang', cn:'被禁止的'}
-          ]}
-        }
-      },
-      'peN-': {
-        name: 'peN- 施事/工具名词',
-        desc: '构成施事者或工具名词。变形与meN-完全同构（同一套鼻音同化）。及物动词去meN-加peN-。',
-        rule: 'meN- ↔ peN- 同构：mem-↔pem-, men-↔pen-, meny-↔peny-, meng-↔peng-, menge-↔penge-, me-↔pe-',
-        variants: {
-          'pem-': { label: 'pem-', rule: '首字母 b/p/f → pem-', color: '#ff6b6b', words: [
-            {root:'buat', full:'pembuat', cn:'制造者'}, {root:'bantu', full:'pembantu', cn:'助手'},
-            {root:'beli', full:'pembeli', cn:'买家'}, {root:'foto', full:'pemfoto', cn:'摄影师'},
-            {root:'periksa', full:'pemeriksa', cn:'检查者'}, {root:'pungut', full:'pemungut', cn:'收集者'},
-            {root:'pukul', full:'pemukul', cn:'棒槌'}, {root:'bunuh', full:'pembunuh', cn:'杀手'}, {root:'bawa', full:'pembawa', cn:'携带者'},
-            {root:'beri', full:'pemberi', cn:'给予者'}, {root:'batas', full:'pembatas', cn:'界限'}, {root:'bangun', full:'pembangun', cn:'建设者'}, {root:'besar', full:'pembesar', cn:'放大者'}, {root:'biaya', full:'pembiaya', cn:'资助者'}, {root:'buka', full:'pembuka', cn:'开启者'}
-          ]},
-          'pen-': { label: 'pen-', rule: '首字母 t/c/d/j → pen-', color: '#4ecdc4', words: [
-            {root:'ulis', full:'penulis', cn:'作家'}, {root:'jual', full:'penjual', cn:'卖家'},
-            {root:'dengar', full:'pendengar', cn:'听众'}, {root:'cari', full:'pencari', cn:'搜索者'},
-            {root:'jara', full:'penjara', cn:'监狱'}, {root:'tangkap', full:'penangkap', cn:'捕捉者'},
-            {root:'tari', full:'penari', cn:'舞者'}, {root:'jahit', full:'penjahit', cn:'裁缝'}, {root:'cuci', full:'pencuci', cn:'洗衣机'},
-            {root:'duduk', full:'penduduk', cn:'居民'}, {root:'jemput', full:'penjemput', cn:'接人者'}, {root:'jaga', full:'penjaga', cn:'守卫'},
-            {root:'jahat', full:'penjahat', cn:'罪犯'}, {root:'olong', full:'penolong', cn:'帮助者'}, {root:'ikir', full:'penikir', cn:'思想家'}
-          ]},
-          'peny-': { label: 'peny-', rule: '首字母 s → peny-', color: '#ffe66d', words: [
-            {root:'air', full:'penyair', cn:'诗人'}, {root:'akit', full:'penyakit', cn:'疾病'},
-            {root:'umbang', full:'penyumbang', cn:'捐助者'}, {root:'elamat', full:'penyelamat', cn:'救世主'},
-            {root:'apu', full:'penyapu', cn:'扫帚'}, {root:'iram', full:'penyiram', cn:'洒水壶'},
-            {root:'ewa', full:'penyewa', cn:'租户'}, {root:'etir', full:'penyetir', cn:'司机'}, {root:'emburu', full:'penyemburu', cn:'喷射器'},
-            {root:'impan', full:'penyimpan', cn:'保存者'}, {root:'urat', full:'penyurat', cn:'通信者'}, {root:'aksi', full:'penyaksi', cn:'证人'},
-            {root:'alin', full:'penyalin', cn:'抄写员'}, {root:'aring', full:'penyaring', cn:'过滤器'}, {root:'ayat', full:'penyayat', cn:'申诉者'}
-          ]},
-          'peng-': { label: 'peng-', rule: '首字母 元音/g/h/k → peng-', color: '#1dd1a1', words: [
-            {root:'guna', full:'pengguna', cn:'用户'}, {root:'gambar', full:'penggambar', cn:'画家'},
-            {root:'hormat', full:'penghormat', cn:'尊敬者'}, {root:'obat', full:'pengobat', cn:'治疗者'},
-            {root:'guna', full:'penggunaan', cn:'使用'}, {root:'ikut', full:'pengikut', cn:'追随者'},
-            {root:'karang', full:'pengarang', cn:'作者'}, {root:'ajar', full:'pengajar', cn:'教师'},
-            {root:'urus', full:'pengurus', cn:'管理员'}, {root:'ganti', full:'pengganti', cn:'替代者'}, {root:'habis', full:'penghabisan', cn:'耗尽'},
-            {root:'huni', full:'penghuni', cn:'居民'}, {root:'hitung', full:'penghitung', cn:'计算器'}, {root:'gerak', full:'penggerak', cn:'推动者'}, {root:'galang', full:'penggalang', cn:'筹集者'}
-          ]},
-          'penge-': { label: 'penge-', rule: '单音节词根 → penge-', color: '#ff9f43', words: [
-            {root:'bom', full:'pengebom', cn:'投弹者'}, {root:'cek', full:'pengecek', cn:'检查者'},
-            {root:'cor', full:'pengecor', cn:'铸造工'}, {root:'pas', full:'pengepas', cn:'装配工'}, {root:'jar', full:'pengejar', cn:'追逐者'},
-            {root:'jut', full:'pengejut', cn:'惊吓者'}, {root:'pak', full:'pengepak', cn:'打包工'}, {root:'cat', full:'pengecat', cn:'油漆工'},
-            {root:'lap', full:'pengelap', cn:'擦拭者'}, {root:'las', full:'pengelas', cn:'焊工'}, {root:'luk', full:'pengeluk', cn:'拥抱者'},
-            {root:'bor', full:'pengebor', cn:'钻探工'}, {root:'dus', full:'pengedus', cn:'嗅探者'}, {root:'mak', full:'pengemas', cn:'包装工'}, {root:'tik', full:'pengetik', cn:'打字员'}
-          ]},
-          'pe-': { label: 'pe-', rule: '首字母 l/r/w/y → pe-（惯常者/某种人）', color: '#54a0ff', words: [
-            {root:'main', full:'pemain', cn:'选手'}, {root:'tinju', full:'petinju', cn:'拳击手'},
-            {root:'malu', full:'pemalu', cn:'害羞的人'}, {root:'diam', full:'pendiam', cn:'少言的人'},
-            {root:'jabat', full:'pejabat', cn:'官员'}, {root:'laut', full:'pelaut', cn:'海员'},
-            {root:'lukis', full:'pelukis', cn:'画家'}, {root:'rancang', full:'perancang', cn:'设计者'}, {root:'layar', full:'pelayar', cn:'水手'},
-            {root:'layan', full:'pelayan', cn:'服务员'}, {root:'wakil', full:'perwakilan', cn:'代表'}, {root:'waris', full:'pewaris', cn:'继承人'},
-            {root:'yanyi', full:'penyanyi', cn:'歌手'}, {root:'yair', full:'penyair', cn:'诗人'}, {root:'layan', full:'melayani', cn:'服务'}
-          ]}
-        }
-      },
-      'per-': {
-        name: 'per- 使动/名词',
-        desc: '构动词：使更…/使成为/分成；构名词：对应ber-动词。主动态必加meN-（memper-），被动态diper-。',
-        rule: 'per-/pe-/pel- 三变体，与ber-/be-/bel-平行',
-        variants: {
-          'per-': { label: 'per-', rule: 'per- + 词根（使动/过程名词）', color: '#a29bfe', words: [
-            {root:'baik', full:'perbaiki', cn:'修理'}, {root:'kenal', full:'perkenalkan', cn:'介绍'},
-            {root:'luas', full:'perluas', cn:'扩展'}, {root:'tahu', full:'pertahankan', cn:'保卫'},
-            {root:'besar', full:'perbesar', cn:'放大'}, {root:'panjang', full:'perpanjang', cn:'延长'},
-            {root:'segi', full:'persegi', cn:'正方形'}, {root:'rokok', full:'perokok', cn:'烟民'},
-            {root:'beda', full:'perbedaan', cn:'差异'}, {root:'ubah', full:'perubahan', cn:'变化'},
-            {root:'temu', full:'pertemuan', cn:'会议'}, {root:'jalan', full:'perjalanan', cn:'旅程'},
-            {root:'kerja', full:'pekerjaan', cn:'工作'}, {root:'cakap', full:'percakapan', cn:'谈话'},
-            {root:'buat', full:'perbuatan', cn:'行为'}, {root:'angkat', full:'perangkatan', cn:'出发'}
-          ]},
-          'pel-': { label: 'pel-', rule: '特例：l开头词根，per-缩为pel-', color: '#fd79a8', words: [
-            {root:'ajar', full:'pelajar', cn:'学生'}, {root:'hara', full:'pelihara', cn:'照顾'},
-            {root:'uang', full:'peluang', cn:'机会'}, {root:'opor', full:'pelopor', cn:'先驱'},
-            {root:'aut', full:'pelaut', cn:'海员'}, {root:'opor', full:'pelopor', cn:'先驱'},
-            {root:'angi', full:'pelangi', cn:'彩虹'}, {root:'ari', full:'pelari', cn:'跑步者'},
-            {root:'ajaran', full:'pelajaran', cn:'课程'}, {root:'indah', full:'pelindung', cn:'保护者'},
-            {root:'opor', full:'pelopor', cn:'先驱'}, {root:'atih', full:'pelatih', cn:'教练'}
-          ]}
-        }
-      },
-      'se-': {
-        name: 'se- 一/同/全',
-        desc: '约10义：①一（单位）②每 ③同一/共同 ④全 ⑤相同 ⑥像/类似 ⑦一齐 ⑧时间 ⑨尽量 ⑩按照',
-        rule: 'se- 前缀无变形',
-        variants: {
-          'se-': { label: 'se-', rule: 'se- + 词根（一/同/全/像/时间）', color: '#ffeaa7', words: [
-            {root:'orang', full:'seorang', cn:'一个人'}, {root:'mua', full:'semua', cn:'全部'},
-            {root:'suai', full:'sesuai', cn:'适合'}, {root:'ring', full:'sering', cn:'经常'},
-            {root:'bentar', full:'sebentar', cn:'一会儿'}, {root:'kali', full:'sekali', cn:'一次'},
-            {root:'jak', full:'sejak', cn:'自从'}, {root:'karang', full:'sekarang', cn:'现在'},
-            {root:'tahun', full:'setahun', cn:'一年'}, {root:'lembar', full:'selembar', cn:'一张'},
-            {root:'rumah', full:'serumah', cn:'同屋'}, {root:'dunia', full:'sedunia', cn:'全世界'},
-            {root:'jenis', full:'sejenis', cn:'同类'}, {root:'belum', full:'sebelum', cn:'之前'}, {root:'usai', full:'seusai', cn:'之后'}
-          ]}
-        }
-      },
-      'ke-': {
-        name: 'ke- 序数/向/变',
-        desc: '序数前缀；部分名词；表示"向/变成/过度"',
-        rule: 'ke- 前缀无变形',
-        variants: {
-          'ke-': { label: 'ke-', rule: 'ke- + 词根（序数/向/变）', color: '#dfe6e9', words: [
-            {root:'pada', full:'kepada', cn:'向'}, {root:'hilang', full:'kehilangan', cn:'丢失'},
-            {root:'mari', full:'kemari', cn:'来这里'}, {root:'banyakan', full:'kebanyakan', cn:'过多'},
-            {root:'cil', full:'kecil', cn:'小'}, {root:'luar', full:'keluar', cn:'出去'},
-            {root:'dua', full:'kedua', cn:'第二'}, {root:'tiga', full:'ketiga', cn:'第三'},
-            {root:'pala', full:'kepala', cn:'头/首长'}, {root:'kasih', full:'kekasih', cn:'爱人'},
-            {root:'mari', full:'kemari', cn:'过来'}, {root:'luar', full:'keluar', cn:'出去'}, {root:'mana', full:'kemana', cn:'去哪里'},
-            {root:'sini', full:'kesini', cn:'来这里'}, {root:'sana', full:'kesana', cn:'去那里'}
-          ]}
-        }
-      }
-    }
-  },
-  suffix: {
-    name: '后缀 (Akhiran)',
-    icon: '➡️',
-    desc: '放在词根后面的词缀，改变词性或语法功能。',
-    children: {
-      '-an': {
-        name: '-an 名词化',
-        desc: '动词→名词（结果/产物）；集合名词；模糊数字',
-        rule: '-an 后缀无变形',
-        variants: {
-          '-an': { label: '-an', rule: '词根 + -an → 名词（结果/产物）', color: '#ff7675', words: [
-            {root:'makan', full:'makanan', cn:'食物'}, {root:'minum', full:'minuman', cn:'饮料'},
-            {root:'baca', full:'bacaan', cn:'读物'}, {root:'tulis', full:'tulisan', cn:'文章'},
-            {root:'masak', full:'masakan', cn:'菜肴'}, {root:'main', full:'mainan', cn:'玩具'},
-            {root:'bangun', full:'bangunan', cn:'建筑'}, {root:'duduk', full:'dudukan', cn:'座位'},
-            {root:'buah', full:'buah-buahan', cn:'水果总称'}, {root:'sayur', full:'sayur-sayuran', cn:'蔬菜总称'},
-            {root:'muda', full:'muda-mudan', cn:'大概年轻'}, {root:'tiga', full:'tigapuluhan', cn:'三十几'}, {root:'puluh', full:'puluhan', cn:'几十'}, {root:'ribu', full:'ribuan', cn:'数千'}, {root:'juta', full:'jutaan', cn:'数百万'}
-          ]}
-        }
-      },
-      '-kan': {
-        name: '-kan 使动/益格',
-        desc: '致使/为某人做/置放/视为。须与meN-/di-共现。口语 -in = -kan',
-        rule: '词根 + -kan（须与meN-/di-共现）',
-        variants: {
-          '-kan': { label: '-kan', rule: '词根 + -kan（使动/益格）', color: '#74b9ff', words: [
-            {root:'duduk', full:'dudukkan', cn:'使坐下'}, {root:'tahu', full:'tahukan', cn:'告知'},
-            {root:'buka', full:'bukakan', cn:'打开（为某人）'}, {root:'tulis', full:'tuliskan', cn:'写下'},
-            {root:'beri', full:'berikan', cn:'给'}, {root:'lihat', full:'lihatkan', cn:'展示'},
-            {root:'pinjam', full:'meminjamkan', cn:'借出'}, {root:'panggil', full:'memanggilkan', cn:'叫（出租车给某人）'},
-            {root:'senang', full:'menyenangkan', cn:'使高兴'}, {root:'besar', full:'memperbesar', cn:'放大'}, {root:'indah', full:'memperindah', cn:'美化'}, {root:'cepat', full:'mempercepat', cn:'加速'}, {root:'tahankan', full:'pertahankan', cn:'保卫'}, {root:'baiki', full:'perbaiki', cn:'修理'}, {root:'kenal', full:'perkenalkan', cn:'介绍'}
-          ]}
-        }
-      },
-      '-i': {
-        name: '-i 处所/反复',
-        desc: '处所/反复/给予/朝向。须与meN-/di-共现。',
-        rule: '词根 + -i（须与meN-/di-共现）',
-        variants: {
-          '-i': { label: '-i', rule: '词根 + -i（处所/反复/朝向）', color: '#a29bfe', words: [
-            {root:'tulis', full:'tulisi', cn:'填写'}, {root:'hampir', full:'hampiri', cn:'接近'},
-            {root:'tangis', full:'tangisi', cn:'哭泣'}, {root:'kaji', full:'mengkaji', cn:'研究'},
-            {root:'nama', full:'menamai', cn:'取名'}, {root:'biaya', full:'membiayai', cn:'资助'},
-            {root:'warna', full:'mewarnai', cn:'上色'}, {root:'hadir', full:'menghadiri', cn:'出席'},
-            {root:'pukul', full:'memukuli', cn:'痛打'}, {root:'cubit', full:'mencubiti', cn:'反复捏'}, {root:'lukai', full:'melukai', cn:'伤害'}, {root:'tari', full:'menari', cn:'跳舞'}, {root:'tidur', full:'meniduri', cn:'与…睡觉'}, {root:'janji', full:'menjanjikan', cn:'承诺'}, {root:'hargai', full:'menghargai', cn:'尊重'}
-          ]}
-        }
-      },
-      '-nya': {
-        name: '-nya 所有格/定指',
-        desc: '第三人称所有格；特指/定指标记；动词名词化；构成状语；meN-动词后=宾语，di-动词后=施事',
-        rule: '词根 + -nya（附着于词根后）',
-        variants: {
-          '-nya': { label: '-nya', rule: '词根 + -nya（所有格/定指）', color: '#fdcb6e', words: [
-            {root:'motor', full:'motornya', cn:'他的摩托'}, {root:'rumah', full:'rumahnya', cn:'他的家'},
-            {root:'sekolah', full:'sekolahnya', cn:'他的学校'}, {root:'nama', full:'namanya', cn:'他的名字'},
-            {root:'tidur', full:'tidurnya', cn:'他的睡觉（这件事）'}, {root:'seperti', full:'sepertinya', cn:'似乎'},
-            {root:'baik', full:'sebaiknya', cn:'最好'}, {root:'harus', full:'seharusnya', cn:'理应'},
-            {root:'pantas', full:'sepantasnya', cn:'理应'}, {root:'mesti', full:'semestinya', cn:'本该'},
-            {root:'bisa', full:'sebisanya', cn:'尽所能'}, {root:'mungkin', full:'semungkinnya', cn:'尽可能'}, {root:'cepat', full:'secepatnya', cn:'尽快'}, {root:'banyak', full:'sebanyaknya', cn:'尽可能多'}, {root:'dapat', full:'sedapatnya', cn:'尽所能'}
-          ]}
-        }
-      },
-      '-ku/-mu': {
-        name: '-ku/-mu 人称附着',
-        desc: '一/二人称领属/宾语附着于词根后',
-        rule: '词根 + -ku（我）/ -mu（你）',
-        variants: {
-          '-ku': { label: '-ku', rule: '词根 + -ku（我的）', color: '#6c5ce7', words: [
-            {root:'buku', full:'bukuku', cn:'我的书'}, {root:'rumah', full:'rumahku', cn:'我的家'},
-            {root:'nama', full:'namaku', cn:'我的名字'}, {root:'mobil', full:'mobilku', cn:'我的车'},
-            {root:'sayang', full:'sayangku', cn:'我的亲爱的'}, {root:'cinta', full:'cintaku', cn:'我的爱'}, {root:'milik', full:'milikku', cn:'我的所有'}, {root:'pikir', full:'pikiranku', cn:'我的想法'}
-          ]},
-          '-mu': { label: '-mu', rule: '词根 + -mu（你的）', color: '#00cec9', words: [
-            {root:'buku', full:'bukumu', cn:'你的书'}, {root:'rumah', full:'rumahmu', cn:'你的家'},
-            {root:'nama', full:'namamu', cn:'你的名字'}, {root:'cinta', full:'cintamu', cn:'你的爱'}, {root:'hati', full:'hatimu', cn:'你的心'}, {root:'muka', full:'mukamu', cn:'你的脸'}, {root:'tangan', full:'tanganmu', cn:'你的手'}, {root:'kasih', full:'kasihmu', cn:'你的爱'}
-          ]}
-        }
-      },
-      '-lah/-kah/-pun': {
-        name: '语气附着',
-        desc: '-lah强调/-kah疑问/-pun即使。-lah/-kah连写，-pun多分写',
-        rule: '词根 + -lah（强调）/ -kah（疑问）/ -pun（即使）',
-        variants: {
-          '-lah': { label: '-lah', rule: '词根 + -lah（祈使/强调）', color: '#e17055', words: [
-            {root:'mari', full:'marilah', cn:'来吧'}, {root:'dengar', full:'dengarlah', cn:'听吧'},
-            {root:'lihat', full:'lihatlah', cn:'看吧'}, {root:'pergi', full:'pergilah', cn:'去吧'},
-            {root:'baca', full:'bacalah', cn:'请读'}, {root:'masuk', full:'masuklah', cn:'进来吧'},
-            {root:'duduk', full:'duduki lah', cn:'请坐'}, {root:'tunggu', full:'tunggulah', cn:'请等'}, {root:'jalan', full:'jalanlah', cn:'走吧'}, {root:'kerja', full:'kerjalah', cn:'工作吧'}
-          ]},
-          '-kah': { label: '-kah', rule: '词根 + -kah（疑问标记）', color: '#00b894', words: [
-            {root:'apa', full:'apakah', cn:'什么（疑问）'}, {root:'boleh', full:'bolehkah', cn:'可以吗'},
-            {root:'bisa', full:'bisakah', cn:'能吗'}, {root:'mau', full:'maukah', cn:'想要吗'},
-            {root:'ada', full:'adakah', cn:'有吗'}, {root:'sudah', full:'sudahkah', cn:'已经…了吗'}, {root:'pernah', full:'pernahkah', cn:'曾经…吗'}, {root:'begitu', full:'begitukah', cn:'那样吗'}
-          ]},
-          '-pun': { label: '-pun', rule: '词根 + -pun（即使/也）', color: '#0984e3', words: [
-            {root:'apa', full:'apa pun', cn:'无论什么'}, {root:'bagaimana', full:'bagaimanapun', cn:'无论如何'},
-            {root:'walaupun', full:'walaupun', cn:'即使'}, {root:'meski', full:'meskipun', cn:'尽管'},
-            {root:'siapa', full:'siapa pun', cn:'无论谁'}, {root:'kapan', full:'kapan pun', cn:'无论何时'}, {root:'mana', full:'mana pun', cn:'无论哪里'}, {root:'berapa', full:'berapapun', cn:'无论多少'}
-          ]}
-        }
-      }
-    }
-  },
-  circumfix: {
-    name: '环绕缀 (Apitan)',
-    icon: '🔁',
-    desc: '前后缀同时出现，包围词根。印尼语特色词缀结构。',
-    children: {
-      'meN-...-kan': {
-        name: 'meN-...-kan 使动/益格',
-        desc: '取代membuat（使动改写）/untuk（受益改写）；置放；视为',
-        rule: '变形与meN-相同，-kan不变',
-        variants: {
-          'meN-...-kan': { label: 'meN-...-kan', rule: 'meN- + 词根 + -kan', color: '#e84393', words: [
-            {root:'senang', full:'menyenangkan', cn:'使高兴'}, {root:'panggil', full:'memanggilkan', cn:'为某人叫'},
-            {root:'pinjam', full:'meminjamkan', cn:'借出'}, {root:'jual', full:'menjualkan', cn:'替卖'},
-            {root:'hati', full:'memperhatikan', cn:'注意'}, {root:'timbang', full:'mempertimbangkan', cn:'考虑'},
-            {root:'baiki', full:'memperbaiki', cn:'修理'}, {root:'besar', full:'memperbesar', cn:'放大'}, {root:'indah', full:'memperindah', cn:'美化'},
-            {root:'cepat', full:'mempercepat', cn:'加速'}, {root:'tinggi', full:'mempertinggi', cn:'加高'}, {root:'luas', full:'memperluas', cn:'扩展'}, {root:'panjang', full:'memperpanjang', cn:'延长'}, {root:'tahankan', full:'mempertahankan', cn:'保卫'}, {root:'kenal', full:'memperkenalkan', cn:'介绍'}
-          ]}
-        }
-      },
-      'meN-...-i': {
-        name: 'meN-...-i 处所/反复',
-        desc: '取代memberi（给予）；取代介词（不及物→及物）；动作反复',
-        rule: '变形与meN-相同，-i不变',
-        variants: {
-          'meN-...-i': { label: 'meN-...-i', rule: 'meN- + 词根 + -i', color: '#00cec9', words: [
-            {root:'nama', full:'menamai', cn:'取名'}, {root:'biaya', full:'membiayai', cn:'资助'},
-            {root:'warna', full:'mewarnai', cn:'上色'}, {root:'hadir', full:'menghadiri', cn:'出席'},
-            {root:'pukul', full:'memukuli', cn:'痛打'}, {root:'cubit', full:'mencubiti', cn:'反复捏'},
-            {root:'lukai', full:'melukai', cn:'伤害'}, {root:'tari', full:'menari', cn:'跳舞'}, {root:'tidur', full:'meniduri', cn:'与…睡觉'},
-            {root:'janji', full:'menjanjikan', cn:'承诺'}, {root:'hargai', full:'menghargai', cn:'尊重'}, {root:'kasihi', full:'mengasihi', cn:'疼爱'}, {root:'gunai', full:'menggunai', cn:'利用'}, {root:'sungguh', full:'menyungguhi', cn:'频繁拜访'}
-          ]}
-        }
-      },
-      'ke-...-an': {
-        name: 'ke-...-an 名词化/遭遇',
-        desc: '形容词→名词；负面/遭遇；极端化',
-        rule: 'ke- + 词根 + -an',
-        variants: {
-          'ke-...-an': { label: 'ke-...-an', rule: 'ke- + 词根 + -an', color: '#fdcb6e', words: [
-            {root:'sehat', full:'kesehatan', cn:'健康'}, {root:'cantik', full:'kecantikan', cn:'美丽'},
-            {root:'jujur', full:'kejujuran', cn:'诚信'}, {root:'mampu', full:'kemampuan', cn:'能力'},
-            {root:'hilang', full:'kehilangan', cn:'遗失'}, {root:'tinggal', full:'ketinggalan', cn:'忘带'},
-            {root:'lapar', full:'kelaparan', cn:'饿死'}, {root:'panas', full:'kepanasan', cn:'中暑'},
-            {root:'datang', full:'kedatangan', cn:'抵达'}, {root:'percaya', full:'kepercayaan', cn:'信任'},
-            {root:'berangkat', full:'keberangkatan', cn:'出发'}, {root:'berani', full:'keberanian', cn:'勇气'},
-            {root:'dingin', full:'kedinginan', cn:'冷死'}, {root:'lama', full:'kelamaan', cn:'太久'}, {root:'hujan', full:'kehujanan', cn:'被雨淋'}
-          ]}
-        }
-      },
-      'peN-...-an': {
-        name: 'peN-...-an 行为名词',
-        desc: '及物动词行为名词',
-        rule: 'peN- + 词根 + -an',
-        variants: {
-          'peN-...-an': { label: 'peN-...-an', rule: 'peN- + 词根 + -an', color: '#e17055', words: [
-            {root:'jual', full:'penjualan', cn:'售卖'}, {root:'bangun', full:'pembangunan', cn:'建设'},
-            {root:'bayar', full:'pembayaran', cn:'支付'}, {root:'tulis', full:'penulisan', cn:'写作'},
-            {root:'baca', full:'pembacaan', cn:'阅读'}, {root:'buat', full:'pembuatan', cn:'制作'}, {root:'beri', full:'pemberian', cn:'给予'},
-            {root:'hasil', full:'penghasilan', cn:'收入'}, {root:'guna', full:'penggunaan', cn:'使用'}, {root:'urus', full:'pengurusan', cn:'管理'},
-            {root:'ajar', full:'pengajaran', cn:'教学'}, {root:'lihat', full:'penjelasan', cn:'解释'}, {root:'kirim', full:'pengiriman', cn:'发送'}, {root:'temu', full:'penemuan', cn:'发现'}
-          ]}
-        }
-      },
-      'per-...-an': {
-        name: 'per-...-an 过程名词',
-        desc: '不及物/过程名词',
-        rule: 'per- + 词根 + -an',
-        variants: {
-          'per-...-an': { label: 'per-...-an', rule: 'per- + 词根 + -an', color: '#6c5ce7', words: [
-            {root:'beda', full:'perbedaan', cn:'差异'}, {root:'ubah', full:'perubahan', cn:'变化'},
-            {root:'temu', full:'pertemuan', cn:'会议'}, {root:'jalan', full:'perjalanan', cn:'旅程'},
-            {root:'kerja', full:'pekerjaan', cn:'工作'}, {root:'cakap', full:'percakapan', cn:'谈话'},
-            {root:'buat', full:'perbuatan', cn:'行为'}, {root:'angkat', full:'perangkatan', cn:'出发'}, {root:'giat', full:'pergiation', cn:'活动'},
-            {root:'lakuan', full:'perlakuan', cn:'待遇'}, {root:'coba', full:'percobaan', cn:'尝试'}, {root:'janjian', full:'perjanjian', cn:'协议'},
-            {root:'main', full:'permainan', cn:'游戏'}, {root:'damping', full:'pendampingan', cn:'陪伴'}
-          ]}
-        }
-      },
-      'ber-...-an': {
-        name: 'ber-...-an 相互',
-        desc: '相互/分散动作',
-        rule: 'ber- + 词根 + -an',
-        variants: {
-          'ber-...-an': { label: 'ber-...-an', rule: 'ber- + 词根 + -an', color: '#fd79a8', words: [
-            {root:'salam', full:'bersalaman', cn:'互相握手'}, {root:'muncul', full:'bermunculan', cn:'纷纷出现'},
-            {root:'sebelah', full:'bersebelahan', cn:'相邻'}, {root:'gugur', full:'berguguran', cn:'纷纷落下'},
-            {root:'temu', full:'bertemuan', cn:'会面'}, {root:'cium', full:'berciuman', cn:'互相亲吻'}, {root:'peluk', full:'berpelukan', cn:'互相拥抱'},
-            {root:'tukar', full:'bertukaran', cn:'交换'}, {root:'debat', full:'berdebat', cn:'辩论'}
-          ]}
-        }
-      },
-      'ber-...-kan': {
-        name: 'ber-...-kan 以...为',
-        desc: '"以…为"',
-        rule: 'ber- + 词根 + -kan',
-        variants: {
-          'ber-...-kan': { label: 'ber-...-kan', rule: 'ber- + 词根 + -kan', color: '#a29bfe', words: [
-            {root:'dasar', full:'berdasarkan', cn:'基于'}, {root:'tema', full:'bertemakan', cn:'以…为主题'},
-            {root:'anggota', full:'beranggotakan', cn:'由…成员组成'}, {root:'kait', full:'berkaitan', cn:'与…相关'}, {root:'hubung', full:'berhubungan', cn:'有关系'}
-          ]}
-        }
-      },
-      'se-...-nya': {
-        name: 'se-...-nya 情态副词',
-        desc: '凝固情态副词；时间"…之后"；至极强调',
-        rule: 'se- + 词根 + -nya',
-        variants: {
-          'se-...-nya': { label: 'se-...-nya', rule: 'se- + 词根 + -nya', color: '#ffeaa7', words: [
-            {root:'baik', full:'sebaiknya', cn:'最好'}, {root:'harus', full:'seharusnya', cn:'理应'},
-            {root:'pantas', full:'sepantasnya', cn:'理应'}, {root:'mesti', full:'semestinya', cn:'本该'},
-            {root:'tiba', full:'setibanya', cn:'到达之后'}, {root:'sampai', full:'sesampainya', cn:'抵达之后'},
-            {root:'bisa', full:'sebisanya', cn:'尽所能'}, {root:'cepat', full:'secepatnya', cn:'尽快'}, {root:'mungkin', full:'semungkinnya', cn:'尽可能'}
-          ]}
-        }
-      }
-    }
-  },
-  special: {
-    name: '中缀/特殊 (Sisipan)',
-    icon: '⭐',
-    desc: '插入词根内部的词缀，全部非能产。印尼语特有现象。',
-    children: {
-      '-el-': {
-        name: '-el- 中缀',
-        desc: '插入词根首字母与后续字母之间',
-        rule: '词根首字母 + -el- + 后续部分',
-        variants: {
-          '-el-': { label: '-el-', rule: 'tunjuk → telunjuk, gembung → gelembung', color: '#e84393', words: [
-            {root:'tunjuk', full:'telunjuk', cn:'食指'}, {root:'gembung', full:'gelembung', cn:'气泡'},
-            {root:'giling', full:'gelinding', cn:'滚动'}, {root:'getar', full:'geletar', cn:'轻微颤抖'}, {root:'lipat', full:'gelipat', cn:'折叠'}
-          ]}
-        }
-      },
-      '-em-': {
-        name: '-em- 中缀',
-        desc: '插入词根首字母与后续字母之间',
-        rule: '词根首字母 + -em- + 后续部分',
-        variants: {
-          '-em-': { label: '-em-', rule: 'getar → gemetar, guruh → gemuruh', color: '#00cec9', words: [
-            {root:'getar', full:'gemetar', cn:'发抖'}, {root:'guruh', full:'gemuruh', cn:'隆隆'},
-            {root:'tali', full:'temali', cn:'绳索'}, {root:'gigi', full:'gemigi', cn:'咬牙切齿'}, {root:'baris', full:'gembaris', cn:'排成行'}
-          ]}
-        }
-      },
-      '-er-': {
-        name: '-er- 中缀',
-        desc: '插入词根首字母与后续字母之间',
-        rule: '词根首字母 + -er- + 后续部分',
-        variants: {
-          '-er-': { label: '-er-', rule: 'gigi → gerigi, suling → seruling', color: '#fdcb6e', words: [
-            {root:'gigi', full:'gerigi', cn:'锯齿'}, {root:'suling', full:'seruling', cn:'笛子'},
-            {root:'tari', full:'terari', cn:'舞蹈'}, {root:'lipat', full:'gerlipat', cn:'折叠'}
-          ]}
-        }
-      }
-    }
-  }
-};
-
-// ===== 动态词库系统 =====
-// 从本地词汇表和生词本抽取词根，动态扩展词库
-function buildDynamicWordPool() {
-  const pool = [];
-  // 从生词本提取
-  try {
-    const vw = JSON.parse(localStorage.getItem('vocabWords') || '[]');
-    vw.forEach(w => {
-      if (w.ind && w.cn) {
-        pool.push({ root: w.ind.replace(/^(me|mem|men|meng|meny|di|ter|ber|pe|pen|peng|pem|se|ke)/, ''), full: w.ind, cn: w.cn });
-      }
-    });
-  } catch(e) {}
-  // 从词汇表提取
-  try {
-    const vocab = JSON.parse(localStorage.getItem('vocab') || '[]');
-    vocab.forEach(w => {
-      if (w.ind && w.cn) {
-        pool.push({ root: w.ind.replace(/^(me|mem|men|meng|meny|di|ter|ber|pe|pen|peng|pem|se|ke)/, ''), full: w.ind, cn: w.cn });
-      }
-    });
-  } catch(e) {}
-  return pool;
-}
-
-// 游戏状态 V4.2
-let prefixGameState = {
-  active: false,
-  phase: 'menu',
-  level1: null,
-  level2: null,
-  difficulty: 'normal',
-  level: 1,
-  subLevel: 1,
-  score: 0,
-  lives: 3,
-  currentWord: null,
-  fallingSpeed: 5000,
-  selectedVariant: null,
-  timer: null,
-  wordsCompleted: 0,
-  streak: 0,
-  bestStreak: 0,
-  achievements: {},
-  unlocked: { prefix: true, suffix: false, circumfix: false, special: false },
-  starRatings: {}
-};
-
-// 难度配置
-const DIFFICULTY_CONFIG = {
-  easy: { label: '简单', lives: 5, fallingSpeed: 7000, options: 3, crossCategory: false, timeBonus: true },
-  normal: { label: '中等', lives: 3, fallingSpeed: 5000, options: 4, crossCategory: false, timeBonus: true },
-  hard: { label: '困难', lives: 3, fallingSpeed: 3500, options: 4, crossCategory: true, timeBonus: false },
-  master: { label: '大师', lives: 2, fallingSpeed: 2500, options: 6, crossCategory: true, timeBonus: false }
-};
-
-// 成就定义
-const ACHIEVEMENTS = {
-  first_blood: { id: 'first_blood', name: '初出茅庐', desc: '首次正确击破词根', icon: '🎯', condition: (s) => s.wordsCompleted >= 1 },
-  streak_5: { id: 'streak_5', name: '连续命中', desc: '达成5连击', icon: '🔥', condition: (s) => s.bestStreak >= 5 },
-  streak_10: { id: 'streak_10', name: '百发百中', desc: '达成10连击', icon: '⚡', condition: (s) => s.bestStreak >= 10 },
-  streak_20: { id: 'streak_20', name: '神射手', desc: '达成20连击', icon: '👑', condition: (s) => s.bestStreak >= 20 },
-  score_100: { id: 'score_100', name: '小有成就', desc: '单局得分100+', icon: '⭐', condition: (s) => s.score >= 100 },
-  score_500: { id: 'score_500', name: '词根大师', desc: '单局得分500+', icon: '🏆', condition: (s) => s.score >= 500 },
-  level_5: { id: 'level_5', name: '闯关达人', desc: '到达第5大关', icon: '🚀', condition: (s) => s.level >= 5 },
-  level_10: { id: 'level_10', name: '终极挑战', desc: '到达第10大关', icon: '🌟', condition: (s) => s.level >= 10 },
-  all_prefix: { id: 'all_prefix', name: '前缀通', desc: '完成所有前缀关卡', icon: '⬅️', condition: (s, a) => a && a.all_prefix },
-  all_suffix: { id: 'all_suffix', name: '后缀通', desc: '完成所有后缀关卡', icon: '➡️', condition: (s, a) => a && a.all_suffix },
-  perfect_level: { id: 'perfect_level', name: '完美通关', desc: '单大关不损失生命', icon: '💎', condition: (s, a) => a && a.perfect_level }
-};
-
-;
-
 let memberInfo = JSON.parse(localStorage.getItem("bir_member") || "null");
 
 function initMember() {
@@ -2395,219 +1676,11 @@ function getMemberStatus() {
   checkMemberExpiry();
   if (!memberInfo || !memberInfo.type || memberInfo.type === 'expired') return { valid: false, label: '非会员', color: 'var(--danger)' };
   if (memberInfo.isAdmin) return { valid: true, label: '超级管理员', color: 'var(--accent)' };
+  if (memberInfo.type === 'trial')
   if (memberInfo.type === 'trial') { const h = Math.max(0, Math.floor((new Date(memberInfo.trialEnd) - new Date()) / 3600000)); return { valid: true, label: `试用(${h}h)`, color: 'var(--info)' }; }
   if (memberInfo.type === 'paid') { const d = Math.max(0, Math.floor((new Date(memberInfo.paidEnd) - new Date()) / 86400000)); return { valid: true, label: `年费(${d}天)`, color: 'var(--success)' }; }
-  if (memberInfo.type === 'member') { const d = memberInfo.paidEnd ? Math.max(0, Math.floor((new Date(memberInfo.paidEnd) - new Date()) / 86400000)) : '∞'; return { valid: true, label: `会员(${d}天)`, color: 'var(--primary)' }; }
   return { valid: false, label: '非会员', color: 'var(--danger)' };
 }
-// ===== 修仙等级系统 =====
-const CULTIVATION_LEVELS = [
-  {name: '凡人', color: '#888888', glow: 'none'},
-  {name: '炼气', color: '#e5e7eb', glow: '0 0 5px #e5e7eb'},
-  {name: '筑基', color: '#22c55e', glow: '0 0 8px #22c55e'},
-  {name: '金丹', color: '#06b6d4', glow: '0 0 10px #06b6d4'},
-  {name: '元婴', color: '#3b82f6', glow: '0 0 12px #3b82f6'},
-  {name: '化神', color: '#8b5cf6', glow: '0 0 15px #8b5cf6'},
-  {name: '炼虚', color: '#ec4899', glow: '0 0 15px #ec4899'},
-  {name: '合体', color: '#ef4444', glow: '0 0 18px #ef4444'},
-  {name: '大乘', color: '#f97316', glow: '0 0 18px #f97316'},
-  {name: '渡劫', color: '#f59e0b', glow: '0 0 20px #f59e0b'},
-  {name: '真仙', color: '#ffd700', glow: '0 0 22px #ffd700'},
-  {name: '金仙', color: '#c0c0c0', glow: '0 0 22px #c0c0c0'},
-  {name: '太乙', color: '#a855f7', glow: '0 0 25px #a855f7'},
-  {name: '大罗', color: 'linear-gradient(90deg,#ff0000,#ff7f00,#ffff00,#00ff00,#0000ff,#4b0082,#9400d3)', glow: '0 0 30px rgba(255,255,255,0.5)'},
-  {name: '道主', color: '#ffffff', glow: '0 0 40px rgba(255,255,255,0.8)'}
-];
-
-function getCultivationInfo() {
-  if (!memberInfo || !memberInfo.loginTime) return { level: 0, name: '凡人', color: '#888888', petals: 1, cycle: 0 };
-  const loginTime = new Date(memberInfo.loginTime);
-  const now = new Date();
-  const hoursPassed = Math.floor((now - loginTime) / 3600000);
-  const level = Math.min(Math.floor(hoursPassed / 24) + 1, 15);
-  const cycleLevel = ((level - 1) % 5) + 1; // 1-5 within each cycle
-  const cycle = Math.floor((level - 1) / 5); // 0, 1, 2
-  const info = CULTIVATION_LEVELS[level - 1];
-  return { level, name: info.name, color: info.color, glow: info.glow, petals: cycleLevel, cycle };
-}
-
-function getCultivationBadge() {
-  const info = getCultivationInfo();
-  if (info.level <= 0) return '';
-  
-  // Generate flower SVG
-  const petalCount = info.petals;
-  const isDaoMaster = info.level >= 15;
-  const isDaluo = info.level >= 14;
-  
-  let svg = `<svg width="32" height="32" viewBox="0 0 32 32" style="vertical-align:middle;margin-left:4px;">`;
-  
-  // Draw petals
-  for (let i = 0; i < petalCount; i++) {
-    const angle = (360 / petalCount) * i - 90;
-    const rad = angle * Math.PI / 180;
-    const x = 16 + 8 * Math.cos(rad);
-    const y = 16 + 8 * Math.sin(rad);
-    svg += `<circle cx="${x}" cy="${y}" r="3" fill="${isDaluo ? 'url(#rainbow)' : info.color}" opacity="0.9"/>`;
-  }
-  
-  // Center
-  svg += `<circle cx="16" cy="16" r="${petalCount >= 5 ? 5 : 4}" fill="${isDaoMaster ? '#fff' : info.color}" stroke="${isDaoMaster ? 'gold' : 'none'}" stroke-width="${isDaoMaster ? 1 : 0}"/>`;
-  
-  // Level number in center for small petals
-  if (petalCount < 5) {
-    svg += `<text x="16" y="18" text-anchor="middle" fill="#000" font-size="8" font-weight="bold">${info.level}</text>`;
-  }
-  
-  // Rainbow gradient for 大罗
-  if (isDaluo) {
-    svg += `<defs><linearGradient id="rainbow" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#ff0000"/><stop offset="16%" stop-color="#ff7f00"/><stop offset="33%" stop-color="#ffff00"/><stop offset="50%" stop-color="#00ff00"/><stop offset="66%" stop-color="#0000ff"/><stop offset="83%" stop-color="#4b0082"/><stop offset="100%" stop-color="#9400d3"/></linearGradient></defs>`;
-  }
-  
-  svg += `</svg>`;
-  return svg;
-}
-
-function showCultivationInfo() {
-  const info = getCultivationInfo();
-  const c = document.getElementById('appContent');
-  if (!c) return;
-  
-  // 计算升级进度
-  let nextLevelInfo = null;
-  let progressPercent = 0;
-  let progressText = '';
-  
-  if (memberInfo && memberInfo.loginTime) {
-    const loginTime = new Date(memberInfo.loginTime);
-    const now = new Date();
-    const hoursPassed = Math.floor((now - loginTime) / 3600000);
-    const currentLevel = Math.min(Math.floor(hoursPassed / 24) + 1, 15);
-    const hoursInCurrentLevel = hoursPassed % 24;
-    progressPercent = Math.round((hoursInCurrentLevel / 24) * 100);
-    
-    if (currentLevel < 15) {
-      const nextLevelName = CULTIVATION_LEVELS[currentLevel].name;
-      const hoursRemaining = 24 - hoursInCurrentLevel;
-      nextLevelInfo = { name: nextLevelName, hoursRemaining };
-      progressText = `已修炼 ${hoursPassed} 小时，当前第 ${hoursInCurrentLevel}/24 小时`;
-    } else {
-      progressText = '已达到最高境界 · 道主';
-      progressPercent = 100;
-    }
-  } else {
-    progressText = '尚未开始修炼，登录后激活修仙等级';
-  }
-  
-  // 生成等级列表 HTML
-  let levelsHtml = '';
-  CULTIVATION_LEVELS.forEach((lvl, idx) => {
-    const levelNum = idx + 1;
-    const isCurrent = levelNum === info.level;
-    const isPast = levelNum < info.level;
-    const isFuture = levelNum > info.level;
-    
-    let statusIcon = isCurrent ? '⚡' : (isPast ? '✅' : '○');
-    let opacity = isCurrent ? '1' : (isPast ? '0.6' : '0.3');
-    let borderColor = isCurrent ? lvl.color : 'var(--border)';
-    let bgStyle = isCurrent ? `background:rgba(0,212,170,.08);border-left:3px solid ${lvl.color}` : '';
-    
-    // 花瓣图案
-    const petalCount = ((levelNum - 1) % 5) + 1;
-    let flowerIcon = '●';
-    if (petalCount >= 2) flowerIcon = '❀';
-    if (petalCount >= 5) flowerIcon = '✿';
-    
-    levelsHtml += `
-      <div style="padding:10px 14px;margin-bottom:6px;border-radius:8px;border:1px solid ${borderColor};opacity:${opacity};${bgStyle};display:flex;align-items:center;gap:10px;"
-           onmouseenter="this.style.opacity='1'" onmouseleave="this.style.opacity='${opacity}'">
-        <div style="font-size:16px;width:24px;text-align:center">${statusIcon}</div>
-        <div style="flex:1">
-          <div style="font-size:13px;font-weight:600;color:${isCurrent ? lvl.color : 'var(--text)'};">${levelNum}. ${lvl.name}</div>
-          <div style="font-size:11px;color:var(--text-dim)">第 ${Math.floor((levelNum-1)/5)+1} 周期 · ${flowerIcon} ${petalCount}瓣</div>
-        </div>
-        <div style="font-size:11px;color:var(--text-dim)">${levelNum * 24}h</div>
-      </div>
-    `;
-  });
-  
-  c.innerHTML = `
-    <div class="card">
-      <div class="card-header" style="flex-wrap:wrap;gap:8px;">
-        <h2>🎋 修仙等级</h2>
-        <span class="badge" style="background:${info.color}20;color:${info.color}">${info.level > 0 ? info.name : '凡人'}</span>
-      </div>
-      <div style="padding:16px;">
-        
-        <!-- 当前等级信息 -->
-        <div style="background:var(--bg-elev);border-radius:12px;padding:20px;margin-bottom:20px;text-align:center;border:1px solid var(--border);">
-          <div style="font-size:48px;margin-bottom:8px">${getCultivationBadge()}</div>
-          <div style="font-size:24px;font-weight:700;color:${info.color};margin-bottom:4px;text-shadow:${info.glow}">${info.name}</div>
-          <div style="font-size:13px;color:var(--text-dim);margin-bottom:12px">${info.level > 0 ? '第 ' + info.level + ' 级' : '未激活'}</div>
-          
-          <!-- 当前等级周期进度条 (24小时) -->
-          <div style="font-size:11px;color:var(--text-dim);margin-bottom:4px;text-align:left">⏳ 本周期进度 (${hoursInCurrentLevel}/24h)</div>
-          <div style="background:var(--bg-card);border-radius:8px;height:8px;overflow:hidden;margin-bottom:8px;">
-            <div style="background:${info.color};width:${progressPercent}%;height:100%;transition:width .3s;box-shadow:${info.glow}"></div>
-          </div>
-          <div style="font-size:12px;color:var(--text-dim);margin-bottom:16px">${progressText}</div>
-          
-          <!-- 总体修仙累计进度条 (0h → 360h/道主) -->
-          <div style="font-size:11px;color:var(--text-dim);margin-bottom:4px;text-align:left">🎋 修仙累计进度 (0h → 360h · 道主)</div>
-          <div style="background:var(--bg-card);border-radius:8px;height:10px;overflow:hidden;margin-bottom:6px;border:1px solid var(--border);">
-            <div id="cultivationTotalBar" style="background:linear-gradient(90deg,${info.color},${nextLevelInfo ? CULTIVATION_LEVELS[Math.min(info.level,14)].color : info.color});width:${Math.min((hoursPassed/360)*100,100)}%;height:100%;transition:width .3s;box-shadow:${info.glow}"></div>
-          </div>
-          <div style="font-size:12px;color:var(--text-dim);margin-bottom:8px">已修炼 ${hoursPassed}h / 360h · ${(hoursPassed/360*100).toFixed(1)}%</div>
-          
-          ${nextLevelInfo ? `<div style="margin-top:12px;padding:10px;background:rgba(0,212,170,.06);border-radius:8px;font-size:13px;color:var(--primary)">⏱️ 距 ${nextLevelInfo.name} 还需 ${nextLevelInfo.hoursRemaining} 小时</div>` : ''}
-        </div>
-        
-        <!-- 升级规则说明 -->
-        <div style="margin-bottom:20px;">
-          <div style="font-size:14px;font-weight:600;color:var(--primary);margin-bottom:10px">📜 升级规则</div>
-          <div style="font-size:13px;color:var(--text);line-height:1.8;background:var(--bg-elev);border-radius:10px;padding:14px;border:1px solid var(--border);">
-            • 自登录之时起，每修炼 <strong>24 小时</strong> 自动升一级<br>
-            • 共 <strong>15 个境界</strong>，从凡人直至道主<br>
-            • 每 <strong>5 级</strong> 为一个周期，花瓣成花后重置<br>
-            • 花瓣数随等级递增（1→2→3→4→5→花→1→...）<br>
-            • 颜色随境界提升逐步华丽：灰→白→绿→青→蓝→紫→粉→红→橙→金→亮金→白金→紫金→彩虹→七彩
-          </div>
-        </div>
-        
-        <!-- 等级列表 -->
-        <div>
-          <div style="font-size:14px;font-weight:600;color:var(--primary);margin-bottom:10px">📋 境界全览</div>
-          <div style="max-height:400px;overflow-y:auto;padding-right:4px;">${levelsHtml}</div>
-        </div>
-        
-      </div>
-    </div>
-  `;
-  
-  // 更新页面标题
-  const t = document.getElementById('pageTitle');
-  if (t) t.innerText = '🎋 修仙等级';
-  currentRoute = 'cultivation';
-  updateNav();
-  updateTopbarButtons();
-  
-  // 移动端关闭侧边栏
-  const sidebar = document.getElementById('sidebar');
-  if (sidebar && window.innerWidth <= 768) sidebar.classList.remove('open');
-  
-  window.scrollTo(0, 0);
-}
-
-function getMemberDisplay() {
-  const base = getMemberStatus();
-  const cult = getCultivationInfo();
-  if (!base.valid) return base;
-  
-  const badge = getCultivationBadge();
-  const label = `${base.label} · ${cult.name}${badge}`;
-  return { ...base, label, cultivation: cult };
-}
-
 function checkAccess(action) {
   if (isMemberValid()) return true;
   memberInfo.clickCount = (memberInfo.clickCount || 0) + 1;
@@ -2637,49 +1710,43 @@ function loginMember(username, password) {
   
   // 超级管理员
   if (username === 'Chinarenwgl' && password === 'Youlu@123') {
-    // 超级管理员：设置6天前登录时间（144小时 = 第7级·炼虚）
-    const sixDaysAgo = new Date(Date.now() - 6 * 24 * 3600000);
-    memberInfo = { username: 'Chinarenwgl', type: 'admin', isAdmin: true, trialStart: null, trialEnd: null, paidStart: null, paidEnd: null, clickCount: 0, loginTime: sixDaysAgo.toISOString() };
+    memberInfo = { username: 'Chinarenwgl', type: 'admin', isAdmin: true, trialStart: null, trialEnd: null, paidStart: null, paidEnd: null, clickCount: 0 };
     saveMember(); showToast('✅ 超级管理员登录成功'); return true;
   }
   
   // 检查已注册的会员
   const members = getAllMembers();
-  const member = members[username];
-  
-  if (!member) {
-    showToast('❌ 账号不存在，请先注册'); return false;
+  if (members[username]) {
+    if (members[username].password === password) {
+      const expiry = members[username].expiry;
+      if (expiry && new Date(expiry) < new Date()) {
+        showToast('❌ 会员账号已过期'); return false;
+      }
+      memberInfo = { 
+        username: username, 
+        type: 'member', 
+        isAdmin: false, 
+        trialStart: null, 
+        trialEnd: null, 
+        paidStart: new Date().toISOString().slice(0,10), 
+        paidEnd: expiry, 
+        clickCount: 0,
+        note: members[username].note || ''
+      };
+      saveMember(); 
+      showToast(`✅ 会员 ${username} 登录成功`); 
+      return true;
+    } else {
+      showToast('❌ 密码错误'); return false;
+    }
   }
   
-  if (member.password !== password) {
-    showToast('❌ 密码错误，请检查大小写和特殊字符'); return false;
-  }
-  
-  const expiry = member.expiry;
-  if (expiry && new Date(expiry) < new Date()) {
-    showToast('❌ 会员账号已过期'); return false;
-  }
-  
-  memberInfo = { 
-    username: username, 
-    type: 'member', 
-    isAdmin: false, 
-    trialStart: null, 
-    trialEnd: null, 
-    paidStart: new Date().toISOString().slice(0,10), 
-    paidEnd: expiry, 
-    clickCount: 0,
-    note: member.note || '',
-    loginTime: new Date().toISOString()
-  };
-  saveMember(); 
-  showToast(`✅ 会员 ${username} 登录成功`); 
-  return true;
+  showToast('❌ 账号不存在'); return false;
 }
 
 function applyTrial() {
   const now = new Date(); const end = new Date(now.getTime() + 24 * 3600000);
-  memberInfo = { ...memberInfo, type: 'trial', trialStart: now.toISOString(), trialEnd: end.toISOString(), clickCount: 0, loginTime: now.toISOString() };
+  memberInfo = { ...memberInfo, type: 'trial', trialStart: now.toISOString(), trialEnd: end.toISOString(), clickCount: 0 };
   saveMember(); showToast('✅ 试用会员已激活，24小时'); navigate('member');
 }
 function renderMember(c) {
@@ -2715,7 +1782,7 @@ function renderMember(c) {
   }
   html += `</div>`; c.innerHTML = html;
 }
-function doLogin() { const u = document.getElementById('loginUser').value.trim(); const p = document.getElementById('loginPass').value.trim(); if (!u || !p) { showToast('请输入账号密码'); return; } if (loginMember(u, p)) { updateNav(); renderMember(document.getElementById('app')); } }
+function doLogin() { const u = document.getElementById('loginUser').value.trim(); const p = document.getElementById('loginPass').value.trim(); if (!u || !p) { showToast('请输入账号密码'); return; } if (loginMember(u, p)) { renderMember(document.getElementById('app')); } }
 function logoutMember() { memberInfo = { username: null, type: null, trialStart: null, trialEnd: null, paidStart: null, paidEnd: null, clickCount: 0, isAdmin: false }; saveMember(); showToast('已退出'); navigate('member'); }
 
 // === 会员管理功能（超级管理员） ===
@@ -3168,7 +2235,7 @@ function showGameResult() {
     <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;flex-direction:column;align-items:center;">
       ${nextButtons}
       <button class="trans-btn" style="background:transparent;border:1px solid var(--primary);color:var(--primary);" onclick="startGame('${gameState.mode}')">🔄 下一组新词</button>
-      <button class="trans-btn" style="background:transparent;color:var(--text-dim);" onclick="goHome()">🏠 返回主页</button>
+      <button class="trans-btn" style="background:transparent;color:var(--text-dim);" onclick="navigate('home')">🏠 返回主页</button>
     </div></div>`;
 }
 
@@ -3477,48 +2544,42 @@ const topicData = {
         "icon": "🏛️",
         "words": 160,
         "time": 60,
-        "content": "Selamat pagi, Bapak/Ibu Menteri. Perkenalkan, nama saya [Nama], General Manager PT [Nama Perusahaan] yang beroperasi di kawasan industri Morowali, Sulawesi Tengah. Perusahaan kami bergerak di bidang pengolahan nikel dari hulu hingga hilir, mulai dari tambang, smelter, hingga produksi baterai lithium. Kami sangat bersemangat untuk berdiskusi dengan pemerintah daerah mengenai rencana pengembangan berkelanjutan. Selama beberapa tahun terakhir, perusahaan kami telah berkembang pesat dan saat ini mempekerjakan lebih dari sepuluh ribu karyawan. Kami berharap dapat bersinergi dengan pemerintah untuk menciptakan lapangan kerja yang lebih luas. Terima kasih atas kesempatan untuk bertemu dan berbicara langsung dengan Bapak/Ibu hari ini. Saya yakin kerja sama ini akan berjalan dengan baik.",
-        "trans": "早上好，部长先生/女士。请允许我自我介绍，我叫[姓名]，是位于中苏拉威西莫罗瓦利工业园区的PT[公司名称]的总经理。我们公司从事从上游到下游的镍加工业务，从矿山、冶炼厂到锂电池生产。我们非常期待与地方政府讨论可持续发展计划。在过去几年里，我们公司发展迅速，目前雇佣了一万多名员工。我们希望与政府协同合作，创造更广泛的就业机会。感谢您今天给我与先生/女士直接会面和交谈的机会。我相信这次合作将会顺利进行。"
+        "content": "Selamat pagi, Bapak/Ibu Menteri. Perkenalkan, nama saya [Nama], General Manager PT [Nama Perusahaan] yang beroperasi di kawasan industri Morowali, Sulawesi Tengah. Perusahaan kami bergerak di bidang pengolahan nikel dari hulu hingga hilir, mulai dari tambang, smelter, hingga produksi baterai lithium. Kami sangat bersemangat untuk berdiskusi dengan pemerintah daerah mengenai rencana pengembangan berkelanjutan. Selama beberapa tahun terakhir, perusahaan kami telah berkembang pesat dan saat ini mempekerjakan lebih dari sepuluh ribu karyawan. Kami berharap dapat bersinergi dengan pemerintah untuk menciptakan lapangan kerja yang lebih luas. Terima kasih atas kesempatan untuk bertemu dan berbicara langsung dengan Bapak/Ibu hari ini. Saya yakin kerja sama ini akan berjalan dengan baik."
       },
       {
         "title": "日常同事见面（工厂晨会）",
         "icon": "🏭",
         "words": 140,
         "time": 55,
-        "content": "Selamat pagi, rekan-rekan sekalian. Semoga kita semua dalam keadaan sehat dan bersemangat untuk bekerja hari ini. Seperti yang sudah kita diskusikan dalam rapat kemarin, proyek pembangunan smelter baru akan segera berjalan dan kita perlu berkumpul lagi pukul sepuluh untuk membahas timeline yang lebih detail. Selama proses ini, saya ingin kita semua berpikir kreatif dan berusaha mencari solusi terbaik agar proyek ini dapat berjalan lancar. Jika ada rekan yang ingin bertanya atau berdiskusi, jangan ragu untuk menghampiri saya. Mari kita bersama-sama mewujudkan target produksi! Semangat pagi!",
-        "trans": "早上好，各位同事。祝愿我们大家身体健康，精神饱满地投入今天的工作。正如我们在昨天的会议中讨论的那样，新冶炼厂建设项目即将启动，我们需要在十点再次集合，讨论更详细的时间表。在这个过程中，我希望我们大家都能发挥创造性思维，努力寻找最佳解决方案，使这个项目能够顺利进行。如果有同事想要提问或讨论，请随时来找我。让我们一起实现生产目标！早上好！"
+        "content": "Selamat pagi, rekan-rekan sekalian. Semoga kita semua dalam keadaan sehat dan bersemangat untuk bekerja hari ini. Seperti yang sudah kita diskusikan dalam rapat kemarin, proyek pembangunan smelter baru akan segera berjalan dan kita perlu berkumpul lagi pukul sepuluh untuk membahas timeline yang lebih detail. Selama proses ini, saya ingin kita semua berpikir kreatif dan berusaha mencari solusi terbaik agar proyek ini dapat berjalan lancar. Jika ada rekan yang ingin bertanya atau berdiskusi, jangan ragu untuk menghampiri saya. Mari kita bersama-sama mewujudkan target produksi! Semangat pagi!"
       },
       {
         "title": "与下属/员工打招呼（简短指令）",
         "icon": "👷",
         "words": 130,
         "time": 50,
-        "content": "Halo, teman-teman! Selamat pagi. Saya senang melihat kalian semua hadir tepat waktu dan siap untuk bekerja. Hari ini, tim maintenance harus berkumpul di gudang peralatan pukul delapan untuk melakukan inspeksi rutin. Saya harap kalian berpikir matang sebelum memutuskan apa pun yang berkaitan dengan keselamatan kerja. Selama bertugas, jangan lupa untuk selalu berkomunikasi dengan rekan sejawat dan bertanya jika ada hal yang kurang jelas. Proses produksi harus berjalan sesuai prosedur standar, dan kita semua perlu berusaha keras untuk menjaga kualitas produk tetap prima. Terima kasih atas dedikasi kalian. Mari kita mulai!",
-        "trans": "大家好！早上好。我很高兴看到你们所有人都准时到达并准备好工作。今天，维护团队必须在八点前往工具仓库集合，进行例行检查。我希望你们在做出任何与工作安全相关的决定之前都能深思熟虑。在值班期间，别忘了始终与同事沟通，如果有不清楚的事情要提问。生产流程必须按照标准程序运行，我们所有人都需要努力工作，保持产品质量一流。感谢你们的奉献。让我们开始吧！"
+        "content": "Halo, teman-teman! Selamat pagi. Saya senang melihat kalian semua hadir tepat waktu dan siap untuk bekerja. Hari ini, tim maintenance harus berkumpul di gudang peralatan pukul delapan untuk melakukan inspeksi rutin. Saya harap kalian berpikir matang sebelum memutuskan apa pun yang berkaitan dengan keselamatan kerja. Selama bertugas, jangan lupa untuk selalu berkomunikasi dengan rekan sejawat dan bertanya jika ada hal yang kurang jelas. Proses produksi harus berjalan sesuai prosedur standar, dan kita semua perlu berusaha keras untuk menjaga kualitas produk tetap prima. Terima kasih atas dedikasi kalian. Mari kita mulai!"
       },
       {
         "title": "商务会议与合作伙伴/供应商",
         "icon": "🤝",
         "words": 145,
         "time": 60,
-        "content": "Selamat siang, para mitra bisnis yang terhormat. Terima kasih telah meluangkan waktu untuk bertemu dengan kami hari ini. Seperti yang Bapak/Ibu ketahui, perusahaan kami telah beroperasi di Indonesia selama lebih dari lima tahun dan selalu berusaha menjaga standar kualitas tertinggi. Saat ini, kami sedang berencana untuk memperluas kapasitas produksi smelter dan berharap dapat bersinergi dengan perusahaan Anda dalam pengadaan peralatan teknologi terbaru. Kami sangat terbuka untuk berdiskusi mengenai syarat dan ketentuan kerja sama yang saling menguntungkan. Selama negosiasi ini, kami berpikir bahwa transparansi dan kejujuran adalah fondasi terpenting dalam setiap hubungan bisnis yang berkelanjutan. Mari kita bersama-sama menemukan solusi terbaik untuk kemitraan jangka panjang ini.",
-        "trans": "中午好，尊敬的合作伙伴。感谢您今天抽出时间与我们见面。如您所知，我们公司在印尼运营已超过五年，始终致力于保持最高质量标准。目前，我们正计划扩大冶炼厂产能，希望能与贵公司在采购最新技术设备方面开展合作。我们非常愿意就互利共赢的合作条款和条件进行讨论。在这次谈判中，我们认为透明和诚信是任何可持续业务关系中最重要的基础。让我们一起为这一长期合作寻找最佳解决方案。"
+        "content": "Selamat siang, para mitra bisnis yang terhormat. Terima kasih telah meluangkan waktu untuk bertemu dengan kami hari ini. Seperti yang Bapak/Ibu ketahui, perusahaan kami telah beroperasi di Indonesia selama lebih dari lima tahun dan selalu berusaha menjaga standar kualitas tertinggi. Saat ini, kami sedang berencana untuk memperluas kapasitas produksi smelter dan berharap dapat bersinergi dengan perusahaan Anda dalam pengadaan peralatan teknologi terbaru. Kami sangat terbuka untuk berdiskusi mengenai syarat dan ketentuan kerja sama yang saling menguntungkan. Selama negosiasi ini, kami berpikir bahwa transparansi dan kejujuran adalah fondasi terpenting dalam setiap hubungan bisnis yang berkelanjutan. Mari kita bersama-sama menemukan solusi terbaik untuk kemitraan jangka panjang ini."
       },
       {
         "title": "非正式朋友见面",
         "icon": "☕",
         "words": 135,
         "time": 55,
-        "content": "Halo, Bro! Lama tidak bertemu. Gimana kabarmu? Saya dengar kamu baru saja berlibur ke Bali bersama keluarga. Wah, pasti seru banget! Saya sendiri akhir-akhir ini sibuk bekerja di proyek smelter baru, jadi belum sempat berlibur. Tapi hari ini, saya ingin berkumpul dengan kalian semua untuk makan siang bersama dan berdiskusi santai mengenai rencana liburan akhir tahun nanti. Saya sudah berpikir untuk pergi ke Lombok, tapi masih bingung mau berapa lama di sana. Kalau kamu punya saran, jangan ragu untuk berkata ya! Oh ya, kapan kita bisa bermain badminton lagi? Sudah lama kita tidak bersama-sama olahraga. Yuk, kita janjian minggu depan!",
-        "trans": "嘿，兄弟！好久不见。你怎么样？我听说你刚和家人去了巴厘岛度假。哇，一定很有趣！我自己最近在忙新冶炼厂项目，所以还没机会度假。但今天，我想和大家一起吃午饭，轻松聊聊年底的度假计划。我已经在考虑去龙目岛，但还在纠结要在那里待多久。如果你有建议，尽管说！对了，我们什么时候可以再打羽毛球？好久没一起运动了。来吧，我们约下周！"
+        "content": "Halo, Bro! Lama tidak bertemu. Gimana kabarmu? Saya dengar kamu baru saja berlibur ke Bali bersama keluarga. Wah, pasti seru banget! Saya sendiri akhir-akhir ini sibuk bekerja di proyek smelter baru, jadi belum sempat berlibur. Tapi hari ini, saya ingin berkumpul dengan kalian semua untuk makan siang bersama dan berdiskusi santai mengenai rencana liburan akhir tahun nanti. Saya sudah berpikir untuk pergi ke Lombok, tapi masih bingung mau berapa lama di sana. Kalau kamu punya saran, jangan ragu untuk berkata ya! Oh ya, kapan kita bisa bermain badminton lagi? Sudah lama kita tidak bersama-sama olahraga. Yuk, kita janjian minggu depan!"
       },
       {
         "title": "久别重逢",
         "icon": "🎉",
         "words": 145,
         "time": 60,
-        "content": "Wah, apa kabar, Pak Budi? Sudah berapa lama kita tidak bertemu? Sepertinya sudah hampir setahun, ya, sejak konferensi pertambangan di Jakarta tahun lalu. Saya sangat senang bisa berjumpa dengan Anda lagi di Morowali. Sejak terakhir kita bertemu, perusahaan Anda pastilah telah berkembang pesat. Kami baru saja menyelesaikan pembangkit listrik tenaga surya dan sedang berusaha meningkatkan efisiensi smelter kami. Saya banyak berpikir tentang rencana ekspansi ke bisnis aluminium dan berharap bisa berdiskusi dengan Anda mengenai peluang kerja sama di bidang tersebut. Mari kita berkumpul nanti malam untuk makan malam bersama dan menyusun strategi lebih lanjut. Senang rasanya bisa bersama Anda lagi!",
-        "trans": "哇，Budi先生，你好吗？我们多久没见了？好像快一年了，自去年雅加达矿业会议以来。很高兴能在莫罗瓦利再次见到您。贵公司一定发展迅速。我们刚完成太阳能发电厂，正努力提升冶炼厂效率。我一直在考虑扩展到铝业务，希望能与您讨论该领域的合作机会。今晚我们一起吃晚饭，进一步制定策略吧。很高兴能再次与您相聚！"
+        "content": "Wah, apa kabar, Pak Budi? Sudah berapa lama kita tidak bertemu? Sepertinya sudah hampir setahun, ya, sejak konferensi pertambangan di Jakarta tahun lalu. Saya sangat senang bisa berjumpa dengan Anda lagi di Morowali. Sejak terakhir kita bertemu, perusahaan Anda pastilah telah berkembang pesat. Kami baru saja menyelesaikan pembangkit listrik tenaga surya dan sedang berusaha meningkatkan efisiensi smelter kami. Saya banyak berpikir tentang rencana ekspansi ke bisnis aluminium dan berharap bisa berdiskusi dengan Anda mengenai peluang kerja sama di bidang tersebut. Mari kita berkumpul nanti malam untuk makan malam bersama dan menyusun strategi lebih lanjut. Senang rasanya bisa bersama Anda lagi!"
       }
     ]
   },
@@ -3620,187 +2681,53 @@ const topicData = {
         "icon": "🏛️",
         "words": 148,
         "time": 55,
-        "content": "Selamat pagi, Bapak/Ibu yang terhormat. Perkenalkan, nama saya [Nama], General Manager PT [Nama Perusahaan]. Saya bertanggung jawab atas operasi smelter dan pengembangan proyek di kawasan industri Morowali. Perusahaan kami telah beroperasi selama tujuh tahun dan memiliki lebih dari lima ribu karyawan. Kami berkomitmen untuk menciptakan lapangan kerja dan berkontribusi pada pembangunan ekonomi daerah. Terima kasih atas kesempatan ini untuk memperkenalkan diri. Saya sangat menghargai dukungan dari semua pihak.",
-        "trans": "早上好，尊敬的各位。请允许我介绍，我叫[姓名]，是[公司名称]的总经理。我负责莫罗瓦利工业园区的冶炼厂运营和项目开发。我们公司已经运营了七年，拥有超过五千名员工。我们致力于创造就业机会，为地方经济发展做出贡献。感谢您给我这次自我介绍的机会。我非常感谢各方的支持。"
+        "content": "Selamat pagi, Bapak/Ibu yang terhormat. Perkenalkan, nama saya [Nama], General Manager PT [Nama Perusahaan]. Saya bertanggung jawab atas operasi smelter dan pengembangan proyek di kawasan industri Morowali. Perusahaan kami telah beroperasi selama tujuh tahun dan memiliki lebih dari lima ribu karyawan. Kami berkomitmen untuk menciptakan lapangan kerja dan berkontribusi pada pembangunan ekonomi daerah. Terima kasih atas kesempatan ini untuk memperkenalkan diri. Saya sangat menghargai dukungan dari semua pihak."
       },
       {
         "title": "介绍公司（商务）",
         "icon": "🏢",
         "words": 152,
         "time": 58,
-        "content": "Selamat sore, para mitra dan investor yang terhormat. Izinkan saya memperkenalkan PT [Nama Perusahaan]. Kami adalah produsen nikel dan kobalt terbesar di Indonesia dengan kapasitas tahunan seratus lima puluh ribu ton. Fasilitas kami mencakup penambangan, pengolahan, dan produksi baterai lithium. Kami mempekerjakan dua belas ribu orang dan berinvestasi dalam teknologi ramah lingkungan. Visi kami adalah menjadi pemain global dalam rantai pasok baterai kendaraan listrik. Kami terbuka untuk kerja sama strategis dengan mitra internasional.",
-        "trans": "下午好，尊敬的合作伙伴和投资者。请允许我介绍[公司名称]。我们是印尼最大的镍和钴生产商，年产能达15万吨。我们的设施涵盖采矿、加工和锂电池生产。我们雇佣了1.2万人，并投资于环保技术。我们的愿景是成为全球电动汽车电池供应链的重要参与者。我们欢迎与国际战略合作伙伴开展合作。"
+        "content": "Selamat sore, para mitra dan investor yang terhormat. Izinkan saya memperkenalkan PT [Nama Perusahaan]. Kami adalah produsen nikel dan kobalt terbesar di Indonesia dengan kapasitas tahunan seratus lima puluh ribu ton. Fasilitas kami mencakup penambangan, pengolahan, dan produksi baterai lithium. Kami mempekerjakan dua belas ribu orang dan berinvestasi dalam teknologi ramah lingkungan. Visi kami adalah menjadi pemain global dalam rantai pasok baterai kendaraan listrik. Kami terbuka untuk kerja sama strategis dengan mitra internasional."
       },
       {
         "title": "欢迎致辞（工厂参观）",
         "icon": "🏭",
         "words": 145,
         "time": 55,
-        "content": "Selamat datang di fasilitas produksi kami. Saya [Nama], Kepala Operasional. Hari ini saya akan memperkenalkan proses produksi nikel dari tambang hingga produk akhir. Smelter kami menggunakan teknologi HPAL terkini dengan efisiensi energi tinggi. Kami memiliki dua puluh lima ribu karyawan lokal dan berkomitmen pada keselamatan kerja. Selama tujuh tahun operasi, kami telah mencapai nol kecelakaan fatal. Silakan ikuti saya untuk melihat fasilitas pengolahan dan area kontrol pusat.",
-        "trans": "欢迎来到我们的生产设施。我是[姓名]，运营主管。今天我将向大家介绍从矿山到最终产品的镍生产流程。我们的冶炼厂采用最新的HPAL技术，能效高。我们拥有2.5万名本地员工，并致力于工作安全。在七年运营中，我们已实现零致命事故。请跟我来参观加工设施和控制中心。"
+        "content": "Selamat datang di fasilitas produksi kami. Saya [Nama], Kepala Operasional. Hari ini saya akan memperkenalkan proses produksi nikel dari tambang hingga produk akhir. Smelter kami menggunakan teknologi HPAL terkini dengan efisiensi energi tinggi. Kami memiliki dua puluh lima ribu karyawan lokal dan berkomitmen pada keselamatan kerja. Selama tujuh tahun operasi, kami telah mencapai nol kecelakaan fatal. Silakan ikuti saya untuk melihat fasilitas pengolahan dan area kontrol pusat."
       },
       {
         "title": "介绍团队（项目启动会）",
         "icon": "👥",
         "words": 150,
         "time": 57,
-        "content": "Selamat pagi, rekan-rekan sekalian. Hari ini saya ingin memperkenalkan tim proyek pembangkit listrik tenaga surya dua ratus MW. Tim ini dipimpin oleh Pak [Nama] sebagai Project Manager, dengan dukungan tim teknik dari tiga negara. Pak [Nama] memiliki pengalaman lima belas tahun dalam pembangkit listrik terbarukan. Tim keuangan dipimpin oleh Bu [Nama] yang sudah menangani proyek infrastruktur besar di Asia Tenggara. Saya yakin dengan kerja sama tim yang solid, proyek ini akan selesai tepat waktu dan sesuai anggaran.",
-        "trans": "早上好，各位同事。今天我想介绍200MW太阳能电站项目团队。该团队由[姓名]先生担任项目经理，并有来自三个国家的工程团队提供支持。[姓名]先生在可再生能源电站领域拥有15年经验。财务团队由[姓名]女士领导，她曾负责东南亚大型基础设施项目。我相信凭借团队的紧密合作，该项目将按时按预算完成。"
+        "content": "Selamat pagi, rekan-rekan sekalian. Hari ini saya ingin memperkenalkan tim proyek pembangkit listrik tenaga surya dua ratus MW. Tim ini dipimpin oleh Pak [Nama] sebagai Project Manager, dengan dukungan tim teknik dari tiga negara. Pak [Nama] memiliki pengalaman lima belas tahun dalam pembangkit listrik terbarukan. Tim keuangan dipimpin oleh Bu [Nama] yang sudah menangani proyek infrastruktur besar di Asia Tenggara. Saya yakin dengan kerja sama tim yang solid, proyek ini akan selesai tepat waktu dan sesuai anggaran."
       },
       {
         "title": "介绍产品（客户会议）",
         "icon": "🔋",
         "words": 148,
         "time": 56,
-        "content": "Selamat sore, para pelanggan yang terhormat. Izinkan saya memperkenalkan produk nikel sulfat kelas baterai kami. Produk ini memiliki kemurnian tinggi dan sesuai dengan standar industri baterai kendaraan listrik global. Kapasitas produksi tahunan kami mencapai lima puluh ribu ton, dengan rencana ekspansi menjadi seratus ribu ton dalam dua tahun. Kami telah bekerja sama dengan produsen baterai terkemuka dari Korea, Jepang, dan China. Produk kami telah lolos sertifikasi internasional dan siap memasuki pasar global.",
-        "trans": "下午好，尊敬的客户们。请允许我介绍我们的电池级硫酸镍产品。该产品纯度高，符合全球电动汽车电池行业标准。我们年产能达5万吨，计划两年内扩建至10万吨。我们已与韩国、日本和中国的领先电池制造商建立了合作关系。我们的产品已通过国际认证，准备进入全球市场。"
+        "content": "Selamat sore, para pelanggan yang terhormat. Izinkan saya memperkenalkan produk nikel sulfat kelas baterai kami. Produk ini memiliki kemurnian tinggi dan sesuai dengan standar industri baterai kendaraan listrik global. Kapasitas produksi tahunan kami mencapai lima puluh ribu ton, dengan rencana ekspansi menjadi seratus ribu ton dalam dua tahun. Kami telah bekerja sama dengan produsen baterai terkemuka dari Korea, Jepang, dan China. Produk kami telah lolos sertifikasi internasional dan siap memasuki pasar global."
       },
       {
         "title": "节日问候与介绍（开斋节）",
         "icon": "🌙",
         "words": 142,
         "time": 54,
-        "content": "Assalamualaikum warahmatullahi wabarakatuh. Selamat Hari Raya Idul Fitri, Mohon Maaf Lahir dan Batin. Saya [Nama], General Manager. Di momen istimewa ini, izinkan saya memperkenalkan program kesejahteraan karyawan baru kami. Program ini mencakup asuransi kesehatan, beasiswa pendidikan untuk anak karyawan, dan fasilitas olahraga. Kami telah berinvestasi lima miliar rupiah untuk program ini. Karena keberhasilan perusahaan tidak terlepas dari kesejahteraan keluarga besar kita. Selamat merayakan bersama keluarga tercinta.",
-        "trans": "祝大家平安，愿真主的仁慈和祝福与你们同在。开斋节快乐，衷心请求宽恕身体和心灵上的过错。我是[姓名]，总经理。在这个特殊时刻，请允许我介绍我们新的员工福利计划。该计划包括医疗保险、员工子女教育奖学金和体育设施。我们已为该计划投资50亿印尼盾。因为公司的成功离不开我们大家庭的福祉。祝大家与心爱的家人一起欢度节日。"
+        "content": "Assalamualaikum warahmatullahi wabarakatuh. Selamat Hari Raya Idul Fitri, Mohon Maaf Lahir dan Batin. Saya [Nama], General Manager. Di momen istimewa ini, izinkan saya memperkenalkan program kesejahteraan karyawan baru kami. Program ini mencakup asuransi kesehatan, beasiswa pendidikan untuk anak karyawan, dan fasilitas olahraga. Kami telah berinvestasi lima miliar rupiah untuk program ini. Karena keberhasilan perusahaan tidak terlepas dari kesejahteraan keluarga besar kita. Selamat merayakan bersama keluarga tercinta."
       }
     ]
-  },
-  "directions": {
-    "title": "话题3: 印尼地图学习和问路问地方 / Arah dan Peta",
-    "icon": "🗺️",
-    "days": 3,
-    "grammar": {
-      "title": "方位与位置表达",
-      "rules": [
-        "Rule 1: di + 地点 = 在某地 — di kantin (在食堂)、di Jakarta (在雅加达)",
-        "Rule 2: ke + 地点 = 去某地 — ke pabrik (去工厂)、ke Indonesia (去印尼)",
-        "Rule 3: dari + 地点 = 从某地 — dari China (从中国)、dari hotel (从酒店)",
-        "Rule 4: di sini (这里)、di sana (那里)、di situ (那边) — 指示代词+地点",
-        "Rule 5: sebelah + 方位 = 在某边 — sebelah kiri (左边)、sebelah kanan (右边)",
-        "Rule 6: depan (前面)、belakang (后面)、atas (上面)、bawah (下面)",
-        "Rule 7: 用 'berapa lama' 问时间距离、'berapa jauh' 问空间距离",
-        "Rule 8: lurus (直走)、belok kiri (左转)、belok kanan (右转)、putar balik (掉头)"
-      ],
-      "examples": [
-        "Di mana kantor pos? /di ˈmana ˈkantor pos/ = '邮局在哪里？'",
-        "Ke sana lurus, lalu belok kiri. /kə ˈsana ˈlurus, ˈlalu ˈbɛlok ˈkiri/ = '那边直走，然后左转。'",
-        "Dari sini ke bandara berapa jam? /ˈdari ˈsini kə banˈdara bəˈrapa ˈdʒam/ = '从这里到机场要多久？'",
-        "Di sebelah kanan ada bank. /di səˈbɛlah ˈkanan ˈada baŋk/ = '右边有一家银行。'",
-        "Toko itu di depan stasiun. /ˈtoko ˈitu di ˈdɛpan staˈsiun/ = '那家店在车站前面。'",
-        "Bisa tunjukkan di peta? /ˈbisa ˈtundʒukkan di ˈpɛta/ = '能在地图上指一下吗？'"
-      ]
-    },
-    "scenes": [
-      {
-        "title": "问路到工厂/园区",
-        "icon": "🏭",
-        "dialogue": [
-          {"speaker": "A", "text": "Permisi, Pak. Bisa tolong tunjukkan jalan ke kawasan industri Morowali?", "trans": "打扰一下，先生。能指一下去莫罗瓦利工业园区的路吗？"},
-          {"speaker": "B", "text": "Tentu. Dari sini lurus sekitar lima kilometer, lalu belok kanan di pertigaan besar. Nanti Anda akan melihat papan nama kawasan industri di sebelah kiri.", "trans": "当然。从这里直走大约五公里，然后在大路口右转。之后你会看到工业园区标牌在左边。"},
-          {"speaker": "A", "text": "Kalau naik taksi, berapa lama perjalanannya?", "trans": "如果坐出租车，要多久？"},
-          {"speaker": "B", "text": "Kurang lebih tiga puluh menit, tergantung macet. Kalau macet, bisa satu jam.", "trans": "大约三十分钟，看堵车情况。如果堵车，可能要一小时。"},
-          {"speaker": "A", "text": "Terima kasih banyak. Apakah ada aplikasi peta yang bisa saya gunakan di sini?", "trans": "非常感谢。这里有什么地图应用可以用吗？"},
-          {"speaker": "B", "text": "Ya, Google Maps bisa. Tapi kalau di dalam kawasan, peta internal perusahaan lebih akurat.", "trans": "有，Google Maps可以用。但在园区内，公司内部地图更准确。"}
-        ]
-      },
-      {
-        "title": "在市区问路（找餐厅/酒店）",
-        "icon": "🏙️",
-        "dialogue": [
-          {"speaker": "A", "text": "Maaf, saya mau ke hotel Hyatt. Di mana ya?", "trans": "不好意思，我想去凯悦酒店。在哪里？"},
-          {"speaker": "B", "text": "Oh, hotel itu di pusat kota. Naik angkot nomor lima, turun di halte depan mall.", "trans": "哦，那家酒店在市中心。坐5号小公交，在商场前的站下车。"},
-          {"speaker": "A", "text": "Kalau jalan kaki berapa menit?", "trans": "步行要多久？"},
-          {"speaker": "B", "text": "Dari sini sekitar dua puluh menit. Tapi cuaca panas, lebih baik naik ojek online.", "trans": "从这里大约二十分钟。但天气热，最好叫网约车。"},
-          {"speaker": "A", "text": "Baik, saya pakai Grab saja. Terima kasih!", "trans": "好的，我用Grab吧。谢谢！"},
-          {"speaker": "B", "text": "Sama-sama. Hati-hati di jalan!", "trans": "不客气。路上小心！"}
-        ]
-      },
-      {
-        "title": "在机场问路（去市区/换汇）",
-        "icon": "✈️",
-        "dialogue": [
-          {"speaker": "A", "text": "Selamat pagi. Saya baru datang dari China. Bisa bantu saya?", "trans": "早上好。我刚从中国来。能帮我一下吗？"},
-          {"speaker": "B", "text": "Selamat datang! Tentu, ada yang bisa saya bantu?", "trans": "欢迎！当然，有什么可以帮您的？"},
-          {"speaker": "A", "text": "Di mana tempat tukar uang? Dan bagaimana cara ke hotel di pusat kota?", "trans": "换钱的地方在哪里？还有怎么去市中心的酒店？"},
-          {"speaker": "B", "text": "Tempat tukar uang di lantai dua, sebelah kanan dari lift. Untuk ke kota, ada bus bandara di depan terminal.", "trans": "换钱处在二楼，电梯右边。去市区的话，航站楼前有机场大巴。"},
-          {"speaker": "A", "text": "Berapa tarif busnya?", "trans": "车票多少钱？"},
-          {"speaker": "B", "text": "Tujuh puluh lima ribu rupiah. Perjalanan sekitar empat puluh lima menit.", "trans": "七万五千印尼盾。车程大约四十五分钟。"}
-        ]
-      },
-      {
-        "title": "问同事附近设施",
-        "icon": "🍽️",
-        "dialogue": [
-          {"speaker": "A", "text": "Bro, di dekat sini ada tempat makan enak nggak? Saya bosan kantin.", "trans": "兄弟，这附近有什么好吃的吗？我吃腻了食堂。"},
-          {"speaker": "B", "text": "Ada warung Padang di belakang kantor, masakannya enak dan murah. Jalan kaki lima menit.", "trans": "办公楼后面有家巴东餐馆，菜好吃又便宜。步行五分钟。"},
-          {"speaker": "A", "text": "Wah, boleh juga. Ada minimarket juga nggak? Mau beli air mineral.", "trans": "哇，不错。有便利店吗？想买矿泉水。"},
-          {"speaker": "B", "text": "Ada, di sebelah warung. Buka dua puluh empat jam.", "trans": "有，在餐馆旁边。二十四小时营业。"},
-          {"speaker": "A", "text": "Oke, makasih infonya!", "trans": "好的，谢谢信息！"},
-          {"speaker": "B", "text": "Sama-sama. Jangan lupa bawa payung, nanti hujan.", "trans": "不客气。别忘了带伞，等下要下雨。"}
-        ]
-      },
-      {
-        "title": "使用地图导航",
-        "icon": "📱",
-        "dialogue": [
-          {"speaker": "A", "text": "Pak, bisakah Anda tunjukkan lokasi pabrik baru di peta?", "trans": "先生，您能在地图上指一下新工厂的位置吗？"},
-          {"speaker": "B", "text": "Tentu. Ini peta kawasan industri. Pabrik baru kita di sebelah timur, dekat pelabuhan.", "trans": "当然。这是工业园区地图。我们的新工厂在东边，靠近港口。"},
-          {"speaker": "A", "text": "Jadi dari gerbang utama lurus sampai perempatan, lalu belok kanan?", "trans": "所以从大门直走到十字路口，然后右转？"},
-          {"speaker": "B", "text": "Betul. Nanti Anda lihat gedung tinggi di sebelah kiri, itu kantor pusat. Pabriknya di belakang.", "trans": "对。之后你会看到左边有栋高楼，那是总部。工厂在后面。"},
-          {"speaker": "A", "text": "Baik, saya catat. Berapa lama dari sini ke sana naik mobil?", "trans": "好的，我记下了。从这里开车过去要多久？"},
-          {"speaker": "B", "text": "Kurang lebih sepuluh menit. Jalanannya bagus, sudah diaspal.", "trans": "大约十分钟。路况很好，已经铺了沥青。"}
-        ]
-      },
-      {
-        "title": "迷路后求助",
-        "icon": "😰",
-        "dialogue": [
-          {"speaker": "A", "text": "Maaf, saya tersesat. Saya mau ke PT [Nama Perusahaan] tapi tidak tahu jalannya.", "trans": "不好意思，我迷路了。我想去[公司名称]但不知道路。"},
-          {"speaker": "B", "text": "Jangan khawatir. PT itu di jalan [Nama Jalan]. Dari sini Anda lurus dua ratus meter, lalu belok kiri.", "trans": "别担心。那家公司在[路名]路上。从这里直走两百米，然后左转。"},
-          {"speaker": "A", "text": "Sebelah kiri atau kanan?", "trans": "左边还是右边？"},
-          {"speaker": "B", "text": "Sebelah kanan. Gedungnya tinggi, warna biru. Nggak akan ketinggalan.", "trans": "右边。楼很高，蓝色的。不会错过的。"},
-          {"speaker": "A", "text": "Terima kasih banyak! Saya hampir putar balik.", "trans": "非常感谢！我差点要掉头回去了。"},
-          {"speaker": "B", "text": "Sama-sama. Kalau masih bingung, tanya satpam di depan. Mereka tahu semua alamat di sini.", "trans": "不客气。如果还糊涂，问前面的保安。他们知道这里所有地址。"}
-        ]
-      }
-    ],
-    "speeches": [
-      {
-        "title": "介绍印尼地理与工业园区位置",
-        "icon": "🗺️",
-        "words": 155,
-        "time": 60,
-        "content": "Selamat pagi, rekan-rekan. Hari ini saya ingin memperkenalkan letak geografis Indonesia dan posisi strategis kawasan industri kita. Indonesia adalah negara kepulauan terbesar di dunia, terletak di antara Samudra Pasifik dan Hindia. Kawasan industri Morowali berada di Sulawesi Tengah, dekat dengan jalur perdagangan internasional. Dari Jakarta, kita bisa naik pesawat selama dua setengah jam ke Palu, lalu lanjut perjalanan darat tiga jam ke Morowali. Lokasi ini sangat strategis karena dekat dengan tambang nikel dan pelabuhan laut dalam. Perusahaan kami memiliki fasilitas di tiga lokasi: pabrik pengolahan di Morowali, kantor pusat di Jakarta, dan kantor perwakilan di Shanghai. Untuk koordinasi antar lokasi, kita menggunakan sistem manajemen berbasis cloud. Saya harap semua karyawan memahami peta operasional kita agar komunikasi antar pabrik lebih efisien.",
-        "trans": "早上好，各位同事。今天我想介绍一下印度尼西亚的地理位置和我们工业园区的战略位置。印尼是世界上最大的群岛国家，位于太平洋和印度洋之间。莫罗瓦利工业园区位于中苏拉威西，靠近国际贸易航线。从雅加达，我们可以坐飞机两个半小时到帕卢，然后继续三小时陆路到莫罗瓦利。这个位置非常战略，因为靠近镍矿和深水港。我们公司在三个地点有设施：莫罗瓦利的加工厂、雅加达总部和上海代表处。为了跨地点协调，我们使用基于云的管理系统。我希望所有员工了解我们的运营地图，以便工厂之间的沟通更高效。"
-      },
-      {
-        "title": "指路说明（工厂参观引导）",
-        "icon": "🏭",
-        "words": 148,
-        "time": 58,
-        "content": "Selamat datang di fasilitas produksi kami. Izinkan saya menjelaskan rute kunjungan hari ini. Dari gerbang utama, kita akan lurus sepanjang jalan utama sekitar lima ratus meter. Di sebelah kiri Anda akan melihat gudang bahan baku, dan di sebelah kanan adalah area parkir karyawan. Lalu kita belok kanan di pertigaan pertama. Di depan sana gedung tinggi berwarna putih adalah kantor administrasi. Di belakangnya ada pabrik pengolahan nikel dan laboratorium kualitas. Perjalanan dari gerbang ke pabrik sekitar sepuluh menit dengan mobil. Saya harap Anda mengikuti rute yang sudah ditentukan untuk keselamatan. Jangan memasuki area produksi tanpa izin dan selalu kenakan perlengkapan keselamatan. Setelah tur pabrik, kita akan kembali ke ruang rapat untuk presentasi lebih lanjut.",
-        "trans": "欢迎来到我们的生产设施。请允许我解释今天的参观路线。从大门开始，我们将沿着主路直走约五百米。左边您会看到原材料仓库，右边是员工停车场。然后我们在第一个路口右转。前面那栋白色高楼是行政办公楼。后面是镍加工厂和质量实验室。从大门到工厂车程约十分钟。我希望您遵循指定路线以确保安全。未经许可请勿进入生产区域，并始终佩戴安全装备。工厂参观结束后，我们将返回会议室进行进一步演示。"
-      },
-      {
-        "title": "问路指南（新员工入职培训）",
-        "icon": "👋",
-        "words": 142,
-        "time": 55,
-        "content": "Halo, rekan-rekan baru! Selamat bergabung di perusahaan kami. Saya tahu pertama kali di Morowali pasti banyak yang bingung dengan jalan dan lokasi. Jadi saya ingin berbagi tips penting. Pertama, selalu simpalah nomor satpam dan rekan kerja yang sudah lama di sini. Kedua, unduh aplikasi Google Maps dan peta internal perusahaan sebelum keluar. Ketiga, jika tersesat, jangan ragu bertanya kepada warga lokal, mereka sangat ramah. Keempat, hati-hati dengan ojek online, pastikan nomor plat dan nama pengemudi sesuai aplikasi. Dari kantor ke pasar tradisional sekitar lima belas menit, ke rumah sakit dua puluh menit, dan ke bandara tiga jam. Saya harap kalian cepat beradaptasi dan menikmati hidup di Morowali. Selamat bekerja!",
-        "trans": "嗨，新同事们！欢迎来到我们公司。我知道第一次来莫罗瓦利肯定对道路和地点很困惑。所以我想分享一些重要提示。第一，始终保存保安和资深同事的号码。第二，出门前下载Google Maps和公司内部地图应用。第三，如果迷路了，不要犹豫问当地居民，他们很友好。第四，小心网约车，确保车牌和司机姓名与APP一致。从办公室到传统市场约十五分钟，到医院二十分钟，到机场三小时。我希望你们能快速适应并享受莫罗瓦利的生活。工作顺利！"
-      }
-    ]
-  },};
+  }
+};
 
 
-  const topicCalendar = {
+const topicCalendar = {
   "2026-07-16": {topic: "meet", day: 1, label: "词汇+语法+场景对话+演讲+复习", allDays: true},
   "2026-07-17": {topic: "introduce", day: 1, label: "词汇+语法+语型"},
   "2026-07-18": {topic: "introduce", day: 2, label: "复习+语型+对话"},
-  "2026-07-19": {topic: "introduce", day: 3, label: "复习+演讲"},
-  "2026-07-20": {topic: "directions", day: 1, label: "词汇+语法+问路基础"},
-  "2026-07-21": {topic: "directions", day: 2, label: "复习+指路对话+地图阅读"},
-  "2026-07-22": {topic: "directions", day: 3, label: "复习+演讲+印尼地理"}
+  "2026-07-19": {topic: "introduce", day: 3, label: "复习+演讲"}
 };
 
 function getTopicForDate(ds) {
@@ -3810,7 +2737,7 @@ function getTopicForDate(ds) {
 function renderTopicDetail(c, ds, topicInfo) {
   const topic = topicData[topicInfo.topic];
   const day = topicInfo.day;
-  let html = `<div class="date-detail"><button class="back-btn" onclick="goBack()">← 返回</button>`;
+  let html = `<div class="date-detail"><button class="back-btn" onclick="navigate('home')">← 返回</button>`;
   
   // 2026-07-16 特殊处理：显示全部三天内容
   if (ds === "2026-07-16" || topicInfo.allDays) {
@@ -3829,9 +2756,7 @@ function renderTopicDetail(c, ds, topicInfo) {
     });
     html += `</div></div>`;
     html += `<h3 style="color:var(--primary);margin:16px 0 10px;font-size:15px">🎯 话题核心词汇</h3><div class="word-grid">`;
-    const keyWords1 = topicInfo.topic === "directions" 
-      ? ["lurus","belok","kanan","kiri","depan","belakang","atas","bawah","jalan","peta","tunjuk","jauh","dekat","lokasi","posisi","arah","tujuan","dari","ke","di","sini","sana","situ","sebelah","perempatan","pertigaan","gerbang","pelabuhan","bandara","terminal","hotel"]
-      : ["bertemu","berdiskusi","berjumpa","berkumpul","berbicara","berkerja","berjalan","bersemangat","berusaha","berpikir","bersama-sama","berkembang","beroperasi","berkelanjutan","berharap","bersinergi","berkaitan","berkomunikasi","berlibur","bermain","berdagang","berencana"];
+    const keyWords1 = ["bertemu","berdiskusi","berjumpa","berkumpul","berbicara","berkerja","berjalan","bersemangat","berusaha","berpikir","bersama-sama","berkembang","beroperasi","berkelanjutan","berharap","bersinergi","berkaitan","berkomunikasi","berlibur","bermain","berdagang","berencana"];
     keyWords1.forEach(w => {
       const key = Object.keys(vocabDB).find(k => k.toLowerCase() === w.toLowerCase());
       if (key) {
@@ -3847,7 +2772,7 @@ function renderTopicDetail(c, ds, topicInfo) {
       html += `<div style="margin-bottom:14px;border:1px solid var(--border);border-radius:10px;overflow:hidden"><div style="background:var(--bg-elev);padding:10px 14px;display:flex;align-items:center;gap:8px"><span style="font-size:18px">${sc.icon}</span><span style="font-size:14px;font-weight:600;color:var(--text)">${sc.title}</span></div><div style="padding:12px 14px;">`;
       sc.dialogue.forEach(d => {
         const isA = d.speaker === "A";
-        const safeText = d.text.replace(/'/g, "\\'");
+        const safeText = d.text.replace(/'/g, "\'");
         html += `<div style="display:flex;gap:8px;margin:6px 0;${isA ? '' : 'flex-direction:row-reverse'}"><div style="width:28px;height:28px;border-radius:50%;background:${isA ? 'var(--primary)' : 'var(--accent)'};display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#000">${d.speaker}</div><div style="max-width:70%;padding:8px 12px;border-radius:10px;font-size:13px;line-height:1.5;${isA ? 'background:var(--bg-elev);border:1px solid var(--border)' : 'background:rgba(0,212,170,.1);border:1px solid rgba(0,212,170,.2)'}"><div style="color:var(--text);margin-bottom:4px;display:flex;align-items:center;flex-wrap:wrap;">${wrapClickableWords(d.text)}<button onclick="speakIndonesian('${safeText}')" style="background:none;border:none;color:var(--primary);cursor:pointer;font-size:14px;padding:2px 4px;margin-left:4px;" title="朗读印尼语">🔊</button></div><div style="font-size:11px;color:var(--text-dim);border-top:1px solid var(--border);padding-top:4px;margin-top:4px">${d.trans || ''}</div></div></div>`;
       });
       html += `</div></div>`;
@@ -3857,8 +2782,7 @@ function renderTopicDetail(c, ds, topicInfo) {
     // === Day 3: Speeches ===
     html += `<div style="background:rgba(59,130,246,.06);border-radius:10px;padding:16px;margin-bottom:16px;border:1px solid var(--border)"><div style="font-size:15px;color:var(--info);font-weight:700;margin-bottom:12px">🎤 第三阶段：演讲+复习 (Day 3/3)</div>`;
     topic.speeches.forEach((sp, spi) => {
-      const spSafe = sp.content.replace(/'/g, "\\'");
-      html += `<div style="margin-bottom:14px;border:1px solid var(--border);border-radius:10px;overflow:hidden"><div style="background:var(--bg-elev);padding:10px 14px;display:flex;align-items:center;gap:8px;justify-content:space-between;"><div style="display:flex;align-items:center;gap:8px;"><span style="font-size:18px">${sp.icon}</span><div><div style="font-size:14px;font-weight:600;color:var(--text)">${sp.title}</div><div style="font-size:11px;color:var(--text-dim)">${sp.words}词 · ${sp.time}秒</div></div></div><button onclick="speakIndonesian('${spSafe}')" style="background:none;border:none;color:var(--primary);cursor:pointer;font-size:14px;padding:4px 8px;border-radius:6px;background:rgba(0,212,170,.1);" title="朗读印尼语原文">🔊 朗读</button></div><div style="padding:14px;font-size:13px;line-height:1.8;color:var(--text);background:var(--bg-card);border-radius:0 0 8px 8px"><div style="margin-bottom:8px;">${wrapClickableWords(sp.content)}</div><div style="font-size:12px;color:var(--text-dim);border-top:1px solid var(--border);padding-top:8px;margin-top:8px;">🇨🇳 翻译: ${sp.trans || '翻译加载中...'}</div></div></div>`;
+      html += `<div style="margin-bottom:14px;border:1px solid var(--border);border-radius:10px;overflow:hidden"><div style="background:var(--bg-elev);padding:10px 14px;display:flex;align-items:center;gap:8px"><span style="font-size:18px">${sp.icon}</span><div><div style="font-size:14px;font-weight:600;color:var(--text)">${sp.title}</div><div style="font-size:11px;color:var(--text-dim)">${sp.words}词 · ${sp.time}秒</div></div></div><div style="padding:14px;font-size:13px;line-height:1.8;color:var(--text);background:var(--bg-card);border-radius:0 0 8px 8px">${wrapClickableWords(sp.content)}</div></div>`;
     });
     html += `<div style="margin-top:16px;padding:12px;background:rgba(34,197,94,.08);border-radius:8px;border:1px solid rgba(34,197,94,.3)"><div style="font-size:13px;color:var(--success)">✅ 恭喜！已完成三天综合学习！</div><div style="font-size:12px;color:var(--text-dim);margin-top:6px">建议：使用「百词斩」检测掌握程度，使用「艾宾浩斯复习」巩固记忆。</div></div>`;
     html += `</div>`;
@@ -3883,9 +2807,7 @@ function renderTopicDetail(c, ds, topicInfo) {
     html += `</div></div>`;
     // Show key vocabulary for this topic
     html += `<h3 style="color:var(--primary);margin:16px 0 10px;font-size:15px">🎯 话题核心词汇</h3><div class="word-grid">`;
-    const keyWords = topicInfo.topic === "directions"
-      ? ["lurus","belok","kanan","kiri","depan","belakang","atas","bawah","jalan","peta","tunjuk","jauh","dekat","lokasi","posisi","arah","tujuan","dari","ke","di","sini","sana","situ","sebelah","perempatan","pertigaan","gerbang","pelabuhan","bandara","terminal","hotel"]
-      : ["bertemu","berdiskusi","berjumpa","berkumpul","berbicara","berkerja","berjalan","bersemangat","berusaha","berpikir","bersama-sama","berkembang","beroperasi","berkelanjutan","berharap","bersinergi","berkaitan","berkomunikasi","berlibur","bermain","berdagang","berencana"];
+    const keyWords = ["bertemu","berdiskusi","berjumpa","berkumpul","berbicara","berkerja","berjalan","bersemangat","berusaha","berpikir","bersama-sama","berkembang","beroperasi","berkelanjutan","berharap","bersinergi","berkaitan","berkomunikasi","berlibur","bermain","berdagang","berencana"];
     keyWords.forEach(w => {
       const key = Object.keys(vocabDB).find(k => k.toLowerCase() === w.toLowerCase());
       if (key) {
@@ -3903,8 +2825,7 @@ function renderTopicDetail(c, ds, topicInfo) {
       const s = topic.scenes[i];
       html += `<div style="background:var(--bg-elev);border-radius:10px;padding:16px;margin-bottom:12px;border:1px solid var(--border)"><div style="display:flex;align-items:center;gap:8px;margin-bottom:10px"><span style="font-size:18px">${s.icon}</span><strong style="color:var(--primary);font-size:14px">${s.title}</strong></div>`;
       s.dialogue.forEach(d => {
-        const dSafe = d.text.replace(/'/g, "\\'");
-        html += `<div style="display:flex;gap:10px;margin:8px 0;padding:8px;background:var(--bg-card);border-radius:6px"><div style="font-weight:700;color:var(--primary);min-width:30px;font-size:12px">${d.speaker}:</div><div style="flex:1"><div style="font-size:13px;color:var(--text);display:flex;align-items:center;flex-wrap:wrap;">${wrapClickableWords(d.text)}<button onclick="speakIndonesian('${dSafe}')" style="background:none;border:none;color:var(--primary);cursor:pointer;font-size:14px;padding:2px 4px;margin-left:4px;" title="朗读">🔊</button></div><div style="font-size:11px;color:var(--text-dim);margin-top:3px;border-left:2px solid var(--primary-dim);padding-left:6px">${d.trans || ''}</div></div></div>`;
+        html += `<div style="display:flex;gap:10px;margin:8px 0;padding:8px;background:var(--bg-card);border-radius:6px"><div style="font-weight:700;color:var(--primary);min-width:30px;font-size:12px">${d.speaker}:</div><div style="flex:1"><div style="font-size:13px;color:var(--text)">${wrapClickableWords(d.text)}</div><div style="font-size:11px;color:var(--text-dim);margin-top:3px;border-left:2px solid var(--primary-dim);padding-left:6px">${d.trans}</div></div></div>`;
       });
       html += `</div>`;
     }
@@ -3913,7 +2834,7 @@ function renderTopicDetail(c, ds, topicInfo) {
     html += `<h3 style="color:var(--primary);margin:16px 0 10px;font-size:15px">🎤 1分钟演讲</h3>`;
     for (let i = 0; i < topic.speeches.length; i++) {
       const sp = topic.speeches[i];
-      html += `<div style="background:var(--bg-elev);border-radius:10px;padding:16px;margin-bottom:12px;border:1px solid var(--border)"><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;justify-content:space-between;"><div style="display:flex;align-items:center;gap:8px;"><span style="font-size:18px">${sp.icon}</span><strong style="color:var(--primary);font-size:14px">${sp.title}</strong></div><button onclick="speakIndonesian('${sp.content.replace(/'/g,"\\'")}')" style="background:none;border:none;color:var(--primary);cursor:pointer;font-size:14px;padding:4px 8px;border-radius:6px;background:rgba(0,212,170,.1);" title="朗读印尼语原文">🔊 朗读</button></div><div style="display:flex;gap:8px;margin-bottom:10px;font-size:11px;color:var(--text-dim)"><span style="background:rgba(0,212,170,.1);padding:2px 8px;border-radius:8px">⏱️ ~${sp.time}秒</span><span style="background:rgba(0,212,170,.1);padding:2px 8px;border-radius:8px">📝 ~${sp.words}词</span></div><div style="font-size:13px;line-height:1.8;color:var(--text);background:var(--bg-card);padding:12px;border-radius:8px">${wrapClickableWords(sp.content)}</div><div style="font-size:12px;color:var(--text-dim);border-top:1px solid var(--border);padding-top:8px;margin-top:8px;">🇨🇳 翻译: ${sp.trans || '翻译加载中...'}</div></div>`;
+      html += `<div style="background:var(--bg-elev);border-radius:10px;padding:16px;margin-bottom:12px;border:1px solid var(--border)"><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><span style="font-size:18px">${sp.icon}</span><strong style="color:var(--primary);font-size:14px">${sp.title}</strong></div><div style="display:flex;gap:8px;margin-bottom:10px;font-size:11px;color:var(--text-dim)"><span style="background:rgba(0,212,170,.1);padding:2px 8px;border-radius:8px">⏱️ ~${sp.time}秒</span><span style="background:rgba(0,212,170,.1);padding:2px 8px;border-radius:8px">📝 ~${sp.words}词</span></div><div style="font-size:13px;line-height:1.8;color:var(--text);background:var(--bg-card);padding:12px;border-radius:8px">${wrapClickableWords(sp.content)}</div></div>`;
     }
     html += `<div style="margin-top:16px;padding:12px;background:rgba(34,197,94,.08);border-radius:8px;border:1px solid rgba(34,197,94,.3)"><div style="font-size:13px;color:var(--success)">✅ 完成三天学习！进入复习队列。</div><div style="font-size:12px;color:var(--text-dim);margin-top:6px">建议：使用「能力测试」检测掌握程度，使用「艾宾浩斯复习」巩固记忆。</div></div>`;
   }
@@ -4040,7 +2961,6 @@ function stopVoiceInput() {
 
 function sendAIChat(text) {
   if(!text || !text.trim()) return;
-  text = text.trim();
   
   const chatArea = document.getElementById('aiChatArea');
   if(!chatArea) return;
@@ -4049,105 +2969,25 @@ function sendAIChat(text) {
   chatArea.innerHTML += `<div style="display:flex;justify-content:flex-end;margin:8px 0;"><div style="background:var(--primary);color:#0a0e17;padding:8px 12px;border-radius:12px 12px 0 12px;max-width:80%;font-size:13px;">${text}</div></div>`;
   chatArea.scrollTop = chatArea.scrollHeight;
   
-  // 显示加载中
-  const loadingId = 'ai-loading-' + Date.now();
-  chatArea.innerHTML += `<div id="${loadingId}" style="display:flex;justify-content:flex-start;margin:8px 0;"><div style="background:var(--bg-elev);color:var(--text);padding:8px 12px;border-radius:12px 12px 12px 0;max-width:80%;font-size:13px;border:1px solid var(--border);"><div style="font-size:11px;color:var(--primary);margin-bottom:2px;">🤖 AI Assistant</div>⏳ 思考中...</div></div>`;
-  chatArea.scrollTop = chatArea.scrollHeight;
-  
-  // 智能回复逻辑
-  const lowerText = text.toLowerCase();
-  
-  // 1. 检查是否是单词查询
-  const cleanWord = text.replace(/[^a-zA-Z]/g, '').toLowerCase();
-  let vocabMatch = vocabDB[cleanWord];
-  if(!vocabMatch && text.length < 20){
-    const prefixes = ['me','meng','meny','men','mem','ber','be','di','ter','pe','peng','peny','pen','pem','se'];
-    for(const p of prefixes){
-      if(cleanWord.startsWith(p) && cleanWord.length > p.length + 2){
-        const root = cleanWord.slice(p.length);
-        if(vocabDB[root]){ vocabMatch = vocabDB[root]; break; }
-      }
-    }
-  }
-  
-  if(vocabMatch){
-    const reply = `Kata "${text}" dalam Bahasa Indonesia:
-• Arti: ${vocabMatch.cn}
-• English: ${vocabMatch.en || '-'}
-• IPA: ${vocabMatch.ipa || '/'}
-• ${vocabMatch.root ? 'Asal kata: ' + vocabMatch.root : ''}`.trim();
-    showAIReply(reply, text, loadingId);
-    return;
-  }
-  
-  // 2. 使用gTrans翻译获取印尼语回复
-  gTrans(text, 'zh-CN', 'id')
-    .then(translated => {
-      let reply = '';
-      if(translated && translated !== text){
-        reply = `${translated}
-
-（中文原文：${text}）`;
-      } else {
-        reply = generateAIReply(text);
-      }
-      showAIReply(reply, text, loadingId);
-    })
-    .catch(() => {
-      const reply = generateAIReply(text);
-      showAIReply(reply, text, loadingId);
-    });
-}
-
-function generateAIReply(text){
-  const lower = text.toLowerCase();
-  if(/你好|您好|hi|hello|hey/.test(lower)){
-    return `Halo! Selamat datang! Saya asisten belajar Bahasa Indonesia Anda. Apa yang ingin Anda pelajari hari ini?
-
-（你好！欢迎！我是你的印尼语学习助手。今天你想学什么？）`;
-  }
-  if(/谢谢|terima kasih|thanks/.test(lower)){
-    return `Sama-sama! Senang bisa membantu Anda.
-
-（不客气！很高兴能帮助您。）`;
-  }
-  if(/再见|selamat tinggal|bye|goodbye/.test(lower)){
-    return `Selamat tinggal! Semoga harimu menyenangkan!
-
-（再见！祝您有愉快的一天！）`;
-  }
-  if(/名字|nama|name/.test(lower)){
-    return `Nama saya LEO-BIR Assistant. Saya di sini untuk membantu Anda belajar Bahasa Indonesia.
-
-（我的名字是LEO-BIR助手。我在这里帮助您学习印尼语。）`;
-  }
-  if(/怎么|如何|bagaimana|how/.test(lower)){
-    return `Bagaimana cara mengucapkannya? Mari kita latih bersama-sama!
-
-（怎么发音？让我们一起练习！）`;
-  }
-  return `Baik, saya mengerti. Mari kita lanjutkan belajar Bahasa Indonesia bersama-sama. Anda bisa bertanya tentang kosakata atau percakapan.
-
-（好的，我明白了。让我们一起继续学习印尼语。您可以询问词汇或对话。）`;
-}
-
-function showAIReply(reply, userText, loadingId){
-  const chatArea = document.getElementById('aiChatArea');
-  if(!chatArea) return;
-  
-  const loadingEl = document.getElementById(loadingId);
-  if(loadingEl) loadingEl.remove();
-  
-  const safeReply = reply.replace(/'/g, "&#39;");
-  chatArea.innerHTML += `<div style="display:flex;justify-content:flex-start;margin:8px 0;"><div style="background:var(--bg-elev);color:var(--text);padding:8px 12px;border-radius:12px 12px 12px 0;max-width:80%;font-size:13px;border:1px solid var(--border);"><div style="font-size:11px;color:var(--primary);margin-bottom:2px;">🤖 AI Assistant</div><div style="white-space:pre-line;">${reply}</div><button onclick="speakIndonesian('${safeReply.split('\n')[0]}')" style="background:none;border:none;color:var(--primary);cursor:pointer;font-size:12px;padding:2px;margin-left:4px;" title="朗读印尼语">🔊</button></div></div>`;
-  chatArea.scrollTop = chatArea.scrollHeight;
-  
-  const idPart = reply.split('（')[0].trim();
-  if(idPart) speakIndonesian(idPart);
-  
-  if(typeof aiChatHistory !== 'undefined'){
-    aiChatHistory.push({user: userText, ai: reply});
-  }
+  // 模拟AI回复（实际使用时需要调用后端API）
+  setTimeout(() => {
+    const responses = [
+      'Baik, saya mengerti. Mari kita lanjutkan belajar Bahasa Indonesia.',
+      'Terima kasih! Anda sudah berbicara dengan baik dalam Bahasa Indonesia.',
+      'Bagus sekali! Pertanyaan Anda sangat menarik.',
+      'Mari kita latih pengucapan kata ini: ' + text.split(' ').slice(0,3).join(' '),
+      'Saya senang bisa membantu Anda belajar Bahasa Indonesia.'
+    ];
+    const reply = responses[Math.floor(Math.random() * responses.length)];
+    
+    chatArea.innerHTML += `<div style="display:flex;justify-content:flex-start;margin:8px 0;"><div style="background:var(--bg-elev);color:var(--text);padding:8px 12px;border-radius:12px 12px 12px 0;max-width:80%;font-size:13px;border:1px solid var(--border);"><div style="font-size:11px;color:var(--primary);margin-bottom:2px;">🤖 AI Assistant</div>${reply}<button onclick="speakIndonesian('${reply.replace(/'/g, "\'")}')" style="background:none;border:none;color:var(--primary);cursor:pointer;font-size:12px;padding:2px;margin-left:4px;" title="朗读">🔊</button></div></div>`;
+    chatArea.scrollTop = chatArea.scrollHeight;
+    
+    // 自动朗读AI回复
+    speakIndonesian(reply);
+    
+    aiChatHistory.push({user: text, ai: reply});
+  }, 1000);
 }
 
 function renderAIChat(c) {
@@ -4193,95 +3033,7 @@ function renderAbout(c){
 }
 
 function renderVersion(c){
-  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录</h2><span class="badge">V4.2</span></div>
-    <div style="padding:16px;">
-      <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
-        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.2 (2026-07-21)</div>
-        <div style="font-size:13px;color:var(--text);line-height:1.8">
-        • 词根射击全面重构V4.2：四级分类+难度分级+成就系统<br>
-        • 修复 pe-/per-/peN- 词缀混淆问题，重新梳理分类<br>
-        • 所有变体例词扩充至15+个，支持动态词库扩展<br>
-        • 新增难度选择：简单/中等/困难/大师四级<br>
-        • 新增连击Combo系统，带粒子爆破特效<br>
-        • 新增错误解析界面，答错显示规则详解<br>
-        • 新增成就/解锁/星级评定体系<br>
-        • 改进CSS动画：随机轨迹、射击感、震动反馈<br>
-        </div>
-      </div>
-      <div style="margin-bottom:14px;padding:14px;background:var(--bg-elev);border-radius:10px;border-left:3px solid var(--accent)">
-        <div style="font-size:15px;font-weight:700;color:var(--accent);margin-bottom:6px">V4.1 (2026-07-21)</div>
-        <div style="font-size:13px;color:var(--text);line-height:1.8">
-        • 词根射击游戏全面重构：四级分类体系<br>
-        • 一级菜单：前缀/后缀/环绕缀/中缀 四大类<br>
-        • 二级菜单：meN-/ber-/di-/ter-/peN- 等具体词缀<br>
-        • 三级变体：mem-/men-/meng-/menge-/me- 等（meN-下属6变体）<br>
-        • 每关背景显示该词缀规则文字，边玩边学<br>
-        • 新增连击系统（Combo）和最高连击记录<br>
-        • 新增「印尼语字母发音表」：26字母+4复合音，含音标/读音/舌位简图<br>
-        • 词库数据基于 mindmap_all.md 全面重编<br>
-        • 版本号升级至 V4.1
-        </div>
-      </div>
-      <div style="margin-bottom:14px;padding:14px;background:var(--bg-elev);border-radius:10px;border-left:3px solid var(--accent)">
-        <div style="font-size:15px;font-weight:700;color:var(--accent);margin-bottom:6px">V4.0 (2026-07-19)</div>
-        <div style="font-size:13px;color:var(--text);line-height:1.8">
-        • 全面梳理印尼语词缀系统（BIO语法审核）<br>
-        • 前缀按语法规则分类：mem-/men-/meng-/meny-/me-/pem-/pen-/peng-/peny-/pe-/ber-/be-/bel-/ter-/di-/se-/ke-/per-/pel-<br>
-        • 后缀新增：-lah/-nya/-pun，原有-an/-kan/-i扩充<br>
-        • 每个词缀标注适用词根首字母规则（如 mem- → p/b/f）<br>
-        • 词根射击游戏选项与印尼语语法完全对应<br>
-        • 版本号升级至 V4.0
-        </div>
-      </div>
-      <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
-        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V3.0.4 (2026-07-19)</div>
-        <div style="font-size:13px;color:var(--text);line-height:1.8">
-        • 修复课时测试无法运行: topicCalendar对象访问方式错误<br>
-        • 修复会员登录后右上角不显示: 新增'member'类型状态处理<br>
-        • 新增修仙等级系统: 每24小时自动升级，15级至道主<br>
-        • 修仙花瓣勋章: 每级花瓣数递增，每5级成花，颜色随等级变化<br>
-        • 版本记录同步更新至V3.0.4
-        </div>
-      </div>
-      <div style="margin-bottom:14px;padding:14px;background:var(--bg-elev);border-radius:10px;border-left:3px solid var(--accent)">
-        <div style="font-size:15px;font-weight:700;color:var(--accent);margin-bottom:6px">V3.0.3 (2026-07-19)</div>
-        <div style="font-size:13px;color:var(--text);line-height:1.8">
-        • 修复连续学习天数统计逻辑错误<br>
-        • 修复朗读只能播放一次: 增加speechSynthesis.cancel()+resume()<br>
-        • 修复课时测试点击无反应: HTML属性转义错误\'→&#39;<br>
-        • 删除showQuizQ重复定义3处，保留唯一函数
-        </div>
-      </div>
-      <div style="margin-bottom:14px;padding:14px;background:var(--bg-elev);border-radius:10px;border-left:3px solid var(--accent)">
-        <div style="font-size:15px;font-weight:700;color:var(--accent);margin-bottom:6px">V3.0.2 (2026-07-19)</div>
-        <div style="font-size:13px;color:var(--text);line-height:1.8">
-        • AI对话翻译API: MyMemory→Google Translate(gTrans)<br>
-        • 演讲朗读按钮移至标题行<br>
-        • C3话题(directions)专用词汇录入
-        </div>
-      </div>
-      <div style="margin-bottom:14px;padding:14px;background:var(--bg-elev);border-radius:10px;border-left:3px solid var(--accent)">
-        <div style="font-size:15px;font-weight:700;color:var(--accent);margin-bottom:6px">V3.0.1 (2026-07-19)</div>
-        <div style="font-size:13px;color:var(--text);line-height:1.8">
-        • 修复朗读转义错误导致点击无反应<br>
-        • 修复连续学习天数DOM ID不匹配<br>
-        • 重构showWordPopup: 已收录/未收录分流处理<br>
-        • 版本同步更新至V3.0.3
-        </div>
-      </div>
-      <div style="margin-bottom:14px;padding:14px;background:var(--bg-elev);border-radius:10px;border-left:3px solid var(--accent)">
-        <div style="font-size:15px;font-weight:700;color:var(--accent);margin-bottom:6px">V3.0 (2026-07-19)</div>
-        <div style="font-size:13px;color:var(--text);line-height:1.8">
-        • 单词弹窗关闭按钮修复<br>
-        • 在线单词查询接入真实翻译API<br>
-        • 演讲短文补充完整中文翻译<br>
-        • 会员登录密码验证修复<br>
-        • 学习统计去重修复<br>
-        • 语音朗读按钮全面添加<br>
-        • 左侧导航栏滚动条修复<br>
-        • showQuizQ函数补入
-        </div>
-      </div>
+  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录</h2><span class="badge">V2.7</span></div>
     <div style="padding:16px;">
       <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
         <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V2.7 (2026-07-17)</div>
@@ -4379,7 +3131,7 @@ function showWordPopup(word){
   overlay.id = 'wordPopupOverlay';
   overlay.style.cssText = 'position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.6);z-index:9998;display:flex;align-items:center;justify-content:center;padding:16px;';
   
-  const inWB = v ? wordBank.some(w=>w.word===v.id||w.id===v.id||w.id===clean) : false;
+  const inWB = v ? wordBank.some(w=>w.id===v.id||w.id===clean) : false;
   const wid = v ? v.id : clean;
   
   let cardHTML = `<div id="wordPopupCard" style="background:var(--bg-card);border-radius:16px;padding:20px;max-width:360px;width:100%;border:1px solid var(--border);box-shadow:var(--shadow);position:relative;z-index:9999;max-height:90vh;overflow-y:auto;">
@@ -4389,56 +3141,31 @@ function showWordPopup(word){
     </div>`;
   
   if(v){
-    // === 已收录单词：直接显示完整信息 ===
     cardHTML += `<div style="margin-bottom:10px;"><div style="font-size:12px;color:var(--text-dim);margin-bottom:2px;">IPA</div><div style="font-size:14px;color:var(--text);">${v.ipa||'/'}</div></div>
     <div style="margin-bottom:10px;"><div style="font-size:12px;color:var(--text-dim);margin-bottom:2px;">中文</div><div style="font-size:15px;color:var(--primary);font-weight:600;">${v.cn}</div></div>
     <div style="margin-bottom:10px;"><div style="font-size:12px;color:var(--text-dim);margin-bottom:2px;">English</div><div style="font-size:13px;color:var(--text);">${v.en||'-'}</div></div>
-    <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;"><button onclick="speakIndonesian('${word.replace(/'/g,"\\'")}')" style="background:none;border:none;color:var(--primary);cursor:pointer;font-size:14px;padding:4px 8px;border-radius:6px;background:rgba(0,212,170,.1);" title="朗读">🔊 朗读</button></div>
     ${v.root?`<div style="font-size:11px;color:var(--text-dim);margin-bottom:12px;">词根: ${v.root}</div>`:''}
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;padding:8px;background:var(--bg-elev);border-radius:8px;">
+      <input type="checkbox" id="wbCheck" ${inWB?'checked disabled':''} style="width:16px;height:16px;cursor:pointer;">
+      <label for="wbCheck" style="font-size:13px;color:var(--text);cursor:pointer;">加入生词本</label>
+    </div>
+    <button id="wordPopupQueryBtn" data-word="${word}" style="width:100%;padding:8px;background:var(--info);color:#fff;border:none;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;margin-bottom:8px;">🔍 查询更多（三语）</button>
     <button id="wordPopupAddBtn" data-wid="${wid}" style="width:100%;padding:10px;background:${inWB?'var(--bg-elev)':'var(--primary)'};color:${inWB?'var(--text-dim)':'#0a0e17'};border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;" ${inWB?'disabled':''}>${inWB?'✅ 已在生词本':'📚 加入生词本'}</button>`;
   } else {
-    // === 未收录单词：显示加载中，后台自动查询 ===
-    cardHTML += `<div style="text-align:center;padding:20px 0;"><div style="font-size:36px;margin-bottom:12px;">🔍</div><div style="font-size:14px;color:var(--text-dim);margin-bottom:8px;">「${word}」未收录</div><div id="autoQueryStatus" style="font-size:12px;color:var(--primary);margin-bottom:12px;">⏳ 正在在线查询...</div>
-    <div id="autoQueryResult" style="margin-bottom:12px;"></div>
-    <button id="wordPopupInputBtn" data-word="${word}" style="width:100%;padding:8px;background:var(--accent);color:#0a0e17;border:none;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;margin-bottom:8px;">📝 手动录入词汇</button></div>`;
-    
-    // 后台自动查询
-    setTimeout(()=>{
-      Promise.all([gTrans(word,'id','zh-CN'),gTrans(word,'id','en')]).then(([zhText,enText])=>{
-        const statusEl = document.getElementById('autoQueryStatus');
-        const resultEl = document.getElementById('autoQueryResult');
-        if(!statusEl || !resultEl) return;
-        
-        if(zhText || enText){
-          statusEl.innerText = '✅ 查询成功，已自动加入生词本';
-          statusEl.style.color = 'var(--success)';
-          let rh = '';
-          if(zhText) rh += `<div style="margin-bottom:8px;padding:10px;background:rgba(59,130,246,.1);border-radius:8px;"><div style="font-size:11px;color:var(--text-dim);">🇮🇩→🇨🇳</div><div style="font-size:15px;color:var(--text);font-weight:600;">${zhText}</div></div>`;
-          if(enText) rh += `<div style="margin-bottom:8px;padding:10px;background:rgba(34,197,94,.1);border-radius:8px;"><div style="font-size:11px;color:var(--text-dim);">🇮🇩→🇬🇧</div><div style="font-size:14px;color:var(--text);">${enText}</div></div>`;
-          resultEl.innerHTML = rh;
-          
-          // 自动加入生词本
-          if(!wordBank.some(w=>w.word===word)){
-            wordBank.push({id:word,word:word,zh:zhText||word,en:enText||'',ipa:'—',root:'—',passed:{},addTime:Date.now()});
-            saveWB();
-            updateStats();
-          }
-        } else {
-          statusEl.innerText = '⚠️ 在线查询无结果，请手动录入';
-          statusEl.style.color = 'var(--accent)';
-        }
-      }).catch(()=>{
-        const statusEl = document.getElementById('autoQueryStatus');
-        if(statusEl){ statusEl.innerText = '⚠️ 查询失败，请手动录入'; statusEl.style.color = 'var(--accent)'; }
-      });
-    }, 100);
+    cardHTML += `<div style="text-align:center;padding:20px 0;"><div style="font-size:36px;margin-bottom:12px;">🔍</div><div style="font-size:14px;color:var(--text-dim);margin-bottom:8px;">「${word}」未收录</div><div style="font-size:12px;color:var(--text-dim);margin-bottom:12px;">可手动添加到词汇库</div>
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;padding:8px;background:var(--bg-elev);border-radius:8px;">
+      <input type="checkbox" id="wbCheck" style="width:16px;height:16px;cursor:pointer;">
+      <label for="wbCheck" style="font-size:13px;color:var(--text);cursor:pointer;">加入生词本</label>
+    </div>
+    <button id="wordPopupQueryBtn" data-word="${word}" style="width:100%;padding:8px;background:var(--info);color:#fff;border:none;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;margin-bottom:8px;">🔍 查询更多（三语）</button>
+    <button id="wordPopupAddBtn" data-wid="${clean}" style="width:100%;padding:10px;background:var(--primary);color:#0a0e17;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;">📚 加入生词本</button></div>`;
   }
   
   cardHTML += `</div>`;
   overlay.innerHTML = cardHTML;
   document.body.appendChild(overlay);
   
-  // 事件绑定
+  // 事件绑定（必须在appendChild之后！）
   const closeBtn = document.getElementById('wordPopupClose');
   if(closeBtn){
     closeBtn.addEventListener('click', closeWordPopup);
@@ -4449,14 +3176,14 @@ function showWordPopup(word){
   if(addBtn) addBtn.addEventListener('click',()=>{
     const wid = addBtn.dataset.wid;
     addToWBFromPopup(wid);
+    const cb = document.getElementById('wbCheck');
+    if(cb) cb.checked = true;
   });
   
-  const inputBtn = document.getElementById('wordPopupInputBtn');
-  if(inputBtn) inputBtn.addEventListener('click',()=>{
-    const w = inputBtn.dataset.word;
-    closeWordPopup();
-    navigate('input');
-    setTimeout(()=>{ const vInput=document.getElementById('vInput'); if(vInput) vInput.value=w; }, 300);
+  const queryBtn = document.getElementById('wordPopupQueryBtn');
+  if(queryBtn) queryBtn.addEventListener('click',()=>{
+    const w = queryBtn.dataset.word;
+    doWordQuery(w);
   });
   
   overlay.addEventListener('click',(e)=>{
@@ -4497,43 +3224,6 @@ function doWordQuery(word){
   }
   
   document.getElementById('queryResult').innerHTML = resultHtml;
-  
-  // 在线查询API - Google Translate (更高质量)
-  resultHtml += `<div style="margin-top:16px;border-top:1px solid var(--border);padding-top:12px;"><div style="font-size:12px;font-weight:600;color:var(--primary);margin-bottom:8px;">🌐 在线查询结果 (Google Translate)</div><div id="onlineResult"><div style="text-align:center;padding:12px;"><div style="font-size:24px;margin-bottom:8px;">⏳</div><div style="font-size:12px;color:var(--text-dim);">正在查询中...</div></div></div></div>`;
-  document.getElementById('queryResult').innerHTML = resultHtml;
-  
-  // 同时查询印尼语→中文和印尼语→英文
-  Promise.all([
-    gTrans(word, 'id', 'zh-CN'),
-    gTrans(word, 'id', 'en')
-  ])
-    .then(([zhText, enText]) => {
-      let html = '';
-      let hasResult = false;
-      
-      if(zhText && zhText !== word){
-        html += `<div style="margin-bottom:10px;padding:10px;background:rgba(59,130,246,.1);border-radius:8px;border-left:3px solid var(--info);"><div style="font-size:11px;color:var(--text-dim);margin-bottom:4px;">🇮🇩→🇨🇳 印尼语→中文</div><div style="font-size:15px;color:var(--text);font-weight:600;">${zhText}</div><div style="font-size:10px;color:var(--text-dim);margin-top:4px;">via Google Translate</div></div>`;
-        hasResult = true;
-        // 缓存查询结果供生词本使用
-        window._lastQueryResult = {word: word, zh: zhText, en: enText || ''};
-      }
-      
-      if(enText && enText !== word){
-        html += `<div style="margin-bottom:10px;padding:10px;background:rgba(34,197,94,.1);border-radius:8px;border-left:3px solid var(--success);"><div style="font-size:11px;color:var(--text-dim);margin-bottom:4px;">🇮🇩→🇬🇧 印尼语→English</div><div style="font-size:14px;color:var(--text);">${enText}</div></div>`;
-        hasResult = true;
-        if(!window._lastQueryResult) window._lastQueryResult = {word: word, zh: '', en: enText};
-        else window._lastQueryResult.en = enText;
-      }
-      
-      if(!hasResult){
-        html = '<div style="text-align:center;padding:16px;"><div style="font-size:24px;margin-bottom:8px;">📖</div><div style="font-size:13px;color:var(--text-dim);">在线查询暂无结果</div><div style="font-size:11px;color:var(--text-dim);margin-top:4px;">请使用「词汇录入」功能手动添加</div></div>';
-      }
-      
-      document.getElementById('onlineResult').innerHTML = html;
-    })
-    .catch(err => {
-      document.getElementById('onlineResult').innerHTML = '<div style="text-align:center;padding:16px;"><div style="font-size:24px;margin-bottom:8px;">⚠️</div><div style="font-size:13px;color:var(--text-dim);">网络查询失败</div><div style="font-size:11px;color:var(--text-dim);margin-top:4px;">请检查网络连接后重试</div></div>';
-    });
 }
 
 function closeWordPopup(){
@@ -4543,34 +3233,16 @@ function closeWordPopup(){
 
 function addToWBFromPopup(wordId){
   const v = vocabDB[wordId];
-  if(v){
-    if(wordBank.some(w=>w.id===v.id)){
-      showToast('已在生词本');
-      return;
-    }
-    wordBank.push({id:v.id,word:v.id,zh:v.cn,en:v.en||'',ipa:v.ipa||'',root:v.root||'',passed:{},addTime:Date.now()});
-    saveWB();
-    updateStats();
-    showToast(`已加入: ${v.cn}`);
-    closeWordPopup();
+  if(!v) return;
+  if(wordBank.some(w=>w.id===v.id)){
+    showToast('已在生词本');
     return;
   }
-  // 未收录单词：尝试使用最近一次查询结果或在线查询
-  const lastQuery = window._lastQueryResult;
-  if(lastQuery && lastQuery.word === wordId){
-    if(wordBank.some(w=>w.word===wordId)){
-      showToast('已在生词本');
-      return;
-    }
-    wordBank.push({id:wordId,word:wordId,zh:lastQuery.zh||wordId,en:lastQuery.en||'',ipa:'—',root:'—',passed:{},addTime:Date.now()});
-    saveWB();
-    updateStats();
-    showToast(`已加入: ${lastQuery.zh || wordId}`);
-    closeWordPopup();
-    return;
-  }
-  // 无查询结果，提示先查询
-  showToast('请先点击「查询更多」获取翻译');
+  wordBank.push({id:v.id,zh:v.cn,en:v.en||'',ipa:v.ipa||'',root:v.root||'',passed:{},addTime:Date.now()});
+  saveWB();
+  updateStats();
+  showToast(`已加入: ${v.cn}`);
+  closeWordPopup();
 }
 
 
@@ -4665,837 +3337,6 @@ document.addEventListener('click', function(e){
     navigate('mindmap');
   }
 });
-
-// ===== 词根射击游戏 V4.2 =====
-// 新增：动态词库、难度分级、Combo特效、错误解析、成就系统
-
-function renderPrefixGame(c) {
-  const state = prefixGameState;
-  if (!state.active) { showAffixLevel1(c); return; }
-  switch (state.phase) {
-    case 'menu': showAffixLevel1(c); break;
-    case 'difficulty': showDifficultySelect(c); break;
-    case 'level2': showAffixLevel2(c); break;
-    case 'play': showAffixGamePlay(c); break;
-    case 'over': showAffixGameOver(c); break;
-    case 'parse': showAnswerParse(c); break;
-    default: showAffixLevel1(c);
-  }
-}
-
-// === 一级菜单 ===
-function showAffixLevel1(c) {
-  const categories = Object.keys(AFFIX_GAME_DATA);
-  const buttons = categories.map(k => {
-    const d = AFFIX_GAME_DATA[k];
-    const childCount = Object.keys(d.children).length;
-    const unlocked = prefixGameState.unlocked[k];
-    return `
-      <button onclick="${unlocked ? `selectAffixLevel1('${k}')` : ''}" class="trans-btn" style="margin:10px;padding:20px 24px;font-size:16px;min-width:260px;text-align:left;display:flex;align-items:center;gap:14px;${unlocked ? '' : 'opacity:.4;cursor:not-allowed;'}border:2px solid ${unlocked ? 'var(--primary)' : 'var(--border)'};">
-        <span style="font-size:32px">${d.icon}</span>
-        <div style="flex:1">
-          <div style="font-weight:800;color:${unlocked ? 'var(--primary)' : 'var(--text-dim)'};font-size:17px;">${d.name}</div>
-          <div style="font-size:12px;color:var(--text-dim);margin-top:4px;line-height:1.6">${childCount} 个词缀 · ${unlocked ? '已解锁' : '🔒 需完成前置关卡解锁'}</div>
-        </div>
-        ${unlocked ? '<span style="font-size:20px">→</span>' : '🔒'}
-      </button>
-    `;
-  }).join('');
-
-  c.innerHTML = `
-    <div class="card">
-      <div class="card-header" style="flex-wrap:wrap;gap:8px;">
-        <h2>🎯 词根射击</h2>
-        <span class="badge" style="background:var(--accent)20;color:var(--accent)">V4.2</span>
-      </div>
-      <div style="padding:24px;">
-        <div style="font-size:13px;color:var(--text-dim);margin-bottom:24px;padding:16px;background:linear-gradient(135deg,rgba(0,212,170,.08),rgba(59,130,246,.06));border-radius:12px;border-left:4px solid var(--primary);line-height:2">
-          <strong style="color:var(--primary);font-size:15px">📋 游戏规则 V4.2</strong><br>
-          ① 选择词缀大类 → ② 选择难度 → ③ 选择具体词缀 → ④ 进入射击！<br>
-          🎯 <strong>击破</strong>：选择正确的三级变体击中落下的词根<br>
-          🔥 <strong>连击</strong>：连续正确触发Combo特效与加分<br>
-          💡 <strong>解析</strong>：错误时显示规则详解，边玩边学<br>
-          ⭐ <strong>成就</strong>：解锁关卡、收集星级、挑战大师难度
-        </div>
-        <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;">
-          ${buttons}
-        </div>
-        ${renderAchievementsPreview()}
-      </div>
-    </div>
-  `;
-}
-
-function renderAchievementsPreview() {
-  const achieved = Object.keys(prefixGameState.achievements).length;
-  const total = Object.keys(ACHIEVEMENTS).length;
-  if (achieved === 0) return '';
-  return `
-    <div style="margin-top:20px;padding:14px;background:var(--bg-elev);border-radius:10px;text-align:center;">
-      <div style="font-size:13px;color:var(--text-dim);margin-bottom:8px">🏆 成就进度</div>
-      <div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap;">
-        ${Object.values(prefixGameState.achievements).map(a => `<span style="font-size:20px" title="${a.name}">${a.icon}</span>`).join('')}
-      </div>
-      <div style="font-size:11px;color:var(--text-dim);margin-top:6px">${achieved} / ${total} 已解锁</div>
-    </div>
-  `;
-}
-
-function selectAffixLevel1(cat) {
-  prefixGameState.level1 = cat;
-  prefixGameState.phase = 'difficulty';
-  prefixGameState.active = true;
-  showDifficultySelect(document.getElementById('appContent'));
-}
-
-// === 难度选择 ===
-function showDifficultySelect(c) {
-  const difficulties = Object.keys(DIFFICULTY_CONFIG);
-  const buttons = difficulties.map(k => {
-    const d = DIFFICULTY_CONFIG[k];
-    const colors = { easy: '#22c55e', normal: '#3b82f6', hard: '#f59e0b', master: '#ef4444' };
-    return `
-      <button onclick="setDifficulty('${k}')" class="trans-btn" style="margin:8px;padding:18px 24px;font-size:15px;min-width:200px;text-align:center;border:2px solid ${colors[k]}40;background:${colors[k]}10;">
-        <div style="font-weight:800;color:${colors[k]};font-size:18px;margin-bottom:6px">${d.label}</div>
-        <div style="font-size:12px;color:var(--text-dim);line-height:1.8">
-          ❤️ ${d.lives} · ⏱️ ${d.fallingSpeed/1000}s · ${d.options}选项<br>
-          ${d.crossCategory ? '⚠️ 跨类干扰' : '✓ 同类干扰'}
-        </div>
-      </button>
-    `;
-  }).join('');
-
-  c.innerHTML = `
-    <div class="card">
-      <div class="card-header">
-        <h2>⚔️ 选择难度</h2>
-        <button onclick="backToAffixLevel1()" class="trans-btn" style="font-size:12px;padding:6px 12px;">← 返回</button>
-      </div>
-      <div style="padding:24px;text-align:center;">
-        <div style="font-size:13px;color:var(--text-dim);margin-bottom:20px;">选择适合你的挑战级别</div>
-        <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;">
-          ${buttons}
-        </div>
-      </div>
-    </div>
-  `;
-}
-
-function setDifficulty(diff) {
-  prefixGameState.difficulty = diff;
-  prefixGameState.phase = 'level2';
-  showAffixLevel2(document.getElementById('appContent'));
-}
-
-// === 二级菜单 ===
-function showAffixLevel2(c) {
-  const state = prefixGameState;
-  const catData = AFFIX_GAME_DATA[state.level1];
-  if (!catData) { backToAffixLevel1(); return; }
-
-  const children = Object.keys(catData.children);
-  const buttons = children.map(k => {
-    const d = catData.children[k];
-    const varCount = Object.keys(d.variants).length;
-    const totalWords = Object.values(d.variants).reduce((s, v) => s + v.words.length, 0);
-    return `
-      <button onclick="startAffixGame('${k}')" class="trans-btn" style="margin:8px;padding:18px 20px;font-size:15px;min-width:220px;text-align:left;border:2px solid rgba(0,212,170,.3);background:linear-gradient(135deg,rgba(0,212,170,.08),rgba(0,212,170,.02));transition:all .3s;" onmouseover="this.style.borderColor='var(--primary)';this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 20px rgba(0,212,170,.15)'" onmouseout="this.style.borderColor='rgba(0,212,170,.3)';this.style.transform='';this.style.boxShadow=''">
-        <div style="font-weight:800;color:var(--primary);font-size:17px;margin-bottom:6px;letter-spacing:.5px">${d.name.split(' ')[0]}</div>
-        <div style="font-size:12px;color:var(--text-dim);margin-bottom:4px">${d.name.split(' ').slice(1).join(' ')}</div>
-        <div style="font-size:11px;color:var(--accent);margin-top:6px">${varCount} 种变体 · ${totalWords} 个词根</div>
-        <div style="font-size:11px;color:var(--text-dim);margin-top:4px;line-height:1.5;opacity:.8">${d.desc.substring(0,40)}...</div>
-      </button>
-    `;
-  }).join('');
-
-  c.innerHTML = `
-    <div class="card">
-      <div class="card-header" style="flex-wrap:wrap;gap:8px;">
-        <h2>${catData.icon} ${catData.name}</h2>
-        <div style="display:flex;gap:8px;">
-          <span class="badge" style="background:rgba(59,130,246,.15);color:#3b82f6">${DIFFICULTY_CONFIG[state.difficulty].label}</span>
-          <button onclick="backToAffixLevel1()" class="trans-btn" style="font-size:12px;padding:6px 12px;">← 返回大类</button>
-        </div>
-      </div>
-      <div style="padding:24px;">
-        <div style="font-size:13px;color:var(--text-dim);margin-bottom:20px;padding:14px;background:rgba(0,212,170,.06);border-radius:10px;border-left:3px solid var(--primary);line-height:1.7">
-          ${catData.desc}
-        </div>
-        <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;">
-          ${buttons}
-        </div>
-      </div>
-    </div>
-  `;
-}
-
-function backToAffixLevel1() {
-  prefixGameState.level1 = null;
-  prefixGameState.phase = 'menu';
-  showAffixLevel1(document.getElementById('appContent'));
-}
-
-function startAffixGame(level2Key) {
-  const diff = DIFFICULTY_CONFIG[prefixGameState.difficulty];
-  prefixGameState = {
-    active: true, phase: 'play', level1: prefixGameState.level1,
-    level2: level2Key, difficulty: prefixGameState.difficulty,
-    level: 1, subLevel: 1, score: 0, lives: diff.lives,
-    currentWord: null, fallingSpeed: diff.fallingSpeed,
-    selectedVariant: null, timer: null,
-    wordsCompleted: 0, streak: 0, bestStreak: 0,
-    achievements: prefixGameState.achievements || {},
-    unlocked: prefixGameState.unlocked || {},
-    starRatings: prefixGameState.starRatings || {}
-  };
-  showAffixGamePlay(document.getElementById('appContent'));
-}
-
-// === 游戏主体 ===
-function showAffixGamePlay(c) {
-  const state = prefixGameState;
-  const catData = AFFIX_GAME_DATA[state.level1];
-  const level2Data = catData.children[state.level2];
-  const variants = level2Data.variants;
-  const variantKeys = Object.keys(variants);
-  const diff = DIFFICULTY_CONFIG[state.difficulty];
-
-  // 动态词库补充
-  const dynamicPool = buildDynamicWordPool();
-  
-  // 随机选正确答案
-  const correctKey = variantKeys[Math.floor(Math.random() * variantKeys.length)];
-  const correctVar = variants[correctKey];
-  const baseWords = correctVar.words;
-  // 混合动态词库
-  const allWords = [...baseWords];
-  dynamicPool.forEach(dw => {
-    if (!allWords.some(w => w.root === dw.root)) allWords.push(dw);
-  });
-  const word = allWords[Math.floor(Math.random() * allWords.length)];
-  state.currentWord = { ...word, correctVariant: correctKey };
-
-  // 生成选项
-  let options = [correctKey];
-  const allVariantKeys = [];
-  // 收集所有可用变体
-  if (diff.crossCategory) {
-    // 困难模式：从所有二级分类中找干扰项
-    Object.values(AFFIX_GAME_DATA).forEach(cat => {
-      Object.values(cat.children).forEach(child => {
-        Object.keys(child.variants).forEach(k => {
-          if (!allVariantKeys.includes(k)) allVariantKeys.push(k);
-        });
-      });
-    });
-  } else {
-    // 简单/中等：从当前二级分类中找干扰项
-    variantKeys.forEach(k => { if (!allVariantKeys.includes(k)) allVariantKeys.push(k); });
-  }
-  const others = allVariantKeys.filter(k => k !== correctKey);
-  while (options.length < diff.options && others.length > 0) {
-    const idx = Math.floor(Math.random() * others.length);
-    const opt = others.splice(idx, 1)[0];
-    if (!options.includes(opt)) options.push(opt);
-  }
-  options.sort(() => Math.random() - 0.5);
-
-  const progress = ((state.subLevel - 1) / 10) * 100;
-  const ruleBg = level2Data.rule || level2Data.desc;
-  const isVowelStart = /^[aiueo]/.test(word.root);
-  const firstLetter = word.root[0];
-
-  // 随机水平位置
-  const randomPos = 10 + Math.random() * 60;
-
-  c.innerHTML = `
-    <div class="card" style="min-height:560px;display:flex;flex-direction:column;position:relative;overflow:hidden;">
-      ${state.streak >= 3 ? `<div id="comboOverlay" style="position:absolute;top:0;left:0;right:0;bottom:0;pointer-events:none;z-index:10;background:radial-gradient(circle at 50% 30%, rgba(255,107,53,.15) 0%, transparent 60%);animation:comboPulse 1s ease-out;"></div>` : ''}
-      
-      <div class="card-header" style="flex-wrap:wrap;gap:8px;position:relative;z-index:5;">
-        <h2>🎯 ${level2Data.name}</h2>
-        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
-          <span class="badge" style="background:rgba(59,130,246,.15);color:#3b82f6">${diff.label}</span>
-          <span class="badge" style="background:var(--accent)20;color:var(--accent)">大关 ${state.level}</span>
-          <span class="badge" style="background:var(--info)20;color:var(--info)">小关 ${state.subLevel}/10</span>
-          <span class="badge" style="background:var(--danger)20;color:var(--danger)">❤️ ${state.lives}</span>
-          <span class="badge">⭐ ${state.score}</span>
-          ${state.streak > 1 ? `<span class="badge" style="background:linear-gradient(90deg,#ff6b35,#ff9f43);color:#fff;border:none;animation:comboBadge .5s ease-out">🔥 ${state.streak}连击</span>` : ''}
-        </div>
-      </div>
-
-      <div style="padding:16px;flex:1;display:flex;flex-direction:column;position:relative;z-index:5;">
-        <!-- 规则背景条 -->
-        <div style="background:linear-gradient(90deg,rgba(0,212,170,.1),rgba(59,130,246,.08));border:1px solid rgba(0,212,170,.2);border-radius:10px;padding:12px 16px;margin-bottom:12px;font-size:12px;color:var(--text-dim);line-height:1.7;">
-          <strong style="color:var(--primary)">📜 规则：</strong>${ruleBg}
-        </div>
-
-        <!-- 进度条 -->
-        <div style="background:var(--bg-elev);border-radius:8px;height:6px;overflow:hidden;margin-bottom:12px;">
-          <div style="background:var(--primary);width:${progress}%;height:100%;transition:width .3s;border-radius:8px;box-shadow:0 0 8px rgba(0,212,170,.5);"></div>
-        </div>
-
-        <!-- 游戏区域 -->
-        <div id="gameArena" style="flex:1;background:var(--bg-elev);border-radius:14px;border:1px solid var(--border);position:relative;overflow:hidden;min-height:280px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;">
-          <!-- 粒子容器 -->
-          <div id="particleContainer" style="position:absolute;top:0;left:0;right:0;bottom:0;pointer-events:none;z-index:20;"></div>
-          
-          <!-- 下落的词根 -->
-          <div id="fallingWord" style="position:absolute;top:20px;left:${randomPos}%;transform:translateX(-50%);font-size:36px;font-weight:900;color:var(--primary);padding:20px 32px;background:linear-gradient(135deg,var(--bg-card),rgba(0,212,170,.1));border-radius:16px;border:2px solid var(--primary);box-shadow:0 0 30px rgba(0,212,170,.2),0 4px 20px rgba(0,0,0,.3);animation:affixFall ${state.fallingSpeed}ms linear forwards;z-index:5;">
-            ${word.root}
-          </div>
-          
-          <div style="margin-top:80px;font-size:15px;color:var(--text-dim);font-weight:500;">🇨🇳 ${word.cn}</div>
-          <div style="font-size:12px;color:var(--accent);opacity:.8;">${word.full}</div>
-          
-          <!-- 提示条 -->
-          <div style="font-size:11px;color:var(--text-dim);margin-top:4px;opacity:.6;">
-            首字母: <strong style="color:var(--primary)">${firstLetter}</strong> ${isVowelStart ? '(元音)' : '(辅音)'}
-          </div>
-        </div>
-
-        <!-- 选项区域 -->
-        <div style="margin-top:16px;">
-          <div style="font-size:13px;color:var(--text-dim);margin-bottom:10px;text-align:center;">
-            选择正确的变体击破词根！（${(state.fallingSpeed/1000).toFixed(1)}秒）
-          </div>
-          <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;">
-            ${options.map((opt, i) => {
-              const v = variants[opt] || findVariantGlobal(opt);
-              const color = v.color || 'var(--primary)';
-              return `<button onclick="affixGameAnswer('${opt.replace(/'/g, "\\'")}')"
-                      class="trans-btn"
-                      style="padding:14px 22px;font-size:16px;font-weight:700;min-width:110px;border:2px solid ${color}40;background:${color}10;transition:all .2s;"
-                      onmouseover="this.style.borderColor='${color}';this.style.background='${color}20';this.style.transform='scale(1.05)'"
-                      onmouseout="this.style.borderColor='${color}40';this.style.background='${color}10';this.style.transform=''"
-                      id="affixOpt${i}">
-                <span style="color:${color}">${v.label}</span>
-              </button>`;
-            }).join('')}
-          </div>
-        </div>
-
-        <div style="margin-top:14px;text-align:center;display:flex;gap:10px;justify-content:center;">
-          <button onclick="endAffixGame()" class="trans-btn" style="background:transparent;color:var(--text-dim);font-size:12px;">退出游戏</button>
-          <button onclick="togglePause()" class="trans-btn" style="background:transparent;color:var(--text-dim);font-size:12px;">⏸️ 暂停</button>
-        </div>
-      </div>
-    </div>
-
-    <style>
-      @keyframes affixFall {
-        0% { transform: translateX(-50%) translateY(-100px) rotate(-5deg); opacity: 0; filter: blur(4px); }
-        10% { transform: translateX(-50%) translateY(0) rotate(0deg); opacity: 1; filter: blur(0); }
-        50% { transform: translateX(-50%) translateY(40px) rotate(2deg); }
-        100% { transform: translateX(-50%) translateY(120px) rotate(0deg); opacity: 1; }
-      }
-      @keyframes comboPulse {
-        0% { opacity: 1; }
-        100% { opacity: 0; }
-      }
-      @keyframes comboBadge {
-        0% { transform: scale(0.5); }
-        50% { transform: scale(1.2); }
-        100% { transform: scale(1); }
-      }
-      @keyframes particleBurst {
-        0% { transform: translate(0,0) scale(1); opacity: 1; }
-        100% { transform: translate(var(--tx), var(--ty)) scale(0); opacity: 0; }
-      }
-      @keyframes shake {
-        0%,100% { transform: translateX(0); }
-        20% { transform: translateX(-8px); }
-        40% { transform: translateX(8px); }
-        60% { transform: translateX(-4px); }
-        80% { transform: translateX(4px); }
-      }
-      @keyframes hitFlash {
-        0% { box-shadow: 0 0 0 0 rgba(0,212,170,.8); }
-        100% { box-shadow: 0 0 0 20px rgba(0,212,170,0); }
-      }
-    </style>
-  `;
-
-  if (state.timer) clearTimeout(state.timer);
-  state.timer = setTimeout(() => { affixGameTimeout(); }, state.fallingSpeed);
-}
-
-function findVariantGlobal(key) {
-  for (const cat of Object.values(AFFIX_GAME_DATA)) {
-    for (const child of Object.values(cat.children)) {
-      if (child.variants[key]) return child.variants[key];
-    }
-  }
-  return { label: key, color: 'var(--primary)' };
-}
-
-function spawnParticles(x, y, color, count) {
-  const container = document.getElementById('particleContainer');
-  if (!container) return;
-  for (let i = 0; i < count; i++) {
-    const p = document.createElement('div');
-    const angle = (Math.PI * 2 * i) / count;
-    const dist = 30 + Math.random() * 50;
-    const tx = Math.cos(angle) * dist;
-    const ty = Math.sin(angle) * dist;
-    p.style.cssText = `
-      position: absolute; left: ${x}px; top: ${y}px; width: 6px; height: 6px;
-      background: ${color}; border-radius: 50%; pointer-events: none;
-      --tx: ${tx}px; --ty: ${ty}px;
-      animation: particleBurst 0.6s ease-out forwards;
-    `;
-    container.appendChild(p);
-    setTimeout(() => p.remove(), 600);
-  }
-}
-
-function showHitEffect() {
-  const arena = document.getElementById('gameArena');
-  if (!arena) return;
-  const flash = document.createElement('div');
-  flash.style.cssText = 'position:absolute;inset:0;background:rgba(0,212,170,.15);pointer-events:none;z-index:15;animation:hitFlash .4s ease-out;';
-  arena.appendChild(flash);
-  setTimeout(() => flash.remove(), 400);
-}
-
-function showShakeEffect() {
-  const arena = document.getElementById('gameArena');
-  if (arena) arena.style.animation = 'shake .4s ease-out';
-  setTimeout(() => { if (arena) arena.style.animation = ''; }, 400);
-}
-
-function affixGameAnswer(selected) {
-  const state = prefixGameState;
-  if (!state.active || state.phase !== 'play' || !state.currentWord) return;
-  if (state.timer) clearTimeout(state.timer);
-
-  const correct = state.currentWord.correctVariant;
-  const isCorrect = selected === correct;
-  const fallingWord = document.getElementById('fallingWord');
-
-  if (isCorrect) {
-    // 正确：连击+粒子特效
-    state.streak++;
-    if (state.streak > state.bestStreak) state.bestStreak = state.streak;
-    const streakBonus = Math.floor(state.streak / 3) * 10;
-    const points = 15 * state.level + streakBonus;
-    state.score += points;
-    state.subLevel++;
-    state.wordsCompleted++;
-    
-    // 粒子特效
-    if (fallingWord) {
-      const rect = fallingWord.getBoundingClientRect();
-      const arena = document.getElementById('gameArena');
-      if (arena) {
-        const arenaRect = arena.getBoundingClientRect();
-        spawnParticles(rect.left - arenaRect.left + rect.width/2, rect.top - arenaRect.top + rect.height/2, '#00d4aa', 12);
-      }
-    }
-    showHitEffect();
-    
-    let msg = `✅ 正确！+${points}分`;
-    if (state.streak >= 3) msg += ` 🔥x${state.streak}连击!`;
-    if (state.streak >= 10) msg += ' ⚡超神!';
-    showToast(msg);
-
-    if (state.subLevel > 10) {
-      state.level++;
-      state.subLevel = 1;
-      state.fallingSpeed = Math.max(diff.fallingSpeed * 0.7, 2000);
-      showToast(`🎉 恭喜！升至第 ${state.level} 大关！速度加快！`);
-    }
-    
-    // 检查成就
-    checkAchievements();
-    
-    setTimeout(() => {
-      showAffixGamePlay(document.getElementById('appContent'));
-    }, 800);
-  } else {
-    // 错误：震动+显示解析
-    state.streak = 0;
-    state.lives--;
-    showShakeEffect();
-    
-    // 保存错误状态用于解析
-    state.lastError = {
-      selected: selected,
-      correct: correct,
-      word: state.currentWord,
-      level2: state.level2
-    };
-    
-    if (state.lives <= 0) {
-      state.phase = 'over';
-      setTimeout(() => showAffixGameOver(), 500);
-      return;
-    }
-    
-    state.phase = 'parse';
-    setTimeout(() => showAnswerParse(document.getElementById('appContent')), 400);
-  }
-}
-
-function affixGameTimeout() {
-  const state = prefixGameState;
-  if (!state.active || state.phase !== 'play') return;
-  state.streak = 0;
-  state.lives--;
-  const cw = state.currentWord;
-  
-  state.lastError = {
-    selected: null,
-    correct: cw ? cw.correctVariant : '?',
-    word: cw,
-    level2: state.level2,
-    isTimeout: true
-  };
-  
-  showShakeEffect();
-  
-  if (state.lives <= 0) {
-    state.phase = 'over';
-    setTimeout(() => showAffixGameOver(), 500);
-    return;
-  }
-  
-  state.phase = 'parse';
-  setTimeout(() => showAnswerParse(document.getElementById('appContent')), 400);
-}
-
-// === 错误解析界面 ===
-function showAnswerParse(c) {
-  const state = prefixGameState;
-  const err = state.lastError;
-  if (!err) { state.phase = 'play'; showAffixGamePlay(c); return; }
-  
-  const catData = AFFIX_GAME_DATA[state.level1];
-  const level2Data = catData.children[state.level2];
-  const correctVar = findVariantGlobal(err.correct);
-  const word = err.word || {};
-  
-  // 生成解析文字
-  let parseText = '';
-  if (err.isTimeout) {
-    parseText = `⏰ <strong>超时！</strong>时间到了，你没有选择答案。<br><br>`;
-  } else {
-    parseText = `❌ <strong>错误！</strong>你选择了 <span style="color:var(--danger)">${err.selected}</span>，但正确答案是 <span style="color:var(--primary)">${err.correct}</span>。<br><br>`;
-  }
-  
-  parseText += `<div style="background:rgba(0,212,170,.08);padding:14px;border-radius:10px;margin:12px 0;line-height:1.8;">
-    <strong style="color:var(--primary)">📖 规则解析：</strong><br>
-    <strong>词根：</strong>${word.root || '?'}（${word.cn || '?'}）<br>
-    <strong>完整词：</strong>${word.full || '?'}<br>
-    <strong>正确变体：</strong><span style="color:${correctVar.color || 'var(--primary)'}">${err.correct}</span><br>
-    <strong>规则：</strong>${correctVar.rule || '无规则说明'}<br>
-    <strong>所属词缀：</strong>${level2Data.name}<br>
-    <strong>当前难度：</strong>${DIFFICULTY_CONFIG[state.difficulty].label}
-  </div>`;
-  
-  // 同类例词
-  if (correctVar.words && correctVar.words.length > 0) {
-    const examples = correctVar.words.slice(0, 5).map(w => `${w.root}→${w.full}（${w.cn}）`).join('、');
-    parseText += `<div style="font-size:12px;color:var(--text-dim);margin-top:8px;">
-      <strong>同类例词：</strong>${examples}
-    </div>`;
-  }
-
-  c.innerHTML = `
-    <div class="card" style="text-align:center;padding:30px 20px;">
-      <div style="font-size:48px;margin-bottom:12px">💡</div>
-      <div style="font-size:20px;font-weight:700;color:var(--accent);margin-bottom:16px">学习时刻</div>
-      <div style="font-size:14px;color:var(--text);line-height:1.8;text-align:left;max-width:480px;margin:0 auto;">
-        ${parseText}
-      </div>
-      <div style="display:flex;gap:12px;justify-content:center;margin-top:24px;flex-wrap:wrap;">
-        <button onclick="continueAfterParse()" class="trans-btn" style="padding:12px 28px;font-size:15px;background:var(--primary);color:#fff;">继续游戏 →</button>
-        <button onclick="endAffixGame()" class="trans-btn" style="background:transparent;color:var(--text-dim)">退出</button>
-      </div>
-      <div style="margin-top:16px;font-size:12px;color:var(--text-dim);">
-        剩余生命：${'❤️'.repeat(state.lives)}${'🖤'.repeat(DIFFICULTY_CONFIG[state.difficulty].lives - state.lives)}
-      </div>
-    </div>
-  `;
-}
-
-function continueAfterParse() {
-  prefixGameState.phase = 'play';
-  showAffixGamePlay(document.getElementById('appContent'));
-}
-
-// === 成就检查 ===
-function checkAchievements() {
-  const state = prefixGameState;
-  let newAchieved = false;
-  Object.values(ACHIEVEMENTS).forEach(ach => {
-    if (!state.achievements[ach.id] && ach.condition(state, state.achievements)) {
-      state.achievements[ach.id] = ach;
-      newAchieved = true;
-      showToast(`🏆 解锁成就：${ach.name}！${ach.icon}`);
-    }
-  });
-  return newAchieved;
-}
-
-// === 游戏结束 ===
-function showAffixGameOver() {
-  const state = prefixGameState;
-  state.active = false;
-  const c = document.getElementById('appContent');
-  if (!c) return;
-
-  // 星级评定
-  const maxScore = state.wordsCompleted * 15 * state.level;
-  const ratio = maxScore > 0 ? state.score / maxScore : 0;
-  let stars = 1;
-  if (ratio >= 0.9) stars = 3;
-  else if (ratio >= 0.6) stars = 2;
-  
-  const starKey = `${state.level1}_${state.level2}_${state.difficulty}`;
-  const prevStars = state.starRatings[starKey] || 0;
-  if (stars > prevStars) {
-    state.starRatings[starKey] = stars;
-  }
-  
-  // 解锁检查
-  if (state.wordsCompleted >= 20) {
-    if (state.level1 === 'prefix' && !state.unlocked.suffix) {
-      state.unlocked.suffix = true;
-      showToast('🔓 解锁：后缀关卡！');
-    } else if (state.level1 === 'suffix' && !state.unlocked.circumfix) {
-      state.unlocked.circumfix = true;
-      showToast('🔓 解锁：环绕缀关卡！');
-    } else if (state.level1 === 'circumfix' && !state.unlocked.special) {
-      state.unlocked.special = true;
-      showToast('🔓 解锁：中缀关卡！');
-    }
-  }
-  
-  // 保存进度
-  try {
-    localStorage.setItem('bir_game_progress', JSON.stringify({
-      achievements: state.achievements,
-      unlocked: state.unlocked,
-      starRatings: state.starRatings
-    }));
-  } catch(e) {}
-
-  const cult = getCultivationInfo();
-  const bonus = cult.level > 0 ? Math.floor(cult.level * 0.5) : 0;
-  const totalScore = state.score + bonus;
-  
-  const starHTML = '⭐'.repeat(stars) + '☆'.repeat(3 - stars);
-  const newAchievements = checkAchievements();
-
-  c.innerHTML = `
-    <div class="card" style="text-align:center;padding:40px 20px;">
-      <div style="font-size:56px;margin-bottom:16px">💥</div>
-      <div style="font-size:24px;font-weight:700;color:var(--danger);margin-bottom:8px">游戏结束</div>
-      
-      <div style="font-size:28px;margin:12px 0">${starHTML}</div>
-      <div style="font-size:12px;color:var(--text-dim);margin-bottom:12px">
-        ${stars > prevStars ? '🎉 新纪录！' : ''} 本局星级：${stars}星
-      </div>
-      
-      <div style="font-size:15px;color:var(--text);margin-bottom:12px">
-        击破 ${state.wordsCompleted} 个词根 · 到达第 ${state.level} 大关 · ${DIFFICULTY_CONFIG[state.difficulty].label}难度
-      </div>
-      ${state.bestStreak > 2 ? `<div style="font-size:13px;color:#ff6b35;margin-bottom:8px">🔥 最高连击: ${state.bestStreak}</div>` : ''}
-      <div style="font-size:36px;font-weight:700;color:var(--primary);margin-bottom:4px">${totalScore} 分</div>
-      ${bonus > 0 ? `<div style="font-size:12px;color:var(--accent);margin-bottom:16px">修仙等级加成: +${bonus}分 (${cult.name})</div>` : ''}
-      
-      ${newAchievements ? `<div style="padding:12px;background:rgba(245,158,11,.1);border-radius:8px;margin:12px 0;font-size:13px;color:var(--accent);">🏆 本局解锁新成就！</div>` : ''}
-      
-      <div style="display:flex;gap:12px;justify-content:center;margin-top:24px;flex-wrap:wrap;">
-        <button onclick="restartAffixGame()" class="trans-btn" style="padding:12px 24px;">🔄 再来一局</button>
-        <button onclick="backToAffixLevel2()" class="trans-btn">换词缀/难度</button>
-        <button onclick="endAffixGame()" class="trans-btn" style="background:transparent;color:var(--text-dim)">返回主页</button>
-      </div>
-    </div>
-  `;
-}
-
-function restartAffixGame() {
-  const state = prefixGameState;
-  if (state.level2) {
-    startAffixGame(state.level2);
-  } else {
-    endAffixGame();
-  }
-}
-
-function backToAffixLevel2() {
-  prefixGameState.phase = 'level2';
-  prefixGameState.active = true;
-  showAffixLevel2(document.getElementById('appContent'));
-}
-
-function endAffixGame() {
-  if (prefixGameState.timer) clearTimeout(prefixGameState.timer);
-  // 恢复存档进度
-  let saved = {};
-  try {
-    saved = JSON.parse(localStorage.getItem('bir_game_progress') || '{}');
-  } catch(e) {}
-  prefixGameState = {
-    active: false, phase: 'menu', level1: null, level2: null,
-    difficulty: 'normal', level: 1, subLevel: 1, score: 0, lives: 3,
-    currentWord: null, fallingSpeed: 5000,
-    selectedVariant: null, timer: null,
-    wordsCompleted: 0, streak: 0, bestStreak: 0,
-    achievements: saved.achievements || {},
-    unlocked: saved.unlocked || { prefix: true, suffix: false, circumfix: false, special: false },
-    starRatings: saved.starRatings || {}
-  };
-  showAffixLevel1(document.getElementById('appContent'));
-}
-
-function togglePause() {
-  // 简化的暂停实现
-  showToast('⏸️ 暂停功能开发中...');
-}
-
-function renderPhonetics(c) {
-  const vowels = PHONETIC_DATA.filter(p => 'AIEOU'.includes(p.letter[0]));
-  const consonants = PHONETIC_DATA.filter(p => !'AIEOU'.includes(p.letter[0]));
-
-  const renderCard = (p, isVowel) => `
-    <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:16px;transition:all .2s;" onmouseover="this.style.borderColor='${p.color}'" onmouseout="this.style.borderColor='var(--border)'">
-      <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
-        <div style="width:44px;height:44px;border-radius:50%;background:${p.color}20;border:2px solid ${p.color};display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;color:${p.color}">${p.letter}</div>
-        <div>
-          <div style="font-size:16px;font-weight:700;color:var(--text)">${p.ipa}</div>
-          <div style="font-size:11px;color:var(--text-dim)">${p.desc}</div>
-        </div>
-        <button onclick="speak('${p.letter[0].toLowerCase()}a','id')" class="trans-btn" style="margin-left:auto;padding:6px 10px;font-size:11px;background:rgba(0,212,170,.1);color:var(--primary)">🔊 读音</button>
-      </div>
-      <div style="display:flex;gap:10px;align-items:flex-start;margin-bottom:10px;">
-        <!-- 简化的口腔位置图 -->
-        <div style="width:60px;height:70px;flex-shrink:0;background:var(--bg-elev);border-radius:8px;border:1px solid var(--border);position:relative;overflow:hidden;">
-          ${renderMouthDiagram(p.letter[0].toLowerCase(), p.pos)}
-        </div>
-        <div style="flex:1;font-size:12px;color:var(--text-dim);line-height:1.7">
-          <div><strong style="color:var(--primary)">舌位：</strong>${p.pos}</div>
-          <div><strong style="color:var(--primary)">口型：</strong>${p.mouth}</div>
-        </div>
-      </div>
-      <div style="font-size:12px;color:var(--accent);background:rgba(245,158,11,.08);padding:6px 10px;border-radius:6px;">
-        例：${p.example}
-      </div>
-    </div>
-  `;
-
-  const compoundCards = COMPOUND_PHONETICS.map(p => `
-    <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:16px;" onmouseover="this.style.borderColor='${p.color}'" onmouseout="this.style.borderColor='var(--border)'">
-      <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
-        <div style="width:44px;height:44px;border-radius:50%;background:${p.color}20;border:2px solid ${p.color};display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;color:${p.color}">${p.combo}</div>
-        <div>
-          <div style="font-size:16px;font-weight:700;color:var(--text)">${p.ipa}</div>
-          <div style="font-size:11px;color:var(--text-dim)">${p.desc}</div>
-        </div>
-        <button onclick="speak('${p.example.split('(')[0]}','id')" class="trans-btn" style="margin-left:auto;padding:6px 10px;font-size:11px;background:rgba(0,212,170,.1);color:var(--primary)">🔊 读音</button>
-      </div>
-      <div style="font-size:12px;color:var(--text-dim);line-height:1.7">
-        <div><strong style="color:var(--primary)">舌位：</strong>${p.pos}</div>
-      </div>
-      <div style="font-size:12px;color:var(--accent);background:rgba(245,158,11,.08);padding:6px 10px;border-radius:6px;margin-top:8px;">
-        例：${p.example}
-      </div>
-    </div>
-  `).join('');
-
-  c.innerHTML = `
-    <div class="card">
-      <div class="card-header">
-        <h2>🔤 印尼语字母发音表</h2>
-        <span class="badge">26字母+4复合音</span>
-      </div>
-      <div style="padding:16px;">
-        <!-- 说明 -->
-        <div style="font-size:13px;color:var(--text-dim);margin-bottom:20px;padding:14px;background:rgba(0,212,170,.06);border-radius:10px;border-left:3px solid var(--primary);line-height:1.8">
-          <strong style="color:var(--primary)">印尼语拼读规则：</strong><br>
-          • 一字一音，见字读音，几乎无例外<br>
-          • 元音：a i u e o（e有/ə/和/e/两种读法）<br>
-          • 辅音：大部分与英语/拼音相近，r为颤音是特色<br>
-          • 复合音：ng/ny/sy/kh 四个特殊组合需单独掌握<br>
-          • 重音一般在倒数第二音节（penultimate）
-        </div>
-
-        <!-- 元音 -->
-        <div style="margin-bottom:24px;">
-          <div class="section-header" style="margin:20px 0 12px;">
-            <h3>🟢 元音 (Vokal)</h3>
-            <span class="badge green">5个</span>
-          </div>
-          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;">
-            ${vowels.map(p => renderCard(p, true)).join('')}
-          </div>
-        </div>
-
-        <!-- 辅音 -->
-        <div style="margin-bottom:24px;">
-          <div class="section-header" style="margin:20px 0 12px;">
-            <h3>🔵 辅音 (Konsonan)</h3>
-            <span class="badge blue">21个</span>
-          </div>
-          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;">
-            ${consonants.map(p => renderCard(p, false)).join('')}
-          </div>
-        </div>
-
-        <!-- 复合音 -->
-        <div>
-          <div class="section-header" style="margin:20px 0 12px;">
-            <h3>🟣 复合音/特殊组合</h3>
-            <span class="badge purple">4个</span>
-          </div>
-          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;">
-            ${compoundCards}
-          </div>
-        </div>
-      </div>
-    </div>
-  `;
-}
-
-// 简化的口腔位置示意图（SVG）
-function renderMouthDiagram(letter, pos) {
-  // 根据字母返回不同的简化口腔SVG
-  const isVowel = 'aiueo'.includes(letter);
-  const isHigh = 'iu'.includes(letter);
-  const isMid = 'eo'.includes(letter);
-  const isBack = 'uoa'.includes(letter);
-  const isRound = 'uo'.includes(letter);
-
-  let tongueY = 50, mouthOpen = 30;
-  if (isVowel) {
-    if (isHigh) { tongueY = 25; mouthOpen = 20; }
-    else if (isMid) { tongueY = 40; mouthOpen = 35; }
-    else { tongueY = 60; mouthOpen = 50; }
-  }
-
-  const lipColor = isRound ? '#ff6b6b' : '#4ecdc4';
-  const tongueColor = '#ff9f43';
-
-  return `
-    <svg viewBox="0 0 60 70" style="width:100%;height:100%">
-      <!-- 口腔轮廓 -->
-      <ellipse cx="30" cy="35" rx="22" ry="28" fill="#2a3550" stroke="#4a5568" stroke-width="1"/>
-      <!-- 上颚 -->
-      <path d="M 10 20 Q 30 8 50 20" fill="none" stroke="#718096" stroke-width="1.5"/>
-      <!-- 舌头 -->
-      <ellipse cx="${isBack ? 38 : 22}" cy="${tongueY}" rx="12" ry="8" fill="${tongueColor}" opacity="0.8"/>
-      <!-- 下唇 -->
-      <ellipse cx="30" cy="58" rx="${isRound ? 14 : 10}" ry="5" fill="${lipColor}" opacity="0.6"/>
-      <!-- 标记点 -->
-      <circle cx="${isBack ? 38 : 22}" cy="${tongueY}" r="3" fill="#fff" opacity="0.5"/>
-    </svg>
-  `;
-}
-
-
-
 </script>
 </body>
 </html>

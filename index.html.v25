@@ -1,0 +1,2137 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>LEO-BIR V2.5</title>
+<style>
+:root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh}
+.app{display:flex;min-height:100vh}
+.sidebar{width:260px;background:var(--bg-elev);border-right:1px solid var(--border);display:flex;flex-direction:column;position:fixed;height:100vh;z-index:100;transition:transform .3s}
+.sidebar-header{padding:22px 18px;border-bottom:1px solid var(--border);text-align:center}
+.sidebar-header h1{font-size:18px;color:var(--primary);font-weight:700}
+.sidebar-header .ver{font-size:11px;color:var(--text-dim);margin-top:4px}
+.sidebar-section{padding:14px 0;border-bottom:1px solid var(--border)}
+.sidebar-section h3{font-size:11px;color:var(--primary);text-transform:uppercase;letter-spacing:1.5px;padding:0 18px;margin-bottom:8px}
+.nav-list{list-style:none}
+.nav-list li{padding:9px 18px;margin:1px 8px;border-radius:8px;cursor:pointer;font-size:13px;display:flex;align-items:center;gap:10px;transition:all .2s;color:var(--text-dim)}
+.nav-list li:hover{background:rgba(0,212,170,.08);color:var(--text)}
+.nav-list li.active{background:rgba(0,212,170,.15);color:var(--primary);font-weight:500}
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:0 14px}
+.stat-card{text-align:center;padding:10px;background:var(--bg-card);border-radius:10px;border:1px solid var(--border);cursor:pointer;transition:all .2s}
+.stat-card:hover{border-color:var(--primary-dim);transform:translateY(-1px)}
+.stat-card .num{font-size:20px;font-weight:700;color:var(--primary)}
+.stat-card .lab{font-size:10px;color:var(--text-dim);margin-top:2px}
+.main{flex:1;margin-left:260px;min-height:100vh}
+.topbar{position:sticky;top:0;z-index:50;background:rgba(10,14,23,.85);backdrop-filter:blur(12px);padding:12px 24px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border)}
+.menu-btn{width:36px;height:36px;border-radius:8px;border:1px solid var(--border);background:var(--bg-card);color:var(--text);cursor:pointer;display:none;align-items:center;justify-content:center;font-size:18px}
+.content{padding:20px 24px;max-width:1200px;margin:0 auto}
+.card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;margin-bottom:16px;box-shadow:var(--shadow)}
+.card-header{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.card-header h2{font-size:17px;color:var(--primary);font-weight:600}
+.card-header .badge{font-size:11px;padding:3px 10px;border-radius:20px;background:rgba(0,212,170,.12);color:var(--primary-dim)}
+.welcome-banner{background:linear-gradient(135deg,rgba(0,212,170,.12),rgba(59,130,246,.08));border:1px solid rgba(0,212,170,.2);border-radius:var(--radius);padding:24px;margin-bottom:20px}
+.welcome-banner h2{font-size:22px;color:var(--primary);margin-bottom:6px}
+.welcome-banner p{color:var(--text-dim);font-size:14px}
+.quick-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px;margin-bottom:20px}
+.quick-btn{padding:16px 12px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);text-align:center;cursor:pointer;transition:all .2s}
+.quick-btn:hover{border-color:var(--primary-dim);transform:translateY(-2px);box-shadow:var(--shadow)}
+.quick-btn .icon{font-size:28px;margin-bottom:8px;display:block}
+.quick-btn .label{font-size:12px;color:var(--text-dim)}
+.cal-wrap{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:18px}
+.cal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.cal-header h3{font-size:16px;color:var(--primary);margin:0}
+.cal-nav{background:var(--bg-elev);border:1px solid var(--border);color:var(--text);padding:5px 12px;border-radius:6px;cursor:pointer;font-size:13px}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;text-align:center}
+.cal-wd{font-size:11px;color:var(--text-dim);padding:8px 2px;font-weight:600}
+.cal-day{padding:8px 2px;border-radius:8px;cursor:pointer;font-size:13px;transition:all .15s;min-height:52px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--bg-elev);border:1px solid transparent}
+.cal-day:hover{background:rgba(0,212,170,.1);border-color:rgba(0,212,170,.25)}
+.cal-day.today{background:rgba(0,212,170,.2);border-color:var(--primary);color:var(--primary);font-weight:700}
+.cal-day.has-data{background:rgba(0,212,170,.08)}
+.cal-day .dnum{font-size:13px}
+.cal-day .ddots{display:flex;gap:2px;margin-top:3px}
+.cal-day .ddot{width:5px;height:5px;border-radius:50%;background:var(--success)}
+.cal-day .ddot.rev{background:var(--accent)}
+.cal-day .ddot.neww{background:var(--info)}
+.cal-legend{display:flex;gap:16px;justify-content:center;margin-top:12px;font-size:11px;color:var(--text-dim)}
+.back-btn{background:var(--bg-elev);border:1px solid var(--border);color:var(--text);padding:6px 14px;border-radius:6px;cursor:pointer;margin-bottom:16px;font-size:13px}
+.word-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px;margin-top:12px}
+.word-card{padding:14px;background:var(--bg-elev);border-radius:10px;border:1px solid var(--border);cursor:pointer;transition:all .2s}
+.word-card:hover{border-color:var(--primary-dim)}
+.word-card .w-word{font-size:15px;font-weight:700;color:var(--primary)}
+.word-card .w-ipa{font-size:12px;color:var(--accent);font-family:monospace}
+.word-card .w-mean{font-size:12px;color:var(--text-dim);margin-top:4px}
+.trans-box{display:flex;flex-direction:column;gap:12px}
+.trans-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.trans-row select{padding:8px 12px;background:var(--bg-elev);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:13px}
+.trans-input{width:100%;min-height:80px;background:var(--bg-elev);border:1px solid var(--border);border-radius:10px;padding:12px;color:var(--text);font-size:14px;resize:vertical;font-family:inherit}
+.trans-btn{padding:10px 20px;background:var(--primary);color:#000;border:none;border-radius:8px;cursor:pointer;font-weight:600;font-size:14px;transition:opacity .2s}
+.trans-btn:hover{opacity:.85}
+.trans-result{margin-top:12px;padding:16px;background:var(--bg-elev);border-radius:10px;border:1px solid var(--border);display:none}
+.trans-result.show{display:block}
+.trans-result .r-word{font-size:18px;font-weight:700;color:var(--primary);margin-bottom:6px}
+.trans-result .r-ipa{font-size:13px;color:var(--accent);font-family:monospace;margin-bottom:8px}
+.trans-result .r-mean{font-size:14px;color:var(--text);line-height:1.7}
+.trans-result .r-tag{display:inline-block;padding:2px 8px;border-radius:6px;background:rgba(0,212,170,.12);color:var(--primary-dim);font-size:11px;margin-top:6px}
+.trans-result .r-action{margin-top:12px;display:flex;gap:8px}
+.trans-result .r-action button{padding:6px 14px;border-radius:6px;border:none;cursor:pointer;font-size:12px}
+.trans-result .r-action .btn-save{background:rgba(139,92,246,.15);color:#a78bfa;border:1px solid rgba(139,92,246,.3)}
+.trans-result .r-action .btn-speak{background:rgba(59,130,246,.15);color:#3b82f6;border:1px solid rgba(59,130,246,.3)}
+.trans-result .r-source{font-size:11px;color:var(--text-dim);margin-top:8px}
+.wb-toolbar{display:flex;gap:10px;margin-bottom:14px;flex-wrap:wrap}
+.wb-toolbar button{padding:8px 16px;border-radius:8px;border:none;cursor:pointer;font-size:12px;font-weight:500}
+.wb-toolbar .btn-exp{background:rgba(59,130,246,.15);color:#3b82f6;border:1px solid rgba(59,130,246,.3)}
+.wb-toolbar .btn-clr{background:rgba(239,68,68,.15);color:var(--danger);border:1px solid rgba(239,68,68,.3)}
+.wb-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px}
+.wb-item{padding:14px;background:var(--bg-elev);border-radius:10px;border:1px solid var(--border)}
+.wb-item .wb-w{font-size:15px;font-weight:700;color:var(--primary)}
+.wb-item .wb-i{font-size:12px;color:var(--accent);font-family:monospace}
+.wb-item .wb-m{font-size:12px;color:var(--text-dim);margin-top:3px}
+.wb-item .wb-act{display:flex;gap:6px;margin-top:8px}
+.wb-item .wb-act button{padding:4px 10px;border-radius:4px;border:none;cursor:pointer;font-size:11px}
+.wb-item .wb-act .wb-mas{background:rgba(34,197,94,.15);color:var(--success);border:1px solid rgba(34,197,94,.3)}
+.wb-item .wb-act .wb-del{background:rgba(239,68,68,.15);color:var(--danger);border:1px solid rgba(239,68,68,.3)}
+.wb-empty{text-align:center;padding:50px 20px;color:var(--text-dim)}
+.wb-empty .big{font-size:48px;margin-bottom:10px}
+.quiz-card{padding:18px;background:var(--bg-elev);border-radius:10px;border:1px solid var(--border);margin-bottom:12px}
+.quiz-card .q-text{font-size:14px;margin-bottom:10px}
+.quiz-card .q-opt{padding:10px 14px;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;margin:5px 0;cursor:pointer;transition:all .2s;font-size:13px}
+.quiz-card .q-opt:hover{border-color:var(--primary-dim)}
+.quiz-card .q-opt.correct{border-color:var(--success);background:rgba(34,197,94,.1)}
+.quiz-card .q-opt.wrong{border-color:var(--danger);background:rgba(239,68,68,.1)}
+.vinput-area{display:flex;flex-direction:column;gap:12px}
+.vinput-ta{width:100%;min-height:120px;background:var(--bg-elev);border:1px solid var(--border);border-radius:10px;padding:12px;color:var(--text);font-size:14px;resize:vertical;font-family:inherit}
+.vinput-btns{display:flex;gap:10px}
+.vinput-btns button{padding:10px 20px;border-radius:8px;border:none;cursor:pointer;font-weight:600;font-size:14px}
+.vinput-btns .btn-parse{background:var(--primary);color:#000}
+.vinput-btns .btn-clear{background:var(--bg-elev);color:var(--text);border:1px solid var(--border)}
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px;margin-top:12px}
+.vocab-card{padding:12px;background:var(--bg-elev);border-radius:10px;border:1px solid var(--border);cursor:pointer;transition:all .2s}
+.vocab-card:hover{border-color:var(--primary-dim)}
+.vocab-card .vc-w{font-size:14px;font-weight:700;color:var(--primary)}
+.vocab-card .vc-i{font-size:11px;color:var(--accent);font-family:monospace}
+.vocab-card .vc-m{font-size:12px;color:var(--text-dim);margin-top:3px}
+.vocab-filter{display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap}
+.vocab-filter button{padding:6px 14px;border-radius:20px;border:1px solid var(--border);background:var(--bg-elev);color:var(--text-dim);cursor:pointer;font-size:12px}
+.vocab-filter button.active{background:rgba(0,212,170,.15);color:var(--primary);border-color:var(--primary-dim)}
+.tooltip{position:fixed;background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:14px 18px;z-index:10000;max-width:300px;box-shadow:var(--shadow);display:none}
+.tooltip.show{display:block}
+.tooltip .tt-w{font-size:18px;font-weight:700;color:var(--primary);margin-bottom:4px}
+.tooltip .tt-i{font-size:13px;color:var(--accent);font-family:monospace;margin-bottom:6px}
+.tooltip .tt-t{font-size:13px;color:var(--text);margin-bottom:3px}
+.tooltip .tt-r{font-size:11px;color:var(--text-dim);margin-top:6px;padding-top:6px;border-top:1px solid var(--border)}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(100px);background:var(--bg-card);border:1px solid var(--border);padding:12px 24px;border-radius:10px;z-index:20000;transition:transform .3s;box-shadow:var(--shadow);font-size:13px}
+.toast.show{transform:translateX(-50%) translateY(0)}
+.review-card{padding:12px 14px;background:var(--bg-elev);border-radius:10px;border:1px solid var(--border);margin-bottom:8px;display:flex;align-items:center;gap:12px}
+.review-card .r-due{font-size:10px;padding:2px 8px;border-radius:10px;background:rgba(245,158,11,.15);color:var(--accent);white-space:nowrap}
+.review-card .r-word{color:var(--primary);font-weight:600;font-size:14px}
+.review-card .r-mean{color:var(--text-dim);font-size:12px}
+@media(max-width:768px){
+  .sidebar{transform:translateX(-100%)}
+  .sidebar.open{transform:translateX(0)}
+  .main{margin-left:0}
+  .menu-btn{display:flex}
+  .quick-grid{grid-template-columns:repeat(2,1fr)}
+  .content{padding:14px}
+}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
+    <h1>LEO-BIR</h1>
+    <div class="ver">Bahasa Indonesia Learning · 印尼语学习</div>
+  </div>
+  <div class="sidebar-section">
+    <h3>📊 学习统计</h3>
+    <div class="stats-grid">
+      <div class="stat-card" onclick="location.hash='vocabulary'">
+        <div class="num" id="s-new">0</div><div class="lab">新词汇</div>
+      </div>
+      <div class="stat-card" onclick="location.hash='review'">
+        <div class="num" id="s-rev">0</div><div class="lab">待复习</div>
+      </div>
+      <div class="stat-card" onclick="location.hash='wordbank'">
+        <div class="num" id="s-total">0</div><div class="lab">累计</div>
+      </div>
+      <div class="stat-card">
+        <div class="num" id="s-streak">1</div><div class="lab">连续天数</div>
+      </div>
+    </div>
+  </div>
+  <div class="sidebar-section">
+    <h3>📚 导航</h3>
+    <ul class="nav-list" id="navList">
+      <li class="active" data-route="home"><span style="margin-right:8px">🏠</span>主页</li>
+      <li data-route="translate"><span style="margin-right:8px">🌐</span>翻译</li>
+      <li data-route="input"><span style="margin-right:8px">📝</span>词汇录入</li>
+      <li data-route="wordbank"><span style="margin-right:8px">📚</span>生词本</li>
+      <li data-route="quiz"><span style="margin-right:8px">🎯</span>能力测试</li>
+      <li data-route="vocabulary"><span style="margin-right:8px">📖</span>词汇库</li>
+      <li data-route="review"><span style="margin-right:8px">🧠</span>复习</li>
+      <li data-route="member"><span style="margin-right:8px">👑</span>会员中心</li>
+      <li data-route="about"><span style="margin-right:8px">📋</span>关于LEO-BIR</li>
+      <li data-route="version"><span style="margin-right:8px">📜</span>版本记录</li>
+    </ul>
+  </div>
+  <div class="sidebar-section" style="padding:14px 18px;font-size:11px;color:var(--text-dim);line-height:1.8">
+    <div>📅 今日: <span id="sidebar-today">--</span></div>
+  </div>
+</aside>
+<main class="main" id="main">
+  <div class="topbar">
+    <button class="menu-btn" id="menuBtn">☰</button>
+    <button class="menu-btn" id="backBtn" style="display:none;margin-right:8px;" onclick="navigate('home')">←</button><div class="topbar-title" id="pageTitle">🏠 主页</div>
+    <div id="memberBadge" style="margin-left:auto;font-size:12px;padding:4px 10px;border-radius:8px;cursor:pointer;" onclick="navigate('member')"></div>
+  </div>
+  <div class="content" id="appContent"></div>
+</main>
+</div>
+<div class="tooltip" id="tooltip">
+  <div class="tt-w" id="ttw"></div>
+  <div class="tt-i" id="tti"></div>
+  <div class="tt-t" id="ttt"></div>
+  <div class="tt-r" id="ttr"></div>
+</div>
+<div class="toast" id="toast"></div>
+<script>
+const vocabDB = {
+'Selamat':{ipa:'/səˈlamat/',cn:'安全/祝...',en:'safe / congratulations',root:'salamat (Arabic)',tag:'问候语'},
+'pagi':{ipa:'/ˈpaɡi/',cn:'早上',en:'morning',root:'pagi',tag:'时间词'},
+'Bapak':{ipa:'/ˈbapak/',cn:'先生/父亲',en:'sir / father',root:'bapak',tag:'称谓'},
+'Ibu':{ipa:'/ˈibu/',cn:'女士/母亲',en:'madam / mother',root:'ibu',tag:'称谓'},
+'Menteri':{ipa:'/mənˈtɛri/',cn:'部长',en:'minister',root:'menteri (Dutch)',tag:'职位'},
+'Perkenalkan':{ipa:'/pərˈkɛnalakan/',cn:'介绍(请允许我)',en:'allow me to introduce',root:'kenal = know + per-+-kan',tag:'礼貌用语'},
+'nama':{ipa:'/ˈnama/',cn:'名字',en:'name',root:'nama',tag:'基础词汇'},
+'saya':{ipa:'/ˈsaja/',cn:'我(正式)',en:'I (formal)',root:'saya',tag:'代词'},
+'General':{ipa:'/ˈdʒɛnɛral/',cn:'总经理',en:'general',root:'general (English)',tag:'职位'},
+'Manager':{ipa:'/ˈmanədʒər/',cn:'经理',en:'manager',root:'manager (English)',tag:'职位'},
+'PT':{ipa:'/peˈte/',cn:'有限公司(Perseroan Terbatas)',en:'Ltd. / PT company',root:'PT',tag:'商务缩写'},
+'beroperasi':{ipa:'/bərˈoperasi/',cn:'运营/操作',en:'to operate',root:'operasi = operation',tag:'ber-动词'},
+'di':{ipa:'/di/',cn:'在...',en:'in / at',root:'di',tag:'介词'},
+'kawasan':{ipa:'/kaˈwasan/',cn:'区域/园区',en:'area / zone',root:'kawasan',tag:'地点'},
+'industri':{ipa:'/ˈindustri/',cn:'工业/产业',en:'industry',root:'industri (Dutch)',tag:'商务高频'},
+'Morowali':{ipa:'/moroˈwali/',cn:'莫罗瓦利(印尼中苏拉威西省)',en:'Morowali (Central Sulawesi)',root:'地名',tag:'地名'},
+'datang':{ipa:'/ˈdataŋ/',cn:'到来',en:'to come / arrive',root:'datang',tag:'基础词汇'},
+'Apa':{ipa:'/ˈapa/',cn:'什么/怎么',en:'what / how',root:'apa',tag:'疑问词'},
+'kabarmu':{ipa:'/ˈkabarmu/',cn:'你的消息(你好吗)',en:'your news (how are you)',root:'kabar + -mu (your)',tag:'问候语'},
+'Semoga':{ipa:'/səˈmoɡa/',cn:'希望/但愿',en:'hopefully / may',root:'semoga',tag:'祝愿词'},
+'perjalanan':{ipa:'/pərdʒaˈlanan/',cn:'旅途/行程',en:'journey / trip',root:'jalan = road + per-/-an',tag:'商务高频'},
+'Anda':{ipa:'/ˈanda/',cn:'您(正式)',en:'you (formal)',root:'anda',tag:'代词'},
+'lancar':{ipa:'/ˈlantʃar/',cn:'顺利/流畅',en:'smooth / fluent',root:'lancar',tag:'基础词汇'},
+'Terima':{ipa:'/təˈrima/',cn:'接收',en:'to receive',root:'terima',tag:'基础词汇'},
+'kasih':{ipa:'/ˈkasih/',cn:'给予/爱',en:'to give / love',root:'kasih',tag:'基础词汇'},
+'senang':{ipa:'/səˈnaŋ/',cn:'高兴/开心',en:'happy / glad',root:'senang',tag:'基础词汇'},
+'sekali':{ipa:'/səˈkali/',cn:'非常/一次',en:'very / once',root:'sekali',tag:'副词'},
+'dapat':{ipa:'/ˈdapet/',cn:'能够/得到',en:'can / get',root:'dapat',tag:'基础词汇'},
+'bertemu':{ipa:'/bərˈtɛmu/',cn:'见面',en:'to meet',root:'temu = meeting',tag:'ber-动词'},
+'dengan':{ipa:'/ˈdɛŋan/',cn:'和/与/用',en:'with / by',root:'dengan',tag:'介词'},
+'Perusahaan':{ipa:'/pəruˈsahaan/',cn:'公司/企业',en:'company',root:'usaha + per-/-an',tag:'商务高频'},
+'kami':{ipa:'/ˈkami/',cn:'我们(排除听者)',en:'we (exclusive)',root:'kami',tag:'代词'},
+'ingin':{ipa:'/ˈiŋin/',cn:'想要',en:'to want',root:'ingin',tag:'基础词汇'},
+'berdiskusi':{ipa:'/bərˈdiskusi/',cn:'讨论',en:'to discuss',root:'diskusi = discussion',tag:'ber-动词'},
+'mengenai':{ipa:'/məŋəˈnai/',cn:'关于/有关',en:'about / concerning',root:'kenal = know + meng-+-i',tag:'商务高频'},
+'pengembangan':{ipa:'/pəˈɡɛmbaŋan/',cn:'发展/开发',en:'development',root:'kembang + pe-/-an',tag:'商务高频'},
+'berkelanjutan':{ipa:'/bərkəlanˈdʒutan/',cn:'持续的/可持续',en:'sustainable',root:'kelanjutan + ber-',tag:'ber-形容词'},
+'Baik':{ipa:'/ˈbaik/',cn:'好/好的',en:'good / okay',root:'baik',tag:'基础词汇'},
+'mari':{ipa:'/ˈmari/',cn:'来吧/让我们',en:'let us / come on',root:'mari',tag:'祈使词'},
+'kita':{ipa:'/ˈkita/',cn:'我们(包含听者)',en:'we (inclusive)',root:'kita',tag:'代词'},
+'masuk':{ipa:'/ˈmasuk/',cn:'进入',en:'to enter',root:'masuk',tag:'基础词汇'},
+'ke':{ipa:'/kə/',cn:'去/到(介词)',en:'to / towards',root:'ke',tag:'介词'},
+'ruang':{ipa:'/ˈruaŋ/',cn:'房间/空间',en:'room / space',root:'ruang',tag:'基础词汇'},
+'rapat':{ipa:'/ˈrapat/',cn:'会议/紧密',en:'meeting / tight',root:'rapat (Dutch)',tag:'商务高频'},
+'juga':{ipa:'/ˈdʒuɡa/',cn:'也/还',en:'also / too',root:'juga',tag:'基础词汇'},
+'berharap':{ipa:'/bərˈharap/',cn:'希望/期望',en:'to hope',root:'harap = hope',tag:'ber-动词'},
+'bersinergi':{ipa:'/bərˈsinɛrɡi/',cn:'协同/产生协同',en:'to synergize',root:'sinergi = synergy',tag:'ber-动词'},
+'perusahaan':{ipa:'/pəruˈsahaan/',cn:'公司/企业',en:'company',root:'usaha + per-/-an',tag:'商务高频'},
+'Pak':{ipa:'/pak/',cn:'先生(简称)',en:'sir / Mr.',root:'Pak (from Bapak)',tag:'称谓'},
+'kabar':{ipa:'/ˈkabar/',cn:'消息/近况',en:'news / condition',root:'kabar (Arabic)',tag:'基础词汇'},
+'Sudah':{ipa:'/ˈsudah/',cn:'已经',en:'already',root:'sudah',tag:'基础词汇'},
+'sarapan':{ipa:'/ˈsarapan/',cn:'早餐',en:'breakfast',root:'sarapan',tag:'基础词汇'},
+'baik':{ipa:'/ˈbaik/',cn:'好/好的',en:'good / okay',root:'baik',tag:'基础词汇'},
+'terima':{ipa:'/təˈrima/',cn:'接收/接受',en:'to receive',root:'terima',tag:'基础词汇'},
+'kasih':{ipa:'/ˈkasih/',cn:'给予/爱',en:'to give / love',root:'kasih',tag:'基础词汇'},
+'tadi':{ipa:'/ˈtadi/',cn:'刚才/刚刚',en:'just now / a moment ago',root:'tadi',tag:'时间词'},
+'kantin':{ipa:'/ˈkantin/',cn:'食堂/餐厅',en:'canteen',root:'kantin (Dutch)',tag:'地点'},
+'Kamu':{ipa:'/ˈkamʊ/',cn:'你(非正式)',en:'you (informal)',root:'kamu',tag:'代词'},
+'sendiri':{ipa:'/ˈsɛndiri/',cn:'自己/独自',en:'self / alone',root:'sendiri',tag:'基础词汇'},
+'Iya':{ipa:'/ˈija/',cn:'是的/对',en:'yes',root:'iya',tag:'基础词汇'},
+'teman':{ipa:'/ˈtɛman/',cn:'朋友/同事',en:'friend / colleague',root:'teman',tag:'基础词汇'},
+'lain':{ipa:'/ˈlain/',cn:'其他/别的',en:'other / else',root:'lain',tag:'基础词汇'},
+'masih':{ipa:'/ˈmasih/',cn:'仍然/还',en:'still / yet',root:'masih',tag:'基础词汇'},
+'perjalanan':{ipa:'/pərdʒaˈlanan/',cn:'旅途/行程',en:'journey / trip',root:'jalan + per-/-an',tag:'商务高频'},
+'Nanti':{ipa:'/ˈnanti/',cn:'稍后/等下',en:'later / soon',root:'nanti',tag:'时间词'},
+'berkumpul':{ipa:'/bərˈkumpul/',cn:'聚集/集合',en:'to gather',root:'kumpul = gathering',tag:'ber-动词'},
+'pukul':{ipa:'/ˈpukul/',cn:'击打/点(时间)',en:'to hit / oclock',root:'pukul',tag:'基础词汇'},
+'sepuluh':{ipa:'/səˈpulu/',cn:'十',en:'ten',root:'sepuluh',tag:'数词'},
+'ya':{ipa:'/ja/',cn:'是吧/对吗(语气词)',en:'right? / yeah',root:'ya',tag:'语气词'},
+'akan':{ipa:'/ˈakan/',cn:'将要/会',en:'will / shall',root:'akan',tag:'基础词汇'},
+'hadir':{ipa:'/ˈhadir/',cn:'出席/在场',en:'to attend / present',root:'hadir (Arabic)',tag:'基础词汇'},
+'tepat':{ipa:'/ˈtɛpat/',cn:'准确/准时',en:'exact / on time',root:'tepat',tag:'基础词汇'},
+'waktu':{ipa:'/ˈwaktu/',cn:'时间/时候',en:'time / when',root:'waktu (Arabic)',tag:'基础词汇'},
+'Jangan':{ipa:'/ˈdʒaŋan/',cn:'不要/别',en:'dont / do not',root:'jangan',tag:'基础词汇'},
+'lupa':{ipa:'/ˈlupa/',cn:'忘记',en:'to forget',root:'lupa',tag:'基础词汇'},
+'bawa':{ipa:'/ˈbawa/',cn:'携带/带来',en:'to bring / carry',root:'bawa',tag:'基础词汇'},
+'laporan':{ipa:'/laˈporan/',cn:'报告/汇报',en:'report',root:'lapor + -an',tag:'商务高频'},
+'kemarin':{ipa:'/kəˈmarin/',cn:'昨天',en:'yesterday',root:'kemarin',tag:'时间词'},
+'Halo':{ipa:'/ˈhalo/',cn:'你好(非正式)',en:'hello',root:'halo',tag:'问候语'},
+'kalian':{ipa:'/kaˈlian/',cn:'你们(复数)',en:'you (plural)',root:'kalian',tag:'代词'},
+'semua':{ipa:'/səˈmua/',cn:'全部/所有',en:'all / every',root:'semua',tag:'基础词汇'},
+'melihat':{ipa:'/məˈlihat/',cn:'看见/看',en:'to see / look',root:'lihat = see + me-',tag:'基础词汇'},
+'ini':{ipa:'/ˈini/',cn:'这/这个',en:'this',root:'ini',tag:'基础词汇'},
+'tim':{ipa:'/ˈtim/',cn:'团队/队',en:'team',root:'tim (English)',tag:'商务高频'},
+'maintenance':{ipa:'/ˈmɛntɛnəns/',cn:'维护/维修',en:'maintenance',root:'maintenance (English)',tag:'商务高频'},
+'gudang':{ipa:'/ˈɡudaŋ/',cn:'仓库/储藏室',en:'warehouse / store',root:'gudang',tag:'地点'},
+'delapan':{ipa:'/dəˈlapən/',cn:'八',en:'eight',root:'delapan',tag:'数词'},
+'siap':{ipa:'/ˈsiap/',cn:'准备好/预备',en:'ready / prepared',root:'siap',tag:'基础词汇'},
+'Ada':{ipa:'/ˈada/',cn:'有/存在',en:'there is / have',root:'ada',tag:'基础词汇'},
+'yang':{ipa:'/ˈjaŋ/',cn:'的/那个(关系代词)',en:'that / which (relative)',root:'yang',tag:'基础词汇'},
+'bisa':{ipa:'/ˈbisa/',cn:'能够/可以',en:'can / able to',root:'bisa',tag:'基础词汇'},
+'bantu':{ipa:'/ˈbantu/',cn:'帮助/协助',en:'to help / assist',root:'bantu',tag:'基础词汇'},
+'Selama':{ipa:'/səˈlama/',cn:'在...期间/只要',en:'during / as long as',root:'lama = long + Se-',tag:'基础词汇'},
+'bertugas':{ipa:'/bərˈtugas/',cn:'执行任务/执勤',en:'to be on duty',root:'tugas = duty + ber-',tag:'ber-动词'},
+'untuk':{ipa:'/ˈuntuk/',cn:'为了/给',en:'for / to',root:'untuk',tag:'基础词汇'},
+'selalu':{ipa:'/səˈlalu/',cn:'总是/一直',en:'always',root:'selalu',tag:'基础词汇'},
+'berkomunikasi':{ipa:'/bərˈkommunikasi/',cn:'沟通/交流',en:'to communicate',root:'komunikasi + ber-',tag:'ber-动词'},
+'rekan':{ipa:'/ˈrɛkan/',cn:'伙伴/同事',en:'partner / colleague',root:'rekan',tag:'商务高频'},
+'sejawat':{ipa:'/səˈdʒawat/',cn:'同僚/同行',en:'colleague / peer',root:'jawat + se-',tag:'商务高频'},
+'Proses':{ipa:'/ˈprosɛs/',cn:'过程/工序',en:'process',root:'proses (Dutch)',tag:'商务高频'},
+'produksi':{ipa:'/proˈdʊksi/',cn:'生产/产量',en:'production',root:'produksi (Dutch)',tag:'商务高频'},
+'harus':{ipa:'/ˈharus/',cn:'必须/应该',en:'must / should',root:'harus',tag:'基础词汇'},
+'berjalan':{ipa:'/bərˈdʒalan/',cn:'走路/进行/运行',en:'to walk / proceed',root:'jalan = road + ber-',tag:'ber-动词'},
+'sesuai':{ipa:'/səˈsuai/',cn:'符合/一致',en:'according to / suitable',root:'sesuai',tag:'基础词汇'},
+'prosedur':{ipa:'/proˈsedur/',cn:'程序/流程',en:'procedure',root:'prosedur (Dutch)',tag:'商务高频'},
+'siang':{ipa:'/ˈsiaŋ/',cn:'中午/下午',en:'noon / afternoon',root:'siang',tag:'时间词'},
+'para':{ipa:'/ˈpara/',cn:'各位/诸位(复数尊称)',en:'all / respected (plural)',root:'para',tag:'基础词汇'},
+'mitra':{ipa:'/ˈmitra/',cn:'合作伙伴/伙伴',en:'partner',root:'mitra (Sanskrit)',tag:'商务高频'},
+'bisnis':{ipa:'/ˈbisnis/',cn:'生意/商业',en:'business',root:'bisnis (Dutch)',tag:'商务高频'},
+'terhormat':{ipa:'/tərˈhormat/',cn:'尊敬的/受尊敬的',en:'honored / respected',root:'hormat + ter-',tag:'礼貌用语'},
+'telah':{ipa:'/ˈtɛlah/',cn:'已经(更正式)',en:'already (formal)',root:'telah',tag:'基础词汇'},
+'meluangkan':{ipa:'/məˈluaŋkan/',cn:'抽出(时间)',en:'to spare (time)',root:'luang = free + me-+-kan',tag:'商务高频'},
+'Sempurna':{ipa:'/səmˈpurna/',cn:'完美/极好',en:'perfect / excellent',root:'sempurna',tag:'基础词汇'},
+'mulai':{ipa:'/ˈmulai/',cn:'开始',en:'to start / begin',root:'mulai',tag:'基础词汇'},
+'pengadaan':{ipa:'/pəˈɡadaan/',cn:'采购/供应',en:'procurement',root:'ada = exist + pe-/-an',tag:'商务高频'},
+'peralatan':{ipa:'/pəraˈlatan/',cn:'设备/工具',en:'equipment / tools',root:'alat = tool + per-/-an',tag:'商务高频'},
+'teknologi':{ipa:'/tɛkˈnoloɡi/',cn:'技术',en:'technology',root:'teknologi (Dutch)',tag:'商务高频'},
+'terbaru':{ipa:'/tərˈbaru/',cn:'最新的',en:'latest / newest',root:'baru = new + ter-',tag:'基础词汇'},
+'berjumpa':{ipa:'/bərˈdʒumpa/',cn:'遇见/重逢',en:'to meet again',root:'jumpa = meeting + ber-',tag:'ber-动词'},
+'lagi':{ipa:'/ˈlaɡi/',cn:'再次/又',en:'again',root:'lagi',tag:'基础词汇'},
+'Seperti':{ipa:'/səˈpɛrti/',cn:'如同/好像',en:'like / as if',root:'seperti',tag:'基础词汇'},
+'bicarakan':{ipa:'/biˈtʃarakan/',cn:'讨论(及物)',en:'to discuss (transitive)',root:'bicara + -kan',tag:'基础词汇'},
+'email':{ipa:'/ˈimɛl/',cn:'电子邮件',en:'email',root:'email (English)',tag:'商务高频'},
+'detail':{ipa:'/ˈdɛtail/',cn:'细节/详细',en:'detail',root:'detail (Dutch)',tag:'商务高频'},
+'kawasan':{ipa:'/kaˈwasan/',cn:'区域/园区',en:'area / zone',root:'kawasan',tag:'地点'},
+'Sulawesi':{ipa:'/sulaˈwɛsi/',cn:'苏拉威西(印尼大岛)',en:'Sulawesi (Indonesian island)',root:'地名',tag:'地名'},
+'Tengah':{ipa:'/ˈtɛŋah/',cn:'中部/中央',en:'central / middle',root:'tengah',tag:'地点'},
+'bergerak':{ipa:'/bərˈɡɛrɛk/',cn:'活动/从事',en:'to move / engage in',root:'gerak = move + ber-',tag:'ber-动词'},
+'bidang':{ipa:'/ˈbidaŋ/',cn:'领域/方面',en:'field / area',root:'bidang',tag:'商务高频'},
+'pengolahan':{ipa:'/pəŋoˈlahan/',cn:'加工/处理',en:'processing',root:'olah = process + peng-/-an',tag:'商务高频'},
+'nikel':{ipa:'/ˈnikɛl/',cn:'镍',en:'nickel',root:'nikel (Dutch)',tag:'商务高频'},
+'hulu':{ipa:'/ˈhulu/',cn:'上游(产业链)',en:'upstream',root:'hulu',tag:'商务高频'},
+'hingga':{ipa:'/ˈhiŋɡa/',cn:'直到/至',en:'until / up to',root:'hingga',tag:'基础词汇'},
+'hilir':{ipa:'/ˈhilir/',cn:'下游(产业链)',en:'downstream',root:'hilir',tag:'商务高频'},
+'mulai':{ipa:'/ˈmulai/',cn:'开始',en:'to start',root:'mulai',tag:'基础词汇'},
+'tambang':{ipa:'/ˈtambaŋ/',cn:'矿山/矿',en:'mine / mining',root:'tambang',tag:'商务高频'},
+'smelter':{ipa:'/ˈsmɛltər/',cn:'冶炼厂',en:'smelter',root:'smelter (English)',tag:'商务高频'},
+'baterai':{ipa:'/baˈtɛrai/',cn:'电池',en:'battery',root:'baterai (Dutch)',tag:'商务高频'},
+'lithium':{ipa:'/ˈliθium/',cn:'锂',en:'lithium',root:'lithium (English)',tag:'商务高频'},
+'sangat':{ipa:'/ˈsaŋat/',cn:'非常/很',en:'very',root:'sangat',tag:'基础词汇'},
+'bersemangat':{ipa:'/bərˈsɛmaŋat/',cn:'充满热情/有干劲',en:'enthusiastic',root:'semangat + ber-',tag:'ber-形容词'},
+'pemerintah':{ipa:'/pəməˈrintah/',cn:'政府',en:'government',root:'perintah + pe-',tag:'商务高频'},
+'daerah':{ipa:'/ˈdaerah/',cn:'地区/区域',en:'region / area',root:'daerah',tag:'基础词汇'},
+'Selama':{ipa:'/səˈlama/',cn:'在...期间',en:'during',root:'lama + Se-',tag:'基础词汇'},
+'beberapa':{ipa:'/bəˈbɛrapa/',cn:'几个/一些',en:'several / some',root:'beberapa',tag:'基础词汇'},
+'tahun':{ipa:'/ˈtahun/',cn:'年/年份',en:'year',root:'tahun',tag:'时间词'},
+'terakhir':{ipa:'/tərˈakhir/',cn:'最后的/最近',en:'last / recent',root:'akhir = end + ter-',tag:'基础词汇'},
+'mempekerjakan':{ipa:'/məmpəˈkɛrdʒakan/',cn:'雇佣/使工作',en:'to employ',root:'kerja + mem-pe-+-kan',tag:'基础词汇'},
+'lebih':{ipa:'/ˈlɛbih/',cn:'更多/更',en:'more',root:'lebih',tag:'基础词汇'},
+'dari':{ipa:'/ˈdari/',cn:'从/来自',en:'from',root:'dari',tag:'介词'},
+'ribu':{ipa:'/ˈribu/',cn:'千',en:'thousand',root:'ribu',tag:'数词'},
+'lapangan':{ipa:'/ˈlapaŋan/',cn:'场地/工作(岗位)',en:'field / job',root:'lapang + -an',tag:'商务高频'},
+'luas':{ipa:'/ˈluas/',cn:'广阔/宽敞',en:'wide / spacious',root:'luas',tag:'基础词汇'},
+'atas':{ipa:'/ˈatas/',cn:'在...之上/对于',en:'on top of / for',root:'atas',tag:'基础词汇'},
+'kesempatan':{ipa:'/kəsəmˈpatan/',cn:'机会/时机',en:'opportunity',root:'sempat + ke-/-an',tag:'商务高频'},
+'berbicara':{ipa:'/bərbiˈtʃara/',cn:'说话/交谈',en:'to speak',root:'bicara + ber-',tag:'ber-动词'},
+'langsung':{ipa:'/ˈlansuŋ/',cn:'直接/马上',en:'directly / immediately',root:'langsung',tag:'基础词汇'},
+'yakin':{ipa:'/ˈjakin/',cn:'确信/相信',en:'sure / confident',root:'yakin (Arabic)',tag:'基础词汇'},
+'kerja':{ipa:'/ˈkɛrdʒa/',cn:'工作',en:'work',root:'kerja',tag:'基础词汇'},
+'sama':{ipa:'/ˈsama/',cn:'相同/一起',en:'same / together',root:'sama',tag:'基础词汇'},
+'kemitraan':{ipa:'/kəˈmitraan/',cn:'合作关系/伙伴关系',en:'partnership',root:'mitra + ke-/-an',tag:'商务高频'},
+'jangka':{ipa:'/ˈdʒaŋka/',cn:'期限/时期',en:'period / term',root:'jangka',tag:'商务高频'},
+'panjang':{ipa:'/ˈpandʒaŋ/',cn:'长的/长久',en:'long',root:'panjang',tag:'基础词汇'},
+'rekan':{ipa:'/ˈrɛkan/',cn:'伙伴/同事',en:'partner / colleague',root:'rekan',tag:'商务高频'},
+'sekalian':{ipa:'/səˈkalian/',cn:'全体/一起',en:'all together',root:'kalian + se-',tag:'基础词汇'},
+'keadaan':{ipa:'/kəˈadaan/',cn:'状况/状态',en:'condition / state',root:'ada + ke-/-an',tag:'基础词汇'},
+'sehat':{ipa:'/səˈhat/',cn:'健康',en:'healthy',root:'sehat (Arabic)',tag:'基础词汇'},
+'diskusikan':{ipa:'/diskuˈsikan/',cn:'讨论(及物)',en:'to discuss (vt)',root:'diskusi + -kan',tag:'基础词汇'},
+'pembangunan':{ipa:'/pəmbaŋˈunan/',cn:'建设/发展',en:'development / construction',root:'bangun + pe-/-an',tag:'商务高频'},
+'segera':{ipa:'/səˈɡɛra/',cn:'立刻/尽快',en:'immediately / soon',root:'segera',tag:'基础词汇'},
+'membahas':{ipa:'/məmˈbahas/',cn:'讨论/探讨',en:'to discuss',root:'bahas + me-',tag:'基础词汇'},
+'timeline':{ipa:'/ˈtaimlain/',cn:'时间线/进度表',en:'timeline',root:'timeline (English)',tag:'商务高频'},
+'kreatif':{ipa:'/kreaˈtif/',cn:'创造性的',en:'creative',root:'kreatif (Dutch)',tag:'基础词汇'},
+'mencari':{ipa:'/mənˈtʃari/',cn:'寻找/搜索',en:'to look for',root:'cari + me-',tag:'基础词汇'},
+'solusi':{ipa:'/soˈlusi/',cn:'解决方案',en:'solution',root:'solusi (Dutch)',tag:'商务高频'},
+'terbaik':{ipa:'/tərˈbaik/',cn:'最好的',en:'best',root:'baik + ter-',tag:'基础词汇'},
+'agar':{ipa:'/ˈaɡar/',cn:'以便/为了',en:'so that / in order to',root:'agar',tag:'基础词汇'},
+'Jika':{ipa:'/ˈdʒika/',cn:'如果/假如',en:'if',root:'jika',tag:'基础词汇'},
+'ragu':{ipa:'/ˈragu/',cn:'犹豫/怀疑',en:'to hesitate / doubt',root:'ragu',tag:'基础词汇'},
+'menghampiri':{ipa:'/məŋˈhampiri/',cn:'走近/靠近',en:'to approach',root:'hampir + me-+-i',tag:'基础词汇'},
+'mewujudkan':{ipa:'/məwuˈdʒudkan/',cn:'实现/达成',en:'to realize / achieve',root:'wujud + me-+-kan',tag:'商务高频'},
+'target':{ipa:'/ˈtarkɛt/',cn:'目标/指标',en:'target',root:'target (English)',tag:'商务高频'},
+'maintenance':{ipa:'/ˈmɛntɛnəns/',cn:'维护/维修',en:'maintenance',root:'maintenance (English)',tag:'商务高频'},
+'inspeksi':{ipa:'/ˈinspeksi/',cn:'检查/检验',en:'inspection',root:'inspeksi (Dutch)',tag:'商务高频'},
+'rutin':{ipa:'/ˈrutin/',cn:'常规的/例行',en:'routine',root:'rutin (Dutch)',tag:'商务高频'},
+'matang':{ipa:'/ˈmataŋ/',cn:'成熟/深思熟虑',en:'mature / well-considered',root:'matang',tag:'基础词汇'},
+'sebelum':{ipa:'/səˈbɛlum/',cn:'在...之前',en:'before',root:'belum + se-',tag:'基础词汇'},
+'memutuskan':{ipa:'/məˈmutuskan/',cn:'决定/裁决',en:'to decide',root:'putus + me-+-kan',tag:'商务高频'},
+'pun':{ipa:'/pun/',cn:'也/甚至(语气加强)',en:'also / even',root:'pun',tag:'基础词汇'},
+'berkaitan':{ipa:'/bərˈkaitan/',cn:'相关/有关联',en:'to be related',root:'kaitan + ber-',tag:'ber-动词'},
+'keselamatan':{ipa:'/kəsəˈlamatan/',cn:'安全',en:'safety / security',root:'selamat + ke-/-an',tag:'商务高频'},
+'kerja':{ipa:'/ˈkɛrdʒa/',cn:'工作',en:'work',root:'kerja',tag:'基础词汇'},
+'standard':{ipa:'/ˈstandar/',cn:'标准',en:'standard',root:'standar (Dutch)',tag:'商务高频'},
+'prima':{ipa:'/ˈprima/',cn:'一流/顶级',en:'top quality / prime',root:'prima (Dutch)',tag:'基础词汇'},
+'dedikasi':{ipa:'/dɛdiˈkasi/',cn:'奉献/敬业',en:'dedication',root:'dedikasi (Dutch)',tag:'商务高频'},
+'Mari':{ipa:'/ˈmari/',cn:'来吧/让我们',en:'let us',root:'mari',tag:'祈使词'},
+'para':{ipa:'/ˈpara/',cn:'各位/诸位',en:'all / respected',root:'para',tag:'基础词汇'},
+'ketahui':{ipa:'/kəˈtahui/',cn:'知道/了解',en:'to know',root:'tahu + ke-+-i',tag:'基础词汇'},
+'Indonesia':{ipa:'/ɪndoˈneziə/',cn:'印度尼西亚',en:'Indonesia',root:'Indonesia',tag:'地名'},
+'selama':{ipa:'/səˈlama/',cn:'在...期间',en:'during',root:'lama + se-',tag:'基础词汇'},
+'lima':{ipa:'/ˈlima/',cn:'五',en:'five',root:'lima',tag:'数词'},
+'berencana':{ipa:'/bərˈtʃana/',cn:'计划/打算',en:'to plan',root:'encana + ber-',tag:'ber-动词'},
+'memperluas':{ipa:'/məmpərˈluas/',cn:'扩大/扩展',en:'to expand',root:'luas + mem-per-+-kan',tag:'商务高频'},
+'kapasitas':{ipa:'/kaˈpasitas/',cn:'容量/产能',en:'capacity',root:'kapasitas (Dutch)',tag:'商务高频'},
+'syarat':{ipa:'/ˈsjarat/',cn:'条件/要求',en:'condition / requirement',root:'syarat',tag:'商务高频'},
+'ketentuan':{ipa:'/kətənˈtuan/',cn:'规定/条款',en:'regulation / provision',root:'tentu + ke-/-an',tag:'商务高频'},
+'saling':{ipa:'/ˈsaliŋ/',cn:'相互/彼此',en:'mutually / each other',root:'saling',tag:'基础词汇'},
+'menguntungkan':{ipa:'/məŋˈuntuŋkan/',cn:'有利的/有益',en:'profitable / beneficial',root:'untung + me-+-kan',tag:'商务高频'},
+'negosiasi':{ipa:'/nəɡoˈsiəsi/',cn:'谈判/协商',en:'negotiation',root:'negosiasi (Dutch)',tag:'商务高频'},
+'bahwa':{ipa:'/ˈbahwa/',cn:'那/...(引导从句)',en:'that (conjunction)',root:'bahwa',tag:'基础词汇'},
+'transparansi':{ipa:'/transpaˈransi/',cn:'透明度',en:'transparency',root:'transparansi (Dutch)',tag:'商务高频'},
+'kejujuran':{ipa:'/kədʒuˈdʒuran/',cn:'诚实/诚信',en:'honesty',root:'jujur + ke-/-an',tag:'商务高频'},
+'adalah':{ipa:'/ˈadalah/',cn:'是(系动词)',en:'is (copula)',root:'adalah',tag:'基础词汇'},
+'fondasi':{ipa:'/fonˈdasi/',cn:'基础/根基',en:'foundation',root:'fondasi (Dutch)',tag:'商务高频'},
+'terpenting':{ipa:'/tərˈpɛntiŋ/',cn:'最重要的',en:'most important',root:'penting + ter-',tag:'基础词汇'},
+'setiap':{ipa:'/səˈtiap/',cn:'每个/每一次',en:'every / each',root:'tiap + se-',tag:'基础词汇'},
+'hubungan':{ipa:'/huˈbuŋan/',cn:'关系/联系',en:'relationship / connection',root:'hubung + -an',tag:'商务高频'},
+'Bro':{ipa:'/ˈbro/',cn:'兄弟(俚语)',en:'bro (slang)',root:'bro (English)',tag:'口语'},
+'Lama':{ipa:'/ˈlama/',cn:'长/久',en:'long / long time',root:'lama',tag:'基础词汇'},
+'tidak':{ipa:'/ˈtidak/',cn:'不/没有',en:'no / not',root:'tidak',tag:'基础词汇'},
+'Gimana':{ipa:'/ɡiˈmana/',cn:'怎么样(口语)',en:'how (colloquial)',root:'bagaimana 缩略',tag:'口语'},
+'Sibuk':{ipa:'/ˈsibuk/',cn:'忙碌',en:'busy',root:'sibuk',tag:'基础词汇'},
+'berusaha':{ipa:'/bərˈusaha/',cn:'努力/尝试',en:'to try / make effort',root:'usaha + ber-',tag:'ber-动词'},
+'akhir':{ipa:'/ˈakhir/',cn:'结束/末尾',en:'end',root:'akhir (Arabic)',tag:'基础词汇'},
+'intens':{ipa:'/ˈintɛns/',cn:'紧张/密集',en:'intense',root:'intens (Dutch)',tag:'基础词汇'},
+'Tapi':{ipa:'/ˈtapi/',cn:'但是',en:'but',en:'but',root:'tapi',tag:'基础词汇'},
+'baru':{ipa:'/ˈbaru/',cn:'新的/刚刚',en:'new / just',root:'baru',tag:'基础词汇'},
+'jadi':{ipa:'/ˈdʒadi/',cn:'所以/成为',en:'so / become',root:'jadi',tag:'基础词汇'},
+'belum':{ipa:'/ˈbɛlum/',cn:'尚未/还没',en:'not yet',root:'belum',tag:'基础词汇'},
+'sempat':{ipa:'/ˈsɛmpat/',cn:'有时间/有机会',en:'to have time',root:'sempat',tag:'基础词汇'},
+'berlibur':{ipa:'/bərˈlibur/',cn:'度假/休假',en:'to take a vacation',root:'libur + ber-',tag:'ber-动词'},
+'pergi':{ipa:'/ˈpɛrɡi/',cn:'去/走',en:'to go',root:'pergi',tag:'基础词汇'},
+'ke':{ipa:'/kə/',cn:'去/到(介词)',en:'to / towards',root:'ke',tag:'介词'},
+'Lombok':{ipa:'/ˈlombok/',cn:'龙目岛(印尼)',en:'Lombok (Indonesian island)',root:'地名',tag:'地名'},
+'masih':{ipa:'/ˈmasih/',cn:'仍然/还',en:'still / yet',root:'masih',tag:'基础词汇'},
+'bingung':{ipa:'/ˈbiŋuŋ/',cn:'困惑/迷茫',en:'confused',root:'bingung',tag:'基础词汇'},
+'mau':{ipa:'/ˈmau/',cn:'要/想要',en:'to want',root:'mau',tag:'基础词汇'},
+'sana':{ipa:'/ˈsana/',cn:'那里/那边',en:'there',root:'sana',tag:'基础词汇'},
+'Kalau':{ipa:'/kaˈlau/',cn:'如果/假如',en:'if',root:'kalau',tag:'基础词汇'},
+'punya':{ipa:'/ˈpunja/',cn:'有/拥有',en:'to have / own',root:'punya',tag:'基础词汇'},
+'saran':{ipa:'/ˈsaran/',cn:'建议/意见',en:'suggestion',root:'saran',tag:'基础词汇'},
+'berkata':{ipa:'/bərˈkata/',cn:'说话/发言',en:'to speak',root:'kata + ber-',tag:'ber-动词'},
+'Oh':{ipa:'/ˈoh/',cn:'哦/啊',en:'oh',root:'oh',tag:'语气词'},
+'kapan':{ipa:'/ˈkapan/',cn:'何时/什么时候',en:'when',root:'kapan',tag:'疑问词'},
+'bermain':{ipa:'/bərˈmain/',cn:'玩耍/进行(运动)',en:'to play',root:'main + ber-',tag:'ber-动词'},
+'badminton':{ipa:'/ˈbædminton/',cn:'羽毛球',en:'badminton',root:'badminton (English)',tag:'基础词汇'},
+'olahraga':{ipa:'/ˈolahraɡa/',cn:'运动/体育',en:'sports / exercise',root:'olahraga',tag:'基础词汇'},
+'Yuk':{ipa:'/ˈjuk/',cn:'来吧/走吧(非常口语)',en:'come on / lets go',root:'yuk',tag:'口语'},
+'janjian':{ipa:'/ˈdʒandʒian/',cn:'约定/约会',en:'appointment',root:'janji + -an',tag:'基础词汇'},
+'minggu':{ipa:'/ˈmiŋɡu/',cn:'星期/周',en:'week / Sunday',root:'minggu (Portuguese)',tag:'时间词'},
+'depan':{ipa:'/ˈdɛpan/',cn:'前面/ upcoming',en:'front / next',root:'depan',tag:'基础词汇'},
+'Wah':{ipa:'/ˈwah/',cn:'哇/啊(感叹)',en:'wow',root:'wah',tag:'语气词'},
+'hampir':{ipa:'/ˈhampir/',cn:'几乎/将近',en:'almost / nearly',root:'hampir',tag:'基础词汇'},
+'setahun':{ipa:'/səˈtahun/',cn:'一年/整年',en:'one year',root:'satu + tahun',tag:'时间词'},
+'konferensi':{ipa:'/konfɛˈrɛnsi/',cn:'会议/大会',en:'conference',root:'konferensi (Dutch)',tag:'商务高频'},
+'pertambangan':{ipa:'/pərtamˈbaŋan/',cn:'矿业/采矿',en:'mining',root:'tambang + per-/-an',tag:'商务高频'},
+'Jakarta':{ipa:'/dʒaˈkarta/',cn:'雅加达(印尼首都)',en:'Jakarta (capital)',root:'地名',tag:'地名'},
+'lalu':{ipa:'/ˈlalu/',cn:'经过/过去(年)',en:'past / ago',root:'lalu',tag:'时间词'},
+'pastilah':{ipa:'/ˈpastilah/',cn:'肯定地/必定',en:'certainly / surely',root:'pasti + -lah',tag:'基础词汇'},
+'menyelesaikan':{ipa:'/mənjələˈsaikan/',cn:'完成/解决',en:'to complete / finish',root:'selesai + me-+-kan',tag:'商务高频'},
+'pembangkit':{ipa:'/pəˈbaŋkit/',cn:'发电机/发电装置',en:'generator / power plant',root:'bangkit + pe-',tag:'商务高频'},
+'listrik':{ipa:'/ˈlistrik/',cn:'电/电力',en:'electricity',root:'listrik (Dutch)',tag:'商务高频'},
+'tenaga':{ipa:'/ˈtɛnaɡa/',cn:'能源/力量',en:'energy / force',root:'tenaga',tag:'商务高频'},
+'surya':{ipa:'/ˈsurja/',cn:'太阳',en:'sun',root:'surya (Sanskrit)',tag:'商务高频'},
+'ekspansi':{ipa:'/ˈɛkspansi/',cn:'扩张/扩展',en:'expansion',root:'ekspansi (Dutch)',tag:'商务高频'},
+'aluminium':{ipa:'/aluˈminium/',cn:'铝',en:'aluminum',root:'aluminium',tag:'商务高频'},
+'peluang':{ipa:'/pəˈluaŋ/',cn:'机会/机遇',en:'opportunity',root:'luang + pe-',tag:'商务高频'},
+'tersebut':{ipa:'/tərˈsɛbut/',cn:'上述的/该...',en:'aforementioned / that',root:'sebut + ter-',tag:'基础词汇'},
+'menyusun':{ipa:'/məˈnjusun/',cn:'编制/安排',en:'to compile / arrange',root:'susun + me-',tag:'商务高频'},
+'strategi':{ipa:'/straˈtɛɡi/',cn:'战略/策略',en:'strategy',root:'strategi (Dutch)',tag:'商务高频'},
+'lanjut':{ipa:'/ˈlanjut/',cn:'继续/下一步',en:'continue / next',root:'lanjut',tag:'基础词汇'},
+'rasanya':{ipa:'/ˈrasanja/',cn:'感觉/觉得',en:'feel / it feels',root:'rasa + -nya',tag:'基础词汇'},
+// === 2026-07-14 昨日学习 · 词汇表 ===
+'dekat':{ipa:'/ˈdɛkat/',cn:'靠近/近',en:'near / close',root:'dekat',tag:'位置/空间'},
+'selain':{ipa:'/səˈlain/',cn:'除了...之外',en:'besides / aside from',root:'lain + se-',tag:'位置/空间'},
+'butuh':{ipa:'/ˈbutuh/',cn:'需要',en:'need / require',root:'butuh',tag:'需求/状态'},
+'keadaan':{ipa:'/kəˈadaan/',cn:'状况/状态',en:'situation / condition',root:'ada + ke-/-an',tag:'需求/状态'},
+'situasi':{ipa:'/situˈasi/',cn:'场景/情境',en:'situation / context',root:'situasi (Dutch)',tag:'需求/状态'},
+'larut':{ipa:'/ˈlarut/',cn:'深夜',en:'late at night',root:'larut',tag:'时间/状态'},
+'terlambat':{ipa:'/tərˈlambat/',cn:'迟到/晚了',en:'late / delayed',root:'lambat + ter-',tag:'时间/状态'},
+'awal':{ipa:'/ˈawal/',cn:'开始/早期',en:'beginning / early',root:'awal (Arabic)',tag:'时间/状态'},
+'ucapan':{ipa:'/uˈtʃapan/',cn:'问候语/致辞',en:'greeting / speech',root:'ucap + -an',tag:'问候/社交'},
+'salam':{ipa:'/ˈsalam/',cn:'问候/致敬',en:'greeting / salutation',root:'salam (Arabic)',tag:'问候/社交'},
+'ngapain':{ipa:'/ŋaˈpain/',cn:'在干嘛(口语)',en:'what are you doing (slang)',root:'apa + -in (colloquial)',tag:'问候/社交'},
+'hobi':{ipa:'/ˈhobi/',cn:'爱好',en:'hobby',root:'hobi (Dutch)',tag:'日常生活'},
+'istri':{ipa:'/ˈistri/',cn:'妻子',en:'wife',root:'istri (Sanskrit)',tag:'日常生活'},
+'listrik':{ipa:'/ˈlistrik/',cn:'电/电力',en:'electricity / electrical',root:'listrik (Dutch)',tag:'日常生活'},
+'rokok':{ipa:'/ˈrokɔk/',cn:'烟/香烟',en:'cigarette / smoke',root:'rokok',tag:'日常生活'},
+'markisa':{ipa:'/marˈkisa/',cn:'百香果',en:'passion fruit',root:'markisa (Portuguese)',tag:'日常生活'},
+'salju':{ipa:'/ˈsaldʒu/',cn:'雪',en:'snow',root:'salju (Dutch)',tag:'日常生活'},
+'membeku':{ipa:'/məmˈbɛku/',cn:'结冰/冻结',en:'to freeze / frozen',root:'beku = frozen + me-',tag:'日常生活'},
+'lahir':{ipa:'/ˈlahir/',cn:'出生',en:'born / birth',en2:'to be born',root:'lahir (Arabic)',tag:'日常生活'},
+'pelafalan':{ipa:'/pəlaˈfalan/',cn:'发音',en:'pronunciation',root:'lafal + pe-/-an',tag:'语言学习'},
+'tata':{ipa:'/ˈtata/',cn:'规则/体系',en:'rules / system',root:'tata (Sanskrit)',tag:'语言学习'},
+'bahasa':{ipa:'/ˈbahasa/',cn:'语言',en:'language',root:'bahasa (Sanskrit)',tag:'语言学习'},
+'terjemahan':{ipa:'/tərʤəˈmahan/',cn:'翻译',en:'translation / translate',root:'terjemah + -an',tag:'语言学习'},
+'berita':{ipa:'/bəˈrita/',cn:'新闻',en:'news',root:'berita (Arabic)',tag:'语言学习'},
+'pemborosan':{ipa:'/pəmboˈrosan/',cn:'浪费/废话',en:'wastefulness / filler',root:'boros = wasteful + pe-/-an',tag:'语言学习'},
+'paruh':{ipa:'/ˈparuh/',cn:'一半/部分',en:'half / part',root:'paruh',tag:'工作'},
+'waktu':{ipa:'/ˈwaktu/',cn:'时间/时候',en:'time / when',root:'waktu (Arabic)',tag:'时间'},
+'jelaskan':{ipa:'/ʤəˈlakan/',cn:'解释(祈使)',en:'explain (imperative)',root:'jelas = clear + -kan',tag:'动词'},
+'melakukan':{ipa:'/məˈlakukan/',cn:'做/执行',en:'to do / carry out',root:'laku = act + me-+-kan',tag:'动词'},
+'suatu':{ipa:'/ˈsuatu/',cn:'某个/某一',en:'some / a certain',root:'satu = one + su-',tag:'基础词汇'},
+'pertanyaan':{ipa:'/pərtanˈjaan/',cn:'问题',en:'question',root:'tanya + per-/-an',tag:'基础词汇'},
+'tolong':{ipa:'/ˈtoloŋ/',cn:'请/帮帮忙',en:'please / help',root:'tolong',tag:'基础词汇'},
+'jawab':{ipa:'/ˈdʒawab/',cn:'回答',en:'to answer',root:'jawab',tag:'基础词汇'},
+'sampai':{ipa:'/ˈsampai/',cn:'到达/直到',en:'to arrive / until',root:'sampai',tag:'基础词汇'},
+'sebelum':{ipa:'/səˈbɛlum/',cn:'在...之前',en:'before',root:'belum + se-',tag:'基础词汇'},
+'dijadwalkan':{ipa:'/diʤadˈwalkan/',cn:'被安排/被规定',en:'scheduled / arranged',root:'jadwal = schedule + di-+-kan',tag:'基础词汇'},
+'PADEL':{ipa:'/ˈpadɛl/',cn:'匹克球',en:'padel (sport)',root:'padel (English)',tag:'运动/外来词'},
+'GYM':{ipa:'/ˈdʒim/',cn:'健身房',en:'gym',root:'gym (English)',tag:'运动/外来词'},
+'PERJALANAN':{ipa:'/pərdʒaˈlanan/',cn:'旅途/出差',en:'journey / business trip',root:'jalan + per-/-an',tag:'工作'},
+'BISNIS':{ipa:'/ˈbisnis/',cn:'商业/商务',en:'business',root:'bisnis (Dutch)',tag:'工作'},
+// === 演讲补录 · 高频缺失词汇 ===
+'halo':{ipa:'/ˈhalo/',cn:'你好(非正式)',en:'hello',root:'halo',tag:'问候语'},
+'seru':{ipa:'/ˈsɛru/',cn:'有趣/精彩',en:'fun / exciting',root:'seru',tag:'日常口语'},
+'banget':{ipa:'/ˈbaŋɛt/',cn:'非常(俚语)',en:'very (slang)',root:'banget',tag:'日常口语'},
+'sibuk':{ipa:'/ˈsibuk/',cn:'忙碌',en:'busy',root:'sibuk',tag:'日常口语'},
+'belum':{ipa:'/ˈbɛlum/',cn:'尚未/还没',en:'not yet',root:'belum',tag:'基础词汇'},
+'sempat':{ipa:'/ˈsɛmpat/',cn:'有时间/有机会',en:'to have time',root:'sempat',tag:'基础词汇'},
+'makan':{ipa:'/ˈmakan/',cn:'吃/用餐',en:'to eat / meal',root:'makan',tag:'基础词汇'},
+'santai':{ipa:'/ˈsantai/',cn:'放松/轻松',en:'relaxed / casual',root:'santai',tag:'日常口语'},
+'pergi':{ipa:'/ˈpɛrɡi/',cn:'去/走',en:'to go',root:'pergi',tag:'基础词汇'},
+'punya':{ipa:'/ˈpunja/',cn:'有/拥有',en:'to have / own',root:'punya',tag:'基础词汇'},
+'mau':{ipa:'/ˈmau/',cn:'要/想要',en:'to want',root:'mau',tag:'基础词汇'},
+'sana':{ipa:'/ˈsana/',cn:'那里/那边',en:'there',root:'sana',tag:'基础词汇'},
+'bantu':{ipa:'/ˈbantu/',cn:'帮助/协助',en:'to help / assist',root:'bantu',tag:'基础词汇'},
+'Wah':{ipa:'/ˈwah/',cn:'哇/啊(感叹)',en:'wow',root:'wah',tag:'语气词'},
+'setahun':{ipa:'/səˈtahun/',cn:'一年/整年',en:'one year',root:'satu + tahun',tag:'时间词'},
+'Jakarta':{ipa:'/dʒaˈkarta/',cn:'雅加达',en:'Jakarta (capital)',root:'地名',tag:'地名'},
+'konferensi':{ipa:'/konfɛˈrɛnsi/',cn:'会议/大会',en:'conference',root:'konferensi (Dutch)',tag:'商务高频'},
+'pertambangan':{ipa:'/pərtamˈbaŋan/',cn:'矿业/采矿',en:'mining',root:'tambang + per-/-an',tag:'商务高频'},
+'pembangkit':{ipa:'/pəˈbaŋkit/',cn:'发电机/发电装置',en:'generator / power plant',root:'bangkit + pe-',tag:'商务高频'},
+'tenaga':{ipa:'/ˈtɛnaɡa/',cn:'能源/力量',en:'energy / force',root:'tenaga',tag:'商务高频'},
+'surya':{ipa:'/ˈsurja/',cn:'太阳',en:'sun',root:'surya (Sanskrit)',tag:'商务高频'},
+'ekspansi':{ipa:'/ˈɛkspansi/',cn:'扩张/扩展',en:'expansion',root:'ekspansi (Dutch)',tag:'商务高频'},
+'peluang':{ipa:'/pəˈluaŋ/',cn:'机会/机遇',en:'opportunity',root:'luang + pe-',tag:'商务高频'},
+'menyusun':{ipa:'/məˈnjusun/',cn:'编制/安排',en:'to compile / arrange',root:'susun + me-',tag:'商务高频'},
+'lanjut':{ipa:'/ˈlanjut/',cn:'继续/下一步',en:'continue / next',root:'lanjut',tag:'基础词汇'},
+'kemarin':{ipa:'/kəˈmarin/',cn:'昨天',en:'yesterday',root:'kemarin',tag:'时间词'},
+// === 2026-07-15 新增词汇 ===
+'silahkan':{ipa:'/səˈlahkan/',cn:'请(礼貌邀请)',en:'please / go ahead',root:'silah + -kan',tag:'礼貌用语'},
+'berdiskusi':{ipa:'/bərdisˈkusi/',cn:'讨论',en:'to discuss',root:'diskusi + ber-',tag:'ber-动词'},
+'pekerjaan':{ipa:'/pəkərˈdʒaan/',cn:'工作/职业',en:'job / work',root:'kerja + pe-/-an',tag:'商务高频'},
+'dijadwalkan':{ipa:'/didʒadˈwalkan/',cn:'被安排/已排程',en:'scheduled / arranged',root:'jadwal + di-+-kan',tag:'基础词汇'},
+'supaya':{ipa:'/suˈpaja/',cn:'以便/为了',en:'so that / in order to',root:'supaya',tag:'基础词汇'},
+'sesuai':{ipa:'/səˈsuai/',cn:'根据/按照/适合',en:'according to / suitable',root:'suai + se-',tag:'基础词汇'},
+'situasi':{ipa:'/situˈasi/',cn:'情况/情景',en:'situation',root:'situasi (Dutch)',tag:'基础词汇'},
+'contoh':{ipa:'/ˈtʃonoh/',cn:'例子/范例',en:'example',root:'contoh',tag:'基础词汇'},
+'ukuran':{ipa:'/uˈkuran/',cn:'尺寸/大小',en:'size / measurement',root:'ukur + -an',tag:'基础词汇'},
+'derajat':{ipa:'/dəˈradʒat/',cn:'度数/程度',en:'degree / level',root:'derajat (Arabic)',tag:'基础词汇'},
+'cuaca':{ipa:'/ˈtʃuatʃa/',cn:'天气',en:'weather',root:'cuaca',tag:'基础词汇'},
+'suara':{ipa:'/ˈsuara/',cn:'声音',en:'voice / sound',root:'suara',tag:'基础词汇'},
+'kuat':{ipa:'/ˈkuat/',cn:'强壮/强烈',en:'strong / loud',root:'kuat',tag:'基础词汇'},
+'tegas':{ipa:'/ˈtɛɡas/',cn:'坚定/明确',en:'firm / decisive',root:'tegas',tag:'基础词汇'},
+'kencang':{ipa:'/ˈkɛntʃaŋ/',cn:'响亮/快速',en:'loud / fast',root:'kencang',tag:'基础词汇'},
+'hampir':{ipa:'/ˈhampir/',cn:'几乎/差不多',en:'almost / nearly',root:'hampir',tag:'基础词汇'},
+'menghampiri':{ipa:'/məŋˈhampiri/',cn:'走近/靠近',en:'to approach',root:'hampir + me-+-i',tag:'基础词汇'},
+'menemani':{ipa:'/mənɛˈmani/',cn:'陪伴',en:'to accompany',root:'teman + me-+-i',tag:'基础词汇'},
+'mengenai':{ipa:'/məŋˈɡɛnai/',cn:'关于',en:'regarding / about',root:'kena + me-+-i',tag:'基础词汇'},
+'kena':{ipa:'/ˈkɛna/',cn:'触及/命中(词根)',en:'to hit / touch (root)',root:'kena',tag:'基础词汇'},
+'setelah':{ipa:'/səˈtɛlah/',cn:'在...之后',en:'after',root:'telah + se-',tag:'基础词汇'},
+'sering':{ipa:'/ˈsɛriŋ/',cn:'经常/常常',en:'often / frequently',root:'sering',tag:'基础词汇'},
+'imbuhan':{ipa:'/ˈimbuhan/',cn:'词缀/前缀',en:'affix / prefix',root:'imbuh + -an',tag:'语法术语'},
+'begini':{ipa:'/bəˈɡini/',cn:'像这样/这样',en:'like this',root:'ini + be-',tag:'基础词汇'},
+'memiliki':{ipa:'/məˈmiliki/',cn:'拥有/具有',en:'to possess / have',root:'milik + me-+-i',tag:'基础词汇'},
+'telepon':{ipa:'/ˈtɛlɛfon/',cn:'电话',en:'telephone',root:'telepon (Dutch)',tag:'基础词汇'},
+'bahan':{ipa:'/ˈbahan/',cn:'材料/原料',en:'material / ingredient',root:'bahan',tag:'商务高频'},
+'menyiapkan':{ipa:'/mənˈjapkan/',cn:'准备/预备',en:'to prepare',root:'siap + me-+-kan',tag:'基础词汇'},
+'siswa':{ipa:'/ˈsiswa/',cn:'学生',en:'student',root:'siswa (Sanskrit)',tag:'基础词汇'},
+'murid':{ipa:'/ˈmurid/',cn:'学生/弟子',en:'pupil / student',root:'murid (Arabic)',tag:'基础词汇'},
+'cocok':{ipa:'/ˈtʃotʃok/',cn:'适合/合适',en:'suitable / appropriate',root:'cocok',tag:'基础词汇'},
+'cowo':{ipa:'/ˈtʃowo/',cn:'男孩/男生',en:'boy / guy (slang)',root:'cowo',tag:'口语'},
+'pilih':{ipa:'/ˈpilih/',cn:'选择/挑选',en:'to choose / select',root:'pilih',tag:'基础词汇'},
+'rekan':{ipa:'/ˈrɛkan/',cn:'同事/伙伴',en:'colleague / partner',root:'rekan',tag:'商务高频'},
+'sekalian':{ipa:'/səˈkalian/',cn:'全体/一起',en:'all together',root:'kalian + se-',tag:'基础词汇'},
+'semoga':{ipa:'/səˈmoɡa/',cn:'希望/但愿',en:'hopefully / may',root:'semoga',tag:'基础词汇'},
+'sehat':{ipa:'/səˈhat/',cn:'健康',en:'healthy',root:'sehat (Arabic)',tag:'基础词汇'},
+'bersemangat':{ipa:'/bərˈsɛmaŋat/',cn:'充满热情',en:'enthusiastic',root:'semangat + ber-',tag:'ber-形容词'},
+'berkerja':{ipa:'/bərkərˈdʒa/',cn:'工作(formal)',en:'to work',root:'kerja + ber-',tag:'ber-动词'},
+'rapat':{ipa:'/ˈrapat/',cn:'会议/紧密',en:'meeting / tight',root:'rapat',tag:'商务高频'},
+'pembangunan':{ipa:'/pəmbaŋˈunan/',cn:'建设/发展',en:'development / construction',root:'bangun + pe-/-an',tag:'商务高频'},
+'segera':{ipa:'/səˈɡɛra/',cn:'尽快/不久',en:'soon / immediately',root:'segera',tag:'基础词汇'},
+'berjalan':{ipa:'/bərˈdʒalan/',cn:'运行/进行',en:'to run / proceed',root:'jalan + ber-',tag:'ber-动词'},
+'harus':{ipa:'/ˈharus/',cn:'必须/应该',en:'must / have to',root:'harus',tag:'基础词汇'},
+'berkumpul':{ipa:'/bərˈkumpul/',cn:'聚集/集合',en:'to gather / assemble',root:'kumpul + ber-',tag:'ber-动词'},
+'pukul':{ipa:'/ˈpukul/',cn:'点钟/击打',en:'o\'clock / to hit',root:'pukul',tag:'基础词汇'},
+'sepuluh':{ipa:'/səˈpulu/',cn:'十',en:'ten',root:'puluh + se-',tag:'数词'},
+'membahas':{ipa:'/məmˈbahas/',cn:'讨论/探讨',en:'to discuss',root:'bahas + me-',tag:'基础词汇'},
+'timeline':{ipa:'/ˈtaimlain/',cn:'时间线',en:'timeline',root:'timeline (English)',tag:'商务高频'},
+'detail':{ipa:'/ˈdɛteil/',cn:'详细',en:'detail',root:'detail (Dutch)',tag:'基础词汇'},
+'berpikir':{ipa:'/bərˈpikir/',cn:'思考/想',en:'to think',root:'pikir + ber-',tag:'ber-动词'},
+'kreatif':{ipa:'/kreaˈtif/',cn:'创造性的',en:'creative',root:'kreatif (Dutch)',tag:'基础词汇'},
+'berusaha':{ipa:'/bərˈusaha/',cn:'努力/尝试',en:'to try / make effort',root:'usaha + ber-',tag:'ber-动词'},
+'mencari':{ipa:'/mənˈtʃari/',cn:'寻找',en:'to look for',root:'cari + me-',tag:'基础词汇'},
+'solusi':{ipa:'/soˈlusi/',cn:'解决方案',en:'solution',root:'solusi (Dutch)',tag:'商务高频'},
+'terbaik':{ipa:'/tərˈbaik/',cn:'最好的',en:'best',root:'baik + ter-',tag:'基础词汇'},
+'agar':{ipa:'/ˈaɡar/',cn:'以便/为了',en:'so that',root:'agar',tag:'基础词汇'},
+'dapat':{ipa:'/ˈdapət/',cn:'能够/可以',en:'can / be able to',root:'dapat',tag:'基础词汇'},
+'lancar':{ipa:'/ˈlantʃar/',cn:'顺利/流畅',en:'smooth / fluent',root:'lancar',tag:'基础词汇'},
+'bertanya':{ipa:'/bərˈtanja/',cn:'提问/询问',en:'to ask',root:'tanya + ber-',tag:'ber-动词'},
+'ragu':{ipa:'/ˈragu/',cn:'犹豫/怀疑',en:'to hesitate',root:'ragu',tag:'基础词汇'},
+'Mari':{ipa:'/ˈmari/',cn:'让我们',en:'let us',root:'mari',tag:'祈使词'},
+'bersama-sama':{ipa:'/bərˈsama ˈsama/',cn:'一起/共同',en:'together',root:'sama + ber- reduplication',tag:'基础词汇'},
+'mewujudkan':{ipa:'/məwuˈdʒudkan/',cn:'实现/达成',en:'to realize',root:'wujud + me-+-kan',tag:'商务高频'},
+'target':{ipa:'/ˈtarkɛt/',cn:'目标',en:'target',root:'target (English)',tag:'商务高频'},
+'produksi':{ipa:'/proˈduksi/',cn:'生产',en:'production',root:'produksi (Dutch)',tag:'商务高频'},
+'pagi':{ipa:'/ˈpaɡi/',cn:'早上',en:'morning',root:'pagi',tag:'时间词'},
+'proyek':{ipa:'/ˈprodʒɛk/',cn:'项目',en:'project',root:'proyek (Dutch)',tag:'商务高频'},
+'smelt':{ipa:'/ˈsmɛltɛr/',cn:'冶炼厂',en:'smelter',root:'smelter (English)',tag:'商务高频'},
+'keadaan':{ipa:'/kəˈadaan/',cn:'状况/状态',en:'condition',root:'ada + ke-/-an',tag:'基础词汇'},
+'untuk':{ipa:'/ˈuntu/',cn:'为了/给',en:'for / to',root:'untuk',tag:'介词'},
+'ini':{ipa:'/ˈini/',cn:'这个',en:'this',root:'ini',tag:'基础词汇'},
+'hari':{ipa:'/ˈhari/',cn:'天/日子',en:'day',root:'hari',tag:'时间词'},
+'yang':{ipa:'/ˈjaŋ/',cn:'的/关系代词',en:'that / which',root:'yang',tag:'基础词汇'},
+'sudah':{ipa:'/ˈsudah/',cn:'已经',en:'already',root:'sudah',tag:'基础词汇'},
+'kita':{ipa:'/ˈkita/',cn:'我们',en:'we / us',root:'kita',tag:'基础词汇'},
+'dalam':{ipa:'/ˈdalam/',cn:'在...里面',en:'in / inside',root:'dalam',tag:'介词'},
+'dan':{ipa:'/ˈdan/',cn:'和',en:'and',root:'dan',tag:'基础词汇'},
+'baru':{ipa:'/ˈbaru/',cn:'新的',en:'new',root:'baru',tag:'基础词汇'},
+'perlu':{ipa:'/ˈpɛrlu/',cn:'需要',en:'need / necessary',root:'perlu',tag:'基础词汇'},
+'lagi':{ipa:'/ˈlaɡi/',cn:'再/又',en:'again',root:'lagi',tag:'基础词汇'},
+'lebih':{ipa:'/ˈlɛbih/',cn:'更多/更',en:'more',root:'lebih',tag:'基础词汇'},
+'saya':{ipa:'/ˈsaja/',cn:'我',en:'I / me',root:'saya',tag:'基础词汇'},
+'ingin':{ipa:'/ˈiŋin/',cn:'想要',en:'to want',root:'ingin',tag:'基础词汇'},
+'semua':{ipa:'/səˈmua/',cn:'全部/所有',en:'all / everyone',root:'mua + se-',tag:'基础词汇'},
+'ada':{ipa:'/ˈada/',cn:'有/存在',en:'there is / exist',root:'ada',tag:'基础词汇'},
+'jangan':{ipa:'/ˈdʒaŋan/',cn:'不要/别',en:'don\'t',root:'jangan',tag:'祈使词'},
+'atau':{ipa:'/ˈatau/',cn:'或者',en:'or',root:'atau',tag:'基础词汇'}
+};
+
+
+let learningHistory=JSON.parse(localStorage.getItem("bir_h3")||"{}");
+let wordBank=JSON.parse(localStorage.getItem("bir_wb3")||"[]");
+let currentRoute="home",currentDate=new Date(2026,6,1),currentFilter="all";
+let quizState={q:0,correct:0,total:5,done:0};
+
+function initHistory(){
+  if(!learningHistory["2026-07-14"]) learningHistory["2026-07-14"]={vocabNew:["Selamat","pagi","Bapak","Ibu","Menteri","Perkenalkan","nama","saya","General","Manager","PT","beroperasi","di","kawasan","industri","Morowali","datang","Apa","kabarmu","Semoga","perjalanan","Anda","lancar","Terima","kasih","senang","sekali","dapat","bertemu","dengan","Perusahaan","kami","ingin","berdiskusi","mengenai","pengembangan","berkelanjutan","Baik","mari","kita","masuk"],vocabReview:[],translations:5,notes:"第1课"};
+  if(!learningHistory["2026-07-15"]) learningHistory["2026-07-15"]={vocabNew:["berdiskusi","berkumpul","berjalan","berpikir","berusaha","bertanya","bersemangat","berkerja","bersama-sama","mewujudkan","menghampiri","menemani","mengenai","membahas","menyiapkan","melakukan","mencari","memiliki","terbaik","kreatif","target","solusi","produksi","proyek","smelt","pembangunan","timeline","detail","rapat","keadaan","sesuai","situasi","contoh","ukuran","derajat","cuaca","suara","kuat","tegas","kencang","hampir","setelah","sering","imbuhan","begini","telepon","bahan","siswa","murid","cocok","cowo","pilih","rekan","sekalian","semoga","sehat","pagi"],vocabReview:["Selamat","pagi","saya","Anda","terima","kasih","Baik","kita","proyek","industri"],translations:8,notes:"第2课"};
+  saveHistory();
+}
+function saveHistory(){localStorage.setItem("bir_h3",JSON.stringify(learningHistory))}
+function saveWB(){localStorage.setItem("bir_wb3",JSON.stringify(wordBank))}
+
+function parseRoute(){const h=location.hash.replace("#","")||"home";if(h.startsWith("date/"))return{route:"date",param:h.replace("date/","")};return{route:h,param:null}}
+function navigate(r,p){if(p)location.hash=r+"/"+p;else location.hash=r;const bb=document.getElementById('backBtn');if(bb)bb.style.display=(r==='home')?'none':'inline-block';}
+function render(){
+  const r=parseRoute();currentRoute=r.route;updateNav();updateStats();
+  const bb=document.getElementById('backBtn');if(bb)bb.style.display=(currentRoute==='home')?'none':'inline-block';
+  const c=document.getElementById("appContent"),t=document.getElementById("pageTitle");
+  switch(r.route){
+    case "home":t.innerText="🏠 主页";renderHome(c);break;
+    case "date":t.innerText="📅 "+r.param;renderDateDetail(c,r.param);break;
+    case "translate":t.innerText="🌐 翻译";renderTranslate(c);break;
+    case "input":t.innerText="📝 词汇录入";renderInput(c);break;
+    case "wordbank":t.innerText="📚 生词本";renderWordBank(c);break;
+    case "quiz":t.innerText="🎯 能力测试";renderQuiz(c);break;
+    case "vocabulary":t.innerText="📖 词汇库";renderVocabulary(c);break;
+    case "review":t.innerText="🔄 复习";renderReview(c);break;
+    case "member":t.innerText="👑 会员中心";renderMember(c);break;
+    case "about":t.innerText="📋 关于";renderAbout(c);break;
+    case "version":t.innerText="📜 版本";renderVersion(c);break;
+    case "upload":t.innerText="📤 上传资料";renderUpload(c);break;
+    case "manage":t.innerText="⚙️ 课程管理";renderManage(c);break;
+    case "stats":t.innerText="📊 数据统计";renderStats(c);break;
+    case "game":t.innerText="🎮 百词斩";renderGame(c);break;
+    default:t.innerText="🏠 主页";renderHome(c);
+  }
+  window.scrollTo(0,0);
+}
+function updateNav(){document.querySelectorAll(".nav-list li").forEach(li=>{li.classList.toggle("active",li.dataset.route===currentRoute)}); const s=getMemberStatus(); const mb=document.getElementById("memberBadge");if(mb){mb.style.background=s.color+"20";mb.style.color=s.color;mb.textContent=s.label;} const hmb=document.getElementById("homeMemberBadge");if(hmb){hmb.style.background=s.color+"20";hmb.style.color=s.color;hmb.textContent=s.label;}}
+
+function renderHome(c){
+  const today=new Date().toISOString().slice(0,10),td=learningHistory[today],tdn=td?td.vocabNew.length:0;
+  c.innerHTML=`<div class="welcome-banner" style="background:linear-gradient(135deg,rgba(0,212,170,.15),rgba(59,130,246,.1));border:1px solid rgba(0,212,170,.25);position:relative;"><div id="homeMemberBadge" style="position:absolute;top:8px;right:8px;font-size:11px;padding:3px 8px;border-radius:6px;"></div><div style="display:flex;align-items:center;gap:16px;margin-bottom:12px;"><div style="width:56px;height:56px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div><div><h2 style="font-size:22px;color:var(--primary);margin-bottom:4px">LEO-BIR</h2><p style="color:var(--text-dim);font-size:13px">Bahasa Indonesia Learning · 印尼语学习平台</p></div></div><p style="color:var(--text-dim);font-size:13px;margin-bottom:8px;line-height:1.8">📚 专为印尼语学习者打造的智能学习平台，融合艾宾浩斯记忆曲线、百词斩游戏化练习、三关生词本系统。<br>🎯 支持 印尼语↔中文↔英文 三语对照，按日历规划每日学习进度。<br>🔍 关键词：印尼语学习、Bahasa Indonesia、三语翻译、艾宾浩斯记忆、百词斩、印尼语词汇、商务印尼语<br>📞 联系：087713858880</p><div style="font-size:11px;color:var(--text-dim);margin-top:12px;padding-top:10px;border-top:1px solid rgba(0,212,170,.15)"><strong style="color:var(--primary)">版本迭代记录：</strong><br>V2.4 (2026-07-16) 修复复习页面、增强艾宾浩斯互动、界面品牌化<br>V2.3 (2026-07-16) 超级管理员面板、艾宾浩斯复习、百词斩错题报告<br>V2.2 (2026-07-15) 会员系统（非会员3次限制、试用24小时、年费1年）<br>V2.1 (2026-07-15) 三关生词本、百词斩游戏（印中选/中选印/拼写）<br>V2.0 (2026-07-14) 完全重写SPA、日历学习、翻译、词汇录入、话题系统</div></div><div class="quick-grid"><div class="quick-btn" onclick="navigate('translate')"><span class="icon">🌐</span><div class="label">翻译</div></div><div class="quick-btn" onclick="navigate('input')"><span class="icon">📝</span><div class="label">词汇录入</div></div><div class="quick-btn" onclick="navigate('wordbank')"><span class="icon">📚</span><div class="label">生词本</div></div><div class="quick-btn" onclick="navigate('review')"><span class="icon">🧠</span><div class="label">复习</div></div><div class="quick-btn" onclick="navigate('vocabulary')"><span class="icon">📖</span><div class="label">词汇库</div></div><div class="quick-btn" onclick="navigate('quiz')"><span class="icon">🎮</span><div class="label">百词斩</div></div></div><div class="card"><div class="card-header"><h2>📅 学习日历</h2><span class="badge">点击日期查看</span></div>${renderCalHTML()}</div>`;
+  attachCalEvents();
+}
+
+function renderCalHTML(){
+  const y=currentDate.getFullYear(),m=currentDate.getMonth();
+  const fd=new Date(y,m,1).getDay(),td=new Date(y,m+1,0).getDate();
+  const tds=new Date().toISOString().slice(0,10),wd=["日","一","二","三","四","五","六"];
+  let h=`<div class="cal-wrap"><div class="cal-header"><button class="cal-nav" onclick="changeMonth(-1)">◀</button><h3>${y}年${m+1}月</h3><button class="cal-nav" onclick="changeMonth(1)">▶</button></div><div class="cal-grid">`;
+  wd.forEach(d=>h+=`<div class="cal-wd">${d}</div>`);
+  for(let i=0;i<fd;i++)h+=`<div class="cal-day" style="background:transparent;cursor:default"></div>`;
+  for(let d=1;d<=td;d++){
+    const ds=`${y}-${String(m+1).padStart(2,"0")}-${String(d).padStart(2,"0")}`;
+    const data=learningHistory[ds],ist=ds===tds,hd=data&&(data.vocabNew.length||data.vocabReview.length||data.translations);
+    let dots="";if(data){if(data.vocabNew.length)dots+=`<span class="ddot neww"></span>`;if(data.vocabReview.length)dots+=`<span class="ddot rev"></span>`;if(data.translations)dots+=`<span class="ddot"></span>`;}
+    h+=`<div class="cal-day ${ist?"today":""} ${hd?"has-data":""}" data-date="${ds}"><div class="dnum">${d}</div><div class="ddots">${dots}</div></div>`;
+  }
+  h+=`</div><div class="cal-legend"><span><span class="ddot neww" style="display:inline-block"></span> 新词</span><span><span class="ddot rev" style="display:inline-block"></span> 复习</span><span><span class="ddot" style="display:inline-block"></span> 翻译</span><span>⬤ 今天</span></div></div>`;
+  return h;
+}
+function attachCalEvents(){document.querySelectorAll(".cal-day[data-date]").forEach(el=>{el.addEventListener("click",()=>{const ds=el.dataset.date;if(learningHistory[ds])navigate("date",ds)})})}
+function changeMonth(delta){currentDate.setMonth(currentDate.getMonth()+delta);renderHome(document.getElementById("appContent"))}
+
+function renderDateDetail(c,ds){
+  const data=learningHistory[ds];
+  if(!data){c.innerHTML=`<div class="date-detail"><button class="back-btn" onclick="navigate('home')">← 返回</button><div class="card" style="text-align:center;padding:40px;color:var(--text-dim)">📅 ${ds}<br>暂无记录</div></div>`;return;}
+  let vh="";
+  if(data.vocabNew.length){vh+=`<h3 style="color:var(--primary);margin:16px 0 10px;font-size:15px">🆕 新学(${data.vocabNew.length})</h3><div class="word-grid">`;data.vocabNew.forEach(w=>{const v=vocabDB[w.toLowerCase()]||vocabDB[w.charAt(0).toUpperCase()+w.slice(1)]||vocabDB[w];if(v)vh+=`<div class="word-card" onclick="showTip('${w.replace(/'/g,"\'")}')"><div class="w-word">${w} <span class="w-ipa">${v.ipa||""}</span></div><div class="w-mean">🇨🇳 ${v.cn||""}</div></div>`;else vh+=`<div class="word-card"><div class="w-word">${w}</div></div>`;});vh+=`</div>`;}
+  if(data.vocabReview.length){vh+=`<h3 style="color:var(--accent);margin:16px 0 10px;font-size:15px">🔄 复习(${data.vocabReview.length})</h3><div class="word-grid">`;data.vocabReview.forEach(w=>{const v=vocabDB[w.toLowerCase()]||vocabDB[w];if(v)vh+=`<div class="word-card" onclick="showTip('${w.replace(/'/g,"\'")}')"><div class="w-word">${w}</div><div class="w-mean">🇨🇳 ${v.cn||""}</div></div>`;else vh+=`<div class="word-card"><div class="w-word">${w}</div></div>`;});vh+=`</div>`;}
+  c.innerHTML=`<div class="date-detail"><button class="back-btn" onclick="navigate('home')">← 返回</button><div class="card"><div class="card-header"><h2>📅 ${ds}</h2><span class="badge">学习记录</span></div>${data.notes?`<div style="background:rgba(0,212,170,.08);border-radius:8px;padding:12px;margin-bottom:14px;border-left:3px solid var(--primary);font-size:13px">${data.notes}</div>`:""}<div style="display:flex;gap:20px;margin-bottom:14px;font-size:13px;color:var(--text-dim)"><span>🆕 <strong style="color:var(--primary)">${data.vocabNew.length}</strong></span><span>🔄 <strong style="color:var(--accent)">${data.vocabReview.length}</strong></span><span>🌐 <strong style="color:var(--info)">${data.translations}</strong></span></div>${vh}</div></div>`;
+}
+
+function renderTranslate(c){
+  c.innerHTML=`<div class="card"><div class="card-header"><h2>🌐 翻译</h2><span class="badge">本地词库 + Google API</span></div><div class="trans-box"><div class="trans-row"><select id="tFrom"><option value="id">🇮🇩 印尼语</option><option value="zh">🇨🇳 中文</option><option value="en">🇬🇧 英语</option></select><span style="color:var(--text-dim)">→</span><select id="tTo"><option value="zh">🇨🇳 中文</option><option value="en">🇬🇧 英语</option><option value="id">🇮🇩 印尼语</option></select></div><textarea class="trans-input" id="tInput" placeholder="输入单词..."></textarea><div class="trans-row"><button class="trans-btn" onclick="doTranslate()">🔍 翻译</button><button class="trans-btn" style="background:var(--bg-elev);color:var(--text);border:1px solid var(--border)" onclick="clearTrans()">🗑️ 清空</button></div><div class="trans-result" id="tResult"></div></div></div>`;
+  document.getElementById("tInput").addEventListener("keydown",e=>{if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();doTranslate()}});
+}
+
+async function doTranslate(){if(!checkAccess("翻译"))return;
+  const input=document.getElementById("tInput").value.trim();if(!input)return;
+  const resultDiv=document.getElementById("tResult");resultDiv.innerHTML=`<div style="color:var(--text-dim);padding:20px;text-align:center">翻译中...</div>`;resultDiv.classList.add("show");
+  const fromLang=document.getElementById("tFrom").value,toLang=document.getElementById("tTo").value;
+  const words=input.split(/[\s,，.。!！?？]+/).filter(w=>w.length>0);
+  let html="",tc=0;
+  for(const word of words.slice(0,5)){
+    const w=word.toLowerCase();
+    const v=vocabDB[w]||vocabDB[w.charAt(0).toUpperCase()+w.slice(1)];
+    if(v){
+      html+=`<div style="margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--border)"><div class="r-word">${word}</div><div class="r-ipa">${v.ipa||"—"}</div><div class="r-mean"><span style="color:var(--primary-dim)">🇨🇳</span> ${v.cn||"—"}<br><span style="color:var(--primary-dim)">🇬🇧</span> ${v.en||"—"}</div><div class="r-tag">词根:${v.root||"—"} | 标签:${v.tag||"—"}</div><div class="r-source">来源: BIT词库</div><div class="r-action"><button class="btn-save" onclick="addWB('${word.replace(/'/g,"\'")}','${(v.ipa||"").replace(/'/g,"\'")}','${(v.cn||"").replace(/'/g,"\'")}','${(v.en||"").replace(/'/g,"\'")}','${(v.root||"").replace(/'/g,"\'")}','${(v.tag||"").replace(/'/g,"\'")}')">💾 加入生词本</button><button class="btn-speak" onclick="speak('${word.replace(/'/g,"\'")}','id')">🔊 朗读</button></div></div>`;
+      tc++;
+    }else{
+      const aff=stripAffixes(w);let found=false;
+      for(const a of aff){const rv=vocabDB[a.root]||vocabDB[a.root.charAt(0).toUpperCase()+a.root.slice(1)];if(rv){html+=`<div style="margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--border)"><div class="r-word">${word}</div><div class="r-ipa">${rv.ipa||"—"}</div><div class="r-mean"><span style="color:var(--primary-dim)">🇨🇳</span> ${rv.cn||"—"}</div><div style="font-size:12px;color:var(--accent);margin-top:6px">🔧 词缀:${a.affix}+${a.root}(${a.type})</div><div class="r-source">来源:词缀拆解</div><div class="r-action"><button class="btn-save" onclick="addWB('${word.replace(/'/g,"\'")}','${(rv.ipa||"").replace(/'/g,"\'")}','${(rv.cn||"").replace(/'/g,"\'")}','${(rv.en||"").replace(/'/g,"\'")}','${(rv.root||"").replace(/'/g,"\'")}','${(rv.tag||"").replace(/'/g,"\'")}')">💾 加入生词本</button><button class="btn-speak" onclick="speak('${word.replace(/'/g,"\'")}','id')">🔊 朗读</button></div></div>`;found=true;tc++;break;}}
+      if(!found){
+        const gt=await gTrans(word,fromLang,toLang);
+        if(gt){html+=`<div style="margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--border)"><div class="r-word">${word}</div><div style="font-size:14px;color:var(--text);margin-top:6px"><span style="color:var(--primary-dim)">🇨🇳</span> ${gt}</div><div class="r-source">来源:Google Translate</div><div class="r-action"><button class="btn-save" onclick="addWB('${word.replace(/'/g,"\'")}','—','${gt.replace(/'/g,"\'")}','—','—','Google翻译')">💾 加入生词本</button><button class="btn-speak" onclick="speak('${word.replace(/'/g,"\'")}','id')">🔊 朗读</button></div></div>`;tc++;}
+        else html+=`<div style="padding:12px;background:rgba(239,68,68,.08);border-radius:8px;margin-bottom:10px"><div style="font-weight:700">${word}</div><div style="color:var(--text-dim);font-size:13px;margin-top:4px">未找到翻译</div></div>`;
+      }
+    }
+  }
+  resultDiv.innerHTML=html;resultDiv.classList.add("show");
+  const ds=new Date().toISOString().slice(0,10);if(!learningHistory[ds])learningHistory[ds]={vocabNew:[],vocabReview:[],translations:0,notes:""};learningHistory[ds].translations+=tc;saveHistory();updateStats();
+}
+
+async function gTrans(text,sl,tl){
+  try{const url="https://translate.googleapis.com/translate_a/single?client=gtx&sl="+sl+"&tl="+tl+"&dt=t&q="+encodeURIComponent(text);const res=await fetch(url);const data=await res.json();if(data&&data[0]&&data[0][0]&&data[0][0][0])return data[0][0][0];}catch(e){}
+  return null;
+}
+function clearTrans(){document.getElementById("tInput").value="";document.getElementById("tResult").innerHTML="";document.getElementById("tResult").classList.remove("show")}
+
+function renderInput(c){
+  c.innerHTML=`<div class="card"><div class="card-header"><h2>📝 词汇录入</h2><span class="badge">批量输入</span></div><div class="vinput-area"><textarea class="vinput-ta" id="vInput" placeholder="每行一个单词..."></textarea><div class="vinput-btns"><button class="btn-parse" onclick="parseVocab()">🔍 解析</button><button class="btn-clear" onclick="document.getElementById('vInput').value='';document.getElementById('vResult').style.display='none'">清空</button></div><div class="vinput-res" id="vResult"></div></div></div>`;
+}
+function parseVocab(){if(!checkAccess("词汇录入"))return;
+  const input=document.getElementById("vInput").value.trim();if(!input){showToast("请先输入");return;}
+  const lines=input.split(/[\s,]+/).map(s=>s.trim()).filter(s=>s);
+  const resultDiv=document.getElementById("vResult");resultDiv.style.display="block";resultDiv.classList.add("show");
+  let found=0,pending=0;let html=`<div style="display:grid;grid-template-columns:1fr;gap:8px;margin-top:12px">`;
+  lines.forEach(word=>{const key=Object.keys(vocabDB).find(k=>k.toLowerCase()===word.toLowerCase());if(key){found++;const v=vocabDB[key];html+=`<div style="padding:12px;background:rgba(34,197,94,.08);border-radius:8px;border-left:3px solid var(--success)"><div style="font-weight:700;color:var(--primary)">${key} <span style="color:var(--text-dim);font-weight:400">${v.ipa||""}</span></div><div style="font-size:12px;color:var(--text-dim);margin-top:3px">🇨🇳 ${v.cn||""}</div></div>`;}else{pending++;html+=`<div style="padding:12px;background:rgba(239,68,68,.08);border-radius:8px;border-left:3px solid var(--danger)"><div style="font-weight:700">${word}</div><div style="font-size:12px;color:var(--text-dim)">⏳ 待补充</div></div>`;}});
+  html+=`</div>`;html+=`<div style="margin-top:14px;font-size:13px;color:var(--text-dim)">✅ ${found} · ⏳ ${pending} · 总计 ${lines.length}</div>`;
+  resultDiv.innerHTML=html;
+  const ds=new Date().toISOString().slice(0,10);if(!learningHistory[ds])learningHistory[ds]={vocabNew:[],vocabReview:[],translations:0,notes:""};lines.forEach(w=>{const key=Object.keys(vocabDB).find(k=>k.toLowerCase()===w.toLowerCase());if(key&&!learningHistory[ds].vocabNew.includes(key))learningHistory[ds].vocabNew.push(key);});saveHistory();updateStats();showToast("录入 "+found+" 词");
+}
+
+function renderWordBank(c){
+  const m=wordBank.filter(w=>w.mastered).length;
+  c.innerHTML=`<div class="card"><div class="card-header"><h2>📚 生词本</h2><span class="badge">${wordBank.length}词</span></div><div class="wb-toolbar"><button class="btn-exp" onclick="exportWB()">📥 导出</button><button class="btn-clr" onclick="clearWB()">🗑️ 清空</button></div><div style="display:flex;gap:20px;margin-bottom:14px;font-size:13px;color:var(--text-dim)"><span>📦 <strong style="color:var(--primary)">${wordBank.length}</strong></span><span>✅ <strong style="color:var(--success)">${m}</strong></span><span>🔄 <strong style="color:var(--accent)">${wordBank.length-m}</strong></span></div><div class="wb-list" id="wbList"></div></div>`;
+  renderWBList();
+}
+function renderWBList(){
+  const c=document.getElementById("wbList");if(!c)return;if(!wordBank.length){c.innerHTML=`<div class="wb-empty"><div class="big">📚</div><div>生词本为空</div></div>`;return;}
+  let h="";wordBank.forEach((w,i)=>{
+    const p = w.passed || {};
+    const canRemove = p.id2zh && p.zh2id && p.spell;
+    const id2zhIcon = p.id2zh ? '✅' : '❌';
+    const zh2idIcon = p.zh2id ? '✅' : '❌';
+    const spellIcon = p.spell ? '✅' : '❌';
+    h+=`<div class="wb-item"><div><div class="wb-w">${w.word} <span class="wb-i">${w.ipa||""}</span></div><div class="wb-m">🇨🇳 ${w.cn||""}</div><div class="wb-m" style="font-size:11px">📅 ${w.date} | 印选:${id2zhIcon} 中选:${zh2idIcon} 拼写:${spellIcon}</div><div class="wb-act"><button class="wb-mas" onclick="playWBGame('${w.word}')">🎮 练习</button><button class="wb-del" onclick="delWB(${i})">🗑️ 彻底删除</button>${canRemove ? `<button class="wb-mas" style="background:var(--success)" onclick="removeMasteredWB(${i})">✅ 已掌握移除</button>` : ''}</div></div></div>`;
+  });c.innerHTML=h;
+}
+function addWB(word,ipa,cn,en,root,tag){if(!checkAccess("添加生词"))return;if(wordBank.find(w=>w.word.toLowerCase()===word.toLowerCase())){showToast("已在生词本");return;}wordBank.unshift({word,ipa:ipa||"—",cn:cn||"—",en:en||"—",root:root||"—",tag:tag||"—",date:new Date().toISOString().slice(0,10),mastered:false});saveWB();showToast("「"+word+"」已保存");updateStats();}
+function toggleWB(i){wordBank[i].mastered=!wordBank[i].mastered;saveWB();renderWBList();updateStats();}
+function removeMasteredWB(i) {
+  const w = wordBank[i];
+  if (!w) return;
+  const p = w.passed || {};
+  if (!p.id2zh || !p.zh2id || !p.spell) { showToast('该词尚未三关全过，无法移除'); return; }
+  if (!confirm(`确认移除已掌握单词: ${w.word}?`)) return;
+  wordBank.splice(i, 1);
+  saveWB();
+  renderWBList();
+  updateStats();
+  showToast('✅ 已掌握，从生词本移除');
+}
+function delWB(i){if(!confirm("确定彻底删除?"))return;wordBank.splice(i,1);saveWB();renderWBList();updateStats();showToast("已彻底删除");}
+function exportWB(){if(!checkAccess("导出"))return;if(!wordBank.length){showToast("为空");return;}let t="📚 BIR生词本—"+new Date().toISOString().slice(0,10)+"\n";wordBank.forEach((w,i)=>{t+=(i+1)+". "+w.word+" "+w.ipa+"\n🇨🇳"+w.cn+" | 状态:"+(w.mastered?"✅":"🔄")+"";});navigator.clipboard.writeText(t).then(()=>showToast("已复制"));}
+function clearWB(){if(!checkAccess("清空"))return;if(!confirm("清空?"))return;wordBank=[];saveWB();renderWBList();updateStats();showToast("已清空");}
+
+function renderQuiz(c){
+  quizState={q:0,correct:0,total:5,done:0};const pool=Object.keys(vocabDB).filter(k=>vocabDB[k].cn);const sel=[];
+  while(sel.length<5&&pool.length){const w=pool[Math.floor(Math.random()*pool.length)];if(!sel.find(s=>s.word===w)){const v=vocabDB[w];const wrong=pool.filter(p=>p!==w&&vocabDB[p].cn).map(p=>vocabDB[p].cn).slice(0,3);sel.push({word:w,data:v,wrong});}}quizState.questions=sel;
+  c.innerHTML=`<div class="card"><div class="card-header"><h2>🎯 能力测试</h2><span class="badge">5题</span></div><div id="quizArea"><div style="text-align:center;padding:30px;color:var(--text-dim)"><div style="font-size:48px;margin-bottom:10px">🎯</div><div>5道选择题，检测词汇掌握程度</div><button class="trans-btn" style="margin-top:20px" onclick="startQuiz()">开始</button></div></div></div>`;
+}
+function startQuiz(){quizState.q=0;quizState.correct=0;quizState.done=0;showQ();}
+function showQ(){if(quizState.q>=quizState.total){showQRes();return;}const q=quizState.questions[quizState.q];const opts=[q.data.cn,...q.wrong].sort(()=>Math.random()-.5);document.getElementById("quizArea").innerHTML=`<div style="margin-bottom:12px;font-size:13px;color:var(--text-dim)">${quizState.q+1}/5</div><div class="quiz-card"><div class="q-text">「<strong style="color:var(--primary)">${q.word}</strong>」的中文?</div><div style="font-size:12px;color:var(--text-dim);margin-bottom:10px">${q.data.ipa||""}</div>${opts.map((opt,i)=>`<div class="q-opt" onclick="ansQ('${opt.replace(/'/g,"\'")}','${q.data.cn.replace(/'/g,"\'")}',this)">${String.fromCharCode(65+i)}. ${opt}</div>`).join("")}</div>`;}
+function ansQ(sel,correct,el){const opts=el.parentElement.querySelectorAll(".q-opt");opts.forEach(o=>o.style.pointerEvents="none");const ok=sel===correct;if(ok){el.classList.add("correct");quizState.correct++;}else{el.classList.add("wrong");opts.forEach(o=>{if(o.innerText.includes(correct))o.classList.add("correct");});}quizState.done++;setTimeout(()=>{quizState.q++;showQ();},1200);}
+function showQRes(){const pct=Math.round((quizState.correct/quizState.total)*100);const msg=pct>=80?"优秀!":pct>=60?"不错!":"需多练习!";document.getElementById("quizArea").innerHTML=`<div style="text-align:center;padding:30px"><div style="font-size:56px;margin-bottom:10px">${pct>=80?"🎉":pct>=60?"👍":"💪"}</div><div style="font-size:28px;font-weight:700;color:var(--primary)">${pct}%</div><div style="color:var(--text-dim);margin:8px 0">${quizState.correct}/5</div><div style="color:var(--text);margin-bottom:16px">${msg}</div><button class="trans-btn" onclick="startQuiz()">再测</button></div>`;}
+
+function renderVocabulary(c){
+  const tags=["all","基础词汇","商务高频","ber-动词","ber-形容词","语法术语","问候语"];
+  c.innerHTML=`<div class="card"><div class="card-header"><h2>📖 词汇库</h2><span class="badge">${Object.keys(vocabDB).length}词</span></div><div class="vocab-filter">${tags.map(t=>`<button class="${currentFilter===t?"active":""}" onclick="setFilter('${t}')">${t==="all"?"全部":t}</button>`).join("")}</div><div class="vocab-grid" id="vocabGrid"></div></div>`;
+  renderVGrid();
+}
+function setFilter(tag){currentFilter=tag;renderVGrid();document.querySelectorAll(".vocab-filter button").forEach(b=>b.classList.toggle("active",b.innerText===(tag==="all"?"全部":tag)));}
+function renderVGrid(){const c=document.getElementById("vocabGrid");if(!c)return;let w=Object.entries(vocabDB);if(currentFilter!=="all")w=w.filter(([k,v])=>v.tag===currentFilter);let h="";w.forEach(([k,v])=>{h+=`<div class="vocab-card" onclick="showTip('${k.replace(/'/g,"\'")}')"><div class="vc-w">${k}</div><div class="vc-i">${v.ipa||""}</div><div class="vc-m">🇨🇳 ${v.cn||""}</div></div>`;});c.innerHTML=h;}
+
+
+// ===== 艾宾浩斯记忆曲线 · 话题深度结合复习系统 =====
+// 间隔: 1, 2, 4, 7, 15, 30, 60, 90 天
+const EBBINGHAUS_INTERVALS = [1, 2, 4, 7, 15, 30, 60, 90];
+
+let topicHistory = JSON.parse(localStorage.getItem("bir_topic_h") || "[]");
+
+function saveTopicHistory() {
+  localStorage.setItem("bir_topic_h", JSON.stringify(topicHistory));
+}
+
+function recordTopicStudy(date, topicKey, dayNum) {
+  const existing = topicHistory.find(t => t.date === date && t.topic === topicKey && t.day === dayNum);
+  if (!existing) {
+    topicHistory.push({ date, topic: topicKey, day: dayNum, completed: true, ts: Date.now() });
+    saveTopicHistory();
+  }
+}
+
+function getTopicReviewItems() {
+  const now = new Date();
+  const items = [];
+  topicHistory.forEach(t => {
+    const studyDate = new Date(t.date);
+    const daysDiff = Math.floor((now - studyDate) / 86400000);
+    EBBINGHAUS_INTERVALS.forEach(interval => {
+      if (daysDiff >= interval && daysDiff < interval + 3) {
+        const reviewed = t.reviews && t.reviews.find(r => r.interval === interval);
+        if (!reviewed) {
+          items.push({ ...t, daysSince: daysDiff, interval, due: true, type: 'topic' });
+        }
+      }
+    });
+  });
+  return items.sort((a, b) => b.daysSince - a.daysSince);
+}
+
+function markTopicReviewed(date, topicKey, dayNum, interval) {if(!checkAccess("话题复习"))return;
+  const t = topicHistory.find(t => t.date === date && t.topic === topicKey && t.day === dayNum);
+  if (t) {
+    if (!t.reviews) t.reviews = [];
+    t.reviews.push({ interval, date: new Date().toISOString().slice(0,10), ts: Date.now() });
+    saveTopicHistory();
+  }
+}
+
+function getWordReviewItems() {
+  const now = Date.now();
+  const items = [];
+  wordBank.forEach(w => {
+    if (w.mastered) return;
+    const days = Math.floor((now - new Date(w.date).getTime()) / 86400000);
+    let matchedInterval = null;
+    for (let iv of EBBINGHAUS_INTERVALS) {
+      if (days >= iv && days < iv + 2) {
+        matchedInterval = iv;
+        break;
+      }
+    }
+    if (!matchedInterval && days > 90) matchedInterval = 90;
+    if (matchedInterval) {
+      const reviewed = w.reviews && w.reviews.find(r => r.interval === matchedInterval);
+      if (!reviewed) {
+        items.push({ ...w, daysSince: days, interval: matchedInterval, due: true, type: 'word' });
+      }
+    }
+  });
+  return items.sort((a, b) => b.daysSince - a.daysSince);
+}
+
+function markWordReviewed(word, interval) {if(!checkAccess("词汇复习"))return;
+  const w = wordBank.find(x => x.word === word);
+  if (w) {
+    if (!w.reviews) w.reviews = [];
+    w.reviews.push({ interval, date: new Date().toISOString().slice(0,10) });
+    saveWB();
+  }
+}
+
+function renderReview(c) {
+  const today = new Date().toISOString().split('T')[0];
+  const tcEntries = Object.entries(topicCalendar).map(([date, val]) => ({date, ...val}));
+  const todayTopics = tcEntries.filter(tc => tc.date === today);
+  const pastTopics = tcEntries.filter(tc => tc.date < today);
+  let html = `<div class="card"><div class="card-header"><h2>🧠 艾宾浩斯复习</h2><span class="badge">间隔重复 · 智能提醒</span></div><div style="padding:16px;">`;
+  
+  // === 今日学习任务 ===
+  html += `<div style="margin-bottom:20px;"><div style="font-size:14px;font-weight:700;color:var(--primary);margin-bottom:10px;">📅 今日学习任务 (${today})</div>`;
+  if (todayTopics.length) {
+    todayTopics.forEach(tc => {
+      const d = topicData[tc.topic];
+      const reviewed = learningHistory[today] && learningHistory[today].reviews && learningHistory[today].reviews.includes(tc.topic);
+      html += `<div style="display:flex;justify-content:space-between;align-items:center;padding:10px;background:var(--bg-elev);border-radius:8px;margin-bottom:8px;border-left:3px solid ${reviewed ? 'var(--success)' : 'var(--primary)'}"><div><div style="font-size:13px;color:var(--text);font-weight:600;">${d ? d.title : tc.topic}</div><div style="font-size:11px;color:var(--text-dim);">${d ? d.desc : ''}</div></div>${reviewed ? '<span style="font-size:12px;color:var(--success)">✅ 已完成</span>' : `<button class="trans-btn btn-small" onclick="navigate('date','${tc.date}')">去学习</button>`}</div>`;
+    });
+  } else {
+    html += `<div style="font-size:13px;color:var(--text-dim);padding:10px;">今日无新课程，去复习吧！</div>`;
+  }
+  html += `</div>`;
+  
+  // === 艾宾浩斯记忆曲线复习（基于学习历史）===
+  html += `<div style="margin-bottom:20px;border-top:1px solid var(--border);padding-top:16px;"><div style="font-size:14px;font-weight:700;color:var(--accent);margin-bottom:10px;">🧠 艾宾浩斯记忆曲线复习</div>`;
+  const intervals = [1, 2, 4, 7, 15, 30, 60, 90];
+  const ebbinghausItems = [];
+  
+  // 从learningHistory中提取所有已学习的话题
+  Object.entries(learningHistory).forEach(([date, record]) => {
+    if (record && record.topics) {
+      record.topics.forEach(topic => {
+        const topicDate = new Date(date);
+        intervals.forEach((iv, idx) => {
+          const reviewDate = new Date(topicDate);
+          reviewDate.setDate(reviewDate.getDate() + iv);
+          const rdStr = reviewDate.toISOString().split('T')[0];
+          if (rdStr === today) {
+            const d = topicData[topic];
+            ebbinghausItems.push({ topic, date, day: iv, title: d ? d.title : topic, desc: d ? d.desc : '' });
+          }
+        });
+      });
+    }
+  });
+  
+  if (ebbinghausItems.length) {
+    ebbinghausItems.forEach(item => {
+      html += `<div style="display:flex;justify-content:space-between;align-items:center;padding:10px;background:var(--bg-elev);border-radius:8px;margin-bottom:8px;border-left:3px solid var(--accent);"><div><div style="font-size:13px;color:var(--text);font-weight:600;">${item.title}</div><div style="font-size:11px;color:var(--text-dim);">学习于 ${item.date} · 第${item.day}天复习</div></div><button class="trans-btn btn-small" onclick="navigate('date','${item.date}')">去复习</button></div>`;
+    });
+  } else {
+    html += `<div style="font-size:13px;color:var(--text-dim);padding:10px;">今日无艾宾浩斯复习任务，继续学习新内容！</div>`;
+  }
+  html += `</div>`;
+  
+  // === 到期词汇复习 ===
+  html += `<div style="margin-bottom:20px;border-top:1px solid var(--border);padding-top:16px;"><div style="font-size:14px;font-weight:700;color:var(--danger);margin-bottom:10px;">📚 到期词汇复习</div>`;
+  const dueWords = [];
+  wordBank.forEach(w => {
+    if (w.nextReview) {
+      const due = new Date(w.nextReview) <= new Date(today);
+      if (due) {
+        const stat = wordStats[w.word] || {};
+        const totalWrong = (stat.id2zh?.w || 0) + (stat.zh2id?.w || 0) + (stat.spell?.w || 0);
+        dueWords.push({ word: w.word, w, totalWrong });
+      }
+    }
+  });
+  dueWords.sort((a, b) => b.totalWrong - a.totalWrong);
+  if (dueWords.length) {
+    dueWords.slice(0, 10).forEach(item => {
+      const w = item.w;
+      const stat = wordStats[w.word] || {};
+      const wrongRate = ((stat.id2zh?.w || 0) + (stat.zh2id?.w || 0) + (stat.spell?.w || 0)) / ((stat.id2zh?.t || 1) + (stat.zh2id?.t || 1) + (stat.spell?.t || 1)) * 100;
+      html += `<div style="display:flex;justify-content:space-between;align-items:center;padding:8px;background:var(--bg-elev);border-radius:8px;margin-bottom:6px;"><div><span style="font-size:13px;color:var(--text);font-weight:600;">${w.word}</span> <span style="font-size:11px;color:var(--text-dim);">→ ${w.cn}</span><br><span style="font-size:10px;color:${wrongRate > 50 ? 'var(--danger)' : 'var(--accent)'}">错误率 ${Math.round(wrongRate)}%</span></div><button class="trans-btn btn-small" onclick="playWBGame('${item.word}')">立即复习</button></div>`;
+    });
+  } else {
+    html += `<div style="font-size:13px;color:var(--text-dim);padding:10px;">暂无到期词汇 👍</div>`;
+  }
+  html += `</div>`;
+  
+  // === 话题复习日历 ===
+  html += `<div style="border-top:1px solid var(--border);padding-top:16px;"><div style="font-size:14px;font-weight:700;color:var(--info);margin-bottom:10px;">📅 话题复习日历</div>`;
+  pastTopics.slice(-5).forEach(tc => {
+    const d = topicData[tc.topic];
+    const topicDate = new Date(tc.date);
+    const nextReviews = intervals.map(iv => { const rd = new Date(topicDate); rd.setDate(rd.getDate() + iv); return rd.toISOString().split('T')[0]; }).filter(rd => rd >= today).slice(0, 3);
+    html += `<div style="padding:8px;background:var(--bg-elev);border-radius:8px;margin-bottom:6px;"><div style="font-size:13px;color:var(--text);font-weight:600;">${d ? d.title : tc.topic}</div><div style="font-size:11px;color:var(--text-dim);margin-top:4px;">下次复习: ${nextReviews.join(', ') || '已完成全部周期'}</div></div>`;
+  });
+  html += `</div></div></div>`;
+  c.innerHTML = html;
+}
+
+function renderRList() {
+  const c = document.getElementById("reviewList");
+  if (!c) return;
+  
+  const topicItems = getTopicReviewItems();
+  const wordItems = getWordReviewItems();
+  const allItems = [...topicItems, ...wordItems];
+  
+  if (!allItems.length) {
+    c.innerHTML = `<div style="text-align:center;padding:40px;color:var(--text-dim)"><div style="font-size:48px;margin-bottom:10px">🎉</div><div>暂无待复习项目</div><div style="font-size:12px;margin-top:8px">艾宾浩斯间隔: 1→2→4→7→15→30→60→90天</div></div>`;
+    return;
+  }
+  
+  let h = `<div style="font-size:13px;color:var(--text-dim);margin-bottom:12px">共 ${allItems.length} 个复习项 · 基于艾宾浩斯遗忘曲线</div>`;
+  
+  const byTopic = {};
+  const wordOnly = [];
+  
+  allItems.forEach(item => {
+    if (item.type === 'topic') {
+      const key = item.topic + '_' + item.date;
+      if (!byTopic[key]) {
+        byTopic[key] = { topic: item.topic, date: item.date, daysSince: item.daysSince, items: [] };
+      }
+      byTopic[key].items.push(item);
+    } else {
+      wordOnly.push(item);
+    }
+  });
+  
+  Object.values(byTopic).forEach(group => {
+    const topic = topicData[group.topic];
+    const dayLabels = group.items.map(i => `Day ${i.day}`).join(', ');
+    const intervals = group.items.map(i => `${i.interval}天`).join(', ');
+    const urgency = group.daysSince > 30 ? 'danger' : group.daysSince > 7 ? 'accent' : 'primary';
+    const color = urgency === 'danger' ? 'var(--danger)' : urgency === 'accent' ? 'var(--accent)' : 'var(--primary)';
+    
+    h += `<div style="background:var(--bg-elev);border-radius:10px;padding:16px;margin-bottom:12px;border:1px solid var(--border);border-left:3px solid ${color}">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px">
+        <div style="display:flex;align-items:center;gap:8px">
+          <span style="font-size:20px">${topic ? topic.icon : '📚'}</span>
+          <strong style="color:var(--text);font-size:14px">${topic ? topic.title : group.topic}</strong>
+        </div>
+        <span style="font-size:11px;padding:2px 8px;border-radius:8px;background:rgba(239,68,68,.1);color:${color}">${group.daysSince}天前学过</span>
+      </div>
+      <div style="font-size:12px;color:var(--text-dim);margin-bottom:8px">
+        需要复习: ${dayLabels} · 间隔: ${intervals}
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        ${group.items.map(item => `<button class="trans-btn" style="font-size:12px;padding:6px 12px" onclick="doTopicReview('${group.date}', '${group.topic}', ${item.day}, ${item.interval})">复习 Day ${item.day}</button>`).join('')}
+      </div>
+    </div>`;
+  });
+  
+  if (wordOnly.length) {
+    h += `<div style="margin-top:16px;margin-bottom:10px;font-size:14px;color:var(--primary);font-weight:600">📚 生词本词汇复习</div>`;
+    wordOnly.forEach(w => {
+      const color = w.daysSince > 30 ? 'var(--danger)' : w.daysSince > 7 ? 'var(--accent)' : 'var(--primary)';
+      h += `<div class="review-card" style="border-left:3px solid ${color}">
+        <span class="r-due" style="background:${color}20;color:${color}">${w.interval}天间隔</span>
+        <span class="r-word">${w.word}</span>
+        <span class="r-mean">${w.cn}</span>
+        <button onclick="doWordReview('${w.word.replace(/'/g, "\'")}', ${w.interval})" style="margin-left:auto;padding:4px 10px;border-radius:4px;border:none;background:var(--primary);color:#000;font-size:11px;cursor:pointer">✅ 完成</button>
+      </div>`;
+    });
+  }
+  
+  c.innerHTML = h;
+}
+
+function doTopicReview(date, topicKey, day, interval) {
+  markTopicReviewed(date, topicKey, day, interval);
+  showToast(`✅ 已标记话题复习完成`);
+  renderRList();
+  updateStats();
+}
+
+function doWordReview(word, interval) {
+  markWordReviewed(word, interval);
+  showToast(`✅ 「${word}」复习完成`);
+  renderRList();
+  updateStats();
+}
+
+
+
+function stripAffixes(word){
+  const patterns=[{regex:/^ber([aiueo])/,affix:"ber-",rootPos:3,type:"ber-前缀"},{regex:/^ber/,affix:"ber-",rootPos:3,type:"ber-前缀"},{regex:/^me([mnptkwglrsyhj])/,affix:"me-",rootPos:2,type:"me-前缀"},{regex:/^mem/,affix:"me-",rootPos:3,type:"me-前缀"},{regex:/^men/,affix:"me-",rootPos:3,type:"me-前缀"},{regex:/^meng/,affix:"me-",rootPos:4,type:"me-前缀"},{regex:/^meny/,affix:"me-",rootPos:4,type:"me-前缀"},{regex:/^pe/,affix:"pe-",rootPos:2,type:"pe-前缀"},{regex:/^per/,affix:"per-",rootPos:3,type:"per-前缀"},{regex:/^ter/,affix:"ter-",rootPos:3,type:"ter-前缀"},{regex:/^di/,affix:"di-",rootPos:2,type:"di-前缀"},{regex:/^se/,affix:"se-",rootPos:2,type:"se-前缀"},{regex:/kan$/,affix:"-kan",rootPos:-3,type:"-kan后缀"},{regex:/i$/,affix:"-i",rootPos:-1,type:"-i后缀"},{regex:/an$/,affix:"-an",rootPos:-2,type:"-an后缀"}];
+  let results=[];
+  for(const p of patterns){if(p.regex.test(word)){let root=p.rootPos>0?word.substring(p.rootPos):word.slice(0,p.rootPos);if(root.endsWith("kan"))root=root.slice(0,-3);else if(root.endsWith("i"))root=root.slice(0,-1);else if(root.endsWith("an"))root=root.slice(0,-2);if(root&&root.length>=2)results.push({affix:p.affix,root,type:p.type});}}
+  return results;
+}
+
+function showTip(word){
+  const v=vocabDB[word]||vocabDB[word.toLowerCase()]||vocabDB[word.charAt(0).toUpperCase()+word.slice(1)];if(!v)return;
+  const tt=document.getElementById("tooltip");document.getElementById("ttw").innerText=word;document.getElementById("tti").innerText=v.ipa||"—";document.getElementById("ttt").innerHTML=`<span style="color:var(--primary-dim)">🇨🇳</span> ${v.cn||"—"}<br><span style="color:var(--primary-dim)">🇬🇧</span> ${v.en||"—"}`;document.getElementById("ttr").innerText="词根:"+(v.root||"—")+" | 标签:"+(v.tag||"—");tt.classList.add("show");
+  const e=window.event;if(e){tt.style.left=(e.clientX+10)+"px";tt.style.top=(e.clientY+10)+"px";}
+  setTimeout(()=>tt.classList.remove("show"),3000);
+}
+
+function speak(text,lang){if(!window.speechSynthesis){showToast("不支持语音");return;}const u=new SpeechSynthesisUtterance(text);u.lang=lang==="id"?"id-ID":lang==="zh"?"zh-CN":"en-US";u.rate=0.9;window.speechSynthesis.speak(u);}
+
+function showToast(msg){const t=document.getElementById("toast");t.innerText=msg;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),2500);}
+
+function updateStats(){
+  const sNew=Object.values(learningHistory).reduce((a,h)=>a+h.vocabNew.length,0);
+  const sRev=Object.values(learningHistory).reduce((a,h)=>a+h.vocabReview.length,0);
+  const sTotal=Object.keys(vocabDB).length;
+  const e1=document.getElementById("s-new");if(e1)e1.innerText=sNew;
+  const e2=document.getElementById("s-rev");if(e2)e2.innerText=sRev;
+  const e3=document.getElementById("s-total");if(e3)e3.innerText=sTotal;
+  const e4=document.getElementById("sidebar-today");if(e4)e4.innerText=new Date().toISOString().slice(0,10);
+}
+
+document.addEventListener("DOMContentLoaded",()=>{
+  initHistory();initWordBank();initMember();render();updateStats();
+  window.addEventListener("hashchange",render);
+  document.querySelectorAll(".nav-list li").forEach(li=>{li.addEventListener("click",()=>{const r=li.dataset.route;if(r)navigate(r);});});
+  const menuBtn=document.getElementById("menuBtn"),sidebar=document.getElementById("sidebar");
+  if(menuBtn)menuBtn.addEventListener("click",()=>sidebar.classList.toggle("open"));
+  document.getElementById("main").addEventListener("click",(e)=>{if(window.innerWidth<=768&&sidebar.classList.contains("open"))sidebar.classList.remove("open");});
+  document.addEventListener("click",(e)=>{if(!e.target.closest(".vocab-card")&&!e.target.closest(".word-card"))document.getElementById("tooltip").classList.remove("show");});
+});
+
+
+
+
+
+
+// ===== BIR V2.1 艾宾浩斯动态复习 + 三关生词本系统 =====
+
+let wordStats = JSON.parse(localStorage.getItem("bir_ws3") || "{}");
+let memberInfo = JSON.parse(localStorage.getItem("bir_member") || "null");
+
+function initMember() {
+  if (!memberInfo) {
+    memberInfo = { username: null, type: null, trialStart: null, trialEnd: null, paidStart: null, paidEnd: null, clickCount: 0, isAdmin: false };
+    saveMember();
+  }
+  checkMemberExpiry();
+}
+function checkMemberExpiry() {
+  const now = new Date();
+  if (memberInfo.type === 'trial' && memberInfo.trialEnd && now > new Date(memberInfo.trialEnd)) { memberInfo.type = 'expired'; memberInfo.trialEnd = null; saveMember(); }
+  if (memberInfo.type === 'paid' && memberInfo.paidEnd && now > new Date(memberInfo.paidEnd)) { memberInfo.type = 'expired'; memberInfo.paidEnd = null; saveMember(); }
+}
+function saveMember() { localStorage.setItem("bir_member", JSON.stringify(memberInfo)); }
+function isMemberValid() { checkMemberExpiry(); if (!memberInfo) return false; if (memberInfo.isAdmin) return true; if (memberInfo.type === 'trial' || memberInfo.type === 'paid') return true; return false; }
+function getMemberStatus() {
+  checkMemberExpiry();
+  if (!memberInfo || !memberInfo.type || memberInfo.type === 'expired') return { valid: false, label: '非会员', color: 'var(--danger)' };
+  if (memberInfo.isAdmin) return { valid: true, label: '超级管理员', color: 'var(--accent)' };
+  if (memberInfo.type === 'trial')
+  if (memberInfo.type === 'trial') { const h = Math.max(0, Math.floor((new Date(memberInfo.trialEnd) - new Date()) / 3600000)); return { valid: true, label: `试用(${h}h)`, color: 'var(--info)' }; }
+  if (memberInfo.type === 'paid') { const d = Math.max(0, Math.floor((new Date(memberInfo.paidEnd) - new Date()) / 86400000)); return { valid: true, label: `年费(${d}天)`, color: 'var(--success)' }; }
+  return { valid: false, label: '非会员', color: 'var(--danger)' };
+}
+function checkAccess(action) {
+  if (isMemberValid()) return true;
+  memberInfo.clickCount = (memberInfo.clickCount || 0) + 1;
+  saveMember();
+  const remain = 3 - memberInfo.clickCount;
+  if (memberInfo.clickCount <= 3) { showToast(`非会员可用${remain}次，请升级会员`); return true; }
+  showMemberRequired(action); return false;
+}
+function showMemberRequired(action) {
+  const modal = document.createElement('div'); modal.id = 'memberModal'; modal.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.8);z-index:10000;display:flex;align-items:center;justify-content:center;';
+  modal.innerHTML = `<div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:24px;max-width:320px;width:90%;text-align:center;">
+    <div style="font-size:48px;margin-bottom:10px">🔒</div>
+    <div style="font-size:16px;font-weight:700;color:var(--text);margin-bottom:8px">非会员限制</div>
+    <div style="font-size:13px;color:var(--text-dim);margin-bottom:16px">免费试用已用完，升级会员解锁全部功能</div>
+    <div style="display:flex;gap:8px;flex-direction:column;">
+      <button class="trans-btn" onclick="closeMemberModal();navigate('member');">前往会员中心</button>
+      <button class="trans-btn" style="background:transparent;color:var(--text-dim)" onclick="closeMemberModal()">稍后</button>
+    </div>
+  </div>`;
+  document.body.appendChild(modal);
+}
+function closeMemberModal() { const m = document.getElementById('memberModal'); if (m) m.remove(); }
+function loginMember(username, password) {
+  if (username === 'Chinarenwgl' && password === 'Youlu@123') {
+    memberInfo = { username: 'Chinarenwgl', type: 'admin', isAdmin: true, trialStart: null, trialEnd: null, paidStart: null, paidEnd: null, clickCount: 0 };
+    saveMember(); showToast('✅ 超级管理员登录成功'); return true;
+  }
+  showToast('❌ 账号或密码错误'); return false;
+}
+function applyTrial() {
+  const now = new Date(); const end = new Date(now.getTime() + 24 * 3600000);
+  memberInfo = { ...memberInfo, type: 'trial', trialStart: now.toISOString(), trialEnd: end.toISOString(), clickCount: 0 };
+  saveMember(); showToast('✅ 试用会员已激活，24小时'); navigate('member');
+}
+function renderMember(c) {
+  const status = getMemberStatus();
+  let html = `<div class="card"><div class="card-header"><h2>👑 会员中心</h2><span class="badge" style="background:${status.color}20;color:${status.color}">${status.label}</span></div>`;
+  if (status.valid) {
+    html += `<div style="padding:16px;"><div style="font-size:14px;color:var(--text);margin-bottom:12px">👤 ${memberInfo.username || '会员'}</div>`;
+    if (memberInfo.type === 'trial') html += `<div style="font-size:13px;color:var(--text-dim);margin-bottom:16px">试用期至：${new Date(memberInfo.trialEnd).toLocaleString('zh-CN')}</div>`;
+    if (memberInfo.type === 'paid') html += `<div style="font-size:13px;color:var(--text-dim);margin-bottom:16px">有效期至：${new Date(memberInfo.paidEnd).toLocaleString('zh-CN')}</div>`;
+    if (memberInfo.isAdmin) {
+      html += `<div style="border-top:1px solid var(--border);padding-top:16px;margin-top:16px;"><div style="font-size:14px;color:var(--accent);margin-bottom:12px;font-weight:700">🔧 管理控制台</div>
+      <div style="display:flex;gap:8px;flex-direction:column;">
+        <button class="trans-btn" onclick="navigate('upload')">📤 上传课程资料</button>
+        <button class="trans-btn" onclick="navigate('manage')">⚙️ 课程管理</button>
+        <button class="trans-btn" onclick="navigate('stats')">📊 学习数据统计</button>
+        <button class="trans-btn" onclick="resetAllData()" style="background:var(--danger)">🗑️ 重置所有数据</button>
+      </div></div>`;
+    }
+    html += `<button class="trans-btn" style="margin-top:16px;" onclick="logoutMember()">退出登录</button></div>`;
+  } else {
+    html += `<div style="padding:16px;"><div style="font-size:13px;color:var(--text-dim);margin-bottom:16px;text-align:center">非会员仅可试用3次，升级会员解锁全部功能</div>
+    <div style="margin-bottom:16px;"><div style="font-size:12px;color:var(--text-dim);margin-bottom:4px">账号</div>
+    <input type="text" id="loginUser" placeholder="用户名" style="width:100%;padding:8px;background:var(--bg-elev);border:1px solid var(--border);border-radius:8px;color:var(--text);margin-bottom:8px;">
+    <div style="font-size:12px;color:var(--text-dim);margin-bottom:4px">密码</div>
+    <input type="password" id="loginPass" placeholder="密码" style="width:100%;padding:8px;background:var(--bg-elev);border:1px solid var(--border);border-radius:8px;color:var(--text);">
+    <button class="trans-btn" style="margin-top:10px;width:100%" onclick="doLogin()">登录</button></div>
+    <div style="border-top:1px solid var(--border);padding-top:16px;text-align:center;"><div style="font-size:13px;color:var(--text);margin-bottom:8px">新用户？</div>
+    <button class="trans-btn" style="background:transparent;border:1px solid var(--primary);color:var(--primary)" onclick="applyTrial()">🎁 免费试用1天</button></div>
+    <div style="border-top:1px solid var(--border);padding-top:16px;margin-top:16px;text-align:center;"><div style="font-size:13px;color:var(--text);margin-bottom:8px">升级年费会员</div>
+    <div style="background:var(--bg-elev);border-radius:8px;padding:16px;margin-bottom:8px;"><div style="font-size:24px;margin-bottom:8px">💎</div><div style="font-size:13px;color:var(--text-dim)">年费会员尊享全部功能</div><div style="font-size:12px;color:var(--accent);margin-top:8px">请扫描下方二维码支付</div>
+    <div style="margin-top:10px;padding:10px;background:var(--bg);border-radius:8px;"><div style="font-size:12px;color:var(--text-dim)">📷 二维码位置</div><div style="font-size:11px;color:var(--text-dim);margin-top:4px">（请替换 assets/qr-code.png）</div></div></div></div></div>`;
+  }
+  html += `</div>`; c.innerHTML = html;
+}
+function doLogin() { const u = document.getElementById('loginUser').value.trim(); const p = document.getElementById('loginPass').value.trim(); if (!u || !p) { showToast('请输入账号密码'); return; } if (loginMember(u, p)) { renderMember(document.getElementById('app')); } }
+function logoutMember() { memberInfo = { username: null, type: null, trialStart: null, trialEnd: null, paidStart: null, paidEnd: null, clickCount: 0, isAdmin: false }; saveMember(); showToast('已退出'); navigate('member'); }
+function renderUpload(c) {
+  if (!memberInfo.isAdmin) { navigate('member'); return; }
+  c.innerHTML = `<div class="card"><div class="card-header"><h2>📤 上传课程资料</h2></div><div style="padding:16px;">
+    <div style="margin-bottom:16px;"><div style="font-size:13px;color:var(--text-dim);margin-bottom:8px;">上传词汇表 (CSV格式: 印尼语,中文,词性)</div>
+    <textarea id="uploadCsv" rows="8" style="width:100%;background:var(--bg-elev);border:1px solid var(--border);border-radius:8px;padding:8px;color:var(--text);font-family:monospace;font-size:12px;" placeholder="selamat,你好,int
+apa kabar,你好吗,phrase"></textarea>
+    <button class="trans-btn" style="margin-top:8px;" onclick="importCsv()">导入词汇</button></div>
+    <div style="margin-bottom:16px;border-top:1px solid var(--border);padding-top:16px;"><div style="font-size:13px;color:var(--text-dim);margin-bottom:8px;">上传话题内容 (JSON格式)</div>
+    <textarea id="uploadTopic" rows="8" style="width:100%;background:var(--bg-elev);border:1px solid var(--border);border-radius:8px;padding:8px;color:var(--text);font-family:monospace;font-size:12px;" placeholder='[{&quot;date&quot;:&quot;2026-07-20&quot;,&quot;title&quot;:&quot;新话题&quot;,&quot;content&quot;:&quot;...&quot;}]'></textarea>
+    <button class="trans-btn" style="margin-top:8px;" onclick="importTopic()">导入话题</button></div>
+  </div></div>`;
+}
+function renderManage(c) {
+  if (!memberInfo.isAdmin) { navigate('member'); return; }
+  let html = `<div class="card"><div class="card-header"><h2>⚙️ 课程管理</h2></div><div style="padding:16px;">`;
+  html += `<div style="margin-bottom:16px;"><div style="font-size:14px;color:var(--text);margin-bottom:8px;font-weight:700">📅 话题日历</div>`;
+  topicCalendar.forEach(t => {
+    const d = topicData[t.topic];
+    html += `<div style="display:flex;justify-content:space-between;align-items:center;padding:8px;background:var(--bg-elev);border-radius:8px;margin-bottom:6px;"><span style="font-size:13px;">${t.date} · ${d ? d.title : t.topic}</span><button class="btn-small" onclick="deleteTopic('${t.date}')">删除</button></div>`;
+  });
+  html += `</div><div style="margin-bottom:16px;border-top:1px solid var(--border);padding-top:16px;"><div style="font-size:14px;color:var(--text);margin-bottom:8px;font-weight:700">📚 词汇库统计</div>
+  <div style="font-size:13px;color:var(--text-dim);">总词汇量: ${vocabDB.length}</div>
+  <div style="font-size:13px;color:var(--text-dim);">生词本: ${Object.keys(wordBank).length}</div>
+  <div style="font-size:13px;color:var(--text-dim);">学习记录: ${Object.keys(learningHistory).length} 天</div></div>`;
+  html += `</div></div>`;
+  c.innerHTML = html;
+}
+function renderStats(c) {
+  if (!memberInfo.isAdmin) { navigate('member'); return; }
+  const totalWords = Object.keys(wordBank).length;
+  const mastered = Object.values(wordBank).filter(w => w.passed && w.passed.id2zh && w.passed.zh2id && w.passed.spell).length;
+  const totalGames = Object.values(wordStats).reduce((s, v) => s + (v.totalWrong || 0) + Object.values(v).reduce((a, m) => a + (m.c || 0), 0), 0);
+  c.innerHTML = `<div class="card"><div class="card-header"><h2>📊 学习数据统计</h2></div><div style="padding:16px;">
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;">
+    <div style="background:var(--bg-elev);border-radius:8px;padding:12px;text-align:center;"><div style="font-size:24px;font-weight:700;color:var(--primary)">${totalWords}</div><div style="font-size:12px;color:var(--text-dim);">生词总数</div></div>
+    <div style="background:var(--bg-elev);border-radius:8px;padding:12px;text-align:center;"><div style="font-size:24px;font-weight:700;color:var(--success)">${mastered}</div><div style="font-size:12px;color:var(--text-dim);">已掌握</div></div>
+    <div style="background:var(--bg-elev);border-radius:8px;padding:12px;text-align:center;"><div style="font-size:24px;font-weight:700;color:var(--info)">${totalGames}</div><div style="font-size:12px;color:var(--text-dim);">游戏次数</div></div>
+    <div style="background:var(--bg-elev);border-radius:8px;padding:12px;text-align:center;"><div style="font-size:24px;font-weight:700;color:var(--accent)">${Object.keys(learningHistory).length}</div><div style="font-size:12px;color:var(--text-dim);">学习天数</div></div>
+  </div>
+  <div style="border-top:1px solid var(--border);padding-top:16px;"><div style="font-size:14px;color:var(--text);margin-bottom:8px;font-weight:700">🎯 各模式正确率</div>
+  <div style="font-size:13px;color:var(--text-dim);">印选中: ${getModeAccuracy('id2zh')}%</div>
+  <div style="font-size:13px;color:var(--text-dim);">中选印: ${getModeAccuracy('zh2id')}%</div>
+  <div style="font-size:13px;color:var(--text-dim);">拼写: ${getModeAccuracy('spell')}%</div></div>
+  </div></div>`;
+}
+function getModeAccuracy(mode) {
+  let totalC = 0, totalW = 0;
+  Object.values(wordStats).forEach(s => { if (s[mode]) { totalC += s[mode].c || 0; totalW += s[mode].w || 0; } });
+  if (totalC + totalW === 0) return 0;
+  return Math.round(totalC / (totalC + totalW) * 100);
+}
+function importCsv() {
+  const csv = document.getElementById('uploadCsv').value.trim();
+  if (!csv) { showToast('请输入数据'); return; }
+  let count = 0;
+  csv.split('\n').forEach(line => {
+    const parts = line.split(',');
+    if (parts.length >= 2) { addWB(parts[0].trim(), parts[1].trim()); count++; }
+  });
+  showToast(`导入 ${count} 个词汇`);
+}
+function importTopic() {
+  const json = document.getElementById('uploadTopic').value.trim();
+  if (!json) { showToast('请输入数据'); return; }
+  try {
+    const topics = JSON.parse(json);
+    topics.forEach(t => { if (t.date && t.title) { topicData[t.date] = t; if (!topicCalendar.find(tc => tc.date === t.date)) topicCalendar.push({ date: t.date, topic: t.date }); } });
+    topicCalendar.sort((a, b) => a.date.localeCompare(b.date));
+    showToast(`导入 ${topics.length} 个话题`);
+  } catch (e) { showToast('JSON格式错误'); }
+}
+function deleteTopic(date) {
+  topicCalendar = topicCalendar.filter(t => t.date !== date);
+  delete topicData[date];
+  showToast('已删除'); renderManage(document.getElementById('app'));
+}
+function resetAllData() {
+  if (!confirm('确定要重置所有学习数据？此操作不可恢复！')) return;
+  localStorage.removeItem('bir_h3'); localStorage.removeItem('bir_wb3'); localStorage.removeItem('bir_ws3');
+  learningHistory = {}; wordBank = {}; wordStats = {};
+  showToast('所有数据已重置'); navigate('home');
+}
+
+
+let gameState = { mode: 'id2zh', pool: [], current: null, q: 0, correct: 0, wrong: 0, total: 10, streak: 0, wrongAnswers: [] };
+
+function saveWordStats() { localStorage.setItem("bir_ws3", JSON.stringify(wordStats)); }
+
+function initWordBank() {
+  let changed = false;
+  Object.keys(vocabDB).forEach(k => {
+    const v = vocabDB[k];
+    if (!v.cn) return;
+    const existing = wordBank.find(w => w.word.toLowerCase() === k.toLowerCase());
+    if (!existing) {
+      wordBank.push({
+        word: k, ipa: v.ipa || "—", cn: v.cn || "—", en: v.en || "—",
+        root: v.root || "—", tag: v.tag || "—",
+        date: new Date().toISOString().slice(0,10),
+        mastered: false,
+        passed: { id2zh: false, zh2id: false, spell: false },
+        stats: { id2zh: {c:0,w:0}, zh2id: {c:0,w:0}, spell: {c:0,w:0}, totalWrong: 0 },
+        reviews: [], nextReview: null, lastReview: null
+      });
+      changed = true;
+    } else if (!existing.passed) {
+      existing.passed = { id2zh: false, zh2id: false, spell: false };
+      existing.stats = { id2zh: {c:0,w:0}, zh2id: {c:0,w:0}, spell: {c:0,w:0}, totalWrong: 0 };
+      changed = true;
+    }
+  });
+  if (changed) { saveWB(); saveWordStats(); }
+}
+
+function getWordStat(word) {
+  if (!wordStats[word]) {
+    wordStats[word] = { id2zh: {c:0,w:0}, zh2id: {c:0,w:0}, spell: {c:0,w:0}, totalWrong: 0 };
+  }
+  return wordStats[word];
+}
+
+function getDynamicInterval(word) {
+  const st = getWordStat(word);
+  const total = st.id2zh.c + st.id2zh.w + st.zh2id.c + st.zh2id.w + st.spell.c + st.spell.w;
+  const wrong = st.id2zh.w + st.zh2id.w + st.spell.w;
+  const rate = total > 0 ? wrong / total : 0.5;
+  const base = [1, 2, 4, 7, 15, 30, 60, 90];
+  let factor = 1;
+  if (rate > 0.5) factor = 0.5;
+  else if (rate > 0.3) factor = 0.7;
+  else if (rate > 0.1) factor = 0.9;
+  return base.map(iv => Math.max(1, Math.round(iv * factor)));
+}
+
+function recordGameResult(word, mode, isCorrect) {
+  const st = getWordStat(word);
+  if (isCorrect) { st[mode].c++; } else { st[mode].w++; st.totalWrong++; }
+  saveWordStats();
+  const wb = wordBank.find(w => w.word.toLowerCase() === word.toLowerCase());
+  if (wb) { wb.stats = JSON.parse(JSON.stringify(st)); saveWB(); }
+}
+
+function checkAllPassed(word) {
+  const wb = wordBank.find(w => w.word.toLowerCase() === word.toLowerCase());
+  if (!wb || !wb.passed) return false;
+  return wb.passed.id2zh && wb.passed.zh2id && wb.passed.spell;
+}
+
+function checkCanRemove(word) { return checkAllPassed(word); }
+function getWBItem(word) { return wordBank.find(w => w.word.toLowerCase() === word.toLowerCase()); }
+
+function renderGame(c) {
+  c.innerHTML = `<div class="card"><div class="card-header"><h2>🎮 百词斩复习</h2><span class="badge">艾宾浩斯动态间隔</span></div>
+  <div id="gameArea"><div style="text-align:center;padding:30px;color:var(--text-dim)">
+    <div style="font-size:48px;margin-bottom:10px">🎮</div><div style="font-size:14px;margin-bottom:20px">选择复习模式，系统会根据你的错误率动态调整复习间隔</div>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+      <button class="trans-btn" onclick="startGame('id2zh')">🇮🇩→🇨🇳 印尼选中</button>
+      <button class="trans-btn" onclick="startGame('zh2id')">🇨🇳→🇮🇩 中选中</button>
+      <button class="trans-btn" onclick="startGame('spell')">✏️ 拼写</button>
+    </div>
+    <div style="margin-top:20px;font-size:12px;color:var(--text-dim)">错误率高的词会自动缩短复习间隔，强化记忆</div>
+  </div></div></div>`;
+}
+
+function startGame(mode) {if(!checkAccess("百词斩"))return;
+  const now = Date.now();
+  let candidates = wordBank.filter(w => {
+    if (!w.cn || checkAllPassed(w.word)) return false;
+    const st = getWordStat(w.word);
+    const total = st.id2zh.c + st.id2zh.w + st.zh2id.c + st.zh2id.w + st.spell.c + st.spell.w;
+    if (total === 0) return true;
+    const days = Math.floor((now - new Date(w.date).getTime()) / 86400000);
+    const intervals = getDynamicInterval(w.word);
+    for (let iv of intervals) { if (days >= iv && days < iv + 2) return true; }
+    if (days > 90) return true;
+    return false;
+  });
+  if (candidates.length < 10) {
+    const extra = wordBank.filter(w => w.cn && !checkAllPassed(w.word) && !candidates.includes(w));
+    candidates = candidates.concat(extra).slice(0, 20);
+  }
+  if (candidates.length === 0) {
+    document.getElementById("gameArea").innerHTML = `<div style="text-align:center;padding:40px;color:var(--text-dim)"><div style="font-size:48px">🎉</div><div>所有词汇三关已通过！</div></div>`;
+    return;
+  }
+  // 按错误率排序后，随机打乱，确保下一组不同
+  candidates.sort((a, b) => {
+    const sa = getWordStat(a.word), sb = getWordStat(b.word);
+    return (sb.id2zh.w + sb.zh2id.w + sb.spell.w) - (sa.id2zh.w + sa.zh2id.w + sa.spell.w);
+  });
+  // Fisher-Yates shuffle
+  for (let i = candidates.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [candidates[i], candidates[j]] = [candidates[j], candidates[i]];
+  }
+  const poolSize = Math.min(10, candidates.length);
+  gameState = { mode, pool: candidates.slice(0, poolSize), current: null, q: 0, correct: 0, wrong: 0, total: poolSize, streak: 0, wrongAnswers: [] };
+  showGameQ();
+}
+
+function showGameQ() {
+  if (gameState.q >= gameState.total) { showGameResult(); return; }
+  const w = gameState.pool[gameState.q];
+  gameState.current = w;
+  const area = document.getElementById("gameArea");
+  const st = getWordStat(w.word);
+  const total = st.id2zh.c + st.id2zh.w + st.zh2id.c + st.zh2id.w + st.spell.c + st.spell.w;
+  const wrongRate = total > 0 ? (st.id2zh.w + st.zh2id.w + st.spell.w) / total : 0.5;
+  const urgency = wrongRate > 0.5 ? '🔴' : wrongRate > 0.2 ? '🟡' : '🟢';
+
+  if (gameState.mode === 'id2zh') {
+    const allWords = wordBank.filter(x => x.cn && x.word !== w.word).map(x => x.cn);
+    const wrong = [];
+    while (wrong.length < 3 && allWords.length) {
+      const r = allWords[Math.floor(Math.random() * allWords.length)];
+      if (!wrong.includes(r) && r !== w.cn) wrong.push(r);
+    }
+    const opts = [w.cn, ...wrong].sort(() => Math.random() - 0.5);
+    area.innerHTML = `<div style="margin-bottom:12px;font-size:13px;color:var(--text-dim)">${gameState.q+1}/${gameState.total} · ${urgency} 错误率${Math.round(wrongRate*100)}%</div>
+      <div class="quiz-card"><div class="q-text" style="font-size:18px">「${w.word}」${w.ipa ? `<span style="font-size:13px;color:var(--text-dim)">${w.ipa}</span>` : ''}</div>
+      <div style="font-size:12px;color:var(--text-dim);margin-bottom:10px">选择正确的中文释义</div>
+      ${opts.map((opt, i) => `<div class="q-opt" onclick="ansGameQ('${opt.replace(/'/g, "\\'")}', '${w.cn.replace(/'/g, "\\'")}', this)">${String.fromCharCode(65+i)}. ${opt}</div>`).join('')}
+      </div>`;
+  } else if (gameState.mode === 'zh2id') {
+    const allWords = wordBank.filter(x => x.word !== w.word).map(x => x.word);
+    const wrong = [];
+    while (wrong.length < 3 && allWords.length) {
+      const r = allWords[Math.floor(Math.random() * allWords.length)];
+      if (!wrong.includes(r) && r !== w.word) wrong.push(r);
+    }
+    const opts = [w.word, ...wrong].sort(() => Math.random() - 0.5);
+    area.innerHTML = `<div style="margin-bottom:12px;font-size:13px;color:var(--text-dim)">${gameState.q+1}/${gameState.total} · ${urgency} 错误率${Math.round(wrongRate*100)}%</div>
+      <div class="quiz-card"><div class="q-text" style="font-size:18px">「${w.cn}」</div>
+      <div style="font-size:12px;color:var(--text-dim);margin-bottom:10px">选择正确的印尼语单词</div>
+      ${opts.map((opt, i) => `<div class="q-opt" onclick="ansGameQ('${opt.replace(/'/g, "\\'")}', '${w.word.replace(/'/g, "\\'")}', this)">${String.fromCharCode(65+i)}. ${opt}</div>`).join('')}
+      </div>`;
+  } else {
+    area.innerHTML = `<div style="margin-bottom:12px;font-size:13px;color:var(--text-dim)">${gameState.q+1}/${gameState.total} · ${urgency} 错误率${Math.round(wrongRate*100)}%</div>
+      <div class="quiz-card"><div class="q-text" style="font-size:18px">「${w.cn}」</div>
+      <div style="font-size:12px;color:var(--text-dim);margin-bottom:10px">请拼写出对应的印尼语单词</div>
+      <div style="font-size:11px;color:var(--accent);margin-bottom:10px">提示: IPA ${w.ipa || '—'} | 词根: ${w.root || '—'}</div>
+      <input type="text" id="spellInput" style="width:100%;padding:10px;background:var(--bg-elev);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:14px" placeholder="输入印尼语..." autocomplete="off" />
+      <div style="margin-top:10px"><button class="trans-btn" onclick="submitSpell('${w.word.replace(/'/g, "\\'")}', '${w.cn.replace(/'/g, "\\'")}')">提交</button></div>
+      </div>`;
+    setTimeout(() => { const inp = document.getElementById("spellInput"); if (inp) inp.focus(); }, 50);
+  }
+}
+
+function ansGameQ(sel, correct, el) {if(!checkAccess("答题"))return;
+  const opts = el.parentElement.querySelectorAll(".q-opt");
+  opts.forEach(o => o.style.pointerEvents = "none");
+  const ok = sel === correct;
+  if (ok) {
+    el.style.background = "rgba(34,197,94,.2)"; el.style.borderColor = "var(--success)"; el.style.color = "var(--success)";
+    gameState.correct++; gameState.streak++;
+    showToast(`✅ 正确！连对${gameState.streak}题`);
+  } else {
+    el.style.background = "rgba(239,68,68,.2)"; el.style.borderColor = "var(--danger)"; el.style.color = "var(--danger)";
+    opts.forEach(o => { if (o.innerText.includes(correct)) { o.style.background = "rgba(34,197,94,.2)"; o.style.borderColor = "var(--success)"; o.style.color = "var(--success)"; } });
+    gameState.wrong++; gameState.streak = 0;
+    showToast(`❌ 错误！正确答案是「${correct}」`);
+    gameState.wrongAnswers.push({
+      word: gameState.current.word,
+      question: gameState.mode === 'id2zh' ? gameState.current.word : gameState.current.cn,
+      correctAnswer: correct,
+      userAnswer: sel,
+      mode: gameState.mode
+    });
+  }
+  recordGameResult(gameState.current.word, gameState.mode, ok);
+  if (ok) {
+    const wb = getWBItem(gameState.current.word);
+    if (wb) { wb.passed[gameState.mode] = true; saveWB(); }
+  }
+  gameState.q++;
+  setTimeout(() => showGameQ(), 1500);
+}
+
+function submitSpell(correctWord, correctCn) {if(!checkAccess("拼写"))return;
+  const inp = document.getElementById("spellInput");
+  if (!inp) return;
+  const val = inp.value.trim().toLowerCase();
+  const ok = val === correctWord.toLowerCase();
+  if (ok) {
+    showToast(`✅ 拼写正确！`);
+    recordGameResult(correctWord, 'spell', true);
+    const wb = getWBItem(correctWord);
+    if (wb) { wb.passed.spell = true; saveWB(); }
+  } else {
+    showToast(`❌ 错误！正确答案是「${correctWord}」`);
+    recordGameResult(correctWord, 'spell', false);
+    gameState.wrongAnswers.push({
+      word: correctWord,
+      question: correctCn || correctWord,
+      correctAnswer: correctWord,
+      userAnswer: val,
+      mode: 'spell'
+    });
+    const area = document.getElementById("gameArea");
+    area.innerHTML += `<div style="margin-top:10px;padding:10px;background:rgba(239,68,68,.1);border-radius:8px;color:var(--danger);font-size:13px">正确答案: ${correctWord}</div>`;
+  }
+  gameState.q++;
+  setTimeout(() => showGameQ(), ok ? 1000 : 2000);
+}
+
+function startGameWithPool(mode, poolIds) {
+  if(!checkAccess("百词斩"))return;
+  const ids = poolIds.split(',');
+  const pool = [];
+  ids.forEach(id => { const w = getWBItem(id); if (w) pool.push(w); });
+  if (pool.length === 0) { showToast('词汇池为空'); return; }
+  gameState = { mode, pool, current: 0, q: [], correct: 0, wrong: 0, total: pool.length, streak: 0 };
+  showGameQ();
+}
+function showGameResult() {
+  const pct = gameState.total > 0 ? Math.round((gameState.correct / gameState.total) * 100) : 0;
+  const msg = pct >= 80 ? "优秀！" : pct >= 60 ? "不错！" : "需多练习！";
+  const newPassed = gameState.pool.filter(w => checkAllPassed(w.word)).length;
+  const poolIds = gameState.pool.map(w => w.word).join(',');
+  let nextButtons = '';
+  if (gameState.mode === 'id2zh') nextButtons = `<button class="trans-btn" onclick="startGameWithPool('zh2id','${poolIds}')">🇨🇳→🇮🇩 中印测试这组词</button>`;
+  else if (gameState.mode === 'zh2id') nextButtons = `<button class="trans-btn" onclick="startGameWithPool('id2zh','${poolIds}')">🇮🇩→🇨🇳 印中测试这组词</button><button class="trans-btn" style="margin-top:8px;" onclick="startGameWithPool('spell','${poolIds}')">✏️ 拼写这组词</button>`;
+  else if (gameState.mode === 'spell') nextButtons = `<button class="trans-btn" onclick="startGameWithPool('id2zh','${poolIds}')">🇮🇩→🇨🇳 印中测试这组词</button>`;
+  
+  // 错题报告
+  let wrongReport = '';
+  if (gameState.wrongAnswers && gameState.wrongAnswers.length > 0) {
+    wrongReport = `<div style="margin:16px 0;text-align:left;"><div style="font-size:14px;font-weight:700;color:var(--danger);margin-bottom:8px;">📋 错题报告 (${gameState.wrongAnswers.length}题)</div>`;
+    gameState.wrongAnswers.forEach((wa, i) => {
+      const modeLabel = wa.mode === 'id2zh' ? '🇮🇩→🇨🇳' : wa.mode === 'zh2id' ? '🇨🇳→🇮🇩' : '✏️拼写';
+      wrongReport += `<div style="padding:8px;background:var(--bg-elev);border-radius:8px;margin-bottom:6px;border-left:3px solid var(--danger);">
+        <div style="font-size:12px;color:var(--text-dim);margin-bottom:2px;">${i+1}. ${modeLabel} ${wa.question}</div>
+        <div style="font-size:13px;"><span style="color:var(--danger)">你的答案: ${wa.userAnswer || '(空)'}</span> → <span style="color:var(--success)">正确答案: ${wa.correctAnswer}</span></div>
+      </div>`;
+    });
+    wrongReport += `</div>`;
+  }
+  
+  document.getElementById("gameArea").innerHTML = `<div style="text-align:center;padding:30px">
+    <div style="font-size:56px;margin-bottom:10px">${pct >= 80 ? "🎉" : pct >= 60 ? "👍" : "💪"}</div>
+    <div style="font-size:28px;font-weight:700;color:var(--primary)">${pct}%</div>
+    <div style="color:var(--text-dim);margin:8px 0">${gameState.correct}/${gameState.total} 正确 · ${gameState.wrong} 错误</div>
+    <div style="color:var(--text);margin-bottom:10px">${msg}</div>
+    <div style="font-size:13px;color:var(--success);margin-bottom:16px">${newPassed > 0 ? `本次通关 ${newPassed} 个词！` : ""}</div>
+    ${wrongReport}
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;flex-direction:column;align-items:center;">
+      ${nextButtons}
+      <button class="trans-btn" style="background:transparent;border:1px solid var(--primary);color:var(--primary);" onclick="startGame('${gameState.mode}')">🔄 下一组新词</button>
+      <button class="trans-btn" style="background:transparent;color:var(--text-dim);" onclick="navigate('home')">🏠 返回主页</button>
+    </div></div>`;
+}
+
+// ===== 覆盖生词本系统 =====
+function addWB(word,ipa,cn,en,root,tag){
+  if(wordBank.find(w=>w.word.toLowerCase()===word.toLowerCase())){showToast("已在生词本");return;}
+  const item = {word,ipa:ipa||"—",cn:cn||"—",en:en||"—",root:root||"—",tag:tag||"—",date:new Date().toISOString().slice(0,10),mastered:false,passed:{id2zh:false,zh2id:false,spell:false},stats:{id2zh:{c:0,w:0},zh2id:{c:0,w:0},spell:{c:0,w:0},totalWrong:0},reviews:[],nextReview:null,lastReview:null};
+  wordBank.unshift(item); saveWB(); saveWordStats();
+  showToast("「"+word+"」已保存"); updateStats();
+}
+
+function parseVocab(){
+  const input=document.getElementById("vInput").value.trim();if(!input){showToast("请先输入");return;}
+  const lines=input.split(/[\s,]+/).map(s=>s.trim()).filter(s=>s);
+  const resultDiv=document.getElementById("vResult");resultDiv.style.display="block";resultDiv.classList.add("show");
+  let found=0,pending=0;let html=`<div style="display:grid;grid-template-columns:1fr;gap:8px;margin-top:12px">`;
+  lines.forEach(word=>{const key=Object.keys(vocabDB).find(k=>k.toLowerCase()===word.toLowerCase());if(key){found++;const v=vocabDB[key];html+=`<div style="padding:12px;background:rgba(34,197,94,.08);border-radius:8px;border-left:3px solid var(--success)"><div style="font-weight:700;color:var("primary")">${key} <span style="color:var(--text-dim);font-weight:400">${v.ipa||""}</span></div><div style="font-size:12px;color:var(--text-dim);margin-top:3px">🇨🇳 ${v.cn||""}</div></div>`;
+      if (!wordBank.find(w=> w.word.toLowerCase() === key.toLowerCase())) {
+        wordBank.push({word:key,ipa:v.ipa||"—",cn:v.cn||"—",en:v.en||"—",root:v.root||"—",tag:v.tag||"—",date:new Date().toISOString().slice(0,10),mastered:false,passed:{id2zh:false,zh2id:false,spell:false},stats:{id2zh:{c:0,w:0},zh2id:{c:0,w:0},spell:{c:0,w:0},totalWrong:0},reviews:[],nextReview:null,lastReview:null});
+      }
+    }else{pending++;html+=`<div style="padding:12px;background:rgba(239,68,68,.08);border-radius:8px;border-left:3px solid var(--danger)"><div style="font-weight:700">${word}</div><div style="font-size:12px;color:var(--text-dim)">⏳ 待补充</div></div>`;}});
+  html+=`</div>`;html+=`<div style="margin-top:14px;font-size:13px;color:var(--text-dim)">✅ ${found} · ⏳ ${pending} · 总计 ${lines.length}</div>`;
+  resultDiv.innerHTML=html;
+  const ds=new Date().toISOString().slice(0,10);if(!learningHistory[ds])learningHistory[ds]={vocabNew:[],vocabReview:[],translations:0,notes:""};lines.forEach(w=>{const key=Object.keys(vocabDB).find(k=>k.toLowerCase()===w.toLowerCase());if(key&&!learningHistory[ds].vocabNew.includes(key))learningHistory[ds].vocabNew.push(key);});saveHistory();saveWB();saveWordStats();updateStats();showToast("录入 "+found+" 词");
+}
+
+function renderWordBank(c){
+  const passed = wordBank.filter(w=>{const p=w.passed||{id2zh:false,zh2id:false,spell:false};return p.id2zh&&p.zh2id&&p.spell;}).length;
+  const inProgress = wordBank.length - passed;
+  c.innerHTML=`<div class="card"><div class="card-header"><h2>📚 生词本</h2><span class="badge">${wordBank.length}词</span></div>
+    <div class="wb-toolbar"><button class="btn-exp" onclick="exportWB()">📥 导出</button><button class="btn-clr" onclick="clearWB()">🗑️ 清空</button></div>
+    <div style="display:flex;gap:20px;margin-bottom:14px;font-size:13px;color:var(--text-dim)">
+      <span>📦 <strong style="color:var(--primary)">${wordBank.length}</strong></span>
+      <span>✅ <strong style="color:var(--success)">${passed}</strong> (三关全过)</span>
+      <span>🔄 <strong style="color:var(--accent)">${inProgress}</strong> (进行中)</span>
+    </div>
+    <div class="wb-list" id="wbList"></div></div>`;
+  renderWBList();
+}
+
+function renderWBList(){
+  const c=document.getElementById("wbList");if(!c)return;if(!wordBank.length){c.innerHTML=`<div class="wb-empty"><div class="big">📚</div><div>生词本为空</div></div>`;return;}
+  let h="";wordBank.forEach((w,i)=>{
+    const p = w.passed || {id2zh:false,zh2id:false,spell:false};
+    const allDone = p.id2zh && p.zh2id && p.spell;
+    const progress = (p.id2zh?1:0)+(p.zh2id?1:0)+(p.spell?1:0);
+    h+=`<div class="wb-item" style="${allDone?'border-color:var(--success);opacity:.7':''}"><div><div class="wb-w">${w.word} <span class="wb-i">${w.ipa||""}</span></div><div class="wb-m">🇨🇳 ${w.cn||""}</div>
+      <div style="display:flex;gap:6px;margin-top:6px;font-size:11px">
+        <span style="padding:2px 6px;border-radius:4px;background:${p.id2zh?'rgba(34,197,94,.15)':'rgba(239,68,68,.08)'};color:${p.id2zh?'var(--success)':'var(--danger)'}">🇮🇩→🇨🇳 ${p.id2zh?'✅':'❌'}</span>
+        <span style="padding:2px 6px;border-radius:4px;background:${p.zh2id?'rgba(34,197,94,.15)':'rgba(239,68,68,.08)'};color:${p.zh2id?'var(--success)':'var(--danger)'}">🇨🇳→🇮🇩 ${p.zh2id?'✅':'❌'}</span>
+        <span style="padding:2px 6px;border-radius:4px;background:${p.spell?'rgba(34,197,94,.15)':'rgba(239,68,68,.08)'};color:${p.spell?'var(--success)':'var(--danger)'}">✏️ ${p.spell?'✅':'❌'}</span>
+        <span style="color:var(--text-dim)">${progress}/3</span>
+      </div>
+      <div class="wb-act">
+        <button class="wb-mas" onclick="playWBGame(${i})">🎮 练习</button>
+        <button class="wb-del" onclick="delWB(${i})">🗑️</button>
+      </div></div></div>`;
+  });c.innerHTML=h;
+}
+
+function playWBGame(i) {if(!checkAccess("生词练习"))return;
+  const w = wordBank[i]; if (!w) return;
+  const p = w.passed || {id2zh:false,zh2id:false,spell:false};
+  let mode = 'id2zh';
+  if (!p.id2zh) mode = 'id2zh';
+  else if (!p.zh2id) mode = 'zh2id';
+  else if (!p.spell) mode = 'spell';
+  else mode = 'id2zh';
+  navigate('game'); setTimeout(() => startGame(mode), 300);
+}
+
+function delWB(i){
+  const w = wordBank[i]; if (!w) return;
+  const p = w.passed || {id2zh:false,zh2id:false,spell:false};
+  if (!(p.id2zh && p.zh2id && p.spell)) { showToast("❌ 三关未全过，不能移除！"); return; }
+  if(!confirm("三关已通过，确认删除?"))return;
+  wordBank.splice(i,1);saveWB();renderWBList();updateStats();showToast("已删除");
+}
+
+function exportWB(){
+  if(!wordBank.length){showToast("为空");return;}
+  let t=`📚 BIR生词本—${new Date().toISOString().slice(0,10)}\n\n=== 三关全过 ===\n`;
+  wordBank.filter(w=>{const p=w.passed||{id2zh:false,zh2id:false,spell:false};return p.id2zh&&p.zh2id&&p.spell;}).forEach((w,i)=>{t+=`${i+1}. ${w.word} ${w.ipa}\n  🇨🇳${w.cn}\n`; });
+  t+=`\n=== 进行中 ===\n`;
+  wordBank.filter(w=>{const p=w.passed||{id2zh:false,zh2id:false,spell:false};return !(p.id2zh&&p.zh2id&&p.spell);}).forEach((w,i)=>{const p=w.passed||{id2zh:false,zh2id:false,spell:false};t+=`${i+1}. ${w.word} ${w.ipa}\n  🇨🇳${w.cn}\n  进度: 🇮🇩→🇨🇳${p.id2zh?'✅':'❌'} 🇨🇳→🇮🇩${p.zh2id?'✅':'❌'} ✏️${p.spell?'✅':'❌'}\n`; });
+  navigator.clipboard.writeText(t).then(()=>showToast("已复制"));
+}
+
+function toggleWB(i){ /* 已废弃：改为三关系统 */ }
+
+function getWordReviewItems() {
+  const now = Date.now();
+  const items = [];
+  wordBank.forEach(w => {
+    if (checkAllPassed(w.word)) return;
+    const days = Math.floor((now - new Date(w.date).getTime()) / 86400000);
+    const intervals = getDynamicInterval(w.word);
+    let matchedInterval = null;
+    for (let iv of intervals) { if (days >= iv && days < iv + 2) { matchedInterval = iv; break; } }
+    if (!matchedInterval && days > 90) matchedInterval = 90;
+    if (matchedInterval) {
+      const reviewed = w.reviews && w.reviews.find(r => r.interval === matchedInterval);
+      if (!reviewed) {
+        items.push({ ...w, daysSince: days, interval: matchedInterval, due: true, type: 'word' });
+      }
+    }
+  });
+  return items.sort((a, b) => b.daysSince - a.daysSince);
+}
+
+function markWordReviewed(word, interval) {
+  const w = wordBank.find(x => x.word === word);
+  if (w) {
+    if (!w.reviews) w.reviews = [];
+    w.reviews.push({ interval, date: new Date().toISOString().slice(0,10) });
+    w.lastReview = new Date().toISOString().slice(0,10);
+    const intervals = getDynamicInterval(word);
+    const nextIdx = intervals.indexOf(interval) + 1;
+    if (nextIdx < intervals.length) {
+      const nextDate = new Date(); nextDate.setDate(nextDate.getDate() + intervals[nextIdx]);
+      w.nextReview = nextDate.toISOString().slice(0,10);
+    }
+    saveWB();
+  }
+}
+const topicData = {
+  "meet": {
+    "title": "话题1: 见面 / Bertemu",
+    "icon": "🤝",
+    "days": 3,
+    "grammar": {
+      "title": "ber- 前缀",
+      "rules": [
+        "Rule 1: 名词/形容词 → 动词 — 表示拥有、使用、成为、被...覆盖",
+        "Rule 2: 动词 → 相互/交互动作 — 表示双方之间的动作",
+        "Rule 3: ber- 不发生辅音变化 — 不像 me-（p→m, t→n, k→ng），ber- 直接加在词根前",
+        "Rule 4: 特殊不规则 — belajar (ajar'教' → be-ajar → belajar'学习')"
+      ],
+      "examples": [
+        "kerja /ˈkɛrdʒa/ (n.) → berkerja /bəˈkɛrdʒa/ (v.) = '去工作'",
+        "jalan /ˈdʒalan/ (n.) → berjalan /bərˈdʒalan/ (v.) = '走路'",
+        "temu /ˈtɛmu/ (n.) → bertemu /bərˈtɛmu/ (v.) = '见面'"
+      ]
+    },
+    "scenes": [
+      {
+        "title": "正式初次见面（政府/官员）",
+        "icon": "🏛️",
+        "dialogue": [
+          {
+            "speaker": "A",
+            "text": "Selamat pagi, Bapak/Ibu Menteri. Perkenalkan, nama saya [Nama], General Manager PT [Nama Perusahaan] yang beroperasi di kawasan industri Morowali, Sulawesi Tengah.",
+            "trans": "早上好，部长先生/女士。请允许我介绍，我是[姓名]，[公司名称]总经理，公司在莫罗瓦利工业园区运营。"
+          },
+          {
+            "speaker": "B",
+            "text": "Selamat pagi. Apa kabar? Senang sekali dapat bertemu dengan Anda.",
+            "trans": "早上好。你好吗？很高兴见到您。"
+          },
+          {
+            "speaker": "A",
+            "text": "Baik, terima kasih. Perusahaan kami ingin berdiskusi mengenai pengembangan berkelanjutan.",
+            "trans": "很好，谢谢。我们公司想讨论可持续发展。"
+          },
+          {
+            "speaker": "B",
+            "text": "Baik, mari kita masuk ke ruang rapat.",
+            "trans": "好的，我们进会议室吧。"
+          }
+        ]
+      },
+      {
+        "title": "日常同事见面（工厂/办公室）",
+        "icon": "🏭",
+        "dialogue": [
+          {
+            "speaker": "A",
+            "text": "Selamat pagi, Pak/Bu! Sudah sarapan?",
+            "trans": "早上好，先生/女士！吃过早餐了吗？"
+          },
+          {
+            "speaker": "B",
+            "text": "Pagi! Sudah, tadi di kantin. Kamu?",
+            "trans": "早！吃过了，刚在食堂。你呢？"
+          },
+          {
+            "speaker": "A",
+            "text": "Saya juga sudah. Hari ini kita ada rapat pukul sepuluh, ya?",
+            "trans": "我也吃过了。今天十点有会议，对吧？"
+          },
+          {
+            "speaker": "B",
+            "text": "Iya, jangan lupa bawa laporan kemarin.",
+            "trans": "对，别忘了带上昨天的报告。"
+          }
+        ]
+      },
+      {
+        "title": "与下属/员工打招呼（简短指令）",
+        "icon": "👷",
+        "dialogue": [
+          {
+            "speaker": "A",
+            "text": "Halo, teman-teman! Selamat pagi. Senang melihat kalian semua hadir tepat waktu dan siap untuk bekerja.",
+            "trans": "大家好！早上好。很高兴看到大家都准时出勤并准备好工作。"
+          },
+          {
+            "speaker": "B",
+            "text": "Selamat pagi, Pak! Kami sudah siap.",
+            "trans": "早上好，先生！我们已准备好。"
+          },
+          {
+            "speaker": "A",
+            "text": "Hari ini, tim maintenance harus berkumpul di gudang peralatan pukul delapan untuk melakukan inspeksi rutin.",
+            "trans": "今天，维修团队八点必须在设备仓库集合进行例行检查。"
+          },
+          {
+            "speaker": "B",
+            "text": "Baik, Pak. Kami akan berkumpul tepat waktu.",
+            "trans": "好的，先生。我们会准时集合。"
+          }
+        ]
+      },
+      {
+        "title": "商务会议与合作伙伴/供应商",
+        "icon": "🤝",
+        "dialogue": [
+          {
+            "speaker": "A",
+            "text": "Selamat siang, para mitra bisnis yang terhormat. Terima kasih telah meluangkan waktu untuk bertemu dengan kami hari ini.",
+            "trans": "中午好，尊敬的合作伙伴。感谢您今天抽出时间与我们见面。"
+          },
+          {
+            "speaker": "B",
+            "text": "Terima kasih kembali. Kami senang dapat berdiskusi dengan Anda.",
+            "trans": "同样感谢。我们很高兴能与您讨论。"
+          },
+          {
+            "speaker": "A",
+            "text": "Seperti yang Bapak/Ibu ketahui, perusahaan kami telah beroperasi di Indonesia selama lebih dari lima tahun dan selalu berusaha menjaga standar kualitas tertinggi.",
+            "trans": "如您所知，我们公司在印尼运营已超过五年，始终致力于保持最高质量标准。"
+          },
+          {
+            "speaker": "B",
+            "text": "Kami sangat menghargai dedikasi Anda. Mari kita mulai pembahasan.",
+            "trans": "我们非常赞赏您的敬业精神。让我们开始讨论吧。"
+          }
+        ]
+      },
+      {
+        "title": "非正式朋友见面",
+        "icon": "☕",
+        "dialogue": [
+          {
+            "speaker": "A",
+            "text": "Halo, Bro! Lama tidak bertemu. Gimana kabarmu?",
+            "trans": "嘿，兄弟！好久不见。你怎么样？"
+          },
+          {
+            "speaker": "B",
+            "text": "Halo! Kabar baik. Kamu sendiri?",
+            "trans": "嘿！我很好。你自己呢？"
+          },
+          {
+            "speaker": "A",
+            "text": "Aku juga baik. Akhir-akhir ini sibuk bekerja di proyek smelter baru, jadi belum sempat berlibur.",
+            "trans": "我也很好。最近在忙新冶炼厂项目，所以还没机会度假。"
+          },
+          {
+            "speaker": "B",
+            "text": "Wah, pasti seru banget! Yuk, kita makan siang bersama dan berdiskusi santai.",
+            "trans": "哇，一定很有趣！来吧，我们一起吃午饭，轻松聊聊。"
+          }
+        ]
+      },
+      {
+        "title": "久别重逢",
+        "icon": "🎉",
+        "dialogue": [
+          {
+            "speaker": "A",
+            "text": "Wah, apa kabar, Pak Budi? Sudah berapa lama kita tidak bertemu?",
+            "trans": "哇，Budi先生，你好吗？我们多久没见了？"
+          },
+          {
+            "speaker": "B",
+            "text": "Sepertinya sudah hampir setahun, ya, sejak konferensi pertambangan di Jakarta tahun lalu.",
+            "trans": "好像快一年了，自去年雅加达矿业会议以来。"
+          },
+          {
+            "speaker": "A",
+            "text": "Saya sangat senang bisa berjumpa dengan Anda lagi di Morowali. Perusahaan Anda pastilah telah berkembang pesat.",
+            "trans": "很高兴能在莫罗瓦利再次见到您。贵公司一定发展迅速。"
+          },
+          {
+            "speaker": "B",
+            "text": "Terima kasih. Kami baru saja menyelesaikan pembangkit listrik tenaga surya dan sedang berusaha meningkatkan efisiensi smelter kami.",
+            "trans": "谢谢。我们刚完成太阳能发电厂，正努力提升冶炼厂效率。"
+          }
+        ]
+      }
+    ],
+    "speeches": [
+      {
+        "title": "正式初次见面（与政府/官员）",
+        "icon": "🏛️",
+        "words": 160,
+        "time": 60,
+        "content": "Selamat pagi, Bapak/Ibu Menteri. Perkenalkan, nama saya [Nama], General Manager PT [Nama Perusahaan] yang beroperasi di kawasan industri Morowali, Sulawesi Tengah. Perusahaan kami bergerak di bidang pengolahan nikel dari hulu hingga hilir, mulai dari tambang, smelter, hingga produksi baterai lithium. Kami sangat bersemangat untuk berdiskusi dengan pemerintah daerah mengenai rencana pengembangan berkelanjutan. Selama beberapa tahun terakhir, perusahaan kami telah berkembang pesat dan saat ini mempekerjakan lebih dari sepuluh ribu karyawan. Kami berharap dapat bersinergi dengan pemerintah untuk menciptakan lapangan kerja yang lebih luas. Terima kasih atas kesempatan untuk bertemu dan berbicara langsung dengan Bapak/Ibu hari ini. Saya yakin kerja sama ini akan berjalan dengan baik."
+      },
+      {
+        "title": "日常同事见面（工厂晨会）",
+        "icon": "🏭",
+        "words": 140,
+        "time": 55,
+        "content": "Selamat pagi, rekan-rekan sekalian. Semoga kita semua dalam keadaan sehat dan bersemangat untuk bekerja hari ini. Seperti yang sudah kita diskusikan dalam rapat kemarin, proyek pembangunan smelter baru akan segera berjalan dan kita perlu berkumpul lagi pukul sepuluh untuk membahas timeline yang lebih detail. Selama proses ini, saya ingin kita semua berpikir kreatif dan berusaha mencari solusi terbaik agar proyek ini dapat berjalan lancar. Jika ada rekan yang ingin bertanya atau berdiskusi, jangan ragu untuk menghampiri saya. Mari kita bersama-sama mewujudkan target produksi! Semangat pagi!"
+      },
+      {
+        "title": "与下属/员工打招呼（简短指令）",
+        "icon": "👷",
+        "words": 130,
+        "time": 50,
+        "content": "Halo, teman-teman! Selamat pagi. Saya senang melihat kalian semua hadir tepat waktu dan siap untuk bekerja. Hari ini, tim maintenance harus berkumpul di gudang peralatan pukul delapan untuk melakukan inspeksi rutin. Saya harap kalian berpikir matang sebelum memutuskan apa pun yang berkaitan dengan keselamatan kerja. Selama bertugas, jangan lupa untuk selalu berkomunikasi dengan rekan sejawat dan bertanya jika ada hal yang kurang jelas. Proses produksi harus berjalan sesuai prosedur standar, dan kita semua perlu berusaha keras untuk menjaga kualitas produk tetap prima. Terima kasih atas dedikasi kalian. Mari kita mulai!"
+      },
+      {
+        "title": "商务会议与合作伙伴/供应商",
+        "icon": "🤝",
+        "words": 145,
+        "time": 60,
+        "content": "Selamat siang, para mitra bisnis yang terhormat. Terima kasih telah meluangkan waktu untuk bertemu dengan kami hari ini. Seperti yang Bapak/Ibu ketahui, perusahaan kami telah beroperasi di Indonesia selama lebih dari lima tahun dan selalu berusaha menjaga standar kualitas tertinggi. Saat ini, kami sedang berencana untuk memperluas kapasitas produksi smelter dan berharap dapat bersinergi dengan perusahaan Anda dalam pengadaan peralatan teknologi terbaru. Kami sangat terbuka untuk berdiskusi mengenai syarat dan ketentuan kerja sama yang saling menguntungkan. Selama negosiasi ini, kami berpikir bahwa transparansi dan kejujuran adalah fondasi terpenting dalam setiap hubungan bisnis yang berkelanjutan. Mari kita bersama-sama menemukan solusi terbaik untuk kemitraan jangka panjang ini."
+      },
+      {
+        "title": "非正式朋友见面",
+        "icon": "☕",
+        "words": 135,
+        "time": 55,
+        "content": "Halo, Bro! Lama tidak bertemu. Gimana kabarmu? Saya dengar kamu baru saja berlibur ke Bali bersama keluarga. Wah, pasti seru banget! Saya sendiri akhir-akhir ini sibuk bekerja di proyek smelter baru, jadi belum sempat berlibur. Tapi hari ini, saya ingin berkumpul dengan kalian semua untuk makan siang bersama dan berdiskusi santai mengenai rencana liburan akhir tahun nanti. Saya sudah berpikir untuk pergi ke Lombok, tapi masih bingung mau berapa lama di sana. Kalau kamu punya saran, jangan ragu untuk berkata ya! Oh ya, kapan kita bisa bermain badminton lagi? Sudah lama kita tidak bersama-sama olahraga. Yuk, kita janjian minggu depan!"
+      },
+      {
+        "title": "久别重逢",
+        "icon": "🎉",
+        "words": 145,
+        "time": 60,
+        "content": "Wah, apa kabar, Pak Budi? Sudah berapa lama kita tidak bertemu? Sepertinya sudah hampir setahun, ya, sejak konferensi pertambangan di Jakarta tahun lalu. Saya sangat senang bisa berjumpa dengan Anda lagi di Morowali. Sejak terakhir kita bertemu, perusahaan Anda pastilah telah berkembang pesat. Kami baru saja menyelesaikan pembangkit listrik tenaga surya dan sedang berusaha meningkatkan efisiensi smelter kami. Saya banyak berpikir tentang rencana ekspansi ke bisnis aluminium dan berharap bisa berdiskusi dengan Anda mengenai peluang kerja sama di bidang tersebut. Mari kita berkumpul nanti malam untuk makan malam bersama dan menyusun strategi lebih lanjut. Senang rasanya bisa bersama Anda lagi!"
+      }
+    ]
+  }
+};
+
+
+const topicCalendar = {
+  "2026-07-16": {topic: "meet", day: 1, label: "词汇+语法+场景对话+演讲+复习", allDays: true}
+};
+
+function getTopicForDate(ds) {
+  return topicCalendar[ds] || null;
+}
+
+function renderTopicDetail(c, ds, topicInfo) {
+  const topic = topicData[topicInfo.topic];
+  const day = topicInfo.day;
+  let html = `<div class="date-detail"><button class="back-btn" onclick="navigate('home')">← 返回</button>`;
+  
+  // 2026-07-16 特殊处理：显示全部三天内容
+  if (ds === "2026-07-16" || topicInfo.allDays) {
+    html += `<div class="card"><div class="card-header"><h2>${topic.icon} ${topic.title}</h2><span class="badge">综合学习日 · 全部内容</span></div>`;
+    html += `<div style="background:rgba(0,212,170,.08);border-radius:10px;padding:16px;margin-bottom:16px;border-left:3px solid var(--primary)"><div style="font-size:14px;color:var(--primary);font-weight:700;margin-bottom:8px">📋 今日学习计划</div><div style="font-size:13px;color:var(--text)">今天需要完成全部三天的学习内容：词汇语法 → 场景对话 → 演讲复习。建议分阶段学习，每完成一阶段休息10分钟。</div></div>`;
+    
+    // === Day 1: Grammar + Vocabulary ===
+    html += `<div style="background:rgba(0,212,170,.06);border-radius:10px;padding:16px;margin-bottom:16px;border:1px solid var(--border)"><div style="font-size:15px;color:var(--primary);font-weight:700;margin-bottom:12px">📖 第一阶段：词汇+语法 (Day 1/3)</div>`;
+    html += `<div style="background:rgba(0,212,170,.08);border-radius:10px;padding:16px;margin-bottom:16px;border-left:3px solid var(--primary)"><h3 style="color:var(--primary);margin-bottom:10px;font-size:15px">📖 ${topic.grammar.title}</h3>`;
+    topic.grammar.rules.forEach(r => {
+      html += `<div style="font-size:13px;color:var(--text);margin:6px 0;padding:6px 0;border-bottom:1px solid var(--border)">• ${r}</div>`;
+    });
+    html += `<div style="margin-top:12px;padding:10px;background:var(--bg-elev);border-radius:8px;font-size:13px">`;
+    topic.grammar.examples.forEach(e => {
+      html += `<div style="margin:4px 0;color:var(--text-dim)">${e}</div>`;
+    });
+    html += `</div></div>`;
+    html += `<h3 style="color:var(--primary);margin:16px 0 10px;font-size:15px">🎯 话题核心词汇</h3><div class="word-grid">`;
+    const keyWords1 = ["bertemu","berdiskusi","berjumpa","berkumpul","berbicara","berkerja","berjalan","bersemangat","berusaha","berpikir","bersama-sama","berkembang","beroperasi","berkelanjutan","berharap","bersinergi","berkaitan","berkomunikasi","berlibur","bermain","berdagang","berencana"];
+    keyWords1.forEach(w => {
+      const key = Object.keys(vocabDB).find(k => k.toLowerCase() === w.toLowerCase());
+      if (key) {
+        const v = vocabDB[key];
+        html += `<div class="word-card" onclick="showTip('${key.replace(/'/g,"\'")}')"><div class="w-word">${key} <span class="w-ipa">${v.ipa||""}</span></div><div class="w-mean">🇨🇳 ${v.cn||""}</div></div>`;
+      }
+    });
+    html += `</div></div>`;
+    
+    // === Day 2: Scenes ===
+    html += `<div style="background:rgba(245,158,11,.06);border-radius:10px;padding:16px;margin-bottom:16px;border:1px solid var(--border)"><div style="font-size:15px;color:var(--accent);font-weight:700;margin-bottom:12px">🎭 第二阶段：场景对话 (Day 2/3)</div>`;
+    topic.scenes.forEach((sc, si) => {
+      html += `<div style="margin-bottom:14px;border:1px solid var(--border);border-radius:10px;overflow:hidden"><div style="background:var(--bg-elev);padding:10px 14px;display:flex;align-items:center;gap:8px"><span style="font-size:18px">${sc.icon}</span><span style="font-size:14px;font-weight:600;color:var(--text)">${sc.title}</span></div><div style="padding:12px 14px;">`;
+      sc.dialogue.forEach(d => {
+        const isA = d.speaker === "A";
+        html += `<div style="display:flex;gap:8px;margin:6px 0;${isA ? '' : 'flex-direction:row-reverse'}"><div style="width:28px;height:28px;border-radius:50%;background:${isA ? 'var(--primary)' : 'var(--accent)'};display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#000">${d.speaker}</div><div style="max-width:70%;padding:8px 12px;border-radius:10px;font-size:13px;line-height:1.5;${isA ? 'background:var(--bg-elev);border:1px solid var(--border)' : 'background:rgba(0,212,170,.1);border:1px solid rgba(0,212,170,.2)'}"><div style="color:var(--text);margin-bottom:4px">${d.text}</div><div style="font-size:11px;color:var(--text-dim);border-top:1px solid var(--border);padding-top:4px;margin-top:4px">${d.trans}</div></div></div>`;
+      });
+      html += `</div></div>`;
+    });
+    html += `</div>`;
+    
+    // === Day 3: Speeches ===
+    html += `<div style="background:rgba(59,130,246,.06);border-radius:10px;padding:16px;margin-bottom:16px;border:1px solid var(--border)"><div style="font-size:15px;color:var(--info);font-weight:700;margin-bottom:12px">🎤 第三阶段：演讲+复习 (Day 3/3)</div>`;
+    topic.speeches.forEach((sp, spi) => {
+      html += `<div style="margin-bottom:14px;border:1px solid var(--border);border-radius:10px;overflow:hidden"><div style="background:var(--bg-elev);padding:10px 14px;display:flex;align-items:center;gap:8px"><span style="font-size:18px">${sp.icon}</span><div><div style="font-size:14px;font-weight:600;color:var(--text)">${sp.title}</div><div style="font-size:11px;color:var(--text-dim)">${sp.words}词 · ${sp.time}秒</div></div></div><div style="padding:14px;font-size:13px;line-height:1.8;color:var(--text);background:var(--bg-card);border-radius:0 0 8px 8px">${sp.content}</div></div>`;
+    });
+    html += `<div style="margin-top:16px;padding:12px;background:rgba(34,197,94,.08);border-radius:8px;border:1px solid rgba(34,197,94,.3)"><div style="font-size:13px;color:var(--success)">✅ 恭喜！已完成三天综合学习！</div><div style="font-size:12px;color:var(--text-dim);margin-top:6px">建议：使用「百词斩」检测掌握程度，使用「艾宾浩斯复习」巩固记忆。</div></div>`;
+    html += `</div>`;
+    
+    html += `</div></div>`;
+    c.innerHTML = html;
+    return;
+  }
+  
+  html += `<div class="card"><div class="card-header"><h2>${topic.icon} ${topic.title}</h2><span class="badge">Day ${day}/3 · ${topicInfo.label}</span></div>`;
+  
+  if (day === 1) {
+    // Day 1: Grammar + Vocabulary
+    html += `<div style="background:rgba(0,212,170,.08);border-radius:10px;padding:16px;margin-bottom:16px;border-left:3px solid var(--primary)"><h3 style="color:var(--primary);margin-bottom:10px;font-size:15px">📖 ${topic.grammar.title}</h3>`;
+    topic.grammar.rules.forEach(r => {
+      html += `<div style="font-size:13px;color:var(--text);margin:6px 0;padding:6px 0;border-bottom:1px solid var(--border)">• ${r}</div>`;
+    });
+    html += `<div style="margin-top:12px;padding:10px;background:var(--bg-elev);border-radius:8px;font-size:13px">`;
+    topic.grammar.examples.forEach(e => {
+      html += `<div style="margin:4px 0;color:var(--text-dim)">${e}</div>`;
+    });
+    html += `</div></div>`;
+    // Show key vocabulary for this topic
+    html += `<h3 style="color:var(--primary);margin:16px 0 10px;font-size:15px">🎯 话题核心词汇</h3><div class="word-grid">`;
+    const keyWords = ["bertemu","berdiskusi","berjumpa","berkumpul","berbicara","berkerja","berjalan","bersemangat","berusaha","berpikir","bersama-sama","berkembang","beroperasi","berkelanjutan","berharap","bersinergi","berkaitan","berkomunikasi","berlibur","bermain","berdagang","berencana"];
+    keyWords.forEach(w => {
+      const key = Object.keys(vocabDB).find(k => k.toLowerCase() === w.toLowerCase());
+      if (key) {
+        const v = vocabDB[key];
+        html += `<div class="word-card" onclick="showTip('${key.replace(/'/g,"\'")}')"><div class="w-word">${key} <span class="w-ipa">${v.ipa||""}</span></div><div class="w-mean">🇨🇳 ${v.cn||""}</div></div>`;
+      }
+    });
+    html += `</div>`;
+  } else if (day === 2) {
+    // Day 2: Scenes 1-3 (or 4-6 based on day)
+    const sceneStart = 0;
+    const sceneEnd = 3;
+    html += `<h3 style="color:var(--primary);margin:16px 0 10px;font-size:15px">💬 场景对话 (${sceneStart+1}-${sceneEnd})</h3>`;
+    for (let i = sceneStart; i < sceneEnd && i < topic.scenes.length; i++) {
+      const s = topic.scenes[i];
+      html += `<div style="background:var(--bg-elev);border-radius:10px;padding:16px;margin-bottom:12px;border:1px solid var(--border)"><div style="display:flex;align-items:center;gap:8px;margin-bottom:10px"><span style="font-size:18px">${s.icon}</span><strong style="color:var(--primary);font-size:14px">${s.title}</strong></div>`;
+      s.dialogue.forEach(d => {
+        html += `<div style="display:flex;gap:10px;margin:8px 0;padding:8px;background:var(--bg-card);border-radius:6px"><div style="font-weight:700;color:var(--primary);min-width:30px;font-size:12px">${d.speaker}:</div><div style="flex:1"><div style="font-size:13px;color:var(--text)">${d.text}</div><div style="font-size:11px;color:var(--text-dim);margin-top:3px;border-left:2px solid var(--primary-dim);padding-left:6px">${d.trans}</div></div></div>`;
+      });
+      html += `</div>`;
+    }
+  } else {
+    // Day 3: Speeches + Review
+    html += `<h3 style="color:var(--primary);margin:16px 0 10px;font-size:15px">🎤 1分钟演讲</h3>`;
+    for (let i = 0; i < topic.speeches.length; i++) {
+      const sp = topic.speeches[i];
+      html += `<div style="background:var(--bg-elev);border-radius:10px;padding:16px;margin-bottom:12px;border:1px solid var(--border)"><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><span style="font-size:18px">${sp.icon}</span><strong style="color:var(--primary);font-size:14px">${sp.title}</strong></div><div style="display:flex;gap:8px;margin-bottom:10px;font-size:11px;color:var(--text-dim)"><span style="background:rgba(0,212,170,.1);padding:2px 8px;border-radius:8px">⏱️ ~${sp.time}秒</span><span style="background:rgba(0,212,170,.1);padding:2px 8px;border-radius:8px">📝 ~${sp.words}词</span></div><div style="font-size:13px;line-height:1.8;color:var(--text);background:var(--bg-card);padding:12px;border-radius:8px">${sp.content}</div></div>`;
+    }
+    html += `<div style="margin-top:16px;padding:12px;background:rgba(34,197,94,.08);border-radius:8px;border:1px solid rgba(34,197,94,.3)"><div style="font-size:13px;color:var(--success)">✅ 完成三天学习！进入复习队列。</div><div style="font-size:12px;color:var(--text-dim);margin-top:6px">建议：使用「能力测试」检测掌握程度，使用「艾宾浩斯复习」巩固记忆。</div></div>`;
+  }
+  
+  html += `</div></div>`;
+  c.innerHTML = html;
+}
+
+// 修改renderDateDetail以支持话题
+const originalRenderDateDetail = renderDateDetail;
+renderDateDetail = function(c, ds) {
+  const topicInfo = getTopicForDate(ds);
+  if (topicInfo) {
+    renderTopicDetail(c, ds, topicInfo);
+    return;
+  }
+  originalRenderDateDetail(c, ds);
+};
+
+// 修改renderCalHTML以标记话题日期
+const originalRenderCalHTML = renderCalHTML;
+renderCalHTML = function() {
+  const y = currentDate.getFullYear(), m = currentDate.getMonth();
+  const fd = new Date(y, m, 1).getDay(), td = new Date(y, m+1, 0).getDate();
+  const tds = new Date().toISOString().slice(0,10), wd = ["日","一","二","三","四","五","六"];
+  let h = `<div class="cal-wrap"><div class="cal-header"><button class="cal-nav" onclick="changeMonth(-1)">◀</button><h3>${y}年${m+1}月</h3><button class="cal-nav" onclick="changeMonth(1)">▶</button></div><div class="cal-grid">`;
+  wd.forEach(d => h += `<div class="cal-wd">${d}</div>`);
+  for (let i = 0; i < fd; i++) h += `<div class="cal-day" style="background:transparent;cursor:default"></div>`;
+  for (let d = 1; d <= td; d++) {
+    const ds = `${y}-${String(m+1).padStart(2,"0")}-${String(d).padStart(2,"0")}`;
+    const data = learningHistory[ds], ist = ds === tds, hd = data && (data.vocabNew.length || data.vocabReview.length || data.translations);
+    const tinfo = getTopicForDate(ds);
+    let dots = "";
+    if (data) {
+      if (data.vocabNew.length) dots += `<span class="ddot neww"></span>`;
+      if (data.vocabReview.length) dots += `<span class="ddot rev"></span>`;
+      if (data.translations) dots += `<span class="ddot"></span>`;
+    }
+    if (tinfo) dots += `<span class="ddot" style="background:var(--accent)"></span>`;
+    h += `<div class="cal-day ${ist ? "today" : ""} ${hd || tinfo ? "has-data" : ""}" data-date="${ds}"><div class="dnum">${d}</div><div class="ddots">${dots}</div></div>`;
+  }
+  h += `</div><div class="cal-legend"><span><span class="ddot neww" style="display:inline-block"></span> 新词</span><span><span class="ddot rev" style="display:inline-block"></span> 复习</span><span><span class="ddot" style="display:inline-block"></span> 翻译</span><span><span class="ddot" style="display:inline-block;background:var(--accent)"></span> 话题</span><span>⬤ 今天</span></div></div>`;
+  return h;
+};
+
+// 修改attachCalEvents以支持话题点击
+const originalAttachCalEvents = attachCalEvents;
+attachCalEvents = function() {
+  document.querySelectorAll(".cal-day[data-date]").forEach(el => {
+    el.addEventListener("click", () => {
+      const ds = el.dataset.date;
+      const tinfo = getTopicForDate(ds);
+      if (tinfo || learningHistory[ds]) navigate("date", ds);
+    });
+  });
+};
+
+
+function renderAbout(c){
+  c.innerHTML=`<div class="card"><div class="card-header"><h2>📋 关于 LEO-BIR</h2><span class="badge">印尼语学习平台</span></div>
+    <div style="padding:16px;line-height:1.8;font-size:13px;color:var(--text)">
+      <div style="display:flex;align-items:center;gap:16px;margin-bottom:20px">
+        <div style="width:80px;height:80px;border-radius:50%;overflow:hidden;border:2px solid var(--primary)"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover"></div>
+        <div><div style="font-size:18px;font-weight:700;color:var(--primary)">LEO-BIR</div><div style="font-size:13px;color:var(--text-dim)">Bahasa Indonesia Learning</div></div>
+      </div>
+      <p style="margin-bottom:12px"><strong>平台简介：</strong><br>
+      LEO-BIR 是专为印尼语学习者打造的智能学习平台，融合艾宾浩斯记忆曲线、百词斩游戏化练习、三关生词本系统。</p>
+      <p style="margin-bottom:12px"><strong>核心功能：</strong><br>
+      • 🌐 三语翻译：印尼语↔中文↔英文<br>
+      • 📅 日历学习：按天规划学习进度<br>
+      • 🧠 艾宾浩斯复习：智能记忆曲线提醒<br>
+      • 🎯 百词斩：游戏化词汇练习<br>
+      • 📚 生词本：三关系统（答对三关才能移除）<br>
+      • 📖 词汇库：话题分类核心词汇</p>
+      <p style="margin-bottom:12px"><strong>适用场景：</strong><br>
+      商务印尼语、日常对话、冶炼工业园区专业场景</p>
+      <p><strong>联系方式：</strong> 087713858880</p>
+    </div>
+  </div>`;
+}
+
+function renderVersion(c){
+  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录</h2><span class="badge">V2.5</span></div>
+    <div style="padding:16px;">
+      <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
+        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V2.5 (2026-07-16)</div>
+        <div style="font-size:13px;color:var(--text);line-height:1.8">
+        • 头像品牌化：使用真实头像<br>
+        • 导航优化：新增"关于LEO-BIR"和"版本记录"入口
+        </div>
+      </div>
+      <div style="margin-bottom:14px;padding:14px;background:var(--bg-elev);border-radius:10px;border-left:3px solid var(--accent)">
+        <div style="font-size:15px;font-weight:700;color:var(--accent);margin-bottom:6px">V2.4 (2026-07-16)</div>
+        <div style="font-size:13px;color:var(--text);line-height:1.8">
+        • 修复复习页面错误<br>
+        • 增强艾宾浩斯复习4板块<br>
+        • 界面品牌化
+        </div>
+      </div>
+      <div style="margin-bottom:14px;padding:14px;background:var(--bg-elev);border-radius:10px;border-left:3px solid var(--info)">
+        <div style="font-size:15px;font-weight:700;color:var(--info);margin-bottom:6px">V2.3 (2026-07-16)</div>
+        <div style="font-size:13px;color:var(--text);line-height:1.8">超级管理员面板、艾宾浩斯复习骨架、百词斩错题报告</div>
+      </div>
+      <div style="margin-bottom:14px;padding:14px;background:var(--bg-elev);border-radius:10px;border-left:3px solid var(--text-dim)">
+        <div style="font-size:15px;font-weight:700;color:var(--text-dim);margin-bottom:6px">V2.2 (2026-07-15)</div>
+        <div style="font-size:13px;color:var(--text);line-height:1.8">会员系统</div>
+      </div>
+      <div style="margin-bottom:14px;padding:14px;background:var(--bg-elev);border-radius:10px;border-left:3px solid var(--text-dim)">
+        <div style="font-size:15px;font-weight:700;color:var(--text-dim);margin-bottom:6px">V2.1 (2026-07-15)</div>
+        <div style="font-size:13px;color:var(--text);line-height:1.8">三关生词本、百词斩游戏</div>
+      </div>
+      <div style="padding:14px;background:var(--bg-elev);border-radius:10px;border-left:3px solid var(--text-dim)">
+        <div style="font-size:15px;font-weight:700;color:var(--text-dim);margin-bottom:6px">V2.0 (2026-07-14)</div>
+        <div style="font-size:13px;color:var(--text);line-height:1.8">完全重写SPA、日历学习、翻译、词汇录入、话题系统</div>
+      </div>
+    </div>
+  </div>`;
+}
+</script>
+</body>
+</html>
