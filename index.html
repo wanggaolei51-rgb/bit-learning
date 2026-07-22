@@ -158,7 +158,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
 .mind-l2{margin-bottom:8px;padding:10px 12px;background:rgba(0,212,170,.08);border-radius:8px;border:1px solid rgba(0,212,170,.15)}
 .mind-l2-header{font-size:13px;font-weight:600;color:var(--text);margin-bottom:6px;display:flex;align-items:center;gap:8px}
 .mind-l2-header .ipa{color:var(--text-dim);font-size:11px}
-.mind-l2-body{font-size:12px;color:var(--text-dim);line-height:1.6}
+.mind-l2-body{font-size:12px;color:var(--text-dim);line-height:1.6;display:none}
+.mind-l2-body.open{display:block;animation:slideDown .3s ease}
 .mind-l3-wrap{padding:6px 0 6px 14px;display:none}
 .mind-l3-wrap.open{display:block;animation:slideDown .3s ease}
 .mind-l3{padding:6px 10px;background:var(--bg-elev);border-radius:6px;margin-bottom:4px;font-size:12px;color:var(--text)}
@@ -1202,35 +1203,39 @@ function renderReview(c) {
   }
   html += `</div>`;
   
-  // === 艾宾浩斯记忆曲线复习（基于学习历史）===
-  html += `<div style="margin-bottom:20px;border-top:1px solid var(--border);padding-top:16px;"><div style="font-size:14px;font-weight:700;color:var(--accent);margin-bottom:10px;">🧠 艾宾浩斯记忆曲线复习</div>`;
+  // === 艾宾浩斯记忆曲线复习（基于topicCalendar学习日）===
+  html += `<div style="margin-bottom:20px;border-top:1px solid var(--border);padding-top:16px;"><div style="font-size:14px;font-weight:700;color:var(--accent);margin-bottom:10px;">🧠 今日艾宾浩斯复习任务</div>`;
   const intervals = [1, 2, 4, 7, 15, 30, 60, 90];
   const ebbinghausItems = [];
   
-  // 从learningHistory中提取所有已学习的话题
-  Object.entries(learningHistory).forEach(([date, record]) => {
-    if (record && record.topics) {
-      record.topics.forEach(topic => {
-        const topicDate = new Date(date);
-        intervals.forEach((iv, idx) => {
-          const reviewDate = new Date(topicDate);
-          reviewDate.setDate(reviewDate.getDate() + iv);
-          const rdStr = reviewDate.toISOString().split('T')[0];
-          if (rdStr === today) {
-            const d = topicData[topic];
-            ebbinghausItems.push({ topic, date, day: iv, title: d ? d.title : topic, desc: d ? d.desc : '' });
-          }
+  // 基于topicCalendar计算复习日：每个话题日期都是学习日
+  Object.entries(topicCalendar).forEach(([date, tc]) => {
+    const learnDate = new Date(date);
+    intervals.forEach(iv => {
+      const reviewDate = new Date(learnDate);
+      reviewDate.setDate(learnDate.getDate() + iv);
+      const rdStr = reviewDate.toISOString().split('T')[0];
+      if (rdStr === today) {
+        const d = topicData[tc.topic];
+        ebbinghausItems.push({ 
+          topic: tc.topic, 
+          learnDate: date, 
+          day: iv, 
+          title: d ? d.title : tc.topic, 
+          desc: d ? d.desc : '',
+          label: tc.label
         });
-      });
-    }
+      }
+    });
   });
   
   if (ebbinghausItems.length) {
+    html += `<div style="font-size:12px;color:var(--text-dim);margin-bottom:12px;">根据艾宾浩斯记忆曲线，今天需要复习以下内容：</div>`;
     ebbinghausItems.forEach(item => {
-      html += `<div style="display:flex;justify-content:space-between;align-items:center;padding:10px;background:var(--bg-elev);border-radius:8px;margin-bottom:8px;border-left:3px solid var(--accent);"><div><div style="font-size:13px;color:var(--text);font-weight:600;">${item.title}</div><div style="font-size:11px;color:var(--text-dim);">学习于 ${item.date} · 第${item.day}天复习</div></div><button class="trans-btn btn-small" onclick="navigate('date','${item.date}')">去复习</button></div>`;
+      html += `<div class="review-date-card" onclick="renderReviewMindMap('${item.learnDate}')" style="display:flex;justify-content:space-between;align-items:center;padding:12px;background:var(--bg-elev);border-radius:10px;margin-bottom:10px;border:1px solid var(--border);border-left:3px solid var(--accent);"><div><div style="font-size:14px;color:var(--text);font-weight:600;">${item.title}</div><div style="font-size:11px;color:var(--text-dim);margin-top:3px;">📅 学习于 ${item.learnDate} · 第${item.day}天复习 · ${item.label}</div></div><span style="font-size:13px;color:var(--accent);font-weight:600;">🗺️ 思维导图 →</span></div>`;
     });
   } else {
-    html += `<div style="font-size:13px;color:var(--text-dim);padding:10px;">今日无艾宾浩斯复习任务，继续学习新内容！</div>`;
+    html += `<div style="font-size:13px;color:var(--text-dim);padding:12px;background:rgba(0,212,170,.04);border-radius:8px;">今日无艾宾浩斯复习任务，继续学习新内容！</div>`;
   }
   html += `</div>`;
   
@@ -3840,7 +3845,9 @@ const topicData = {
 
 
   const topicCalendar = {
-  "2026-07-16": {topic: "meet", day: 1, label: "词汇+语法+场景对话+演讲+复习", allDays: true},
+  "2026-07-14": {topic: "meet", day: 1, label: "第1课 · 词汇+语法"},
+  "2026-07-15": {topic: "meet", day: 2, label: "第2课 · 场景对话"},
+  "2026-07-16": {topic: "meet", day: 3, label: "第3课-冶炼 · 演讲+复习", allDays: true},
   "2026-07-17": {topic: "introduce", day: 1, label: "词汇+语法+语型"},
   "2026-07-18": {topic: "introduce", day: 2, label: "复习+语型+对话"},
   "2026-07-19": {topic: "introduce", day: 3, label: "复习+演讲"},
