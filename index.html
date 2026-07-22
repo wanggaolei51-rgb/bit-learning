@@ -3897,11 +3897,11 @@ function getTopicForDate(ds) {
 function renderTopicDetail(c, ds, topicInfo) {
   const topic = topicData[topicInfo.topic];
   const day = topicInfo.day;
-  let html = `<div class="date-detail"><button class="back-btn" onclick="goBack()">← 返回</button>`;
+  let html = ``;
   
   // 2026-07-16 特殊处理：显示全部三天内容
   if (ds === "2026-07-16" || topicInfo.allDays) {
-    html += `<div class="card"><div class="card-header" style="flex-wrap:wrap;gap:8px;"><h2>${topic.icon} ${topic.title}</h2><div style="display:flex;gap:8px;align-items:center;"><span class="badge">综合学习日 · 全部内容</span><button onclick="navigate('topicquiz','${topicKey}')" class="trans-btn btn-small" style="font-size:12px;">🎯 话题测试</button></div></div>`;
+    html += `<div class="card"><div class="card-header" style="flex-wrap:wrap;gap:8px;"><h2>${topic.icon} ${topic.title}</h2><div style="display:flex;gap:8px;align-items:center;"><span class="badge">综合学习日 · 全部内容</span><button onclick="navigate('topicquiz','${topicInfo.topic}')" class="trans-btn btn-small" style="font-size:12px;">🎯 话题测试</button></div></div>`;
     html += `<div style="background:rgba(0,212,170,.08);border-radius:10px;padding:16px;margin-bottom:16px;border-left:3px solid var(--primary)"><div style="font-size:14px;color:var(--primary);font-weight:700;margin-bottom:8px">📋 今日学习计划</div><div style="font-size:13px;color:var(--text)">今天需要完成全部三天的学习内容：词汇语法 → 场景对话 → 演讲复习。建议分阶段学习，每完成一阶段休息10分钟。</div></div>`;
     
     // === Day 1: Grammar + Vocabulary ===
@@ -4005,11 +4005,11 @@ function renderTopicDetail(c, ds, topicInfo) {
     html += `<div style="margin-top:16px;padding:12px;background:rgba(34,197,94,.08);border-radius:8px;border:1px solid rgba(34,197,94,.3)"><div style="font-size:13px;color:var(--success)">✅ 完成三天学习！进入复习队列。</div><div style="font-size:12px;color:var(--text-dim);margin-top:6px">建议：使用「能力测试」检测掌握程度，使用「艾宾浩斯复习」巩固记忆。</div></div>`;
   }
   
-  html += `</div></div>`;
+  html += `</div>`;
   c.innerHTML = html;
 }
 
-// 修改renderCalHTML以标记话题日期
+// 修改renderCalHTML以支持话题日期
 const originalRenderCalHTML = renderCalHTML;
 renderCalHTML = function() {
   const y = currentDate.getFullYear(), m = currentDate.getMonth();
