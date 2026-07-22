@@ -4701,15 +4701,6 @@ function renderMindMap(c){
   c.innerHTML = html;
 }
 
-function toggleMindLevel(el){
-  const level2 = el.nextElementSibling;
-  if(!level2) return;
-  const isHidden = level2.style.display === 'none';
-  level2.style.display = isHidden ? 'block' : 'none';
-  const toggle = el.querySelector('.mind-toggle');
-  if(toggle) toggle.style.transform = isHidden ? 'rotate(180deg)' : 'rotate(0deg)';
-}
-
 // 艾宾浩斯曲线复习点点击事件（事件委托）
 document.addEventListener('click', function(e){
   const point = e.target.closest('.ebbing-point');
