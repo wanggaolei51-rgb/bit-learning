@@ -144,36 +144,70 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
 .clickable-word:hover{background:rgba(0,212,170,.2);border-radius:3px;border-bottom-color:var(--primary)}
 #wordPopupOverlay{animation:fadeIn .2s ease}@keyframes fadeIn{from{opacity:0}to{opacity:1}}
 .mind-level2{display:none;animation:slideDown .3s ease}.mind-level3{display:none;animation:slideDown .3s ease}@keyframes slideDown{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:translateY(0)}}.ebbing-point{transition:all .2s}.ebbing-point:hover{r:7;filter:drop-shadow(0 0 4px var(--primary))}
-/* ===== 思维导图复习样式 V4.4 ===== */
+/* ===== 树型三级思维导图样式 V4.4-tree ===== */
 .mind-map-container{padding:16px;background:var(--bg-elev);border-radius:12px;border:1px solid var(--border)}
-.mind-center{text-align:center;padding:16px;background:linear-gradient(135deg,var(--primary-dim),var(--primary));border-radius:14px;margin-bottom:20px;color:var(--bg);font-weight:700;font-size:15px}
-.mind-center small{display:block;font-size:12px;opacity:.85;margin-top:4px;font-weight:400}
-.mind-branch{margin-bottom:12px;border-left:3px solid var(--primary);padding-left:12px}
-.mind-l1{cursor:pointer;padding:10px 14px;background:var(--bg-card);border-radius:10px;font-size:14px;font-weight:700;color:var(--primary);display:flex;justify-content:space-between;align-items:center;transition:all .2s}
-.mind-l1:hover{background:var(--border)}
+
+/* 中心树根 */
+.mind-root{text-align:center;padding:20px 16px;background:linear-gradient(135deg,var(--primary-dim),var(--primary));border-radius:50%;width:140px;height:140px;margin:0 auto 30px;display:flex;flex-direction:column;justify-content:center;align-items:center;color:var(--bg);font-weight:700;font-size:15px;box-shadow:0 8px 30px rgba(0,212,170,.3);position:relative;z-index:2}
+.mind-root small{display:block;font-size:11px;opacity:.9;margin-top:4px;font-weight:400}
+
+/* 树干连接线 */
+.mind-trunk{width:2px;height:30px;background:linear-gradient(to bottom,var(--primary),rgba(0,212,170,.3));margin:0 auto}
+
+/* 一级分支容器：横向排列 */
+.mind-branches{display:flex;flex-wrap:wrap;justify-content:center;gap:16px;position:relative;padding-top:20px}
+.mind-branches::before{content:'';position:absolute;top:0;left:10%;right:10%;height:2px;background:linear-gradient(to right,transparent,var(--primary),transparent)}
+
+/* 一级分支节点 */
+.mind-branch{flex:1;min-width:280px;max-width:400px;position:relative;margin-top:20px}
+.mind-branch::before{content:'';position:absolute;top:-20px;left:50%;width:2px;height:20px;background:var(--primary)}
+
+/* 一级标题 */
+.mind-l1{cursor:pointer;padding:12px 16px;background:var(--bg-card);border-radius:12px;font-size:14px;font-weight:700;color:var(--primary);display:flex;justify-content:space-between;align-items:center;transition:all .2s;border:2px solid var(--primary);box-shadow:0 2px 8px rgba(0,212,170,.1)}
+.mind-l1:hover{background:var(--border);transform:translateY(-2px)}
 .mind-l1::after{content:"▶";font-size:10px;color:var(--text-dim);transition:transform .2s}
 .mind-l1.open::after{transform:rotate(90deg)}
-.mind-l2-wrap{padding:8px 0 8px 16px;display:none}
+.mind-l1.open{background:rgba(0,212,170,.1)}
+
+/* 二级容器：树状展开 */
+.mind-l2-wrap{padding:12px 0 0 0;display:none}
 .mind-l2-wrap.open{display:block;animation:slideDown .3s ease}
-.mind-l2{margin-bottom:8px;padding:10px 12px;background:rgba(0,212,170,.08);border-radius:8px;border:1px solid rgba(0,212,170,.15)}
-.mind-l2-header{font-size:13px;font-weight:600;color:var(--text);margin-bottom:6px;display:flex;align-items:center;gap:8px}
+
+/* 二级节点：带连接线 */
+.mind-l2{position:relative;padding:10px 12px 10px 24px;background:rgba(0,212,170,.06);border-radius:8px;border-left:2px solid var(--primary);margin-bottom:8px}
+.mind-l2::before{content:'';position:absolute;left:8px;top:50%;width:12px;height:2px;background:var(--primary)}
+.mind-l2::after{content:'';position:absolute;left:8px;top:0;bottom:0;width:2px;background:rgba(0,212,170,.2)}
+.mind-l2:last-child::after{bottom:50%}
+
+.mind-l2-header{cursor:pointer;font-size:13px;font-weight:600;color:var(--text);display:flex;align-items:center;gap:8px}
 .mind-l2-header .ipa{color:var(--text-dim);font-size:11px}
-.mind-l2-body{font-size:12px;color:var(--text-dim);line-height:1.6;display:none}
+.mind-l2-header::after{content:"▶";font-size:9px;color:var(--text-dim);margin-left:auto;transition:transform .2s}
+.mind-l2-header.open::after{transform:rotate(90deg)}
+
+.mind-l2-body{font-size:12px;color:var(--text-dim);line-height:1.6;padding-top:8px;display:none}
 .mind-l2-body.open{display:block;animation:slideDown .3s ease}
-.mind-l3-wrap{padding:6px 0 6px 14px;display:none}
+
+/* 三级叶子节点 */
+.mind-l3-wrap{padding:6px 0 6px 16px;display:none}
 .mind-l3-wrap.open{display:block;animation:slideDown .3s ease}
-.mind-l3{padding:6px 10px;background:var(--bg-elev);border-radius:6px;margin-bottom:4px;font-size:12px;color:var(--text)}
-.mind-l3-label{font-size:10px;color:var(--primary);font-weight:600;margin-right:6px}
-.mind-stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:8px;margin-bottom:12px}
-.mind-stat-item{text-align:center;padding:10px;background:var(--bg-card);border-radius:8px}
-.mind-stat-num{font-size:18px;font-weight:700;color:var(--primary)}
+.mind-l3{padding:8px 12px;background:var(--bg-elev);border-radius:6px;margin-bottom:4px;font-size:12px;color:var(--text);border-left:2px solid var(--accent)}
+.mind-l3-label{font-size:10px;color:var(--primary);font-weight:600;margin-right:6px;padding:2px 6px;background:rgba(0,212,170,.1);border-radius:4px}
+
+/* 统计网格 */
+.mind-stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
+.mind-stat-item{text-align:center;padding:12px;background:var(--bg-card);border-radius:10px;border:1px solid var(--border)}
+.mind-stat-num{font-size:20px;font-weight:700;color:var(--primary)}
 .mind-stat-lab{font-size:11px;color:var(--text-dim)}
-.mind-speech-box{padding:12px;background:var(--bg-card);border-radius:10px;margin-bottom:10px}
-.mind-speech-title{font-size:13px;font-weight:700;color:var(--accent);margin-bottom:8px}
-.mind-speech-text{font-size:12px;color:var(--text);line-height:1.8;margin-bottom:6px}
+
+/* 演讲短文 */
+.mind-speech-box{padding:14px;background:var(--bg-card);border-radius:10px;margin-bottom:10px;border:1px solid var(--border)}
+.mind-speech-title{font-size:14px;font-weight:700;color:var(--accent);margin-bottom:8px}
+.mind-speech-text{font-size:13px;color:var(--text);line-height:1.8;margin-bottom:6px}
 .mind-speech-trans{font-size:12px;color:var(--text-dim);line-height:1.6;border-left:2px solid var(--primary);padding-left:10px}
-.mind-dialogue-row{padding:8px 10px;background:var(--bg-card);border-radius:8px;margin-bottom:6px}
-.mind-dialogue-sp{font-size:11px;color:var(--primary);font-weight:600;margin-bottom:2px}
+
+/* 场景对话 */
+.mind-dialogue-row{padding:10px 12px;background:var(--bg-card);border-radius:8px;margin-bottom:6px;border-left:2px solid var(--info)}
+.mind-dialogue-sp{font-size:11px;color:var(--info);font-weight:600;margin-bottom:2px}
 .mind-dialogue-text{font-size:12px;color:var(--text)}
 .mind-dialogue-trans{font-size:11px;color:var(--text-dim);margin-top:2px}
 .review-date-card{cursor:pointer;transition:all .2s}
@@ -5568,6 +5602,10 @@ function renderReviewMindMap(dateStr){
     hist.vocabNew.forEach(w => { if(!allWords.includes(w)) allWords.push(w); });
     hist.vocabReview.forEach(w => { if(!allWords.includes(w)) allWords.push(w); });
   }
+  // 如果learningHistory没有单词，尝试从topicData获取该话题的vocab
+  if(allWords.length === 0 && topic && topic.vocab){
+    topic.vocab.forEach(v => { if(!allWords.includes(v.word)) allWords.push(v.word); });
+  }
   
   // 统计词缀词
   const affixWords = allWords.filter(w => w.toLowerCase().startsWith('ber') || w.toLowerCase().startsWith('me') || w.toLowerCase().startsWith('pe') || w.toLowerCase().startsWith('ter') || w.toLowerCase().startsWith('ke') || w.toLowerCase().startsWith('se'));
@@ -5590,8 +5628,12 @@ function renderReviewMindMap(dateStr){
   let html = `<div class="date-detail"><button class="back-btn" onclick="goBack()">← 返回</button>`;
   html += `<div class="mind-map-container">`;
   
-  // 中心节点
-  html += `<div class="mind-center">📅 ${dateStr}<small>${topic ? topic.title + ' · Day ' + day : '学习内容'}</small></div>`;
+  // === 树根 ===
+  html += `<div class="mind-root">📅 ${dateStr}<small>${topic ? topic.title + ' · Day ' + day : '学习内容'}</small></div>`;
+  html += `<div class="mind-trunk"></div>`;
+  
+  // === 一级分支容器 ===
+  html += `<div class="mind-branches">`;
   
   // === 一级：词汇统计 ===
   html += `<div class="mind-branch">`;
@@ -5666,7 +5708,7 @@ function renderReviewMindMap(dateStr){
     
     topic.scenes.forEach((scene, sIdx) => {
       html += `<div class="mind-l2">`;
-      html += `<div class="mind-l2-header" onclick="toggleMindLevel(this)">${scene.icon||'💬'} ${scene.title||'场景'}</div>`;
+      html += `<div class="mind-l2-header" onclick="toggleMindLevel(this)">${scene.icon||'💬'} ${scene.title||'场景'} <span style="margin-left:auto;font-size:11px;color:var(--text-dim);">${scene.dialogue ? scene.dialogue.length + '句' : ''}</span></div>`;
       html += `<div class="mind-l2-body">`;
       
       if(scene.dialogue && scene.dialogue.length > 0){
@@ -5745,7 +5787,8 @@ function renderReviewMindMap(dateStr){
     html += `</div></div>`;
   }
   
-  html += `</div></div>`;
+  html += `</div>`; // 关闭 mind-branches
+  html += `</div></div>`; // 关闭 mind-map-container 和 date-detail
   c.innerHTML = html;
   updateTopbarButtons();
 }
