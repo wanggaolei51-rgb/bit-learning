@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<title>LEO-BIR V4.4</title>
+<title>LEO-BIR V4.3</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -143,129 +143,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
 .clickable-word{cursor:pointer;border-bottom:1px dotted rgba(0,212,170,.4);transition:all .2s;padding:0 1px}
 .clickable-word:hover{background:rgba(0,212,170,.2);border-radius:3px;border-bottom-color:var(--primary)}
 #wordPopupOverlay{animation:fadeIn .2s ease}@keyframes fadeIn{from{opacity:0}to{opacity:1}}
-.mind-level2{display:none;animation:slideDown .3s ease}.mind-level3{display:none;animation:slideDown .3s ease}@keyframes slideDown{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:translateY(0)}}.ebbing-point{transition:all .2s}.ebbing-point:hover{r:7;filter:drop-shadow(0 0 4px var(--primary))}
-/* ===== 树型三级思维导图样式 V4.4-tree ===== */
-.mind-map-container{padding:16px;background:var(--bg-elev);border-radius:12px;border:1px solid var(--border)}
-
-/* 中心树根 */
-.mind-root{text-align:center;padding:20px 16px;background:linear-gradient(135deg,var(--primary-dim),var(--primary));border-radius:50%;width:140px;height:140px;margin:0 auto 30px;display:flex;flex-direction:column;justify-content:center;align-items:center;color:var(--bg);font-weight:700;font-size:15px;box-shadow:0 8px 30px rgba(0,212,170,.3);position:relative;z-index:2}
-.mind-root small{display:block;font-size:11px;opacity:.9;margin-top:4px;font-weight:400}
-
-/* 树干连接线 */
-.mind-trunk{width:2px;height:30px;background:linear-gradient(to bottom,var(--primary),rgba(0,212,170,.3));margin:0 auto}
-
-/* 一级分支容器：横向排列 */
-.mind-branches{display:flex;flex-wrap:wrap;justify-content:center;gap:16px;position:relative;padding-top:20px}
-.mind-branches::before{content:'';position:absolute;top:0;left:10%;right:10%;height:2px;background:linear-gradient(to right,transparent,var(--primary),transparent)}
-
-/* 一级分支节点 */
-.mind-branch{flex:1;min-width:280px;max-width:400px;position:relative;margin-top:20px}
-.mind-branch::before{content:'';position:absolute;top:-20px;left:50%;width:2px;height:20px;background:var(--primary)}
-
-/* 一级标题 */
-.mind-l1{cursor:pointer;padding:12px 16px;background:var(--bg-card);border-radius:12px;font-size:14px;font-weight:700;color:var(--primary);display:flex;justify-content:space-between;align-items:center;transition:all .2s;border:2px solid var(--primary);box-shadow:0 2px 8px rgba(0,212,170,.1)}
-.mind-l1:hover{background:var(--border);transform:translateY(-2px)}
-.mind-l1::after{content:"▶";font-size:10px;color:var(--text-dim);transition:transform .2s}
-.mind-l1.open::after{transform:rotate(90deg)}
-.mind-l1.open{background:rgba(0,212,170,.1)}
-
-/* 二级容器：树状展开 */
-.mind-l2-wrap{padding:12px 0 0 0;display:none}
-.mind-l2-wrap.open{display:block;animation:slideDown .3s ease}
-
-/* 二级节点：带连接线 */
-.mind-l2{position:relative;padding:10px 12px 10px 24px;background:rgba(0,212,170,.06);border-radius:8px;border-left:2px solid var(--primary);margin-bottom:8px}
-.mind-l2::before{content:'';position:absolute;left:8px;top:50%;width:12px;height:2px;background:var(--primary)}
-.mind-l2::after{content:'';position:absolute;left:8px;top:0;bottom:0;width:2px;background:rgba(0,212,170,.2)}
-.mind-l2:last-child::after{bottom:50%}
-
-.mind-l2-header{cursor:pointer;font-size:13px;font-weight:600;color:var(--text);display:flex;align-items:center;gap:8px}
-.mind-l2-header .ipa{color:var(--text-dim);font-size:11px}
-.mind-l2-header::after{content:"▶";font-size:9px;color:var(--text-dim);margin-left:auto;transition:transform .2s}
-.mind-l2-header.open::after{transform:rotate(90deg)}
-
-.mind-l2-body{font-size:12px;color:var(--text-dim);line-height:1.6;padding-top:8px;display:none}
-.mind-l2-body.open{display:block;animation:slideDown .3s ease}
-
-/* 三级叶子节点 */
-.mind-l3-wrap{padding:6px 0 6px 16px;display:none}
-.mind-l3-wrap.open{display:block;animation:slideDown .3s ease}
-.mind-l3{padding:8px 12px;background:var(--bg-elev);border-radius:6px;margin-bottom:4px;font-size:12px;color:var(--text);border-left:2px solid var(--accent)}
-.mind-l3-label{font-size:10px;color:var(--primary);font-weight:600;margin-right:6px;padding:2px 6px;background:rgba(0,212,170,.1);border-radius:4px}
-
-/* 统计网格 */
-.mind-stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px}
-.mind-stat-item{text-align:center;padding:12px;background:var(--bg-card);border-radius:10px;border:1px solid var(--border)}
-.mind-stat-num{font-size:20px;font-weight:700;color:var(--primary)}
-.mind-stat-lab{font-size:11px;color:var(--text-dim)}
-
-/* 演讲短文 */
-.mind-speech-box{padding:14px;background:var(--bg-card);border-radius:10px;margin-bottom:10px;border:1px solid var(--border)}
-.mind-speech-title{font-size:14px;font-weight:700;color:var(--accent);margin-bottom:8px}
-.mind-speech-text{font-size:13px;color:var(--text);line-height:1.8;margin-bottom:6px}
-.mind-speech-trans{font-size:12px;color:var(--text-dim);line-height:1.6;border-left:2px solid var(--primary);padding-left:10px}
-
-/* 场景对话 */
-.mind-dialogue-row{padding:10px 12px;background:var(--bg-card);border-radius:8px;margin-bottom:6px;border-left:2px solid var(--info)}
-.mind-dialogue-sp{font-size:11px;color:var(--info);font-weight:600;margin-bottom:2px}
-.mind-dialogue-text{font-size:12px;color:var(--text)}
-.mind-dialogue-trans{font-size:11px;color:var(--text-dim);margin-top:2px}
-.review-date-card{cursor:pointer;transition:all .2s}
-.review-date-card:hover{border-color:var(--primary);transform:translateX(4px)}
-
-/* ===== 镍产业地图弹窗样式 V4.5 ===== */
-.nickel-detail-popup{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%) scale(0.95);width:90%;max-width:680px;max-height:85vh;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);z-index:10001;display:none;flex-direction:column;opacity:0;transition:all .25s ease}
-.nickel-detail-popup.active{display:flex;opacity:1;transform:translate(-50%,-50%) scale(1)}
-.popup-header{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid var(--border);background:var(--bg-elev);border-radius:var(--radius) var(--radius) 0 0;cursor:move}
-.popup-header h4{font-size:15px;color:var(--primary);margin:0}
-.popup-close{width:32px;height:32px;border-radius:8px;border:1px solid var(--border);background:var(--bg-card);color:var(--text);font-size:18px;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}
-.popup-close:hover{background:var(--danger);color:#fff;border-color:var(--danger)}
-.popup-body{padding:16px 18px;overflow-y:auto;max-height:calc(85vh - 60px);scrollbar-width:thin}
-.popup-body::-webkit-scrollbar{width:6px}
-.popup-body::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
-
-/* 表格样式 */
-.popup-table{width:100%;border-collapse:collapse;font-size:13px;margin-bottom:16px}
-.popup-table th{padding:8px 10px;background:var(--bg-elev);color:var(--primary);font-weight:600;text-align:left;border-bottom:2px solid var(--primary-dim);white-space:nowrap}
-.popup-table td{padding:8px 10px;border-bottom:1px solid var(--border);color:var(--text);vertical-align:top}
-.popup-table tr:hover td{background:rgba(0,212,170,.04)}
-.popup-table td:nth-child(1){font-weight:600;color:var(--primary)}
-.popup-table td:nth-child(5),.popup-table td:nth-child(6){white-space:nowrap;text-align:right}
-.popup-table .cap-num{color:var(--accent);font-weight:700}
-
-/* 图表区域 */
-.popup-charts{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0}
-.chart-box{background:var(--bg-elev);border:1px solid var(--border);border-radius:10px;padding:14px}
-.chart-box h5{font-size:12px;color:var(--primary);margin:0 0 10px;font-weight:600}
-.chart-bars{display:flex;align-items:flex-end;gap:6px;height:120px;padding:4px 0}
-.chart-bar{flex:1;min-width:16px;border-radius:4px 4px 0 0;position:relative;transition:all .2s;cursor:pointer}
-.chart-bar:hover{filter:brightness(1.2);transform:scaleY(1.05)}
-.chart-bar-label{position:absolute;bottom:-16px;left:50%;transform:translateX(-50%);font-size:9px;color:var(--text-dim);white-space:nowrap}
-.chart-bar-val{position:absolute;top:-18px;left:50%;transform:translateX(-50%);font-size:9px;color:var(--text);font-weight:600}
-
-/* 饼图 */
-.pie-chart{width:100px;height:100px;border-radius:50%;margin:0 auto;position:relative}
-.pie-legend{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:10px;font-size:11px}
-.pie-legend-item{display:flex;align-items:center;gap:4px}
-.pie-dot{width:10px;height:10px;border-radius:3px}
-
-/* 状态badge */
-.status-badge{display:inline-block;padding:2px 10px;border-radius:12px;font-size:11px;font-weight:500}
-.status-operating{background:rgba(34,197,94,.15);color:var(--success)}
-.status-construction{background:rgba(245,158,11,.15);color:var(--accent)}
-.status-planning{background:rgba(59,130,246,.15);color:var(--info)}
-.status-suspended{background:rgba(239,68,68,.15);color:var(--danger)}
-.status-other{background:rgba(139,92,246,.15);color:#a78bfa}
-
-/* 旧info-row兼容 */
-.info-row{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(42,53,80,.5);font-size:13px}
-.info-label{color:var(--text-dim);flex-shrink:0;margin-right:12px}
-.info-value{color:var(--text);text-align:right;word-break:break-word}
-.project-title{font-size:14px;font-weight:700;color:var(--primary);margin:14px 0 6px;padding-bottom:4px;border-bottom:1px solid var(--border)}
-.project-divider{height:1px;background:var(--border);margin:10px 0}
-</style>
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+.mind-level2{display:none;animation:slideDown .3s ease}.mind-level3{display:none;animation:slideDown .3s ease}@keyframes slideDown{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:translateY(0)}}.ebbing-point{transition:all .2s}.ebbing-point:hover{r:7;filter:drop-shadow(0 0 4px var(--primary))}</style>
 </head>
 <body>
 <div class="app">
@@ -273,7 +151,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="sidebar-header">
     <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <h1>LEO-BIR</h1>
-    <div class="ver">LEO-BIR V4.4 · 词根射击重构 · 字母发音表 · 动态词库</div>
+    <div class="ver">LEO-BIR V4.3 · 词根射击重构 · 字母发音表 · 动态词库</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -288,7 +166,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
         <div class="num" id="s-total">0</div><div class="lab">累计</div>
       </div>
       <div class="stat-card" onclick="showCultivationInfo()" style="cursor:pointer;" title="点击查看修仙等级">
-        <div class="num" id="s-streak">1</div><div class="lab">累计天数</div>
+        <div class="num" id="s-streak">1</div><div class="lab">连续天数</div>
       </div>
     </div>
   </div>
@@ -808,13 +686,12 @@ function initHistory(){
 function saveHistory(){localStorage.setItem("bir_h3",JSON.stringify(learningHistory))}
 function saveWB(){localStorage.setItem("bir_wb3",JSON.stringify(wordBank))}
 
-function parseRoute(){const h=location.hash.replace("#","")||"home";if(h.startsWith("date/"))return{route:"date",param:h.replace("date/","")};if(h.startsWith("reviewmindmap/"))return{route:"reviewmindmap",param:h.replace("reviewmindmap/","")};return{route:h,param:null}}
+function parseRoute(){const h=location.hash.replace("#","")||"home";if(h.startsWith("date/"))return{route:"date",param:h.replace("date/","")};return{route:h,param:null}}
 function navigate(r,p){
   const prev=currentRoute||'home';
-  const currentPath=r+(p?('/'+p):'');
   if(p)location.hash=r+"/"+p;else location.hash=r;
-  if(pageHistory.length===0||pageHistory[pageHistory.length-1]!==currentPath){
-    pageHistory.push(currentPath);
+  if(pageHistory.length===0||pageHistory[pageHistory.length-1]!==r){
+    pageHistory.push(r+(p?('/'+p):''));
     if(pageHistory.length>20)pageHistory.shift();
   }
   lastPage=prev;
@@ -861,7 +738,7 @@ function render(){
     case "game":t.innerText="🎮 百词斩";renderGame(c);break;
     case "phonetics":t.innerText="🔤 字母发音表";renderPhonetics(c);break;
     case "prefixgame":t.innerText="🎯 词根射击";renderPrefixGame(c);break;
-    case "reviewmindmap":t.innerText="🗺️ 思维导图复习";renderReviewMindMap(r.param);break;
+    case "mindmap":t.innerText="🗺️ 思维导图";renderMindMap(c);break;
     default:t.innerText="🏠 主页";renderHome(c);
   }
   window.scrollTo(0,0);
@@ -896,30 +773,11 @@ function changeMonth(delta){currentDate.setMonth(currentDate.getMonth()+delta);r
 
 function renderDateDetail(c,ds){
   const data=learningHistory[ds];
-  const tc=getTopicForDate(ds);
-  // 如果有话题日历, 默认显示话题内容(课程), 可切换学习记录
-  if(tc){
-    // nickel话题由renderNickelContent自己添加返回键,避免重复
-    const backBtn = (tc.topic === 'nickel') ? '' : `<button class="back-btn" onclick="goBack()">← 返回</button>`;
-    let html = `<div class="date-detail">${backBtn}`;
-    if(data && (data.vocabNew.length||data.vocabReview.length||data.translations)){
-      html += `<div style="display:flex;gap:8px;margin-bottom:12px;"><button onclick="showDateStudyRecord('${ds}')" class="trans-btn btn-small" style="font-size:12px;">📋 查看学习记录</button></div>`;
-    }
-    html += `<div id="dateTopicContent_${ds.replace(/-/g,'')}"></div></div>`;
-    c.innerHTML = html;
-    renderTopicDetail(document.getElementById('dateTopicContent_' + ds.replace(/-/g,'')), ds, tc);
-    return;
-  }
   if(!data){
+    const tc=getTopicForDate(ds);
+    if(tc){renderTopicDetail(c,ds,tc);return;}
     c.innerHTML=`<div class="date-detail"><button class="back-btn" onclick="goBack()">← 返回</button><div class="card" style="text-align:center;padding:40px;color:var(--text-dim)">📅 ${ds}<br>暂无记录</div></div>`;return;
   }
-  showDateStudyRecord(ds, c);
-}
-
-function showDateStudyRecord(ds, container){
-  const c = container || document.getElementById('appContent');
-  const data=learningHistory[ds];
-  if(!data){c.innerHTML=`<div class="date-detail"><button class="back-btn" onclick="goBack()">← 返回</button><div class="card" style="text-align:center;padding:40px;color:var(--text-dim)">📅 ${ds}<br>暂无记录</div></div>`;return;}
   let vh="";
   if(data.vocabNew.length){vh+=`<h3 style="color:var(--primary);margin:16px 0 10px;font-size:15px">🆕 新学(${data.vocabNew.length})</h3><div class="word-grid">`;data.vocabNew.forEach(w=>{const v=vocabDB[w.toLowerCase()]||vocabDB[w.charAt(0).toUpperCase()+w.slice(1)]||vocabDB[w];if(v)vh+=`<div class="word-card" onclick="showTip('${w.replace(/'/g,"\'")}')"><div class="w-word">${w} <span class="w-ipa">${v.ipa||""}</span></div><div class="w-mean">🇨🇳 ${v.cn||""}</div></div>`;else vh+=`<div class="word-card"><div class="w-word">${w}</div></div>`;});vh+=`</div>`;}
   if(data.vocabReview.length){vh+=`<h3 style="color:var(--accent);margin:16px 0 10px;font-size:15px">🔄 复习(${data.vocabReview.length})</h3><div class="word-grid">`;data.vocabReview.forEach(w=>{const v=vocabDB[w.toLowerCase()]||vocabDB[w];if(v)vh+=`<div class="word-card" onclick="showTip('${w.replace(/'/g,"\'")}')"><div class="w-word">${w}</div><div class="w-mean">🇨🇳 ${v.cn||""}</div></div>`;else vh+=`<div class="word-card"><div class="w-word">${w}</div></div>`;});vh+=`</div>`;}
@@ -1292,39 +1150,35 @@ function renderReview(c) {
   }
   html += `</div>`;
   
-  // === 艾宾浩斯记忆曲线复习（基于topicCalendar学习日）===
-  html += `<div style="margin-bottom:20px;border-top:1px solid var(--border);padding-top:16px;"><div style="font-size:14px;font-weight:700;color:var(--accent);margin-bottom:10px;">🧠 今日艾宾浩斯复习任务</div>`;
+  // === 艾宾浩斯记忆曲线复习（基于学习历史）===
+  html += `<div style="margin-bottom:20px;border-top:1px solid var(--border);padding-top:16px;"><div style="font-size:14px;font-weight:700;color:var(--accent);margin-bottom:10px;">🧠 艾宾浩斯记忆曲线复习</div>`;
   const intervals = [1, 2, 4, 7, 15, 30, 60, 90];
   const ebbinghausItems = [];
   
-  // 基于topicCalendar计算复习日：每个话题日期都是学习日
-  Object.entries(topicCalendar).forEach(([date, tc]) => {
-    const learnDate = new Date(date);
-    intervals.forEach(iv => {
-      const reviewDate = new Date(learnDate);
-      reviewDate.setDate(learnDate.getDate() + iv);
-      const rdStr = reviewDate.toISOString().split('T')[0];
-      if (rdStr === today) {
-        const d = topicData[tc.topic];
-        ebbinghausItems.push({ 
-          topic: tc.topic, 
-          learnDate: date, 
-          day: iv, 
-          title: d ? d.title : tc.topic, 
-          desc: d ? d.desc : '',
-          label: tc.label
+  // 从learningHistory中提取所有已学习的话题
+  Object.entries(learningHistory).forEach(([date, record]) => {
+    if (record && record.topics) {
+      record.topics.forEach(topic => {
+        const topicDate = new Date(date);
+        intervals.forEach((iv, idx) => {
+          const reviewDate = new Date(topicDate);
+          reviewDate.setDate(reviewDate.getDate() + iv);
+          const rdStr = reviewDate.toISOString().split('T')[0];
+          if (rdStr === today) {
+            const d = topicData[topic];
+            ebbinghausItems.push({ topic, date, day: iv, title: d ? d.title : topic, desc: d ? d.desc : '' });
+          }
         });
-      }
-    });
+      });
+    }
   });
   
   if (ebbinghausItems.length) {
-    html += `<div style="font-size:12px;color:var(--text-dim);margin-bottom:12px;">根据艾宾浩斯记忆曲线，今天需要复习以下内容：</div>`;
     ebbinghausItems.forEach(item => {
-      html += `<div class="review-date-card" onclick="navigate('reviewmindmap','${item.learnDate}')" style="display:flex;justify-content:space-between;align-items:center;padding:12px;background:var(--bg-elev);border-radius:10px;margin-bottom:10px;border:1px solid var(--border);border-left:3px solid var(--accent);"><div><div style="font-size:14px;color:var(--text);font-weight:600;">${item.title}</div><div style="font-size:11px;color:var(--text-dim);margin-top:3px;">📅 学习于 ${item.learnDate} · 第${item.day}天复习 · ${item.label}</div></div><span style="font-size:13px;color:var(--accent);font-weight:600;">🗺️ 思维导图 →</span></div>`;
+      html += `<div style="display:flex;justify-content:space-between;align-items:center;padding:10px;background:var(--bg-elev);border-radius:8px;margin-bottom:8px;border-left:3px solid var(--accent);"><div><div style="font-size:13px;color:var(--text);font-weight:600;">${item.title}</div><div style="font-size:11px;color:var(--text-dim);">学习于 ${item.date} · 第${item.day}天复习</div></div><button class="trans-btn btn-small" onclick="navigate('date','${item.date}')">去复习</button></div>`;
     });
   } else {
-    html += `<div style="font-size:13px;color:var(--text-dim);padding:12px;background:rgba(0,212,170,.04);border-radius:8px;">今日无艾宾浩斯复习任务，继续学习新内容！</div>`;
+    html += `<div style="font-size:13px;color:var(--text-dim);padding:10px;">今日无艾宾浩斯复习任务，继续学习新内容！</div>`;
   }
   html += `</div>`;
   
@@ -1549,10 +1403,10 @@ html += `<div style="margin-bottom:20px;border-top:1px solid var(--border);paddi
     </div>
   </div>`;
 
-  // === 复习清单 V4.4：按日期分组，点击进入思维导图 ===
+  // === 复习清单（列表形式，纵向排列所有复习内容） ===
   html += `<div style="margin-bottom:20px;border-top:1px solid var(--border);padding-top:16px;">
     <div style="font-size:14px;font-weight:700;color:var(--primary);margin-bottom:10px;">📋 复习清单</div>
-    <div style="font-size:12px;color:var(--text-dim);margin-bottom:10px;">按日期分组，点击日期进入思维导图复习</div>`;
+    <div style="font-size:12px;color:var(--text-dim);margin-bottom:10px;">按日期分组，纵向排列所有复习内容，清晰不重叠</div>`;
   
   // 按日期排序
   const sortedReviewDates = Object.keys(reviewListByDate).sort();
@@ -1564,21 +1418,28 @@ html += `<div style="margin-bottom:20px;border-top:1px solid var(--border);paddi
       const isToday = dateStr === today;
       const isPast = dateStr < today;
       const dateColor = isToday ? 'var(--danger)' : (isPast ? 'var(--accent)' : 'var(--text-dim)');
-      const tc = topicCalendar[dateStr];
-      const topicLabel = tc ? (topicData[tc.topic]?.title || tc.topic) : '已学内容';
       
-      html += `<div class="review-date-card" style="margin-bottom:12px;background:var(--bg-elev);border-radius:10px;border:1px solid var(--border);overflow:hidden;" onclick="navigate('reviewmindmap','${dateStr}')">
-        <div style="padding:12px 14px;display:flex;justify-content:space-between;align-items:center;">
-          <div>
-            <div style="font-size:13px;font-weight:700;color:${dateColor};">${dateStr} ${isToday ? '⏰ 今天' : ''}</div>
-            <div style="font-size:11px;color:var(--text-dim);margin-top:2px;">${topicLabel}</div>
-          </div>
-          <div style="text-align:right;">
-            <div style="font-size:11px;color:var(--text-dim);">${group.items.length}项复习</div>
-            <div style="font-size:16px;color:var(--primary);">🧠</div>
-          </div>
+      html += `<div style="margin-bottom:12px;background:var(--bg-elev);border-radius:10px;border:1px solid var(--border);overflow:hidden;">
+        <div style="padding:10px 14px;background:var(--bg-card);border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;">
+          <div style="font-size:13px;font-weight:700;color:${dateColor};">${dateStr} ${isToday ? '⏰ 今天' : ''}</div>
+          <div style="font-size:11px;color:var(--text-dim);">${group.items.length}项复习</div>
         </div>
-      </div>`;
+        <div style="padding:8px 14px;">`;
+      
+      group.items.forEach(item => {
+        html += `<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.05);">
+          <div>
+            <div style="font-size:13px;color:var(--text);">${item.content}</div>
+            <div style="font-size:11px;color:var(--text-dim);">原学习日: ${item.baseDate} · +${item.interval}天</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;">
+            <span style="font-size:11px;color:${item.color};">${item.status}</span>
+            ${item.route ? `<button style="padding:4px 10px;background:var(--primary);color:var(--bg);border:none;border-radius:6px;cursor:pointer;font-size:11px;" onclick="navigate('${item.route === 'review' ? 'review' : item.route}')">去学习</button>` : ''}
+          </div>
+        </div>`;
+      });
+      
+      html += `</div></div>`;
     });
   }
   
@@ -1896,20 +1757,21 @@ function updateStats(){
   const sRev = allRev.size;
   const sTotal = Object.keys(vocabDB).length;
   
-  // 累计学习天数 - 从最早学习日期到今天的天数
+  // 累计学习天数 - 从第一天开始累计所有有学习记录的日期
   const dates = Object.keys(learningHistory).sort();
   let streak = 0;
-  if (dates.length > 0) {
-    const firstDate = new Date(dates[0]);
-    const now = new Date();
-    streak = Math.floor((now - firstDate) / (1000 * 60 * 60 * 24)) + 1;
+  for (const ds of dates) {
+    const h = learningHistory[ds];
+    if (h && (h.vocabNew.length || h.vocabReview.length || h.translations)) {
+      streak++;
+    }
   }
   
   const e1=document.getElementById("s-new");if(e1)e1.innerText=sNew;
   const e2=document.getElementById("s-rev");if(e2)e2.innerText=sRev;
   const e3=document.getElementById("s-total");if(e3)e3.innerText=sTotal;
   const e4=document.getElementById("s-streak");if(e4)e4.innerText=streak;
-  const e5=document.getElementById("sidebar-today");if(e5){const today2=new Date().toISOString().slice(0,10);e5.innerText=today2;}
+  const e5=document.getElementById("sidebar-today");if(e5)e5.innerText=today;
 }
 
 document.addEventListener("DOMContentLoaded",()=>{
@@ -2615,15 +2477,13 @@ function showCultivationInfo() {
   let nextLevelInfo = null;
   let progressPercent = 0;
   let progressText = '';
-  let hoursPassed = 0;
-  let hoursInCurrentLevel = 0;
   
   if (memberInfo && memberInfo.loginTime) {
     const loginTime = new Date(memberInfo.loginTime);
     const now = new Date();
-    hoursPassed = Math.floor((now - loginTime) / 3600000);
+    const hoursPassed = Math.floor((now - loginTime) / 3600000);
     const currentLevel = Math.min(Math.floor(hoursPassed / 24) + 1, 15);
-    hoursInCurrentLevel = hoursPassed % 24;
+    const hoursInCurrentLevel = hoursPassed % 24;
     progressPercent = Math.round((hoursInCurrentLevel / 24) * 100);
     
     if (currentLevel < 15) {
@@ -3934,19 +3794,13 @@ const topicData = {
 
 
   const topicCalendar = {
-  "2026-07-14": {topic: "meet", day: 1, label: "第1课 · 词汇+语法"},
-  "2026-07-15": {topic: "meet", day: 2, label: "第2课 · 场景对话"},
-  "2026-07-16": {topic: "meet", day: 3, label: "第3课-冶炼 · 演讲+复习", allDays: true},
+  "2026-07-16": {topic: "meet", day: 1, label: "词汇+语法+场景对话+演讲+复习", allDays: true},
   "2026-07-17": {topic: "introduce", day: 1, label: "词汇+语法+语型"},
   "2026-07-18": {topic: "introduce", day: 2, label: "复习+语型+对话"},
   "2026-07-19": {topic: "introduce", day: 3, label: "复习+演讲"},
   "2026-07-20": {topic: "directions", day: 1, label: "词汇+语法+问路基础"},
   "2026-07-21": {topic: "directions", day: 2, label: "复习+指路对话+地图阅读"},
-  "2026-07-22": {topic: "directions", day: 3, label: "复习+演讲+印尼地理"},
-  "2026-07-23": {topic: "nickel", day: 0, label: "🗺️ 全球镍产业地图", type: "map"},
-  "2026-07-24": {topic: "nickel", day: 1, label: "🏭 镍产业基础词汇"},
-  "2026-07-25": {topic: "nickel", day: 2, label: "💼 商务对话"},
-  "2026-07-26": {topic: "nickel", day: 3, label: "📊 高级应用+测试"}
+  "2026-07-22": {topic: "directions", day: 3, label: "复习+演讲+印尼地理"}
 };
 
 function getTopicForDate(ds) {
@@ -3954,18 +3808,13 @@ function getTopicForDate(ds) {
 }
 
 function renderTopicDetail(c, ds, topicInfo) {
-  // 镍产业专题分支
-  if (topicInfo.topic === "nickel") {
-    renderNickelContent(c, ds, topicInfo);
-    return;
-  }
   const topic = topicData[topicInfo.topic];
   const day = topicInfo.day;
-  let html = ``;
+  let html = `<div class="date-detail"><button class="back-btn" onclick="goBack()">← 返回</button>`;
   
   // 2026-07-16 特殊处理：显示全部三天内容
   if (ds === "2026-07-16" || topicInfo.allDays) {
-    html += `<div class="card"><div class="card-header" style="flex-wrap:wrap;gap:8px;"><h2>${topic.icon} ${topic.title}</h2><div style="display:flex;gap:8px;align-items:center;"><span class="badge">综合学习日 · 全部内容</span><button onclick="navigate('topicquiz','${topicInfo.topic}')" class="trans-btn btn-small" style="font-size:12px;">🎯 话题测试</button></div></div>`;
+    html += `<div class="card"><div class="card-header" style="flex-wrap:wrap;gap:8px;"><h2>${topic.icon} ${topic.title}</h2><div style="display:flex;gap:8px;align-items:center;"><span class="badge">综合学习日 · 全部内容</span><button onclick="navigate('topicquiz','${topicKey}')" class="trans-btn btn-small" style="font-size:12px;">🎯 话题测试</button></div></div>`;
     html += `<div style="background:rgba(0,212,170,.08);border-radius:10px;padding:16px;margin-bottom:16px;border-left:3px solid var(--primary)"><div style="font-size:14px;color:var(--primary);font-weight:700;margin-bottom:8px">📋 今日学习计划</div><div style="font-size:13px;color:var(--text)">今天需要完成全部三天的学习内容：词汇语法 → 场景对话 → 演讲复习。建议分阶段学习，每完成一阶段休息10分钟。</div></div>`;
     
     // === Day 1: Grammar + Vocabulary ===
@@ -4069,11 +3918,22 @@ function renderTopicDetail(c, ds, topicInfo) {
     html += `<div style="margin-top:16px;padding:12px;background:rgba(34,197,94,.08);border-radius:8px;border:1px solid rgba(34,197,94,.3)"><div style="font-size:13px;color:var(--success)">✅ 完成三天学习！进入复习队列。</div><div style="font-size:12px;color:var(--text-dim);margin-top:6px">建议：使用「能力测试」检测掌握程度，使用「艾宾浩斯复习」巩固记忆。</div></div>`;
   }
   
-  html += `</div>`;
+  html += `</div></div>`;
   c.innerHTML = html;
 }
 
-// 修改renderCalHTML以支持话题日期
+// 修改renderDateDetail以支持话题
+const originalRenderDateDetail = renderDateDetail;
+renderDateDetail = function(c, ds) {
+  const topicInfo = getTopicForDate(ds);
+  if (topicInfo) {
+    renderTopicDetail(c, ds, topicInfo);
+    return;
+  }
+  originalRenderDateDetail(c, ds);
+};
+
+// 修改renderCalHTML以标记话题日期
 const originalRenderCalHTML = renderCalHTML;
 renderCalHTML = function() {
   const y = currentDate.getFullYear(), m = currentDate.getMonth();
@@ -4333,28 +4193,10 @@ function renderAbout(c){
 }
 
 function renderVersion(c){
-  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录</h2><span class="badge">V4.4</span></div>
+  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录</h2><span class="badge">V4.2</span></div>
     <div style="padding:16px;">
       <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
-        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.4 (2026-07-22)</div>
-        <div style="font-size:13px;color:var(--text);line-height:1.8">
-        • 恢复日历课程：有话题日期默认显示话题内容，可切换学习记录<br>
-        • 复习清单改造成思维导图：三级结构（统计→单词→同反义词/例句）<br>
-        • 累计学习天数修正：(今天 - 最早学习日期 + 1)<br>
-        • 新增思维导图CSS样式与折叠交互<br>
-        • BIO/RCO/TSO三方审查机制正式纳入部署流程<br>
-        </div>
-      </div>
-      <div style="margin-bottom:14px;padding:14px;background:var(--bg-elev);border-radius:10px;border-left:3px solid var(--accent)">
-        <div style="font-size:15px;font-weight:700;color:var(--accent);margin-bottom:6px">V4.3 (2026-07-22)</div>
-        <div style="font-size:13px;color:var(--text);line-height:1.8">
-        • 修复复习链接跳转逻辑，统一返回/上一层导航<br>
-        • 优化累计天数计算，修仙进度条添加总体累计<br>
-        • V4.3-hotfix: 删除monkey patch, 修复累计天数标签<br>
-        </div>
-      </div>
-      <div style="margin-bottom:14px;padding:14px;background:var(--bg-elev);border-radius:10px;border-left:3px solid var(--info)">
-        <div style="font-size:15px;font-weight:700;color:var(--info);margin-bottom:6px">V4.2 (2026-07-21)</div>
+        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.2 (2026-07-21)</div>
         <div style="font-size:13px;color:var(--text);line-height:1.8">
         • 词根射击全面重构V4.2：四级分类+难度分级+成就系统<br>
         • 修复 pe-/per-/peN- 词缀混淆问题，重新梳理分类<br>
@@ -4804,6 +4646,15 @@ function renderMindMap(c){
   
   html += `</div></div>`;
   c.innerHTML = html;
+}
+
+function toggleMindLevel(el){
+  const level2 = el.nextElementSibling;
+  if(!level2) return;
+  const isHidden = level2.style.display === 'none';
+  level2.style.display = isHidden ? 'block' : 'none';
+  const toggle = el.querySelector('.mind-toggle');
+  if(toggle) toggle.style.transform = isHidden ? 'rotate(180deg)' : 'rotate(0deg)';
 }
 
 // 艾宾浩斯曲线复习点点击事件（事件委托）
@@ -5644,579 +5495,6 @@ function renderMouthDiagram(letter, pos) {
 }
 
 
-
-
-// ===== 思维导图复习渲染 V4.4 =====
-function toggleMindLevel(el){
-  el.classList.toggle('open');
-  const wrap = el.nextElementSibling;
-  if(wrap) wrap.classList.toggle('open');
-}
-
-function renderReviewMindMap(dateStr){
-  const c = document.getElementById('appContent');
-  const tc = topicCalendar[dateStr];
-  const topic = tc ? topicData[tc.topic] : null;
-  const day = tc ? tc.day : 1;
-  const hist = learningHistory[dateStr];
-  
-  // 收集当日所有单词
-  const allWords = [];
-  if(hist){
-    hist.vocabNew.forEach(w => { if(!allWords.includes(w)) allWords.push(w); });
-    hist.vocabReview.forEach(w => { if(!allWords.includes(w)) allWords.push(w); });
-  }
-  // 如果learningHistory没有单词，尝试从topicData获取该话题的vocab
-  if(allWords.length === 0 && topic && topic.vocab){
-    topic.vocab.forEach(v => { if(!allWords.includes(v.word)) allWords.push(v.word); });
-  }
-  
-  // 统计词缀词
-  const affixWords = allWords.filter(w => w.toLowerCase().startsWith('ber') || w.toLowerCase().startsWith('me') || w.toLowerCase().startsWith('pe') || w.toLowerCase().startsWith('ter') || w.toLowerCase().startsWith('ke') || w.toLowerCase().startsWith('se'));
-  const normalWords = allWords.filter(w => !affixWords.includes(w));
-  
-  // 统计词缀种类
-  const affixTypes = {};
-  affixWords.forEach(w => {
-    const lw = w.toLowerCase();
-    let prefix = '';
-    if(lw.startsWith('ber')) prefix = 'ber-';
-    else if(lw.startsWith('me')) prefix = 'me-';
-    else if(lw.startsWith('pe')) prefix = 'pe-';
-    else if(lw.startsWith('ter')) prefix = 'ter-';
-    else if(lw.startsWith('ke')) prefix = 'ke-';
-    else if(lw.startsWith('se')) prefix = 'se-';
-    if(prefix){ affixTypes[prefix] = (affixTypes[prefix]||0)+1; }
-  });
-  
-  let html = `<div class="date-detail"><button class="back-btn" onclick="goBack()">← 返回</button>`;
-  html += `<div class="mind-map-container">`;
-  
-  // === 树根 ===
-  html += `<div class="mind-root">📅 ${dateStr}<small>${topic ? topic.title + ' · Day ' + day : '学习内容'}</small></div>`;
-  html += `<div class="mind-trunk"></div>`;
-  
-  // === 一级分支容器 ===
-  html += `<div class="mind-branches">`;
-  
-  // === 一级：词汇统计 ===
-  html += `<div class="mind-branch">`;
-  html += `<div class="mind-l1" onclick="toggleMindLevel(this)">📊 词汇统计</div>`;
-  html += `<div class="mind-l2-wrap">`;
-  html += `<div class="mind-stat-grid">`;
-  html += `<div class="mind-stat-item"><div class="mind-stat-num">${allWords.length}</div><div class="mind-stat-lab">总词汇</div></div>`;
-  html += `<div class="mind-stat-item"><div class="mind-stat-num">${affixWords.length}</div><div class="mind-stat-lab">词缀词</div></div>`;
-  html += `<div class="mind-stat-item"><div class="mind-stat-num">${normalWords.length}</div><div class="mind-stat-lab">普通词</div></div>`;
-  html += `</div>`;
-  
-  // 词缀种类
-  if(Object.keys(affixTypes).length > 0){
-    html += `<div style="font-size:12px;color:var(--text-dim);margin-bottom:6px;">词缀种类分布：</div>`;
-    html += `<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px;">`;
-    Object.entries(affixTypes).forEach(([prefix, count]) => {
-      html += `<span style="padding:4px 10px;background:rgba(0,212,170,.1);border-radius:12px;font-size:12px;color:var(--primary);">${prefix} ${count}个</span>`;
-    });
-    html += `</div>`;
-  }
-  html += `</div></div>`;
-  
-  // === 一级：单词详解 ===
-  if(allWords.length > 0){
-    html += `<div class="mind-branch">`;
-    html += `<div class="mind-l1" onclick="toggleMindLevel(this)">📖 单词详解 (${allWords.length})</div>`;
-    html += `<div class="mind-l2-wrap">`;
-    
-    allWords.forEach((w, idx) => {
-      const v = vocabDB[w.toLowerCase()] || vocabDB[w.charAt(0).toUpperCase()+w.slice(1)] || vocabDB[w];
-      const wordId = 'mindW_' + dateStr.replace(/-/g,'') + '_' + idx;
-      
-      html += `<div class="mind-l2">`;
-      html += `<div class="mind-l2-header" onclick="toggleMindLevel(this)">${w} ${v ? '<span class="ipa">' + (v.ipa||'') + '</span>' : ''}</div>`;
-      html += `<div class="mind-l2-body">`;
-      
-      if(v){
-        html += `🇨🇳 ${v.cn||''} · 🇬🇧 ${v.en||''}<br>`;
-        html += `<span style="font-size:11px;color:var(--text-dim);">${v.pos||''} · ${v.root||''}</span>`;
-        
-        // 三级：同义词/反义词/例句
-        if((v.syn && v.syn.length) || (v.ant && v.ant.length) || (v.ex && v.ex.length)){
-          html += `<div style="margin-top:8px;padding-top:8px;border-top:1px solid var(--border);">`;
-          if(v.syn && v.syn.length){
-            html += `<div class="mind-l3"><span class="mind-l3-label">同义词</span>${v.syn.join(', ')}</div>`;
-          }
-          if(v.ant && v.ant.length){
-            html += `<div class="mind-l3"><span class="mind-l3-label">反义词</span>${v.ant.join(', ')}</div>`;
-          }
-          if(v.ex && v.ex.length){
-            v.ex.forEach(ex => {
-              html += `<div class="mind-l3"><span class="mind-l3-label">例句</span>${ex.id || ex}<br><span style="color:var(--text-dim);">${ex.cn || ''}</span></div>`;
-            });
-          }
-          html += `</div>`;
-        }
-      } else {
-        html += `<span style="font-size:11px;color:var(--text-dim);">词库中暂无详细释义</span>`;
-      }
-      
-      html += `</div></div>`;
-    });
-    
-    html += `</div></div>`;
-  }
-  
-  // === 一级：场景对话 ===
-  if(topic && topic.scenes && topic.scenes.length > 0){
-    html += `<div class="mind-branch">`;
-    html += `<div class="mind-l1" onclick="toggleMindLevel(this)">🗣️ 场景对话 (${topic.scenes.length})</div>`;
-    html += `<div class="mind-l2-wrap">`;
-    
-    topic.scenes.forEach((scene, sIdx) => {
-      html += `<div class="mind-l2">`;
-      html += `<div class="mind-l2-header" onclick="toggleMindLevel(this)">${scene.icon||'💬'} ${scene.title||'场景'} <span style="margin-left:auto;font-size:11px;color:var(--text-dim);">${scene.dialogue ? scene.dialogue.length + '句' : ''}</span></div>`;
-      html += `<div class="mind-l2-body">`;
-      
-      if(scene.dialogue && scene.dialogue.length > 0){
-        scene.dialogue.forEach(d => {
-          html += `<div class="mind-dialogue-row">`;
-          html += `<div class="mind-dialogue-sp">${d.speaker}</div>`;
-          html += `<div class="mind-dialogue-text">${d.text}</div>`;
-          if(d.trans) html += `<div class="mind-dialogue-trans">${d.trans}</div>`;
-          html += `</div>`;
-        });
-      }
-      
-      html += `</div></div>`;
-    });
-    
-    html += `</div></div>`;
-  }
-  
-  // === 一级：演讲短文 ===
-  if(topic && topic.speech && topic.speech.length > 0){
-    const speech = topic.speech[day - 1] || topic.speech[0];
-    if(speech){
-      html += `<div class="mind-branch">`;
-      html += `<div class="mind-l1" onclick="toggleMindLevel(this)">🎤 演讲短文</div>`;
-      html += `<div class="mind-l2-wrap">`;
-      
-      html += `<div class="mind-speech-box">`;
-      html += `<div class="mind-speech-title">${speech.title || '演讲'}</div>`;
-      if(speech.ind){
-        html += `<div class="mind-speech-text">${speech.ind}</div>`;
-      }
-      if(speech.cn){
-        html += `<div class="mind-speech-trans">${speech.cn}</div>`;
-      }
-      html += `</div>`;
-      
-      html += `</div></div>`;
-    }
-  }
-  
-  // === 一级：语法要点 ===
-  if(topic && topic.grammar){
-    html += `<div class="mind-branch">`;
-    html += `<div class="mind-l1" onclick="toggleMindLevel(this)">📐 语法要点 · ${topic.grammar.title || ''}</div>`;
-    html += `<div class="mind-l2-wrap">`;
-    
-    if(topic.grammar.rules && topic.grammar.rules.length > 0){
-      topic.grammar.rules.forEach((rule, rIdx) => {
-        html += `<div class="mind-l3" style="margin-bottom:6px;"><span class="mind-l3-label">Rule ${rIdx+1}</span>${rule}</div>`;
-      });
-    }
-    
-    if(topic.grammar.examples && topic.grammar.examples.length > 0){
-      html += `<div style="margin-top:8px;padding-top:8px;border-top:1px solid var(--border);">`;
-      html += `<div style="font-size:11px;color:var(--primary);font-weight:600;margin-bottom:4px;">示例</div>`;
-      topic.grammar.examples.forEach(ex => {
-        html += `<div class="mind-l3">${ex}</div>`;
-      });
-      html += `</div>`;
-    }
-    
-    html += `</div></div>`;
-  }
-  
-  // === 学习记录摘要 ===
-  if(hist){
-    html += `<div class="mind-branch">`;
-    html += `<div class="mind-l1" onclick="toggleMindLevel(this)">📋 当日学习记录</div>`;
-    html += `<div class="mind-l2-wrap">`;
-    html += `<div class="mind-stat-grid">`;
-    html += `<div class="mind-stat-item"><div class="mind-stat-num">${hist.vocabNew.length}</div><div class="mind-stat-lab">新学</div></div>`;
-    html += `<div class="mind-stat-item"><div class="mind-stat-num">${hist.vocabReview.length}</div><div class="mind-stat-lab">复习</div></div>`;
-    html += `<div class="mind-stat-item"><div class="mind-stat-num">${hist.translations}</div><div class="mind-stat-lab">翻译</div></div>`;
-    html += `</div>`;
-    if(hist.notes) html += `<div style="font-size:12px;color:var(--text-dim);margin-top:8px;padding:8px;background:var(--bg-card);border-radius:6px;">📝 ${hist.notes}</div>`;
-    html += `</div></div>`;
-  }
-  
-  html += `</div>`; // 关闭 mind-branches
-  html += `</div></div>`; // 关闭 mind-map-container 和 date-detail
-  c.innerHTML = html;
-  updateTopbarButtons();
-}
-</script>
-
-<script>
-const nickelData = {"indonesia":{"中苏拉威西省::IMIP（印尼莫罗瓦利工业园）":{"province":"中苏拉威西省","park":"IMIP（印尼莫罗瓦利工业园）","lat":-2.8014,"lng":122.1411,"projects":[{"项目名":"IMIP一期","企业名_中文":"苏拉威西矿业投资（SMI）","企业名_英文_PT":"PT Sulawesi Mining Investment","工艺路线":"RKEF（4×33000kVA）","产品":"NPI（10–11%Ni）","年产能_万镍金属吨":3.0,"状态":"在产","主要股东及持股":"上海鼎信46.55%、印尼八星25.65%、睿信资源24%、福建鼎信实业3.8%","数据来源":"Mysteel/一带一路网","备注":"园区首个项目","投产时间":"2015-05","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"30万吨NPI≈3.0万镍吨（品位10–11%）","产线数":"4条RKEF"},{"项目名":"IMIP二期","企业名_中文":"印尼广青镍业（GCNS）","企业名_英文_PT":"PT Guang Ching Nickel Indonesia","工艺路线":"RKEF+AOD一体化","产品":"NPI→不锈钢","年产能_万镍金属吨":6.0,"状态":"在产","主要股东及持股":"广新控股48%（实控）、广东吉瑞35%、IMIP开发公司20%、阪和兴业5%等","数据来源":"一带一路网/Mysteel","备注":null,"投产时间":"2016-03","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"60万吨NPI≈6.0万镍吨（按约10–12%折算）","产线数":"8条RKEF"},{"项目名":"IMIP三期","企业名_中文":"印尼青山不锈钢（ITSS）","企业名_英文_PT":"PT Indonesia Tsingshan Stainless Steel","工艺路线":"RKEF+AOD一体化","产品":"NPI→不锈钢","年产能_万镍金属吨":6.0,"状态":"在产","主要股东及持股":"青山控股51%、瑞浦科技19%、青拓集团10%、IMIP开发公司10%、阪和兴业10%","数据来源":"财新/Mysteel","备注":"2023.12熔炉爆炸事故后持续运行；曾拟售宝武8条线，交易暂缓","投产时间":"2016-12","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"60万吨NPI≈6.0万镍吨","产线数":"8条RKEF"},{"项目名":"IMIP园区","企业名_中文":"印尼青山钢铁（TSI）","企业名_英文_PT":"PT Tsingshan Steel Indonesia","工艺路线":"RKEF","产品":"NPI+普碳钢","年产能_万镍金属吨":5.0,"状态":"在产","主要股东及持股":"青山系（永青集团管理）","数据来源":"永青集团官网/Mysteel","备注":"产线数为推断","投产时间":"2018Q2","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"50万吨NPI≈5.0万镍吨","产线数":"约6条RKEF（推断）"},{"项目名":"IMIP园区","企业名_中文":"印尼恒嘉镍业（HNI）","企业名_英文_PT":"PT Hengjaya Nickel Industry","工艺路线":"RKEF","产品":"NPI（曾兼产低冰镍）","年产能_万镍金属吨":1.5,"状态":"在产","主要股东及持股":"Nickel Industries 80%、上海鼎信20%","数据来源":"Nickel Industries官网","备注":null,"投产时间":"2019-03","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"铭牌1.5万镍吨；2025年产量1.66万吨","产线数":"2条RKEF"},{"项目名":"IMIP园区","企业名_中文":"印尼仁嘉镍业（RNI）","企业名_英文_PT":"PT Ranger Nickel Industry","工艺路线":"RKEF","产品":"NPI","年产能_万镍金属吨":1.5,"状态":"在产","主要股东及持股":"Nickel Industries 80%、上海鼎信20%","数据来源":"Nickel Industries官网","备注":null,"投产时间":"2019-06","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"铭牌1.5万镍吨；2025年产量1.66万吨","产线数":"2条RKEF"},{"项目名":"IMIP园区","企业名_中文":"甲骨文镍业（ONI）","企业名_英文_PT":"PT Oracle Nickel Industry","工艺路线":"RKEF","产品":"NPI","年产能_万镍金属吨":3.8,"状态":"在产","主要股东及持股":"Nickel Industries 80%、上海鼎信系","数据来源":"Nickel Industries/SMM","备注":null,"投产时间":"2022-11","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"约3.6–4.0万镍吨（2023年产3.9万吨）","产线数":"4条RKEF"},{"项目名":"IMIP园区","企业名_中文":"印尼华新镍业（WNII，华新丽华）","企业名_英文_PT":"PT Walsin Nickel Industrial Indonesia","工艺路线":"RKEF（4台电炉）","产品":"NPI","年产能_万镍金属吨":3.5,"状态":"在产","主要股东及持股":"华新丽华50%、NEW Hono Investment、Perlux Investment等","数据来源":"Mysteel","备注":null,"投产时间":"2021-07","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"设计3–3.6万镍吨；公司披露年产能4万吨镍","产线数":"4条RKEF"},{"项目名":"IMIP园区","企业名_中文":"青山系2019–2023扩建镍铁产线","企业名_英文_PT":"归属ITSS/TSI等青山主体","工艺路线":"RKEF","产品":"NPI（部分产线可转产低冰镍）","年产能_万镍金属吨":23.8,"状态":"在产（部分负荷不满）","主要股东及持股":"青山控股及合资公司","数据来源":"SMM/华泰期货年报","备注":"法人归属公开信息不完全一致，加总以园区级420万吨实物口径为准","投产时间":"2019–2023","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"SMM/华泰口径：2020–2023青山Morowali新增约21条炉≈23.8万镍吨","产线数":"约21条（推算）"},{"项目名":"IMIP园区","企业名_中文":"印尼布吉镍冶炼（BSID）","企业名_英文_PT":"PT Bukit Smelter Indonesia","工艺路线":"RKEF","产品":"NPI","年产能_万镍金属吨":1.8,"状态":"在产","主要股东及持股":"IMIP入园企业（MBMA关联）","数据来源":"IMIP官网入园企业名录","备注":"折算产能为估算","投产时间":"—","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"NPI 15万吨/年≈1.8万镍吨（按12%折算，估）","产线数":"—"},{"项目名":"中伟莫罗瓦利基地","企业名_中文":"印尼中青新能源（一/二期）","企业名_英文_PT":"PT Zhongtsing New Energy","工艺路线":"OESBF富氧侧吹+低转高","产品":"低冰镍→高冰镍","年产能_万镍金属吨":6.0,"状态":"在产","主要股东及持股":"中伟香港新能源科技70%、RIGQUEZA 30%","数据来源":"中伟股份/港交所公告","备注":"研报'3期2万吨'实为二期后段产线","投产时间":"2022-10（二期2026-01全线贯通）","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"一期2万+二期4万=6万金吨；具备同步6万吨高冰镍能力","产线数":"6条侧吹产线"},{"项目名":"IMIP园区","企业名_中文":"青山IMIP转产高冰镍项目（冰镍事业部）","企业名_英文_PT":"青山实业（低冰镍由青山转炉代工为65%Ni高冰镍）","工艺路线":"RKEF+转炉硫化/AOD","产品":"低冰镍→高冰镍","年产能_万镍金属吨":12.0,"状态":"在产（柔性切换）","主要股东及持股":"青山控股","数据来源":"CRU/MMTA/五矿期货","备注":"与NPI共用产线，加总不重复计入","投产时间":"2021-12","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"规划约12万金吨（约20条RKEF具备转产能力）","产线数":"约20条（柔性）"},{"项目名":"IMIP园区","企业名_中文":"华越镍钴（HNC）","企业名_英文_PT":"PT Huayue Nickel Cobalt","工艺路线":"HPAL（第三代，干堆尾矿）","产品":"MHP（副产钴）","年产能_万镍金属吨":6.0,"状态":"在产（满产超产）","主要股东及持股":"华友钴业57%、洛阳钼业30%、Nickel Industries 10%、华龙/Long Sincere约3%","数据来源":"SMM/Nickel Industries年报","备注":"HNC 10%股权2023年由NIC受让，青山方退出10%口径存差异","投产时间":"2021-11","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"名义6.0万镍吨；2025实际产量8.38万吨（超产140%）","产线数":"4条高压釜"},{"项目名":"青美邦园区","企业名_中文":"青美邦（QMB）","企业名_英文_PT":"PT QMB New Energy Materials","工艺路线":"HPAL（自主技术）","产品":"MHP/硫酸镍/碳酸镍/电积镍/前驱体","年产能_万镍金属吨":6.5,"状态":"在产（满产）","主要股东及持股":"格林美63%、青山实业10%、邦普循环(CATL)10%、ECOPRO 9%、阪和兴业8%","数据来源":"格林美公告/财新","备注":"股权另有55%口径（差异已注明）；2026年2月尾矿滑坡曾致停产数周","投产时间":"2022-09（二期2024-09）","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"一期3→4.0+二期2.5=6.5万镍吨","产线数":"一期3釜+二期单釜模块"},{"项目名":"IMIP园区","企业名_中文":"美明新能源（MMN）","企业名_英文_PT":"PT Meiming New Energy Material","工艺路线":"HPAL","产品":"MHP","年产能_万镍金属吨":2.5,"状态":"在产","主要股东及持股":"格林美55%、Merdeka(MBMA)45%（口径不一）","数据来源":"MBMA公告/Mysteel","备注":"2025Q4切换SCM矿区新FPP供矿","投产时间":"2024-10","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"名义2.5万镍吨；2025年产量1.91万镍吨","产线数":"—"},{"项目名":"IMIP园区","企业名_中文":"ESG新能源","企业名_英文_PT":"PT ESG New Energy Material","工艺路线":"HPAL","产品":"MHP","年产能_万镍金属吨":3.0,"状态":"在产（接近满产）","主要股东及持股":"MBMA 55–60%、格林美45%（双方公告口径差异）","数据来源":"MBMA Public Expose","备注":"在产口径按3.0万","投产时间":"2024-12（Train B 2025Q2）","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"已建3.0（Train A 2.0+Train B 1.0）；规划总产能4.0","产线数":"2条（Train A/B）"},{"项目名":"IMIP园区","企业名_中文":"格林爱科（GreenEco）","企业名_英文_PT":"格林爱科镍金属有限公司（原PT GEM Indonesia New Energy Materials）","工艺路线":"HPAL","产品":"MHP","年产能_万镍金属吨":2.0,"状态":"在产（爬坡）","主要股东及持股":"格林美约54%、CAHAYA约26%、伟明环保约20%","数据来源":"格林美公告","备注":null,"投产时间":"2024-12","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"名义2.0万镍吨；2025年产量1.05万镍吨（爬坡）","产线数":"—"},{"项目名":"IMIP园区","企业名_中文":"中伟鼎兴（DX-zwdx牌）","企业名_英文_PT":"PT CNGR Ding Xing New Energy","工艺路线":"高冰镍→磨矿-浸出-萃取-电积","产品":"电积镍（Ni99.96）","年产能_万镍金属吨":5.0,"状态":"在产","主要股东及持股":"青山控股+中伟新能源","数据来源":"Mysteel","备注":"LME/SHFE注册品牌（SHFE注册2026-04-20）","投产时间":"2023-08","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"5.0万吨/年","产线数":"—"},{"项目名":"青美邦园区","企业名_中文":"青美邦电积镍","企业名_英文_PT":"PT QMB New Energy Materials（格林美系）","工艺路线":"自产MHP→硫酸镍→电积","产品":"电积镍（Ni≥99.97%）","年产能_万镍金属吨":3.0,"状态":"在产","主要股东及持股":"格林美系","数据来源":"Mysteel/腾讯新闻","备注":"印尼首个MHP—硫酸镍—电积镍—前驱体全链基地","投产时间":"2025-09-20","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"3.0万吨/年","产线数":"—"},{"项目名":"IMIP园区","企业名_中文":"华能金属（HNMI）","企业名_英文_PT":"PT Huaneng Metal Industry","工艺路线":"转炉：低冰镍→高冰镍（>70%Ni）","产品":"高冰镍","年产能_万镍金属吨":5.0,"状态":"在产","主要股东及持股":"MBMA 60%、Plenceed International（青山系）40%","数据来源":"Mysteel/中国有色网","备注":"2025年3月曾暂停保NPI、10月重启高冰镍","投产时间":"2022","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"年产5万吨冰镍（实物口径）","产线数":"—"},{"项目名":"ENC（原ONI厂区扩建）","企业名_中文":"印尼晨曦镍钴（ENC）","企业名_英文_PT":"PT Excelsior Nickel Cobalt","工艺路线":"HPAL（3台高压釜）","产品":"MHP+硫酸镍+电解镍（全球首个三产品HPAL）","年产能_万镍金属吨":7.2,"状态":"调试出料","主要股东及持股":"Nickel Industries 46%（2026-03增持）、青山/上海鼎信44%、韩国Sphere 10%","数据来源":"Nickel Industries 2026 AGM演示/Mysteel","备注":"交叉验证决议：状态=调试出料（2026年7月中旬首批MHP），非2026Q1投产","投产时间":"2026-05联动调试、首批褐铁矿入料；较原计划延后约1个季度","预计投产时间":"—","建设进度":"2026-07中旬首批MHP（电镍8月中旬）；2026-10底满产","产能说明_品位口径":"7.2万镍吨","产线数":"3条"},{"项目名":"IMIP（紧邻华越厂区）","企业名_中文":"苏拉威西镍钴（SLNC）","企业名_英文_PT":"PT Sulawesi Nickel Cobalt","工艺路线":"HPAL","产品":"MHP","年产能_万镍金属吨":9.0,"状态":"调试出料","主要股东及持股":"MBMA（MEB）50.1%+华友印尼（华友提供建设管理，SCM矿供矿浆）","数据来源":"MBMA公告/Mandiri银团披露","备注":"总投资18亿美元（14亿美元银团）；交叉验证决议：状态=调试出料","投产时间":"2026Q2末调试完成（HPAL厂/FPP完成95%/94%），正等待IUI工业经营许可；2026-07首台高压釜就位","预计投产时间":"—","建设进度":"2026下半年逐步放量","产能说明_品位口径":"9.0万镍吨","产线数":"多线"},{"项目名":"IMIP（ENC同址扩建）","企业名_中文":"Teluk金属工业（TMI）","企业名_英文_PT":"PT Teluk Metal Industry","工艺路线":"HPAL","产品":"MHP","年产能_万镍金属吨":3.864,"状态":"在建","主要股东及持股":"韩日财团（LS MnM、Hanwa及未披露战投）72.5%、Nickel Industries 17.5%、新加坡Sumber International 10%","数据来源":"Nickel Industries ASX公告","备注":"研报遗漏项目（补充）；印尼HPAL禁令前最后获批大项目之一","投产时间":"2026-06-24公告建设中；NIC投资1.69亿美元","预计投产时间":"—","建设进度":"2027年中开始调试；2027-09达产（建设担保约定）","产能说明_品位口径":"3.864万镍吨","产线数":"—"},{"项目名":"IMIP园区","企业名_中文":"SCM HPAL","企业名_英文_PT":"项目公司名未公开","工艺路线":"HPAL","产品":"MHP","年产能_万镍金属吨":2.0,"状态":"签约（2023-07合资协议，此后近三年无建设披露）","主要股东及持股":"格林美(无锡)51%、CAHAYA JAYA 26%、伟明(新加坡)20%、格林特(荆门)3%","数据来源":"格林美公告/巨潮","备注":"需确认是否已被ESG/美明/SLNC吸收或搁置","投产时间":"—","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"2.0万镍吨；总投资≤5亿美元","产线数":"—"}]},"北马鲁古省::IWIP（印尼纬达贝工业园）":{"province":"北马鲁古省","park":"IWIP（印尼纬达贝工业园）","lat":0.4789,"lng":127.9842,"projects":[{"项目名":"IWIP园区","企业名_中文":"印尼纬达贝镍业（WBN）","企业名_英文_PT":"PT Weda Bay Nickel","工艺路线":"RKEF+电炉","产品":"低品位镍铁（12–15%Ni）","年产能_万镍金属吨":3.2,"状态":"部分在产","主要股东及持股":"青山51.3%（穿透）、Eramet 38.7%、Antam 10%","数据来源":"Eramet官网","备注":"2026年5月因矿山RKAB配额耗尽据报停产待批（配额4200→1200万吨）","投产时间":"2020","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"3.0–3.5万镍吨","产线数":"4条RKEF"},{"项目名":"IWIP园区","企业名_中文":"印尼友山镍业","企业名_英文_PT":"PT Youshan Nickel Indonesia","工艺路线":"RKEF+硫化","产品":"镍铁/低冰镍/高冰镍（柔性）","年产能_万镍金属吨":3.4,"状态":"在产（降负荷）","主要股东及持股":"盛屯矿业经华玮镍业控股65%、青山（恒通亚洲/永青科技）35%","数据来源":"上交所盛屯估值报告","备注":"2026年配额收紧利用率约46%（第三方测算）","投产时间":"2020-09","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"设计3.4万镍吨（2021–2023实际3.7–3.97）","产线数":"4条RKEF"},{"项目名":"IWIP园区","企业名_中文":"华科镍业（印尼）","企业名_英文_PT":"PT Huake Nickel Indonesia","工艺路线":"RKEF+P-S转炉","产品":"高冰镍","年产能_万镍金属吨":4.5,"状态":"在产（满产）","主要股东及持股":"华友钴业70%、永泰实业（青山系）30%","数据来源":"华友钴业/同花顺","备注":"2023年达产","投产时间":"2022-05","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"4.5万镍吨（4窑4炉4转炉）","产线数":"4条RKEF"},{"项目名":"IWIP园区","企业名_中文":"天使镍业（ANI）","企业名_英文_PT":"PT Angel Nickel Industry","工艺路线":"RKEF","产品":"NPI","年产能_万镍金属吨":3.6,"状态":"在产","主要股东及持股":"Nickel Industries 80%","数据来源":"Nickel Industries官网","备注":null,"投产时间":"2022-01","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"铭牌3.6万镍吨；2025年实际产量4.64万吨镍（超产）","产线数":"4条RKEF"},{"项目名":"IWIP园区","企业名_中文":"雅石印尼投资","企业名_英文_PT":"PT Yashi Indonesia Investment","工艺路线":"RKEF","产品":"NPI/镍铁","年产能_万镍金属吨":3.5,"状态":"在产","主要股东及持股":"振石控股、上海鼎信（青山系）、浙江华骏投资","数据来源":"振石集团官网/Mysteel","备注":null,"投产时间":"2020-10","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"30万吨镍铁≈3.5万镍吨","产线数":"4条RKEF"},{"项目名":"IWIP园区","企业名_中文":"英菲金属（IMI）","企业名_英文_PT":"PT Infei Metal Industry","工艺路线":"RKEF","产品":"NPI","年产能_万镍金属吨":2.8,"状态":"在产","主要股东及持股":"Harum Energy（HRUM）100%","数据来源":"Kontan","备注":null,"投产时间":"2022-04","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"20万吨NPI≈2.8万镍吨","产线数":"2条RKEF"},{"项目名":"IWIP园区","企业名_中文":"纬创金属（WMI）","企业名_英文_PT":"PT Westrong Metal Industry","工艺路线":"RKEF+硫化转炉","产品":"高冰镍","年产能_万镍金属吨":5.6,"状态":"在产","主要股东及持股":"Harum Energy 80.7%、华新丽华约19.3%","数据来源":"Kontan/Ipotnews","备注":"2024年3月首次销售高冰镍","投产时间":"2024-03","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"40万吨物料≈5.6万镍吨","产线数":"4条RKEF+转炉"},{"项目名":"IWIP园区","企业名_中文":"金达尔（Jindal/JSL系）项目","企业名_英文_PT":"PT名未公开确认","工艺路线":"RKEF","产品":"NPI","年产能_万镍金属吨":3.0,"状态":"在产","主要股东及持股":"Jindal Stainless系","数据来源":"SMM考察团","备注":"产能为估算","投产时间":"2024","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"约30万实物吨NPI≈3万镍吨（估）","产线数":"4条（2024年新投2条先行）"},{"项目名":"IWIP园区","企业名_中文":"澜凯项目","企业名_英文_PT":"PT名待确认","工艺路线":"RKEF","产品":"镍铁/高冰镍","年产能_万镍金属吨":1.8,"状态":"在产","主要股东及持股":"未公开","数据来源":"全球铁合金网","备注":"估算项","投产时间":"2024-08","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"约1.5–2万镍吨（估）","产线数":"2条"},{"项目名":"IWIP园区","企业名_中文":"科赞项目","企业名_英文_PT":"PT名待确认","工艺路线":"RKEF","产品":"镍铁/高冰镍","年产能_万镍金属吨":1.8,"状态":"在产","主要股东及持股":"未公开","数据来源":"全球铁合金网","备注":"估算项","投产时间":"2024-08","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"约1.5–2万镍吨（估）","产线数":"2条"},{"项目名":"中伟纬达贝基地","企业名_中文":"中伟纬达贝产业基地（德邦/翡翠湾）","企业名_英文_PT":"中伟股份系（CNGR与Rigqueza等合资）","工艺路线":"火法（RKEF+吹炼/侧吹）","产品":"低冰镍/高冰镍","年产能_万镍金属吨":5.5,"状态":"在产（满产）","主要股东及持股":"中伟股份系","数据来源":"中伟股份官网/亚洲金属网","备注":null,"投产时间":"—","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"5.5万镍吨（中伟印尼近20万吨镍产能组成部分）","产线数":"多条（未披露）"},{"项目名":"IWIP园区","企业名_中文":"青山集团自营镍铁/冰镍产线","企业名_英文_PT":"青山系各主体","工艺路线":"RKEF","产品":"NPI/高冰镍","年产能_万镍金属吨":19.0,"状态":"在产（2025年起减产）","主要股东及持股":"青山集团","数据来源":"SMM考察/SHMET","备注":"估算口径，存在误差；园区62条减去具名约34条","投产时间":"—","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"约18–20万镍吨（估算，约28条产线）","产线数":"约28条（推算）"},{"项目名":"IWIP园区","企业名_中文":"众晶控股/AMI（擎天火法）","企业名_英文_PT":"PT AMI（华友钴业50.1%，2023年收购）","工艺路线":"镍铁→高冰镍改造","产品":"高冰镍","年产能_万镍金属吨":2.4,"状态":"在产","主要股东及持股":"华友钴业50.1%","数据来源":"36氪/雪球梳理","备注":null,"投产时间":"2024-01","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"15万吨镍铁≈2.4万镍金属","产线数":"—"},{"项目名":"IWIP园区","企业名_中文":"华飞镍钴","企业名_英文_PT":"PT Huafei Nickel Cobalt","工艺路线":"HPAL","产品":"MHP（副产钴1.5万吨/年）","年产能_万镍金属吨":12.0,"状态":"部分在产","主要股东及持股":"华友钴业51%、Glaucous 30%、亿纬锂能17%、LINDO 2%","数据来源":"Argus/Discovery Alert","备注":"2026年5月1日起约半数产能（≈6万镍吨/年）转入临时停产维护（硫磺成本高企+超产检修），当前有效约6万吨","投产时间":"2023-06","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"名义12.0万镍吨（全球最大单体HPAL）","产线数":"多系列（未公开）"},{"项目名":"IWIP园区","企业名_中文":"蓝焰能源/蓝焰瑞隆镍钴（BSE）","企业名_英文_PT":"PT Blue Sparking Energy","工艺路线":"HPAL","产品":"MHP","年产能_万镍金属吨":6.7,"状态":"在产（爬坡）","主要股东及持股":"Harum Energy权益50.89%、永青集团（青山）建设主体（并列口径）","数据来源":"东方证券/Mysteel","备注":"2026年3月底商业销售、4月接近满产；青山系首个湿法项目","投产时间":"2026-01","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"6.7万镍吨+钴0.75万吨（部分研报6.0/6.6口径）","产线数":"多台釜（11台高压釜海运）"},{"项目名":"IWIP园区","企业名_中文":"永恒镍业（PTENICO牌）","企业名_英文_PT":"PT Eternal Nickel Industry","工艺路线":"高冰镍/硫酸镍晶体→电积","产品":"电积镍（Ni99.96）","年产能_万镍金属吨":5.0,"状态":"在产","主要股东及持股":"华友钴业旗下","数据来源":"银河期货/Mysteel","备注":"2025-10申请LME注册；2026-04-20 SHFE注册","投产时间":"2024","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"5.0万吨/年","产线数":"—"},{"项目名":"IWIP园区","企业名_中文":"华翔精炼","企业名_英文_PT":"PT Huaxiang Refining Indonesia","工艺路线":"MHP/高冰镍→电池级硫酸镍","产品":"硫酸镍","年产能_万镍金属吨":5.0,"状态":"在产","主要股东及持股":"华友HUAYAO 49%、STRIVE 49%、LINDO 2%","数据来源":"界面新闻/国信证券","备注":"硫酸镍产品口径","投产时间":"2025","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"5.0万镍金属吨/年（硫酸镍折镍）","产线数":"—"},{"项目名":"IWIP园区","企业名_中文":"印尼广青镍钴","企业名_英文_PT":"PT Guang Qing Nickel Cobalt（名称未公开）","工艺路线":"HPAL","产品":"MHP（氢氧化镍钴）","年产能_万镍金属吨":8.0,"状态":"在建","主要股东及持股":"广新控股集团（广东国资）+青山实业合资","数据来源":"新华社/Mysteel","备注":"股东为广新×青山（研报'振石'口径不采用）","投产时间":"2024-11全面铺开施工；2025-06正式签约（总投资约20亿美元）","预计投产时间":"—","建设进度":"2026年底建成试产（Mysteel口径2026Q4）","产能说明_品位口径":"8.0万镍吨","产线数":"—"},{"项目名":"IWIP园区","企业名_中文":"印尼嘉曼新能源（JMNE）","企业名_英文_PT":"PT Jiaman New Energy","工艺路线":"富氧侧吹（OESBF类）","产品":"高冰镍","年产能_万镍金属吨":4.0,"状态":"部分投产（2/4线在产）、扩产在建","主要股东及持股":"伟明环保（香港）63%、Merit International、香港欣威（欣旺达）","数据来源":"伟明环保2025年报/东吴证券","备注":"2025年外售镍中间品折6,067金属吨","投产时间":"1#线2025-01试产、2#线2025-04投料（已投产2条）；3#线2026Q2试产","预计投产时间":"—","建设进度":"2026-06底前4条线全部投运","产能说明_品位口径":"4.0万镍吨（4×1万吨）","产线数":"4条"},{"项目名":"IWIP园区","企业名_中文":"印尼盛迈镍业（SNI）","企业名_英文_PT":"PT ChengMach Nickel Indonesia","工艺路线":"火法","产品":"高冰镍","年产能_万镍金属吨":4.0,"状态":"已终止","主要股东及持股":"盛屯（宏盛国际）51%、Extension 30%、Huayou Holding 19%","数据来源":"新浪财经/盛屯公告","备注":"已终止（保留行）；理由'市场前景变化、无法达到投资预期'；不计入在建合计","投产时间":"从未实质建设；盛屯2025-12-25公告终止并注销合资公司","预计投产时间":"—","建设进度":"—","产能说明_品位口径":"4.0万镍吨（原规划）","产线数":"—"},{"项目名":"IWIP园区","企业名_中文":"印尼华山镍钴（HNC）","企业名_英文_PT":"PT Huashan Nickel Cobalt","工艺路线":"HPAL","产品":"MHP（镍12万吨+钴约1.2万吨；总投资26.04亿美元）","年产能_万镍金属吨":12.3,"状态":"签约/前期（定增募投项目，进度放缓）","主要股东及持股":"华友钴业（华拓国际）68%、Glaucous（青山系）32%","数据来源":"雪球/华友公告梳理","备注":"2026年2月市场跟踪称'基本是合作协议，无实质进展'；PP28/2025下落地概率低","投产时间":"—","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"研报口径12.3万镍吨；公司口径12万吨","产线数":"—"},{"项目名":"IWIP园区","企业名_中文":"嘉曼达新能源","企业名_英文_PT":"PT Jiamanda New Energy","工艺路线":"OESBF富氧侧吹（4回转干燥窑+4侧吹炉+2顶吹炉+1电炉）","产品":"高冰镍","年产能_万镍金属吨":4.0,"状态":"签约/募投（2022-08签约；伟明2023可转债募投14.7亿元；中诚信：视市场情况投建）","主要股东及持股":"伟明(香港)60%、Merit International 30%、香港欣威（欣旺达）10%","数据来源":"伟明环保公告/中诚信评级","备注":null,"投产时间":"—","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"4.0万镍吨（产高冰镍5.88万吨产品；处理1.8%红土矿250万吨/年；总投资3.9亿美元）","产线数":"未定"},{"项目名":"IWIP园区","企业名_中文":"嘉曼美新能源（伟明第3个高冰镍项目）","企业名_英文_PT":"嘉曼美新能源","工艺路线":"富氧侧吹","产品":"高冰镍","年产能_万镍金属吨":5.0,"状态":"搁置（截至2024年底投资为0，视市场情况投建）","主要股东及持股":"伟明香港51%、Merit 26%、格林美香港23%","数据来源":"中诚信国际评级报告/伟明年报","备注":null,"投产时间":"—","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"5.0万镍吨","产线数":"—"},{"项目名":"IWIP园区","企业名_中文":"中伟Weda Bay新项目","企业名_英文_PT":"CNGR Weda Bay新项目（PT名未公开）","工艺路线":"火法/湿法（未披露）","产品":"镍中间品","年产能_万镍金属吨":8.0,"状态":"筹建","主要股东及持股":"中伟股份系","数据来源":"紫金天风镍年报项目清单","备注":"细节未公开","投产时间":"—","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"8.0万镍吨（研报口径）","产线数":"未定"},{"项目名":"IWIP园区","企业名_中文":"'海湾金属'6.7万吨项目","企业名_英文_PT":"PT Eramet Halmahera Nikel / PT Blue Sparking Energy","工艺路线":"HPAL（(a)含BMR电池材料回收）","产品":"MHP","年产能_万镍金属吨":6.7,"状态":"歧义项（不计入）","主要股东及持股":"候选(a)：PT Eramet Halmahera Nikel（Sonic Bay，Eramet/巴斯夫）；候选(b)：PT Blue Sparking Energy（蓝焰BSE，Harum Energy 50.89%权益）","数据来源":"北极星电池网/Harum披露","备注":"备注歧义：与已投产蓝焰BSE及已终止Sonic Bay的关系；合计时剔除","投产时间":"—","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"6.7万镍吨+0.75万吨钴","产线数":"(b)2条线"}]},"北马鲁古省::OBI产业园（TBP/OIIA）":{"province":"北马鲁古省","park":"OBI产业园（TBP/OIIA）","lat":-1.5614,"lng":127.421,"projects":[{"项目名":"力勤OBI一/二期","企业名_中文":"力勤哈利达（HPL）","企业名_英文_PT":"PT Halmahera Persada Lygend","工艺路线":"HPAL（中国恩菲技术，第三代）","产品":"MHP+电池级硫酸镍/硫酸钴","年产能_万镍金属吨":5.5,"状态":"在产（满产超产）","主要股东及持股":"力勤资源54.9%、Harita集团（NCKL）45.1%","数据来源":"浙商证券/铁合金在线","备注":"产能利用率>100%","投产时间":"2021-05（二期2023-01）","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"一期3.7+二期1.8=5.5万镍吨","产线数":"3条"},{"项目名":"力勤OBI三期","企业名_中文":"奥比镍钴（ONC）","企业名_英文_PT":"PT Obi Nickel Cobalt","工艺路线":"HPAL（第三代）","产品":"MHP","年产能_万镍金属吨":6.5,"状态":"在产（满产）","主要股东及持股":"力勤（Lygend New Power HK）60%、Harita/NCKL 20%、其余约20%","数据来源":"铁合金在线/Mysteel","备注":"2024年9月2日宣布全面达产","投产时间":"2024-04","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"6.5万镍吨","产线数":"3条"},{"项目名":"力勤OBI火法一/二期","企业名_中文":"哈利达卓越镍铁（HJF）","企业名_英文_PT":"PT Halmahera Jaya Feronikel","工艺路线":"RKEF（66MVA）","产品":"镍铁（部分转低冰镍）","年产能_万镍金属吨":28.0,"状态":"在产","主要股东及持股":"力勤资源/Harita合资","数据来源":"GEM wiki/中铝国际","备注":"二期（KPS）12条线2026年5月全部投产，Obi岛火法+湿法合计40万吨产能落地","投产时间":"2022-10（二期2025-02–2026-04）","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"一期8条9.5万吨+二期12条18.5万吨=28万镍吨","产线数":"20条RKEF"}]},"北马鲁古省::奥比岛西侧":{"province":"北马鲁古省","park":"奥比岛西侧","lat":-1.6,"lng":127.36,"projects":[{"项目名":"金川WP（印尼金川）","企业名_中文":"印尼金川WP","企业名_英文_PT":"PT Wanatiara Persada","工艺路线":"RKEF（4×33MVA）","产品":"镍铁（11.25%Ni块状）","年产能_万镍金属吨":2.61,"状态":"在产","主要股东及持股":"金川集团控股（约60%）","数据来源":"Mysteel/金川招标公告","备注":"2026年3月启动3条线升级改造（产量+20%）","投产时间":"2019","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"改造后23.2万吨镍铁含镍26,100吨=2.61万镍吨","产线数":"4条RKEF"}]},"东南苏拉威西省::德龙肯达里园区（VDNI/OSS，Morosi）":{"province":"东南苏拉威西省","park":"德龙肯达里园区（VDNI/OSS，Morosi）","lat":-3.97,"lng":122.62,"projects":[{"项目名":"德龙一期","企业名_中文":"印尼德龙镍业（VDNI）","企业名_英文_PT":"PT Virtue Dragon Nickel Industry","工艺路线":"RKEF（33MVA）","产品":"NPI/镍铁（10–12%Ni）","年产能_万镍金属吨":11.0,"状态":"部分在产","主要股东及持股":"中国一重51%、江苏德龙49%","数据来源":"财新/镍业大典","备注":"2025年起减产；2026年5月起被供应商申请破产重整（PKPU）","投产时间":"2017","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"双口径：设计60万吨镍铁≈6–7万镍吨；实际年产超80万吨镍铁≈约11万镍吨","产线数":"15条RKEF"},{"项目名":"德龙二期","企业名_中文":"黑曜石不锈钢（OSS）","企业名_英文_PT":"PT Obsidian Stainless Steel","工艺路线":"RKEF+炼钢连铸一体化","产品":"NPI→不锈钢坯（250万吨）","年产能_万镍金属吨":24.0,"状态":"在产","主要股东及持股":"厦门象屿51%（德龙49%股权已质押给象屿）","数据来源":"广东不锈钢协会/镍业大典","备注":"未见涉入PKPU程序","投产时间":"2020","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"NPI约24万镍吨（全部自用）","产线数":"30条RKEF"},{"项目名":"Konawe高炉项目","企业名_中文":"浙江保利（印尼）","企业名_英文_PT":"Zhejiang Baoli Nickel（PT名未公开）","工艺路线":"高炉（1×530m³）","产品":"镍铁","年产能_万镍金属吨":0.4,"状态":"在产","主要股东及持股":"浙江保利系","数据来源":"新浪财经专栏","备注":"信息有限","投产时间":"—","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"3.6万吨镍铁≈约0.4万镍吨","产线数":"1座高炉"}]},"中苏拉威西省::德龙北莫罗瓦里园区（VDNIP/SEI）":{"province":"中苏拉威西省","park":"德龙北莫罗瓦里园区（VDNIP/SEI）","lat":-1.5,"lng":121.4,"projects":[{"项目名":"德龙三期","企业名_中文":"冈巴斯特镍业（GNI）","企业名_英文_PT":"PT Gunbuster Nickel Industry","工艺路线":"RKEF","产品":"NPI/镍铁（10–12%Ni）","年产能_万镍金属吨":23.0,"状态":"部分在产","主要股东及持股":"江苏德龙系（破产重整中）","数据来源":"Profundo/CNV/镍业大典","备注":"2024年起仅少数产线运行；2026年进入破产重整（PKPU临时状态），实际运行远低于铭牌","投产时间":"2021-12","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"180–190万吨镍铁/年≈18–23万镍吨（铭牌）","产线数":"24–25条"},{"项目名":"德龙四期","企业名_中文":"纳德西科镍业（NNI，中伟北莫罗瓦利基地）","企业名_英文_PT":"PT Nadesico Nickel Industry","工艺路线":"RKEF","产品":"低冰镍","年产能_万镍金属吨":8.0,"状态":"在产","主要股东及持股":"中伟股份67%、德龙镍业33%","数据来源":"搜狐/中伟官网","备注":"8条线2025年4月前全面投产","投产时间":"2024-01","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"8万镍吨","产线数":"8条RKEF"}]},"中苏拉威西省::北莫罗瓦里县":{"province":"中苏拉威西省","park":"北莫罗瓦里县","lat":-1.5,"lng":121.4,"projects":[{"项目名":"—","企业名_中文":"COR Industri Indonesia（CORII）","企业名_英文_PT":"PT COR Industri Indonesia","工艺路线":"高炉（tanur tiup）","产品":"NPI/FeNi","年产能_万镍金属吨":1.2,"状态":"在产","主要股东及持股":"PT Central Omega Resources 60%、PT Macrolink Nickle Development 40%","数据来源":"Katadata/Central Omega官网","备注":"截至2022年累计产FeNi/NPI 24.1万吨","投产时间":"2017","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"10万吨NPI/年≈约1.2万镍吨（估）","产线数":"高炉"}]},"中苏拉威西省::振石印尼华宝工业园":{"province":"中苏拉威西省","park":"振石印尼华宝工业园","lat":-2.6,"lng":122.0,"projects":[{"项目名":"华宝园区镍铁项目","企业名_中文":"硕石印尼投资/贝石印尼投资","企业名_英文_PT":"PT Shuoshi / Beishi（振石控股全资）","工艺路线":"RKEF（12×33MVA）+3×250MW煤电","产品":"NPI","年产能_万镍金属吨":12.6,"状态":"在产（达产）","主要股东及持股":"振石控股集团100%","数据来源":"振石官网/兰格钢铁","备注":"下游规划300万吨绿色不锈钢基地（2024-07启动）","投产时间":"2024-08-24全线投产","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"105万吨NPI≈12.6万镍吨（按12%折算；另有10–11万口径）","产线数":"12条RKEF"},{"项目名":"寒锐印尼高冰镍项目","企业名_中文":"印尼寒锐镍业","企业名_英文_PT":"PT Hanrui Nickel Indonesia","工艺路线":"富氧侧吹+低冰镍富氧连续吹炼","产品":"高冰镍","年产能_万镍金属吨":2.0,"状态":"在产（爬坡期）","主要股东及持股":"寒锐钴业（300618）控股子公司","数据来源":"东方财富/Mysteel","备注":"研报曾误列为MHP项目，实为火法高冰镍；两度延期","投产时间":"2026-03-31达预定可使用状态、2026-04-10点火","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"2.0万金吨","产线数":"1套"}]},"中苏拉威西省::印尼万向新能源产业园区":{"province":"中苏拉威西省","park":"印尼万向新能源产业园区","lat":-2.731,"lng":122.0306,"projects":[{"项目名":"万向镍铁一期","企业名_中文":"印尼万向镍业","企业名_英文_PT":"PT Wanxiang Nickel Indonesia","工艺路线":"RKEF（4×36MVA）+烧结-高炉配套","产品":"NPI（设计15%Ni）","年产能_万镍金属吨":3.3,"状态":"部分在产","主要股东及持股":"万向集团系（中国万向控股）；厦门国贸包销","数据来源":"GEM/Mysteel","备注":"2025年起关停部分产线，仅约2条线低负荷运行（RKAB配额冲击）；与盛屯无股权关系","投产时间":"2022年底–2023-05","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"RKEF部分26万吨NPI≈3.3–3.4万镍吨；另有高炉约2.0万镍吨（信息有限未计入）","产线数":"4条RKEF（+8座小高炉）"}]},"南苏拉威西省::印尼华迪工业园（Bantaeng）":{"province":"南苏拉威西省","park":"印尼华迪工业园（Bantaeng）","lat":-5.54,"lng":119.98,"projects":[{"项目名":"华迪镍铁项目","企业名_中文":"华迪镍合金","企业名_英文_PT":"PT Huadi Nickel-Alloy Indonesia","工艺路线":"RKEF","产品":"镍铁（NPI）","年产能_万镍金属吨":4.2,"状态":"停产维护","主要股东及持股":"上海华迪（华迪钢业集团）系","数据来源":"铁合金在线/ESDM","备注":"2026年因RKAB配额未获批、无矿可炼据报全面停产（二手来源，置信度中）","投产时间":"—","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"口径不一：10条线/50万吨镍铁≈6万吨 vs 8条线/20万吨≈2.4万吨 vs ESDM口径5万吨NPI；区间2.4–6万镍吨","产线数":"8–10条（口径不一）"},{"项目名":"恒生新能源冰镍项目","企业名_中文":"印尼恒生新能源","企业名_英文_PT":"PT Hengsheng New Energy（名称未公开）","工艺路线":"富氧侧吹","产品":"冰镍","年产能_万镍金属吨":1.0,"状态":"在产","主要股东及持股":"海南瑞赛可+印尼华迪+中伟香港（15%）合资","数据来源":"中伟定增文件/铁合金在线","备注":"位于华迪工业园内","投产时间":"—","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"1万吨冰镍/年","产线数":"—"}]},"南苏拉威西省::Sorowako（东卢屋县）":{"province":"南苏拉威西省","park":"Sorowako（东卢屋县）","lat":-2.5458,"lng":121.3525,"projects":[{"项目名":"Vale Indonesia Sorowako","企业名_中文":"印尼淡水河谷（INCO）","企业名_英文_PT":"PT Vale Indonesia Tbk","工艺路线":"RKEF（3台电炉）+转炉","产品":"高冰镍（约78%Ni）","年产能_万镍金属吨":7.2,"状态":"在产","主要股东及持股":"MIND ID 34%、Vale Canada 33.9%、住友金属矿山11.5%、公众20.6%","数据来源":"PT Vale业绩公告","备注":null,"投产时间":"1977（历史资产）","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"约7.2万镍吨（2024年产71,311吨、2025年产72,027吨镍）","产线数":"3台电炉"}]},"东南苏拉威西省::Pomalaa镍工业区":{"province":"东南苏拉威西省","park":"Pomalaa镍工业区","lat":-4.1799,"lng":121.5929,"projects":[{"项目名":"Antam Pomalaa镍铁厂（FeNi II/III）","企业名_中文":"安塔姆（Antam）","企业名_英文_PT":"PT Aneka Tambang Tbk（Antam）","工艺路线":"RKEF","产品":"FeNi镍铁（约20%Ni粒）","年产能_万镍金属吨":2.7,"状态":"在产","主要股东及持股":"印尼国企（MIND ID）","数据来源":"ITB论文/Antam公告","备注":"2025年全公司镍铁产量降至1.61万吨（矿源/底价政策）","投产时间":"—","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"2.7万镍吨（4条产线）；FeNi I已退役","产线数":"4条"}]},"东南苏拉威西省::Kolaka县Wolo（自有WIUP矿区）":{"province":"东南苏拉威西省","park":"Kolaka县Wolo（自有WIUP矿区）","lat":-4.02,"lng":121.63,"projects":[{"项目名":"CNI'Merah Putih'冶炼厂一期","企业名_中文":"印尼红土镍业（CNI）","企业名_英文_PT":"PT Ceria Nugraha Indotama","工艺路线":"矩形RKEF（72MVA）","产品":"FeNi镍铁","年产能_万镍金属吨":1.3,"状态":"在产","主要股东及持股":"CNI集团（印尼本土）","数据来源":"JPNN/Indonesia Miner","备注":"二期RKEF及HPAL规划见05表","投产时间":"2025-04商业化投产","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"一期1.3万吨FeNi镍（1#线72MVA）；总规划FeNi 25.2万吨≈镍5.56万吨","产线数":"1条（规划4×72MVA）"}]},"北马鲁古省::东哈马黑拉县":{"province":"北马鲁古省","park":"东哈马黑拉县","lat":0.925,"lng":128.375,"projects":[{"项目名":"Antam FeNi IV（P3FH）","企业名_中文":"安塔姆（Antam）","企业名_英文_PT":"PT Aneka Tambang Tbk（Antam）","工艺路线":"RKEF","产品":"FeNi镍铁","年产能_万镍金属吨":1.35,"状态":"在产","主要股东及持股":"印尼国企（MIND ID）","数据来源":"Indonesia Miner","备注":null,"投产时间":"2023-10商业化","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"1.35万镍吨（Line 1）","产线数":"1条"}]},"北马鲁古省::北哈马黑拉县":{"province":"北马鲁古省","park":"北哈马黑拉县","lat":1.7283,"lng":128.0078,"projects":[{"项目名":"—","企业名_中文":"Mazinger镍业（MNI）","企业名_英文_PT":"PT Mazinger Nickel Industry","工艺路线":"RKEF","产品":"NPI（10–11%Ni）","年产能_万镍金属吨":2.8,"状态":"部分在产","主要股东及持股":"中资（陕西商华和丰等工程方已申请其PKPU）","数据来源":"Telisik.id","备注":"2026年进入PKPU临时状态；坐标为Tobelo城镇级","投产时间":"—","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"约2.5–3万镍吨（处理矿石278万吨/年，估）","产线数":"未披露"}]},"万丹省::Cilegon（爪哇）":{"province":"万丹省","park":"Cilegon（爪哇）","lat":-6.0,"lng":106.05,"projects":[{"项目名":"—","企业名_中文":"Indoferro","企业名_英文_PT":"PT Indoferro（Growth Steel Group）","工艺路线":"高炉（450m³）","产品":"NPI（约2.4–4%Ni）","年产能_万镍金属吨":0.8,"状态":"部分在产","主要股东及持股":"Growth Steel Group","数据来源":"Steelonthenet","备注":"间歇生产，信息陈旧","投产时间":"—","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"25万吨NPI≈0.6–1万镍吨（规划扩至50万吨）","产线数":"1座高炉"}]},"中苏拉威西省::青岛印尼综合产业园（Morowali县）":{"province":"中苏拉威西省","park":"青岛印尼综合产业园（Morowali县）","lat":-2.53,"lng":121.98,"projects":[{"项目名":"—","企业名_中文":"印尼和谐金属冶炼（MSS）","企业名_英文_PT":"PT Metal Smeltindo Selaras","工艺路线":"RKEF（4×33MVA）+2×65MW","产品":"NPI（11.5%Ni）","年产能_万镍金属吨":3.0,"状态":"在产（满负荷）","主要股东及持股":"青岛熹源控股、青岛城投、山东泰山钢铁集团","数据来源":"MSS官网/东方财富","备注":"2024年8月公司口径满负荷","投产时间":"—","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"26万吨NPI≈3.0万镍吨","产线数":"4条RKEF"}]},"北马鲁古省::—":{"province":"北马鲁古省","park":"—","lat":1.0,"lng":128.0,"projects":[{"项目名":"—","企业名_中文":"Fajar Bhakti Lintas Nusantara","企业名_英文_PT":"PT Fajar Bhakti Lintas Nusantara","工艺路线":"高炉","产品":"NPI","年产能_万镍金属吨":1.3,"状态":"在产","主要股东及持股":"—","数据来源":"ESDM/Bizteka印尼NPI企业表","备注":"点状布局，信息有限","投产时间":"—","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"约12万吨NPI≈1.3万镍吨（估）","产线数":"高炉"}]},"东南苏拉威西省::—":{"province":"东南苏拉威西省","park":"—","lat":-3.9,"lng":122.5,"projects":[{"项目名":"—","企业名_中文":"Bintang Smelter Indonesia（Ifishdeco子公司）","企业名_英文_PT":"PT Bintang Smelter Indonesia","工艺路线":"高炉","产品":"NPI","年产能_万镍金属吨":0.9,"状态":"在产","主要股东及持股":"Ifishdeco子公司","数据来源":"ESDM/Bizteka印尼NPI企业表","备注":"点状布局，信息有限","投产时间":"—","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"8万吨NPI≈0.9万镍吨（估）","产线数":"高炉"}]},"东加里曼丹省::Kariangau工业区（Balikpapan）":{"province":"东加里曼丹省","park":"Kariangau工业区（Balikpapan）","lat":-1.172,"lng":116.866,"projects":[{"项目名":"MMP高冰镍项目","企业名_中文":"印尼MMP（MMS集团）","企业名_英文_PT":"PT Mitra Murni Perkasa","工艺路线":"RKEF（2×48000kVA）+转炉","产品":"高冰镍（>70%Ni）","年产能_万镍金属吨":2.2,"状态":"在产","主要股东及持股":"MMS集团（MMSGI，Andrew Hidayat）","数据来源":"Mysteel","备注":"研报列'2025年待投产'，实际2025年8月已投产","投产时间":"2025-08首批高冰镍出炉","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"2.2万镍吨（设计2.7）","产线数":"2条RKEF+转炉"}]},"东南苏拉威西省::IPIP工业园（Kolaka Pomalaa）":{"province":"东南苏拉威西省","park":"IPIP工业园（Kolaka Pomalaa）","lat":-4.22,"lng":121.61,"projects":[{"项目名":"Pomalaa HPAL（Vale三大IGP之一）","企业名_中文":"科拉卡镍业（KNI）","企业名_英文_PT":"PT Kolaka Nickel Indonesia","工艺路线":"HPAL（5台高压釜）","产品":"MHP","年产能_万镍金属吨":12.0,"状态":"在建（部分调试）","主要股东及持股":"华友（华骐新加坡）73.2%、PT Vale Indonesia 18.3%、福特8.5%（Vale/Ford有权分别增持至30%/17%）","数据来源":"Reuters/华友公告","备注":"决议口径：首线2026年8月","投产时间":"2026-01首批2台高压釜到场；2026-06公司确认on-track；初期MHP全部经华友出口中国","预计投产时间":"—","建设进度":"首条产线2026-08投运；5条线2026年底全部投运","产能说明_品位口径":"12.0万镍吨（+钴）","产线数":"5条"}]},"中苏拉威西省::IGIP（印尼国际绿色工业园，Bahodopi）":{"province":"中苏拉威西省","park":"IGIP（印尼国际绿色工业园，Bahodopi）","lat":-2.0,"lng":121.5,"projects":[{"项目名":"IGIP绿色工业园Bahodopi HPAL项目","企业名_中文":"格林美×淡水河谷×ECOPRO合资（PT名待核）","企业名_英文_PT":"（PT名待核）","工艺路线":"HPAL","产品":"MHP","年产能_万镍金属吨":9.0,"状态":"在建","主要股东及持股":"EcoPro 39%（最大股东）、GEM/格林美、Vale Indonesia等","数据来源":"东方证券/Mysteel/EcoPro披露","备注":"决议口径：产能9万吨、EcoPro 39%最大股东；研报6.6万吨为旧口径；与下方BNSI RKEF项目同处Bahodopi地区但为不同主体，注意区分","投产时间":"已施工约35%；格林美体系工程推进","预计投产时间":"—","建设进度":"机械完工2026Q4，2027年调试","产能说明_品位口径":"9.0万镍吨（已自6.6万吨扩产；研报6.6口径只入备注）","产线数":"—"}]},"中苏拉威西省::Bahodopi（Sambalagi村，Bungku Pesisir）":{"province":"中苏拉威西省","park":"Bahodopi（Sambalagi村，Bungku Pesisir）","lat":-2.0,"lng":121.5,"projects":[{"项目名":"Bahodopi IGP（RKEF部分）","企业名_中文":"巴哈多比RKEF项目（Vale/太钢/鑫海口径）","企业名_英文_PT":"PT Bahodopi Nickel Smelting Indonesia（BNSI）","工艺路线":"RKEF（8条）+LNG电厂","产品":"FeNi镍铁","年产能_万镍金属吨":7.3,"状态":"在建（低置信）","主要股东及持股":"太钢+鑫海51%、PT Vale Indonesia 49%（口径存疑）","数据来源":"Project Multatuli调查","备注":"与BNSI-HPAL同PT名不同项目口径，可能为Bahodopi园区独立RKEF板块，需进一步核实；Vale/太钢/鑫海合资RKEF项目，与上方IGIP HPAL项目非同一主体","投产时间":"公开进展有限","预计投产时间":"—","建设进度":"—","产能说明_品位口径":"7.3万镍吨（Project Multatuli披露口径）","产线数":"8条（规划）"}]},"北马鲁古省::FHT工业园（东哈马黑拉Buli）":{"province":"北马鲁古省","park":"FHT工业园（东哈马黑拉Buli）","lat":0.925,"lng":128.375,"projects":[{"项目名":"CBL电池生态项目（RKEF部分）","企业名_中文":"Feni Haltim（FHT）","企业名_英文_PT":"PT Feni Haltim","工艺路线":"RKEF","产品":"NPI","年产能_万镍金属吨":8.8,"状态":"在建","主要股东及持股":"CBL（普勤时代=宁德时代邦普/力勤）60%、ANTAM 40%","数据来源":"Mysteel/Antam公告","备注":"HPAL部分（CBL-MHP 5.5万，FID待定）见05表","投产时间":"60亿美元电池生态项目2025-06-29奠基；2025下半年开工","预计投产时间":"—","建设进度":"2027（2026年底建成）","产能说明_品位口径":"8.8万镍吨（决议口径：CBL=MHP5.5+NPI8.8，研报'14.2+14.2'口径只入备注）","产线数":"—"}]},"东南苏拉威西省::IPIP工业园（Pomalaa，华友×Rimau共建）":{"province":"东南苏拉威西省","park":"IPIP工业园（Pomalaa，华友×Rimau共建）","lat":-4.22,"lng":121.61,"projects":[{"项目名":"—","企业名_中文":"华星镍业（印尼）","企业名_英文_PT":"PT Huaxing Nickel Indonesia（名称未公开）","工艺路线":"火法","产品":"高冰镍","年产能_万镍金属吨":4.0,"状态":"在建","主要股东及持股":"华友钴业体系（华星印尼）","数据来源":"Mysteel（中化二建投稿）","备注":"交叉验证决议：已开工，放04表","投产时间":"2025-03-13开工；2025-06进入主体钢结构施工（中化二建承建39个装置）","预计投产时间":"—","建设进度":"2026","产能说明_品位口径":"4.0万镍吨","产线数":"—"}]},"中苏拉威西省::万向工业园（Morowali）":{"province":"中苏拉威西省","park":"万向工业园（Morowali）","lat":-2.75,"lng":122.0,"projects":[{"项目名":"万向二期","企业名_中文":"印尼永誉国际能源","企业名_英文_PT":"PT Yongyu International Energy（名称未公开）","工艺路线":"RKEF（18条规划）","产品":"NPI/冰镍","年产能_万镍金属吨":20.0,"状态":"停滞","主要股东及持股":"万向园区相关方（盛屯曾关联）","数据来源":"东证期货/Mysteel","备注":"低置信度；判断基本停滞","投产时间":"2024-09后无公开进展（东证期货'以冰镍为主、进度缓慢'）","预计投产时间":"—","建设进度":"—","产能说明_品位口径":"20.0万镍吨（18条RKEF规划口径）","产线数":"18条（规划）"}]},"东南苏拉威西省::德龙肯达里园区":{"province":"东南苏拉威西省","park":"德龙肯达里园区","lat":-3.97,"lng":122.62,"projects":[{"项目名":"德龙N1项目","企业名_中文":"德龙N1项目","企业名_英文_PT":"Delong N1 Project（未公开）","工艺路线":"RKEF","产品":"NPI","年产能_万镍金属吨":18.0,"状态":"在建（低置信）","主要股东及持股":"江苏德龙系","数据来源":"dim02调研表/Mysteel","备注":"低置信度","投产时间":"公开进展有限；德龙系破产重整背景下存疑","预计投产时间":"—","建设进度":"—","产能说明_品位口径":"18万镍吨（规划口径）","产线数":"—"}]},"东南苏拉威西省::Kolaka县Wolo":{"province":"东南苏拉威西省","park":"Kolaka县Wolo","lat":-4.02,"lng":121.63,"projects":[{"项目名":"CNI二期","企业名_中文":"印尼红土镍业（CNI）二期","企业名_英文_PT":"PT Ceria Nugraha Indotama","工艺路线":"HPAL","产品":"MHP","年产能_万镍金属吨":5.9,"状态":"环评/筹融资中","主要股东及持股":"CNI集团","数据来源":"Indonesia Miner/国信证券","备注":"一期FeNi已投产（见03表）；受IUI新政约束","投产时间":"—","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"双口径：公司披露14.66万吨MHP产品/年≈5.9万镍吨；研报口径11.09万镍吨（只入备注）","产线数":"—"}]},"东南苏拉威西省::Kolaka":{"province":"东南苏拉威西省","park":"Kolaka","lat":-4.05,"lng":121.6,"projects":[{"项目名":"—","企业名_中文":"克拉克镍业（KNI-MSP）","企业名_英文_PT":"PT Kolaka Nickel Industry","工艺路线":"湿法（硫化沉淀）","产品":"MSP","年产能_万镍金属吨":4.0,"状态":"可研","主要股东及持股":"股东未公开核实","数据来源":"国信证券2026-05项目表","备注":"仅见国信项目表'待定'，股东身份未核实","投产时间":"—","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"4.0万镍吨（MSP口径）","产线数":"—"}]},"东南苏拉威西省::IKIP（印尼科纳威工业园）":{"province":"东南苏拉威西省","park":"IKIP（印尼科纳威工业园）","lat":-3.85,"lng":122.15,"projects":[{"项目名":"IKIP HPAL","企业名_中文":"Brunp CATL HPAL","企业名_英文_PT":"PT名未定（MBMA×Brunp CATL JV）","工艺路线":"HPAL","产品":"MHP","年产能_万镍金属吨":6.0,"状态":"可研完成（中国恩菲2024Q4完成可研，选址IKIP）","主要股东及持股":"MBMA（经PT Merdeka Energi Baru，研报口径67%）、Brunp CATL 33%","数据来源":"MBMA Q4 2024季报","备注":null,"投产时间":"—","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"一期6.0万镍吨；远期两期12万吨","产线数":"—"}]},"中苏拉威西省::IGIP（Bahodopi）":{"province":"中苏拉威西省","park":"IGIP（Bahodopi）","lat":-2.0,"lng":121.5,"projects":[{"项目名":"IGIP园区","企业名_中文":"IGIP（印尼国际绿色工业园，GEM×Vale园区）","企业名_英文_PT":"园区主体","工艺路线":"HPAL","产品":"MHP","年产能_万镍金属吨":6.6,"状态":"园区引用（产能计入04表BNSI）","主要股东及持股":"格林美×Vale Indonesia等","数据来源":"东方证券/Mysteel","备注":"KIPI=北加里曼丹绿色工业园为另一园区概念，镍产能未定，不单列产能","投产时间":"—","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"园区引用行：产能即04表BNSI项目（6.6→9万吨），不重复计入","产线数":"—"}]},"北马鲁古省::FHT工业园（Buli）":{"province":"北马鲁古省","park":"FHT工业园（Buli）","lat":0.925,"lng":128.375,"projects":[{"项目名":"CBL电池生态项目（HPAL部分）","企业名_中文":"CBL-MHP合资公司","企业名_英文_PT":"PT Nickel Cobalt Halmahera（CBL-MHP JVCO）","工艺路线":"HPAL","产品":"MHP","年产能_万镍金属吨":5.5,"状态":"签约/奠基（2025-06-29生态项目奠基；HPAL初始投资2025底-2026初，FID敲定中）","主要股东及持股":"CBL 70%、ANTAM 30%；IBC参与下游","数据来源":"Mysteel/Antam公告","备注":"RKEF部分（FHT 8.8万吨）见04表","投产时间":"2028","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"5.5万镍吨（决议口径；研报'14.2'为MHP+NPI合计旧口径）","产线数":"—"}]},"西爪哇省::STAL ONE Ecopark（Bogor）":{"province":"西爪哇省","park":"STAL ONE Ecopark（Bogor）","lat":-6.6,"lng":106.8,"projects":[{"项目名":"TGEM STAL ONE Ecopark扩建","企业名_中文":"GO STAL（TGEM子公司）","企业名_英文_PT":"PT Gostal Nickel Indonesia（GO STAL）","工艺路线":"STAL阶梯温度酸浸（常压湿法）","产品":"MHP（镍含量>50%）","年产能_万镍金属吨":0.4,"状态":"环评/待批","主要股东及持股":"TGEM/PT Lima Pilar Resources（LPR已入股）","数据来源":"Indonesia Miner/TGEM官网","备注":null,"投产时间":"—","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"Ecopark规划1万吨MHP/年≈0.4万吨镍（现有Bogor装置0.32万吨MHP/年在产）","产线数":"模块化"}]},"西南巴布亚省::Sorong经济特区（KEK）":{"province":"西南巴布亚省","park":"Sorong经济特区（KEK）","lat":-0.91,"lng":131.3,"projects":[{"项目名":"TGEM IGNITE Ecopark","企业名_中文":"TGEM IGNITE合资公司","企业名_英文_PT":"TGEM × PT Malomoi Olom Wobok","工艺路线":"STAL","产品":"MHP","年产能_万镍金属吨":16.0,"状态":"规划（选址自Palu KEK改至Sorong KEK）","主要股东及持股":"TGEM主导，引入美英日资本","数据来源":"Antara/TGEM官网","备注":"受IUI新政约束","投产时间":"—","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"研报口径16万吨镍（=40万吨MHP×40%Ni顶格口径）；官方口径5–10万吨镍（20–40万吨MHP），实际规模可能低于研报值","产线数":"多模块"},{"项目名":"—","企业名_中文":"Sinagi Olom Fagu联合体","企业名_英文_PT":"PT Sinagi Olom Fagu（联合体）","工艺路线":"OESBF富氧侧吹（天然气/氢替代煤）","产品":"高冰镍","年产能_万镍金属吨":16.0,"状态":"签约（2024-05-28联合体协议；土地/能源/原料/港口问题待解）","主要股东及持股":"PT Malamoi Olom Wobok+PT Huahe Management+PT Sino Consultant Investment；引入PT Sheng Wei New Energy+北京建龙重工","数据来源":"iNewsSorong/Windonesia","备注":"巴布亚首座镍冶炼厂","投产时间":"—","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"16.0万镍吨（总投资75万亿印尼盾）","产线数":"未定"}]},"南苏拉威西省::Sorowako/Malili（东卢屋）":{"province":"南苏拉威西省","park":"Sorowako/Malili（东卢屋）","lat":-2.53,"lng":121.36,"projects":[{"项目名":"Sorowako HPAL（Vale三大IGP之一）","企业名_中文":"华利镍业（印尼）","企业名_英文_PT":"PT Huali Nickel Indonesia","工艺路线":"HPAL","产品":"MHP（镍6万吨+钴0.5万吨）","年产能_万镍金属吨":6.0,"状态":"环评（AMDAL办理中，截至2025-03仍在申请）","主要股东及持股":"华友钴业+PT Vale Indonesia（Vale仍在寻找第三方股东）","数据来源":"华友公告/PT Vale披露","备注":"2026-01 Vale称其为三大IGP中进度最慢；叠加PP28/2025落地节奏存疑","投产时间":"2027Q4（官方2027）","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"6.0万镍吨","产线数":"—"}]},"中苏拉威西省::Morowali县":{"province":"中苏拉威西省","park":"Morowali县","lat":-2.0,"lng":121.7,"projects":[{"项目名":"—","企业名_中文":"印尼益嘉","企业名_英文_PT":"未核实","工艺路线":"湿法/火法中间品（推测）","产品":"MHP/冰镍（推测）","年产能_万镍金属吨":6.0,"状态":"待定（未获IUI）","主要股东及持股":"未核实","数据来源":"紫金天风镍年报项目清单","备注":"仅研报来源，公开渠道未核实","投产时间":"—","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"6.0万镍吨（研报口径）","产线数":"未定"},{"项目名":"—","企业名_中文":"印尼城盛新能源","企业名_英文_PT":"未核实","工艺路线":"湿法/火法中间品（推测）","产品":"MHP/冰镍（推测）","年产能_万镍金属吨":6.0,"状态":"待定（未获IUI）","主要股东及持股":"未核实","数据来源":"紫金天风镍年报项目清单","备注":"仅研报来源，公开渠道未核实","投产时间":"—","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"6.0万镍吨（研报口径）","产线数":"未定"},{"项目名":"—","企业名_中文":"印尼海风新能源","企业名_英文_PT":"未核实","工艺路线":"湿法/火法中间品（推测）","产品":"MHP/冰镍（推测）","年产能_万镍金属吨":6.0,"状态":"待定（未获IUI）","主要股东及持股":"未核实","数据来源":"紫金天风镍年报项目清单","备注":"仅研报来源，公开渠道未核实","投产时间":"—","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"6.0万镍吨（研报口径）","产线数":"未定"},{"项目名":"—","企业名_中文":"印尼鼎桥新能源","企业名_英文_PT":"未核实","工艺路线":"湿法/火法中间品（推测）","产品":"MHP/冰镍（推测）","年产能_万镍金属吨":6.0,"状态":"待定（未获IUI）","主要股东及持股":"未核实","数据来源":"紫金天风镍年报项目清单","备注":"仅研报来源，公开渠道未核实","投产时间":"—","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"6.0万镍吨（研报口径）","产线数":"未定"},{"项目名":"—","企业名_中文":"印尼鸿启新能源","企业名_英文_PT":"未核实","工艺路线":"湿法/火法中间品（推测）","产品":"MHP/冰镍（推测）","年产能_万镍金属吨":6.0,"状态":"待定（未获IUI）","主要股东及持股":"未核实","数据来源":"紫金天风镍年报项目清单","备注":"仅研报来源，公开渠道未核实","投产时间":"—","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"6.0万镍吨（研报口径）","产线数":"未定"},{"项目名":"—","企业名_中文":"印尼华龙","企业名_英文_PT":"未核实","工艺路线":"湿法/火法中间品（推测）","产品":"MHP/冰镍（推测）","年产能_万镍金属吨":12.0,"状态":"待定（未获IUI）","主要股东及持股":"未核实","数据来源":"紫金天风镍年报项目清单","备注":"仅研报来源，公开渠道未核实","投产时间":"—","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"12.0万镍吨（研报口径）","产线数":"未定"},{"项目名":"—","企业名_中文":"印尼华鼎","企业名_英文_PT":"未核实","工艺路线":"湿法/火法中间品（推测）","产品":"MHP/冰镍（推测）","年产能_万镍金属吨":12.0,"状态":"待定（未获IUI）","主要股东及持股":"未核实","数据来源":"紫金天风镍年报项目清单","备注":"仅研报来源，公开渠道未核实","投产时间":"—","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"12.0万镍吨（研报口径）","产线数":"未定"}]},"南苏拉威西省::Bantaeng":{"province":"南苏拉威西省","park":"Bantaeng","lat":-5.52,"lng":119.95,"projects":[{"项目名":"—","企业名_中文":"DOWSTONE（道氏×华迪）","企业名_英文_PT":"PT DOWSTONE","工艺路线":"火法","产品":"高冰镍（Matte）","年产能_万镍金属吨":2.0,"状态":"签约（2022-06框架协议）","主要股东及持股":"道氏技术（投资≤10亿元）×印尼华迪投资集团","数据来源":"Asian Metal/道氏技术公告","备注":"国泰君安2025-01仍列入'预计新增'，落地存疑","投产时间":"—","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"2.0万镍吨","产线数":"未定"}]},"南加里曼丹省::Tanah Bumbu":{"province":"南加里曼丹省","park":"Tanah Bumbu","lat":-3.45,"lng":116.0,"projects":[{"项目名":"中伟南加里曼丹基地","企业名_中文":"中伟天祺（PT.ABC，名称未核实）","企业名_英文_PT":"PT.ABC（公司名未公开核实）","工艺路线":"火法（RKEF/OESBF）","产品":"低冰镍","年产能_万镍金属吨":4.0,"状态":"在建（早期，未确认）","主要股东及持股":"中伟股份系","数据来源":"中伟股份报道/dim08核实","备注":"'中伟天祺/PT.ABC'主体名称未获公开佐证","投产时间":"—","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"4.0万镍吨（投产后新增4万吨/年低冰镍）","产线数":"未定"}]},"东南苏拉威西省::Pomalaa（PT KIAT管理的ANTAM工业区）":{"province":"东南苏拉威西省","park":"Pomalaa（PT KIAT管理的ANTAM工业区）","lat":-4.25,"lng":121.58,"projects":[{"项目名":"—","企业名_中文":"PNEM（中伟×Antam）","企业名_英文_PT":"PT Pomalaa New Energy Material（PNEM）","工艺路线":"OESBF富氧侧吹","产品":"冰镍（Matte）","年产能_万镍金属吨":8.0,"状态":"签约/待批（2022-11 B20签署框架协议）","主要股东及持股":"中伟股份×ANTAM（PT KIAT提供园区与矿，双方可互参子公司股权）","数据来源":"Mysteel/中伟-Antam协议","备注":"受IUI新政约束","投产时间":"—","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"8.0万镍吨（分两期）","产线数":"两期"}]},"西爪哇省::Bogor":{"province":"西爪哇省","park":"Bogor","lat":-6.6,"lng":106.8,"projects":[{"项目名":"—","企业名_中文":"Hydrotech TMM（STAL技术）","企业名_英文_PT":"PT Hydrotech Metal Indonesia","工艺路线":"STAL（阶梯温度酸浸）","产品":"镍中间品（混合氢氧化物/金属）","年产能_万镍金属吨":0.5,"状态":"在建（早期）","主要股东及持股":"Trinitan集团系（IDX上市）","数据来源":"IDX招股书摘要","备注":"产能为估算","投产时间":"—","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"约0.5万镍吨（小试/商业化早期，估）","产线数":"模块化"}]},"南加里曼丹省::Kotabaru/Sebuku岛":{"province":"南加里曼丹省","park":"Kotabaru/Sebuku岛","lat":-3.2,"lng":116.35,"projects":[{"项目名":"—","企业名_中文":"Excellen Silo（一期RKEF+二期浸出）","企业名_英文_PT":"PT Excellen Silo Ferroalloy / Leaching","工艺路线":"一期RKEF；二期浸出（Leaching）","产品":"一期镍铁8万吨产品/年；二期电池原料（$2.2亿）","年产能_万镍金属吨":0.8,"状态":"签约/前期","主要股东及持股":"Hongkong Excellen（宁德时代曾毓群×璞泰来梁峰合资）+PT Sebuku Iron Lateritic Ores（SILO，Salim集团）","数据来源":"Liputan.co.id/Akurat","备注":null,"投产时间":"—","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"一期镍铁8万吨产品/年≈0.8万镍吨（估）；二期浸出镍量未披露","产线数":"未定"}]},"中苏拉威西省::NEMIE（Neo Energy Morowali Industrial Estate，Bungku Pesisir）":{"province":"中苏拉威西省","park":"NEMIE（Neo Energy Morowali Industrial Estate，Bungku Pesisir）","lat":-2.0,"lng":122.2,"projects":[{"项目名":"NEMIE HPAL","企业名_中文":"ANEM（Neo Energy）","企业名_英文_PT":"PT Anugrah Neo Energy Materials（ANEM）","工艺路线":"HPAL（100%绿电：水电+光伏）","产品":"MHP（12万吨MHP/年；ANEM称50万DMT MHP）","年产能_万镍金属吨":12.0,"状态":"奠基/前期","主要股东及持股":"ANEM（印尼本土）；战略伙伴国轩印尼材料；EPC框架中国恩菲（2024-12）","数据来源":"Neo Energy官网/Newsweek","备注":"已奠基属'在建不受影响'类别，但进度缓慢","投产时间":"2029（2026-01口径）","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"12.0万镍吨","产线数":"未定"}]},"北马鲁古省::OBI岛/待定":{"province":"北马鲁古省","park":"OBI岛/待定","lat":-1.5614,"lng":127.421,"projects":[{"项目名":"—","企业名_中文":"POSCO×力勤项目","企业名_英文_PT":"POSCO×Lygend JV（未公开）","工艺路线":"HPAL（推测）","产品":"MHP","年产能_万镍金属吨":6.0,"状态":"签约/概念","主要股东及持股":"POSCO系×力勤资源（研报清单口径）","数据来源":"紫金天风镍年报项目清单","备注":"仅研报来源；力勤与POSCO存在包销/财团合作背景，细节未核实","投产时间":"—","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"6.0万镍吨（研报口径，一期）","产线数":"未定"}]},"—（印尼电池价值链项目）::—":{"province":"—（印尼电池价值链项目）","park":"—","lat":-2.0,"lng":121.5,"projects":[{"项目名":"LG财团项目镍精炼环节","企业名_中文":"印尼电池价值链项目（华友承接）","企业名_英文_PT":"HLI/IBC Indonesia battery value chain project","工艺路线":"HPAL等（镍精炼环节）","产品":"镍中间品→电池材料","年产能_万镍金属吨":6.0,"状态":"签约/重组中","主要股东及持股":"原LG财团（LG新能源/LG化学/LX国际/POSCO/华友，约11万亿韩元）；2025-04 LG财团退出，华友钴业接任战略投资者","数据来源":"韩联社/Reuters/ofweek","备注":"项目基本计划不变、投资者变更","投产时间":"—","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"镍精炼环节约6万镍吨（估，研报口径）","产线数":"未定"}]},"中苏拉威西省::Bahodopi":{"province":"中苏拉威西省","park":"Bahodopi","lat":-2.0,"lng":121.5,"projects":[{"项目名":"—","企业名_中文":"住友金属矿山×Vale Indonesia HPAL探讨","企业名_英文_PT":"SMM×PT Vale Indonesia HPAL（未命名）","工艺路线":"HPAL","产品":"MHP","年产能_万镍金属吨":4.0,"状态":"已暂停","主要股东及持股":"住友金属矿山+PT Vale Indonesia","数据来源":"紫金天风镍年报项目清单/dim调研","备注":"已暂停，不计入规划合计","投产时间":"—","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"约4万镍吨（估）","产线数":"未定"}]},"—::—":{"province":"—","park":"—","lat":-2.0,"lng":121.5,"projects":[{"项目名":"华友HYD项目","企业名_中文":"华友×印尼国资×亿纬（HYD项目）","企业名_英文_PT":"Huayou HYD项目（未公开）","工艺路线":"RKEF+HPAL一体化","产品":"镍铁+MHP","年产能_万镍金属吨":15.0,"状态":"规划","主要股东及持股":"华友70%、Antam/IBC等","数据来源":"紫金天风镍年报项目清单","备注":"仅规划口径","投产时间":"2029年底（预计2027年底开工）","预计投产时间":null,"建设进度":null,"产能说明_品位口径":"火法10万+湿法5万=15万镍吨","产线数":"未定"}]}},"global":[{"国家":"中国","企业名_中文":"金川集团镍冶炼厂","项目名":"金川科技园","年产能_万镍金属吨":19.0,"lat":38.5128,"lng":102.1939,"状态":"在产（满负荷）"},{"国家":"俄罗斯","企业名_中文":"诺里尔斯克镍业极地分部","项目名":"Nadezhda冶炼厂+铜厂","年产能_万镍金属吨":20.0,"lat":69.3333,"lng":88.2167,"状态":"在产"},{"国家":"新喀里多尼亚","企业名_中文":"SLN（Eramet系）","项目名":"SLN Doniambo","年产能_万镍金属吨":5.6,"lat":-22.2236,"lng":166.4548,"状态":"部分在产"},{"国家":"新喀里多尼亚","企业名_中文":"KNS","项目名":"KNS（Koniambo Nickel SAS）","年产能_万镍金属吨":5.5,"lat":-21.0611,"lng":164.8383,"状态":"停产维护"},{"国家":"新喀里多尼亚","企业名_中文":"Prony Resources（原Vale Goro）","项目名":"Prony Resources New Caledonia","年产能_万镍金属吨":5.7,"lat":-22.267,"lng":166.95,"状态":"部分在产"},{"国家":"菲律宾","企业名_中文":"CBNC","项目名":"CBNC（Coral Bay Nickel）","年产能_万镍金属吨":2.4,"lat":8.5714,"lng":117.4267,"状态":"在产"},{"国家":"菲律宾","企业名_中文":"THPAL","项目名":"THPAL（Taganito HPAL Nickel）","年产能_万镍金属吨":3.6,"lat":9.433,"lng":125.809,"状态":"在产"},{"国家":"巴布亚新几内亚","企业名_中文":"瑞木镍钴（Ramu NiCo）","项目名":"Ramu NiCo（瑞木镍钴）","年产能_万镍金属吨":3.26,"lat":-5.5422,"lng":146.1383,"状态":"在产"},{"国家":"澳大利亚","企业名_中文":"Minara Resources（Glencore全资）","项目名":"Murrin Murrin Operations","年产能_万镍金属吨":4.5,"lat":-28.7807,"lng":121.8874,"状态":"在产"},{"国家":"澳大利亚","企业名_中文":"Ravensthorpe镍业（FQM）","项目名":"Ravensthorpe Nickel Operation","年产能_万镍金属吨":3.0,"lat":-33.5833,"lng":120.05,"状态":"停产维护"},{"国家":"澳大利亚","企业名_中文":"BHP Nickel West","项目名":"BHP Nickel West（Kwinana精炼厂）","年产能_万镍金属吨":6.5,"lat":-32.23,"lng":115.78,"状态":"停产维护"},{"国家":"古巴","企业名_中文":"Moa Nickel（摩亚镍业）","项目名":"Moa Nickel（Pedro Sotto Alba厂）","年产能_万镍金属吨":3.47,"lat":20.65,"lng":-74.9333,"状态":"在产"},{"国家":"马达加斯加","企业名_中文":"安巴托维（Ambatovy）","项目名":"Ambatovy镍钴项目","年产能_万镍金属吨":6.0,"lat":-18.85,"lng":47.55,"状态":"部分在产"},{"国家":"土耳其","企业名_中文":"Meta镍钴（Gördes）","项目名":"Meta Nikel Kobalt（Gördes）","年产能_万镍金属吨":1.0,"lat":38.9333,"lng":28.2833,"状态":"在产"},{"国家":"芬兰","企业名_中文":"Terrafame（特拉法姆）","项目名":"Terrafame（原Talvivaara）","年产能_万镍金属吨":2.9,"lat":64.0833,"lng":28.25,"状态":"在产"},{"国家":"日本","企业名_中文":"太平洋金属（PAMCO）","项目名":"PAMCO（Pacific Metals）","年产能_万镍金属吨":4.08,"lat":40.55,"lng":141.5,"状态":"部分在产"},{"国家":"日本","企业名_中文":"住友日向制炼所","项目名":"住友金属矿山日向制炼所","年产能_万镍金属吨":1.9,"lat":32.4167,"lng":131.6167,"状态":"在产"},{"国家":"日本","企业名_中文":"住友新居滨制炼所","项目名":"住友新居滨制炼所+千春电池材料","年产能_万镍金属吨":6.4,"lat":33.95,"lng":133.2833,"状态":"在产"},{"国家":"日本","企业名_中文":"Vale松阪精炼厂","项目名":"Vale Japan松阪精炼厂","年产能_万镍金属吨":6.0,"lat":34.5667,"lng":136.5333,"状态":"在产"},{"国家":"巴西","企业名_中文":"英美资源Barro Alto","项目名":"Barro Alto（Anglo American）","年产能_万镍金属吨":3.6,"lat":-14.9667,"lng":-48.8667,"状态":"在产"},{"国家":"巴西","企业名_中文":"Codemin镍业","项目名":"Codemin镍铁厂","年产能_万镍金属吨":0.75,"lat":-14.4667,"lng":-48.45,"状态":"在产"},{"国家":"巴西","企业名_中文":"Vale Onça Puma","项目名":"Onça Puma（Vale）","年产能_万镍金属吨":4.0,"lat":-6.6167,"lng":-51.05,"状态":"在产"},{"国家":"哥伦比亚","企业名_中文":"塞罗马托索（Cerro Matoso）","项目名":"Cerro Matoso（South32）","年产能_万镍金属吨":4.0,"lat":7.9049,"lng":-75.5516,"状态":"在产"},{"国家":"多米尼加共和国","企业名_中文":"法尔孔多（Falcondo）","项目名":"Falcondo（Americano Nickel/Glencore）","年产能_万镍金属吨":3.2,"lat":18.95,"lng":-70.4167,"状态":"停产维护"},{"国家":"危地马拉","企业名_中文":"FeNix（ProNiCo）","项目名":"FeNix/ProNiCo（Solway集团）","年产能_万镍金属吨":2.5,"lat":15.4667,"lng":-89.3667,"状态":"停产维护"},{"国家":"乌克兰","企业名_中文":"波布日斯基镍铁厂","项目名":"Pobuzhsky镍铁厂","年产能_万镍金属吨":2.2,"lat":48.5833,"lng":31.3667,"状态":"停产维护"},{"国家":"北马其顿","企业名_中文":"Euronickel工业（北马其顿）","项目名":"Euronickel镍铁厂","年产能_万镍金属吨":1.5,"lat":41.4333,"lng":22.0167,"状态":"停产维护"},{"国家":"科索沃","企业名_中文":"Ferronikeli（NewCo）","项目名":"Ferronikeli镍铁厂","年产能_万镍金属吨":1.2,"lat":42.6167,"lng":20.9,"状态":"停产维护"},{"国家":"希腊","企业名_中文":"Larco镍业","项目名":"Larco镍铁厂","年产能_万镍金属吨":2.2,"lat":38.5667,"lng":23.2833,"状态":"停产维护"},{"国家":"奥地利","企业名_中文":"Treibacher工业","项目名":"Treibacher镍铁厂","年产能_万镍金属吨":0.2,"lat":46.8667,"lng":14.4667,"状态":"在产"},{"国家":"缅甸","企业名_中文":"中色镍业（达贡山）","项目名":"达贡山镍矿冶炼厂","年产能_万镍金属吨":2.0,"lat":23.5,"lng":96.0,"状态":"停产维护"},{"国家":"俄罗斯","企业名_中文":"Nornickel科拉分部（Kola MMC）","项目名":"Kola MMC（Monchegorsk精炼厂）","年产能_万镍金属吨":16.5,"lat":67.9333,"lng":32.8167,"状态":"在产"},{"国家":"芬兰","企业名_中文":"Nornickel Harjavalta（芬兰）","项目名":"Nornickel Harjavalta","年产能_万镍金属吨":6.5,"lat":61.3167,"lng":22.15,"状态":"在产"},{"国家":"加拿大","企业名_中文":"Vale Copper Cliff精炼厂","项目名":"Vale Copper Cliff精炼厂","年产能_万镍金属吨":6.6,"lat":46.475,"lng":-81.0583,"状态":"在产"},{"国家":"加拿大","企业名_中文":"Vale Long Harbour精炼厂","项目名":"Vale Long Harbour Processing Plant","年产能_万镍金属吨":5.0,"lat":47.45,"lng":-53.0,"状态":"在产"},{"国家":"加拿大","企业名_中文":"Sherritt Fort Saskatchewan精炼厂","项目名":"Sherritt Fort Saskatchewan精炼厂","年产能_万镍金属吨":3.5,"lat":53.7167,"lng":-113.2167,"状态":"在产"},{"国家":"英国","企业名_中文":"Vale Clydach精炼厂","项目名":"Vale Clydach精炼厂","年产能_万镍金属吨":4.0,"lat":51.6833,"lng":-3.8833,"状态":"在产"},{"国家":"挪威","企业名_中文":"嘉能可Nikkelverk","项目名":"Glencore Nikkelverk","年产能_万镍金属吨":9.2,"lat":58.15,"lng":8.0,"状态":"在产"},{"国家":"法国","企业名_中文":"Eramet Sandouville精炼厂","项目名":"Eramet Sandouville","年产能_万镍金属吨":1.3,"lat":49.4667,"lng":0.2667,"状态":"停产维护"},{"国家":"中国","企业名_中文":"Vale大连（通用镍业）","项目名":"Vale大连镍精炼厂（通用镍业）","年产能_万镍金属吨":3.2,"lat":38.9167,"lng":121.6167,"状态":"停产维护"},{"国家":"中国","企业名_中文":null,"项目名":"广西华友'粗制氢氧化镍钴原料制备高纯电镍'项目","年产能_万镍金属吨":null,"lat":21.9,"lng":109.85,"状态":null},{"国家":"中国","企业名_中文":null,"项目名":"衢州华友电积镍技改扩产","年产能_万镍金属吨":null,"lat":28.97,"lng":118.86,"状态":null},{"国家":"中国","企业名_中文":null,"项目名":"金川镍精炼电积系统优化提升项目","年产能_万镍金属吨":null,"lat":38.5,"lng":102.18,"状态":null},{"国家":"中国","企业名_中文":null,"项目名":"金川镍盐28万t/年硫酸镍产品提升项目（一期）","年产能_万镍金属吨":null,"lat":38.5,"lng":102.18,"状态":null},{"国家":"中国","企业名_中文":null,"项目名":"格林美年产10万t电池级高纯镍钴盐晶体项目","年产能_万镍金属吨":null,"lat":30.9,"lng":112.2,"状态":null},{"国家":"中国","企业名_中文":null,"项目名":"盛屯30万t电池级硫酸镍新能源材料项目（一期）","年产能_万镍金属吨":null,"lat":26.7,"lng":107.5,"状态":null},{"国家":"中国","企业名_中文":null,"项目名":"中伟钦州年处理8万t高冰镍产线","年产能_万镍金属吨":null,"lat":21.95,"lng":108.62,"状态":null},{"国家":"中国","企业名_中文":null,"项目名":"阜康高效环保电解槽项目（三耐法镍电积60台槽）","年产能_万镍金属吨":null,"lat":44.16,"lng":87.98,"状态":null},{"国家":"中国","企业名_中文":null,"项目名":"喀拉通克技改扩产（采3400t/日、选3000t/日）","年产能_万镍金属吨":null,"lat":46.7,"lng":89.6,"状态":null},{"国家":"坦桑尼亚","企业名_中文":null,"项目名":"Kabanga镍项目","年产能_万镍金属吨":null,"lat":-2.5,"lng":30.7,"状态":null},{"国家":"加拿大","企业名_中文":null,"项目名":"Crawford硫化镍项目","年产能_万镍金属吨":null,"lat":48.6,"lng":-81.3,"状态":null},{"国家":"加拿大","企业名_中文":null,"项目名":"Baptiste镍项目","年产能_万镍金属吨":null,"lat":54.9,"lng":-124.9,"状态":null},{"国家":"加拿大","企业名_中文":null,"项目名":"Voisey's Bay地下矿爬坡+Long Harbour精炼","年产能_万镍金属吨":null,"lat":56.3,"lng":-62.1,"状态":null},{"国家":"加拿大","企业名_中文":null,"项目名":"VBM+Glencore 50/50铜镍合资（Nickel Rim South基础设施）","年产能_万镍金属吨":null,"lat":46.5,"lng":-81.0,"状态":null},{"国家":"美国","企业名_中文":null,"项目名":"Tamarack镍铜钴项目","年产能_万镍金属吨":null,"lat":46.6,"lng":-92.9,"状态":null},{"国家":"美国","企业名_中文":null,"项目名":"Beulah矿物加工设施（BMPF）","年产能_万镍金属吨":null,"lat":47.3,"lng":-101.8,"状态":null},{"国家":"美国","企业名_中文":null,"项目名":"Westwin Elements镍钴精炼厂","年产能_万镍金属吨":null,"lat":34.6,"lng":-98.4,"状态":null},{"国家":"土耳其","企业名_中文":null,"项目名":"Gördes Meta Nickel二期","年产能_万镍金属吨":null,"lat":38.9,"lng":28.3,"状态":null},{"国家":"法国","企业名_中文":null,"项目名":"EMME镍钴精炼厂","年产能_万镍金属吨":null,"lat":44.9,"lng":-0.6,"状态":null},{"国家":"坦桑尼亚","企业名_中文":null,"项目名":"Kabanga镍项目（精炼厂远期）","年产能_万镍金属吨":null,"lat":-2.5,"lng":30.7,"状态":null},{"国家":"巴西","企业名_中文":null,"项目名":"Araguaia镍铁项目","年产能_万镍金属吨":null,"lat":-8.3,"lng":-49.3,"状态":null},{"国家":"巴西","企业名_中文":null,"项目名":"Vermelho镍钴项目（HPAL）","年产能_万镍金属吨":null,"lat":-6.5,"lng":-49.9,"状态":null},{"国家":"菲律宾","企业名_中文":null,"项目名":"NAC第三座HPAL厂","年产能_万镍金属吨":null,"lat":9.4,"lng":125.9,"状态":null},{"国家":"危地马拉","企业名_中文":null,"项目名":"Fenix（ProNiCo）重启/二期概念","年产能_万镍金属吨":null,"lat":15.4667,"lng":-89.3667,"状态":null},{"国家":"中国","企业名_中文":null,"项目名":"喀拉通克三期扩建（规划）","年产能_万镍金属吨":null,"lat":46.7,"lng":89.6,"状态":null},{"国家":"中国","企业名_中文":null,"项目名":"盛屯福泉二期（30万t硫酸镍扩能）","年产能_万镍金属吨":null,"lat":26.7,"lng":107.5,"状态":null}]};
-const nickelCurriculum = {"2026-07-24":{"date":"2026-07-24","lesson_id":"V3-D24","topic":"industri_nikel_dasar","title":"Industri Nikel — Dasar (镍产业基础词汇)","level":"A2-L1","items":[{"id":"V3-D24-001","type":"noun","category":"chain","indonesian":"nikel","chinese":"镍","english":"nickel","ipa":"/ˈnikel/","morphology":"词根: nikel (荷兰语借词，源自拉丁语 niccolum)","ebbinghaus":{"learned":"2026-07-24","next":"2026-07-25","interval":0,"streak":0},"examples":[{"ind":"Indonesia adalah produsen nikel terbesar di dunia.","zhs":"印尼是世界上最大的镍生产国。"},{"ind":"Harga nikel fluktuatif setiap tahun.","zhs":"镍价每年波动。"},{"ind":"Nikel digunakan untuk baterai kendaraan listrik.","zhs":"镍用于电动汽车电池。"}]},{"id":"V3-D24-002","type":"noun","category":"chain","indonesian":"bijih nikel","chinese":"镍矿石","english":"nickel ore","ipa":"/ˈbiʤih ˈnikel/","morphology":"bijih (=矿石，含金属的原始矿物) + nikel (=镍)","ebbinghaus":{"learned":"2026-07-24","next":"2026-07-25","interval":0,"streak":0},"examples":[{"ind":"Bijih nikel diolah di smelter.","zhs":"镍矿石在冶炼厂加工。"},{"ind":"Kualitas bijih nikel Indonesia sangat tinggi.","zhs":"印尼镍矿石质量很高。"},{"ind":"Tambang bijih nikel tersebar di Sulawesi.","zhs":"镍矿分布在苏拉威西。"}]},{"id":"V3-D24-003","type":"noun","category":"chain","indonesian":"tambang","chinese":"矿山/矿场","english":"mine","ipa":"/ˈtambaŋ/","morphology":"词根: tambang (=矿/绳索，此处指采矿场)","ebbinghaus":{"learned":"2026-07-24","next":"2026-07-25","interval":0,"streak":0},"examples":[{"ind":"Tambang kami berlokasi di Morowali.","zhs":"我们的矿山位于莫罗瓦利。"},{"ind":"Operasional tambang berjalan 24 jam.","zhs":"矿山运营24小时。"},{"ind":"Tambang terbuka lebih efisien.","zhs":"露天矿更高效。"}]},{"id":"V3-D24-004","type":"noun","category":"chain","indonesian":"smelter","chinese":"冶炼厂","english":"smelter","ipa":"/ˈsmeltər/","morphology":"荷兰语/英语借词: smelter (=冶炼厂)","ebbinghaus":{"learned":"2026-07-24","next":"2026-07-25","interval":0,"streak":0},"examples":[{"ind":"Smelter mengubah bijih menjadi logam.","zhs":"冶炼厂将矿石转化为金属。"},{"ind":"Kami membangun smelter baru.","zhs":"我们正在建设新冶炼厂。"},{"ind":"Smelter RKEF membutuhkan listrik besar.","zhs":"RKEF冶炼厂需要大量电力。"}]},{"id":"V3-D24-005","type":"noun","category":"chain","indonesian":"dermaga / dok","chinese":"码头","english":"dock/wharf","ipa":"/ˈdermaɡa/ /ˈdɔk/","morphology":"dermaga (=码头，源自葡萄牙语) / dok (=船坞，荷兰语借词)","ebbinghaus":{"learned":"2026-07-24","next":"2026-07-25","interval":0,"streak":0},"examples":[{"ind":"Kapal sandar di dermaga untuk bongkar muat.","zhs":"船停靠码头装卸货物。"},{"ind":"Dok khusus untuk ekspor nikel.","zhs":"专用码头用于出口镍。"},{"ind":"Kapasitas dermaga 50.000 ton.","zhs":"码头容量5万吨。"}]},{"id":"V3-D24-006","type":"noun","category":"geo","indonesian":"pulau","chinese":"岛屿","english":"island","ipa":"/ˈpulau/","morphology":"词根: pulau (=岛屿，马来-波利尼西亚语系原生词)","ebbinghaus":{"learned":"2026-07-24","next":"2026-07-25","interval":0,"streak":0},"examples":[{"ind":"Indonesia memiliki ribuan pulau.","zhs":"印尼拥有数千个岛屿。"},{"ind":"Pulau Sulawesi kaya akan nikel.","zhs":"苏拉威西岛富含镍矿。"},{"ind":"Transportasi antar pulau memerlukan kapal.","zhs":"岛屿间运输需要船舶。"}]},{"id":"V3-D24-007","type":"noun","category":"geo","indonesian":"Sulawesi","chinese":"苏拉威西","english":"Sulawesi","ipa":"/sulawˈɛsi/","morphology":"专有名词: Sulawesi (=印尼中部大岛，旧称Celebes)","ebbinghaus":{"learned":"2026-07-24","next":"2026-07-25","interval":0,"streak":0},"examples":[{"ind":"Sulawesi adalah pusat industri nikel.","zhs":"苏拉威西是镍工业中心。"},{"ind":"Provinsi Sulawesi Tengah memiliki banyak smelter.","zhs":"中苏拉威西省有许多冶炼厂。"},{"ind":"Morowali terletak di Sulawesi Tengah.","zhs":"莫罗瓦利位于中苏拉威西。"}]},{"id":"V3-D24-008","type":"noun","category":"geo","indonesian":"Morowali","chinese":"莫罗瓦利","english":"Morowali","ipa":"/moroˈwali/","morphology":"专有名词: Morowali (=印尼中苏拉威西县名，印尼最大镍产业集群地)","ebbinghaus":{"learned":"2026-07-24","next":"2026-07-25","interval":0,"streak":0},"examples":[{"ind":"Morowali terkenal sebagai kota nikel.","zhs":"莫罗瓦利以镍都闻名。"},{"ind":"IMIP adalah kawasan industri di Morowali.","zhs":"IMIP是莫罗瓦利的工业园区。"},{"ind":"Kabupaten Morowali berkembang pesat.","zhs":"莫罗瓦利县发展迅速。"}]},{"id":"V3-D24-009","type":"noun","category":"geo","indonesian":"Kalimantan","chinese":"加里曼丹","english":"Kalimantan (Borneo)","ipa":"/kalimˈantan/","morphology":"专有名词: Kalimantan (=婆罗洲岛印尼部分，印尼语名称)","ebbinghaus":{"learned":"2026-07-24","next":"2026-07-25","interval":0,"streak":0},"examples":[{"ind":"Kalimantan memiliki potensi nikel juga.","zhs":"加里曼丹也有镍矿潜力。"},{"ind":"Kalimantan Utara menjadi KEK baru.","zhs":"北加里曼丹成为新经济特区。"},{"ind":"Transportasi dari Sulawesi ke Kalimantan memerlukan waktu.","zhs":"从苏拉威西到加里曼丹的运输需要时间。"}]},{"id":"V3-D24-010","type":"noun","category":"process","indonesian":"RKEF","chinese":"回转窑-电炉（火法工艺）","english":"Rotary Kiln-Electric Furnace","ipa":"/ˈer ˈke ˈɛf/","morphology":"首字母缩写: RKEF (= Rotary Kiln Electric Furnace, 印尼镍铁主流工艺)","ebbinghaus":{"learned":"2026-07-24","next":"2026-07-25","interval":0,"streak":0},"examples":[{"ind":"Proses RKEF membutuhkan energi listrik besar.","zhs":"RKEF工艺需要大量电力。"},{"ind":"NPI diproduksi melalui RKEF.","zhs":"NPI通过RKEF生产。"},{"ind":"Smelter RKEF di Indonesia sangat banyak.","zhs":"印尼的RKEF冶炼厂非常多。"}]},{"id":"V3-D24-011","type":"noun","category":"process","indonesian":"HPAL","chinese":"高压酸浸（湿法工艺）","english":"High Pressure Acid Leaching","ipa":"/ˈha ˈpe ˈɛl/","morphology":"首字母缩写: HPAL (= High Pressure Acid Leaching, 湿法冶金工艺)","ebbinghaus":{"learned":"2026-07-24","next":"2026-07-25","interval":0,"streak":0},"examples":[{"ind":"HPAL menghasilkan MHP dan kobalt.","zhs":"HPAL生产MHP和钴。"},{"ind":"Investasi HPAL lebih tinggi dari RKEF.","zhs":"HPAL投资高于RKEF。"},{"ind":"Teknologi HPAL semakin maju.","zhs":"HPAL技术日益进步。"}]},{"id":"V3-D24-012","type":"noun","category":"process","indonesian":"ferronikel","chinese":"镍铁","english":"ferronickel","ipa":"/ferroˈnikel/","morphology":"荷兰语/西班牙语借词: ferro (=铁) + nikel (=镍)","ebbinghaus":{"learned":"2026-07-24","next":"2026-07-25","interval":0,"streak":0},"examples":[{"ind":"Ferronikel mengandung 10-20% nikel.","zhs":"镍铁含镍10-20%。"},{"ind":"Ferronikel untuk bahan baku stainless steel.","zhs":"镍铁用于不锈钢原料。"},{"ind":"Produksi ferronikel Indonesia nomor satu dunia.","zhs":"印尼镍铁产量世界第一。"}]},{"id":"V3-D24-013","type":"noun","category":"process","indonesian":"kobalt","chinese":"钴","english":"cobalt","ipa":"/ˈkobalt/","morphology":"德语/荷兰语借词: kobalt (=钴，源自德语 Kobalt)","ebbinghaus":{"learned":"2026-07-24","next":"2026-07-25","interval":0,"streak":0},"examples":[{"ind":"Kobalt merupakan produk samping HPAL.","zhs":"钴是HPAL的副产品。"},{"ind":"Kobalt penting untuk baterai.","zhs":"钴对电池很重要。"},{"ind":"Harga kobalt naik tahun ini.","zhs":"今年钴价上涨。"}]},{"id":"V3-D24-014","type":"noun","category":"chain","indonesian":"industri","chinese":"工业/产业","english":"industry","ipa":"/ˈindustri/","morphology":"荷兰语借词: industrie → industri (=工业)","ebbinghaus":{"learned":"2026-07-24","next":"2026-07-25","interval":0,"streak":0},"examples":[{"ind":"Industri nikel Indonesia berkembang pesat.","zhs":"印尼镍产业发展迅速。"},{"ind":"Industri ini menciptakan banyak lapangan kerja.","zhs":"该产业创造大量就业机会。"},{"ind":"Pemerintah mendukung industri hilir.","zhs":"政府支持下游产业。"}]},{"id":"V3-D24-015","type":"noun","category":"chain","indonesian":"proses","chinese":"工艺/过程","english":"process","ipa":"/ˈproses/","morphology":"荷兰语/英语借词: proces → proses (=过程/工艺)","ebbinghaus":{"learned":"2026-07-24","next":"2026-07-25","interval":0,"streak":0},"examples":[{"ind":"Proses pengolahan nikel rumit.","zhs":"镍的加工工艺复杂。"},{"ind":"Setiap proses diawasi ketat.","zhs":"每个过程都严格监控。"},{"ind":"Proses HPAL menggunakan tekanan tinggi.","zhs":"HPAL工艺使用高压。"}]},{"id":"V3-D24-016","type":"noun","category":"chain","indonesian":"pengolahan","chinese":"加工/处理","english":"processing","ipa":"/peŋoˈlahan/","morphology":"词根: olah (=处理) + 前缀 peN- + 中缀 -ng- + 后缀 -an → pengolahan (=加工处理)","ebbinghaus":{"learned":"2026-07-24","next":"2026-07-25","interval":0,"streak":0},"examples":[{"ind":"Pengolahan bijih dilakukan di smelter.","zhs":"矿石加工在冶炼厂进行。"},{"ind":"Pusat pengolahan nikel terbesar di Morowali.","zhs":"最大的镍加工中心在莫罗瓦利。"},{"ind":"Teknologi pengolahan terus diperbarui.","zhs":"加工技术持续更新。"}]},{"id":"V3-D24-017","type":"noun","category":"chain","indonesian":"kapasitas","chinese":"产能/容量","english":"capacity","ipa":"/kapaˈsitas/","morphology":"荷兰语/英语借词: capaciteit → kapasitas (=容量/产能)","ebbinghaus":{"learned":"2026-07-24","next":"2026-07-25","interval":0,"streak":0},"examples":[{"ind":"Kapasitas produksi tahunan 100.000 ton.","zhs":"年产能10万吨。"},{"ind":"Kapasitas kami akan diperluas.","zhs":"我们的产能将扩大。"},{"ind":"Kapasitas terpasang mencapai 3 juta ton.","zhs":"装机容量达到300万吨。"}]},{"id":"V3-D24-018","type":"noun","category":"chain","indonesian":"produksi","chinese":"产量/生产","english":"production","ipa":"/proˈdʊksi/","morphology":"荷兰语借词: productie → produksi (=产量/生产)","ebbinghaus":{"learned":"2026-07-24","next":"2026-07-25","interval":0,"streak":0},"examples":[{"ind":"Produksi nikel Indonesia nomor satu dunia.","zhs":"印尼镍产量世界第一。"},{"ind":"Produksi tahun ini meningkat 10%.","zhs":"今年产量增长10%。"},{"ind":"Target produksi tercapai dengan baik.","zhs":"产量目标良好达成。"}]}],"passages":[{"id":"V3-D24-P1","title":"Gambaran Umum Industri Nikel Global","title_zhs":"全球镍产业概况","duration":"~1 menit","lines":[{"ind":"Indonesia adalah negara produsen nikel terbesar di dunia.","zhs":"印尼是世界上最大的镍生产国。"},{"ind":"Pada tahun 2024, produksi nikel global mencapai 3,5 juta ton.","zhs":"2024年，全球镍产量达到350万吨。"},{"ind":"Indonesia menyumbang lebih dari 50% produksi dunia.","zhs":"印尼贡献了全球产量的50%以上。"},{"ind":"Pulau Sulawesi dan Kalimantan adalah wilayah utama penambangan.","zhs":"苏拉威西岛和加里曼丹是主要采矿区。"},{"ind":"Morowali di Sulawesi Tengah memiliki kawasan industri nikel terbesar.","zhs":"中苏拉威西的莫罗瓦利拥有最大的镍工业园区。"},{"ind":"Ada dua proses utama: RKEF untuk ferronikel dan HPAL untuk MHP.","zhs":"主要有两种工艺：RKEF用于镍铁，HPAL用于MHP。"},{"ind":"Industri nikel Indonesia terus berkembang pesat.","zhs":"印尼镍产业持续快速发展。"}]}],"quizzes":[{"id":"V3-D24-Q1","question":"印尼最大的镍产业集群位于哪个地区？","options":["A. Jakarta","B. Morowali, Sulawesi Tengah","C. Bali"],"answer":1},{"id":"V3-D24-Q2","question":"HPAL 是什么类型的工艺？","options":["A. 火法工艺","B. 湿法工艺","C. 电解工艺"],"answer":1},{"id":"V3-D24-Q3","question":"'Ferronikel' 的中文意思是？","options":["A. 不锈钢","B. 镍铁","C. 电解镍"],"answer":1},{"id":"V3-D24-Q4","question":"印尼贡献了全球镍产量的多少比例？","options":["A. 约30%","B. 约50%以上","C. 约20%"],"answer":1},{"id":"V3-D24-Q5","question":"'Kapasitas produksi' 的意思是？","options":["A. 生产成本","B. 生产能力/产能","C. 产品质量"],"answer":1}]},"2026-07-25":{"date":"2026-07-25","lesson_id":"V3-D25","topic":"dialog_bisnis_nikel","title":"Dialog Bisnis Industri Nikel (镍产业商务对话)","level":"A2-L2","items":[{"id":"V3-D25-001","type":"noun","category":"business","indonesian":"investasi","chinese":"投资","english":"investment","ipa":"/invesˈtasi/","morphology":"荷兰语借词: investering → investasi (=投资)","ebbinghaus":{"learned":"2026-07-25","next":"2026-07-26","interval":0,"streak":0},"examples":[{"ind":"Investasi smelter mencapai miliaran dolar.","zhs":"冶炼厂投资达数十亿美元。"},{"ind":"Kami mencari mitra investasi.","zhs":"我们寻找投资伙伴。"},{"ind":"Investasi asing masuk ke Morowali.","zhs":"外资进入莫罗瓦利。"}]},{"id":"V3-D25-002","type":"noun","category":"business","indonesian":"mitra","chinese":"合作伙伴","english":"partner","ipa":"/ˈmitra/","morphology":"梵语借词: mitra (=伙伴/盟友，印尼外交和商务常用)","ebbinghaus":{"learned":"2026-07-25","next":"2026-07-26","interval":0,"streak":0},"examples":[{"ind":"Kami menghargai mitra bisnis kami.","zhs":"我们珍视我们的商业伙伴。"},{"ind":"Mitra lokal sangat penting.","zhs":"本地伙伴非常重要。"},{"ind":"Kerja sama dengan mitra berjalan baik.","zhs":"与伙伴的合作进展顺利。"}]},{"id":"V3-D25-003","type":"noun","category":"business","indonesian":"proyeksi","chinese":"预测/规划","english":"projection","ipa":"/proˈjɛksi/","morphology":"荷兰语借词: projectie → proyeksi (=预测/规划)","ebbinghaus":{"learned":"2026-07-25","next":"2026-07-26","interval":0,"streak":0},"examples":[{"ind":"Proyeksi produksi tahun depan optimis.","zhs":"明年的产量预测乐观。"},{"ind":"Proyeksi kebutuhan nikel meningkat.","zhs":"镍需求预测增加。"},{"ind":"Data proyeksi berdasarkan riset pasar.","zhs":"预测数据基于市场研究。"}]},{"id":"V3-D25-004","type":"noun","category":"business","indonesian":"ekspansi","chinese":"扩张/扩建","english":"expansion","ipa":"/ɛkˈspansi/","morphology":"荷兰语/英语借词: expansie → ekspansi (=扩张)","ebbinghaus":{"learned":"2026-07-25","next":"2026-07-26","interval":0,"streak":0},"examples":[{"ind":"Ekspansi fase dua akan dimulai.","zhs":"二期扩张即将开始。"},{"ind":"Rencana ekspansi disetujui dewan.","zhs":"扩张计划获董事会批准。"},{"ind":"Ekspansi kapasitas 50%.","zhs":"产能扩张50%。"}]},{"id":"V3-D25-005","type":"noun","category":"business","indonesian":"kerja sama","chinese":"合作","english":"cooperation","ipa":"/ˈkɛrʤa ˈsama/","morphology":"kerja (=工作) + sama (=一起) → kerja sama (=合作，固定搭配)","ebbinghaus":{"learned":"2026-07-25","next":"2026-07-26","interval":0,"streak":0},"examples":[{"ind":"Kerja sama kami berlangsung lama.","zhs":"我们的合作持续了很久。"},{"ind":"Kami berharap kerja sama lebih erat.","zhs":"我们希望更紧密的合作。"},{"ind":"Kerja sama investasi dimulai 2020.","zhs":"投资合作始于2020年。"}]},{"id":"V3-D25-006","type":"noun","category":"business","indonesian":"kunjungan","chinese":"考察/访问","english":"visit","ipa":"/kunˈjuŋan/","morphology":"词根: kunjung (=访问) + 后缀 -an → kunjungan (=访问/考察，名词化)","ebbinghaus":{"learned":"2026-07-25","next":"2026-07-26","interval":0,"streak":0},"examples":[{"ind":"Kunjungan ke smelter sangat mengesankan.","zhs":"对冶炼厂的考察令人印象深刻。"},{"ind":"Kami mengatur kunjungan lapangan.","zhs":"我们安排现场考察。"},{"ind":"Kunjungan ini untuk inspeksi teknis.","zhs":"此次考察用于技术检查。"}]},{"id":"V3-D25-007","type":"noun","category":"business","indonesian":"presentasi","chinese":"演示/汇报","english":"presentation","ipa":"/presenˈtasi/","morphology":"英语借词: presentation → presentasi (=演示/汇报)","ebbinghaus":{"learned":"2026-07-25","next":"2026-07-26","interval":0,"streak":0},"examples":[{"ind":"Presentasi proyek sangat detail.","zhs":"项目汇报非常详细。"},{"ind":"Kami siapkan presentasi untuk investor.","zhs":"我们为投资者准备汇报。"},{"ind":"Presentasi mencakup data produksi.","zhs":"汇报包含产量数据。"}]},{"id":"V3-D25-008","type":"noun","category":"business","indonesian":"negosiasi","chinese":"谈判","english":"negotiation","ipa":"/neɡosiˈasi/","morphology":"英语借词: negotiation → negosiasi (=谈判)","ebbinghaus":{"learned":"2026-07-25","next":"2026-07-26","interval":0,"streak":0},"examples":[{"ind":"Negosiasi harga sedang berlangsung.","zhs":"价格谈判正在进行。"},{"ind":"Hasil negosiasi memuaskan kedua pihak.","zhs":"谈判结果令双方满意。"},{"ind":"Negosiasi kontrak butuh waktu.","zhs":"合同谈判需要时间。"}]},{"id":"V3-D25-009","type":"noun","category":"business","indonesian":"kesepakatan","chinese":"协议/共识","english":"agreement","ipa":"/kəsaˈpakan/","morphology":"词根: sepakat (=同意) + 前缀 ke- + 后缀 -an → kesepakatan (=协议)","ebbinghaus":{"learned":"2026-07-25","next":"2026-07-26","interval":0,"streak":0},"examples":[{"ind":"Kesepakatan kerja sama telah ditandatangani.","zhs":"合作协议已签署。"},{"ind":"Kami mencapai kesepakatan baru.","zhs":"我们达成了新协议。"},{"ind":"Kesepakatan ini menguntungkan kedua pihak.","zhs":"此协议对双方有利。"}]},{"id":"V3-D25-010","type":"noun","category":"business","indonesian":"jadwal","chinese":"时间表/日程","english":"schedule","ipa":"/ˈʤadwal/","morphology":"阿拉伯语借词: jadwal (=日程表/时间表，商务印尼语核心词)","ebbinghaus":{"learned":"2026-07-25","next":"2026-07-26","interval":0,"streak":0},"examples":[{"ind":"Jadwal produksi sudah ditetapkan.","zhs":"生产时间表已确定。"},{"ind":"Kami sesuaikan jadwal dengan mitra.","zhs":"我们与伙伴协调日程。"},{"ind":"Jadwal pengiriman tepat waktu.","zhs":"发货日程准时。"}]}],"dialogues":[{"id":"V3-D25-D1","title":"Kunjungan ke Kawasan Industri (园区考察接待)","title_zhs":"园区考察接待","scene":"Seorang manajer Cina berkunjung ke kawasan industri nikel di Morowali. Pihak Indonesia menyambut dan memperkenalkan fasilitas.","scene_zhs":"一位中方经理到访莫罗瓦利镍产业园区。印尼方接待并介绍设施。","lines":[{"speaker":"Pemandu (印尼接待)","ind":"Selamat datang di Kawasan Industri Morowali, Pak! Kami sangat senang Anda bisa berkunjung hari ini.","zhs":"欢迎来到莫罗瓦利工业园区，先生！非常高兴您今天能来考察。","keywords":["berkunjung (=考察/访问)","senang (=高兴)"]},{"speaker":"Manajer Cina (中方经理)","ind":"Terima kasih atas sambutannya. Saya ingin melihat fasilitas smelter RKEF dan area dermaga.","zhs":"感谢接待。我想看看RKEF冶炼厂设施和码头区域。","keywords":["sambutan (=接待)","fasilitas (=设施)"]},{"speaker":"Pemandu","ind":"Baik, Pak. Kawasan kami memiliki 20 smelter RKEF dengan kapasitas total 2 juta ton per tahun.","zhs":"好的，先生。我们园区拥有20座RKEF冶炼厂，总产能200万吨/年。","keywords":["kawasan (=园区/区域)","total (=总计)"]},{"speaker":"Manajer Cina","ind":"Bagus sekali! Berapa jumlah karyawan di kawasan ini?","zhs":"非常好！这个园区有多少员工？","keywords":["karyawan (=员工)","jumlah (=数量)"]},{"speaker":"Pemandu","ind":"Sekitar 50 ribu karyawan, 80% merupakan tenaga kerja lokal dari Sulawesi Tengah.","zhs":"大约5万名员工，80%是来自中苏拉威西的本地劳动力。","keywords":["tenaga kerja (=劳动力)","lokal (=本地的)"]},{"speaker":"Manajer Cina","ind":"Saya terkesan dengan skala operasi ini. Apakah ada rencana ekspansi ke depan?","zhs":"运营规模令我印象深刻。未来有扩张计划吗？","keywords":["terkesan (=印象深刻)","ke depan (=未来/向前)"]},{"speaker":"Pemandu","ind":"Ya, Pak. Fase dua akan menambah 8 smelter dan 2 pabrik HPAL, mulai konstruksi tahun depan.","zhs":"是的，先生。二期将新增8座冶炼厂和2座HPAL工厂，明年开始建设。","keywords":["menambah (=增加)","konstruksi (=建设)"]}]},{"id":"V3-D25-D2","title":"Negosiasi Kapasitas Produksi (产能谈判)","title_zhs":"产能谈判","scene":"Dua pihak membahas kontrak pasokan ferronikel, termasuk volume, harga, dan jadwal pengiriman.","scene_zhs":"双方讨论镍铁供应合同，包括数量、价格和发货时间表。","lines":[{"speaker":"Pembeli (采购方)","ind":"Kami butuh pasokan 30 ribu ton ferronikel per tahun, kadar nikel minimal 10%.","zhs":"我们需要每年3万吨镍铁供应，镍含量最低10%。","keywords":["pasokan (=供应)","kadar (=含量/品位)"]},{"speaker":"Penjual (销售方)","ind":"Kapasitas kami mencukupi. Kami bisa supply 30 ribu ton, harga mengikuti pasar LME plus premium.","zhs":"我们的产能充足。可以供应3万吨，价格按LME市场价加升水。","keywords":["mencukupi (=充足)","premium (=升水)"]},{"speaker":"Pembeli","ind":"Bisa diskon untuk kontrak jangka panjang tiga tahun?","zhs":"三年长期合同能给折扣吗？","keywords":["diskon (=折扣)","jangka panjang (=长期)"]},{"speaker":"Penjual","ind":"Untuk kontrak 3 tahun, kami berikan diskon 3% dari harga LME rata-rata kuartalan.","zhs":"对于3年合同，我们按LME季度均价给予3%折扣。","keywords":["rata-rata (=平均)","kuartalan (=季度的)"]},{"speaker":"Pembeli","ind":"Diterima. Jadwal pengiriman bagaimana?","zhs":"接受。发货时间表是怎样的？","keywords":[]},{"speaker":"Penjual","ind":"Pengiriman 2.500 ton per bulan, FOB dermaga Morowali, mulai Januari depan.","zhs":"每月发货2500吨，莫罗瓦利码头FOB，明年一月开始。","keywords":["pengiriman (=发货)","mulai (=开始)"]},{"speaker":"Pembeli","ind":"Sip. Kami siap tandatangan kontrak minggu depan.","zhs":"好。我们准备下周签合同。","keywords":["sip (=好的/行，口语)","tandatangan (=签署)"]}]}],"sentence_patterns":[{"id":"V3-D25-S1","pattern":"Selamat datang di [tempat]!","zhs":"欢迎来到[地点]！","usage":"接待开场白，用于任何正式场合","example":"Selamat datang di Kawasan Industri Morowali!"},{"id":"V3-D25-S2","pattern":"[Subjek] memiliki [jumlah] [fasilitas] dengan kapasitas [angka].","zhs":"[主体]拥有[数量][设施]，产能为[数字]。","usage":"介绍设施规模和产能，商务汇报核心句型","example":"Kami memiliki 20 smelter dengan kapasitas 2 juta ton."},{"id":"V3-D25-S3","pattern":"Apakah ada rencana [kegiatan] ke depan?","zhs":"未来有[活动]计划吗？","usage":"询问未来计划/规划","example":"Apakah ada rencana ekspansi ke depan?"},{"id":"V3-D25-S4","pattern":"Kami butuh pasokan [jumlah] [barang] per [periode].","zhs":"我们需要每[周期][数量]的[货物]供应。","usage":"采购/谈判中表达需求量","example":"Kami butuh pasokan 30 ribu ton per tahun."},{"id":"V3-D25-S5","pattern":"[Subjek] berikan [diskon/potongan] [angka]% untuk [kondisi].","zhs":"[主体]对[条件]给予[数字]%的折扣/优惠。","usage":"商务谈判中提出价格条件","example":"Kami berikan diskon 3% untuk kontrak 3 tahun."}],"passages":[{"id":"V3-D25-P1","title":"Kebijakan Industri Nikel Indonesia","title_zhs":"印尼镍产业政策","duration":"~1 menit","lines":[{"ind":"Pemerintah Indonesia melarang ekspor bijih nikel mentah sejak tahun 2020.","zhs":"印尼政府自2020年起禁止原镍矿石出口。"},{"ind":"Kebijakan ini bertujuan mendorong hilirisasi industri nikel.","zhs":"该政策旨在推动镍产业下游化。"},{"ind":"Investor asing dan lokal membangun smelter di Indonesia.","zhs":"外国和本地投资者在印尼建设冶炼厂。"},{"ind":"Kawasan industri seperti IMIP dan IWIP berkembang pesat.","zhs":"IMIP和IWIP等工业园区快速发展。"},{"ind":"Indonesia ingin menjadi pusat produksi baterai listrik global.","zhs":"印尼希望成为全球电池生产中心。"},{"ind":"Kebijakan ini menciptakan lapangan kerja dan meningkatkan devisa.","zhs":"该政策创造就业机会并增加外汇。"},{"ind":"Tantangannya adalah kebutuhan energi dan isu lingkungan.","zhs":"挑战在于能源需求和环境问题。"}]}],"quizzes":[{"id":"V3-D25-Q1","question":"在接待对话中，园区有多少名员工？","options":["A. 约5万","B. 约1万","C. 约10万"],"answer":0},{"id":"V3-D25-Q2","question":"'Kerja sama' 的中文意思是？","options":["A. 工作","B. 合作","C. 同样"],"answer":1},{"id":"V3-D25-Q3","question":"谈判中提到的发货条件是什么？","options":["A. CIF Shanghai","B. FOB dermaga Morowali","C. DDP Jakarta"],"answer":1},{"id":"V3-D25-Q4","question":"'Negosiasi' 对应的中文是？","options":["A. 通知","B. 谈判","C. 庆祝"],"answer":1},{"id":"V3-D25-Q5","question":"句型 'Apakah ada rencana [kegiatan] ke depan?' 用于什么场景？","options":["A. 询问过去","B. 询问未来计划","C. 表达感谢"],"answer":1}]},"2026-07-26":{"date":"2026-07-26","lesson_id":"V3-D26","topic":"aplikasi_industri_nikel","title":"Aplikasi Industri Nikel (镍产业高级应用)","level":"B1-L1","items":[{"id":"V3-D26-001","type":"noun","category":"advanced","indonesian":"keberlanjutan","chinese":"可持续性","english":"sustainability","ipa":"/kəberlanˈtutan/","morphology":"词根: lanjut (=继续) + 前缀 ke-ber- + 后缀 -an → keberlanjutan (=可持续性，ESG核心词汇)","ebbinghaus":{"learned":"2026-07-26","next":"2026-07-27","interval":0,"streak":0},"examples":[{"ind":"Keberlanjutan adalah prioritas utama kami.","zhs":"可持续性是我们的首要优先。"},{"ind":"Kami berkomitmen pada keberlanjutan lingkungan.","zhs":"我们致力于环境可持续性。"},{"ind":"Program keberlanjutan meliputi energi bersih.","zhs":"可持续性计划包括清洁能源。"}]},{"id":"V3-D26-002","type":"noun","category":"advanced","indonesian":"diversifikasi","chinese":"多元化","english":"diversification","ipa":"/diversioniˈsi/","morphology":"英语借词: diversification → diversifikasi (=多元化)","ebbinghaus":{"learned":"2026-07-26","next":"2026-07-27","interval":0,"streak":0},"examples":[{"ind":"Diversifikasi produk meningkatkan daya saing.","zhs":"产品多元化增强竞争力。"},{"ind":"Kami lakukan diversifikasi ke baterai.","zhs":"我们向电池领域多元化。"},{"ind":"Strategi diversifikasi terbukti efektif.","zhs":"多元化策略证明有效。"}]},{"id":"V3-D26-003","type":"noun","category":"advanced","indonesian":"integrasi","chinese":"一体化/整合","english":"integration","ipa":"/ˈintegrasi/","morphology":"英语借词: integration → integrasi (=一体化)","ebbinghaus":{"learned":"2026-07-26","next":"2026-07-27","interval":0,"streak":0},"examples":[{"ind":"Integrasi vertikal mengurangi biaya.","zhs":"垂直一体化降低成本。"},{"ind":"Kami menerapkan integrasi tambang-ke-smelter.","zhs":"我们实施矿山到冶炼厂的一体化。"},{"ind":"Integrasi teknologi semakin penting.","zhs":"技术整合越来越重要。"}]},{"id":"V3-D26-004","type":"noun","category":"advanced","indonesian":"hilirisasi","chinese":"下游化","english":"downstreaming","ipa":"/hilirisaˈsi/","morphology":"词根: hilir (=下游) + 后缀 -isasi (=化) → hilirisasi (=下游化，印尼政府经济政策核心词)","ebbinghaus":{"learned":"2026-07-26","next":"2026-07-27","interval":0,"streak":0},"examples":[{"ind":"Hilirisasi nikel adalah kebijakan nasional.","zhs":"镍下游化是国家政策。"},{"ind":"Pemerintah mendorong hilirisasi mineral.","zhs":"政府推动矿产下游化。"},{"ind":"Hilirisasi menciptakan nilai tambah tinggi.","zhs":"下游化创造高附加值。"}]},{"id":"V3-D26-005","type":"noun","category":"advanced","indonesian":"ekosistem","chinese":"生态系统","english":"ecosystem","ipa":"/ˈekosistɛm/","morphology":"英语借词: ecosystem → ekosistem (=生态系统)","ebbinghaus":{"learned":"2026-07-26","next":"2026-07-27","interval":0,"streak":0},"examples":[{"ind":"Kami membangun ekosistem baterai lengkap.","zhs":"我们建设完整电池生态系统。"},{"ind":"Ekosistem industri harus berkelanjutan.","zhs":"产业生态系统必须可持续。"},{"ind":"Ekosistem nikel meliputi tambang sampai EV.","zhs":"镍生态系统涵盖矿山到电动车。"}]},{"id":"V3-D26-006","type":"noun","category":"advanced","indonesian":"inovasi","chinese":"创新","english":"innovation","ipa":"/inoˈvasi/","morphology":"荷兰语借词: innovatie → inovasi (=创新)","ebbinghaus":{"learned":"2026-07-26","next":"2026-07-27","interval":0,"streak":0},"examples":[{"ind":"Inovasi teknologi HPAL terus berkembang.","zhs":"HPAL技术创新持续发展。"},{"ind":"Kami investasi dalam inovasi hijau.","zhs":"我们投资绿色创新。"},{"ind":"Inovasi kunci untuk daya saing global.","zhs":"创新是全球竞争力的关键。"}]},{"id":"V3-D26-007","type":"noun","category":"advanced","indonesian":"komitmen","chinese":"承诺","english":"commitment","ipa":"/koˈmitmɛn/","morphology":"英语借词: commitment → komitmen (=承诺)","ebbinghaus":{"learned":"2026-07-26","next":"2026-07-27","interval":0,"streak":0},"examples":[{"ind":"Komitmen kami pada Indonesia sangat kuat.","zhs":"我们对印尼的承诺非常坚定。"},{"ind":"Komitmen investasi USD 5 miliar.","zhs":"50亿美元的投资承诺。"},{"ind":"Kami tepati setiap komitmen.","zhs":"我们履行每一项承诺。"}]},{"id":"V3-D26-008","type":"noun","category":"advanced","indonesian":"kontribusi","chinese":"贡献","english":"contribution","ipa":"/kontriˈbusi/","morphology":"英语借词: contribution → kontribusi (=贡献)","ebbinghaus":{"learned":"2026-07-26","next":"2026-07-27","interval":0,"streak":0},"examples":[{"ind":"Kontribusi kami untuk ekonomi lokal signifikan.","zhs":"我们对本地经济的贡献显著。"},{"ind":"Kontribusi pajak meningkat setiap tahun.","zhs":"税收贡献逐年增长。"},{"ind":"Kami bangga atas kontribusi sosial kami.","zhs":"我们为自身社会贡献感到自豪。"}]},{"id":"V3-D26-009","type":"noun","category":"advanced","indonesian":"pengembangan","chinese":"发展/开发","english":"development","ipa":"/peŋembangan/","morphology":"词根: kembang (=发展/花朵) + 前缀 peN- + 中缀 -ng- + 后缀 -an → pengembangan (=发展)","ebbinghaus":{"learned":"2026-07-26","next":"2026-07-27","interval":0,"streak":0},"examples":[{"ind":"Pengembangan sumber daya manusia penting.","zhs":"人力资源开发很重要。"},{"ind":"Pengembangan wilayah berjalan merata.","zhs":"区域发展均衡推进。"},{"ind":"Kami fokus pada pengembangan berkelanjutan.","zhs":"我们专注于可持续发展。"}]},{"id":"V3-D26-010","type":"noun","category":"advanced","indonesian":"visi","chinese":"愿景","english":"vision","ipa":"/ˈvisi/","morphology":"拉丁语/荷兰语借词: visie → visi (=愿景)","ebbinghaus":{"learned":"2026-07-26","next":"2026-07-27","interval":0,"streak":0},"examples":[{"ind":"Visi kami menjadi pemimpin industri nikel global.","zhs":"我们的愿景是成为全球镍产业领导者。"},{"ind":"Visi bersama menciptakan masa depan cerah.","zhs":"共同愿景创造光明未来。"},{"ind":"Visi perusahaan tertuang dalam misi.","zhs":"企业愿景体现在使命中。"}]}],"passages":[{"id":"V3-D26-P1","title":"Pidato di Forum Industri Nikel Indonesia","title_zhs":"印尼镍产业论坛演讲","subtitle":"Sebagai Direktur Utama kawasan industri nikel di Morowali","subtitle_zhs":"作为莫罗瓦利镍工业园区总经理","duration":"~1.5 menit","formality":"tinggi (高级敬语)","lines":[{"ind":"Bapak-Ibu yang terhormat, hadirin sekalian, selamat pagi.","zhs":"尊敬的各位先生女士，各位来宾，早上好。","grammar_note":"Bapak-Ibu yang terhormat = 正式敬语称呼，用于开场"},{"ind":"Pertama-tama, saya ingin menyampaikan terima kasih atas kesempatan yang diberikan kepada saya untuk berbicara di forum penting ini.","zhs":"首先，我想感谢给予我在这个重要论坛上发言的机会。","grammar_note":"menyampaikan terima kasih = 正式表达感谢；被动语态 yang diberikan"},{"ind":"Kawasan industri kami di Morowali telah beroperasi selama beberapa tahun dan kini memiliki kapasitas produksi nikel lebih dari satu juta ton per tahun.","zhs":"我们在莫罗瓦利的工业园区已运营多年，目前镍年产能超过100万吨。","grammar_note":"telah beroperasi = 现在完成时态"},{"ind":"Kami mengintegrasikan proses RKEF dan HPAL dalam satu ekosistem industri yang lengkap, dari tambang hingga produk akhir.","zhs":"我们在一个完整的产业生态系统中整合RKEF和HPAL工艺，从矿山到最终产品。","grammar_note":"meng-integrasi-kan = 使役动词前缀 meng-...-kan"},{"ind":"Ke depan, visi kami adalah membangun pusat baterai listrik terbesar di Asia Tenggara.","zhs":"展望未来，我们的愿景是建设东南亚最大的电池中心。","grammar_note":"Ke depan = 将来时标志"},{"ind":"Komitmen kami pada keberlanjutan tidak akan berubah. Kami terus menginvestasikan teknologi bersih dan pengelolaan lingkungan.","zhs":"我们对可持续性的承诺不会改变。我们持续投资清洁技术和环境管理。","grammar_note":"pada = 正式语体的介词"},{"ind":"Kami juga berterima kasih atas dukungan pemerintah Indonesia, khususnya Kementerian ESDM dan BKPM, yang telah memfasilitasi investasi kami.","zhs":"我们也感谢印尼政府的支持，特别是能源矿产部和投资协调委员会，他们为我们的投资提供了便利。","grammar_note":"berterima kasih = 更正式的感谢；yang telah memfasilitasi = 定语从句"},{"ind":"Akhirnya, kami percaya bahwa kerja sama antara investor asing dan masyarakat lokal akan menciptakan nilai tambah bagi seluruh pihak.","zhs":"最后，我们相信外国投资者与本地社区之间的合作将为各方创造附加值。","grammar_note":"bahwa = 正式语体中的'that'引导词"},{"ind":"Terima kasih atas perhatiannya. Wassalamualaikum warahmatullahi wabarakatuh.","zhs":"感谢您的关注。愿真主赐您平安与祝福。","grammar_note":"Wassalamualaikum = 伊斯兰问候语，印尼正式场合常用"}]}],"grammar":[{"id":"V3-D26-G1","title":"Pasif dalam Bahasa Indonesia (印尼语被动语态)","title_zhs":"被动语态","explanation":"印尼语被动语态使用前缀 di- 加在动词词根前，结构为: [Objek] + di-[verb] + [oleh Subjek]. 这是正式语体和书面语的核心特征。","explanation_zhs":"印尼语被动语态使用前缀 di- 加在动词词根前，结构为：[宾语] + di-[动词] + [oleh 主语]。这是正式语体和书面语的核心特征。","examples":[{"ind":"Investasi disetujui oleh pemerintah.","zhs":"投资已获政府批准。","breakdown":"di-setuju-i = 被批准; oleh pemerintah = 由政府"},{"ind":"Smelter dibangun tahun lalu.","zhs":"冶炼厂于去年建成。","breakdown":"di-bangun = 被建设"},{"ind":"Kontrak ditandatangani minggu depan.","zhs":"合同将于下周签署。","breakdown":"di-tandatangan-i = 被签署"}]},{"id":"V3-D26-G2","title":"Bahasa Hormat Formal dalam Pidato (演讲正式敬语)","title_zhs":"正式敬语","explanation":"印尼语正式敬语使用: (1) Bapak/Ibu yang terhormat 作为称呼; (2) saya ingin menyampaikan 替代 saya mau bilang; (3) ber- 前缀使动词更正式 (berterima kasih vs terima kasih); (4) yang 引导定语从句替代口语化的 yang; (5) 结尾使用 Wassalamualaikum 或 Terima kasih atas perhatiannya.","explanation_zhs":"印尼语正式敬语使用：(1) Bapak/Ibu yang terhormat 作为称呼；(2) saya ingin menyampaikan 替代口语化的 saya mau bilang；(3) ber- 前缀使动词更正式；(4) yang 引导定语从句；(5) 结尾使用 Wassalamualaikum 或 Terima kasih atas perhatiannya。","examples":[{"ind":"Saya ingin menyampaikan (正式) vs Saya mau bilang (口语)","zhs":"我想表达（正式） vs 我想说（口语）"},{"ind":"Kami berterima kasih (正式) vs Kami ucapin makasih (口语)","zhs":"我们表示感谢（正式） vs 我们说谢谢（口语）"},{"ind":"Bapak yang terhormat (正式) vs Pak (口语)","zhs":"尊敬的先生（正式） vs 先生（口语）"}]}],"quizzes":[{"id":"V3-D26-Q1","question":"'Hilirisasi' 是印尼政府哪项核心政策的关键词？","options":["A. 禁止原矿出口","B. 下游化/增值加工","C. 自由贸易区"],"answer":1},{"id":"V3-D26-Q2","question":"演讲中 'Bapak-Ibu yang terhormat' 用于什么场合？","options":["A. 朋友聚会","B. 正式演讲开场","C. 邮件结尾"],"answer":1},{"id":"V3-D26-Q3","question":"被动语态 'di-' 前缀用在什么词上？","options":["A. 名词","B. 动词词根","C. 形容词"],"answer":1},{"id":"V3-D26-Q4","question":"'Integrasi vertikal' 的意思是？","options":["A. 垂直一体化","B. 水平整合","C. 市场分散"],"answer":0},{"id":"V3-D26-Q5","question":"演讲结尾 'Wassalamualaikum' 是什么语言？","options":["A. 爪哇语","B. 阿拉伯语（伊斯兰问候语）","C. 荷兰语"],"answer":1}],"review":{"title":"Kartu Review Day 24-26 (综合复习卡片)","title_zhs":"Day 24-26 综合复习卡片","all_items":[{"ind":"nikel","zhs":"镍","ipa":"/ˈnikel/"},{"ind":"bijih nikel","zhs":"镍矿石","ipa":"/ˈbiʤih ˈnikel/"},{"ind":"tambang","zhs":"矿山","ipa":"/ˈtambaŋ/"},{"ind":"smelter","zhs":"冶炼厂","ipa":"/ˈsmeltər/"},{"ind":"dermaga / dok","zhs":"码头","ipa":"/ˈdermaɡa/ /ˈdɔk/"},{"ind":"pulau","zhs":"岛屿","ipa":"/ˈpulau/"},{"ind":"Sulawesi","zhs":"苏拉威西","ipa":"/sulawˈɛsi/"},{"ind":"Morowali","zhs":"莫罗瓦利","ipa":"/moroˈwali/"},{"ind":"Kalimantan","zhs":"加里曼丹","ipa":"/kalimˈantan/"},{"ind":"RKEF","zhs":"回转窑电炉","ipa":"/ˈer ˈke ˈɛf/"},{"ind":"HPAL","zhs":"高压酸浸","ipa":"/ˈha ˈpe ˈɛl/"},{"ind":"ferronikel","zhs":"镍铁","ipa":"/ferroˈnikel/"},{"ind":"kobalt","zhs":"钴","ipa":"/ˈkobalt/"},{"ind":"industri","zhs":"工业","ipa":"/ˈindustri/"},{"ind":"proses","zhs":"工艺","ipa":"/ˈproses/"},{"ind":"pengolahan","zhs":"加工","ipa":"/peŋoˈlahan/"},{"ind":"kapasitas","zhs":"产能","ipa":"/kapaˈsitas/"},{"ind":"produksi","zhs":"产量","ipa":"/proˈdʊksi/"},{"ind":"investasi","zhs":"投资","ipa":"/invesˈtasi/"},{"ind":"mitra","zhs":"合作伙伴","ipa":"/ˈmitra/"},{"ind":"proyeksi","zhs":"预测","ipa":"/proˈjɛksi/"},{"ind":"ekspansi","zhs":"扩张","ipa":"/ɛkˈspansi/"},{"ind":"kerja sama","zhs":"合作","ipa":"/ˈkɛrʤa ˈsama/"},{"ind":"kunjungan","zhs":"考察","ipa":"/kunˈjuŋan/"},{"ind":"presentasi","zhs":"汇报","ipa":"/presenˈtasi/"},{"ind":"negosiasi","zhs":"谈判","ipa":"/neɡosiˈasi/"},{"ind":"kesepakatan","zhs":"协议","ipa":"/kəsaˈpakan/"},{"ind":"jadwal","zhs":"时间表","ipa":"/ˈʤadwal/"},{"ind":"keberlanjutan","zhs":"可持续性","ipa":"/kəberlanˈtutan/"},{"ind":"diversifikasi","zhs":"多元化","ipa":"/diversioniˈsi/"},{"ind":"integrasi","zhs":"一体化","ipa":"/ˈintegrasi/"},{"ind":"hilirisasi","zhs":"下游化","ipa":"/hilirisaˈsi/"},{"ind":"ekosistem","zhs":"生态系统","ipa":"/ˈekosistɛm/"},{"ind":"inovasi","zhs":"创新","ipa":"/inoˈvasi/"},{"ind":"komitmen","zhs":"承诺","ipa":"/koˈmitmɛn/"},{"ind":"kontribusi","zhs":"贡献","ipa":"/kontriˈbusi/"},{"ind":"pengembangan","zhs":"发展","ipa":"/peŋembangan/"},{"ind":"visi","zhs":"愿景","ipa":"/ˈvisi/"}]}}};
-
-// ===================== NICKEL MAP FUNCTIONS =====================
-let nickelMap = null;
-
-function getStatusColor(status) {
-  const s = (status || '').toString();
-  if (s.includes('在产') && !s.includes('部分') && !s.includes('停产')) return '#22c55e';
-  if (s.includes('满负荷')) return '#16a34a';
-  if (s.includes('部分在产')) return '#84cc16';
-  if (s.includes('在建')) return '#f59e0b';
-  if (s.includes('规划')) return '#6b7280';
-  if (s.includes('停产') || s.includes('维护')) return '#f97316';
-  return '#3b82f6';
-}
-
-function getStatusClass(status) {
-  const s = (status || '').toString();
-  if (s.includes('在产') && !s.includes('部分') && !s.includes('停产')) return 'status-in-production';
-  if (s.includes('部分在产')) return 'status-partial';
-  if (s.includes('在建')) return 'status-construction';
-  if (s.includes('规划')) return 'status-planning';
-  if (s.includes('停产') || s.includes('维护')) return 'status-idle';
-  return 'status-in-production';
-}
-
-function getStatusLabel(status) {
-  const s = (status || '').toString();
-  if (s.includes('满负荷')) return '在产(满负荷)';
-  if (s.includes('在产') && !s.includes('部分') && !s.includes('停产')) return '在产';
-  if (s.includes('部分在产')) return '部分在产';
-  if (s.includes('在建')) return '在建';
-  if (s.includes('规划')) return '规划';
-  if (s.includes('停产') || s.includes('维护')) return '停产/维护';
-  return s || '未知';
-}
-
-function formatCoord(val) {
-  if (val === null || val === undefined) return '—';
-  return parseFloat(val).toFixed(4);
-}
-
-function escapeHtml(str) {
-  if (!str) return '—';
-  return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-}
-
-function closePopup() {
-  document.getElementById('nickelPopup').classList.remove('active');
-}
-
-// Draggable popup
-(function() {
-  const popup = document.getElementById('nickelPopup');
-  const header = document.getElementById('popupHeader');
-  if (!popup || !header) return;
-  let isDragging = false, startX, startY, initialLeft, initialTop;
-  header.addEventListener('mousedown', function(e) {
-    isDragging = true;
-    startX = e.clientX; startY = e.clientY;
-    const rect = popup.getBoundingClientRect();
-    initialLeft = rect.left; initialTop = rect.top;
-    popup.style.transition = 'none';
-    e.preventDefault();
-  });
-  document.addEventListener('mousemove', function(e) {
-    if (!isDragging) return;
-    popup.style.left = (initialLeft + e.clientX - startX) + 'px';
-    popup.style.top = (initialTop + e.clientY - startY) + 'px';
-    popup.style.right = 'auto';
-  });
-  document.addEventListener('mouseup', function() {
-    if (isDragging) { isDragging = false; popup.style.transition = ''; }
-  });
-})();
-
-function showIndonesiaPopup(key, groupData) {
-  const popup = document.getElementById('nickelPopup');
-  const header = document.getElementById('popupTitle');
-  const body = document.getElementById('popupBody');
-  header.textContent = groupData.park + ' — ' + groupData.province;
-
-  const projects = groupData.projects;
-  const totalCap = projects.reduce((sum, p) => sum + (parseFloat(p['年产能_万镍金属吨']) || 0), 0);
-
-  // 状态统计
-  const statusCount = {};
-  projects.forEach(p => {
-    const st = p['状态'] || '其他';
-    statusCount[st] = (statusCount[st] || 0) + 1;
-  });
-  const statusColors = {
-    '运营中': '#22c55e',
-    '在建': '#f59e0b',
-    '规划中': '#3b82f6',
-    '停产': '#ef4444',
-    '其他': '#a78bfa'
-  };
-
-  // 产能柱状图颜色
-  const barColors = ['#00d4aa', '#3b82f6', '#f59e0b', '#ef4444', '#a78bfa', '#22c55e', '#ec4899', '#06b6d4'];
-  const maxCap = Math.max(...projects.map(p => parseFloat(p['年产能_万镍金属吨']) || 0), 0.1);
-
-  let html = '';
-
-  // 汇总卡片
-  html += '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px">';
-  html += '<div class="chart-box" style="text-align:center;padding:12px"><div style="font-size:22px;font-weight:700;color:var(--primary)">' + projects.length + '</div><div style="font-size:11px;color:var(--text-dim)">项目数量</div></div>';
-  html += '<div class="chart-box" style="text-align:center;padding:12px"><div style="font-size:22px;font-weight:700;color:var(--accent)">' + totalCap.toFixed(1) + '</div><div style="font-size:11px;color:var(--text-dim)">合计产能(万镍吨/年)</div></div>';
-  html += '<div class="chart-box" style="text-align:center;padding:12px"><div style="font-size:13px;color:var(--text);font-weight:600">' + formatCoord(groupData.lat) + '<br>' + formatCoord(groupData.lng) + '</div><div style="font-size:11px;color:var(--text-dim)">坐标</div></div>';
-  html += '</div>';
-
-  // 图表区：产能柱状图 + 状态饼图
-  html += '<div class="popup-charts">';
-  // 产能对比柱状图
-  html += '<div class="chart-box"><h5>📊 产能对比 (万镍吨/年)</h5><div class="chart-bars">';
-  projects.forEach((p, i) => {
-    const cap = parseFloat(p['年产能_万镍金属吨']) || 0;
-    const h = Math.max((cap / maxCap) * 100, 4);
-    const color = barColors[i % barColors.length];
-    const shortName = (p['项目名'] || '').replace(/镍铁|项目|冶炼/ig, '').slice(0, 4) || ('P' + (i + 1));
-    html += '<div class="chart-bar" style="height:' + h + '%;background:' + color + '" title="' + escapeHtml(p['项目名'] || '') + ': ' + cap.toFixed(1) + '万镍吨">';
-    html += '<div class="chart-bar-val">' + cap.toFixed(1) + '</div>';
-    html += '<div class="chart-bar-label">' + escapeHtml(shortName) + '</div>';
-    html += '</div>';
-  });
-  html += '</div></div>';
-  // 状态饼图
-  html += '<div class="chart-box"><h5>📈 项目状态分布</h5>';
-  let pieCss = [];
-  let piePct = 0;
-  const statusEntries = Object.entries(statusCount);
-  statusEntries.forEach(([st, cnt], i) => {
-    const pct = cnt / projects.length;
-    const color = statusColors[st] || statusColors['其他'];
-    pieCss.push(color + ' ' + (piePct * 100).toFixed(2) + '% ' + ((piePct + pct) * 100).toFixed(2) + '%');
-    piePct += pct;
-  });
-  html += '<div class="pie-chart" style="background:conic-gradient(' + pieCss.join(', ') + ')"></div>';
-  html += '<div class="pie-legend">';
-  statusEntries.forEach(([st, cnt]) => {
-    const color = statusColors[st] || statusColors['其他'];
-    html += '<div class="pie-legend-item"><div class="pie-dot" style="background:' + color + '"></div><span>' + escapeHtml(st) + ' ' + cnt + '</span></div>';
-  });
-  html += '</div></div>';
-  html += '</div>';
-
-  // 项目明细表格
-  html += '<h5 style="font-size:13px;color:var(--primary);margin:16px 0 10px;font-weight:600">📋 项目明细</h5>';
-  html += '<table class="popup-table"><thead><tr><th>项目名</th><th>企业</th><th>工艺</th><th>产品</th><th>产能</th><th>状态</th></tr></thead><tbody>';
-  projects.forEach(p => {
-    const cap = parseFloat(p['年产能_万镍金属吨']) || 0;
-    html += '<tr>';
-    html += '<td>' + escapeHtml(p['项目名'] || '-') + '</td>';
-    html += '<td>' + escapeHtml(p['企业名_中文'] || '-') + '<br><span style="font-size:11px;color:var(--text-dim)">' + escapeHtml(p['企业名_英文_PT'] || '') + '</span></td>';
-    html += '<td>' + escapeHtml(p['工艺路线'] || '-') + '</td>';
-    html += '<td>' + escapeHtml(p['产品'] || '-') + '</td>';
-    html += '<td class="cap-num">' + cap.toFixed(1) + '<span style="font-size:10px;color:var(--text-dim)">万镍吨</span></td>';
-    html += '<td><span class="status-badge ' + getStatusClass(p['状态']) + '">' + getStatusLabel(p['状态']) + '</span></td>';
-    html += '</tr>';
-    // 附加信息行
-    const extras = [];
-    if (p['产能说明_品位口径']) extras.push('产能说明: ' + p['产能说明_品位口径']);
-    if (p['产线数']) extras.push('产线: ' + p['产线数']);
-    if (p['投产时间']) extras.push('投产: ' + p['投产时间']);
-    if (p['主要股东及持股']) extras.push('股东: ' + p['主要股东及持股']);
-    if (p['数据来源']) extras.push('来源: ' + p['数据来源']);
-    if (p['备注']) extras.push('备注: ' + p['备注']);
-    if (extras.length) {
-      html += '<tr><td colspan="6" style="padding:4px 10px;font-size:11px;color:var(--text-dim);background:var(--bg-elev);border-bottom:1px solid var(--border)">' + extras.map(e => '<span style="display:inline-block;margin:2px 6px 2px 0;padding:2px 8px;background:rgba(0,212,170,.06);border-radius:4px">' + escapeHtml(e) + '</span>').join('') + '</td></tr>';
-    }
-  });
-  html += '</tbody></table>';
-
-  body.innerHTML = html;
-  popup.classList.add('active');
-}
-
-function initNickelMap() {
-  if (nickelMap) { nickelMap.remove(); nickelMap = null; }
-  const mapContainer = document.getElementById('leaflet-map');
-  if (!mapContainer) return;
-  mapContainer.innerHTML = '';
-  nickelMap = L.map('leaflet-map').setView([-2.5, 120], 5);
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-    attribution: '&copy; OSM & CARTO', subdomains: 'abcd', maxZoom: 19
-  }).addTo(nickelMap);
-
-  let indoCount = 0, globalCount = 0, totalCap = 0;
-
-  Object.keys(nickelData.indonesia).forEach(key => {
-    const group = nickelData.indonesia[key];
-    if (!group.lat || !group.lng) return;
-    const count = group.projects.length;
-    const cap = group.projects.reduce((s, p) => s + (parseFloat(p['年产能_万镍金属吨']) || 0), 0);
-    totalCap += cap; indoCount += count;
-    const marker = L.circleMarker([group.lat, group.lng], {
-      radius: 10, fillColor: '#00A896', color: '#00d4aa', weight: 2, opacity: 1, fillOpacity: 0.85
-    }).addTo(nickelMap);
-    marker.bindTooltip('<b>' + group.park + '</b><br>' + group.province + '<br>' + count + '个项目 · ' + cap.toFixed(1) + '万镍吨', { direction: 'top', offset: [0, -10] });
-    marker.on('click', () => showIndonesiaPopup(key, group));
-  });
-
-  nickelData.global.forEach(p => {
-    if (!p.lat || !p.lng) return;
-    globalCount++;
-    const cap = parseFloat(p['年产能_万镍金属吨']) || 0;
-    L.circleMarker([p.lat, p.lng], {
-      radius: 6, fillColor: getStatusColor(p['状态']), color: '#fff', weight: 1, opacity: 0.8, fillOpacity: 0.7
-    }).addTo(nickelMap).bindTooltip('<b>' + escapeHtml(p['国家']) + '</b><br>' + escapeHtml(p['企业名_中文'] || p['项目名']) + '<br>' + cap.toFixed(1) + '万镍吨', { direction: 'top' });
-  });
-
-  const statsEl = document.getElementById('mapStats');
-  if (statsEl) statsEl.innerHTML = '🇮🇩 ' + indoCount + '项目 · 🌍 ' + globalCount + '项目 · 总产能 ' + totalCap.toFixed(1) + '万镍吨/年';
-}
-
-// ===================== NICKEL LESSON RENDERER =====================
-function renderNickelContent(c, ds, topicInfo) {
-  const day = topicInfo.day;
-  let html = '<div class="date-detail"><button class="back-btn" onclick="goBack()">← 返回</button>';
-
-  if (day === 0) {
-    // Day 23: Map
-    html += '<div class="card"><div class="card-header"><h2>🗺️ 全球镍产业地图</h2><span class="badge">107印尼 + 66全球项目</span></div>';
-    html += '<div id="map-view" style="position:relative;"><div id="leaflet-map" style="width:100%;height:500px;border-radius:8px;"></div>';
-    html += '<div id="mapStats" style="position:absolute;bottom:12px;left:12px;background:rgba(0,0,0,0.7);color:#fff;padding:8px 14px;border-radius:6px;font-size:13px;z-index:1000;"></div>';
-    html += '<button onclick="initNickelMap()" style="position:absolute;top:12px;right:12px;background:var(--primary);color:#000;border:none;padding:6px 12px;border-radius:6px;font-size:12px;cursor:pointer;z-index:1000;">🔄 刷新地图</button></div>';
-    html += '<div style="margin-top:12px;font-size:12px;color:var(--text-dim);">💡 点击印尼项目标注查看详细信息 | 全球项目显示为彩色圆点</div></div>';
-    html += '<div id="nickelPopup" class="nickel-detail-popup"><div class="popup-header" id="popupHeader"><h4 id="popupTitle"></h4><button class="popup-close" onclick="closePopup()">×</button></div><div class="popup-body" id="popupBody"></div></div>';
-    c.innerHTML = html;
-    setTimeout(initNickelMap, 300);
-    return;
-  }
-
-  const lesson = nickelCurriculum[ds];
-  if (!lesson) { c.innerHTML = html + '<div class="card" style="text-align:center;padding:40px;color:var(--text-dim)">课程内容加载中...</div></div>'; return; }
-
-  html += '<div class="card"><div class="card-header"><h2>🏭 ' + lesson.title + '</h2><span class="badge">' + lesson.lesson_id + '</span></div>';
-
-  if (day === 1) {
-    // Day 24: Vocabulary
-    html += '<h3 style="color:var(--primary);margin:16px 0 10px;font-size:15px">🎯 核心词汇 (' + lesson.items.length + ')</h3><div class="word-grid">';
-    lesson.items.forEach(item => {
-      html += '<div class="word-card"><div class="w-word">' + item.indonesian + ' <span class="w-ipa">' + (item.ipa || '') + '</span></div>';
-      html += '<div class="w-mean">🇨🇳 ' + item.chinese + '</div>';
-      if (item.english) html += '<div style="font-size:11px;color:var(--text-dim)">🇬🇧 ' + item.english + '</div>';
-      if (item.examples && item.examples.length) {
-        html += '<div style="margin-top:6px;padding:6px;background:var(--bg-elev);border-radius:6px;font-size:11px;color:var(--text-dim);">';
-        item.examples.forEach(ex => {
-          html += '<div style="margin:2px 0">• ' + ex.ind + '</div>';
-          html += '<div style="margin:2px 0 6px;color:var(--text-dim)">  ' + ex.zhs + '</div>';
-        });
-        html += '</div>';
-      }
-      html += '</div>';
-    });
-    html += '</div>';
-  } else if (day === 2) {
-    // Day 25: Dialogues
-    html += '<h3 style="color:var(--primary);margin:16px 0 10px;font-size:15px">💬 商务对话</h3>';
-    if (lesson.dialogues) {
-      lesson.dialogues.forEach((dg, i) => {
-        html += '<div style="background:var(--bg-elev);border-radius:10px;padding:16px;margin-bottom:12px;border:1px solid var(--border)"><div style="font-size:14px;font-weight:600;color:var(--primary);margin-bottom:10px">场景 ' + (i+1) + ': ' + dg.title + '</div>';
-        dg.lines.forEach((line, li) => {
-          const isA = li % 2 === 0;
-          html += '<div style="display:flex;gap:10px;margin:8px 0;padding:8px;background:var(--bg-card);border-radius:6px"><div style="font-weight:700;color:' + (isA ? 'var(--primary)' : 'var(--accent)') + ';min-width:30px;font-size:12px">' + line.speaker + ':</div><div style="flex:1"><div style="font-size:13px;color:var(--text)">' + line.ind + '</div><div style="font-size:11px;color:var(--text-dim);margin-top:3px;border-left:2px solid var(--primary-dim);padding-left:6px">' + line.zhs + '</div></div></div>';
-        });
-        html += '</div>';
-    // Sentence patterns
-    if (lesson.sentence_patterns && lesson.sentence_patterns.length) {
-      html += '<h3 style="color:var(--primary);margin:16px 0 10px;font-size:15px">📝 核心句型</h3>';
-      lesson.sentence_patterns.forEach((sp, si) => {
-        html += '<div style="background:var(--bg-elev);border-radius:10px;padding:14px;margin-bottom:10px;border:1px solid var(--border)"><div style="font-size:13px;font-weight:600;color:var(--accent);margin-bottom:6px">句型 ' + (si+1) + '</div>';
-        html += '<div style="font-size:14px;color:var(--primary);font-weight:600;margin-bottom:4px">' + sp.pattern + '</div>';
-        html += '<div style="font-size:12px;color:var(--text-dim);margin-bottom:6px">🇨🇳 ' + sp.zhs + '</div>';
-        html += '<div style="font-size:11px;color:var(--text-dim)">💡 ' + sp.usage + '</div>';
-        html += '<div style="font-size:11px;color:var(--text);margin-top:4px;padding:6px;background:var(--bg-card);border-radius:6px">例: ' + sp.example + '</div>';
-        html += '</div>';
-      });
-    }
-      });
-    }
-  } else if (day === 3) {
-    // Day 26: Application + Quiz
-    html += '<h3 style="color:var(--primary);margin:16px 0 10px;font-size:15px">📊 高级应用</h3>';
-    if (lesson.items) {
-      html += '<div class="word-grid">';
-      lesson.items.forEach(item => {
-        html += '<div class="word-card"><div class="w-word">' + item.indonesian + '</div><div class="w-mean">🇨🇳 ' + item.chinese + '</div></div>';
-      });
-      html += '</div>';
-    }
-    // Grammar
-    if (lesson.grammar && lesson.grammar.length) {
-      html += '<h3 style="color:var(--primary);margin:16px 0 10px;font-size:15px">📐 语法专题</h3>';
-      lesson.grammar.forEach((g, gi) => {
-        html += '<div style="background:var(--bg-elev);border-radius:10px;padding:16px;margin-bottom:12px;border:1px solid var(--border)"><div style="font-size:14px;font-weight:600;color:var(--primary);margin-bottom:8px">' + (gi+1) + '. ' + g.title + '</div>';
-        if (g.explanation) html += '<div style="font-size:12px;color:var(--text-dim);margin-bottom:10px;line-height:1.6">' + g.explanation + '</div>';
-        if (g.examples && g.examples.length) {
-          g.examples.forEach(ex => {
-            html += '<div style="padding:8px;background:var(--bg-card);border-radius:6px;margin-bottom:6px"><div style="font-size:13px;color:var(--text)">' + (ex.ind || ex.indonesian || '') + '</div>';
-            html += '<div style="font-size:12px;color:var(--text-dim);margin-top:3px">🇨🇳 ' + (ex.zhs || ex.chinese || '') + '</div>';
-            if (ex.breakdown) html += '<div style="font-size:11px;color:var(--accent);margin-top:3px">🔍 ' + ex.breakdown + '</div>';
-            html += '</div>';
-          });
-        }
-        html += '</div>';
-      });
-    }
-  }
-
-  // Passages (all days except map)
-  if (lesson.passages && lesson.passages.length) {
-    html += '<h3 style="color:var(--primary);margin:16px 0 10px;font-size:15px">🎤 朗读短文</h3>';
-    lesson.passages.forEach(p => {
-      html += '<div style="background:var(--bg-elev);border-radius:10px;padding:16px;margin-bottom:12px;border:1px solid var(--border)"><div style="font-size:14px;font-weight:600;color:var(--primary);margin-bottom:8px">' + p.title + '</div>';
-      sentencesOrLines = p.lines || p.sentences || []; sentencesOrLines.forEach(s => {
-        html += '<div style="font-size:13px;color:var(--text);margin:6px 0;padding:8px;background:var(--bg-card);border-radius:6px">' + (s.ind || s.indonesian || "") + '</div>';
-        html += '<div style="font-size:12px;color:var(--text-dim);margin:4px 0 10px;padding-left:8px;border-left:2px solid var(--primary-dim)">' + (s.zhs || s.chinese || "") + '</div>';
-      });
-      html += '</div>';
-    });
-  }
-
-  // Quizzes (all days except map)
-  if (lesson.quizzes && lesson.quizzes.length) {
-    html += '<h3 style="color:var(--primary);margin:16px 0 10px;font-size:15px">🎯 能力测试</h3>';
-    lesson.quizzes.forEach((q, qi) => {
-      html += '<div style="background:var(--bg-elev);border-radius:10px;padding:16px;margin-bottom:12px;border:1px solid var(--border)"><div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:10px">' + (qi+1) + '. ' + q.question + '</div><div style="display:flex;flex-direction:column;gap:8px;">';
-      q.options.forEach((opt, oidx) => {
-        const isCorrect = oidx === q.answer;
-        html += '<div style="padding:8px 12px;background:rgba(30,41,59,0.6);border:1px solid #334155;border-radius:6px;cursor:pointer;font-size:13px;color:#e2e8f0;" onclick="checkNickelQuiz(this, ' + isCorrect + ')">' + opt + '</div>';
-      });
-      html += '</div></div>';
-    });
-  }
-
-  html += '</div></div>';
-  c.innerHTML = html;
-}
-
-function checkNickelQuiz(option, isCorrect) {
-  const container = option.closest('div[style*="background:var(--bg-elev)"]');
-  if (!container) return;
-  const allOpts = container.querySelectorAll('div[style*="cursor:pointer"]');
-  allOpts.forEach(opt => { opt.style.cursor = 'default'; opt.onclick = null; });
-  if (isCorrect) {
-    option.style.background = 'rgba(34,197,94,0.2)'; option.style.borderColor = '#22c55e';
-  } else {
-    option.style.background = 'rgba(239,68,68,0.2)'; option.style.borderColor = '#ef4444';
-    allOpts.forEach(opt => {
-      if (opt.getAttribute('onclick') && opt.getAttribute('onclick').includes('true')) {
-        opt.style.background = 'rgba(34,197,94,0.2)'; opt.style.borderColor = '#22c55e';
-      }
-    });
-  }
-}
 
 </script>
 </body>
