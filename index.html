@@ -6077,6 +6077,40 @@ function initNickelMap() {
 }
 
 // ===================== NICKEL LESSON RENDERER =====================
+// ===================== MAP SEARCH =====================
+function searchNickelMap(query) {
+  if (!query || !nickelMap) return;
+  const q = query.toLowerCase().trim();
+  if (!q) return;
+  for (const [key, group] of Object.entries(nickelData.indonesia)) {
+    const texts = [
+      group.park || "", group.province || "",
+      ...(group.projects || []).flatMap(p => [
+        p["项目名"] || "", p["企业名_中文"] || "", p["企业名_英文_PT"] || "",
+        p["工艺路线"] || "", p["产品"] || "", p["状态"] || ""
+      ])
+    ];
+    if (texts.some(t => t.toLowerCase().includes(q))) {
+      nickelMap.flyTo([group.lat, group.lng], 11, { duration: 1.5 });
+      setTimeout(() => showIndonesiaPopup(key, group), 1600);
+      return;
+    }
+  }
+  for (const p of nickelData.global) {
+    const texts = [
+      p["国家"] || "", p["企业名_中文"] || "", p["项目名"] || "", p["状态"] || ""
+    ];
+    if (texts.some(t => (t || "").toLowerCase().includes(q))) {
+      nickelMap.flyTo([p.lat, p.lng], 8, { duration: 1.5 });
+      const popupContent = "<b>" + escapeHtml(p["国家"]) + "</b><br>" +
+        escapeHtml(p["企业名_中文"] || p["项目名"]) + "<br>" +
+        (p["年产能_万镍金属吨"] ? p["年产能_万镍金属吨"] + "万镍吨/年" : "");
+      L.popup({ offset: [0, -10] }).setLatLng([p.lat, p.lng]).setContent(popupContent).openOn(nickelMap);
+      return;
+    }
+  }
+  alert("未找到匹配的企业或项目: \"" + query + "\"");
+}
 function renderNickelContent(c, ds, topicInfo) {
   const day = topicInfo.day;
   let html = '<div class="date-detail"><button class="back-btn" onclick="goBack()">← 返回</button>';
@@ -6084,9 +6118,14 @@ function renderNickelContent(c, ds, topicInfo) {
   if (day === 0) {
     // Day 23: Map
     html += '<div class="card"><div class="card-header"><h2>🗺️ 全球镍产业地图</h2><span class="badge">107印尼 + 66全球项目</span></div>';
-    html += '<div id="map-view" style="position:relative;"><div id="leaflet-map" style="width:100%;height:500px;border-radius:8px;"></div>';
+    html += '<div id="map-view" style="position:relative;">\
+      <div style="display:flex;gap:8px;margin-bottom:10px;">\
+        <input type="text" id="nickelMapSearch" placeholder="🔍 搜索企业、园区、项目或国家..." style="flex:1;padding:10px 14px;background:var(--bg-elev);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:13px;outline:none;" onkeydown="if(event.key===\'Enter\'){searchNickelMap(this.value)}">\
+        <button onclick="searchNickelMap(document.getElementById(\'nickelMapSearch\').value)" style="padding:10px 18px;background:var(--primary);color:#000;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;">搜索</button>\
+      </div>\
+      <div id="leaflet-map" style="width:100%;height:500px;border-radius:8px;"></div>';
     html += '<div id="mapStats" style="position:absolute;bottom:12px;left:12px;background:rgba(0,0,0,0.7);color:#fff;padding:8px 14px;border-radius:6px;font-size:13px;z-index:1000;"></div>';
-    html += '<button onclick="initNickelMap()" style="position:absolute;top:12px;right:12px;background:var(--primary);color:#000;border:none;padding:6px 12px;border-radius:6px;font-size:12px;cursor:pointer;z-index:1000;">🔄 刷新地图</button></div>';
+    html += '<button onclick="initNickelMap()" style="position:absolute;top:62px;right:12px;background:var(--primary);color:#000;border:none;padding:6px 12px;border-radius:6px;font-size:12px;cursor:pointer;z-index:1000;">🔄 刷新地图</button></div>';
     html += '<div style="margin-top:12px;font-size:12px;color:var(--text-dim);">💡 点击印尼项目标注查看详细信息 | 全球项目显示为彩色圆点</div></div>';
     html += '<div id="nickelPopup" class="nickel-detail-popup"><div class="popup-header" id="popupHeader"><h4 id="popupTitle"></h4><button class="popup-close" onclick="closePopup()">×</button></div><div class="popup-body" id="popupBody"></div></div>';
     c.innerHTML = html;
