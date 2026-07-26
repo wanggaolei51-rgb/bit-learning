@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<title>LEO-BIR V4.6 C4</title>
+<title>LEO-BIR V4.4</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -273,7 +273,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="sidebar-header">
     <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <h1>LEO-BIR</h1>
-    <div class="ver">LEO-BIR V4.6 C4 · 生词同步 · 全文朗读 · 单词弹窗 · 常用句课程</div>
+    <div class="ver">LEO-BIR V4.4 · 词根射击重构 · 字母发音表 · 动态词库</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -1913,7 +1913,7 @@ function updateStats(){
 }
 
 document.addEventListener("DOMContentLoaded",()=>{
-  initHistory();initWordBank();initMember();render();updateStats();syncCourseVocabToWordBank();
+  initHistory();initWordBank();initMember();render();updateStats();
   window.addEventListener("hashchange",render);
   document.querySelectorAll(".nav-list li").forEach(li=>{li.addEventListener("click",()=>{const r=li.dataset.route;if(r)navigate(r);});});
   const menuBtn=document.getElementById("menuBtn"),sidebar=document.getElementById("sidebar");
@@ -3930,98 +3930,7 @@ const topicData = {
         "trans": "嗨，新同事们！欢迎来到我们公司。我知道第一次来莫罗瓦利肯定对道路和地点很困惑。所以我想分享一些重要提示。第一，始终保存保安和资深同事的号码。第二，出门前下载Google Maps和公司内部地图应用。第三，如果迷路了，不要犹豫问当地居民，他们很友好。第四，小心网约车，确保车牌和司机姓名与APP一致。从办公室到传统市场约十五分钟，到医院二十分钟，到机场三小时。我希望你们能快速适应并享受莫罗瓦利的生活。工作顺利！"
       }
     ]
-  },
-  "common_sentences": {
-    "title": "话题4: 印尼最常用的句子 / Kalimat Sehari-hari",
-    "icon": "💬",
-    "days": 3,
-    "grammar": {
-      "title": "印尼语基本语序与常用前缀",
-      "rules": [
-        "S-P-O 语序: 印尼语基本语序是主语-谓语-宾语，与中文一致",
-        "无动词变化: 印尼语动词不随时态、人称变化，通过时间副词表达时态",
-        "常用前缀 me-: 使动词变为及物动词，如 baca → membaca (读)",
-        "前缀 ber-: 表示拥有、从事某种活动，如 kerja → bekerja (工作)",
-        "前缀 ter-: 表示被动或最…，如 kenal → terkenal (著名的)"
-      ],
-      "examples": [
-        "Saya makan nasi. = 我吃饭。 (S-P-O)",
-        "Dia sudah pergi. = 他已经走了。 (sudah = 已经)",
-        "Saya sedang membaca buku. = 我正在读书。 (sedang = 正在)",
-        "Mereka bekerja di pabrik. = 他们在工厂工作。 (ber- 前缀)"
-      ]
-    },
-    "scenes": [
-      {
-        "title": "餐厅点餐",
-        "icon": "🍽️",
-        "dialogue": [
-          {"speaker": "A", "text": "Permisi, saya mau pesan makanan.", "trans": "打扰一下，我想点餐。"},
-          {"speaker": "B", "text": "Baik, silakan duduk. Ini menu-nya.", "trans": "好的，请坐。这是菜单。"},
-          {"speaker": "A", "text": "Saya mau nasi goreng dan es teh manis.", "trans": "我要炒饭和甜冰茶。"},
-          {"speaker": "B", "text": "Baik, tunggu sebentar ya. Kurang lebih sepuluh menit.", "trans": "好的，请稍等。大约十分钟。"}
-        ]
-      },
-      {
-        "title": "购物砍价",
-        "icon": "🛒",
-        "dialogue": [
-          {"speaker": "A", "text": "Berapa harga baju ini?", "trans": "这件衣服多少钱？"},
-          {"speaker": "B", "text": "Seratus lima puluh ribu rupiah, Pak.", "trans": "十五万印尼盾，先生。"},
-          {"speaker": "A", "text": "Bisa kurang? Saya mau beli dua.", "trans": "能便宜点吗？我要买两件。"},
-          {"speaker": "B", "text": "Baik, saya kasih harga dua ratus tujuh puluh ribu untuk dua.", "trans": "好的，两件给您二十七万。"}
-        ]
-      },
-      {
-        "title": "问路",
-        "icon": "🗺️",
-        "dialogue": [
-          {"speaker": "A", "text": "Permisi, toilet di mana ya?", "trans": "打扰一下，洗手间在哪里？"},
-          {"speaker": "B", "text": "Di sebelah kiri, lurus sedikit.", "trans": "在左边，直走一点。"},
-          {"speaker": "A", "text": "Terima kasih banyak!", "trans": "非常感谢！"},
-          {"speaker": "B", "text": "Sama-sama.", "trans": "不客气。"}
-        ]
-      },
-      {
-        "title": "酒店入住",
-        "icon": "🏨",
-        "dialogue": [
-          {"speaker": "A", "text": "Selamat siang, saya sudah booking kamar.", "trans": "中午好，我已经预订了房间。"},
-          {"speaker": "B", "text": "Baik, Bapak nama-nya siapa? Bisa lihat KTP atau passport?", "trans": "好的，先生叫什么名字？可以看一下身份证或护照吗？"},
-          {"speaker": "A", "text": "Nama saya Li Wei, ini passport saya.", "trans": "我叫李伟，这是我的护照。"},
-          {"speaker": "B", "text": "Terima kasih, Pak. Kamar di lantai tiga, nomor tiga nol dua.", "trans": "谢谢先生。房间在三楼，302号。"}
-        ]
-      },
-      {
-        "title": "紧急情况",
-        "icon": "🚨",
-        "dialogue": [
-          {"speaker": "A", "text": "Tolong! Ada orang sakit di sini!", "trans": "救命！这里有人生病了！"},
-          {"speaker": "B", "text": "Ada apa? Dia kenapa?", "trans": "怎么了？他怎么了？"},
-          {"speaker": "A", "text": "Dia pusing dan demam tinggi. Rumah sakit terdekat di mana?", "trans": "他头晕发高烧。最近的医院在哪里？"},
-          {"speaker": "B", "text": "Saya panggilkan ambulans. Nomor darurat adalah nol-nol-nol.", "trans": "我叫救护车。紧急电话是118。"}
-        ]
-      }
-    ],
-    "speeches": [
-      {
-        "title": "自我介绍 (Perkenalan Diri)",
-        "icon": "👤",
-        "content": "Selamat pagi semuanya. Perkenalkan, nama saya Li Wei. Saya dari Tiongkok. Saya bekerja sebagai manajer di perusahaan tambang di Morowali, Sulawesi Tengah. Saya sudah tinggal di Indonesia selama tiga tahun. Saya suka makan nasi goreng dan minum kopi. Saya sedang belajar bahasa Indonesia karena saya ingin bisa berkomunikasi lebih baik dengan rekan kerja saya. Terima kasih.",
-        "trans": "大家早上好。请允许我介绍自己，我叫李伟。我来自中国。我在中苏拉威西莫罗瓦利的一家矿业公司担任经理。我已经在印度尼西亚住了三年。我喜欢吃炒饭和喝咖啡。我正在学习印尼语，因为我想更好地与同事交流。谢谢。",
-        "words": 58,
-        "time": 45
-      },
-      {
-        "title": "日常活动 (Kegiatan Sehari-hari)",
-        "icon": "📅",
-        "content": "Setiap hari saya bangun pukul enam pagi. Saya mandi dan sarapan nasi goreng. Pukul tujuh saya pergi ke kantor dengan mobil. Di kantor, saya rapat dengan staf lokal dan membaca laporan produksi. Siang hari saya makan di kantin bersama teman-teman. Sore hari saya olahraga atau belajar bahasa Indonesia. Malam hari saya makan malam dan menonton televisi. Saya tidur pukul sepuluh malam. Hari ini sangat sibuk tapi menyenangkan.",
-        "trans": "我每天早上六点起床。我洗澡然后吃炒饭当早餐。七点我开车去办公室。在办公室，我和当地员工开会并阅读生产报告。中午我和朋友们在食堂吃饭。下午我运动或学习印尼语。晚上我吃晚餐并看电视。我晚上十点睡觉。今天很忙但很开心。",
-        "words": 65,
-        "time": 50
-      }
-    ]
-  }};
+  },};
 
 
   const topicCalendar = {
@@ -4037,10 +3946,7 @@ const topicData = {
   "2026-07-23": {topic: "nickel", day: 0, label: "🗺️ 全球镍产业地图", type: "map"},
   "2026-07-24": {topic: "nickel", day: 1, label: "🏭 镍产业基础词汇"},
   "2026-07-25": {topic: "nickel", day: 2, label: "💼 商务对话"},
-  "2026-07-26": {topic: "nickel", day: 3, label: "📊 高级应用+测试"},
-  "2026-07-27": {topic: "common_sentences", day: 1, label: "💬 常用句 · 词汇+语法"},
-  "2026-07-28": {topic: "common_sentences", day: 2, label: "💬 常用句 · 场景对话"},
-  "2026-07-29": {topic: "common_sentences", day: 3, label: "💬 常用句 · 演讲+测试"}
+  "2026-07-26": {topic: "nickel", day: 3, label: "📊 高级应用+测试"}
 };
 
 function getTopicForDate(ds) {
@@ -4427,18 +4333,9 @@ function renderAbout(c){
 }
 
 function renderVersion(c){
-  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录</h2><span class="badge">V4.6 C4</span></div>
+  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录</h2><span class="badge">V4.4</span></div>
     <div style="padding:16px;">
       <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
-      <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
-        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.6 C4 (2026-07-27)</div>
-        <div style="font-size:13px;color:var(--text);line-height:1.8">
-        • C4升级：全文生词同步，页面加载时自动将课程词汇保存到生词本<br>
-        • 交互增强：所有印尼语句子和单词支持朗读+弹窗（镍产业课程）<br>
-        • 新增话题：「印尼最常用的句子」含5场景对话+2篇演讲<br>
-        • BIO/RCO/TSO三方审核流程持续运行<br>
-        </div>
-      </div>
         <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.4 (2026-07-22)</div>
         <div style="font-size:13px;color:var(--text);line-height:1.8">
         • 恢复日历课程：有话题日期默认显示话题内容，可切换学习记录<br>
@@ -6214,141 +6111,6 @@ function searchNickelMap(query) {
   }
   alert("未找到匹配的企业或项目: \"" + query + "\"");
 }
-// ===================== COURSE VOCAB SYNC (C4) =====================
-// 自动同步14号以后所有课程生词到生词本
-function syncCourseVocabToWordBank() {
-  if (!wordBank) return;
-  let added = 0;
-  const existingWords = new Set(wordBank.map(w => (w.word || w.id || '').toLowerCase()));
-
-  function addIfNew(word, cn, en, ipa, root, tag) {
-    const w = (word || '').trim();
-    if (!w || w.length < 2) return;
-    const key = w.toLowerCase();
-    if (existingWords.has(key)) return;
-    existingWords.add(key);
-    wordBank.push({
-      id: key, word: w, zh: cn || w, cn: cn || w, en: en || '',
-      ipa: ipa || '—', root: root || '—', tag: tag || '课程同步',
-      passed: {}, addTime: Date.now()
-    });
-    added++;
-  }
-
-  // Sync topicData (meet, introduce, directions)
-  for (const [topicKey, topic] of Object.entries(topicData)) {
-    if (topic.scenes) {
-      topic.scenes.forEach(sc => {
-        if (sc.dialogue) {
-          sc.dialogue.forEach(d => {
-            if (d.text) {
-              d.text.split(/[\s.,!?;:"'-]+/).forEach(tok => {
-                const t = tok.trim().toLowerCase();
-                if (t.length >= 3 && /^[a-z]+$/.test(t)) {
-                  const v = vocabDB[t] || vocabDB[t.charAt(0).toUpperCase() + t.slice(1)];
-                  if (v) addIfNew(t, v.cn, v.en, v.ipa, v.root, '话题:' + topicKey);
-                }
-              });
-            }
-          });
-        }
-      });
-    }
-    if (topic.speeches) {
-      topic.speeches.forEach(sp => {
-        if (sp.content) {
-          sp.content.split(/[\s.,!?;:"'-]+/).forEach(tok => {
-            const t = tok.trim().toLowerCase();
-            if (t.length >= 3 && /^[a-z]+$/.test(t)) {
-              const v = vocabDB[t] || vocabDB[t.charAt(0).toUpperCase() + t.slice(1)];
-              if (v) addIfNew(t, v.cn, v.en, v.ipa, v.root, '话题:' + topicKey);
-            }
-          });
-        }
-      });
-    }
-  }
-
-  // Sync nickelCurriculum
-  for (const [ds, lesson] of Object.entries(nickelCurriculum)) {
-    if (lesson.items) {
-      lesson.items.forEach(item => {
-        addIfNew(item.indonesian || item.ind || '', item.chinese || item.zhs || '',
-                 item.english || item.en || '', item.ipa || '', item.morphology || '', '镍产业:' + ds);
-      });
-    }
-    if (lesson.dialogues) {
-      lesson.dialogues.forEach(dg => {
-        if (dg.lines) {
-          dg.lines.forEach(line => {
-            const text = line.ind || line.indonesian || '';
-            if (text) {
-              text.split(/[\s.,!?;:"'-]+/).forEach(tok => {
-                const t = tok.trim().toLowerCase();
-                if (t.length >= 3 && /^[a-z]+$/.test(t)) {
-                  const v = vocabDB[t] || vocabDB[t.charAt(0).toUpperCase() + t.slice(1)];
-                  if (v) addIfNew(t, v.cn, v.en, v.ipa, v.root, '镍产业:' + ds);
-                }
-              });
-            }
-          });
-        }
-      });
-    }
-    if (lesson.passages) {
-      lesson.passages.forEach(p => {
-        const lines = p.lines || p.sentences || [];
-        lines.forEach(line => {
-          const text = line.ind || line.indonesian || '';
-          if (text) {
-            text.split(/[\s.,!?;:"'-]+/).forEach(tok => {
-              const t = tok.trim().toLowerCase();
-              if (t.length >= 3 && /^[a-z]+$/.test(t)) {
-                const v = vocabDB[t] || vocabDB[t.charAt(0).toUpperCase() + t.slice(1)];
-                if (v) addIfNew(t, v.cn, v.en, v.ipa, v.root, '镍产业:' + ds);
-              }
-            });
-          }
-        });
-      });
-    }
-    if (lesson.sentence_patterns) {
-      lesson.sentence_patterns.forEach(sp => {
-        if (sp.example) {
-          sp.example.split(/[\s.,!?;:"'-]+/).forEach(tok => {
-            const t = tok.trim().toLowerCase();
-            if (t.length >= 3 && /^[a-z]+$/.test(t)) {
-              const v = vocabDB[t] || vocabDB[t.charAt(0).toUpperCase() + t.slice(1)];
-              if (v) addIfNew(t, v.cn, v.en, v.ipa, v.root, '镍产业:' + ds);
-            }
-          });
-        }
-      });
-    }
-    if (lesson.grammar) {
-      lesson.grammar.forEach(g => {
-        if (g.examples) {
-          g.examples.forEach(ex => {
-            const text = ex.ind || ex.indonesian || '';
-            if (text) {
-              text.split(/[\s.,!?;:"'-]+/).forEach(tok => {
-                const t = tok.trim().toLowerCase();
-                if (t.length >= 3 && /^[a-z]+$/.test(t)) {
-                  const v = vocabDB[t] || vocabDB[t.charAt(0).toUpperCase() + t.slice(1)];
-                  if (v) addIfNew(t, v.cn, v.en, v.ipa, v.root, '镍产业:' + ds);
-                }
-              });
-            }
-          });
-        }
-      });
-    }
-  }
-
-  if (added > 0) { saveWB(); updateStats(); }
-  console.log('[BIR C4] 课程生词同步完成，新增 ' + added + ' 个词汇');
-}
-
 function renderNickelContent(c, ds, topicInfo) {
   const day = topicInfo.day;
   let html = '<div class="date-detail"><button class="back-btn" onclick="goBack()">← 返回</button>';
@@ -6380,15 +6142,13 @@ function renderNickelContent(c, ds, topicInfo) {
     // Day 24: Vocabulary
     html += '<h3 style="color:var(--primary);margin:16px 0 10px;font-size:15px">🎯 核心词汇 (' + lesson.items.length + ')</h3><div class="word-grid">';
     lesson.items.forEach(item => {
-      const _vw = (item.indonesian || '').replace(/'/g, "\\'");
-      html += '<div class="word-card"><div class="w-word" style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">' + wrapClickableWords(item.indonesian) + ' <span class="w-ipa">' + (item.ipa || '') + '</span><button onclick="speakIndonesian(\'' + _vw + '\')" style="background:none;border:none;color:var(--primary);cursor:pointer;font-size:12px;padding:2px;" title="朗读">🔊</button></div>';
+      html += '<div class="word-card"><div class="w-word">' + item.indonesian + ' <span class="w-ipa">' + (item.ipa || '') + '</span></div>';
       html += '<div class="w-mean">🇨🇳 ' + item.chinese + '</div>';
       if (item.english) html += '<div style="font-size:11px;color:var(--text-dim)">🇬🇧 ' + item.english + '</div>';
       if (item.examples && item.examples.length) {
         html += '<div style="margin-top:6px;padding:6px;background:var(--bg-elev);border-radius:6px;font-size:11px;color:var(--text-dim);">';
         item.examples.forEach(ex => {
-          const _exw = (ex.ind || '').replace(/'/g, "\\'");
-          html += '<div style="margin:2px 0;display:flex;align-items:center;gap:4px;flex-wrap:wrap;">• ' + wrapClickableWords(ex.ind) + '<button onclick="speakIndonesian(\'' + _exw + '\')" style="background:none;border:none;color:var(--primary);cursor:pointer;font-size:11px;padding:1px;" title="朗读">🔊</button></div>';
+          html += '<div style="margin:2px 0">• ' + ex.ind + '</div>';
           html += '<div style="margin:2px 0 6px;color:var(--text-dim)">  ' + ex.zhs + '</div>';
         });
         html += '</div>';
@@ -6404,8 +6164,7 @@ function renderNickelContent(c, ds, topicInfo) {
         html += '<div style="background:var(--bg-elev);border-radius:10px;padding:16px;margin-bottom:12px;border:1px solid var(--border)"><div style="font-size:14px;font-weight:600;color:var(--primary);margin-bottom:10px">场景 ' + (i+1) + ': ' + dg.title + '</div>';
         dg.lines.forEach((line, li) => {
           const isA = li % 2 === 0;
-          const _dlgw = (line.ind || '').replace(/'/g, "\\'");
-          html += '<div style="display:flex;gap:10px;margin:8px 0;padding:8px;background:var(--bg-card);border-radius:6px"><div style="font-weight:700;color:' + (isA ? 'var(--primary)' : 'var(--accent)') + ';min-width:30px;font-size:12px">' + line.speaker + ':</div><div style="flex:1"><div style="font-size:13px;color:var(--text);display:flex;align-items:center;flex-wrap:wrap;">' + wrapClickableWords(line.ind) + '<button onclick="speakIndonesian(\'' + _dlgw + '\')" style="background:none;border:none;color:var(--primary);cursor:pointer;font-size:12px;padding:2px 4px;margin-left:4px;" title="朗读">🔊</button></div><div style="font-size:11px;color:var(--text-dim);margin-top:3px;border-left:2px solid var(--primary-dim);padding-left:6px">' + line.zhs + '</div></div></div>';
+          html += '<div style="display:flex;gap:10px;margin:8px 0;padding:8px;background:var(--bg-card);border-radius:6px"><div style="font-weight:700;color:' + (isA ? 'var(--primary)' : 'var(--accent)') + ';min-width:30px;font-size:12px">' + line.speaker + ':</div><div style="flex:1"><div style="font-size:13px;color:var(--text)">' + line.ind + '</div><div style="font-size:11px;color:var(--text-dim);margin-top:3px;border-left:2px solid var(--primary-dim);padding-left:6px">' + line.zhs + '</div></div></div>';
         });
         html += '</div>';
     // Sentence patterns
@@ -6413,8 +6172,7 @@ function renderNickelContent(c, ds, topicInfo) {
       html += '<h3 style="color:var(--primary);margin:16px 0 10px;font-size:15px">📝 核心句型</h3>';
       lesson.sentence_patterns.forEach((sp, si) => {
         html += '<div style="background:var(--bg-elev);border-radius:10px;padding:14px;margin-bottom:10px;border:1px solid var(--border)"><div style="font-size:13px;font-weight:600;color:var(--accent);margin-bottom:6px">句型 ' + (si+1) + '</div>';
-        const _spw = (sp.pattern || '').replace(/'/g, "\\'");
-        html += '<div style="font-size:14px;color:var(--primary);font-weight:600;margin-bottom:4px;display:flex;align-items:center;gap:6px;flex-wrap:wrap;">' + wrapClickableWords(sp.pattern) + '<button onclick="speakIndonesian(\'' + _spw + '\')" style="background:none;border:none;color:var(--primary);cursor:pointer;font-size:12px;padding:2px;" title="朗读">🔊</button></div>';
+        html += '<div style="font-size:14px;color:var(--primary);font-weight:600;margin-bottom:4px">' + sp.pattern + '</div>';
         html += '<div style="font-size:12px;color:var(--text-dim);margin-bottom:6px">🇨🇳 ' + sp.zhs + '</div>';
         html += '<div style="font-size:11px;color:var(--text-dim)">💡 ' + sp.usage + '</div>';
         html += '<div style="font-size:11px;color:var(--text);margin-top:4px;padding:6px;background:var(--bg-card);border-radius:6px">例: ' + sp.example + '</div>';
@@ -6441,8 +6199,7 @@ function renderNickelContent(c, ds, topicInfo) {
         if (g.explanation) html += '<div style="font-size:12px;color:var(--text-dim);margin-bottom:10px;line-height:1.6">' + g.explanation + '</div>';
         if (g.examples && g.examples.length) {
           g.examples.forEach(ex => {
-            const _gx = (ex.ind || ex.indonesian || '').replace(/'/g, "\\'");
-            html += '<div style="padding:8px;background:var(--bg-card);border-radius:6px;margin-bottom:6px"><div style="font-size:13px;color:var(--text);display:flex;align-items:center;flex-wrap:wrap;">' + wrapClickableWords(ex.ind || ex.indonesian || '') + '<button onclick="speakIndonesian(\'' + _gx + '\')" style="background:none;border:none;color:var(--primary);cursor:pointer;font-size:11px;padding:2px;margin-left:4px;" title="朗读">🔊</button></div>';
+            html += '<div style="padding:8px;background:var(--bg-card);border-radius:6px;margin-bottom:6px"><div style="font-size:13px;color:var(--text)">' + (ex.ind || ex.indonesian || '') + '</div>';
             html += '<div style="font-size:12px;color:var(--text-dim);margin-top:3px">🇨🇳 ' + (ex.zhs || ex.chinese || '') + '</div>';
             if (ex.breakdown) html += '<div style="font-size:11px;color:var(--accent);margin-top:3px">🔍 ' + ex.breakdown + '</div>';
             html += '</div>';
@@ -6458,9 +6215,8 @@ function renderNickelContent(c, ds, topicInfo) {
     html += '<h3 style="color:var(--primary);margin:16px 0 10px;font-size:15px">🎤 朗读短文</h3>';
     lesson.passages.forEach(p => {
       html += '<div style="background:var(--bg-elev);border-radius:10px;padding:16px;margin-bottom:12px;border:1px solid var(--border)"><div style="font-size:14px;font-weight:600;color:var(--primary);margin-bottom:8px">' + p.title + '</div>';
-      const sentencesOrLines = p.lines || p.sentences || []; sentencesOrLines.forEach(s => {
-        const _psw = (s.ind || s.indonesian || "").replace(/'/g, "\\'");
-        html += '<div style="font-size:13px;color:var(--text);margin:6px 0;padding:8px;background:var(--bg-card);border-radius:6px;display:flex;align-items:center;flex-wrap:wrap;">' + wrapClickableWords(s.ind || s.indonesian || "") + '<button onclick="speakIndonesian(\'' + _psw + '\')" style="background:none;border:none;color:var(--primary);cursor:pointer;font-size:11px;padding:2px;margin-left:4px;" title="朗读">🔊</button></div>';
+      sentencesOrLines = p.lines || p.sentences || []; sentencesOrLines.forEach(s => {
+        html += '<div style="font-size:13px;color:var(--text);margin:6px 0;padding:8px;background:var(--bg-card);border-radius:6px">' + (s.ind || s.indonesian || "") + '</div>';
         html += '<div style="font-size:12px;color:var(--text-dim);margin:4px 0 10px;padding-left:8px;border-left:2px solid var(--primary-dim)">' + (s.zhs || s.chinese || "") + '</div>';
       });
       html += '</div>';
