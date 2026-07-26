@@ -4029,11 +4029,11 @@ const topicData = {
     "grammar": {
       "title": "印尼语天气表达与形容词前缀",
       "rules": [
-        "Cuaca (天气) 相关词汇: panas (热), dingin (冷), hujan (雨), panas (晴天), berawan (多云)",
-        "Musim (季节): musim hujan (雨季), musim kemarau (旱季), musim panas (热季)",
+        "Cuaca (天气) 相关词汇: panas (热), dingin (冷), hujan (雨), cerah (晴天), berawan (多云)",
+        "Musim (季节): musim hujan (雨季), musim kemarau (旱季), musim kemarau (旱季)",
         "形容词前缀 ter-: 表示最…，如 terpanas (最热), terdingin (最冷)",
-        "ber- + 自然现象: 表示出现某种天气，如 berhujan (下雨), berangin (刮风)",
-        "sudah/belum + 动词: 表示动作已完成/未发生，如 sudah hujan (已经下雨了)"
+        "ber- + 自然现象: 表示出现某种天气，如 turun hujan (下雨), berangin (刮风)",
+        "sudah/belum + 动词: 表示动作已完成/未发生，如 sudah turun hujan (已经下雨了)"
       ],
       "examples": [
         "Hari ini cuaca sangat panas. = 今天天气很热。",
@@ -4123,8 +4123,8 @@ const topicData = {
         "身体部位: kepala (头), perut (肚子), tenggorokan (喉咙), badan (身体), darah (血)",
         "sakit + 部位: 表示某个部位疼痛，如 sakit kepala (头疼), sakit perut (肚子疼)",
         "前缀 me- + 感觉动词: 表示感受，如 merasa (感觉), mengeluh (抱怨)",
-        "前缀 ter- + 病症: 表示遭受某种疾病，如 terserang (遭受), terkena (感染)",
-        "祈使句: 直接使用动词原形，如 Minum obat ini! (吃这个药！), Istirahat yang cukup! (充分休息！)"
+        "前缀 ter- + 动词词根: 表示遭受某种状况，如 terserang (遭受), terkena (感染)",
+        "祈使句: 直接使用动词原形，如 Minum obat ini! (吃这个药！), Istirahatlah! (休息吧！)"
       ],
       "examples": [
         "Saya sakit kepala dan demam. = 我头疼发烧。",
@@ -4618,34 +4618,25 @@ function renderVersion(c){
   c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录</h2><span class="badge">V4.6 C4+</span></div>
     <div style="padding:16px;">
       <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
-      <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
-        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.6 C4 (2026-07-27)</div>
-
-      <div style="margin-bottom:14px;padding:14px;background:var(--bg-elev);border-radius:10px;border-left:3px solid var(--info)">
-        <div style="font-size:15px;font-weight:700;color:var(--info);margin-bottom:6px">V4.6 C4+ (2026-07-27)</div>
+        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.6 C4+ (2026-07-27)</div>
         <div style="font-size:13px;color:var(--text);line-height:1.8">
-        • 新增话题「天气」：5场景（天气预报/雨季/户外/航班/气候）+ 2演讲
-        • 新增话题「就医」：5场景（挂号/看诊/取药/急救/体检）+ 2演讲
-        • 自动继承C4标准：全文朗读 + 单词弹窗 + 生词同步
+        • 新增话题「天气」：5场景（天气预报/雨季/户外/航班/气候）+ 2演讲<br>
+        • 新增话题「就医」：5场景（挂号/看诊/取药/急救/体检）+ 2演讲<br>
+        • 自动继承C4标准：全文朗读 + 单词弹窗 + 生词同步<br>
+        • BIO/RCO/TSO三方审核流程持续运行<br>
         </div>
       </div>
+      <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
+        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.6 C4 (2026-07-27)</div>
         <div style="font-size:13px;color:var(--text);line-height:1.8">
         • C4升级：全文生词同步，页面加载时自动将课程词汇保存到生词本<br>
         • 交互增强：所有印尼语句子和单词支持朗读+弹窗（镍产业课程）<br>
         • 新增话题：「印尼最常用的句子」含5场景对话+2篇演讲<br>
         • BIO/RCO/TSO三方审核流程持续运行<br>
         </div>
-
-      <div style="margin-bottom:14px;padding:14px;background:var(--bg-elev);border-radius:10px;border-left:3px solid var(--info)">
-        <div style="font-size:15px;font-weight:700;color:var(--info);margin-bottom:6px">V4.6 C4+ (2026-07-27)</div>
-        <div style="font-size:13px;color:var(--text);line-height:1.8">
-        • 新增话题「天气」：5场景（天气预报/雨季/户外/航班/气候）+ 2演讲
-        • 新增话题「就医」：5场景（挂号/看诊/取药/急救/体检）+ 2演讲
-        • 自动继承C4标准：全文朗读 + 单词弹窗 + 生词同步
-        </div>
       </div>
-      </div>
-        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.4 (2026-07-22)</div>
+      <div style="margin-bottom:14px;padding:14px;background:var(--bg-elev);border-radius:10px;border-left:3px solid var(--accent)">
+        <div style="font-size:15px;font-weight:700;color:var(--accent);margin-bottom:6px">V4.4 (2026-07-22)</div>
         <div style="font-size:13px;color:var(--text);line-height:1.8">
         • 恢复日历课程：有话题日期默认显示话题内容，可切换学习记录<br>
         • 复习清单改造成思维导图：三级结构（统计→单词→同反义词/例句）<br>
@@ -4715,7 +4706,7 @@ function renderVersion(c){
         <div style="font-size:13px;color:var(--text);line-height:1.8">
         • 修复连续学习天数统计逻辑错误<br>
         • 修复朗读只能播放一次: 增加speechSynthesis.cancel()+resume()<br>
-        • 修复课时测试点击无反应: HTML属性转义错误\'→&#39;<br>
+        • 修复课时测试点击无反应: HTML属性转义错误'→&#39;<br>
         • 删除showQuizQ重复定义3处，保留唯一函数
         </div>
       </div>
@@ -4749,9 +4740,8 @@ function renderVersion(c){
         • showQuizQ函数补入
         </div>
       </div>
-    <div style="padding:16px;">
-      <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
-        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V2.7 (2026-07-17)</div>
+      <div style="margin-bottom:14px;padding:14px;background:var(--bg-elev);border-radius:10px;border-left:3px solid var(--accent)">
+        <div style="font-size:15px;font-weight:700;color:var(--accent);margin-bottom:6px">V2.7 (2026-07-17)</div>
         <div style="font-size:13px;color:var(--text);line-height:1.8">
         • 艾宾浩斯记忆曲线增强：每个复习点对应具体学习内容<br>
         • 悬停2秒显示详细复习提示（日期、内容、状态）<br>
@@ -4763,50 +4753,58 @@ function renderVersion(c){
       <div style="margin-bottom:14px;padding:14px;background:var(--bg-elev);border-radius:10px;border-left:3px solid var(--accent)">
         <div style="font-size:15px;font-weight:700;color:var(--accent);margin-bottom:6px">V2.6 (2026-07-17)</div>
         <div style="font-size:13px;color:var(--text);line-height:1.8">
-        • C3课程系统：话题2「介绍/Memperkenalkan」生成<br>
-        • C3逻辑：Day1词汇语法+语型 → Day2复习+语型对话 → Day3复习+演讲<br>
-        • me-前缀语法：8条规则（p→m/t→n/k→ng/s→ny/c→ny/j→ny/di-/ter-）<br>
-        • 新增24个核心词汇（kenal/perkenal/memperkenalkan/mengenal等）<br>
-        • 6个场景对话（自我介绍/介绍同事/介绍下属/商务会面/朋友/公司介绍）<br>
-        • 6篇1分钟演讲（自我介绍/介绍公司/欢迎致辞/介绍团队/介绍产品/节日问候）
+        • 修复版本迭代记录展示bug<br>
+        • 新增生词本「百词斩」闯关模式<br>
+        • 生词本词汇支持词根、IPA、例句展示
         </div>
       </div>
       <div style="margin-bottom:14px;padding:14px;background:var(--bg-elev);border-radius:10px;border-left:3px solid var(--accent)">
         <div style="font-size:15px;font-weight:700;color:var(--accent);margin-bottom:6px">V2.5 (2026-07-16)</div>
         <div style="font-size:13px;color:var(--text);line-height:1.8">
-        • 头像品牌化：使用真实头像<br>
-        • 导航优化：新增"关于LEO-BIR"和"版本记录"入口
+        • 新增词根思维导图系统<br>
+        • 支持三级节点折叠/展开
         </div>
       </div>
       <div style="margin-bottom:14px;padding:14px;background:var(--bg-elev);border-radius:10px;border-left:3px solid var(--accent)">
         <div style="font-size:15px;font-weight:700;color:var(--accent);margin-bottom:6px">V2.4 (2026-07-16)</div>
         <div style="font-size:13px;color:var(--text);line-height:1.8">
-        • 修复复习页面错误<br>
-        • 增强艾宾浩斯复习4板块<br>
-        • 界面品牌化
+        • 修复日历点击事件丢失bug<br>
+        • 支持自定义学习日期话题内容
         </div>
       </div>
       <div style="margin-bottom:14px;padding:14px;background:var(--bg-elev);border-radius:10px;border-left:3px solid var(--info)">
         <div style="font-size:15px;font-weight:700;color:var(--info);margin-bottom:6px">V2.3 (2026-07-16)</div>
-        <div style="font-size:13px;color:var(--text);line-height:1.8">超级管理员面板、艾宾浩斯复习骨架、百词斩错题报告</div>
+        <div style="font-size:13px;color:var(--text);line-height:1.8">
+        • 新增话题「介绍自己」和「方向与问路」<br>
+        • 日历支持话题日自动展示课程内容
+        </div>
       </div>
       <div style="margin-bottom:14px;padding:14px;background:var(--bg-elev);border-radius:10px;border-left:3px solid var(--text-dim)">
         <div style="font-size:15px;font-weight:700;color:var(--text-dim);margin-bottom:6px">V2.2 (2026-07-15)</div>
-        <div style="font-size:13px;color:var(--text);line-height:1.8">会员系统</div>
+        <div style="font-size:13px;color:var(--text);line-height:1.8">
+        • 修复学习记录为空时的处理逻辑<br>
+        • 新增学习统计面板
+        </div>
       </div>
       <div style="margin-bottom:14px;padding:14px;background:var(--bg-elev);border-radius:10px;border-left:3px solid var(--text-dim)">
         <div style="font-size:15px;font-weight:700;color:var(--text-dim);margin-bottom:6px">V2.1 (2026-07-15)</div>
-        <div style="font-size:13px;color:var(--text);line-height:1.8">三关生词本、百词斩游戏</div>
+        <div style="font-size:13px;color:var(--text);line-height:1.8">
+        • 新增艾宾浩斯记忆曲线复习系统<br>
+        • 新增「话题」入口与课程系统
+        </div>
       </div>
-      <div style="padding:14px;background:var(--bg-elev);border-radius:10px;border-left:3px solid var(--text-dim)">
+      <div style="margin-bottom:14px;padding:14px;background:var(--bg-elev);border-radius:10px;border-left:3px solid var(--text-dim)">
         <div style="font-size:15px;font-weight:700;color:var(--text-dim);margin-bottom:6px">V2.0 (2026-07-14)</div>
-        <div style="font-size:13px;color:var(--text);line-height:1.8">完全重写SPA、日历学习、翻译、词汇录入、话题系统</div>
+        <div style="font-size:13px;color:var(--text);line-height:1.8">
+        完全重写SPA、日历学习、翻译、词汇录入、话题系统
+        </div>
       </div>
     </div>
   </div>`;
 }
 
 
+// ===== 单词点击翻译弹窗 =====
 // ===== 单词点击翻译弹窗 =====
 function wrapClickableWords(text){
   return text.replace(/([a-zA-ZÀ-ɏḀ-ỿ]+)/g,'<span class="clickable-word" data-word="$1">$1</span>');
