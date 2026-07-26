@@ -273,7 +273,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="sidebar-header">
     <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <h1>LEO-BIR</h1>
-    <div class="ver">LEO-BIR V4.6 C4+ · 生词同步 · 全文朗读 · 单词弹窗 · 常用句 · 天气 · 就医</div>
+    <div class="ver">LEO-BIR V4.6 C4 · 生词同步 · 全文朗读 · 单词弹窗 · 常用句课程</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -4021,188 +4021,6 @@ const topicData = {
         "time": 50
       }
     ]
-  }},
-  "weather": {
-    "title": "话题5: 天气 / Cuaca",
-    "icon": "🌤️",
-    "days": 3,
-    "grammar": {
-      "title": "印尼语天气表达与形容词前缀",
-      "rules": [
-        "Cuaca (天气) 相关词汇: panas (热), dingin (冷), hujan (雨), panas (晴天), berawan (多云)",
-        "Musim (季节): musim hujan (雨季), musim kemarau (旱季), musim panas (热季)",
-        "形容词前缀 ter-: 表示最…，如 terpanas (最热), terdingin (最冷)",
-        "ber- + 自然现象: 表示出现某种天气，如 berhujan (下雨), berangin (刮风)",
-        "sudah/belum + 动词: 表示动作已完成/未发生，如 sudah hujan (已经下雨了)"
-      ],
-      "examples": [
-        "Hari ini cuaca sangat panas. = 今天天气很热。",
-        "Besok akan hujan, jangan lupa bawa payung. = 明天会下雨，别忘了带伞。",
-        "Suhu di Morowali biasanya tiga puluh sampai tiga puluh lima derajat. = 莫罗瓦利温度通常在30到35度之间。",
-        "Musim hujan di Indonesia biasanya dari November sampai Maret. = 印尼雨季通常从11月到3月。"
-      ]
-    },
-    "scenes": [
-      {
-        "title": "看天气预报",
-        "icon": "📺",
-        "dialogue": [
-          {"speaker": "A", "text": "Cuaca hari ini bagaimana? Sudah lihat prakiraan?", "trans": "今天天气怎么样？看天气预报了吗？"},
-          {"speaker": "B", "text": "Iya, hari ini panas, suhu tiga puluh dua derajat. Tapi sore mungkin hujan.", "trans": "看了，今天很热，32度。但下午可能会下雨。"},
-          {"speaker": "A", "text": "Baik, saya bawa payung. Jangan sampai basah nanti.", "trans": "好的，我带伞。别淋湿了。"},
-          {"speaker": "B", "text": "Betul. Di Morowali cuaca cepat berubah, siang panas, sore hujan.", "trans": "对。莫罗瓦利天气变化快，中午热，下午下雨。"}
-        ]
-      },
-      {
-        "title": "雨季讨论工作安排",
-        "icon": "🌧️",
-        "dialogue": [
-          {"speaker": "A", "text": "Pak, musim hujan sudah mulai. Apakah pengiriman bahan baku terhambat?", "trans": "先生，雨季已经开始了。原材料运输会受影响吗？"},
-          {"speaker": "B", "text": "Sedikit terhambat, jalan di beberapa daerah licin. Tapi stok kita masih cukup untuk dua minggu.", "trans": "有点受影响，一些地区路滑。但我们的库存还够两周。"},
-          {"speaker": "A", "text": "Baik, saya akan koordinasi dengan tim logistik. Kita perlu cadangan stok lebih banyak.", "trans": "好的，我会和物流团队协调。我们需要更多备用库存。"},
-          {"speaker": "B", "text": "Setuju. Saya minta tim buat rencana darurat untuk musim hujan ini.", "trans": "同意。我让团队做一份雨季应急计划。"}
-        ]
-      },
-      {
-        "title": "户外活动计划",
-        "icon": "🏃",
-        "dialogue": [
-          {"speaker": "A", "text": "Akhir pekan ini kita mau hiking ke gunung. Cuaca bagus nggak ya?", "trans": "这周末我们想去爬山。天气好吗？"},
-          {"speaker": "B", "text": "Menurut prakiraan, sabtu cerah, tapi minggu berawan. Lebih baik hari sabtu.", "trans": "据预报，周六晴朗，周日多云。最好周六去。"},
-          {"speaker": "A", "text": "Baik, kita berangkat pagi-pagi. Bawa air minum yang banyak ya.", "trans": "好，我们早点出发。多带点水。"},
-          {"speaker": "B", "text": "Iya, dan jangan lupa sunscreen. Matahari di sini sangat terik.", "trans": "嗯，别忘了防晒霜。这里的太阳很毒。"}
-        ]
-      },
-      {
-        "title": "机场航班因天气延误",
-        "icon": "✈️",
-        "dialogue": [
-          {"speaker": "A", "text": "Maaf, penerbangan ke Jakarta tertunda karena cuaca buruk. Kapan bisa berangkat?", "trans": "抱歉，飞雅加达的航班因天气恶劣延误了。什么时候能起飞？"},
-          {"speaker": "B", "text": "Mohon maaf, kami belum tahu pasti. Kabut tebal di Jakarta, bandara sementara ditutup.", "trans": "抱歉，我们还不确定。雅加达大雾，机场暂时关闭。"},
-          {"speaker": "A", "text": "Saya punya rapat penting besok pagi. Ada penerbangan alternatif?", "trans": "我明天早上有重要会议。有替代航班吗？"},
-          {"speaker": "B", "text": "Kami bisa arahkan ke penerbangan via Surabaya. Tapi nanti sampai Jakarta malam hari.", "trans": "我们可以安排经泗水的航班。但到雅加达会是晚上了。"}
-        ]
-      },
-      {
-        "title": "讨论气候变化与园区",
-        "icon": "🌍",
-        "dialogue": [
-          {"speaker": "A", "text": "Pak, tahun ini curah hujan lebih tinggi dari tahun lalu. Apakah ini akibat perubahan iklim?", "trans": "先生，今年降雨量比去年高。这是气候变化造成的吗？"},
-          {"speaker": "B", "text": "Kemungkinan besar ya. Kita harus perhatikan drainase dan sistem anti-banjir di kawasan industri.", "trans": "很有可能。我们必须关注工业园区的排水和防洪系统。"},
-          {"speaker": "A", "text": "Setuju. Saya akan minta tim teknik evaluasi infrastruktur drainase.", "trans": "同意。我让工程团队评估排水基础设施。"},
-          {"speaker": "B", "text": "Bagus. Dan kita juga perlu rencana mitigasi risiko iklim jangka panjang.", "trans": "好。我们还需要长期气候风险缓解计划。"}
-        ]
-      }
-    ],
-    "speeches": [
-      {
-        "title": "描述天气 (Mendeskripsikan Cuaca)",
-        "icon": "🌡️",
-        "content": "Selamat pagi semuanya. Hari ini saya ingin berbicara tentang cuaca di Morowali. Secara umum, cuaca di sini panas dan lembap sepanjang tahun. Suhu rata-rata berkisar antara tiga puluh sampai tiga puluh lima derajat Celsius. Musim hujan biasanya dimulai dari bulan November sampai Maret. Pada musim ini, hujan turun hampir setiap hari, terutama di sore hari. Jalan menjadi licin dan pengiriman barang terkadang terhambat. Sebaliknya, musim kemarau dari April sampai Oktober cenderung kering dan panas. Kita harus selalu memantau prakiraan cuaca untuk perencanaan operasional. Saya sarankan semua karyawan selalu bawa payung dan minum air yang cukup. Terima kasih.",
-        "trans": "大家早上好。今天我想谈谈莫罗瓦利的天气。总的来说，这里全年炎热潮湿。平均温度在30到35摄氏度之间。雨季通常从11月持续到次年3月。这个季节几乎每天下午都下雨。道路变滑，货物运输有时会受阻。相反，旱季从4月到10月，比较干燥炎热。我们必须持续关注天气预报以做好运营规划。我建议所有员工随身携带雨伞并多喝水。谢谢。",
-        "words": 78,
-        "time": 55
-      },
-      {
-        "title": "气候变化与工业运营 (Perubahan Iklim dan Operasional)",
-        "icon": "🏭",
-        "content": "Rekan-rekan, perubahan iklim sudah menjadi tantangan nyata bagi industri kita. Dalam lima tahun terakhir, kita melihat pola cuaca yang tidak menentu. Hujan badai semakin sering terjadi, menyebabkan banjir di beberapa area kawasan industri. Suhu ekstrem juga mempengaruhi kesehatan karyawan dan efisiensi peralatan. Oleh karena itu, perusahaan kita telah mengambil beberapa langkah. Pertama, kita memperkuat sistem drainase dan tanggul. Kedua, kita membangun gudang penyimpanan yang tahan air. Ketiga, kita menyediakan area istirahat ber-AC untuk karyawan. Keempat, kita mengembangkan energi terbarukan seperti panel surya untuk mengurangi emisi karbon. Saya percaya, dengan persiapan yang baik, kita bisa menghadapi tantangan iklim ini. Mari kita bekerja sama untuk masa depan yang berkelanjutan.",
-        "trans": "同事们，气候变化已成为我们行业面临的现实挑战。过去五年，我们见证了不稳定的天气模式。暴雨越来越频繁，导致工业园区部分区域洪水。极端温度也影响员工健康和设备效率。因此，我们公司已采取多项措施。第一，我们加强了排水系统和堤坝。第二，我们建造了防水仓库。第三，我们为员工提供空调休息区。第四，我们开发太阳能等可再生能源以减少碳排放。我相信，只要准备充分，我们就能应对这些气候挑战。让我们携手共创可持续未来。",
-        "words": 95,
-        "time": 65
-      }
-    ]
-  },
-  "medical": {
-    "title": "话题6: 就医 / Rumah Sakit",
-    "icon": "🏥",
-    "days": 3,
-    "grammar": {
-      "title": "身体部位、病症描述与祈使句",
-      "rules": [
-        "身体部位: kepala (头), perut (肚子), tenggorokan (喉咙), badan (身体), darah (血)",
-        "sakit + 部位: 表示某个部位疼痛，如 sakit kepala (头疼), sakit perut (肚子疼)",
-        "前缀 me- + 感觉动词: 表示感受，如 merasa (感觉), mengeluh (抱怨)",
-        "前缀 ter- + 病症: 表示遭受某种疾病，如 terserang (遭受), terkena (感染)",
-        "祈使句: 直接使用动词原形，如 Minum obat ini! (吃这个药！), Istirahat yang cukup! (充分休息！)"
-      ],
-      "examples": [
-        "Saya sakit kepala dan demam. = 我头疼发烧。",
-        "Dia merasa pusing dan mual. = 他感觉头晕恶心。",
-        "Pasien itu terserang malaria. = 那位患者得了疟疾。",
-        "Jangan lupa minum obat tiga kali sehari! = 别忘了每天吃药三次！"
-      ]
-    },
-    "scenes": [
-      {
-        "title": "医院挂号",
-        "icon": "📝",
-        "dialogue": [
-          {"speaker": "A", "text": "Selamat pagi, saya mau daftar ke dokter umum.", "trans": "早上好，我想挂普通门诊。"},
-          {"speaker": "B", "text": "Baik, Bapak ada kartu pasien? Kalau belum, isi formulir ini dulu.", "trans": "好的，先生有就诊卡吗？如果没有，先填这张表。"},
-          {"speaker": "A", "text": "Saya baru pertama kali ke sini. Ini KTP dan asuransi saya.", "trans": "我第一次来这里。这是我的身份证和保险单。"},
-          {"speaker": "B", "text": "Terima kasih. Nomor antrian Bapak adalah lima puluh dua. Silakan tunggu di ruang tunggu.", "trans": "谢谢。您的排队号是52。请在候诊室等候。"}
-        ]
-      },
-      {
-        "title": "向医生描述症状",
-        "icon": "👨‍⚕️",
-        "dialogue": [
-          {"speaker": "A", "text": "Dokter, saya tidak enak badan sejak kemarin. Saya demam dan sakit tenggorokan.", "trans": "医生，我从昨天开始不舒服。我发烧而且喉咙疼。"},
-          {"speaker": "B", "text": "Suhu badan berapa? Ada batuk atau pilek?", "trans": "体温多少？有咳嗽或流鼻涕吗？"},
-          {"speaker": "A", "text": "Tiga puluh delapan derajat. Batuk sedikit, tidak pilek. Saya juga merasa lemas.", "trans": "38度。有点咳嗽，没有流鼻涕。我还感觉很虚弱。"},
-          {"speaker": "B", "text": "Sepertinya flu biasa. Saya berikan resep obat. Minum banyak air dan istirahat total tiga hari.", "trans": "看起来是普通流感。我给你开药方。多喝水，完全休息三天。"}
-        ]
-      },
-      {
-        "title": "药房取药",
-        "icon": "💊",
-        "dialogue": [
-          {"speaker": "A", "text": "Permisi, saya mau ambil obat. Ini resep dari dokter.", "trans": "打扰一下，我来取药。这是医生的处方。"},
-          {"speaker": "B", "text": "Baik, sebentar saya siapkan. Ada tiga jenis obat: antibiotik, vitamin, dan obat penurun panas.", "trans": "好的，稍等我准备。有三种药：抗生素、维生素和退烧药。"},
-          {"speaker": "A", "text": "Bagaimana cara minumnya? Sebelum atau sesudah makan?", "trans": "怎么服用？饭前还是饭后？"},
-          {"speaker": "B", "text": "Antibiotik sesudah makan, tiga kali sehari. Obat penurun panas kalau demam saja. Vitamin pagi hari.", "trans": "抗生素饭后吃，一天三次。退烧药只在发烧时吃。维生素早上吃。"}
-        ]
-      },
-      {
-        "title": "工地紧急事故",
-        "icon": "🚨",
-        "dialogue": [
-          {"speaker": "A", "text": "Tolong! Ada pekerja terluka di area pabrik! Panggilkan ambulans!", "trans": "救命！工厂区有工人受伤了！叫救护车！"},
-          {"speaker": "B", "text": "Tenang, saya sudah telepon ambulans. Di mana lokasi tepatnya?", "trans": "冷静，我已经叫了救护车。确切位置在哪里？"},
-          {"speaker": "A", "text": "Di lantai dua, dekat mesin penggiling. Kakinya terjepit dan berdarah.", "trans": "在二楼，研磨机附近。他的腿被夹住了，在流血。"},
-          {"speaker": "B", "text": "Jangan pindahkan dia! Tutup luka dengan kain bersih. Ambulans tiba lima menit lagi.", "trans": "不要移动他！用干净布盖住伤口。救护车五分钟后到。"}
-        ]
-      },
-      {
-        "title": "年度体检",
-        "icon": "🩺",
-        "dialogue": [
-          {"speaker": "A", "text": "Selamat pagi, saya datang untuk pemeriksaan kesehatan tahunan perusahaan.", "trans": "早上好，我来参加公司年度体检。"},
-          {"speaker": "B", "text": "Baik, Bapak silakan ke ruang pemeriksaan. Pertama timbang berat badan dan tinggi badan.", "trans": "好的，先生请去检查室。先量体重和身高。"},
-          {"speaker": "A", "text": "Apakah termasuk pemeriksaan darah dan foto rontgen?", "trans": "包括验血和X光吗？"},
-          {"speaker": "B", "text": "Iya, lengkap. Termasuk tekanan darah, gula darah, fungsi hati, dan EKG. Hasil keluar tiga hari lagi.", "trans": "是的，很全面。包括血压、血糖、肝功能和心电图。结果三天后出。"}
-        ]
-      }
-    ],
-    "speeches": [
-      {
-        "title": "描述病症 (Mendeskripsikan Gejala)",
-        "icon": "🤒",
-        "content": "Selamat pagi, Dokter. Saya ingin menjelaskan kondisi saya. Tiga hari yang lalu saya mulai merasa tidak enak badan. Pertama, saya demam tinggi, suhu badan tiga puluh sembilan derajat. Kemudian, saya sakit kepala berdenyut-denyut dan sakit tenggorokan saat menelan. Saya juga batuk kering dan pilek. Nafsu makan saya berkurang drastis. Saya merasa lemas dan pusing saat berdiri. Saya sudah minum obat penurun panas, tapi demamnya naik turun. Tidur saya juga tidak nyenyak karena batuk terus-menerus. Mohon Dokter periksa saya dengan teliti. Apakah ini gejala flu biasa atau ada infeksi yang lebih serius? Terima kasih, Dokter.",
-        "trans": "早上好，医生。我想说明一下我的情况。三天前我开始感觉不舒服。首先，我发高烧，体温39度。然后，我头疼欲裂，吞咽时喉咙痛。我还干咳流鼻涕。我的食欲大幅下降。我感到虚弱，站起来就头晕。我已经吃了退烧药，但体温时高时低。睡眠也不好，因为一直咳嗽。请医生仔细检查。这是普通流感症状还是有更严重的感染？谢谢医生。",
-        "words": 98,
-        "time": 68
-      },
-      {
-        "title": "健康生活方式 (Gaya Hidup Sehat)",
-        "icon": "💪",
-        "content": "Rekan-rekan, kesehatan adalah aset paling berharga. Di lingkungan industri seperti Morowali, kita menghadapi banyak risiko kesehatan: suhu panas, debu, kebisingan, dan jadwal kerja yang padat. Oleh karena itu, saya ingin berbagi beberapa tips menjaga kesehatan. Pertama, minum air minimal dua liter setiap hari. Dehidrasi bisa menyebabkan pusing dan kelelahan. Kedua, gunakan perlengkapan keselamatan dengan benar: helm, masker, sarung tangan, dan sepatu safety. Ketiga, istirahat yang cukup. Tidur minimal tujuh jam per malam. Keempat, makan makanan bergizi: banyak sayur, protein, dan kurangi makanan berlemak. Kelima, olahraga rutin minimal tiga kali seminggu. Dan yang terakhir, jangan tunda pemeriksaan kesehatan jika merasa sakit. Perusahaan kita menyediakan fasilitas kesehatan yang lengkap. Mari kita jaga kesehatan bersama!",
-        "trans": "同事们，健康是最宝贵的资产。在莫罗瓦利这样的工业环境中，我们面临许多健康风险：高温、粉尘、噪音和繁忙的工作日程。因此，我想分享一些保持健康的小贴士。第一，每天至少喝两升水。脱水会导致头晕和疲劳。第二，正确使用安全装备：头盔、口罩、手套和安全鞋。第三，充分休息。每晚至少睡七小时。第四，吃营养食物：多吃蔬菜、蛋白质，减少高脂食物。第五，每周至少锻炼三次。最后，如果感觉不适不要拖延就医。我们公司提供完善的医疗设施。让我们一起保持健康！",
-        "words": 112,
-        "time": 75
-      }
-    ]
   }};
 
 
@@ -4222,13 +4040,7 @@ const topicData = {
   "2026-07-26": {topic: "nickel", day: 3, label: "📊 高级应用+测试"},
   "2026-07-27": {topic: "common_sentences", day: 1, label: "💬 常用句 · 词汇+语法"},
   "2026-07-28": {topic: "common_sentences", day: 2, label: "💬 常用句 · 场景对话"},
-  "2026-07-29": {topic: "common_sentences", day: 3, label: "💬 常用句 · 演讲+测试"},
-  "2026-07-30": {topic: "weather", day: 1, label: "🌤️ 天气 · 词汇+语法"},
-  "2026-07-31": {topic: "weather", day: 2, label: "🌤️ 天气 · 场景对话"},
-  "2026-08-01": {topic: "weather", day: 3, label: "🌤️ 天气 · 演讲+测试"},
-  "2026-08-02": {topic: "medical", day: 1, label: "🏥 就医 · 词汇+语法"},
-  "2026-08-03": {topic: "medical", day: 2, label: "🏥 就医 · 场景对话"},
-  "2026-08-04": {topic: "medical", day: 3, label: "🏥 就医 · 演讲+测试"}
+  "2026-07-29": {topic: "common_sentences", day: 3, label: "💬 常用句 · 演讲+测试"}
 };
 
 function getTopicForDate(ds) {
@@ -4615,35 +4427,17 @@ function renderAbout(c){
 }
 
 function renderVersion(c){
-  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录</h2><span class="badge">V4.6 C4+</span></div>
+  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录</h2><span class="badge">V4.6 C4</span></div>
     <div style="padding:16px;">
       <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
       <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
         <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.6 C4 (2026-07-27)</div>
-
-      <div style="margin-bottom:14px;padding:14px;background:var(--bg-elev);border-radius:10px;border-left:3px solid var(--info)">
-        <div style="font-size:15px;font-weight:700;color:var(--info);margin-bottom:6px">V4.6 C4+ (2026-07-27)</div>
-        <div style="font-size:13px;color:var(--text);line-height:1.8">
-        • 新增话题「天气」：5场景（天气预报/雨季/户外/航班/气候）+ 2演讲
-        • 新增话题「就医」：5场景（挂号/看诊/取药/急救/体检）+ 2演讲
-        • 自动继承C4标准：全文朗读 + 单词弹窗 + 生词同步
-        </div>
-      </div>
         <div style="font-size:13px;color:var(--text);line-height:1.8">
         • C4升级：全文生词同步，页面加载时自动将课程词汇保存到生词本<br>
         • 交互增强：所有印尼语句子和单词支持朗读+弹窗（镍产业课程）<br>
         • 新增话题：「印尼最常用的句子」含5场景对话+2篇演讲<br>
         • BIO/RCO/TSO三方审核流程持续运行<br>
         </div>
-
-      <div style="margin-bottom:14px;padding:14px;background:var(--bg-elev);border-radius:10px;border-left:3px solid var(--info)">
-        <div style="font-size:15px;font-weight:700;color:var(--info);margin-bottom:6px">V4.6 C4+ (2026-07-27)</div>
-        <div style="font-size:13px;color:var(--text);line-height:1.8">
-        • 新增话题「天气」：5场景（天气预报/雨季/户外/航班/气候）+ 2演讲
-        • 新增话题「就医」：5场景（挂号/看诊/取药/急救/体检）+ 2演讲
-        • 自动继承C4标准：全文朗读 + 单词弹窗 + 生词同步
-        </div>
-      </div>
       </div>
         <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.4 (2026-07-22)</div>
         <div style="font-size:13px;color:var(--text);line-height:1.8">
