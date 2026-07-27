@@ -791,6 +791,8 @@ const vocabDB = {
 
 let learningHistory=JSON.parse(localStorage.getItem("bir_h3")||"{}");
 let wordBank=JSON.parse(localStorage.getItem("bir_wb3")||"[]");
+let wbSortMode = localStorage.getItem("bir_wb_sort") || "alpha"; // alpha | time
+let wbSearchQuery = "";
 let currentRoute="home",currentDate=new Date(2026,6,1),currentFilter="all";
 let quizState={q:0,correct:0,total:5,done:0};
 let pageHistory=['home'];
@@ -984,14 +986,26 @@ function renderWordBank(c){
 }
 function renderWBList(){
   const c=document.getElementById("wbList");if(!c)return;if(!wordBank.length){c.innerHTML=`<div class="wb-empty"><div class="big">📚</div><div>生词本为空</div></div>`;return;}
-  let h="";wordBank.forEach((w,i)=>{
-    const p = w.passed || {};
+  let list = wordBank.map((w,origIdx)=>({...w,origIdx}));
+  if(wbSearchQuery){
+    list = list.filter(w=>(w.word||"").toLowerCase().includes(wbSearchQuery)||(w.cn||"").includes(wbSearchQuery)||(w.en||"").toLowerCase().includes(wbSearchQuery));
+  }
+  if(wbSortMode==="alpha"){
+    list.sort((a,b)=>(a.word||"").localeCompare(b.word||"","id"));
+  }else{
+    list.sort((a,b)=>{const ta=new Date(a.date||0).getTime();const tb=new Date(b.date||0).getTime();return tb-ta;});
+  }
+  let h="";list.forEach((w,li)=>{
+    const i = w.origIdx;
+    const p = w.passed || {id2zh:false,zh2id:false,spell:false};
     const canRemove = p.id2zh && p.zh2id && p.spell;
     const id2zhIcon = p.id2zh ? '✅' : '❌';
     const zh2idIcon = p.zh2id ? '✅' : '❌';
     const spellIcon = p.spell ? '✅' : '❌';
     h+=`<div class="wb-item"><div><div class="wb-w">${w.word} <span class="wb-i">${w.ipa||""}</span></div><div class="wb-m">🇨🇳 ${w.cn||""}</div><div class="wb-m" style="font-size:11px">📅 ${w.date} | 印选:${id2zhIcon} 中选:${zh2idIcon} 拼写:${spellIcon}</div><div class="wb-act"><button class="wb-mas" onclick="playWBGame('${w.word}')">🎮 练习</button><button class="wb-del" onclick="delWB(${i})">🗑️ 彻底删除</button>${canRemove ? `<button class="wb-mas" style="background:var(--success)" onclick="removeMasteredWB(${i})">✅ 已掌握移除</button>` : ''}</div></div></div>`;
-  });c.innerHTML=h;
+  });
+  if(list.length===0&&wbSearchQuery){c.innerHTML=`<div class="wb-empty"><div class="big">🔍</div><div>无匹配 "${wbSearchQuery}" 的生词</div></div>`;return;}
+  c.innerHTML=h;
 }
 function addWB(word,ipa,cn,en,root,tag){if(!checkAccess("添加生词"))return;if(wordBank.find(w=>w.word.toLowerCase()===word.toLowerCase())){showToast("已在生词本");return;}wordBank.unshift({word,ipa:ipa||"—",cn:cn||"—",en:en||"—",root:root||"—",tag:tag||"—",date:new Date().toISOString().slice(0,10),mastered:false});saveWB();showToast("「"+word+"」已保存");updateStats();}
 function toggleWB(i){wordBank[i].mastered=!wordBank[i].mastered;saveWB();renderWBList();updateStats();}
@@ -3345,13 +3359,39 @@ function renderWordBank(c){
       <span>✅ <strong style="color:var(--success)">${passed}</strong> (三关全过)</span>
       <span>🔄 <strong style="color:var(--accent)">${inProgress}</strong> (进行中)</span>
     </div>
+    <div style="display:flex;gap:8px;align-items:center;margin-bottom:12px;flex-wrap:wrap">
+      <span style="font-size:12px;color:var(--text-dim)">排序:</span>
+      <button class="btn-sm ${wbSortMode==='alpha'?'btn-primary':'btn-sec'}" onclick="setWBSort('alpha')" style="padding:4px 10px;font-size:12px">🔤 字母</button>
+      <button class="btn-sm ${wbSortMode==='time'?'btn-primary':'btn-sec'}" onclick="setWBSort('time')" style="padding:4px 10px;font-size:12px">📅 时间</button>
+      <input type="text" id="wbSearch" placeholder="🔍 搜索生词..." value="${wbSearchQuery}" oninput="setWBSearch(this.value)" style="flex:1;min-width:120px;padding:6px 10px;border:1px solid var(--border);border-radius:6px;font-size:13px;background:var(--card);color:var(--text)">
+    </div>
     <div class="wb-list" id="wbList"></div></div>`;
+  renderWBList();
+}
+
+function setWBSort(mode){
+  wbSortMode = mode;
+  localStorage.setItem("bir_wb_sort", mode);
+  renderWBList();
+}
+function setWBSearch(q){
+  wbSearchQuery = q.trim().toLowerCase();
   renderWBList();
 }
 
 function renderWBList(){
   const c=document.getElementById("wbList");if(!c)return;if(!wordBank.length){c.innerHTML=`<div class="wb-empty"><div class="big">📚</div><div>生词本为空</div></div>`;return;}
-  let h="";wordBank.forEach((w,i)=>{
+  let list = wordBank.map((w,origIdx)=>({...w,origIdx}));
+  if(wbSearchQuery){
+    list = list.filter(w=>(w.word||"").toLowerCase().includes(wbSearchQuery)||(w.cn||"").includes(wbSearchQuery)||(w.en||"").toLowerCase().includes(wbSearchQuery));
+  }
+  if(wbSortMode==="alpha"){
+    list.sort((a,b)=>(a.word||"").localeCompare(b.word||"","id"));
+  }else{
+    list.sort((a,b)=>{const ta=new Date(a.date||0).getTime();const tb=new Date(b.date||0).getTime();return tb-ta;});
+  }
+  let h="";list.forEach((w,li)=>{
+    const i = w.origIdx;
     const p = w.passed || {id2zh:false,zh2id:false,spell:false};
     const allDone = p.id2zh && p.zh2id && p.spell;
     const progress = (p.id2zh?1:0)+(p.zh2id?1:0)+(p.spell?1:0);
@@ -3366,7 +3406,9 @@ function renderWBList(){
         <button class="wb-mas" onclick="playWBGame(${i})">🎮 练习</button>
         <button class="wb-del" onclick="delWB(${i})">🗑️</button>
       </div></div></div>`;
-  });c.innerHTML=h;
+  });
+  if(list.length===0&&wbSearchQuery){c.innerHTML=`<div class="wb-empty"><div class="big">🔍</div><div>无匹配 "${wbSearchQuery}" 的生词</div></div>`;return;}
+  c.innerHTML=h;
 }
 
 function playWBGame(i) {if(!checkAccess("生词练习"))return;
