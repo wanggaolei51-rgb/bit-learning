@@ -3977,6 +3977,18 @@ const topicData = {
     "title": "话题4: 印尼最常用的句子 / Kalimat Sehari-hari",
     "icon": "💬",
     "days": 3,
+    "vocabulary": [
+      {"id":"CS-001","indonesian":"Selamat","chinese":"你好/祝贺","ipa":"/səˈlamat/","en":"greeting"},
+      {"id":"CS-002","indonesian":"terima kasih","chinese":"谢谢","ipa":"/təˈrima ˈkasih/","en":"thank you"},
+      {"id":"CS-003","indonesian":"maaf","chinese":"对不起","ipa":"/ˈmaaf/","en":"sorry"},
+      {"id":"CS-004","indonesian":"tolong","chinese":"请/帮忙","ipa":"/ˈtoloŋ/","en":"please/help"},
+      {"id":"CS-005","indonesian":"ya","chinese":"是","ipa":"/ˈja/","en":"yes"},
+      {"id":"CS-006","indonesian":"tidak","chinese":"不","ipa":"/ˈtidak/","en":"no"},
+      {"id":"CS-007","indonesian":"sama-sama","chinese":"不客气","ipa":"/ˈsama ˈsama/","en":"you're welcome"},
+      {"id":"CS-008","indonesian":"permisi","chinese":"打扰一下","ipa":"/pərˈmisi/","en":"excuse me"},
+      {"id":"CS-009","indonesian":"apa kabar","chinese":"你好吗","ipa":"/ˈapa ˈkabar/","en":"how are you"},
+      {"id":"CS-010","indonesian":"sampai jumpa","chinese":"再见","ipa":"/ˈsampai ˈʤumpa/","en":"goodbye"}
+    ],
     "grammar": {
       "title": "印尼语基本语序与常用前缀",
       "rules": [
@@ -4068,6 +4080,18 @@ const topicData = {
     "title": "话题5: 天气 / Cuaca",
     "icon": "🌤️",
     "days": 3,
+    "vocabulary": [
+      {"id":"W-001","indonesian":"cuaca","chinese":"天气","ipa":"/ˈtʃuˈaʧa/","en":"weather"},
+      {"id":"W-002","indonesian":"panas","chinese":"热","ipa":"/ˈpanas/","en":"hot"},
+      {"id":"W-003","indonesian":"dingin","chinese":"冷","ipa":"/ˈdiŋin/","en":"cold"},
+      {"id":"W-004","indonesian":"hujan","chinese":"雨","ipa":"/ˈhudʒan/","en":"rain"},
+      {"id":"W-005","indonesian":"cerah","chinese":"晴朗","ipa":"/ˈtʃɛrah/","en":"sunny"},
+      {"id":"W-006","indonesian":"berawan","chinese":"多云","ipa":"/bəˈrawan/","en":"cloudy"},
+      {"id":"W-007","indonesian":"suhu","chinese":"温度","ipa":"/ˈsuhu/","en":"temperature"},
+      {"id":"W-008","indonesian":"musim","chinese":"季节","ipa":"/ˈmusim/","en":"season"},
+      {"id":"W-009","indonesian":"lembap","chinese":"潮湿","ipa":"/ˈlɛmbap/","en":"humid"},
+      {"id":"W-010","indonesian":"angin","chinese":"风","ipa":"/ˈaŋin/","en":"wind"}
+    ],
     "grammar": {
       "title": "印尼语天气表达与形容词前缀",
       "rules": [
@@ -4159,6 +4183,18 @@ const topicData = {
     "title": "话题6: 就医 / Rumah Sakit",
     "icon": "🏥",
     "days": 3,
+    "vocabulary": [
+      {"id":"M-001","indonesian":"sakit","chinese":"疼/生病","ipa":"/ˈsakit/","en":"sick/pain"},
+      {"id":"M-002","indonesian":"dokter","chinese":"医生","ipa":"/ˈdoktər/","en":"doctor"},
+      {"id":"M-003","indonesian":"obat","chinese":"药","ipa":"/ˈobat/","en":"medicine"},
+      {"id":"M-004","indonesian":"rumah sakit","chinese":"医院","ipa":"/ˈrumah ˈsakit/","en":"hospital"},
+      {"id":"M-005","indonesian":"kepala","chinese":"头","ipa":"/kəˈpala/","en":"head"},
+      {"id":"M-006","indonesian":"perut","chinese":"肚子","ipa":"/ˈpɛrut/","en":"stomach"},
+      {"id":"M-007","indonesian":"demam","chinese":"发烧","ipa":"/ˈdɛmam/","en":"fever"},
+      {"id":"M-008","indonesian":"batuk","chinese":"咳嗽","ipa":"/ˈbatuk/","en":"cough"},
+      {"id":"M-009","indonesian":"pusing","chinese":"头晕","ipa":"/ˈpusiŋ/","en":"dizzy"},
+      {"id":"M-010","indonesian":"mual","chinese":"恶心","ipa":"/ˈmual/","en":"nauseous"}
+    ],
     "grammar": {
       "title": "身体部位、病症描述与祈使句",
       "rules": [
@@ -6620,6 +6656,19 @@ function syncCourseVocabToWordBank() {
 
   // Sync topicData (meet, introduce, directions, common_sentences, weather, medical)
   for (const [topicKey, topic] of Object.entries(topicData)) {
+    // Sync vocabulary (NEW: common_sentences, weather, medical)
+    if (topic.vocabulary) {
+      topic.vocabulary.forEach(v => {
+        addIfNew(
+          v.indonesian || v.word || v.id || '',
+          v.chinese || v.cn || v.zhs || '',
+          v.english || v.en || '',
+          v.ipa || '',
+          v.morphology || v.root || '',
+          '话题:' + topicKey
+        );
+      });
+    }
     // Sync scenes/dialogue
     if (topic.scenes) {
       topic.scenes.forEach(sc => {
