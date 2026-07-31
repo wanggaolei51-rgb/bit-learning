@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<title>LEO-BIR V4.8.2 (rev.0731)</title>
+<title>LEO-BIR V4.8.3 (rev.0731)</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -273,7 +273,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="sidebar-header">
     <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <h1>LEO-BIR</h1>
-    <div class="ver">LEO-BIR V4.8.2 · 双产业地图 · 生词同步 · 全文朗读 · 单词弹窗 · 常用句 · 天气 · 就医</div>
+    <div class="ver">LEO-BIR V4.8.3 · 双产业地图 · 生词同步 · 全文朗读 · 单词弹窗 · 常用句 · 天气 · 就医</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -5854,6 +5854,42 @@ function togglePause() {
   showToast('⏸️ 暂停功能开发中...');
 }
 
+const PHONETIC_DATA = [
+  { letter: "A a", ipa: "/a/", desc: "开口大，类似'啊'", pos: "口腔张开，舌平放", mouth: "张大嘴，类似医生检查喉咙", example: "apa (什么)", color: "#00d4aa" },
+  { letter: "B b", ipa: "/b/", desc: "双唇爆破音，类似'玻'", pos: "双唇闭合后突然放开", mouth: "双唇紧闭，气流爆破", example: "buku (书)", color: "#3b82f6" },
+  { letter: "C c", ipa: "/tʃ/", desc: "类似'吃'的声母", pos: "舌尖抵上齿龈后部", mouth: "舌尖卷起，气流冲出", example: "cinta (爱)", color: "#3b82f6" },
+  { letter: "D d", ipa: "/d/", desc: "舌尖抵上齿龈，类似'德'", pos: "舌尖抵上齿龈", mouth: "舌尖抵住上牙龈", example: "dengan (和/用)", color: "#3b82f6" },
+  { letter: "E e", ipa: "/ə/ 或 /e/", desc: " schwa 或类似'诶'", pos: "口腔半开，舌中部放松", mouth: "嘴巴半张，舌头平放", example: "empat (四) /ə/; elok (美) /e/", color: "#00d4aa" },
+  { letter: "F f", ipa: "/f/", desc: "上齿咬下唇，类似'夫'", pos: "上齿轻触下唇", mouth: "上齿轻咬下唇，吹气", example: "foto (照片)", color: "#3b82f6" },
+  { letter: "G g", ipa: "/ɡ/", desc: "舌根抵软腭，类似'哥'", pos: "舌根抬起抵软腭", mouth: "舌根抬起，气流爆破", example: "guru (老师)", color: "#3b82f6" },
+  { letter: "H h", ipa: "/h/", desc: "声门摩擦音，类似'哈'", pos: "声门打开，气流摩擦", mouth: "嘴巴张开，轻轻哈气", example: "hari (天/日)", color: "#3b82f6" },
+  { letter: "I i", ipa: "/i/", desc: "闭元音，类似'衣'", pos: "舌面抬起接近硬腭", mouth: "嘴角向两侧拉开", example: "itu (那个)", color: "#00d4aa" },
+  { letter: "J j", ipa: "/dʒ/", desc: "类似'机'的声母", pos: "舌尖抵上齿龈后部", mouth: "舌尖抵住上牙龈后部", example: "jalan (路)", color: "#3b82f6" },
+  { letter: "K k", ipa: "/k/", desc: "舌根抵软腭，类似'克'", pos: "舌根抬起抵软腭", mouth: "舌根抬起，不送气", example: "kamu (你)", color: "#3b82f6" },
+  { letter: "L l", ipa: "/l/", desc: "舌尖抵上齿龈，类似'了'", pos: "舌尖抵住上齿龈", mouth: "舌尖抵住上牙龈，气流从两侧出", example: "lima (五)", color: "#3b82f6" },
+  { letter: "M m", ipa: "/m/", desc: "双唇闭合鼻音，类似'么'", pos: "双唇闭合，气流从鼻腔出", mouth: "双唇紧闭，鼻子发音", example: "makan (吃)", color: "#3b82f6" },
+  { letter: "N n", ipa: "/n/", desc: "舌尖鼻音，类似'呢'", pos: "舌尖抵上齿龈，气流从鼻腔出", mouth: "舌尖抵住上牙龈，鼻子发音", example: "nama (名字)", color: "#3b82f6" },
+  { letter: "O o", ipa: "/o/", desc: "半闭后元音，类似'哦'", pos: "舌后部抬起，口腔收圆", mouth: "嘴唇收圆呈小O型", example: "orang (人)", color: "#00d4aa" },
+  { letter: "P p", ipa: "/p/", desc: "双唇爆破音，类似'坡'", pos: "双唇闭合后突然放开", mouth: "双唇紧闭，气流爆破", example: "pagi (早上)", color: "#3b82f6" },
+  { letter: "Q q", ipa: "/k/", desc: "极少单独使用，多在外来词", pos: "同K", mouth: "同K", example: "Quran (古兰经，发音同K)", color: "#3b82f6" },
+  { letter: "R r", ipa: "/r/", desc: "舌尖颤音/闪音，印尼语特色！", pos: "舌尖轻触上齿龈，气流使舌尖颤动", mouth: "舌尖放松，气流冲出使其颤动", example: "rumah (家)", color: "#f59e0b" },
+  { letter: "S s", ipa: "/s/", desc: "舌尖前摩擦音，类似'斯'", pos: "舌尖接近上齿背", mouth: "舌尖靠近上齿，气流摩擦", example: "satu (一)", color: "#3b82f6" },
+  { letter: "T t", ipa: "/t/", desc: "舌尖爆破音，类似'特'", pos: "舌尖抵上齿龈", mouth: "舌尖抵住上牙龈，气流爆破", example: "tiga (三)", color: "#3b82f6" },
+  { letter: "U u", ipa: "/u/", desc: "闭后元音，类似'乌'", pos: "舌后部抬高，口腔收圆", mouth: "嘴唇收圆呈小圆圈", example: "untuk (为了)", color: "#00d4aa" },
+  { letter: "V v", ipa: "/v/ 或 /f/", desc: "上齿咬下唇，外来词用", pos: "上齿轻触下唇", mouth: "上齿轻咬下唇", example: "visa (签证)", color: "#3b82f6" },
+  { letter: "W w", ipa: "/w/", desc: "双唇圆唇近音，类似'乌'声母", pos: "双唇收圆，舌后部抬起", mouth: "嘴唇收圆，快速滑向后面元音", example: "waktu (时间)", color: "#3b82f6" },
+  { letter: "X x", ipa: "/ks/", desc: "极少使用，外来词", pos: "K+S连读", mouth: "先闭后开", example: "taksi (出租车，词尾ksi)", color: "#3b82f6" },
+  { letter: "Y y", ipa: "/j/", desc: "舌面近音，类似'一'声母", pos: "舌面抬起接近硬腭", mouth: "舌面抬起，快速滑向元音", example: "ya (是/对)", color: "#3b82f6" },
+  { letter: "Z z", ipa: "/z/", desc: "舌尖摩擦音，类似'资'", pos: "舌尖接近上齿背", mouth: "舌尖靠近上齿，声带振动", example: "zaman (时代)", color: "#3b82f6" }
+];
+
+const COMPOUND_PHONETICS = [
+  { combo: "ng", ipa: "/ŋ/", desc: "舌根鼻音，类似'昂'的尾音", pos: "舌根抬起抵软腭，气流从鼻腔出", example: "dengan (用/和)", color: "#a78bfa" },
+  { combo: "ny", ipa: "/ɲ/", desc: "舌面鼻音，类似'娘'的声母", pos: "舌面抬起抵硬腭，气流从鼻腔出", example: "nyanyi (唱歌)", color: "#a78bfa" },
+  { combo: "sy", ipa: "/ʃ/", desc: "舌叶摩擦音，类似'西'", pos: "舌叶接近硬腭前部", example: "syarat (条件)", color: "#a78bfa" },
+  { combo: "kh", ipa: "/x/", desc: "舌根摩擦音，类似'哈'的气音", pos: "舌根接近软腭，气流摩擦", example: "akhir (结束)", color: "#a78bfa" }
+];
+
 function renderPhonetics(c) {
   const vowels = PHONETIC_DATA.filter(p => 'AIEOU'.includes(p.letter[0]));
   const consonants = PHONETIC_DATA.filter(p => !'AIEOU'.includes(p.letter[0]));
@@ -6582,8 +6618,9 @@ function syncCourseVocabToWordBank() {
     added++;
   }
 
-  // Sync topicData (meet, introduce, directions)
+  // Sync topicData (meet, introduce, directions, common_sentences, weather, medical)
   for (const [topicKey, topic] of Object.entries(topicData)) {
+    // Sync scenes/dialogue
     if (topic.scenes) {
       topic.scenes.forEach(sc => {
         if (sc.dialogue) {
@@ -6601,10 +6638,42 @@ function syncCourseVocabToWordBank() {
         }
       });
     }
+    // Sync speeches
     if (topic.speeches) {
       topic.speeches.forEach(sp => {
         if (sp.content) {
           sp.content.split(/[\s.,!?;:"'-]+/).forEach(tok => {
+            const t = tok.trim().toLowerCase();
+            if (t.length >= 3 && /^[a-z]+$/.test(t)) {
+              const v = vocabDB[t] || vocabDB[t.charAt(0).toUpperCase() + t.slice(1)];
+              if (v) addIfNew(t, v.cn, v.en, v.ipa, v.root, '话题:' + topicKey);
+            }
+          });
+        }
+      });
+    }
+    // Sync grammar.examples (NEW: common_sentences, weather, medical, and all topics)
+    if (topic.grammar && topic.grammar.examples) {
+      topic.grammar.examples.forEach(ex => {
+        const text = typeof ex === 'string' ? ex : (ex.ind || ex.indonesian || '');
+        if (text) {
+          // Extract Indonesian part before "=" if present
+          const indPart = text.split('=')[0].trim();
+          indPart.split(/[\s.,!?;:"'-]+/).forEach(tok => {
+            const t = tok.trim().toLowerCase();
+            if (t.length >= 3 && /^[a-z]+$/.test(t)) {
+              const v = vocabDB[t] || vocabDB[t.charAt(0).toUpperCase() + t.slice(1)];
+              if (v) addIfNew(t, v.cn, v.en, v.ipa, v.root, '话题:' + topicKey);
+            }
+          });
+        }
+      });
+    }
+    // Sync grammar.rules for key vocabulary mentions
+    if (topic.grammar && topic.grammar.rules) {
+      topic.grammar.rules.forEach(rule => {
+        if (typeof rule === 'string') {
+          rule.split(/[\s.,!?;:"'()-]+/).forEach(tok => {
             const t = tok.trim().toLowerCase();
             if (t.length >= 3 && /^[a-z]+$/.test(t)) {
               const v = vocabDB[t] || vocabDB[t.charAt(0).toUpperCase() + t.slice(1)];
