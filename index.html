@@ -1278,8 +1278,8 @@ const vocabDB = {
 };
 
 
-let learningHistory=JSON.parse(localStorage.getItem("bir_h3")||"{}");
-let wordBank=JSON.parse(localStorage.getItem("bir_wb3")||"[]");
+let learningHistory; try{ learningHistory=JSON.parse(localStorage.getItem("bir_h3")||"{}"); }catch(e){ learningHistory={}; }
+let wordBank; try{ wordBank=JSON.parse(localStorage.getItem("bir_wb3")||"[]"); }catch(e){ wordBank=[]; }
 let wbSortMode = localStorage.getItem("bir_wb_sort") || "alpha"; // alpha | time
 let wbSearchQuery = "";
 let wbDateFilter = localStorage.getItem("bir_wb_date_filter") || ""; // 日期筛选：空=全部，否则为课程日期
@@ -3026,7 +3026,7 @@ const ACHIEVEMENTS = {
 
 ;
 
-let memberInfo = JSON.parse(localStorage.getItem("bir_member") || "null");
+let memberInfo; try{ memberInfo = JSON.parse(localStorage.getItem("bir_member") || "null"); }catch(e){ memberInfo = null; }
 
 function initMember() {
   if (!memberInfo) {
