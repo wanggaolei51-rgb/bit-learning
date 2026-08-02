@@ -6,7 +6,7 @@
 <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
 <meta http-equiv="Pragma" content="no-cache">
 <meta http-equiv="Expires" content="0">
-<title>LEO-BIR V4.8.7-08012055 (vocab-sync)</title>
+<title>LEO-BIR V4.9.0-08022026 (shopping+address+supermarket)</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -1199,6 +1199,82 @@ const vocabDB = {
 'warna':{ipa:'',cn:'待补充',en:'',root:'',tag:'课程'},
 'warung':{ipa:'',cn:'待补充',en:'',root:'',tag:'课程'},
 'wei':{ipa:'',cn:'待补充',en:'',root:'',tag:'课程'},
+'belanja':{ipa:'/bəlˈdʒaŋa/',cn:'购物',en:'shopping',root:'belanja',tag:'购物'},
+'membeli':{ipa:'/məmˈbɛli/',cn:'购买',en:'to buy',root:'beli + me-',tag:'购物'},
+'diskon':{ipa:'/ˈdiskon/',cn:'折扣',en:'discount',root:'diskon (Dutch)',tag:'购物'},
+'bayar':{ipa:'/ˈbajar/',cn:'付款/支付',en:'to pay',root:'bayar',tag:'购物'},
+'kembalian':{ipa:'/kəmˈbalian/',cn:'找零/找回的钱',en:'change (money)',root:'kembali + -an',tag:'购物'},
+'tas':{ipa:'/ˈtas/',cn:'袋子/包',en:'bag',root:'tas',tag:'购物'},
+'coba':{ipa:'/ˈtʃoba/',cn:'尝试/试',en:'to try',root:'coba',tag:'购物'},
+'pas':{ipa:'/ˈpas/',cn:'合适/刚好',en:'fit / exact',root:'pas',tag:'购物'},
+'mahal':{ipa:'/ˈmahal/',cn:'贵/昂贵',en:'expensive',root:'mahal',tag:'购物'},
+'uang':{ipa:'/ˈuaŋ/',cn:'钱/货币',en:'money',root:'uang',tag:'购物'},
+'RT':{ipa:'/ɛrˈte/',cn:'街道组(居民小组)',en:'neighborhood unit',root:'Rukun Tetangga',tag:'地址'},
+'RW':{ipa:'/ɛrˈdablju/',cn:'街道群(居民大组)',en:'community unit',root:'Rukun Warga',tag:'地址'},
+'kelurahan':{ipa:'/kəluˈrahan/',cn:'行政村/街道办',en:'sub-district/village',root:'lurah + ke-/-an',tag:'地址'},
+'kecamatan':{ipa:'/kəˈtʃamatan/',cn:'乡/镇/区(县下)',en:'district/sub-district',root:'camat + ke-/-an',tag:'地址'},
+'provinsi':{ipa:'/proˈvinsi/',cn:'省',en:'province',root:'provinsi (Dutch)',tag:'地址'},
+'kodepos':{ipa:'/ˈkodɛpos/',cn:'邮编',en:'postal code',root:'kode + pos',tag:'地址'},
+'rumah':{ipa:'/ˈrumah/',cn:'房子/家',en:'house / home',root:'rumah',tag:'地址'},
+'apartemen':{ipa:'/ˈapartɛmɛn/',cn:'公寓',en:'apartment',root:'apartemen (Dutch)',tag:'地址'},
+'kantor':{ipa:'/ˈkantor/',cn:'办公室',en:'office',root:'kantor (Dutch)',tag:'地址'},
+'supermarket':{ipa:'/ˈsupermarket/',cn:'超市',en:'supermarket',root:'supermarket (English)',tag:'超市'},
+'rak':{ipa:'/ˈrak/',cn:'货架/架子',en:'shelf / rack',root:'rak',tag:'超市'},
+'barang':{ipa:'/ˈbaraŋ/',cn:'商品/物品',en:'goods / item',root:'barang',tag:'超市'},
+'minuman':{ipa:'/ˈminuman/',cn:'饮料',en:'drink / beverage',root:'minum + -an',tag:'超市'},
+'sayur':{ipa:'/ˈsajur/',cn:'蔬菜',en:'vegetable',root:'sayur',tag:'超市'},
+'buah':{ipa:'/ˈbuah/',cn:'水果',en:'fruit',root:'buah',tag:'超市'},
+'daging':{ipa:'/ˈdaɡiŋ/',cn:'肉',en:'meat',root:'daging',tag:'超市'},
+'ikan':{ipa:'/ˈikan/',cn:'鱼',en:'fish',root:'ikan',tag:'超市'},
+'bumbu':{ipa:'/ˈbumbu/',cn:'调料/香料',en:'spice / seasoning',root:'bumbu',tag:'超市'},
+'sereal':{ipa:'/ˈsɛrial/',cn:'麦片/谷物',en:'cereal',root:'sereal (English)',tag:'超市'},
+'roti':{ipa:'/ˈroti/',cn:'面包',en:'bread',root:'roti',tag:'超市'},
+'susu':{ipa:'/ˈsusu/',cn:'牛奶',en:'milk',root:'susu',tag:'超市'},
+'telur':{ipa:'/ˈtɛlur/',cn:'鸡蛋',en:'egg',root:'telur',tag:'超市'},
+'minyak':{ipa:'/ˈminjak/',cn:'油',en:'oil',root:'minyak',tag:'超市'},
+'garam':{ipa:'/ˈgaram/',cn:'盐',en:'salt',root:'garam',tag:'超市'},
+'sabun':{ipa:'/ˈsabun/',cn:'肥皂',en:'soap',root:'sabun',tag:'超市'},
+'shampoo':{ipa:'/ˈʃampu/',cn:'洗发水',en:'shampoo',root:'shampoo (English)',tag:'超市'},
+'deterjen':{ipa:'/dɛˈtɛrdʒɛn/',cn:'洗衣粉/洗涤剂',en:'detergent',root:'deterjen (English)',tag:'超市'},
+'troli':{ipa:'/ˈtroli/',cn:'购物车',en:'trolley / cart',root:'troli (English)',tag:'超市'},
+'kasir':{ipa:'/ˈkasir/',cn:'收银员',en:'cashier',root:'kasir (Dutch)',tag:'超市'},
+'struk':{ipa:'/ˈstruk/',cn:'小票/收据',en:'receipt',root:'struk (Dutch)',tag:'超市'},
+'antri':{ipa:'/ˈantri/',cn:'排队',en:'to queue / line up',root:'antri',tag:'超市'},
+'berat':{ipa:'/bəˈrat/',cn:'重量/重',en:'weight / heavy',root:'berat',tag:'购物'},
+'potong':{ipa:'/ˈpoton/',cn:'切/片',en:'to cut / slice',root:'potong',tag:'超市'},
+'kilo':{ipa:'/ˈkilo/',cn:'公斤/千克',en:'kilogram',root:'kilo',tag:'超市'},
+'gram':{ipa:'/ˈgram/',cn:'克',en:'gram',root:'gram',tag:'超市'},
+'liter':{ipa:'/ˈlitɛr/',cn:'升/公升',en:'liter',root:'liter (Dutch)',tag:'超市'},
+'kantong':{ipa:'/ˈkantoŋ/',cn:'塑料袋/袋子',en:'plastic bag',root:'kantong',tag:'购物'},
+'promo':{ipa:'/ˈpromo/',cn:'促销/优惠',en:'promotion',root:'promo (English)',tag:'购物'},
+'gratis':{ipa:'/ˈgratis/',cn:'免费',en:'free / complimentary',root:'gratis (Dutch)',tag:'购物'},
+'voucher':{ipa:'/ˈvautʃər/',cn:'优惠券/代金券',en:'voucher / coupon',root:'voucher (English)',tag:'购物'},
+'kartu':{ipa:'/ˈkartu/',cn:'卡片/卡',en:'card',root:'kartu (Dutch)',tag:'购物'},
+'dompet':{ipa:'/ˈdompɛt/',cn:'钱包',en:'wallet',root:'dompet (Dutch)',tag:'购物'},
+'listrik':{ipa:'/ˈlistrik/',cn:'电/电力',en:'electricity',root:'listrik',tag:'地址'},
+'air':{ipa:'/ˈair/',cn:'水',en:'water',root:'air',tag:'超市'},
+'mie':{ipa:'/ˈmi/',cn:'面条/方便面',en:'noodles / instant noodles',root:'mie',tag:'超市'},
+'snack':{ipa:'/ˈsnɛk/',cn:'零食',en:'snack',root:'snack (English)',tag:'超市'},
+'permen':{ipa:'/ˈpɛrmɛn/',cn:'糖果',en:'candy',root:'permen (Dutch)',tag:'超市'},
+'es':{ipa:'/ˈɛs/',cn:'冰',en:'ice',root:'es',tag:'超市'},
+'kopi':{ipa:'/ˈkopi/',cn:'咖啡',en:'coffee',root:'kopi',tag:'超市'},
+'teh':{ipa:'/ˈtɛh/',cn:'茶',en:'tea',root:'teh',tag:'超市'},
+'kecap':{ipa:'/ˈkɛtʃap/',cn:'酱油',en:'soy sauce',root:'kecap',tag:'超市'},
+'saus':{ipa:'/ˈsaus/',cn:'酱/沙司',en:'sauce',root:'saus (Dutch)',tag:'超市'},
+'mayones':{ipa:'/ˈmajones/',cn:'蛋黄酱',en:'mayonnaise',root:'mayones (Dutch)',tag:'超市'},
+'sarden':{ipa:'/ˈsardɛn/',cn:'沙丁鱼罐头',en:'sardine (canned)',root:'sarden (Dutch)',tag:'超市'},
+'selai':{ipa:'/səˈlai/',cn:'果酱',en:'jam',root:'selai',tag:'超市'},
+'mentega':{ipa:'/mɛnˈtɛɡa/',cn:'黄油',en:'butter',root:'mentega (Portuguese)',tag:'超市'},
+'keju':{ipa:'/ˈkɛdʒu/',cn:'奶酪',en:'cheese',root:'keju (Portuguese)',tag:'超市'},
+'yoghurt':{ipa:'/ˈjoɡurt/',cn:'酸奶',en:'yogurt',root:'yoghurt',tag:'超市'},
+'cokelat':{ipa:'/ˈtʃokɛlat/',cn:'巧克力',en:'chocolate',root:'cokelat',tag:'超市'},
+'eskrim':{ipa:'/ˈɛskrim/',cn:'冰淇淋',en:'ice cream',root:'eskrim',tag:'超市'},
+'pulpen':{ipa:'/ˈpulpen/',cn:'圆珠笔',en:'ballpoint pen',root:'pulpen (Dutch)',tag:'超市'},
+'buku':{ipa:'/ˈbuku/',cn:'书/本子',en:'book / notebook',root:'buku',tag:'超市'},
+'tisu':{ipa:'/ˈtisu/',cn:'纸巾',en:'tissue',root:'tisu',tag:'超市'},
+'toilet':{ipa:'/ˈtoilɛt/',cn:'厕所/卫生间',en:'toilet / restroom',root:'toilet (Dutch)',tag:'超市'},
+'petugas':{ipa:'/pəˈtuɡas/',cn:'工作人员/服务员',en:'staff / attendant',root:'tugas + pe-',tag:'超市'},
+'pertanyaan':{ipa:'/pərtaˈjanan/',cn:'问题/询问',en:'question / inquiry',root:'tanya + per-/-an',tag:'购物'},
 };
 
 
@@ -1207,7 +1283,7 @@ let wordBank=JSON.parse(localStorage.getItem("bir_wb3")||"[]");
 let wbSortMode = localStorage.getItem("bir_wb_sort") || "alpha"; // alpha | time
 let wbSearchQuery = "";
 let wbDateFilter = localStorage.getItem("bir_wb_date_filter") || ""; // 日期筛选：空=全部，否则为课程日期
-let currentRoute="home",currentDate=new Date(2026,6,1),currentFilter="all";
+let currentRoute="home",currentDate=new Date(),currentFilter="all";
 let quizState={q:0,correct:0,total:5,done:0};
 let pageHistory=['home'];
 let lastPage='home';
@@ -1421,7 +1497,7 @@ function renderWBList(){
   if(list.length===0&&wbSearchQuery){c.innerHTML=`<div class="wb-empty"><div class="big">🔍</div><div>无匹配 "${wbSearchQuery}" 的生词</div></div>`;return;}
   c.innerHTML=h;
 }
-function addWB(word,ipa,cn,en,root,tag){if(!checkAccess("添加生词"))return;if(wordBank.find(w=>w.word.toLowerCase()===word.toLowerCase())){showToast("已在生词本");return;}wordBank.unshift({word,ipa:ipa||"—",cn:cn||"—",en:en||"—",root:root||"—",tag:tag||"—",date:new Date().toISOString().slice(0,10),mastered:false});saveWB();showToast("「"+word+"」已保存");updateStats();}
+function addWB(word,ipa,cn,en,root,tag){if(!checkAccess("添加生词"))return;const existing=wordBank.find(w=>w.word.toLowerCase()===word.toLowerCase());if(existing){let updated=false;if(ipa&&ipa!=="—"&&ipa!==""){existing.ipa=ipa;updated=true;}if(cn&&cn!=="—"&&cn!=="待补充"&&cn!==""){existing.cn=cn;updated=true;}if(en&&en!=="—"&&en!==""){existing.en=en;updated=true;}if(root&&root!=="—"&&root!==""){existing.root=root;updated=true;}if(tag&&tag!=="—"&&tag!==""){existing.tag=tag;updated=true;}if(updated){saveWB();showToast("「"+word+"」翻译已同步更新");updateStats();}else{showToast("已在生词本");}return;}wordBank.unshift({word,ipa:ipa||"—",cn:cn||"—",en:en||"—",root:root||"—",tag:tag||"—",date:new Date().toISOString().slice(0,10),mastered:false});saveWB();showToast("「"+word+"」已保存");updateStats();}
 function toggleWB(i){wordBank[i].mastered=!wordBank[i].mastered;saveWB();renderWBList();updateStats();}
 function removeMasteredWB(i) {
   const w = wordBank[i];
@@ -2276,7 +2352,7 @@ function showTip(word){
     if(!v){for(const suf of suffixes){if(w.endsWith(suf)&&w.length>suf.length+2){const root=w.slice(0,-suf.length);if(vocabDB[root]||vocabDB[root.charAt(0).toUpperCase()+root.slice(1)]){v=vocabDB[root]||vocabDB[root.charAt(0).toUpperCase()+root.slice(1)];break;}}}}
   }
   if(!v)return;
-  const tt=document.getElementById("tooltip");document.getElementById("ttw").innerText=word;document.getElementById("tti").innerText=v.ipa||"—";document.getElementById("ttt").innerHTML=`<span style="color:var(--primary-dim)">🇨🇳</span> ${v.cn||"—"}<br><span style="color:var(--primary-dim)">🇬🇧</span> ${v.en||"—"}`;document.getElementById("ttr").innerText="词根:"+(v.root||"—")+" | 标签:"+(v.tag||"—");tt.classList.add("show");
+  const tt=document.getElementById("tooltip");document.getElementById("ttw").innerText=word;document.getElementById("tti").innerText=v.ipa||"—";document.getElementById("ttt").innerHTML=`<span style="color:var(--primary-dim)">🇨🇳</span> ${v.cn||"—"}<br><span style="color:var(--primary-dim)">🇬🇧</span> ${v.en||"—"}`;document.getElementById("ttr").innerHTML=`词根:${v.root||"—"} | 标签:${v.tag||"—"}<button onclick="speak('${word.replace(/'/g,"\\'")}','id')" style="background:none;border:none;color:var(--primary);cursor:pointer;font-size:14px;padding:2px 6px;margin-left:8px;vertical-align:middle;" title="朗读">🔊</button>`;tt.classList.add("show");
   const e=window.event;if(e){tt.style.left=(e.clientX+10)+"px";tt.style.top=(e.clientY+10)+"px";}
   setTimeout(()=>tt.classList.remove("show"),3000);
 }
@@ -4732,8 +4808,299 @@ const topicData = {
         "time": 75
       }
     ]
-  }};
-
+  },
+  "shopping": {
+    "title": "话题8: 购物 / Berbelanja",
+    "icon": "🛒",
+    "days": 3,
+    "grammar": {
+      "title": "mem- 前缀 (购物场景动词变位)",
+      "rules": [
+        "Rule 1: mem- + b → mem- — membeli ('买')",
+        "Rule 2: mem- + p → mem- — membayar ('支付')",
+        "Rule 3: men- + c → men- — mencoba ('试穿/尝试')",
+        "Rule 4: me- + 元音 → me- — melihat ('看')",
+        "Rule 5: mem- + 词根形成及物动词 — 表示对某物执行动作",
+        "Rule 6: ber- + 词根 → 拥有/穿戴 — bercelana ('穿裤子')、bersepatu ('穿鞋')"
+      ],
+      "examples": [
+        "beli /ˈbɛli/ (v.) → membeli /məmˈbɛli/ (v.) = '购买'",
+        "bayar /ˈbajar/ (v.) → membayar /məmˈbajar/ (v.) = '付款'",
+        "coba /ˈtʃoba/ (v.) → mencoba /mənˈtʃoba/ (v.) = '试穿/尝试'",
+        "lihat /ˈlihat/ (v.) → melihat /məˈlihat/ (v.) = '看'",
+        "pakai /ˈpakai/ (v.) → memakai /məˈpakai/ (v.) = '穿戴/使用'"
+      ]
+    },
+    "scenes": [
+      {
+        "title": "在传统市场砍价",
+        "icon": "🍅",
+        "dialogue": [
+          {"speaker": "A", "text": "Permisi, Bu. Berapa harga tomat ini per kilo?", "trans": "打扰一下，女士。这西红柿多少钱一公斤？"},
+          {"speaker": "B", "text": "Lima belas ribu rupiah per kilo, Pak. Masih segar, pagi ini baru datang.", "trans": "一万五千印尼盾一公斤，先生。还新鲜着呢，今天早上刚到的。"},
+          {"speaker": "A", "text": "Bisa kurang nggak, Bu? Saya mau beli dua kilo. Kalau empat belas ribu, saya ambil.", "trans": "能便宜点吗，女士？我想买两公斤。如果一万四我就买。"},
+          {"speaker": "B", "text": "Hmmm, baiklah. Saya kasih empat belas ribu lima ratus per kilo. Itu sudah paling murah.", "trans": "嗯，好吧。我给你一公斤一万四千五。那已经是最低价了。"},
+          {"speaker": "A", "text": "Oke, deal! Tolong ditimbang dua kilo ya. Ada kantong nggak?", "trans": "好，成交！请给我称两公斤。有袋子吗？"},
+          {"speaker": "B", "text": "Ada, saya kasih kantong plastik. Totalnya dua puluh sembilan ribu rupiah.", "trans": "有，我给你塑料袋。总共两万九千印尼盾。"}
+        ]
+      },
+      {
+        "title": "在商场买衣服",
+        "icon": "👕",
+        "dialogue": [
+          {"speaker": "A", "text": "Selamat siang. Saya cari kemeja ukuran L. Di mana ya?", "trans": "下午好。我找L码的衬衫。在哪里？"},
+          {"speaker": "B", "text": "Selamat siang, Pak. Kemeja pria ada di lantai dua, sebelah kanan dari eskalator. Mau saya antar?", "trans": "下午好，先生。男士衬衫在二楼，扶梯右边。要我带您去吗？"},
+          {"speaker": "A", "text": "Iya, tolong. Saya juga mau coba. Ada ruang ganti di situ?", "trans": "好的，麻烦。我还想试穿。那里有试衣间吗？"},
+          {"speaker": "B", "text": "Ada, di dekat kasir. Bapak mau warna apa? Kami ada putih, biru, dan abu-abu.", "trans": "有，在收银台附近。先生要什么颜色？我们有白色、蓝色和灰色。"},
+          {"speaker": "A", "text": "Boleh saya lihat yang biru? Kalau pas, saya ambil dua. Ada diskon nggak?", "trans": "能给我看看蓝色的吗？如果合适，我买两件。有折扣吗？"},
+          {"speaker": "B", "text": "Hari ini ada promo buy one get one 10% off. Jadi kalau beli dua, yang kedua dapat diskon sepuluh persen.", "trans": "今天有买一送一9折促销。所以买两件的话，第二件打9折。"}
+        ]
+      },
+      {
+        "title": "在便利店买东西",
+        "icon": "🏪",
+        "dialogue": [
+          {"speaker": "A", "text": "Permisi, saya mau beli pulsa listrik token lima puluh ribu. Dan satu botol air mineral.", "trans": "打扰一下，我想买五万盾的电费充值卡。还有一瓶矿泉水。"},
+          {"speaker": "B", "text": "Baik, sebentar. Pulsa listriknya di sebelah sini. Air mineral ada di rak dingin di belakang.", "trans": "好的，稍等。电费充值在这边。矿泉水在后面冷藏柜里。"},
+          {"speaker": "A", "text": "Terima kasih. Oh ya, ada mie instan nggak? Yang rasa ayam bawang.", "trans": "谢谢。对了，有方便面吗？鸡肉洋葱味的。"},
+          {"speaker": "B", "text": "Ada, di rak sebelah kiri. Harganya tiga ribu lima ratus per bungkus.", "trans": "有，在左边货架。一包三千五百盾。"},
+          {"speaker": "A", "text": "Saya ambil lima bungkus. Total semua berapa?", "trans": "我拿五包。总共多少钱？"},
+          {"speaker": "B", "text": "Pulsa listrik lima puluh ribu, air mineral lima ribu, lima bungkus mie tujuh belas ribu lima ratus. Total tujuh puluh dua ribu lima ratus.", "trans": "电费充值五万，矿泉水五千，五包方便面一万七千五。总共七万二千五。"}
+        ]
+      },
+      {
+        "title": "在餐厅点餐",
+        "icon": "🍽️",
+        "dialogue": [
+          {"speaker": "A", "text": "Selamat malam. Meja untuk dua orang, ya?", "trans": "晚上好。两人桌，对吧？"},
+          {"speaker": "B", "text": "Selamat malam, Pak. Silakan duduk di sini. Ini menunya.", "trans": "晚上好，先生。请坐这儿。这是菜单。"},
+          {"speaker": "A", "text": "Saya mau pesan nasi goreng seafood satu, sate ayam sepuluh tusuk, dan es teh manis dua.", "trans": "我要一份海鲜炒饭，十串鸡肉沙爹，还有两杯甜冰茶。"},
+          {"speaker": "B", "text": "Baik. Mau tambah sambal? Kami punya sambal terasi dan sambal matah.", "trans": "好的。要加辣椒酱吗？我们有虾酱辣椒和 Matah 辣椒。"},
+          {"speaker": "A", "text": "Kasih sambal matah saja. Berapa lama pesanannya siap?", "trans": "给 Matah 辣椒吧。订单多久好？"},
+          {"speaker": "B", "text": "Kurang lebih dua puluh menit, Pak. Nanti saya antar ke meja.", "trans": "大约二十分钟，先生。等下我送到桌上。"}
+        ]
+      },
+      {
+        "title": "退换货",
+        "icon": "🔄",
+        "dialogue": [
+          {"speaker": "A", "text": "Permisi, saya mau tukar sepatu ini. Ukurannya kebesaran. Saya beli kemarin.", "trans": "打扰一下，我想换这双鞋。尺码太大了。我昨天买的。"},
+          {"speaker": "B", "text": "Baik, Bapak bawa struknya? Dan kotaknya masih ada?", "trans": "好的，先生带了小票吗？鞋盒还在吗？"},
+          {"speaker": "A", "text": "Ada, ini struk dan kotaknya. Saya mau tukar yang ukuran 42. Ini 43.", "trans": "有，这是小票和鞋盒。我想换成42码。这是43的。"},
+          {"speaker": "B", "text": "Sebentar saya cek stoknya. Oh, maaf Pak, ukuran 42 sudah habis. Bisa tukar model lain atau uang kembali?", "trans": "稍等我查一下库存。哦，抱歉先生，42码已经卖完了。可以换其他款式或者退款吗？"},
+          {"speaker": "A", "text": "Kalau gitu, uang kembali saja. Saya beli di toko lain.", "trans": "那好吧，退款。我去别的店买。"},
+          {"speaker": "B", "text": "Baik, silakan ke kasir. Kasir akan proses refundnya. Mohon tunggu sebentar.", "trans": "好的，请去收银台。收银员会处理退款。请稍等。"}
+        ]
+      }
+    ],
+    "speeches": [
+      {
+        "title": "商场购物指南",
+        "icon": "🛍️",
+        "content": "Selamat datang di Mall Grand Indonesia! Saya akan memandu Anda berbelanja hari ini. Pertama, pastikan Anda membawa kartu debit atau kredit, dan jangan lupa dompet. Di lantai dasar ada toko kosmetik dan parfum. Lantai satu untuk pakaian wanita dan aksesoris. Lantai dua untuk pakaian pria dan olahraga. Lantai tiga ada toko elektronik dan gadget. Jika Anda ingin istirahat, ada banyak kafe di lantai empat. Setelah berbelanja, jangan lupa simpan struk sebagai bukti pembelian. Jika barang ada masalah, Anda bisa tukar dalam tujuh hari dengan membawa struk dan kartu garansi. Selamat berbelanja!",
+        "trans": "欢迎来到Grand Indonesia购物中心！今天我来带您购物。首先，确保您带了借记卡或信用卡，别忘了钱包。底层有化妆品和香水店。一楼是女装和配饰。二楼是男装和运动用品。三楼有电子产品和 gadget 店。如果您想休息，四楼有很多咖啡厅。购物后别忘了保存小票作为购买凭证。如果商品有问题，您可以凭小票和保修卡在七天内换货。祝您购物愉快！",
+        "words": 115,
+        "time": 75
+      },
+      {
+        "title": "传统市场购物技巧",
+        "icon": "🍅",
+        "content": "Rekan-rekan, berbelanja di pasar tradisional Indonesia itu menyenangkan tapi perlu trik. Pertama, jangan langsung beli di toko pertama. Keliling dulu, bandingkan harga di beberapa penjual. Kedua, jam pagi harga masih tinggi karena barang baru datang. Jam siang harganya turun karena penjual mau cepat habis. Ketiga, selalu tawar harga, tapi sopan. Biasanya bisa turun sepuluh hingga dua puluh persen. Keempat, perhatikan timbangan. Kadang ada penjual yang curang timbangannya. Kelima, bawa uang tunai pas-pasan, jadi nggak tergoda beli kebanyakan. Terakhir, jangan malu minta bonus. Kalau beli banyak, biasanya dapat cabai atau bawang gratis. Selamat mencoba!",
+        "trans": "同事们，在印度尼西亚传统市场购物很有趣但需要技巧。第一，不要直接在第一家店买。先逛一圈，比较几家卖家的价格。第二，早上价格还高因为货刚到。中午价格会降因为卖家想快点卖完。第三，总是要砍价，但要有礼貌。通常可以降10%到20%。第四，注意秤。有时有卖家会作弊。第五，只带刚好够的现金，这样就不会忍不住买太多。最后，不要害羞要赠品。如果买得多，通常会送辣椒或洋葱。祝您尝试愉快！",
+        "words": 118,
+        "time": 78
+      },
+      {
+        "title": "在线购物体验",
+        "icon": "📱",
+        "content": "Halo semua! Saya ingin berbagi pengalaman belanja online di Indonesia. Platform favorit saya adalah Tokopedia, Shopee, dan Lazada. Keuntungannya banyak: harga lebih murah, bisa bandingkan produk dengan mudah, dan ada gratis ongkir. Tapi hati-hati juga. Pertama, selalu cek rating dan ulasan penjual. Kalau ratingnya di bawah empat bintang, lebih baik cari toko lain. Kedua, perhatikan estimasi pengiriman. Kalau butuh cepat, pilih yang same day delivery. Ketiga, pakai voucher dan koin untuk dapat diskon tambahan. Keempat, pastikan alamat lengkap dan nomor telepon benar. Terakhir, kalau barang rusak atau tidak sesuai, jangan ragu untuk ajukan pengembalian. Platform e-commerce di Indonesia sudah punya sistem refund yang bagus. Selamat berbelanja online!",
+        "trans": "大家好！我想分享在印度尼西亚网购的经验。我最喜欢的平台是Tokopedia、Shopee和Lazada。好处很多：价格更便宜，可以轻松比较产品，还有免运费。但也要小心。第一，总是检查卖家的评分和评论。如果评分低于四星，最好找其他店。第二，注意预计配送时间。如果需要快，选当日达。第三，用优惠券和金币获得额外折扣。第四，确保完整地址和电话号码正确。最后，如果商品损坏或不符合描述，不要犹豫申请退货。印尼的电商平台已经有很好的退款系统。祝您网购愉快！",
+        "words": 128,
+        "time": 82
+      }
+    ]
+  },
+  "address": {
+    "title": "话题9: 印尼地址表达 / Alamat",
+    "icon": "📮",
+    "days": 2,
+    "grammar": {
+      "title": "印尼地址结构",
+      "rules": [
+        "Rule 1: 印尼地址顺序与中文相同 — 从小到大: RT → RW → Kelurahan → Kecamatan → Kota → Provinsi → Kode Pos",
+        "Rule 2: Jalan + 路名 + No + 门牌号 — Jalan Sudirman No. 123",
+        "Rule 3: RT (Rukun Tetangga) = 居民小组，RW (Rukun Warga) = 居民大组 — 类似中国的村组",
+        "Rule 4: Kelurahan = 行政村/街道，Kecamatan = 乡/镇 — 县以下的行政单位",
+        "Rule 5: 表达位置用 di + 地址 — saya tinggal di Jalan Merdeka No. 45",
+        "Rule 6: 询问地址用 'Alamatnya di mana?' 或 'Di mana alamatnya?'"
+      ],
+      "examples": [
+        "Jalan Thamrin No. 10, RT 003, RW 007, Kelurahan Menteng, Kecamatan Menteng, Jakarta Pusat 10310",
+        "Saya tinggal di apartemen Kalibata City, Tower G, Lantai 12, Unit 1205.",
+        "Kantor kami berada di kawasan industri Morowali, Sulawesi Tengah.",
+        "Alamat pengirimannya di mana? = '收货地址在哪里？'",
+        "Bisa sebutkan alamat lengkapnya? = '能说一下完整地址吗？'"
+      ]
+    },
+    "scenes": [
+      {
+        "title": "告知家庭住址",
+        "icon": "🏠",
+        "dialogue": [
+          {"speaker": "A", "text": "Pak, saya mau daftar untuk layanan internet. Bisa sebutkan alamat lengkapnya?", "trans": "先生，我想办理网络服务。能说一下完整地址吗？"},
+          {"speaker": "B", "text": "Baik. Alamat saya Jalan Mawar No. 25, RT 005, RW 012, Kelurahan Cempaka, Kecamatan Cibubur, Kota Bekasi, Jawa Barat 17435.", "trans": "好的。我的地址是玫瑰路25号，RT 005，RW 012，Cempaka行政村，Cibubur乡，勿加泗市，西爪哇省，邮编17435。"},
+          {"speaker": "A", "text": "Terima kasih. Rumah Bapak berwarna apa? Ada patok atau tanda khusus?", "trans": "谢谢。您家房子是什么颜色的？有标杆或特殊标记吗？"},
+          {"speaker": "B", "text": "Rumah saya berwarna hijau, pagar putih. Ada pohon mangga besar di depan rumah.", "trans": "我家房子是绿色的，白色围栏。家门口有一棵大芒果树。"},
+          {"speaker": "A", "text": "Baik, catat. Teknisi akan datang besok antara pukul sembilan hingga sebelas pagi.", "trans": "好的，记下了。技术员明天上午九点到十一点之间来。"}
+        ]
+      },
+      {
+        "title": "填写快递单",
+        "icon": "📦",
+        "dialogue": [
+          {"speaker": "A", "text": "Selamat pagi. Saya mau kirim paket ke Jakarta. Ini barangnya.", "trans": "早上好。我想寄包裹去雅加达。这是东西。"},
+          {"speaker": "B", "text": "Baik, Pak. Mohon isi formulir pengiriman. Nama penerima dan alamat lengkapnya.", "trans": "好的，先生。请填写寄件单。收件人姓名和完整地址。"},
+          {"speaker": "A", "text": "Nama penerimanya Budi Santoso. Alamatnya Jalan Gatot Subroto Kav. 45, Lantai 8, Jakarta Selatan 12930.", "trans": "收件人名叫Budi Santoso。地址是Gatot Subroto 路 Kav. 45，8楼，南雅加达12930。"},
+          {"speaker": "B", "text": "Nomor telepon penerima? Dan apa isi paketnya?", "trans": "收件人电话号码？包裹里是什么？"},
+          {"speaker": "A", "text": "Nomornya 0812-3456-7890. Isinya dokumen perusahaan, tidak ada barang berharga.", "trans": "号码是0812-3456-7890。里面是公司文件，没有贵重物品。"},
+          {"speaker": "B", "text": "Baik. Biaya pengiriman lima puluh ribu rupiah. Estimasi sampai dua hari.", "trans": "好的。运费五万印尼盾。预计两天到。"}
+        ]
+      },
+      {
+        "title": "问路找地址",
+        "icon": "🗺️",
+        "dialogue": [
+          {"speaker": "A", "text": "Permisi, Pak. Saya cari alamat ini: Jalan Pahlawan No. 88. Di mana ya?", "trans": "打扰一下，先生。我找这个地址：英雄路88号。在哪里？"},
+          {"speaker": "B", "text": "Jalan Pahlawan? Oh, dari sini lurus sampai lampu merah, lalu belok kiri. Jalan itu sebelah kanan, gedung tinggi warna biru.", "trans": "英雄路？哦，从这里直走到红绿灯，然后左转。那条路在右边，蓝色的高楼。"},
+          {"speaker": "A", "text": "Nomor 88 di sebelah mana? Kanan atau kiri dari arah sini?", "trans": "88号在哪边？从这边走是右边还是左边？"},
+          {"speaker": "B", "text": "Dari arah sini, sebelah kiri. Nanti Anda lihat toko roti besar, nomor 88 di sebelahnya.", "trans": "从这边走是左边。等下您会看到一家大面包店，88号就在旁边。"},
+          {"speaker": "A", "text": "Berapa lama jalan kaki dari sini?", "trans": "从这里步行要多久？"},
+          {"speaker": "B", "text": "Kurang lebih sepuluh menit. Atau naik ojek online, lima menit sudah sampai.", "trans": "大约十分钟。或者叫网约车，五分钟就到了。"}
+        ]
+      },
+      {
+        "title": "公司地址说明",
+        "icon": "🏢",
+        "dialogue": [
+          {"speaker": "A", "text": "Selamat pagi, ini PT Nickel Indonesia. Bisa saya bantu?", "trans": "早上好，这里是印尼镍业公司。有什么可以帮您？"},
+          {"speaker": "B", "text": "Selamat pagi. Saya dari kurir JNE. Saya bawa dokumen untuk Pak Direktur. Alamatnya benar di sini?", "trans": "早上好。我是JNE快递的。我带来了给董事长的文件。地址是在这里吗？"},
+          {"speaker": "A", "text": "Iya, benar. Kantor kami di Jalan Yos Sudarso Kav. 10A, Morowali, Sulawesi Tengah.", "trans": "对，没错。我们办公室在苏拉威西中省莫罗瓦利的Yos Sudarso 路 Kav. 10A。"},
+          {"speaker": "B", "text": "Baik, Pak. Mohon tanda tangan di sini. Dan ini struk pengirimannya.", "trans": "好的，先生。请在这里签字。这是寄件单。"},
+          {"speaker": "A", "text": "Terima kasih. Hati-hati di jalan. Kalau ada paket lain, langsung antar ke resepsionis saja.", "trans": "谢谢。路上小心。如果还有别的包裹，直接送到前台就行。"}
+        ]
+      }
+    ],
+    "speeches": [
+      {
+        "title": "印尼地址体系介绍",
+        "icon": "📮",
+        "content": "Halo, rekan-rekan. Hari ini saya ingin menjelaskan sistem alamat di Indonesia. Alamat Indonesia terdiri dari beberapa bagian. Pertama, nama jalan dan nomor rumah, misalnya Jalan Merdeka No. 45. Kedua, RT dan RW. RT artinya Rukun Tetangga, biasanya sekitar 30-50 rumah. RW artinya Rukun Warga, terdiri dari beberapa RT. Ketiga, Kelurahan, yaitu unit administratif terkecil. Keempat, Kecamatan, yaitu wilayah yang terdiri dari beberapa Kelurahan. Kelima, Kota atau Kabupaten. Keenam, Provinsi. Dan terakhir, Kode Pos lima digit. Contoh lengkap: Jalan Ahmad Yani No. 100, RT 002, RW 005, Kelurahan Karet, Kecamatan Setiabudi, Jakarta Selatan 12920. Saya harap penjelasan ini membantu kalian mengerti alamat Indonesia.",
+        "trans": "嗨，同事们。今天我想解释一下印度尼西亚的地址体系。印尼地址由几个部分组成。第一，路名和门牌号，比如独立路45号。第二，RT和RW。RT意思是居民小组，通常约30-50户。RW意思是居民大组，由几个RT组成。第三，Kelurahan，即最小的行政单位。第四，Kecamatan，即由几个Kelurahan组成的区域。第五，市或县。第六，省。最后，五位邮编。完整示例：Ahmad Yani 路100号，RT 002，RW 005，Karet行政村，Setiabudi乡，南雅加达12920。希望这个解释能帮助大家理解印尼地址。",
+        "words": 132,
+        "time": 85
+      },
+      {
+        "title": "填写印尼地址表",
+        "icon": "📝",
+        "content": "Rekan-rekan, ketika Anda mengisi formulir di Indonesia, pastikan alamatnya lengkap dan benar. Saya akan berikan contoh. Nama: Budi Santoso. Alamat: Jalan Diponegoro No. 88, Tower B, Lantai 5, Unit 502. RT: 003. RW: 011. Kelurahan: Duren Tiga. Kecamatan: Pancoran. Kota: Jakarta Selatan. Provinsi: DKI Jakarta. Kode Pos: 12760. Nomor Telepon: 0812-3456-7890. Tips penting: selalu tulis nomor telepon yang aktif, karena kurir biasanya telepon sebelum sampai. Kalau tinggal di apartemen, tulis nama tower dan nomor unit dengan jelas. Kalau rumah, sebutkan warna rumah atau tanda khusus. Jangan lupa, kode pos sangat penting untuk pengiriman cepat dan akurat. Saya harap tips ini bermanfaat!",
+        "trans": "同事们，当您在印度尼西亚填写表格时，确保地址完整且正确。我来给个示例。姓名：Budi Santoso。地址：Diponegoro 路88号，B塔，5楼，502单元。RT：003。RW：011。行政村：Duren Tiga。乡：Pancoran。市：南雅加达。省：雅加达首都特区。邮编：12760。电话：0812-3456-7890。重要提示：总是写活跃的电话号码，因为快递员通常到之前会打电话。如果住公寓，清楚写明塔名和单元号。如果住 house，说明房子颜色或特殊标记。别忘了，邮编对快速准确配送非常重要。希望这些提示有用！",
+        "words": 128,
+        "time": 82
+      }
+    ]
+  },
+  "supermarket": {
+    "title": "话题10: 超市分区 / Supermarket",
+    "icon": "🛒",
+    "days": 2,
+    "grammar": {
+      "title": "印尼超市常用表达",
+      "rules": [
+        "Rule 1: 表达位置用 'Ada di...' — Ada di sebelah kiri ('在左边')",
+        "Rule 2: 询问位置用 'Di mana...?' — Di mana susu? ('牛奶在哪里？')",
+        "Rule 3: 询问价格用 'Berapa harga...?' — Berapa harga beras? ('大米多少钱？')",
+        "Rule 4: 请求帮助用 'Bisa bantu...?' — Bisa bantu carikan...? ('能帮我找...吗？')",
+        "Rule 5: 表达数量用 'Saya mau... kilo/gram/liter' — Saya mau dua kilo gula ('我要两公斤糖')",
+        "Rule 6: 比较价格用 'Lebih murah dari...' / 'Lebih mahal dari...'"
+      ],
+      "examples": [
+        "Di mana rak minuman? = '饮料货架在哪里？'",
+        "Susu segar ada di kulkas sebelah kanan. = '鲜牛奶在右边冷藏柜里。'",
+        "Berapa harga minyak goreng per liter? = '食用油每升多少钱？'",
+        "Bisa bantu timbang daging sapi satu kilo? = '能帮我称一公斤牛肉吗？'",
+        "Ada promo untuk roti tawar hari ini. = '今天白面包有促销。'"
+      ]
+    },
+    "scenes": [
+      {
+        "title": "在超市找商品",
+        "icon": "🔍",
+        "dialogue": [
+          {"speaker": "A", "text": "Permisi, Bu. Di mana ya susu UHT? Saya sudah keliling tapi nggak ketemu.", "trans": "打扰一下，女士。UHT牛奶在哪里？我已经逛了一圈但没找到。"},
+          {"speaker": "B", "text": "Oh, susu UHT ada di lorong tiga, sebelah kiri, di rak dingin. Dekat dengan yogurt dan keju.", "trans": "哦，UHT牛奶在第三通道，左边，冷藏货架上。靠近酸奶和奶酪。"},
+          {"speaker": "A", "text": "Terima kasih. Oh ya, beras premium merek Setra Ramos di mana?", "trans": "谢谢。对了，Setra Ramos品牌优质大米在哪里？"},
+          {"speaker": "B", "text": "Beras ada di lorong lima, sebelah kanan, di bagian bawah rak. Ada juga beras organik kalau Bapak mau.", "trans": "大米在第五通道，右边，货架下层。如果您想要也有有机大米。"},
+          {"speaker": "A", "text": "Baik, saya lihat dulu. Kalau saya butuh bantuan lagi, saya panggil ya.", "trans": "好的，我先看看。如果我再需要帮助，我叫您。"},
+          {"speaker": "B", "text": "Silakan, Pak. Saya ada di sekitar lorong sayur dan buah kalau butuh bantuan.", "trans": "请便，先生。如果您需要帮助，我在蔬菜水果区附近。"}
+        ]
+      },
+      {
+        "title": "称重和购买生鲜",
+        "icon": "⚖️",
+        "dialogue": [
+          {"speaker": "A", "text": "Selamat pagi. Saya mau beli daging sapi untuk semur. Bagian mana yang paling cocok?", "trans": "早上好。我想买炖牛肉用的牛肉。哪个部位最合适？"},
+          {"speaker": "B", "text": "Untuk semur, bagian sengkel paling cocok, Bu. Dagingnya empuk dan ada sedikit lemak.", "trans": "炖肉的话，牛腱部位最合适，女士。肉嫩而且有一点脂肪。"},
+          {"speaker": "A", "text": "Baik, tolong potong-potong ya. Saya mau setengah kilo. Berapa harganya?", "trans": "好的，请帮我切一下。我要半斤。多少钱？"},
+          {"speaker": "B", "text": "Harganya seratus dua puluh ribu per kilo, Bu. Jadi setengah kilo enam puluh ribu. Mau dibungkus plastik atau kertas?", "trans": "每公斤十二万盾，女士。所以半斤六万。要塑料袋还是纸包？"},
+          {"speaker": "A", "text": "Plastik saja. Dan saya juga mau ikan gurame satu, yang segar ya.", "trans": "塑料袋就好。我还要一条新鲜 Gurame 鱼。"},
+          {"speaker": "B", "text": "Baik, ini ikan gurame segar. Harganya lima puluh lima ribu per kilo. Mau dibersihkan?", "trans": "好的，这是新鲜的 Gurame 鱼。每公斤五万五千盾。要清理吗？"}
+        ]
+      },
+      {
+        "title": "在收银台结账",
+        "icon": "💳",
+        "dialogue": [
+          {"speaker": "A", "text": "Selamat siang. Saya bayar, ya. Ada member card nggak?", "trans": "下午好。我来结账。有会员卡吗？"},
+          {"speaker": "B", "text": "Selamat siang, Bu. Bisa sebutkan nomor teleponnya? Nanti saya cek membernya.", "trans": "下午好，女士。能报一下电话号码吗？我等下查会员。"},
+          {"speaker": "A", "text": "0812-9876-5432. Oh ya, hari ini ada promo apa?", "trans": "0812-9876-5432。对了，今天有什么促销？"},
+          {"speaker": "B", "text": "Ada, Bu. Minyak goreng diskon 10%, dan belanja di atas dua ratus ribu dapat voucher dua puluh ribu.", "trans": "有的，女士。食用油打9折，购物满二十万送两万代金券。"},
+          {"speaker": "A", "text": "Wah, saya belanjanya seratus delapan puluh ribu. Kurang dua puluh ribu lagi. Saya tambah sabun cuci satu.", "trans": "哇，我买了十八万。还差两万。我再加一瓶洗衣液。"},
+          {"speaker": "B", "text": "Baik, sekarang totalnya dua ratus lima ribu. Voucher sudah aktif. Mau bayar tunai atau kartu?", "trans": "好的，现在总共二十万五千。代金券已激活。要付现金还是刷卡？"}
+        ]
+      },
+      {
+        "title": "退换货/投诉",
+        "icon": "🔄",
+        "dialogue": [
+          {"speaker": "A", "text": "Permisi, saya mau komplain. Susu ini expired date-nya sudah lewat tiga hari.", "trans": "打扰一下，我要投诉。这牛奶的保质期已经过了三天了。"},
+          {"speaker": "B", "text": "Oh, maaf sekali, Bu. Boleh saya lihat struknya? Dan susunya bawa?", "trans": "哦，非常抱歉，女士。能给我看一下小票吗？牛奶带来了吗？"},
+          {"speaker": "A", "text": "Ini struknya. Saya beli kemarin. Pas dicek di rumah, ternyata expired.", "trans": "这是小票。我昨天买的。回家一查，发现过期了。"},
+          {"speaker": "B", "text": "Kami minta maaf atas ketidaknyamanannya. Bapak mau tukar dengan yang baru atau uang kembali?", "trans": "我们为不便道歉。您想换新的还是退款？"},
+          {"speaker": "A", "text": "Saya tukar yang baru saja. Tapi tolong dicek dulu tanggalnya ya.", "trans": "我换新的吧。但请先检查一下日期。"},
+          {"speaker": "B", "text": "Tentu, Bu. Ini susu yang baru, expired date masih satu bulan lagi. Sekali lagi kami mohon maaf.", "trans": "当然，女士。这是新的牛奶，保质期还有一个月。再次抱歉。"}
+        ]
+      }
+    ],
+    "speeches": [
+      {
+        "title": "超市分区导览",
+        "icon": "🛒",
+        "content": "Selamat datang di Supermarket Super Indo! Saya akan memandu Anda mengenal bagian-bagian supermarket kami. Saat masuk, di sebelah kanan ada troli dan keranjang belanja. Lurus sedikit ada bagian sayur dan buah segar di lorong satu. Di lorong dua dan tiga ada daging, ikan, dan produk olahan dingin di kulkas. Lorong empat sampai enam berisi bahan makanan pokok: beras, minyak, gula, dan bumbu. Lorong tujuh untuk minuman: air mineral, susu, jus, dan minuman ringan. Lorong delapan ada snack, cokelat, dan permen. Lorong sembilan dan sepuluh untuk kebutuhan rumah tangga: sabun, detergen, tisu, dan perlengkapan mandi. Di dekat kasir ada roti dan minuman dingin. Jika Anda butuh bantuan, petugas kami siap membantu. Selamat berbelanja!",
+        "trans": "欢迎来到Super Indo超市！我来带您了解我们超市的各个区域。进门右手边是购物车和购物篮。直走一点是第一通道的蔬菜水果区。第二和第三通道有肉、鱼和冷藏加工食品。第四到第六通道是主食：大米、油、糖和调料。第七通道是饮料：矿泉水、牛奶、果汁和软饮。第八通道是零食、巧克力和糖果。第九和第十通道是 household 用品：肥皂、洗衣粉、纸巾和洗浴用品。收银台附近有面包和冷饮。如果您需要帮助，我们的工作人员随时准备服务。祝您购物愉快！",
+        "words": 138,
+        "time": 90
+      },
+      {
+        "title": "超市购物省钱技巧",
+        "icon": "💰",
+        "content": "Halo, teman-teman! Saya ingin berbagi tips berbelanja hemat di supermarket. Pertama, buatlah daftar belanjaan sebelum datang. Jangan beli barang yang tidak ada di daftar. Kedua, bandingkan harga per unit, bukan harga total. Kadang kemasan besar lebih mahal per gramnya. Ketiga, perhatikan tanggal kedaluwarsa. Barang yang mendekati expired biasanya didiskon besar-besaran. Keempat, gunakan aplikasi supermarket untuk lihat promo mingguan. Kelima, beli produk private label, biasanya lebih murah dari merek terkenal tapi kualitas sama. Keenam, jangan belanja saat lapar. Studi menunjukkan orang yang lapar belanjanya 15% lebih banyak. Ketujuh, bawa kantong belanja sendiri, banyak supermarket yang kenakan biaya kantong plastik. Terakhir, gunakan kartu member untuk kumpulkan poin dan dapat diskon khusus. Selamat berhemat!",
+        "trans": "嗨，朋友们！我想分享在超市省钱的购物技巧。第一，来之前列好购物清单。不要买清单上没有的东西。第二，比较每单位价格，不是总价。有时大包装每克更贵。第三，注意保质期。快过期的商品通常大减价。第四，用超市应用查看每周促销。第五，买自有品牌，通常比名牌便宜但质量一样。第六，不要饿着肚子购物。研究表明饿的时候购物会多买15%。第七，自带购物袋，很多超市要收塑料袋费。最后，用会员卡积分并获得专属折扣。祝您省钱愉快！",
+        "words": 134,
+        "time": 88
+      }
+    ]
+  }
+};
 
   const topicCalendar = {
   "2026-07-14": {topic: "meet", day: 1, label: "第1课 · 词汇+语法"},
@@ -4760,6 +5127,13 @@ const topicData = {
   "2026-08-04": {topic: "medical", day: 3, label: "🏥 就医 · 演讲+测试"}
 };
 
+  "2026-08-05": {topic: "shopping", day: 1, label: "🛒 购物 · 词汇+语法"},
+  "2026-08-06": {topic: "shopping", day: 2, label: "🛒 购物 · 场景对话"},
+  "2026-08-07": {topic: "shopping", day: 3, label: "🛒 购物 · 演讲+复习"},
+  "2026-08-08": {topic: "address", day: 1, label: "📮 地址表达 · 词汇+语法"},
+  "2026-08-09": {topic: "address", day: 2, label: "📮 地址表达 · 演讲+复习"},
+  "2026-08-10": {topic: "supermarket", day: 1, label: "🛒 超市分区 · 词汇+表达"},
+  "2026-08-11": {topic: "supermarket", day: 2, label: "🛒 超市分区 · 演讲+复习"},
 function getTopicForDate(ds) {
   return topicCalendar[ds] || null;
 }
@@ -5306,7 +5680,18 @@ function renderVersion(c){
         </div>
       </div>
       <div style="margin-bottom:14px;padding:14px;background:var(--bg-elev);border-radius:10px;border-left:3px solid var(--accent)">
-        <div style="font-size:15px;font-weight:700;color:var(--accent);margin-bottom:6px">V3.0 (2026-07-19)</div>
+        <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
+        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.9.0 (2026-08-02)</div>
+        <div style="font-size:13px;color:var(--text);line-height:1.8">
+        • 新增话题8「购物/Berbelanja」(3天课程: 8/5-8/7)<br>
+        • 新增话题9「印尼地址表达/Alamat」(2天课程: 8/8-8/9)<br>
+        • 新增话题10「超市分区/Supermarket」(2天课程: 8/10-8/11)<br>
+        • 修复日历自动切换当前月份Bug<br>
+        • 修复生词本翻译同步Bug<br>
+        • 新增购物/地址/超市核心词汇76个
+        </div>
+      </div>
+      <div style="font-size:15px;font-weight:700;color:var(--accent);margin-bottom:6px">V3.0 (2026-07-19)</div>
         <div style="font-size:13px;color:var(--text);line-height:1.8">
         • 单词弹窗关闭按钮修复<br>
         • 在线单词查询接入真实翻译API<br>
