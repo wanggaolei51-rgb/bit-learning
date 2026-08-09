@@ -6,7 +6,7 @@
 <meta http-equiv="Expires" content="0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LEO-BIR V4.9.7-08032026 (shopping+address+supermarket)</title>
+<title>LEO-BIR V4.9.8-08032026 (shopping+address+supermarket)</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -273,7 +273,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="sidebar-header">
     <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <h1>LEO-BIR</h1>
-    <div class="ver">LEO-BIR V4.9.7 · 新增购物+地址+超市场景 · 76词汇 · 日历自动当前月 · 弹窗朗读 · 双产业地图</div>
+    <div class="ver">LEO-BIR V4.9.8 · 新增购物+地址+超市场景 · 76词汇 · 日历自动当前月 · 弹窗朗读 · 双产业地图</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -1928,11 +1928,15 @@ function renderDailyQuiz(c) {
   const today = new Date().toISOString().slice(0,10);
   const tc = topicCalendar[today] || Object.values(topicCalendar).find(t => t.date === today);
   
-  // 收集所有可用的话题/课时
+  // 收集所有可用的话题/课时（按话题去重，C4架构：一个话题一个测试）
   const availableTopics = [];
+  const seenTopics = new Set();
   Object.keys(topicCalendar).forEach(date => {
     const info = topicCalendar[date];
     if (info && info.topic) {
+      // C4: 一个话题只生成一个测试，去重
+      if (seenTopics.has(info.topic)) return;
+      seenTopics.add(info.topic);
       const topic = topicData[info.topic];
       if (topic) {
         availableTopics.push({
