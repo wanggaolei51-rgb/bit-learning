@@ -6,7 +6,7 @@
 <meta http-equiv="Expires" content="0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LEO-BIR V4.9.8-08032026 (shopping+address+supermarket)</title>
+<title>LEO-BIR V4.9.9-08032026 (shopping+address+supermarket)</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -273,7 +273,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="sidebar-header">
     <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <h1>LEO-BIR</h1>
-    <div class="ver">LEO-BIR V4.9.8 · 新增购物+地址+超市场景 · 76词汇 · 日历自动当前月 · 弹窗朗读 · 双产业地图</div>
+    <div class="ver">LEO-BIR V4.9.9 · 新增购物+地址+超市场景 · 76词汇 · 日历自动当前月 · 弹窗朗读 · 双产业地图</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -1684,7 +1684,82 @@ const vocabDB = {
 'warga':{ipa:'—',cn:'居民',en:'resident',root:'warga',tag:'名词'},
 'wilayah':{ipa:'—',cn:'区域',en:'region',root:'wilayah',tag:'名词'},
   'yani':{ipa:'/yani/',cn:'yani（印尼语）',en:'yani',root:'yani',tag:'常用词'},
-  'yos':{ipa:'/yos/',cn:'yos（印尼语）',en:'yos',root:'yos',tag:'常用词'}};
+  'yos':{ipa:'/yos/',cn:'yos（印尼语）',en:'yos',root:'yos',tag:'常用词'},
+  'abstrak':{ipa:'/ˈabstrak/',cn:'摘要',en:'abstract',root:'abstrak',tag:'UKBI'},
+  'akomodasi':{ipa:'/akomoˈdasi/',cn:'适应',en:'accommodation',root:'akomodasi',tag:'UKBI'},
+  'akulturasi':{ipa:'/akultuˈrasi/',cn:'文化融合',en:'acculturation',root:'akulturasi',tag:'UKBI'},
+  'alasan':{ipa:'/aˈlasan/',cn:'理由',en:'reason',root:'alasan',tag:'UKBI'},
+  'arbitrase':{ipa:'/arbɪˈtrasɛ/',cn:'仲裁',en:'arbitration',root:'arbitrase',tag:'UKBI'},
+  'argumen':{ipa:'/ˈargumɛn/',cn:'论点',en:'argument',root:'argumen',tag:'UKBI'},
+  'artikel':{ipa:'/ˈartɪkɛl/',cn:'文章',en:'article',root:'artikel',tag:'UKBI'},
+  'asimilasi':{ipa:'/asɪmɪˈlasi/',cn:'同化',en:'assimilation',root:'asimilasi',tag:'UKBI'},
+  'berbahasa':{ipa:'/bərbaˈhasa/',cn:'使用语言',en:'to use language',root:'berbahasa',tag:'UKBI'},
+  'catatan':{ipa:'/tʃaˈtatan/',cn:'笔记',en:'notes',root:'catatan',tag:'UKBI'},
+  'cerpen':{ipa:'/ˈtʃɛrpɛn/',cn:'短篇小说',en:'short story',root:'cerpen',tag:'UKBI'},
+  'denotasi':{ipa:'/dɛnoˈtasi/',cn:'字面意义',en:'denotation',root:'denotasi',tag:'UKBI'},
+  'diksi':{ipa:'/ˈdɪksi/',cn:'措辞',en:'diction',root:'diksi',tag:'UKBI'},
+  'editorial':{ipa:'/ɛdɪˈtorial/',cn:'社论',en:'editorial',root:'editorial',tag:'UKBI'},
+  'efektivitas':{ipa:'/ɛfɛktɪˈvɪtas/',cn:'有效性',en:'effectiveness',root:'efektivitas',tag:'UKBI'},
+  'eksplisit':{ipa:'/ˈɛksplɪsɪt/',cn:'明确的',en:'explicit',root:'eksplisit',tag:'UKBI'},
+  'eufemisme':{ipa:'/ɛufɛˈmɪsmɛ/',cn:'委婉语',en:'euphemism',root:'eufemisme',tag:'UKBI'},
+  'hiperbola':{ipa:'/hɪpɛrˈbola/',cn:'夸张',en:'hyperbole',root:'hiperbola',tag:'UKBI'},
+  'iklan':{ipa:'/ˈiklan/',cn:'广告',en:'advertisement',root:'iklan',tag:'UKBI'},
+  'implisit':{ipa:'/ˈɪmplɪsɪt/',cn:'隐含的',en:'implicit',root:'implisit',tag:'UKBI'},
+  'inferensi':{ipa:'/ɪnfɛˈrɛnsi/',cn:'推断',en:'inference',root:'inferensi',tag:'UKBI'},
+  'inovasi':{ipa:'/ˈinovasi/',cn:'创新',en:'innovation',root:'inovasi',tag:'UKBI'},
+  'interpretasi':{ipa:'/ɪntɛrprɛˈtasi/',cn:'解释',en:'interpretation',root:'interpretasi',tag:'UKBI'},
+  'jurnal':{ipa:'/ˈdʒurnal/',cn:'期刊',en:'journal',root:'jurnal',tag:'UKBI'},
+  'kelebihan':{ipa:'/kəˈlɛbihahan/',cn:'优点',en:'advantage',root:'kelebihan',tag:'UKBI'},
+  'kelemahan':{ipa:'/kəˈləmahan/',cn:'缺点',en:'weakness',root:'kelemahan',tag:'UKBI'},
+  'kemahiran':{ipa:'/kəmaˈhiran/',cn:'熟练/能力',en:'proficiency',root:'kemahiran',tag:'UKBI'},
+  'kesimpulan':{ipa:'/kəˈsimpulan/',cn:'结论',en:'conclusion',root:'kesimpulan',tag:'UKBI'},
+  'koherensi':{ipa:'/koˈhɛrɛnsi/',cn:'连贯性',en:'coherence',root:'koherensi',tag:'UKBI'},
+  'kohesi':{ipa:'/koˈhɛsi/',cn:'衔接',en:'cohesion',root:'kohesi',tag:'UKBI'},
+  'kolaborasi':{ipa:'/kolaˈborasi/',cn:'合作',en:'collaboration',root:'kolaborasi',tag:'UKBI'},
+  'konfrontasi':{ipa:'/konfronˈtasi/',cn:'对抗',en:'confrontation',root:'konfrontasi',tag:'UKBI'},
+  'konotasi':{ipa:'/konoˈtasi/',cn:'内涵',en:'connotation',root:'konotasi',tag:'UKBI'},
+  'konsistensi':{ipa:'/konsɪsˈtɛnsi/',cn:'一致性',en:'consistency',root:'konsistensi',tag:'UKBI'},
+  'kosakata':{ipa:'/ˈkosakata/',cn:'词汇',en:'vocabulary',root:'kosakata',tag:'UKBI'},
+  'kreativitas':{ipa:'/krɛatɪˈvɪtas/',cn:'创造力',en:'creativity',root:'kreativitas',tag:'UKBI'},
+  'kutipan':{ipa:'/ˈkutɪpan/',cn:'引用',en:'quotation',root:'kutipan',tag:'UKBI'},
+  'majas':{ipa:'/ˈmadʒas/',cn:'修辞',en:'figure of speech',root:'majas',tag:'UKBI'},
+  'manfaat':{ipa:'/ˈmanfaʔat/',cn:'好处',en:'benefit',root:'manfaat',tag:'UKBI'},
+  'materi':{ipa:'/maˈtɛri/',cn:'材料/内容',en:'material',root:'materi',tag:'UKBI'},
+  'mediasi':{ipa:'/mɛdɪˈasi/',cn:'调解',en:'mediation',root:'mediasi',tag:'UKBI'},
+  'menyimak':{ipa:'/məˈɲimak/',cn:'倾听',en:'to listen',root:'menyimak',tag:'UKBI'},
+  'metafora':{ipa:'/mɛˈtafora/',cn:'隐喻',en:'metaphor',root:'metafora',tag:'UKBI'},
+  'notulen':{ipa:'/ˈnotulɛn/',cn:'会议纪要',en:'minutes',root:'notulen',tag:'UKBI'},
+  'novel':{ipa:'/ˈnovɛl/',cn:'小说',en:'novel',root:'novel',tag:'UKBI'},
+  'objektif':{ipa:'/ɔbˈdʒɛktɪf/',cn:'客观的',en:'objective',root:'objektif',tag:'UKBI'},
+  'pantun':{ipa:'/ˈpantun/',cn:'印尼传统诗',en:'pantun',root:'pantun',tag:'UKBI'},
+  'paradoks':{ipa:'/ˈparadɔks/',cn:'悖论',en:'paradox',root:'paradoks',tag:'UKBI'},
+  'paragraf':{ipa:'/ˈparagraf/',cn:'段落',en:'paragraph',root:'paragraf',tag:'UKBI'},
+  'pendaftaran':{ipa:'/pɛndaˈftaran/',cn:'注册',en:'registration',root:'pendaftaran',tag:'UKBI'},
+  'pendapat':{ipa:'/pɛnˈdapat/',cn:'观点',en:'opinion',root:'pendapat',tag:'UKBI'},
+  'perbandingan':{ipa:'/pərbanˈdiŋan/',cn:'比较',en:'comparison',root:'perbandingan',tag:'UKBI'},
+  'perbedaan':{ipa:'/pərˈbɛdaan/',cn:'差异',en:'difference',root:'perbedaan',tag:'UKBI'},
+  'persamaan':{ipa:'/pərˈsamaan/',cn:'相同点',en:'similarity',root:'persamaan',tag:'UKBI'},
+  'personifikasi':{ipa:'/pɛrsonɪfɪˈkasi/',cn:'拟人',en:'personification',root:'personifikasi',tag:'UKBI'},
+  'plagiarisme':{ipa:'/plaˈgiarɪsmɛ/',cn:'抄袭',en:'plagiarism',root:'plagiarisme',tag:'UKBI'},
+  'prediksi':{ipa:'/prɛˈdɪksi/',cn:'预测',en:'prediction',root:'prediksi',tag:'UKBI'},
+  'produktivitas':{ipa:'/produktɪˈvɪtas/',cn:'生产力',en:'productivity',root:'produktivitas',tag:'UKBI'},
+  'proses':{ipa:'/ˈprosɛs/',cn:'过程',en:'process',root:'proses',tag:'UKBI'},
+  'puisi':{ipa:'/puˈisi/',cn:'诗歌',en:'poetry',root:'puisi',tag:'UKBI'},
+  'referensi':{ipa:'/rɛfɛˈrɛnsi/',cn:'参考',en:'reference',root:'referensi',tag:'UKBI'},
+  'relevan':{ipa:'/ˈrɛlɛvan/',cn:'相关的',en:'relevant',root:'relevan',tag:'UKBI'},
+  'ringkasan':{ipa:'/rɪŋˈkasan/',cn:'摘要',en:'summary',root:'ringkasan',tag:'UKBI'},
+  'sarkasme':{ipa:'/sarˈkasmɛ/',cn:'讥讽',en:'sarcasm',root:'sarkasme',tag:'UKBI'},
+  'sasaran':{ipa:'/ˈsasaran/',cn:'目标',en:'target',root:'sasaran',tag:'UKBI'},
+  'sinekdoke':{ipa:'/sɪnɛkˈdokɛ/',cn:'提喻',en:'synecdoche',root:'sinekdoke',tag:'UKBI'},
+  'sintesis':{ipa:'/sɪnˈtɛsis/',cn:'综合',en:'synthesis',root:'sintesis',tag:'UKBI'},
+  'struktur':{ipa:'/ˈstruktur/',cn:'结构',en:'structure',root:'struktur',tag:'UKBI'},
+  'subjektif':{ipa:'/subˈdʒɛktɪf/',cn:'主观的',en:'subjective',root:'subjektif',tag:'UKBI'},
+  'sumber':{ipa:'/ˈsumbɛr/',cn:'来源',en:'source',root:'sumber',tag:'UKBI'},
+  'topik':{ipa:'/ˈtopik/',cn:'主题',en:'topic',root:'topik',tag:'UKBI'},
+  'tujuan':{ipa:'/tuˈdʒuan/',cn:'目的',en:'purpose',root:'tujuan',tag:'UKBI'},
+  'ujian':{ipa:'/ˈudʒian/',cn:'考试',en:'exam',root:'ujian',tag:'UKBI'},
+  'urutan':{ipa:'/ˈurutan/',cn:'顺序',en:'order',root:'urutan',tag:'UKBI'},
+  'valid':{ipa:'/ˈvalid/',cn:'有效的',en:'valid',root:'valid',tag:'UKBI'}};
 
 
 let learningHistory; try{ learningHistory=JSON.parse(localStorage.getItem("bir_h3")||"{}"); }catch(e){ learningHistory={}; }
@@ -5772,9 +5847,16 @@ function renderTopicDetail(c, ds, topicInfo) {
     html += `</div></div>`;
     // Show key vocabulary for this topic
     html += `<h3 style="color:var(--primary);margin:16px 0 10px;font-size:15px">🎯 话题核心词汇</h3><div class="word-grid">`;
-    const keyWords = topicInfo.topic === "directions"
-      ? ["lurus","belok","kanan","kiri","depan","belakang","atas","bawah","jalan","peta","tunjuk","jauh","dekat","lokasi","posisi","arah","tujuan","dari","ke","di","sini","sana","situ","sebelah","perempatan","pertigaan","gerbang","pelabuhan","bandara","terminal","hotel"]
-      : ["bertemu","berdiskusi","berjumpa","berkumpul","berbicara","berkerja","berjalan","bersemangat","berusaha","berpikir","bersama-sama","berkembang","beroperasi","berkelanjutan","berharap","bersinergi","berkaitan","berkomunikasi","berlibur","bermain","berdagang","berencana"];
+    // C4: 从topic.vocab动态取词，不再硬编码
+    let keyWords = [];
+    if (topic.vocab && topic.vocab.length > 0) {
+      keyWords = topic.vocab.slice(0, 30).map(v => v[0]);
+    }
+    // 兜底：如果topic.vocab不足，用话题专属词
+    if (keyWords.length < 5) {
+      const fb = {directions:["lurus","belok","kanan","kiri","depan","belakang","atas","bawah","jalan","peta","tunjuk","jauh","dekat","lokasi","posisi","arah","tujuan","dari","ke","di","sini","sana","situ","sebelah","perempatan","pertigaan","gerbang","pelabuhan","bandara","terminal","hotel"],meet:["bertemu","berkenalan","nama","saya","Bapak","Ibu","dari","industri","Morowali","perkenalkan","salam","pagi","siang","sore","malam","kabarmu","baik","terima kasih","sama-sama","senang","teman","kolega","rekan","kerja","perusahaan","pabrik","smelter"],introduce:["perkenalkan","nama","saya","asal","tinggal","bekerja","jabatan","perusahaan","bidang","industri","hobi","keluarga","istri","suami","anak","saudara","orang tua","alamat","telepon","email","lulusan","universitas","jurusan","tahun","pengalaman","spesialisasi","keahlian","sertifikasi"],nickel:["nikel","laterit","saprolit","HPAL","RKEF","MHP","MSP","cathode","ferronikel","blast","furnace","rotary kiln","electric","acid","leaching","CPL","IKABE","IWIP","Morowali","Sorowako","Pomalaa","cadangan","eksplorasi","tambang","smelter","refinery"],common_sentences:["tolong","terima kasih","maaf","permisi","ya","tidak","mungkin","nanti","sekarang","kemarin","besok","sudah","belum","bisa","suka","mau","ingin","butuh","ada","tidak ada","bagaimana","kenapa","berapa","dimana","kapan","siapa","apa","yang mana","seperti apa"],weather:["cuaca","panas","dingin","hujan","gerimis","lebat","petir","angin","badai","banjir","kekeringan","suhu","derajat","prediksi","musim","kemarau","penghujan","cuaca ekstrem","iklim","tropis","khatulistiwa","cuaca buruk","peringatan dini","evakuasi","siaga","waspada"],medical:["sakit","dokter","rumah sakit","obat","apotek","demam","flu","batuk","pusing","mual","diare","sesak napas","nyeri","luka","patah","darah","tekanan darah","gula darah","alergi","vaksin","imunisasi","rawat inap","rawat jalan","ugd","ambulans","bpjs","resep"],shopping:["belanja","toko","mall","pasar","harga","diskon","mahal","murah","bayar","tunai","kartu kredit","debit","transfer","qr","ovo","gopay","cashback","promo","member","poin","garansi","retur","ukuran","warna","model","stok","tersedia","habis","pesan","antar"],address:["alamat","jalan","gang","nomor","rt","rw","kelurahan","kecamatan","kota","provinsi","kode pos","patokan","depan","sebelah","belakang","dekat","jauh","lokasi","gps","koordinat","peta","petunjuk arah","belok kanan","belok kiri","lurus","putar balik","macet","alternatif","jalur"],supermarket:["supermarket","minimarket","gerobak","troli","rak","produk","merek","expired","tanggal kadaluarsa","kemasan","gram","kilogram","liter","mililiter","diskon","beli satu gratis satu","promo","katalog","member","kupon","struk","kembalian","plastik","kantong","hemat","boros"],ukbi:["kemahiran","berbahasa","ujian","materi","memahami","menyimak","berbicara","menulis","membaca","struktur","kosakata","tata bahasa","paragraf","kesimpulan","gagasan utama","topik","pendapat","argumen","alasan","bukti","contoh","perbandingan","perbedaan","persamaan","sebab akibat","urutan","prosedur","proses","saran","solusi"]};
+      keyWords = fb[topicInfo.topic] || fb.meet;
+    }
     keyWords.forEach(w => {
       const key = Object.keys(vocabDB).find(k => k.toLowerCase() === w.toLowerCase());
       if (key) {
