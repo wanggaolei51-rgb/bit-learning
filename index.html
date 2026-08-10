@@ -6,7 +6,7 @@
 <meta http-equiv="Expires" content="0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LEO-BIR V4.10.1-08032026 (shopping+address+supermarket)</title>
+<title>LEO-BIR V4.10.2-08032026 (shopping+address+supermarket)</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -273,7 +273,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="sidebar-header">
     <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <h1>LEO-BIR</h1>
-    <div class="ver">LEO-BIR V4.10.1 · 新增购物+地址+超市场景 · 76词汇 · 日历自动当前月 · 弹窗朗读 · 双产业地图</div>
+    <div class="ver">LEO-BIR V4.10.2 · 新增购物+地址+超市场景 · 76词汇 · 日历自动当前月 · 弹窗朗读 · 双产业地图</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -5951,9 +5951,16 @@ function renderTopicDetail(c, ds, topicInfo) {
     });
     html += `</div></div>`;
     html += `<h3 style="color:var(--primary);margin:16px 0 10px;font-size:15px">🎯 话题核心词汇</h3><div class="word-grid">`;
-    const keyWords1 = topicInfo.topic === "directions" 
-      ? ["lurus","belok","kanan","kiri","depan","belakang","atas","bawah","jalan","peta","tunjuk","jauh","dekat","lokasi","posisi","arah","tujuan","dari","ke","di","sini","sana","situ","sebelah","perempatan","pertigaan","gerbang","pelabuhan","bandara","terminal","hotel"]
-      : ["bertemu","berdiskusi","berjumpa","berkumpul","berbicara","berkerja","berjalan","bersemangat","berusaha","berpikir","bersama-sama","berkembang","beroperasi","berkelanjutan","berharap","bersinergi","berkaitan","berkomunikasi","berlibur","bermain","berdagang","berencana"];
+    // C4: 使用topic.vocab动态取词，不再硬编码
+    let keyWords1 = [];
+    if (topic.vocab && topic.vocab.length > 0) {
+      keyWords1 = topic.vocab.slice(0, 30).map(v => v[0]);
+    }
+    // 兜底：如果topic.vocab不足，用话题专属词
+    if (keyWords1.length < 5) {
+      const fb = {directions:["lurus","belok","kanan","kiri","depan","belakang","atas","bawah","jalan","peta","tunjuk","jauh","dekat","lokasi","posisi","arah","tujuan","dari","ke","di","sini","sana","situ","sebelah","perempatan","pertigaan","gerbang","pelabuhan","bandara","terminal","hotel"],meet:["bertemu","berkenalan","nama","saya","Bapak","Ibu","dari","industri","Morowali","perkenalkan","salam","pagi","siang","sore","malam","kabarmu","baik","terima kasih","sama-sama","senang","teman","kolega","rekan","kerja","perusahaan","pabrik","smelter"],introduce:["perkenalkan","nama","saya","asal","tinggal","bekerja","jabatan","perusahaan","bidang","industri","hobi","keluarga","istri","suami","anak","saudara","orang tua","alamat","telepon","email","lulusan","universitas","jurusan","tahun","pengalaman","spesialisasi","keahlian","sertifikasi"],nickel:["nikel","laterit","saprolit","HPAL","RKEF","MHP","MSP","cathode","ferronikel","blast","furnace","rotary kiln","electric","acid","leaching","CPL","IKABE","IWIP","Morowali","Sorowako","Pomalaa","cadangan","eksplorasi","tambang","smelter","refinery"],common_sentences:["tolong","terima kasih","maaf","permisi","ya","tidak","mungkin","nanti","sekarang","kemarin","besok","sudah","belum","bisa","suka","mau","ingin","butuh","ada","tidak ada","bagaimana","kenapa","berapa","dimana","kapan","siapa","apa","yang mana","seperti apa"],weather:["cuaca","panas","dingin","hujan","gerimis","lebat","petir","angin","badai","banjir","kekeringan","suhu","derajat","prediksi","musim","kemarau","penghujan","cuaca ekstrem","iklim","tropis","khatulistiwa","cuaca buruk","peringatan dini","evakuasi","siaga","waspada"],medical:["sakit","dokter","rumah sakit","obat","apotek","demam","flu","batuk","pusing","mual","diare","sesak napas","nyeri","luka","patah","darah","tekanan darah","gula darah","alergi","vaksin","imunisasi","rawat inap","rawat jalan","ugd","ambulans","bpjs","resep"],shopping:["belanja","toko","mall","pasar","harga","diskon","mahal","murah","bayar","tunai","kartu kredit","debit","transfer","qr","ovo","gopay","cashback","promo","member","poin","garansi","retur","ukuran","warna","model","stok","tersedia","habis","pesan","antar"],address:["alamat","jalan","gang","nomor","rt","rw","kelurahan","kecamatan","kota","provinsi","kode pos","patokan","depan","sebelah","belakang","dekat","jauh","lokasi","gps","koordinat","peta","petunjuk arah","belok kanan","belok kiri","lurus","putar balik","macet","alternatif","jalur"],supermarket:["supermarket","minimarket","gerobak","troli","rak","produk","merek","expired","tanggal kadaluarsa","kemasan","gram","kilogram","liter","mililiter","diskon","beli satu gratis satu","promo","katalog","member","kupon","struk","kembalian","plastik","kantong","hemat","boros"],ukbi:["kemahiran","berbahasa","ujian","materi","memahami","menyimak","berbicara","menulis","membaca","struktur","kosakata","tata bahasa","paragraf","kesimpulan","gagasan utama","topik","pendapat","argumen","alasan","bukti","contoh","perbandingan","perbedaan","persamaan","sebab akibat","urutan","prosedur","proses","saran","solusi"]};
+      keyWords1 = fb[topicInfo.topic] || fb.meet;
+    }
     keyWords1.forEach(w => {
       const key = Object.keys(vocabDB).find(k => k.toLowerCase() === w.toLowerCase());
       if (key) {
