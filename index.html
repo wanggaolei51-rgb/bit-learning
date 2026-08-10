@@ -6,7 +6,7 @@
 <meta http-equiv="Expires" content="0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LEO-BIR V4.10.2-08032026 (shopping+address+supermarket)</title>
+<title>LEO-BIR V4.11.0-08032026 (shopping+address+supermarket)</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -273,7 +273,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="sidebar-header">
     <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <h1>LEO-BIR</h1>
-    <div class="ver">LEO-BIR V4.10.2 · 新增购物+地址+超市场景 · 76词汇 · 日历自动当前月 · 弹窗朗读 · 双产业地图</div>
+    <div class="ver">LEO-BIR V4.11.0 · 新增购物+地址+超市场景 · 76词汇 · 日历自动当前月 · 弹窗朗读 · 双产业地图</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -297,7 +297,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
     <ul class="nav-list" id="navList">
       <li class="active" data-route="home"><span style="margin-right:8px">🏠</span>主页</li>
       <li data-route="translate"><span style="margin-right:8px">🌐</span>翻译</li>
-      <li data-route="input"><span style="margin-right:8px">📝</span>词汇录入</li>
+      <li data-route="input"><span style="margin-right:8px">📝</span>话题生成</li>
       <li data-route="wordbank"><span style="margin-right:8px">📚</span>生词本</li>
       <li data-route="quiz"><span style="margin-right:8px">🎯</span>课时测试</li>
       <li data-route="vocabulary"><span style="margin-right:8px">📖</span>词汇库</li>
@@ -1820,7 +1820,7 @@ function render(){
     case "home":t.innerText="🏠 主页";renderHome(c);break;
     case "date":t.innerText="📅 "+r.param;renderDateDetail(c,r.param);break;
     case "translate":t.innerText="🌐 翻译";renderTranslate(c);break;
-    case "input":t.innerText="📝 词汇录入";renderInput(c);break;
+    case "input":t.innerText="📝 话题生成";renderInput(c);break;
     case "wordbank":t.innerText="📚 生词本";renderWordBank(c);break;
     case "quiz":t.innerText="🎯 课时测试";renderDailyQuiz(c);break;
     case "vocabulary":t.innerText="📖 词汇库";renderVocabulary(c);break;
@@ -1846,7 +1846,7 @@ function updateNav(){document.querySelectorAll(".nav-list li").forEach(li=>{li.c
 
 function renderHome(c){
   const today=new Date().toISOString().slice(0,10),td=learningHistory[today],tdn=td?td.vocabNew.length:0;
-  c.innerHTML=`<div class="welcome-banner" style="background:linear-gradient(135deg,rgba(0,212,170,.15),rgba(59,130,246,.1));border:1px solid rgba(0,212,170,.25);position:relative;"><div id="homeMemberBadge" style="position:absolute;top:8px;right:8px;font-size:11px;padding:3px 8px;border-radius:6px;"></div><div style="display:flex;align-items:center;gap:16px;margin-bottom:12px;"><div style="width:56px;height:56px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div><div><h2 style="font-size:22px;color:var(--primary);margin-bottom:4px">LEO-BIR</h2><p style="color:var(--text-dim);font-size:13px">Bahasa Indonesia Learning · 印尼语学习平台</p></div></div></div><div class="quick-grid"><div class="quick-btn" onclick="navigate('translate')"><span class="icon">🌐</span><div class="label">翻译</div></div><div class="quick-btn" onclick="navigate('input')"><span class="icon">📝</span><div class="label">词汇录入</div></div><div class="quick-btn" onclick="navigate('wordbank')"><span class="icon">📚</span><div class="label">生词本</div></div><div class="quick-btn" onclick="navigate('review')"><span class="icon">🧠</span><div class="label">复习</div></div><div class="quick-btn" onclick="navigate('vocabulary')"><span class="icon">📖</span><div class="label">词汇库</div></div><div class="quick-btn" onclick="navigate('quiz')"><span class="icon">🎮</span><div class="label">百词斩</div></div>
+  c.innerHTML=`<div class="welcome-banner" style="background:linear-gradient(135deg,rgba(0,212,170,.15),rgba(59,130,246,.1));border:1px solid rgba(0,212,170,.25);position:relative;"><div id="homeMemberBadge" style="position:absolute;top:8px;right:8px;font-size:11px;padding:3px 8px;border-radius:6px;"></div><div style="display:flex;align-items:center;gap:16px;margin-bottom:12px;"><div style="width:56px;height:56px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div><div><h2 style="font-size:22px;color:var(--primary);margin-bottom:4px">LEO-BIR</h2><p style="color:var(--text-dim);font-size:13px">Bahasa Indonesia Learning · 印尼语学习平台</p></div></div></div><div class="quick-grid"><div class="quick-btn" onclick="navigate('translate')"><span class="icon">🌐</span><div class="label">翻译</div></div><div class="quick-btn" onclick="navigate('input')"><span class="icon">📝</span><div class="label">话题生成</div></div><div class="quick-btn" onclick="navigate('wordbank')"><span class="icon">📚</span><div class="label">生词本</div></div><div class="quick-btn" onclick="navigate('review')"><span class="icon">🧠</span><div class="label">复习</div></div><div class="quick-btn" onclick="navigate('vocabulary')"><span class="icon">📖</span><div class="label">词汇库</div></div><div class="quick-btn" onclick="navigate('quiz')"><span class="icon">🎮</span><div class="label">百词斩</div></div>
 <div class="quick-btn" onclick="navigate('prefixgame')"><span class="icon">🎯</span><div class="label">词根射击</div></div></div><div class="card"><div class="card-header"><h2>📅 学习日历</h2><span class="badge">点击日期查看</span></div>${renderCalHTML()}</div>`;
   attachCalEvents();
 }
@@ -3541,21 +3541,32 @@ function getMemberStatus() {
 }
 // ===== 修仙等级系统 =====
 const CULTIVATION_LEVELS = [
-  {name: '凡人', color: '#888888', glow: 'none'},
-  {name: '炼气', color: '#e5e7eb', glow: '0 0 5px #e5e7eb'},
-  {name: '筑基', color: '#22c55e', glow: '0 0 8px #22c55e'},
-  {name: '金丹', color: '#06b6d4', glow: '0 0 10px #06b6d4'},
-  {name: '元婴', color: '#3b82f6', glow: '0 0 12px #3b82f6'},
-  {name: '化神', color: '#8b5cf6', glow: '0 0 15px #8b5cf6'},
-  {name: '炼虚', color: '#ec4899', glow: '0 0 15px #ec4899'},
-  {name: '合体', color: '#ef4444', glow: '0 0 18px #ef4444'},
-  {name: '大乘', color: '#f97316', glow: '0 0 18px #f97316'},
-  {name: '渡劫', color: '#f59e0b', glow: '0 0 20px #f59e0b'},
-  {name: '真仙', color: '#ffd700', glow: '0 0 22px #ffd700'},
-  {name: '金仙', color: '#c0c0c0', glow: '0 0 22px #c0c0c0'},
-  {name: '太乙', color: '#a855f7', glow: '0 0 25px #a855f7'},
-  {name: '大罗', color: 'linear-gradient(90deg,#ff0000,#ff7f00,#ffff00,#00ff00,#0000ff,#4b0082,#9400d3)', glow: '0 0 30px rgba(255,255,255,0.5)'},
-  {name: '道主', color: '#ffffff', glow: '0 0 40px rgba(255,255,255,0.8)'}
+  {name: '凡人', color: '#888888', glow: 'none', hoursNeeded: 24},
+  {name: '炼气', color: '#e5e7eb', glow: '0 0 5px #e5e7eb', hoursNeeded: 24},
+  {name: '筑基', color: '#22c55e', glow: '0 0 8px #22c55e', hoursNeeded: 24},
+  {name: '金丹', color: '#06b6d4', glow: '0 0 10px #06b6d4', hoursNeeded: 24},
+  {name: '元婴', color: '#3b82f6', glow: '0 0 12px #3b82f6', hoursNeeded: 24},
+  {name: '化神', color: '#8b5cf6', glow: '0 0 15px #8b5cf6', hoursNeeded: 24},
+  {name: '炼虚', color: '#ec4899', glow: '0 0 15px #ec4899', hoursNeeded: 24},
+  {name: '合体', color: '#ef4444', glow: '0 0 18px #ef4444', hoursNeeded: 24},
+  {name: '大乘', color: '#f97316', glow: '0 0 18px #f97316', hoursNeeded: 24},
+  {name: '渡劫', color: '#f59e0b', glow: '0 0 20px #f59e0b', hoursNeeded: 24},
+  {name: '真仙', color: '#ffd700', glow: '0 0 22px #ffd700', hoursNeeded: 24},
+  {name: '金仙', color: '#c0c0c0', glow: '0 0 22px #c0c0c0', hoursNeeded: 24},
+  {name: '太乙', color: '#a855f7', glow: '0 0 25px #a855f7', hoursNeeded: 24},
+  {name: '大罗', color: 'linear-gradient(90deg,#ff0000,#ff7f00,#ffff00,#00ff00,#0000ff,#4b0082,#9400d3)', glow: '0 0 30px rgba(255,255,255,0.5)', hoursNeeded: 24},
+  {name: '道主', color: '#ffffff', glow: '0 0 40px rgba(255,255,255,0.8)', hoursNeeded: 24},
+  // 道主后10级，每级时长翻倍
+  {name: '混元', color: '#ff00ff', glow: '0 0 45px rgba(255,0,255,0.8)', hoursNeeded: 48},
+  {name: '无极', color: '#00ffff', glow: '0 0 50px rgba(0,255,255,0.8)', hoursNeeded: 96},
+  {name: '太极', color: '#ffff00', glow: '0 0 55px rgba(255,255,0,0.8)', hoursNeeded: 192},
+  {name: '太初', color: '#ff8800', glow: '0 0 60px rgba(255,136,0,0.8)', hoursNeeded: 384},
+  {name: '太易', color: '#8800ff', glow: '0 0 65px rgba(136,0,255,0.8)', hoursNeeded: 768},
+  {name: '太始', color: '#ff0088', glow: '0 0 70px rgba(255,0,136,0.8)', hoursNeeded: 1536},
+  {name: '太素', color: '#00ff88', glow: '0 0 75px rgba(0,255,136,0.8)', hoursNeeded: 3072},
+  {name: '混沌', color: '#ffffff', glow: '0 0 80px rgba(255,255,255,0.9)', hoursNeeded: 6144},
+  {name: '鸿蒙', color: '#ffffff', glow: '0 0 100px rgba(255,255,255,1)', hoursNeeded: 12288},
+  {name: '虚无', color: '#000000', glow: '0 0 120px rgba(255,255,255,0.5)', hoursNeeded: 24576}
 ];
 
 function getCultivationInfo() {
@@ -3563,11 +3574,24 @@ function getCultivationInfo() {
   const loginTime = new Date(memberInfo.loginTime);
   const now = new Date();
   const hoursPassed = Math.floor((now - loginTime) / 3600000);
-  const level = Math.min(Math.floor(hoursPassed / 24) + 1, 15);
+  
+  // 计算等级：道主前每级24h，道主后每级时长翻倍
+  let remainingHours = hoursPassed;
+  let level = 0;
+  for (let i = 0; i < CULTIVATION_LEVELS.length; i++) {
+    if (remainingHours >= CULTIVATION_LEVELS[i].hoursNeeded) {
+      remainingHours -= CULTIVATION_LEVELS[i].hoursNeeded;
+      level = i + 1;
+    } else {
+      break;
+    }
+  }
+  level = Math.min(level, CULTIVATION_LEVELS.length);
+  
   const cycleLevel = ((level - 1) % 5) + 1; // 1-5 within each cycle
-  const cycle = Math.floor((level - 1) / 5); // 0, 1, 2
-  const info = CULTIVATION_LEVELS[level - 1];
-  return { level, name: info.name, color: info.color, glow: info.glow, petals: cycleLevel, cycle };
+  const cycle = Math.floor((level - 1) / 5); // 0, 1, 2, 3, 4, 5
+  const info = CULTIVATION_LEVELS[level - 1] || CULTIVATION_LEVELS[0];
+  return { level, name: info.name, color: info.color, glow: info.glow, petals: cycleLevel, cycle, hoursInCurrentLevel: remainingHours };
 }
 
 function getCultivationBadge() {
@@ -3694,7 +3718,7 @@ function showCultivationInfo() {
           <div style="font-size:12px;color:var(--text-dim);margin-bottom:16px">${progressText}</div>
           
           <!-- 总体修仙累计进度条 (0h → 360h/道主) -->
-          <div style="font-size:11px;color:var(--text-dim);margin-bottom:4px;text-align:left">🎋 修仙累计进度 (0h → 360h · 道主)</div>
+          <div style="font-size:11px;color:var(--text-dim);margin-bottom:4px;text-align:left">🎋 修仙累计进度 (0h → 道主 → 虚无)</div>
           <div style="background:var(--bg-card);border-radius:8px;height:10px;overflow:hidden;margin-bottom:6px;border:1px solid var(--border);">
             <div id="cultivationTotalBar" style="background:linear-gradient(90deg,${info.color},${nextLevelInfo ? CULTIVATION_LEVELS[Math.min(info.level,14)].color : info.color});width:${Math.min((hoursPassed/360)*100,100)}%;height:100%;transition:width .3s;box-shadow:${info.glow}"></div>
           </div>
@@ -3708,7 +3732,7 @@ function showCultivationInfo() {
           <div style="font-size:14px;font-weight:600;color:var(--primary);margin-bottom:10px">📜 升级规则</div>
           <div style="font-size:13px;color:var(--text);line-height:1.8;background:var(--bg-elev);border-radius:10px;padding:14px;border:1px solid var(--border);">
             • 自登录之时起，每修炼 <strong>24 小时</strong> 自动升一级<br>
-            • 共 <strong>15 个境界</strong>，从凡人直至道主<br>
+            • 共 <strong>25 个境界</strong>，从凡人直至虚无 · 道主后每级时长翻倍<br>
             • 每 <strong>5 级</strong> 为一个周期，花瓣成花后重置<br>
             • 花瓣数随等级递增（1→2→3→4→5→花→1→...）<br>
             • 颜色随境界提升逐步华丽：灰→白→绿→青→蓝→紫→粉→红→橙→金→亮金→白金→紫金→彩虹→七彩
@@ -5407,7 +5431,7 @@ const topicData = {
     ]
   },
   "shopping": {
-    "title": "话题8: 购物 / Berbelanja",
+    "title": "话题7: 购物 / Berbelanja",
     "icon": "🛒",
     "days": 3,
     "grammar": {
@@ -5535,7 +5559,7 @@ const topicData = {
     ]
   },
   "address": {
-    "title": "话题9: 印尼地址表达 / Alamat",
+    "title": "话题8: 印尼地址表达 / Alamat",
     "icon": "📮",
     "days": 2,
     "grammar": {
@@ -5641,7 +5665,7 @@ const topicData = {
     ]
   },
   "supermarket": {
-    "title": "话题10: 超市分区 / Supermarket",
+    "title": "话题9: 超市分区 / Supermarket",
     "icon": "🛒",
     "days": 2,
     "grammar": {
@@ -5915,9 +5939,9 @@ ukbi: {
   "2026-08-05": {topic: "shopping", day: 1, label: "🛒 购物·综合", allDays: true},
   "2026-08-06": {topic: "address", day: 1, label: "📮 地址·综合", allDays: true},
   "2026-08-07": {topic: "supermarket", day: 1, label: "🛒 超市·综合", allDays: true},
-  "2026-08-09": {topic: "ukbi", day: 1, label: "📜 UKBI 5级 · 语法+词汇", allDays: true},
-  "2026-08-10": {topic: "ukbi", day: 1, label: "📜 UKBI 5级 · 听力+阅读", allDays: true},
-  "2026-08-11": {topic: "ukbi", day: 1, label: "📜 UKBI 5级 · 口语+写作", allDays: true},
+  "2026-08-09": {topic: "ukbi", day: 1, label: "📜 UKBI 5级 · 语法+词汇"},
+  "2026-08-10": {topic: "ukbi", day: 2, label: "📜 UKBI 5级 · 听力+阅读"},
+  "2026-08-11": {topic: "ukbi", day: 3, label: "📜 UKBI 5级 · 口语+写作"},
 };
 
 function getTopicForDate(ds) {
@@ -6483,9 +6507,9 @@ function renderVersion(c){
         <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
         <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.9.0 (2026-08-02)</div>
         <div style="font-size:13px;color:var(--text);line-height:1.8">
-        • 新增话题8「购物/Berbelanja」(3天课程: 8/5-8/7)<br>
-        • 新增话题9「印尼地址表达/Alamat」(2天课程: 8/8-8/9)<br>
-        • 新增话题10「超市分区/Supermarket」(2天课程: 8/10-8/11)<br>
+        • 新增话题7「购物/Berbelanja」(3天课程: 8/5-8/7)<br>
+        • 新增话题8「印尼地址表达/Alamat」(2天课程: 8/8-8/9)<br>
+        • 新增话题9「超市分区/Supermarket」(2天课程: 8/10-8/11)<br>
         • 修复日历自动切换当前月份Bug<br>
         • 修复生词本翻译同步Bug<br>
         • 新增购物/地址/超市核心词汇76个
