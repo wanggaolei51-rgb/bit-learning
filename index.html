@@ -1940,18 +1940,405 @@ async function gTrans(text,sl,tl){
 function clearTrans(){document.getElementById("tInput").value="";document.getElementById("tResult").innerHTML="";document.getElementById("tResult").classList.remove("show")}
 
 function renderInput(c){
-  c.innerHTML=`<div class="card"><div class="card-header"><h2>📝 词汇录入</h2><span class="badge">批量输入</span></div><div class="vinput-area"><textarea class="vinput-ta" id="vInput" placeholder="每行一个单词..."></textarea><div class="vinput-btns"><button class="btn-parse" onclick="parseVocab()">🔍 解析</button><button class="btn-clear" onclick="document.getElementById('vInput').value='';document.getElementById('vResult').style.display='none'">清空</button></div><div class="vinput-res" id="vResult"></div></div></div>`;
+  // 计算下一个话题编号和可用日期
+  const topicCount = Object.keys(topicData).length;
+  const nextTopicNum = topicCount + 1;
+  const allDates = Object.keys(topicCalendar).sort();
+  const lastDate = allDates.length > 0 ? allDates[allDates.length-1] : new Date().toISOString().slice(0,10);
+  const nextDate = new Date(lastDate);
+  nextDate.setDate(nextDate.getDate() + 1);
+  const nextDateStr = nextDate.toISOString().slice(0,10);
+  
+  // 生成已占用日期标记
+  const occupiedDates = allDates.map(d => {
+    const info = topicCalendar[d];
+    const label = info ? (info.label || info.topic) : '';
+    return `<option value="${d}" disabled>🚫 ${d} · 已有课程</option>`;
+  }).join('');
+  
+  c.innerHTML=`<div class="card"><div class="card-header"><h2>📝 C4课程话题生成器</h2><span class="badge">自动构建</span></div>
+    <div style="padding:16px">
+      <div style="background:rgba(0,212,170,.08);border-radius:8px;padding:12px;margin-bottom:16px;border-left:3px solid var(--primary)">
+        <div style="font-size:13px;color:var(--text)">💡 自动生成完整话题课程：话题编号 · 日期排期 · 语法 · 场景对话 · 演讲 · 词汇</div>
+      </div>
+      
+      <div style="margin-bottom:12px">
+        <label style="font-size:13px;color:var(--text-dim);display:block;margin-bottom:4px">🔢 话题编号（自动计算）</label>
+        <input type="text" id="genTopicNum" value="话题${nextTopicNum}" readonly style="width:100%;padding:10px;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;color:var(--text-dim);font-size:14px" />
+      </div>
+      
+      <div style="margin-bottom:12px">
+        <label style="font-size:13px;color:var(--text-dim);display:block;margin-bottom:4px">📛 话题名称 *</label>
+        <input type="text" id="genTopicName" style="width:100%;padding:10px;background:var(--bg-elev);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:14px" placeholder="例如：商务谈判 / Business Negotiation" />
+      </div>
+      
+      <div style="margin-bottom:12px">
+        <label style="font-size:13px;color:var(--text-dim);display:block;margin-bottom:4px">🏷️ 话题图标</label>
+        <select id="genTopicIcon" style="width:100%;padding:10px;background:var(--bg-elev);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:14px">
+          <option value="🤝">🤝 社交/见面</option>
+          <option value="💼">💼 商务/工作</option>
+          <option value="🏭">🏭 工业/生产</option>
+          <option value="📊">📊 数据/分析</option>
+          <option value="🌐">🌐 国际/贸易</option>
+          <option value="⚖️">⚖️ 法律/合规</option>
+          <option value="🏗️">🏗️ 建设/工程</option>
+          <option value="🚢">🚢 运输/物流</option>
+          <option value="💰">💰 金融/投资</option>
+          <option value="📋">📋 行政/管理</option>
+          <option value="🍽️">🍽️ 餐饮/生活</option>
+          <option value="✈️">✈️ 旅行/机场</option>
+          <option value="🏥">🏥 医疗/健康</option>
+          <option value="🎓">🎓 教育/考试</option>
+          <option value="📱">📱 科技/数字</option>
+        </select>
+      </div>
+      
+      <div style="margin-bottom:12px">
+        <label style="font-size:13px;color:var(--text-dim);display:block;margin-bottom:4px">📅 开始日期 *（自动避开已有课程）</label>
+        <select id="genTopicDate" style="width:100%;padding:10px;background:var(--bg-elev);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:14px">
+          <option value="">-- 选择日期 --</option>
+          <optgroup label="📌 推荐日期">
+            <option value="${nextDateStr}" selected>✅ ${nextDateStr} · 下一可用日期</option>
+          </optgroup>
+          <optgroup label="🚫 已占用日期（不可选）">
+            ${occupiedDates}
+          </optgroup>
+        </select>
+        <div id="dateWarn" style="font-size:12px;color:var(--danger);margin-top:4px;display:none">⚠️ 该日期已有课程，请选择其他日期</div>
+      </div>
+      
+      <div style="margin-bottom:12px">
+        <label style="font-size:13px;color:var(--text-dim);display:block;margin-bottom:4px">📚 课程天数</label>
+        <select id="genTopicDays" style="width:100%;padding:10px;background:var(--bg-elev);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:14px">
+          <option value="2">2天 · 语法+对话</option>
+          <option value="3" selected>3天 · 语法+对话+演讲</option>
+          <option value="5">5天 · 深度课程</option>
+        </select>
+      </div>
+      
+      <div style="margin-bottom:12px">
+        <label style="font-size:13px;color:var(--text-dim);display:block;margin-bottom:4px">🎯 核心词汇（每行一个：印尼语-中文-IPA）</label>
+        <textarea id="genTopicVocab" style="width:100%;height:120px;padding:10px;background:var(--bg-elev);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:13px;font-family:inherit" placeholder="例如：&#10;negosiasi-谈判-/nɛgoˈsiasi/&#10;kontrak-合同-/ˈkontrak/&#10;kerja sama-合作-/ˈkɛrdʒa ˈsama/&#10;..."></textarea>
+        <div style="font-size:11px;color:var(--text-dim);margin-top:4px">格式：印尼语-中文-IPA（IPA可选）</div>
+      </div>
+      
+      <div style="margin-bottom:12px">
+        <label style="font-size:13px;color:var(--text-dim);display:block;margin-bottom:4px">📖 语法主题</label>
+        <input type="text" id="genTopicGrammar" style="width:100%;padding:10px;background:var(--bg-elev);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:14px" placeholder="例如：me-前缀在商务场景中的用法" />
+      </div>
+      
+      <div style="margin-bottom:12px">
+        <label style="font-size:13px;color:var(--text-dim);display:block;margin-bottom:4px">🎭 场景描述（用于自动生成对话）</label>
+        <textarea id="genTopicScenes" style="width:100%;height:80px;padding:10px;background:var(--bg-elev);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:13px;font-family:inherit" placeholder="描述该话题的典型场景，例如：&#10;1. 初次见面商务洽谈&#10;2. 合同条款协商&#10;3. 合作意向确认"></textarea>
+      </div>
+      
+      <div class="vinput-btns" style="margin-top:16px;display:flex;gap:10px">
+        <button class="btn-parse" onclick="previewTopic()" style="flex:1">👁️ 预览课程</button>
+        <button class="btn-parse" onclick="generateTopic()" style="flex:1;background:var(--success)">🚀 生成并保存</button>
+        <button class="btn-clear" onclick="clearTopicForm()">清空</button>
+      </div>
+      
+      <div id="topicPreview" style="margin-top:16px;display:none"></div>
+      <div id="topicResult" style="margin-top:16px;display:none"></div>
+    </div>
+  </div>`;
+  
+  // 绑定日期校验
+  setTimeout(() => {
+    const dateSel = document.getElementById("genTopicDate");
+    if (dateSel) {
+      dateSel.addEventListener("change", function() {
+        const warn = document.getElementById("dateWarn");
+        const val = this.value;
+        if (topicCalendar[val]) {
+          warn.style.display = "block";
+          this.style.borderColor = "var(--danger)";
+        } else {
+          warn.style.display = "none";
+          this.style.borderColor = "var(--border)";
+        }
+      });
+    }
+  }, 100);
 }
-function parseVocab(){if(!checkAccess("词汇录入"))return;
-  const input=document.getElementById("vInput").value.trim();if(!input){showToast("请先输入");return;}
-  const lines=input.split(/[\s,]+/).map(s=>s.trim()).filter(s=>s);
-  const resultDiv=document.getElementById("vResult");resultDiv.style.display="block";resultDiv.classList.add("show");
-  let found=0,pending=0;let html=`<div style="display:grid;grid-template-columns:1fr;gap:8px;margin-top:12px">`;
-  lines.forEach(word=>{const key=Object.keys(vocabDB).find(k=>k.toLowerCase()===word.toLowerCase());if(key){found++;const v=vocabDB[key];html+=`<div style="padding:12px;background:rgba(34,197,94,.08);border-radius:8px;border-left:3px solid var(--success)"><div style="font-weight:700;color:var(--primary)">${key} <span style="color:var(--text-dim);font-weight:400">${v.ipa||""}</span></div><div style="font-size:12px;color:var(--text-dim);margin-top:3px">🇨🇳 ${v.cn||""}</div></div>`;}else{pending++;html+=`<div style="padding:12px;background:rgba(239,68,68,.08);border-radius:8px;border-left:3px solid var(--danger)"><div style="font-weight:700">${word}</div><div style="font-size:12px;color:var(--text-dim)">⏳ 待补充</div></div>`;}});
-  html+=`</div>`;html+=`<div style="margin-top:14px;font-size:13px;color:var(--text-dim)">✅ ${found} · ⏳ ${pending} · 总计 ${lines.length}</div>`;
-  resultDiv.innerHTML=html;
-  const ds=new Date().toISOString().slice(0,10);if(!learningHistory[ds])learningHistory[ds]={vocabNew:[],vocabReview:[],translations:0,notes:""};lines.forEach(w=>{const key=Object.keys(vocabDB).find(k=>k.toLowerCase()===w.toLowerCase());if(key&&!learningHistory[ds].vocabNew.includes(key))learningHistory[ds].vocabNew.push(key);});saveHistory();updateStats();showToast("录入 "+found+" 词");
+
+function clearTopicForm() {
+  const ids = ["genTopicName", "genTopicVocab", "genTopicGrammar", "genTopicScenes"];
+  ids.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.value = "";
+  });
+  document.getElementById("topicPreview").style.display = "none";
+  document.getElementById("topicResult").style.display = "none";
 }
+
+function parseVocabInput(text) {
+  const vocab = [];
+  text.split("\\n").forEach(line => {
+    line = line.trim();
+    if (!line) return;
+    const parts = line.split("-").map(s => s.trim());
+    if (parts.length >= 2) {
+      vocab.push({
+        word: parts[0],
+        cn: parts[1],
+        ipa: parts[2] || ""
+      });
+    }
+  });
+  return vocab;
+}
+
+function generateAutoScenes(topicName, vocabList, scenesDesc) {
+  // 基于话题名和词汇自动生成场景对话
+  const scenes = [];
+  const descLines = scenesDesc ? scenesDesc.split("\\n").filter(l => l.trim()) : [];
+  
+  const defaultScenes = [
+    { title: "🎯 核心词汇学习", icon: "🎯", type: "vocab" },
+    { title: "🎭 场景对话练习", icon: "🎭", type: "dialogue" },
+    { title: "📖 阅读理解", icon: "📖", type: "reading" }
+  ];
+  
+  const sceneTitles = descLines.length > 0 ? descLines.map((d, i) => ({
+    title: d.replace(/^\\d+\\.\\s*/, "").trim() || defaultScenes[i]?.title || `场景 ${i+1}`,
+    icon: ["🎯", "🎭", "📖", "💼", "🌐", "📊"][i] || "📝",
+    type: i === 0 ? "vocab" : "dialogue"
+  })) : defaultScenes;
+  
+  sceneTitles.forEach((sc, idx) => {
+    const sceneVocab = vocabList.slice(idx * 3, idx * 3 + 5).map(v => v.word);
+    const dialogue = [];
+    
+    if (sc.type === "vocab") {
+      dialogue.push({speaker: "📢", text: `Selamat datang di pelajaran ${topicName}.`, trans: `欢迎来到${topicName}课程。`});
+      dialogue.push({speaker: "👤", text: `Saya siap belajar.`, trans: `我准备好了。`});
+    } else {
+      dialogue.push({speaker: "A", text: `Selamat ${idx === 1 ? 'pagi' : 'siang'}, apa kabar?`, trans: `${idx === 1 ? '早上' : '下午'}好，你好吗？`});
+      dialogue.push({speaker: "B", text: `Baik, terima kasih.`, trans: `很好，谢谢。`});
+      dialogue.push({speaker: "A", text: `Mari kita mulai.`, trans: `让我们开始吧。`});
+    }
+    
+    scenes.push({
+      title: sc.title,
+      icon: sc.icon,
+      vocab: sceneVocab,
+      dialogue: dialogue
+    });
+  });
+  
+  return scenes;
+}
+
+function generateAutoSpeeches(topicName, vocabList) {
+  const speeches = [];
+  
+  // 3分钟演讲
+  const keyWords = vocabList.slice(0, 8).map(v => v.word);
+  speeches.push({
+    title: `📜 3分钟演讲：${topicName}`,
+    duration: "~3 menit",
+    icon: "📜",
+    words: 150 + Math.floor(Math.random() * 50),
+    time: 180,
+    content: `Assalamualaikum wr. wb.\\n\\nHari ini saya ingin berbicara tentang ${topicName}.\\n\\nPertama, ${topicName} sangat penting dalam kehidupan sehari-hari dan dunia bisnis. Kita sering menghadapi situasi yang memerlukan kemampuan ini.\\n\\nKedua, dalam konteks Indonesia, memahami ${topicName} membantu kita berkomunikasi lebih efektif dengan mitra lokal.\\n\\nKetiga, saya percaya bahwa dengan latihan yang konsisten, kita dapat menguasai ${topicName} dengan baik.\\n\\nTerima kasih. Wassalamualaikum wr. wb.`,
+    trans: `大家好。\\n\\n今天我想谈谈${topicName}。\\n\\n首先，${topicName}在日常生活和商业世界中非常重要。我们经常遇到需要这种能力的情况。\\n\\n其次，在印度尼西亚的背景下，理解${topicName}有助于我们更有效地与当地合作伙伴沟通。\\n\\n第三，我相信通过持续的练习，我们可以很好地掌握${topicName}。\\n\\n谢谢。`
+  });
+  
+  // 1分钟演讲
+  speeches.push({
+    title: `📊 1分钟演讲：我的${topicName}经验`,
+    duration: "~1 menit",
+    icon: "📊",
+    words: 80,
+    time: 60,
+    content: `Selamat pagi. Saya ingin berbagi pengalaman saya tentang ${topicName}.\\n\\nDalam pekerjaan saya, saya sering menggunakan kosakata seperti ${keyWords.slice(0, 3).join(", ")}.\\n\\nSaya berharap kita semua dapat terus meningkatkan kemampuan berbahasa Indonesia. Terima kasih.`,
+    trans: `早上好。我想分享我关于${topicName}的经验。\\n\\n在我的工作中，我经常使用诸如${keyWords.slice(0, 3).join(", ")}之类的词汇。\\n\\n希望我们都能继续提高印尼语能力。谢谢。`
+  });
+  
+  return speeches;
+}
+
+function previewTopic() {
+  const name = document.getElementById("genTopicName").value.trim();
+  const icon = document.getElementById("genTopicIcon").value;
+  const date = document.getElementById("genTopicDate").value;
+  const days = parseInt(document.getElementById("genTopicDays").value);
+  const vocabText = document.getElementById("genTopicVocab").value.trim();
+  const grammar = document.getElementById("genTopicGrammar").value.trim();
+  const scenesDesc = document.getElementById("genTopicScenes").value.trim();
+  
+  if (!name || !date) {
+    showToast("请填写话题名称和日期");
+    return;
+  }
+  
+  const vocabList = parseVocabInput(vocabText);
+  const scenes = generateAutoScenes(name, vocabList, scenesDesc);
+  const speeches = generateAutoSpeeches(name, vocabList);
+  
+  const previewDiv = document.getElementById("topicPreview");
+  previewDiv.style.display = "block";
+  previewDiv.innerHTML = `
+    <div style="background:var(--bg-elev);border-radius:10px;padding:16px;border:1px solid var(--primary)">
+      <div style="font-size:15px;color:var(--primary);font-weight:700;margin-bottom:12px">👁️ 课程预览</div>
+      <div style="font-size:13px;color:var(--text);margin-bottom:8px">
+        <strong>${icon} ${name}</strong><br>
+        📅 ${date} 起 ${days} 天<br>
+        🎯 核心词汇: ${vocabList.length} 个<br>
+        🎭 场景: ${scenes.length} 个<br>
+        🎤 演讲: ${speeches.length} 篇<br>
+        📖 语法: ${grammar || "（将自动生成）"}
+      </div>
+      <div style="font-size:12px;color:var(--text-dim);margin-top:8px">
+        词汇示例: ${vocabList.slice(0, 5).map(v => v.word).join(", ")}${vocabList.length > 5 ? "..." : ""}
+      </div>
+    </div>
+  `;
+}
+
+function generateTopic() {
+  if (!checkAccess("话题生成")) return;
+  
+  const name = document.getElementById("genTopicName").value.trim();
+  const icon = document.getElementById("genTopicIcon").value;
+  const date = document.getElementById("genTopicDate").value;
+  const days = parseInt(document.getElementById("genTopicDays").value);
+  const vocabText = document.getElementById("genTopicVocab").value.trim();
+  const grammar = document.getElementById("genTopicGrammar").value.trim();
+  const scenesDesc = document.getElementById("genTopicScenes").value.trim();
+  
+  if (!name || !date) {
+    showToast("请填写话题名称和日期");
+    return;
+  }
+  
+  if (topicCalendar[date]) {
+    showToast("该日期已有课程，请选择其他日期");
+    return;
+  }
+  
+  const vocabList = parseVocabInput(vocabText);
+  const topicNum = Object.keys(topicData).length + 1;
+  const topicKey = "topic_" + Date.now();
+  
+  // 生成词汇数组 [word, cn, ipa]
+  const vocabArray = vocabList.map(v => [v.word, v.cn, v.ipa]);
+  
+  // 生成场景
+  const scenes = generateAutoScenes(name, vocabList, scenesDesc);
+  
+  // 生成演讲
+  const speeches = generateAutoSpeeches(name, vocabList);
+  
+  // 构建话题数据
+  const newTopic = {
+    title: `话题${topicNum}: ${name}`,
+    icon: icon,
+    days: days,
+    desc: `${name}专题课程，涵盖核心词汇、语法规则、场景对话和演讲练习。`,
+    grammar: {
+      title: grammar || `${name}核心语法`,
+      rules: [
+        `Rule 1: 掌握${name}场景中的核心词汇用法`,
+        `Rule 2: 理解印尼语在${name}语境中的表达习惯`,
+        `Rule 3: 熟练运用相关语法结构进行有效沟通`
+      ],
+      examples: vocabList.slice(0, 3).map(v => `${v.word} = '${v.cn}'`)
+    },
+    vocab: vocabArray,
+    scenes: scenes,
+    speeches: speeches
+  };
+  
+  // 添加到 topicData（运行时）
+  topicData[topicKey] = newTopic;
+  
+  // 添加到 topicCalendar（运行时）
+  const startDate = new Date(date);
+  for (let i = 0; i < days; i++) {
+    const d = new Date(startDate);
+    d.setDate(d.getDate() + i);
+    const ds = d.toISOString().slice(0, 10);
+    const dayLabels = ["语法+词汇", "场景对话", "演讲+测试", "深度练习", "综合复习"];
+    topicCalendar[ds] = {
+      topic: topicKey,
+      day: i + 1,
+      label: `${icon} ${name} · ${dayLabels[i] || "第" + (i+1) + "天"}`
+    };
+  }
+  
+  // 保存到 localStorage
+  const customTopics = JSON.parse(localStorage.getItem("bir_custom_topics") || "{}");
+  customTopics[topicKey] = { topic: newTopic, startDate: date, days: days };
+  localStorage.setItem("bir_custom_topics", JSON.stringify(customTopics));
+  
+  const customCalendar = JSON.parse(localStorage.getItem("bir_custom_calendar") || "{}");
+  Object.keys(topicCalendar).forEach(ds => {
+    if (topicCalendar[ds].topic === topicKey) {
+      customCalendar[ds] = topicCalendar[ds];
+    }
+  });
+  localStorage.setItem("bir_custom_calendar", JSON.stringify(customCalendar));
+  
+  // 显示结果
+  const resultDiv = document.getElementById("topicResult");
+  resultDiv.style.display = "block";
+  resultDiv.innerHTML = `
+    <div style="background:rgba(34,197,94,.1);border-radius:10px;padding:16px;border:2px solid var(--success)">
+      <div style="font-size:16px;color:var(--success);font-weight:700;margin-bottom:12px">✅ 话题课程生成成功！</div>
+      <div style="font-size:14px;color:var(--text);margin-bottom:12px">
+        <strong>${icon} 话题${topicNum}: ${name}</strong><br>
+        📅 ${date} 起 ${days} 天课程<br>
+        🎯 ${vocabList.length} 个核心词汇<br>
+        🎭 ${scenes.length} 个场景对话<br>
+        🎤 ${speeches.length} 篇演讲
+      </div>
+      <div style="background:var(--bg-card);border-radius:8px;padding:12px;font-size:12px;color:var(--text-dim)">
+        💾 课程已保存到本地存储，刷新页面后仍然可用<br>
+        📌 话题编号: <strong>${topicKey}</strong><br>
+        📍 日历入口: ${date} 等 ${days} 个日期
+      </div>
+      <div style="margin-top:12px;display:flex;gap:10px">
+        <button onclick="navigate('calendar')" class="trans-btn" style="flex:1;background:var(--primary);color:#000">📅 查看日历</button>
+        <button onclick="navigate('topicquiz','${topicKey}')" class="trans-btn" style="flex:1;background:var(--accent);color:#000">🎯 话题测试</button>
+      </div>
+    </div>
+  `;
+  
+  showToast(`✅ 话题${topicNum}「${name}」生成成功！`);
+  updateStats();
+  
+  // 3秒后自动跳转到日历
+  setTimeout(() => {
+    navigate('calendar');
+  }, 3000);
+}
+
+// 页面加载时恢复自定义话题
+function loadCustomTopics() {
+  try {
+    const customTopics = JSON.parse(localStorage.getItem("bir_custom_topics") || "{}");
+    const customCalendar = JSON.parse(localStorage.getItem("bir_custom_calendar") || "{}");
+    
+    Object.keys(customTopics).forEach(key => {
+      if (customTopics[key].topic) {
+        topicData[key] = customTopics[key].topic;
+      }
+    });
+    
+    Object.keys(customCalendar).forEach(ds => {
+      topicCalendar[ds] = customCalendar[ds];
+    });
+    
+    console.log("✅ 已恢复自定义话题:", Object.keys(customTopics).length);
+  } catch(e) {
+    console.error("恢复自定义话题失败:", e);
+  }
+}
+
+// 页面启动时调用
+loadCustomTopics();
 
 function renderWordBank(c){
   const m=wordBank.filter(w=>w.mastered).length;
@@ -5773,7 +6160,7 @@ const topicData = {
 
 // === UKBI 5级考试专题 ===
 ukbi: {
-  icon: "📜", title: "UKBI 5级考试 / Ujian UKBI Madya",
+  icon: "📜", title: "话题10: UKBI 5级考试 / Ujian UKBI Madya",
   desc: "UKBI (Uji Kemahiran Berbahasa Indonesia) 是印尼官方语言能力测试。5级Madya对应CEFR B2水平，适用于学术和商务场景。",
   grammar: {
     title: "UKBI 5级核心语法",
