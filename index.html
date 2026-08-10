@@ -6,7 +6,7 @@
 <meta http-equiv="Expires" content="0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LEO-BIR V4.10.0-08032026 (shopping+address+supermarket)</title>
+<title>LEO-BIR V4.10.1-08032026 (shopping+address+supermarket)</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -273,7 +273,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="sidebar-header">
     <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <h1>LEO-BIR</h1>
-    <div class="ver">LEO-BIR V4.10.0 · 新增购物+地址+超市场景 · 76词汇 · 日历自动当前月 · 弹窗朗读 · 双产业地图</div>
+    <div class="ver">LEO-BIR V4.10.1 · 新增购物+地址+超市场景 · 76词汇 · 日历自动当前月 · 弹窗朗读 · 双产业地图</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -4519,6 +4519,24 @@ const topicData = {
         "temu /ˈtɛmu/ (n.) → bertemu /bərˈtɛmu/ (v.) = '见面'"
       ]
     },
+    "vocab": [
+      ['bertemu', '见面', '/bərˈtɛmu/'], ['berdiskusi', '讨论', '/bərdɪsˈkusi/'],
+      ['berjumpa', '遇见', '/bərˈdʒumpa/'], ['berkumpul', '聚集', '/bərˈkumpul/'],
+      ['berbicara', '说话', '/bərbiˈtʃara/'], ['berkerja', '工作', '/bərˈkɛrdʒa/'],
+      ['berjalan', '走路', '/bərˈdʒalan/'], ['bersemangat', '有干劲', '/bərsɛˈmaŋat/'],
+      ['berusaha', '努力', '/bəruˈsaha/'], ['berpikir', '思考', '/bərˈpikɪr/'],
+      ['bersama-sama', '一起', '/bərˈsama ˈsama/'], ['berkembang', '发展', '/bərkɛmˈbaŋ/'],
+      ['beroperasi', '运营', '/bəroˈpɛrasi/'], ['berkelanjutan', '持续', '/bərkəlanˈdʒutan/'],
+      ['berharap', '希望', '/bərˈharap/'], ['bersinergi', '协同', '/bərsɪˈnɛrdʒi/'],
+      ['berkaitan', '相关', '/bərkaiˈtan/'], ['berkomunikasi', '沟通', '/bərkɔmunɪˈkasi/'],
+      ['berlibur', '度假', '/bərˈlibur/'], ['bermain', '玩', '/bərˈmain/'],
+      ['berdagang', '经商', '/bərˈdagaŋ/'], ['berencana', '计划', '/bərɛnˈtʃana/'],
+      ['berkenalan', '认识', '/bərkɛˈnalan/'], ['nama', '名字', '/ˈnama/'],
+      ['saya', '我', '/ˈsaja/'], ['Bapak', '先生', '/ˈbapak/'],
+      ['Ibu', '女士', '/ˈibu/'], ['salam', '问候', '/ˈsalam/'],
+      ['pagi', '早上', '/ˈpaɡi/'], ['siang', '中午', '/ˈsiaŋ/'],
+      ['sore', '下午', '/ˈsorɛ/'], ['malam', '晚上', '/ˈmalam/']
+    ],
     "scenes": [
       {
         "title": "正式初次见面（政府/官员）",
@@ -4753,6 +4771,22 @@ const topicData = {
         "kenal → terkenal /tərˈkɛnal/ = '著名的'"
       ]
     },
+    "vocab": [
+      ['perkenalkan', '介绍', '/pərkɛˈnalan/'], ['nama', '名字', '/ˈnama/'],
+      ['saya', '我', '/ˈsaja/'], ['asal', '来自', '/ˈasal/'],
+      ['tinggal', '居住', '/ˈtiŋgal/'], ['bekerja', '工作', '/bɛˈkɛrdʒa/'],
+      ['jabatan', '职位', '/dʒaˈbatan/'], ['perusahaan', '公司', '/pɛrusaˈhan/'],
+      ['bidang', '领域', '/ˈbidaŋ/'], ['industri', '工业', '/ˈɪndustri/'],
+      ['hobi', '爱好', '/ˈhobi/'], ['keluarga', '家庭', '/kɛˈluarga/'],
+      ['istri', '妻子', '/ˈistri/'], ['suami', '丈夫', '/ˈsuami/'],
+      ['anak', '孩子', '/ˈanak/'], ['saudara', '兄弟姐妹', '/ˈsaudara/'],
+      ['orang tua', '父母', '/ˈoraŋ ˈtua/'], ['alamat', '地址', '/ˈalamat/'],
+      ['telepon', '电话', '/ˈtɛlɛfon/'], ['email', '电子邮件', '/ˈimɛl/'],
+      ['lulusan', '毕业生', '/ˈlulusan/'], ['universitas', '大学', '/unɪvɛrˈsɪtas/'],
+      ['jurusan', '专业', '/dʒuˈrusan/'], ['tahun', '年', '/ˈtahun/'],
+      ['pengalaman', '经验', '/pɛŋˈalaman/'], ['spesialisasi', '专业', '/spɛsɪalɪˈsasi/'],
+      ['keahlian', '技能', '/kɛˈahlijan/'], ['sertifikasi', '认证', '/sɛrtɪfɪˈkasi/']
+    ],
     "scenes": [
       {
         "title": "自我介绍（正式场合）",
@@ -4896,6 +4930,24 @@ const topicData = {
         "Bisa tunjukkan di peta? /ˈbisa ˈtundʒukkan di ˈpɛta/ = '能在地图上指一下吗？'"
       ]
     },
+    "vocab": [
+      ['lurus', '直', '/ˈlurus/'], ['belok', '转弯', '/ˈbɛlok/'],
+      ['kanan', '右', '/ˈkanan/'], ['kiri', '左', '/ˈkiri/'],
+      ['depan', '前', '/ˈdɛpan/'], ['belakang', '后', '/bɛˈlakaŋ/'],
+      ['atas', '上', '/ˈatas/'], ['bawah', '下', '/ˈbawah/'],
+      ['jalan', '路', '/ˈdʒalan/'], ['peta', '地图', '/ˈpɛta/'],
+      ['tunjuk', '指', '/ˈtundʒuk/'], ['jauh', '远', '/ˈdʒauh/'],
+      ['dekat', '近', '/ˈdɛkat/'], ['lokasi', '位置', '/ˈlokasi/'],
+      ['posisi', '位置', '/poˈsɪsi/'], ['arah', '方向', '/ˈarah/'],
+      ['tujuan', '目的地', '/tuˈdʒuan/'], ['dari', '从', '/ˈdari/'],
+      ['ke', '去', '/ˈkɛ/'], ['di', '在', '/ˈdi/'],
+      ['sini', '这里', '/ˈsini/'], ['sana', '那里', '/ˈsana/'],
+      ['situ', '那里', '/ˈsitu/'], ['sebelah', '旁边', '/sɛˈbɛlah/'],
+      ['perempatan', '十字路口', '/pɛrɛmˈpatan/'], ['pertigaan', '三岔口', '/pɛrˈtigaan/'],
+      ['gerbang', '大门', '/ˈgɛrbaŋ/'], ['pelabuhan', '港口', '/pɛˈlabuhan/'],
+      ['bandara', '机场', '/ˈbandara/'], ['terminal', '总站', '/ˈtɛrminal/'],
+      ['hotel', '酒店', '/hoˈtɛl/']
+    ],
     "scenes": [
       {
         "title": "问路到工厂/园区",
@@ -5029,6 +5081,23 @@ const topicData = {
         "Mereka bekerja di pabrik. = 他们在工厂工作。 (ber- 前缀)"
       ]
     },
+    "vocab": [
+      ["tolong", "请", "/ˈtoloŋ/"], ["terima kasih", "谢谢", "/tɛˈrima ˈkasih/"],
+      ["maaf", "对不起", "/ˈmaaf/"], ["permisi", "打扰", "/pɛrˈmisi/"],
+      ["ya", "是", "/ˈja/"], ["tidak", "不", "/ˈtidak/"],
+      ["mungkin", "也许", "/ˈmuŋkin/"], ["nanti", "稍后", "/ˈnanti/"],
+      ["sekarang", "现在", "/sɛˈkaraŋ/"], ["kemarin", "昨天", "/kɛˈmarin/"],
+      ["besok", "明天", "/ˈbɛsok/"], ["sudah", "已经", "/ˈsudah/"],
+      ["belum", "还没", "/ˈbɛlum/"], ["bisa", "能", "/ˈbisa/"],
+      ["suka", "喜欢", "/ˈsuka/"], ["mau", "想要", "/ˈmau/"],
+      ["ingin", "想", "/ˈiŋin/"], ["butuh", "需要", "/ˈbutuh/"],
+      ["ada", "有", "/ˈada/"], ["tidak ada", "没有", "/ˈtidak ˈada/"],
+      ["bagaimana", "怎样", "/bagaˈimana/"], ["kenapa", "为什么", "/kɛˈnapa/"],
+      ["berapa", "多少", "/ˈbɛrapa/"], ["dimana", "哪里", "/ˈdimana/"],
+      ["kapan", "何时", "/ˈkapan/"], ["siapa", "谁", "/ˈsiapa/"],
+      ["apa", "什么", "/ˈapa/"], ["yang mana", "哪个", "/ˈjaŋ ˈmana/"],
+      ["seperti apa", "什么样", "/sɛˈpɛrti ˈapa/"]
+    ],
     "scenes": [
       {
         "title": "餐厅点餐",
@@ -5132,6 +5201,21 @@ const topicData = {
         "Musim hujan di Indonesia biasanya dari November sampai Maret. = 印尼雨季通常从11月到3月。"
       ]
     },
+    "vocab": [
+      ["cuaca", "天气", "/ˈtʃuhatʃa/"], ["panas", "热", "/ˈpanas/"],
+      ["dingin", "冷", "/ˈdiŋin/"], ["hujan", "雨", "/ˈhudʒan/"],
+      ["gerimis", "毛毛雨", "/ˈgɛrimis/"], ["lebat", "大", "/ˈlɛbat/"],
+      ["petir", "雷", "/ˈpɛtir/"], ["angin", "风", "/ˈaŋin/"],
+      ["badai", "暴风雨", "/ˈbadai/"], ["banjir", "洪水", "/ˈbandʒir/"],
+      ["kekeringan", "干旱", "/kɛˈkɛriŋan/"], ["suhu", "温度", "/ˈsuhu/"],
+      ["derajat", "度", "/ˈdɛradʒat/"], ["prediksi", "预测", "/prɛˈdɪksi/"],
+      ["musim", "季节", "/ˈmusim/"], ["kemarau", "旱季", "/kɛˈmarau/"],
+      ["penghujan", "雨季", "/pɛŋˈhudʒan/"], ["cuaca ekstrem", "极端天气", "/ˈtʃuhatʃa ɛksˈtrɛm/"],
+      ["iklim", "气候", "/ˈiklim/"], ["tropis", "热带", "/ˈtropɪs/"],
+      ["khatulistiwa", "赤道", "/ˈkhaturaˈlistiwa/"], ["cuaca buruk", "恶劣天气", "/ˈtʃuhatʃa ˈburuk/"],
+      ["peringatan dini", "预警", "/pɛriŋˈatan ˈdini/"], ["evakuasi", "疏散", "/ɛvakuˈasi/"],
+      ["siaga", "戒备", "/ˈsiaga/"], ["waspada", "警惕", "/ˈwaspada/"]
+    ],
     "scenes": [
       {
         "title": "看天气预报",
@@ -5235,6 +5319,22 @@ const topicData = {
         "Jangan lupa minum obat tiga kali sehari! = 别忘了每天吃药三次！"
       ]
     },
+    "vocab": [
+      ["sakit", "生病", "/ˈsakit/"], ["dokter", "医生", "/ˈdoktər/"],
+      ["rumah sakit", "医院", "/ˈrumah ˈsakit/"], ["obat", "药", "/ˈobat/"],
+      ["apotek", "药房", "/ˈapotɛk/"], ["demam", "发烧", "/ˈdɛmam/"],
+      ["flu", "流感", "/ˈflu/"], ["batuk", "咳嗽", "/ˈbatuk/"],
+      ["pusing", "头晕", "/ˈpusiŋ/"], ["mual", "恶心", "/ˈmuwal/"],
+      ["diare", "腹泻", "/ˈdiarɛ/"], ["sesak napas", "呼吸困难", "/ˈsɛsak ˈnapas/"],
+      ["nyeri", "疼痛", "/ˈɲɛri/"], ["luka", "伤口", "/ˈluka/"],
+      ["patah", "骨折", "/ˈpatah/"], ["darah", "血", "/ˈdarah/"],
+      ["tekanan darah", "血压", "/ˈtɛkanan ˈdarah/"], ["gula darah", "血糖", "/ˈgula ˈdarah/"],
+      ["alergi", "过敏", "/ˈalɛrdʒi/"], ["vaksin", "疫苗", "/ˈvaksin/"],
+      ["imunisasi", "免疫", "/ˈimunɪsasi/"], ["rawat inap", "住院", "/ˈrawat ˈinap/"],
+      ["rawat jalan", "门诊", "/ˈrawat ˈdʒalan/"], ["ugd", "急诊", "/ˈu gɛ dɛ/"],
+      ["ambulans", "救护车", "/ˈambulans/"], ["bpjs", "国民保险", "/ˈbɛ pɛ dʒɛ ɛs/"],
+      ["resep", "处方", "/ˈrɛsɛp/"]
+    ],
     "scenes": [
       {
         "title": "医院挂号",
@@ -5328,6 +5428,23 @@ const topicData = {
         "pakai /ˈpakai/ (v.) → memakai /məˈpakai/ (v.) = '穿戴/使用'"
       ]
     },
+    "vocab": [
+      ["belanja", "购物", "/bɛˈlandʒa/"], ["toko", "商店", "/ˈtoko/"],
+      ["mall", "商场", "/ˈmol/"], ["pasar", "市场", "/ˈpasar/"],
+      ["harga", "价格", "/ˈharga/"], ["diskon", "折扣", "/ˈdiskon/"],
+      ["mahal", "贵", "/ˈmahal/"], ["murah", "便宜", "/ˈmurah/"],
+      ["bayar", "支付", "/ˈbajar/"], ["tunai", "现金", "/ˈtunai/"],
+      ["kartu kredit", "信用卡", "/ˈkartu ˈkrɛdit/"], ["debit", "借记", "/ˈdɛbit/"],
+      ["transfer", "转账", "/ˈtransfer/"], ["qr", "二维码", "/ˈkju ar/"],
+      ["ovo", "OVO钱包", "/ˈovo/"], ["gopay", "GoPay钱包", "/ˈgopɛj/"],
+      ["cashback", "返现", "/ˈkæʃbæk/"], ["promo", "促销", "/ˈpromo/"],
+      ["member", "会员", "/ˈmɛmbər/"], ["poin", "积分", "/ˈpoin/"],
+      ["garansi", "保修", "/ˈgaransi/"], ["retur", "退货", "/ˈrɛtur/"],
+      ["ukuran", "尺寸", "/ˈukuran/"], ["warna", "颜色", "/ˈwarna/"],
+      ["model", "型号", "/ˈmodɛl/"], ["stok", "库存", "/ˈstok/"],
+      ["tersedia", "有货", "/tɛrˈsedia/"], ["habis", "售罄", "/ˈhabis/"],
+      ["pesan", "订购", "/ˈpɛsan/"], ["antar", "送货", "/ˈantar/"]
+    ],
     "scenes": [
       {
         "title": "在传统市场砍价",
@@ -5439,6 +5556,23 @@ const topicData = {
         "Bisa sebutkan alamat lengkapnya? = '能说一下完整地址吗？'"
       ]
     },
+    "vocab": [
+      ["alamat", "地址", "/ˈalamat/"], ["jalan", "街道", "/ˈdʒalan/"],
+      ["gang", "巷", "/ˈgaŋ/"], ["nomor", "号码", "/ˈnomor/"],
+      ["rt", "RT", "/ˈɛr tɛ/"], ["rw", "RW", "/ˈɛr ˈdabəlju/"],
+      ["kelurahan", "社区", "/kɛluˈrahan/"], ["kecamatan", "区", "/kɛtʃaˈmatan/"],
+      ["kota", "城市", "/ˈkota/"], ["provinsi", "省", "/proˈvɪnsi/"],
+      ["kode pos", "邮编", "/ˈkodɛ ˈpos/"], ["patokan", "地标", "/ˈpatokan/"],
+      ["depan", "前面", "/ˈdɛpan/"], ["sebelah", "旁边", "/sɛˈbɛlah/"],
+      ["belakang", "后面", "/bɛˈlakaŋ/"], ["dekat", "近", "/ˈdɛkat/"],
+      ["jauh", "远", "/ˈdʒauh/"], ["lokasi", "位置", "/ˈlokasi/"],
+      ["gps", "GPS", "/ˈdʒi pi ɛs/"], ["koordinat", "坐标", "/koˈordinat/"],
+      ["peta", "地图", "/ˈpɛta/"], ["petunjuk arah", "方向指引", "/pɛˈtundʒuk ˈarah/"],
+      ["belok kanan", "右转", "/ˈbɛlok ˈkanan/"], ["belok kiri", "左转", "/ˈbɛlok ˈkiri/"],
+      ["lurus", "直走", "/ˈlurus/"], ["putar balik", "掉头", "/ˈputar ˈbalik/"],
+      ["macet", "堵车", "/ˈmatʃɛt/"], ["alternatif", "替代路线", "/altɛrˈnatif/"],
+      ["jalur", "路线", "/ˈdʒalur/"]
+    ],
     "scenes": [
       {
         "title": "告知家庭住址",
@@ -5528,6 +5662,21 @@ const topicData = {
         "Ada promo untuk roti tawar hari ini. = '今天白面包有促销。'"
       ]
     },
+    "vocab": [
+      ["supermarket", "超市", "/ˈsupɛrmarket/"], ["minimarket", "便利店", "/ˈminɪmarket/"],
+      ["gerobak", "推车", "/ˈgɛrobak/"], ["troli", "手推车", "/ˈtroli/"],
+      ["rak", "货架", "/ˈrak/"], ["produk", "产品", "/ˈprodʌk/"],
+      ["merek", "品牌", "/ˈmɛrɛk/"], ["expired", "过期", "/ˈɛkspaiəd/"],
+      ["tanggal kadaluarsa", "到期日", "/ˈtaŋgal kadalˈwarsa/"], ["kemasan", "包装", "/kɛˈmasan/"],
+      ["gram", "克", "/ˈgram/"], ["kilogram", "千克", "/ˈkilogram/"],
+      ["liter", "升", "/ˈlitɛr/"], ["mililiter", "毫升", "/ˈmililitɛr/"],
+      ["diskon", "折扣", "/ˈdiskon/"], ["beli satu gratis satu", "买一送一", "/ˈbɛli ˈsatu ˈgratis ˈsatu/"],
+      ["promo", "促销", "/ˈpromo/"], ["katalog", "目录", "/ˈkatalog/"],
+      ["member", "会员", "/ˈmɛmbər/"], ["kupon", "优惠券", "/ˈkupon/"],
+      ["struk", "小票", "/ˈstruk/"], ["kembalian", "找零", "/kɛmˈbalian/"],
+      ["plastik", "塑料袋", "/ˈplastik/"], ["kantong", "袋子", "/ˈkantoŋ/"],
+      ["hemat", "节省", "/ˈhɛmat/"], ["boros", "浪费", "/ˈboros/"]
+    ],
     "scenes": [
       {
         "title": "在超市找商品",
