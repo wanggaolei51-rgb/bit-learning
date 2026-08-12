@@ -6,7 +6,7 @@
 <meta http-equiv="Expires" content="0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LEO-BIR V4.11.1-08032026 (shopping+address+supermarket)</title>
+<title>LEO-BIR V4.12.0-08122026 (UKBI对话翻译+思维导图)</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -273,7 +273,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="sidebar-header">
     <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <h1>LEO-BIR</h1>
-    <div class="ver">LEO-BIR V4.11.1 · 新增购物+地址+超市场景 · 76词汇 · 日历自动当前月 · 弹窗朗读 · 双产业地图</div>
+    <div class="ver">LEO-BIR V4.12.0 · UKBI对话中文翻译同步+鼠标悬停高亮 · 三级思维导图 · 日历支持8/12复习日</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -4911,6 +4911,16 @@ function markWordReviewed(word, interval) {
     saveWB();
   }
 }
+// ===================== C4 编码规范 =====================
+// C4.1: 话题对话必须包含 trans 字段（中文翻译），与短文一致同步显示
+// C4.2: 对话渲染使用 dialogue-item + dialogue-trans 类，支持鼠标悬停高亮
+// C4.3: 鼠标悬停印尼语单词时，对应中文翻译加重显示（color/fontWeight/background）
+// C4.4: 话题数据使用 topic.vocab 动态取词，禁止硬编码兜底词表
+// C4.5: 课程词汇自动同步生词本（course vocab sync）
+// C4.6: 一个话题只生成一个测试（去重）
+// C4.7: 版本迭代必须同步更新 title + ver + 版本日志
+// C4.8: 部署前必须提升版本号并验证线上版本一致
+// ========================================================
 const topicData = {
   "meet": {
     "title": "话题1: 见面 / Bertemu",
@@ -6247,12 +6257,12 @@ ukbi: {
       icon: "📝",
       vocab: ['pendaftaran', 'biaya', 'jadwal', 'lokasi', 'persyaratan', 'identitas', 'foto', 'bukti'],
       dialogue: [
-        {speaker: "👤", text: "Selamat pagi, saya ingin mendaftar ujian UKBI tingkat Madya."},
-        {speaker: "👩‍💼", text: "Baik, Bapak sudah membawa persyaratannya? KTP, pas foto, dan bukti pembayaran?"},
-        {speaker: "👤", text: "Sudah saya bawa semua. Berapa biaya pendaftarannya?"},
-        {speaker: "👩‍💼", text: "Untuk UKBI Madya, biayanya Rp 350.000. Ujian akan dilaksanakan tanggal 15 Agustus pukul 08.00 di ruang 301."},
-        {speaker: "👤", text: "Terima kasih. Berapa lama durasi ujiannya?"},
-        {speaker: "👩‍💼", text: "Total 180 menit. Bagian Menyimak 40 menit, Membaca 50 menit, Berbicara 30 menit, dan Menulis 60 menit."}
+        {speaker: "👤", text: "Selamat pagi, saya ingin mendaftar ujian UKBI tingkat Madya.", trans: "早上好，我想报名参加UKBI中级考试。"},
+        {speaker: "👩‍💼", text: "Baik, Bapak sudah membawa persyaratannya? KTP, pas foto, dan bukti pembayaran?", trans: "好的，先生您带齐材料了吗？身份证、证件照和付款凭证？"},
+        {speaker: "👤", text: "Sudah saya bawa semua. Berapa biaya pendaftarannya?", trans: "我都带了。报名费是多少？"},
+        {speaker: "👩‍💼", text: "Untuk UKBI Madya, biayanya Rp 350.000. Ujian akan dilaksanakan tanggal 15 Agustus pukul 08.00 di ruang 301.", trans: "UKBI中级考试费用是35万印尼盾。考试将于8月15日早上8点在301教室进行。"},
+        {speaker: "👤", text: "Terima kasih. Berapa lama durasi ujiannya?", trans: "谢谢。考试时长是多久？"},
+        {speaker: "👩‍💼", text: "Total 180 menit. Bagian Menyimak 40 menit, Membaca 50 menit, Berbicara 30 menit, dan Menulis 60 menit.", trans: "总共180分钟。听力40分钟，阅读50分钟，口语30分钟，写作60分钟。"}
       ]
     },
     {
@@ -6260,12 +6270,12 @@ ukbi: {
       icon: "🎧",
       vocab: ['menyimak', 'audio', 'percakapan', 'monolog', 'pertanyaan', 'pilihan', 'jawaban', 'durasi'],
       dialogue: [
-        {speaker: "📢", text: "Bagian Menyimak. Anda akan mendengarkan beberapa percakapan dan monolog. Setiap audio hanya diputar satu kali."},
-        {speaker: "👤", text: "(Mendengarkan audio tentang perubahan cuaca ekstrem di Indonesia...)"},
-        {speaker: "📢", text: "Pertanyaan: Apa topik utama pembicaraan tersebut? A) Perubahan iklim global B) Dampak La Nina C) Strategi mitigasi bencana D) Revolusi industri hijau"},
-        {speaker: "👤", text: "Saya pilih B. Pembicara membahas tentang dampak La Nina terhadap curah hujan."},
-        {speaker: "📢", text: "Pertanyaan berikutnya: Menurut pembicara, apa solusi jangka panjang yang disarankan?"},
-        {speaker: "👤", text: "Pembicara menyarankan investasi dalam sistem peringatan dini dan drainase yang lebih baik."}
+        {speaker: "📢", text: "Bagian Menyimak. Anda akan mendengarkan beberapa percakapan dan monolog. Setiap audio hanya diputar satu kali.", trans: "听力部分。您将听到几段对话和独白。每段音频只播放一次。"},
+        {speaker: "👤", text: "(Mendengarkan audio tentang perubahan cuaca ekstrem di Indonesia...)", trans: "（正在听关于印尼极端天气变化的音频……）"},
+        {speaker: "📢", text: "Pertanyaan: Apa topik utama pembicaraan tersebut? A) Perubahan iklim global B) Dampak La Nina C) Strategi mitigasi bencana D) Revolusi industri hijau", trans: "问题：这段对话的主要话题是什么？A) 全球气候变化 B) 拉尼娜现象的影响 C) 灾害缓解策略 D) 绿色工业革命"},
+        {speaker: "👤", text: "Saya pilih B. Pembicara membahas tentang dampak La Nina terhadap curah hujan.", trans: "我选B。讲话者讨论了拉尼娜现象对降雨量的影响。"},
+        {speaker: "📢", text: "Pertanyaan berikutnya: Menurut pembicara, apa solusi jangka panjang yang disarankan?", trans: "下一个问题：根据讲话者，建议的长期解决方案是什么？"},
+        {speaker: "👤", text: "Pembicara menyarankan investasi dalam sistem peringatan dini dan drainase yang lebih baik.", trans: "讲话者建议投资早期预警系统和更好的排水设施。"}
       ]
     },
     {
@@ -6273,11 +6283,11 @@ ukbi: {
       icon: "📖",
       vocab: ['membaca', 'teks', 'paragraf', 'gagasan', 'kesimpulan', 'inferensi', 'referensi', 'kosakata'],
       dialogue: [
-        {speaker: "📢", text: "Bagian Membaca. Bacalah teks berikut dan jawablah pertanyaan-pertanyaannya."},
-        {speaker: "📄", text: "Indonesia memiliki potensi besar dalam transisi energi berkelanjutan. Dengan sumber daya geotermal terbesar di dunia dan potensi surya yang melimpah, negara ini dapat menjadi pemimpin dalam energi terbarukan di Asia Tenggara. Namun, tantangan infrastruktur dan regulasi masih menjadi hambatan utama..."},
-        {speaker: "👤", text: "(Membaca dengan cermat dan membuat catatan...)"},
-        {speaker: "📢", text: "Apa gagasan utama paragraf di atas?"},
-        {speaker: "👤", text: "Gagasan utamanya adalah potensi Indonesia sebagai pemimpin energi terbarukan di Asia Tenggara serta tantangan yang dihadapi."}
+        {speaker: "📢", text: "Bagian Membaca. Bacalah teks berikut dan jawablah pertanyaan-pertanyaannya.", trans: "阅读部分。请阅读以下文章并回答问题。"},
+        {speaker: "📄", text: "Indonesia memiliki potensi besar dalam transisi energi berkelanjutan. Dengan sumber daya geotermal terbesar di dunia dan potensi surya yang melimpah, negara ini dapat menjadi pemimpin dalam energi terbarukan di Asia Tenggara. Namun, tantangan infrastruktur dan regulasi masih menjadi hambatan utama...", trans: "印尼在可持续能源转型方面拥有巨大潜力。凭借全球最大的地热资源和丰富的太阳能潜力，这个国家可以成为东南亚可再生能源的领导者。然而，基础设施和监管挑战仍然是主要障碍……"},
+        {speaker: "👤", text: "(Membaca dengan cermat dan membuat catatan...)", trans: "（仔细阅读并做笔记……）"},
+        {speaker: "📢", text: "Apa gagasan utama paragraf di atas?", trans: "以上段落的主旨是什么？"},
+        {speaker: "👤", text: "Gagasan utamanya adalah potensi Indonesia sebagai pemimpin energi terbarukan di Asia Tenggara serta tantangan yang dihadapi.", trans: "主旨是印尼作为东南亚可再生能源领导者的潜力以及面临的挑战。"}
       ]
     }
   ],
@@ -6329,16 +6339,130 @@ ukbi: {
   "2026-08-09": {topic: "ukbi", day: 1, label: "📜 UKBI 5级 · 语法+词汇"},
   "2026-08-10": {topic: "ukbi", day: 2, label: "📜 UKBI 5级 · 听力+阅读"},
   "2026-08-11": {topic: "ukbi", day: 3, label: "📜 UKBI 5级 · 口语+写作"},
+  "2026-08-12": {topic: "ukbi", day: 4, label: "📜 UKBI 5级 · 核心思维导图", type: "mindmap"},
 };
 
 function getTopicForDate(ds) {
   return topicCalendar[ds] || null;
 }
 
+function toggleMindmapNode(nodeId) {
+  const children = document.getElementById('children-' + nodeId);
+  const icon = document.getElementById('icon-' + nodeId);
+  if (!children) return;
+  if (children.style.display === 'none') {
+    children.style.display = 'block';
+    if (icon) icon.style.transform = 'rotate(90deg)';
+  } else {
+    children.style.display = 'none';
+    if (icon) icon.style.transform = 'rotate(0deg)';
+  }
+}
+
+function renderMindmapContent(c, ds, topicInfo) {
+  const topic = topicData[topicInfo.topic];
+  let html = `<div class="card"><div class="card-header"><h2>${topic.icon} ${topic.title}</h2><span class="badge">核心思维导图 · 三级展开</span></div>`;
+  html += `<div style="background:rgba(0,212,170,.08);border-radius:10px;padding:16px;margin-bottom:16px;border-left:3px solid var(--primary)"><div style="font-size:14px;color:var(--primary);font-weight:700;margin-bottom:8px">🧠 今日学习目标</div><div style="font-size:13px;color:var(--text)">通过三级思维导图梳理UKBI 5级考试核心知识体系，点击各节点可展开/折叠查看详细内容。</div></div>`;
+  
+  const mindmapData = [
+    {
+      level: 1, title: "📜 UKBI 5级考试", color: "var(--primary)",
+      children: [
+        {
+          level: 2, title: "📖 语法 (Tata Bahasa)", color: "#3b82f6",
+          children: [
+            {level: 3, title: "复杂句型: makin...makin..."},
+            {level: 3, title: "被动语态: di- + 词根 + -kan/-i"},
+            {level: 3, title: "条件句: seandainya / kalau / bila"},
+            {level: 3, title: "因果连接: karena / sebab / sehingga"},
+            {level: 3, title: "让步状语: meskipun / biarpun"},
+            {level: 3, title: "比较级: lebih / paling / ter-"},
+            {level: 3, title: "间接引语: menurut / katanya"},
+            {level: 3, title: "情态动词: harus / sebaiknya"},
+            {level: 3, title: "时间连接: sebelum / sesudah"},
+            {level: 3, title: "目的状语: agar / supaya / untuk"}
+          ]
+        },
+        {
+          level: 2, title: "🎯 词汇 (Kosakata)", color: "#f59e0b",
+          children: [
+            {level: 3, title: "核心词汇: kemahiran / berbahasa / ujian"},
+            {level: 3, title: "阅读词汇: paragraf / kesimpulan / gagasan"},
+            {level: 3, title: "写作词汇: argumen / alasan / bukti"},
+            {level: 3, title: "修辞手法: majas / metafora / hiperbola"},
+            {level: 3, title: "语篇衔接: koherensi / kohesi / konsistensi"}
+          ]
+        },
+        {
+          level: 2, title: "📝 考试部分 (Bagian Ujian)", color: "#22c55e",
+          children: [
+            {level: 3, title: "🎧 听力 (Menyimak) · 40分钟"},
+            {level: 3, title: "📖 阅读 (Membaca) · 50分钟"},
+            {level: 3, title: "🗣️ 口语 (Berbicara) · 30分钟"},
+            {level: 3, title: "✍️ 写作 (Menulis) · 60分钟"},
+            {level: 3, title: "⏱️ 总时长: 180分钟"}
+          ]
+        },
+        {
+          level: 2, title: "💡 备考策略 (Strategi)", color: "#ec4899",
+          children: [
+            {level: 3, title: "每日1小时 · 四部分均衡练习"},
+            {level: 3, title: "弱点突破 · 针对性强化训练"},
+            {level: 3, title: "模拟测试 · 熟悉考试流程"},
+            {level: 3, title: "文化理解 · 掌握语境nuansa"},
+            {level: 3, title: "时间管理 · 各部分合理分配"}
+          ]
+        }
+      ]
+    }
+  ];
+  
+  function renderNode(node, index) {
+    const hasChildren = node.children && node.children.length;
+    const nodeId = `mm-${ds}-${index}`;
+    let h = `<div style="margin:6px 0;">`;
+    h += `<div class="mindmap-node" data-node="${nodeId}" style="cursor:pointer;display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:8px;background:${node.level === 1 ? 'rgba(0,212,170,.15)' : node.level === 2 ? 'rgba(59,130,246,.1)' : 'var(--bg-elev)'};border-left:3px solid ${node.color || 'var(--primary)'};transition:all .2s;" onclick="toggleMindmapNode('${nodeId}')">`;
+    h += `<span style="font-size:12px;color:var(--text-dim);transition:transform .2s" id="icon-${nodeId}">${hasChildren ? '▶' : '•'}</span>`;
+    h += `<span style="font-size:${node.level === 1 ? '15px' : node.level === 2 ? '14px' : '13px'};font-weight:${node.level <= 2 ? '600' : '400'};color:${node.color || 'var(--text)'};">${node.title}</span>`;
+    h += `</div>`;
+    if (hasChildren) {
+      h += `<div id="children-${nodeId}" style="margin-left:20px;padding-left:12px;border-left:2px dashed var(--border);display:none;">`;
+      node.children.forEach((child, ci) => {
+        h += renderNode(child, `${index}-${ci}`);
+      });
+      h += `</div>`;
+    }
+    h += `</div>`;
+    return h;
+  }
+  
+  html += `<div style="padding:8px;">`;
+  mindmapData.forEach((node, i) => {
+    html += renderNode(node, i);
+  });
+  html += `</div>`;
+  
+  html += `<div style="margin-top:16px;padding:12px;background:rgba(34,197,94,.08);border-radius:8px;border:1px solid rgba(34,197,94,.3)"><div style="font-size:13px;color:var(--success)">✅ 思维导图梳理完成！</div><div style="font-size:12px;color:var(--text-dim);margin-top:6px">建议：结合前3天的学习内容，对照思维导图查漏补缺，然后进行话题测试。</div></div>`;
+  html += `</div>`;
+  c.innerHTML = html;
+  
+  // 默认展开第一级
+  setTimeout(() => {
+    mindmapData.forEach((node, i) => {
+      if (node.children) toggleMindmapNode(`mm-${ds}-${i}`);
+    });
+  }, 0);
+}
+
 function renderTopicDetail(c, ds, topicInfo) {
   // 镍产业专题分支
   if (topicInfo.topic === "nickel") {
     renderNickelContent(c, ds, topicInfo);
+    return;
+  }
+  // 思维导图分支
+  if (topicInfo.type === "mindmap") {
+    renderMindmapContent(c, ds, topicInfo);
     return;
   }
   const topic = topicData[topicInfo.topic];
@@ -6451,7 +6575,7 @@ function renderTopicDetail(c, ds, topicInfo) {
       html += `<div style="background:var(--bg-elev);border-radius:10px;padding:16px;margin-bottom:12px;border:1px solid var(--border)"><div style="display:flex;align-items:center;gap:8px;margin-bottom:10px"><span style="font-size:18px">${s.icon}</span><strong style="color:var(--primary);font-size:14px">${s.title}</strong></div>`;
       s.dialogue.forEach(d => {
         const dSafe = d.text.replace(/'/g, "\\'");
-        html += `<div style="display:flex;gap:10px;margin:8px 0;padding:8px;background:var(--bg-card);border-radius:6px"><div style="font-weight:700;color:var(--primary);min-width:30px;font-size:12px">${d.speaker}:</div><div style="flex:1"><div style="font-size:13px;color:var(--text);display:flex;align-items:center;flex-wrap:wrap;">${wrapClickableWords(d.text)}<button onclick="speakIndonesian('${dSafe}')" style="background:none;border:none;color:var(--primary);cursor:pointer;font-size:14px;padding:2px 4px;margin-left:4px;" title="朗读">🔊</button></div><div style="font-size:11px;color:var(--text-dim);margin-top:3px;border-left:2px solid var(--primary-dim);padding-left:6px">${d.trans || ''}</div></div></div>`;
+        html += `<div class="dialogue-item" style="display:flex;gap:10px;margin:8px 0;padding:8px;background:var(--bg-card);border-radius:6px"><div style="font-weight:700;color:var(--primary);min-width:30px;font-size:12px">${d.speaker}:</div><div style="flex:1"><div style="font-size:13px;color:var(--text);display:flex;align-items:center;flex-wrap:wrap;">${wrapClickableWords(d.text)}<button onclick="speakIndonesian('${dSafe}')" style="background:none;border:none;color:var(--primary);cursor:pointer;font-size:14px;padding:2px 4px;margin-left:4px;" title="朗读">🔊</button></div><div class="dialogue-trans" style="font-size:11px;color:var(--text-dim);margin-top:3px;border-left:2px solid var(--primary-dim);padding-left:6px;transition:all .2s">${d.trans || ''}</div></div></div>`;
       });
       html += `</div>`;
     }
@@ -6467,6 +6591,29 @@ function renderTopicDetail(c, ds, topicInfo) {
   
   html += `</div>`;
   c.innerHTML = html;
+  // C4: 对话中文翻译鼠标悬停高亮
+  setTimeout(() => {
+    c.querySelectorAll('.dialogue-item').forEach(item => {
+      const trans = item.querySelector('.dialogue-trans');
+      if (!trans) return;
+      item.querySelectorAll('.clickable-word').forEach(word => {
+        word.addEventListener('mouseenter', () => {
+          trans.style.color = 'var(--primary)';
+          trans.style.fontWeight = '600';
+          trans.style.background = 'rgba(0,212,170,.1)';
+          trans.style.borderRadius = '4px';
+          trans.style.padding = '2px 6px';
+        });
+        word.addEventListener('mouseleave', () => {
+          trans.style.color = '';
+          trans.style.fontWeight = '';
+          trans.style.background = '';
+          trans.style.borderRadius = '';
+          trans.style.padding = '';
+        });
+      });
+    });
+  }, 0);
 }
 
 // 修改renderCalHTML以支持话题日期
@@ -6729,8 +6876,19 @@ function renderAbout(c){
 }
 
 function renderVersion(c){
-  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录</h2><span class="badge">V4.8</span></div>
+  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录</h2><span class="badge">V4.12</span></div>
     <div style="padding:16px;">
+      <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
+        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.12.0 (2026-08-12)</div>
+        <div style="font-size:13px;color:var(--text);line-height:1.8">
+        • 话题10(UKBI)对话中文翻译同步：所有对话新增trans字段，与短文一样同步显示中文翻译<br>
+        • 鼠标悬停高亮：对话中鼠标停留在印尼语单词上时，对应中文翻译加重显示<br>
+        • C4规则更新：话题对话必须包含trans字段；渲染需支持dialogue-item/dialogue-trans类<br>
+        • 新增8月12日复习日：UKBI 5级核心内容三级思维导图（可展开折叠）<br>
+        • 思维导图覆盖：语法/词汇/考试部分/备考策略四大模块<br>
+        • BIO/RCO/TSO三方审核流程持续运行<br>
+        </div>
+      </div>
       <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
         <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.8 (2026-07-27)</div>
         <div style="font-size:13px;color:var(--text);line-height:1.8">
