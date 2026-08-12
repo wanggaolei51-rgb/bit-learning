@@ -6,7 +6,7 @@
 <meta http-equiv="Expires" content="0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LEO-BIR V4.12.0-08122026 (UKBI对话翻译+思维导图)</title>
+<title>LEO-BIR V4.12.1-08122026 (UKBI精确翻译高亮+演讲支持)</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -273,7 +273,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="sidebar-header">
     <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <h1>LEO-BIR</h1>
-    <div class="ver">LEO-BIR V4.12.0 · UKBI对话中文翻译同步+鼠标悬停高亮 · 三级思维导图 · 日历支持8/12复习日</div>
+    <div class="ver">LEO-BIR V4.12.1 · 精确单词级翻译高亮（对话+演讲）· 鼠标悬停显示对应中文词义 · 三级思维导图</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -6522,7 +6522,7 @@ function renderTopicDetail(c, ds, topicInfo) {
     html += `<div style="background:rgba(59,130,246,.06);border-radius:10px;padding:16px;margin-bottom:16px;border:1px solid var(--border)"><div style="font-size:15px;color:var(--info);font-weight:700;margin-bottom:12px">🎤 第三阶段：演讲+复习 (Day 3/3)</div>`;
     topic.speeches.forEach((sp, spi) => {
       const spSafe = sp.content.replace(/'/g, "\\'");
-      html += `<div style="margin-bottom:14px;border:1px solid var(--border);border-radius:10px;overflow:hidden"><div style="background:var(--bg-elev);padding:10px 14px;display:flex;align-items:center;gap:8px;justify-content:space-between;"><div style="display:flex;align-items:center;gap:8px;"><span style="font-size:18px">${sp.icon}</span><div><div style="font-size:14px;font-weight:600;color:var(--text)">${sp.title}</div><div style="font-size:11px;color:var(--text-dim)">${sp.words}词 · ${sp.time}秒</div></div></div><button onclick="speakIndonesian('${spSafe}')" style="background:none;border:none;color:var(--primary);cursor:pointer;font-size:14px;padding:4px 8px;border-radius:6px;background:rgba(0,212,170,.1);" title="朗读印尼语原文">🔊 朗读</button></div><div style="padding:14px;font-size:13px;line-height:1.8;color:var(--text);background:var(--bg-card);border-radius:0 0 8px 8px"><div style="margin-bottom:8px;">${wrapClickableWords(sp.content)}</div><div style="font-size:12px;color:var(--text-dim);border-top:1px solid var(--border);padding-top:8px;margin-top:8px;">🇨🇳 翻译: ${sp.trans || '翻译加载中...'}</div></div></div>`;
+      html += `<div class="speech-block" style="margin-bottom:14px;border:1px solid var(--border);border-radius:10px;overflow:hidden"><div style="background:var(--bg-elev);padding:10px 14px;display:flex;align-items:center;gap:8px;justify-content:space-between;"><div style="display:flex;align-items:center;gap:8px;"><span style="font-size:18px">${sp.icon}</span><div><div style="font-size:14px;font-weight:600;color:var(--text)">${sp.title}</div><div style="font-size:11px;color:var(--text-dim)">${sp.words}词 · ${sp.time}秒</div></div></div><button onclick="speakIndonesian('${spSafe}')" style="background:none;border:none;color:var(--primary);cursor:pointer;font-size:14px;padding:4px 8px;border-radius:6px;background:rgba(0,212,170,.1);" title="朗读印尼语原文">🔊 朗读</button></div><div style="padding:14px;font-size:13px;line-height:1.8;color:var(--text);background:var(--bg-card);border-radius:0 0 8px 8px"><div class="speech-indo" style="margin-bottom:8px;">${wrapClickableWords(sp.content)}</div><div class="speech-trans" style="font-size:12px;color:var(--text-dim);border-top:1px solid var(--border);padding-top:8px;margin-top:8px;">🇨🇳 翻译: ${sp.trans || '翻译加载中...'}</div></div></div>`;
     });
     html += `<div style="margin-top:16px;padding:12px;background:rgba(34,197,94,.08);border-radius:8px;border:1px solid rgba(34,197,94,.3)"><div style="font-size:13px;color:var(--success)">✅ 恭喜！已完成三天综合学习！</div><div style="font-size:12px;color:var(--text-dim);margin-top:6px">建议：使用「百词斩」检测掌握程度，使用「艾宾浩斯复习」巩固记忆。</div></div>`;
     html += `</div>`;
@@ -6584,7 +6584,7 @@ function renderTopicDetail(c, ds, topicInfo) {
     html += `<h3 style="color:var(--primary);margin:16px 0 10px;font-size:15px">🎤 1分钟演讲</h3>`;
     for (let i = 0; i < topic.speeches.length; i++) {
       const sp = topic.speeches[i];
-      html += `<div style="background:var(--bg-elev);border-radius:10px;padding:16px;margin-bottom:12px;border:1px solid var(--border)"><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;justify-content:space-between;"><div style="display:flex;align-items:center;gap:8px;"><span style="font-size:18px">${sp.icon}</span><strong style="color:var(--primary);font-size:14px">${sp.title}</strong></div><button onclick="speakIndonesian('${sp.content.replace(/'/g,"\\'")}')" style="background:none;border:none;color:var(--primary);cursor:pointer;font-size:14px;padding:4px 8px;border-radius:6px;background:rgba(0,212,170,.1);" title="朗读印尼语原文">🔊 朗读</button></div><div style="display:flex;gap:8px;margin-bottom:10px;font-size:11px;color:var(--text-dim)"><span style="background:rgba(0,212,170,.1);padding:2px 8px;border-radius:8px">⏱️ ~${sp.time}秒</span><span style="background:rgba(0,212,170,.1);padding:2px 8px;border-radius:8px">📝 ~${sp.words}词</span></div><div style="font-size:13px;line-height:1.8;color:var(--text);background:var(--bg-card);padding:12px;border-radius:8px">${wrapClickableWords(sp.content)}</div><div style="font-size:12px;color:var(--text-dim);border-top:1px solid var(--border);padding-top:8px;margin-top:8px;">🇨🇳 翻译: ${sp.trans || '翻译加载中...'}</div></div>`;
+      html += `<div class="speech-block" style="background:var(--bg-elev);border-radius:10px;padding:16px;margin-bottom:12px;border:1px solid var(--border)"><div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;justify-content:space-between;"><div style="display:flex;align-items:center;gap:8px;"><span style="font-size:18px">${sp.icon}</span><strong style="color:var(--primary);font-size:14px">${sp.title}</strong></div><button onclick="speakIndonesian('${sp.content.replace(/'/g,"\\'")}')" style="background:none;border:none;color:var(--primary);cursor:pointer;font-size:14px;padding:4px 8px;border-radius:6px;background:rgba(0,212,170,.1);" title="朗读印尼语原文">🔊 朗读</button></div><div style="display:flex;gap:8px;margin-bottom:10px;font-size:11px;color:var(--text-dim)"><span style="background:rgba(0,212,170,.1);padding:2px 8px;border-radius:8px">⏱️ ~${sp.time}秒</span><span style="background:rgba(0,212,170,.1);padding:2px 8px;border-radius:8px">📝 ~${sp.words}词</span></div><div class="speech-indo" style="font-size:13px;line-height:1.8;color:var(--text);background:var(--bg-card);padding:12px;border-radius:8px">${wrapClickableWords(sp.content)}</div><div class="speech-trans" style="font-size:12px;color:var(--text-dim);border-top:1px solid var(--border);padding-top:8px;margin-top:8px;">🇨🇳 翻译: ${sp.trans || '翻译加载中...'}</div></div>`;
     }
     html += `<div style="margin-top:16px;padding:12px;background:rgba(34,197,94,.08);border-radius:8px;border:1px solid rgba(34,197,94,.3)"><div style="font-size:13px;color:var(--success)">✅ 完成三天学习！进入复习队列。</div><div style="font-size:12px;color:var(--text-dim);margin-top:6px">建议：使用「能力测试」检测掌握程度，使用「艾宾浩斯复习」巩固记忆。</div></div>`;
   }
@@ -6593,27 +6593,83 @@ function renderTopicDetail(c, ds, topicInfo) {
   c.innerHTML = html;
   // C4: 对话中文翻译鼠标悬停高亮
   setTimeout(() => {
+    // C4.3: 鼠标悬停单词 → 精确高亮对应中文翻译（对话）
     c.querySelectorAll('.dialogue-item').forEach(item => {
-      const trans = item.querySelector('.dialogue-trans');
-      if (!trans) return;
-      item.querySelectorAll('.clickable-word').forEach(word => {
-        word.addEventListener('mouseenter', () => {
-          trans.style.color = 'var(--primary)';
-          trans.style.fontWeight = '600';
-          trans.style.background = 'rgba(0,212,170,.1)';
-          trans.style.borderRadius = '4px';
-          trans.style.padding = '2px 6px';
-        });
-        word.addEventListener('mouseleave', () => {
-          trans.style.color = '';
-          trans.style.fontWeight = '';
-          trans.style.background = '';
-          trans.style.borderRadius = '';
-          trans.style.padding = '';
-        });
-      });
+      bindWordTransHighlight(item, '.dialogue-trans');
+    });
+    // C4.3: 鼠标悬停单词 → 精确高亮对应中文翻译（演讲）
+    c.querySelectorAll('.speech-block').forEach(item => {
+      bindWordTransHighlight(item, '.speech-trans');
     });
   }, 0);
+}
+
+// C4: 绑定单词→中文翻译精确高亮
+function bindWordTransHighlight(item, transSelector) {
+  const trans = item.querySelector(transSelector);
+  if (!trans) return;
+  const originalText = trans.textContent;
+  // 存储原始文本用于恢复
+  trans.dataset.original = originalText;
+  
+  item.querySelectorAll('.clickable-word').forEach(word => {
+    word.addEventListener('mouseenter', () => {
+      const w = word.dataset.word;
+      if (!w) return;
+      const v = findVocab(w);
+      if (v && v.cn) {
+        // 在中文翻译中查找该释义，精确高亮匹配部分
+        const idx = originalText.indexOf(v.cn);
+        if (idx >= 0) {
+          const before = originalText.slice(0, idx);
+          const match = originalText.slice(idx, idx + v.cn.length);
+          const after = originalText.slice(idx + v.cn.length);
+          trans.innerHTML = escapeHtml(before) + '<span style="color:var(--primary);font-weight:600;background:rgba(0,212,170,.15);padding:2px 4px;border-radius:4px;transition:all .15s;">' + escapeHtml(match) + '</span>' + escapeHtml(after);
+        } else {
+          // 整句翻译中无匹配，显示轻量 tooltip
+          showWordMiniTooltip(word, v.cn);
+        }
+      }
+    });
+    word.addEventListener('mouseleave', () => {
+      // 恢复原始文本
+      if (trans.dataset.original) {
+        trans.innerHTML = escapeHtml(trans.dataset.original);
+      }
+      hideWordMiniTooltip();
+    });
+  });
+}
+
+// HTML 转义
+function escapeHtml(text) {
+  const div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML;
+}
+
+// 轻量单词 tooltip
+let _miniTooltip = null;
+function showWordMiniTooltip(targetEl, text) {
+  hideWordMiniTooltip();
+  const rect = targetEl.getBoundingClientRect();
+  const tip = document.createElement('div');
+  tip.id = 'wordMiniTooltip';
+  tip.style.cssText = 'position:fixed;z-index:9999;background:var(--bg-card);border:1px solid var(--primary);border-radius:8px;padding:6px 10px;font-size:12px;color:var(--primary);font-weight:600;box-shadow:var(--shadow);pointer-events:none;transition:opacity .15s;';
+  tip.textContent = '🇨🇳 ' + text;
+  document.body.appendChild(tip);
+  const tipRect = tip.getBoundingClientRect();
+  let top = rect.top - tipRect.height - 6;
+  let left = rect.left + (rect.width - tipRect.width) / 2;
+  if (top < 4) top = rect.bottom + 6;
+  if (left < 4) left = 4;
+  if (left + tipRect.width > window.innerWidth - 4) left = window.innerWidth - tipRect.width - 4;
+  tip.style.top = top + 'px';
+  tip.style.left = left + 'px';
+  _miniTooltip = tip;
+}
+function hideWordMiniTooltip() {
+  if (_miniTooltip) { _miniTooltip.remove(); _miniTooltip = null; }
 }
 
 // 修改renderCalHTML以支持话题日期
@@ -7140,6 +7196,33 @@ function renderVersion(c){
 // ===== 单词点击翻译弹窗 =====
 function wrapClickableWords(text){
   return text.replace(/([a-zA-ZÀ-ɏḀ-ỿ]+)/g,'<span class="clickable-word" data-word="$1">$1</span>');
+}
+
+// C4: 查找单词释义（含前缀去除）
+function findVocab(word){
+  const clean = word.toLowerCase().replace(/[^a-z]/g,'');
+  let v = vocabDB[clean] || vocabDB[word.toLowerCase()];
+  if(v) return v;
+  if(clean.length>3){
+    const prefixes = [['me','meng','meny','men','mem','me'],['ber','be'],['di'],['ter'],['pe','peng','peny','pen','pem'],['se']];
+    for(const group of prefixes){
+      for(const p of group){
+        if(clean.startsWith(p) && clean.length>p.length+2){
+          const root = clean.slice(p.length);
+          v = vocabDB[root];
+          if(v) return v;
+          const changes = {m:'p',n:'t',ng:'k',ny:'s',r:''};
+          for(const [to,from] of Object.entries(changes)){
+            if(root.startsWith(to)){
+              v = vocabDB[from+root.slice(to.length)];
+              if(v) return v;
+            }
+          }
+        }
+      }
+    }
+  }
+  return null;
 }
 
 function showWordPopup(word){
