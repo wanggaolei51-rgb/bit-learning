@@ -6,7 +6,7 @@
 <meta http-equiv="Expires" content="0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LEO-BIR V4.13.0-08122026 (中印双语导航+标签)</title>
+<title>LEO-BIR V4.13.1-08122026 (UKBI思维导图三级展开)</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -273,7 +273,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="sidebar-header">
     <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <h1>LEO-BIR</h1>
-    <div class="ver">LEO-BIR V4.13.0 · 全部导航标签中印双语 · 中文在上印尼文在下</div>
+    <div class="ver">LEO-BIR V4.13.1 · UKBI思维导图三级全部展开 · 语法词汇考试策略详细内容</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -4921,6 +4921,7 @@ function markWordReviewed(word, interval) {
 // C4.7: 版本迭代必须同步更新 title + ver + 版本日志
 // C4.8: 部署前必须提升版本号并验证线上版本一致
 // C4.9: 所有UI导航、标签、按钮必须提供中文+印尼语双语（中文在上，印尼文在下）
+// C4.10: 思维导图必须实现真正的三级结构，默认全部展开显示，不得只显示二级
 // ========================================================
 const topicData = {
   "meet": {
@@ -6418,18 +6419,20 @@ function renderMindmapContent(c, ds, topicInfo) {
     }
   ];
   
-  function renderNode(node, index) {
+  function renderNode(node, index, parentExpanded = false) {
     const hasChildren = node.children && node.children.length;
     const nodeId = `mm-${ds}-${index}`;
+    // 三级思维导图：一级和二级默认展开，三级直接显示
+    const shouldExpand = node.level <= 2;
     let h = `<div style="margin:6px 0;">`;
-    h += `<div class="mindmap-node" data-node="${nodeId}" style="cursor:pointer;display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:8px;background:${node.level === 1 ? 'rgba(0,212,170,.15)' : node.level === 2 ? 'rgba(59,130,246,.1)' : 'var(--bg-elev)'};border-left:3px solid ${node.color || 'var(--primary)'};transition:all .2s;" onclick="toggleMindmapNode('${nodeId}')">`;
-    h += `<span style="font-size:12px;color:var(--text-dim);transition:transform .2s" id="icon-${nodeId}">${hasChildren ? '▶' : '•'}</span>`;
+    h += `<div class="mindmap-node" data-node="${nodeId}" style="cursor:${hasChildren ? 'pointer' : 'default'};display:flex;align-items:center;gap:8px;padding:${node.level === 1 ? '10px 14px' : node.level === 2 ? '8px 12px' : '6px 10px'};border-radius:8px;background:${node.level === 1 ? 'rgba(0,212,170,.15)' : node.level === 2 ? 'rgba(59,130,246,.1)' : 'rgba(255,255,255,.03)'};border-left:3px solid ${node.color || 'var(--primary)'};transition:all .2s;${node.level === 3 ? 'margin-left:12px;' : ''}" onclick="${hasChildren ? `toggleMindmapNode('${nodeId}')` : ''}">`;
+    h += `<span style="font-size:12px;color:var(--text-dim);transition:transform .2s;${hasChildren ? '' : 'visibility:hidden;'}" id="icon-${nodeId}">${hasChildren ? (shouldExpand ? '▼' : '▶') : '•'}</span>`;
     h += `<span style="font-size:${node.level === 1 ? '15px' : node.level === 2 ? '14px' : '13px'};font-weight:${node.level <= 2 ? '600' : '400'};color:${node.color || 'var(--text)'};">${node.title}</span>`;
     h += `</div>`;
     if (hasChildren) {
-      h += `<div id="children-${nodeId}" style="margin-left:20px;padding-left:12px;border-left:2px dashed var(--border);display:none;">`;
+      h += `<div id="children-${nodeId}" style="margin-left:20px;padding-left:12px;border-left:2px dashed var(--border);display:${shouldExpand ? 'block' : 'none'};">`;
       node.children.forEach((child, ci) => {
-        h += renderNode(child, `${index}-${ci}`);
+        h += renderNode(child, `${index}-${ci}`, shouldExpand);
       });
       h += `</div>`;
     }
@@ -6446,13 +6449,6 @@ function renderMindmapContent(c, ds, topicInfo) {
   html += `<div style="margin-top:16px;padding:12px;background:rgba(34,197,94,.08);border-radius:8px;border:1px solid rgba(34,197,94,.3)"><div style="font-size:13px;color:var(--success)">✅ 思维导图梳理完成！</div><div style="font-size:12px;color:var(--text-dim);margin-top:6px">建议：结合前3天的学习内容，对照思维导图查漏补缺，然后进行话题测试。</div></div>`;
   html += `</div>`;
   c.innerHTML = html;
-  
-  // 默认展开第一级
-  setTimeout(() => {
-    mindmapData.forEach((node, i) => {
-      if (node.children) toggleMindmapNode(`mm-${ds}-${i}`);
-    });
-  }, 0);
 }
 
 function renderTopicDetail(c, ds, topicInfo) {
@@ -6935,6 +6931,19 @@ function renderAbout(c){
 function renderVersion(c){
   c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.13 / Versi</span></div>
     <div style="padding:16px;">
+      <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
+        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.13.1 (2026-08-12)</div>
+        <div style="font-size:13px;color:var(--text);line-height:1.8">
+        • 话题10(UKBI)8月12日思维导图三级内容全部展开显示<br>
+        • 语法模块展开10个三级节点：复杂句型/被动语态/条件句/因果连接/让步状语/比较级/间接引语/情态动词/时间连接/目的状语<br>
+        • 词汇模块展开5个三级节点：核心词汇/阅读词汇/写作词汇/修辞手法/语篇衔接<br>
+        • 考试部分展开5个三级节点：听力40分/阅读50分/口语30分/写作60分/总时长180分<br>
+        • 备考策略展开5个三级节点：每日练习/弱点突破/模拟测试/文化理解/时间管理<br>
+        • 默认全部展开，无需点击即可查看所有三级内容<br>
+        • C4规则更新：思维导图必须实现真正的三级结构并默认展开<br>
+        • BIO/RCO/TSO三方审核流程持续运行<br>
+        </div>
+      </div>
       <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
         <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.13.0 (2026-08-12)</div>
         <div style="font-size:13px;color:var(--text);line-height:1.8">
