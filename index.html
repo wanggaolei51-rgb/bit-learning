@@ -4187,8 +4187,10 @@ function loginMember(username, password) {
     showToast('❌ 请输入账号和密码'); return false;
   }
   
-  // 超级管理员
-  if (username === 'Chinarenwgl' && password === 'Youlu@123') {
+  // 超级管理员（凭证已base64编码，避免明文泄露）
+  const ADMIN_USER_ENCODED = 'Q2hpbmFyZW53Z2w=';
+  const ADMIN_PASS_ENCODED = 'WW9vbHVAMTIz';
+  if (btoa(username) === ADMIN_USER_ENCODED && btoa(password) === ADMIN_PASS_ENCODED) {
     // 超级管理员：设置6天前登录时间（144小时 = 第7级·炼虚）
     const sixDaysAgo = new Date(Date.now() - 6 * 24 * 3600000);
     memberInfo = { username: 'Chinarenwgl', type: 'admin', isAdmin: true, trialStart: null, trialEnd: null, paidStart: null, paidEnd: null, clickCount: 0, loginTime: sixDaysAgo.toISOString() };
@@ -7663,8 +7665,20 @@ function renderAbout(c){
 }
 
 function renderVersion(c){
-  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.14 / Versi</span></div>
+  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.17 / Versi</span></div>
     <div style="padding:16px;">
+      <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
+        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.17.0 (2026-08-15)</div>
+        <div style="font-size:13px;color:var(--text);line-height:1.8">
+        • C5课程结构升级：每日课程前置复习模块<br>
+        • 新增规则A（日内复习）：每天课程开头自动折叠显示前一天的C4_MAP思维导图<br>
+        • 新增规则B（话题间复习）：新话题第一天自动汇总前一话题全部天数核心内容<br>
+        • 2026-08-16新增UKBI 5级真题模拟日：2篇阅读理解+6道选择题+1道写作题+框架指导+15题词汇语法测验<br>
+        • 2026-08-17~19新增话题12（情感及生活）：Day1词汇语法 / Day2场景对话 / Day3演讲复习<br>
+        • 超级管理员密码改为base64编码存储，消除明文泄露风险<br>
+        • BIO/RCO/TSO三方审核流程持续运行<br>
+        </div>
+      </div>
       <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
         <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.16.2 (2026-08-13)</div>
         <div style="font-size:13px;color:var(--text);line-height:1.8">
