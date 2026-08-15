@@ -1867,7 +1867,7 @@ function renderCalHTML(){
   h+=`</div><div class="cal-legend"><span><span class="ddot neww" style="display:inline-block"></span> 新词</span><span><span class="ddot rev" style="display:inline-block"></span> 复习</span><span><span class="ddot" style="display:inline-block"></span> 翻译</span><span>⬤ 今天</span></div></div>`;
   return h;
 }
-function attachCalEvents(){document.querySelectorAll(".cal-day[data-date]").forEach(el=>{el.addEventListener("click",()=>{const ds=el.dataset.date;if(learningHistory[ds])navigate("date",ds)})})}
+function attachCalEvents(){document.querySelectorAll(".cal-day[data-date]").forEach(el=>{el.addEventListener("click",()=>{const ds=el.dataset.date;if(learningHistory[ds]||getTopicForDate(ds))navigate("date",ds)})})}
 function changeMonth(delta){currentDate.setMonth(currentDate.getMonth()+delta);renderHome(document.getElementById("appContent"))}
 
 function renderDateDetail(c,ds){
