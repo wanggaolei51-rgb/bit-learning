@@ -6,7 +6,7 @@
 <meta http-equiv="Expires" content="0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LEO-BIR V4.17.2-08152026 (修复8/16-8/19课程数据)</title>
+<title>LEO-BIR V4.17.3-08152026 (C5复习模块)</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -273,7 +273,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="sidebar-header">
     <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <h1>LEO-BIR</h1>
-    <div class="ver">LEO-BIR V4.17.2 · 修复8/16-8/19课程数据</div>
+    <div class="ver">LEO-BIR V4.17.3 · C5复习模块</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -6921,6 +6921,99 @@ function renderTopicDetail(c, ds, topicInfo) {
   const topic = topicData[topicInfo.topic];
   const day = topicInfo.day;
   let html = ``;
+
+  // ==================== C5 前置复习模块 ====================
+  function generateC5ReviewModule(ds, topicInfo) {
+    let reviewHtml = '';
+    const dates = Object.keys(topicCalendar).sort();
+    const idx = dates.indexOf(ds);
+    
+    // 规则B: 新话题第一天 -> 前一话题全部天数总结
+    if (topicInfo.day === 1 && idx > 0) {
+      let prevTopic = null;
+      let prevDates = [];
+      for (let i = idx - 1; i >= 0; i--) {
+        const prevInfo = topicCalendar[dates[i]];
+        if (prevInfo && prevInfo.topic !== topicInfo.topic) {
+          if (!prevTopic) {
+            prevTopic = prevInfo.topic;
+            prevDates.push(dates[i]);
+          } else if (prevInfo.topic === prevTopic) {
+            prevDates.unshift(dates[i]);
+          } else {
+            break;
+          }
+        }
+      }
+      if (prevTopic && prevDates.length > 0) {
+        const prevTopicData = topicData[prevTopic];
+        if (prevTopicData) {
+          reviewHtml += `<div style="margin-bottom:16px;border:1px solid var(--border);border-radius:10px;overflow:hidden;"><div onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.querySelector('.c5-toggle').style.transform=this.nextElementSibling.style.display==='none'?'rotate(0deg)':'rotate(90deg)'" style="cursor:pointer;padding:12px 16px;background:var(--bg-elev);display:flex;align-items:center;justify-content:space-between;"><div style="display:flex;align-items:center;gap:8px;"><span style="font-size:16px;">📚</span><span style="font-size:14px;font-weight:600;color:var(--accent);">前一话题复习 · ${prevTopicData.icon} ${prevTopicData.title}</span></div><span class="c5-toggle" style="transition:transform .2s;font-size:12px;color:var(--text-dim);">▶</span></div><div style="display:none;padding:16px;background:var(--bg-card);">`;
+          reviewHtml += generateTopicMindMap(prevTopicData, prevTopic);
+          reviewHtml += `</div></div>`;
+        }
+      }
+    }
+    
+    // 规则A: 每天 -> 前一天 C4_MAP 总结
+    if (idx > 0) {
+      const prevDs = dates[idx - 1];
+      const prevInfo = topicCalendar[prevDs];
+      if (prevInfo && prevInfo.topic !== 'mindmap' && prevInfo.topic !== topicInfo.topic) {
+        const prevTopicData = topicData[prevInfo.topic];
+        if (prevTopicData) {
+          reviewHtml += `<div style="margin-bottom:16px;border:1px solid var(--border);border-radius:10px;overflow:hidden;"><div onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.querySelector('.c5-toggle').style.transform=this.nextElementSibling.style.display==='none'?'rotate(0deg)':'rotate(90deg)'" style="cursor:pointer;padding:12px 16px;background:var(--bg-elev);display:flex;align-items:center;justify-content:space-between;"><div style="display:flex;align-items:center;gap:8px;"><span style="font-size:16px;">📚</span><span style="font-size:14px;font-weight:600;color:var(--primary);">昨日复习 · ${prevDs} · ${prevTopicData.icon} ${prevTopicData.title}</span></div><span class="c5-toggle" style="transition:transform .2s;font-size:12px;color:var(--text-dim);">▶</span></div><div style="display:none;padding:16px;background:var(--bg-card);">`;
+          reviewHtml += generateTopicMindMap(prevTopicData, prevInfo.topic);
+          reviewHtml += `</div></div>`;
+        }
+      }
+    }
+    
+    return reviewHtml;
+  }
+  
+  function generateTopicMindMap(topic, topicKey) {
+    let mapHtml = `<div class="mind-map-container">`;
+    mapHtml += `<div class="mind-l1"><div class="mind-node" style="background:linear-gradient(135deg,var(--primary),var(--primary-dim));"><div style="display:flex;align-items:center;gap:6px;"><span style="font-size:18px;">${topic.icon}</span><div><div style="font-weight:700;">${topic.title}</div></div></div></div></div>`;
+    if (topic.grammar) {
+      mapHtml += `<div class="mind-l2"><div class="mind-node" style="border-left:3px solid var(--info);"><div style="font-weight:600;color:var(--info);margin-bottom:6px;">📖 ${topic.grammar.title}</div>`;
+      topic.grammar.rules.forEach(rule => {
+        mapHtml += `<div style="font-size:12px;color:var(--text-dim);margin:3px 0;padding-left:8px;border-left:2px solid var(--border);">• ${rule}</div>`;
+      });
+      mapHtml += `</div></div>`;
+    }
+    if (topic.vocab && topic.vocab.length > 0) {
+      mapHtml += `<div class="mind-l2"><div class="mind-node" style="border-left:3px solid var(--success);"><div style="font-weight:600;color:var(--success);margin-bottom:6px;">🎯 核心词汇 (${topic.vocab.length}个)</div><div style="display:flex;flex-wrap:wrap;gap:4px;">`;
+      topic.vocab.slice(0, 20).forEach(v => {
+        mapHtml += `<span style="font-size:11px;padding:2px 6px;background:var(--bg-elev);border-radius:4px;color:var(--text);">${v[0]}</span>`;
+      });
+      if (topic.vocab.length > 20) mapHtml += `<span style="font-size:11px;color:var(--text-dim);">+${topic.vocab.length - 20}更多...</span>`;
+      mapHtml += `</div></div></div>`;
+    }
+    if (topic.scenes && topic.scenes.length > 0) {
+      mapHtml += `<div class="mind-l2"><div class="mind-node" style="border-left:3px solid var(--accent);"><div style="font-weight:600;color:var(--accent);margin-bottom:6px;">💬 场景对话 (${topic.scenes.length}个)</div>`;
+      topic.scenes.forEach(sc => {
+        mapHtml += `<div style="font-size:12px;color:var(--text-dim);margin:3px 0;">${sc.icon} ${sc.title}</div>`;
+      });
+      mapHtml += `</div></div>`;
+    }
+    if (topic.speeches && topic.speeches.length > 0) {
+      mapHtml += `<div class="mind-l2"><div class="mind-node" style="border-left:3px solid var(--primary);"><div style="font-weight:600;color:var(--primary);margin-bottom:6px;">🎤 演讲 (${topic.speeches.length}篇)</div>`;
+      topic.speeches.forEach(sp => {
+        mapHtml += `<div style="font-size:12px;color:var(--text-dim);margin:3px 0;">${sp.icon} ${sp.title}</div>`;
+      });
+      mapHtml += `</div></div>`;
+    }
+    mapHtml += `</div>`;
+    return mapHtml;
+  }
+  
+  const c5ReviewHtml = generateC5ReviewModule(ds, topicInfo);
+  if (c5ReviewHtml) {
+    html += c5ReviewHtml;
+  }
+  // ==================== C5 前置复习模块结束 ====================
+
   
   // 2026-07-16 特殊处理：显示全部三天内容
   if (ds === "2026-07-16" || topicInfo.allDays) {
