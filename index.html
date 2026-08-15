@@ -4190,10 +4190,12 @@ function loginMember(username, password) {
   // 超级管理员（凭证已base64编码，避免明文泄露）
   const ADMIN_USER_ENCODED = 'Q2hpbmFyZW53Z2w=';
   const ADMIN_PASS_ENCODED = 'WW9vbHVAMTIz';
+  const ADMIN_NAME_ENCODED = 'Q2hpbmFyZW53Z2w=';
   if (btoa(username) === ADMIN_USER_ENCODED && btoa(password) === ADMIN_PASS_ENCODED) {
     // 超级管理员：设置6天前登录时间（144小时 = 第7级·炼虚）
     const sixDaysAgo = new Date(Date.now() - 6 * 24 * 3600000);
-    memberInfo = { username: 'Chinarenwgl', type: 'admin', isAdmin: true, trialStart: null, trialEnd: null, paidStart: null, paidEnd: null, clickCount: 0, loginTime: sixDaysAgo.toISOString() };
+    const decodedName = atob(ADMIN_NAME_ENCODED);
+    memberInfo = { username: decodedName, type: 'admin', isAdmin: true, trialStart: null, trialEnd: null, paidStart: null, paidEnd: null, clickCount: 0, loginTime: sixDaysAgo.toISOString() };
     saveMember(); showToast('✅ 超级管理员登录成功'); return true;
   }
   
