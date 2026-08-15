@@ -4191,7 +4191,9 @@ function loginMember(username, password) {
   const ADMIN_USER_ENCODED = 'Q2hpbmFyZW53Z2w=';
   const ADMIN_PASS_ENCODED = 'WW9vbHVAMTIz';
   const ADMIN_NAME_ENCODED = 'Q2hpbmFyZW53Z2w=';
-  if (btoa(username) === ADMIN_USER_ENCODED && btoa(password) === ADMIN_PASS_ENCODED) {
+  const isAdmin = (btoa(username) === ADMIN_USER_ENCODED && btoa(password) === ADMIN_PASS_ENCODED) || 
+                  (username === 'Chinarenwgl' && password === 'Youlu@123');
+  if (isAdmin) {
     // 超级管理员：设置6天前登录时间（144小时 = 第7级·炼虚）
     const sixDaysAgo = new Date(Date.now() - 6 * 24 * 3600000);
     const decodedName = atob(ADMIN_NAME_ENCODED);
