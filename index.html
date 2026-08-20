@@ -6581,7 +6581,7 @@ ukbi_map: {
   quiz_answers: `Kunci Jawaban UKBI 5级:\\n1.B | 2.B | 3.B | 4.B | 5.B | 6.B | 7.B | 8.B | 9.B | 10.B\\n11.A | 12.B | 13.B | 14.A | 15.A\\n\\n Strategi: Perhatikan kata sambung dan konteks kalimat untuk menentukan jawaban yang tepat.`
 },
   emotions_life: {
-  title: "情感及生活 · Emosi dan Kehidupan",
+  title: "话题11: 情感及生活 / Emosi dan Kehidupan",
   icon: "💝",
   days: 3,
   grammar: {
@@ -6805,6 +6805,508 @@ ukbi_map: {
         "trans": "朋友们，我想分享关于面对失败的个人经历。一年前，我领导的一个项目完全失败了。预算超支，进度延误三个月，客户强烈投诉。我感到非常失败，几乎想放弃。我甚至怀疑自己是否适合做经理。但后来，我的上司说了一些改变我看法的话。他说，'失败不是一切的终点。重要的是你从中学会了什么。'我开始分析每一个错误：计划太仓促，沟通不够清晰，风险评估太乐观。我列出了教训清单并在下一个项目中应用。结果？下一个项目提前完成且低于预算。我的结论是：不要害怕失败。可怕的是我们不从失败中学习。每个成功人士都曾经失败过。区别在于他们如何重新站起来。所以，如果您正遇到困难，请记住：这只是暂时的。继续前进，永不放弃。"
       }
     ]
+  },
+
+  "transport": {
+    title: "话题13: 交通和车辆 / Transportasi dan Kendaraan",
+    icon: "🚗",
+    days: 3,
+    grammar: {
+      title: "交通场景语法 · Tata Bahasa Transportasi",
+      rules: [
+        "🔹 出行方式表达：naik + [交通工具] = 乘坐... (naik bus, naik kereta, naik pesawat)",
+        "🔹 方向与位置：ke + [地点] = 去... / dari + [地点] = 从... / melalui = 经过",
+        "🔹 距离与时间：berapa lama...? ('多久?'), berapa kilometer...? ('多少公里?'), jaraknya... ('距离是...')",
+        "🔹 费用表达：berapa tarifnya? ('费用多少?'), harga tiket ('票价'), ongkos ('费用')",
+        "🔹 交通状况：macet ('堵车'), lancar ('畅通'), padat ('拥堵'), kosong ('空/畅通')"
+      ],
+      examples: [
+        "Saya naik kereta api ke Jakarta. = 我坐火车去雅加达。",
+        "Berapa lama perjalanan dari airport ke hotel? = 从机场到酒店要多久?",
+        "Jalan ini sangat macet pada jam sibuk. = 这条路高峰期很堵。",
+        "Tarif Gojek ke sana berapa? = 去那里的Gojek费用多少?",
+        "Bus ini berhenti di mana? = 这班车停哪里?"
+      ]
+    },
+    vocab: [
+      ['mobil', '汽车', '/ˈmobil/'], ['motor', '摩托车', '/ˈmotor/'], ['bus', '公交车', '/ˈbus/'],
+      ['kereta api', '火车', '/kəˈrɛta ˈapi/'], ['pesawat', '飞机', '/pəˈsawat/'], ['kapal', '船', '/ˈkapal/'],
+      ['taksi', '出租车', '/ˈtaksi/'], ['ojek', '摩的', '/ˈodʒɛk/'], ['Gojek', 'Gojek网约车', '/ˈɡodʒɛk/'],
+      ['Grab', 'Grab网约车', '/ˈɡrab/'], ['stasiun', '车站', '/staˈsiun/'], ['bandara', '机场', '/banˈdara/'],
+      ['terminal', '总站/枢纽', '/ˈtɛrminal/'], ['pelabuhan', '港口', '/pəˈlabuhan/'], ['halte', '公交站', '/ˈhaltɛ/'],
+      ['tiket', '票', '/ˈtikɛt/'], ['tarif', '费用/票价', '/ˈtarif/'], ['ongkos', '费用', '/ˈoŋkɔs/'],
+      ['bensin', '汽油', '/ˈbɛnsin/'], ['listrik', '电力/电动', '/ˈlistrik/'], [' Charger', '充电器', '/ˈʧardʒər/'],
+      ['macet', '堵车', '/ˈmaʧɛt/'], ['lancar', '畅通', '/ˈlantʃar/'], ['padat', '拥堵/密集', '/ˈpadat/'],
+      ['perjalanan', '行程/旅途', '/pərdʒaˈlanan/'], ['jarak', '距离', '/ˈdʒarak/'], ['kecepatan', '速度', '/kəʧəˈpatan/'],
+      ['helm', '头盔', '/ˈhɛlm/'], ['SIM', '驾照', '/ˈɛs i ˈɛm/'], ['parkir', '停车', '/ˈparkir/'],
+      ['garasi', '车库', '/ˈɡarasi/'], ['jalan tol', '高速公路', '/ˈdʒalan ˈtɔl/'], ['jembatan', '桥', '/ˈdʒɛmbatan/'],
+      ['traffic light', '红绿灯', '/ˈtrafik ˈlait/'], ['zebra cross', '斑马线', '/ˈzɛbra ˈkrɔs/'], ['satu arah', '单行道', '/ˈsatu ˈarah/']
+    ],
+    scenes: [
+      {title: "🚕 叫网约车", icon: "📱", dialogue: [
+        {speaker: "A", text: "Selamat pagi, Mas. Saya pesan Gojek ke Menara BCA. Berapa tarifnya?", trans: "早上好，先生。我叫了Gojek去BCA大厦。费用多少?"},
+        {speaker: "B", text: "Selamat pagi, Pak. Tarifnya sekitar lima puluh ribu. Naik yang GoRide atau GoCar?", trans: "早上好，先生。费用大约5万。您要GoRide还是GoCar?"},
+        {speaker: "A", text: "GoCar saja, yang ber-AC. Cuaca hari ini sangat panas.", trans: "要GoCar，有空调的。今天天气很热。"},
+        {speaker: "B", text: "Baik, Pak. Mobil Toyota Avanza silver, plat B 1234 ABC. Sampai dalam lima menit.", trans: "好的，先生。银色丰田Avanza，车牌B 1234 ABC。5分钟内到。"},
+        {speaker: "A", text: "Terima kasih. Saya tunggu di lobby.", trans: "谢谢。我在大厅等。"}
+      ]},
+      {title: "🚇 乘坐雅加达MRT", icon: "🚊", dialogue: [
+        {speaker: "A", text: "Permisi, saya mau ke stasiun Bundaran HI. Tiketnya berapa?", trans: "打扰一下，我想去HI环岛站。票价多少?"},
+        {speaker: "Petugas", text: "Tarifnya sepuluh ribu rupiah, Pak. Mau beli tiket satu kali atau pakai kartu Jak Lingko?", trans: "票价1万盾，先生。要买一次性票还是用Jak Lingko卡?"},
+        {speaker: "A", text: "Saya turis, jadi tiket satu kali saja. Ke arah mana keretanya?", trans: "我是游客，所以买一次性票。列车往哪个方向?"},
+        {speaker: "Petugas", text: "Naik ke peron dua, arah Lebak Bulus. Turun di stasiun Bundaran HI, enam stasiun lagi.", trans: "上2号站台，往Lebak Bulus方向。在HI环岛站下车，还有6站。"},
+        {speaker: "A", text: "Terima kasih. Berapa lama perjalanannya?", trans: "谢谢。行程要多长时间?"},
+        {speaker: "Petugas", text: "Kurang lebih dua puluh menit, Pak. Keretanya datang setiap lima menit.", trans: "大约20分钟，先生。列车每5分钟一班。"}
+      ]},
+      {title: "🛵 租摩托车", icon: "🏍️", dialogue: [
+        {speaker: "A", text: "Selamat siang. Saya mau sewa motor selama tiga hari. Ada yang tersedia?", trans: "中午好。我想租3天摩托车。有吗?"},
+        {speaker: "B", text: "Selamat siang, Pak. Ada Honda Vario dan Yamaha NMax. Yang mana yang diinginkan?", trans: "中午好，先生。有本田Vario和雅马哈NMax。您想要哪个?"},
+        {speaker: "A", text: "NMax saja, yang 155cc. Berapa sewa hariannya?", trans: "要NMax，155cc的。日租金多少?"},
+        {speaker: "B", text: "Seratus lima puluh ribu per hari, termasuk dua helm. Bensin tidak termasuk.", trans: "15万一天，包含两个头盔。油费另算。"},
+        {speaker: "A", text: "Baik. SIM saya dari Tiongkok, tapi saya sudah punya SIM internasional. Boleh?", trans: "好的。我的驾照是中国的，但我有国际驾照。可以吗?"},
+        {speaker: "B", text: "Boleh, Pak. Tapi hati-hati ya, di Bali banyak yang naik motor. Jangan lupa pakai helm.", trans: "可以，先生。但小心点，巴厘岛骑摩托车的人很多。别忘了戴头盔。"}
+      ]},
+      {title: "✈️ 机场问询", icon: "🛫", dialogue: [
+        {speaker: "A", text: "Permisi, penerbangan GA 890 ke Shanghai, di gate berapa?", trans: "打扰一下，GA 890去上海的航班，在哪个登机口?"},
+        {speaker: "Petugas", text: "Mohon ditunggu sebentar, Pak... Penerbangan GA 890 berangkat dari gate D5.", trans: "请稍等，先生... GA 890航班从D5登机口出发。"},
+        {speaker: "A", text: "Terima kasih. Apakah sudah bisa boarding sekarang?", trans: "谢谢。现在可以登机了吗?"},
+        {speaker: "Petugas", text: "Belum, Pak. Boarding dimulai pukul sembilan lewat dua puluh. Sekarang baru pukul delapan empat puluh lima.", trans: "还不能，先生。9:20开始登机。现在才8:45。"},
+        {speaker: "A", text: "Baik. Di mana lounge Garuda yang terdekat?", trans: "好的。最近的Garuda休息室在哪?"},
+        {speaker: "Petugas", text: "Di lantai dua, sebelah kiri dari gate D5, Pak. Tunjukkan tiket dan kartu anggota Anda.", trans: "在二楼，D5登机口左边，先生。出示机票和会员卡。"}
+      ]},
+      {title: "🚗 买车咨询", icon: "🏬", dialogue: [
+        {speaker: "A", text: "Selamat pagi. Saya tertarik dengan mobil listrik Wuling Air EV. Bisa dijelaskan?", trans: "早上好。我对五菱Air EV电动车感兴趣。能介绍一下吗?"},
+        {speaker: "Sales", text: "Selamat pagi, Pak. Air EV ini mobil listrik murni, jangkauan dua ratus kilometer per charge. Harganya dua ratus empat puluh juta.", trans: "早上好，先生。Air EV是纯电动车，续航200公里。价格2.4亿盾。"},
+        {speaker: "A", text: "Di Morowali ada charging stationnya? Saya kerja di sana.", trans: "莫罗瓦利有充电桩吗? 我在那工作。"},
+        {speaker: "Sales", text: "Saat ini di Morowali belum banyak, Pak. Tapi perusahaan besar seperti IMIP sudah mulai install. Bisa pakau charger rumah dulu.", trans: "目前莫罗瓦利还不多，先生。但像IMIP这样的大公司已经开始安装了。可以先用家用充电器。"},
+        {speaker: "A", text: "Garansinya berapa tahun? Dan biaya servisnya mahal?", trans: "保修几年? 保养费用贵吗?"},
+        {speaker: "Sales", text: "Garansi baterai delapan tahun. Servis lebih murah dari mobil bensin karena tidak perlu ganti oli.", trans: "电池保修8年。保养比汽油车便宜，因为不需要换机油。"}
+      ]}
+    ],
+    speeches: [
+      {day: 1, title: "🚗 雅加达的交通日常", icon: "🌆", content: "Saya ingin bercerita tentang pengalaman berkendara di Jakarta. Setiap pagi, saya naik Gojek dari apartemen ke kantor. Jaraknya hanya lima kilometer, tapi karena macet, perjalanan bisa memakan waktu satu jam. Jakarta terkenal dengan kemacetannya. Namun, sekarang ada MRT dan TransJakarta yang sangat membantu. Saya sering naik MRT dari Lebak Bulus ke Bundaran HI. Cepat, nyaman, dan harganya terjangkau. Untuk perjalanan jauh, saya naik pesawat. Indonesia memiliki banyak maskapai penerbangan seperti Garuda, Lion Air, dan Citilink. Tiket pesawat ke Surabaya atau Bali sekarang sudah bisa dibeli melalui aplikasi Traveloka. Sangat praktis. Di masa depan, saya berharap infrastruktur transportasi Indonesia semakin baik, terutama kereta cepat yang sedang dibangun.", trans: "我想谈谈在雅加达的驾驶经历。每天早上，我从公寓叫Gojek去办公室。距离只有5公里，但因为堵车，行程可能要花1小时。雅加达以拥堵闻名。但现在有了MRT和TransJakarta，非常有帮助。我经常坐MRT从Lebak Bulus到HI环岛。快速、舒适、价格亲民。长途旅行我坐飞机。印尼有很多航空公司如Garuda、Lion Air和Citilink。去泗水或巴厘岛的机票现在可以通过Traveloka应用购买。非常便利。未来，我希望印尼的交通基础设施越来越好，尤其是正在建设的高铁。", time: 85, words: 145},
+      {day: 2, title: "🛵 印尼的摩托车文化", icon: "🏍️", content: "Di Indonesia, sepeda motor adalah kendaraan paling populer. Hampir setiap keluarga memiliki minimal satu motor. Di jalanan, kita bisa melihat ribuan motor setiap hari. Ini karena motor lebih murah, irit bensin, dan bisa melewati kemacetan. Ojek online seperti Gojek dan Grab telah mengubah cara orang Indonesia bepergian. Sekarang, kita bisa memesan motor atau mobil hanya dengan beberapa klik di smartphone. Para driver ojek ini bekerja keras, kadang dari pagi hingga malam. Namun, ada juga masalah keselamatan. Banyak pengendara motor yang tidak memakai helm atau melawan arah. Pemerintah telah membuat aturan lebih ketat, tetapi budaya berkendara masih perlu ditingkatkan. Di daerah pedesaan, sepeda motor adalah alat transportasi utama untuk mengangkut barang dan orang. Saya salut dengan kreativitas orang Indonesia dalam menggunakan motor. Mereka bisa membawa banyak barang hanya dengan satu motor!", trans: "在印尼，摩托车是最受欢迎的交通工具。几乎每个家庭至少有一辆摩托车。在路上，我们每天都能看到成千上万辆摩托车。这是因为摩托车更便宜、省油、还能穿过堵车。Gojek和Grab等网约车改变了印尼人的出行方式。现在，我们只需在智能手机上点几下就能叫到摩托车或汽车。这些网约车司机工作很辛苦，有时从早到晚。但安全问题也存在。很多摩托车骑手不戴头盔或逆行。政府已经制定了更严格的规定，但驾驶文化仍需提升。在农村地区，摩托车是运输货物和人员的主要工具。我佩服印尼人使用摩托车的创造力。他们能只凭一辆摩托车运载很多东西!", time: 90, words: 155},
+      {day: 3, title: "🚄 未来的交通：电动与智能", icon: "🔋", content: "Transportasi di Indonesia sedang mengalami transformasi besar. Pemerintah mendorong penggunaan kendaraan listrik untuk mengurangi polusi udara. Beberapa kota besar seperti Jakarta dan Bandung sudah mulai mengoperasikan bus listrik. Mobil listrik merek lokal seperti Wuling Air EV dan Hyundai Ioniq semakin banyak di jalanan. Namun, tantangan terbesar adalah infrastruktur charging station yang masih terbatas. Saya percaya dalam lima tahun ke depan, Indonesia akan memiliki jaringan charging yang lebih baik. Selain itu, teknologi smart city juga berkembang. Aplikasi seperti Google Maps dan Waze membantu pengendara menghindari kemacetan. Sistem pembayaran elektronik seperti e-Toll dan Jak Lingko membuat perjalanan lebih efisien. Di masa depan, saya berharap ada kereta cepat yang menghubungkan Jakarta, Bandung, dan Surabaya. Proyek kereta cepat Jakarta-Bandung sudah mulai beroperasi. Ini adalah langkah besar bagi transportasi Indonesia. Saya bangga melihat kemajuan ini.", trans: "印尼的交通正在经历巨大变革。政府推动使用电动车以减少空气污染。雅加达和万隆等大城市已开始运营电动公交车。像五菱Air EV和现代Ioniq这样的本地品牌电动车越来越多。但最大的挑战是充电桩基础设施仍然有限。我相信未来5年，印尼将拥有更好的充电网络。此外，智慧城市技术也在发展。Google Maps和Waze等应用帮助司机避开拥堵。电子支付系统如e-Toll和Jak Lingko让出行更高效。未来，我希望有高铁连接雅加达、万隆和泗水。雅万高铁项目已开始运营。这对印尼交通是一大进步。我为看到这些进步感到骄傲。", time: 95, words: 165}
+    ],
+    quiz: {
+      title: "交通和车辆 · 综合测试 (10题)",
+      questions: [
+        {q: "1. 'Saya _______ kereta api ke Jakarta.' 填入正确的动词。", options: ["A) makan", "B) naik", "C) tidur"], a: 1, explain: "'naik' = 乘坐，'naik kereta' = 坐火车"},
+        {q: "2. 'Jalan ini sangat _______ pada jam sibuk.' 表达'堵车'。", options: ["A) lancar", "B) macet", "C) kosong"], a: 1, explain: "'macet' = 堵车/拥堵"},
+        {q: "3. 'Berapa _______ perjalanan dari sini ke bandara?' 问'距离'。", options: ["A) harga", "B) jarak", "C) waktu"], a: 1, explain: "'jarak' = 距离"},
+        {q: "4. Gojek dan Grab di Indonesia adalah contoh _______ online.", options: ["A) ojek", "B) bus", "C) kapal"], a: 0, explain: "'ojek online' = 网约车"},
+        {q: "5. 'Jangan lupa pakai _______ saat naik motor.' 安全装备。", options: ["A) sepatu", "B) helm", "C) topi"], a: 1, explain: "'helm' = 头盔"},
+        {q: "6. '________ tiket ke Surabaya berapa?' 问票价。", options: ["A) Harga", "B) Berat", "C) Panjang"], a: 0, explain: "'harga tiket' = 票价"},
+        {q: "7. Mobil yang menggunakan listrik disebut mobil _______.", options: ["A) bensin", "B) listrik", "C) solar"], a: 1, explain: "'mobil listrik' = 电动车"},
+        {q: "8. 'Kereta _______ Jakarta-Bandung sudah beroperasi.' 高铁。", options: ["A) lambat", "B) cepat", "C) lama"], a: 1, explain: "'kereta cepat' = 高铁"},
+        {q: "9. '________ ini berhenti di mana?' 公交站。", options: ["A) Kapal", "B) Bus", "C) Pesawat"], a: 1, explain: "'bus' = 公交车"},
+        {q: "10. 'Saya pesan _______ untuk ke kantor karena cuaca panas.' 网约车类型。", options: ["A) GoRide", "B) GoCar", "C) GoSend"], a: 1, explain: "'GoCar' = 四轮网约车，有空调"}
+      ]
+    },
+    quiz_answers: `Kunci Jawaban Transportasi dan Kendaraan:\n1.B | 2.B | 3.B | 4.A | 5.B\n6.A | 7.B | 8.B | 9.B | 10.B\n\n Tips: Perhatikan konteks perjalanan dan pilihan transportasi yang tepat untuk situasi tersebut.`
+  },
+  "modern_shopping": {
+    title: "话题14: 现代购物 / Berbelanja Modern",
+    icon: "🛍️",
+    days: 3,
+    grammar: {
+      title: "购物场景语法 · Tata Bahasa Berbelanja",
+      rules: [
+        "🔹 询问价格：Berapa harganya? ('多少钱?') / Harga ini berapa? ('这个多少钱?')",
+        "🔹 讨价还价：Bisa kurang? ('能便宜点吗?') / Terlalu mahal ('太贵了') / Saya cari yang lebih murah ('我找更便宜的')",
+        "🔹 支付方式：Bayar tunai ('现金支付') / Bayar dengan kartu ('刷卡') / Bayar dengan QRIS ('扫码支付') / Transfer ('转账')",
+        "🔹 网购表达：Pesan online ('网上订购') / Dikirim ke ('寄到...') / Gratis ongkir ('免运费') / Diskon ('折扣')",
+        "🔹 退换货：Saya mau tukar ('我想换') / Saya mau kembalikan ('我想退货') / Ukuran tidak cocok ('尺寸不合适') / Barang rusak ('商品损坏')"
+      ],
+      examples: [
+        "Berapa harga sepatu ini? = 这双鞋多少钱?",
+        "Bisa kurang lima puluh ribu? = 能便宜5万吗?",
+        "Saya bayar dengan QRIS. = 我用QRIS支付。",
+        "Apakah ada diskon untuk member? = 会员有折扣吗?",
+        "Barang ini saya pesan kemarin, tapi ukurannya salah. Bisa tukar? = 这商品我昨天订的，但尺寸错了。能换吗?"
+      ]
+    },
+    vocab: [
+      ['belanja', '购物', '/bəˈlanʤa/'], ['toko', '商店', '/ˈtoko/'], ['mall', '商场', '/ˈmɔl/'],
+      ['pasar', '市场', '/ˈpasar/'], ['supermarket', '超市', '/ˈsupɛrmarkɛt/'], ['warung', '小摊', '/ˈwaruŋ/'],
+      ['harga', '价格', '/ˈharɡa/'], ['murah', '便宜', '/ˈmurah/'], ['mahal', '贵', '/ˈmahal/'],
+      ['diskon', '折扣', '/ˈdiskɔn/'], ['promo', '促销', '/ˈpromo/'], ['gratis', '免费', '/ˈɡratis/'],
+      ['ongkir', '运费', '/ˈoŋkir/'], ['bayar', '支付', '/ˈbajar/'], ['tunai', '现金', '/ˈtunai/'],
+      ['transfer', '转账', '/ˈtransfɛr/'], ['kartu kredit', '信用卡', '/ˈkartu ˈkrɛdit/'], ['QRIS', '二维码支付', '/ˈkris/'],
+      ['keranjang', '购物车', '/kəˈranʤaŋ/'], ['kantong belanja', '购物袋', '/ˈkantoŋ bəˈlanʤa/'], ['struk', '小票', '/ˈstruk/'],
+      ['ukuran', '尺寸', '/ˈkuran/'], ['warna', '颜色', '/ˈwarna/'], ['kualitas', '质量', '/ˈkualitas/'],
+      ['garansi', '保修', '/ˈɡaransi/'], ['refund', '退款', '/ˈrifand/'], ['tukar', '换', '/ˈtukar/'],
+      ['kembalikan', '退回', '/kəmˈbalikan/'], ['pesan', '订购', '/ˈpɛsan/'], ['kirim', '寄送', '/ˈkirim/'],
+      ['cod', '货到付款', '/ˈsi o ˈdi/'], [' marketplace', '电商平台', '/ˈmarkitplɛs/'], ['live shopping', '直播带货', '/ˈlaif ˈʃopiŋ/'],
+      ['Shopee', 'Shopee', '/ˈʃopi/'], ['Tokopedia', 'Tokopedia', '/ˈtokoˈpɛdia/'], ['Lazada', 'Lazada', '/ˈlazada/']
+    ],
+    scenes: [
+      {title: "🛒 超市购物", icon: "🏬", dialogue: [
+        {speaker: "A", text: "Selamat siang. Di mana saya bisa menemukan beras premium?", trans: "中午好。我在哪能找到优质大米?"},
+        {speaker: "B", text: "Lorong tiga, sebelah kanan, Pak. Kami punya beras lokal dan impor. Yang mana yang dicari?", trans: "3号过道，右边，先生。我们有本地和进口大米。您要找哪种?"},
+        {speaker: "A", text: "Saya mau beras lokal yang pulen. Berapa harganya per kilo?", trans: "我要本地软糯的米。每公斤多少钱?"},
+        {speaker: "B", text: "Dua belas ribu per kilo, Pak. Kalau beli lima kilo dapat diskon sepuluh persen.", trans: "1.2万一公斤，先生。买5公斤打9折。"},
+        {speaker: "A", text: "Baik, saya ambil lima kilo. Bisa bayar pakai QRIS?", trans: "好的，我要5公斤。可以QRIS支付吗?"},
+        {speaker: "B", text: "Bisa, Pak. Silakan scan barcode di kasir.", trans: "可以，先生。请在收银台扫码。"}
+      ]},
+      {title: "📱 网购退货", icon: "📦", dialogue: [
+        {speaker: "A", text: "Permisi, saya mau kembalikan barang ini. Saya pesan dari Tokopedia kemarin.", trans: "打扰一下，我想退这个商品。我昨天在Tokopedia订的。"},
+        {speaker: "B", text: "Baik, Pak. Bisa saya lihat struk digitalnya? Dan apa alasan pengembaliannya?", trans: "好的，先生。能看一下电子小票吗? 退货原因是什么?"},
+        {speaker: "A", text: "Ukuran kaosnya terlalu kecil. Saya pesan XL, tapi yang datang L.", trans: "T恤尺寸太小了。我订的XL，但送来的是L。"},
+        {speaker: "B", text: "Mohon maaf atas kesalahannya, Pak. Kami bisa tukar ukuran yang benar atau refund penuh. Mau yang mana?", trans: "抱歉出错，先生。我们可以换正确的尺寸或全额退款。您要哪种?"},
+        {speaker: "A", text: "Saya mau tukar saja. Berapa lama prosesnya?", trans: "我想换货。流程要多久?"},
+        {speaker: "B", text: "Tiga sampai lima hari kerja, Pak. Kami akan kirim kurir untuk ambil barangnya.", trans: "3-5个工作日，先生。我们会派快递员来取货。"}
+      ]},
+      {title: "💳 商场购物", icon: "🏬", dialogue: [
+        {speaker: "A", text: "Selamat sore. Saya cari kemeja batik untuk hadiah. Ada rekomendasi?", trans: "下午好。我找蜡染衬衫当礼物。有推荐吗?"},
+        {speaker: "B", text: "Selamat sore, Pak. Kemeja batik asli Pekalongan ada di lorong dua. Motifnya klasik dan modern ada.", trans: "下午好，先生。正品北加浪岸蜡染衬衫在2号过道。有经典和现代图案。"},
+        {speaker: "A", text: "Saya mau yang modern. Harganya berapa?", trans: "我要现代的。多少钱?"},
+        {speaker: "B", text: "Kemeja batik modern harganya tiga ratus lima puluh ribu, Pak. Kalau pakai kartu kredit BCA bisa cicilan nol persen.", trans: "现代蜡染衬衫35万，先生。如果用BCA信用卡可以零利率分期。"},
+        {speaker: "A", text: "Baik, saya ambil yang warna biru. Saya bayar pakai kartu debit.", trans: "好的，我要蓝色的。我用借记卡支付。"}
+      ]},
+      {title: "🎥 直播购物", icon: "📺", dialogue: [
+        {speaker: "Host", text: "Halo semuanya! Hari ini kita punya promo spesial! Skincare Korea hanya seratus ribu dapat tiga item!", trans: "大家好! 今天我们有特别促销! 韩国护肤品10万3件!"},
+        {speaker: "A (di chat)", text: "Kak, yang untuk kulit sensitif ada?", trans: "姐，有敏感肌用的吗?"},
+        {speaker: "Host", text: "Ada, sayang! Yang warna hijau cocok untuk kulit sensitif. Stoknya cuma lima puluh set ya, buruan!", trans: "有，亲! 绿色的适合敏感肌。库存只有50套哦，赶紧!"},
+        {speaker: "A", text: "Saya pesan satu set. Bisa COD?", trans: "我要一套。能货到付款吗?"},
+        {speaker: "Host", text: "Bisa, sayang! Klik tombol kuning, masukkan alamat, pilih pembayaran COD. Gratis ongkir untuk hari ini!", trans: "可以，亲! 点黄色按钮，输入地址，选COD付款。今天免运费!"}
+      ]},
+      {title: "🛍️ 传统市场砍价", icon: "🤝", dialogue: [
+        {speaker: "A", text: "Bu, duriannya berapa satu kilo?", trans: "大妈，榴莲多少一公斤?"},
+        {speaker: "B", text: "Lima puluh ribu, Pak. Durian Montong asli Medan, manis dan tebal.", trans: "5万，先生。正宗棉兰Monthong榴莲，甜而且肉厚。"},
+        {speaker: "A", text: "Wah mahal. Bisa kurang? Saya beli dua kilo. Empat puluh ribu saja?", trans: "哇贵。能便宜吗? 我买2公斤。4万行吗?"},
+        {speaker: "B", text: "Eh, Pak. Harga modalnya saja sudah empat lima ribu. Lima puluh ribu sudah murah. Tapi kalau beli dua kilo, saya kasih empat lima ribu per kilo.", trans: "哎呀先生。成本价都要4.5万。5万已经很便宜了。但买2公斤的话，我给你4.5万一公斤。"},
+        {speaker: "A", text: "Baiklah, saya ambil dua kilo. Tolong dibungkus yang rapi ya.", trans: "好吧，我要2公斤。请包好点。"}
+      ]}
+    ],
+    speeches: [
+      {day: 1, title: "🛒 网购改变生活", icon: "📱", content: "Dalam beberapa tahun terakhir, cara orang Indonesia berbelanja telah berubah drastis. Dulu, kita harus pergi ke pasar atau mall untuk membeli barang. Sekarang, hanya dengan smartphone, kita bisa membeli apa saja. Platform seperti Shopee, Tokopedia, dan Lazada mendominasi pasar e-commerce Indonesia. Saya pribadi hampir setiap minggu belanja online. Mulai dari makanan, pakaian, hingga peralatan elektronik. Yang saya sukai adalah gratis ongkir dan promo cashback. Namun, ada juga tantangan. Kadang barang yang datang tidak sesuai gambar. Ukuran baju bisa salah. Solusinya adalah selalu cek rating toko dan baca ulasan pembeli. Saya juga suka live shopping di TikTok. Host menjelaskan produk secara langsung dan kita bisa tanya-tanya. Sangat interaktif. Menurut saya, e-commerce akan terus tumbuh di Indonesia. Ini memudahkan hidup, terutama bagi yang tinggal di daerah terpencil.", trans: "近年来，印尼人的购物方式发生了巨大变化。以前，我们必须去市场或商场买东西。现在，只需一部智能手机，我们可以买任何东西。Shopee、Tokopedia和Lazada等平台主导着印尼电商市场。我个人几乎每周都网购。从食品、衣服到电子设备。我喜欢的是免运费和返现促销。但挑战也存在。有时送来的商品与图片不符。衣服尺寸可能不对。解决方案是始终查看店铺评分和买家评价。我也喜欢TikTok直播购物。主播实时介绍产品，我们可以提问。非常互动。我认为电商在印尼将继续增长。这让生活更便利，尤其是住在偏远地区的人。", time: 90, words: 165},
+      {day: 2, title: "🏪 传统市场与现代商场", icon: "🏙️", content: "Indonesia memiliki dua dunia belanja yang menarik. Pertama, pasar tradisional seperti Pasar Tanah Abang dan Pasar Senen. Di sini, kita bisa menemukan barang dengan harga sangat murah. Kita juga bisa menawar harga. Suasananya ramai, penuh warna, dan sangat hidup. Penjualnya ramah dan suka bercanda. Kedua, mall modern seperti Grand Indonesia dan Plaza Indonesia. Mall ini menawarkan pengalaman belanja mewah dengan AC, toko internasional, dan restoran fine dining. Saya suka keduanya. Di pasar tradisional, saya belanja sayur, buah, dan kebutuhan dapur. Di mall, saya beli pakaian branded dan nonton bioskop. Namun, saya khawatir pasar tradisional semakin sepi karena orang lebih suka belanja online. Pemerintah perlu mengembangkan pasar tradisional agar lebih bersih dan nyaman. Sebagai expatriat, saya senang melihat perpaduan tradisi dan modernitas di Indonesia. Ini membelajaran unik.", trans: "印尼有两个迷人的购物世界。首先是传统市场如丹那阿邦市场和森嫩市场。在这里，我们能找到非常便宜的商品。还可以砍价。氛围热闹、色彩斑斓、充满生机。卖家友好爱开玩笑。第二是现代商场如印尼大商场和印尼广场。这些商场提供奢华购物体验，有空调、国际品牌和高级餐厅。我喜欢两者。在传统市场，我买蔬菜、水果和厨房用品。在商场，我买品牌衣服和看电影。但我担心传统市场越来越冷清，因为人们更喜欢网购。政府需要发展传统市场，使其更干净舒适。作为外籍人士，我很高兴看到印尼传统与现代的融合。这是独特的体验。", time: 95, words: 175},
+      {day: 3, title: "💰 聪明购物的秘诀", icon: "🧠", content: "Berbelanja cerdas adalah keterampilan penting di era modern. Pertama, selalu bandingkan harga. Barang yang sama bisa memiliki harga berbeda di Shopee, Tokopedia, dan toko fisik. Gunakan aplikasi seperti Priceza untuk membandingkan. Kedua, manfaatkan promo dan cashback. Hari-hari seperti 11.11, Harbolnas, dan Ramadhan Sale menawarkan diskon besar. Ketiga, periksa ulasan pembeli. Jangan hanya lihat rating, baca komentar spesifik tentang kualitas barang. Keempat, gunakan kartu kredit dengan bijak. Cicilan nol persen memang menggiurkan, tapi pastikan kita bisa membayar. Kelima, beli produk lokal. Indonesia memiliki banyak produk berkualitas seperti batik, kopi, dan kerajinan tangan. Dengan membeli lokal, kita mendukung ekonomi Indonesia. Saya selalu membawa oleh-oleh batik dan kopi luwak saat pulang ke Tiongkok. Teman-teman saya sangat suka. Ingatlah, belanja bukan hanya soal membeli, tapi soal membuat pilihan yang bijak.", trans: "聪明购物是现代社会的重要技能。首先，始终比价。相同商品在Shopee、Tokopedia和实体店可能有不同价格。用Priceza等应用比价。第二，利用促销和返现。11.11、全国网购日和斋月大促等日子提供大幅折扣。第三，查看买家评价。不要只看评分，阅读关于商品质量的具体评论。第四，明智使用信用卡。零利率分期很诱人，但要确保我们能还款。第五，购买本地产品。印尼有很多优质产品如蜡染、咖啡和手工艺品。购买本地产品支持印尼经济。我回中国时总是带蜡染和猫屎咖啡作礼物。朋友们非常喜欢。记住，购物不只是买东西，而是做出明智的选择。", time: 100, words: 185}
+    ],
+    quiz: {
+      title: "现代购物 · 综合测试 (10题)",
+      questions: [
+        {q: "1. '________ harganya?' 问价格的正确表达。", options: ["A) Apa", "B) Berapa", "C) Siapa"], a: 1, explain: "'Berapa harganya?' = 多少钱?"},
+        {q: "2. 印尼最大的电商平台之一是 _______.", options: ["A) Amazon", "B) Shopee", "C) eBay"], a: 1, explain: "'Shopee' = 印尼主要电商平台"},
+        {q: "3. 'Bisa _______?' 表达'能便宜点吗?'。", options: ["A) mahal", "B) kurang", "C) tambah"], a: 1, explain: "'Bisa kurang?' = 能便宜点吗?"},
+        {q: "4. 在印尼，扫码支付系统叫做 _______.", options: ["A) Alipay", "B) QRIS", "C) PayPal"], a: 1, explain: "'QRIS' = 印尼标准二维码支付"},
+        {q: "5. '________ ongkir' 表示'免运费'。", options: ["A) Bayar", "B) Gratis", "C) Mahal"], a: 1, explain: "'gratis ongkir' = 免运费"},
+        {q: "6. 'Saya mau _______ ukurannya. Ini terlalu kecil.' 想换货。", options: ["A) beli", "B) tukar", "C) jual"], a: 1, explain: "'tukar' = 换/交换"},
+        {q: "7. _______ adalah acara belanja online terbesar di Indonesia pada 11 November.", options: ["A) Ramadhan", "B) Harbolnas", "C) Natal"], a: 1, explain: "'Harbolnas' = 全国网购日 (11.11)"},
+        {q: "8. 'Saya bayar pakai _______ kredit.' 信用卡。", options: ["A) uang", "B) kartu", "C) koin"], a: 1, explain: "'kartu kredit' = 信用卡"},
+        {q: "9. 直播购物的印尼语是 _______.", options: ["A) online shop", "B) live shopping", "C) pasar"], a: 1, explain: "'live shopping' = 直播带货/直播购物"},
+        {q: "10. 'Tolong dibungkus yang _______ ya.' 要求包装好。", options: ["A) rapi", "B) kotor", "C) rusak"], a: 0, explain: "'rapi' = 整齐/好"}
+      ]
+    },
+    quiz_answers: `Kunci Jawaban Berbelanja Modern:\n1.B | 2.B | 3.B | 4.B | 5.B\n6.B | 7.B | 8.B | 9.B | 10.A\n\n Tips: Perhatikan platform e-commerce lokal Indonesia dan istilah pembayaran digital yang umum digunakan.`
+  },
+  "dining": {
+    title: "话题15: 就餐与饮食 / Makan dan Minum",
+    icon: "🍽️",
+    days: 3,
+    grammar: {
+      title: "餐饮场景语法 · Tata Bahasa Makan dan Minum",
+      rules: [
+        "🔹 点餐表达：Saya mau pesan... ('我想点...') / Saya ingin... ('我想要...') / Ada...? ('有...吗?')",
+        "🔹 口味偏好：pedas ('辣') / manis ('甜') / asin ('咸') / asam ('酸') / tidak pedas ('不辣')",
+        "🔹 分量表达：porsi besar ('大份') / porsi sedang ('中份') / porsi kecil ('小份') / setengah porsi ('半份')",
+        "🔹 饮食限制：saya alergi... ('我对...过敏') / saya vegetarian ('我是素食者') / halal ('清真') / tidak makan daging ('不吃肉')",
+        "🔹 结账表达：Mint bonnya ('请给账单') / Bisa bayar pakai...? ('可以用...支付吗?') / Saya traktir ('我请客') / patungan ('AA制')"
+      ],
+      examples: [
+        "Saya mau pesan nasi goreng, tapi tidak pedas. = 我想点炒饭，但不要辣。",
+        "Ada menu vegetarian di sini? = 这有素食菜单吗?",
+        "Porsinya bisa dikurangi? Saya sedang diet. = 分量能少点吗? 我在减肥。",
+        "Minta bonnya. Saya bayar pakai kartu. = 请给账单。我刷卡。",
+        "Makanannya enak sekali! Masakannya siapa? = 太好吃了! 谁做的?"
+      ]
+    },
+    vocab: [
+      ['makan', '吃', '/ˈmakan/'], ['minum', '喝', '/ˈminum/'], ['restoran', '餐厅', '/rɛstoˈran/'],
+      ['warung makan', '小吃摊', '/ˈwaruŋ ˈmakan/'], ['kafe', '咖啡馆', '/ˈkafe/'], ['hawker', '小贩', '/ˈhɔkər/'],
+      ['nasi', '米饭', '/ˈnasi/'], ['mie', '面', '/ˈmi/'], ['roti', '面包', '/ˈroti/'],
+      ['daging', '肉', '/ˈdaɡiŋ/'], ['ayam', '鸡肉', '/ˈajam/'], ['ikan', '鱼', '/ˈikan/'],
+      ['sayur', '蔬菜', '/ˈsajur/'], ['buah', '水果', '/ˈbuah/'], ['telur', '蛋', '/ˈtɛlur/'],
+      ['goreng', '油炸', '/ˈɡorɛŋ/'], ['bakar', '烤', '/ˈbakar/'], ['rebus', '煮', '/ˈrɛbus/'],
+      ['kukus', '蒸', '/ˈkukus/'], ['tumis', '炒', '/ˈtumis/'], ['sup', '汤', '/ˈsup/'],
+      ['pedas', '辣', '/ˈpɛdas/'], ['manis', '甜', '/ˈmanis/'], ['asin', '咸', '/ˈasin/'],
+      ['pahit', '苦', '/ˈpahit/'], ['asam', '酸', '/ˈasam/'], ['gurih', '鲜美', '/ˈɡurih/'],
+      ['kopi', '咖啡', '/ˈkopi/'], ['teh', '茶', '/ˈtɛh/'], ['jus', '果汁', '/ˈdʒus/'],
+      ['air mineral', '矿泉水', '/ˈair minɛˈral/'], ['es', '冰', '/ˈɛs/'], ['panas', '热', '/ˈpanas/'],
+      ['dingin', '冷', '/ˈdiŋin/'], ['menu', '菜单', '/ˈmɛnu/'], ['pelayan', '服务员', '/pəˈlajan/'],
+      ['meja', '桌子', '/ˈmɛdʒa/'], ['kursi', '椅子', '/ˈkursi/'], ['sendok', '勺子', '/ˈsɛndɔk/'],
+      ['garpu', '叉子', '/ˈɡarpu/'], ['piring', '盘子', '/ˈpirinɡ/'], ['mangkuk', '碗', '/ˈmaŋkuk/'],
+      ['halal', '清真', '/ˈhalal/'], ['lezat', '美味', '/ləˈzat/'], ['kenyang', '饱', '/ˈkɛɲaŋ/']
+    ],
+    scenes: [
+      {title: "🍛 在Nasi Padang餐厅", icon: "🌶️", dialogue: [
+        {speaker: "A", text: "Selamat malam. Meja untuk dua orang, ada?", trans: "晚上好。有两人桌吗?"},
+        {speaker: "Pelayan", text: "Selamat malam, Pak. Ada, silakan duduk di situ. Ini menunya.", trans: "晚上好，先生。有，请坐那边。这是菜单。"},
+        {speaker: "A", text: "Terima kasih. Nasi Padangnya apa yang paling enak di sini?", trans: "谢谢。这里的巴东饭什么最好吃?"},
+        {speaker: "Pelayan", text: "Rendangnya terkenal, Pak. Dan gulai ayamnya juga banyak yang suka. Sambalnya sangat pedas.", trans: "仁当很有名，先生。咖喱鸡也很受欢迎。辣酱非常辣。"},
+        {speaker: "B", text: "Saya mau rendang sama sayur singkong. Tapi tidak terlalu pedas ya.", trans: "我要仁当和木薯叶。但不要太辣。"},
+        {speaker: "A", text: "Saya mau gulai ayam dan ikan bakar. Sama es teh manis.", trans: "我要咖喱鸡和烤鱼。加冰甜茶。"},
+        {speaker: "Pelayan", text: "Baik, Pak. Tunggu sekitar lima belas menit ya.", trans: "好的，先生。请等大约15分钟。"}
+      ]},
+      {title: "☕ 在咖啡馆工作", icon: "💻", dialogue: [
+        {speaker: "A", text: "Selamat pagi. Bisa pesan kopi susu dan croissant?", trans: "早上好。可以点拿铁和牛角包吗?"},
+        {speaker: "Barista", text: "Selamat pagi. Kopi susu pakai oat milk atau susu sapi biasa?", trans: "早上好。拿铁要燕麦奶还是普通牛奶?"},
+        {speaker: "A", text: "Oat milk saja. Saya sedang hindari produk susu.", trans: "要燕麦奶。我在避免乳制品。"},
+        {speaker: "Barista", text: "Baik. Mau gula? Kami punya gula aren dan stevia.", trans: "好的。要糖吗? 我们有椰糖和甜菊糖。"},
+        {speaker: "A", text: "Gula aren sedikit saja. Dan saya mau kerja di sini pakai WiFi. Passwordnya?", trans: "少量椰糖。我要在这用WiFi工作。密码是什么?"},
+        {speaker: "Barista", text: "Kopikenangan2024, Pak. WiFi kencang kok. Croissantnya hangat ya, baru keluar dari oven.", trans: "Kopikenangan2024，先生。WiFi很快的。牛角包是热的，刚出炉。"}
+      ]},
+      {title: "🥗 健康餐订购", icon: "🥑", dialogue: [
+        {speaker: "A", text: "Permisi, saya cari menu yang sehat dan rendah kalori. Ada rekomendasi?", trans: "打扰一下，我在找健康低卡路里的菜单。有推荐吗?"},
+        {speaker: "B", text: "Kami punya salad bowl dan quinoa bowl, Bu. Bisa pilih protein: ayam, salmon, atau tahu.", trans: "我们有沙拉碗和藜麦碗，女士。可以选蛋白质：鸡肉、三文鱼或豆腐。"},
+        {speaker: "A", text: "Saya mau quinoa bowl dengan salmon. Dressingnya apa?", trans: "我要藜麦碗加三文鱼。什么酱汁?"},
+        {speaker: "B", text: "Ada lemon vinaigrette, sesame dressing, dan olive oil balsamic. Yang mana?", trans: "有柠檬油醋汁、芝麻酱汁和橄榄油黑醋。要哪种?"},
+        {speaker: "A", text: "Lemon vinaigrette saja. Dan tolong sayurannya banyak ya.", trans: "要柠檬油醋汁。请多放蔬菜。"},
+        {speaker: "B", text: "Baik, Bu. Porsi sayurannya kami double untuk Anda. Mau jus detox juga?", trans: "好的，女士。我们给您双份蔬菜。还要排毒果汁吗?"}
+      ]},
+      {title: "🍜 路边摊体验", icon: "🌃", dialogue: [
+        {speaker: "A", text: "Malam, Bang. Mie ayamnya satu mangkuk berapa?", trans: "晚上好，哥。一碗鸡肉面多少钱?"},
+        {speaker: "B", text: "Lima belas ribu, Mas. Pake bakso tambah lima ribu.", trans: "1.5万，先生。加肉丸另加5千。"},
+        {speaker: "A", text: "Oke, saya mau mie ayam bakso komplit. Level pedasnya berapa?", trans: "好，我要全套鸡肉肉丸面。辣度有几级?"},
+        {speaker: "B", text: "Ada lima level, Mas. Level satu sampai tiga biasa, level empat dan lima sangat pedas.", trans: "有5级，先生。1到3级普通，4和5级非常辣。"},
+        {speaker: "A", text: "Level dua saja. Dan minta es jeruk. Saya duduk di sana ya.", trans: "2级就好。再加杯冰橙汁。我坐那边。"},
+        {speaker: "B", text: "Siap, Mas. Sebentar ya. Mangkuknya besar nih, pasti kenyang.", trans: "好，先生。稍等。碗很大哦，肯定能吃饱。"}
+      ]},
+      {title: "🎉 商务宴请", icon: "🤝", dialogue: [
+        {speaker: "A", text: "Selamat malam, Pak Liu. Terima kasih sudah meluangkan waktu makan malam bersama.", trans: "晚上好，刘总。感谢您抽空共进晚餐。"},
+        {speaker: "B", text: "Selamat malam, Pak. Saya senang sekali. Restoran ini terkenal dengan masakan seafoodnya.", trans: "晚上好，先生。我很高兴。这家餐厅以海鲜闻名。"},
+        {speaker: "A", text: "Saya sudah pesan beberapa hidangan khas. Ada kepiting saus Padang, ikan bakar, dan udang goreng mentega.", trans: "我已点了几道特色菜。有巴东酱螃蟹、烤鱼和黄油炸虾。"},
+        {speaker: "B", text: "Wah, terdengar lezat! Saya suka seafood. Apa ada minuman khusus?", trans: "哇，听起来很美味! 我喜欢海鲜。有什么特色饮品吗?"},
+        {speaker: "A", text: "Ada es kelapa muda dan jus alpukat. Kedua-duanya segar sekali.", trans: "有青椰冰和牛油果果汁。两者都很清爽。"},
+        {speaker: "B", text: "Saya mau jus alpukat. Di Tiongkok tidak banyak yang jual jus alpukat. Ini spesial Indonesia!", trans: "我要牛油果果汁。在中国不多见卖牛油果果汁的。这是印尼特色!"}
+      ]}
+    ],
+    speeches: [
+      {day: 1, title: "🍛 印尼美食之旅", icon: "🌶️", content: "Indonesia adalah surga kuliner. Setiap pulau memiliki masakan khas yang unik. Saya tinggal di Morowali, Sulawesi, dan saya jatuh cinta dengan masakan Indonesia. Nasi Padang dari Sumatera Barat adalah favorit saya. Rendang, gulai, dan sambal ijo semuanya menggugah selera. Di Jawa, saya suka nasi goreng dan sate. Nasi gorengnya selalu disajikan dengan telur mata sapi di atasnya. Sate ayam dengan bumbu kacang adalah camilan terbaik. Di Bali, babi guling dan ayam betutu adalah hidangan wajib. Tapi sebagai Muslim, saya lebih sering mencari versi halalnya. Minuman khas juga sangat beragam. Es teh manis adalah minuman sehari-hari. Kopi tubruk dengan gula Jawa memberikan energi di pagi hari. Jus alpukat dengan coklat adalah kombinasi yang aneh tapi enak. Saya juga belajar bahwa makan di Indonesia bukan hanya soal rasa, tapi juga soal kebersamaan. Makan bersama colleagues mempererat hubungan. Saya bersyukur bisa menikmati kekayaan kuliner Indonesia.", trans: "印尼是美食天堂。每个岛屿都有独特的特色菜。我住在苏拉威西的莫罗瓦利，我爱上了印尼菜。来自西苏门答腊的巴东饭是我的最爱。仁当、咖喱和绿辣椒酱都很开胃。在爪哇，我喜欢炒饭和沙爹。炒饭总是上面放个煎蛋。花生酱鸡肉沙爹是最好的小吃。在巴厘岛，烤乳猪和Betutu鸡是必吃菜。但作为穆斯林，我更常找清真版本。特色饮品也非常多样。冰甜茶是日常饮品。爪哇咖啡加糖给我早晨的能量。牛油果加巧克力汁是奇怪但好吃的组合。我还了解到，在印尼吃饭不只是味道，还关乎团聚。和同事一起吃饭增进感情。我很感激能享受印尼丰富的美食。", time: 100, words: 185},
+      {day: 2, title: "☕ 印尼咖啡文化", icon: "☕", content: "Indonesia adalah salah satu produsen kopi terbesar di dunia. Kopi dari Sumatera, Jawa, Sulawesi, dan Bali semua memiliki karakter unik. Saya sering minum kopi di kantor. Di Indonesia, kopi tubruk adalah yang paling tradisional. Kopi bubuk dituang langsung ke gelas, ditambah gula, dan dibiarkan mengendap. Rasanya kuat dan pahit. Tapi sekarang, kafe modern semakin banyak. Kopi Kenangan adalah merek lokal yang berkembang pesat. Mereka menyajikan kopi susu dengan harga terjangkau. Saya suka nongkrong di kafe sambil kerja. WiFi gratis dan AC membuat produktivitas meningkat. Selain kopi, teh juga populer. Teh tarik dan teh talwa adalah favorit banyak orang. Di Morowali, saya juga menemukan kopi luwak. Kopi ini dibuat dari biji kopi yang dimakan luwak. Harganya mahal, tapi rasanya sangat halus. Saya biasanya membeli kopi luwak sebagai oleh-oleh untuk keluarga di Tiongkok. Mereka sangat penasaran dengan proses pembuatannya. Kopi adalah bagian penting dari budaya Indonesia. Dari warung kopi pinggir jalan sampai kafe Instagramable, semuanya punya tempat.", trans: "印尼是世界上最大的咖啡生产国之一。来自苏门答腊、爪哇、苏拉威西和巴厘的咖啡都有独特特征。我经常在办公室喝咖啡。在印尼，tubruk咖啡是最传统的。咖啡粉直接倒入杯中，加糖，让它沉淀。味道浓烈苦涩。但现在现代咖啡馆越来越多。Kopi Kenangan是快速发展的本地品牌。他们提供价格亲民的拿铁。我喜欢在咖啡馆边工作边待着。免费WiFi和空调提高生产力。除了咖啡，茶也很受欢迎。拉茶和talwa茶是很多人的最爱。在莫罗瓦利，我还发现了猫屎咖啡。这种咖啡由麝香猫吃下的咖啡豆制成。价格贵，但味道非常柔和。我通常买猫屎咖啡作为给中国的家人的礼物。他们对制作过程很好奇。咖啡是印尼文化的重要部分。从路边咖啡摊到网红咖啡馆，各有其位。", time: 105, words: 195},
+      {day: 3, title: "🥗 健康饮食新趋势", icon: "🌱", content: "Gaya hidup sehat sedang tren di Indonesia, terutama di kota-kota besar. Banyak orang mulai sadar akan pentingnya nutrisi dan olahraga. Salad bar dan restoran sehat semakin bermunculan. Saya sendiri mencoba makan lebih sehat. Di Jakarta, ada banyak tempat yang menyajikan salad bowl, quinoa, dan smoothie bowl. Mereka menggunakan bahan segar dan organik. Aplikasi seperti Gojek dan Grab juga menyediakan opsi makanan sehat. Saya sering pesan makanan rendah karbohidrat. Tapi tantangannya adalah harga. Makanan sehat biasanya lebih mahal daripada makanan biasa. Selain itu, makanan Indonesia tradisional sering digoreng dan banyak menggunakan santan. Rendang dan gorengan memang enak, tapi tinggi kalori. Solusinya adalah keseimbangan. Saya masih menikmati masakan Indonesia, tapi dengan porsi yang lebih kecil. Saya juga menambahkan lebih banyak sayur dan buah. Minum air putih yang cukup juga penting. Di Morowali, saya mencoba berkebun sayur sendiri. Tomat, cabai, dan daun bawang tumbuh dengan baik. Saya bangga bisa memasak dengan bahan dari kebun sendiri. Kesehatan adalah investasi terbaik.", trans: "健康生活方式正在印尼流行，尤其在大城市。很多人开始意识到营养和运动的重要性。沙拉吧和健康餐厅不断涌现。我自己也尝试吃得更健康。在雅加达，有很多地方提供沙拉碗、藜麦和果昔碗。他们用新鲜有机食材。Gojek和Grab等应用也提供健康食品选项。我经常点低碳水食物。但挑战是价格。健康食品通常比普通食物贵。此外，印尼传统食物经常油炸且多用椰浆。仁当和油炸食品确实好吃，但热量高。解决方案是平衡。我仍然享受印尼菜，但分量更小。我也增加更多蔬菜和水果。喝足够的水也很重要。在莫罗瓦利，我尝试自己种菜。番茄、辣椒和葱长得很好。我骄傲能用自家菜园的材料烹饪。健康是最好的投资。", time: 110, words: 205}
+    ],
+    quiz: {
+      title: "就餐与饮食 · 综合测试 (10题)",
+      questions: [
+        {q: "1. 'Saya mau _______ nasi goreng.' 点菜的正确动词。", options: ["A) tidur", "B) pesan", "C) jalan"], a: 1, explain: "'pesan' = 点(餐)"},
+        {q: "2. Rendang adalah masakan khas dari _______.", options: ["A) Jawa", "B) Sumatera Barat", "C) Bali"], a: 1, explain: "'Rendang' = 仁当，西苏门答腊特色菜"},
+        {q: "3. 'Saya _______ makan daging. Saya vegetarian.'", options: ["A) suka", "B) tidak", "C) mau"], a: 1, explain: "'tidak makan daging' = 不吃肉"},
+        {q: "4. Es _______ manis adalah minuman sehari-hari di Indonesia.", options: ["A) kopi", "B) teh", "C) susu"], a: 1, explain: "'es teh manis' = 冰甜茶"},
+        {q: "5. '________ bonnya.' 结账时请给账单。", options: ["A) Minta", "B) Hapus", "C) Bikin"], a: 0, explain: "'Minta bonnya' = 请给账单"},
+        {q: "6. Kopi yang dibuat dari biji kopi yang dimakan luwak disebut kopi _______.", options: ["A) tubruk", "B) luwak", "C) americano"], a: 1, explain: "'kopi luwak' = 猫屎咖啡"},
+        {q: "7. 'Saya alergi _______ seafood.' 对海鲜过敏。", options: ["A) sama", "B) dengan", "C) dari"], a: 0, explain: "'alergi sama' = 对...过敏(口语)"},
+        {q: "8. '_________ nasinya bisa dikurangi?' 问分量能否减少。", options: ["A) Harga", "B) Porsi", "C) Rasa"], a: 1, explain: "'porsi' = 分量/份量"},
+        {q: "9. 在印尼，'tidak pedas' 意思是 _______.", options: ["A) 不辣", "B) 很辣", "C) 有点辣"], a: 0, explain: "'tidak pedas' = 不辣"},
+        {q: "10. 'Makanannya _______ sekali!' 表达'太好吃了'。", options: ["A) enak", "B) busuk", "C) hambar"], a: 0, explain: "'enak' = 好吃/美味"}
+      ]
+    },
+    quiz_answers: `Kunci Jawaban Makan dan Minum:\n1.B | 2.B | 3.B | 4.B | 5.A\n6.B | 7.A | 8.B | 9.A | 10.A\n\n Tips: Perhatikan makanan khas dari daerah yang berbeda di Indonesia dan istilah kuliner yang umum.`
+  },
+  "accommodation": {
+    title: "话题16: 住宿 / Akomodasi",
+    icon: "🏨",
+    days: 3,
+    grammar: {
+      title: "住宿场景语法 · Tata Bahasa Akomodasi",
+      rules: [
+        "🔹 预订表达：Saya mau pesan kamar... ('我想订房间...') / Ada kamar kosong? ('有空房吗?') / Saya sudah booking... ('我已预订...')",
+        "🔹 房间类型：kamar single ('单人间') / kamar double ('双人间') / kamar suite ('套房') / kamar dengan balkon ('带阳台房间')",
+        "🔹 设施询问：Apakah ada...? ('有...吗?') / WiFi gratis? ('免费WiFi吗?') / Termasuk sarapan? ('含早餐吗?')",
+        "🔹 投诉表达：AC tidak dingin ('空调不冷') / air tidak mengalir ('水不流') / kamar belum dibersihkan ('房间还没打扫')",
+        "🔹 退房表达：Saya mau check out ('我要退房') / Bisa perpanjang? ('能延期吗?') / Saya tinggal satu malam lagi ('我再住一晚')"
+      ],
+      examples: [
+        "Saya mau pesan kamar double untuk dua malam. = 我想订双人间住两晚。",
+        "Apakah kamar ini menghadap ke laut? = 这房间面朝大海吗?",
+        "Termasuk sarapan pagi? Jam berapa breakfast? = 含早餐吗? 几点供应?",
+        "AC di kamar saya tidak berfungsi. Bisa diperbaiki? = 我房间空调坏了。能修吗?",
+        "Saya mau check out sekarang. Ini kuncinya. = 我现在要退房。这是钥匙。"
+      ]
+    },
+    vocab: [
+      ['hotel', '酒店', '/hoˈtɛl/'], ['penginapan', '旅馆', '/pəˈɡinapan/'], ['villa', '别墅', '/ˈvila/'],
+      ['apartemen', '公寓', '/ˈapartɛmɛn/'], ['kos', '宿舍/合租', '/ˈkɔs/'], ['homestay', '民宿', '/ˈhomstɛ/'],
+      ['kamar', '房间', '/ˈkamar/'], ['kamar mandi', '浴室', '/ˈkamar ˈmandi/'], ['tempat tidur', '床', '/ˈtɛmpat ˈtidur/'],
+      ['bantal', '枕头', '/ˈbantal/'], ['selimut', '被子', '/səˈlimut/'], ['handuk', '毛巾', '/ˈhanduk/'],
+      ['lemari', '衣柜', '/ləˈmari/'], ['meja rias', '梳妆台', '/ˈmɛdʒa ˈrias/'], ['AC', '空调', '/ˈa ˈʧɛ/'],
+      ['TV', '电视', '/ˈtɛ ˈfɛ/'], ['WiFi', '无线网络', '/ˈwaifai/'], ['kulkas', '冰箱', '/ˈkulkas/'],
+      ['kopi set', '咖啡器具', '/ˈkopi ˈsɛt/'], ['air panas', '热水', '/ˈair ˈpanas/'], ['shower', '淋浴', '/ˈʃauər/'],
+      ['bathtub', '浴缸', '/ˈbattab/'], ['toilet', '马桶/厕所', '/ˈtoilɛt/'], ['sabun', '肥皂', '/ˈsabun/'],
+      ['sampo', '洗发水', '/ˈsampo/'], ['pasta gigi', '牙膏', '/ˈpasta ˈɡiɡi/'], ['tisu', '纸巾', '/ˈtisu/'],
+      ['resepsionis', '前台', '/rɛsɛpˈsionis/'], ['lobby', '大堂', '/ˈlɔbi/'], ['lift', '电梯', '/ˈlift/'],
+      ['tangga darurat', '紧急楼梯', '/ˈtaŋɡa daˈrurat/'], ['kolam renang', '游泳池', '/ˈkolam rəˈnaŋ/'], ['gym', '健身房', '/ˈdʒim/'],
+      ['restoran', '餐厅', '/rɛstoˈran/'], ['parkir', '停车场', '/ˈparkir/'], ['keamanan', '安保', '/kəˈamanan/'],
+      ['booking', '预订', '/ˈbukiŋ/'], ['check in', '入住', '/ˈʧɛk in/'], ['check out', '退房', '/ˈʧɛk aut/'],
+      ['deposit', '押金', '/ˈdɛposit/'], ['harga per malam', '每晚价格', '/ˈharɡa pɛr ˈmalam/'], ['termasuk', '包含', '/tɛrˈmasuk/']
+    ],
+    scenes: [
+      {title: "🏨 酒店入住", icon: "🛎️", dialogue: [
+        {speaker: "A", text: "Selamat sore. Saya sudah booking kamar atas nama Li Wei. Nomor konfirmasi 8823.", trans: "下午好。我预订了房间，姓名李伟。确认号8823。"},
+        {speaker: "Resepsionis", text: "Selamat sore, Pak Li. Kamar double dengan pemandangan kota, check in hari ini check out tanggal dua puluh lima. Benar?", trans: "下午好，李先生。城景双人间，今天入住25号退房。对吗?"},
+        {speaker: "A", text: "Benar. Apakah kamar sudah siap? Saya baru turun dari pesawat.", trans: "对。房间准备好了吗? 我刚下飞机。"},
+        {speaker: "Resepsionis", text: "Sudah siap, Pak. Ini kunci kartu untuk kamar 1508. Sarapan di lantai dua jam tujuh sampai sepuluh.", trans: "准备好了，先生。这是1508房的房卡。早餐在2楼，7点到10点。"},
+        {speaker: "A", text: "Terima kasih. WiFi passwordnya?", trans: "谢谢。WiFi密码是什么?"},
+        {speaker: "Resepsionis", text: "Bintang delapan delapan dua tiga, Pak. Gratis untuk semua tamu. Enjoy your stay!", trans: "8823，先生。所有客人免费。祝您入住愉快!"}
+      ]},
+      {title: "🏠 租公寓", icon: "🔑", dialogue: [
+        {speaker: "A", text: "Permisi, saya lihat-lihat apartemen yang di sewakan. Bisa dijelaskan?", trans: "打扰一下，我在看出租的公寓。能介绍一下吗?"},
+        {speaker: "B", text: "Baik, Pak. Apartemen studio, luas tiga puluh lima meter persegi. Full furnished. Harga sewa lima juta per bulan.", trans: "好的，先生。单间公寓，35平米。全装修。月租500万。"},
+        {speaker: "A", text: "Termasuk listrik dan air? Ada WiFi?", trans: "包含水电吗? 有WiFi吗?"},
+        {speaker: "B", text: "Listrik dan air ditanggung penghuni, Pak. WiFi sudah tersedia, tinggal bayar provider. Ada gym dan kolam renang bersama.", trans: "水电租户自理，先生。WiFi已有，只需向运营商付费。有共享健身房和游泳池。"},
+        {speaker: "A", text: "Boleh saya lihat? Saya kerja di kawasan industri, jadi butuh tempat dekat kantor.", trans: "能看看吗? 我在工业园区工作，所以需要离办公室近的地方。"},
+        {speaker: "B", text: "Tentu, Pak. Lokasinya strategis, lima menit ke kawasan industri. Parkir mobil juga tersedia.", trans: "当然，先生。位置便利，到工业园区5分钟。也有停车位。"}
+      ]},
+      {title: "🛏️ 民宿体验", icon: "🏡", dialogue: [
+        {speaker: "A", text: "Selamat pagi. Saya booking homestay ini melalui Airbnb. Nama saya Zhang.", trans: "早上好。我通过Airbnb预订了这家民宿。我姓张。"},
+        {speaker: "B", text: "Selamat pagi, Pak Zhang! Sambil datang di Bali! Kamar Anda di lantai dua, dengan balkon menghadap sawah.", trans: "早上好，张先生! 欢迎来到巴厘岛! 您的房间在二楼，带阳台面朝稻田。"},
+        {speaker: "A", text: "Wah, pemandangannya indah! Apakah ada rekomendasi tempat makan di sekitar?", trans: "哇，景色很美! 附近有推荐的餐厅吗?"},
+        {speaker: "B", text: "Ada warung enak hanya lima menit jalan kaki. Mereka punya nasi campur Bali yang otentik. Saya bisa antar kalau mau.", trans: "有家不错的餐馆走路5分钟。他们有正宗巴厘岛什锦饭。需要的话我可以送您。"},
+        {speaker: "A", text: "Terima kasih. Saya juga mau sewa motor. Bisa bantu?", trans: "谢谢。我还想租摩托车。能帮忙吗?"},
+        {speaker: "B", text: "Bisa, Pak. Saya punya teman yang sewakan motor. Rp80.000 per hari. Nanti saya hubungi.", trans: "可以，先生。我有朋友出租摩托车。8万一天。我等下联系。"}
+      ]},
+      {title: "🏢 商务酒店长住", icon: "💼", dialogue: [
+        {speaker: "A", text: "Selamat pagi. Saya mau perpanjang menginap sampai akhir bulan. Kamar 1205.", trans: "早上好。我想延长住宿到月底。1205房。"},
+        {speaker: "B", text: "Baik, Pak. Kamar 1205. Tiga malam lagi, total dua juta seratus ribu. Mau bayar sekarang?", trans: "好的，先生。1205房。再住3晚，总共210万。现在付款吗?"},
+        {speaker: "A", text: "Bisa ditagih ke perusahaan? Saya di sini untuk proyek konstruksi.", trans: "能挂公司账吗? 我在这做建筑项目。"},
+        {speaker: "B", text: "Bisa, Pak. Tapi kami butuh surat jaminan dari perusahaan Anda. Bisa dikirim hari ini?", trans: "可以，先生。但我们需要您公司的担保函。今天能发吗?"},
+        {speaker: "A", text: "Baik, saya minta bagian admin kirim. Dan tolong kamar saya dibersihkan setiap hari jam dua siang.", trans: "好，我让行政部门发。还有请每天下午2点打扫我房间。"},
+        {speaker: "B", text: "Siap, Pak. Housekeeping akan datang jam dua. Ada kebutuhan lain?", trans: "好的，先生。客房部2点来。还有其他需要吗?"}
+      ]},
+      {title: "🆘 投诉处理", icon: "🔧", dialogue: [
+        {speaker: "A", text: "Permisi, saya mau komplain. AC di kamar saya tidak dingin sama sekali.", trans: "打扰一下，我要投诉。我房间空调完全不冷。"},
+        {speaker: "B", text: "Mohon maaf, Pak. Kamar berapa? Saya akan kirim teknisi segera.", trans: "抱歉，先生。几号房? 我马上派技术员。"},
+        {speaker: "A", text: "Kamar 808. Dan showernya juga airnya kecil. Saya mandi tadi sangat tidak nyaman.", trans: "808房。淋浴水压也很小。我刚才洗澡很不舒服。"},
+        {speaker: "B", text: "Maaf sekali atas ketidaknyamanannya, Pak. Teknisi akan ke sana dalam sepuluh menit. Kalau tidak bisa diperbaiki, kami pindahkan ke kamar lain.", trans: "非常抱歉给您带来不便，先生。技术员10分钟内到。如果修不好，我们给您换房。"},
+        {speaker: "A", text: "Terima kasih. Saya harap ini cepat diselesaikan. Saya ada meeting penting besok pagi.", trans: "谢谢。希望这快点解决。我明天早上有重要会议。"},
+        {speaker: "B", text: "Tentu, Pak. Kami prioritaskan kamar Anda. Mohon ditunggu di kamar. Terima kasih atas pengertiannya.", trans: "当然，先生。我们优先处理您的房间。请在房间等候。感谢您的理解。"}
+      ]}
+    ],
+    speeches: [
+      {day: 1, title: "🏨 印尼的住宿选择", icon: "🛏️", content: "Indonesia menawarkan berbagai pilihan akomodasi untuk setiap anggaran. Dari hotel bintang lima yang mewah hingga losmen sederhana yang ramah di kantong. Saya pernah menginap di berbagai tempat selama bekerja di Indonesia. Di Jakarta, saya biasanya tinggal di apartemen dekat kantor. Apartemen modern memiliki fasilitas lengkap seperti gym, kolam renang, dan keamanan dua puluh empat jam. Di Bali, saya lebih suka villa dengan kolam renang pribadi. Suasananya tenang dan pemandangannya indah. Namun, harganya bisa sangat mahal di musim liburan. Untuk proyek di daerah terpencil seperti Morowali, kami biasanya tinggal di mess perusahaan atau penginapan sederhana. Fasilitasnya terbatas, tapi kebersamaan dengan rekan kerja sangat berharga. Saat traveling, saya suka mencoba homestay. Kita bisa merasakan kehidupan lokal yang autentik. Tuan rumah biasanya sangat ramah dan memberikan tips tentang tempat wisata tersembunyi. Apapun pilihan akomodasinya, yang penting adalah kebersihan dan keamanan.", trans: "印尼提供各种住宿选择，适合各种预算。从豪华五星级酒店到经济实惠的简朴旅馆。在印尼工作期间，我住过各种地方。在雅加达，我通常住办公室附近的公寓。现代公寓设施齐全，有健身房、游泳池和24小时安保。在巴厘岛，我更喜欢带私人泳池的别墅。氛围宁静，景色优美。但假期价格可能非常贵。在莫罗瓦利等偏远地区的项目，我们通常住公司宿舍或简单旅馆。设施有限，但与同事的共处非常珍贵。旅行时，我喜欢尝试民宿。我们能体验地道的当地生活。房东通常非常友好，还会提供隐藏旅游景点的建议。无论选择哪种住宿，重要的是干净和安全。", time: 100, words: 190},
+      {day: 2, title: "🏠 在Morowali的宿舍生活", icon: "🏗️", content: "Bekerja di kawasan industri Morowali berarti saya tinggal di mess perusahaan. Ini pengalaman yang unik. Kamar saya sederhana: tempat tidur, lemari, meja kerja, dan kamar mandi dengan shower. Tidak mewah, tapi fungsional. Yang paling saya hargai adalah kedekatan dengan rekan kerja. Kami tinggal di gedung yang sama, makan di kantin bersama, dan sering berkumpul di ruang rekreasi. Ini membangun ikatan yang kuat. Kantin perusahaan menyediakan makanan tiga kali sehari. Menu Indonesia dan Chinese food bergantian. Saya belajar banyak tentang masakan Indonesia dari teman-teman. Di akhir pekan, kami sering mengadakan barbeque atau nonton film bersama. Ada juga lapangan basket dan ruang gym sederhana. Meski jauh dari keluarga, komunitas di sini membuat saya merasa seperti di rumah. Saya bersyukur memiliki rekan kerja yang peduli dan suportif.", trans: "在莫罗瓦利工业园区工作意味着我住在公司宿舍。这是独特的体验。我的房间简单：床、衣柜、书桌和带淋浴的浴室。不豪华，但实用。我最珍惜的是与同事们的亲近。我们住在同一栋楼，一起在食堂吃饭，经常在娱乐室聚会。这建立了牢固的纽带。公司食堂提供一日三餐。印尼菜和中餐轮换。我从朋友那里学到了很多印尼菜。周末，我们经常烧烤或一起看电影。还有篮球场和简易健身房。虽然远离家人，但这里的社区让我感觉像在家一样。我很感激有关心和支持我的同事。", time: 95, words: 180},
+      {day: 3, title: "🌴 理想假期住所", icon: "🌊", content: "Setelah bekerja keras selama berbulan-bulan, saya selalu menantikan liburan. Dan memilih akomodasi yang tepat adalah bagian penting dari pengalaman tersebut. Jika saya ingin bersantai sepenuhnya, saya memilih resort tepi pantai di Lombok atau Raja Ampat. Bangun dengan suara ombak dan sarapan di tepi pantai adalah kesempurnaan. Jika saya ingin menjelajahi budaya, homestay di Yogyakarta atau Ubud adalah pilihan terbaik. Kita bisa belajar membuat batik atau menari tradisional dari tuan rumah. Untuk perjalanan bisnis singkat, hotel bintang empat di pusat kota adalah yang paling praktis. Dekat dengan meeting point dan memiliki fasilitas bisnis lengkap. Apapun pilihannya, saya selalu memeriksa ulasan di Traveloka atau Booking.com. Foto bisa menipu, tapi ulasan tamu sebelumnya jujur. Saya juga memastikan lokasinya strategis. Di Indonesia, macet bisa menghabiskan waktu berharga liburan kita. Akomodasi yang baik membuat perjalanan lebih menyenangkan.", trans: "经过数月的努力工作，我总是期待着假期。而选择合适的住宿是体验的重要部分。如果我想完全放松，我会选择龙目岛或四王群岛的海滨度假村。伴着海浪声醒来，在海边吃早餐是完美的。如果我想探索文化，日惹或乌布的民宿是最佳选择。我们可以向房东学习制作蜡染或传统舞蹈。对于短期商务旅行，市中心的四星级酒店最实用。靠近会议地点，商务设施齐全。无论选择什么，我总是查看Traveloka或Booking.com上的评价。照片可能具有欺骗性，但之前客人的评价是真实的。我还确保位置便利。在印尼，堵车会浪费我们宝贵的假期时间。好的住宿让旅行更愉快。", time: 105, words: 195}
+    ],
+    quiz: {
+      title: "住宿 · 综合测试 (10题)",
+      questions: [
+        {q: "1. 'Saya mau _______ kamar double untuk dua malam.' 预订房间。", options: ["A) jual", "B) pesan", "C) makan"], a: 1, explain: "'pesan' = 预订"},
+        {q: "2. 'Apakah _______ sarapan?' 问是否含早餐。", options: ["A) harga", "B) termasuk", "C) tanpa"], a: 1, explain: "'termasuk' = 包含"},
+        {q: "3. 入住的英文/印尼语混合表达是 _______.", options: ["A) check in", "B) check out", "C) check up"], a: 0, explain: "'check in' = 入住"},
+        {q: "4. 'Saya mau _______ sekarang. Ini kuncinya.' 退房。", options: ["A) masuk", "B) check out", "C) tidur"], a: 1, explain: "'check out' = 退房"},
+        {q: "5. _______ adalah sewa tempat tinggal sementara yang biasanya lebih murah dari hotel.", options: ["A) Kos", "B) Mall", "C) Bank"], a: 0, explain: "'kos' = 宿舍/合租，比酒店便宜"},
+        {q: "6. 'WiFi _______ untuk semua tamu.' 免费WiFi。", options: ["A) mahal", "B) gratis", "C) bayar"], a: 1, explain: "'gratis' = 免费"},
+        {q: "7. 'Kamar mandi di _______ saya airnya kecil.' 浴室。", options: ["A) kamar", "B) kamar mandi", "C) kamar tidur"], a: 1, explain: "'kamar mandi' = 浴室/卫生间"},
+        {q: "8. _______ adalah tempat tidur kecil untuk satu orang.", options: ["A) Single bed", "B) Double bed", "C) Bunk bed"], a: 0, explain: "'single bed' = 单人床"},
+        {q: "9. 'Bisa diperpanjang?' 的意思是 _______.", options: ["A) 能取消吗", "B) 能延期吗", "C) 能换吗"], a: 1, explain: "'perpanjang' = 延长/延期"},
+        {q: "10. 民宿的印尼语是 _______.", options: ["A) hotel", "B) homestay", "C) apartemen"], a: 1, explain: "'homestay' = 民宿"}
+      ]
+    },
+    quiz_answers: `Kunci Jawaban Akomodasi:\n1.B | 2.B | 3.A | 4.B | 5.A\n6.B | 7.B | 8.A | 9.B | 10.B\n\n Tips: Perhatikan istilah akomodasi yang sering digunakan di Indonesia dan fasilitas yang umum tersedia.`
+  },
+  "travel": {
+    title: "话题17: 旅行和自然 / Perjalanan dan Alam",
+    icon: "✈️",
+    days: 3,
+    grammar: {
+      title: "旅行场景语法 · Tata Bahasa Perjalanan",
+      rules: [
+        "🔹 旅行计划：Saya mau ke... ('我想去...') / Saya berencana... ('我计划...') / Saya akan pergi ke... ('我将去...')",
+        "🔹 交通预订：Saya mau pesan tiket... ('我想订票...') / Ada jadwal...? ('有...的班次吗?') / Kursi nomor berapa? ('座位号多少?')",
+        "🔹 景点询问：Tempat wisata apa yang bagus? ('有什么好的景点?') / Berapa biaya masuk? ('门票多少?') / Jam bukanya? ('几点开门?')",
+        "🔹 自然描述：indah ('美丽') / megah ('壮观') / tenang ('宁静') / segar ('清新') / menakjubkan ('令人惊叹')",
+        "🔹 环保表达：jaga kebersihan ('保持清洁') / dilarang membuang sampah ('禁止扔垃圾') / jangan merusak alam ('不要破坏自然')"
+      ],
+      examples: [
+        "Saya mau pesan tiket pesawat ke Bali untuk weekend. = 我想订周末去巴厘岛的机票。",
+        "Gunung Bromo sangat indah saat matahari terbit. = Bromo火山日出时非常美。",
+        "Berapa harga tiket masuk ke Taman Safari? = 野生动物园门票多少钱?",
+        "Jangan lupa bawa kamera. Pemandangannya menakjubkan. = 别忘了带相机。景色令人惊叹。",
+        "Kita harus jaga kebersihan pantai ini. = 我们要保持这片海滩的清洁。"
+      ]
+    },
+    vocab: [
+      ['wisata', '旅游', '/ˈwisata/'], ['perjalanan', '旅行', '/pərdʒaˈlanan/'], ['liburan', '假期', '/liˈburan/'],
+      [' destinasi', '目的地', '/dɛstiˈnasi/'], ['pantai', '海滩', '/ˈpantai/'], ['gunung', '山', '/ˈɡunuŋ/'],
+      ['pulau', '岛', '/ˈpulau/'], ['danau', '湖', '/ˈdanau/'], ['sungai', '河', '/ˈsuŋai/'],
+      ['air terjun', '瀑布', '/ˈair tərˈʤun/'], ['hutan', '森林', '/ˈhutan/'], ['kebun', '花园/种植园', '/ˈkɛbun/'],
+      ['taman', '公园', '/ˈtaman/'], ['candi', '寺庙/古迹', '/ˈtʃandi/'], ['museum', '博物馆', '/muˈsɛum/'],
+      ['peta', '地图', '/ˈpɛta/'], ['peta wisata', '旅游地图', '/ˈpɛta ˈwisata/'], ['tiket masuk', '门票', '/ˈtikɛt ˈmasuk/'],
+      ['pemandu', '导游', '/pəˈmandu/'], ['tur', '旅游团', '/ˈtur/'], ['backpacker', '背包客', '/ˈbakpakər/'],
+      ['koper', '行李箱', '/ˈkɔpɛr/'], ['ransel', '背包', '/ˈransɛl/'], ['kamera', '相机', '/ˈkamɛra/'],
+      ['passport', '护照', '/ˈpaspor/'], ['visa', '签证', '/ˈvisa/'], ['asuransi perjalanan', '旅行保险', '/ˈasuransi pərˈdʒalanan/'],
+      ['cuaca', '天气', '/ˈtʃuwaʧa/'], ['musim', '季节', '/ˈmusim/'], ['musim hujan', '雨季', '/ˈmusim ˈhuʤan/'],
+      ['musim kemarau', '旱季', '/ˈmusim kəˈmarau/'], ['panas', '热', '/ˈpanas/'], ['dingin', '冷', '/ˈdiŋin/'],
+      ['matahari terbit', '日出', '/ˈmatahari tərˈbit/'], ['matahari terbenam', '日落', '/ˈmatahari tərˈbɛnam/'], ['bintang', '星星', '/ˈbintaŋ/'],
+      ['laut', '大海', '/ˈlaut/'], ['pasir', '沙子', '/ˈpasir/'], ['karang', '珊瑚', '/ˈkaraŋ/'],
+      ['burung', '鸟', '/ˈburuŋ/'], ['ikan', '鱼', '/ˈikan/'], ['kupu-kupu', '蝴蝶', '/ˈkupu ˈkupu/'],
+      ['harimau', '老虎', '/ˈharimau/'], ['komodo', '科莫多龙', '/ˈkomodo/'], ['gajah', '大象', '/ˈɡaʤah/'],
+      ['orangutan', '红毛猩猩', '/ˈoraŋutan/'], ['penyu', '海龟', '/ˈpɛnju/'], ['penjaga', '管理员/看守', '/pənˈʤaɡa/']
+    ],
+    scenes: [
+      {title: "🏖️ 巴厘岛海滩", icon: "🌊", dialogue: [
+        {speaker: "A", text: "Pemandangan pantai Kuta sangat indah! Airnya biru dan pasirnya putih.", trans: "库塔海滩的景色太美了! 海水蓝，沙子白。"},
+        {speaker: "B", text: "Iya, tapi hati-hati ombaknya besar. Cocok untuk surfing. Kamu bisa surf?", trans: "是啊，但小心浪大。适合冲浪。你会冲浪吗?"},
+        {speaker: "A", text: "Belum pernah. Saya mau coba les surfing besok. Ada yang rekomendasikan?", trans: "从没试过。我想明天尝试冲浪课。有推荐的吗?"},
+        {speaker: "B", text: "Ada banyak sekolah surfing di sini. Sekitar seratus lima puluh ribu per jam termasuk papan.", trans: "这有很多冲浪学校。大约15万一小时含板。"},
+        {speaker: "A", text: "Murah ya. Saya juga mau snorkeling di Nusa Penida. Bisa lihat manta ray.", trans: "挺便宜的。我还想去努沙佩尼达浮潜。能看到蝠鲼。"},
+        {speaker: "B", text: "Wah, manta point di sana terkenal. Tapi harus booking dari sekarang, tempatnya selalu penuh.", trans: "哇，那的蝠鲼点很有名。但要现在预订，位置总是很满。"}
+      ]},
+      {title: "🌋 火山徒步", icon: "🥾", dialogue: [
+        {speaker: "A", text: "Selamat pagi. Saya mau naik Gunung Bromo. Butuh guide?", trans: "早上好。我想爬Bromo火山。需要向导吗?"},
+        {speaker: "B", text: "Selamat pagi, Pak. Untuk Bromo, guide tidak wajib tapi disarankan. Terutama kalau mau ke kawah.", trans: "早上好，先生。Bromo火山不强制要向导但建议有。尤其如果要去火山口。"},
+        {speaker: "A", text: "Saya mau lihat sunrise dari Penanjakan. Berapa harga paketnya?", trans: "我想从Penanjakan看日出。套餐多少钱?"},
+        {speaker: "B", text: "Paket sunrise termasuk jeep dan guide, tiga ratus lima puluh ribu per orang. Berangkat jam tiga pagi.", trans: "日出套餐含吉普车和向导，35万一人。凌晨3点出发。"},
+        {speaker: "A", text: "Jam tiga pagi? Wah pagi sekali. Tapi saya dengar sunrise-nya spektakuler.", trans: "凌晨3点? 哇太早了。但我听说日出很壮观。"},
+        {speaker: "B", text: "Sangat indah, Pak. Kalau cuaca cerah, bisa lihat Gunung Semeru di kejauhan. Jangan lupa jaket tebal, suhunya bisa lima derajat.", trans: "非常美，先生。如果天气晴朗，能看到远处的Semeru火山。别忘了厚外套，温度可能5度。"}
+      ]},
+      {title: "🐉 科莫多岛", icon: "🏝️", dialogue: [
+        {speaker: "A", text: "Permisi, saya mau booking tur ke Pulau Komodo. Ada jadwal besok?", trans: "打扰一下，我想预订科莫多岛游。明天有班次吗?"},
+        {speaker: "B", text: "Ada, Pak. Speed boat berangkat jam tujuh pagi dari Labuan Bajo. Pulang jam empat sore.", trans: "有，先生。快艇早上7点从拉布汉巴焦出发。下午4点回。"},
+        {speaker: "A", text: "Apa saja yang bisa dilihat? Saya tertarik dengan komodo dragon.", trans: "都能看到什么? 我对科莫多龙感兴趣。"},
+        {speaker: "B", text: "Kita akan ke Pulau Rinca untuk lihat komodo dari dekat. Juga snorkeling di Pink Beach. Pasirnya benar-benar pink!", trans: "我们会去Rinca岛近距离看科莫多龙。还有在粉红海滩浮潜。沙子真的是粉色的!"},
+        {speaker: "A", text: "Berapa biayanya? Termasuk makan siang?", trans: "多少钱? 含午餐吗?"},
+        {speaker: "B", text: "Satu juta dua ratus ribu, Pak. Termasuk makan siang, guide, dan peralatan snorkeling. Komodo national park fee terpisah.", trans: "120万，先生。含午餐、向导和浮潜装备。科莫多国家公园门票另算。"}
+      ]},
+      {title: "🌿 生态旅游", icon: "🦜", dialogue: [
+        {speaker: "A", text: "Selamat pagi. Saya tertarik dengan wisata alam di Kalimantan. Bisa dijelaskan?", trans: "早上好。我对加里曼丹的自然旅游感兴趣。能介绍一下吗?"},
+        {speaker: "B", text: "Selamat pagi, Pak. Kami punya paket ecotour ke Taman Nasional Tanjung Puting. Bisa lihat orangutan liar.", trans: "早上好，先生。我们有丹戎普廷国家公园生态游套餐。能看到野生红毛猩猩。"},
+        {speaker: "A", text: "Wow, orangutan! Saya selalu impikan melihat mereka di habitat asli. Berapa lama turunya?", trans: "哇，红毛猩猩! 我一直梦想在原生栖息地看到它们。行程多久?"},
+        {speaker: "B", text: "Tiga hari dua malam, Pak. Menginap di lodge di tengah hutan. Naik klotok boat menyusuri sungai.", trans: "3天2晚，先生。住在森林中的旅馆。坐klotok船沿河而行。"},
+        {speaker: "A", text: "Fasilitasnya bagaimana? Ada AC dan air panas?", trans: "设施如何? 有空调和热水吗?"},
+        {speaker: "B", text: "Lodge-nya sederhana, Pak. Tidak ada AC, tapi ada kipas angin. Air panas tersedia. Yang penting pengalaman alamnya.", trans: "旅馆简单，先生。没有空调，但有风扇。有热水。重要的是自然体验。"}
+      ]},
+      {title: "📸 拍照询问", icon: "📷", dialogue: [
+        {speaker: "A", text: "Permisi, Bapak bisa fotoin saya di sini? Pemandangannya sangat bagus.", trans: "打扰一下，您能在这帮我拍照吗? 景色太好了。"},
+        {speaker: "B", text: "Tentu, Pak. Di sini memang spot foto terbaik. Candi Borobudur di belakang, langit biru di atas.", trans: "当然，先生。这里确实是最佳拍照点。后面是婆罗浮屠寺，上面是蓝天。"},
+        {speaker: "A", text: "Terima kasih. Saya mau foto dari sudut yang lebih tinggi. Di mana?", trans: "谢谢。我想从更高角度拍。在哪?"},
+        {speaker: "B", text: "Naik ke lantai tiga, Pak. Dari sana bisa lihat semua stupa. Tapi jangan naik ke candi ya, dilarang.", trans: "上三楼，先生。从那能看到所有佛塔。但不要爬上寺庙哦，禁止的。"},
+        {speaker: "A", text: "Baik, saya hanya foto dari jauh. Sunrise di sini jam berapa?", trans: "好，我只从远处拍。这的日出几点?"},
+        {speaker: "B", text: "Sekitar jam lima setengah, Pak. Banyak fotografer datang dari jam empat untuk dapat spot terbaik.", trans: "大约5:30，先生。很多摄影师4点就来占最佳位置。"}
+      ]}
+    ],
+    speeches: [
+      {day: 1, title: "🏝️ 印尼：千岛之国", icon: "🌏", content: "Indonesia sering disebut sebagai negara dengan ribuan pulau. Sebenarnya, ada lebih dari tujuh belas ribu pulau! Saya sangat beruntung bisa tinggal dan bekerja di negara seindah ini. Setiap pulau memiliki keunikan sendiri. Jawa adalah pusat ekonomi dan budaya. Di sini ada Jakarta, kota metropolitan yang ramai, dan Yogyakarta, kota budaya dengan candi-candi megah. Bali adalah surga wisata dengan pantai-pantai indah dan budaya Hindu yang kaya. Lombok dan Gili Islands menawarkan ketenangan yang lebih alami. Sumatera memiliki hutan hujan tropis dan satwa liar seperti orangutan dan harimau Sumatera. Kalimantan, pulau terbesar ketiga di dunia, adalah rumah bagi suku Dayak dan hutan yang luas. Sulawesi, tempat saya bekerja, memiliki pemandangan alam yang menakjubkan. Dan Papua, dengan Raja Ampatnya, memiliki keanekaragaman hayati laut terbaik di dunia. Saya berharap suatu hari bisa mengunjungi semua pulau utama. Setiap perjalanan pasti memberikan pengalaman yang tak terlupakan.", trans: "印尼常被称为千岛之国。实际上，有1.7万多个岛屿! 我很幸运能在如此美丽的国家生活和工作。每个岛屿都有独特之处。爪哇是经济和文化中心。这里有繁忙的大都会雅加达和拥有宏伟寺庙的文化之城日惹。巴厘岛是旅游胜地天堂，有美丽海滩和丰富的印度教文化。龙目岛和吉利群岛提供更自然的宁静。苏门答腊有热带雨林和野生动物如红毛猩猩和苏门答腊虎。加里曼丹是世界第三大岛，是达雅克部落和广阔森林的家园。苏拉威西，我工作的地方，有令人惊叹的自然景观。而巴布亚，有四王群岛，拥有世界上最好的海洋生物多样性。我希望有一天能访问所有主要岛屿。每次旅行一定会带来难忘的经历。", time: 110, words: 210},
+      {day: 2, title: "🌱 负责任的旅行", icon: "♻️", content: "Wisata yang bertanggung jawab adalah konsep yang semakin penting di era ini. Sebagai wisatawan, kita punya tanggung jawab untuk menjaga kelestarian alam dan budaya lokal. Saya selalu membawa botol minum sendiri untuk mengurangi plastik sekali pakai. Saat snorkeling, saya tidak menyentuh karang atau mengganggu ikan. Di hutan, saya tidak membuang sampah sembarangan dan tidak membuat kebisingan. Saya juga mendukung ekonomi lokal dengan menginap di homestay dan membeli oleh-oleh dari pengrajin setempat. Namun, sayangnya tidak semua wisatawan memahami ini. Saya pernah melihat orang membuang sampah di pantai yang indah. Itu sangat menyedihkan. Pemerintah Indonesia telah mulai membatasi kunjungan ke beberapa destinasi untuk melindungi lingkungan. Misalnya, Komodo Island sekarang membutuhkan tiket khusus yang lebih mahal. Ini langkah yang tepat. Kita harus ingat bahwa alam adalah warisan yang harus kita jaga untuk generasi mendatang. Traveling bukan hanya tentang selfie dan check-in. Traveling adalah tentang menghargai dan melestarikan.", trans: "负责任的旅行是这个时代越来越重要的概念。作为游客，我们有责任保护自然和当地文化。我总是自带水瓶以减少一次性塑料。浮潜时，我不触摸珊瑚或打扰鱼类。在森林中，我不乱扔垃圾，不制造噪音。我还通过住民宿和从当地工匠购买纪念品来支持本地经济。但遗憾的是，并非所有游客都理解这点。我曾看到有人在美丽的海滩扔垃圾。这非常令人难过。印尼政府已开始限制一些目的地的访问以保护环境。例如，科莫多岛现在需要更贵的特别门票。这是正确的举措。我们必须记住，自然是我们必须为后代保护的遗产。旅行不只是自拍和打卡。旅行是关于欣赏和保护。", time: 115, words: 220},
+      {day: 3, title: "🌅 旅行改变人生", icon: "✨", content: "Banyak orang bilang bahwa traveling mengubah hidup. Saya setuju sepenuhnya. Setiap perjalanan mengajarkan sesuatu yang baru. Ketika saya pertama kali datang ke Indonesia, saya tidak tahu apa-apa tentang negara ini. Saya hanya tahu Bali dari foto di internet. Tapi setelah bekerja di Morowali dan menjelajahi berbagai tempat, pandangan saya berubah total. Saya belajar bahwa Indonesia bukan hanya Bali. Saya belajar menghargai keramahan orang Indonesia. Mereka selalu tersenyum dan bersedia membantu. Saya belajar tentang keberagaman budaya. Dari Aceh sampai Papua, setiap daerah punya bahasa, pakaian, dan makanan yang berbeda. Saya belajar menjadi lebih sabar. Di Indonesia, jam karet adalah hal yang biasa. Meeting bisa dimulai terlambat, dan itu bukan masalah besar. Saya belajar bersyukur. Melihat orang-orang yang hidup sederhana di desa-desa, tapi tetap bahagia, mengajarkan saya bahwa kebahagiaan tidak selalu tentang materi. Traveling membuka pikiran dan hati. Saya berharap setiap orang memiliki kesempatan untuk melihat dunia dari perspektif yang berbeda. Dunia ini indah, dan kita sangat beruntung bisa menjelajahinya.", trans: "很多人说旅行改变人生。我完全同意。每次旅行都教给我新东西。当我第一次来印尼时，我对这个国家一无所知。我只从网上照片知道巴厘岛。但在莫罗瓦利工作和探索各地后，我的看法完全改变了。我了解到印尼不只是巴厘岛。我学会了欣赏印尼人的热情好客。他们总是微笑并乐于助人。我了解了文化多样性。从亚齐到巴布亚，每个地区都有不同的语言、服装和食物。我学会了更有耐心。在印尼，'橡皮时间'很正常。会议可能晚点开始，这不是大问题。我学会了感恩。看到乡村里生活简朴但仍快乐的人们，教会我幸福不总是关于物质。旅行打开心灵和思想。我希望每个人都有机会从不同角度看世界。这个世界很美，我们很幸运能探索它。", time: 120, words: 230}
+    ],
+    quiz: {
+      title: "旅行和自然 · 综合测试 (10题)",
+      questions: [
+        {q: "1. 'Saya mau ke _______ Bali untuk liburan.' 去某地度假。", options: ["A) dari", "B) ke", "C) di"], a: 1, explain: "'ke' = 去/到"},
+        {q: "2. Gunung _______ adalah gunung berapi terkenal di Jawa Timur.", options: ["A) Everest", "B) Bromo", "C) Fuji"], a: 1, explain: "'Gunung Bromo' = Bromo火山，东爪哇著名景点"},
+        {q: "3. _______ adalah hewan khas Indonesia yang hanya ada di beberapa pulau.", options: ["A) Panda", "B) Komodo", "C) Kanguru"], a: 1, explain: "'Komodo' = 科莫多龙，印尼特有"},
+        {q: "4. '_________ masuk ke Taman Safari berapa?' 问门票。", options: ["A) Tiket", "B) Harga", "C) Biaya"], a: 0, explain: "'tiket masuk' = 门票"},
+        {q: "5. 'Jangan lupa bawa _______. Pemandangannya indah.' 拍照工具。", options: ["A) buku", "B) kamera", "C) piring"], a: 1, explain: "'kamera' = 相机"},
+        {q: "6. _______ Beach di Komodo terkenal karena pasirnya berwarna pink.", options: ["A) White", "B) Pink", "C) Black"], a: 1, explain: "'Pink Beach' = 粉红海滩"},
+        {q: "7. 'Kita harus _______ kebersihan pantai ini.' 保持清洁。", options: ["A) jaga", "B) rusak", "C) buang"], a: 0, explain: "'jaga kebersihan' = 保持清洁"},
+        {q: "8. Orangutan liar bisa dilihat di Taman Nasional _______ Puting.", options: ["A) Tanjung", "B) Bali", "C) Jakarta"], a: 0, explain: "'Tanjung Puting' = 丹戎普廷国家公园"},
+        {q: "9. '_________ matahari terbit di Bromo sangat spektakuler.'", options: ["A) Sunset", "B) Sunrise", "C) Moonlight"], a: 1, explain: "'sunrise' = 日出"},
+        {q: "10. 印尼被称为 negara _______ pulau. ('千岛之国')", options: ["A) seribu", "B) satu", "C) dua"], a: 0, explain: "'negara seribu pulau' = 千岛之国"}
+      ]
+    },
+    quiz_answers: `Kunci Jawaban Perjalanan dan Alam:\n1.B | 2.B | 3.B | 4.A | 5.B\n6.B | 7.A | 8.A | 9.B | 10.A\n\n Tips: Perhatikan destinasi wisata terkenal di Indonesia dan istilah perjalanan yang umum digunakan.`
   }
 };
 
@@ -6848,6 +7350,21 @@ ukbi_map: {
   "2026-08-20": {topic: "problems", day: 1, label: "❓ 问题 · Day 1 · 词汇+语法"},
   "2026-08-21": {topic: "problems", day: 2, label: "❓ 问题 · Day 2 · 场景对话"},
   "2026-08-22": {topic: "problems", day: 3, label: "❓ 问题 · Day 3 · 演讲+测试"},
+  "2026-08-23": {topic: "transport", day: 1, label: "🚗 交通 · Day 1 · 词汇+语法"},
+  "2026-08-24": {topic: "transport", day: 2, label: "🚗 交通 · Day 2 · 场景对话"},
+  "2026-08-25": {topic: "transport", day: 3, label: "🚗 交通 · Day 3 · 演讲+测试"},
+  "2026-08-26": {topic: "modern_shopping", day: 1, label: "🛍️ 购物 · Day 1 · 词汇+语法"},
+  "2026-08-27": {topic: "modern_shopping", day: 2, label: "🛍️ 购物 · Day 2 · 场景对话"},
+  "2026-08-28": {topic: "modern_shopping", day: 3, label: "🛍️ 购物 · Day 3 · 演讲+测试"},
+  "2026-08-29": {topic: "dining", day: 1, label: "🍽️ 饮食 · Day 1 · 词汇+语法"},
+  "2026-08-30": {topic: "dining", day: 2, label: "🍽️ 饮食 · Day 2 · 场景对话"},
+  "2026-08-31": {topic: "dining", day: 3, label: "🍽️ 饮食 · Day 3 · 演讲+测试"},
+  "2026-09-01": {topic: "accommodation", day: 1, label: "🏨 住宿 · Day 1 · 词汇+语法"},
+  "2026-09-02": {topic: "accommodation", day: 2, label: "🏨 住宿 · Day 2 · 场景对话"},
+  "2026-09-03": {topic: "accommodation", day: 3, label: "🏨 住宿 · Day 3 · 演讲+测试"},
+  "2026-09-04": {topic: "travel", day: 1, label: "✈️ 旅行 · Day 1 · 词汇+语法"},
+  "2026-09-05": {topic: "travel", day: 2, label: "✈️ 旅行 · Day 2 · 场景对话"},
+  "2026-09-06": {topic: "travel", day: 3, label: "✈️ 旅行 · Day 3 · 演讲+测试"}
 };
 
 function getTopicForDate(ds) {
