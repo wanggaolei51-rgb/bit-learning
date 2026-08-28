@@ -6,7 +6,7 @@
 <meta http-equiv="Expires" content="0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LEO-BIR V4.17.5-08242026 (C5复习模块)</title>
+<title>LEO-BIR V4.18.0-08282026 (C5复习模块)</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -296,6 +296,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
     <h3>📚 导航 / Navigasi</h3>
     <ul class="nav-list" id="navList">
       <li class="active" data-route="home"><span style="margin-right:8px">🏠</span><div style="display:flex;flex-direction:column;line-height:1.3"><span style="font-size:13px">主页</span><span style="font-size:10px;color:var(--text-dim)">Beranda</span></div></li>
+      <li data-route="industry"><span style="margin-right:8px">🏭</span><div style="display:flex;flex-direction:column;line-height:1.3"><span style="font-size:13px">行业数据</span><span style="font-size:10px;color:var(--text-dim)">Data Industri</span></div></li>
       <li data-route="translate"><span style="margin-right:8px">🌐</span><div style="display:flex;flex-direction:column;line-height:1.3"><span style="font-size:13px">翻译</span><span style="font-size:10px;color:var(--text-dim)">Terjemahan</span></div></li>
       <li data-route="input"><span style="margin-right:8px">📝</span><div style="display:flex;flex-direction:column;line-height:1.3"><span style="font-size:13px">话题生成</span><span style="font-size:10px;color:var(--text-dim)">Generator Topik</span></div></li>
       <li data-route="wordbank"><span style="margin-right:8px">📚</span><div style="display:flex;flex-direction:column;line-height:1.3"><span style="font-size:13px">生词本</span><span style="font-size:10px;color:var(--text-dim)">Bank Kata</span></div></li>
@@ -1828,6 +1829,7 @@ function render(){
   switch(r.route){
     case "home":t.innerText="🏠 主页";renderHome(c);break;
     case "date":t.innerText="📅 "+r.param;renderDateDetail(c,r.param);break;
+    case "industry":t.innerText="🏭 行业数据";renderIndustryData(c);break;
     case "translate":t.innerText="🌐 翻译";renderTranslate(c);break;
     case "input":t.innerText="📝 话题生成";renderInput(c);break;
     case "wordbank":t.innerText="📚 生词本";renderWordBank(c);break;
@@ -1912,8 +1914,21 @@ function showDateStudyRecord(ds, container){
 }
 
 function renderTranslate(c){
-  c.innerHTML=`<div class="card"><div class="card-header"><h2>🌐 翻译 / Terjemahan</h2><span class="badge">本地词库 + 在线API</span></div><div class="trans-box"><div class="trans-row"><select id="tFrom"><option value="id">🇮🇩 印尼语 / Indonesia</option><option value="zh">🇨🇳 中文 / Tionghoa</option><option value="en">🇬🇧 英语 / Inggris</option></select><span style="color:var(--text-dim)">→</span><select id="tTo"><option value="zh">🇨🇳 中文 / Tionghoa</option><option value="en">🇬🇧 英语 / Inggris</option><option value="id">🇮🇩 印尼语 / Indonesia</option></select></div><textarea class="trans-input" id="tInput" placeholder="输入单词... / Masukkan kata..."></textarea><div class="trans-row"><button class="trans-btn" onclick="doTranslate()">🔍 翻译 / Terjemahkan</button><button class="trans-btn" style="background:var(--bg-elev);color:var(--text);border:1px solid var(--border)" onclick="clearTrans()">🗑️ 清空 / Kosongkan</button></div><div class="trans-result" id="tResult"></div></div></div>`;
+  c.innerHTML=`<div class="card"><div class="card-header"><h2>🌐 翻译 / Terjemahan</h2><span class="badge">本地词库 + 在线API</span></div><div class="trans-box"><div class="trans-row"><select id="tFrom"><option value="id">🇮🇩 印尼语 / Indonesia</option><option value="zh">🇨🇳 中文 / Tionghoa</option><option value="en">🇬🇧 英语 / Inggris</option></select><button id="swapLangBtn" title="交换语言" onclick="swapTrans()" style="background:var(--bg-elev);border:1px solid var(--border);border-radius:50%;width:32px;height:32px;cursor:pointer;color:var(--primary);font-size:14px;display:flex;align-items:center;justify-content:center;transition:all .2s">⇄</button><select id="tTo"><option value="zh">🇨🇳 中文 / Tionghoa</option><option value="en">🇬🇧 英语 / Inggris</option><option value="id">🇮🇩 印尼语 / Indonesia</option></select></div><textarea class="trans-input" id="tInput" placeholder="输入单词... / Masukkan kata..."></textarea><div class="trans-row"><button class="trans-btn" onclick="doTranslate()">🔍 翻译 / Terjemahkan</button><button class="trans-btn" style="background:var(--bg-elev);color:var(--text);border:1px solid var(--border)" onclick="clearTrans()">🗑️ 清空 / Kosongkan</button></div><div class="trans-result" id="tResult"></div></div></div>`;
   document.getElementById("tInput").addEventListener("keydown",e=>{if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();doTranslate()}});
+}
+function swapTrans(){
+  const tFrom=document.getElementById("tFrom"),tTo=document.getElementById("tTo");
+  const tInput=document.getElementById("tInput"),tResult=document.getElementById("tResult");
+  if(!tFrom||!tTo)return;
+  const temp=tFrom.value;tFrom.value=tTo.value;tTo.value=temp;
+  if(tInput&&tResult&&tResult.classList.contains("show")&&tResult.innerHTML.trim()){
+    const translatedText=tResult.innerText.replace(/^\n+|\n+$/g,"").replace(/来源:.*/g,"").replace(/词根:.*/g,"").replace(/标签:.*/g,"").trim();
+    if(translatedText&&translatedText!=="翻译中..."&&translatedText!=="未找到翻译"){
+      const originalText=tInput.value;
+      tInput.value=originalText;
+    }
+  }
 }
 
 async function doTranslate(){if(!checkAccess("翻译"))return;
@@ -3306,7 +3321,7 @@ function updateStats(){
   });
   const sNew = allNew.size;
   const sRev = allRev.size;
-  const sTotal = Object.keys(vocabDB).length;
+  const sTotal = wordBank.length;
   
   // 累计学习天数 - 从最早学习日期到今天的天数
   const dates = Object.keys(learningHistory).sort();
@@ -10230,7 +10245,15 @@ function syncCourseVocabToWordBank() {
   let added = 0;
   const existingWords = new Set(wordBank.map(w => (w.word || w.id || '').toLowerCase()));
 
-  function addIfNew(word, cn, en, ipa, root, tag) {
+  // 建立 topicKey -> date 反向映射
+  const topicDateMap = {};
+  for (const [ds, info] of Object.entries(topicCalendar || {})) {
+    if (info && info.topic) {
+      topicDateMap[info.topic] = ds;
+    }
+  }
+
+  function addIfNew(word, cn, en, ipa, root, tag, date) {
     const w = (word || '').trim();
     if (!w || w.length < 2) return;
     const key = w.toLowerCase();
@@ -10239,6 +10262,7 @@ function syncCourseVocabToWordBank() {
     wordBank.push({
       id: key, word: w, zh: cn || w, cn: cn || w, en: en || '',
       ipa: ipa || '—', root: root || '—', tag: tag || '课程同步',
+      date: date || new Date().toISOString().slice(0,10),
       passed: {}, addTime: Date.now()
     });
     added++;
@@ -10246,6 +10270,7 @@ function syncCourseVocabToWordBank() {
 
   // Sync topicData (meet, introduce, directions, common_sentences, weather, medical)
   for (const [topicKey, topic] of Object.entries(topicData)) {
+    const topicDate = topicDateMap[topicKey] || '';
     // Sync vocabulary (NEW: common_sentences, weather, medical)
     if (topic.vocabulary) {
       topic.vocabulary.forEach(v => {
@@ -10255,7 +10280,8 @@ function syncCourseVocabToWordBank() {
           v.english || v.en || '',
           v.ipa || '',
           v.morphology || v.root || '',
-          '话题:' + topicKey
+          '话题:' + topicKey,
+          topicDate
         );
       });
     }
@@ -10269,7 +10295,7 @@ function syncCourseVocabToWordBank() {
                 const t = tok.trim().toLowerCase();
                 if (t.length >= 3 && /^[a-z]+$/.test(t)) {
                   const v = vocabDB[t] || vocabDB[t.charAt(0).toUpperCase() + t.slice(1)];
-                  if (v) addIfNew(t, v.cn, v.en, v.ipa, v.root, '话题:' + topicKey);
+                  if (v) addIfNew(t, v.cn, v.en, v.ipa, v.root, '话题:' + topicKey, topicDate);
                 }
               });
             }
@@ -10285,7 +10311,7 @@ function syncCourseVocabToWordBank() {
             const t = tok.trim().toLowerCase();
             if (t.length >= 3 && /^[a-z]+$/.test(t)) {
               const v = vocabDB[t] || vocabDB[t.charAt(0).toUpperCase() + t.slice(1)];
-              if (v) addIfNew(t, v.cn, v.en, v.ipa, v.root, '话题:' + topicKey);
+              if (v) addIfNew(t, v.cn, v.en, v.ipa, v.root, '话题:' + topicKey, topicDate);
             }
           });
         }
@@ -10302,7 +10328,7 @@ function syncCourseVocabToWordBank() {
             const t = tok.trim().toLowerCase();
             if (t.length >= 3 && /^[a-z]+$/.test(t)) {
               const v = vocabDB[t] || vocabDB[t.charAt(0).toUpperCase() + t.slice(1)];
-              if (v) addIfNew(t, v.cn, v.en, v.ipa, v.root, '话题:' + topicKey);
+              if (v) addIfNew(t, v.cn, v.en, v.ipa, v.root, '话题:' + topicKey, topicDate);
             }
           });
         }
@@ -10316,7 +10342,7 @@ function syncCourseVocabToWordBank() {
             const t = tok.trim().toLowerCase();
             if (t.length >= 3 && /^[a-z]+$/.test(t)) {
               const v = vocabDB[t] || vocabDB[t.charAt(0).toUpperCase() + t.slice(1)];
-              if (v) addIfNew(t, v.cn, v.en, v.ipa, v.root, '话题:' + topicKey);
+              if (v) addIfNew(t, v.cn, v.en, v.ipa, v.root, '话题:' + topicKey, topicDate);
             }
           });
         }
@@ -10567,6 +10593,96 @@ function checkNickelQuiz(option, isCorrect) {
       }
     });
   }
+}
+
+function renderIndustryData(c){
+  c.innerHTML=`<div class="card"><div class="card-header"><h2>🏭 行业数据 / Data Industri</h2><span class="badge">镍产业数据汇总</span></div>
+
+    <!-- 镍冶炼项目 -->
+    <div style="margin-bottom:20px">
+      <h3 style="color:var(--primary);font-size:15px;margin-bottom:12px">🔥 镍冶炼项目 / Proyek Pengolahan Nikel</h3>
+      <div style="background:var(--bg-elev);border-radius:10px;padding:14px;border:1px solid var(--border)">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;font-size:13px">
+          <div>📊 <strong>全球镍储量：</strong>1.4亿吨（2025年）</div>
+          <div>🇮🇩 <strong>印尼产量占比：</strong>全球67%</div>
+          <div>📈 <strong>2026年镍矿配额：</strong>2.6-2.7亿吨（下调近30%）</div>
+          <div>📉 <strong>静态缺口：</strong>超3000万吨</div>
+        </div>
+        <div style="font-size:12px;color:var(--text-dim);border-top:1px solid var(--border);padding-top:8px">
+          数据来源：USGS 2025、华创证券研究所 2026-08-19
+        </div>
+      </div>
+    </div>
+
+    <!-- 制酸项目 -->
+    <div style="margin-bottom:20px">
+      <h3 style="color:var(--primary);font-size:15px;margin-bottom:12px">🧪 制酸项目 / Proyek Asam</h3>
+      <div style="background:var(--bg-elev);border-radius:10px;padding:14px;border:1px solid var(--border)">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;font-size:13px">
+          <div>💰 <strong>硫磺价格：</strong>9823元/吨（2026.6.12，创历史新高）</div>
+          <div>📈 <strong>年初涨幅：</strong>+169%</div>
+          <div>🏭 <strong>全球产量：</strong>8400万吨（5年CAGR 1%）</div>
+          <div>⚠️ <strong>库存：</strong>近五年低位</div>
+        </div>
+        <div style="font-size:12px;color:var(--text-dim);border-top:1px solid var(--border);padding-top:8px">
+          数据来源：百川盈孚、USGS、华泰研究 2026-06-13
+        </div>
+      </div>
+    </div>
+
+    <!-- 电力数据 -->
+    <div style="margin-bottom:20px">
+      <h3 style="color:var(--primary);font-size:15px;margin-bottom:12px">⚡ 电力 / Listrik</h3>
+      <div style="background:var(--bg-elev);border-radius:10px;padding:14px;border:1px solid var(--border)">
+        <div style="font-size:13px;margin-bottom:8px">
+          <div>🔌 <strong>中苏拉威西主要电力设施：</strong></div>
+          <ul style="margin:8px 0 0 20px;color:var(--text-dim);font-size:12px">
+            <li>PLTU Morowali (2×65MW) - 在产</li>
+            <li>PLTU Bahodopi (2×50MW) - 在产</li>
+            <li>PLTA Poso (≈194MW) - 在产</li>
+            <li>PLTGU Luwuk (150MW) - 规划</li>
+            <li>PT VDNI RKEF余热发电 - 在产</li>
+          </ul>
+        </div>
+        <div style="font-size:12px;color:var(--text-dim);border-top:1px solid var(--border);padding-top:8px">
+          数据来源：GEM、PLN、各企业公告
+        </div>
+      </div>
+    </div>
+
+    <!-- 电解铝/氧化铝 -->
+    <div style="margin-bottom:20px">
+      <h3 style="color:var(--primary);font-size:15px;margin-bottom:12px">🏭 电解铝 & 氧化铝 / Aluminium</h3>
+      <div style="background:var(--bg-elev);border-radius:10px;padding:14px;border:1px solid var(--border)">
+        <div style="font-size:13px;margin-bottom:8px">
+          <div>📋 <strong>印尼电解铝/氧化铝项目追踪：</strong></div>
+          <ul style="margin:8px 0 0 20px;color:var(--text-dim);font-size:12px">
+            <li>华青铝业 - 氧化铝项目（规划）</li>
+            <li>南山铝业 - 电解铝项目（在建）</li>
+            <li>印尼国家铝业(Inalum) - 电解铝扩建</li>
+          </ul>
+        </div>
+        <div style="font-size:12px;color:var(--text-dim);border-top:1px solid var(--border);padding-top:8px">
+          数据来源：各企业公告、行业研报
+        </div>
+      </div>
+    </div>
+
+    <!-- 课程数据回顾（7月23日） -->
+    <div style="margin-bottom:20px">
+      <h3 style="color:var(--primary);font-size:15px;margin-bottom:12px">📚 印尼语课程数据（7月23日回顾）</h3>
+      <div style="background:var(--bg-elev);border-radius:10px;padding:14px;border:1px solid var(--border)">
+        <div style="font-size:13px;margin-bottom:8px">
+          点击以下链接回顾7月23日课程中的行业相关印尼语词汇：
+        </div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <button class="trans-btn" onclick="navigate('date','2026-07-23')" style="font-size:12px">📅 7月23日课程</button>
+          <button class="trans-btn" onclick="navigate('vocabulary')" style="font-size:12px;background:var(--accent);color:#000">📖 词汇库</button>
+        </div>
+      </div>
+    </div>
+
+  </div>`;
 }
 
 </script>
