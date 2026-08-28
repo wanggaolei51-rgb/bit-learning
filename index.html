@@ -6,7 +6,7 @@
 <meta http-equiv="Expires" content="0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LEO-BIR V4.18.1-08282026 (C5复习模块)</title>
+<title>LEO-BIR V4.18.2-08282026 (C5复习模块)</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -10598,21 +10598,87 @@ function checkNickelQuiz(option, isCorrect) {
   }
 }
 
+// ===================== INDUSTRY DATA MAP =====================
+let industryMap = null;
+
+const industryData = {
+  nickel: {
+    name: '镍冶炼项目',
+    icon: '🔥',
+    color: '#00d4aa',
+    items: [
+      {name: 'IMIP（印尼莫罗瓦利工业园）', lat: -2.8014, lng: 122.1411, type: 'RKEF+HPAL', cap: '56万镍吨/年', status: '在产', desc: '全球最大镍铁生产基地，含RKEF、HPAL、电积镍等多工艺'},
+      {name: 'IWIP（印尼纬达贝工业园）', lat: 0.4789, lng: 127.9842, type: 'RKEF+HPAL', cap: '40万镍吨/年', status: '在产', desc: '青山系核心园区，华飞HPAL为全球最大单体湿法项目'},
+      {name: 'OBI产业园（力勤基地）', lat: -1.5614, lng: 127.421, type: 'HPAL+RKEF', cap: '34万镍吨/年', status: '在产', desc: '力勤资源核心基地，火法+湿法双路线'},
+      {name: '德龙肯达里园区', lat: -3.97, lng: 122.62, type: 'RKEF', cap: '35万镍吨/年', status: '部分在产', desc: '德龙一期+二期+OSS不锈钢一体化'},
+      {name: '德龙北莫罗瓦利园区', lat: -1.5, lng: 121.4, type: 'RKEF', cap: '31万镍吨/年', status: '部分在产', desc: 'GNI+NNI，中伟参与'},
+      {name: '青美邦园区', lat: -2.53, lng: 121.98, type: 'HPAL', cap: '6.5万镍吨/年', status: '在产', desc: '格林美主导，MHP+电积镍+前驱体全链'},
+      {name: '华宝工业园', lat: -2.6, lng: 122.0, type: 'RKEF', cap: '12.6万镍吨/年', status: '在产', desc: '振石控股，12条RKEF+3×250MW煤电'},
+      {name: 'Sorowako（淡水河谷）', lat: -2.5458, lng: 121.3525, type: 'RKEF+转炉', cap: '7.2万镍吨/年', status: '在产', desc: 'PT Vale Indonesia，历史悠久的高冰镍基地'},
+      {name: '万向工业园', lat: -2.731, lng: 122.0306, type: 'RKEF', cap: '3.3万镍吨/年', status: '部分在产', desc: '万向集团，4×36MVA+烧结-高炉配套'},
+      {name: '华迪工业园', lat: -5.54, lng: 119.98, type: 'RKEF', cap: '4.2万镍吨/年', status: '停产维护', desc: '上海华迪，2026年RKAB配额未获批全面停产'},
+      {name: 'Pomalaa（CNI）', lat: -4.1799, lng: 121.5929, type: 'RKEF', cap: '1.3万镍吨/年', status: '在产', desc: '印尼本土企业，72MVA矩形RKEF'},
+      {name: 'Kariangau（MMP）', lat: -1.172, lng: 116.866, type: 'RKEF+转炉', cap: '2.2万镍吨/年', status: '在产', desc: 'MMS集团高冰镍项目'}
+    ]
+  },
+  acid: {
+    name: '制酸项目',
+    icon: '🧪',
+    color: '#ef4444',
+    items: [
+      {name: 'IMIP园区配套硫酸厂', lat: -2.8014, lng: 122.1411, type: '硫磺制酸', cap: '200万吨/年', status: '在产', desc: '服务HPAL湿法冶炼，硫磺进口依赖中东'},
+      {name: 'IWIP园区配套硫酸厂', lat: 0.4789, lng: 127.9842, type: '硫磺制酸', cap: '150万吨/年', status: '在产', desc: '华飞HPAL配套，全球最大单体HPAL硫酸消耗'},
+      {name: 'OBI园区配套硫酸厂', lat: -1.5614, lng: 127.421, type: '硫磺制酸', cap: '80万吨/年', status: '在产', desc: '力勤HPAL配套'},
+      {name: '青美邦配套硫酸', lat: -2.53, lng: 121.98, type: '硫磺制酸', cap: '60万吨/年', status: '在产', desc: '格林美HPAL+MHP全链'},
+      {name: '德龙园区硫酸设施', lat: -3.97, lng: 122.62, type: '冶炼副产酸', cap: '—', status: '部分在产', desc: 'RKEF火法副产，硫磺消耗较少'},
+      {name: '华宝园区制酸', lat: -2.6, lng: 122.0, type: '冶炼副产酸', cap: '—', status: '在产', desc: 'RKEF火法工艺'},
+      {name: '菲律宾SMI酸厂', lat: 13.5, lng: 121.0, type: '硫磺制酸', cap: '50万吨/年', status: '在产', desc: '菲律宾主要制酸设施，服务周边冶炼'},
+      {name: '中东硫磺出口港', lat: 24.5, lng: 54.3, type: '硫磺出口', cap: '全球40%', status: '在产', desc: '阿联酋/沙特核心出口港，印尼主要进口来源'}
+    ]
+  },
+  power: {
+    name: '电力设施',
+    icon: '⚡',
+    color: '#3b82f6',
+    items: [
+      {name: 'PLTU Morowali', lat: -2.8014, lng: 122.1411, type: '燃煤(2×65MW)', cap: '130MW', status: '在产', desc: 'IMIP园区配套电源'},
+      {name: 'IMIP园区自备电厂', lat: -2.8014, lng: 122.1411, type: '燃煤(3×250MW)', cap: '750MW', status: '在产', desc: '振石华宝园区配套'},
+      {name: 'PLTU Bahodopi', lat: -2.0, lng: 121.5, type: '燃煤(2×50MW)', cap: '100MW', status: '在产', desc: 'Bahodopi地区供电'},
+      {name: 'PLTA Poso', lat: -1.5, lng: 120.5, type: '水电', cap: '≈194MW', status: '在产', desc: '中苏拉威西最大水电站'},
+      {name: 'PLTGU Luwuk', lat: -0.9, lng: 122.8, type: '燃气联合循环', cap: '150MW', status: '规划', desc: 'Bangai地区规划电源'},
+      {name: 'PT VDNI余热发电', lat: -3.97, lng: 122.62, type: '余热', cap: '—', status: '在产', desc: '德龙RKEF余热利用'},
+      {name: 'IWIP园区自备电', lat: 0.4789, lng: 127.9842, type: '燃煤', cap: '多机组', status: '在产', desc: '纬达贝园区配套'},
+      {name: 'PLTU Palu-3', lat: -0.9, lng: 119.8, type: '燃煤(2×65MW)', cap: '130MW', status: '在建', desc: 'PLN RUPTL规划项目'},
+      {name: '德龙园区自备电', lat: -1.5, lng: 121.4, type: '燃煤', cap: '多机组', status: '部分在产', desc: '德龙北莫罗瓦利园区'}
+    ]
+  },
+  aluminum: {
+    name: '电解铝/氧化铝',
+    icon: '🏭',
+    color: '#8b5cf6',
+    items: [
+      {name: '华青铝业（规划）', lat: -0.5, lng: 117.0, type: '氧化铝', cap: '200万吨/年', status: '规划', desc: '加里曼丹大型氧化铝项目'},
+      {name: '南山铝业印尼', lat: 0.95, lng: 104.5, type: '电解铝', cap: '100万吨/年', status: '在建', desc: '宾坦岛电解铝项目'},
+      {name: '印尼国家铝业Inalum', lat: 2.8, lng: 98.5, type: '电解铝', cap: '27万吨/年', status: '在产', desc: '北苏门答腊Kuala Tanjung'},
+      {name: '力勤OBI氧化铝', lat: -1.5614, lng: 127.421, type: '氧化铝', cap: '—', status: '规划', desc: 'OBI岛远期规划'},
+      {name: '锦江集团印尼', lat: -1.0, lng: 116.0, type: '氧化铝', cap: '100万吨/年', status: '在建', desc: '西加里曼丹项目'}
+    ]
+  }
+};
+
 function renderIndustryData(c){
-  c.innerHTML=`<div class="card"><div class="card-header"><h2>🏭 行业数据 / Data Industri</h2><span class="badge">镍产业全景数据</span></div>
-    
-    <!-- 分类Tab切换 -->
-    <div style="display:flex;gap:4px;margin-bottom:16px;flex-wrap:wrap;border-bottom:1px solid var(--border);padding-bottom:12px">
+  c.innerHTML=`<div class="card"><div class="card-header"><h2>🏭 行业数据 / Data Industri</h2><span class="badge">基于地图的产业全景</span></div>
+    <div style="display:flex;gap:4px;margin-bottom:12px;flex-wrap:wrap">
       <button class="trans-btn industry-tab active" data-tab="nickel" onclick="switchIndustryTab('nickel')" style="font-size:12px;background:var(--primary);color:#fff">🔥 镍冶炼</button>
       <button class="trans-btn industry-tab" data-tab="acid" onclick="switchIndustryTab('acid')" style="font-size:12px">🧪 制酸项目</button>
       <button class="trans-btn industry-tab" data-tab="power" onclick="switchIndustryTab('power')" style="font-size:12px">⚡ 电力</button>
       <button class="trans-btn industry-tab" data-tab="aluminum" onclick="switchIndustryTab('aluminum')" style="font-size:12px">🏭 电解铝/氧化铝</button>
     </div>
-    
+    <div id="industryMapContainer" style="width:100%;height:450px;border-radius:12px;border:1px solid var(--border);margin-bottom:12px;position:relative"></div>
+    <div id="industryStats" style="font-size:12px;color:var(--text-dim);text-align:center;margin-bottom:12px"></div>
     <div id="industryContent"></div>
-    
   </div>`;
-  switchIndustryTab('nickel');
+  setTimeout(()=>switchIndustryTab('nickel'), 100);
 }
 
 function switchIndustryTab(tab){
@@ -10627,219 +10693,84 @@ function switchIndustryTab(tab){
     activeBtn.style.color='#fff';
     activeBtn.classList.add('active');
   }
-  const c=document.getElementById('industryContent');
+  
+  const data = industryData[tab];
+  if(!data) return;
+  
+  // Init or update map
+  const container = document.getElementById('industryMapContainer');
+  if(!container) return;
+  
+  if(!industryMap){
+    container.innerHTML = '';
+    industryMap = L.map('industryMapContainer').setView([-2.5, 120], 5);
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; OSM & CARTO', subdomains: 'abcd', maxZoom: 19
+    }).addTo(industryMap);
+  }
+  
+  // Clear existing markers
+  industryMap.eachLayer(layer => {
+    if(layer instanceof L.CircleMarker || layer instanceof L.Marker){
+      industryMap.removeLayer(layer);
+    }
+  });
+  
+  // Add markers
+  let totalCap = 0;
+  data.items.forEach(item => {
+    const marker = L.circleMarker([item.lat, item.lng], {
+      radius: 10,
+      fillColor: data.color,
+      color: '#fff',
+      weight: 2,
+      opacity: 1,
+      fillOpacity: 0.85
+    }).addTo(industryMap);
+    
+    marker.bindTooltip('<b>' + item.name + '</b><br>' + item.type + ' · ' + item.status, { direction: 'top', offset: [0, -10] });
+    
+    marker.on('click', () => {
+      const popupContent = '<div style="min-width:200px">' +
+        '<h4 style="color:' + data.color + ';margin:0 0 8px;font-size:14px">' + data.icon + ' ' + item.name + '</h4>' +
+        '<div style="font-size:12px;line-height:1.6">' +
+        '<div><strong>类型：</strong>' + item.type + '</div>' +
+        '<div><strong>产能：</strong>' + item.cap + '</div>' +
+        '<div><strong>状态：</strong><span style="color:' + (item.status==='在产'?'#22c55e':item.status==='在建'?'#f59e0b':'#3b82f6') + '">' + item.status + '</span></div>' +
+        '<div style="margin-top:6px;color:var(--text-dim)">' + item.desc + '</div>' +
+        '</div></div>';
+      L.popup({ offset: [0, -10] }).setLatLng([item.lat, item.lng]).setContent(popupContent).openOn(industryMap);
+    });
+  });
+  
+  // Update stats
+  const statsEl = document.getElementById('industryStats');
+  if(statsEl){
+    statsEl.innerHTML = data.icon + ' ' + data.name + ' · ' + data.items.length + '个设施 · 点击查看详情';
+  }
+  
+  // Update content panel
+  const c = document.getElementById('industryContent');
   if(!c) return;
   
-  if(tab==='nickel'){
-    c.innerHTML=`<div style="margin-bottom:20px">
-      <div style="background:linear-gradient(135deg,rgba(0,212,170,.12),rgba(59,130,246,.08));border-radius:12px;padding:16px;border:1px solid rgba(0,212,170,.25);margin-bottom:16px">
-        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;text-align:center">
-          <div><div style="font-size:24px;font-weight:700;color:var(--primary)">1.4亿吨</div><div style="font-size:11px;color:var(--text-dim)">全球镍储量(2025)</div></div>
-          <div><div style="font-size:24px;font-weight:700;color:var(--primary)">67%</div><div style="font-size:11px;color:var(--text-dim)">印尼产量占比</div></div>
-          <div><div style="font-size:24px;font-weight:700;color:var(--danger)">-30%</div><div style="font-size:11px;color:var(--text-dim)">2026配额下调</div></div>
-          <div><div style="font-size:24px;font-weight:700;color:var(--accent)">3000万吨</div><div style="font-size:11px;color:var(--text-dim)">静态缺口</div></div>
-        </div>
-        <div style="font-size:11px;color:var(--text-dim);margin-top:10px;border-top:1px solid var(--border);padding-top:8px">数据来源：USGS 2025、华创证券研究所 2026-08-19</div>
-      </div>
-      
-      <h3 style="color:var(--primary);font-size:15px;margin-bottom:12px">🔥 镍冶炼项目 / Proyek Pengolahan Nikel</h3>
-      <div style="background:var(--bg-elev);border-radius:10px;padding:14px;border:1px solid var(--border);margin-bottom:12px">
-        <div style="font-size:13px;font-weight:600;margin-bottom:10px">📊 印尼镍矿政策核心变化</div>
-        <div style="font-size:12px;color:var(--text);line-height:1.8">
-          <div style="display:flex;gap:8px;margin-bottom:6px"><span style="color:var(--danger)">▸</span><div><strong>HMA计价调整：</strong>2025年以来印尼通过HMA计价方式调整、PNBP税制调整加强镍资源管控</div></div>
-          <div style="display:flex;gap:8px;margin-bottom:6px"><span style="color:var(--danger)">▸</span><div><strong>配额大幅下调：</strong>2026年镍矿开采配额自3.79亿吨下调至2.6-2.7亿吨，降幅近30%</div></div>
-          <div style="display:flex;gap:8px;margin-bottom:6px"><span style="color:var(--danger)">▸</span><div><strong>HPM公式重构：</strong>新版HPM计价公式上调镍矿系数，钴、铁、铬伴生金属首次纳入计价</div></div>
-          <div style="display:flex;gap:8px;margin-bottom:6px"><span style="color:var(--info)">▸</span><div><strong>菲律宾补充有限：</strong>假设2026年进口菲律宾2000万吨，静态平衡下仍有超3000万吨缺口</div></div>
-        </div>
-      </div>
-      
-      <div style="background:var(--bg-elev);border-radius:10px;padding:14px;border:1px solid var(--border);margin-bottom:12px">
-        <div style="font-size:13px;font-weight:600;margin-bottom:10px">🏭 冶炼产品供给分化</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:12px">
-          <div style="background:var(--bg-card);padding:10px;border-radius:8px">
-            <div style="color:var(--primary);font-weight:600">镍铁(NPI)</div>
-            <div style="color:var(--text-dim);margin-top:4px">印尼供给主导，边际收缩；RKEF火法路线硫磺消耗偏少，仅受矿价、能源、辅料涨价小幅冲击，行业维持薄利运行</div>
-          </div>
-          <div style="background:var(--bg-card);padding:10px;border-radius:8px">
-            <div style="color:var(--primary);font-weight:600">硫酸镍</div>
-            <div style="color:var(--text-dim);margin-top:4px">全球供给集中中国，目前产能过剩；2026年产出节奏受印尼进口原料约束，供应呈收紧态势</div>
-          </div>
-          <div style="background:var(--bg-card);padding:10px;border-radius:8px">
-            <div style="color:var(--primary);font-weight:600">MHP(湿法中间品)</div>
-            <div style="color:var(--text-dim);margin-top:4px">供给高度集中印尼，26年产量有所下滑；中国为核心消费及进口国，对外依赖度高，原料端同步收紧</div>
-          </div>
-          <div style="background:var(--bg-card);padding:10px;border-radius:8px">
-            <div style="color:var(--primary);font-weight:600">高冰镍</div>
-            <div style="color:var(--text-dim);margin-top:4px">印尼为全球最大生产国；硫磺需求低，成本抗压韧性凸显；26年受政策及原料成本抬升，二季度供给释放节奏边际转弱</div>
-          </div>
-        </div>
-      </div>
-      
-      <div style="background:var(--bg-elev);border-radius:10px;padding:14px;border:1px solid var(--border)">
-        <div style="font-size:13px;font-weight:600;margin-bottom:10px">💰 硫磺成本冲击：湿法冶炼成本重构</div>
-        <div style="font-size:12px;color:var(--text);line-height:1.8">
-          <div style="display:flex;gap:8px;margin-bottom:6px"><span style="color:var(--danger)">⚠️</span><div>全球硫磺以油气副产为主，核心产出区域集中于中东；印尼湿法冶炼园区硫磺进口高度依赖中东货源</div></div>
-          <div style="display:flex;gap:8px;margin-bottom:6px"><span style="color:var(--danger)">⚠️</span><div>本轮中东地缘冲突持续扰动全球硫磺流通，印尼CFR硫磺价格大幅上涨</div></div>
-          <div style="display:flex;gap:8px;margin-bottom:6px"><span style="color:var(--accent)">📈</span><div>当前硫磺已取代镍矿成为湿法MHP生产第一大成本支出，HPAL湿法路线生产亏损压力突出</div></div>
-          <div style="display:flex;gap:8px;margin-bottom:6px"><span style="color:var(--success)">✓</span><div>RKEF火法镍铁硫磺消耗偏少，仅受矿价、能源、辅料涨价小幅冲击，行业维持薄利运行</div></div>
-          <div style="display:flex;gap:8px;margin-bottom:6px"><span style="color:var(--success)">✓</span><div>高冰镍工艺硫磺需求低，成本抗压韧性凸显</div></div>
-        </div>
-        <div style="font-size:11px;color:var(--text-dim);margin-top:10px;border-top:1px solid var(--border);padding-top:8px">数据来源：华创证券研究所《镍行业深度研究》2026-08-19</div>
-      </div>
-    </div>`;
-  }
-  else if(tab==='acid'){
-    c.innerHTML=`<div style="margin-bottom:20px">
-      <div style="background:linear-gradient(135deg,rgba(239,68,68,.12),rgba(245,158,11,.08));border-radius:12px;padding:16px;border:1px solid rgba(239,68,68,.25);margin-bottom:16px">
-        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;text-align:center">
-          <div><div style="font-size:24px;font-weight:700;color:var(--danger)">9823元/吨</div><div style="font-size:11px;color:var(--text-dim)">硫磺价格(2026.6.12)</div></div>
-          <div><div style="font-size:24px;font-weight:700;color:var(--danger)">+169%</div><div style="font-size:11px;color:var(--text-dim)">年初涨幅</div></div>
-          <div><div style="font-size:24px;font-weight:700;color:var(--accent)">8400万吨</div><div style="font-size:11px;color:var(--text-dim)">全球年产量</div></div>
-          <div><div style="font-size:24px;font-weight:700;color:var(--primary)">近五年</div><div style="font-size:11px;color:var(--text-dim)">库存低位</div></div>
-        </div>
-        <div style="font-size:11px;color:var(--text-dim);margin-top:10px;border-top:1px solid var(--border);padding-top:8px">数据来源：百川盈孚、USGS、华泰研究 2026-06-13</div>
-      </div>
-      
-      <h3 style="color:var(--primary);font-size:15px;margin-bottom:12px">🧪 制酸项目 / Proyek Asam</h3>
-      <div style="background:var(--bg-elev);border-radius:10px;padding:14px;border:1px solid var(--border);margin-bottom:12px">
-        <div style="font-size:13px;font-weight:600;margin-bottom:10px">📊 全球硫磺供给结构</div>
-        <div style="font-size:12px;color:var(--text);line-height:1.8">
-          <div style="display:flex;gap:8px;margin-bottom:6px"><span style="color:var(--info)">▸</span><div>全球硫磺来自炼油和天然气副产合计达64%（2023年），5年CAGR仅1%</div></div>
-          <div style="display:flex;gap:8px;margin-bottom:6px"><span style="color:var(--info)">▸</span><div>14-24年全球炼油产能CAGR仅0.7%，在新能源替代趋势下炼厂副产硫磺面临中长期减少压力</div></div>
-          <div style="display:flex;gap:8px;margin-bottom:6px"><span style="color:var(--danger)">▸</span><div>地缘冲突导致全球炼厂开工下降及中东物流受阻，硫磺供给显著承压</div></div>
-        </div>
-      </div>
-      
-      <div style="background:var(--bg-elev);border-radius:10px;padding:14px;border:1px solid var(--border);margin-bottom:12px">
-        <div style="font-size:13px;font-weight:600;margin-bottom:10px">💰 硫磺/硫酸高价下产硫企业受益</div>
-        <div style="font-size:12px;color:var(--text);line-height:1.8">
-          <div style="display:flex;gap:8px;margin-bottom:6px"><span style="color:var(--success)">✓</span><div><strong>传统产硫企业：</strong>炼油、天然气脱硫、硫铁矿及铜冶炼企业；推荐中国石化、中国石油、恒力石化、荣盛石化、桐昆股份</div></div>
-          <div style="display:flex;gap:8px;margin-bottom:6px"><span style="color:var(--success)">✓</span><div><strong>磷石膏制酸：</strong>磷石膏深加工制硫酸成本约740元/吨，对应折算硫磺价格约2600元/吨，已显著低于市场价；推荐云天化、兴发集团</div></div>
-        </div>
-      </div>
-      
-      <div style="background:var(--bg-elev);border-radius:10px;padding:14px;border:1px solid var(--border)">
-        <div style="font-size:13px;font-weight:600;margin-bottom:10px">🔄 硫磺/硫酸替代工艺受益</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;font-size:12px">
-          <div style="background:var(--bg-card);padding:10px;border-radius:8px">
-            <div style="color:var(--primary);font-weight:600">黄磷热法磷酸</div>
-            <div style="color:var(--text-dim);margin-top:4px">3800元/吨以上硫磺价格下，热法磷酸较湿法磷酸成本将具备竞争优势</div>
-          </div>
-          <div style="background:var(--bg-card);padding:10px;border-radius:8px">
-            <div style="color:var(--primary);font-weight:600">铁法磷酸铁</div>
-            <div style="color:var(--text-dim);margin-top:4px">以还原铁粉为原料，减少硫磺/硫酸涨价影响</div>
-          </div>
-          <div style="background:var(--bg-card);padding:10px;border-radius:8px">
-            <div style="color:var(--primary);font-weight:600">氯化法/盐酸法钛白粉</div>
-            <div style="color:var(--text-dim);margin-top:4px">以氯气或盐酸为原料，成本竞争力增强</div>
-          </div>
-          <div style="background:var(--bg-card);padding:10px;border-radius:8px">
-            <div style="color:var(--primary);font-weight:600">硝酸磷肥工艺</div>
-            <div style="color:var(--text-dim);margin-top:4px">以硝酸替代硫酸为原料，高硫价下成本竞争力提升</div>
-          </div>
-        </div>
-        <div style="font-size:11px;color:var(--text-dim);margin-top:10px;border-top:1px solid var(--border);padding-top:8px">数据来源：华泰研究《化石能源点评》2026-06-13</div>
-      </div>
-    </div>`;
-  }
-  else if(tab==='power'){
-    c.innerHTML=`<div style="margin-bottom:20px">
-      <div style="background:linear-gradient(135deg,rgba(59,130,246,.12),rgba(139,92,246,.08));border-radius:12px;padding:16px;border:1px solid rgba(59,130,246,.25);margin-bottom:16px">
-        <div style="font-size:14px;font-weight:600;color:var(--info);margin-bottom:8px">⚡ 中苏拉威西省电力系统概况</div>
-        <div style="font-size:12px;color:var(--text-dim)">印尼电力系统由PLN国家电力公司统一调度，中苏拉威西省电力供应以火电厂(PLTU/PLTGU)为主，水电(PLTA)为辅，部分冶炼园区配套余热发电。</div>
-      </div>
-      
-      <h3 style="color:var(--primary);font-size:15px;margin-bottom:12px">⚡ 电力 / Listrik</h3>
-      <div style="background:var(--bg-elev);border-radius:10px;padding:14px;border:1px solid var(--border);margin-bottom:12px">
-        <div style="font-size:13px;font-weight:600;margin-bottom:10px">🔌 中苏拉威西主要电力设施</div>
-        <div style="overflow-x:auto">
-          <table style="width:100%;font-size:12px;border-collapse:collapse">
-            <tr style="border-bottom:1px solid var(--border);text-align:left">
-              <th style="padding:8px;color:var(--primary)">设施名称</th>
-              <th style="padding:8px;color:var(--primary)">类型</th>
-              <th style="padding:8px;color:var(--primary)">容量</th>
-              <th style="padding:8px;color:var(--primary)">状态</th>
-              <th style="padding:8px;color:var(--primary)">位置</th>
-            </tr>
-            <tr style="border-bottom:1px solid var(--border)">
-              <td style="padding:8px">PLTU Morowali</td><td style="padding:8px">燃煤</td><td style="padding:8px">2×65MW</td><td style="padding:8px"><span style="color:var(--success)">● 在产</span></td><td style="padding:8px">Morowali</td>
-            </tr>
-            <tr style="border-bottom:1px solid var(--border)">
-              <td style="padding:8px">PLTU Bahodopi</td><td style="padding:8px">燃煤</td><td style="padding:8px">2×50MW</td><td style="padding:8px"><span style="color:var(--success)">● 在产</span></td><td style="padding:8px">Bahodopi</td>
-            </tr>
-            <tr style="border-bottom:1px solid var(--border)">
-              <td style="padding:8px">PLTA Poso</td><td style="padding:8px">水电</td><td style="padding:8px">≈194MW</td><td style="padding:8px"><span style="color:var(--success)">● 在产</span></td><td style="padding:8px">Poso</td>
-            </tr>
-            <tr style="border-bottom:1px solid var(--border)">
-              <td style="padding:8px">PLTGU Luwuk</td><td style="padding:8px">燃气联合循环</td><td style="padding:8px">150MW</td><td style="padding:8px"><span style="color:var(--accent)">○ 规划</span></td><td style="padding:8px">Luwuk</td>
-            </tr>
-            <tr style="border-bottom:1px solid var(--border)">
-              <td style="padding:8px">PT VDNI 余热发电</td><td style="padding:8px">余热</td><td style="padding:8px">—</td><td style="padding:8px"><span style="color:var(--success)">● 在产</span></td><td style="padding:8px">Morosi</td>
-            </tr>
-            <tr>
-              <td style="padding:8px">园区配套煤电</td><td style="padding:8px">燃煤</td><td style="padding:8px">多机组</td><td style="padding:8px"><span style="color:var(--success)">● 在产</span></td><td style="padding:8px">IMIP/IWIP等</td>
-            </tr>
-          </table>
-        </div>
-        <div style="font-size:11px;color:var(--text-dim);margin-top:10px;border-top:1px solid var(--border);padding-top:8px">数据来源：GEM、PLN、各企业公告</div>
-      </div>
-      
-      <div style="background:var(--bg-elev);border-radius:10px;padding:14px;border:1px solid var(--border)">
-        <div style="font-size:13px;font-weight:600;margin-bottom:10px">📋 电力供需要点</div>
-        <div style="font-size:12px;color:var(--text);line-height:1.8">
-          <div style="display:flex;gap:8px;margin-bottom:6px"><span style="color:var(--info)">▸</span><div>冶炼园区电力需求巨大：IMIP园区配套3×250MW燃煤机组，IWIP园区配套多组机组</div></div>
-          <div style="display:flex;gap:8px;margin-bottom:6px"><span style="color:var(--info)">▸</span><div>孤网运行特征：大型冶炼园区多建设自备电厂，形成孤网或微电网运行</div></div>
-          <div style="display:flex;gap:8px;margin-bottom:6px"><span style="color:var(--info)">▸</span><div>可再生能源潜力：Poso河流域水电、海域风电、光伏等清洁能源开发潜力大</div></div>
-        </div>
-      </div>
-    </div>`;
-  }
-  else if(tab==='aluminum'){
-    c.innerHTML=`<div style="margin-bottom:20px">
-      <div style="background:linear-gradient(135deg,rgba(139,92,246,.12),rgba(236,72,153,.08));border-radius:12px;padding:16px;border:1px solid rgba(139,92,246,.25);margin-bottom:16px">
-        <div style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:8px">🏭 印尼电解铝 & 氧化铝产业追踪</div>
-        <div style="font-size:12px;color:var(--text-dim)">印尼凭借丰富的铝土矿资源和煤炭/水电优势，正成为全球电解铝产业新兴布局地。氧化铝项目以进口铝土矿加工为主，电解铝项目依托廉价电力成本。</div>
-      </div>
-      
-      <h3 style="color:var(--primary);font-size:15px;margin-bottom:12px">🏭 电解铝 & 氧化铝 / Aluminium</h3>
-      <div style="background:var(--bg-elev);border-radius:10px;padding:14px;border:1px solid var(--border);margin-bottom:12px">
-        <div style="font-size:13px;font-weight:600;margin-bottom:10px">📋 印尼主要铝产业项目</div>
-        <div style="overflow-x:auto">
-          <table style="width:100%;font-size:12px;border-collapse:collapse">
-            <tr style="border-bottom:1px solid var(--border);text-align:left">
-              <th style="padding:8px;color:var(--primary)">企业/项目</th>
-              <th style="padding:8px;color:var(--primary)">产品</th>
-              <th style="padding:8px;color:var(--primary)">产能(万吨/年)</th>
-              <th style="padding:8px;color:var(--primary)">状态</th>
-              <th style="padding:8px;color:var(--primary)">地点</th>
-            </tr>
-            <tr style="border-bottom:1px solid var(--border)">
-              <td style="padding:8px">华青铝业</td><td style="padding:8px">氧化铝</td><td style="padding:8px">200</td><td style="padding:8px"><span style="color:var(--accent)">○ 规划</span></td><td style="padding:8px">加里曼丹</td>
-            </tr>
-            <tr style="border-bottom:1px solid var(--border)">
-              <td style="padding:8px">南山铝业印尼</td><td style="padding:8px">电解铝</td><td style="padding:8px">100</td><td style="padding:8px"><span style="color:var(--accent)">○ 在建</span></td><td style="padding:8px">宾坦岛</td>
-            </tr>
-            <tr style="border-bottom:1px solid var(--border)">
-              <td style="padding:8px">印尼国家铝业(Inalum)</td><td style="padding:8px">电解铝</td><td style="padding:8px">27</td><td style="padding:8px"><span style="color:var(--success)">● 在产</span></td><td style="padding:8px">北苏门答腊</td>
-            </tr>
-            <tr>
-              <td style="padding:8px">力勤资源(规划)</td><td style="padding:8px">氧化铝</td><td style="padding:8px">—</td><td style="padding:8px"><span style="color:var(--accent)">○ 规划</span></td><td style="padding:8px">OBI岛</td>
-            </tr>
-          </table>
-        </div>
-      </div>
-      
-      <div style="background:var(--bg-elev);border-radius:10px;padding:14px;border:1px solid var(--border)">
-        <div style="font-size:13px;font-weight:600;margin-bottom:10px">📊 产业要点</div>
-        <div style="font-size:12px;color:var(--text);line-height:1.8">
-          <div style="display:flex;gap:8px;margin-bottom:6px"><span style="color:var(--info)">▸</span><div>印尼铝土矿储量丰富，但2023年出口禁令后，本土氧化铝加工能力建设成为关键</div></div>
-          <div style="display:flex;gap:8px;margin-bottom:6px"><span style="color:var(--info)">▸</span><div>电力成本是电解铝核心竞争力：印尼煤炭/水电成本显著低于中国，吸引中资企业布局</div></div>
-          <div style="display:flex;gap:8px;margin-bottom:6px"><span style="color:var(--info)">▸</span><div>下游需求：汽车轻量化、新能源电池箔、建筑型材等拉动长期需求增长</div></div>
-        </div>
-        <div style="font-size:11px;color:var(--text-dim);margin-top:10px;border-top:1px solid var(--border);padding-top:8px">数据来源：各企业公告、行业研报、SMM</div>
-      </div>
-    </div>`;
-  }
+  let html = '<div style="background:var(--bg-elev);border-radius:10px;padding:14px;border:1px solid var(--border)">';
+  html += '<h3 style="color:var(--primary);font-size:15px;margin-bottom:12px">' + data.icon + ' ' + data.name + ' / ' + data.name.split('').map((ch,i)=>ch).join('') + '</h3>';
+  html += '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px">';
+  
+  data.items.forEach(item => {
+    const statusColor = item.status==='在产'?'#22c55e':item.status==='在建'?'#f59e0b':item.status==='停产维护'?'#ef4444':'#3b82f6';
+    html += '<div style="background:var(--bg-card);padding:12px;border-radius:8px;border-left:3px solid ' + data.color + '">';
+    html += '<div style="font-weight:600;font-size:13px;margin-bottom:6px">' + item.name + '</div>';
+    html += '<div style="font-size:11px;color:var(--text-dim);line-height:1.6">';
+    html += '<div>📍 ' + item.type + '</div>';
+    html += '<div>⚡ ' + item.cap + '</div>';
+    html += '<div>🟢 <span style="color:' + statusColor + '">' + item.status + '</span></div>';
+    html += '<div style="margin-top:4px">' + item.desc + '</div>';
+    html += '</div></div>';
+  });
+  
+  html += '</div></div>';
+  c.innerHTML = html;
 }
 
 </script>
