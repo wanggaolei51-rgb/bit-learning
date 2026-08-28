@@ -6,7 +6,7 @@
 <meta http-equiv="Expires" content="0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LEO-BIR V4.18.3-08282026 (行业数据增强)</title>
+<title>LEO-BIR V4.18.4-08282026 (行业数据增强)</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -273,7 +273,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="sidebar-header">
     <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <h1>LEO-BIR</h1>
-    <div class="ver">LEO-BIR V4.18.3 · 行业数据增强</div>
+    <div class="ver">LEO-BIR V4.18.4 · 行业数据增强</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -8170,14 +8170,14 @@ function renderVersion(c){
   c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.18 / Versi</span></div>
     <div style="padding:16px;">
       <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
-        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.18.3 (2026-08-28)</div>
+        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.18.4 (2026-08-28)</div>
         <div style="font-size:13px;color:var(--text);line-height:1.8">
         • 行业数据页增强: 新增搜索功能(支持名称/类型/状态/描述搜索)<br>
         • 搜索结果点击后地图flyTo定位并自动弹出详情popup<br>
         • 新增园区-合作商汇总表(按IMIP/IWIP/OBI/德龙等园区聚合)<br>
         • 分类展示: 镍冶炼分RKEF/HPAL/RKEF+HPAL三组,制酸分三组,电力分四组<br>
         • 新增"📊 当日MIR"按钮,点击弹出模态框显示本地MIR数据<br>
-        • 标题与版本说明同步更新为V4.18.3<br>
+        • 标题与版本说明同步更新为V4.18.4<br>
         • BIO/RCO/TSO三方审核流程持续运行<br>
         </div>
       </div>
@@ -10799,11 +10799,11 @@ function switchIndustryTab(tab){
   
   const groups = groupConfig[tab];
   if(groups){
-    // Group items by type
-    const grouped = {};
+    // Group items by type (sorted by specificity: longer/more specific keys first)
+    const sortedGroups = Object.entries(groups).sort((a, b) => b[0].length - a[0].length);
     data.items.forEach(item => {
       let found = false;
-      for(const [key, cfg] of Object.entries(groups)){
+      for(const [key, cfg] of sortedGroups){
         if(item.type && item.type.includes(key)){
           if(!grouped[key]) grouped[key] = [];
           grouped[key].push(item);
@@ -11026,6 +11026,13 @@ function flyToIndustryItem(lat, lng, name){
   if(resultsEl) resultsEl.style.display = 'none';
 }
 
+function escapeHtml(str){
+  if(typeof str !== 'string') return str;
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
+
 function showMIRModal(){
   // Create modal if not exists
   let modal = document.getElementById('mirModal');
@@ -11061,17 +11068,17 @@ function showMIRModal(){
         const mirData = JSON.parse(localMIR);
         let html = '<div style="font-size:13px;line-height:1.8">';
         html += '<div style="background:rgba(0,212,170,.08);border-radius:8px;padding:12px;margin-bottom:12px;border-left:3px solid var(--primary)">';
-        html += '<div style="font-weight:600;color:var(--primary)">📅 ' + (mirData.date || '今日') + '</div>';
-        html += '<div style="color:var(--text-dim);font-size:12px">来源: ' + (mirData.source || '本地缓存') + '</div>';
+        html += '<div style="font-weight:600;color:var(--primary)">📅 ' + escapeHtml(mirData.date || '今日') + '</div>';
+        html += '<div style="color:var(--text-dim);font-size:12px">来源: ' + escapeHtml(mirData.source || '本地缓存') + '</div>';
         html += '</div>';
         if(mirData.summary){
-          html += '<div style="margin-bottom:12px">' + mirData.summary + '</div>';
+          html += '<div style="margin-bottom:12px">' + escapeHtml(mirData.summary) + '</div>';
         }
         if(mirData.sections && mirData.sections.length){
           mirData.sections.forEach(sec => {
             html += '<div style="margin-bottom:12px;padding:10px;background:var(--bg-elev);border-radius:8px">';
-            html += '<div style="font-weight:600;color:var(--accent);margin-bottom:6px">' + sec.title + '</div>';
-            html += '<div style="color:var(--text);font-size:12px">' + sec.content + '</div>';
+            html += '<div style="font-weight:600;color:var(--accent);margin-bottom:6px">' + escapeHtml(sec.title) + '</div>';
+            html += '<div style="color:var(--text);font-size:12px">' + escapeHtml(sec.content) + '</div>';
             html += '</div>';
           });
         }
