@@ -6,7 +6,7 @@
 <meta http-equiv="Expires" content="0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LEO-BIR V4.18.6</title>
+<title>LEO-BIR V4.18.7</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -273,7 +273,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="sidebar-header">
     <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <h1>LEO-BIR</h1>
-    <div class="ver">LEO-BIR V4.18.6 · 完整镍数据恢复+园区汇总</div>
+    <div class="ver">LEO-BIR V4.18.7 · 完整镍数据恢复+园区汇总</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -8170,7 +8170,7 @@ function renderVersion(c){
   c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.18 / Versi</span></div>
     <div style="padding:16px;">
       <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
-        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.18.6 (2026-08-28)</div>
+        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.18.7 (2026-08-28)</div>
         <div style="font-size:13px;color:var(--text);line-height:1.8">
         • 数据恢复: 从7月23日备份恢复完整镍产业数据(印尼46园区107项目+全球66项目)<br>
         • 总产能统计: 🇮🇩 46园区/107项目 · 🌍 66项目 · 总产能 684.4万镍吨/年<br>
@@ -8178,7 +8178,7 @@ function renderVersion(c){
         • 扩充电力设施数据: 从9个增加到24个(燃煤/水电/地热/光伏/风电/柴油)<br>
         • 扩充电解铝/氧化铝数据: 从5个增加到18个(覆盖印尼/中国/巴西/俄罗斯等)<br>
         • MIR按钮改为Agent交互: 输入关键词→SIO战略情报官获取当日MIR信息<br>
-        • 标题与版本说明同步更新为V4.18.6<br>
+        • 标题与版本说明同步更新为V4.18.7<br>
         • BIO/RCO/TSO三方审核流程持续运行<br>
         </div>
       </div>
@@ -10760,7 +10760,7 @@ function showNickelParkPopup(key, group) {
 function renderIndustryData(c){
   c.innerHTML=`<div class="card"><div class="card-header" style="justify-content:space-between;align-items:center"><div style="display:flex;align-items:center;gap:10px"><h2>🏭 行业数据 / Data Industri</h2><span class="badge">基于地图的产业全景</span></div><button class="trans-btn" onclick="showMIRModal()" style="font-size:12px;padding:6px 14px;background:rgba(245,158,11,.15);color:var(--accent);border:1px solid rgba(245,158,11,.3);border-radius:8px;cursor:pointer">📊 当日MIR</button></div>
     <div style="display:flex;gap:8px;margin-bottom:12px;align-items:center">
-      <input type="text" id="industrySearch" placeholder="🔍 搜索设施名称、类型、状态..." oninput="searchIndustry(this.value)" style="flex:1;padding:8px 12px;background:var(--bg-elev);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:13px;outline:none">
+      <input type="text" id="industrySearch" placeholder="🔍 搜索设施名称、类型、状态..." oninput="searchIndustry(this.value)" onkeydown="if(event.key==='Enter'){event.preventDefault();searchIndustry(this.value,true)}" style="flex:1;padding:8px 12px;background:var(--bg-elev);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:13px;outline:none">
       <button onclick="document.getElementById('industrySearch').value='';searchIndustry('')" style="padding:8px 12px;background:var(--bg-elev);border:1px solid var(--border);border-radius:8px;color:var(--text-dim);cursor:pointer;font-size:12px">清除</button>
     </div>
     <div id="industrySearchResults" style="display:none;margin-bottom:12px;background:var(--bg-elev);border:1px solid var(--border);border-radius:10px;padding:10px;max-height:200px;overflow-y:auto"></div>
@@ -11209,7 +11209,7 @@ function renderIndustrySummary(){
   summaryEl.innerHTML = html;
 }
 
-function searchIndustry(query){
+function searchIndustry(query, autoFly=false){
   const resultsEl = document.getElementById('industrySearchResults');
   if(!resultsEl) return;
   
@@ -11233,6 +11233,14 @@ function searchIndustry(query){
   if(results.length === 0){
     resultsEl.innerHTML = '<div style="color:var(--text-dim);font-size:12px;text-align:center;padding:10px">未找到匹配结果</div>';
     resultsEl.style.display = 'block';
+    return;
+  }
+  
+  // Auto-fly to first result on Enter key
+  if(autoFly && results.length > 0){
+    const first = results[0];
+    flyToIndustryItem(first.lat, first.lng, first.name);
+    resultsEl.style.display = 'none';
     return;
   }
   
@@ -11295,35 +11303,103 @@ function showMIRModal(){
     modal = document.createElement('div');
     modal.id = 'mirModal';
     modal.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.7);z-index:20000;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px)';
-    modal.innerHTML = `<div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:24px;max-width:600px;width:90%;max-height:80vh;overflow-y:auto;box-shadow:var(--shadow)">
+    modal.innerHTML = `<div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:24px;max-width:700px;width:90%;max-height:85vh;overflow-y:auto;box-shadow:var(--shadow)">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
         <h3 style="color:var(--primary);font-size:16px;margin:0">📊 当日 MIR / Market Intelligence Report</h3>
         <button onclick="document.getElementById('mirModal').style.display='none'" style="background:none;border:none;color:var(--text-dim);font-size:20px;cursor:pointer">×</button>
       </div>
-      <div id="mirModalContent">
-        <div style="text-align:center;padding:20px;color:var(--text-dim)">
-          <div style="font-size:14px;margin-bottom:12px">请输入今日MIR查询关键词</div>
-          <input type="text" id="mirQueryInput" placeholder="例如：镍价、硫酸、铝业..." style="width:100%;padding:10px 14px;background:var(--bg-elev);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:13px;outline:none;margin-bottom:12px">
-          <button onclick="queryMIR()" style="padding:8px 20px;background:var(--primary);color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:13px">🔍 查询当日MIR</button>
-        </div>
-      </div>
+      <div id="mirModalContent"></div>
     </div>`;
     modal.addEventListener('click', (e) => { if(e.target === modal) modal.style.display = 'none'; });
     document.body.appendChild(modal);
   }
   modal.style.display = 'flex';
+  // Auto-load preset MIR queries on open
+  loadPresetMIR();
+}
+
+// Preset MIR query categories and display data
+const MIR_PRESETS = [
+  { key: 'nickel', label: '🔩 镍市情报', icon: '🔩', items: [
+    { name: 'LME镍现货', value: '$16,850/吨', change: '+1.2%', trend: 'up', source: 'LME 2026-08-28' },
+    { name: '沪镍主力', value: '¥128,500/吨', change: '+0.8%', trend: 'up', source: 'SHFE 2026-08-28' },
+    { name: '印尼NPI出厂价', value: '¥1,080/镍点', change: '-0.5%', trend: 'down', source: 'SMM 2026-08-28' },
+    { name: 'MHP系数', value: '78-80%', change: '持平', trend: 'flat', source: 'Mysteel 2026-08-28' }
+  ]},
+  { key: 'acid', label: '🧪 硫酸/硫磺', icon: '🧪', items: [
+    { name: '98%硫酸华东价', value: '¥380/吨', change: '+5.6%', trend: 'up', source: '卓创资讯 2026-08-28' },
+    { name: '硫磺CFR中国', value: '$95/吨', change: '+2.1%', trend: 'up', source: 'ICIS 2026-08-28' },
+    { name: '磷石膏制酸成本', value: '¥220/吨', change: '-1.2%', trend: 'down', source: '行业测算' }
+  ]},
+  { key: 'aluminum', label: '🏭 铝业情报', icon: '🏭', items: [
+    { name: 'LME铝现货', value: '$2,380/吨', change: '+0.3%', trend: 'up', source: 'LME 2026-08-28' },
+    { name: '沪铝主力', value: '¥19,850/吨', change: '-0.2%', trend: 'down', source: 'SHFE 2026-08-28' },
+    { name: '氧化铝Index', value: '¥3,920/吨', change: '+1.5%', trend: 'up', source: '阿拉丁 2026-08-28' },
+    { name: '印尼氧化铝FOB', value: '$425/吨', change: '持平', trend: 'flat', source: 'Mysteel 2026-08-28' }
+  ]},
+  { key: 'energy', label: '⚡ 能源动力', icon: '⚡', items: [
+    { name: '纽卡斯尔动力煤', value: '$142/吨', change: '-0.8%', trend: 'down', source: 'ICE 2026-08-28' },
+    { name: '印尼HBA参考价', value: '$118/吨', change: '持平', trend: 'flat', source: 'ESDM 2026-08-28' },
+    { name: '中国锂电储能指数', value: '0.42元/Wh', change: '-3.2%', trend: 'down', source: 'CNESA 2026-08-28' }
+  ]},
+  { key: 'ev', label: '🚗 新能源终端', icon: '🚗', items: [
+    { name: '中国新能源车渗透率', value: '52.8%', change: '+2.1pp', trend: 'up', source: '中汽协 2026-08-28' },
+    { name: '全球EV销量(月)', value: '148万辆', change: '+18% YoY', trend: 'up', source: 'EV-Volumes 2026-08-28' },
+    { name: '电动二轮车(印尼月销)', value: '12,500辆', change: '+35% MoM', trend: 'up', source: 'AISI 2026-08-28' }
+  ]}
+];
+
+function loadPresetMIR(){
+  const content = document.getElementById('mirModalContent');
+  if(!content) return;
+  
+  let html = '<div style="margin-bottom:16px">';
+  html += '<div style="font-size:13px;color:var(--text-dim);margin-bottom:12px">📌 以下数据为演示格式，实际部署后将接入SIO战略情报官实时获取</div>';
+  
+  MIR_PRESETS.forEach(cat => {
+    html += '<div style="margin-bottom:16px;border:1px solid var(--border);border-radius:10px;overflow:hidden">';
+    html += '<div style="background:var(--bg-elev);padding:10px 14px;font-size:13px;font-weight:600;color:var(--primary);display:flex;align-items:center;gap:6px">' + cat.icon + ' ' + cat.label + '</div>';
+    html += '<div style="padding:10px 14px">';
+    cat.items.forEach(item => {
+      const trendColor = item.trend === 'up' ? '#22c55e' : item.trend === 'down' ? '#ef4444' : 'var(--text-dim)';
+      const trendIcon = item.trend === 'up' ? '↗' : item.trend === 'down' ? '↘' : '→';
+      html += '<div style="display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid rgba(255,255,255,0.05)">';
+      html += '<div style="font-size:12px;color:var(--text)">' + item.name + '</div>';
+      html += '<div style="text-align:right">';
+      html += '<div style="font-size:13px;font-weight:600;color:var(--text)">' + item.value + '</div>';
+      html += '<div style="font-size:11px;color:' + trendColor + '">' + trendIcon + ' ' + item.change + '</div>';
+      html += '</div>';
+      html += '</div>';
+    });
+    html += '<div style="font-size:10px;color:var(--text-dim);margin-top:6px;text-align:right">来源：' + cat.items[0].source + '</div>';
+    html += '</div></div>';
+  });
+  
+  html += '</div>';
+  
+  // Custom query section at bottom
+  html += '<div style="border-top:1px solid var(--border);padding-top:16px;margin-top:16px">';
+  html += '<div style="font-size:13px;font-weight:600;color:var(--accent);margin-bottom:10px">🔍 自定义查询 / Custom Query</div>';
+  html += '<div style="display:flex;gap:8px">';
+  html += '<input type="text" id="mirQueryInput" placeholder="输入关键词，如：钴价、稀土、光伏..." onkeydown="if(event.key===\'Enter\'){event.preventDefault();queryMIR()}" style="flex:1;padding:10px 14px;background:var(--bg-elev);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:13px;outline:none">';
+  html += '<button onclick="queryMIR()" style="padding:10px 20px;background:var(--primary);color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:13px;white-space:nowrap">查询</button>';
+  html += '</div>';
+  html += '<div id="mirCustomResult" style="margin-top:12px"></div>';
+  html += '</div>';
+  
+  content.innerHTML = html;
 }
 
 function queryMIR(){
   const input = document.getElementById('mirQueryInput');
   const query = input ? input.value.trim() : '';
-  const content = document.getElementById('mirModalContent');
-  if(!content) return;
+  const resultEl = document.getElementById('mirCustomResult');
+  if(!resultEl) return;
   if(!query){
-    content.innerHTML = '<div style="text-align:center;padding:20px;color:var(--text-dim)"><div style="font-size:14px">请输入查询关键词</div></div>';
+    resultEl.innerHTML = '<div style="color:var(--text-dim);font-size:12px;padding:8px">请输入查询关键词</div>';
     return;
   }
-  content.innerHTML = '<div style="text-align:center;padding:40px;color:var(--text-dim)"><div style="font-size:32px;margin-bottom:12px">🤖</div><div style="font-size:14px">正在通过SIO战略情报官获取当日MIR信息...</div><div style="font-size:12px;margin-top:8px;color:var(--primary)">关键词：' + escapeHtml(query) + '</div><div style="font-size:11px;margin-top:16px;color:var(--text-dim)">[接口预留] 后续将接入真实MIR Agent调用</div></div>';
+  resultEl.innerHTML = '<div style="text-align:center;padding:20px;color:var(--text-dim)"><div style="font-size:24px;margin-bottom:8px">🤖</div><div style="font-size:13px">正在通过SIO战略情报官获取「' + escapeHtml(query) + '」相关信息...</div><div style="font-size:11px;margin-top:8px;color:var(--primary)">[接口预留] 后续将接入真实MIR Agent调用</div></div>';
   // TODO: Connect to real MIR agent API
   // fetch('/api/mir?query=' + encodeURIComponent(query)).then(...)
 }
