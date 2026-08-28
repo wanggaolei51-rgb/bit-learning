@@ -6,7 +6,7 @@
 <meta http-equiv="Expires" content="0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LEO-BIR V4.18.2-08282026 (C5复习模块)</title>
+<title>LEO-BIR V4.18.3-08282026 (行业数据增强)</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -273,7 +273,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="sidebar-header">
     <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <h1>LEO-BIR</h1>
-    <div class="ver">LEO-BIR V4.17.5 · C5复习模块</div>
+    <div class="ver">LEO-BIR V4.18.3 · 行业数据增强</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -8167,8 +8167,20 @@ function renderAbout(c){
 }
 
 function renderVersion(c){
-  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.14 / Versi</span></div>
+  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.18 / Versi</span></div>
     <div style="padding:16px;">
+      <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
+        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.18.3 (2026-08-28)</div>
+        <div style="font-size:13px;color:var(--text);line-height:1.8">
+        • 行业数据页增强: 新增搜索功能(支持名称/类型/状态/描述搜索)<br>
+        • 搜索结果点击后地图flyTo定位并自动弹出详情popup<br>
+        • 新增园区-合作商汇总表(按IMIP/IWIP/OBI/德龙等园区聚合)<br>
+        • 分类展示: 镍冶炼分RKEF/HPAL/RKEF+HPAL三组,制酸分三组,电力分四组<br>
+        • 新增"📊 当日MIR"按钮,点击弹出模态框显示本地MIR数据<br>
+        • 标题与版本说明同步更新为V4.18.3<br>
+        • BIO/RCO/TSO三方审核流程持续运行<br>
+        </div>
+      </div>
       <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
         <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.16.2 (2026-08-13)</div>
         <div style="font-size:13px;color:var(--text);line-height:1.8">
@@ -10667,7 +10679,12 @@ const industryData = {
 };
 
 function renderIndustryData(c){
-  c.innerHTML=`<div class="card"><div class="card-header"><h2>🏭 行业数据 / Data Industri</h2><span class="badge">基于地图的产业全景</span></div>
+  c.innerHTML=`<div class="card"><div class="card-header" style="justify-content:space-between;align-items:center"><div style="display:flex;align-items:center;gap:10px"><h2>🏭 行业数据 / Data Industri</h2><span class="badge">基于地图的产业全景</span></div><button class="trans-btn" onclick="showMIRModal()" style="font-size:12px;padding:6px 14px;background:rgba(245,158,11,.15);color:var(--accent);border:1px solid rgba(245,158,11,.3);border-radius:8px;cursor:pointer">📊 当日MIR</button></div>
+    <div style="display:flex;gap:8px;margin-bottom:12px;align-items:center">
+      <input type="text" id="industrySearch" placeholder="🔍 搜索设施名称、类型、状态..." oninput="searchIndustry(this.value)" style="flex:1;padding:8px 12px;background:var(--bg-elev);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:13px;outline:none">
+      <button onclick="document.getElementById('industrySearch').value='';searchIndustry('')" style="padding:8px 12px;background:var(--bg-elev);border:1px solid var(--border);border-radius:8px;color:var(--text-dim);cursor:pointer;font-size:12px">清除</button>
+    </div>
+    <div id="industrySearchResults" style="display:none;margin-bottom:12px;background:var(--bg-elev);border:1px solid var(--border);border-radius:10px;padding:10px;max-height:200px;overflow-y:auto"></div>
     <div style="display:flex;gap:4px;margin-bottom:12px;flex-wrap:wrap">
       <button class="trans-btn industry-tab active" data-tab="nickel" onclick="switchIndustryTab('nickel')" style="font-size:12px;background:var(--primary);color:#fff">🔥 镍冶炼</button>
       <button class="trans-btn industry-tab" data-tab="acid" onclick="switchIndustryTab('acid')" style="font-size:12px">🧪 制酸项目</button>
@@ -10677,6 +10694,7 @@ function renderIndustryData(c){
     <div id="industryMapContainer" style="width:100%;height:450px;border-radius:12px;border:1px solid var(--border);margin-bottom:12px;position:relative"></div>
     <div id="industryStats" style="font-size:12px;color:var(--text-dim);text-align:center;margin-bottom:12px"></div>
     <div id="industryContent"></div>
+    <div id="industrySummary"></div>
   </div>`;
   setTimeout(()=>switchIndustryTab('nickel'), 100);
 }
@@ -10717,7 +10735,6 @@ function switchIndustryTab(tab){
   });
   
   // Add markers
-  let totalCap = 0;
   data.items.forEach(item => {
     const marker = L.circleMarker([item.lat, item.lng], {
       radius: 10,
@@ -10749,28 +10766,324 @@ function switchIndustryTab(tab){
     statsEl.innerHTML = data.icon + ' ' + data.name + ' · ' + data.items.length + '个设施 · 点击查看详情';
   }
   
-  // Update content panel
+  // Update content panel with grouped display
   const c = document.getElementById('industryContent');
   if(!c) return;
   
-  let html = '<div style="background:var(--bg-elev);border-radius:10px;padding:14px;border:1px solid var(--border)">';
-  html += '<h3 style="color:var(--primary);font-size:15px;margin-bottom:12px">' + data.icon + ' ' + data.name + ' / ' + data.name.split('').map((ch,i)=>ch).join('') + '</h3>';
-  html += '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px">';
+  // Define sub-type groups for each category
+  const groupConfig = {
+    nickel: {
+      'RKEF': { label: '🔥 RKEF 火法冶炼', color: '#ff6b6b' },
+      'HPAL': { label: '💧 HPAL 湿法冶炼', color: '#4ecdc4' },
+      'RKEF+HPAL': { label: '🔥💧 RKEF+HPAL 双工艺', color: '#a78bfa' }
+    },
+    acid: {
+      '硫磺制酸': { label: '🟡 硫磺制酸', color: '#fbbf24' },
+      '硫铁矿制酸': { label: '🟤 硫铁矿制酸', color: '#d97706' },
+      '冶炼副产酸': { label: '⚙️ 冶炼副产酸', color: '#6b7280' }
+    },
+    power: {
+      '燃煤': { label: '🟤 燃煤发电', color: '#78716c' },
+      '水电': { label: '💧 水力发电', color: '#0ea5e9' },
+      '燃气': { label: '🔵 燃气发电', color: '#3b82f6' },
+      '余热': { label: '🟠 余热发电', color: '#f97316' }
+    },
+    aluminum: {
+      '电解铝': { label: '⚡ 电解铝', color: '#8b5cf6' },
+      '氧化铝': { label: '⬜ 氧化铝', color: '#a8a29e' }
+    }
+  };
   
-  data.items.forEach(item => {
-    const statusColor = item.status==='在产'?'#22c55e':item.status==='在建'?'#f59e0b':item.status==='停产维护'?'#ef4444':'#3b82f6';
-    html += '<div style="background:var(--bg-card);padding:12px;border-radius:8px;border-left:3px solid ' + data.color + '">';
-    html += '<div style="font-weight:600;font-size:13px;margin-bottom:6px">' + item.name + '</div>';
-    html += '<div style="font-size:11px;color:var(--text-dim);line-height:1.6">';
-    html += '<div>📍 ' + item.type + '</div>';
-    html += '<div>⚡ ' + item.cap + '</div>';
-    html += '<div>🟢 <span style="color:' + statusColor + '">' + item.status + '</span></div>';
-    html += '<div style="margin-top:4px">' + item.desc + '</div>';
-    html += '</div></div>';
+  let html = '<div style="background:var(--bg-elev);border-radius:10px;padding:14px;border:1px solid var(--border)">';
+  html += '<h3 style="color:var(--primary);font-size:15px;margin-bottom:12px">' + data.icon + ' ' + data.name + ' 详情列表</h3>';
+  
+  const groups = groupConfig[tab];
+  if(groups){
+    // Group items by type
+    const grouped = {};
+    data.items.forEach(item => {
+      let found = false;
+      for(const [key, cfg] of Object.entries(groups)){
+        if(item.type && item.type.includes(key)){
+          if(!grouped[key]) grouped[key] = [];
+          grouped[key].push(item);
+          found = true;
+          break;
+        }
+      }
+      if(!found){
+        const otherKey = '其他';
+        if(!grouped[otherKey]) grouped[otherKey] = [];
+        grouped[otherKey].push(item);
+      }
+    });
+    
+    // Render each group
+    for(const [key, cfg] of Object.entries(groups)){
+      const items = grouped[key] || [];
+      if(items.length === 0) continue;
+      html += '<div style="margin-bottom:16px">';
+      html += '<div style="font-size:13px;font-weight:600;color:' + cfg.color + ';margin-bottom:8px;padding:6px 10px;background:rgba(0,0,0,.2);border-radius:6px;border-left:3px solid ' + cfg.color + '">' + cfg.label + ' (' + items.length + ')</div>';
+      html += '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px">';
+      items.forEach(item => {
+        const statusColor = item.status==='在产'?'#22c55e':item.status==='在建'?'#f59e0b':item.status==='停产维护'?'#ef4444':'#3b82f6';
+        html += '<div style="background:var(--bg-card);padding:12px;border-radius:8px;border-left:3px solid ' + data.color + '">';
+        html += '<div style="font-weight:600;font-size:13px;margin-bottom:6px">' + item.name + '</div>';
+        html += '<div style="font-size:11px;color:var(--text-dim);line-height:1.6">';
+        html += '<div>📍 ' + item.type + '</div>';
+        html += '<div>⚡ ' + item.cap + '</div>';
+        html += '<div>🟢 <span style="color:' + statusColor + '">' + item.status + '</span></div>';
+        html += '<div style="margin-top:4px">' + item.desc + '</div>';
+        html += '</div></div>';
+      });
+      html += '</div></div>';
+    }
+    
+    // Render "其他" group if exists
+    if(grouped['其他'] && grouped['其他'].length > 0){
+      html += '<div style="margin-bottom:16px">';
+      html += '<div style="font-size:13px;font-weight:600;color:var(--text-dim);margin-bottom:8px;padding:6px 10px;background:rgba(0,0,0,.2);border-radius:6px;border-left:3px solid var(--text-dim)">📦 其他 (' + grouped['其他'].length + ')</div>';
+      html += '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px">';
+      grouped['其他'].forEach(item => {
+        const statusColor = item.status==='在产'?'#22c55e':item.status==='在建'?'#f59e0b':item.status==='停产维护'?'#ef4444':'#3b82f6';
+        html += '<div style="background:var(--bg-card);padding:12px;border-radius:8px;border-left:3px solid ' + data.color + '">';
+        html += '<div style="font-weight:600;font-size:13px;margin-bottom:6px">' + item.name + '</div>';
+        html += '<div style="font-size:11px;color:var(--text-dim);line-height:1.6">';
+        html += '<div>📍 ' + item.type + '</div>';
+        html += '<div>⚡ ' + item.cap + '</div>';
+        html += '<div>🟢 <span style="color:' + statusColor + '">' + item.status + '</span></div>';
+        html += '<div style="margin-top:4px">' + item.desc + '</div>';
+        html += '</div></div>';
+      });
+      html += '</div></div>';
+    }
+  } else {
+    // Fallback: render all items without grouping
+    html += '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px">';
+    data.items.forEach(item => {
+      const statusColor = item.status==='在产'?'#22c55e':item.status==='在建'?'#f59e0b':item.status==='停产维护'?'#ef4444':'#3b82f6';
+      html += '<div style="background:var(--bg-card);padding:12px;border-radius:8px;border-left:3px solid ' + data.color + '">';
+      html += '<div style="font-weight:600;font-size:13px;margin-bottom:6px">' + item.name + '</div>';
+      html += '<div style="font-size:11px;color:var(--text-dim);line-height:1.6">';
+      html += '<div>📍 ' + item.type + '</div>';
+      html += '<div>⚡ ' + item.cap + '</div>';
+      html += '<div>🟢 <span style="color:' + statusColor + '">' + item.status + '</span></div>';
+      html += '<div style="margin-top:4px">' + item.desc + '</div>';
+      html += '</div></div>';
+    });
+    html += '</div>';
+  }
+  
+  html += '</div>';
+  c.innerHTML = html;
+  
+  // Render summary table
+  renderIndustrySummary();
+}
+
+function renderIndustrySummary(){
+  const summaryEl = document.getElementById('industrySummary');
+  if(!summaryEl) return;
+  
+  // Aggregate by park/zone
+  const parkMap = {};
+  Object.values(industryData).forEach(category => {
+    category.items.forEach(item => {
+      // Extract park name from item name
+      let parkName = '其他';
+      const parkPatterns = [
+        {regex: /IMIP|莫罗瓦利工业园/i, name: 'IMIP'},
+        {regex: /IWIP|纬达贝/i, name: 'IWIP'},
+        {regex: /OBI|力勤/i, name: 'OBI'},
+        {regex: /德龙/i, name: '德龙'},
+        {regex: /青美邦|格林美/i, name: '青美邦'},
+        {regex: /华宝|振石/i, name: '华宝'},
+        {regex: /万向/i, name: '万向'},
+        {regex: /华迪/i, name: '华迪'},
+        {regex: /Sorowako|Vale|淡水河谷/i, name: 'Sorowako'},
+        {regex: /Kariangau|MMP|MMS/i, name: 'Kariangau'},
+        {regex: /Pomalaa|CNI/i, name: 'Pomalaa'},
+        {regex: /南山/i, name: '南山'},
+        {regex: /锦江/i, name: '锦江'},
+        {regex: /Inalum/i, name: 'Inalum'}
+      ];
+      for(const p of parkPatterns){
+        if(p.regex.test(item.name)){
+          parkName = p.name;
+          break;
+        }
+      }
+      
+      if(!parkMap[parkName]){
+        parkMap[parkName] = { items: [], categories: new Set(), color: category.color };
+      }
+      parkMap[parkName].items.push(item);
+      parkMap[parkName].categories.add(category.name);
+    });
   });
   
-  html += '</div></div>';
-  c.innerHTML = html;
+  const parkColors = {
+    'IMIP': '#00d4aa', 'IWIP': '#00a884', 'OBI': '#3b82f6', '德龙': '#f59e0b',
+    '青美邦': '#22c55e', '华宝': '#ef4444', '万向': '#8b5cf6', '华迪': '#6b7280',
+    'Sorowako': '#a78bfa', 'Kariangau': '#ec4899', 'Pomalaa': '#14b8a6',
+    '南山': '#f97316', '锦江': '#06b6d4', 'Inalum': '#6366f1'
+  };
+  
+  let html = '<div style="background:var(--bg-elev);border-radius:10px;padding:14px;border:1px solid var(--border);margin-top:16px">';
+  html += '<h3 style="color:var(--primary);font-size:15px;margin-bottom:12px">📊 园区-合作商汇总表</h3>';
+  html += '<div style="overflow-x:auto"><table style="width:100%;border-collapse:collapse;font-size:12px">';
+  html += '<thead><tr style="border-bottom:1px solid var(--border)">';
+  html += '<th style="text-align:left;padding:8px;color:var(--text-dim)">园区名称</th>';
+  html += '<th style="text-align:center;padding:8px;color:var(--text-dim)">合作商数量</th>';
+  html += '<th style="text-align:left;padding:8px;color:var(--text-dim)">合作商列表</th>';
+  html += '</tr></thead><tbody>';
+  
+  for(const [parkName, parkData] of Object.entries(parkMap)){
+    if(parkName === '其他') continue;
+    const color = parkColors[parkName] || 'var(--primary)';
+    const itemNames = parkData.items.map(i => i.name.split('（')[0].split('(')[0].trim()).join('、');
+    html += '<tr style="border-bottom:1px solid rgba(42,53,80,.5)">';
+    html += '<td style="padding:8px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:' + color + ';margin-right:6px"></span><strong>' + parkName + '</strong></td>';
+    html += '<td style="text-align:center;padding:8px;font-weight:600;color:var(--primary)">' + parkData.items.length + '</td>';
+    html += '<td style="padding:8px;color:var(--text-dim)">' + itemNames + '</td>';
+    html += '</tr>';
+  }
+  
+  html += '</tbody></table></div></div>';
+  summaryEl.innerHTML = html;
+}
+
+function searchIndustry(query){
+  const resultsEl = document.getElementById('industrySearchResults');
+  if(!resultsEl) return;
+  
+  query = query.trim().toLowerCase();
+  if(!query){
+    resultsEl.style.display = 'none';
+    resultsEl.innerHTML = '';
+    return;
+  }
+  
+  const results = [];
+  Object.entries(industryData).forEach(([key, category]) => {
+    category.items.forEach(item => {
+      const searchText = (item.name + ' ' + item.type + ' ' + item.status + ' ' + item.desc).toLowerCase();
+      if(searchText.includes(query)){
+        results.push({...item, category: category.name, color: category.color, icon: category.icon, key});
+      }
+    });
+  });
+  
+  if(results.length === 0){
+    resultsEl.innerHTML = '<div style="color:var(--text-dim);font-size:12px;text-align:center;padding:10px">未找到匹配结果</div>';
+    resultsEl.style.display = 'block';
+    return;
+  }
+  
+  let html = '';
+  results.forEach(item => {
+    html += '<div onclick="flyToIndustryItem(' + item.lat + ', ' + item.lng + ', \'' + item.name.replace(/'/g, "\\'") + '\')" style="padding:8px 10px;cursor:pointer;border-radius:6px;margin-bottom:4px;transition:all .2s;background:var(--bg-card);border:1px solid var(--border)" onmouseover="this.style.borderColor=\'' + item.color + '\'" onmouseout="this.style.borderColor=\'var(--border)\'">';
+    html += '<div style="font-size:12px;font-weight:600;color:' + item.color + '">' + item.icon + ' ' + item.name + '</div>';
+    html += '<div style="font-size:11px;color:var(--text-dim)">' + item.type + ' · ' + item.status + ' · ' + item.category + '</div>';
+    html += '</div>';
+  });
+  
+  resultsEl.innerHTML = html;
+  resultsEl.style.display = 'block';
+}
+
+function flyToIndustryItem(lat, lng, name){
+  if(!industryMap) return;
+  industryMap.flyTo([lat, lng], 12, { duration: 1.5 });
+  
+  // Find the item data
+  let foundItem = null, foundCategory = null;
+  Object.entries(industryData).forEach(([key, category]) => {
+    category.items.forEach(item => {
+      if(item.name === name){
+        foundItem = item;
+        foundCategory = category;
+      }
+    });
+  });
+  
+  if(foundItem && foundCategory){
+    setTimeout(() => {
+      const popupContent = '<div style="min-width:200px">' +
+        '<h4 style="color:' + foundCategory.color + ';margin:0 0 8px;font-size:14px">' + foundCategory.icon + ' ' + foundItem.name + '</h4>' +
+        '<div style="font-size:12px;line-height:1.6">' +
+        '<div><strong>类型：</strong>' + foundItem.type + '</div>' +
+        '<div><strong>产能：</strong>' + foundItem.cap + '</div>' +
+        '<div><strong>状态：</strong><span style="color:' + (foundItem.status==='在产'?'#22c55e':foundItem.status==='在建'?'#f59e0b':'#3b82f6') + '">' + foundItem.status + '</span></div>' +
+        '<div style="margin-top:6px;color:var(--text-dim)">' + foundItem.desc + '</div>' +
+        '</div></div>';
+      L.popup({ offset: [0, -10] }).setLatLng([lat, lng]).setContent(popupContent).openOn(industryMap);
+    }, 1600);
+  }
+  
+  // Hide search results
+  const resultsEl = document.getElementById('industrySearchResults');
+  if(resultsEl) resultsEl.style.display = 'none';
+}
+
+function showMIRModal(){
+  // Create modal if not exists
+  let modal = document.getElementById('mirModal');
+  if(!modal){
+    modal = document.createElement('div');
+    modal.id = 'mirModal';
+    modal.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.7);z-index:20000;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px)';
+    modal.innerHTML = `<div style="background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:24px;max-width:600px;width:90%;max-height:80vh;overflow-y:auto;box-shadow:var(--shadow)">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+        <h3 style="color:var(--primary);font-size:16px;margin:0">📊 当日 MIR / Market Intelligence Report</h3>
+        <button onclick="document.getElementById('mirModal').style.display='none'" style="background:none;border:none;color:var(--text-dim);font-size:20px;cursor:pointer">×</button>
+      </div>
+      <div id="mirModalContent">
+        <div style="text-align:center;padding:40px;color:var(--text-dim)">
+          <div style="font-size:32px;margin-bottom:12px">📊</div>
+          <div style="font-size:14px">MIR 数据加载中...</div>
+          <div style="font-size:12px;margin-top:8px">请确保本地已保存当日MIR数据</div>
+        </div>
+      </div>
+    </div>`;
+    modal.addEventListener('click', (e) => { if(e.target === modal) modal.style.display = 'none'; });
+    document.body.appendChild(modal);
+  }
+  
+  modal.style.display = 'flex';
+  
+  // Try to load local MIR data
+  const mirContent = document.getElementById('mirModalContent');
+  if(mirContent){
+    const localMIR = localStorage.getItem('bir_mir_daily');
+    if(localMIR){
+      try{
+        const mirData = JSON.parse(localMIR);
+        let html = '<div style="font-size:13px;line-height:1.8">';
+        html += '<div style="background:rgba(0,212,170,.08);border-radius:8px;padding:12px;margin-bottom:12px;border-left:3px solid var(--primary)">';
+        html += '<div style="font-weight:600;color:var(--primary)">📅 ' + (mirData.date || '今日') + '</div>';
+        html += '<div style="color:var(--text-dim);font-size:12px">来源: ' + (mirData.source || '本地缓存') + '</div>';
+        html += '</div>';
+        if(mirData.summary){
+          html += '<div style="margin-bottom:12px">' + mirData.summary + '</div>';
+        }
+        if(mirData.sections && mirData.sections.length){
+          mirData.sections.forEach(sec => {
+            html += '<div style="margin-bottom:12px;padding:10px;background:var(--bg-elev);border-radius:8px">';
+            html += '<div style="font-weight:600;color:var(--accent);margin-bottom:6px">' + sec.title + '</div>';
+            html += '<div style="color:var(--text);font-size:12px">' + sec.content + '</div>';
+            html += '</div>';
+          });
+        }
+        html += '</div>';
+        mirContent.innerHTML = html;
+      }catch(e){
+        mirContent.innerHTML = '<div style="text-align:center;padding:40px;color:var(--text-dim)"><div style="font-size:14px">MIR 数据格式错误</div><div style="font-size:12px;margin-top:8px">请检查本地存储数据格式</div></div>';
+      }
+    } else {
+      mirContent.innerHTML = '<div style="text-align:center;padding:40px;color:var(--text-dim)"><div style="font-size:32px;margin-bottom:12px">📭</div><div style="font-size:14px">暂无当日 MIR 数据</div><div style="font-size:12px;margin-top:8px">请在主会话中生成并保存MIR数据</div></div>';
+    }
+  }
 }
 
 </script>
