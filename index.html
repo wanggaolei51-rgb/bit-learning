@@ -6,7 +6,7 @@
 <meta http-equiv="Expires" content="0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LEO-BIR V4.18.7</title>
+<title>LEO-BIR V4.18.8</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -273,7 +273,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="sidebar-header">
     <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <h1>LEO-BIR</h1>
-    <div class="ver">LEO-BIR V4.18.7 · 完整镍数据恢复+园区汇总</div>
+    <div class="ver">LEO-BIR V4.18.8 · 搜索修复+MIR增强+品质资讯</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -8170,7 +8170,7 @@ function renderVersion(c){
   c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.18 / Versi</span></div>
     <div style="padding:16px;">
       <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
-        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.18.7 (2026-08-28)</div>
+        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.18.8 (2026-08-28)</div>
         <div style="font-size:13px;color:var(--text);line-height:1.8">
         • 数据恢复: 从7月23日备份恢复完整镍产业数据(印尼46园区107项目+全球66项目)<br>
         • 总产能统计: 🇮🇩 46园区/107项目 · 🌍 66项目 · 总产能 684.4万镍吨/年<br>
@@ -8178,7 +8178,7 @@ function renderVersion(c){
         • 扩充电力设施数据: 从9个增加到24个(燃煤/水电/地热/光伏/风电/柴油)<br>
         • 扩充电解铝/氧化铝数据: 从5个增加到18个(覆盖印尼/中国/巴西/俄罗斯等)<br>
         • MIR按钮改为Agent交互: 输入关键词→SIO战略情报官获取当日MIR信息<br>
-        • 标题与版本说明同步更新为V4.18.7<br>
+        • 标题与版本说明同步更新为V4.18.8<br>
         • BIO/RCO/TSO三方审核流程持续运行<br>
         </div>
       </div>
@@ -10761,7 +10761,8 @@ function renderIndustryData(c){
   c.innerHTML=`<div class="card"><div class="card-header" style="justify-content:space-between;align-items:center"><div style="display:flex;align-items:center;gap:10px"><h2>🏭 行业数据 / Data Industri</h2><span class="badge">基于地图的产业全景</span></div><button class="trans-btn" onclick="showMIRModal()" style="font-size:12px;padding:6px 14px;background:rgba(245,158,11,.15);color:var(--accent);border:1px solid rgba(245,158,11,.3);border-radius:8px;cursor:pointer">📊 当日MIR</button></div>
     <div style="display:flex;gap:8px;margin-bottom:12px;align-items:center">
       <input type="text" id="industrySearch" placeholder="🔍 搜索设施名称、类型、状态..." oninput="searchIndustry(this.value)" onkeydown="if(event.key==='Enter'){event.preventDefault();searchIndustry(this.value,true)}" style="flex:1;padding:8px 12px;background:var(--bg-elev);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:13px;outline:none">
-      <button onclick="document.getElementById('industrySearch').value='';searchIndustry('')" style="padding:8px 12px;background:var(--bg-elev);border:1px solid var(--border);border-radius:8px;color:var(--text-dim);cursor:pointer;font-size:12px">清除</button>
+      <button onclick="searchIndustry(document.getElementById('industrySearch').value, true)" style="padding:8px 12px;background:var(--primary);color:#000;border:1px solid var(--border);border-radius:8px;cursor:pointer;font-size:12px;font-weight:600">🔍 查询</button>
+      <button onclick="document.getElementById('industrySearch').value='';searchIndustry('')" style="padding:8px 12px;background:var(--bg-elev);border:1px solid var(--border);border-radius:8px;color:var(--text-dim);cursor:pointer;font-size:12px" title="清除搜索">✕</button>
     </div>
     <div id="industrySearchResults" style="display:none;margin-bottom:12px;background:var(--bg-elev);border:1px solid var(--border);border-radius:10px;padding:10px;max-height:200px;overflow-y:auto"></div>
     <div style="display:flex;gap:4px;margin-bottom:12px;flex-wrap:wrap">
@@ -11257,33 +11258,52 @@ function searchIndustry(query, autoFly=false){
 }
 
 function flyToIndustryItem(lat, lng, name){
-  if(!industryMap) return;
+  if(!industryMap){
+    console.warn('Industry map not initialized');
+    return;
+  }
+  
+  // Close any existing popup first
+  industryMap.closePopup();
+  
+  // Fly to location
   industryMap.flyTo([lat, lng], 12, { duration: 1.5 });
   
   // Find the item data
-  let foundItem = null, foundCategory = null;
+  let foundItem = null, foundCategory = null, foundKey = null;
   Object.entries(industryData).forEach(([key, category]) => {
+    if(!category.items) return;
     category.items.forEach(item => {
-      if(item.name === name){
+      if(item.name === name && item.lat === lat && item.lng === lng){
         foundItem = item;
         foundCategory = category;
+        foundKey = key;
       }
     });
   });
   
+  // Build popup content
+  let popupContent;
   if(foundItem && foundCategory){
-    setTimeout(() => {
-      const popupContent = '<div style="min-width:200px">' +
-        '<h4 style="color:' + foundCategory.color + ';margin:0 0 8px;font-size:14px">' + foundCategory.icon + ' ' + foundItem.name + '</h4>' +
-        '<div style="font-size:12px;line-height:1.6">' +
-        '<div><strong>类型：</strong>' + foundItem.type + '</div>' +
-        '<div><strong>产能：</strong>' + foundItem.cap + '</div>' +
-        '<div><strong>状态：</strong><span style="color:' + (foundItem.status==='在产'?'#22c55e':foundItem.status==='在建'?'#f59e0b':'#3b82f6') + '">' + foundItem.status + '</span></div>' +
-        '<div style="margin-top:6px;color:var(--text-dim)">' + foundItem.desc + '</div>' +
-        '</div></div>';
-      L.popup({ offset: [0, -10] }).setLatLng([lat, lng]).setContent(popupContent).openOn(industryMap);
-    }, 1600);
+    popupContent = '<div style="min-width:220px">' +
+      '<h4 style="color:' + foundCategory.color + ';margin:0 0 8px;font-size:14px">' + foundCategory.icon + ' ' + escapeHtml(foundItem.name) + '</h4>' +
+      '<div style="font-size:12px;line-height:1.6">' +
+      '<div><strong>类型：</strong>' + escapeHtml(foundItem.type) + '</div>' +
+      '<div><strong>产能：</strong>' + escapeHtml(foundItem.cap) + '</div>' +
+      '<div><strong>状态：</strong><span style="color:' + (foundItem.status==='在产'?'#22c55e':foundItem.status==='在建'?'#f59e0b':'#3b82f6') + '">' + escapeHtml(foundItem.status) + '</span></div>' +
+      '<div style="margin-top:6px;color:var(--text-dim)">' + escapeHtml(foundItem.desc) + '</div>' +
+      '</div></div>';
+  } else {
+    popupContent = '<div style="min-width:180px;font-size:13px"><strong>' + escapeHtml(name) + '</strong><br><span style="color:var(--text-dim)">📍 ' + lat.toFixed(4) + ', ' + lng.toFixed(4) + '</span></div>';
   }
+  
+  // Open popup after flyTo animation completes
+  setTimeout(() => {
+    L.popup({ offset: [0, -10], autoPan: true, autoPanPadding: [50, 50] })
+      .setLatLng([lat, lng])
+      .setContent(popupContent)
+      .openOn(industryMap);
+  }, 1600);
   
   // Hide search results
   const resultsEl = document.getElementById('industrySearchResults');
@@ -11325,27 +11345,107 @@ const MIR_PRESETS = [
     { name: '沪镍主力', value: '¥128,500/吨', change: '+0.8%', trend: 'up', source: 'SHFE 2026-08-28' },
     { name: '印尼NPI出厂价', value: '¥1,080/镍点', change: '-0.5%', trend: 'down', source: 'SMM 2026-08-28' },
     { name: 'MHP系数', value: '78-80%', change: '持平', trend: 'flat', source: 'Mysteel 2026-08-28' }
+  ],
+  quality: [
+    { name: '电解镍品级', value: 'Ni≥99.8%', desc: 'LME交割标准，一级品' },
+    { name: 'NPI含镍量', value: '10-15%', desc: 'RKEF火法工艺典型品位' },
+    { name: 'MHP镍品位', value: '30-40%', desc: 'HPAL湿法中间产品' },
+    { name: '高冰镍品位', value: 'Ni 70-75%', desc: '转炉吹炼产品' }
+  ],
+  news: [
+    '📰 印尼2026年RKAB镍矿配额审批进度达78%，预计Q3完成全部审批',
+    '📰 华友钴业印尼MHP项目二期投产，年产能增至12万镍金属吨',
+    '📰 欧盟电池法规溯源要求生效，印尼镍加工链合规认证加速推进'
+  ],
+  tech: [
+    '🔬 高压酸浸(HPAL)技术优化：浸出率提升至95%以上，酸耗降低15%',
+    '🔬 RKEF能效提升：新型回转窑余热回收系统可降低能耗8-12%',
+    '🔬 富氧侧吹熔炼技术在中伟股份印尼项目试点，处理能力提升20%'
   ]},
   { key: 'acid', label: '🧪 硫酸/硫磺', icon: '🧪', items: [
     { name: '98%硫酸华东价', value: '¥380/吨', change: '+5.6%', trend: 'up', source: '卓创资讯 2026-08-28' },
     { name: '硫磺CFR中国', value: '$95/吨', change: '+2.1%', trend: 'up', source: 'ICIS 2026-08-28' },
     { name: '磷石膏制酸成本', value: '¥220/吨', change: '-1.2%', trend: 'down', source: '行业测算' }
+  ],
+  quality: [
+    { name: '工业硫酸浓度', value: '98% / 93%', desc: '国标GB/T 534优等品' },
+    { name: '发烟硫酸', value: '104.5% / 105%', desc: '含游离SO3，高端应用' },
+    { name: '硫磺纯度', value: 'S≥99.5%', desc: '国标一等品标准' },
+    { name: '磷酸浓度', value: '85% H3PO4', desc: '湿法磷酸食品级' }
+  ],
+  news: [
+    '📰 印尼政府推动磷石膏综合利用，制酸企业环保成本或将上升',
+    '📰 中国硫铁矿制酸产能向印尼转移，预计2026年新增产能200万吨',
+    '📰 硫酸下游新能源需求增长，磷酸铁锂用酸量同比增35%'
+  ],
+  tech: [
+    '🔬 湿法磷酸工艺改进：半水-二水法能耗降低20%，磷回收率提升至97%',
+    '🔬 硫酸尾气回收技术：双转双吸+尾气SO2回收，排放降至50mg/m³以下',
+    '🔬 熔硫釜自动化改造：无人化操作+智能温控，效率提升15%'
   ]},
   { key: 'aluminum', label: '🏭 铝业情报', icon: '🏭', items: [
     { name: 'LME铝现货', value: '$2,380/吨', change: '+0.3%', trend: 'up', source: 'LME 2026-08-28' },
     { name: '沪铝主力', value: '¥19,850/吨', change: '-0.2%', trend: 'down', source: 'SHFE 2026-08-28' },
     { name: '氧化铝Index', value: '¥3,920/吨', change: '+1.5%', trend: 'up', source: '阿拉丁 2026-08-28' },
     { name: '印尼氧化铝FOB', value: '$425/吨', change: '持平', trend: 'flat', source: 'Mysteel 2026-08-28' }
+  ],
+  quality: [
+    { name: 'A00铝锭', value: 'Al≥99.7%', desc: '国标GB/T 1196重熔用铝锭' },
+    { name: 'A356合金', value: 'Si 6.5-7.5%', desc: '铸造铝合金，汽车轮毂专用' },
+    { name: '氧化铝等级', value: 'AO-1 / AO-2', desc: '冶金级氧化铝，按杂质含量分级' },
+    { name: '铝土矿品位', value: 'Al₂O₃≥45%', desc: '拜耳法适用矿石标准' }
+  ],
+  news: [
+    '📰 印尼政府重申氧化铝出口禁令，2026年起禁止铝土矿原矿出口',
+    '📰 中国电解铝产能向印尼转移加速，南山铝业印尼项目全面投产',
+    '📰 全球铝业碳关税压力增大，印尼水电铝优势凸显'
+  ],
+  tech: [
+    '🔬 惰性阳极技术突破：力拓示范项目电流效率提升至96%，CO2排放趋近于零',
+    '🔬 铝电解节能技术：新型阴极结构+低电压操作，直流电耗降至12,500kWh/t',
+    '🔬 赤泥综合利用：印尼试点从赤泥中提取稀土和钛铁矿'
   ]},
   { key: 'energy', label: '⚡ 能源动力', icon: '⚡', items: [
     { name: '纽卡斯尔动力煤', value: '$142/吨', change: '-0.8%', trend: 'down', source: 'ICE 2026-08-28' },
     { name: '印尼HBA参考价', value: '$118/吨', change: '持平', trend: 'flat', source: 'ESDM 2026-08-28' },
     { name: '中国锂电储能指数', value: '0.42元/Wh', change: '-3.2%', trend: 'down', source: 'CNESA 2026-08-28' }
+  ],
+  quality: [
+    { name: '动力煤热值', value: '≥5,500 kcal/kg', desc: '印尼HBA基准热值标准' },
+    { name: '煤电效率', value: '38-42%', desc: '超超临界机组净效率' },
+    { name: '光伏组件效率', value: '22-24%', desc: 'PERC/TOPCon量产效率' },
+    { name: '锂电池能量密度', value: '160-180 Wh/kg', desc: '磷酸铁锂系统级能量密度' }
+  ],
+  news: [
+    '📰 印尼目标2030年可再生能源占比达31%，光伏装机计划翻倍',
+    '📰 印尼煤电退役计划启动：2030年前退役5.5GW老旧煤电机组',
+    '📰 中国能建印尼漂浮式光伏项目开工，总装机200MW'
+  ],
+  tech: [
+    '🔬 漂浮式光伏技术：水上发电+减少蒸发，印尼水库应用潜力超1GW',
+    '🔬 海上风电基础技术：单桩+导管架适应印尼深水海域',
+    '🔬 微电网储能系统：锂电池+超级电容混合储能，响应时间<50ms'
   ]},
   { key: 'ev', label: '🚗 新能源终端', icon: '🚗', items: [
     { name: '中国新能源车渗透率', value: '52.8%', change: '+2.1pp', trend: 'up', source: '中汽协 2026-08-28' },
     { name: '全球EV销量(月)', value: '148万辆', change: '+18% YoY', trend: 'up', source: 'EV-Volumes 2026-08-28' },
     { name: '电动二轮车(印尼月销)', value: '12,500辆', change: '+35% MoM', trend: 'up', source: 'AISI 2026-08-28' }
+  ],
+  quality: [
+    { name: '动力电池循环寿命', value: '3,000+ 次', desc: '磷酸铁锂，容量保持率80%' },
+    { name: '电动车续航里程', value: '500-700 km', desc: 'CLTC工况，中高端车型' },
+    { name: '电池包能量密度', value: '180-200 Wh/kg', desc: '三元锂系统级，高端车型' },
+    { name: '充电倍率', value: '4C 快充', desc: '15分钟充电80%' }
+  ],
+  news: [
+    '📰 印尼政府推出电动车购置补贴政策，每辆补贴约3,000万印尼盾',
+    '📰 印尼充电基础设施建设加速，2026年目标新建2,000个公共充电桩',
+    '📰 五菱Air EV印尼销量突破1.5万辆，市占率持续领先'
+  ],
+  tech: [
+    '🔬 固态电池产业化进展：半固态电池已装车，全固态预计2028年量产',
+    '🔬 钠离子电池产业化：宁德时代钠电池量产，成本较锂电低20%',
+    '🔬 800V高压平台普及：充电时间缩短50%，碳化硅器件应用扩大'
   ]}
 ];
 
@@ -11357,9 +11457,12 @@ function loadPresetMIR(){
   html += '<div style="font-size:13px;color:var(--text-dim);margin-bottom:12px">📌 以下数据为演示格式，实际部署后将接入SIO战略情报官实时获取</div>';
   
   MIR_PRESETS.forEach(cat => {
+    // Price section
     html += '<div style="margin-bottom:16px;border:1px solid var(--border);border-radius:10px;overflow:hidden">';
     html += '<div style="background:var(--bg-elev);padding:10px 14px;font-size:13px;font-weight:600;color:var(--primary);display:flex;align-items:center;gap:6px">' + cat.icon + ' ' + cat.label + '</div>';
     html += '<div style="padding:10px 14px">';
+    
+    // Price items
     cat.items.forEach(item => {
       const trendColor = item.trend === 'up' ? '#22c55e' : item.trend === 'down' ? '#ef4444' : 'var(--text-dim)';
       const trendIcon = item.trend === 'up' ? '↗' : item.trend === 'down' ? '↘' : '→';
@@ -11372,6 +11475,41 @@ function loadPresetMIR(){
       html += '</div>';
     });
     html += '<div style="font-size:10px;color:var(--text-dim);margin-top:6px;text-align:right">来源：' + cat.items[0].source + '</div>';
+    
+    // Quality section
+    if(cat.quality && cat.quality.length > 0){
+      html += '<div style="margin-top:12px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.05)">';
+      html += '<div style="font-size:11px;font-weight:600;color:var(--accent);margin-bottom:8px">📋 品质指标 / Quality Specs</div>';
+      cat.quality.forEach(q => {
+        html += '<div style="display:flex;justify-content:space-between;align-items:center;padding:4px 0;font-size:11px">';
+        html += '<span style="color:var(--text-dim)">' + q.name + '</span>';
+        html += '<span style="color:var(--text);font-weight:600">' + q.value + '</span>';
+        html += '</div>';
+        html += '<div style="font-size:10px;color:var(--text-dim);margin-bottom:4px">' + q.desc + '</div>';
+      });
+      html += '</div>';
+    }
+    
+    // News section
+    if(cat.news && cat.news.length > 0){
+      html += '<div style="margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.05)">';
+      html += '<div style="font-size:11px;font-weight:600;color:var(--accent);margin-bottom:8px">📰 行业资讯 / Industry News</div>';
+      cat.news.forEach(news => {
+        html += '<div style="font-size:11px;color:var(--text);line-height:1.5;margin-bottom:4px;padding:4px 8px;background:rgba(0,0,0,.15);border-radius:4px">' + news + '</div>';
+      });
+      html += '</div>';
+    }
+    
+    // Tech section
+    if(cat.tech && cat.tech.length > 0){
+      html += '<div style="margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.05)">';
+      html += '<div style="font-size:11px;font-weight:600;color:var(--accent);margin-bottom:8px">🔬 科技动态 / Tech Updates</div>';
+      cat.tech.forEach(tech => {
+        html += '<div style="font-size:11px;color:var(--text);line-height:1.5;margin-bottom:4px;padding:4px 8px;background:rgba(0,0,0,.15);border-radius:4px">' + tech + '</div>';
+      });
+      html += '</div>';
+    }
+    
     html += '</div></div>';
   });
   
