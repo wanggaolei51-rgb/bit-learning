@@ -11218,36 +11218,102 @@ function searchIndustry(query, autoFly=false){
   if(!query){
     resultsEl.style.display = 'none';
     resultsEl.innerHTML = '';
+    window._searchResults = [];
     return;
   }
   
   const results = [];
   Object.entries(industryData).forEach(([key, category]) => {
-    category.items.forEach(item => {
-      const searchText = (item.name + ' ' + item.type + ' ' + item.status + ' ' + item.desc).toLowerCase();
-      if(searchText.includes(query)){
-        results.push({...item, category: category.name, color: category.color, icon: category.icon, key});
+    // Handle nickel category specially (nested structure)
+    if(key === 'nickel'){
+      if(category.indonesia){
+        Object.entries(category.indonesia).forEach(([parkKey, park]) => {
+          const parkName = park.park || '';
+          const province = park.province || '';
+          const parkSearchText = (parkName + ' ' + province).toLowerCase();
+          (park.projects || []).forEach(proj => {
+            const projText = (proj['项目名']||'') + ' ' + (proj['企业名_中文']||'') + ' ' + (proj['工艺路线']||'') + ' ' + (proj['状态']||'') + ' ' + (proj['产品']||'');
+            if(projText.toLowerCase().includes(query) || parkSearchText.includes(query)){
+              results.push({
+                name: proj['企业名_中文'] || proj['项目名'] || parkName,
+                type: proj['工艺路线'] || '镍冶炼',
+                status: proj['状态'] || '其他',
+                cap: proj['年产能_万镍金属吨'] ? proj['年产能_万镍金属吨'] + '万镍吨/年' : '',
+                desc: (proj['产品'] ? '产品: ' + proj['产品'] : '') + (proj['项目名'] && proj['项目名'] !== proj['企业名_中文'] ? ' · ' + proj['项目名'] : ''),
+                lat: park.lat,
+                lng: park.lng,
+                category: '镍冶炼 · ' + parkName,
+                color: '#00d4aa',
+                icon: '🔥',
+                _isNickel: true,
+                _parkKey: parkKey
+              });
+            }
+          });
+        });
       }
-    });
+      if(category.global){
+        category.global.forEach(proj => {
+          const text = (proj['国家']||'') + ' ' + (proj['企业名_中文']||'') + ' ' + (proj['项目名']||'') + ' ' + (proj['状态']||'');
+          if(text.toLowerCase().includes(query)){
+            results.push({
+              name: proj['企业名_中文'] || proj['项目名'] || proj['国家'],
+              type: '全球镍项目',
+              status: proj['状态'] || '其他',
+              cap: proj['年产能_万镍金属吨'] ? proj['年产能_万镍金属吨'] + '万镍吨/年' : '',
+              desc: proj['国家'] || '',
+              lat: proj.lat,
+              lng: proj.lng,
+              category: '全球镍项目',
+              color: '#3b82f6',
+              icon: '🌍',
+              _isNickel: false,
+              _parkKey: null
+            });
+          }
+        });
+      }
+    } else if(category.items && Array.isArray(category.items)){
+      // Standard categories (acid, power, aluminum, etc.)
+      category.items.forEach(item => {
+        const searchText = (item.name + ' ' + item.type + ' ' + item.status + ' ' + item.desc).toLowerCase();
+        if(searchText.includes(query)){
+          results.push({...item, category: category.name, color: category.color, icon: category.icon, key, _isNickel: false, _parkKey: null});
+        }
+      });
+    }
   });
   
-  if(results.length === 0){
+  // Deduplicate by name+lat+lng
+  const seen = new Set();
+  const uniqueResults = results.filter(r => {
+    const k = (r.name||'') + '|' + r.lat + '|' + r.lng;
+    if(seen.has(k)) return false;
+    seen.add(k);
+    return true;
+  });
+  
+  if(uniqueResults.length === 0){
     resultsEl.innerHTML = '<div style="color:var(--text-dim);font-size:12px;text-align:center;padding:10px">未找到匹配结果</div>';
     resultsEl.style.display = 'block';
+    window._searchResults = [];
     return;
   }
   
+  // Store for click handling
+  window._searchResults = uniqueResults;
+  
   // Auto-fly to first result on Enter key
-  if(autoFly && results.length > 0){
-    const first = results[0];
-    flyToIndustryItem(first.lat, first.lng, first.name);
+  if(autoFly && uniqueResults.length > 0){
+    const first = uniqueResults[0];
+    flyToIndustryItem(first.lat, first.lng, first.name, first._isNickel, first._parkKey);
     resultsEl.style.display = 'none';
     return;
   }
   
   let html = '';
-  results.forEach(item => {
-    html += '<div onclick="flyToIndustryItem(' + item.lat + ', ' + item.lng + ', \'' + item.name.replace(/'/g, "\\'") + '\')" style="padding:8px 10px;cursor:pointer;border-radius:6px;margin-bottom:4px;transition:all .2s;background:var(--bg-card);border:1px solid var(--border)" onmouseover="this.style.borderColor=\'' + item.color + '\'" onmouseout="this.style.borderColor=\'var(--border)\'">';
+  uniqueResults.forEach((item, idx) => {
+    html += '<div onclick="flyToIndustryItem(window._searchResults[' + idx + '].lat, window._searchResults[' + idx + '].lng, window._searchResults[' + idx + '].name, window._searchResults[' + idx + ']._isNickel, window._searchResults[' + idx + ']._parkKey)" style="padding:8px 10px;cursor:pointer;border-radius:6px;margin-bottom:4px;transition:all .2s;background:var(--bg-card);border:1px solid var(--border)" onmouseover="this.style.borderColor=\'' + item.color + '\'" onmouseout="this.style.borderColor=\'var(--border)\'">';
     html += '<div style="font-size:12px;font-weight:600;color:' + item.color + '">' + item.icon + ' ' + item.name + '</div>';
     html += '<div style="font-size:11px;color:var(--text-dim)">' + item.type + ' · ' + item.status + ' · ' + item.category + '</div>';
     html += '</div>';
@@ -11257,7 +11323,7 @@ function searchIndustry(query, autoFly=false){
   resultsEl.style.display = 'block';
 }
 
-function flyToIndustryItem(lat, lng, name){
+function flyToIndustryItem(lat, lng, name, isNickel, parkKey){
   if(!industryMap){
     console.warn('Industry map not initialized');
     return;
@@ -11269,47 +11335,49 @@ function flyToIndustryItem(lat, lng, name){
   // Fly to location
   industryMap.flyTo([lat, lng], 12, { duration: 1.5 });
   
-  // Find the item data
-  let foundItem = null, foundCategory = null, foundKey = null;
-  Object.entries(industryData).forEach(([key, category]) => {
-    if(!category.items) return;
-    category.items.forEach(item => {
-      if(item.name === name && item.lat === lat && item.lng === lng){
-        foundItem = item;
-        foundCategory = category;
-        foundKey = key;
-      }
-    });
-  });
-  
-  // Build popup content
-  let popupContent;
-  if(foundItem && foundCategory){
-    popupContent = '<div style="min-width:220px">' +
-      '<h4 style="color:' + foundCategory.color + ';margin:0 0 8px;font-size:14px">' + foundCategory.icon + ' ' + escapeHtml(foundItem.name) + '</h4>' +
-      '<div style="font-size:12px;line-height:1.6">' +
-      '<div><strong>类型：</strong>' + escapeHtml(foundItem.type) + '</div>' +
-      '<div><strong>产能：</strong>' + escapeHtml(foundItem.cap) + '</div>' +
-      '<div><strong>状态：</strong><span style="color:' + (foundItem.status==='在产'?'#22c55e':foundItem.status==='在建'?'#f59e0b':'#3b82f6') + '">' + escapeHtml(foundItem.status) + '</span></div>' +
-      '<div style="margin-top:6px;color:var(--text-dim)">' + escapeHtml(foundItem.desc) + '</div>' +
-      '</div></div>';
+  // For nickel parks, show the detailed park popup
+  if(isNickel && parkKey && typeof nickelData !== 'undefined' && nickelData.indonesia && nickelData.indonesia[parkKey]){
+    setTimeout(() => {
+      showNickelParkPopup(parkKey, nickelData.indonesia[parkKey]);
+    }, 1600);
   } else {
-    popupContent = '<div style="min-width:180px;font-size:13px"><strong>' + escapeHtml(name) + '</strong><br><span style="color:var(--text-dim)">📍 ' + lat.toFixed(4) + ', ' + lng.toFixed(4) + '</span></div>';
+    // For other items, find and show popup
+    let foundItem = null, foundCategory = null;
+    Object.entries(industryData).forEach(([key, category]) => {
+      if(key === 'nickel' || !category.items || !Array.isArray(category.items)) return;
+      category.items.forEach(item => {
+        if(item.name === name && Math.abs(item.lat - lat) < 0.001 && Math.abs(item.lng - lng) < 0.001){
+          foundItem = item;
+          foundCategory = category;
+        }
+      });
+    });
+    
+    setTimeout(() => {
+      let popupContent;
+      if(foundItem && foundCategory){
+        popupContent = '<div style="min-width:220px">' +
+          '<h4 style="color:' + foundCategory.color + ';margin:0 0 8px;font-size:14px">' + foundCategory.icon + ' ' + escapeHtml(foundItem.name) + '</h4>' +
+          '<div style="font-size:12px;line-height:1.6">' +
+          '<div><strong>类型：</strong>' + escapeHtml(foundItem.type) + '</div>' +
+          '<div><strong>产能：</strong>' + escapeHtml(foundItem.cap) + '</div>' +
+          '<div><strong>状态：</strong><span style="color:' + (foundItem.status==='在产'?'#22c55e':foundItem.status==='在建'?'#f59e0b':'#3b82f6') + '">' + escapeHtml(foundItem.status) + '</span></div>' +
+          '<div style="margin-top:6px;color:var(--text-dim)">' + escapeHtml(foundItem.desc) + '</div>' +
+          '</div></div>';
+      } else {
+        popupContent = '<div style="min-width:180px;font-size:13px"><strong>' + escapeHtml(name) + '</strong><br><span style="color:var(--text-dim)">📍 ' + lat.toFixed(4) + ', ' + lng.toFixed(4) + '</span></div>';
+      }
+      L.popup({ offset: [0, -10], autoPan: true, autoPanPadding: [50, 50] })
+        .setLatLng([lat, lng])
+        .setContent(popupContent)
+        .openOn(industryMap);
+    }, 1600);
   }
-  
-  // Open popup after flyTo animation completes
-  setTimeout(() => {
-    L.popup({ offset: [0, -10], autoPan: true, autoPanPadding: [50, 50] })
-      .setLatLng([lat, lng])
-      .setContent(popupContent)
-      .openOn(industryMap);
-  }, 1600);
   
   // Hide search results
   const resultsEl = document.getElementById('industrySearchResults');
   if(resultsEl) resultsEl.style.display = 'none';
 }
-
 function escapeHtml(str){
   if(typeof str !== 'string') return str;
   const div = document.createElement('div');
@@ -11338,6 +11406,7 @@ function showMIRModal(){
   loadPresetMIR();
 }
 
+// Preset MIR query categories and display data
 // Preset MIR query categories and display data
 const MIR_PRESETS = [
   { key: 'nickel', label: '🔩 镍市情报', icon: '🔩', items: [
@@ -11457,7 +11526,6 @@ function loadPresetMIR(){
   html += '<div style="font-size:13px;color:var(--text-dim);margin-bottom:12px">📌 以下数据为演示格式，实际部署后将接入SIO战略情报官实时获取</div>';
   
   MIR_PRESETS.forEach(cat => {
-    // Price section
     html += '<div style="margin-bottom:16px;border:1px solid var(--border);border-radius:10px;overflow:hidden">';
     html += '<div style="background:var(--bg-elev);padding:10px 14px;font-size:13px;font-weight:600;color:var(--primary);display:flex;align-items:center;gap:6px">' + cat.icon + ' ' + cat.label + '</div>';
     html += '<div style="padding:10px 14px">';
@@ -11541,7 +11609,6 @@ function queryMIR(){
   // TODO: Connect to real MIR agent API
   // fetch('/api/mir?query=' + encodeURIComponent(query)).then(...)
 }
-
 </script>
 </body>
 </html>
