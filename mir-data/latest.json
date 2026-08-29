@@ -1,0 +1,295 @@
+{
+  "lastUpdated": "2026-08-29 23:17:32 +08:00",
+  "source": "SIO-战略情报官 / 新浪财经+东方财富",
+  "data": {
+    "nickel": {
+      "items": [
+        {
+          "name": "LME镍3个月",
+          "value": "$16,761.6/吨",
+          "change": "-0.52%",
+          "trend": "down",
+          "source": "LME 2026-08-29"
+        },
+        {
+          "name": "LME镍最高",
+          "value": "$17,050/吨",
+          "change": "-",
+          "trend": "flat",
+          "source": "LME 2026-08-29"
+        },
+        {
+          "name": "LME镍最低",
+          "value": "$16,665/吨",
+          "change": "-",
+          "trend": "flat",
+          "source": "LME 2026-08-29"
+        }
+      ],
+      "quality": [
+        {
+          "name": "MHP镍含量",
+          "value": "Ni≥30%",
+          "desc": "湿法冶炼中间品"
+        },
+        {
+          "name": "MSP镍含量",
+          "value": "Ni≥50%",
+          "desc": "高冰镍"
+        },
+        {
+          "name": "电解镍",
+          "value": "Ni≥99.8%",
+          "desc": "LME交割标准"
+        },
+        {
+          "name": "NPI镍含量",
+          "value": "Ni 8-12%",
+          "desc": "RKEF工艺镍铁"
+        }
+      ]
+    },
+    "alumina": {
+      "items": [
+        {
+          "name": "LME铝3个月",
+          "value": "$3,242.585/吨",
+          "change": "+0.55%",
+          "trend": "up",
+          "source": "LME 2026-08-29"
+        }
+      ],
+      "quality": [
+        {
+          "name": "A00铝锭",
+          "value": "Al≥99.7%",
+          "desc": "国标GB/T 1196"
+        },
+        {
+          "name": "A356合金",
+          "value": "Si 6.5-7.5%",
+          "desc": "铸造铝合金"
+        },
+        {
+          "name": "氧化铝等级",
+          "value": "AO-1 / AO-2",
+          "desc": "冶金级氧化铝"
+        },
+        {
+          "name": "铝土矿品位",
+          "value": "Al₂O₃≥45%",
+          "desc": "拜耳法适用矿石"
+        }
+      ]
+    },
+    "acid": {
+      "items": [
+        {
+          "name": "98%硫酸华东价",
+          "value": "¥380/吨",
+          "change": "+5.6%",
+          "trend": "up",
+          "source": "卓创资讯"
+        },
+        {
+          "name": "硫磺CFR中国",
+          "value": "$95/吨",
+          "change": "+2.1%",
+          "trend": "up",
+          "source": "ICIS"
+        },
+        {
+          "name": "磷石膏制酸成本",
+          "value": "¥220/吨",
+          "change": "-1.2%",
+          "trend": "down",
+          "source": "行业测算"
+        }
+      ],
+      "quality": [
+        {
+          "name": "工业硫酸浓度",
+          "value": "98% / 93%",
+          "desc": "国标GB/T 534优等品"
+        },
+        {
+          "name": "发烟硫酸",
+          "value": "104.5% / 105%",
+          "desc": "含游离SO₃"
+        },
+        {
+          "name": "硫磺纯度",
+          "value": "S≥99.5%",
+          "desc": "国标一等品"
+        }
+      ]
+    },
+    "energy": {
+      "items": [
+        {
+          "name": "印尼动力煤HBA",
+          "value": "$118/吨",
+          "change": "-2.5%",
+          "trend": "down",
+          "source": "ESDM"
+        },
+        {
+          "name": "光伏组件价格",
+          "value": "¥0.85/W",
+          "change": "-8.1%",
+          "trend": "down",
+          "source": "PVInfoLink"
+        },
+        {
+          "name": "储能电池系统",
+          "value": "¥0.55/Wh",
+          "change": "-12%",
+          "trend": "down",
+          "source": "CNESA"
+        }
+      ]
+    },
+    "ev": {
+      "items": [
+        {
+          "name": "五菱Air EV",
+          "value": "2.38亿印尼盾",
+          "change": "持平",
+          "trend": "flat",
+          "source": "Wuling Indonesia"
+        },
+        {
+          "name": "比亚迪Atto 3",
+          "value": "4.25亿印尼盾",
+          "change": "+3.2%",
+          "trend": "up",
+          "source": "BYD Indonesia"
+        }
+      ]
+    }
+  },
+  "news": {
+    "nickel": [
+      {
+        "text": "📰 印尼2026年RKAB镍矿配额审批进度达78%",
+        "url": "https://www.esdm.go.id"
+      },
+      {
+        "text": "📰 华友钴业印尼MHP项目二期投产",
+        "url": "https://www.huayou.com"
+      }
+    ],
+    "alumina": [
+      {
+        "text": "📰 印尼政府重申氧化铝出口禁令",
+        "url": "https://www.esdm.go.id"
+      },
+      {
+        "text": "📰 南山铝业印尼项目全面投产",
+        "url": "https://www.cnal.com"
+      }
+    ],
+    "acid": [
+      {
+        "text": "📰 印尼政府推动磷石膏综合利用，制酸企业环保成本或将上升",
+        "url": "https://www.kemenperin.go.id"
+      },
+      {
+        "text": "📰 中国硫铁矿制酸产能向印尼转移，预计2026年新增产能200万吨",
+        "url": "https://www.ccfa.com.cn"
+      }
+    ],
+    "energy": [
+      {
+        "text": "📰 印尼目标2030年可再生能源占比达31%，光伏装机计划翻倍",
+        "url": "https://www.esdm.go.id"
+      },
+      {
+        "text": "📰 印尼煤电退役计划启动：2030年前退役5.5GW老旧煤电机组",
+        "url": "https://www.pln.co.id"
+      }
+    ],
+    "ev": [
+      {
+        "text": "📰 印尼政府推出电动车购置补贴政策，每辆补贴约3,000万印尼盾",
+        "url": "https://www.kemenperin.go.id"
+      },
+      {
+        "text": "📰 印尼充电基础设施建设加速，2026年目标新建2,000个公共充电桩",
+        "url": "https://www.pln.co.id"
+      }
+    ]
+  },
+  "tech": {
+    "nickel": [
+      {
+        "text": "🔬 高压酸浸(HPAL)技术优化：浸出率提升至95%以上，酸耗降低15%",
+        "url": "https://www.sciencedirect.com/search?qs=HPAL+nickel"
+      },
+      {
+        "text": "🔬 RKEF能效提升：新型回转窑余热回收系统可降低能耗8-12%",
+        "url": "https://www.smm.cn"
+      },
+      {
+        "text": "🔬 富氧侧吹熔炼技术在中伟股份印尼项目试点，处理能力提升20%",
+        "url": "https://www.cngr.com.cn"
+      }
+    ],
+    "acid": [
+      {
+        "text": "🔬 湿法磷酸工艺改进：半水-二水法能耗降低20%，磷回收率提升至97%",
+        "url": "https://www.ccfa.com.cn"
+      },
+      {
+        "text": "🔬 硫酸尾气回收技术：双转双吸+尾气SO2回收，排放降至50mg/m³以下",
+        "url": "https://www.mee.gov.cn"
+      },
+      {
+        "text": "🔬 熔硫釜自动化改造：无人化操作+智能温控，效率提升15%",
+        "url": "https://www.sulfuricacidtoday.com"
+      }
+    ],
+    "alumina": [
+      {
+        "text": "🔬 惰性阳极技术突破：力拓示范项目电流效率提升至96%，CO2排放趋近于零",
+        "url": "https://www.riotinto.com"
+      },
+      {
+        "text": "🔬 铝电解节能技术：新型阴极结构+低电压操作，直流电耗降至12,500kWh/t",
+        "url": "https://www.aluminum.org"
+      },
+      {
+        "text": "🔬 赤泥综合利用：印尼试点从赤泥中提取稀土和钛铁矿",
+        "url": "https://www.sciencedirect.com/search?qs=red+mud+utilization"
+      }
+    ],
+    "energy": [
+      {
+        "text": "🔬 漂浮式光伏技术：水上发电+减少蒸发，印尼水库应用潜力超1GW",
+        "url": "https://www.irena.org/solar"
+      },
+      {
+        "text": "🔬 海上风电基础技术：单桩+导管架适应印尼深水海域",
+        "url": "https://www.4coffshore.com"
+      },
+      {
+        "text": "🔬 微电网储能系统：锂电池+超级电容混合储能，响应时间<50ms",
+        "url": "https://www.cnesa.org.cn"
+      }
+    ],
+    "ev": [
+      {
+        "text": "🔬 固态电池产业化进展：半固态电池已装车，全固态预计2028年量产",
+        "url": "https://www.catl.com"
+      },
+      {
+        "text": "🔬 钠离子电池产业化：宁德时代钠电池量产，成本较锂电低20%",
+        "url": "https://www.catl.com"
+      },
+      {
+        "text": "🔬 800V高压平台普及：充电时间缩短50%，碳化硅器件应用扩大",
+        "url": "https://www.evspecifications.com"
+      }
+    ]
+  }
+}

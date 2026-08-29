@@ -147,6 +147,45 @@ async function main() {
       alumina: [
         { text: '📰 印尼政府重申氧化铝出口禁令', url: 'https://www.esdm.go.id' },
         { text: '📰 南山铝业印尼项目全面投产', url: 'https://www.cnal.com' }
+      ],
+      acid: [
+        { text: '📰 印尼政府推动磷石膏综合利用，制酸企业环保成本或将上升', url: 'https://www.kemenperin.go.id' },
+        { text: '📰 中国硫铁矿制酸产能向印尼转移，预计2026年新增产能200万吨', url: 'https://www.ccfa.com.cn' }
+      ],
+      energy: [
+        { text: '📰 印尼目标2030年可再生能源占比达31%，光伏装机计划翻倍', url: 'https://www.esdm.go.id' },
+        { text: '📰 印尼煤电退役计划启动：2030年前退役5.5GW老旧煤电机组', url: 'https://www.pln.co.id' }
+      ],
+      ev: [
+        { text: '📰 印尼政府推出电动车购置补贴政策，每辆补贴约3,000万印尼盾', url: 'https://www.kemenperin.go.id' },
+        { text: '📰 印尼充电基础设施建设加速，2026年目标新建2,000个公共充电桩', url: 'https://www.pln.co.id' }
+      ]
+    },
+    tech: {
+      nickel: [
+        { text: '🔬 高压酸浸(HPAL)技术优化：浸出率提升至95%以上，酸耗降低15%', url: 'https://www.sciencedirect.com/search?qs=HPAL+nickel' },
+        { text: '🔬 RKEF能效提升：新型回转窑余热回收系统可降低能耗8-12%', url: 'https://www.smm.cn' },
+        { text: '🔬 富氧侧吹熔炼技术在中伟股份印尼项目试点，处理能力提升20%', url: 'https://www.cngr.com.cn' }
+      ],
+      acid: [
+        { text: '🔬 湿法磷酸工艺改进：半水-二水法能耗降低20%，磷回收率提升至97%', url: 'https://www.ccfa.com.cn' },
+        { text: '🔬 硫酸尾气回收技术：双转双吸+尾气SO2回收，排放降至50mg/m³以下', url: 'https://www.mee.gov.cn' },
+        { text: '🔬 熔硫釜自动化改造：无人化操作+智能温控，效率提升15%', url: 'https://www.sulfuricacidtoday.com' }
+      ],
+      alumina: [
+        { text: '🔬 惰性阳极技术突破：力拓示范项目电流效率提升至96%，CO2排放趋近于零', url: 'https://www.riotinto.com' },
+        { text: '🔬 铝电解节能技术：新型阴极结构+低电压操作，直流电耗降至12,500kWh/t', url: 'https://www.aluminum.org' },
+        { text: '🔬 赤泥综合利用：印尼试点从赤泥中提取稀土和钛铁矿', url: 'https://www.sciencedirect.com/search?qs=red+mud+utilization' }
+      ],
+      energy: [
+        { text: '🔬 漂浮式光伏技术：水上发电+减少蒸发，印尼水库应用潜力超1GW', url: 'https://www.irena.org/solar' },
+        { text: '🔬 海上风电基础技术：单桩+导管架适应印尼深水海域', url: 'https://www.4coffshore.com' },
+        { text: '🔬 微电网储能系统：锂电池+超级电容混合储能，响应时间<50ms', url: 'https://www.cnesa.org.cn' }
+      ],
+      ev: [
+        { text: '🔬 固态电池产业化进展：半固态电池已装车，全固态预计2028年量产', url: 'https://www.catl.com' },
+        { text: '🔬 钠离子电池产业化：宁德时代钠电池量产，成本较锂电低20%', url: 'https://www.catl.com' },
+        { text: '🔬 800V高压平台普及：充电时间缩短50%，碳化硅器件应用扩大', url: 'https://www.evspecifications.com' }
       ]
     }
   };
