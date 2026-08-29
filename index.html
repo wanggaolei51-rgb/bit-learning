@@ -6,7 +6,7 @@
 <meta http-equiv="Expires" content="0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LEO-BIR V4.19.0</title>
+<title>LEO-BIR V4.19.1</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -273,7 +273,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="sidebar-header">
     <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <h1>LEO-BIR</h1>
-    <div class="ver">LEO-BIR V4.19.0 · 生词本修复+百词斩+词根射击重构+C5朗读</div>
+    <div class="ver">LEO-BIR V4.19.1 · 翻译修复+词根配色+综合练习</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -833,7 +833,7 @@ const vocabDB = {
   'foto':{ipa:'/ˈfoto/',cn:'照片',en:'photo',root:'foto',tag:'常用词'},
   'fungsi':{ipa:'/ˈfungsi/',cn:'功能',en:'function',root:'fungsi',tag:'常用词'},
   'gedung':{ipa:'/ˈgɛdʊŋ/',cn:'建筑/楼房',en:'building',root:'gedung',tag:'常用词'},
-  'gedungnya':{ipa:'/gedungnya/',cn:'他的gedung',en:'his/her gedung',root:'gedung + -nya',tag:'常用词'},
+  'gedungnya':{ipa:'/gedungnya/',cn:'建筑物(他的)',en:'his/her gedung',root:'gedung + -nya',tag:'常用词'},
   'gerbang':{ipa:'/ˈgɛrbaŋ/',cn:'大门/闸门',en:'gate',root:'gerbang',tag:'常用词'},
   'google':{ipa:'/ˈgugɛl/',cn:'谷歌',en:'Google',root:'google',tag:'常用词'},
   'goreng':{ipa:'/ˈgorɛŋ/',cn:'油炸的',en:'fried',root:'goreng',tag:'常用词'},
@@ -853,7 +853,7 @@ const vocabDB = {
   'hubungi':{ipa:'/huˈbʊŋgi/',cn:'联系',en:'to contact',root:'hubungi',tag:'常用词'},
   'hyatt':{ipa:'/ˈhaɪat/',cn:'凯悦酒店',en:'Hyatt',root:'hyatt',tag:'常用词'},
   'iklim':{ipa:'/ˈiklɪm/',cn:'气候',en:'climate',root:'iklim',tag:'常用词'},
-  'infonya':{ipa:'/infonya/',cn:'他的info',en:'his/her info',root:'info + -nya',tag:'常用词'},
+  'infonya':{ipa:'/infonya/',cn:'信息(他的)',en:'his/her info',root:'info + -nya',tag:'常用词'},
   'infrastruktur':{ipa:'/infrastruktur/',cn:'基础设施',en:'infrastruktur',root:'infrastruktur',tag:'常用词'},
   'internal':{ipa:'/internal/',cn:'內部',en:'internal',root:'internal',tag:'常用词'},
   'investasi':{ipa:'/investasi/',cn:'investas(及物动词)',en:'to investas (tr.)',root:'investasi',tag:'常用词'},
@@ -862,8 +862,8 @@ const vocabDB = {
   'itu':{ipa:'/ˈitu/',cn:'那/那个',en:'that',root:'itu',tag:'常用词'},
   'izinkan':{ipa:'/izinkan/',cn:'使izin',en:'to make izin',root:'izin + -kan',tag:'常用词'},
   'jalan':{ipa:'/jalan/',cn:'jal(名词)',en:'jal (noun)',root:'jal + -an',tag:'常用词'},
-  'jalanannya':{ipa:'/jalanannya/',cn:'他的jalanan',en:'his/her jalanan',root:'jalanan + -nya',tag:'常用词'},
-  'jalannya':{ipa:'/jalannya/',cn:'他的jalan',en:'his/her jalan',root:'jalan + -nya',tag:'常用词'},
+  'jalanannya':{ipa:'/jalanannya/',cn:'道路(他的)',en:'his/her jalanan',root:'jalanan + -nya',tag:'常用词'},
+  'jalannya':{ipa:'/jalannya/',cn:'路/行走(他的)',en:'his/her jalan',root:'jalan + -nya',tag:'常用词'},
   'jam':{ipa:'/ˈdʒam/',cn:'小时/点钟',en:'hour/o clock',root:'jam',tag:'常用词'},
   'jenis':{ipa:'/ˈdʒɛnɪs/',cn:'种类',en:'type',root:'jenis',tag:'常用词'},
   'jumlah':{ipa:'/jumlah/',cn:'请jum',en:'please jum',root:'jum + -lah',tag:'常用词'},
@@ -871,7 +871,7 @@ const vocabDB = {
   'kaget':{ipa:'/kaget/',cn:'吃惊',en:'kaget',root:'kaget',tag:'常用词'},
   'kain':{ipa:'/kain/',cn:'纺织品',en:'kain',root:'kain',tag:'常用词'},
   'kaki':{ipa:'/ˈkaki/',cn:'脚',en:'foot',root:'kaki',tag:'常用词'},
-  'kakinya':{ipa:'/kakinya/',cn:'他的kaki',en:'his/her kaki',root:'kaki + -nya',tag:'常用词'},
+  'kakinya':{ipa:'/kakinya/',cn:'脚/腿(他的)',en:'his/her kaki',root:'kaki + -nya',tag:'常用词'},
   'kali':{ipa:'/kali/',cn:'倍',en:'kali',root:'kali',tag:'常用词'},
   'kamar':{ipa:'/ˈkamar/',cn:'房间',en:'room',root:'kamar',tag:'常用词'},
   'kanan':{ipa:'/kanan/',cn:'kan(名词)',en:'kan (noun)',root:'kan + -an',tag:'常用词'},
@@ -911,7 +911,7 @@ const vocabDB = {
   'lurus':{ipa:'/lurus/',cn:'直街',en:'lurus',root:'lurus',tag:'常用词'},
   'macet':{ipa:'/macet/',cn:'交通堵塞',en:'macet',root:'macet',tag:'常用词'},
   'makanan':{ipa:'/makanan/',cn:'makan(名词)',en:'makan (noun)',root:'makan + -an',tag:'常用词'},
-  'makasih':{ipa:'/makasih/',cn:'- 谢谢 - 不客气 再见',en:'makasih',root:'makasih',tag:'常用词'},
+  'makasih':{ipa:'/makasih/',cn:'谢谢(口语)',en:'makasih',root:'makasih',tag:'常用词'},
   'malam':{ipa:'/ˈmalam/',cn:'晚上',en:'night/evening',root:'malam',tag:'常用词'},
   'malaria':{ipa:'/malaria/',cn:'"疟疾" "Malaria."',en:'malaria',root:'malaria',tag:'常用词'},
   'mall':{ipa:'/mall/',cn:'商場',en:'mall',root:'mall',tag:'常用词'},
@@ -920,7 +920,7 @@ const vocabDB = {
   'manis':{ipa:'/ˈmanis/',cn:'甜的',en:'sweet',root:'manis',tag:'常用词'},
   'maps':{ipa:'/maps/',cn:'地图',en:'maps',root:'maps',tag:'常用词'},
   'maret':{ipa:'/maret/',cn:'三月份',en:'maret',root:'maret',tag:'常用词'},
-  'masakannya':{ipa:'/masakannya/',cn:'他的masakan',en:'his/her masakan',root:'masakan + -nya',tag:'常用词'},
+  'masakannya':{ipa:'/masakannya/',cn:'饭菜(他的)',en:'his/her masakan',root:'masakan + -nya',tag:'常用词'},
   'masalah':{ipa:'/masalah/',cn:'请masa',en:'please masa',root:'masa + -lah',tag:'常用词'},
   'matahari':{ipa:'/matahari/',cn:'matahar(及物动词)',en:'to matahar (tr.)',root:'matahari',tag:'常用词'},
   'membaca':{ipa:'/membaca/',cn:'mbaca(动词)',en:'to mbaca',root:'mbaca + me-',tag:'常用词'},
@@ -947,14 +947,14 @@ const vocabDB = {
   'minimarket':{ipa:'/minimarket/',cn:'小卖部',en:'minimarket',root:'minimarket',tag:'常用词'},
   'minta':{ipa:'/ˈminta/',cn:'请求',en:'to ask',root:'minta',tag:'常用词'},
   'minum':{ipa:'/ˈminum/',cn:'喝',en:'to drink',root:'minum',tag:'常用词'},
-  'minumnya':{ipa:'/minumnya/',cn:'他的minum',en:'his/her minum',root:'minum + -nya',tag:'常用词'},
+  'minumnya':{ipa:'/minumnya/',cn:'饮料(他的)',en:'his/her minum',root:'minum + -nya',tag:'常用词'},
   'mitigasi':{ipa:'/mitigasi/',cn:'mitigas(及物动词)',en:'to mitigas (tr.)',root:'mitigasi',tag:'常用词'},
   'mobil':{ipa:'/ˈmobɪl/',cn:'汽车',en:'car',root:'mobil',tag:'常用词'},
   'mohon':{ipa:'/ˈmohon/',cn:'恳请',en:'please (formal)',root:'mohon',tag:'常用词'},
   'mungkin':{ipa:'/ˈmungkɪn/',cn:'可能',en:'maybe',root:'mungkin',tag:'常用词'},
   'murah':{ipa:'/ˈmurah/',cn:'便宜的',en:'cheap',root:'murah',tag:'常用词'},
   'naik':{ipa:'/ˈnaɪk/',cn:'上升/乘坐',en:'to rise/ride',root:'naik',tag:'常用词'},
-  'nama-nya':{ipa:'/nama-nya/',cn:'他的nama-',en:'his/her nama-',root:'nama- + -nya',tag:'常用词'},
+  'nama-nya':{ipa:'/nama-nya/',cn:'名字(他的)',en:'his/her nama-',root:'nama- + -nya',tag:'常用词'},
   'nasi':{ipa:'/ˈnasi/',cn:'米饭',en:'rice',root:'nasi',tag:'常用词'},
   'negara':{ipa:'/nɛˈgara/',cn:'国家',en:'country',root:'negara',tag:'常用词'},
   'nggak':{ipa:'/nggak/',cn:'没有啊',en:'nggak',root:'nggak',tag:'常用词'},
@@ -968,10 +968,10 @@ const vocabDB = {
   'optimalisasi':{ipa:'/optimalisasi/',cn:'optimalisas(及物动词)',en:'to optimalisas (tr.)',root:'optimalisasi',tag:'常用词'},
   'orang':{ipa:'/ˈoraŋ/',cn:'人',en:'person',root:'orang',tag:'常用词'},
   'pabrik':{ipa:'/ˈpabrik/',cn:'工厂',en:'factory',root:'pabrik',tag:'常用词'},
-  'pabriknya':{ipa:'/pabriknya/',cn:'他的pabrik',en:'his/her pabrik',root:'pabrik + -nya',tag:'常用词'},
-  'padang':{ipa:'/padang/',cn:'- 呼叫基地？',en:'padang',root:'padang',tag:'常用词'},
+  'pabriknya':{ipa:'/pabriknya/',cn:'工厂(他的)',en:'his/her pabrik',root:'pabrik + -nya',tag:'常用词'},
+  'padang':{ipa:'/padang/',cn:'巴东(西苏门答腊城市/巴东菜)',en:'padang',root:'padang',tag:'常用词'},
   'pagi-pagi':{ipa:'/pagi-pagi/',cn:'pagi-pag(及物动词)',en:'to pagi-pag (tr.)',root:'pagi-pagi',tag:'常用词'},
-  'panasnya':{ipa:'/panasnya/',cn:'他的panas',en:'his/her panas',root:'panas + -nya',tag:'常用词'},
+  'panasnya':{ipa:'/panasnya/',cn:'热(的)',en:'his/her panas',root:'panas + -nya',tag:'常用词'},
   'panggilkan':{ipa:'/panggilkan/',cn:'使panggil',en:'to make panggil',root:'panggil + -kan',tag:'常用词'},
   'pantai':{ipa:'/ˈpantai/',cn:'海滩',en:'beach',root:'pantai',tag:'常用词'},
   'papan':{ipa:'/papan/',cn:'pap(名词)',en:'pap (noun)',root:'pap + -an',tag:'常用词'},
@@ -1012,12 +1012,12 @@ const vocabDB = {
   'prakiraan':{ipa:'/prakiraan/',cn:'prakira(名词)',en:'prakira (noun)',root:'prakira + -an',tag:'常用词'},
   'produk':{ipa:'/ˈprodʊk/',cn:'产品',en:'product',root:'produk',tag:'常用词'},
   'produsen':{ipa:'/produsen/',cn:'制造商',en:'produsen',root:'produsen',tag:'常用词'},
-  'proposalnya':{ipa:'/proposalnya/',cn:'他的proposal',en:'his/her proposal',root:'proposal + -nya',tag:'常用词'},
-  'proyek-proyek':{ipa:'/proyek-proyek/',cn:'projects',en:'proyek-proyek',root:'proyek-proyek',tag:'常用词'},
+  'proposalnya':{ipa:'/proposalnya/',cn:'提案(他的)',en:'his/her proposal',root:'proposal + -nya',tag:'常用词'},
+  'proyek-proyek':{ipa:'/proyek-proyek/',cn:'项目(复数)',en:'proyek-proyek',root:'proyek-proyek',tag:'常用词'},
   'puluh':{ipa:'/puluh/',cn:'赢了40块了',en:'puluh',root:'puluh',tag:'常用词'},
   'pusat':{ipa:'/ˈpusat/',cn:'中心',en:'center',root:'pusat',tag:'常用词'},
   'putar':{ipa:'/putar/',cn:'播放',en:'putar',root:'putar',tag:'常用词'},
-  'ramah':{ipa:'/ramah/',cn:'- 友好',en:'ramah',root:'ramah',tag:'常用词'},
+  'ramah':{ipa:'/ramah/',cn:'友好的/和蔼的',en:'ramah',root:'ramah',tag:'常用词'},
   'ratus':{ipa:'/ratus/',cn:'百',en:'ratus',root:'ratus',tag:'常用词'},
   'rencana':{ipa:'/rɛnˈtʃana/',cn:'计划',en:'plan',root:'rencana',tag:'常用词'},
   'resep':{ipa:'/ˈrɛsɛp/',cn:'处方/食谱',en:'prescription/recipe',root:'resep',tag:'常用词'},
@@ -1028,22 +1028,22 @@ const vocabDB = {
   's-p-o':{ipa:'/s-p-o/',cn:'S-P-O(缩写)',en:'S-P-O',root:'s-p-o',tag:'常用词'},
   'saat':{ipa:'/saat/',cn:'瞬间',en:'saat',root:'saat',tag:'常用词'},
   'sabtu':{ipa:'/ˈsabtu/',cn:'星期六',en:'Saturday',root:'sabtu',tag:'常用词'},
-  'saja':{ipa:'/saja/',cn:'你在等我？',en:'saja',root:'saja',tag:'常用词'},
-  'satpam':{ipa:'/satpam/',cn:'阿龙',en:'satpam',root:'satpam',tag:'常用词'},
+  'saja':{ipa:'/saja/',cn:'而已/仅仅',en:'saja',root:'saja',tag:'常用词'},
+  'satpam':{ipa:'/satpam/',cn:'保安/门卫',en:'satpam',root:'satpam',tag:'常用词'},
   'satu':{ipa:'/ˈsatu/',cn:'一',en:'one',root:'satu',tag:'常用词'},
-  'sebelah':{ipa:'/sebelah/',cn:'请sebe',en:'please sebe',root:'sebe + -lah',tag:'常用词'},
+  'sebelah':{ipa:'/sebelah/',cn:'旁边/一侧',en:'please sebe',root:'sebe + -lah',tag:'常用词'},
   'sebentar':{ipa:'/sɛˈbɛntar/',cn:'一会儿',en:'a moment',root:'sebentar',tag:'常用词'},
-  'secara':{ipa:'/secara/',cn:'和cara一样',en:'as cara',root:'secara',tag:'常用词'},
+  'secara':{ipa:'/secara/',cn:'以...方式/通过',en:'as cara',root:'secara',tag:'常用词'},
   'sedang':{ipa:'/ˈsɛdaŋ/',cn:'正在',en:'currently',root:'sedang',tag:'常用词'},
   'sedikit':{ipa:'/sɛˈdikit/',cn:'一点',en:'a little',root:'sedikit',tag:'常用词'},
-  'sehari':{ipa:'/sehari/',cn:'和hari一样',en:'as hari',root:'sehari',tag:'常用词'},
-  'sejak':{ipa:'/sejak/',cn:'和jak一样',en:'as jak',root:'sejak',tag:'常用词'},
-  'sekarang':{ipa:'/sekarang/',cn:'和karang一样',en:'as karang',root:'sekarang',tag:'常用词'},
+  'sehari':{ipa:'/sehari/',cn:'一天/每日',en:'as hari',root:'sehari',tag:'常用词'},
+  'sejak':{ipa:'/sejak/',cn:'自从/从...起',en:'as jak',root:'sejak',tag:'常用词'},
+  'sekarang':{ipa:'/sekarang/',cn:'现在/目前',en:'as karang',root:'sekarang',tag:'常用词'},
   'sekitar':{ipa:'/sɛˈkitar/',cn:'周围/大约',en:'around/about',root:'sekitar',tag:'常用词'},
   'sementara':{ipa:'/sɛmɛnˈtara/',cn:'暂时',en:'temporary',root:'sementara',tag:'常用词'},
-  'sepertinya':{ipa:'/sepertinya/',cn:'他的seperti',en:'his/her seperti',root:'seperti + -nya',tag:'常用词'},
+  'sepertinya':{ipa:'/sepertinya/',cn:'似乎/好像',en:'his/her seperti',root:'seperti + -nya',tag:'常用词'},
   'seratus':{ipa:'/sɛˈratus/',cn:'一百',en:'one hundred',root:'seratus',tag:'常用词'},
-  'sesudah':{ipa:'/sesudah/',cn:'和sudah一样',en:'as sudah',root:'sesudah',tag:'常用词'},
+  'sesudah':{ipa:'/sesudah/',cn:'在...之后',en:'as sudah',root:'sesudah',tag:'常用词'},
   'setuju':{ipa:'/sɛˈtudʒu/',cn:'同意',en:'agree',root:'setuju',tag:'常用词'},
   'siapa':{ipa:'/siapa/',cn:'谁啊？',en:'siapa',root:'siapa',tag:'常用词'},
   'siapkan':{ipa:'/siapkan/',cn:'使siap',en:'to make siap',root:'siap + -kan',tag:'常用词'},
@@ -1074,7 +1074,7 @@ const vocabDB = {
   'tenggorokan':{ipa:'/tenggorokan/',cn:'使tenggoro',en:'to make tenggoro',root:'tenggoro + -kan',tag:'常用词'},
   'tentang':{ipa:'/ˈtɛntaŋ/',cn:'关于',en:'about',root:'tentang',tag:'常用词'},
   'tentu':{ipa:'/ˈtɛntu/',cn:'当然',en:'certainly',root:'tentu',tag:'常用词'},
-  'tepatnya':{ipa:'/tepatnya/',cn:'他的tepat',en:'his/her tepat',root:'tepat + -nya',tag:'常用词'},
+  'tepatnya':{ipa:'/tepatnya/',cn:'确切地/准确地说',en:'his/her tepat',root:'tepat + -nya',tag:'常用词'},
   'terdekat':{ipa:'/terdekat/',cn:'最dekat',en:'most dekat',root:'dekat + ter-',tag:'常用词'},
   'tergantung':{ipa:'/tergantung/',cn:'最gantung',en:'most gantung',root:'gantung + ter-',tag:'常用词'},
   'terhambat':{ipa:'/terhambat/',cn:'最hambat',en:'most hambat',root:'hambat + ter-',tag:'常用词'},
@@ -1108,7 +1108,7 @@ const vocabDB = {
   'udah':{ipa:'/udah/',cn:'住手！',en:'udah',root:'udah',tag:'常用词'},
   'umum':{ipa:'/ˈumum/',cn:'公共的',en:'public',root:'umum',tag:'常用词'},
   'utama':{ipa:'/ˈutama/',cn:'主要的',en:'main',root:'utama',tag:'常用词'},
-  'via':{ipa:'/via/',cn:'阿卡',en:'via',root:'via',tag:'常用词'},
+  'via':{ipa:'/via/',cn:'通过/经由',en:'via',root:'via',tag:'常用词'},
   'vitamin':{ipa:'/ˈvɪtamin/',cn:'维生素',en:'vitamin',root:'vitamin',tag:'常用词'},
   'warna':{ipa:'/ˈwarna/',cn:'颜色',en:'color',root:'warna',tag:'常用词'},
   'warung':{ipa:'/warung/',cn:'摊位',en:'warung',root:'warung',tag:'常用词'},
@@ -1383,7 +1383,7 @@ const vocabDB = {
 'debu':{ipa:'-',cn:'灰尘',en:'dust',root:'debu',tag:'名词'},
 'dehidrasi':{ipa:'-',cn:'脱水',en:'dehydration',root:'dehidrasi',tag:'名词'},
   'delivery':{ipa:'/delivery/',cn:'外送',en:'delivery',root:'delivery',tag:'常用词'},
-'demamnya':{ipa:'-',cn:'发烧(他的)',en:'fever',root:'demam + -nya',tag:'名词'},
+'demamnya':{ipa:'-',cn:'发烧(的)',en:'fever',root:'demam + -nya',tag:'名词'},
   'dengar':{ipa:'/dengar/',cn:'听着',en:'dengar',root:'dengar',tag:'常用词'},
 'denyut':{ipa:'-',cn:'脉搏/跳动',en:'pulse / beat',root:'denyut',tag:'名词'},
   'didiskon':{ipa:'/didiskon/',cn:'折扣',en:'didiskon',root:'didiskon',tag:'常用词'},
@@ -1415,7 +1415,7 @@ const vocabDB = {
   'get':{ipa:'/get/',cn:'得到/获取',en:'get',root:'get',tag:'常用词'},
   'gitu':{ipa:'/gitu/',cn:'事情就是这样。',en:'gitu',root:'gitu',tag:'常用词'},
 'global':{ipa:'-',cn:'全球的',en:'global',root:'global (English)',tag:'形容词'},
-  'gramnya':{ipa:'/gramnya/',cn:'他的gram',en:'his/her gram',root:'gram + -nya',tag:'常用词'},
+  'gramnya':{ipa:'/gramnya/',cn:'克(他的)',en:'his/her gram',root:'gram + -nya',tag:'常用词'},
   'grand':{ipa:'/grand/',cn:'宏伟的/盛大的',en:'grand',root:'grand',tag:'常用词'},
 'helm':{ipa:'-',cn:'头盔',en:'helmet',root:'helm (Dutch)',tag:'名词'},
   'hemat':{ipa:'/hemat/',cn:'保存',en:'hemat',root:'hemat',tag:'常用词'},
@@ -1430,7 +1430,7 @@ const vocabDB = {
 'internasional':{ipa:'-',cn:'国际的',en:'international',root:'internasional',tag:'形容词'},
   'internet':{ipa:'/internet/',cn:'互联网',en:'internet',root:'internet',tag:'常用词'},
 'investor':{ipa:'-',cn:'投资者',en:'investor',root:'investor (English)',tag:'名词'},
-  'isinya':{ipa:'/isinya/',cn:'他的isi',en:'his/her isi',root:'isi + -nya',tag:'常用词'},
+  'isinya':{ipa:'/isinya/',cn:'内容(他的)',en:'his/her isi',root:'isi + -nya',tag:'常用词'},
 'istimewa':{ipa:'-',cn:'特殊的',en:'special',root:'istimewa',tag:'形容词'},
 'izin':{ipa:'-',cn:'许可',en:'permission',root:'izin',tag:'名词'},
 'jadwal':{ipa:'-',cn:'日程',en:'schedule',root:'jadwal',tag:'名词'},
@@ -1438,8 +1438,8 @@ const vocabDB = {
 'jalur':{ipa:'-',cn:'路线/通道',en:'route / path',root:'jalur',tag:'名词'},
 'jelas':{ipa:'-',cn:'清楚',en:'clear',root:'jelas',tag:'形容词'},
 'jepang':{ipa:'-',cn:'日本',en:'Japan',root:'jepang',tag:'地名'},
-  'jne':{ipa:'/jne/',cn:'JNE',en:'jne',root:'jne',tag:'常用词'},
-  'jus':{ipa:'/jus/',cn:'- 來點果汁？ - Mmm！',en:'jus',root:'jus',tag:'常用词'},
+  'jne':{ipa:'/jne/',cn:'JNE(印尼快递公司)',en:'jne',root:'jne',tag:'常用词'},
+  'jus':{ipa:'/jus/',cn:'果汁',en:'jus',root:'jus',tag:'常用词'},
   'kabupaten':{ipa:'/kabupaten/',cn:'摄政',en:'kabupaten',root:'kabupaten',tag:'常用词'},
   'kadang':{ipa:'/kadang/',cn:'戚难破',en:'kadang',root:'kadang',tag:'常用词'},
   'kafe':{ipa:'/ˈkafɛ/',cn:'咖啡馆',en:'cafe',root:'kafe',tag:'常用词'},
@@ -1466,7 +1466,7 @@ const vocabDB = {
 'kesejahteraan':{ipa:'-',cn:'福祉/繁荣',en:'welfare / prosperity',root:'sejahtera + ke- + -an',tag:'名词'},
   'ketemu':{ipa:'/ketemu/',cn:'你的kete',en:'your kete',root:'ketemu',tag:'常用词'},
   'ketika':{ipa:'/ketika/',cn:'当...',en:'ketika',root:'ketika',tag:'常用词'},
-  'keuntungannya':{ipa:'/keuntungannya/',cn:'他的keuntungan',en:'his/her keuntungan',root:'keuntungan + -nya',tag:'常用词'},
+  'keuntungannya':{ipa:'/keuntungannya/',cn:'利润/利益(他的)',en:'his/her keuntungan',root:'keuntungan + -nya',tag:'常用词'},
 'komunikasi':{ipa:'-',cn:'通信',en:'communication',root:'komunikasi',tag:'名词'},
 'kondisi':{ipa:'-',cn:'条件',en:'condition',root:'kondisi (Dutch)',tag:'名词'},
 'kontrol':{ipa:'-',cn:'控制',en:'control',root:'kontrol (Dutch)',tag:'名词'},
@@ -1532,9 +1532,9 @@ const vocabDB = {
   'miliar':{ipa:'/miliar/',cn:'亿。”',en:'miliar',root:'miliar',tag:'常用词'},
   'mingguan':{ipa:'/mingguan/',cn:'minggu(名词)',en:'minggu (noun)',root:'minggu + -an',tag:'常用词'},
 'minimal':{ipa:'-',cn:'最低/最少',en:'minimum',root:'minimal (Dutch)',tag:'形容词'},
-  'misalnya':{ipa:'/misalnya/',cn:'他的misal',en:'his/her misal',root:'misal + -nya',tag:'常用词'},
+  'misalnya':{ipa:'/misalnya/',cn:'例如/比如',en:'his/her misal',root:'misal + -nya',tag:'常用词'},
   'model':{ipa:'/model/',cn:'榜樣 榜样 [bang3 yang4]',en:'model',root:'model',tag:'常用词'},
-  'momen':{ipa:'/momen/',cn:'moment',en:'momen',root:'momen',tag:'常用词'},
+  'momen':{ipa:'/momen/',cn:'时刻/瞬间',en:'momen',root:'momen',tag:'常用词'},
   'mudah':{ipa:'/mudah/',cn:'容易。',en:'mudah',root:'mudah',tag:'常用词'},
   'nafsu':{ipa:'/nafsu/',cn:'性欲',en:'nafsu',root:'nafsu',tag:'常用词'},
   'nickel':{ipa:'/nickel/',cn:'镍',en:'nickel',root:'nickel',tag:'常用词'},
@@ -1586,13 +1586,13 @@ const vocabDB = {
 'program':{ipa:'-',cn:'项目/程序',en:'program',root:'program (English)',tag:'商务词汇'},
   'project':{ipa:'/project/',cn:'项目/工程',en:'project',root:'project',tag:'常用词'},
   'protein':{ipa:'/protein/',cn:'蛋白质',en:'protein',root:'protein',tag:'常用词'},
-  'ramos':{ipa:'/ramos/',cn:'- 拉莫斯先生',en:'ramos',root:'ramos',tag:'常用词'},
+  'ramos':{ipa:'/ramos/',cn:'拉莫斯(人名)',en:'ramos',root:'ramos',tag:'常用词'},
   'rantai':{ipa:'/rantai/',cn:'ranta(及物动词)',en:'to ranta (tr.)',root:'rantai',tag:'常用词'},
 'rata':{ipa:'-',cn:'平均/平坦',en:'average / flat',root:'rata',tag:'形容词'},
   'rating':{ipa:'/rating/',cn:'评分',en:'rating',root:'rating',tag:'常用词'},
-  'ratingnya':{ipa:'/ratingnya/',cn:'他的rating',en:'his/her rating',root:'rating + -nya',tag:'常用词'},
+  'ratingnya':{ipa:'/ratingnya/',cn:'评分(他的)',en:'his/her rating',root:'rating + -nya',tag:'常用词'},
   'raya':{ipa:'/ˈraja/',cn:'伟大的/主要街道',en:'great/main road',root:'raya',tag:'常用词'},
-  'refundnya':{ipa:'/refundnya/',cn:'他的refund',en:'his/her refund',root:'refund + -nya',tag:'常用词'},
+  'refundnya':{ipa:'/refundnya/',cn:'退款(他的)',en:'his/her refund',root:'refund + -nya',tag:'常用词'},
   'resepsionis':{ipa:'/resepsionis/',cn:'前台',en:'resepsionis',root:'resepsionis',tag:'常用词'},
   'ringan':{ipa:'/ringan/',cn:'ring(名词)',en:'ring (noun)',root:'ring + -an',tag:'常用词'},
   'rusak':{ipa:'/rusak/',cn:'态的。',en:'rusak',root:'rusak',tag:'常用词'},
@@ -1602,24 +1602,24 @@ const vocabDB = {
   'samudra':{ipa:'/samudra/',cn:'洋',en:'samudra',root:'samudra',tag:'常用词'},
   'santoso':{ipa:'/santoso/',cn:'桑托索(人名)',en:'Santoso',root:'santoso',tag:'人名'},
   'sarankan':{ipa:'/sarankan/',cn:'使saran',en:'to make saran',root:'saran + -kan',tag:'常用词'},
-  'sarung':{ipa:'/sarung/',cn:'sarong',en:'sarung',root:'sarung',tag:'常用词'},
+  'sarung':{ipa:'/sarung/',cn:'纱笼(传统围裙)',en:'sarung',root:'sarung',tag:'常用词'},
   'sate':{ipa:'/sate/',cn:'沙嗲',en:'sate',root:'sate',tag:'常用词'},
-  'seafood':{ipa:'/seafood/',cn:'和afood一样',en:'as afood',root:'seafood',tag:'常用词'},
+  'seafood':{ipa:'/seafood/',cn:'海鲜',en:'as afood',root:'seafood',tag:'常用词'},
 'sebagai':{ipa:'-',cn:'作为',en:'as',root:'se + bagi',tag:'介词'},
-  'sebaliknya':{ipa:'/sebaliknya/',cn:'他的sebalik',en:'his/her sebalik',root:'sebalik + -nya',tag:'常用词'},
-  'sebelahnya':{ipa:'/sebelahnya/',cn:'他的sebelah',en:'his/her sebelah',root:'sebelah + -nya',tag:'常用词'},
+  'sebaliknya':{ipa:'/sebaliknya/',cn:'相反地/反之',en:'his/her sebalik',root:'sebalik + -nya',tag:'常用词'},
+  'sebelahnya':{ipa:'/sebelahnya/',cn:'旁边(他的)',en:'his/her sebelah',root:'sebelah + -nya',tag:'常用词'},
   'selesai':{ipa:'/sɛˈlɛsai/',cn:'完成',en:'finished',root:'selesai',tag:'常用词'},
   'semakin':{ipa:'/sɛˈmakin/',cn:'越来越',en:'increasingly',root:'semakin',tag:'常用词'},
 'semangat':{ipa:'-',cn:'精神/热情',en:'spirit / enthusiasm',root:'semangat',tag:'名词'},
-  'seminggu':{ipa:'/seminggu/',cn:'和minggu一样',en:'as minggu',root:'seminggu',tag:'常用词'},
+  'seminggu':{ipa:'/seminggu/',cn:'一周/一星期',en:'as minggu',root:'seminggu',tag:'常用词'},
 'semuanya':{ipa:'-',cn:'全部',en:'all of them',root:'semua + -nya',tag:'代词'},
-  'sengkel':{ipa:'/sengkel/',cn:'和ngkel一样',en:'as ngkel',root:'sengkel',tag:'常用词'},
+  'sengkel':{ipa:'/sengkel/',cn:'脱节/脱臼',en:'as ngkel',root:'sengkel',tag:'常用词'},
 'sepanjang':{ipa:'-',cn:'沿着/整个',en:'along / throughout',root:'se + panjang',tag:'介词'},
-  'sepatu':{ipa:'/sepatu/',cn:'和patu一样',en:'as patu',root:'sepatu',tag:'常用词'},
-  'serius':{ipa:'/serius/',cn:'和rius一样',en:'as rius',root:'serius',tag:'常用词'},
+  'sepatu':{ipa:'/sepatu/',cn:'鞋子',en:'as patu',root:'sepatu',tag:'常用词'},
+  'serius':{ipa:'/serius/',cn:'认真的/严肃的',en:'as rius',root:'serius',tag:'常用词'},
   'sertifikasi':{ipa:'/sɛrtɪfɪˈkasi/',cn:'认证',en:'certification',root:'sertifikasi',tag:'常用词'},
-  'setiabudi':{ipa:'/setiabudi/',cn:'和tiabudi一样',en:'as tiabudi',root:'setiabudi',tag:'常用词'},
-  'setra':{ipa:'/setra/',cn:'和tra一样',en:'as tra',root:'setra',tag:'常用词'},
+  'setiabudi':{ipa:'/setiabudi/',cn:'瑟迪亚布迪(地名/人名)',en:'as tiabudi',root:'setiabudi',tag:'常用词'},
+  'setra':{ipa:'/setra/',cn:'塞特拉(人名/品牌)',en:'as tra',root:'setra',tag:'常用词'},
   'shanghai':{ipa:'/shanghai/',cn:'shangha(及物动词)',en:'to shangha (tr.)',root:'shanghai',tag:'常用词'},
   'shopee':{ipa:'/shopee/',cn:'虾皮',en:'shopee',root:'shopee',tag:'常用词'},
   'simpalah':{ipa:'/simpalah/',cn:'请simpa',en:'please simpa',root:'simpa + -lah',tag:'常用词'},
@@ -1627,20 +1627,20 @@ const vocabDB = {
   'solid':{ipa:'/solid/',cn:'纯色',en:'solid',root:'solid',tag:'常用词'},
   'sopan':{ipa:'/sopan/',cn:'sop(名词)',en:'sop (noun)',root:'sop + -an',tag:'常用词'},
 'staf':{ipa:'-',cn:'员工',en:'staff',root:'staf (Dutch)',tag:'名词'},
-  'stoknya':{ipa:'/stoknya/',cn:'他的stok',en:'his/her stok',root:'stok + -nya',tag:'常用词'},
+  'stoknya':{ipa:'/stoknya/',cn:'库存(他的)',en:'his/her stok',root:'stok + -nya',tag:'常用词'},
 'strategis':{ipa:'-',cn:'战略的',en:'strategic',root:'strategi + -is',tag:'形容词'},
 'studi':{ipa:'-',cn:'学习/研究',en:'study',root:'studi (Dutch)',tag:'名词'},
   'sudarso':{ipa:'/sudarso/',cn:'苏达尔索(人名)',en:'Sudarso',root:'sudarso',tag:'人名'},
 'suka':{ipa:'-',cn:'喜欢',en:'to like',root:'suka',tag:'基础动词'},
   'sulfat':{ipa:'/sulfat/',cn:'硫酸盐',en:'sulfat',root:'sulfat',tag:'常用词'},
   'super':{ipa:'/ˈsupɛr/',cn:'超级',en:'super',root:'super',tag:'常用词'},
-  'susunya':{ipa:'/susunya/',cn:'他的susu',en:'his/her susu',root:'susu + -nya',tag:'常用词'},
+  'susunya':{ipa:'/susunya/',cn:'牛奶(他的)',en:'his/her susu',root:'susu + -nya',tag:'常用词'},
   'tahan':{ipa:'/tahan/',cn:'tah(名词)',en:'tah (noun)',root:'tah + -an',tag:'常用词'},
   'tambahan':{ipa:'/tambahan/',cn:'tambah(名词)',en:'tambah (noun)',root:'tambah + -an',tag:'常用词'},
   'tangan':{ipa:'/tangan/',cn:'tang(名词)',en:'tang (noun)',root:'tang + -an',tag:'常用词'},
   'tangga':{ipa:'/tangga/',cn:'階梯',en:'tangga',root:'tangga',tag:'常用词'},
   'tanggal':{ipa:'/ˈtaŋgal/',cn:'日期',en:'date',root:'tanggal',tag:'常用词'},
-  'tanggalnya':{ipa:'/tanggalnya/',cn:'他的tanggal',en:'his/her tanggal',root:'tanggal + -nya',tag:'常用词'},
+  'tanggalnya':{ipa:'/tanggalnya/',cn:'日期(他的)',en:'his/her tanggal',root:'tanggal + -nya',tag:'常用词'},
   'tanggul':{ipa:'/tanggul/',cn:'畔',en:'tanggul',root:'tanggul',tag:'常用词'},
   'tanpa':{ipa:'/tanpa/',cn:'無安全性',en:'tanpa',root:'tanpa',tag:'常用词'},
   'tantangan':{ipa:'/tantangan/',cn:'tantang(名词)',en:'tantang (noun)',root:'tantang + -an',tag:'常用词'},
@@ -1666,7 +1666,7 @@ const vocabDB = {
 'tetangga':{ipa:'-',cn:'邻居',en:'neighbor',root:'tetangga',tag:'名词'},
 'tetap':{ipa:'-',cn:'固定/仍然',en:'fixed / still',root:'tetap',tag:'形容词'},
 'tidur':{ipa:'-',cn:'睡觉',en:'to sleep',root:'tidur',tag:'基础动词'},
-  'timbangannya':{ipa:'/timbangannya/',cn:'他的timbangan',en:'his/her timbangan',root:'timbangan + -nya',tag:'常用词'},
+  'timbangannya':{ipa:'/timbangannya/',cn:'秤/天平(他的)',en:'his/her timbangan',root:'timbangan + -nya',tag:'常用词'},
 'tinggal':{ipa:'-',cn:'住/留下',en:'to live / stay',root:'tinggal',tag:'基础动词'},
 'tiongkok':{ipa:'-',cn:'中国',en:'China',root:'tiongkok',tag:'地名'},
   'token':{ipa:'/token/',cn:'代币',en:'token',root:'token',tag:'常用词'},
@@ -1675,8 +1675,8 @@ const vocabDB = {
   'trik':{ipa:'/trik/',cn:'小技巧',en:'trik',root:'trik',tag:'常用词'},
   'tunda':{ipa:'/tunda/',cn:'次选',en:'tunda',root:'tunda',tag:'常用词'},
   'tur':{ipa:'/tur/',cn:'导览',en:'tur',root:'tur',tag:'常用词'},
-  'tusuk':{ipa:'/tusuk/',cn:'- 戳戳',en:'tusuk',root:'tusuk',tag:'常用词'},
-  'ukurannya':{ipa:'/ukurannya/',cn:'他的ukuran',en:'his/her ukuran',root:'ukuran + -nya',tag:'常用词'},
+  'tusuk':{ipa:'/tusuk/',cn:'刺/戳/插',en:'tusuk',root:'tusuk',tag:'常用词'},
+  'ukurannya':{ipa:'/ukurannya/',cn:'尺寸/大小(他的)',en:'his/her ukuran',root:'ukuran + -nya',tag:'常用词'},
   'unduh':{ipa:'/unduh/',cn:'上載和下載',en:'unduh',root:'unduh',tag:'常用词'},
   'visi':{ipa:'/visi/',cn:'愿景',en:'visi',root:'visi',tag:'常用词'},
   'wabarakatuh':{ipa:'/wabarakatuh/',cn:'愿真主赐福(问候语)',en:'wabarakatuh',root:'wabarakatuh',tag:'常用词'},
@@ -8191,14 +8191,12 @@ function renderVersion(c){
   c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.18 / Versi</span></div>
     <div style="padding:16px;">
       <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
-        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.19.0 (2026-08-29)</div>
+        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.19.1 (2026-08-29)</div>
         <div style="font-size:13px;color:var(--text);line-height:1.8">
-        • 修复生词本15个词条翻译(原词未翻译)<br>
-        • 百词斩练习改为单单词三种模式依次练习<br>
-        • 未收录单词添加朗读按钮<br>
-        • 词根射击重构为一级→二级→游戏架构<br>
-        • C5课程对话/段落添加"朗读全部"按钮<br>
-        • 版本号同步更新为V4.19.0<br>
+        • 修复53个生词本错误翻译(via→通过,satpam→保安等)<br>
+        • 词根射击一级配色优化：每个词缀独立醒目配色+文字阴影<br>
+        • 词根射击二级新增"综合练习"模式：混合全部变体随机出题<br>
+        • 版本号同步更新为V4.19.1<br>
         • 总产能统计: 🇮🇩 46园区/107项目 · 🌍 66项目 · 总产能 684.4万镍吨/年<br>
         • 扩充制酸项目数据: 从8个增加到25个(硫磺制酸/硫铁矿制酸/冶炼副产酸)<br>
         • 扩充电力设施数据: 从9个增加到24个(燃煤/水电/地热/光伏/风电/柴油)<br>
@@ -9192,15 +9190,21 @@ function showAffixLevel1(c) {
     });
   });
 
-  const buttons = allItems.map(item => {
+  const buttons = allItems.map((item, idx) => {
+    // 每个词缀分配一个醒目的背景色
+    const colors = [
+      '#00d4aa', '#3b82f6', '#f59e0b', '#ef4444',
+      '#8b5cf6', '#ec4899', '#10b981', '#6366f1'
+    ];
+    const color = colors[idx % colors.length];
     return `
-      <button onclick="selectAffixLevel1('${item.catKey}','${item.childKey}')" class="trans-btn" style="margin:8px;padding:16px 20px;font-size:15px;min-width:240px;text-align:left;display:flex;align-items:center;gap:12px;border:2px solid var(--primary);border-radius:12px;">
-        <span style="font-size:28px">${item.icon}</span>
+      <button onclick="selectAffixLevel1('${item.catKey}','${item.childKey}')" class="trans-btn" style="margin:8px;padding:16px 20px;font-size:15px;min-width:280px;text-align:left;display:flex;align-items:center;gap:12px;border:2px solid ${color};border-radius:12px;background:linear-gradient(135deg,${color}15,${color}05);">
+        <span style="font-size:32px">${item.icon}</span>
         <div style="flex:1">
-          <div style="font-weight:800;color:var(--primary);font-size:16px;">${item.name}</div>
-          <div style="font-size:11px;color:var(--text-dim);margin-top:3px">${item.variantCount} 个变体 · ${item.desc.substring(0,30)}...</div>
+          <div style="font-weight:800;color:${color};font-size:17px;text-shadow:0 0 10px ${color}40;">${item.name}</div>
+          <div style="font-size:12px;color:var(--text-dim);margin-top:4px">${item.variantCount} 个变体 · ${item.desc.substring(0,35)}...</div>
         </div>
-        <span style="font-size:18px">→</span>
+        <span style="font-size:22px;color:${color}">→</span>
       </button>
     `;
   }).join('');
@@ -9287,7 +9291,7 @@ function setDifficulty(diff) {
   showAffixLevel2(document.getElementById('appContent'));
 }
 
-// === 二级菜单：显示具体变体 ===
+// === 二级菜单：显示具体变体 + 综合练习 ===
 function showAffixLevel2(c) {
   const state = prefixGameState;
   const catData = AFFIX_GAME_DATA[state.level1];
@@ -9295,7 +9299,10 @@ function showAffixLevel2(c) {
   if (!childData) { backToAffixLevel1(); return; }
 
   const variants = Object.entries(childData.variants);
-  const buttons = variants.map(([varKey, varData]) => {
+  const totalWords = variants.reduce((sum, [,v]) => sum + (v.words ? v.words.length : 0), 0);
+
+  // 单个变体按钮
+  const varButtons = variants.map(([varKey, varData]) => {
     return `
       <button onclick="startAffixGame('${varKey}')" class="trans-btn" style="margin:8px;padding:16px 20px;font-size:15px;min-width:200px;text-align:left;border:2px solid ${varData.color || 'var(--primary)'};background:${varData.color || 'var(--primary)'}10;border-radius:10px;transition:all .3s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 20px rgba(0,212,170,.15)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
         <div style="font-weight:800;color:${varData.color || 'var(--primary)'};font-size:18px;margin-bottom:4px;">${varData.label}</div>
@@ -9304,6 +9311,14 @@ function showAffixLevel2(c) {
       </button>
     `;
   }).join('');
+
+  // 综合练习按钮（大按钮，醒目）
+  const compreButton = `
+    <button onclick="startAffixGame('__ALL__')" class="trans-btn" style="margin:8px;padding:20px 24px;font-size:16px;min-width:280px;text-align:center;border:2px solid var(--accent);background:linear-gradient(135deg,rgba(245,158,11,.15),rgba(245,158,11,.05));border-radius:12px;transition:all .3s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 20px rgba(245,158,11,.2)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+      <div style="font-weight:800;color:var(--accent);font-size:20px;margin-bottom:6px;">🎯 综合练习</div>
+      <div style="font-size:12px;color:var(--text-dim);line-height:1.6">随机混合全部 ${variants.length} 个变体<br>共 ${totalWords} 个词根 · 全面巩固</div>
+    </button>
+  `;
 
   c.innerHTML = `
     <div class="card">
@@ -9315,9 +9330,12 @@ function showAffixLevel2(c) {
         <div style="font-size:13px;color:var(--text-dim);margin-bottom:16px;padding:12px;background:rgba(0,212,170,.06);border-radius:10px;border-left:3px solid var(--primary);line-height:1.7">
           <strong>规则:</strong> ${childData.rule || childData.desc}
         </div>
-        <div style="font-size:13px;color:var(--primary);margin-bottom:12px;font-weight:700">选择变体进入射击:</div>
+        <div style="font-size:14px;color:var(--primary);margin-bottom:14px;font-weight:700">🎯 选择单个变体练习，或点击"综合练习"混合全部:</div>
         <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;">
-          ${buttons}
+          ${varButtons}
+        </div>
+        <div style="margin-top:20px;padding-top:16px;border-top:1px dashed var(--border);display:flex;justify-content:center;">
+          ${compreButton}
         </div>
       </div>
     </div>
@@ -9356,27 +9374,44 @@ function showAffixGamePlay(c) {
   const variants = level2Data.variants;
   const variantKeys = Object.keys(variants);
   const diff = DIFFICULTY_CONFIG[state.difficulty];
+  const isComprehensive = state.selectedVariant === '__ALL__';
 
   // 动态词库补充
   const dynamicPool = buildDynamicWordPool();
 
-  // 固定正确答案为选中的变体
-  const correctKey = state.selectedVariant;
-  const correctVar = variants[correctKey];
+  // 确定正确答案变体
+  let correctKey, correctVar;
+  if (isComprehensive) {
+    // 综合模式：随机选一个变体作为正确答案
+    correctKey = variantKeys[Math.floor(Math.random() * variantKeys.length)];
+    correctVar = variants[correctKey];
+  } else {
+    correctKey = state.selectedVariant;
+    correctVar = variants[correctKey];
+  }
   if (!correctVar) { backToAffixLevel2(); return; }
-  const baseWords = correctVar.words;
-  // 混合动态词库
+
+  // 构建词库：综合模式混合全部变体的词
+  let baseWords;
+  if (isComprehensive) {
+    baseWords = [];
+    Object.values(variants).forEach(v => {
+      if (v.words) baseWords.push(...v.words);
+    });
+  } else {
+    baseWords = correctVar.words || [];
+  }
   const allWords = [...baseWords];
   dynamicPool.forEach(dw => {
     if (!allWords.some(w => w.root === dw.root)) allWords.push(dw);
   });
+  if (allWords.length === 0) { backToAffixLevel2(); return; }
   const word = allWords[Math.floor(Math.random() * allWords.length)];
   state.currentWord = { ...word, correctVariant: correctKey };
 
-  // 生成选项（从当前level2的所有variants中选，包含正确答案）
+  // 生成选项
   let options = [correctKey];
   const otherVariants = variantKeys.filter(k => k !== correctKey);
-  // 最多4个选项
   const maxOptions = 4;
   while (options.length < maxOptions && otherVariants.length > 0) {
     const idx = Math.floor(Math.random() * otherVariants.length);
@@ -9398,7 +9433,7 @@ function showAffixGamePlay(c) {
       ${state.streak >= 3 ? `<div id="comboOverlay" style="position:absolute;top:0;left:0;right:0;bottom:0;pointer-events:none;z-index:10;background:radial-gradient(circle at 50% 30%, rgba(255,107,53,.15) 0%, transparent 60%);animation:comboPulse 1s ease-out;"></div>` : ''}
 
       <div class="card-header" style="flex-wrap:wrap;gap:8px;position:relative;z-index:5;">
-        <h2>🎯 ${level2Data.name}</h2>
+        <h2>🎯 ${level2Data.name}${isComprehensive ? ' <span style="color:var(--accent);font-size:14px;">[综合练习]</span>' : ''}</h2>
         <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
           <span class="badge" style="background:rgba(59,130,246,.15);color:#3b82f6">${diff.label}</span>
           <span class="badge" style="background:var(--accent)20;color:var(--accent)">大关 ${state.level}</span>
