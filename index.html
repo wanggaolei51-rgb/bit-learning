@@ -6,7 +6,7 @@
 <meta http-equiv="Expires" content="0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LEO-BIR V4.19.4</title>
+<title>LEO-BIR V4.19.5</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -273,7 +273,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="sidebar-header">
     <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <h1>LEO-BIR</h1>
-    <div class="ver">LEO-BIR V4.19.4 · MIR功能优化+价格走势</div>
+    <div class="ver">LEO-BIR V4.19.5 · 彻底移除清空+课程词汇全量补录</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -4815,7 +4815,7 @@ function renderWordBank(c){
   const wbDates = getWBDates();
   const dateOpts = wbDates.map(d=>`<option value="${d.date}" ${wbDateFilter===d.date?'selected':''}>${d.date} ${d.title}</option>`).join('');
   c.innerHTML=`<div class="card"><div class="card-header"><h2>📚 生词本</h2><span class="badge">${wordBank.length}词</span></div>
-    <div class="wb-toolbar"><button class="btn-exp" onclick="exportWB()">📥 导出</button><button class="btn-clr" onclick="clearWB()">🗑️ 清空</button></div>
+    <div class="wb-toolbar"><button class="btn-exp" onclick="exportWB()">📥 导出</button></div>
     <div style="display:flex;gap:20px;margin-bottom:14px;font-size:13px;color:var(--text-dim)">
       <span>📦 <strong style="color:var(--primary)">${wordBank.length}</strong></span>
       <span>✅ <strong style="color:var(--success)">${passed}</strong> (三关全过)</span>
@@ -8191,12 +8191,11 @@ function renderVersion(c){
   c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.18 / Versi</span></div>
     <div style="padding:16px;">
       <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
-        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.19.4 (2026-08-29)</div>
+        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.19.5 (2026-08-29)</div>
         <div style="font-size:13px;color:var(--text);line-height:1.8">
-        • MIR模态框新增标题头：显示日期、时间、数据来源<br>
-        • 新增"🔄 更新数据"按钮：点击后自动刷新所有价格数据(模拟实时更新)<br>
-        • 价格项新增可点击展开：显示近3个月周走势柱状图<br>
-        • 版本号同步更新为V4.19.4<br>
+        • 彻底移除生词本清空按钮(修复两个renderWordBank函数)<br>
+        • 课程词汇全量补录:即使不在vocabDB中的课程词汇也会添加(标记为[课程词汇])<br>
+        • 版本号同步更新为V4.19.5<br>
         • 总产能统计: 🇮🇩 46园区/107项目 · 🌍 66项目 · 总产能 684.4万镍吨/年<br>
         • 扩充制酸项目数据: 从8个增加到25个(硫磺制酸/硫铁矿制酸/冶炼副产酸)<br>
         • 扩充电力设施数据: 从9个增加到24个(燃煤/水电/地热/光伏/风电/柴油)<br>
@@ -10651,9 +10650,17 @@ function syncCourseVocabToWordBank() {
     const key = w.toLowerCase();
     if (existingWords.has(key)) return;
     existingWords.add(key);
+    // 优先使用提供的翻译，否则查vocabDB，否则标记为课程词汇
+    let finalCn = cn, finalEn = en, finalIpa = ipa, finalRoot = root;
+    if (!finalCn || finalCn === w) {
+      const v = vocabDB[key] || vocabDB[w.charAt(0).toUpperCase() + w.slice(1)];
+      if (v) {
+        finalCn = v.cn; finalEn = v.en; finalIpa = v.ipa; finalRoot = v.root;
+      }
+    }
     wordBank.push({
-      word: w, cn: cn || w, en: en || '',
-      ipa: ipa || '-', root: root || '-', tag: tag || '课程同步',
+      word: w, cn: finalCn || '[课程词汇]', en: finalEn || '',
+      ipa: finalIpa || '-', root: finalRoot || '-', tag: tag || '课程同步',
       date: date || new Date().toISOString().slice(0,10),
       passed: { id2zh: false, zh2id: false, spell: false }
     });
@@ -10687,7 +10694,7 @@ function syncCourseVocabToWordBank() {
                 const t = tok.trim().toLowerCase();
                 if (t.length >= 3 && /^[a-z]+$/.test(t)) {
                   const v = vocabDB[t] || vocabDB[t.charAt(0).toUpperCase() + t.slice(1)];
-                  if (v) addIfNew(t, v.cn, v.en, v.ipa, v.root, '话题:' + topicKey, topicDate);
+                  addIfNew(t, null, null, null, null, '话题:' + topicKey, topicDate);
                 }
               });
             }
@@ -10703,7 +10710,7 @@ function syncCourseVocabToWordBank() {
             const t = tok.trim().toLowerCase();
             if (t.length >= 3 && /^[a-z]+$/.test(t)) {
               const v = vocabDB[t] || vocabDB[t.charAt(0).toUpperCase() + t.slice(1)];
-              if (v) addIfNew(t, v.cn, v.en, v.ipa, v.root, '话题:' + topicKey, topicDate);
+              addIfNew(t, null, null, null, null, '话题:' + topicKey, topicDate);
             }
           });
         }
@@ -10720,7 +10727,7 @@ function syncCourseVocabToWordBank() {
             const t = tok.trim().toLowerCase();
             if (t.length >= 3 && /^[a-z]+$/.test(t)) {
               const v = vocabDB[t] || vocabDB[t.charAt(0).toUpperCase() + t.slice(1)];
-              if (v) addIfNew(t, v.cn, v.en, v.ipa, v.root, '话题:' + topicKey, topicDate);
+              addIfNew(t, null, null, null, null, '话题:' + topicKey, topicDate);
             }
           });
         }
@@ -10734,7 +10741,7 @@ function syncCourseVocabToWordBank() {
             const t = tok.trim().toLowerCase();
             if (t.length >= 3 && /^[a-z]+$/.test(t)) {
               const v = vocabDB[t] || vocabDB[t.charAt(0).toUpperCase() + t.slice(1)];
-              if (v) addIfNew(t, v.cn, v.en, v.ipa, v.root, '话题:' + topicKey, topicDate);
+              addIfNew(t, null, null, null, null, '话题:' + topicKey, topicDate);
             }
           });
         }
@@ -10760,7 +10767,7 @@ function syncCourseVocabToWordBank() {
                 const t = tok.trim().toLowerCase();
                 if (t.length >= 3 && /^[a-z]+$/.test(t)) {
                   const v = vocabDB[t] || vocabDB[t.charAt(0).toUpperCase() + t.slice(1)];
-                  if (v) addIfNew(t, v.cn, v.en, v.ipa, v.root, '镍产业:' + ds);
+                  addIfNew(t, null, null, null, null, '镍产业:' + ds);
                 }
               });
             }
@@ -10778,7 +10785,7 @@ function syncCourseVocabToWordBank() {
               const t = tok.trim().toLowerCase();
               if (t.length >= 3 && /^[a-z]+$/.test(t)) {
                 const v = vocabDB[t] || vocabDB[t.charAt(0).toUpperCase() + t.slice(1)];
-                if (v) addIfNew(t, v.cn, v.en, v.ipa, v.root, '镍产业:' + ds);
+                addIfNew(t, null, null, null, null, '镍产业:' + ds);
               }
             });
           }
@@ -10792,7 +10799,7 @@ function syncCourseVocabToWordBank() {
             const t = tok.trim().toLowerCase();
             if (t.length >= 3 && /^[a-z]+$/.test(t)) {
               const v = vocabDB[t] || vocabDB[t.charAt(0).toUpperCase() + t.slice(1)];
-              if (v) addIfNew(t, v.cn, v.en, v.ipa, v.root, '镍产业:' + ds);
+              addIfNew(t, null, null, null, null, '镍产业:' + ds);
             }
           });
         }
@@ -10808,7 +10815,7 @@ function syncCourseVocabToWordBank() {
                 const t = tok.trim().toLowerCase();
                 if (t.length >= 3 && /^[a-z]+$/.test(t)) {
                   const v = vocabDB[t] || vocabDB[t.charAt(0).toUpperCase() + t.slice(1)];
-                  if (v) addIfNew(t, v.cn, v.en, v.ipa, v.root, '镍产业:' + ds);
+                  addIfNew(t, null, null, null, null, '镍产业:' + ds);
                 }
               });
             }
