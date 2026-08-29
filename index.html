@@ -6,7 +6,7 @@
 <meta http-equiv="Expires" content="0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LEO-BIR V4.18.14</title>
+<title>LEO-BIR V4.19.0</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -273,7 +273,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="sidebar-header">
     <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <h1>LEO-BIR</h1>
-    <div class="ver">LEO-BIR V4.18.14 · 搜索修复+MIR增强+品质资讯</div>
+    <div class="ver">LEO-BIR V4.19.0 · 生词本修复+百词斩+词根射击重构+C5朗读</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -854,10 +854,10 @@ const vocabDB = {
   'hyatt':{ipa:'/ˈhaɪat/',cn:'凯悦酒店',en:'Hyatt',root:'hyatt',tag:'常用词'},
   'iklim':{ipa:'/ˈiklɪm/',cn:'气候',en:'climate',root:'iklim',tag:'常用词'},
   'infonya':{ipa:'/infonya/',cn:'他的info',en:'his/her info',root:'info + -nya',tag:'常用词'},
-  'infrastruktur':{ipa:'/infrastruktur/',cn:'infrastruktur(印尼语)',en:'infrastruktur',root:'infrastruktur',tag:'常用词'},
-  'internal':{ipa:'/internal/',cn:'internal(印尼语)',en:'internal',root:'internal',tag:'常用词'},
+  'infrastruktur':{ipa:'/infrastruktur/',cn:'基础设施',en:'infrastruktur',root:'infrastruktur',tag:'常用词'},
+  'internal':{ipa:'/internal/',cn:'內部',en:'internal',root:'internal',tag:'常用词'},
   'investasi':{ipa:'/investasi/',cn:'investas(及物动词)',en:'to investas (tr.)',root:'investasi',tag:'常用词'},
-  'isi':{ipa:'/isi/',cn:'isi(印尼语)',en:'isi',root:'isi',tag:'常用词'},
+  'isi':{ipa:'/isi/',cn:'目   录',en:'isi',root:'isi',tag:'常用词'},
   'istirahat':{ipa:'/ɪstɪˈrahat/',cn:'休息',en:'rest',root:'istirahat',tag:'常用词'},
   'itu':{ipa:'/ˈitu/',cn:'那/那个',en:'that',root:'itu',tag:'常用词'},
   'izinkan':{ipa:'/izinkan/',cn:'使izin',en:'to make izin',root:'izin + -kan',tag:'常用词'},
@@ -867,19 +867,19 @@ const vocabDB = {
   'jam':{ipa:'/ˈdʒam/',cn:'小时/点钟',en:'hour/o clock',root:'jam',tag:'常用词'},
   'jenis':{ipa:'/ˈdʒɛnɪs/',cn:'种类',en:'type',root:'jenis',tag:'常用词'},
   'jumlah':{ipa:'/jumlah/',cn:'请jum',en:'please jum',root:'jum + -lah',tag:'常用词'},
-  'kabut':{ipa:'/kabut/',cn:'kabut(印尼语)',en:'kabut',root:'kabut',tag:'常用词'},
-  'kaget':{ipa:'/kaget/',cn:'kaget(印尼语)',en:'kaget',root:'kaget',tag:'常用词'},
-  'kain':{ipa:'/kain/',cn:'kain(印尼语)',en:'kain',root:'kain',tag:'常用词'},
+  'kabut':{ipa:'/kabut/',cn:'雾',en:'kabut',root:'kabut',tag:'常用词'},
+  'kaget':{ipa:'/kaget/',cn:'吃惊',en:'kaget',root:'kaget',tag:'常用词'},
+  'kain':{ipa:'/kain/',cn:'纺织品',en:'kain',root:'kain',tag:'常用词'},
   'kaki':{ipa:'/ˈkaki/',cn:'脚',en:'foot',root:'kaki',tag:'常用词'},
   'kakinya':{ipa:'/kakinya/',cn:'他的kaki',en:'his/her kaki',root:'kaki + -nya',tag:'常用词'},
-  'kali':{ipa:'/kali/',cn:'kali(印尼语)',en:'kali',root:'kali',tag:'常用词'},
+  'kali':{ipa:'/kali/',cn:'倍',en:'kali',root:'kali',tag:'常用词'},
   'kamar':{ipa:'/ˈkamar/',cn:'房间',en:'room',root:'kamar',tag:'常用词'},
   'kanan':{ipa:'/kanan/',cn:'kan(名词)',en:'kan (noun)',root:'kan + -an',tag:'常用词'},
   'kantor':{ipa:'/ˈkantor/',cn:'办公室',en:'office',root:'kantor',tag:'常用词'},
   'karena':{ipa:'/kaˈrɛna/',cn:'因为',en:'because',root:'karena',tag:'常用词'},
-  'kartu':{ipa:'/kartu/',cn:'kartu(印尼语)',en:'kartu',root:'kartu',tag:'常用词'},
+  'kartu':{ipa:'/kartu/',cn:'卡 卡 [ka3]',en:'kartu',root:'kartu',tag:'常用词'},
   'karyawan':{ipa:'/karyawan/',cn:'karyaw(名词)',en:'karyaw (noun)',root:'karyaw + -an',tag:'常用词'},
-  'keliling':{ipa:'/keliling/',cn:'keliling(印尼语)',en:'keliling',root:'keliling',tag:'常用词'},
+  'keliling':{ipa:'/keliling/',cn:'周围',en:'keliling',root:'keliling',tag:'常用词'},
   'keluar':{ipa:'/kɛˈluar/',cn:'出去',en:'to exit',root:'keluar',tag:'常用词'},
   'kembali':{ipa:'/kɛmˈbali/',cn:'返回',en:'to return',root:'kembali',tag:'常用词'},
   'kemungkinan':{ipa:'/kemungkinan/',cn:'kemungkin(名词)',en:'kemungkin (noun)',root:'kemungkin + -an',tag:'常用词'},
@@ -887,39 +887,39 @@ const vocabDB = {
   'kesehatan':{ipa:'/kesehatan/',cn:'kesehat(名词)',en:'kesehat (noun)',root:'kesehat + -an',tag:'常用词'},
   'ketinggalan':{ipa:'/ketinggalan/',cn:'ketinggal(名词)',en:'ketinggal (noun)',root:'ketinggal + -an',tag:'常用词'},
   'keuangan':{ipa:'/keuangan/',cn:'keuang(名词)',en:'keuang (noun)',root:'keuang + -an',tag:'常用词'},
-  'khawatir':{ipa:'/khawatir/',cn:'khawatir(印尼语)',en:'khawatir',root:'khawatir',tag:'常用词'},
+  'khawatir':{ipa:'/khawatir/',cn:'多愁',en:'khawatir',root:'khawatir',tag:'常用词'},
   'kilometer':{ipa:'/kiˈlomɛtɛr/',cn:'公里',en:'kilometer',root:'kilometer',tag:'常用词'},
   'kiri':{ipa:'/ˈkɪri/',cn:'左',en:'left',root:'kiri',tag:'常用词'},
-  'kobalt':{ipa:'/kobalt/',cn:'kobalt(印尼语)',en:'kobalt',root:'kobalt',tag:'常用词'},
+  'kobalt':{ipa:'/kobalt/',cn:'钴',en:'kobalt',root:'kobalt',tag:'常用词'},
   'koordinasi':{ipa:'/koordinasi/',cn:'koordinas(及物动词)',en:'to koordinas (tr.)',root:'koordinasi',tag:'常用词'},
   'kota':{ipa:'/ˈkota/',cn:'城市',en:'city',root:'kota',tag:'常用词'},
-  'ktp':{ipa:'/ktp/',cn:'ktp(印尼语)',en:'ktp',root:'ktp',tag:'常用词'},
+  'ktp':{ipa:'/ktp/',cn:'身份证',en:'ktp',root:'ktp',tag:'常用词'},
   'kualitas':{ipa:'/kuaˈlɪtas/',cn:'质量',en:'quality',root:'kualitas',tag:'常用词'},
   'kurang':{ipa:'/ˈkuraŋ/',cn:'缺少/不足',en:'less/lacking',root:'kurang',tag:'常用词'},
   'lantai':{ipa:'/ˈlantai/',cn:'地板/层',en:'floor/story',root:'lantai',tag:'常用词'},
-  'lemas':{ipa:'/lemas/',cn:'lemas(印尼语)',en:'lemas',root:'lemas',tag:'常用词'},
-  'lengkap':{ipa:'/lengkap/',cn:'lengkap(印尼语)',en:'lengkap',root:'lengkap',tag:'常用词'},
-  'li':{ipa:'/li/',cn:'li(印尼语)',en:'li',root:'li',tag:'常用词'},
-  'licin':{ipa:'/licin/',cn:'licin(印尼语)',en:'licin',root:'licin',tag:'常用词'},
-  'lift':{ipa:'/lift/',cn:'lift(印尼语)',en:'lift',root:'lift',tag:'常用词'},
+  'lemas':{ipa:'/lemas/',cn:'溺水',en:'lemas',root:'lemas',tag:'常用词'},
+  'lengkap':{ipa:'/lengkap/',cn:'完全',en:'lengkap',root:'lengkap',tag:'常用词'},
+  'li':{ipa:'/li/',cn:'孔秀丽',en:'li',root:'li',tag:'常用词'},
+  'licin':{ipa:'/licin/',cn:'对了，很光滑！',en:'licin',root:'licin',tag:'常用词'},
+  'lift':{ipa:'/lift/',cn:'电梯',en:'lift',root:'lift',tag:'常用词'},
   'lihat':{ipa:'/ˈlihat/',cn:'看',en:'to see',root:'lihat',tag:'常用词'},
-  'lini':{ipa:'/lini/',cn:'lini(印尼语)',en:'lini',root:'lini',tag:'常用词'},
-  'logistik':{ipa:'/logistik/',cn:'logistik(印尼语)',en:'logistik',root:'logistik',tag:'常用词'},
-  'lokal':{ipa:'/lokal/',cn:'lokal(印尼语)',en:'lokal',root:'lokal',tag:'常用词'},
+  'lini':{ipa:'/lini/',cn:'生产线',en:'lini',root:'lini',tag:'常用词'},
+  'logistik':{ipa:'/logistik/',cn:'物流',en:'logistik',root:'logistik',tag:'常用词'},
+  'lokal':{ipa:'/lokal/',cn:'当地',en:'lokal',root:'lokal',tag:'常用词'},
   'lokasi':{ipa:'/lokasi/',cn:'lokas(及物动词)',en:'to lokas (tr.)',root:'lokasi',tag:'常用词'},
   'luka':{ipa:'/ˈluka/',cn:'伤口',en:'wound',root:'luka',tag:'常用词'},
-  'lurus':{ipa:'/lurus/',cn:'lurus(印尼语)',en:'lurus',root:'lurus',tag:'常用词'},
-  'macet':{ipa:'/macet/',cn:'macet(印尼语)',en:'macet',root:'macet',tag:'常用词'},
+  'lurus':{ipa:'/lurus/',cn:'直街',en:'lurus',root:'lurus',tag:'常用词'},
+  'macet':{ipa:'/macet/',cn:'交通堵塞',en:'macet',root:'macet',tag:'常用词'},
   'makanan':{ipa:'/makanan/',cn:'makan(名词)',en:'makan (noun)',root:'makan + -an',tag:'常用词'},
-  'makasih':{ipa:'/makasih/',cn:'makasih(印尼语)',en:'makasih',root:'makasih',tag:'常用词'},
+  'makasih':{ipa:'/makasih/',cn:'- 谢谢 - 不客气 再见',en:'makasih',root:'makasih',tag:'常用词'},
   'malam':{ipa:'/ˈmalam/',cn:'晚上',en:'night/evening',root:'malam',tag:'常用词'},
-  'malaria':{ipa:'/malaria/',cn:'malaria(印尼语)',en:'malaria',root:'malaria',tag:'常用词'},
-  'mall':{ipa:'/mall/',cn:'mall(印尼语)',en:'mall',root:'mall',tag:'常用词'},
-  'mana':{ipa:'/mana/',cn:'mana(印尼语)',en:'mana',root:'mana',tag:'常用词'},
+  'malaria':{ipa:'/malaria/',cn:'"疟疾" "Malaria."',en:'malaria',root:'malaria',tag:'常用词'},
+  'mall':{ipa:'/mall/',cn:'商場',en:'mall',root:'mall',tag:'常用词'},
+  'mana':{ipa:'/mana/',cn:'严盼旋',en:'mana',root:'mana',tag:'常用词'},
   'manajemen':{ipa:'/manaˈdʒɛmɛn/',cn:'管理',en:'management',root:'manajemen',tag:'常用词'},
   'manis':{ipa:'/ˈmanis/',cn:'甜的',en:'sweet',root:'manis',tag:'常用词'},
-  'maps':{ipa:'/maps/',cn:'maps(印尼语)',en:'maps',root:'maps',tag:'常用词'},
-  'maret':{ipa:'/maret/',cn:'maret(印尼语)',en:'maret',root:'maret',tag:'常用词'},
+  'maps':{ipa:'/maps/',cn:'地图',en:'maps',root:'maps',tag:'常用词'},
+  'maret':{ipa:'/maret/',cn:'三月份',en:'maret',root:'maret',tag:'常用词'},
   'masakannya':{ipa:'/masakannya/',cn:'他的masakan',en:'his/her masakan',root:'masakan + -nya',tag:'常用词'},
   'masalah':{ipa:'/masalah/',cn:'请masa',en:'please masa',root:'masa + -lah',tag:'常用词'},
   'matahari':{ipa:'/matahari/',cn:'matahar(及物动词)',en:'to matahar (tr.)',root:'matahari',tag:'常用词'},
@@ -943,8 +943,8 @@ const vocabDB = {
   'mereka':{ipa:'/mereka/',cn:'reka(动词)',en:'to reka',root:'reka + me-',tag:'常用词'},
   'mesin':{ipa:'/mesin/',cn:'sin(动词)',en:'to sin',root:'sin + me-',tag:'常用词'},
   'meter':{ipa:'/meter/',cn:'ter(动词)',en:'to ter',root:'ter + me-',tag:'常用词'},
-  'mineral':{ipa:'/mineral/',cn:'mineral(印尼语)',en:'mineral',root:'mineral',tag:'常用词'},
-  'minimarket':{ipa:'/minimarket/',cn:'minimarket(印尼语)',en:'minimarket',root:'minimarket',tag:'常用词'},
+  'mineral':{ipa:'/mineral/',cn:'礦物',en:'mineral',root:'mineral',tag:'常用词'},
+  'minimarket':{ipa:'/minimarket/',cn:'小卖部',en:'minimarket',root:'minimarket',tag:'常用词'},
   'minta':{ipa:'/ˈminta/',cn:'请求',en:'to ask',root:'minta',tag:'常用词'},
   'minum':{ipa:'/ˈminum/',cn:'喝',en:'to drink',root:'minum',tag:'常用词'},
   'minumnya':{ipa:'/minumnya/',cn:'他的minum',en:'his/her minum',root:'minum + -nya',tag:'常用词'},
@@ -957,28 +957,28 @@ const vocabDB = {
   'nama-nya':{ipa:'/nama-nya/',cn:'他的nama-',en:'his/her nama-',root:'nama- + -nya',tag:'常用词'},
   'nasi':{ipa:'/ˈnasi/',cn:'米饭',en:'rice',root:'nasi',tag:'常用词'},
   'negara':{ipa:'/nɛˈgara/',cn:'国家',en:'country',root:'negara',tag:'常用词'},
-  'nggak':{ipa:'/nggak/',cn:'nggak(印尼语)',en:'nggak',root:'nggak',tag:'常用词'},
+  'nggak':{ipa:'/nggak/',cn:'没有啊',en:'nggak',root:'nggak',tag:'常用词'},
   'nol':{ipa:'/nol/',cn:'零',en:'nol',root:'nol',tag:'常用词'},
-  'nol-nol-nol':{ipa:'/nol-nol-nol/',cn:'nol-nol-nol(印尼语)',en:'nol-nol-nol',root:'nol-nol-nol',tag:'常用词'},
+  'nol-nol-nol':{ipa:'/nol-nol-nol/',cn:'零零零',en:'nol-nol-nol',root:'nol-nol-nol',tag:'常用词'},
   'nomor':{ipa:'/ˈnomor/',cn:'号码',en:'number',root:'nomor',tag:'常用词'},
-  'november':{ipa:'/november/',cn:'november(印尼语)',en:'november',root:'november',tag:'常用词'},
+  'november':{ipa:'/november/',cn:'十一月',en:'november',root:'november',tag:'常用词'},
   'ojek':{ipa:'/ˈodʒɛk/',cn:'摩托车出租',en:'ojek',root:'ojek',tag:'常用词'},
-  'oke':{ipa:'/oke/',cn:'oke(印尼语)',en:'oke',root:'oke',tag:'常用词'},
-  'online':{ipa:'/online/',cn:'online(印尼语)',en:'online',root:'online',tag:'常用词'},
+  'oke':{ipa:'/oke/',cn:'得！',en:'oke',root:'oke',tag:'常用词'},
+  'online':{ipa:'/online/',cn:'在线',en:'online',root:'online',tag:'常用词'},
   'optimalisasi':{ipa:'/optimalisasi/',cn:'optimalisas(及物动词)',en:'to optimalisas (tr.)',root:'optimalisasi',tag:'常用词'},
   'orang':{ipa:'/ˈoraŋ/',cn:'人',en:'person',root:'orang',tag:'常用词'},
   'pabrik':{ipa:'/ˈpabrik/',cn:'工厂',en:'factory',root:'pabrik',tag:'常用词'},
   'pabriknya':{ipa:'/pabriknya/',cn:'他的pabrik',en:'his/her pabrik',root:'pabrik + -nya',tag:'常用词'},
-  'padang':{ipa:'/padang/',cn:'padang(印尼语)',en:'padang',root:'padang',tag:'常用词'},
+  'padang':{ipa:'/padang/',cn:'- 呼叫基地？',en:'padang',root:'padang',tag:'常用词'},
   'pagi-pagi':{ipa:'/pagi-pagi/',cn:'pagi-pag(及物动词)',en:'to pagi-pag (tr.)',root:'pagi-pagi',tag:'常用词'},
   'panasnya':{ipa:'/panasnya/',cn:'他的panas',en:'his/her panas',root:'panas + -nya',tag:'常用词'},
   'panggilkan':{ipa:'/panggilkan/',cn:'使panggil',en:'to make panggil',root:'panggil + -kan',tag:'常用词'},
   'pantai':{ipa:'/ˈpantai/',cn:'海滩',en:'beach',root:'pantai',tag:'常用词'},
   'papan':{ipa:'/papan/',cn:'pap(名词)',en:'pap (noun)',root:'pap + -an',tag:'常用词'},
   'pasien':{ipa:'/ˈpasiɛn/',cn:'病人',en:'patient',root:'pasien',tag:'常用词'},
-  'passport':{ipa:'/passport/',cn:'passport(印尼语)',en:'passport',root:'passport',tag:'常用词'},
+  'passport':{ipa:'/passport/',cn:'护照这里！',en:'passport',root:'passport',tag:'常用词'},
   'pasti':{ipa:'/pasti/',cn:'past(及物动词)',en:'to past (tr.)',root:'pasti',tag:'常用词'},
-  'payung':{ipa:'/payung/',cn:'payung(印尼语)',en:'payung',root:'payung',tag:'常用词'},
+  'payung':{ipa:'/payung/',cn:'傘',en:'payung',root:'payung',tag:'常用词'},
   'pekan':{ipa:'/pekan/',cn:'kan的人/物',en:'kan person',root:'kan + pe-',tag:'常用词'},
   'pekerja':{ipa:'/pekerja/',cn:'kerja的人/物',en:'kerja person',root:'kerja + pe-',tag:'常用词'},
   'pelabuhan':{ipa:'/pelabuhan/',cn:'labuhan的人/物',en:'labuhan person',root:'labuhan + pe-',tag:'常用词'},
@@ -993,7 +993,7 @@ const vocabDB = {
   'pengiriman':{ipa:'/pengiriman/',cn:'ngiriman的人/物',en:'ngiriman person',root:'ngiriman + pe-',tag:'常用词'},
   'penting':{ipa:'/penting/',cn:'nting的人/物',en:'nting person',root:'nting + pe-',tag:'常用词'},
   'penurun':{ipa:'/penurun/',cn:'nurun的人/物',en:'nurun person',root:'nurun + pe-',tag:'常用词'},
-  'per':{ipa:'/per/',cn:'per(印尼语)',en:'per',root:'per',tag:'常用词'},
+  'per':{ipa:'/per/',cn:'弹簧',en:'per',root:'per',tag:'常用词'},
   'perempatan':{ipa:'/perempatan/',cn:'rempatan的人/物',en:'rempatan person',root:'rempatan + pe-',tag:'常用词'},
   'performa':{ipa:'/performa/',cn:'rforma的人/物',en:'rforma person',root:'rforma + pe-',tag:'常用词'},
   'perhatikan':{ipa:'/perhatikan/',cn:'rhatikan的人/物',en:'rhatikan person',root:'rhatikan + pe-',tag:'常用词'},
@@ -1005,31 +1005,31 @@ const vocabDB = {
   'pesan':{ipa:'/pesan/',cn:'san的人/物',en:'san person',root:'san + pe-',tag:'常用词'},
   'pesat':{ipa:'/pesat/',cn:'sat的人/物',en:'sat person',root:'sat + pe-',tag:'常用词'},
   'peta':{ipa:'/ˈpɛta/',cn:'地图',en:'map',root:'peta',tag:'常用词'},
-  'pilek':{ipa:'/pilek/',cn:'pilek(印尼语)',en:'pilek',root:'pilek',tag:'常用词'},
+  'pilek':{ipa:'/pilek/',cn:'傷風',en:'pilek',root:'pilek',tag:'常用词'},
   'pindah':{ipa:'/ˈpɪndah/',cn:'搬家/移动',en:'to move',root:'pindah',tag:'常用词'},
   'pindahkan':{ipa:'/pindahkan/',cn:'使pindah',en:'to make pindah',root:'pindah + -kan',tag:'常用词'},
   'pos':{ipa:'/ˈpos/',cn:'邮局/岗位',en:'post',root:'pos',tag:'常用词'},
   'prakiraan':{ipa:'/prakiraan/',cn:'prakira(名词)',en:'prakira (noun)',root:'prakira + -an',tag:'常用词'},
   'produk':{ipa:'/ˈprodʊk/',cn:'产品',en:'product',root:'produk',tag:'常用词'},
-  'produsen':{ipa:'/produsen/',cn:'produsen(印尼语)',en:'produsen',root:'produsen',tag:'常用词'},
+  'produsen':{ipa:'/produsen/',cn:'制造商',en:'produsen',root:'produsen',tag:'常用词'},
   'proposalnya':{ipa:'/proposalnya/',cn:'他的proposal',en:'his/her proposal',root:'proposal + -nya',tag:'常用词'},
-  'proyek-proyek':{ipa:'/proyek-proyek/',cn:'proyek-proyek(印尼语)',en:'proyek-proyek',root:'proyek-proyek',tag:'常用词'},
-  'puluh':{ipa:'/puluh/',cn:'puluh(印尼语)',en:'puluh',root:'puluh',tag:'常用词'},
+  'proyek-proyek':{ipa:'/proyek-proyek/',cn:'projects',en:'proyek-proyek',root:'proyek-proyek',tag:'常用词'},
+  'puluh':{ipa:'/puluh/',cn:'赢了40块了',en:'puluh',root:'puluh',tag:'常用词'},
   'pusat':{ipa:'/ˈpusat/',cn:'中心',en:'center',root:'pusat',tag:'常用词'},
-  'putar':{ipa:'/putar/',cn:'putar(印尼语)',en:'putar',root:'putar',tag:'常用词'},
-  'ramah':{ipa:'/ramah/',cn:'ramah(印尼语)',en:'ramah',root:'ramah',tag:'常用词'},
-  'ratus':{ipa:'/ratus/',cn:'ratus(印尼语)',en:'ratus',root:'ratus',tag:'常用词'},
+  'putar':{ipa:'/putar/',cn:'播放',en:'putar',root:'putar',tag:'常用词'},
+  'ramah':{ipa:'/ramah/',cn:'- 友好',en:'ramah',root:'ramah',tag:'常用词'},
+  'ratus':{ipa:'/ratus/',cn:'百',en:'ratus',root:'ratus',tag:'常用词'},
   'rencana':{ipa:'/rɛnˈtʃana/',cn:'计划',en:'plan',root:'rencana',tag:'常用词'},
   'resep':{ipa:'/ˈrɛsɛp/',cn:'处方/食谱',en:'prescription/recipe',root:'resep',tag:'常用词'},
-  'risiko':{ipa:'/risiko/',cn:'risiko(印尼语)',en:'risiko',root:'risiko',tag:'常用词'},
-  'rontgen':{ipa:'/rontgen/',cn:'rontgen(印尼语)',en:'rontgen',root:'rontgen',tag:'常用词'},
+  'risiko':{ipa:'/risiko/',cn:'风险',en:'risiko',root:'risiko',tag:'常用词'},
+  'rontgen':{ipa:'/rontgen/',cn:'x射线',en:'rontgen',root:'rontgen',tag:'常用词'},
   'rumah':{ipa:'/ˈrumah/',cn:'家',en:'house/home',root:'rumah',tag:'常用词'},
-  'rupiah':{ipa:'/rupiah/',cn:'rupiah(印尼语)',en:'rupiah',root:'rupiah',tag:'常用词'},
-  's-p-o':{ipa:'/s-p-o/',cn:'s-p-o(印尼语)',en:'s-p-o',root:'s-p-o',tag:'常用词'},
-  'saat':{ipa:'/saat/',cn:'saat(印尼语)',en:'saat',root:'saat',tag:'常用词'},
+  'rupiah':{ipa:'/rupiah/',cn:'印尼盾',en:'rupiah',root:'rupiah',tag:'常用词'},
+  's-p-o':{ipa:'/s-p-o/',cn:'S-P-O(缩写)',en:'S-P-O',root:'s-p-o',tag:'常用词'},
+  'saat':{ipa:'/saat/',cn:'瞬间',en:'saat',root:'saat',tag:'常用词'},
   'sabtu':{ipa:'/ˈsabtu/',cn:'星期六',en:'Saturday',root:'sabtu',tag:'常用词'},
-  'saja':{ipa:'/saja/',cn:'saja(印尼语)',en:'saja',root:'saja',tag:'常用词'},
-  'satpam':{ipa:'/satpam/',cn:'satpam(印尼语)',en:'satpam',root:'satpam',tag:'常用词'},
+  'saja':{ipa:'/saja/',cn:'你在等我？',en:'saja',root:'saja',tag:'常用词'},
+  'satpam':{ipa:'/satpam/',cn:'阿龙',en:'satpam',root:'satpam',tag:'常用词'},
   'satu':{ipa:'/ˈsatu/',cn:'一',en:'one',root:'satu',tag:'常用词'},
   'sebelah':{ipa:'/sebelah/',cn:'请sebe',en:'please sebe',root:'sebe + -lah',tag:'常用词'},
   'sebentar':{ipa:'/sɛˈbɛntar/',cn:'一会儿',en:'a moment',root:'sebentar',tag:'常用词'},
@@ -1045,31 +1045,31 @@ const vocabDB = {
   'seratus':{ipa:'/sɛˈratus/',cn:'一百',en:'one hundred',root:'seratus',tag:'常用词'},
   'sesudah':{ipa:'/sesudah/',cn:'和sudah一样',en:'as sudah',root:'sesudah',tag:'常用词'},
   'setuju':{ipa:'/sɛˈtudʒu/',cn:'同意',en:'agree',root:'setuju',tag:'常用词'},
-  'siapa':{ipa:'/siapa/',cn:'siapa(印尼语)',en:'siapa',root:'siapa',tag:'常用词'},
+  'siapa':{ipa:'/siapa/',cn:'谁啊？',en:'siapa',root:'siapa',tag:'常用词'},
   'siapkan':{ipa:'/siapkan/',cn:'使siap',en:'to make siap',root:'siap + -kan',tag:'常用词'},
-  'sih':{ipa:'/sih/',cn:'sih(印尼语)',en:'sih',root:'sih',tag:'常用词'},
+  'sih':{ipa:'/sih/',cn:'搞什么 The hell?',en:'sih',root:'sih',tag:'常用词'},
   'silakan':{ipa:'/silakan/',cn:'使sila',en:'to make sila',root:'sila + -kan',tag:'常用词'},
   'singkat':{ipa:'/ˈsɪŋkat/',cn:'短的',en:'short',root:'singkat',tag:'常用词'},
-  'sini':{ipa:'/sini/',cn:'sini(印尼语)',en:'sini',root:'sini',tag:'常用词'},
+  'sini':{ipa:'/sini/',cn:'这儿',en:'sini',root:'sini',tag:'常用词'},
   'sistem':{ipa:'/ˈsɪstɛm/',cn:'系统',en:'system',root:'sistem',tag:'常用词'},
   'sore':{ipa:'/ˈsorɛ/',cn:'傍晚',en:'late afternoon',root:'sore',tag:'常用词'},
   'standar':{ipa:'/ˈstandar/',cn:'标准',en:'standard',root:'standar',tag:'常用词'},
   'stasiun':{ipa:'/staˈsiun/',cn:'车站',en:'station',root:'stasiun',tag:'常用词'},
-  'stok':{ipa:'/stok/',cn:'stok(印尼语)',en:'stok',root:'stok',tag:'常用词'},
-  'sunscreen':{ipa:'/sunscreen/',cn:'sunscreen(印尼语)',en:'sunscreen',root:'sunscreen',tag:'常用词'},
-  'surabaya':{ipa:'/surabaya/',cn:'surabaya(印尼语)',en:'surabaya',root:'surabaya',tag:'常用词'},
+  'stok':{ipa:'/stok/',cn:'库存',en:'stok',root:'stok',tag:'常用词'},
+  'sunscreen':{ipa:'/sunscreen/',cn:'防晒霜',en:'sunscreen',root:'sunscreen',tag:'常用词'},
+  'surabaya':{ipa:'/surabaya/',cn:'泗水',en:'surabaya',root:'surabaya',tag:'常用词'},
   'tahu':{ipa:'/ˈtahu/',cn:'豆腐/知道',en:'tofu/know',root:'tahu',tag:'常用词'},
   'taksi':{ipa:'/taksi/',cn:'taks(及物动词)',en:'to taks (tr.)',root:'taksi',tag:'常用词'},
   'tanya':{ipa:'/ˈtanja/',cn:'问',en:'to ask',root:'tanya',tag:'常用词'},
   'tarif':{ipa:'/ˈtarif/',cn:'费率',en:'tariff',root:'tarif',tag:'常用词'},
   'tebal':{ipa:'/ˈtɛbal/',cn:'厚的',en:'thick',root:'tebal',tag:'常用词'},
-  'teh':{ipa:'/teh/',cn:'teh(印尼语)',en:'teh',root:'teh',tag:'常用词'},
+  'teh':{ipa:'/teh/',cn:'茶',en:'teh',root:'teh',tag:'常用词'},
   'tekanan':{ipa:'/tekanan/',cn:'tekan(名词)',en:'tekan (noun)',root:'tekan + -an',tag:'常用词'},
   'teknik':{ipa:'/teknik/',cn:'被knik',en:'knik (passive)',root:'teknik',tag:'常用词'},
   'teknis':{ipa:'/teknis/',cn:'被knis',en:'knis (passive)',root:'teknis',tag:'常用词'},
   'teman-teman':{ipa:'/teman-teman/',cn:'teman-tem(名词)',en:'teman-tem (noun)',root:'teman-tem + -an',tag:'常用词'},
   'tempat':{ipa:'/ˈtɛmpat/',cn:'地方',en:'place',root:'tempat',tag:'常用词'},
-  'temu':{ipa:'/temu/',cn:'temu(印尼语)',en:'temu',root:'temu',tag:'常用词'},
+  'temu':{ipa:'/temu/',cn:'见面会',en:'temu',root:'temu',tag:'常用词'},
   'tenang':{ipa:'/tenang/',cn:'被nang',en:'nang (passive)',root:'tenang',tag:'常用词'},
   'tenggorokan':{ipa:'/tenggorokan/',cn:'使tenggoro',en:'to make tenggoro',root:'tenggoro + -kan',tag:'常用词'},
   'tentang':{ipa:'/ˈtɛntaŋ/',cn:'关于',en:'about',root:'tentang',tag:'常用词'},
@@ -1091,28 +1091,28 @@ const vocabDB = {
   'terus':{ipa:'/ˈtɛrus/',cn:'一直/继续',en:'straight/continue',root:'terus',tag:'常用词'},
   'tiba':{ipa:'/ˈtiba/',cn:'到达',en:'to arrive',root:'tiba',tag:'常用词'},
   'tiga':{ipa:'/tiga/',cn:'三',en:'tiga',root:'tiga',tag:'常用词'},
-  'timbang':{ipa:'/timbang/',cn:'timbang(印尼语)',en:'timbang',root:'timbang',tag:'常用词'},
+  'timbang':{ipa:'/timbang/',cn:'称重',en:'timbang',root:'timbang',tag:'常用词'},
   'timur':{ipa:'/ˈtimur/',cn:'东方',en:'east',root:'timur',tag:'常用词'},
   'tinggi':{ipa:'/ˈtɪŋgi/',cn:'高的',en:'high/tall',root:'tinggi',tag:'常用词'},
   'toilet':{ipa:'/ˈtoilɛt/',cn:'厕所',en:'toilet',root:'toilet',tag:'常用词'},
-  'toko':{ipa:'/toko/',cn:'toko(印尼语)',en:'toko',root:'toko',tag:'常用词'},
-  'ton':{ipa:'/ton/',cn:'ton(印尼语)',en:'ton',root:'ton',tag:'常用词'},
+  'toko':{ipa:'/toko/',cn:'商店',en:'toko',root:'toko',tag:'常用词'},
+  'ton':{ipa:'/ton/',cn:'公噸',en:'ton',root:'ton',tag:'常用词'},
   'total':{ipa:'/ˈtotal/',cn:'总计',en:'total',root:'total',tag:'常用词'},
   'tujuh':{ipa:'/tujuh/',cn:'七',en:'tujuh',root:'tujuh',tag:'常用词'},
   'tukar':{ipa:'/ˈtukar/',cn:'交换',en:'to exchange',root:'tukar',tag:'常用词'},
   'tunggu':{ipa:'/ˈtunggu/',cn:'等待',en:'to wait',root:'tunggu',tag:'常用词'},
   'tunjukkan':{ipa:'/tunjukkan/',cn:'使tunjuk',en:'to make tunjuk',root:'tunjuk + -kan',tag:'常用词'},
   'turun':{ipa:'/ˈturun/',cn:'下降',en:'to go down',root:'turun',tag:'常用词'},
-  'tutup':{ipa:'/tutup/',cn:'tutup(印尼语)',en:'tutup',root:'tutup',tag:'常用词'},
+  'tutup':{ipa:'/tutup/',cn:'关上',en:'tutup',root:'tutup',tag:'常用词'},
   'uang':{ipa:'/ˈuaŋ/',cn:'钱',en:'money',root:'uang',tag:'常用词'},
-  'udah':{ipa:'/udah/',cn:'udah(印尼语)',en:'udah',root:'udah',tag:'常用词'},
+  'udah':{ipa:'/udah/',cn:'住手！',en:'udah',root:'udah',tag:'常用词'},
   'umum':{ipa:'/ˈumum/',cn:'公共的',en:'public',root:'umum',tag:'常用词'},
   'utama':{ipa:'/ˈutama/',cn:'主要的',en:'main',root:'utama',tag:'常用词'},
-  'via':{ipa:'/via/',cn:'via(印尼语)',en:'via',root:'via',tag:'常用词'},
+  'via':{ipa:'/via/',cn:'阿卡',en:'via',root:'via',tag:'常用词'},
   'vitamin':{ipa:'/ˈvɪtamin/',cn:'维生素',en:'vitamin',root:'vitamin',tag:'常用词'},
   'warna':{ipa:'/ˈwarna/',cn:'颜色',en:'color',root:'warna',tag:'常用词'},
-  'warung':{ipa:'/warung/',cn:'warung(印尼语)',en:'warung',root:'warung',tag:'常用词'},
-  'wei':{ipa:'/wei/',cn:'wei(印尼语)',en:'wei',root:'wei',tag:'常用词'},
+  'warung':{ipa:'/warung/',cn:'摊位',en:'warung',root:'warung',tag:'常用词'},
+  'wei':{ipa:'/wei/',cn:'魏',en:'wei',root:'wei',tag:'常用词'},
 'belanja':{ipa:'/bəlˈdʒaŋa/',cn:'购物',en:'shopping',root:'belanja',tag:'购物'},
 'diskon':{ipa:'/ˈdiskon/',cn:'折扣',en:'discount',root:'diskon (Dutch)',tag:'购物'},
 'bayar':{ipa:'/ˈbajar/',cn:'付款/支付',en:'to pay',root:'bayar',tag:'购物'},
@@ -1373,62 +1373,62 @@ const vocabDB = {
 'cloud':{ipa:'-',cn:'云',en:'cloud',root:'cloud (English)',tag:'科技词汇'},
   'coba':{ipa:'/ˈtʃɔba/',cn:'尝试',en:'to try',root:'coba',tag:'常用词'},
   'commerce':{ipa:'/ˈkɔmɛrs/',cn:'商业',en:'commerce',root:'commerce',tag:'常用词'},
-  'curang':{ipa:'/curang/',cn:'curang(印尼语)',en:'curang',root:'curang',tag:'常用词'},
+  'curang':{ipa:'/curang/',cn:'麻烦啊',en:'curang',root:'curang',tag:'常用词'},
 'darat':{ipa:'-',cn:'陆地',en:'land',root:'darat',tag:'名词'},
-  'dasar':{ipa:'/dasar/',cn:'dasar(印尼语)',en:'dasar',root:'dasar',tag:'常用词'},
-  'date':{ipa:'/date/',cn:'date(印尼语)',en:'date',root:'date',tag:'常用词'},
-  'day':{ipa:'/day/',cn:'day(印尼语)',en:'day',root:'day',tag:'常用词'},
-  'deal':{ipa:'/deal/',cn:'deal(印尼语)',en:'deal',root:'deal',tag:'常用词'},
-  'debit':{ipa:'/debit/',cn:'debit(印尼语)',en:'debit',root:'debit',tag:'常用词'},
+  'dasar':{ipa:'/dasar/',cn:'根基,基礎',en:'dasar',root:'dasar',tag:'常用词'},
+  'date':{ipa:'/date/',cn:'日期',en:'date',root:'date',tag:'常用词'},
+  'day':{ipa:'/day/',cn:'天',en:'day',root:'day',tag:'常用词'},
+  'deal':{ipa:'/deal/',cn:'一言为定 我另一个号码在响，是比利',en:'deal',root:'deal',tag:'常用词'},
+  'debit':{ipa:'/debit/',cn:'出院',en:'debit',root:'debit',tag:'常用词'},
 'debu':{ipa:'-',cn:'灰尘',en:'dust',root:'debu',tag:'名词'},
 'dehidrasi':{ipa:'-',cn:'脱水',en:'dehydration',root:'dehidrasi',tag:'名词'},
-  'delivery':{ipa:'/delivery/',cn:'delivery(印尼语)',en:'delivery',root:'delivery',tag:'常用词'},
+  'delivery':{ipa:'/delivery/',cn:'外送',en:'delivery',root:'delivery',tag:'常用词'},
 'demamnya':{ipa:'-',cn:'发烧(他的)',en:'fever',root:'demam + -nya',tag:'名词'},
-  'dengar':{ipa:'/dengar/',cn:'dengar(印尼语)',en:'dengar',root:'dengar',tag:'常用词'},
+  'dengar':{ipa:'/dengar/',cn:'听着',en:'dengar',root:'dengar',tag:'常用词'},
 'denyut':{ipa:'-',cn:'脉搏/跳动',en:'pulse / beat',root:'denyut',tag:'名词'},
-  'didiskon':{ipa:'/didiskon/',cn:'didiskon(印尼语)',en:'didiskon',root:'didiskon',tag:'常用词'},
-  'digit':{ipa:'/digit/',cn:'digit(印尼语)',en:'digit',root:'digit',tag:'常用词'},
+  'didiskon':{ipa:'/didiskon/',cn:'折扣',en:'didiskon',root:'didiskon',tag:'常用词'},
+  'digit':{ipa:'/digit/',cn:'数字',en:'digit',root:'digit',tag:'常用词'},
 'dimulai':{ipa:'-',cn:'被开始',en:'to be started',root:'mulai + di-',tag:'被动动词'},
 'dipimpin':{ipa:'-',cn:'被领导',en:'to be led',root:'pimpin + di-',tag:'被动动词'},
-  'diponegoro':{ipa:'/diponegoro/',cn:'diponegoro(印尼语)',en:'diponegoro',root:'diponegoro',tag:'常用词'},
+  'diponegoro':{ipa:'/diponegoro/',cn:'迪波内戈罗(印尼民族英雄)',en:'Diponegoro',root:'diponegoro',tag:'专有名词'},
 'diri':{ipa:'-',cn:'自己',en:'self',root:'diri',tag:'代词'},
 'ditentukan':{ipa:'-',cn:'被确定',en:'to be determined',root:'tentu + di- + -kan',tag:'被动动词'},
-  'dki':{ipa:'/dki/',cn:'dki(印尼语)',en:'dki',root:'dki',tag:'常用词'},
+  'dki':{ipa:'/dki/',cn:'雅加达特区(DKI)',en:'DKI',root:'dki',tag:'专有名词'},
 'drastis':{ipa:'-',cn:'剧烈的',en:'drastic',root:'drastis (Dutch)',tag:'形容词'},
 'dukungan':{ipa:'-',cn:'支持',en:'support',root:'dukung + -an',tag:'名词'},
-  'dunia':{ipa:'/dunia/',cn:'dunia(印尼语)',en:'dunia',root:'dunia',tag:'常用词'},
-  'duren':{ipa:'/duren/',cn:'duren(印尼语)',en:'duren',root:'duren',tag:'常用词'},
+  'dunia':{ipa:'/dunia/',cn:'世界，世人',en:'dunia',root:'dunia',tag:'常用词'},
+  'duren':{ipa:'/duren/',cn:'榴莲',en:'duren',root:'duren',tag:'常用词'},
 'efisien':{ipa:'-',cn:'高效的',en:'efficient',root:'efisien (Dutch)',tag:'形容词'},
 'ekonomi':{ipa:'-',cn:'经济',en:'economy',root:'ekonomi',tag:'名词'},
 'ekstrem':{ipa:'-',cn:'极端的',en:'extreme',root:'ekstrem (Dutch)',tag:'形容词'},
-  'elektronik':{ipa:'/elektronik/',cn:'elektronik(印尼语)',en:'elektronik',root:'elektronik',tag:'常用词'},
+  'elektronik':{ipa:'/elektronik/',cn:'电子',en:'elektronik',root:'elektronik',tag:'常用词'},
 'emisi':{ipa:'-',cn:'排放',en:'emission',root:'emisi (Dutch)',tag:'名词'},
 'energi':{ipa:'-',cn:'能量',en:'energy',root:'energi',tag:'名词'},
   'estimasi':{ipa:'/estimasi/',cn:'estimas(及物动词)',en:'to estimas (tr.)',root:'estimasi',tag:'常用词'},
-  'expired':{ipa:'/expired/',cn:'expired(印尼语)',en:'expired',root:'expired',tag:'常用词'},
+  'expired':{ipa:'/expired/',cn:'已过期',en:'expired',root:'expired',tag:'常用词'},
 'fatal':{ipa:'-',cn:'致命的',en:'fatal',root:'fatal (Dutch)',tag:'形容词'},
-  'favorit':{ipa:'/favorit/',cn:'favorit(印尼语)',en:'favorit',root:'favorit',tag:'常用词'},
+  'favorit':{ipa:'/favorit/',cn:'收藏夹',en:'favorit',root:'favorit',tag:'常用词'},
 'fitri':{ipa:'-',cn:'Fitri(节日)',en:'Fitri',root:'fitri',tag:'节日'},
-  'gadget':{ipa:'/gadget/',cn:'gadget(印尼语)',en:'gadget',root:'gadget',tag:'常用词'},
+  'gadget':{ipa:'/gadget/',cn:'我有些工具.',en:'gadget',root:'gadget',tag:'常用词'},
 'gejala':{ipa:'-',cn:'症状',en:'symptom',root:'gejala',tag:'名词'},
 'geografis':{ipa:'-',cn:'地理的',en:'geographical',root:'geografi + -s',tag:'形容词'},
-  'get':{ipa:'/get/',cn:'get(印尼语)',en:'get',root:'get',tag:'常用词'},
-  'gitu':{ipa:'/gitu/',cn:'gitu(印尼语)',en:'gitu',root:'gitu',tag:'常用词'},
+  'get':{ipa:'/get/',cn:'得到/获取',en:'get',root:'get',tag:'常用词'},
+  'gitu':{ipa:'/gitu/',cn:'事情就是这样。',en:'gitu',root:'gitu',tag:'常用词'},
 'global':{ipa:'-',cn:'全球的',en:'global',root:'global (English)',tag:'形容词'},
   'gramnya':{ipa:'/gramnya/',cn:'他的gram',en:'his/her gram',root:'gram + -nya',tag:'常用词'},
-  'grand':{ipa:'/grand/',cn:'grand(印尼语)',en:'grand',root:'grand',tag:'常用词'},
+  'grand':{ipa:'/grand/',cn:'宏伟的/盛大的',en:'grand',root:'grand',tag:'常用词'},
 'helm':{ipa:'-',cn:'头盔',en:'helmet',root:'helm (Dutch)',tag:'名词'},
-  'hemat':{ipa:'/hemat/',cn:'hemat(印尼语)',en:'hemat',root:'hemat',tag:'常用词'},
+  'hemat':{ipa:'/hemat/',cn:'保存',en:'hemat',root:'hemat',tag:'常用词'},
 'hidup':{ipa:'-',cn:'生活/活着',en:'life / to live',root:'hidup',tag:'名词/动词'},
 'hindia':{ipa:'-',cn:'印度的',en:'Indian',root:'hindia',tag:'形容词'},
-  'hmmm':{ipa:'/hmmm/',cn:'hmmm(印尼语)',en:'hmmm',root:'hmmm',tag:'常用词'},
-  'hpal':{ipa:'/hpal/',cn:'hpal(印尼语)',en:'hpal',root:'hpal',tag:'常用词'},
+  'hmmm':{ipa:'/hmmm/',cn:'哼',en:'hmmm',root:'hmmm',tag:'常用词'},
+  'hpal':{ipa:'/hpal/',cn:'高压酸浸(湿法工艺)',en:'HPAL',root:'hpal',tag:'专业术语'},
 'idul':{ipa:'-',cn:'Idul(开斋节)',en:'Idul',root:'idul',tag:'节日'},
 'ikuti':{ipa:'-',cn:'跟随',en:'to follow',root:'ikut + -i',tag:'基础动词'},
-  'indo':{ipa:'/indo/',cn:'indo(印尼语)',en:'indo',root:'indo',tag:'常用词'},
+  'indo':{ipa:'/indo/',cn:'印度语',en:'indo',root:'indo',tag:'常用词'},
 'infeksi':{ipa:'-',cn:'感染',en:'infection',root:'infeksi (Dutch)',tag:'名词'},
 'internasional':{ipa:'-',cn:'国际的',en:'international',root:'internasional',tag:'形容词'},
-  'internet':{ipa:'/internet/',cn:'internet(印尼语)',en:'internet',root:'internet',tag:'常用词'},
+  'internet':{ipa:'/internet/',cn:'互联网',en:'internet',root:'internet',tag:'常用词'},
 'investor':{ipa:'-',cn:'投资者',en:'investor',root:'investor (English)',tag:'名词'},
   'isinya':{ipa:'/isinya/',cn:'他的isi',en:'his/her isi',root:'isi + -nya',tag:'常用词'},
 'istimewa':{ipa:'-',cn:'特殊的',en:'special',root:'istimewa',tag:'形容词'},
@@ -1438,19 +1438,19 @@ const vocabDB = {
 'jalur':{ipa:'-',cn:'路线/通道',en:'route / path',root:'jalur',tag:'名词'},
 'jelas':{ipa:'-',cn:'清楚',en:'clear',root:'jelas',tag:'形容词'},
 'jepang':{ipa:'-',cn:'日本',en:'Japan',root:'jepang',tag:'地名'},
-  'jne':{ipa:'/jne/',cn:'jne(印尼语)',en:'jne',root:'jne',tag:'常用词'},
-  'jus':{ipa:'/jus/',cn:'jus(印尼语)',en:'jus',root:'jus',tag:'常用词'},
-  'kabupaten':{ipa:'/kabupaten/',cn:'kabupaten(印尼语)',en:'kabupaten',root:'kabupaten',tag:'常用词'},
-  'kadang':{ipa:'/kadang/',cn:'kadang(印尼语)',en:'kadang',root:'kadang',tag:'常用词'},
+  'jne':{ipa:'/jne/',cn:'JNE',en:'jne',root:'jne',tag:'常用词'},
+  'jus':{ipa:'/jus/',cn:'- 來點果汁？ - Mmm！',en:'jus',root:'jus',tag:'常用词'},
+  'kabupaten':{ipa:'/kabupaten/',cn:'摄政',en:'kabupaten',root:'kabupaten',tag:'常用词'},
+  'kadang':{ipa:'/kadang/',cn:'戚难破',en:'kadang',root:'kadang',tag:'常用词'},
   'kafe':{ipa:'/ˈkafɛ/',cn:'咖啡馆',en:'cafe',root:'kafe',tag:'常用词'},
 'karbon':{ipa:'-',cn:'碳',en:'carbon',root:'karbon (Dutch)',tag:'名词'},
-  'karet':{ipa:'/karet/',cn:'karet(印尼语)',en:'karet',root:'karet',tag:'常用词'},
+  'karet':{ipa:'/karet/',cn:'橡膠',en:'karet',root:'karet',tag:'常用词'},
   'kebanyakan':{ipa:'/kebanyakan/',cn:'使kebanya',en:'to make kebanya',root:'kebanya + -kan',tag:'常用词'},
 'keberhasilan':{ipa:'-',cn:'成功',en:'success',root:'berhasil + ke- + -an',tag:'名词'},
   'kebesaran':{ipa:'/kebesaran/',cn:'kebesar(名词)',en:'kebesar (noun)',root:'kebesar + -an',tag:'常用词'},
 'kebisingan':{ipa:'-',cn:'噪音',en:'noise',root:'bising + ke- + -an',tag:'名词'},
 'kecelakaan':{ipa:'-',cn:'事故',en:'accident',root:'celaka + ke- + -an',tag:'名词'},
-  'keenam':{ipa:'/keenam/',cn:'keenam(印尼语)',en:'keenam',root:'keenam',tag:'常用词'},
+  'keenam':{ipa:'/keenam/',cn:'第六',en:'keenam',root:'keenam',tag:'常用词'},
 'kelas':{ipa:'-',cn:'班级',en:'class',root:'kelas',tag:'名词'},
 'kelelahan':{ipa:'-',cn:'疲劳',en:'fatigue',root:'lelah + ke- + -an',tag:'名词'},
 'kelima':{ipa:'-',cn:'第五',en:'fifth',root:'lima + ke-',tag:'数词'},
@@ -1465,15 +1465,15 @@ const vocabDB = {
 'kering':{ipa:'-',cn:'干燥',en:'dry',root:'kering',tag:'形容词'},
 'kesejahteraan':{ipa:'-',cn:'福祉/繁荣',en:'welfare / prosperity',root:'sejahtera + ke- + -an',tag:'名词'},
   'ketemu':{ipa:'/ketemu/',cn:'你的kete',en:'your kete',root:'ketemu',tag:'常用词'},
-  'ketika':{ipa:'/ketika/',cn:'ketika(印尼语)',en:'ketika',root:'ketika',tag:'常用词'},
+  'ketika':{ipa:'/ketika/',cn:'当...',en:'ketika',root:'ketika',tag:'常用词'},
   'keuntungannya':{ipa:'/keuntungannya/',cn:'他的keuntungan',en:'his/her keuntungan',root:'keuntungan + -nya',tag:'常用词'},
 'komunikasi':{ipa:'-',cn:'通信',en:'communication',root:'komunikasi',tag:'名词'},
 'kondisi':{ipa:'-',cn:'条件',en:'condition',root:'kondisi (Dutch)',tag:'名词'},
 'kontrol':{ipa:'-',cn:'控制',en:'control',root:'kontrol (Dutch)',tag:'名词'},
-  'korea':{ipa:'/korea/',cn:'korea(印尼语)',en:'korea',root:'korea',tag:'常用词'},
-  'kosmetik':{ipa:'/kosmetik/',cn:'kosmetik(印尼语)',en:'kosmetik',root:'kosmetik',tag:'常用词'},
+  'korea':{ipa:'/korea/',cn:'朝鲜',en:'korea',root:'korea',tag:'常用词'},
+  'kosmetik':{ipa:'/kosmetik/',cn:'化妆品',en:'kosmetik',root:'kosmetik',tag:'常用词'},
   'kredit':{ipa:'/ˈkrɛdit/',cn:'信用/信贷',en:'credit',root:'kredit',tag:'常用词'},
-  'kulkas':{ipa:'/kulkas/',cn:'kulkas(印尼语)',en:'kulkas',root:'kulkas',tag:'常用词'},
+  'kulkas':{ipa:'/kulkas/',cn:'冰箱',en:'kulkas',root:'kulkas',tag:'常用词'},
   'kumpulkan':{ipa:'/kumpulkan/',cn:'使kumpul',en:'to make kumpul',root:'kumpul + -kan',tag:'常用词'},
 'kunjungan':{ipa:'-',cn:'访问',en:'visit',root:'kunjung + -an',tag:'名词'},
 'kurangi':{ipa:'-',cn:'减少(祈使)',en:'reduce',root:'kurang + -i',tag:'基础动词'},
@@ -1482,13 +1482,13 @@ const vocabDB = {
 'langkah':{ipa:'-',cn:'步骤',en:'step',root:'langkah',tag:'名词'},
 'laut':{ipa:'-',cn:'海',en:'sea',root:'laut',tag:'名词'},
   'layanan':{ipa:'/layanan/',cn:'layan(名词)',en:'layan (noun)',root:'layan + -an',tag:'常用词'},
-  'lazada':{ipa:'/lazada/',cn:'lazada(印尼语)',en:'lazada',root:'lazada',tag:'常用词'},
+  'lazada':{ipa:'/lazada/',cn:'来赞达(电商平台)',en:'Lazada',root:'lazada',tag:'专有名词'},
 'letak':{ipa:'-',cn:'位置',en:'location',root:'letak',tag:'名词'},
   'lewat':{ipa:'/ˈlɛwat/',cn:'经过/通过',en:'to pass',root:'lewat',tag:'常用词'},
 'liburan':{ipa:'-',cn:'假期',en:'holiday',root:'libur + -an',tag:'名词'},
 'lingkungan':{ipa:'-',cn:'环境',en:'environment',root:'lingkung + -an',tag:'名词'},
-  'lolos':{ipa:'/lolos/',cn:'lolos(印尼语)',en:'lolos',root:'lolos',tag:'常用词'},
-  'malu':{ipa:'/malu/',cn:'malu(印尼语)',en:'malu',root:'malu',tag:'常用词'},
+  'lolos':{ipa:'/lolos/',cn:'逃出来了！',en:'lolos',root:'lolos',tag:'常用词'},
+  'malu':{ipa:'/malu/',cn:'羞耻',en:'malu',root:'malu',tag:'常用词'},
 'manajer':{ipa:'-',cn:'经理',en:'manager',root:'manajer (Dutch)',tag:'名词'},
 'masa':{ipa:'-',cn:'时期',en:'period',root:'masa',tag:'名词'},
 'masker':{ipa:'-',cn:'口罩',en:'mask',root:'masker (Dutch)',tag:'名词'},
@@ -1529,37 +1529,37 @@ const vocabDB = {
   'merah':{ipa:'/merah/',cn:'rah(动词)',en:'to rah',root:'rah + me-',tag:'常用词'},
   'merayakan':{ipa:'/merayakan/',cn:'rayakan(动词)',en:'to rayakan',root:'rayakan + me-',tag:'常用词'},
   'merdeka':{ipa:'/merdeka/',cn:'rdeka(动词)',en:'to rdeka',root:'rdeka + me-',tag:'常用词'},
-  'miliar':{ipa:'/miliar/',cn:'miliar(印尼语)',en:'miliar',root:'miliar',tag:'常用词'},
+  'miliar':{ipa:'/miliar/',cn:'亿。”',en:'miliar',root:'miliar',tag:'常用词'},
   'mingguan':{ipa:'/mingguan/',cn:'minggu(名词)',en:'minggu (noun)',root:'minggu + -an',tag:'常用词'},
 'minimal':{ipa:'-',cn:'最低/最少',en:'minimum',root:'minimal (Dutch)',tag:'形容词'},
   'misalnya':{ipa:'/misalnya/',cn:'他的misal',en:'his/her misal',root:'misal + -nya',tag:'常用词'},
-  'model':{ipa:'/model/',cn:'model(印尼语)',en:'model',root:'model',tag:'常用词'},
-  'momen':{ipa:'/momen/',cn:'momen(印尼语)',en:'momen',root:'momen',tag:'常用词'},
-  'mudah':{ipa:'/mudah/',cn:'mudah(印尼语)',en:'mudah',root:'mudah',tag:'常用词'},
-  'nafsu':{ipa:'/nafsu/',cn:'nafsu(印尼语)',en:'nafsu',root:'nafsu',tag:'常用词'},
-  'nickel':{ipa:'/nickel/',cn:'nickel(印尼语)',en:'nickel',root:'nickel',tag:'常用词'},
+  'model':{ipa:'/model/',cn:'榜樣 榜样 [bang3 yang4]',en:'model',root:'model',tag:'常用词'},
+  'momen':{ipa:'/momen/',cn:'moment',en:'momen',root:'momen',tag:'常用词'},
+  'mudah':{ipa:'/mudah/',cn:'容易。',en:'mudah',root:'mudah',tag:'常用词'},
+  'nafsu':{ipa:'/nafsu/',cn:'性欲',en:'nafsu',root:'nafsu',tag:'常用词'},
+  'nickel':{ipa:'/nickel/',cn:'镍',en:'nickel',root:'nickel',tag:'常用词'},
 'nya':{ipa:'-',cn:'他的/那个',en:'his / that',root:'-nya',tag:'后缀'},
 'nyata':{ipa:'-',cn:'真实的',en:'real',root:'nyata',tag:'形容词'},
-  'nyenyak':{ipa:'/nyenyak/',cn:'nyenyak(印尼语)',en:'nyenyak',root:'nyenyak',tag:'常用词'},
-  'off':{ipa:'/off/',cn:'off(印尼语)',en:'off',root:'off',tag:'常用词'},
+  'nyenyak':{ipa:'/nyenyak/',cn:'还行吧',en:'nyenyak',root:'nyenyak',tag:'常用词'},
+  'off':{ipa:'/off/',cn:'关',en:'off',root:'off',tag:'常用词'},
 'oktober':{ipa:'-',cn:'十月',en:'October',root:'oktober',tag:'时间词'},
   'olahan':{ipa:'/olahan/',cn:'olah(名词)',en:'olah (noun)',root:'olah + -an',tag:'常用词'},
 'oleh':{ipa:'-',cn:'被/由',en:'by',root:'oleh',tag:'介词'},
-  'one':{ipa:'/one/',cn:'one(印尼语)',en:'one',root:'one',tag:'常用词'},
-  'ongkir':{ipa:'/ongkir/',cn:'ongkir(印尼语)',en:'ongkir',root:'ongkir',tag:'常用词'},
+  'one':{ipa:'/one/',cn:'1',en:'one',root:'one',tag:'常用词'},
+  'ongkir':{ipa:'/ongkir/',cn:'城市运费',en:'ongkir',root:'ongkir',tag:'常用词'},
 'operasional':{ipa:'-',cn:'运营的',en:'operational',root:'operasi + -al',tag:'形容词'},
 'pada':{ipa:'-',cn:'在...上',en:'on / at',root:'pada',tag:'介词'},
-  'padat':{ipa:'/padat/',cn:'padat(印尼语)',en:'padat',root:'padat',tag:'常用词'},
+  'padat':{ipa:'/padat/',cn:'固体',en:'padat',root:'padat',tag:'常用词'},
 'pakai':{ipa:'-',cn:'穿/用',en:'to wear / use',root:'pakai',tag:'基础动词'},
-  'palu':{ipa:'/palu/',cn:'palu(印尼语)',en:'palu',root:'palu',tag:'常用词'},
+  'palu':{ipa:'/palu/',cn:'锤子',en:'palu',root:'palu',tag:'常用词'},
   'pancoran':{ipa:'/pancoran/',cn:'pancor(名词)',en:'pancor (noun)',root:'pancor + -an',tag:'常用词'},
-  'panel':{ipa:'/panel/',cn:'panel(印尼语)',en:'panel',root:'panel',tag:'常用词'},
-  'parfum':{ipa:'/parfum/',cn:'parfum(印尼语)',en:'parfum',root:'parfum',tag:'常用词'},
+  'panel':{ipa:'/panel/',cn:'配电箱',en:'panel',root:'panel',tag:'常用词'},
+  'parfum':{ipa:'/parfum/',cn:'香水',en:'parfum',root:'parfum',tag:'常用词'},
   'parkir':{ipa:'/ˈparkir/',cn:'停车',en:'parking',root:'parkir',tag:'常用词'},
   'pasan':{ipa:'/pasan/',cn:'pas(名词)',en:'pas (noun)',root:'pas + -an',tag:'常用词'},
 'pasar':{ipa:'-',cn:'市场',en:'market',root:'pasar',tag:'商务词汇'},
-  'pasifik':{ipa:'/pasifik/',cn:'pasifik(印尼语)',en:'pasifik',root:'pasifik',tag:'常用词'},
-  'pasok':{ipa:'/pasok/',cn:'pasok(印尼语)',en:'pasok',root:'pasok',tag:'常用词'},
+  'pasifik':{ipa:'/pasifik/',cn:'太平洋',en:'pasifik',root:'pasifik',tag:'常用词'},
+  'pasok':{ipa:'/pasok/',cn:'供应/提供',en:'supply',root:'pasok',tag:'常用词'},
   'pelanggan':{ipa:'/pelanggan/',cn:'langgan的人/物',en:'langgan person',root:'langgan + pe-',tag:'常用词'},
   'pemain':{ipa:'/pemain/',cn:'main的人/物',en:'main person',root:'main + pe-',tag:'常用词'},
   'pembelian':{ipa:'/pembelian/',cn:'mbelian的人/物',en:'mbelian person',root:'mbelian + pe-',tag:'常用词'},
@@ -1576,34 +1576,34 @@ const vocabDB = {
   'perwakilan':{ipa:'/perwakilan/',cn:'rwakilan的人/物',en:'rwakilan person',root:'rwakilan + pe-',tag:'常用词'},
   'pesanannya':{ipa:'/pesanannya/',cn:'sanannya的人/物',en:'sanannya person',root:'sanannya + pe-',tag:'常用词'},
   'pesawat':{ipa:'/pesawat/',cn:'sawat的人/物',en:'sawat person',root:'sawat + pe-',tag:'常用词'},
-  'pihak':{ipa:'/pihak/',cn:'pihak(印尼语)',en:'pihak',root:'pihak',tag:'常用词'},
-  'plat':{ipa:'/plat/',cn:'plat(印尼语)',en:'plat',root:'plat',tag:'常用词'},
-  'poin':{ipa:'/poin/',cn:'poin(印尼语)',en:'poin',root:'poin',tag:'常用词'},
-  'pokok':{ipa:'/pokok/',cn:'pokok(印尼语)',en:'pokok',root:'pokok',tag:'常用词'},
-  'pola':{ipa:'/pola/',cn:'pola(印尼语)',en:'pola',root:'pola',tag:'常用词'},
+  'pihak':{ipa:'/pihak/',cn:'诉说',en:'pihak',root:'pihak',tag:'常用词'},
+  'plat':{ipa:'/plat/',cn:'板',en:'plat',root:'plat',tag:'常用词'},
+  'poin':{ipa:'/poin/',cn:'积分',en:'poin',root:'poin',tag:'常用词'},
+  'pokok':{ipa:'/pokok/',cn:'树',en:'pokok',root:'pokok',tag:'常用词'},
+  'pola':{ipa:'/pola/',cn:'模式',en:'pola',root:'pola',tag:'常用词'},
   'posisi':{ipa:'/posisi/',cn:'posis(及物动词)',en:'to posis (tr.)',root:'posisi',tag:'常用词'},
   'presentasi':{ipa:'/presentasi/',cn:'presentas(及物动词)',en:'to presentas (tr.)',root:'presentasi',tag:'常用词'},
 'program':{ipa:'-',cn:'项目/程序',en:'program',root:'program (English)',tag:'商务词汇'},
-  'project':{ipa:'/project/',cn:'project(印尼语)',en:'project',root:'project',tag:'常用词'},
-  'protein':{ipa:'/protein/',cn:'protein(印尼语)',en:'protein',root:'protein',tag:'常用词'},
-  'ramos':{ipa:'/ramos/',cn:'ramos(印尼语)',en:'ramos',root:'ramos',tag:'常用词'},
+  'project':{ipa:'/project/',cn:'项目/工程',en:'project',root:'project',tag:'常用词'},
+  'protein':{ipa:'/protein/',cn:'蛋白质',en:'protein',root:'protein',tag:'常用词'},
+  'ramos':{ipa:'/ramos/',cn:'- 拉莫斯先生',en:'ramos',root:'ramos',tag:'常用词'},
   'rantai':{ipa:'/rantai/',cn:'ranta(及物动词)',en:'to ranta (tr.)',root:'rantai',tag:'常用词'},
 'rata':{ipa:'-',cn:'平均/平坦',en:'average / flat',root:'rata',tag:'形容词'},
-  'rating':{ipa:'/rating/',cn:'rating(印尼语)',en:'rating',root:'rating',tag:'常用词'},
+  'rating':{ipa:'/rating/',cn:'评分',en:'rating',root:'rating',tag:'常用词'},
   'ratingnya':{ipa:'/ratingnya/',cn:'他的rating',en:'his/her rating',root:'rating + -nya',tag:'常用词'},
   'raya':{ipa:'/ˈraja/',cn:'伟大的/主要街道',en:'great/main road',root:'raya',tag:'常用词'},
   'refundnya':{ipa:'/refundnya/',cn:'他的refund',en:'his/her refund',root:'refund + -nya',tag:'常用词'},
-  'resepsionis':{ipa:'/resepsionis/',cn:'resepsionis(印尼语)',en:'resepsionis',root:'resepsionis',tag:'常用词'},
+  'resepsionis':{ipa:'/resepsionis/',cn:'前台',en:'resepsionis',root:'resepsionis',tag:'常用词'},
   'ringan':{ipa:'/ringan/',cn:'ring(名词)',en:'ring (noun)',root:'ring + -an',tag:'常用词'},
-  'rusak':{ipa:'/rusak/',cn:'rusak(印尼语)',en:'rusak',root:'rusak',tag:'常用词'},
+  'rusak':{ipa:'/rusak/',cn:'态的。',en:'rusak',root:'rusak',tag:'常用词'},
 'rute':{ipa:'-',cn:'路线',en:'route',root:'rute (Dutch)',tag:'名词'},
-  'safety':{ipa:'/safety/',cn:'safety(印尼语)',en:'safety',root:'safety',tag:'常用词'},
-  'same':{ipa:'/same/',cn:'same(印尼语)',en:'same',root:'same',tag:'常用词'},
-  'samudra':{ipa:'/samudra/',cn:'samudra(印尼语)',en:'samudra',root:'samudra',tag:'常用词'},
-  'santoso':{ipa:'/santoso/',cn:'santoso(印尼语)',en:'santoso',root:'santoso',tag:'常用词'},
+  'safety':{ipa:'/safety/',cn:'安全员',en:'safety',root:'safety',tag:'常用词'},
+  'same':{ipa:'/same/',cn:'薩姆',en:'same',root:'same',tag:'常用词'},
+  'samudra':{ipa:'/samudra/',cn:'洋',en:'samudra',root:'samudra',tag:'常用词'},
+  'santoso':{ipa:'/santoso/',cn:'桑托索(人名)',en:'Santoso',root:'santoso',tag:'人名'},
   'sarankan':{ipa:'/sarankan/',cn:'使saran',en:'to make saran',root:'saran + -kan',tag:'常用词'},
-  'sarung':{ipa:'/sarung/',cn:'sarung(印尼语)',en:'sarung',root:'sarung',tag:'常用词'},
-  'sate':{ipa:'/sate/',cn:'sate(印尼语)',en:'sate',root:'sate',tag:'常用词'},
+  'sarung':{ipa:'/sarung/',cn:'sarong',en:'sarung',root:'sarung',tag:'常用词'},
+  'sate':{ipa:'/sate/',cn:'沙嗲',en:'sate',root:'sate',tag:'常用词'},
   'seafood':{ipa:'/seafood/',cn:'和afood一样',en:'as afood',root:'seafood',tag:'常用词'},
 'sebagai':{ipa:'-',cn:'作为',en:'as',root:'se + bagi',tag:'介词'},
   'sebaliknya':{ipa:'/sebaliknya/',cn:'他的sebalik',en:'his/her sebalik',root:'sebalik + -nya',tag:'常用词'},
@@ -1621,30 +1621,30 @@ const vocabDB = {
   'setiabudi':{ipa:'/setiabudi/',cn:'和tiabudi一样',en:'as tiabudi',root:'setiabudi',tag:'常用词'},
   'setra':{ipa:'/setra/',cn:'和tra一样',en:'as tra',root:'setra',tag:'常用词'},
   'shanghai':{ipa:'/shanghai/',cn:'shangha(及物动词)',en:'to shangha (tr.)',root:'shanghai',tag:'常用词'},
-  'shopee':{ipa:'/shopee/',cn:'shopee(印尼语)',en:'shopee',root:'shopee',tag:'常用词'},
+  'shopee':{ipa:'/shopee/',cn:'虾皮',en:'shopee',root:'shopee',tag:'常用词'},
   'simpalah':{ipa:'/simpalah/',cn:'请simpa',en:'please simpa',root:'simpa + -lah',tag:'常用词'},
   'simpan':{ipa:'/simpan/',cn:'simp(名词)',en:'simp (noun)',root:'simp + -an',tag:'常用词'},
-  'solid':{ipa:'/solid/',cn:'solid(印尼语)',en:'solid',root:'solid',tag:'常用词'},
+  'solid':{ipa:'/solid/',cn:'纯色',en:'solid',root:'solid',tag:'常用词'},
   'sopan':{ipa:'/sopan/',cn:'sop(名词)',en:'sop (noun)',root:'sop + -an',tag:'常用词'},
 'staf':{ipa:'-',cn:'员工',en:'staff',root:'staf (Dutch)',tag:'名词'},
   'stoknya':{ipa:'/stoknya/',cn:'他的stok',en:'his/her stok',root:'stok + -nya',tag:'常用词'},
 'strategis':{ipa:'-',cn:'战略的',en:'strategic',root:'strategi + -is',tag:'形容词'},
 'studi':{ipa:'-',cn:'学习/研究',en:'study',root:'studi (Dutch)',tag:'名词'},
-  'sudarso':{ipa:'/sudarso/',cn:'sudarso(印尼语)',en:'sudarso',root:'sudarso',tag:'常用词'},
+  'sudarso':{ipa:'/sudarso/',cn:'苏达尔索(人名)',en:'Sudarso',root:'sudarso',tag:'人名'},
 'suka':{ipa:'-',cn:'喜欢',en:'to like',root:'suka',tag:'基础动词'},
-  'sulfat':{ipa:'/sulfat/',cn:'sulfat(印尼语)',en:'sulfat',root:'sulfat',tag:'常用词'},
+  'sulfat':{ipa:'/sulfat/',cn:'硫酸盐',en:'sulfat',root:'sulfat',tag:'常用词'},
   'super':{ipa:'/ˈsupɛr/',cn:'超级',en:'super',root:'super',tag:'常用词'},
   'susunya':{ipa:'/susunya/',cn:'他的susu',en:'his/her susu',root:'susu + -nya',tag:'常用词'},
   'tahan':{ipa:'/tahan/',cn:'tah(名词)',en:'tah (noun)',root:'tah + -an',tag:'常用词'},
   'tambahan':{ipa:'/tambahan/',cn:'tambah(名词)',en:'tambah (noun)',root:'tambah + -an',tag:'常用词'},
   'tangan':{ipa:'/tangan/',cn:'tang(名词)',en:'tang (noun)',root:'tang + -an',tag:'常用词'},
-  'tangga':{ipa:'/tangga/',cn:'tangga(印尼语)',en:'tangga',root:'tangga',tag:'常用词'},
+  'tangga':{ipa:'/tangga/',cn:'階梯',en:'tangga',root:'tangga',tag:'常用词'},
   'tanggal':{ipa:'/ˈtaŋgal/',cn:'日期',en:'date',root:'tanggal',tag:'常用词'},
   'tanggalnya':{ipa:'/tanggalnya/',cn:'他的tanggal',en:'his/her tanggal',root:'tanggal + -nya',tag:'常用词'},
-  'tanggul':{ipa:'/tanggul/',cn:'tanggul(印尼语)',en:'tanggul',root:'tanggul',tag:'常用词'},
-  'tanpa':{ipa:'/tanpa/',cn:'tanpa(印尼语)',en:'tanpa',root:'tanpa',tag:'常用词'},
+  'tanggul':{ipa:'/tanggul/',cn:'畔',en:'tanggul',root:'tanggul',tag:'常用词'},
+  'tanpa':{ipa:'/tanpa/',cn:'無安全性',en:'tanpa',root:'tanpa',tag:'常用词'},
   'tantangan':{ipa:'/tantangan/',cn:'tantang(名词)',en:'tantang (noun)',root:'tantang + -an',tag:'常用词'},
-  'tawar':{ipa:'/tawar/',cn:'tawar(印尼语)',en:'tawar',root:'tawar',tag:'常用词'},
+  'tawar':{ipa:'/tawar/',cn:'有不加盐的',en:'tawar',root:'tawar',tag:'常用词'},
 'televisi':{ipa:'-',cn:'电视',en:'television',root:'televisi (Dutch)',tag:'名词'},
   'teliti':{ipa:'/teliti/',cn:'被liti',en:'liti (passive)',root:'teliti',tag:'常用词'},
   'tenggara':{ipa:'/tenggara/',cn:'被nggara',en:'nggara (passive)',root:'tenggara',tag:'常用词'},
@@ -1669,23 +1669,23 @@ const vocabDB = {
   'timbangannya':{ipa:'/timbangannya/',cn:'他的timbangan',en:'his/her timbangan',root:'timbangan + -nya',tag:'常用词'},
 'tinggal':{ipa:'-',cn:'住/留下',en:'to live / stay',root:'tinggal',tag:'基础动词'},
 'tiongkok':{ipa:'-',cn:'中国',en:'China',root:'tiongkok',tag:'地名'},
-  'token':{ipa:'/token/',cn:'token(印尼语)',en:'token',root:'token',tag:'常用词'},
-  'tokopedia':{ipa:'/tokopedia/',cn:'tokopedia(印尼语)',en:'tokopedia',root:'tokopedia',tag:'常用词'},
+  'token':{ipa:'/token/',cn:'代币',en:'token',root:'token',tag:'常用词'},
+  'tokopedia':{ipa:'/tokopedia/',cn:'托科佩迪亚(电商平台)',en:'Tokopedia',root:'tokopedia',tag:'专有名词'},
 'tradisional':{ipa:'-',cn:'传统的',en:'traditional',root:'tradisi + -onal',tag:'形容词'},
-  'trik':{ipa:'/trik/',cn:'trik(印尼语)',en:'trik',root:'trik',tag:'常用词'},
-  'tunda':{ipa:'/tunda/',cn:'tunda(印尼语)',en:'tunda',root:'tunda',tag:'常用词'},
-  'tur':{ipa:'/tur/',cn:'tur(印尼语)',en:'tur',root:'tur',tag:'常用词'},
-  'tusuk':{ipa:'/tusuk/',cn:'tusuk(印尼语)',en:'tusuk',root:'tusuk',tag:'常用词'},
+  'trik':{ipa:'/trik/',cn:'小技巧',en:'trik',root:'trik',tag:'常用词'},
+  'tunda':{ipa:'/tunda/',cn:'次选',en:'tunda',root:'tunda',tag:'常用词'},
+  'tur':{ipa:'/tur/',cn:'导览',en:'tur',root:'tur',tag:'常用词'},
+  'tusuk':{ipa:'/tusuk/',cn:'- 戳戳',en:'tusuk',root:'tusuk',tag:'常用词'},
   'ukurannya':{ipa:'/ukurannya/',cn:'他的ukuran',en:'his/her ukuran',root:'ukuran + -nya',tag:'常用词'},
-  'unduh':{ipa:'/unduh/',cn:'unduh(印尼语)',en:'unduh',root:'unduh',tag:'常用词'},
-  'visi':{ipa:'/visi/',cn:'visi(印尼语)',en:'visi',root:'visi',tag:'常用词'},
-  'wabarakatuh':{ipa:'/wabarakatuh/',cn:'wabarakatuh(印尼语)',en:'wabarakatuh',root:'wabarakatuh',tag:'常用词'},
+  'unduh':{ipa:'/unduh/',cn:'上載和下載',en:'unduh',root:'unduh',tag:'常用词'},
+  'visi':{ipa:'/visi/',cn:'愿景',en:'visi',root:'visi',tag:'常用词'},
+  'wabarakatuh':{ipa:'/wabarakatuh/',cn:'愿真主赐福(问候语)',en:'wabarakatuh',root:'wabarakatuh',tag:'常用词'},
   'wanita':{ipa:'/ˈwanita/',cn:'女人',en:'woman',root:'wanita',tag:'常用词'},
   'warahmatullahi':{ipa:'/warahmatullahi/',cn:'warahmatullah(及物动词)',en:'to warahmatullah (tr.)',root:'warahmatullahi',tag:'常用词'},
 'warga':{ipa:'-',cn:'居民',en:'resident',root:'warga',tag:'名词'},
 'wilayah':{ipa:'-',cn:'区域',en:'region',root:'wilayah',tag:'名词'},
-  'yani':{ipa:'/yani/',cn:'yani(印尼语)',en:'yani',root:'yani',tag:'常用词'},
-  'yos':{ipa:'/yos/',cn:'yos(印尼语)',en:'yos',root:'yos',tag:'常用词'},
+  'yani':{ipa:'/yani/',cn:'雅妮',en:'yani',root:'yani',tag:'常用词'},
+  'yos':{ipa:'/yos/',cn:'约斯(人名)',en:'Yos',root:'yos',tag:'人名'},
   'abstrak':{ipa:'/ˈabstrak/',cn:'摘要',en:'abstract',root:'abstrak',tag:'UKBI'},
   'akomodasi':{ipa:'/akomoˈdasi/',cn:'适应',en:'accommodation',root:'akomodasi',tag:'UKBI'},
   'akulturasi':{ipa:'/akultuˈrasi/',cn:'文化融合',en:'acculturation',root:'akulturasi',tag:'UKBI'},
@@ -4618,15 +4618,18 @@ function startGame(mode) {if(!checkAccess("百词斩"))return;
 
 function showGameQ() {
   if (gameState.q >= gameState.total) { showGameResult(); return; }
-  const w = gameState.pool[gameState.q];
+  // 从模式队列获取当前模式
+  const mode = gameState.modeQueue ? gameState.modeQueue[gameState.modeIdx || 0] : gameState.mode;
+  const w = gameState.pool[0];
   gameState.current = w;
+  gameState.mode = mode;
   const area = document.getElementById("gameArea");
   const st = getWordStat(w.word);
   const total = st.id2zh.c + st.id2zh.w + st.zh2id.c + st.zh2id.w + st.spell.c + st.spell.w;
   const wrongRate = total > 0 ? (st.id2zh.w + st.zh2id.w + st.spell.w) / total : 0.5;
   const urgency = wrongRate > 0.5 ? '🔴' : wrongRate > 0.2 ? '🟡' : '🟢';
 
-  if (gameState.mode === 'id2zh') {
+  if (mode === 'id2zh') {
     const allWords = wordBank.filter(x => x.cn && x.word !== w.word).map(x => x.cn);
     const wrong = [];
     while (wrong.length < 3 && allWords.length) {
@@ -4639,7 +4642,7 @@ function showGameQ() {
       <div style="font-size:12px;color:var(--text-dim);margin-bottom:10px">选择正确的中文释义</div>
       ${opts.map((opt, i) => `<div class="q-opt" onclick="ansGameQ('${opt.replace(/'/g, "\\'")}', '${w.cn.replace(/'/g, "\\'")}', this)">${String.fromCharCode(65+i)}. ${opt}</div>`).join('')}
       </div>`;
-  } else if (gameState.mode === 'zh2id') {
+  } else if (mode === 'zh2id') {
     const allWords = wordBank.filter(x => x.word !== w.word).map(x => x.word);
     const wrong = [];
     while (wrong.length < 3 && allWords.length) {
@@ -4691,6 +4694,7 @@ function ansGameQ(sel, correct, el) {if(!checkAccess("答题"))return;
     if (wb) { wb.passed[gameState.mode] = true; saveWB(); }
   }
   gameState.q++;
+  if (gameState.modeQueue) gameState.modeIdx = (gameState.modeIdx || 0) + 1;
   setTimeout(() => showGameQ(), 1500);
 }
 
@@ -4718,6 +4722,7 @@ function submitSpell(correctWord, correctCn) {if(!checkAccess("拼写"))return;
     area.innerHTML += `<div style="margin-top:10px;padding:10px;background:rgba(239,68,68,.1);border-radius:8px;color:var(--danger);font-size:13px">正确答案: ${correctWord}</div>`;
   }
   gameState.q++;
+  if (gameState.modeQueue) gameState.modeIdx = (gameState.modeIdx || 0) + 1;
   setTimeout(() => showGameQ(), ok ? 1000 : 2000);
 }
 
@@ -4884,7 +4889,7 @@ function renderWBList(){
         <span style="color:var(--text-dim)">${progress}/3</span>
       </div>
       <div class="wb-act">
-        <button class="wb-mas" onclick="playWBGame(${i})">🎮 练习</button>
+        <button class="wb-mas" onclick="playWBGame('${w.word}')">🎮 练习</button>
         <button class="wb-del" onclick="delWB(${i})">🗑️</button>
       </div></div></div>`;
   });
@@ -4893,15 +4898,22 @@ function renderWBList(){
   c.innerHTML=h;
 }
 
-function playWBGame(i) {if(!checkAccess("生词练习"))return;
-  const w = wordBank[i]; if (!w) return;
+function playWBGame(word) {if(!checkAccess("生词练习"))return;
+  const w = wordBank.find(x => x.word === word); if (!w) return;
   const p = w.passed || {id2zh:false,zh2id:false,spell:false};
-  let mode = 'id2zh';
-  if (!p.id2zh) mode = 'id2zh';
-  else if (!p.zh2id) mode = 'zh2id';
-  else if (!p.spell) mode = 'spell';
-  else mode = 'id2zh';
-  navigate('game'); setTimeout(() => startGame(mode), 300);
+  // 三种模式依次练习（未通过优先）
+  const modeQueue = [];
+  if (!p.id2zh) modeQueue.push('id2zh');
+  if (!p.zh2id) modeQueue.push('zh2id');
+  if (!p.spell) modeQueue.push('spell');
+  // 如果都通过了，三种都重练
+  if (modeQueue.length === 0) modeQueue.push('id2zh','zh2id','spell');
+  gameState = { 
+    mode: modeQueue[0], modeQueue: modeQueue, modeIdx: 0,
+    pool: [w], current: null, q: 0, correct: 0, wrong: 0, 
+    total: modeQueue.length, streak: 0, wrongAnswers: [] 
+  };
+  navigate('game'); setTimeout(() => showGameQ(), 300);
 }
 
 function delWB(i){
@@ -7748,7 +7760,9 @@ function renderTopicDetail(c, ds, topicInfo) {
     // === Day 2: Scenes ===
     html += `<div style="background:rgba(245,158,11,.06);border-radius:10px;padding:16px;margin-bottom:16px;border:1px solid var(--border)"><div style="font-size:15px;color:var(--accent);font-weight:700;margin-bottom:12px">🎭 第二阶段:场景对话 (Day 2/3)</div>`;
     topic.scenes.forEach((sc, si) => {
-      html += `<div style="margin-bottom:14px;border:1px solid var(--border);border-radius:10px;overflow:hidden"><div style="background:var(--bg-elev);padding:10px 14px;display:flex;align-items:center;gap:8px"><span style="font-size:18px">${sc.icon}</span><span style="font-size:14px;font-weight:600;color:var(--text)">${sc.title}</span></div><div style="padding:12px 14px;">`;
+      const allDialogueText = sc.dialogue.map(d => d.text).join('。');
+      const allSafe = allDialogueText.replace(/'/g, "\\'");
+      html += `<div style="margin-bottom:14px;border:1px solid var(--border);border-radius:10px;overflow:hidden"><div style="background:var(--bg-elev);padding:10px 14px;display:flex;align-items:center;gap:8px;justify-content:space-between;"><div style="display:flex;align-items:center;gap:8px;"><span style="font-size:18px">${sc.icon}</span><span style="font-size:14px;font-weight:600;color:var(--text)">${sc.title}</span></div><button onclick="speakIndonesian('${allSafe}')" style="background:none;border:none;color:var(--primary);cursor:pointer;font-size:14px;padding:4px 8px;border-radius:6px;background:rgba(0,212,170,.1);" title="朗读整段对话">🔊 朗读全部</button></div><div style="padding:12px 14px;">`;
       sc.dialogue.forEach(d => {
         const isA = d.speaker === "A";
         const safeText = d.text.replace(/'/g, "\\'");
@@ -7812,7 +7826,9 @@ function renderTopicDetail(c, ds, topicInfo) {
     html += `<h3 style="color:var(--primary);margin:16px 0 10px;font-size:15px">💬 场景对话 (${sceneStart+1}-${sceneEnd})</h3>`;
     for (let i = sceneStart; i < sceneEnd && i < topic.scenes.length; i++) {
       const s = topic.scenes[i];
-      html += `<div style="background:var(--bg-elev);border-radius:10px;padding:16px;margin-bottom:12px;border:1px solid var(--border)"><div style="display:flex;align-items:center;gap:8px;margin-bottom:10px"><span style="font-size:18px">${s.icon}</span><strong style="color:var(--primary);font-size:14px">${s.title}</strong></div>`;
+      const allDlgText = s.dialogue.map(d => d.text).join('。');
+      const allSafe = allDlgText.replace(/'/g, "\\'");
+      html += `<div style="background:var(--bg-elev);border-radius:10px;padding:16px;margin-bottom:12px;border:1px solid var(--border)"><div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;justify-content:space-between;"><div style="display:flex;align-items:center;gap:8px;"><span style="font-size:18px">${s.icon}</span><strong style="color:var(--primary);font-size:14px">${s.title}</strong></div><button onclick="speakIndonesian('${allSafe}')" style="background:none;border:none;color:var(--primary);cursor:pointer;font-size:14px;padding:4px 8px;border-radius:6px;background:rgba(0,212,170,.1);" title="朗读整段对话">🔊 朗读全部</button></div>`;
       s.dialogue.forEach(d => {
         const dSafe = d.text.replace(/'/g, "\\'");
         html += `<div class="dialogue-item" style="display:flex;gap:10px;margin:8px 0;padding:8px;background:var(--bg-card);border-radius:6px"><div style="font-weight:700;color:var(--primary);min-width:30px;font-size:12px">${d.speaker}:</div><div style="flex:1"><div style="font-size:13px;color:var(--text);display:flex;align-items:center;flex-wrap:wrap;">${wrapClickableWords(d.text)}<button onclick="speakIndonesian('${dSafe}')" style="background:none;border:none;color:var(--primary);cursor:pointer;font-size:14px;padding:2px 4px;margin-left:4px;" title="朗读">🔊</button></div><div class="dialogue-trans" style="font-size:11px;color:var(--text-dim);margin-top:3px;border-left:2px solid var(--primary-dim);padding-left:6px;transition:all .2s">${d.trans || ''}</div></div></div>`;
@@ -8175,9 +8191,14 @@ function renderVersion(c){
   c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.18 / Versi</span></div>
     <div style="padding:16px;">
       <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
-        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.18.14 (2026-08-28)</div>
+        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.19.0 (2026-08-29)</div>
         <div style="font-size:13px;color:var(--text);line-height:1.8">
-        • 数据恢复: 从7月23日备份恢复完整镍产业数据(印尼46园区107项目+全球66项目)<br>
+        • 修复生词本15个词条翻译(原词未翻译)<br>
+        • 百词斩练习改为单单词三种模式依次练习<br>
+        • 未收录单词添加朗读按钮<br>
+        • 词根射击重构为一级→二级→游戏架构<br>
+        • C5课程对话/段落添加"朗读全部"按钮<br>
+        • 版本号同步更新为V4.19.0<br>
         • 总产能统计: 🇮🇩 46园区/107项目 · 🌍 66项目 · 总产能 684.4万镍吨/年<br>
         • 扩充制酸项目数据: 从8个增加到25个(硫磺制酸/硫铁矿制酸/冶炼副产酸)<br>
         • 扩充电力设施数据: 从9个增加到24个(燃煤/水电/地热/光伏/风电/柴油)<br>
@@ -8879,7 +8900,7 @@ function showWordPopup(word){
     <button id="wordPopupAddBtn" data-wid="${wid}" style="width:100%;padding:10px;background:${inWB?'var(--bg-elev)':'var(--primary)'};color:${inWB?'var(--text-dim)':'#0a0e17'};border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;" ${inWB?'disabled':''}>${inWB?'✅ 已在生词本':'📚 加入生词本'}</button>`;
   } else {
     // === 未收录单词:显示加载中,后台自动查询 ===
-    cardHTML += `<div style="text-align:center;padding:20px 0;"><div style="font-size:36px;margin-bottom:12px;">🔍</div><div style="font-size:14px;color:var(--text-dim);margin-bottom:8px;">「${word}」未收录</div><div id="autoQueryStatus" style="font-size:12px;color:var(--primary);margin-bottom:12px;">⏳ 正在在线查询...</div>
+    cardHTML += `<div style="text-align:center;padding:20px 0;"><div style="font-size:36px;margin-bottom:12px;">🔍</div><div style="font-size:14px;color:var(--text-dim);margin-bottom:8px;">「${word}」未收录</div><div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:12px;"><button onclick="speakIndonesian('${word.replace(/'/g,"\\'")}')" style="background:none;border:none;color:var(--primary);cursor:pointer;font-size:14px;padding:4px 8px;border-radius:6px;background:rgba(0,212,170,.1);" title="朗读">🔊 朗读</button></div><div id="autoQueryStatus" style="font-size:12px;color:var(--primary);margin-bottom:12px;">⏳ 正在在线查询...</div>
     <div id="autoQueryResult" style="margin-bottom:12px;"></div>
     <button id="wordPopupInputBtn" data-word="${word}" style="width:100%;padding:8px;background:var(--accent);color:#0a0e17;border:none;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;margin-bottom:8px;">📝 手动录入词汇</button></div>`;
 
@@ -9155,21 +9176,31 @@ function renderPrefixGame(c) {
   }
 }
 
-// === 一级菜单 ===
+// === 一级菜单：显示所有词缀大类 ===
 function showAffixLevel1(c) {
-  const categories = Object.keys(AFFIX_GAME_DATA);
-  const buttons = categories.map(k => {
-    const d = AFFIX_GAME_DATA[k];
-    const childCount = Object.keys(d.children).length;
-    const unlocked = prefixGameState.unlocked[k];
+  // 收集所有children作为一级选项
+  const allItems = [];
+  Object.entries(AFFIX_GAME_DATA).forEach(([catKey, catData]) => {
+    Object.entries(catData.children).forEach(([childKey, childData]) => {
+      allItems.push({
+        catKey, childKey,
+        name: childData.name,
+        icon: catData.icon,
+        desc: childData.desc,
+        variantCount: Object.keys(childData.variants).length
+      });
+    });
+  });
+
+  const buttons = allItems.map(item => {
     return `
-      <button onclick="${unlocked ? `selectAffixLevel1('${k}')` : ''}" class="trans-btn" style="margin:10px;padding:20px 24px;font-size:16px;min-width:260px;text-align:left;display:flex;align-items:center;gap:14px;${unlocked ? '' : 'opacity:.4;cursor:not-allowed;'}border:2px solid ${unlocked ? 'var(--primary)' : 'var(--border)'};">
-        <span style="font-size:32px">${d.icon}</span>
+      <button onclick="selectAffixLevel1('${item.catKey}','${item.childKey}')" class="trans-btn" style="margin:8px;padding:16px 20px;font-size:15px;min-width:240px;text-align:left;display:flex;align-items:center;gap:12px;border:2px solid var(--primary);border-radius:12px;">
+        <span style="font-size:28px">${item.icon}</span>
         <div style="flex:1">
-          <div style="font-weight:800;color:${unlocked ? 'var(--primary)' : 'var(--text-dim)'};font-size:17px;">${d.name}</div>
-          <div style="font-size:12px;color:var(--text-dim);margin-top:4px;line-height:1.6">${childCount} 个词缀 · ${unlocked ? '已解锁' : '🔒 需完成前置关卡解锁'}</div>
+          <div style="font-weight:800;color:var(--primary);font-size:16px;">${item.name}</div>
+          <div style="font-size:11px;color:var(--text-dim);margin-top:3px">${item.variantCount} 个变体 · ${item.desc.substring(0,30)}...</div>
         </div>
-        ${unlocked ? '<span style="font-size:20px">→</span>' : '🔒'}
+        <span style="font-size:18px">→</span>
       </button>
     `;
   }).join('');
@@ -9178,21 +9209,17 @@ function showAffixLevel1(c) {
     <div class="card">
       <div class="card-header" style="flex-wrap:wrap;gap:8px;">
         <h2>🎯 词根射击 / Tembak Akar Kata</h2>
-        <span class="badge" style="background:var(--accent)20;color:var(--accent)">V4.2</span>
+        <span class="badge" style="background:var(--accent)20;color:var(--accent)">V4.3</span>
       </div>
       <div style="padding:24px;">
-        <div style="font-size:13px;color:var(--text-dim);margin-bottom:24px;padding:16px;background:linear-gradient(135deg,rgba(0,212,170,.08),rgba(59,130,246,.06));border-radius:12px;border-left:4px solid var(--primary);line-height:2">
-          <strong style="color:var(--primary);font-size:15px">📋 游戏规则 V4.2</strong><br>
-          1 选择词缀大类 → 2 选择难度 → 3 选择具体词缀 → 4 进入射击!<br>
-          🎯 <strong>击破</strong>:选择正确的三级变体击中落下的词根<br>
-          🔥 <strong>连击</strong>:连续正确触发Combo特效与加分<br>
-          💡 <strong>解析</strong>:错误时显示规则详解,边玩边学<br>
-          ⭐ <strong>成就</strong>:解锁关卡、收集星级、挑战大师难度
+        <div style="font-size:13px;color:var(--text-dim);margin-bottom:20px;padding:14px;background:linear-gradient(135deg,rgba(0,212,170,.08),rgba(59,130,246,.06));border-radius:12px;border-left:4px solid var(--primary);line-height:1.8">
+          <strong style="color:var(--primary);font-size:15px">📋 游戏规则 V4.3</strong><br>
+          1 选择词缀类型 → 2 选择具体变体 → 3 进入射击!<br>
+          🎯 选择正确变体击中落下的词根，边玩边学语法规则
         </div>
-        <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;">
+        <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;">
           ${buttons}
         </div>
-        ${renderAchievementsPreview()}
       </div>
     </div>
   `;
@@ -9213,11 +9240,12 @@ function renderAchievementsPreview() {
   `;
 }
 
-function selectAffixLevel1(cat) {
-  prefixGameState.level1 = cat;
-  prefixGameState.phase = 'difficulty';
+function selectAffixLevel1(catKey, childKey) {
+  prefixGameState.level1 = catKey;
+  prefixGameState.level2 = childKey;
+  prefixGameState.phase = 'level2';
   prefixGameState.active = true;
-  showDifficultySelect(document.getElementById('appContent'));
+  showAffixLevel2(document.getElementById('appContent'));
 }
 
 // === 难度选择 ===
@@ -9259,23 +9287,20 @@ function setDifficulty(diff) {
   showAffixLevel2(document.getElementById('appContent'));
 }
 
-// === 二级菜单 ===
+// === 二级菜单：显示具体变体 ===
 function showAffixLevel2(c) {
   const state = prefixGameState;
   const catData = AFFIX_GAME_DATA[state.level1];
-  if (!catData) { backToAffixLevel1(); return; }
+  const childData = catData ? catData.children[state.level2] : null;
+  if (!childData) { backToAffixLevel1(); return; }
 
-  const children = Object.keys(catData.children);
-  const buttons = children.map(k => {
-    const d = catData.children[k];
-    const varCount = Object.keys(d.variants).length;
-    const totalWords = Object.values(d.variants).reduce((s, v) => s + v.words.length, 0);
+  const variants = Object.entries(childData.variants);
+  const buttons = variants.map(([varKey, varData]) => {
     return `
-      <button onclick="startAffixGame('${k}')" class="trans-btn" style="margin:8px;padding:18px 20px;font-size:15px;min-width:220px;text-align:left;border:2px solid rgba(0,212,170,.3);background:linear-gradient(135deg,rgba(0,212,170,.08),rgba(0,212,170,.02));transition:all .3s;" onmouseover="this.style.borderColor='var(--primary)';this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 20px rgba(0,212,170,.15)'" onmouseout="this.style.borderColor='rgba(0,212,170,.3)';this.style.transform='';this.style.boxShadow=''">
-        <div style="font-weight:800;color:var(--primary);font-size:17px;margin-bottom:6px;letter-spacing:.5px">${d.name.split(' ')[0]}</div>
-        <div style="font-size:12px;color:var(--text-dim);margin-bottom:4px">${d.name.split(' ').slice(1).join(' ')}</div>
-        <div style="font-size:11px;color:var(--accent);margin-top:6px">${varCount} 种变体 · ${totalWords} 个词根</div>
-        <div style="font-size:11px;color:var(--text-dim);margin-top:4px;line-height:1.5;opacity:.8">${d.desc.substring(0,40)}...</div>
+      <button onclick="startAffixGame('${varKey}')" class="trans-btn" style="margin:8px;padding:16px 20px;font-size:15px;min-width:200px;text-align:left;border:2px solid ${varData.color || 'var(--primary)'};background:${varData.color || 'var(--primary)'}10;border-radius:10px;transition:all .3s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 20px rgba(0,212,170,.15)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+        <div style="font-weight:800;color:${varData.color || 'var(--primary)'};font-size:18px;margin-bottom:4px;">${varData.label}</div>
+        <div style="font-size:11px;color:var(--text-dim);line-height:1.5">${varData.rule || ''}</div>
+        <div style="font-size:11px;color:var(--accent);margin-top:6px">${varData.words ? varData.words.length : 0} 个词根</div>
       </button>
     `;
   }).join('');
@@ -9283,17 +9308,15 @@ function showAffixLevel2(c) {
   c.innerHTML = `
     <div class="card">
       <div class="card-header" style="flex-wrap:wrap;gap:8px;">
-        <h2>${catData.icon} ${catData.name}</h2>
-        <div style="display:flex;gap:8px;">
-          <span class="badge" style="background:rgba(59,130,246,.15);color:#3b82f6">${DIFFICULTY_CONFIG[state.difficulty].label}</span>
-          <button onclick="backToAffixLevel1()" class="trans-btn" style="font-size:12px;padding:6px 12px;">← 返回大类</button>
-        </div>
+        <h2>${catData.icon} ${childData.name}</h2>
+        <button onclick="backToAffixLevel1()" class="trans-btn" style="font-size:12px;padding:6px 12px;">← 返回</button>
       </div>
       <div style="padding:24px;">
-        <div style="font-size:13px;color:var(--text-dim);margin-bottom:20px;padding:14px;background:rgba(0,212,170,.06);border-radius:10px;border-left:3px solid var(--primary);line-height:1.7">
-          ${catData.desc}
+        <div style="font-size:13px;color:var(--text-dim);margin-bottom:16px;padding:12px;background:rgba(0,212,170,.06);border-radius:10px;border-left:3px solid var(--primary);line-height:1.7">
+          <strong>规则:</strong> ${childData.rule || childData.desc}
         </div>
-        <div style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;">
+        <div style="font-size:13px;color:var(--primary);margin-bottom:12px;font-weight:700">选择变体进入射击:</div>
+        <div style="display:flex;flex-wrap:wrap;gap:10px;justify-content:center;">
           ${buttons}
         </div>
       </div>
@@ -9307,14 +9330,16 @@ function backToAffixLevel1() {
   showAffixLevel1(document.getElementById('appContent'));
 }
 
-function startAffixGame(level2Key) {
-  const diff = DIFFICULTY_CONFIG[prefixGameState.difficulty];
+function startAffixGame(variantKey) {
+  // 使用默认难度normal
+  const diff = DIFFICULTY_CONFIG['normal'];
   prefixGameState = {
     active: true, phase: 'play', level1: prefixGameState.level1,
-    level2: level2Key, difficulty: prefixGameState.difficulty,
+    level2: prefixGameState.level2, selectedVariant: variantKey,
+    difficulty: 'normal',
     level: 1, subLevel: 1, score: 0, lives: diff.lives,
     currentWord: null, fallingSpeed: diff.fallingSpeed,
-    selectedVariant: null, timer: null,
+    timer: null,
     wordsCompleted: 0, streak: 0, bestStreak: 0,
     achievements: prefixGameState.achievements || {},
     unlocked: prefixGameState.unlocked || {},
@@ -9335,9 +9360,10 @@ function showAffixGamePlay(c) {
   // 动态词库补充
   const dynamicPool = buildDynamicWordPool();
 
-  // 随机选正确答案
-  const correctKey = variantKeys[Math.floor(Math.random() * variantKeys.length)];
+  // 固定正确答案为选中的变体
+  const correctKey = state.selectedVariant;
   const correctVar = variants[correctKey];
+  if (!correctVar) { backToAffixLevel2(); return; }
   const baseWords = correctVar.words;
   // 混合动态词库
   const allWords = [...baseWords];
@@ -9347,27 +9373,14 @@ function showAffixGamePlay(c) {
   const word = allWords[Math.floor(Math.random() * allWords.length)];
   state.currentWord = { ...word, correctVariant: correctKey };
 
-  // 生成选项
+  // 生成选项（从当前level2的所有variants中选，包含正确答案）
   let options = [correctKey];
-  const allVariantKeys = [];
-  // 收集所有可用变体
-  if (diff.crossCategory) {
-    // 困难模式:从所有二级分类中找干扰项
-    Object.values(AFFIX_GAME_DATA).forEach(cat => {
-      Object.values(cat.children).forEach(child => {
-        Object.keys(child.variants).forEach(k => {
-          if (!allVariantKeys.includes(k)) allVariantKeys.push(k);
-        });
-      });
-    });
-  } else {
-    // 简单/中等:从当前二级分类中找干扰项
-    variantKeys.forEach(k => { if (!allVariantKeys.includes(k)) allVariantKeys.push(k); });
-  }
-  const others = allVariantKeys.filter(k => k !== correctKey);
-  while (options.length < diff.options && others.length > 0) {
-    const idx = Math.floor(Math.random() * others.length);
-    const opt = others.splice(idx, 1)[0];
+  const otherVariants = variantKeys.filter(k => k !== correctKey);
+  // 最多4个选项
+  const maxOptions = 4;
+  while (options.length < maxOptions && otherVariants.length > 0) {
+    const idx = Math.floor(Math.random() * otherVariants.length);
+    const opt = otherVariants.splice(idx, 1)[0];
     if (!options.includes(opt)) options.push(opt);
   }
   options.sort(() => Math.random() - 0.5);
