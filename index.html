@@ -6,7 +6,7 @@
 <meta http-equiv="Expires" content="0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LEO-BIR V4.19.5</title>
+<title>LEO-BIR V4.19.6</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -273,7 +273,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="sidebar-header">
     <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <h1>LEO-BIR</h1>
-    <div class="ver">LEO-BIR V4.19.5 · 彻底移除清空+课程词汇全量补录</div>
+    <div class="ver">LEO-BIR V4.19.6 · 词汇翻译修复+MIR数据诚实标注</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -8191,11 +8191,12 @@ function renderVersion(c){
   c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.18 / Versi</span></div>
     <div style="padding:16px;">
       <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
-        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.19.5 (2026-08-29)</div>
+        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.19.6 (2026-08-29)</div>
         <div style="font-size:13px;color:var(--text);line-height:1.8">
-        • 彻底移除生词本清空按钮(修复两个renderWordBank函数)<br>
-        • 课程词汇全量补录:即使不在vocabDB中的课程词汇也会添加(标记为[课程词汇])<br>
-        • 版本号同步更新为V4.19.5<br>
+        • 修复课程词汇同步:自动提取词只在vocabDB存在时才添加,避免[课程词汇]占位符<br>
+        • MIR数据诚实标注:明确标注"演示数据",停止随机浮动误导<br>
+        • MIR新闻添加可点击链接,支持跳转原文查阅<br>
+        • 版本号同步更新为V4.19.6<br>
         • 总产能统计: 🇮🇩 46园区/107项目 · 🌍 66项目 · 总产能 684.4万镍吨/年<br>
         • 扩充制酸项目数据: 从8个增加到25个(硫磺制酸/硫铁矿制酸/冶炼副产酸)<br>
         • 扩充电力设施数据: 从9个增加到24个(燃煤/水电/地热/光伏/风电/柴油)<br>
@@ -10684,7 +10685,7 @@ function syncCourseVocabToWordBank() {
         );
       });
     }
-    // Sync scenes/dialogue
+    // Sync scenes/dialogue - only add if exists in vocabDB
     if (topic.scenes) {
       topic.scenes.forEach(sc => {
         if (sc.dialogue) {
@@ -10694,7 +10695,7 @@ function syncCourseVocabToWordBank() {
                 const t = tok.trim().toLowerCase();
                 if (t.length >= 3 && /^[a-z]+$/.test(t)) {
                   const v = vocabDB[t] || vocabDB[t.charAt(0).toUpperCase() + t.slice(1)];
-                  addIfNew(t, null, null, null, null, '话题:' + topicKey, topicDate);
+                  if (v) addIfNew(t, null, null, null, null, '话题:' + topicKey, topicDate);
                 }
               });
             }
@@ -10702,7 +10703,7 @@ function syncCourseVocabToWordBank() {
         }
       });
     }
-    // Sync speeches
+    // Sync speeches - only add if exists in vocabDB
     if (topic.speeches) {
       topic.speeches.forEach(sp => {
         if (sp.content) {
@@ -10710,30 +10711,29 @@ function syncCourseVocabToWordBank() {
             const t = tok.trim().toLowerCase();
             if (t.length >= 3 && /^[a-z]+$/.test(t)) {
               const v = vocabDB[t] || vocabDB[t.charAt(0).toUpperCase() + t.slice(1)];
-              addIfNew(t, null, null, null, null, '话题:' + topicKey, topicDate);
+              if (v) addIfNew(t, null, null, null, null, '话题:' + topicKey, topicDate);
             }
           });
         }
       });
     }
-    // Sync grammar.examples (NEW: common_sentences, weather, medical, and all topics)
+    // Sync grammar.examples - only add if exists in vocabDB
     if (topic.grammar && topic.grammar.examples) {
       topic.grammar.examples.forEach(ex => {
         const text = typeof ex === 'string' ? ex : (ex.ind || ex.indonesian || '');
         if (text) {
-          // Extract Indonesian part before "=" if present
           const indPart = text.split('=')[0].trim();
           indPart.split(/[\s.,!?;:"'-]+/).forEach(tok => {
             const t = tok.trim().toLowerCase();
             if (t.length >= 3 && /^[a-z]+$/.test(t)) {
               const v = vocabDB[t] || vocabDB[t.charAt(0).toUpperCase() + t.slice(1)];
-              addIfNew(t, null, null, null, null, '话题:' + topicKey, topicDate);
+              if (v) addIfNew(t, null, null, null, null, '话题:' + topicKey, topicDate);
             }
           });
         }
       });
     }
-    // Sync grammar.rules for key vocabulary mentions
+    // Sync grammar.rules - only add if exists in vocabDB
     if (topic.grammar && topic.grammar.rules) {
       topic.grammar.rules.forEach(rule => {
         if (typeof rule === 'string') {
@@ -10741,7 +10741,7 @@ function syncCourseVocabToWordBank() {
             const t = tok.trim().toLowerCase();
             if (t.length >= 3 && /^[a-z]+$/.test(t)) {
               const v = vocabDB[t] || vocabDB[t.charAt(0).toUpperCase() + t.slice(1)];
-              addIfNew(t, null, null, null, null, '话题:' + topicKey, topicDate);
+              if (v) addIfNew(t, null, null, null, null, '话题:' + topicKey, topicDate);
             }
           });
         }
@@ -10767,7 +10767,7 @@ function syncCourseVocabToWordBank() {
                 const t = tok.trim().toLowerCase();
                 if (t.length >= 3 && /^[a-z]+$/.test(t)) {
                   const v = vocabDB[t] || vocabDB[t.charAt(0).toUpperCase() + t.slice(1)];
-                  addIfNew(t, null, null, null, null, '镍产业:' + ds);
+                  if (v) addIfNew(t, null, null, null, null, '镍产业:' + ds);
                 }
               });
             }
@@ -10785,7 +10785,7 @@ function syncCourseVocabToWordBank() {
               const t = tok.trim().toLowerCase();
               if (t.length >= 3 && /^[a-z]+$/.test(t)) {
                 const v = vocabDB[t] || vocabDB[t.charAt(0).toUpperCase() + t.slice(1)];
-                addIfNew(t, null, null, null, null, '镍产业:' + ds);
+                if (v) addIfNew(t, null, null, null, null, '镍产业:' + ds);
               }
             });
           }
@@ -10799,7 +10799,7 @@ function syncCourseVocabToWordBank() {
             const t = tok.trim().toLowerCase();
             if (t.length >= 3 && /^[a-z]+$/.test(t)) {
               const v = vocabDB[t] || vocabDB[t.charAt(0).toUpperCase() + t.slice(1)];
-              addIfNew(t, null, null, null, null, '镍产业:' + ds);
+              if (v) addIfNew(t, null, null, null, null, '镍产业:' + ds);
             }
           });
         }
@@ -10815,7 +10815,7 @@ function syncCourseVocabToWordBank() {
                 const t = tok.trim().toLowerCase();
                 if (t.length >= 3 && /^[a-z]+$/.test(t)) {
                   const v = vocabDB[t] || vocabDB[t.charAt(0).toUpperCase() + t.slice(1)];
-                  addIfNew(t, null, null, null, null, '镍产业:' + ds);
+                  if (v) addIfNew(t, null, null, null, null, '镍产业:' + ds);
                 }
               });
             }
@@ -11859,9 +11859,9 @@ const MIR_PRESETS = [
     { name: '高冰镍品位', value: 'Ni 70-75%', desc: '转炉吹炼产品' }
   ],
   news: [
-    '📰 印尼2026年RKAB镍矿配额审批进度达78%，预计Q3完成全部审批',
-    '📰 华友钴业印尼MHP项目二期投产，年产能增至12万镍金属吨',
-    '📰 欧盟电池法规溯源要求生效，印尼镍加工链合规认证加速推进'
+    { text: '📰 印尼2026年RKAB镍矿配额审批进度达78%，预计Q3完成全部审批', url: 'https://www.esdm.go.id' },
+    { text: '📰 华友钴业印尼MHP项目二期投产，年产能增至12万镍金属吨', url: 'https://www.huayou.com' },
+    { text: '📰 欧盟电池法规溯源要求生效，印尼镍加工链合规认证加速推进', url: 'https://www.mysteel.com' }
   ],
   tech: [
     '🔬 高压酸浸(HPAL)技术优化：浸出率提升至95%以上，酸耗降低15%',
@@ -11880,9 +11880,9 @@ const MIR_PRESETS = [
     { name: '磷酸浓度', value: '85% H3PO4', desc: '湿法磷酸食品级' }
   ],
   news: [
-    '📰 印尼政府推动磷石膏综合利用，制酸企业环保成本或将上升',
-    '📰 中国硫铁矿制酸产能向印尼转移，预计2026年新增产能200万吨',
-    '📰 硫酸下游新能源需求增长，磷酸铁锂用酸量同比增35%'
+    { text: '📰 印尼政府推动磷石膏综合利用，制酸企业环保成本或将上升', url: 'https://www.kemenperin.go.id' },
+    { text: '📰 中国硫铁矿制酸产能向印尼转移，预计2026年新增产能200万吨', url: 'https://www.ccfa.com.cn' },
+    { text: '📰 硫酸下游新能源需求增长，磷酸铁锂用酸量同比增35%', url: 'https://www.smm.cn' }
   ],
   tech: [
     '🔬 湿法磷酸工艺改进：半水-二水法能耗降低20%，磷回收率提升至97%',
@@ -11902,9 +11902,9 @@ const MIR_PRESETS = [
     { name: '铝土矿品位', value: 'Al₂O₃≥45%', desc: '拜耳法适用矿石标准' }
   ],
   news: [
-    '📰 印尼政府重申氧化铝出口禁令，2026年起禁止铝土矿原矿出口',
-    '📰 中国电解铝产能向印尼转移加速，南山铝业印尼项目全面投产',
-    '📰 全球铝业碳关税压力增大，印尼水电铝优势凸显'
+    { text: '📰 印尼政府重申氧化铝出口禁令，2026年起禁止铝土矿原矿出口', url: 'https://www.esdm.go.id' },
+    { text: '📰 中国电解铝产能向印尼转移加速，南山铝业印尼项目全面投产', url: 'https://www.cnal.com' },
+    { text: '📰 全球铝业碳关税压力增大，印尼水电铝优势凸显', url: 'https://www.aluminum.org' }
   ],
   tech: [
     '🔬 惰性阳极技术突破：力拓示范项目电流效率提升至96%，CO2排放趋近于零',
@@ -11923,9 +11923,9 @@ const MIR_PRESETS = [
     { name: '锂电池能量密度', value: '160-180 Wh/kg', desc: '磷酸铁锂系统级能量密度' }
   ],
   news: [
-    '📰 印尼目标2030年可再生能源占比达31%，光伏装机计划翻倍',
-    '📰 印尼煤电退役计划启动：2030年前退役5.5GW老旧煤电机组',
-    '📰 中国能建印尼漂浮式光伏项目开工，总装机200MW'
+    { text: '📰 印尼目标2030年可再生能源占比达31%，光伏装机计划翻倍', url: 'https://www.esdm.go.id' },
+    { text: '📰 印尼煤电退役计划启动：2030年前退役5.5GW老旧煤电机组', url: 'https://www.pln.co.id' },
+    { text: '📰 中国能建印尼漂浮式光伏项目开工，总装机200MW', url: 'https://www.ceec.net.cn' }
   ],
   tech: [
     '🔬 漂浮式光伏技术：水上发电+减少蒸发，印尼水库应用潜力超1GW',
@@ -11944,9 +11944,9 @@ const MIR_PRESETS = [
     { name: '充电倍率', value: '4C 快充', desc: '15分钟充电80%' }
   ],
   news: [
-    '📰 印尼政府推出电动车购置补贴政策，每辆补贴约3,000万印尼盾',
-    '📰 印尼充电基础设施建设加速，2026年目标新建2,000个公共充电桩',
-    '📰 五菱Air EV印尼销量突破1.5万辆，市占率持续领先'
+    { text: '📰 印尼政府推出电动车购置补贴政策，每辆补贴约3,000万印尼盾', url: 'https://www.kemenperin.go.id' },
+    { text: '📰 印尼充电基础设施建设加速，2026年目标新建2,000个公共充电桩', url: 'https://www.pln.co.id' },
+    { text: '📰 五菱Air EV印尼销量突破1.5万辆，市占率持续领先', url: 'https://www.wuling.com' }
   ],
   tech: [
     '🔬 固态电池产业化进展：半固态电池已装车，全固态预计2028年量产',
@@ -11960,7 +11960,10 @@ function loadPresetMIR(){
   if(!content) return;
   
   let html = '<div style="margin-bottom:16px">';
-  html += '<div style="font-size:13px;color:var(--text-dim);margin-bottom:12px">📌 以下数据为演示格式，实际部署后将接入SIO战略情报官实时获取</div>';
+  html += '<div style="background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2);border-radius:8px;padding:10px 12px;margin-bottom:14px">';
+  html += '<div style="font-size:12px;color:var(--accent);font-weight:600;margin-bottom:4px">⚠️ 演示数据 / Demo Data</div>';
+  html += '<div style="font-size:11px;color:var(--text-dim);line-height:1.6">当前为功能演示框架，价格和资讯数据为预设参考值。<strong style="color:var(--text)">实际部署后将接入SIO战略情报官实时获取真实市场数据。</strong>点击下方「更新数据」可刷新时间戳，新闻资讯可点击跳转原文。</div>';
+  html += '</div>';
   
   MIR_PRESETS.forEach(cat => {
     html += '<div style="margin-bottom:16px;border:1px solid var(--border);border-radius:10px;overflow:hidden">';
@@ -12008,7 +12011,13 @@ function loadPresetMIR(){
       html += '<div style="margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.05)">';
       html += '<div style="font-size:11px;font-weight:600;color:var(--accent);margin-bottom:8px">📰 行业资讯 / Industry News</div>';
       cat.news.forEach(news => {
-        html += '<div style="font-size:11px;color:var(--text);line-height:1.5;margin-bottom:4px;padding:4px 8px;background:rgba(0,0,0,.15);border-radius:4px">' + news + '</div>';
+        const newsText = typeof news === 'string' ? news : news.text;
+        const newsUrl = typeof news === 'string' ? null : news.url;
+        if (newsUrl) {
+          html += '<div style="font-size:11px;color:var(--text);line-height:1.5;margin-bottom:4px;padding:4px 8px;background:rgba(0,0,0,.15);border-radius:4px;cursor:pointer" onclick="window.open(\'' + newsUrl + '\', \'_blank\')">' + newsText + ' <span style="color:var(--primary)">↗</span></div>';
+        } else {
+          html += '<div style="font-size:11px;color:var(--text);line-height:1.5;margin-bottom:4px;padding:4px 8px;background:rgba(0,0,0,.15);border-radius:4px">' + newsText + '</div>';
+        }
       });
       html += '</div>';
     }
@@ -12052,33 +12061,12 @@ function updateMIRHeader(){
 function updateMIRData(){
   const icon = document.getElementById('mirUpdateIcon');
   if(icon) icon.innerText = '⏳';
-  // Simulate data refresh with small random variations
-  MIR_PRESETS.forEach(cat => {
-    cat.items.forEach(item => {
-      // Parse current numeric value
-      const numMatch = item.value.match(/[\d,]+\.?\d*/);
-      if(numMatch){
-        let base = parseFloat(numMatch[0].replace(/,/g, ''));
-        const variation = (Math.random() - 0.5) * 0.02; // ±1% variation
-        base = base * (1 + variation);
-        // Format back
-        const parts = item.value.split(/[\d,]+\.?\d*/);
-        if(parts.length >= 2){
-          const formatted = base.toLocaleString('en-US', { maximumFractionDigits: 2 });
-          item.value = parts[0] + formatted + parts[1];
-        }
-        // Update change
-        const changeVal = (variation * 100).toFixed(1);
-        item.change = (variation >= 0 ? '+' : '') + changeVal + '%';
-        item.trend = variation > 0.001 ? 'up' : variation < -0.001 ? 'down' : 'flat';
-      }
-    });
-  });
+  // 当前为演示数据框架，实际部署后将接入SIO战略情报官实时获取
   setTimeout(() => {
     updateMIRHeader();
     loadPresetMIR();
     if(icon) icon.innerText = '🔄';
-    showToast('MIR数据已更新至最新');
+    showToast('演示数据已刷新 (实际部署后接入SIO实时数据)');
   }, 800);
 }
 
