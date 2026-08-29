@@ -1,1 +1,13 @@
+# Backup files
+*.backup
+*.bak
+index.html.backup.*
+index.html.bak.*
 .github_env
+
+# Python scripts
+upgrade_*.py
+verify_*.py
+
+# Temporary files
+new_*.txt
