@@ -6,7 +6,7 @@
 <meta http-equiv="Expires" content="0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LEO-BIR V4.18.12</title>
+<title>LEO-BIR V4.18.13</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -273,7 +273,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="sidebar-header">
     <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <h1>LEO-BIR</h1>
-    <div class="ver">LEO-BIR V4.18.12 · 搜索修复+MIR增强+品质资讯</div>
+    <div class="ver">LEO-BIR V4.18.13 · 搜索修复+MIR增强+品质资讯</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -8175,7 +8175,7 @@ function renderVersion(c){
   c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.18 / Versi</span></div>
     <div style="padding:16px;">
       <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
-        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.18.12 (2026-08-28)</div>
+        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.18.13 (2026-08-28)</div>
         <div style="font-size:13px;color:var(--text);line-height:1.8">
         • 数据恢复: 从7月23日备份恢复完整镍产业数据(印尼46园区107项目+全球66项目)<br>
         • 总产能统计: 🇮🇩 46园区/107项目 · 🌍 66项目 · 总产能 684.4万镍吨/年<br>
@@ -8183,7 +8183,7 @@ function renderVersion(c){
         • 扩充电力设施数据: 从9个增加到24个(燃煤/水电/地热/光伏/风电/柴油)<br>
         • 扩充电解铝/氧化铝数据: 从5个增加到18个(覆盖印尼/中国/巴西/俄罗斯等)<br>
         • MIR按钮改为Agent交互: 输入关键词→SIO战略情报官获取当日MIR信息<br>
-        • 标题与版本说明同步更新为V4.18.12<br>
+        • 标题与版本说明同步更新为V4.18.13<br>
         • BIO/RCO/TSO三方审核流程持续运行<br>
         </div>
       </div>
@@ -10903,6 +10903,7 @@ function switchIndustryTab(tab){
   html += '<h3 style="color:var(--primary);font-size:15px;margin-bottom:12px">' + data.icon + ' ' + data.name + ' 详情列表</h3>';
   
   const groups = groupConfig[tab];
+  let grouped = {};
   if(groups){
     // Group items by type (sorted by specificity: longer/more specific keys first)
     const sortedGroups = Object.entries(groups).sort((a, b) => b[0].length - a[0].length);
