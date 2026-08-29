@@ -1,0 +1,29 @@
+name: MIR Data Fetch
+
+on:
+  schedule:
+    - cron: '0 21 * * *'  # 05:00 Beijing Time (UTC+8)
+    - cron: '0 4 * * *'   # 12:00 Beijing Time (UTC+8)
+  workflow_dispatch:
+
+jobs:
+  fetch-mir:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      
+      - name: Fetch MIR Data
+        run: node scripts/fetch-mir.js
+      
+      - name: Commit and Push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add mir-data/
+          git diff --cached --quiet || git commit -m "Update MIR data: $(date -u +%Y-%m-%d_%H:%M) UTC"
+          git push
