@@ -12050,7 +12050,7 @@ function loadPresetMIR(){
     html += '<div style="background:var(--bg-elev);padding:10px 14px;font-size:13px;font-weight:600;color:var(--primary);display:flex;align-items:center;gap:6px">' + cat.icon + ' ' + cat.label + '</div>';
     html += '<div style="padding:10px 14px">';
     
-    items.forEach((item, idx) => {cat.items.forEach((item, idx) => {
+    items.forEach((item, idx) => {
       const trendColor = item.trend === 'up' ? '#22c55e' : item.trend === 'down' ? '#ef4444' : 'var(--text-dim)';
       const trendIcon = item.trend === 'up' ? '↗' : item.trend === 'down' ? '↘' : '→';
       const itemId = cat.key + '_' + idx;
