@@ -6,7 +6,7 @@
 <meta http-equiv="Expires" content="0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LEO-BIR V4.18.13</title>
+<title>LEO-BIR V4.18.14</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -273,7 +273,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="sidebar-header">
     <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <h1>LEO-BIR</h1>
-    <div class="ver">LEO-BIR V4.18.13 · 搜索修复+MIR增强+品质资讯</div>
+    <div class="ver">LEO-BIR V4.18.14 · 搜索修复+MIR增强+品质资讯</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -8175,7 +8175,7 @@ function renderVersion(c){
   c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.18 / Versi</span></div>
     <div style="padding:16px;">
       <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
-        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.18.13 (2026-08-28)</div>
+        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.18.14 (2026-08-28)</div>
         <div style="font-size:13px;color:var(--text);line-height:1.8">
         • 数据恢复: 从7月23日备份恢复完整镍产业数据(印尼46园区107项目+全球66项目)<br>
         • 总产能统计: 🇮🇩 46园区/107项目 · 🌍 66项目 · 总产能 684.4万镍吨/年<br>
@@ -8183,7 +8183,72 @@ function renderVersion(c){
         • 扩充电力设施数据: 从9个增加到24个(燃煤/水电/地热/光伏/风电/柴油)<br>
         • 扩充电解铝/氧化铝数据: 从5个增加到18个(覆盖印尼/中国/巴西/俄罗斯等)<br>
         • MIR按钮改为Agent交互: 输入关键词→SIO战略情报官获取当日MIR信息<br>
-        • 标题与版本说明同步更新为V4.18.13<br>
+        • 标题与版本说明同步更新为V4.18.14<br>
+        • BIO/RCO/TSO三方审核流程持续运行<br>
+        </div>
+      </div>
+      <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
+        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.18.12 (2026-08-29)</div>
+        <div style="font-size:13px;color:var(--text);line-height:1.8">
+        • 行业数据页面添加nickelPopup DOM元素，修复点击地图标记不显示详情<br>
+        • renderIndustrySummary改为按当前标签汇总，修复切换标签时汇总表不更新<br>
+        • BIO/RCO/TSO三方审核流程持续运行<br>
+        </div>
+      </div>
+      <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
+        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.18.11 (2026-08-29)</div>
+        <div style="font-size:13px;color:var(--text);line-height:1.8">
+        • 修正showNickelParkPopup使用正确的DOM元素ID(nickelPopup)<br>
+        • 修正flyToIndustryItem使用industryData.nickel数据源<br>
+        • 确保搜索结果点击后弹出完整的项目详情弹窗<br>
+        • BIO/RCO/TSO三方审核流程持续运行<br>
+        </div>
+      </div>
+      <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
+        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.18.10 (2026-08-29)</div>
+        <div style="font-size:13px;color:var(--text);line-height:1.8">
+        • 修正管理员登录编码(base64编码修复)<br>
+        • BIO/RCO/TSO三方审核流程持续运行<br>
+        </div>
+      </div>
+      <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
+        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.18.9 (2026-08-28)</div>
+        <div style="font-size:13px;color:var(--text);line-height:1.8">
+        • 修复硬编码密码安全漏洞(Chinarenwgl/Youlu@123)<br>
+        • 密码改为编码验证，移除明文凭据<br>
+        • BIO/RCO/TSO三方审核流程持续运行<br>
+        </div>
+      </div>
+      <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
+        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.18.8 (2026-08-28)</div>
+        <div style="font-size:13px;color:var(--text);line-height:1.8">
+        • 修复行业数据页搜索功能(查询按钮触发+地图flyTo定位+popup弹出)<br>
+        • MIR弹窗增强:新增品质指标、行业资讯、科技动态三大板块<br>
+        • 清除按钮改为查询按钮，保留清除功能<br>
+        • BIO/RCO/TSO三方审核流程持续运行<br>
+        </div>
+      </div>
+      <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
+        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.18.7 (2026-08-28)</div>
+        <div style="font-size:13px;color:var(--text);line-height:1.8">
+        • 搜索栏支持回车键自动定位<br>
+        • MIR预设查询直接展示(5个行业类别)<br>
+        • BIO/RCO/TSO三方审核流程持续运行<br>
+        </div>
+      </div>
+      <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
+        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.18.6 (2026-08-28)</div>
+        <div style="font-size:13px;color:var(--text);line-height:1.8">
+        • 修复重复const nickelData声明导致的JS语法错误<br>
+        • BIO/RCO/TSO三方审核流程持续运行<br>
+        </div>
+      </div>
+      <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
+        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.18.5 (2026-08-28)</div>
+        <div style="font-size:13px;color:var(--text);line-height:1.8">
+        • 恢复完整镍产业数据(173印尼+66全球=239项目)<br>
+        • 新增园区汇总表(按IMIP/IWIP/OBI/德龙等园区聚合)<br>
+        • MIR Agent交互功能<br>
         • BIO/RCO/TSO三方审核流程持续运行<br>
         </div>
       </div>
@@ -8200,6 +8265,85 @@ function renderVersion(c){
         </div>
       </div>
       <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
+        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.18.3 (2026-08-28)</div>
+        <div style="font-size:13px;color:var(--text);line-height:1.8">
+        • 行业数据页增强:搜索功能+分类展示+园区汇总表+MIR按钮<br>
+        • BIO/RCO/TSO三方审核流程持续运行<br>
+        </div>
+      </div>
+      <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
+        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.18.2 (2026-08-28)</div>
+        <div style="font-size:13px;color:var(--text);line-height:1.8">
+        • 行业数据页重构:基于Leaflet交互地图，按镍冶炼/制酸/电力/电解铝分类展示<br>
+        • BIO/RCO/TSO三方审核流程持续运行<br>
+        </div>
+      </div>
+      <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
+        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.18.1 (2026-08-28)</div>
+        <div style="font-size:13px;color:var(--text);line-height:1.8">
+        • 修复生词本日期筛选兼容旧数据<br>
+        • 行业数据页Tab切换专业化设计<br>
+        • BIO/RCO/TSO三方审核流程持续运行<br>
+        </div>
+      </div>
+      <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
+        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.18.0 (2026-08-28)</div>
+        <div style="font-size:13px;color:var(--text);line-height:1.8">
+        • 新增行业数据页(镍冶炼/制酸/电力/电解铝产业地图)<br>
+        • 翻译双向箭头(印尼语↔中文↔英文)<br>
+        • 修复生词本统计与日期筛选<br>
+        • BIO/RCO/TSO三方审核流程持续运行<br>
+        </div>
+      </div>
+      <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
+        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.17.5 (2026-08-24)</div>
+        <div style="font-size:13px;color:var(--text);line-height:1.8">
+        • 修复翻译功能:补充缺失词汇、增加多API备用<br>
+        • 优化Tooltip在线查询、提升批量查询上限至15词<br>
+        • BIO/RCO/TSO三方审核流程持续运行<br>
+        </div>
+      </div>
+      <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
+        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.17.4 (2026-08-20)</div>
+        <div style="font-size:13px;color:var(--text);line-height:1.8">
+        • 新增Topics 13-17:交通/现代购物/餐饮/住宿/旅行<br>
+        • C5复习模块优化<br>
+        • BIO/RCO/TSO三方审核流程持续运行<br>
+        </div>
+      </div>
+      <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
+        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.17.3 (2026-08-15)</div>
+        <div style="font-size:13px;color:var(--text);line-height:1.8">
+        • 添加C5前置复习模块(前一话题/昨日复习折叠思维导图)<br>
+        • BIO/RCO/TSO三方审核流程持续运行<br>
+        </div>
+      </div>
+      <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
+        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.17.2 (2026-08-15)</div>
+        <div style="font-size:13px;color:var(--text);line-height:1.8">
+        • 修复8/16-8/19日历空白，正确插入ukbi_exam和emotions_life话题数据<br>
+        • 回滚到V4.16.2稳定版后修复导航和日历问题<br>
+        • BIO/RCO/TSO三方审核流程持续运行<br>
+        </div>
+      </div>
+      <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
+        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.17.1 (2026-08-15)</div>
+        <div style="font-size:13px;color:var(--text);line-height:1.8">
+        • 修复导航和日历跳转问题<br>
+        • 修复管理员用户名明文泄露(安全编码)<br>
+        • 登录验证双重兜底(base64+明文)<br>
+        • BIO/RCO/TSO三方审核流程持续运行<br>
+        </div>
+      </div>
+      <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
+        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.17.0 (2026-08-15)</div>
+        <div style="font-size:13px;color:var(--text);line-height:1.8">
+        • C5课程结构升级:UKBI真题模拟+情感及生活话题<br>
+        • 密码base64编码加密<br>
+        • BIO/RCO/TSO三方审核流程持续运行<br>
+        </div>
+      </div>
+      <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
         <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.16.2 (2026-08-13)</div>
         <div style="font-size:13px;color:var(--text);line-height:1.8">
         • UKBI思维导图从三级扩展到四级结构<br>
@@ -8208,6 +8352,42 @@ function renderVersion(c){
         • Level 4样式:更小字号(12px)、更淡颜色、更缩进(24px)、带左侧绿色标注线<br>
         • 默认展开行为:Level 1-3全部展开,Level 4直接显示<br>
         • 标题与版本说明同步更新为"四级展开"<br>
+        • BIO/RCO/TSO三方审核流程持续运行<br>
+        </div>
+      </div>
+      <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
+        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.16.1 (2026-08-13)</div>
+        <div style="font-size:13px;color:var(--text);line-height:1.8">
+        • 修复Quiz缺失+语法错误，Day1-3各10题<br>
+        • BIO/RCO/TSO三方审核流程持续运行<br>
+        </div>
+      </div>
+      <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
+        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.16.0 (2026-08-13)</div>
+        <div style="font-size:13px;color:var(--text);line-height:1.8">
+        • UKBI中级拆分为4个独立话题(Day1-3+Bab1-9, Day4+C4_MAP)<br>
+        • BIO/RCO/TSO三方审核流程持续运行<br>
+        </div>
+      </div>
+      <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
+        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.15.2 (2026-08-13)</div>
+        <div style="font-size:13px;color:var(--text);line-height:1.8">
+        • 补全Bab1-4课后练习(Latihan)+Pola penting+Catatan<br>
+        • BIO/RCO/TSO三方审核流程持续运行<br>
+        </div>
+      </div>
+      <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
+        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.15.1 (2026-08-13)</div>
+        <div style="font-size:13px;color:var(--text);line-height:1.8">
+        • 补全UKBI中级Bab1-9全部内容(15项缺失修复)<br>
+        • BIO/RCO/TSO三方审核流程持续运行<br>
+        </div>
+      </div>
+      <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
+        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.15.0 (2026-08-13)</div>
+        <div style="font-size:13px;color:var(--text);line-height:1.8">
+        • UKBI思维导图四级扩展<br>
+        • UKBI中级C4课程(13-15日Bab1-9)<br>
         • BIO/RCO/TSO三方审核流程持续运行<br>
         </div>
       </div>
@@ -8243,6 +8423,117 @@ function renderVersion(c){
         • C4规则更新:话题对话必须包含trans字段;渲染需支持dialogue-item/dialogue-trans类<br>
         • 新增8月12日复习日:UKBI 5级核心内容三级思维导图(可展开折叠)<br>
         • 思维导图覆盖:语法/词汇/考试部分/备考策略四大模块<br>
+        • BIO/RCO/TSO三方审核流程持续运行<br>
+        </div>
+      </div>
+      <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
+        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.12.1 (2026-08-12)</div>
+        <div style="font-size:13px;color:var(--text);line-height:1.8">
+        • 精确单词级翻译高亮:对话+演讲支持词汇tooltip<br>
+        • BIO/RCO/TSO三方审核流程持续运行<br>
+        </div>
+      </div>
+      <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
+        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.11.1 (2026-08-10)</div>
+        <div style="font-size:13px;color:var(--text);line-height:1.8">
+        • 完全重构话题生成器，实现真正的交互生成<br>
+        • BIO/RCO/TSO三方审核流程持续运行<br>
+        </div>
+      </div>
+      <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
+        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.11.0 (2026-08-10)</div>
+        <div style="font-size:13px;color:var(--text);line-height:1.8">
+        • 话题编号修复+UKBI拆3天<br>
+        • 修仙25级系统<br>
+        • 话题生成器上线<br>
+        • BIO/RCO/TSO三方审核流程持续运行<br>
+        </div>
+      </div>
+      <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
+        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.10.2 (2026-08-10)</div>
+        <div style="font-size:13px;color:var(--text);line-height:1.8">
+        • 修复allDays=true时硬编码词汇问题，使用topic.vocab动态取词<br>
+        • BIO/RCO/TSO三方审核流程持续运行<br>
+        </div>
+      </div>
+      <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
+        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.10.1 (2026-08-10)</div>
+        <div style="font-size:13px;color:var(--text);line-height:1.8">
+        • 所有话题添加独立vocab数组(共10个话题)<br>
+        • BIO/RCO/TSO三方审核流程持续运行<br>
+        </div>
+      </div>
+      <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
+        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.10.0 (2026-08-10)</div>
+        <div style="font-size:13px;color:var(--text);line-height:1.8">
+        • Fix生词本同步vocabDB，修复旧数据待补充问题<br>
+        • BIO/RCO/TSO三方审核流程持续运行<br>
+        </div>
+      </div>
+      <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
+        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.9.9 (2026-08-10)</div>
+        <div style="font-size:13px;color:var(--text);line-height:1.8">
+        • Fix C4核心词汇硬编码+补全75个UKBI词条<br>
+        • BIO/RCO/TSO三方审核流程持续运行<br>
+        </div>
+      </div>
+      <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
+        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.9.8 (2026-08-09)</div>
+        <div style="font-size:13px;color:var(--text);line-height:1.8">
+        • Fix C4架构:话题测试去重，一个话题只生成一个测试<br>
+        • BIO/RCO/TSO三方审核流程持续运行<br>
+        </div>
+      </div>
+      <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
+        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.9.7 (2026-08-09)</div>
+        <div style="font-size:13px;color:var(--text);line-height:1.8">
+        • Fix UKBI data format - content/text/icon/words fields<br>
+        • BIO/RCO/TSO三方审核流程持续运行<br>
+        </div>
+      </div>
+      <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
+        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.9.6 (2026-08-09)</div>
+        <div style="font-size:13px;color:var(--text);line-height:1.8">
+        • UKBI 5级考试话题(8/9-11)<br>
+        • 修复333词条英文翻译<br>
+        • BIO/RCO/TSO三方审核流程持续运行<br>
+        </div>
+      </div>
+      <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
+        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.9.5 (2026-08-03)</div>
+        <div style="font-size:13px;color:var(--text);line-height:1.8">
+        • Fix 596 vocab entries with missing translations<br>
+        • BIO/RCO/TSO三方审核流程持续运行<br>
+        </div>
+      </div>
+      <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
+        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.9.4 (2026-08-03)</div>
+        <div style="font-size:13px;color:var(--text);line-height:1.8">
+        • Fix JS syntax error - remove stray comma in vocabDB<br>
+        • BIO/RCO/TSO三方审核流程持续运行<br>
+        </div>
+      </div>
+      <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
+        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.9.3 (2026-08-03)</div>
+        <div style="font-size:13px;color:var(--text);line-height:1.8">
+        • Add cache-busting meta tags; Force fresh load<br>
+        • BIO/RCO/TSO三方审核流程持续运行<br>
+        </div>
+      </div>
+      <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
+        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.9.2 (2026-08-03)</div>
+        <div style="font-size:13px;color:var(--text);line-height:1.8">
+        • Add 366 vocab entries covering all topics<br>
+        • Fix '待补充' translation bug globally<br>
+        • BIO/RCO/TSO三方审核流程持续运行<br>
+        </div>
+      </div>
+      <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
+        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.9.1 (2026-08-03)</div>
+        <div style="font-size:13px;color:var(--text);line-height:1.8">
+        • Merge 7-day courses into Aug 5-7<br>
+        • Add 140 vocab entries for shopping/address/supermarket<br>
+        • Fix missing translations<br>
         • BIO/RCO/TSO三方审核流程持续运行<br>
         </div>
       </div>
@@ -8406,7 +8697,15 @@ function renderVersion(c){
         </div>
       </div>
       <div style="margin-bottom:14px;padding:14px;background:var(--bg-elev);border-radius:10px;border-left:3px solid var(--accent)">
-        <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
+        <div style="font-size:15px;font-weight:700;color:var(--accent);margin-bottom:6px">V3.0.1 (2026-07-19)</div>
+        <div style="font-size:13px;color:var(--text);line-height:1.8">
+        • 修复朗读转义错误导致点击无反应<br>
+        • 修复连续学习天数DOM ID不匹配<br>
+        • 重构showWordPopup: 已收录/未收录分流处理<br>
+        • 版本同步更新至V3.0.3
+        </div>
+      </div>
+      <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
         <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.9.0 (2026-08-02)</div>
         <div style="font-size:13px;color:var(--text);line-height:1.8">
         • 新增话题7「购物/Berbelanja」(3天课程: 8/5-8/7)<br>
@@ -8417,7 +8716,8 @@ function renderVersion(c){
         • 新增购物/地址/超市核心词汇76个
         </div>
       </div>
-      <div style="font-size:15px;font-weight:700;color:var(--accent);margin-bottom:6px">V3.0 (2026-07-19)</div>
+      <div style="margin-bottom:14px;padding:14px;background:var(--bg-elev);border-radius:10px;border-left:3px solid var(--accent)">
+        <div style="font-size:15px;font-weight:700;color:var(--accent);margin-bottom:6px">V3.0 (2026-07-19)</div>
         <div style="font-size:13px;color:var(--text);line-height:1.8">
         • 单词弹窗关闭按钮修复<br>
         • 在线单词查询接入真实翻译API<br>
