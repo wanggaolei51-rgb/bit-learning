@@ -6,7 +6,7 @@
 <meta http-equiv="Expires" content="0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LEO-BIR V4.19.11</title>
+<title>LEO-BIR V4.20.0</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -273,7 +273,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="sidebar-header">
     <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <h1>LEO-BIR</h1>
-    <div class="ver">LEO-BIR V4.19.10 · MIR真实数据系统</div>
+    <div class="ver">LEO-BIR V4.20.0 · MIR真实数据系统</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -11885,14 +11885,14 @@ const MIR_PRESETS = [
     { name: '高冰镍品位', value: 'Ni 70-75%', desc: '转炉吹炼产品' }
   ],
   news: [
-    { text: '📰 印尼2026年RKAB镍矿配额审批进度达78%，预计Q3完成全部审批', url: 'https://www.esdm.go.id' },
-    { text: '📰 华友钴业印尼MHP项目二期投产，年产能增至12万镍金属吨', url: 'https://www.huayou.com' },
-    { text: '📰 欧盟电池法规溯源要求生效，印尼镍加工链合规认证加速推进', url: 'https://www.mysteel.com' }
+    { text: '📰 印尼2026年RKAB镍矿配额审批进度', url: 'https://news.google.com/search?q=印尼+RKAB+镍矿+配额+2026&hl=zh-CN' },
+    { text: '📰 华友钴业印尼MHP项目投产动态', url: 'https://news.google.com/search?q=华友钴业+印尼+MHP+投产&hl=zh-CN' },
+    { text: '📰 欧盟电池法规溯源要求与印尼镍加工', url: 'https://news.google.com/search?q=欧盟+电池法规+印尼+镍&hl=zh-CN' }
   ],
   tech: [
-    { text: '🔬 高压酸浸(HPAL)技术优化：浸出率提升至95%以上，酸耗降低15%', url: 'https://www.sciencedirect.com/search?qs=HPAL+nickel' },
-    { text: '🔬 RKEF能效提升：新型回转窑余热回收系统可降低能耗8-12%', url: 'https://www.smm.cn' },
-    { text: '🔬 富氧侧吹熔炼技术在中伟股份印尼项目试点，处理能力提升20%', url: 'https://www.cngr.com.cn' }
+    { text: '🔬 HPAL高压酸浸技术优化最新研究', url: 'https://news.google.com/search?q=HPAL+高压酸浸+技术优化&hl=zh-CN' },
+    { text: '🔬 RKEF回转窑余热回收能效提升', url: 'https://news.google.com/search?q=RKEF+回转窑+余热回收&hl=zh-CN' },
+    { text: '🔬 富氧侧吹熔炼技术进展', url: 'https://news.google.com/search?q=富氧侧吹+熔炼+技术&hl=zh-CN' }
   ]},
   { key: 'acid', label: '🧪 硫酸/硫磺', icon: '🧪', items: [
     { name: '98%硫酸华东价', value: '¥380/吨', change: '+5.6%', trend: 'up', source: '卓创资讯 2026-08-28' },
@@ -11928,14 +11928,14 @@ const MIR_PRESETS = [
     { name: '铝土矿品位', value: 'Al₂O₃≥45%', desc: '拜耳法适用矿石标准' }
   ],
   news: [
-    { text: '📰 印尼政府重申氧化铝出口禁令，2026年起禁止铝土矿原矿出口', url: 'https://www.esdm.go.id' },
-    { text: '📰 中国电解铝产能向印尼转移加速，南山铝业印尼项目全面投产', url: 'https://www.cnal.com' },
-    { text: '📰 全球铝业碳关税压力增大，印尼水电铝优势凸显', url: 'https://www.aluminum.org' }
+    { text: '📰 印尼氧化铝出口禁令与铝土矿政策', url: 'https://news.google.com/search?q=印尼+氧化铝+出口禁令+铝土矿&hl=zh-CN' },
+    { text: '📰 中国电解铝产能向印尼转移动态', url: 'https://news.google.com/search?q=中国+电解铝+印尼+转移+投产&hl=zh-CN' },
+    { text: '📰 全球铝业碳关税与印尼水电铝优势', url: 'https://news.google.com/search?q=铝业+碳关税+印尼+水电铝&hl=zh-CN' }
   ],
   tech: [
-    { text: '🔬 惰性阳极技术突破：力拓示范项目电流效率提升至96%，CO2排放趋近于零', url: 'https://www.riotinto.com' },
-    { text: '🔬 铝电解节能技术：新型阴极结构+低电压操作，直流电耗降至12,500kWh/t', url: 'https://www.aluminum.org' },
-    { text: '🔬 赤泥综合利用：印尼试点从赤泥中提取稀土和钛铁矿', url: 'https://www.sciencedirect.com/search?qs=red+mud+utilization' }
+    { text: '🔬 惰性阳极技术突破与铝电解效率', url: 'https://news.google.com/search?q=惰性阳极+铝电解+技术突破&hl=zh-CN' },
+    { text: '🔬 铝电解节能技术与低电压操作', url: 'https://news.google.com/search?q=铝电解+节能+阴极结构&hl=zh-CN' },
+    { text: '🔬 赤泥综合利用与稀土提取技术', url: 'https://news.google.com/search?q=赤泥+综合利用+稀土+提取&hl=zh-CN' }
   ]},
   { key: 'energy', label: '⚡ 能源动力', icon: '⚡', items: [
     { name: '纽卡斯尔动力煤', value: '$142/吨', change: '-0.8%', trend: 'down', source: 'ICE 2026-08-28' },
@@ -11949,14 +11949,14 @@ const MIR_PRESETS = [
     { name: '锂电池能量密度', value: '160-180 Wh/kg', desc: '磷酸铁锂系统级能量密度' }
   ],
   news: [
-    { text: '📰 印尼目标2030年可再生能源占比达31%，光伏装机计划翻倍', url: 'https://www.esdm.go.id' },
-    { text: '📰 印尼煤电退役计划启动：2030年前退役5.5GW老旧煤电机组', url: 'https://www.pln.co.id' },
-    { text: '📰 中国能建印尼漂浮式光伏项目开工，总装机200MW', url: 'https://www.ceec.net.cn' }
+    { text: '📰 印尼可再生能源目标与光伏装机计划', url: 'https://news.google.com/search?q=印尼+可再生能源+光伏+装机&hl=zh-CN' },
+    { text: '📰 印尼煤电退役计划与老旧机组改造', url: 'https://news.google.com/search?q=印尼+煤电退役+老旧机组&hl=zh-CN' },
+    { text: '📰 中国能建印尼漂浮式光伏项目', url: 'https://news.google.com/search?q=中国能建+印尼+漂浮式光伏&hl=zh-CN' }
   ],
   tech: [
-    { text: '🔬 漂浮式光伏技术：水上发电+减少蒸发，印尼水库应用潜力超1GW', url: 'https://www.irena.org/solar' },
-    { text: '🔬 海上风电基础技术：单桩+导管架适应印尼深水海域', url: 'https://www.4coffshore.com' },
-    { text: '🔬 微电网储能系统：锂电池+超级电容混合储能，响应时间<50ms', url: 'https://www.cnesa.org.cn' }
+    { text: '🔬 漂浮式光伏技术与水库发电潜力', url: 'https://news.google.com/search?q=漂浮式光伏+水库+发电&hl=zh-CN' },
+    { text: '🔬 海上风电基础技术：单桩+导管架', url: 'https://news.google.com/search?q=海上风电+单桩+导管架&hl=zh-CN' },
+    { text: '🔬 微电网储能系统与混合储能技术', url: 'https://news.google.com/search?q=微电网+储能+锂电池+超级电容&hl=zh-CN' }
   ]},
   { key: 'ev', label: '🚗 新能源终端', icon: '🚗', items: [
     { name: '中国新能源车渗透率', value: '52.8%', change: '+2.1pp', trend: 'up', source: '中汽协 2026-08-28' },
@@ -12043,8 +12043,18 @@ function loadPresetMIR(){
     const catData = data.data && data.data[cat.key] ? data.data[cat.key] : cat;
     const items = catData.items || cat.items || [];
     const quality = catData.quality || cat.quality || [];
-    const news = (data.news && data.news[cat.key]) || catData.news || cat.news || [];
-    const tech = (data.tech && data.tech[cat.key]) || catData.tech || cat.tech || [];
+    const fetchedNews = mirFetchedData && mirFetchedData.news && mirFetchedData.news[cat.key];
+    const fetchedTech = mirFetchedData && mirFetchedData.tech && mirFetchedData.tech[cat.key];
+    const presetNews = mirFetchedData && mirFetchedData.presetNews && mirFetchedData.presetNews[cat.key];
+    const presetTech = mirFetchedData && mirFetchedData.presetTech && mirFetchedData.presetTech[cat.key];
+    
+    // Priority: fetched real links > preset links from fetched data > MIR_PRESETS fallback
+    const news = fetchedNews || presetNews || catData.news || cat.news || [];
+    const tech = fetchedTech || presetTech || catData.tech || cat.tech || [];
+    
+    // Track if we're using real fetched data or presets
+    const isRealNews = !!fetchedNews;
+    const isRealTech = !!fetchedTech;
     
     html += '<div style="margin-bottom:16px;border:1px solid var(--border);border-radius:10px;overflow:hidden">';
     html += '<div style="background:var(--bg-elev);padding:10px 14px;font-size:13px;font-weight:600;color:var(--primary);display:flex;align-items:center;gap:6px">' + cat.icon + ' ' + cat.label + '</div>';
@@ -12088,7 +12098,7 @@ function loadPresetMIR(){
     // News section
     if(news.length > 0){
       html += '<div style="margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.05)">';
-      html += '<div style="font-size:11px;font-weight:600;color:var(--accent);margin-bottom:8px">📰 行业资讯 / Industry News</div>';
+      html += '<div style="font-size:11px;font-weight:600;color:var(--accent);margin-bottom:8px;display:flex;align-items:center;gap:6px">📰 行业资讯 / Industry News ' + (isRealNews ? '<span style="font-size:9px;padding:1px 6px;background:rgba(34,197,94,.15);color:var(--success);border-radius:4px">实时</span>' : '<span style="font-size:9px;padding:1px 6px;background:rgba(245,158,11,.1);color:var(--accent);border-radius:4px">预设参考</span>') + '</div>';
       news.forEach(news => {
         const newsText = typeof news === 'string' ? news : news.text;
         const newsUrl = typeof news === 'string' ? null : news.url;
@@ -12104,7 +12114,7 @@ function loadPresetMIR(){
     // Tech section
     if(tech.length > 0){
       html += '<div style="margin-top:10px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.05)">';
-      html += '<div style="font-size:11px;font-weight:600;color:var(--accent);margin-bottom:8px">🔬 科技动态 / Tech Updates</div>';
+      html += '<div style="font-size:11px;font-weight:600;color:var(--accent);margin-bottom:8px;display:flex;align-items:center;gap:6px">🔬 科技动态 / Tech Updates ' + (isRealTech ? '<span style="font-size:9px;padding:1px 6px;background:rgba(34,197,94,.15);color:var(--success);border-radius:4px">实时</span>' : '<span style="font-size:9px;padding:1px 6px;background:rgba(245,158,11,.1);color:var(--accent);border-radius:4px">预设参考</span>') + '</div>';
       tech.forEach(tech => {
         const techText = typeof tech === 'string' ? tech : tech.text;
         const techUrl = typeof tech === 'string' ? null : tech.url;
@@ -12165,20 +12175,47 @@ function updateMIRData(){
 }
 
 // Weekly trend data - based on real price history (will accumulate from daily fetches)
+// ===================== REAL HISTORICAL DATA =====================
+let mirHistoryData = {};
+
+async function loadHistoryData(symbol) {
+  if (mirHistoryData[symbol]) return mirHistoryData[symbol];
+  try {
+    const res = await fetch('mir-data/history/' + symbol + '.json?v=' + Date.now());
+    if (!res.ok) return null;
+    const data = await res.json();
+    mirHistoryData[symbol] = data;
+    return data;
+  } catch (e) {
+    console.error('Load history failed:', symbol, e);
+    return null;
+  }
+}
+
+function getItemHistorySymbol(itemId) {
+  // Map itemId to history symbol
+  const map = {
+    'nickel_0': 'NI0',  // LME镍 -> use 沪镍 as proxy (real data available)
+    'nickel_1': 'NI0',  // 沪镍主力
+    'aluminum_0': 'AL0', // LME铝 -> use 沪铝 as proxy
+    'aluminum_1': 'AL0', // 沪铝主力
+    'aluminum_2': 'AO0', // 氧化铝
+    'energy_0': 'ZC0',   // 动力煤
+  };
+  return map[itemId] || null;
+}
+
 function generateWeeklyTrend(baseValue){
-  // NOTE: This returns a deterministic simulated trend based on current price.
-  // In a future version, this will be replaced with real 12-week historical data.
-  // The trend is NOT real historical data — it is an illustrative estimate only.
+  // Fallback: return a deterministic simulated trend based on current price.
+  // This is only used when real historical data is not available.
   const data = [];
-  let current = baseValue * 0.92; // Start 8% lower 12 weeks ago
+  let current = baseValue * 0.92;
   const step = (baseValue - current) / 11;
   for(let i = 0; i < 12; i++){
-    // Use deterministic sine wave variation instead of random noise
     const variation = Math.sin(i * 1.2) * baseValue * 0.008;
     current += step + variation;
     data.push(Math.max(current, baseValue * 0.85));
   }
-  // Ensure last point is close to current
   data[11] = baseValue;
   return data;
 }
@@ -12201,42 +12238,65 @@ function togglePriceTrend(itemId){
 }
 
 function renderSimpleChart(container, itemId){
-  // Extract base value from current item
-  let baseValue = 100;
-  MIR_PRESETS.forEach(cat => {
-    cat.items.forEach((item, idx) => {
-      if(cat.key + '_' + idx === itemId){
-        const numMatch = item.value.match(/[\d,]+\.?\d*/);
-        if(numMatch) baseValue = parseFloat(numMatch[0].replace(/,/g, ''));
-      }
-    });
-  });
-  const data = generateWeeklyTrend(baseValue);
-  const min = Math.min(...data);
-  const max = Math.max(...data);
-  const range = max - min || 1;
-  const width = container.clientWidth || 280;
-  const height = 100;
-  const barWidth = Math.max(12, (width - 40) / data.length);
-  const gap = 4;
+  // Map itemId to history symbol
+  const symbolMap = {
+    'nickel_0': 'NI0',   // LME镍 -> 沪镍主力 (真实数据)
+    'nickel_1': 'NI0',   // 沪镍主力
+    'aluminum_0': 'AL0', // LME铝 -> 沪铝主力 (真实数据)
+    'aluminum_1': 'AL0', // 沪铝主力
+    'aluminum_2': 'AO0', // 氧化铝
+    'energy_0': 'ZC0',   // 动力煤
+  };
   
-  let html = '<div style="display:flex;align-items:flex-end;gap:' + gap + 'px;height:' + height + 'px;padding:0 4px">';
-  data.forEach((val, i) => {
-    const h = ((val - min) / range) * (height - 20) + 10;
-    const color = i > 0 && val >= data[i-1] ? '#22c55e' : i > 0 ? '#ef4444' : 'var(--primary)';
-    const weekLabel = 'W' + (12 - i);
-    html += '<div style="display:flex;flex-direction:column;align-items:center;gap:2px;flex:1">';
-    html += '<div style="font-size:9px;color:var(--text-dim)">' + weekLabel + '</div>';
-    html += '<div style="width:' + barWidth + 'px;height:' + h + 'px;background:' + color + ';border-radius:3px 3px 0 0;opacity:0.85;transition:height 0.3s"></div>';
-    html += '</div>';
-  });
-  html += '</div>';
-  html += '<div style="display:flex;justify-content:space-between;font-size:9px;color:var(--text-dim);margin-top:4px;padding:0 4px">';
-  html += '<span>低点: ' + min.toFixed(2) + '</span>';
-  html += '<span>高点: ' + max.toFixed(2) + '</span>';
-  html += '</div>';
-  html += '<div style="font-size:10px;color:var(--text-dim);text-align:center;margin-top:6px;padding:4px 8px;background:rgba(245,158,11,.08);border-radius:4px;cursor:help" onclick="alert(&#39;📊 模拟趋势数据（基于当前价格估算）\\n\\n此图表展示的是基于当前价格推算的12周趋势示意，并非真实历史数据。真实历史数据将在后续版本中接入。&#39;)" title="点击查看说明">📊 模拟趋势数据（基于当前价格估算） — 点击查看说明</div>';
-  container.innerHTML = html;
+  const symbol = symbolMap[itemId];
+  if(!symbol){
+    container.innerHTML = '<div style="font-size:11px;color:var(--text-dim);text-align:center;padding:20px">该品类暂无可用的历史数据</div>';
+    return;
+  }
+  
+  fetch('mir-data/history/' + symbol + '.json?v=' + Date.now())
+    .then(r => { if(!r.ok) throw new Error('No data'); return r.json(); })
+    .then(hist => {
+      const weekly = hist.data || [];
+      if(weekly.length === 0){
+        container.innerHTML = '<div style="font-size:11px;color:var(--text-dim);text-align:center;padding:20px">暂无历史数据，请更新MIR</div>';
+        return;
+      }
+      
+      const closes = weekly.map(d => d.close);
+      const highs = weekly.map(d => d.high);
+      const lows = weekly.map(d => d.low);
+      const min = Math.min(...lows);
+      const max = Math.max(...highs);
+      const range = max - min || 1;
+      const width = container.clientWidth || 280;
+      const height = 100;
+      const gap = 3;
+      
+      let html = '<div style="display:flex;align-items:flex-end;gap:' + gap + 'px;height:' + height + 'px;padding:0 4px">';
+      weekly.forEach((w, i) => {
+        const h = ((w.close - min) / range) * (height - 24) + 8;
+        const isUp = i > 0 && w.close >= weekly[i-1].close;
+        const color = isUp ? '#22c55e' : i > 0 ? '#ef4444' : 'var(--primary)';
+        const weekNum = i + 1;
+        html += '<div style="display:flex;flex-direction:column;align-items:center;gap:1px;flex:1;min-width:10px">';
+        html += '<div style="font-size:8px;color:var(--text-dim);white-space:nowrap">W' + weekNum + '</div>';
+        html += '<div style="width:100%;min-width:8px;height:' + h + 'px;background:' + color + ';border-radius:2px 2px 0 0;opacity:0.85;transition:height 0.3s;position:relative" title="周' + weekNum + ': 开' + w.open + ' 高' + w.high + ' 低' + w.low + ' 收' + w.close + '"></div>';
+        html += '</div>';
+      });
+      html += '</div>';
+      html += '<div style="display:flex;justify-content:space-between;font-size:9px;color:var(--text-dim);margin-top:4px;padding:0 4px">';
+      html += '<span>52周低: ' + min.toLocaleString() + '</span>';
+      html += '<span>52周高: ' + max.toLocaleString() + '</span>';
+      html += '</div>';
+      html += '<div style="font-size:10px;color:var(--primary);text-align:center;margin-top:4px">📈 真实周线数据 · ' + (hist.name || symbol) + ' · ' + weekly.length + '周</div>';
+      html += '<div style="font-size:9px;color:var(--text-dim);text-align:center">来源: ' + (hist.source || 'Sina Finance') + ' · 更新: ' + (hist.lastUpdated ? hist.lastUpdated.substring(0,10) : '未知') + '</div>';
+      container.innerHTML = html;
+    })
+    .catch(err => {
+      console.error('History load failed:', err);
+      container.innerHTML = '<div style="font-size:11px;color:var(--text-dim);text-align:center;padding:20px">暂无历史数据，请更新MIR<br><span style="font-size:9px">(' + symbol + ')</span></div>';
+    });
 }
 
 function queryMIR(){

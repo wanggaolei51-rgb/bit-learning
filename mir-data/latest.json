@@ -1,6 +1,8 @@
 {
-  "lastUpdated": "2026-08-29 23:17:32 +08:00",
+  "lastUpdated": "2026-08-30 10:39:28 +08:00",
   "source": "SIO-战略情报官 / 新浪财经+东方财富",
+  "historyAvailable": true,
+  "historySource": "Sina Finance (LME+SHFE 日K线聚合为周线)",
   "data": {
     "nickel": {
       "items": [
@@ -171,6 +173,180 @@
   "news": {
     "nickel": [
       {
+        "text": "📰 镍价 2026",
+        "url": "https://news.google.com/search?q=%E9%95%8D%E4%BB%B7%202026&hl=zh-CN",
+        "source": "Google News"
+      },
+      {
+        "text": "📰 印尼镍矿 RKAB",
+        "url": "https://news.google.com/search?q=%E5%8D%B0%E5%B0%BC%E9%95%8D%E7%9F%BF%20RKAB&hl=zh-CN",
+        "source": "Google News"
+      },
+      {
+        "text": "📰 LME nickel price",
+        "url": "https://news.google.com/search?q=LME%20nickel%20price&hl=zh-CN",
+        "source": "Google News"
+      }
+    ],
+    "alumina": [
+      {
+        "text": "📰 铝价 2026",
+        "url": "https://news.google.com/search?q=%E9%93%9D%E4%BB%B7%202026&hl=zh-CN",
+        "source": "Google News"
+      },
+      {
+        "text": "📰 氧化铝价格",
+        "url": "https://news.google.com/search?q=%E6%B0%A7%E5%8C%96%E9%93%9D%E4%BB%B7%E6%A0%BC&hl=zh-CN",
+        "source": "Google News"
+      },
+      {
+        "text": "📰 LME aluminum",
+        "url": "https://news.google.com/search?q=LME%20aluminum&hl=zh-CN",
+        "source": "Google News"
+      }
+    ],
+    "acid": [
+      {
+        "text": "📰 硫酸价格 2026",
+        "url": "https://news.google.com/search?q=%E7%A1%AB%E9%85%B8%E4%BB%B7%E6%A0%BC%202026&hl=zh-CN",
+        "source": "Google News"
+      },
+      {
+        "text": "📰 硫磺 CFR中国",
+        "url": "https://news.google.com/search?q=%E7%A1%AB%E7%A3%BA%20CFR%E4%B8%AD%E5%9B%BD&hl=zh-CN",
+        "source": "Google News"
+      },
+      {
+        "text": "📰 磷石膏制酸",
+        "url": "https://news.google.com/search?q=%E7%A3%B7%E7%9F%B3%E8%86%8F%E5%88%B6%E9%85%B8&hl=zh-CN",
+        "source": "Google News"
+      }
+    ],
+    "energy": [
+      {
+        "text": "📰 印尼光伏 2026",
+        "url": "https://news.google.com/search?q=%E5%8D%B0%E5%B0%BC%E5%85%89%E4%BC%8F%202026&hl=zh-CN",
+        "source": "Google News"
+      },
+      {
+        "text": "📰 动力煤价格",
+        "url": "https://news.google.com/search?q=%E5%8A%A8%E5%8A%9B%E7%85%A4%E4%BB%B7%E6%A0%BC&hl=zh-CN",
+        "source": "Google News"
+      },
+      {
+        "text": "📰 储能电池",
+        "url": "https://news.google.com/search?q=%E5%82%A8%E8%83%BD%E7%94%B5%E6%B1%A0&hl=zh-CN",
+        "source": "Google News"
+      }
+    ],
+    "ev": [
+      {
+        "text": "📰 印尼电动车 2026",
+        "url": "https://news.google.com/search?q=%E5%8D%B0%E5%B0%BC%E7%94%B5%E5%8A%A8%E8%BD%A6%202026&hl=zh-CN",
+        "source": "Google News"
+      },
+      {
+        "text": "📰 新能源汽车销量",
+        "url": "https://news.google.com/search?q=%E6%96%B0%E8%83%BD%E6%BA%90%E6%B1%BD%E8%BD%A6%E9%94%80%E9%87%8F&hl=zh-CN",
+        "source": "Google News"
+      },
+      {
+        "text": "📰 固态电池",
+        "url": "https://news.google.com/search?q=%E5%9B%BA%E6%80%81%E7%94%B5%E6%B1%A0&hl=zh-CN",
+        "source": "Google News"
+      }
+    ]
+  },
+  "tech": {
+    "nickel": [
+      {
+        "text": "🔬 HPAL nickel technology",
+        "url": "https://news.google.com/search?q=HPAL%20nickel%20technology&hl=zh-CN",
+        "source": "Google News"
+      },
+      {
+        "text": "🔬 RKEF energy efficiency",
+        "url": "https://news.google.com/search?q=RKEF%20energy%20efficiency&hl=zh-CN",
+        "source": "Google News"
+      },
+      {
+        "text": "🔬 nickel smelting innovation",
+        "url": "https://news.google.com/search?q=nickel%20smelting%20innovation&hl=zh-CN",
+        "source": "Google News"
+      }
+    ],
+    "alumina": [
+      {
+        "text": "🔬 inert anode aluminum",
+        "url": "https://news.google.com/search?q=inert%20anode%20aluminum&hl=zh-CN",
+        "source": "Google News"
+      },
+      {
+        "text": "🔬 aluminum electrolysis节能",
+        "url": "https://news.google.com/search?q=aluminum%20electrolysis%E8%8A%82%E8%83%BD&hl=zh-CN",
+        "source": "Google News"
+      },
+      {
+        "text": "🔬 red mud utilization",
+        "url": "https://news.google.com/search?q=red%20mud%20utilization&hl=zh-CN",
+        "source": "Google News"
+      }
+    ],
+    "acid": [
+      {
+        "text": "🔬 sulfuric acid process",
+        "url": "https://news.google.com/search?q=sulfuric%20acid%20process&hl=zh-CN",
+        "source": "Google News"
+      },
+      {
+        "text": "🔬 wet phosphoric acid",
+        "url": "https://news.google.com/search?q=wet%20phosphoric%20acid&hl=zh-CN",
+        "source": "Google News"
+      },
+      {
+        "text": "🔬 sulfur recovery",
+        "url": "https://news.google.com/search?q=sulfur%20recovery&hl=zh-CN",
+        "source": "Google News"
+      }
+    ],
+    "energy": [
+      {
+        "text": "🔬 floating solar Indonesia",
+        "url": "https://news.google.com/search?q=floating%20solar%20Indonesia&hl=zh-CN",
+        "source": "Google News"
+      },
+      {
+        "text": "🔬 offshore wind foundation",
+        "url": "https://news.google.com/search?q=offshore%20wind%20foundation&hl=zh-CN",
+        "source": "Google News"
+      },
+      {
+        "text": "🔬 microgrid storage",
+        "url": "https://news.google.com/search?q=microgrid%20storage&hl=zh-CN",
+        "source": "Google News"
+      }
+    ],
+    "ev": [
+      {
+        "text": "🔬 solid state battery 2026",
+        "url": "https://news.google.com/search?q=solid%20state%20battery%202026&hl=zh-CN",
+        "source": "Google News"
+      },
+      {
+        "text": "🔬 sodium ion battery",
+        "url": "https://news.google.com/search?q=sodium%20ion%20battery&hl=zh-CN",
+        "source": "Google News"
+      },
+      {
+        "text": "🔬 800V EV platform",
+        "url": "https://news.google.com/search?q=800V%20EV%20platform&hl=zh-CN",
+        "source": "Google News"
+      }
+    ]
+  },
+  "presetNews": {
+    "nickel": [
+      {
         "text": "📰 印尼2026年RKAB镍矿配额审批进度达78%",
         "url": "https://www.esdm.go.id"
       },
@@ -191,104 +367,64 @@
     ],
     "acid": [
       {
-        "text": "📰 印尼政府推动磷石膏综合利用，制酸企业环保成本或将上升",
+        "text": "📰 印尼政府推动磷石膏综合利用",
         "url": "https://www.kemenperin.go.id"
       },
       {
-        "text": "📰 中国硫铁矿制酸产能向印尼转移，预计2026年新增产能200万吨",
+        "text": "📰 中国硫铁矿制酸产能向印尼转移",
         "url": "https://www.ccfa.com.cn"
       }
     ],
     "energy": [
       {
-        "text": "📰 印尼目标2030年可再生能源占比达31%，光伏装机计划翻倍",
+        "text": "📰 印尼目标2030年可再生能源占比达31%",
         "url": "https://www.esdm.go.id"
       },
       {
-        "text": "📰 印尼煤电退役计划启动：2030年前退役5.5GW老旧煤电机组",
+        "text": "📰 印尼煤电退役计划启动",
         "url": "https://www.pln.co.id"
       }
     ],
     "ev": [
       {
-        "text": "📰 印尼政府推出电动车购置补贴政策，每辆补贴约3,000万印尼盾",
+        "text": "📰 印尼政府推出电动车购置补贴政策",
         "url": "https://www.kemenperin.go.id"
       },
       {
-        "text": "📰 印尼充电基础设施建设加速，2026年目标新建2,000个公共充电桩",
+        "text": "📰 印尼充电基础设施建设加速",
         "url": "https://www.pln.co.id"
       }
     ]
   },
-  "tech": {
+  "presetTech": {
     "nickel": [
       {
-        "text": "🔬 高压酸浸(HPAL)技术优化：浸出率提升至95%以上，酸耗降低15%",
+        "text": "🔬 HPAL技术优化：浸出率提升至95%以上",
         "url": "https://www.sciencedirect.com/search?qs=HPAL+nickel"
-      },
-      {
-        "text": "🔬 RKEF能效提升：新型回转窑余热回收系统可降低能耗8-12%",
-        "url": "https://www.smm.cn"
-      },
-      {
-        "text": "🔬 富氧侧吹熔炼技术在中伟股份印尼项目试点，处理能力提升20%",
-        "url": "https://www.cngr.com.cn"
       }
     ],
     "acid": [
       {
-        "text": "🔬 湿法磷酸工艺改进：半水-二水法能耗降低20%，磷回收率提升至97%",
+        "text": "🔬 湿法磷酸工艺改进：能耗降低20%",
         "url": "https://www.ccfa.com.cn"
-      },
-      {
-        "text": "🔬 硫酸尾气回收技术：双转双吸+尾气SO2回收，排放降至50mg/m³以下",
-        "url": "https://www.mee.gov.cn"
-      },
-      {
-        "text": "🔬 熔硫釜自动化改造：无人化操作+智能温控，效率提升15%",
-        "url": "https://www.sulfuricacidtoday.com"
       }
     ],
     "alumina": [
       {
-        "text": "🔬 惰性阳极技术突破：力拓示范项目电流效率提升至96%，CO2排放趋近于零",
+        "text": "🔬 惰性阳极技术突破：CO2排放趋近于零",
         "url": "https://www.riotinto.com"
-      },
-      {
-        "text": "🔬 铝电解节能技术：新型阴极结构+低电压操作，直流电耗降至12,500kWh/t",
-        "url": "https://www.aluminum.org"
-      },
-      {
-        "text": "🔬 赤泥综合利用：印尼试点从赤泥中提取稀土和钛铁矿",
-        "url": "https://www.sciencedirect.com/search?qs=red+mud+utilization"
       }
     ],
     "energy": [
       {
-        "text": "🔬 漂浮式光伏技术：水上发电+减少蒸发，印尼水库应用潜力超1GW",
+        "text": "🔬 漂浮式光伏：印尼水库应用潜力超1GW",
         "url": "https://www.irena.org/solar"
-      },
-      {
-        "text": "🔬 海上风电基础技术：单桩+导管架适应印尼深水海域",
-        "url": "https://www.4coffshore.com"
-      },
-      {
-        "text": "🔬 微电网储能系统：锂电池+超级电容混合储能，响应时间<50ms",
-        "url": "https://www.cnesa.org.cn"
       }
     ],
     "ev": [
       {
-        "text": "🔬 固态电池产业化进展：半固态电池已装车，全固态预计2028年量产",
+        "text": "🔬 固态电池产业化进展",
         "url": "https://www.catl.com"
-      },
-      {
-        "text": "🔬 钠离子电池产业化：宁德时代钠电池量产，成本较锂电低20%",
-        "url": "https://www.catl.com"
-      },
-      {
-        "text": "🔬 800V高压平台普及：充电时间缩短50%，碳化硅器件应用扩大",
-        "url": "https://www.evspecifications.com"
       }
     ]
   }
