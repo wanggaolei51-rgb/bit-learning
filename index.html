@@ -6,7 +6,7 @@
 <meta http-equiv="Expires" content="0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LEO-BIR V4.19.10</title>
+<title>LEO-BIR V4.19.11</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -12093,9 +12093,9 @@ function loadPresetMIR(){
         const newsText = typeof news === 'string' ? news : news.text;
         const newsUrl = typeof news === 'string' ? null : news.url;
         if (newsUrl) {
-          html += '<div style="font-size:11px;color:var(--text);line-height:1.5;margin-bottom:4px;padding:4px 8px;background:rgba(0,0,0,.15);border-radius:4px;cursor:pointer" onclick="window.open(\'' + newsUrl + '\', \'_blank\')">' + newsText + ' <span style="color:var(--primary)">↗</span></div>';
+          html += '<a href="' + encodeURI(newsUrl) + '" target="_blank" rel="noopener noreferrer" style="display:block;font-size:11px;color:var(--text);line-height:1.5;margin-bottom:4px;padding:4px 8px;background:rgba(0,0,0,.15);border-radius:4px;text-decoration:none;cursor:pointer;transition:background .2s" onmouseover="this.style.background=\'rgba(0,212,170,.1)\'" onmouseout="this.style.background=\'rgba(0,0,0,.15)\'">' + escapeHtml(newsText) + ' <span style="color:var(--primary);text-decoration:underline">↗</span></a>';
         } else {
-          html += '<div style="font-size:11px;color:var(--text);line-height:1.5;margin-bottom:4px;padding:4px 8px;background:rgba(0,0,0,.15);border-radius:4px">' + newsText + '</div>';
+          html += '<div style="font-size:11px;color:var(--text);line-height:1.5;margin-bottom:4px;padding:4px 8px;background:rgba(0,0,0,.15);border-radius:4px">' + escapeHtml(newsText) + '</div>';
         }
       });
       html += '</div>';
@@ -12109,9 +12109,9 @@ function loadPresetMIR(){
         const techText = typeof tech === 'string' ? tech : tech.text;
         const techUrl = typeof tech === 'string' ? null : tech.url;
         if (techUrl) {
-          html += '<div style="font-size:11px;color:var(--text);line-height:1.5;margin-bottom:4px;padding:4px 8px;background:rgba(0,0,0,.15);border-radius:4px;cursor:pointer" onclick="window.open(\'' + techUrl + '\', \'_blank\')">' + techText + ' <span style="color:var(--primary)">↗</span></div>';
+          html += '<a href="' + encodeURI(techUrl) + '" target="_blank" rel="noopener noreferrer" style="display:block;font-size:11px;color:var(--text);line-height:1.5;margin-bottom:4px;padding:4px 8px;background:rgba(0,0,0,.15);border-radius:4px;text-decoration:none;cursor:pointer;transition:background .2s" onmouseover="this.style.background=\'rgba(0,212,170,.1)\'" onmouseout="this.style.background=\'rgba(0,0,0,.15)\'">' + escapeHtml(techText) + ' <span style="color:var(--primary);text-decoration:underline">↗</span></a>';
         } else {
-          html += '<div style="font-size:11px;color:var(--text);line-height:1.5;margin-bottom:4px;padding:4px 8px;background:rgba(0,0,0,.15);border-radius:4px">' + techText + '</div>';
+          html += '<div style="font-size:11px;color:var(--text);line-height:1.5;margin-bottom:4px;padding:4px 8px;background:rgba(0,0,0,.15);border-radius:4px">' + escapeHtml(techText) + '</div>';
         }
       });
       html += '</div>';
@@ -12166,13 +12166,16 @@ function updateMIRData(){
 
 // Weekly trend data - based on real price history (will accumulate from daily fetches)
 function generateWeeklyTrend(baseValue){
-  // For now, return a realistic looking trend based on the current price
-  // In the future, this will be replaced with actual 12-week historical data
+  // NOTE: This returns a deterministic simulated trend based on current price.
+  // In a future version, this will be replaced with real 12-week historical data.
+  // The trend is NOT real historical data — it is an illustrative estimate only.
   const data = [];
   let current = baseValue * 0.92; // Start 8% lower 12 weeks ago
   const step = (baseValue - current) / 11;
   for(let i = 0; i < 12; i++){
-    current += step + (Math.random() - 0.5) * baseValue * 0.01; // Small noise
+    // Use deterministic sine wave variation instead of random noise
+    const variation = Math.sin(i * 1.2) * baseValue * 0.008;
+    current += step + variation;
     data.push(Math.max(current, baseValue * 0.85));
   }
   // Ensure last point is close to current
@@ -12232,6 +12235,7 @@ function renderSimpleChart(container, itemId){
   html += '<span>低点: ' + min.toFixed(2) + '</span>';
   html += '<span>高点: ' + max.toFixed(2) + '</span>';
   html += '</div>';
+  html += '<div style="font-size:10px;color:var(--text-dim);text-align:center;margin-top:6px;padding:4px 8px;background:rgba(245,158,11,.08);border-radius:4px;cursor:help" onclick="alert(&#39;📊 模拟趋势数据（基于当前价格估算）\\n\\n此图表展示的是基于当前价格推算的12周趋势示意，并非真实历史数据。真实历史数据将在后续版本中接入。&#39;)" title="点击查看说明">📊 模拟趋势数据（基于当前价格估算） — 点击查看说明</div>';
   container.innerHTML = html;
 }
 
