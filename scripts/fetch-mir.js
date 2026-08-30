@@ -481,6 +481,15 @@ async function main() {
   console.log('Real-time:', Object.keys(sinaData).join(', ') || 'None');
   console.log('History:', Object.entries(historyResults).map(([k,v]) => `${k}=${v.count}w`).join(', '));
   console.log('News links:', Object.keys(fetchedNews).length, 'categories');
+  
+  // Also run fetch-history.js for additional symbols (ZC0, AO0, I0)
+  console.log('\n--- Updating extended history data ---');
+  try {
+    const { execSync } = require('child_process');
+    execSync('node ' + path.join(__dirname, 'fetch-history.js'), { stdio: 'inherit' });
+  } catch (e) {
+    console.warn('Extended history update failed:', e.message);
+  }
 }
 
 main().catch(e => {
