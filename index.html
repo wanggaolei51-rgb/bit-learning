@@ -6,7 +6,7 @@
 <meta http-equiv="Expires" content="0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LEO-BIR V4.21.0</title>
+<title>LEO-BIR V4.22.0</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -273,7 +273,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="sidebar-header">
     <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <h1>LEO-BIR</h1>
-    <div class="ver">LEO-BIR V4.21.0 · MIR真实数据系统</div>
+    <div class="ver">LEO-BIR V4.22.0 · 运动身体话题+汉音拼音发音表</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -7473,11 +7473,147 @@ ukbi_map: {
       ]
     },
     quiz_answers: `Kunci Jawaban Sekolah·Pendidikan·Waktu:\n1.B | 2.B | 3.C | 4.A | 5.B\n6.B | 7.A | 8.B | 9.B | 10.B\n\n Tips: Perhatikan kosakata sekolah, ekspresi waktu dan tanggal dalam bahasa Indonesia.`
+  },
+
+  // ===== 话题19: 运动·身体 / Olahraga & Tubuh =====
+  sports_body: {
+    title: "话题19: 运动·身体 / Olahraga & Tubuh",
+    icon: "🏃",
+    days: 3,
+    grammar: {
+      title: "运动·身体语法 · Tata Bahasa Olahraga & Tubuh",
+      rules: [
+        "🔹 身体部位:Saya sakit... ('我...痛') / Bagian tubuh... ('身体部位...') / Di... saya ('在我的...') / Kepala saya pusing ('我头疼')",
+        "🔹 运动表达:Saya suka... ('我喜欢...') / Saya biasa... ('我习惯...') / Saya mau mulai... ('我想开始...') / Latihan... ('训练...')",
+        "🔹 频率表达:Setiap hari ('每天') / Tiga kali seminggu ('每周三次') / Pagi-pagi ('一大早') / Sehabis kerja ('下班后')",
+        "🔹 能力表达:Saya bisa... ('我能...') / Saya belum bisa... ('我还不会...') / Saya kuat... ('我...很强') / Saya lemah... ('我...很弱')",
+        "🔹 健康状态:Saya sehat ('我健康') / Saya sedikit lelah ('我有点累') / Saya cedera ('我受伤了') / Saya perlu istirahat ('我需要休息')"
+      ],
+      examples: [
+        "Saya sakit perut setelah makan pedas. = 我吃了辣的后肚子疼。",
+        "Saya biasa lari pagi setiap hari jam lima. = 我习惯每天早上5点跑步。",
+        "Saya kuat angkat beban tapi lemah yoga. = 我举重很强但瑜伽很弱。",
+        "Dia cedera lutut saat main basket kemarin. = 他昨天打篮球时膝盖受伤了。",
+        "Kita perlu pemanasan sebelum latihan berat. = 我们剧烈运动前需要热身。"
+      ]
+    },
+    vocab: [
+      ['kepala','头','/kəˈpala/'],['mata','眼睛','/ˈmata/'],['telinga','耳朵','/təˈliŋɡa/'],
+      ['hidung','鼻子','/ˈhiduŋ/'],['mulut','嘴','/ˈmulut/'],['gigi','牙齿','/ˈɡiɡi/'],
+      ['bibir','嘴唇','/ˈbibir/'],['rahang','下巴','/ˈrahaŋ/'],['leher','脖子','/ˈlɛhɛr/'],
+      ['bahu','肩膀','/ˈbahu/'],['lengan','手臂','/ˈləŋan/'],['siku','肘','/ˈsiku/'],
+      ['tangan','手','/ˈtaŋan/'],['jari','手指','/ˈʤari/'],['jari tangan','手指','/ˈʤari ˈtaŋan/'],
+      ['kuku','指甲','/ˈkuku/'],['dada','胸','/ˈdada/'],['perut','肚子/腹部','/pəˈrut/'],
+      ['pinggang','腰','/ˈpiŋɡaŋ/'],['punggung','背','/ˈpuŋɡuŋ/'],['pantat','臀部','/ˈpantat/'],
+      ['kaki','腿/脚','/ˈkaki/'],['lutut','膝盖','/ˈlutut/'],['betis','小腿','/ˈbɛtis/'],
+      ['pergelangan kaki','脚踝','/pərɡəˈlaŋan ˈkaki/'],['tumit','脚后跟','/ˈtumit/'],
+      ['jari kaki','脚趾','/ˈʤari ˈkaki/'],['alis','眉毛','/ˈalis/'],['pipi','脸颊','/ˈpipi/'],
+      ['dagú','下巴','/ˈdaɡu/'],['tengkuk','颈背','/ˈtəŋkuk/'],
+      ['otak','大脑','/ˈotak/'],['jantung','心脏','/ˈʤantuŋ/'],['paru-paru','肺','/ˈparu ˈparu/'],
+      ['hati','肝','/ˈhati/'],['ginjal','肾','/ˈɡinʤal/'],['lambung','胃','/ˈlambuŋ/'],
+      ['usus','肠','/ˈusus/'],['tulang','骨头','/ˈtulaŋ/'],['otot','肌肉','/ˈotot/'],
+      ['kulit','皮肤','/ˈkulit/'],['darah','血液','/ˈdarah/'],['urat','血管/筋','/ˈurat/'],
+      ['napas','呼吸','/ˈnapas/'],['detak jantung','心跳','/ˈdɛtak ˈʤantuŋ/'],
+      ['gym','健身房','/ˈʤim/'],['fitness','健身','/ˈfitnɛs/'],['treadmill','跑步机','/ˈtrɛdmil/'],
+      ['barbel','杠铃','/ˈbarbɛl/'],['dumbbell','哑铃','/ˈdambɛl/'],['bench press','卧推','/ˈbɛnʧ prɛs/'],
+      ['squat','深蹲','/ˈskwat/'],['deadlift','硬拉','/ˈdɛdlift/'],['pull-up','引体向上','/ˈpul ʌp/'],
+      ['push-up','俯卧撑','/ˈpuʃ ʌp/'],['sit-up','仰卧起坐','/ˈsit ʌp/'],['plank','平板支撑','/ˈplaŋk/'],
+      ['yoga','瑜伽','/ˈjoɡa/'],['pilates','普拉提','/piˈlatɛs/'],['latihan','训练','/ˈlatihan/'],
+      ['pemanasan','热身','/pəˈmanasan/'],['pendinginan','放松/冷却','/pənˈdininan/'],['set','组','/ˈsɛt/'],
+      ['repetisi','重复次数','/rəpəˈtisi/'],['personal trainer','私人教练','/ˈpɛrsonal ˈtrɛnɛr/'],
+      ['membership','会员卡','/ˈmɛmbərʃip/'],['kardio','有氧运动','/ˈkardio/'],['angkat beban','举重','/ˈaŋkat ˈbɛban/'],
+      ['otot dada','胸肌','/ˈotot ˈdada/'],['otot punggung','背肌','/ˈotot ˈpuŋɡuŋ/'],['otot kaki','腿部肌肉','/ˈotot ˈkaki/'],
+      ['otot perut','腹肌','/ˈotot pəˈrut/'],['otot lengan','手臂肌肉','/ˈotot ˈləŋan/'],['sixpack','六块腹肌','/ˈsikspak/'],
+      ['protein','蛋白质','/ˈprotein/'],['suplemen','补剂','/suˈplɛmɛn/'],['shake','蛋白粉奶昔','/ˈʃɛik/'],
+      ['locker','储物柜','/ˈlɔkɛr/'],['handuk','毛巾','/ˈhanduk/'],['botol minum','水壶','/ˈbotol ˈminum/'],
+      ['lari','跑步','/ˈlari/'],['bersepeda','骑自行车','/bərseˈpɛda/'],['berenang','游泳','/bəˈrənaŋ/'],
+      ['mendaki','爬山/徒步','/mənˈdaki/'],['basket','篮球','/ˈbaskɛt/'],['sepak bola','足球','/ˈsɛpak ˈbola/'],
+      ['voli','排球','/ˈvoli/'],['badminton','羽毛球','/ˈbadminton/'],['tenis','网球','/ˈtɛnis/'],
+      ['golf','高尔夫','/ˈɡɔlf/'],['maraton','马拉松','/ˈmaraton/'],['triatlon','铁人三项','/triˈatlon/'],
+      ['joging','慢跑','/ˈʤoɡiŋ/'],['hiking','远足','/ˈhaikiŋ/'],['kemah','露营','/ˈkɛmah/'],
+      ['memancing','钓鱼','/məˈmanʧiŋ/'],['selancar','冲浪','/səˈlanʧar/'],['arung jeram','漂流','/ˈaruŋ ˈʤɛram/'],
+      ['tinju','拳击','/ˈtinʤu/'],['bela diri','武术/防身','/ˈbɛla ˈdiri/'],['panahan','射箭','/ˈpanahan/'],
+      ['skateboard','滑板','/ˈskɛtbɔrd/'],['skydive','跳伞','/ˈskaidaiv/'],['panjat tebing','攀岩','/ˈpanʤat ˈtɛbiŋ/'],
+      ['sehat','健康','/səˈhat/'],['sakit','生病/痛','/ˈsakit/'],['lelah','累','/ˈlɛlah/'],
+      ['capek','疲倦','/ˈʧaʔpɛk/'],['kuat','强壮','/ˈkuat/'],['fit','健壮的','/ˈfit/'],
+      ['aktif','活跃的','/ˈaktif/'],['gerak','运动/动','/ˈɡɛrak/'],['istirahat','休息','/ˈistirahat/'],
+      ['minum','喝','/ˈminum/'],['keringat','汗','/ˈkəriŋat/'],['napas','呼吸','/ˈnapas/'],
+      ['cedera','受伤','/ˈʧɛdɛra/'],['pegal','酸痛','/ˈpɛɡal/'],['kram','抽筋','/ˈkram/'],
+      ['pusing','头晕','/ˈpusiŋ/'],['mual','恶心','/ˈmual/'],['demam','发烧','/ˈdɛmam/'],
+      ['batuk','咳嗽','/ˈbatuk/'],['bersin','打喷嚏','/bərˈsin/'],['migrain','偏头痛','/ˈmiɡrain/'],
+      ['asuransi kesehatan','健康保险','/asuˈransi kəsəˈhatan/'],['check-up','体检','/ˈʧɛk ʌp/'],['vaksin','疫苗','/ˈvaksin/']
+    ],
+    scenes: [
+      {title: "🏋️ 健身房办卡咨询", icon: "📝", dialogue: [
+        {speaker: "A", text: "Selamat pagi. Saya mau daftar membership gym ini. Ada paket apa saja?", trans: "早上好。我想办这家健身房的会员卡。有什么套餐?"},
+        {speaker: "B", text: "Selamat pagi, Pak. Kami ada tiga paket: bulanan, tiga bulan, dan tahunan. Bulanan tiga ratus lima puluh ribu, tahunan dua juta lima ratus ribu.", trans: "早上好,先生。我们有三种套餐:月卡、季卡和年卡。月卡35万,年卡250万。"},
+        {speaker: "A", text: "Kalau tahunan, apa fasilitasnya beda?", trans: "年卡的话,设施有什么不同吗?"},
+        {speaker: "B", text: "Semua fasilitas sama, Pak. Tapi member tahunan dapat dua sesi gratis sama personal trainer dan handuk gratis setiap kali latihan.", trans: "所有设施都一样,先生。但年卡会员有两次免费私教课,每次训练还提供免费毛巾。"},
+        {speaker: "A", text: "Oke, saya ambil yang tahunan. Apakah ada kelas grup seperti yoga atau zumba?", trans: "好,我选年卡。有团课吗,比如瑜伽或尊巴?"},
+        {speaker: "B", text: "Ada, Pak. Setiap hari ada jadwal kelas di dinding sana. Yoga pagi jam tujuh, zumba sore jam lima. Semua gratis untuk member.", trans: "有的,先生。每天有课表贴在那边墙上。瑜伽早上7点,尊巴下午5点。会员全部免费。"}
+      ]},
+      {title: "💪 与教练训练对话", icon: "🎯", dialogue: [
+        {speaker: "Trainer", text: "Oke, hari ini kita latihan otot dada dan trisep. Siap, Pak?", trans: "好,今天练胸肌和三头肌。准备好了吗,先生?"},
+        {speaker: "A", text: "Siap, Coach. Tapi bahu kanan saya masih sedikit pegal dari latihan kemarin.", trans: "准备好了,教练。但我右肩昨天练完还有点酸。"},
+        {speaker: "Trainer", text: "Baik, saya kurangi beban bahu. Kita fokus bench press dan dumbbell fly. Kalau sakit, bilang langsung ya.", trans: "好,我减少肩部负重。我们重点练卧推和哑铃飞鸟。如果疼,直接说。"},
+        {speaker: "A", text: "Berapa set dan repetisi untuk bench press hari ini?", trans: "今天卧推几组几次?"},
+        {speaker: "Trainer", text: "Empat set, delapan sampai sepuluh repetisi. Beban enam puluh kilo. Istirahat sembilan puluh detik antar set.", trans: "4组,8到10次。60公斤。组间休息90秒。"},
+        {speaker: "A", text: "Oke, saya mulai. Setelah ini kardio berapa menit?", trans: "好,我开始。之后有氧多久?"},
+        {speaker: "Trainer", text: "Dua puluh menit treadmill, incline tiga, kecepatan delapan. Jangan lupa stretching sebelum pulang.", trans: "跑步机20分钟,坡度3,速度8。回家前别忘了拉伸。"}
+      ]},
+      {title: "🏃 户外运动邀约", icon: "🌄", dialogue: [
+        {speaker: "A", text: "Halo, minggu pagi mau ikut lari marathon mini nggak? Lima kilometer di Lapangan Merdeka.", trans: "嗨,周日上午想参加迷你马拉松吗?5公里,在独立广场。"},
+        {speaker: "B", text: "Wah, saya belum pernah lari lima kilometer. Biasanya saya cuma joging dua kilometer.", trans: "哇,我还没跑过5公里呢。平时我只慢跑2公里。"},
+        {speaker: "A", text: "Nggak apa-apa, santai saja. Yang penting ikut, bukan juara. Setelah lari kita makan bubur ayam dekat sana.", trans: "没关系,放松就好。重在参与,不是夺冠。跑完我们在附近吃鸡肉粥。"},
+        {speaker: "B", text: "Oke, deal. Jam berapa kumpul?", trans: "好,成交。几点集合?"},
+        {speaker: "A", text: "Jam enam pagi. Jangan lupa bawa botol minum dan sepatu lari yang bagus.", trans: "早上6点。别忘了带水壶和好跑鞋。"},
+        {speaker: "B", text: "Siap. Kalau hujan gimana?", trans: "好。如果下雨怎么办?"},
+        {speaker: "A", text: "Kalau hujan, kita pindah ke gym lari di treadmill. Saya pesankan tempat.", trans: "如果下雨,我们去健身房跑跑步机。我来订位置。"}
+      ]},
+      {title: "🤕 运动受伤就医", icon: "🏥", dialogue: [
+        {speaker: "A", text: "Dokter, kaki saya keseleo saat main basket tadi sore.", trans: "医生,我下午打篮球时扭到脚踝了。"},
+        {speaker: "Dokter", text: "Bisa jalannya? Coba saya periksa. Sakit kalau saya tekan di sini?", trans: "能走路吗?让我检查一下。我按这里疼吗?"},
+        {speaker: "A", text: "Aduh! Sakit banget, Dok. Nggak bisa pijak kaki kanan.", trans: "哎哟!很疼,医生。右脚不能着地。"},
+        {speaker: "Dokter", text: "Ini pergelangan kaki bengkak. Saya rasa cuma keseleo ringan, bukan patah. Saya kasih es batu dan perban.", trans: "脚踝肿了。我觉得只是轻度扭伤,不是骨折。我给你冰袋和绷带。"},
+        {speaker: "A", text: "Berapa lama saya nggak boleh olahraga, Dok?", trans: "我多久不能运动,医生?"},
+        {speaker: "Dokter", text: "Istirahat seminggu. Jangan lari atau loncat dulu. Kalau masih sakit setelah seminggu, datang lagi ya.", trans: "休息一周。先不要跑跳。如果一周后还疼,再来。"},
+        {speaker: "A", text: "Baik, Dok. Terima kasih. Saya lebih hati-hati lain kali.", trans: "好的,医生。谢谢。下次我会更小心。"}
+      ]},
+      {title: "🏸 球类运动邀约", icon: "🏆", dialogue: [
+        {speaker: "A", text: "Besok sore main badminton yuk? Di GOR dekat kantor. Ada lapangan kosong jam lima.", trans: "明天下午打羽毛球吧?在办公室附近的体育馆。5点有空场地。"},
+        {speaker: "B", text: "Boleh. Tapi saya baru belajar, jangan terlalu serius ya.", trans: "可以。但我刚学,别太认真哦。"},
+        {speaker: "A", text: "Santai saja. Nanti habis main kita makan bakso. Saya bawa raket cadangan untuk kamu.", trans: "放松就好。打完我们吃肉丸。我给你带了备用球拍。"},
+        {speaker: "B", text: "Oke, saya bawa kaus kaki dan sepatu olahraga. Berapa jam kita main?", trans: "好,我带袜子和运动鞋。我们打多久?"},
+        {speaker: "A", text: "Dua jam. Dua puluh menit main, sepuluh menit istirahat. Total tiga set.", trans: "两小时。打20分钟休息10分钟。总共三局。"},
+        {speaker: "B", text: "Siap. Kalau saya keringatan banyak, jangan ketawa ya.", trans: "好。如果我出很多汗,别笑我。"},
+        {speaker: "A", text: "Haha, tenang. Yang penting gerak dan sehat. Lihat kamu besok!", trans: "哈哈,放心。重要的是动起来、保持健康。明天见!"}
+      ]}
+    ],
+    speeches: [
+      {day: 1, title: "💪 健康生活方式的重要性", icon: "❤️", content: "Gaya hidup sehat sangat penting untuk semua orang, terutama untuk kita yang bekerja di industri berat seperti tambang dan smelter. Saya melihat banyak rekan kerja yang mengabaikan kesehatan karena sibuk. Mereka kerja dari pagi sampai malam, makan tidak teratur, dan jarang olahraga. Akibatnya, banyak yang sakit diabetes, darah tinggi, dan jantung di usia muda. Saya sendiri dulu juga seperti itu. Setiap hari hanya duduk di kantor, meeting, dan makan junk food. Berat badan saya naik lima kilo dalam setahun. Suatu hari, saya naik tanggal dan sesak napas. Saya sadar, ini tidak bisa diteruskan. Saya mulai olahraga perlahan. Awalnya hanya jalan kaki tiga puluh menit setiap sore. Lama-lama saya mulai jogging, lalu gym. Sekarang saya latihan empat kali seminggu. Saya juga mulai memperhatikan makanan. Mengurangi gorengan dan minuman manis, banyak makan sayur dan protein. Hasilnya luar biasa. Energi saya lebih baik, tidur lebih nyenyak, dan fokus kerja meningkat. Kesehatan adalah investasi, bukan pengeluaran. Saya berharap semua rekan kerja saya juga mulai peduli dengan kesehatan sendiri. Jangan tunggu sakit dulu baru sadar. Mulai dari sekarang, sedikit demi sedikit.", trans: "健康生活方式对所有人都非常重要,尤其是我们这样在采矿和冶炼等重工业工作的人。我看到很多同事因为忙碌而忽视健康。他们从早忙到晚,饮食不规律,很少运动。结果是很多人在年轻时就患上糖尿病、高血压和心脏病。我自己以前也是这样。每天只是坐在办公室、开会、吃垃圾食品。一年内我体重增加了5公斤。有一天我爬楼梯时气喘吁吁。我意识到这不能再继续了。我开始慢慢运动。起初只是每天傍晚散步30分钟。后来我开始慢跑,然后去健身房。现在我每周训练4次。我也开始注意饮食。减少油炸食品和含糖饮料,多吃蔬菜和蛋白质。效果惊人。我精力更好,睡眠更深,工作专注度也提高了。健康是投资,不是支出。我希望所有同事也开始关心自己的健康。不要等到生病了才醒悟。从现在开始,一点一点做起。", time: 120, words: 230},
+      {day: 2, title: "🏃 我的运动习惯", icon: "⏰", content: "Saya ingin berbagi rutinitas olahraga saya setiap minggu. Senin pagi, saya mulai dengan gym latihan otot. Saya fokus ke otot dada, bahu, dan trisep. Latihan utama adalah bench press, dumbbell press, dan lateral raise. Total empat puluh lima menit latihan, termasuk pemanasan dan pendinginan. Selasa sore, saya lari di treadmill atau di luar kalau cuaca bagus. Saya lari lima kilometer dengan kecepatan sedang. Ini sangat baik untuk jantung dan membantu saya melepas stres setelah kerja seharian. Rabu saya libur olahraga, tapi saya tetap stretching ringan di rumah. Kamis pagi saya kembali ke gym, kali ini latihan otot punggung dan bisep. Deadlift, pull-up, dan barbell row adalah latihan favorit saya. Jumat sore saya main badminton sama rekan kerja. Ini bukan cuma olahraga, tapi juga social time. Kita ketawa, kompetisi sehat, dan makan bersama setelahnya. Sabtu pagi saya naik gunung kecil dekat Morowali. Pemandangannya indah dan udara segar. Minggu adalah hari istirahat total. Saya tidur lebih lama, makan enak, dan nggak mikir kerja. Rutinitas ini sudah saya jalani selama enam bulan. Tubuh saya lebih kuat, pikiran lebih jernih, dan saya jauh lebih bahagia. Olahraga bukan beban, tapi hadiah yang saya berikan untuk diri sendiri.", trans: "我想分享我每周的运动习惯。周一早上,我从健身房力量训练开始。我专注于胸肌、肩部和三头肌。主要训练是卧推、哑铃推举和侧平举。总共45分钟训练,包括热身和放松。周二下午,我在跑步机上跑步,或者天气好的话就户外跑。我以中等速度跑5公里。这对心脏非常好,也能帮助我释放一天工作后的压力。周三我休息不运动,但在家做轻度拉伸。周四早上我回到健身房,这次练背和二头肌。硬拉、引体向上和杠铃划船是我最喜欢的训练。周五下午我和同事打羽毛球。这不只是运动,也是社交时间。我们笑闹、健康竞争,然后一起吃饭。周六早上去莫罗瓦利附近的小山爬山。风景很美,空气新鲜。周日是完全休息日。我睡得更久,吃好吃的,不想工作的事。这个习惯我已经坚持了6个月。我的身体更强壮,思维更清晰,我也更快乐了。运动不是负担,而是我给自己的礼物。", time: 115, words: 220},
+      {day: 3, title: "🥋 印尼传统运动 Pencak Silat", icon: "🌟", content: "Indonesia memiliki warisan olahraga bela diri yang sangat kaya, yaitu Pencak Silat. Pencak Silat bukan cuma teknik bertarung, tapi juga mencakup seni, mental, dan spiritual. Di Indonesia, ada ratusan gaya Pencak Silat yang berbeda-beda. Setiap daerah punya ciri khas sendiri. Misalnya, Silat Minangkabau dari Sumatera Barat terkenal dengan gerakannya yang cepat dan lincah. Sementara Silat Jawa lebih fokus pada kesadaran diri dan tenaga dalam. Saya pertama kali melihat pertunjukan Pencak Silat di Jakarta. Saya sangat terkesan. Gerakannya indah seperti tarian, tapi juga sangat kuat dan efektif untuk bertahan. Saya mulai belajar Pencak Silat dasar dari seorang instruktur di Morowali. Awalnya saya kaku dan sering salah. Tapi instruktur saya sangat sabar. Dia mengajarkan bahwa Pencak Silat mengajarkan disiplin, hormat, dan kesabaran. Kita tidak belajar untuk menyerang, tapi untuk melindungi diri dan orang lain. Di Indonesia, Pencak Silat sudah diakui UNESCO sebagai warisan budaya tak benda dunia. Saya bangga bisa belajar seni asli Indonesia ini. Bagi saya, Pencak Silat bukan cuma olahraga, tapi juga jalan untuk lebih memahami budaya Indonesia. Setiap kali latihan, saya merasa lebih dekat dengan tanah ini dan orang-orangnya.", trans: "印尼拥有非常丰富的武术遗产,即Pencak Silat(班卡苏拉)。班卡苏拉不只是格斗技巧,还包含艺术、精神和灵性。在印尼,有数百种不同风格的班卡苏拉。每个地区都有自己的特色。例如,来自西苏门答腊的米南加保拳以其快速敏捷的动作闻名。而爪哇拳则更专注于自我意识和内力。我第一次看到班卡苏拉表演是在雅加达。我深受震撼。动作美如舞蹈,但也非常强大有效。我开始在莫罗瓦利跟一位教练学习基础班卡苏拉。起初我很僵硬,经常出错。但我的教练非常耐心。他教导说,班卡苏拉教授纪律、尊重和耐心。我们学习不是为了攻击,而是为了保护自己和他人。在印尼,班卡苏拉已被联合国教科文组织认定为世界非物质文化遗产。我很自豪能学习这门印尼原生的艺术。对我来说,班卡苏拉不只是运动,也是更深入理解印尼文化的途径。每次训练时,我都感觉与这片土地和人民更加亲近。", time: 120, words: 235}
+    ],
+    quiz: {
+      title: "运动·身体 · 综合测试 (10题)",
+      questions: [
+        {q: "1. 'Saya sakit _______' 表示'我头疼'。", options: ["A) perut", "B) kepala", "C) kaki"], a: 1, explain: "'sakit kepala' = 头疼"},
+        {q: "2. 'Dia cedera _______ saat main basket.' 膝盖", options: ["A) tangan", "B) lutut", "C) bahu"], a: 1, explain: "'lutut' = 膝盖"},
+        {q: "3. Latihan angkat beban di gym disebut _______.", options: ["A) kardio", "B) fitness", "C) angkat beban"], a: 2, explain: "'angkat beban' = 举重/力量训练"},
+        {q: "4. 'Push-up' 的中文意思是 _______。", options: ["A) 仰卧起坐", "B) 俯卧撑", "C) 引体向上"], a: 1, explain: "'push-up' = 俯卧撑"},
+        {q: "5. Saya biasa lari _______ setiap hari. ('每天早上')", options: ["A) pagi-pagi", "B) malam-malam", "C) siang-siang"], a: 0, explain: "'pagi-pagi' = 一大早/每天早上"},
+        {q: "6. 'Pemanasan' 的意思是 _______。", options: ["A) 放松", "B) 热身", "C) 拉伸"], a: 1, explain: "'pemanasan' = 热身"},
+        {q: "7. 'Saya perlu _______' 表示'我需要休息'。", options: ["A) kerja", "B) istirahat", "C) latihan"], a: 1, explain: "'istirahat' = 休息"},
+        {q: "8. 'Maraton' 是指跑 _______ 公里以上的长距离跑。", options: ["A) 5", "B) 10", "C) 42"], a: 2, explain: "'maraton' = 马拉松(42.195公里)"},
+        {q: "9. 'Bersepeda' 的意思是 _______。", options: ["A) 游泳", "B) 骑自行车", "C) 爬山"], a: 1, explain: "'bersepeda' = 骑自行车"},
+        {q: "10. 'Saya kuat _______ tapi lemah yoga.' 举重", options: ["A) lari", "B) angkat beban", "C) renang"], a: 1, explain: "'angkat beban' = 举重"}
+      ]
+    },
+    quiz_answers: `Kunci Jawaban Olahraga & Tubuh:\n1.B | 2.B | 3.C | 4.B | 5.A\n6.B | 7.B | 8.C | 9.B | 10.B\n\nTips: Perhatikan kosakata anggota tubuh, peralatan gym, dan olahraga luar ruang dalam bahasa Indonesia.`
   }
 };
 
   const topicCalendar = {
-  "2026-07-14": {topic: "meet", day: 1, label: "第1课 · 词汇+语法"},
   "2026-07-15": {topic: "meet", day: 2, label: "第2课 · 场景对话"},
   "2026-07-16": {topic: "meet", day: 3, label: "第3课-冶炼 · 演讲+复习", allDays: true},
   "2026-07-17": {topic: "introduce", day: 1, label: "词汇+语法+语型"},
@@ -7533,7 +7669,10 @@ ukbi_map: {
   "2026-09-06": {topic: "travel", day: 3, label: "✈️ 旅行 · Day 3 · 演讲+测试"},
   "2026-09-07": {topic: "education", day: 1, label: "🏫 学校·教育·时间日期 · Day 1 · 词汇+语法"},
   "2026-09-08": {topic: "education", day: 2, label: "🏫 学校·教育·时间日期 · Day 2 · 场景对话"},
-  "2026-09-09": {topic: "education", day: 3, label: "🏫 学校·教育·时间日期 · Day 3 · 演讲+测试"}
+  "2026-09-09": {topic: "education", day: 3, label: "🏫 学校·教育·时间日期 · Day 3 · 演讲+测试"},
+  "2026-09-10": {topic: "sports_body", day: 1, label: "🏃 运动·身体 · Day 1 · 词汇+语法"},
+  "2026-09-11": {topic: "sports_body", day: 2, label: "🏃 运动·身体 · Day 2 · 场景对话"},
+  "2026-09-12": {topic: "sports_body", day: 3, label: "🏃 运动·身体 · Day 3 · 演讲+测试"}
 };
 
 function getTopicForDate(ds) {
@@ -8300,6 +8439,20 @@ function renderAbout(c){
 function renderVersion(c){
   c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.21 / Versi</span></div>
     <div style="padding:16px;">
+      <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
+        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.22.0 (2026-09-07)</div>
+        <div style="font-size:13px;color:var(--text);line-height:1.8">
+        • 新增话题19: 运动·身体 (Olahraga & Tubuh)<br>
+        • 排期: 2026-09-10 至 2026-09-12 (Day1词汇+语法 / Day2场景对话 / Day3演讲+测试)<br>
+        • 词汇: 100+词覆盖身体所有部位、内部器官、健身房/户外高频用词、日常状态<br>
+        • 对话场景: 健身房办卡咨询、与教练训练、户外运动邀约、运动受伤就医、球类运动邀约<br>
+        • 演讲短文: 健康生活方式、我的运动习惯、印尼传统运动Pencak Silat<br>
+        • 测试: 10题综合测试含答案解析<br>
+        • 新增汉音拼音发音表: 支持印尼语/拼音切换，含声母21个+韵母32个+整体认读16个+声调5种<br>
+        • 拼音数据: IPA标注、发音部位、口型描述、中文朗读按钮<br>
+        • 版本号同步更新为V4.22.0<br>
+        </div>
+      </div>
       <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
         <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.21.0 (2026-09-05)</div>
         <div style="font-size:13px;color:var(--text);line-height:1.8">
@@ -10046,7 +10199,125 @@ const COMPOUND_PHONETICS = [
   { combo: "kh", ipa: "/x/", desc: "舌根摩擦音,类似'哈'的气音", pos: "舌根接近软腭,气流摩擦", example: "akhir (结束)", color: "#a78bfa" }
 ];
 
+// ============================================
+// 汉语拼音发音数据
+// ============================================
+const PINYIN_INITIALS = [
+  { letter: 'b',  ipa: '/p/',    desc: '双唇不送气塞音',           example: 'bā 八',  pos: '双唇',       mouth: '上下唇轻闭',                       soundText: '播', color: '#e74c3c' },
+  { letter: 'p',  ipa: '/pʰ/',   desc: '双唇送气塞音',             example: 'pā 趴',  pos: '双唇',       mouth: '上下唇轻闭，有明显气流送出',        soundText: '坡', color: '#e74c3c' },
+  { letter: 'm',  ipa: '/m/',    desc: '双唇鼻音',                 example: 'mā 妈',  pos: '双唇',       mouth: '上下唇闭拢，气流从鼻腔出',          soundText: '摸', color: '#e74c3c' },
+  { letter: 'f',  ipa: '/f/',    desc: '唇齿擦音',                 example: 'fā 发',  pos: '唇齿',       mouth: '下唇接近上齿，形成窄缝',            soundText: '佛', color: '#e74c3c' },
+  { letter: 'd',  ipa: '/t/',    desc: '舌尖中不送气塞音',         example: 'dā 搭',  pos: '舌尖中',     mouth: '舌尖抵住上齿龈',                    soundText: '得', color: '#e74c3c' },
+  { letter: 't',  ipa: '/tʰ/',   desc: '舌尖中送气塞音',           example: 'tā 他',  pos: '舌尖中',     mouth: '舌尖抵住上齿龈，有明显气流送出',    soundText: '特', color: '#e74c3c' },
+  { letter: 'n',  ipa: '/n/',    desc: '舌尖中鼻音',               example: 'nǐ 你',  pos: '舌尖中',     mouth: '舌尖抵住上齿龈，气流从鼻腔出',      soundText: '讷', color: '#e74c3c' },
+  { letter: 'l',  ipa: '/l/',    desc: '舌尖中边音',               example: 'lǐ 里',  pos: '舌尖中',     mouth: '舌尖抵住上齿龈，气流从舌两侧出',    soundText: '勒', color: '#e74c3c' },
+  { letter: 'g',  ipa: '/k/',    desc: '舌根不送气塞音',           example: 'gā 嘎',  pos: '舌根',       mouth: '舌根抵住软腭',                      soundText: '哥', color: '#e74c3c' },
+  { letter: 'k',  ipa: '/kʰ/',   desc: '舌根送气塞音',             example: 'kā 咖',  pos: '舌根',       mouth: '舌根抵住软腭，有明显气流送出',      soundText: '科', color: '#e74c3c' },
+  { letter: 'h',  ipa: '/x/',    desc: '舌根擦音',                 example: 'hā 哈',  pos: '舌根',       mouth: '舌根接近软腭，形成窄缝',            soundText: '喝', color: '#e74c3c' },
+  { letter: 'j',  ipa: '/tɕ/',   desc: '舌面不送气塞擦音',         example: 'jī 鸡',  pos: '舌面',       mouth: '舌面前部抵住硬腭前部',              soundText: '基', color: '#e74c3c' },
+  { letter: 'q',  ipa: '/tɕʰ/',  desc: '舌面送气塞擦音',           example: 'qī 七',  pos: '舌面',       mouth: '舌面前部抵住硬腭前部，送气明显',    soundText: '期', color: '#e74c3c' },
+  { letter: 'x',  ipa: '/ɕ/',    desc: '舌面擦音',                 example: 'xī 西',  pos: '舌面',       mouth: '舌面前部接近硬腭前部，形成窄缝',    soundText: '希', color: '#e74c3c' },
+  { letter: 'zh', ipa: '/ʈʂ/',   desc: '舌尖后不送气塞擦音',       example: 'zhī 知', pos: '舌尖后',     mouth: '舌尖翘向硬腭前部',                  soundText: '知', color: '#e74c3c' },
+  { letter: 'ch', ipa: '/ʈʂʰ/',  desc: '舌尖后送气塞擦音',         example: 'chī 吃', pos: '舌尖后',     mouth: '舌尖翘向硬腭前部，送气明显',        soundText: '吃', color: '#e74c3c' },
+  { letter: 'sh', ipa: '/ʂ/',    desc: '舌尖后擦音',               example: 'shī 师', pos: '舌尖后',     mouth: '舌尖接近硬腭前部，形成窄缝',        soundText: '诗', color: '#e74c3c' },
+  { letter: 'r',  ipa: '/ɻ/',    desc: '舌尖后擦音/近音',          example: 'rì 日',  pos: '舌尖后',     mouth: '舌尖接近硬腭前部，声带振动',        soundText: '日', color: '#e74c3c' },
+  { letter: 'z',  ipa: '/ts/',   desc: '舌尖前不送气塞擦音',       example: 'zī 资',  pos: '舌尖前',     mouth: '舌尖抵住上齿背',                    soundText: '资', color: '#e74c3c' },
+  { letter: 'c',  ipa: '/tsʰ/',  desc: '舌尖前送气塞擦音',         example: 'cī 疵',  pos: '舌尖前',     mouth: '舌尖抵住上齿背，送气明显',          soundText: '雌', color: '#e74c3c' },
+  { letter: 's',  ipa: '/s/',    desc: '舌尖前擦音',               example: 'sī 思',  pos: '舌尖前',     mouth: '舌尖接近上齿背，形成窄缝',          soundText: '思', color: '#e74c3c' }
+];
+
+const PINYIN_FINALS_SINGLE = [
+  { letter: 'a',  ipa: '/a/',   desc: '低元音，开口较大',             example: 'bā 八',  pos: '口腔中央',   mouth: '开口较大，类似印尼语 a',            type: 'single', soundText: '啊', color: '#3498db' },
+  { letter: 'o',  ipa: '/o/',   desc: '半高后圆唇元音',               example: 'bō 波',  pos: '口腔后部',   mouth: '圆唇后元音，类似印尼语 o',          type: 'single', soundText: '哦', color: '#3498db' },
+  { letter: 'e',  ipa: '/ɤ/',   desc: '半高后不圆唇元音',             example: 'hē 喝',  pos: '口腔后部',   mouth: '舌头后缩，不圆唇',                  type: 'single', soundText: '鹅', color: '#3498db' },
+  { letter: 'i',  ipa: '/i/',   desc: '高前不圆唇元音',               example: 'mī 咪',  pos: '口腔前部',   mouth: '舌面前部抬高，类似印尼语 i',        type: 'single', soundText: '衣', color: '#3498db' },
+  { letter: 'u',  ipa: '/u/',   desc: '高后圆唇元音',                 example: 'lù 路',  pos: '口腔后部',   mouth: '舌根抬高，圆唇，类似印尼语 u',      type: 'single', soundText: '乌', color: '#3498db' },
+  { letter: 'ü',  ipa: '/y/',   desc: '高前圆唇元音',                 example: 'lǜ 绿',  pos: '口腔前部',   mouth: '舌位同 i，嘴唇圆起，印尼语无此音',  type: 'single', soundText: '迂', color: '#3498db' }
+];
+
+const PINYIN_FINALS_COMPOUND = [
+  { letter: 'ai',  ipa: '/aɪ/',   desc: '前响复韵母，从 a 滑向 i',      example: 'hǎi 海',  pos: '口腔',  mouth: '从 a 滑向 i',          type: 'compound', soundText: '海', color: '#9b59b6' },
+  { letter: 'ei',  ipa: '/eɪ/',   desc: '前响复韵母，从 e 滑向 i',      example: 'hēi 黑',  pos: '口腔',  mouth: '从 e 滑向 i',          type: 'compound', soundText: '黑', color: '#9b59b6' },
+  { letter: 'ao',  ipa: '/ɑʊ/',   desc: '前响复韵母，从 ɑ 滑向 ʊ',      example: 'hǎo 好',  pos: '口腔',  mouth: '从 ɑ 滑向 ʊ',          type: 'compound', soundText: '好', color: '#9b59b6' },
+  { letter: 'ou',  ipa: '/oʊ/',   desc: '前响复韵母，从 o 滑向 ʊ',      example: 'kǒu 口',  pos: '口腔',  mouth: '从 o 滑向 ʊ',          type: 'compound', soundText: '口', color: '#9b59b6' },
+  { letter: 'ia',  ipa: '/ia/',   desc: '后响复韵母，i 滑向 a',         example: 'jiā 家',  pos: '口腔',  mouth: 'i 滑向 a',             type: 'compound', soundText: '家', color: '#9b59b6' },
+  { letter: 'ie',  ipa: '/iɛ/',   desc: '后响复韵母，i 滑向 ɛ',         example: 'xiē 些',  pos: '口腔',  mouth: 'i 滑向 ɛ',             type: 'compound', soundText: '些', color: '#9b59b6' },
+  { letter: 'iao', ipa: '/iaʊ/',  desc: '中响复韵母，i-a-ʊ',            example: 'jiào 叫', pos: '口腔',  mouth: 'i 滑向 a 再滑向 ʊ',    type: 'compound', soundText: '叫', color: '#9b59b6' },
+  { letter: 'iu',  ipa: '/ioʊ/',  desc: '中响复韵母，iou 的省写',       example: 'qiū 秋',  pos: '口腔',  mouth: 'i 滑向 o 再滑向 ʊ',    type: 'compound', soundText: '秋', color: '#9b59b6' },
+  { letter: 'ua',  ipa: '/ua/',   desc: '后响复韵母，u 滑向 a',         example: 'huā 花',  pos: '口腔',  mouth: 'u 滑向 a',             type: 'compound', soundText: '花', color: '#9b59b6' },
+  { letter: 'uo',  ipa: '/uo/',   desc: '后响复韵母，u 滑向 o',         example: 'wǒ 我',   pos: '口腔',  mouth: 'u 滑向 o',             type: 'compound', soundText: '我', color: '#9b59b6' },
+  { letter: 'uai', ipa: '/uaɪ/',  desc: '中响复韵母，u-a-ɪ',            example: 'kuài 快', pos: '口腔',  mouth: 'u 滑向 a 再滑向 ɪ',    type: 'compound', soundText: '快', color: '#9b59b6' },
+  { letter: 'ui',  ipa: '/ueɪ/',  desc: '中响复韵母，uei 的省写',       example: 'guì 贵',  pos: '口腔',  mouth: 'u 滑向 e 再滑向 ɪ',    type: 'compound', soundText: '贵', color: '#9b59b6' }
+];
+
+const PINYIN_FINALS_NASAL = [
+  { letter: 'an',   ipa: '/an/',    desc: '前鼻音韵母，前鼻音韵尾 -n',    example: 'shān 山',  pos: '口腔',  mouth: '舌尖抵住上齿龈，气流从鼻腔出',  type: 'nasal', soundText: '山', color: '#f39c12' },
+  { letter: 'en',   ipa: '/ən/',    desc: '前鼻音韵母，前鼻音韵尾 -n',    example: 'mén 门',   pos: '口腔',  mouth: '舌面中部隆起，舌尖抵上齿龈',   type: 'nasal', soundText: '门', color: '#f39c12' },
+  { letter: 'in',   ipa: '/in/',    desc: '前鼻音韵母，前鼻音韵尾 -n',    example: 'xīn 心',   pos: '口腔',  mouth: '舌面前部抬高，舌尖抵上齿龈',  type: 'nasal', soundText: '心', color: '#f39c12' },
+  { letter: 'un',   ipa: '/un/',    desc: '前鼻音韵母，uen 的省写',       example: 'lùn 论',   pos: '口腔',  mouth: 'u 后接前鼻音韵尾 -n',         type: 'nasal', soundText: '论', color: '#f39c12' },
+  { letter: 'ün',   ipa: '/yn/',    desc: '前鼻音韵母，前鼻音韵尾 -n',    example: 'qún 群',   pos: '口腔',  mouth: 'ü 后接前鼻音韵尾 -n',         type: 'nasal', soundText: '群', color: '#f39c12' },
+  { letter: 'ang',  ipa: '/ɑŋ/',   desc: '后鼻音韵母，后鼻音韵尾 -ng',   example: 'máng 忙',  pos: '口腔',  mouth: '舌根抬起抵住软腭，气流从鼻腔出', type: 'nasal', soundText: '忙', color: '#f39c12' },
+  { letter: 'eng',  ipa: '/əŋ/',   desc: '后鼻音韵母，后鼻音韵尾 -ng',   example: 'lěng 冷',  pos: '口腔',  mouth: '舌面中部隆起，舌根抵软腭',     type: 'nasal', soundText: '冷', color: '#f39c12' },
+  { letter: 'ing',  ipa: '/iŋ/',   desc: '后鼻音韵母，后鼻音韵尾 -ng',   example: 'míng 明',  pos: '口腔',  mouth: '舌面前部抬高，舌根抵软腭',     type: 'nasal', soundText: '明', color: '#f39c12' },
+  { letter: 'ong',  ipa: '/ʊŋ/',   desc: '后鼻音韵母，后鼻音韵尾 -ng',   example: 'dōng 东',  pos: '口腔',  mouth: '舌根抬高，圆唇，舌根抵软腭',   type: 'nasal', soundText: '东', color: '#f39c12' },
+  { letter: 'ian',  ipa: '/iɛn/',  desc: '前鼻音韵母，i 系列',           example: 'tiān 天',  pos: '口腔',  mouth: 'i 滑向 ɛ 再接 -n',            type: 'nasal', soundText: '天', color: '#f39c12' },
+  { letter: 'uan',  ipa: '/uan/',  desc: '前鼻音韵母，u 系列',           example: 'guān 关',  pos: '口腔',  mouth: 'u 滑向 a 再接 -n',            type: 'nasal', soundText: '关', color: '#f39c12' },
+  { letter: 'üan',  ipa: '/yɛn/',  desc: '前鼻音韵母，ü 系列',           example: 'quán 全',  pos: '口腔',  mouth: 'ü 滑向 ɛ 再接 -n',            type: 'nasal', soundText: '全', color: '#f39c12' },
+  { letter: 'iong', ipa: '/iʊŋ/',  desc: '后鼻音韵母，i 系列',           example: 'xióng 熊', pos: '口腔',  mouth: 'i 滑向 ʊ 再接 -ng',           type: 'nasal', soundText: '熊', color: '#f39c12' },
+  { letter: 'uang', ipa: '/uaŋ/',  desc: '后鼻音韵母，u 系列',           example: 'guāng 光', pos: '口腔',  mouth: 'u 滑向 a 再接 -ng',           type: 'nasal', soundText: '光', color: '#f39c12' }
+];
+
+const PINYIN_WHOLE = [
+  { syllable: 'zhi',  ipa: '/ʈʂɻ̩/',  desc: '舌尖后元音，整体认读',         example: 'zhī 知',  soundText: '知', color: '#1abc9c' },
+  { syllable: 'chi',  ipa: '/ʈʂʰɻ̩/', desc: '舌尖后元音，送气，整体认读',   example: 'chī 吃',  soundText: '吃', color: '#1abc9c' },
+  { syllable: 'shi',  ipa: '/ʂɻ̩/',   desc: '舌尖后元音，整体认读',         example: 'shī 师',  soundText: '师', color: '#1abc9c' },
+  { syllable: 'ri',   ipa: '/ɻɻ̩/',   desc: '舌尖后元音，整体认读',         example: 'rì 日',   soundText: '日', color: '#1abc9c' },
+  { syllable: 'zi',   ipa: '/tsɿ/',  desc: '舌尖前元音，整体认读',         example: 'zī 资',   soundText: '资', color: '#1abc9c' },
+  { syllable: 'ci',   ipa: '/tsʰɿ/', desc: '舌尖前元音，送气，整体认读',   example: 'cī 疵',   soundText: '疵', color: '#1abc9c' },
+  { syllable: 'si',   ipa: '/sɿ/',   desc: '舌尖前元音，整体认读',         example: 'sī 思',   soundText: '思', color: '#1abc9c' },
+  { syllable: 'yi',   ipa: '/i/',    desc: 'i 的零声母音节',               example: 'yī 一',   soundText: '一', color: '#1abc9c' },
+  { syllable: 'wu',   ipa: '/u/',    desc: 'u 的零声母音节',               example: 'wǔ 五',   soundText: '五', color: '#1abc9c' },
+  { syllable: 'yu',   ipa: '/y/',    desc: 'ü 的零声母音节',               example: 'yǔ 雨',   soundText: '雨', color: '#1abc9c' },
+  { syllable: 'ye',   ipa: '/iɛ/',   desc: 'ie 的零声母音节',              example: 'yè 夜',   soundText: '夜', color: '#1abc9c' },
+  { syllable: 'yue',  ipa: '/yɛ/',   desc: 'üe 的零声母音节',              example: 'yuè 月',  soundText: '月', color: '#1abc9c' },
+  { syllable: 'yuan', ipa: '/yɛn/',  desc: 'üan 的零声母音节',             example: 'yuán 元', soundText: '元', color: '#1abc9c' },
+  { syllable: 'yin',  ipa: '/in/',   desc: 'in 的零声母音节',              example: 'yīn 因',  soundText: '因', color: '#1abc9c' },
+  { syllable: 'yun',  ipa: '/yn/',   desc: 'ün 的零声母音节',              example: 'yún 云',  soundText: '云', color: '#1abc9c' },
+  { syllable: 'ying', ipa: '/iŋ/',   desc: 'ing 的零声母音节',             example: 'yīng 英', soundText: '英', color: '#1abc9c' }
+];
+
+const PINYIN_TONES = [
+  { name: '第一声', mark: '¯',  symbol: 'ˉ', example: 'mā 妈', desc: '高平调，音高保持不变',            value: 55, color: '#e74c3c' },
+  { name: '第二声', mark: '´',  symbol: 'ˊ', example: 'má 麻', desc: '高升调，由中低向上升高',          value: 35, color: '#e67e22' },
+  { name: '第三声', mark: 'ˇ',  symbol: 'ˇ', example: 'mǎ 马', desc: '降升调，先降后升；语流中常变调',   value: 214, color: '#f1c40f' },
+  { name: '第四声', mark: '`',  symbol: 'ˋ', example: 'mà 骂', desc: '全降调，由高向低快速下降',         value: 51, color: '#2ecc71' },
+  { name: '轻声',   mark: '',   symbol: '·', example: 'ma 吗', desc: '弱读短读，调值由语流决定，无调号', value: 0, color: '#95a5a6' }
+];
+
+const PINYIN_TIPS = [
+  { title: '送气与不送气', content: '普通话的 b/p、d/t、g/k、j/q、zh/ch、z/c 主要体现"送气—不送气"对立，不要简单套用印尼语中的"浊—清"概念。教学时让学生用手或纸片感受气流强弱。' },
+  { title: '平舌与卷舌', content: 'z、c、s 为平舌音（舌尖抵上齿背），zh、ch、sh、r 为卷舌音（舌尖翘向硬腭前部）。印尼学习者常混淆，需重点训练。' },
+  { title: 'ü 的发音', content: 'ü 是印尼语中没有的音。先发 i 固定舌位，然后将嘴唇圆起。在 j、q、x 后省略两点但仍读 ü。' },
+  { title: '省写规则', content: 'iou → iu，uei → ui，uen → un。书写时省写，但发音时仍按完整形式。' },
+  { title: 'y、w 的使用', content: 'y、w 不是声母，而是零声母音节的拼写辅助。i 开头变 yi/ya/ye/yao/you/yan/yin/ying/yong，u 开头变 wu/wa/wo/wai/wei/wan/wen/wang/weng，ü 开头变 yu/yue/yuan/yun。' }
+];
+
+// 拼音发音全局模式
+let phoneticsMode = 'indonesia';
+
+function setPhoneticsMode(mode) {
+  phoneticsMode = mode;
+  const c = document.getElementById('appContent');
+  renderPhonetics(c);
+}
+
 function renderPhonetics(c) {
+  if (phoneticsMode === 'pinyin') {
+    renderPinyinTable(c);
+    return;
+  }
+
+  // ========== 印尼语发音表 ==========
   const vowels = PHONETIC_DATA.filter(p => 'AIEOU'.includes(p.letter[0]));
   const consonants = PHONETIC_DATA.filter(p => !'AIEOU'.includes(p.letter[0]));
 
@@ -10061,7 +10332,6 @@ function renderPhonetics(c) {
         <button onclick="speak('${p.letter[0].toLowerCase()}a','id')" class="trans-btn" style="margin-left:auto;padding:6px 10px;font-size:11px;background:rgba(0,212,170,.1);color:var(--primary)">🔊 读音</button>
       </div>
       <div style="display:flex;gap:10px;align-items:flex-start;margin-bottom:10px;">
-        <!-- 简化的口腔位置图 -->
         <div style="width:60px;height:70px;flex-shrink:0;background:var(--bg-elev);border-radius:8px;border:1px solid var(--border);position:relative;overflow:hidden;">
           ${renderMouthDiagram(p.letter[0].toLowerCase(), p.pos)}
         </div>
@@ -10102,6 +10372,12 @@ function renderPhonetics(c) {
         <span class="badge">26字母+4复合音 / 26 huruf + 4 bunyi komposit</span>
       </div>
       <div style="padding:16px;">
+        <!-- 模式切换 -->
+        <div style="display:flex;gap:8px;margin-bottom:20px;">
+          <button onclick="setPhoneticsMode('indonesia')" class="trans-btn" style="padding:8px 16px;font-size:13px;background:var(--primary);color:#fff;border-radius:8px;font-weight:600;">🇮🇩 印尼语发音</button>
+          <button onclick="setPhoneticsMode('pinyin')" class="trans-btn" style="padding:8px 16px;font-size:13px;background:var(--bg-elev);color:var(--text);border:1px solid var(--border);border-radius:8px;">🇨🇳 汉音拼音</button>
+        </div>
+
         <!-- 说明 -->
         <div style="font-size:13px;color:var(--text-dim);margin-bottom:20px;padding:14px;background:rgba(0,212,170,.06);border-radius:10px;border-left:3px solid var(--primary);line-height:1.8">
           <strong style="color:var(--primary)">印尼语拼读规则:</strong><br>
@@ -10142,6 +10418,216 @@ function renderPhonetics(c) {
           </div>
           <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;">
             ${compoundCards}
+          </div>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+// ========== 汉音拼音发音表 ==========
+function renderPinyinTable(c) {
+  const initCards = PINYIN_INITIALS.map(p => `
+    <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:16px;transition:all .2s;" onmouseover="this.style.borderColor='${p.color}'" onmouseout="this.style.borderColor='var(--border)'">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
+        <div style="width:44px;height:44px;border-radius:50%;background:${p.color}20;border:2px solid ${p.color};display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;color:${p.color}">${p.letter}</div>
+        <div>
+          <div style="font-size:16px;font-weight:700;color:var(--text)">${p.ipa}</div>
+          <div style="font-size:11px;color:var(--text-dim)">${p.desc}</div>
+        </div>
+        <button onclick="speak('${p.soundText}','zh-CN')" class="trans-btn" style="margin-left:auto;padding:6px 10px;font-size:11px;background:rgba(231,76,60,.1);color:#e74c3c">🔊 读音</button>
+      </div>
+      <div style="font-size:12px;color:var(--text-dim);line-height:1.7">
+        <div><strong style="color:var(--primary)">发音部位:</strong>${p.pos}</div>
+        <div><strong style="color:var(--primary)">口型:</strong>${p.mouth}</div>
+      </div>
+      <div style="font-size:12px;color:var(--accent);background:rgba(245,158,11,.08);padding:6px 10px;border-radius:6px;margin-top:8px;">
+        例:${p.example}
+      </div>
+    </div>
+  `).join('');
+
+  const singleCards = PINYIN_FINALS_SINGLE.map(p => `
+    <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:16px;transition:all .2s;" onmouseover="this.style.borderColor='${p.color}'" onmouseout="this.style.borderColor='var(--border)'">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
+        <div style="width:44px;height:44px;border-radius:50%;background:${p.color}20;border:2px solid ${p.color};display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;color:${p.color}">${p.letter}</div>
+        <div>
+          <div style="font-size:16px;font-weight:700;color:var(--text)">${p.ipa}</div>
+          <div style="font-size:11px;color:var(--text-dim)">${p.desc}</div>
+        </div>
+        <button onclick="speak('${p.soundText}','zh-CN')" class="trans-btn" style="margin-left:auto;padding:6px 10px;font-size:11px;background:rgba(52,152,219,.1);color:#3498db">🔊 读音</button>
+      </div>
+      <div style="font-size:12px;color:var(--text-dim);line-height:1.7">
+        <div><strong style="color:var(--primary)">舌位:</strong>${p.pos}</div>
+        <div><strong style="color:var(--primary)">口型:</strong>${p.mouth}</div>
+      </div>
+      <div style="font-size:12px;color:var(--accent);background:rgba(245,158,11,.08);padding:6px 10px;border-radius:6px;margin-top:8px;">
+        例:${p.example}
+      </div>
+    </div>
+  `).join('');
+
+  const compoundCards = PINYIN_FINALS_COMPOUND.map(p => `
+    <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:16px;transition:all .2s;" onmouseover="this.style.borderColor='${p.color}'" onmouseout="this.style.borderColor='var(--border)'">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
+        <div style="width:44px;height:44px;border-radius:50%;background:${p.color}20;border:2px solid ${p.color};display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;color:${p.color}">${p.letter}</div>
+        <div>
+          <div style="font-size:16px;font-weight:700;color:var(--text)">${p.ipa}</div>
+          <div style="font-size:11px;color:var(--text-dim)">${p.desc}</div>
+        </div>
+        <button onclick="speak('${p.soundText}','zh-CN')" class="trans-btn" style="margin-left:auto;padding:6px 10px;font-size:11px;background:rgba(155,89,182,.1);color:#9b59b6">🔊 读音</button>
+      </div>
+      <div style="font-size:12px;color:var(--text-dim);line-height:1.7">
+        <div><strong style="color:var(--primary)">发音过程:</strong>${p.mouth}</div>
+      </div>
+      <div style="font-size:12px;color:var(--accent);background:rgba(245,158,11,.08);padding:6px 10px;border-radius:6px;margin-top:8px;">
+        例:${p.example}
+      </div>
+    </div>
+  `).join('');
+
+  const nasalCards = PINYIN_FINALS_NASAL.map(p => `
+    <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:16px;transition:all .2s;" onmouseover="this.style.borderColor='${p.color}'" onmouseout="this.style.borderColor='var(--border)'">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
+        <div style="width:44px;height:44px;border-radius:50%;background:${p.color}20;border:2px solid ${p.color};display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;color:${p.color}">${p.letter}</div>
+        <div>
+          <div style="font-size:16px;font-weight:700;color:var(--text)">${p.ipa}</div>
+          <div style="font-size:11px;color:var(--text-dim)">${p.desc}</div>
+        </div>
+        <button onclick="speak('${p.soundText}','zh-CN')" class="trans-btn" style="margin-left:auto;padding:6px 10px;font-size:11px;background:rgba(243,156,18,.1);color:#f39c12">🔊 读音</button>
+      </div>
+      <div style="font-size:12px;color:var(--text-dim);line-height:1.7">
+        <div><strong style="color:var(--primary)">发音过程:</strong>${p.mouth}</div>
+      </div>
+      <div style="font-size:12px;color:var(--accent);background:rgba(245,158,11,.08);padding:6px 10px;border-radius:6px;margin-top:8px;">
+        例:${p.example}
+      </div>
+    </div>
+  `).join('');
+
+  const wholeCards = PINYIN_WHOLE.map(p => `
+    <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:16px;transition:all .2s;" onmouseover="this.style.borderColor='${p.color}'" onmouseout="this.style.borderColor='var(--border)'">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px;">
+        <div style="width:44px;height:44px;border-radius:50%;background:${p.color}20;border:2px solid ${p.color};display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;color:${p.color}">${p.syllable}</div>
+        <div>
+          <div style="font-size:16px;font-weight:700;color:var(--text)">${p.ipa}</div>
+          <div style="font-size:11px;color:var(--text-dim)">${p.desc}</div>
+        </div>
+        <button onclick="speak('${p.soundText}','zh-CN')" class="trans-btn" style="margin-left:auto;padding:6px 10px;font-size:11px;background:rgba(26,188,156,.1);color:#1abc9c">🔊 读音</button>
+      </div>
+      <div style="font-size:12px;color:var(--accent);background:rgba(245,158,11,.08);padding:6px 10px;border-radius:6px;margin-top:8px;">
+        例:${p.example}
+      </div>
+    </div>
+  `).join('');
+
+  const toneCards = PINYIN_TONES.map((p, idx) => `
+    <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:16px;text-align:center;transition:all .2s;" onmouseover="this.style.borderColor='${p.color}'" onmouseout="this.style.borderColor='var(--border)'">
+      <div style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:6px;">${p.name}</div>
+      <div style="font-size:32px;font-weight:800;color:${p.color};margin:10px 0;">${p.symbol}</div>
+      <div style="font-size:16px;font-weight:700;color:${p.color};margin-bottom:6px;">${p.example}</div>
+      <div style="font-size:11px;color:var(--text-dim);margin-bottom:10px;">${p.desc}</div>
+      <button onclick="speak('${p.example.split(' ')[0]}','zh-CN')" class="trans-btn" style="padding:6px 12px;font-size:11px;background:rgba(0,0,0,.05);color:var(--text);border-radius:6px;">🔊 读音</button>
+    </div>
+  `).join('');
+
+  const tipCards = PINYIN_TIPS.map(t => `
+    <div style="background:rgba(0,212,170,.06);border:1px solid var(--border);border-radius:10px;padding:14px;border-left:3px solid var(--primary);line-height:1.7">
+      <div style="font-size:13px;font-weight:700;color:var(--primary);margin-bottom:4px;">💡 ${t.title}</div>
+      <div style="font-size:12px;color:var(--text-dim);">${t.content}</div>
+    </div>
+  `).join('');
+
+  c.innerHTML = `
+    <div class="card">
+      <div class="card-header">
+        <h2>🇨🇳 汉语拼音发音表 / Tabel Pinyin Mandarin</h2>
+        <span class="badge">声母21+韵母32+整体认读16+声调5</span>
+      </div>
+      <div style="padding:16px;">
+        <!-- 模式切换 -->
+        <div style="display:flex;gap:8px;margin-bottom:20px;">
+          <button onclick="setPhoneticsMode('indonesia')" class="trans-btn" style="padding:8px 16px;font-size:13px;background:var(--bg-elev);color:var(--text);border:1px solid var(--border);border-radius:8px;">🇮🇩 印尼语发音</button>
+          <button onclick="setPhoneticsMode('pinyin')" class="trans-btn" style="padding:8px 16px;font-size:13px;background:#e74c3c;color:#fff;border-radius:8px;font-weight:600;">🇨🇳 汉音拼音</button>
+        </div>
+
+        <!-- 说明 -->
+        <div style="font-size:13px;color:var(--text-dim);margin-bottom:20px;padding:14px;background:rgba(231,76,60,.06);border-radius:10px;border-left:3px solid #e74c3c;line-height:1.8">
+          <strong style="color:#e74c3c">汉语拼音拼读规则:</strong><br>
+          • 拼音由声母+韵母+声调组成，如 mā = m(声母) + a(韵母) + ˉ(第一声)<br>
+          • 整体认读音节: 不用拼读，直接整体认读的音节(如 zhi/chi/shi/ri)<br>
+          • 声母 21 个，韵母 32 个(单韵母6 + 复韵母12 + 鼻韵母14)<br>
+          • ü 在 j/q/x/y 后省略两点但仍读 ü 音<br>
+          • 轻声不标调号，读得又轻又短
+        </div>
+
+        <!-- 声调 -->
+        <div style="margin-bottom:24px;">
+          <div class="section-header" style="margin:20px 0 12px;">
+            <h3>🎵 声调 (Nada)</h3>
+            <span class="badge" style="background:linear-gradient(135deg,#e74c3c,#f39c12,#2ecc71,#95a5a6);color:#fff;">5种</span>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;">
+            ${toneCards}
+          </div>
+        </div>
+
+        <!-- 声母 -->
+        <div style="margin-bottom:24px;">
+          <div class="section-header" style="margin:20px 0 12px;">
+            <h3>🔴 声母 (Konsonan Awal)</h3>
+            <span class="badge red">21个</span>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;">
+            ${initCards}
+          </div>
+        </div>
+
+        <!-- 韵母 -->
+        <div style="margin-bottom:24px;">
+          <div class="section-header" style="margin:20px 0 12px;">
+            <h3>🔵 韵母 (Vokal)</h3>
+            <span class="badge blue">32个(单6+复12+鼻14)</span>
+          </div>
+          <div style="margin-bottom:16px;">
+            <div style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:8px;">单韵母 (6个)</div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;">
+              ${singleCards}
+            </div>
+          </div>
+          <div style="margin-bottom:16px;">
+            <div style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:8px;">复韵母 (12个)</div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;">
+              ${compoundCards}
+            </div>
+          </div>
+          <div>
+            <div style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:8px;">鼻韵母 (14个)</div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;">
+              ${nasalCards}
+            </div>
+          </div>
+        </div>
+
+        <!-- 整体认读音节 -->
+        <div style="margin-bottom:24px;">
+          <div class="section-header" style="margin:20px 0 12px;">
+            <h3>🟢 整体认读音节 (Suku Kata Utuh)</h3>
+            <span class="badge green">16个</span>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;">
+            ${wholeCards}
+          </div>
+        </div>
+
+        <!-- 教学提示 -->
+        <div>
+          <div class="section-header" style="margin:20px 0 12px;">
+            <h3>📚 教学提示 / Tips Pengajaran</h3>
+            <span class="badge">5条</span>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr;gap:10px;">
+            ${tipCards}
           </div>
         </div>
       </div>
