@@ -6,7 +6,7 @@
 <meta http-equiv="Expires" content="0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LEO-BIR V4.22.0</title>
+<title>LEO-BIR V4.23.0</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -273,7 +273,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="sidebar-header">
     <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <h1>LEO-BIR</h1>
-    <div class="ver">LEO-BIR V4.22.0 · 运动身体话题+汉音拼音发音表</div>
+    <div class="ver">LEO-BIR V4.23.0 · 话题20身体运动+话题21面试</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -7475,9 +7475,9 @@ ukbi_map: {
     quiz_answers: `Kunci Jawaban Sekolah·Pendidikan·Waktu:\n1.B | 2.B | 3.C | 4.A | 5.B\n6.B | 7.A | 8.B | 9.B | 10.B\n\n Tips: Perhatikan kosakata sekolah, ekspresi waktu dan tanggal dalam bahasa Indonesia.`
   },
 
-  // ===== 话题19: 运动·身体 / Olahraga & Tubuh =====
+  // ===== 话题20: 身体·运动 / Tubuh & Olahraga =====
   sports_body: {
-    title: "话题19: 运动·身体 / Olahraga & Tubuh",
+    title: "话题20: 身体·运动 / Tubuh & Olahraga",
     icon: "🏃",
     days: 3,
     grammar: {
@@ -7514,6 +7514,30 @@ ukbi_map: {
       ['usus','肠','/ˈusus/'],['tulang','骨头','/ˈtulaŋ/'],['otot','肌肉','/ˈotot/'],
       ['kulit','皮肤','/ˈkulit/'],['darah','血液','/ˈdarah/'],['urat','血管/筋','/ˈurat/'],
       ['napas','呼吸','/ˈnapas/'],['detak jantung','心跳','/ˈdɛtak ˈʤantuŋ/'],
+      ['dahi','额头','/ˈdahi/'],['pelipis','太阳穴','/pəˈlipis/'],['bulu mata','睫毛','/ˈbulu ˈmata/'],
+      ['gusi','牙龈','/ˈɡusi/'],['lidah','舌头','/ˈlidah/'],['langit-langit','上颚','/ˈlaŋit ˈlaŋit/'],
+      ['tenggorokan','喉咙','/təŋɡoˈrokan/'],['kerongkongan','食道','/kəroŋˈkoŋan/'],
+      ['tulang belakang','脊椎','/ˈtulaŋ bəˈlakaŋ/'],['tulang rusuk','肋骨','/ˈtulaŋ ˈrusuk/'],
+      ['tulang dada','胸骨','/ˈtulaŋ ˈdada/'],['tulang panggul','骨盆','/ˈtulaŋ ˈpaŋɡul/'],
+      ['sendi','关节','/ˈsɛndi/'],['sendi lutut','膝关节','/ˈsɛndi ˈlutut/'],['sendi siku','肘关节','/ˈsɛndi ˈsiku/'],
+      ['sendi bahu','肩关节','/ˈsɛndi ˈbahu/'],['paha','大腿','/ˈpaha/'],['paha depan','大腿前侧','/ˈpaha ˈdɛpan/'],
+      ['paha belakang','大腿后侧','/ˈpaha bəˈlakaŋ/'],['betis','小腿','/ˈbɛtis/'],
+      ['telapak kaki','脚掌','/təˈlapak ˈkaki/'],['telapak tangan','手掌','/təˈlapak ˈtaŋan/'],
+      ['lengan bawah','前臂','/ˈləŋan ˈbawah/'],['lengan atas','上臂','/ˈləŋan ˈatas/'],
+      ['ibu jari','大拇指','/ˈibu ˈʤari/'],['jari telunjuk','食指','/ˈʤari təˈlunʤuk/'],
+      ['jari tengah','中指','/ˈʤari ˈtəŋah/'],['jari manis','无名指','/ˈʤari ˈmanis/'],
+      ['jari kelingking','小指','/ˈʤari kəˈliŋkiŋ/'],['pusar','肚脐','/ˈpusar/'],
+      ['selangkang','腹股沟','/səˈlaŋkaŋ/'],['pantat','臀部','/ˈpantat/'],
+      ['limpa','脾','/ˈlimpa/'],['kandung empedu','胆囊','/ˈkanduŋ ˈɛmpɛdu/'],
+      ['kelenjar tiroid','甲状腺','/kəˈlɛnʤar ˈtiroid/'],['kelenjar air liur','唾液腺','/kəˈlɛnʤar ˈair ˈliur/'],
+      ['prostat','前列腺','/ˈprostɑt/'],['ovarium','卵巢','/ˈovarium/'],['rahim','子宫','/ˈrahim/'],
+      ['kandung kemih','膀胱','/ˈkanduŋ ˈkɛmih/'],['tonsil','扁桃体','/ˈtonsɪl/'],['pankreas','胰腺','/ˈpankrɛas/'],
+      ['otot bahu','三角肌','/ˈotot ˈbahu/'],['otot bisep','二头肌','/ˈotot ˈbisɛp/'],
+      ['otot trisep','三头肌','/ˈotot ˈtrisɛp/'],['otot paha','大腿肌','/ˈotot ˈpaha/'],
+      ['otot betis','腓肠肌','/ˈotot ˈbɛtis/'],['otot gluteus','臀大肌','/ˈotot ˈɡlutɛus/'],
+      ['otot trapezius','斜方肌','/ˈotot traˈpɛzius/'],['otot quadriceps','股四头肌','/ˈotot ˈkwodrisɛps/'],
+      ['otot hamstring','腘绳肌','/ˈotot ˈhamstriŋ/'],['otot deltoid','三角肌','/ˈotot ˈdɛltoid/'],
+      ['otot latissimus','背阔肌','/ˈotot laˈtisimus/'],['otot perut rektus','腹直肌','/ˈotot ˈpəˈrut ˈrɛktus/'],
       ['gym','健身房','/ˈʤim/'],['fitness','健身','/ˈfitnɛs/'],['treadmill','跑步机','/ˈtrɛdmil/'],
       ['barbel','杠铃','/ˈbarbɛl/'],['dumbbell','哑铃','/ˈdambɛl/'],['bench press','卧推','/ˈbɛnʧ prɛs/'],
       ['squat','深蹲','/ˈskwat/'],['deadlift','硬拉','/ˈdɛdlift/'],['pull-up','引体向上','/ˈpul ʌp/'],
@@ -7610,6 +7634,156 @@ ukbi_map: {
       ]
     },
     quiz_answers: `Kunci Jawaban Olahraga & Tubuh:\n1.B | 2.B | 3.C | 4.B | 5.A\n6.B | 7.B | 8.C | 9.B | 10.B\n\nTips: Perhatikan kosakata anggota tubuh, peralatan gym, dan olahraga luar ruang dalam bahasa Indonesia.`
+  },
+  // ===== 话题21: 面试 / Wawancara =====
+  interview: {
+    title: "话题21: 面试 / Wawancara",
+    icon: "💼",
+    days: 3,
+    grammar: {
+      title: "面试语法 · Tata Bahasa Wawancara",
+      rules: [
+        "🔹 自我介绍:Saya [nama], saya dari [negara]. ('我是[name],我来自[country].') / Saya lulusan [jurusan]. ('我是[专业]毕业.') / Saya punya pengalaman [X] tahun. ('我有[X]年经验.')",
+        "🔹 经历描述:Saya pernah bekerja di [perusahaan] sebagai [jabatan]. ('我曾在[公司]担任[职位].') / Saya bertanggung jawab atas... ('我负责...') / Saya berhasil... ('我成功...')",
+        "🔹 能力表达:Saya mahir/bisa/pandai [keahlian]. ('我精通/会/擅长[技能].') / Saya menguasai... ('我掌握...') / Saya terbiasa dengan... ('我习惯...')",
+        "🔹 礼貌用语:Terima kasih atas kesempatannya. ('感谢您给的机会.') / Mohon maaf, bisa diulang? ('抱歉,能重复一下吗?') / Boleh saya bertanya? ('我可以问个问题吗?')",
+        "🔹 问题回答:Menurut saya... ('我认为...') / Saya berpikir... ('我觉得...') / Kalau menurut pengalaman saya... ('根据我的经验...') / Saya setuju/tidak setuju karena... ('我同意/不同意因为...')"
+      ],
+      examples: [
+        "Saya [nama], saya dari Tiongkok. Saya lulusan teknik metalurgi. = 我是[name],我来自中国。我是冶金工程专业毕业。",
+        "Saya punya pengalaman lima tahun di industri tambang nikel. = 我有5年镍矿行业经验。",
+        "Saya mahir bahasa Indonesia dan Inggris. = 我精通印尼语和英语。",
+        "Gaji yang saya harapkan adalah dua puluh juta rupiah per bulan. = 我期望的月薪是2000万印尼盾。",
+        "Terima kasih atas waktunya. Saya tunggu kabar baiknya. = 感谢您的时间。我等您的好消息。"
+      ]
+    },
+    vocab: [
+      // === 简历与申请 (12个) ===
+      ['CV','简历','/ˈsiː ˈviː/'],['resume','履历','/ˈrɛzumeɪ/'],['lamaran kerja','求职申请','/laˈmaran ˈkɛrʤa/'],
+      ['surat lamaran','求职信','/ˈsurat laˈmaran/'],['portofolio','作品集','/ˈportofolio/'],
+      ['riwayat hidup','个人简历','/riˈwayat ˈhidup/'],['dokumen','文件','/ˈdokumen/'],
+      ['sertifikat','证书','/sɛrtifiˈkat/'],['ijazah','毕业证','/iˈʤazah/'],
+      ['transkrip nilai','成绩单','/ˈtranskrip ˈnilai/'],['referensi','推荐信','/rɛfɛˈrɛnsi/'],
+      ['rekomendasi','推荐','/rɛkomɛnˈdasi/'],
+      // === 经验与能力 (14个) ===
+      ['pengalaman kerja','工作经验','/pəŋˈalam an ˈkɛrʤa/'],['magang','实习','/ˈmaɡaŋ/'],
+      ['praktik','实践','/ˈpraktik/'],['proyek','项目','/ˈproyɛk/'],['prestasi','成就','/prɛsˈtasi/'],
+      ['hasil kerja','工作成果','/ˈhasil ˈkɛrʤa/'],['tanggung jawab','责任','/ˈtaŋɡuŋ ˈʤawab/'],
+      ['tugas','任务','/ˈtuɡas/'],['keterampilan','技能','/kətəˈrampilan/'],
+      ['keahlian','专长','/kaˈahlian/'],['kemampuan','能力','/kəˈmampuan/'],
+      ['kompetensi','竞争力','/ˈkompɛtɛnsi/'],['spesialisasi','专业方向','/spɛsialisˈasi/'],
+      ['problem solving','解决问题','/ˈprobləm ˈsɔlviŋ/'],
+      // === 教育与背景 (10个) ===
+      ['pendidikan','教育','/pɛnˈdidikan/'],['latar belakang','背景','/ˈlatar bəˈlakaŋ/'],
+      ['universitas','大学','/ˈuniversitas/'],['jurusan','专业','/ˈʤurusan/'],
+      ['gelar','学位','/ˈɡɛlar/'],['sarjana','学士','/ˈsarʤana/'],
+      ['master','硕士','/ˈmastɛr/'],['doktor','博士','/ˈdoktor/'],
+      ['IPK','平均绩点','/ˈi ˈpi ˈka/'],['tahun lulus','毕业年份','/ˈtahun ˈlulus/'],
+      // === 软技能 (14个) ===
+      ['bahasa','语言','/ˈbahasa/'],['menguasai','掌握','/məŋˈuasai/'],['fasih','流利的','/ˈfasih/'],
+      ['komunikasi','沟通','/komuniˈkasi/'],['presentasi','演示','/prɛsɛnˈtasi/'],
+      ['negosiasi','谈判','/nɛɡosiˈasi/'],['kepemimpinan','领导力','/kəˈpɛmimpinan/'],
+      ['manajemen','管理','/manaˈʤɛmɛn/'],['analisis','分析','/aˈnalisis/'],
+      ['kerja sama','合作','/ˈkɛrʤa ˈsama/'],['tim','团队','/ˈtim/'],
+      ['kolaborasi','协作','/kolaˈborasi/'],['inisiatif','主动性','/iniˈsiatif/'],
+      ['kreativitas','创造力','/krɛativiˈtas/'],
+      // === 职位与公司 (12个) ===
+      ['posisi','职位','/ˈposisi/'],['jabatan','职务','/ˈʤabatan/'],['peran','角色','/ˈpɛran/'],
+      ['lowongan','空缺','/ˈlowoŋan/'],['kesempatan','机会','/kəˈsɛmpatan/'],
+      ['peluang','机遇','/pəˈluaŋ/'],['karir','职业','/ˈkarir/'],
+      ['jenjang','阶梯/晋升','/ˈʤɛnʤaŋ/'],['promosi','晋升','/ˈpromosi/'],
+      ['kenaikan jabatan','升职','/kaˈnaikan ˈʤabatan/'],['bidang','领域','/ˈbidaŋ/'],
+      ['industri','行业','/ˈindustri/'],
+      // === 面试流程 (10个) ===
+      ['wawancara','面试','/wawanˈʧara/'],['interviewer','面试官','/ˈintərvjuːɛr/'],
+      ['pewawancara','面试官','/pəˈwawanʧara/'],['kandidat','候选人','/ˈkandidat/'],
+      ['pelamar','申请者','/pəˈlamar/'],['seleksi','筛选','/səˈlɛksi/'],
+      ['tahap','阶段','/ˈtahap/'],['proses','过程','/ˈprosɛs/'],
+      ['tes','测试','/ˈtɛs/'],['evaluasi','评估','/ɛvaluˈasi/'],
+      // === 薪资福利 (14个) ===
+      ['gaji','工资','/ˈɡaʤi/'],['upah','报酬','/ˈupah/'],['pendapatan','收入','/pɛnˈdapatan/'],
+      ['tunjangan','津贴','/ˈtunʤaŋan/'],['bonus','奖金','/ˈbonus/'],
+      ['insentif','激励','/inˈsɛntif/'],['THR','节日津贴','/ˈti ˈha ˈɛr/'],
+      ['asuransi','保险','/asuˈransi/'],['BPJS','社保','/ˈbi ˈpi ˈʤɛ ˈɛs/'],
+      ['cuti','休假','/ˈʧuti/'],['libur','放假','/ˈlibur/'],
+      ['jam kerja','工作时间','/ˈʤam ˈkɛrʤa/'],['lembur','加班','/ˈlɛmbur/'],
+      ['dinas luar','出差','/ˈdinas ˈluar/'],
+      // === 个人特质 (12个) ===
+      ['kelebihan','优点','/kəˈlɛbih an/'],['kekurangan','缺点','/kəˈkur aŋan/'],
+      ['kekuatan','优势','/kəˈkuatan/'],['kelemahan','劣势','/kəˈlɛmahan/'],
+      ['motivasi','动机','/ˈmotivasi/'],['ambisi','抱负','/ˈambisi/'],
+      ['semangat','热情','/səˈmaŋat/'],['tekad','决心','/ˈtɛkad/'],
+      ['cita-cita','理想','/ˈʧita ˈʧita/'],['tujuan','目标','/ˈtuʤuan/'],
+      ['target','指标','/ˈtarkɛt/'],['rencana','计划','/ˈrɛnʧana/']
+    ],
+    scenes: [
+      {title: "📞 电话面试邀约", icon: "📱", dialogue: [
+        {speaker: "HR", text: "Selamat pagi, dengan Pak [nama] ya? Saya [nama] dari HR PT [perusahaan].", trans: "早上好,是[name]先生吗?我是[公司]人力资源部的[name]。"},
+        {speaker: "A", text: "Ya, benar. Selamat pagi. Ada yang bisa saya bantu?", trans: "是的,没错。早上好。有什么可以帮您的?"},
+        {speaker: "HR", text: "Kami menerima lamaran kerja Bapak untuk posisi [jabatan]. Apakah Bapak available untuk wawancara besok jam sepuluh pagi?", trans: "我们收到了您应聘[职位]的求职申请。您明天上午10点有空面试吗?"},
+        {speaker: "A", text: "Besok jam sepuluh? Sebentar, saya cek jadwal dulu... Ya, saya bisa. Lokasinya di mana?", trans: "明天10点?稍等,我查一下日程...可以的。地点在哪里?"},
+        {speaker: "HR", text: "Di kantor pusat, lantai lima, ruang meeting A. Bawa CV dan dokumen pendukung ya, Pak.", trans: "在总部,5楼,A会议室。请带上简历和支持文件,先生。"},
+        {speaker: "A", text: "Baik, saya akan bawa. Terima kasih atas kesempatannya. Sampai jumpa besok.", trans: "好的,我会带上的。感谢您给的机会。明天见。"}
+      ]},
+      {title: "🙋 自我介绍", icon: "👤", dialogue: [
+        {speaker: "HR", text: "Silakan perkenalkan diri, Pak.", trans: "请自我介绍一下,先生。"},
+        {speaker: "A", text: "Terima kasih. Nama saya [nama], saya dari Tiongkok. Saya lulusan teknik metalurgi dari Universitas [nama]. Saya punya pengalaman kerja enam tahun di industri tambang dan smelter nikel.", trans: "谢谢。我叫[name],来自中国。我是[大学]冶金工程专业毕业。我有6年镍矿和冶炼行业工作经验。"},
+        {speaker: "HR", text: "Bagus. Bisa ceritakan tugas utama Bapak di pekerjaan terakhir?", trans: "很好。能讲一下您上一份工作的主要职责吗?"},
+        {speaker: "A", text: "Saya bekerja sebagai manager operasi di PT [nama]. Saya bertanggung jawab atas produksi harian, manajemen tim sekitar lima puluh orang, dan koordinasi dengan departemen teknik.", trans: "我在[公司]担任运营经理。我负责日常生产、管理约50人的团队,以及与工程部门的协调。"},
+        {speaker: "HR", text: "Mengapa Bapak ingin pindah ke perusahaan kami?", trans: "您为什么想跳槽到我们公司?"},
+        {speaker: "A", text: "Saya tertarik dengan proyek HPAL baru perusahaan ini. Saya ingin mengembangkan keahlian saya di teknologi湿法冶金 dan berkontribusi pada tim yang sedang berkembang pesat.", trans: "我对贵公司的新HPAL项目很感兴趣。我想发展自己在湿法冶金技术方面的专长,并为快速发展的团队做出贡献。"}
+      ]},
+      {title: "🔧 技术/经验问答", icon: "⚙️", dialogue: [
+        {speaker: "HR", text: "Bisa ceritakan proyek paling challenging yang pernah Bapak tangani?", trans: "能讲一讲您处理过的最具挑战性的项目吗?"},
+        {speaker: "A", text: "Proyek upgrade kiln di pabrik smelter tahun lalu. Kita harus meningkatkan kapasitas dua puluh persen tanpa menghentikan produksi. Saya memimpin tim untuk merancang jadwal maintenance yang efisien.", trans: "去年冶炼厂回转窑升级项目。我们必须在不停产的情况下提高20%产能。我带领团队设计了高效的维护计划。"},
+        {speaker: "HR", text: "Bagaimana Bapak mengatasi konflik dalam tim?", trans: "您如何处理团队冲突?"},
+        {speaker: "A", text: "Saya selalu dengar kedua pihak dulu. Lalu saya cari common ground dan fokus pada tujuan bersama. Komunikasi terbuka adalah kunci.", trans: "我总是先听取双方意见。然后寻找共同点,聚焦于共同目标。开放沟通是关键。"},
+        {speaker: "HR", text: "Apakah Bapak pernah bekerja dengan standar internasional seperti ISO?", trans: "您有按照ISO等国际标准工作的经验吗?"},
+        {speaker: "A", text: "Ya, saya terbiasa dengan ISO 14001 dan SMELTER. Saya juga pernah memimpin audit internal dan eksternal. Keamanan dan compliance selalu prioritas utama saya.", trans: "是的,我熟悉ISO 14001和SMELTER标准。我也曾领导过内部和外部审计。安全和合规始终是我的首要任务。"}
+      ]},
+      {title: "💰 薪资谈判", icon: "💵", dialogue: [
+        {speaker: "HR", text: "Berapa gaji yang Bapak harapkan untuk posisi ini?", trans: "您对这个职位的期望薪资是多少?"},
+        {speaker: "A", text: "Berdasarkan pengalaman dan tanggung jawab posisi ini, saya berharap gaji pokok sekitar dua puluh lima juta rupiah per bulan. Tentu saya terbuka untuk diskusi.", trans: "基于经验和职位职责,我期望基本工资约2500万印尼盾每月。当然我愿意讨论。"},
+        {speaker: "HR", text: "Kami bisa offer dua puluh juta per bulan, plus tunjangan kesehatan untuk keluarga, bonus kinerja tahunan, dan BPJS.", trans: "我们可以提供每月2000万,外加家属医疗津贴、年度绩效奖金和社保。"},
+        {speaker: "A", text: "Apakah ada kesempatan review gaji setelah masa percobaan enam bulan?", trans: "试用期6个月后有机会调薪吗?"},
+        {speaker: "HR", text: "Ya, kami melakukan performance review setiap enam bulan. Kalau performa bagus, kenaikan bisa lima sampai lima belas persen.", trans: "是的,我们每6个月进行一次绩效评估。如果表现好,涨幅可达5%到15%。"},
+        {speaker: "A", text: "Saya setuju dengan offer tersebut. Kapan saya bisa mulai bekerja?", trans: "我接受这个offer。我什么时候可以开始工作?"},
+        {speaker: "HR", text: "Bagus! Kita akan kirim surat penawaran resmi hari ini. Bapak bisa mulai tanggal satu bulan depan.", trans: "太好了!我们今天会发送正式录用通知书。您可以下个月1号开始。"}
+      ]},
+      {title: "📧 面试结果通知", icon: "📨", dialogue: [
+        {speaker: "HR", text: "Selamat siang, Pak [nama]. Saya telepon untuk memberi kabar hasil wawancara Bapak.", trans: "下午好,[name]先生。我打电话来告知您面试结果。"},
+        {speaker: "A", text: "Selamat siang. Saya sudah menunggu kabar ini.", trans: "下午好。我一直在等这个消息。"},
+        {speaker: "HR", text: "Selamat! Kami memutuskan untuk menerima Bapak sebagai [jabatan]. Tim kami sangat terkesan dengan pengalaman dan visi Bapak.", trans: "恭喜!我们决定录用您担任[职位]。我们团队对您的经验和愿景印象深刻。"},
+        {speaker: "A", text: "Wah, terima kasih banyak! Saya sangat senang mendengarnya. Kapan saya perlu tanda tangan kontrak?", trans: "哇,非常感谢!听到这个消息我很高兴。我需要什么时候签合同?"},
+        {speaker: "HR", text: "Bapak bisa datang hari Rabu depan jam dua siang. Bawa dokumen asli ijazah, KITAS, dan NPWP. Nanti saya jelaskan detail kontrak dan onboarding.", trans: "您可以下周三下午2点来。带毕业证原件、居留证和税卡原件。届时我会解释合同和入职详情。"},
+        {speaker: "A", text: "Baik, saya akan datang tepat waktu. Terima kasih atas kesempatan ini. Saya bersemangat untuk bergabung!", trans: "好的,我会准时到达。感谢这个机会。我很期待加入!"}
+      ]}
+    ],
+    speeches: [
+      {day: 1, title: "💼 我的职业经历", icon: "📈", content: "Saya ingin menceritakan perjalanan karir saya. Saya lulus dari universitas teknik di Tiongkok sepuluh tahun lalu dengan gelar sarjana metalurgi. Setelah lulus, saya bekerja di perusahaan tambang tembaga di Mongolia dalam sebagai engineer proses selama tiga tahun. Di sana, saya belajar banyak tentang operasi pengolahan mineral dan manajemen produksi. Tahun keenam karir saya, saya pindah ke Indonesia dan bergabung dengan proyek smelter nikel di Morowali. Awalnya saya bekerja sebagai supervisor shift, kemudian naik menjadi assistant manager operasi. Saya memimpin tim yang terdiri dari berbagai latar belakang budaya: Tiongkok, Indonesia, dan Filipina. Tantangan terbesar adalah membangun komunikasi efektif antar budaya sambil menjaga target produksi. Saya belajar bahasa Indonesia dari nol. Awalnya sangat sulit, tapi saya tidak menyerah. Setiap hari saya berlatih dengan rekan kerja Indonesia. Sekarang saya bisa berkomunikasi dengan lancar dalam rapat harian dan presentasi. Dalam delapan tahun di Indonesia, saya telah terlibat dalam tiga proyek ekspansi smelter, termasuk satu proyek HPAL yang sangat kompleks. Pengalaman ini mengajarkan saya pentingnya adaptabilitas, pembelajaran berkelanjutan, dan kepemimpinan yang inklusif. Saya percaya setiap tantangan adalah kesempatan untuk tumbuh.", trans: "我想讲述我的职业历程。我10年前毕业于中国的一所工科大学,获得冶金学学士学位。毕业后,我在蒙古的一家铜矿企业担任工艺工程师,工作了3年。在那里,我学到了很多关于矿物加工操作和生产管理的知识。在我职业生涯的第6年,我来到印尼,加入了莫罗瓦利的一个镍冶炼项目。起初我担任轮班主管,后来晋升为运营副经理。我领导的团队由不同文化背景的人组成:中国、印尼和菲律宾。最大的挑战是在保持生产目标的同时建立有效的跨文化沟通。我从零开始学习印尼语。起初非常难,但我没有放弃。每天我和印尼同事一起练习。现在我已经可以在日常会议和演示中流利交流了。在印尼的8年里,我参与了3个冶炼扩建项目,包括一个非常复杂的HPAL项目。这些经历教会了我适应性、持续学习和包容性领导力的重要性。我相信每一个挑战都是成长的机会。", time: 120, words: 235},
+      {day: 2, title: "🎯 为什么选这份工作", icon: "⭐", content: "Ada tiga alasan utama mengapa saya sangat tertarik dengan posisi ini. Pertama, perusahaan ini adalah pemimpin dalam industri baterai EV dan memiliki visi jangka panjang yang jelas. Saya ingin menjadi bagian dari transformasi energi global ini. Bukan cuma pekerjaan, tapi misi. Kedua, posisi ini memberi saya kesempatan untuk menggabungkan keahlian teknis saya dengan kepemimpinan strategis. Saya tidak hanya ingin mengelola operasi harian, tapi juga berkontribusi pada perencanaan ekspansi dan inovasi teknologi. Ketiga, dan yang paling penting, saya sangat menghargai budaya perusahaan yang fokus pada pengembangan karyawan. Saya melihat banyak contoh di perusahaan ini di mana karyawan dipromosikan dari dalam dan diberi kesempatan belajar. Sebagai seseorang yang selalu ingin berkembang, lingkungan seperti ini sangat penting bagi saya. Saya juga tertarik dengan tantangan unik posisi ini: mengintegrasikan teknologi Tiongkok dengan tenaga kerja lokal Indonesia, sambil memenuhi standar internasional. Ini membutuhkan keseimbangan antara teknis, budaya, dan manajemen. Saya yaya pengalaman saya selama ini telah mempersiapkan saya untuk tantangan ini. Saya bukan hanya mencari pekerjaan yang lebih baik, tapi mencari tempat di mana saya bisa memberikan dampak nyata dan tumbuh bersama perusahaan.", trans: "我对这个职位非常感兴趣,主要有三个原因。第一,这家公司是电动汽车电池行业的领导者,有着清晰的长期愿景。我想成为全球能源转型的一部分。这不只是工作,而是使命。第二,这个职位给了我结合技术专长和战略领导力的机会。我不仅想管理日常运营,还想为扩张规划和技术创新做出贡献。第三,也是最重要的,我非常看重这家公司注重员工发展的企业文化。我看到这家公司有很多内部晋升和给予学习机会的例子。作为一个始终追求成长的人,这样的环境对我非常重要。我也对这个职位的独特挑战感兴趣:将中国技术与印尼本地劳动力整合,同时满足国际标准。这需要在技术、文化和管理之间取得平衡。我相信我至今的经验已经让我为这一挑战做好了准备。我不只是在找一份更好的工作,而是在寻找一个我可以产生真正影响并与公司共同成长的地方。", time: 125, words: 245},
+      {day: 3, title: "🚀 我的职业规划", icon: "🗺️", content: "Saya memiliki rencana karir jangka menengah dan panjang yang jelas. Dalam dua tahun ke depan, saya ingin fokus pada adaptasi cepat di posisi baru, memahami secara mendalam proses operasional perusahaan, dan membangun hubungan kerja yang kuat dengan tim lokal. Target saya adalah menjadi manajer operasi yang dihormati oleh tim Tiongkok maupun Indonesia. Dalam tiga sampai lima tahun, saya bercita-cita naik ke level direktur operasi atau posisi setara. Saya ingin memimpin proyek ekspansi skala besar, mungkin membangun pabrik smelter atau HPAL baru dari nol. Saya juga ingin berkontribusi pada pengembangan talenta lokal, menciptakan program pelatihan yang membantu karyawan Indonesia naik ke posisi manajerial. Dalam jangka panjang, sepuluh tahun ke depan, saya ingin menjadi pemimpin industri yang diakui secara regional di Asia Tenggara. Saya ingin membangun jaringan profesional yang kuat dan mungkin menulis buku atau artikel tentang manajemen smelter di Indonesia. Selain karir, saya juga memiliki rencana pribadi. Saya ingin fasih berbahasa Indonesia dalam tiga tahun. Saya ingin mengerti budaya Indonesia secara lebih dalam, mungkin belajar tentang sejarah dan seni tradisional. Saya percaya bahwa untuk menjadi pemimpin yang efektif di negara ini, saya harus menjadi bagian dari masyarakatnya, bukan hanya pengamat. Karir bukan hanya tentang naik tangga. Bagi saya, karir adalah perjalanan untuk terus belajar, memberi dampak positif, dan menjadi versi terbaik dari diri sendiri. Saya berharap perusahaan ini menjadi tempat di mana saya bisa mewujudkan visi tersebut.", trans: "我有着清晰的中长期职业规划。在未来两年内,我想专注于快速适应新职位,深入了解公司的运营流程,并与本地团队建立牢固的工作关系。我的目标是成为受中国团队和印尼团队尊重的运营经理。在三到五年内,我渴望晋升为运营总监或同等职位。我想领导大规模扩建项目,也许是从零开始建造新的冶炼厂或HPAL工厂。我还想为本地人才发展做出贡献,创建帮助印尼员工晋升到管理岗位的培训项目。从长远来看,十年内,我想成为在东南亚地区获得认可的行业领袖。我想建立强大的职业网络,也许还会撰写关于印尼冶炼厂管理的书籍或文章。除了职业之外,我也有个人规划。我想在三年内流利掌握印尼语。我想更深入地了解印尼文化,也许学习历史和传统艺术。我相信,要成为这个国家有效的领导者,我必须成为社会的一部分,而不只是旁观者。职业不仅仅是向上爬。对我来说,职业是一段不断学习、产生积极影响、成为最好版本的自己的旅程。我希望这家公司能成为我实现这一愿景的地方。", time: 130, words: 255}
+    ],
+    quiz: {
+      title: "面试 · 综合测试 (10题)",
+      questions: [
+        {q: "1. 'Saya [nama], saya dari Tiongkok. Saya lulusan teknik metalurgi.' 这是______场景。", options: ["A) 薪资谈判", "B) 自我介绍", "C) 面试邀约"], a: 1, explain: "这是典型的自我介绍(perkenalan diri)"},
+        {q: "2. 'Gaji yang saya harapkan adalah dua puluh juta rupiah per bulan.' 这句话出现在______环节。", options: ["A) 技术问答", "B) 薪资谈判", "C) 结果通知"], a: 1, explain: "'gaji yang saya harapkan' = 我期望的薪资,属于薪资谈判"},
+        {q: "3. 'Kami memutuskan untuk menerima Bapak sebagai [jabatan].' 意思是______。", options: ["A) 被拒绝", "B) 被录用", "C) 需要二次面试"], a: 1, explain: "'menerima' = 接受/录用"},
+        {q: "4. 'Saya punya pengalaman _______ lima tahun.' 五年", options: ["A) kerja", "B) sekolah", "C) libur"], a: 0, explain: "'pengalaman kerja' = 工作经验"},
+        {q: "5. 'Saya _______ bahasa Indonesia dan Inggris.' 精通", options: ["A) suka", "B) mahir", "C) takut"], a: 1, explain: "'mahir' = 精通/熟练"},
+        {q: "6. 'Boleh saya _______?' 我可以问个问题吗?", options: ["A) pergi", "B) bertanya", "C) makan"], a: 1, explain: "'bertanya' = 提问/询问"},
+        {q: "7. 'Saya _______ dengan ISO 14001.' 熟悉", options: ["A) terbiasa", "B) benci", "C) lupa"], a: 0, explain: "'terbiasa dengan' = 熟悉/习惯"},
+        {q: "8. _______ 的意思是'晋升'。", options: ["A) Demosi", "B) Promosi", "C) Resign"], a: 1, explain: "'promosi' = 晋升/升职"},
+        {q: "9. 'Saya _______ untuk posisi ini.' 申请", options: ["A) melamar", "B) membeli", "C) menjual"], a: 0, explain: "'melamar' = 申请(职位)"},
+        {q: "10. _______ 指'试用期'。", options: ["A) Kontrak", "B) Masa percobaan", "C) Pensiun"], a: 1, explain: "'masa percobaan' = 试用期"}
+      ]
+    },
+    quiz_answers: `Kunci Jawaban Wawancara:
+1.B | 2.B | 3.B | 4.A | 5.B
+6.B | 7.A | 8.B | 9.A | 10.B
+
+Tips: Perhatikan kosakata wawancara seperti lamaran, gaji, pengalaman, keahlian, dan ungkapan sopan.`
   }
 };
 
@@ -7670,9 +7844,10 @@ ukbi_map: {
   "2026-09-07": {topic: "education", day: 1, label: "🏫 学校·教育·时间日期 · Day 1 · 词汇+语法"},
   "2026-09-08": {topic: "education", day: 2, label: "🏫 学校·教育·时间日期 · Day 2 · 场景对话"},
   "2026-09-09": {topic: "education", day: 3, label: "🏫 学校·教育·时间日期 · Day 3 · 演讲+测试"},
-  "2026-09-10": {topic: "sports_body", day: 1, label: "🏃 运动·身体 · Day 1 · 词汇+语法"},
-  "2026-09-11": {topic: "sports_body", day: 2, label: "🏃 运动·身体 · Day 2 · 场景对话"},
-  "2026-09-12": {topic: "sports_body", day: 3, label: "🏃 运动·身体 · Day 3 · 演讲+测试"}
+  "2026-09-13": {topic: "sports_body", day: 1, label: "🏃 身体·运动 · 综合", allDays: true},
+  "2026-09-14": {topic: "interview", day: 1, label: "💼 面试 · Day 1 · 词汇+语法"},
+  "2026-09-15": {topic: "interview", day: 2, label: "💼 面试 · Day 2 · 场景对话"},
+  "2026-09-16": {topic: "interview", day: 3, label: "💼 面试 · Day 3 · 演讲+测试"}
 };
 
 function getTopicForDate(ds) {
@@ -7883,6 +8058,7 @@ function renderTopicDetail(c, ds, topicInfo) {
     const dates = Object.keys(topicCalendar).sort();
     const idx = dates.indexOf(ds);
 
+    // 规则C: 每次生成的新话题课程中第一天的新单词量不少于20个
     // 规则B: 新话题第一天 -> 前一话题全部天数总结
     if (topicInfo.day === 1 && idx > 0) {
       let prevTopic = null;
@@ -8437,8 +8613,23 @@ function renderAbout(c){
 }
 
 function renderVersion(c){
-  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.21 / Versi</span></div>
+  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.23 / Versi</span></div>
     <div style="padding:16px;">
+      <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
+        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.23.0 (2026-09-11)</div>
+        <div style="font-size:13px;color:var(--text);line-height:1.8">
+        • 话题20升级: 身体·运动 (Tubuh & Olahraga) 重新编号为话题20<br>
+        • 话题20排期: 2026-09-13 单日综合课程 (allDays)<br>
+        • 话题20词汇扩充: 182词，身体+器官+肌肉=116个 (原54个→116个)<br>
+        • 新增话题21: 面试 (Wawancara)<br>
+        • 话题21排期: 2026-09-14 至 2026-09-16 (Day1词汇+语法 / Day2场景对话 / Day3演讲+测试)<br>
+        • 话题21词汇: 98词覆盖简历、经验、教育、软技能、职位、面试流程、薪资福利、个人特质<br>
+        • 话题21对话场景: 电话面试邀约、自我介绍、技术/经验问答、薪资谈判、面试结果通知<br>
+        • 话题21演讲短文: 我的职业经历、为什么选这份工作、我的职业规划<br>
+        • C5课程规则升级: 新增"每次生成的新话题课程中第一天的新单词量不少于20个"<br>
+        • 版本号同步更新为V4.23.0<br>
+        </div>
+      </div>
       <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
         <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.22.0 (2026-09-07)</div>
         <div style="font-size:13px;color:var(--text);line-height:1.8">
