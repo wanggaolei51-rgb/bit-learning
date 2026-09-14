@@ -6,7 +6,7 @@
 <meta http-equiv="Expires" content="0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LEO-BIR V4.23.0</title>
+<title>LEO-BIR V4.24.0</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -273,7 +273,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="sidebar-header">
     <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <h1>LEO-BIR</h1>
-    <div class="ver">LEO-BIR V4.23.0 · 话题20身体运动+话题21面试</div>
+    <div class="ver">LEO-BIR V4.24.0 · 话题22-25办公室/现场/出差/谈判</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -1769,258 +1769,7 @@ const vocabDB = {
   'periode':{ipa:'/ˈpɛriodɛ/',cn:'时期/周期',en:'period',root:'periode (Dutch)',tag:'C5复习'},
   'puncak':{ipa:'/ˈpuntʃak/',cn:'顶峰/高峰',en:'peak / summit',root:'puncak',tag:'C5复习'},
   'lembah':{ipa:'/ˈlɛmbah/',cn:'山谷',en:'valley',root:'lembah',tag:'C5复习'},
-  'aktif':{ipa:'/ˈaktif/',cn:'活跃的',en:'active',root:'aktif (Dutch)',tag:'C5复习'},
-'sendi':{ipa:'/ˈsɛndi/',cn:'关节',en:'',root:'',tag:'身体·运动'},
-'sendi bahu':{ipa:'/ˈsɛndi ˈbahu/',cn:'肩关节',en:'',root:'',tag:'身体·运动'},
-'sendi siku':{ipa:'/ˈsɛndi ˈsiku/',cn:'肘关节',en:'',root:'',tag:'身体·运动'},
-'sendi lutut':{ipa:'/ˈsɛndi ˈlutut/',cn:'膝关节',en:'',root:'',tag:'身体·运动'},
-'tulang belakang':{ipa:'/ˈtulaŋ bəˈlakaŋ/',cn:'脊柱',en:'',root:'',tag:'身体·运动'},
-'tulang rusuk':{ipa:'/ˈtulaŋ ˈrusuk/',cn:'肋骨',en:'',root:'',tag:'身体·运动'},
-'tulang panggul':{ipa:'/ˈtulaŋ ˈpaŋɡul/',cn:'骨盆',en:'',root:'',tag:'身体·运动'},
-'saraf':{ipa:'/ˈsaraf/',cn:'神经',en:'',root:'',tag:'身体·运动'},
-'pembuluh darah':{ipa:'/pəmˈbulu ˈdarah/',cn:'血管',en:'',root:'',tag:'身体·运动'},
-'otot trisep':{ipa:'/ˈotot ˈtrisɛp/',cn:'三头肌',en:'',root:'',tag:'身体·运动'},
-'otot bisep':{ipa:'/ˈotot ˈbisɛp/',cn:'二头肌',en:'',root:'',tag:'身体·运动'},
-'otot trapezius':{ipa:'/ˈotot traˈpɛzius/',cn:'斜方肌',en:'',root:'',tag:'身体·运动'},
-'otot deltoid':{ipa:'/ˈotot ˈdɛltoid/',cn:'三角肌',en:'',root:'',tag:'身体·运动'},
-'otot gluteus':{ipa:'/ˈotot ˈɡluteus/',cn:'臀肌',en:'',root:'',tag:'身体·运动'},
-'tendon':{ipa:'/ˈtɛndon/',cn:'肌腱',en:'',root:'',tag:'身体·运动'},
-'ligamen':{ipa:'/ˈliɡamɛn/',cn:'韧带',en:'',root:'',tag:'身体·运动'},
-'kartilago':{ipa:'/ˈkartilaɡo/',cn:'软骨',en:'',root:'',tag:'身体·运动'},
-'kerongkongan':{ipa:'/kəˈroŋkoŋan/',cn:'食道',en:'',root:'',tag:'身体·运动'},
-'pankreas':{ipa:'/ˈpaŋkreas/',cn:'胰腺',en:'',root:'',tag:'身体·运动'},
-'limpa':{ipa:'/ˈlimpa/',cn:'脾',en:'',root:'',tag:'身体·运动'},
-'mata':{ipa:'/ˈmata/',cn:'眼睛',en:'',root:'',tag:'身体·运动'},
-'telinga':{ipa:'/təˈliŋɡa/',cn:'耳朵',en:'',root:'',tag:'身体·运动'},
-'hidung':{ipa:'/ˈhiduŋ/',cn:'鼻子',en:'',root:'',tag:'身体·运动'},
-'mulut':{ipa:'/ˈmulut/',cn:'嘴',en:'',root:'',tag:'身体·运动'},
-'gigi':{ipa:'/ˈɡiɡi/',cn:'牙齿',en:'',root:'',tag:'身体·运动'},
-'bibir':{ipa:'/ˈbibir/',cn:'嘴唇',en:'',root:'',tag:'身体·运动'},
-'rahang':{ipa:'/ˈrahaŋ/',cn:'下巴',en:'',root:'',tag:'身体·运动'},
-'leher':{ipa:'/ˈlɛhɛr/',cn:'脖子',en:'',root:'',tag:'身体·运动'},
-'bahu':{ipa:'/ˈbahu/',cn:'肩膀',en:'',root:'',tag:'身体·运动'},
-'lengan':{ipa:'/ˈləŋan/',cn:'手臂',en:'',root:'',tag:'身体·运动'},
-'siku':{ipa:'/ˈsiku/',cn:'肘',en:'',root:'',tag:'身体·运动'},
-'jari':{ipa:'/ˈʤari/',cn:'手指',en:'',root:'',tag:'身体·运动'},
-'jari tangan':{ipa:'/ˈʤari ˈtaŋan/',cn:'手指',en:'',root:'',tag:'身体·运动'},
-'kuku':{ipa:'/ˈkuku/',cn:'指甲',en:'',root:'',tag:'身体·运动'},
-'dada':{ipa:'/ˈdada/',cn:'胸',en:'',root:'',tag:'身体·运动'},
-'pinggang':{ipa:'/ˈpiŋɡaŋ/',cn:'腰',en:'',root:'',tag:'身体·运动'},
-'punggung':{ipa:'/ˈpuŋɡuŋ/',cn:'背',en:'',root:'',tag:'身体·运动'},
-'pantat':{ipa:'/ˈpantat/',cn:'臀部',en:'',root:'',tag:'身体·运动'},
-'lutut':{ipa:'/ˈlutut/',cn:'膝盖',en:'',root:'',tag:'身体·运动'},
-'betis':{ipa:'/ˈbɛtis/',cn:'小腿',en:'',root:'',tag:'身体·运动'},
-'pergelangan kaki':{ipa:'/pərɡəˈlaŋan ˈkaki/',cn:'脚踝',en:'',root:'',tag:'身体·运动'},
-'tumit':{ipa:'/ˈtumit/',cn:'脚后跟',en:'',root:'',tag:'身体·运动'},
-'jari kaki':{ipa:'/ˈʤari ˈkaki/',cn:'脚趾',en:'',root:'',tag:'身体·运动'},
-'alis':{ipa:'/ˈalis/',cn:'眉毛',en:'',root:'',tag:'身体·运动'},
-'pipi':{ipa:'/ˈpipi/',cn:'脸颊',en:'',root:'',tag:'身体·运动'},
-'dagú':{ipa:'/ˈdaɡu/',cn:'下巴',en:'',root:'',tag:'身体·运动'},
-'tengkuk':{ipa:'/ˈtəŋkuk/',cn:'颈背',en:'',root:'',tag:'身体·运动'},
-'otak':{ipa:'/ˈotak/',cn:'大脑',en:'',root:'',tag:'身体·运动'},
-'jantung':{ipa:'/ˈʤantuŋ/',cn:'心脏',en:'',root:'',tag:'身体·运动'},
-'paru-paru':{ipa:'/ˈparu ˈparu/',cn:'肺',en:'',root:'',tag:'身体·运动'},
-'ginjal':{ipa:'/ˈɡinʤal/',cn:'肾',en:'',root:'',tag:'身体·运动'},
-'lambung':{ipa:'/ˈlambuŋ/',cn:'胃',en:'',root:'',tag:'身体·运动'},
-'usus':{ipa:'/ˈusus/',cn:'肠',en:'',root:'',tag:'身体·运动'},
-'tulang':{ipa:'/ˈtulaŋ/',cn:'骨头',en:'',root:'',tag:'身体·运动'},
-'otot':{ipa:'/ˈotot/',cn:'肌肉',en:'',root:'',tag:'身体·运动'},
-'kulit':{ipa:'/ˈkulit/',cn:'皮肤',en:'',root:'',tag:'身体·运动'},
-'urat':{ipa:'/ˈurat/',cn:'血管/筋',en:'',root:'',tag:'身体·运动'},
-'napas':{ipa:'/ˈnapas/',cn:'呼吸',en:'',root:'',tag:'身体·运动'},
-'detak jantung':{ipa:'/ˈdɛtak ˈʤantuŋ/',cn:'心跳',en:'',root:'',tag:'身体·运动'},
-'dahi':{ipa:'/ˈdahi/',cn:'额头',en:'',root:'',tag:'身体·运动'},
-'pelipis':{ipa:'/pəˈlipis/',cn:'太阳穴',en:'',root:'',tag:'身体·运动'},
-'bulu mata':{ipa:'/ˈbulu ˈmata/',cn:'睫毛',en:'',root:'',tag:'身体·运动'},
-'gusi':{ipa:'/ˈɡusi/',cn:'牙龈',en:'',root:'',tag:'身体·运动'},
-'lidah':{ipa:'/ˈlidah/',cn:'舌头',en:'',root:'',tag:'身体·运动'},
-'langit-langit':{ipa:'/ˈlaŋit ˈlaŋit/',cn:'上颚',en:'',root:'',tag:'身体·运动'},
-'kerongkongan':{ipa:'/kəroŋˈkoŋan/',cn:'食道',en:'',root:'',tag:'身体·运动'},
-'tulang belakang':{ipa:'/ˈtulaŋ bəˈlakaŋ/',cn:'脊椎',en:'',root:'',tag:'身体·运动'},
-'tulang rusuk':{ipa:'/ˈtulaŋ ˈrusuk/',cn:'肋骨',en:'',root:'',tag:'身体·运动'},
-'tulang dada':{ipa:'/ˈtulaŋ ˈdada/',cn:'胸骨',en:'',root:'',tag:'身体·运动'},
-'tulang panggul':{ipa:'/ˈtulaŋ ˈpaŋɡul/',cn:'骨盆',en:'',root:'',tag:'身体·运动'},
-'sendi':{ipa:'/ˈsɛndi/',cn:'关节',en:'',root:'',tag:'身体·运动'},
-'sendi lutut':{ipa:'/ˈsɛndi ˈlutut/',cn:'膝关节',en:'',root:'',tag:'身体·运动'},
-'sendi siku':{ipa:'/ˈsɛndi ˈsiku/',cn:'肘关节',en:'',root:'',tag:'身体·运动'},
-'sendi bahu':{ipa:'/ˈsɛndi ˈbahu/',cn:'肩关节',en:'',root:'',tag:'身体·运动'},
-'paha':{ipa:'/ˈpaha/',cn:'大腿',en:'',root:'',tag:'身体·运动'},
-'paha depan':{ipa:'/ˈpaha ˈdɛpan/',cn:'大腿前侧',en:'',root:'',tag:'身体·运动'},
-'paha belakang':{ipa:'/ˈpaha bəˈlakaŋ/',cn:'大腿后侧',en:'',root:'',tag:'身体·运动'},
-'betis':{ipa:'/ˈbɛtis/',cn:'小腿',en:'',root:'',tag:'身体·运动'},
-'telapak kaki':{ipa:'/təˈlapak ˈkaki/',cn:'脚掌',en:'',root:'',tag:'身体·运动'},
-'telapak tangan':{ipa:'/təˈlapak ˈtaŋan/',cn:'手掌',en:'',root:'',tag:'身体·运动'},
-'lengan bawah':{ipa:'/ˈləŋan ˈbawah/',cn:'前臂',en:'',root:'',tag:'身体·运动'},
-'lengan atas':{ipa:'/ˈləŋan ˈatas/',cn:'上臂',en:'',root:'',tag:'身体·运动'},
-'ibu jari':{ipa:'/ˈibu ˈʤari/',cn:'大拇指',en:'',root:'',tag:'身体·运动'},
-'jari telunjuk':{ipa:'/ˈʤari təˈlunʤuk/',cn:'食指',en:'',root:'',tag:'身体·运动'},
-'jari tengah':{ipa:'/ˈʤari ˈtəŋah/',cn:'中指',en:'',root:'',tag:'身体·运动'},
-'jari manis':{ipa:'/ˈʤari ˈmanis/',cn:'无名指',en:'',root:'',tag:'身体·运动'},
-'jari kelingking':{ipa:'/ˈʤari kəˈliŋkiŋ/',cn:'小指',en:'',root:'',tag:'身体·运动'},
-'pusar':{ipa:'/ˈpusar/',cn:'肚脐',en:'',root:'',tag:'身体·运动'},
-'selangkang':{ipa:'/səˈlaŋkaŋ/',cn:'腹股沟',en:'',root:'',tag:'身体·运动'},
-'pantat':{ipa:'/ˈpantat/',cn:'臀部',en:'',root:'',tag:'身体·运动'},
-'limpa':{ipa:'/ˈlimpa/',cn:'脾',en:'',root:'',tag:'身体·运动'},
-'kandung empedu':{ipa:'/ˈkanduŋ ˈɛmpɛdu/',cn:'胆囊',en:'',root:'',tag:'身体·运动'},
-'kelenjar tiroid':{ipa:'/kəˈlɛnʤar ˈtiroid/',cn:'甲状腺',en:'',root:'',tag:'身体·运动'},
-'kelenjar air liur':{ipa:'/kəˈlɛnʤar ˈair ˈliur/',cn:'唾液腺',en:'',root:'',tag:'身体·运动'},
-'prostat':{ipa:'/ˈprostɑt/',cn:'前列腺',en:'',root:'',tag:'身体·运动'},
-'ovarium':{ipa:'/ˈovarium/',cn:'卵巢',en:'',root:'',tag:'身体·运动'},
-'rahim':{ipa:'/ˈrahim/',cn:'子宫',en:'',root:'',tag:'身体·运动'},
-'kandung kemih':{ipa:'/ˈkanduŋ ˈkɛmih/',cn:'膀胱',en:'',root:'',tag:'身体·运动'},
-'tonsil':{ipa:'/ˈtonsɪl/',cn:'扁桃体',en:'',root:'',tag:'身体·运动'},
-'pankreas':{ipa:'/ˈpankrɛas/',cn:'胰腺',en:'',root:'',tag:'身体·运动'},
-'otot bahu':{ipa:'/ˈotot ˈbahu/',cn:'三角肌',en:'',root:'',tag:'身体·运动'},
-'otot bisep':{ipa:'/ˈotot ˈbisɛp/',cn:'二头肌',en:'',root:'',tag:'身体·运动'},
-'otot trisep':{ipa:'/ˈotot ˈtrisɛp/',cn:'三头肌',en:'',root:'',tag:'身体·运动'},
-'otot paha':{ipa:'/ˈotot ˈpaha/',cn:'大腿肌',en:'',root:'',tag:'身体·运动'},
-'otot betis':{ipa:'/ˈotot ˈbɛtis/',cn:'腓肠肌',en:'',root:'',tag:'身体·运动'},
-'otot gluteus':{ipa:'/ˈotot ˈɡlutɛus/',cn:'臀大肌',en:'',root:'',tag:'身体·运动'},
-'otot trapezius':{ipa:'/ˈotot traˈpɛzius/',cn:'斜方肌',en:'',root:'',tag:'身体·运动'},
-'otot quadriceps':{ipa:'/ˈotot ˈkwodrisɛps/',cn:'股四头肌',en:'',root:'',tag:'身体·运动'},
-'otot hamstring':{ipa:'/ˈotot ˈhamstriŋ/',cn:'腘绳肌',en:'',root:'',tag:'身体·运动'},
-'otot deltoid':{ipa:'/ˈotot ˈdɛltoid/',cn:'三角肌',en:'',root:'',tag:'身体·运动'},
-'otot latissimus':{ipa:'/ˈotot laˈtisimus/',cn:'背阔肌',en:'',root:'',tag:'身体·运动'},
-'otot perut rektus':{ipa:'/ˈotot ˈpəˈrut ˈrɛktus/',cn:'腹直肌',en:'',root:'',tag:'身体·运动'},
-'gym':{ipa:'/ˈʤim/',cn:'健身房',en:'',root:'',tag:'身体·运动'},
-'fitness':{ipa:'/ˈfitnɛs/',cn:'健身',en:'',root:'',tag:'身体·运动'},
-'treadmill':{ipa:'/ˈtrɛdmil/',cn:'跑步机',en:'',root:'',tag:'身体·运动'},
-'barbel':{ipa:'/ˈbarbɛl/',cn:'杠铃',en:'',root:'',tag:'身体·运动'},
-'dumbbell':{ipa:'/ˈdambɛl/',cn:'哑铃',en:'',root:'',tag:'身体·运动'},
-'bench press':{ipa:'/ˈbɛnʧ prɛs/',cn:'卧推',en:'',root:'',tag:'身体·运动'},
-'squat':{ipa:'/ˈskwat/',cn:'深蹲',en:'',root:'',tag:'身体·运动'},
-'deadlift':{ipa:'/ˈdɛdlift/',cn:'硬拉',en:'',root:'',tag:'身体·运动'},
-'pull-up':{ipa:'/ˈpul ʌp/',cn:'引体向上',en:'',root:'',tag:'身体·运动'},
-'push-up':{ipa:'/ˈpuʃ ʌp/',cn:'俯卧撑',en:'',root:'',tag:'身体·运动'},
-'sit-up':{ipa:'/ˈsit ʌp/',cn:'仰卧起坐',en:'',root:'',tag:'身体·运动'},
-'plank':{ipa:'/ˈplaŋk/',cn:'平板支撑',en:'',root:'',tag:'身体·运动'},
-'yoga':{ipa:'/ˈjoɡa/',cn:'瑜伽',en:'',root:'',tag:'身体·运动'},
-'pilates':{ipa:'/piˈlatɛs/',cn:'普拉提',en:'',root:'',tag:'身体·运动'},
-'latihan':{ipa:'/ˈlatihan/',cn:'训练',en:'',root:'',tag:'身体·运动'},
-'pemanasan':{ipa:'/pəˈmanasan/',cn:'热身',en:'',root:'',tag:'身体·运动'},
-'pendinginan':{ipa:'/pənˈdininan/',cn:'放松/冷却',en:'',root:'',tag:'身体·运动'},
-'set':{ipa:'/ˈsɛt/',cn:'组',en:'',root:'',tag:'身体·运动'},
-'repetisi':{ipa:'/rəpəˈtisi/',cn:'重复次数',en:'',root:'',tag:'身体·运动'},
-'personal trainer':{ipa:'/ˈpɛrsonal ˈtrɛnɛr/',cn:'私人教练',en:'',root:'',tag:'身体·运动'},
-'membership':{ipa:'/ˈmɛmbərʃip/',cn:'会员卡',en:'',root:'',tag:'身体·运动'},
-'kardio':{ipa:'/ˈkardio/',cn:'有氧运动',en:'',root:'',tag:'身体·运动'},
-'angkat beban':{ipa:'/ˈaŋkat ˈbɛban/',cn:'举重',en:'',root:'',tag:'身体·运动'},
-'otot dada':{ipa:'/ˈotot ˈdada/',cn:'胸肌',en:'',root:'',tag:'身体·运动'},
-'otot punggung':{ipa:'/ˈotot ˈpuŋɡuŋ/',cn:'背肌',en:'',root:'',tag:'身体·运动'},
-'otot kaki':{ipa:'/ˈotot ˈkaki/',cn:'腿部肌肉',en:'',root:'',tag:'身体·运动'},
-'otot perut':{ipa:'/ˈotot pəˈrut/',cn:'腹肌',en:'',root:'',tag:'身体·运动'},
-'otot lengan':{ipa:'/ˈotot ˈləŋan/',cn:'手臂肌肉',en:'',root:'',tag:'身体·运动'},
-'sixpack':{ipa:'/ˈsikspak/',cn:'六块腹肌',en:'',root:'',tag:'身体·运动'},
-'suplemen':{ipa:'/suˈplɛmɛn/',cn:'补剂',en:'',root:'',tag:'身体·运动'},
-'shake':{ipa:'/ˈʃɛik/',cn:'蛋白粉奶昔',en:'',root:'',tag:'身体·运动'},
-'locker':{ipa:'/ˈlɔkɛr/',cn:'储物柜',en:'',root:'',tag:'身体·运动'},
-'handuk':{ipa:'/ˈhanduk/',cn:'毛巾',en:'',root:'',tag:'身体·运动'},
-'botol minum':{ipa:'/ˈbotol ˈminum/',cn:'水壶',en:'',root:'',tag:'身体·运动'},
-'lari':{ipa:'/ˈlari/',cn:'跑步',en:'',root:'',tag:'身体·运动'},
-'bersepeda':{ipa:'/bərseˈpɛda/',cn:'骑自行车',en:'',root:'',tag:'身体·运动'},
-'berenang':{ipa:'/bəˈrənaŋ/',cn:'游泳',en:'',root:'',tag:'身体·运动'},
-'mendaki':{ipa:'/mənˈdaki/',cn:'爬山/徒步',en:'',root:'',tag:'身体·运动'},
-'basket':{ipa:'/ˈbaskɛt/',cn:'篮球',en:'',root:'',tag:'身体·运动'},
-'sepak bola':{ipa:'/ˈsɛpak ˈbola/',cn:'足球',en:'',root:'',tag:'身体·运动'},
-'voli':{ipa:'/ˈvoli/',cn:'排球',en:'',root:'',tag:'身体·运动'},
-'tenis':{ipa:'/ˈtɛnis/',cn:'网球',en:'',root:'',tag:'身体·运动'},
-'golf':{ipa:'/ˈɡɔlf/',cn:'高尔夫',en:'',root:'',tag:'身体·运动'},
-'maraton':{ipa:'/ˈmaraton/',cn:'马拉松',en:'',root:'',tag:'身体·运动'},
-'triatlon':{ipa:'/triˈatlon/',cn:'铁人三项',en:'',root:'',tag:'身体·运动'},
-'joging':{ipa:'/ˈʤoɡiŋ/',cn:'慢跑',en:'',root:'',tag:'身体·运动'},
-'kemah':{ipa:'/ˈkɛmah/',cn:'露营',en:'',root:'',tag:'身体·运动'},
-'memancing':{ipa:'/məˈmanʧiŋ/',cn:'钓鱼',en:'',root:'',tag:'身体·运动'},
-'selancar':{ipa:'/səˈlanʧar/',cn:'冲浪',en:'',root:'',tag:'身体·运动'},
-'arung jeram':{ipa:'/ˈaruŋ ˈʤɛram/',cn:'漂流',en:'',root:'',tag:'身体·运动'},
-'tinju':{ipa:'/ˈtinʤu/',cn:'拳击',en:'',root:'',tag:'身体·运动'},
-'bela diri':{ipa:'/ˈbɛla ˈdiri/',cn:'武术/防身',en:'',root:'',tag:'身体·运动'},
-'panahan':{ipa:'/ˈpanahan/',cn:'射箭',en:'',root:'',tag:'身体·运动'},
-'skateboard':{ipa:'/ˈskɛtbɔrd/',cn:'滑板',en:'',root:'',tag:'身体·运动'},
-'skydive':{ipa:'/ˈskaidaiv/',cn:'跳伞',en:'',root:'',tag:'身体·运动'},
-'panjat tebing':{ipa:'/ˈpanʤat ˈtɛbiŋ/',cn:'攀岩',en:'',root:'',tag:'身体·运动'},
-'lelah':{ipa:'/ˈlɛlah/',cn:'累',en:'',root:'',tag:'身体·运动'},
-'capek':{ipa:'/ˈʧaʔpɛk/',cn:'疲倦',en:'',root:'',tag:'身体·运动'},
-'fit':{ipa:'/ˈfit/',cn:'健壮的',en:'',root:'',tag:'身体·运动'},
-'gerak':{ipa:'/ˈɡɛrak/',cn:'运动/动',en:'',root:'',tag:'身体·运动'},
-'keringat':{ipa:'/ˈkəriŋat/',cn:'汗',en:'',root:'',tag:'身体·运动'},
-'napas':{ipa:'/ˈnapas/',cn:'呼吸',en:'',root:'',tag:'身体·运动'},
-'cedera':{ipa:'/ˈʧɛdɛra/',cn:'受伤',en:'',root:'',tag:'身体·运动'},
-'pegal':{ipa:'/ˈpɛɡal/',cn:'酸痛',en:'',root:'',tag:'身体·运动'},
-'kram':{ipa:'/ˈkram/',cn:'抽筋',en:'',root:'',tag:'身体·运动'},
-'bersin':{ipa:'/bərˈsin/',cn:'打喷嚏',en:'',root:'',tag:'身体·运动'},
-'migrain':{ipa:'/ˈmiɡrain/',cn:'偏头痛',en:'',root:'',tag:'身体·运动'},
-'asuransi kesehatan':{ipa:'/asuˈransi kəsəˈhatan/',cn:'健康保险',en:'',root:'',tag:'身体·运动'},
-'check-up':{ipa:'/ˈʧɛk ʌp/',cn:'体检',en:'',root:'',tag:'身体·运动'},
-'vaksin':{ipa:'/ˈvaksin/',cn:'疫苗',en:'',root:'',tag:'身体·运动'},
-'CV':{ipa:'/ˈsiː ˈviː/',cn:'简历',en:'',root:'',tag:'面试'},
-'resume':{ipa:'/ˈrɛzumeɪ/',cn:'履历',en:'',root:'',tag:'面试'},
-'lamaran kerja':{ipa:'/laˈmaran ˈkɛrʤa/',cn:'求职申请',en:'',root:'',tag:'面试'},
-'surat lamaran':{ipa:'/ˈsurat laˈmaran/',cn:'求职信',en:'',root:'',tag:'面试'},
-'portofolio':{ipa:'/ˈportofolio/',cn:'作品集',en:'',root:'',tag:'面试'},
-'riwayat hidup':{ipa:'/riˈwayat ˈhidup/',cn:'个人简历',en:'',root:'',tag:'面试'},
-'sertifikat':{ipa:'/sɛrtifiˈkat/',cn:'证书',en:'',root:'',tag:'面试'},
-'ijazah':{ipa:'/iˈʤazah/',cn:'毕业证',en:'',root:'',tag:'面试'},
-'transkrip nilai':{ipa:'/ˈtranskrip ˈnilai/',cn:'成绩单',en:'',root:'',tag:'面试'},
-'rekomendasi':{ipa:'/rɛkomɛnˈdasi/',cn:'推荐',en:'',root:'',tag:'面试'},
-'pengalaman kerja':{ipa:'/pəŋˈalam an ˈkɛrʤa/',cn:'工作经验',en:'',root:'',tag:'面试'},
-'magang':{ipa:'/ˈmaɡaŋ/',cn:'实习',en:'',root:'',tag:'面试'},
-'praktik':{ipa:'/ˈpraktik/',cn:'实践',en:'',root:'',tag:'面试'},
-'prestasi':{ipa:'/prɛsˈtasi/',cn:'成就',en:'',root:'',tag:'面试'},
-'hasil kerja':{ipa:'/ˈhasil ˈkɛrʤa/',cn:'工作成果',en:'',root:'',tag:'面试'},
-'tugas':{ipa:'/ˈtuɡas/',cn:'任务',en:'',root:'',tag:'面试'},
-'keterampilan':{ipa:'/kətəˈrampilan/',cn:'技能',en:'',root:'',tag:'面试'},
-'keahlian':{ipa:'/kaˈahlian/',cn:'专长',en:'',root:'',tag:'面试'},
-'kemampuan':{ipa:'/kəˈmampuan/',cn:'能力',en:'',root:'',tag:'面试'},
-'kompetensi':{ipa:'/ˈkompɛtɛnsi/',cn:'竞争力',en:'',root:'',tag:'面试'},
-'spesialisasi':{ipa:'/spɛsialisˈasi/',cn:'专业方向',en:'',root:'',tag:'面试'},
-'problem solving':{ipa:'/ˈprobləm ˈsɔlviŋ/',cn:'解决问题',en:'',root:'',tag:'面试'},
-'latar belakang':{ipa:'/ˈlatar bəˈlakaŋ/',cn:'背景',en:'',root:'',tag:'面试'},
-'universitas':{ipa:'/ˈuniversitas/',cn:'大学',en:'',root:'',tag:'面试'},
-'jurusan':{ipa:'/ˈʤurusan/',cn:'专业',en:'',root:'',tag:'面试'},
-'gelar':{ipa:'/ˈɡɛlar/',cn:'学位',en:'',root:'',tag:'面试'},
-'sarjana':{ipa:'/ˈsarʤana/',cn:'学士',en:'',root:'',tag:'面试'},
-'master':{ipa:'/ˈmastɛr/',cn:'硕士',en:'',root:'',tag:'面试'},
-'doktor':{ipa:'/ˈdoktor/',cn:'博士',en:'',root:'',tag:'面试'},
-'IPK':{ipa:'/ˈi ˈpi ˈka/',cn:'平均绩点',en:'',root:'',tag:'面试'},
-'tahun lulus':{ipa:'/ˈtahun ˈlulus/',cn:'毕业年份',en:'',root:'',tag:'面试'},
-'menguasai':{ipa:'/məŋˈuasai/',cn:'掌握',en:'',root:'',tag:'面试'},
-'fasih':{ipa:'/ˈfasih/',cn:'流利的',en:'',root:'',tag:'面试'},
-'kepemimpinan':{ipa:'/kəˈpɛmimpinan/',cn:'领导力',en:'',root:'',tag:'面试'},
-'inisiatif':{ipa:'/iniˈsiatif/',cn:'主动性',en:'',root:'',tag:'面试'},
-'jabatan':{ipa:'/ˈʤabatan/',cn:'职务',en:'',root:'',tag:'面试'},
-'peran':{ipa:'/ˈpɛran/',cn:'角色',en:'',root:'',tag:'面试'},
-'lowongan':{ipa:'/ˈlowoŋan/',cn:'空缺',en:'',root:'',tag:'面试'},
-'karir':{ipa:'/ˈkarir/',cn:'职业',en:'',root:'',tag:'面试'},
-'jenjang':{ipa:'/ˈʤɛnʤaŋ/',cn:'阶梯/晋升',en:'',root:'',tag:'面试'},
-'promosi':{ipa:'/ˈpromosi/',cn:'晋升',en:'',root:'',tag:'面试'},
-'kenaikan jabatan':{ipa:'/kaˈnaikan ˈʤabatan/',cn:'升职',en:'',root:'',tag:'面试'},
-'wawancara':{ipa:'/wawanˈʧara/',cn:'面试',en:'',root:'',tag:'面试'},
-'interviewer':{ipa:'/ˈintərvjuːɛr/',cn:'面试官',en:'',root:'',tag:'面试'},
-'pewawancara':{ipa:'/pəˈwawanʧara/',cn:'面试官',en:'',root:'',tag:'面试'},
-'kandidat':{ipa:'/ˈkandidat/',cn:'候选人',en:'',root:'',tag:'面试'},
-'pelamar':{ipa:'/pəˈlamar/',cn:'申请者',en:'',root:'',tag:'面试'},
-'seleksi':{ipa:'/səˈlɛksi/',cn:'筛选',en:'',root:'',tag:'面试'},
-'tahap':{ipa:'/ˈtahap/',cn:'阶段',en:'',root:'',tag:'面试'},
-'tes':{ipa:'/ˈtɛs/',cn:'测试',en:'',root:'',tag:'面试'},
-'gaji':{ipa:'/ˈɡaʤi/',cn:'工资',en:'',root:'',tag:'面试'},
-'upah':{ipa:'/ˈupah/',cn:'报酬',en:'',root:'',tag:'面试'},
-'pendapatan':{ipa:'/pɛnˈdapatan/',cn:'收入',en:'',root:'',tag:'面试'},
-'tunjangan':{ipa:'/ˈtunʤaŋan/',cn:'津贴',en:'',root:'',tag:'面试'},
-'insentif':{ipa:'/inˈsɛntif/',cn:'激励',en:'',root:'',tag:'面试'},
-'THR':{ipa:'/ˈti ˈha ˈɛr/',cn:'节日津贴',en:'',root:'',tag:'面试'},
-'BPJS':{ipa:'/ˈbi ˈpi ˈʤɛ ˈɛs/',cn:'社保',en:'',root:'',tag:'面试'},
-'cuti':{ipa:'/ˈʧuti/',cn:'休假',en:'',root:'',tag:'面试'},
-'libur':{ipa:'/ˈlibur/',cn:'放假',en:'',root:'',tag:'面试'},
-'jam kerja':{ipa:'/ˈʤam ˈkɛrʤa/',cn:'工作时间',en:'',root:'',tag:'面试'},
-'lembur':{ipa:'/ˈlɛmbur/',cn:'加班',en:'',root:'',tag:'面试'},
-'dinas luar':{ipa:'/ˈdinas ˈluar/',cn:'出差',en:'',root:'',tag:'面试'},
-'kekurangan':{ipa:'/kəˈkur aŋan/',cn:'缺点',en:'',root:'',tag:'面试'},
-'kekuatan':{ipa:'/kəˈkuatan/',cn:'优势',en:'',root:'',tag:'面试'},
-'motivasi':{ipa:'/ˈmotivasi/',cn:'动机',en:'',root:'',tag:'面试'},
-'ambisi':{ipa:'/ˈambisi/',cn:'抱负',en:'',root:'',tag:'面试'},
-'tekad':{ipa:'/ˈtɛkad/',cn:'决心',en:'',root:'',tag:'面试'},
-'cita-cita':{ipa:'/ˈʧita ˈʧita/',cn:'理想',en:'',root:'',tag:'面试'},
-};
+  'aktif':{ipa:'/ˈaktif/',cn:'活跃的',en:'active',root:'aktif (Dutch)',tag:'C5复习'}};
 
 
 let learningHistory; try{ learningHistory=JSON.parse(localStorage.getItem("bir_h3")||"{}"); }catch(e){ learningHistory={}; }
@@ -8189,6 +7938,883 @@ ukbi_map: {
 6.B | 7.A | 8.B | 9.A | 10.B
 
 Tips: Perhatikan kosakata wawancara seperti lamaran, gaji, pengalaman, keahlian, dan ungkapan sopan.`
+  },
+  office_work: {
+    title: "话题22: 办公室工作 / Pekerjaan Kantor",
+    icon: "🏢",
+    days: 3,
+    grammar: {
+      title: "办公室语法 · Tata Bahasa Kantor",
+      rules: [
+        "🔹 被动语态 di- + 动词根 - 表示动作被完成，如 dilaporkan (被报告)、dikirim (被发送)",
+        "🔹 使役前缀 me-kan / me-i - menyebabkan/ memberikan，如 menyetujui (同意/批准)、mengirimkan (发送)",
+        "🔹 抽象名词后缀 -an / ke-...-an - 如 laporan (报告)、kerjasama (合作)、kesepakatan (协议)",
+        "🔹 时间表达：pukul + 数字 (几点)、tanggal + 数字 (几号)、bulan + 月份名",
+        "🔹 礼貌请求：Boleh/Mohon + 动词原形 + -nya? 如 Boleh dikirim? (可以发送吗?)"
+      ],
+      examples: [
+        "lapor /laˈpor/ (v.) → dilaporkan /dilaˈporkan/ = '被报告'",
+        "kirim /ˈkirim/ (v.) → mengirimkan /məˈŋirimkan/ = '发送给'",
+        "kerja /ˈkɛrdʒa/ (v.) → kerjasama /ˈkɛrdʒa ˈsama/ = '合作'",
+        "sepakat /səˈpakat/ (adj.) → kesepakatan /kəsəpakatan/ = '协议'",
+        "setuju /səˈtudʒu/ (v.) → menyetujui /məɲəˈtudʒui/ = '同意/批准'"
+      ]
+    },
+    vocab: [
+      ['meja', '桌子', '/ˈmɛdʒa/'], ['kursi', '椅子', '/ˈkursi/'],
+      ['komputer', '电脑', '/komˈputɛr/'], ['printer', '打印机', '/ˈprintɛr/'],
+      ['scanner', '扫描仪', '/ˈskanɛr/'], ['monitor', '显示器', '/ˈmonɪtor/'],
+      ['keyboard', '键盘', '/ˈkiːbɔːrd/'], ['mouse', '鼠标', '/ˈmaus/'],
+      ['email', '电子邮件', '/ˈimɛl/'], ['telepon', '电话', '/ˈtɛlɛfon/'],
+      ['ponsel', '手机', '/ˈponsɛl/'], ['fax', '传真', '/ˈfaks/'],
+      ['rapat', '会议', '/ˈrapat/'], ['jadwal', '日程', '/ˈdʒadwal/'],
+      ['undangan', '邀请/请柬', '/unˈdaŋan/'], ['agenda', '议程', '/aˈgɛnda/'],
+      ['notulen', '会议纪要', '/noˈtulɛn/'], ['materi', '材料', '/maˈtɛri/'],
+      ['presentasi', '演示', '/prɛsɛnˈtasi/'], ['diskusi', '讨论', '/dɪsˈkusi/'],
+      ['dokumen', '文件', '/ˈdokumɛn/'], ['arsip', '档案', '/ˈarsɪp/'],
+      ['laporan', '报告', '/laˈporan/'], ['memo', '备忘录', '/ˈmɛmo/'],
+      ['surat', '信件', '/ˈsurat/'], ['proposal', '提案', '/proˈposal/'],
+      ['kontrak', '合同', '/ˈkɔntrak/'], ['perjanjian', '协议', '/pɛrˈdʒandʒian/'],
+      ['deadline', '截止日期', '/ˈdɛdlaɪn/'], ['target', '目标', '/ˈtargɛt/'],
+      ['tugas', '任务', '/ˈtugas/'], ['proyek', '项目', '/proˈjɛk/'],
+      ['pekerjaan', '工作', '/pɛˈkɛrdʒaan/'], ['jabatan', '职位', '/dʒaˈbatan/'],
+      ['karyawan', '员工', '/karˈjawan/'], ['atasan', '上司', '/aˈtasan/'],
+      ['bawahan', '下属', '/baˈwahan/'], ['rekan', '同事', '/ˈrɛkan/'],
+      ['tim', '团队', '/ˈtim/'], ['departemen', '部门', '/dɛparˈtɛmɛn/'],
+      ['divisi', '分部', '/diˈvɪsi/'], ['manajemen', '管理', '/manaˈdʒɛmɛn/'],
+      ['kepala', '主管/头', '/kɛˈpala/'], ['direktur', '董事', '/diˈrɛktur/'],
+      ['sekretaris', '秘书', '/sɛkrɛˈtarɪs/'], ['staf', '职员', '/ˈstaf/'],
+      ['absen', '考勤', '/ˈabsɛn/'], ['cuti', '休假', '/ˈcuti/'],
+      ['lembur', '加班', '/ˈlɛmbur/'], ['gaji', '工资', '/ˈɡadʒi/'],
+      ['bonus', '奖金', '/ˈbonʊs/'], ['tunjangan', '津贴', '/tunˈdʒaŋan/'],
+      ['naik pangkat', '晋升', '/ˈnaɪk ˈpaŋkat/'], ['mutasi', '调动', '/muˈtasi/'],
+      ['penilaian', '评估', '/pɛniˈlaian/'], ['kinerja', '绩效', '/kiˈnɛrdʒa/'],
+      ['efisiensi', '效率', '/ɛfɪˈsɪɛnsi/'], ['produktivitas', '生产力', '/produkˈtɪvɪtas/'],
+      ['persetujuan', '批准', '/pɛrsəˈtudʒuan/'], ['pengajuan', '申请', '/pɛŋaˈdʒuan/'],
+      ['pengumuman', '公告', '/pɛŋuˈmuman/'], ['keputusan', '决定', '/kɛpuˈtusan/'],
+      ['sop', '标准流程', '/ˈɛs oˈpɛ/'], ['prosedur', '程序', '/proˈsɛdur/'],
+      ['kebijakan', '政策', '/kɛbiˈdʒakan/'], ['peraturan', '规定', '/pɛraˈturan/']
+    ],
+    scenes: [
+      {
+        title: "每日晨会安排",
+        icon: "📅",
+        dialogue: [
+          {
+            "speaker": "A",
+            "text": "Selamat pagi, rekan-rekan. Mari kita mulai rapat pagi hari ini. Ada beberapa tugas penting yang perlu didiskusikan.",
+            "trans": "早上好,各位同事。让我们开始今天的晨会。有几个重要任务需要讨论。"
+          },
+          {
+            "speaker": "B",
+            "text": "Baik, Pak. Apa target utama untuk minggu ini? Dan deadline laporan bulanannya kapan?",
+            "trans": "好的,先生。本周的主要目标是什么?月度报告的截止日期是什么时候?"
+          },
+          {
+            "speaker": "A",
+            "text": "Target utamanya adalah menyelesaikan proposal proyek pembangkit listrik. Deadline laporan tanggal 25, jadi tolong dikumpulkan tepat waktu.",
+            "trans": "主要目标是完成电厂项目提案。报告截止日期是25号,请务必按时提交。"
+          },
+          {
+            "speaker": "B",
+            "text": "Saya mengerti. Bagaimana dengan rapat dengan mitra Jepang minggu depan? Apakah agenda sudah disiapkan?",
+            "trans": "我明白了。下周与日本合作伙伴的会议呢?议程准备好了吗?"
+          },
+          {
+            "speaker": "A",
+            "text": "Agenda sedang disusun oleh tim sekretaris. Nanti saya akan mengirimkan materinya melalui email sebelum jam 3 sore.",
+            "trans": "议程正在由秘书团队整理。稍后我会在下午3点前通过邮件发送材料。"
+          },
+          {
+            "speaker": "B",
+            "text": "Baik, Pak. Saya akan koordinasi dengan departemen teknik untuk menyiapkan data produksi yang dibutuhkan.",
+            "trans": "好的,先生。我会与工程部协调准备所需的生产数据。"
+          }
+        ]
+      },
+      {
+        title: "邮件与电话沟通",
+        icon: "📧",
+        dialogue: [
+          {
+            "speaker": "A",
+            "text": "Selamat pagi, Pak. Ini [Nama] dari PT [Perusahaan]. Saya menelepon terkait email yang saya kirimkan kemarin.",
+            "trans": "早上好,先生。我是[公司名称]的[姓名]。我打电话是关于昨天我发送的邮件。"
+          },
+          {
+            "speaker": "B",
+            "text": "Oh ya, saya sudah menerima emailnya. Maaf belum sempat membalas. Ada yang bisa saya bantu?",
+            "trans": "哦是的,我已经收到邮件了。抱歉还没时间回复。有什么可以帮您的?"
+          },
+          {
+            "speaker": "A",
+            "text": "Tidak apa-apa, Pak. Saya ingin mengkonfirmasi jadwal pertemuan kita minggu depan. Apakah hari Selasa pukul 10 pagi masih oke?",
+            "trans": "没关系,先生。我想确认一下我们下周的会面安排。周二上午10点还可以吗?"
+          },
+          {
+            "speaker": "B",
+            "text": "Selasa pagi saya ada rapat internal. Bagaimana kalau pindah ke Rabu jam yang sama?",
+            "trans": "周二上午我有内部会议。改到周三同一时间可以吗?"
+          },
+          {
+            "speaker": "A",
+            "text": "Rabu pukul 10? Baik, saya akan mengirimkan undangan rapat yang baru. Mohon persetujuannya, ya.",
+            "trans": "周三10点?好的,我会发送新的会议邀请。请批准一下。"
+          },
+          {
+            "speaker": "B",
+            "text": "Baik, saya akan cek kalender dan konfirmasi via email dalam satu jam. Terima kasih atas teleponnya.",
+            "trans": "好的,我会查看日历并在一小时内通过邮件确认。谢谢您的来电。"
+          }
+        ]
+      },
+      {
+        title: "跨部门协调",
+        icon: "🔄",
+        dialogue: [
+          {
+            "speaker": "A",
+            "text": "Bu, saya dari divisi keuangan. Kami butuh data anggaran proyek smelter dari departemen teknik untuk laporan triwulanan.",
+            "trans": "女士,我是财务部的。我们需要工程部的冶炼厂项目预算数据来编制季度报告。"
+          },
+          {
+            "speaker": "B",
+            "text": "Baik, data anggaran sedang diupdate oleh tim kami. Apakah deadline-nya kapan?",
+            "trans": "好的,预算数据正在由我们团队更新。截止日期是什么时候?"
+          },
+          {
+            "speaker": "A",
+            "text": "Deadline pengumpulan ke direktur adalah hari Jumat ini. Jadi saya butuh datanya paling lambat Kamis sore.",
+            "trans": "提交给董事的截止日期是本周五。所以我最晚需要周四下午拿到数据。"
+          },
+          {
+            "speaker": "B",
+            "text": "Insya Allah bisa. Saya akan koordinasi dengan kepala bidang dan memastikan data lengkap sebelum deadline.",
+            "trans": "应该可以。我会与主管协调,确保在截止日期前数据完整。"
+          },
+          {
+            "speaker": "A",
+            "text": "Terima kasih. Mohon juga lampirkan dokumen pendukung seperti perjanjian kontrak dan nota penilaiannya.",
+            "trans": "谢谢。还请附上支持文件,如合同协议和评估记录。"
+          },
+          {
+            "speaker": "B",
+            "text": "Baik, saya akan siapkan semuanya. Setelah selesai, saya kirim via email dan salin hardcopy ke meja Anda.",
+            "trans": "好的,我会准备所有文件。完成后,我会通过邮件发送并复印一份硬拷贝到您桌上。"
+          }
+        ]
+      }
+    ],
+    speeches: [
+      {
+        day: 1,
+        title: "印尼办公室文化",
+        icon: "🏢",
+        words: 155,
+        time: 60,
+        content: "Selamat pagi, rekan-rekan. Hari ini saya ingin berbicara tentang budaya kantor di Indonesia. Di Indonesia, hierarki dalam organisasi sangat dihormati. Karyawan biasanya memanggil atasan dengan sebutan 'Pak' atau 'Bu' diikuti nama atau jabatan. Rapat rutin sering diadakan setiap pagi untuk membagi tugas dan mengevaluasi pekerjaan kemarin. Sopan santun dan keramahan sangat diutamakan dalam komunikasi, bahkan saat menyampaikan kritik. Keputusan besar biasanya dibuat secara musyawarah, bukan sepihak. Selain itu, hubungan interpersonal yang hangat dianggap penting untuk kerjasama tim yang baik. Mari kita jaga etika dan profesionalisme dalam bekerja bersama.",
+        trans: "早上好,各位同事。今天我想谈谈印尼的办公室文化。在印尼,组织中的层级非常受尊重。员工通常称呼上司为'先生'或'女士',后面加上姓名或职位。通常会每天早上举行例会来分配任务和评估昨日工作。礼貌和友善在沟通中非常重要,即使是提出批评时也是如此。重大决策通常通过协商做出,而非单方面决定。此外,温暖的人际关系被认为对良好的团队合作很重要。让我们在工作中保持职业道德和专业精神。"
+      },
+      {
+        day: 2,
+        title: "高效工作习惯",
+        icon: "⏰",
+        words: 148,
+        time: 58,
+        content: "Selamat pagi. Saya ingin berbagi beberapa kebiasaan kerja yang efisien. Pertama, buatlah daftar tugas harian dan prioritaskan berdasarkan urgensi dan pentingnya. Kedua, gunakan teknik time blocking, yaitu alokasikan waktu khusus untuk setiap pekerjaan tanpa gangguan. Ketiga, tangani email dan pesan pada waktu tertentu saja, jangan terus-menerus memeriksa ponsel. Keempat, istirahat singkat setiap 90 menit untuk menjaga fokus dan produktivitas. Kelima, rapat harus dimulai dan diakhiri tepat waktu dengan agenda yang jelas. Terakhir, dokumentasikan setiap keputusan dan tindak lanjut agar tidak ada mis komunikasi. Dengan disiplin waktu, kita bisa mencapai target tanpa harus lembur setiap hari.",
+        trans: "早上好。我想分享一些高效工作习惯。第一,制作每日任务清单,根据紧急程度和重要性排序。第二,使用时间块技术,即为每项工作分配专门的不受干扰的时间。第三,只在特定时间处理邮件和消息,不要一直查看手机。第四,每90分钟短暂休息以保持专注和生产力。第五,会议必须准时开始和结束,有明确的议程。最后,记录每个决定和后续行动以避免误解。通过时间纪律,我们可以在不必每天加班的情况下实现目标。"
+      },
+      {
+        day: 3,
+        title: "团队协作与沟通",
+        icon: "🤝",
+        words: 150,
+        time: 59,
+        content: "Selamat pagi, tim. Kerjasama antar departemen adalah kunci kesuksesan perusahaan kita. Setiap divisi memiliki peran penting, mulai dari produksi, teknik, keuangan, hingga sumber daya manusia. Komunikasi yang terbuka dan transparan sangat dibutuhkan agar tidak ada informasi yang terlewat. Jika ada masalah, segera laporkan ke atasan dan jangan ditutup-tutupi. Dalam rapat, setiap anggota tim harus diberi kesempatan untuk menyampaikan pendapat. Keputusan yang baik lahir dari diskusi yang konstruktif, bukan dari perintah sepihak. Kita juga harus saling menghargai perbedaan latar belakang dan budaya, mengingat perusahaan kita memiliki karyawan dari berbagai negara. Mari kita bangun kerjasama yang solid untuk mencapai visi perusahaan bersama-sama.",
+        trans: "早上好,团队。跨部门协作是我们公司成功的关键。每个部门都有重要作用,从生产、工程、财务到人力资源。开放透明的沟通非常必要,以确保没有信息遗漏。如果有问题,请立即向上司报告,不要隐瞒。在会议中,每个团队成员都应有机会发表意见。好的决定来自建设性的讨论,而非单方面命令。我们还应尊重不同的背景和文化,因为我们的公司有来自各国的员工。让我们建立牢固的协作关系,共同实现公司愿景。"
+      }
+    ],
+    quiz: {
+      title: "办公室工作测试 (15题)",
+      questions: [
+        {q: "1. 'Rapat' 的意思是?", options: ["A) 报告", "B) 会议", "C) 任务"], a: 1, explain: "'Rapat' = 会议/例会"},
+        {q: "2. 'Deadline' 在印尼办公室中通常指?", options: ["A) 开始日期", "B) 截止日期", "C) 会议时间"], a: 1, explain: "'Deadline' = 截止日期/最后期限"},
+        {q: "3. 'Atasan' 的反义词是?", options: ["A) Rekan", "B) Bawahan", "C) Karyawan"], a: 1, explain: "'Atasan' = 上司; 'Bawahan' = 下属"},
+        {q: "4. 'Mengirimkan' 的词根是?", options: ["A) Kirim", "B) Kiriman", "C) Pengirim"], a: 0, explain: "'Mengirimkan' 来自词根 'kirim' (发送)"},
+        {q: "5. 'Lembur' 的意思是?", options: ["A) 休假", "B) 加班", "C) 调动"], a: 1, explain: "'Lembur' = 加班/超时工作"},
+        {q: "6. 员工请病假应该使用哪个词?", options: ["A) Cuti", "B) Izin", "C) Absen"], a: 0, explain: "'Cuti' = 休假(包括病假、事假等)"},
+        {q: "7. 'Persetujuan' 来自哪个动词?", options: ["A) Setuju", "B) Sepakat", "C) Sah"], a: 0, explain: "'Persetujuan' 来自 'setuju' (同意) + 前缀 per- + 后缀 -an"},
+        {q: "8. 印尼语中 '请批准' 怎么说?", options: ["A) Mohon maaf", "B) Mohon persetujuannya", "C) Mohon bantuannya"], a: 1, explain: "'Mohon persetujuannya' = 请批准/请同意"},
+        {q: "9. 'Notulen' 在会议中是指?", options: ["A) 议程", "B) 会议纪要", "C) 演示文稿"], a: 1, explain: "'Notulen' = 会议纪要/会议记录"},
+        {q: "10. 'Produktivitas' 的意思是?", options: ["A) 产品质量", "B) 生产力", "C) 生产效率"], a: 1, explain: "'Produktivitas' = 生产力/生产效率"},
+        {q: "11. 'Dilaporkan' 是什么语态?", options: ["A) 主动语态", "B) 被动语态", "C) 命令语态"], a: 1, explain: "'Di-' 前缀表示被动语态, 'dilaporkan' = 被报告"},
+        {q: "12. 'Kepala departemen' 相当于中文的?", options: ["A) 部门经理", "B) 部门主管", "C) 董事长"], a: 1, explain: "'Kepala departemen' = 部门主管/部门负责人"},
+        {q: "13. 'Agenda' 在会议前需要?", options: ["A) 被签署", "B) 被准备", "C) 被销毁"], a: 1, explain: "会议前需要 'menyiapkan agenda' (准备议程)"},
+        {q: "14. 'Koordinasi' 的意思是?", options: ["A) 竞争", "B) 协调", "C) 汇报"], a: 1, explain: "'Koordinasi' = 协调/配合"},
+        {q: "15. 在印尼办公室中,称呼上司最礼貌的方式是?", options: ["A) Kamu", "B) Pak/Bu + 姓名", "C) Nama saja"], a: 1, explain: "印尼办公室文化中,用 'Pak/Bu' + 姓名或职位称呼上司是最礼貌的"}
+      ]
+    },
+    quiz_answers: `Kunci Jawaban Pekerjaan Kantor (话题22):
+1.B | 2.B | 3.B | 4.A | 5.B | 6.A | 7.A | 8.B | 9.B | 10.B
+11.B | 12.B | 13.B | 14.B | 15.B
+
+Tips: Perhatikan pola penggunaan awalan di-, me-kan, dan suffiks -an dalam kosakata kantor.`
+  },
+  site_work: {
+    title: "话题23: 现场工作 / Pekerjaan Lapangan",
+    icon: "🏭",
+    days: 3,
+    grammar: {
+      title: "现场语法 · Tata Bahasa Lapangan",
+      rules: [
+        "🔹 祈使句：动词原形 + -lah 表示礼貌命令，如 Periksalah (请检查)、Laporlah (请报告)",
+        "🔹 禁止/警告：Jangan + 动词 = 不要... ，如 Jangan sentuh (不要触摸)、Jangan masuk (禁止进入)",
+        "🔹 状态描述：Sedang + 动词 = 正在... ，如 Sedang berjalan (正在运行)、Sedang diperbaiki (正在维修)",
+        "🔹 结果描述：Sudah + 动词 = 已经... ，如 Sudah diperiksa (已检查)、Sudah aman (已安全)",
+        "🔹 工具/手段：Dengan + 名词 = 用... ，如 dengan helm (戴头盔)、dengan alat (用工具)"
+      ],
+      examples: [
+        "periksa /pɛˈriksa/ (v.) → periksalah /pɛˈriksalah/ = '请检查'",
+        "sentuh /ˈsɛntuh/ (v.) → jangan sentuh /ˈdʒaŋan ˈsɛntuh/ = '不要触摸'",
+        "perbaiki /pɛrˈbaɪki/ (v.) → sedang diperbaiki /səˈdaŋ dipɛrˈbaɪki/ = '正在维修'",
+        "aman /ˈaman/ (adj.) → sudah aman /ˈsudah ˈaman/ = '已安全'",
+        "helm /ˈhɛlm/ (n.) → dengan helm /ˈdɛŋan ˈhɛlm/ = '戴头盔'"
+      ]
+    },
+    vocab: [
+      ['helm', '安全帽', '/ˈhɛlm/'], ['sepatu safety', '安全鞋', '/sɛˈpatu ˈsɛfti/'],
+      ['sarung tangan', '手套', '/saˈruŋ ˈtaŋan/'], ['kacamata pelindung', '护目镜', '/kaˈtʃamata pɛˈlinduŋ/'],
+      ['rompi safety', '安全背心', '/ˈrompi ˈsɛfti/'], ['masker', '口罩', '/ˈmaskɛr/'],
+      ['pelindung telinga', '耳塞', '/pɛˈlinduŋ tɛˈliŋa/'], ['sabuk pengaman', '安全带', '/ˈsabuk pɛŋˈaman/'],
+      ['mesin', '机器', '/ˈmɛsin/'], ['pompa', '泵', '/ˈpompa/'],
+      ['valve', '阀门', '/ˈvalv/'], ['pipa', '管道', '/ˈpipa/'],
+      ['tangki', '储罐', '/ˈtaŋki/'], ['kontrol panel', '控制面板', '/konˈtrol ˈpanɛl/'],
+      ['pressure gauge', '压力表', '/ˈprɛʃər ˈɡɛɪdʒ/'], ['termometer', '温度计', '/tɛrˈmomɛtɛr/'],
+      ['produksi', '生产', '/proˈdʊksi/'], ['kapasitas', '产能', '/kaˈpasɪtas/'],
+      ['output', '产量', '/ˈaʊtpʊt/'], ['efisiensi', '效率', '/ɛfɪˈsɪɛnsi/'],
+      ['target harian', '日目标', '/ˈtargɛt ˈharɪan/'], ['shift', '班次', '/ˈʃɪft/'],
+      ['kerusakan', '故障/损坏', '/kɛruˈsakan/'], ['perbaikan', '维修', '/pɛrˈbaɪkan/'],
+      ['maintenance', '保养', '/ˈmɛntɛnans/'], ['perawatan', '维护', '/pɛraˈwatan/'],
+      ['ganti suku cadang', '更换备件', '/ˈɡanti ˈsuku ˈtʃadaŋ/'], ['kalibrasi', '校准', '/kalɪˈbrasɪ/'],
+      ['troubleshooting', '故障排查', '/ˈtrʌblʃuːtɪŋ/'], ['inspeksi', '检查', '/ɪnˈspɛksi/'],
+      ['cek rutin', '例行检查', '/ˈtʃɛk ˈrutɪn/'], ['patroli', '巡检', '/paˈtroli/'],
+      ['lapangan', '现场', '/laˈpaŋan/'], ['area berbahaya', '危险区域', '/ˈarɛa bɛrˈbahaja/'],
+      ['area aman', '安全区域', '/ˈarɛa ˈaman/'], ['pabrik', '工厂', '/ˈpabrik/'],
+      ['smelter', '冶炼厂', '/ˈsmɛltɛr/'], ['tungku', '炉子', '/ˈtuŋku/'],
+      ['converter', '转炉', '/konˈvɛrtɛr/'], ['furnace', '熔炉', '/ˈfɜːrnɪs/'],
+      ['leaching', '浸出', '/ˈliːtʃɪŋ/'], ['electrowinning', '电积', '/ɪˈlɛktroʊwɪnɪŋ/'],
+      ['pengolahan', '加工', '/pɛŋoˈladʒan/'], ['pemurnian', '精炼', '/pɛmurˈnian/'],
+      ['bahan baku', '原料', '/ˈbahan ˈbaku/'], ['produk jadi', '成品', '/proˈdʊk ˈdʒadi/'],
+      ['kualitas', '质量', '/kuaˈlɪtas/'], ['standar', '标准', '/ˈstandar/'],
+      ['sampel', '样品', '/ˈsampɛl/'], ['uji lab', '化验', '/ˈudʒi ˈlab/'],
+      ['komposisi kimia', '化学成分', '/kompoˈzɪsi ˈkimia/'], ['kadar', '含量', '/ˈkadar/'],
+      ['kecelakaan', '事故', '/kɛtʃaˈlakaan/'], ['nyaris celaka', '未遂事故', '/ˈɲaris ˈtʃalaka/'],
+      ['evakuasi', '疏散', '/ɛvaˈkwasi/'], ['P3K', '急救', '/pɛ tɪɡa ˈka/'],
+      ['APAR', '灭火器', '/ˈapar/'], ['alarm kebakaran', '火警', '/aˈlarm kɛˈbakar an/'],
+      ['SOP', '标准作业程序', '/ˈɛs oˈpɛ/'], ['JSA', '作业安全分析', '/ˈdʒe ɛs ˈa/'],
+      ['LOTO', '上锁挂牌', '/ˈloʊtoʊ/'], ['izin kerja', '作业许可证', '/ɪˈzɪn ˈkɛrdʒa/']
+    ],
+    scenes: [
+      {
+        title: "安全晨会与PPE检查",
+        icon: "⛑️",
+        dialogue: [
+          {
+            "speaker": "A",
+            "text": "Selamat pagi, semuanya! Sebelum mulai kerja, kita lakukan safety briefing dulu. Ada yang belum pakai helm?",
+            "trans": "大家早上好!开始工作前,我们先进行安全简报。有谁还没戴安全帽吗?"
+          },
+          {
+            "speaker": "B",
+            "text": "Sudah pakai semua, Pak. Sepatu safety, sarung tangan, dan kacamata pelindung juga sudah lengkap.",
+            "trans": "都戴好了,先生。安全鞋、手套和护目镜也都齐全。"
+          },
+          {
+            "speaker": "A",
+            "text": "Bagus. Hari ini kita akan bekerja di area smelter B. Ingat, area itu termasuk zona berbahaya. Jangan masuk tanpa izin kerja.",
+            "trans": "很好。今天我们将在B冶炼区工作。记住,那个区域属于危险区。没有作业许可证禁止进入。"
+          },
+          {
+            "speaker": "B",
+            "text": "Baik, Pak. Apakah ada perbaikan mesin yang sedang berlangsung di area tersebut?",
+            "trans": "好的,先生。那个区域有正在进行的机器维修吗?"
+          },
+          {
+            "speaker": "A",
+            "text": "Ya, pompa utama sedang diperbaiki tim maintenance. Jadi hati-hati, jangan sentuh peralatan yang ada tanda LOTO.",
+            "trans": "是的,主泵正在由维修团队维修。所以小心,不要触摸有上锁挂牌标志的设备。"
+          },
+          {
+            "speaker": "B",
+            "text": "Saya mengerti. Jika ada kecelakaan atau nyaris celaka, segera laporkan ke pos P3K, ya?",
+            "trans": "我明白。如果发生事故或未遂事故,立即向急救站报告,对吗?"
+          }
+        ]
+      },
+      {
+        title: "设备巡检与故障上报",
+        icon: "🔧",
+        dialogue: [
+          {
+            "speaker": "A",
+            "text": "Pak, saya baru selesai inspeksi rutin di lini produksi 3. Ada beberapa temuan yang perlu dilaporkan.",
+            "trans": "先生,我刚完成3号生产线的例行检查。有几个发现需要报告。"
+          },
+          {
+            "speaker": "B",
+            "text": "Baik, silakan laporkan. Apakah ada kerusakan pada mesin atau peralatan?",
+            "trans": "好的,请报告。机器或设备有损坏吗?"
+          },
+          {
+            "speaker": "A",
+            "text": "Valve pengontrol aliran di tangki nomor 5 bocor sedikit. Pressure gauge juga menunjukkan angka di bawah standar.",
+            "trans": "5号储罐的流量控制阀有点漏。压力表显示的数值也低于标准。"
+          },
+          {
+            "speaker": "B",
+            "text": "Berapa besar penyimpangannya? Apakah masih dalam batas aman atau harus segera diperbaiki?",
+            "trans": "偏差有多大?是否仍在安全范围内还是需要立即维修?"
+          },
+          {
+            "speaker": "A",
+            "text": "Penyimpangannya sekitar 15%. Menurut SOP, kalau lebih dari 10% harus segera dilakukan perbaikan dan mesin dihentikan sementara.",
+            "trans": "偏差大约15%。根据标准作业程序,如果超过10%必须立即维修并暂时停机。"
+          },
+          {
+            "speaker": "B",
+            "text": "Baik, saya akan koordinasi dengan tim maintenance untuk ganti valve dan kalibrasi pressure gauge. Sementara ini, hentikan operasi lini 3.",
+            "trans": "好的,我会与维修团队协调更换阀门和校准压力表。在此期间,停止3号线运行。"
+          }
+        ]
+      },
+      {
+        title: "质量控制检查",
+        icon: "📊",
+        dialogue: [
+          {
+            "speaker": "A",
+            "text": "Bu, hasil uji lab untuk sampel nikel hari ini sudah keluar. Komposisi kimianya masih dalam standar?",
+            "trans": "女士,今天镍样品的化验结果出来了。化学成分还在标准范围内吗?"
+          },
+          {
+            "speaker": "B",
+            "text": "Sebentar, saya cek datanya. Kadar nikelnya 18,5%, sedikit di atas target minimum 18%. Kadar besinya juga masih oke.",
+            "trans": "等一下,我查一下数据。镍含量18.5%,略高于18%的最低目标。铁含量也还可以。"
+          },
+          {
+            "speaker": "A",
+            "text": "Bagus. Bagaimana dengan kualitas produk jadi dari shift malam? Ada komplain dari pelanggan?",
+            "trans": "很好。夜班成品质量如何?有客户投诉吗?"
+          },
+          {
+            "speaker": "B",
+            "text": "Dari laporan shift malam, outputnya sesuai target harian dan tidak ada rejection dari QC. Semua produk lolos inspeksi.",
+            "trans": "根据夜班报告,产量达到日目标,质量控制没有拒收。所有产品通过检查。"
+          },
+          {
+            "speaker": "A",
+            "text": "Sangat baik. Tolong buatkan laporan kualitas mingguan dan kirim ke departemen produksi sebelum Jumat.",
+            "trans": "非常好。请制作一份周质量报告,周五前发给生产部。"
+          },
+          {
+            "speaker": "B",
+            "text": "Baik, saya akan siapkan laporannya besok. Juga akan lampirkan data efisiensi dan perbandingan dengan minggu lalu.",
+            "trans": "好的,我明天准备好报告。还会附上效率数据和与上周的对比。"
+          }
+        ]
+      }
+    ],
+    speeches: [
+      {
+        day: 1,
+        title: "安全生产规范",
+        icon: "🛡️",
+        words: 152,
+        time: 59,
+        content: "Selamat pagi, rekan-rekan. Keselamatan kerja adalah prioritas utama di kawasan industri kita. Setiap karyawan wajib mengenakan APD lengkap sebelum memasuki area produksi, termasuk helm, sepatu safety, sarung tangan, dan kacamata pelindung. Di area smelter, suhu bisa sangat tinggi dan ada risiko cipratan logam cair. Selalu perhatikan tanda peringatan dan jangan melewati area berbahaya tanpa izin. Setiap pekerjaan di ketinggian atau di ruang terbatas harus memiliki izin kerja dan JSA yang telah disetujui. Jika Anda melihat kondisi tidak aman, segera laporkan ke supervisor. Ingat, tidak ada pekerjaan yang begitu penting hingga kita mengorbankan keselamatan. Zero accident bukan hanya slogan, tapi komitmen kita bersama.",
+        trans: "早上好,各位同事。工作安全是我们工业园区的首要任务。每位员工进入生产区前必须穿戴完整的个人防护装备,包括安全帽、安全鞋、手套和护目镜。在冶炼区,温度可能非常高,有熔融金属飞溅的风险。始终注意警告标志,没有许可证不要穿过危险区域。每项高空作业或受限空间作业必须有已获批准的工作许可证和作业安全分析。如果您发现不安全状况,请立即向上司报告。记住,没有任何工作重要到需要牺牲安全。零事故不仅仅是口号,而是我们的共同承诺。"
+      },
+      {
+        day: 2,
+        title: "现场5S管理",
+        icon: "📋",
+        words: 148,
+        time: 57,
+        content: "Selamat pagi. Hari ini saya ingin menjelaskan tentang sistem 5S di tempat kerja kita. 5S berasal dari lima kata Jepang: Seiri, Seiton, Seiso, Seiketsu, dan Shitsuke. Seiri berarti memisahkan yang perlu dan yang tidak perlu, membuang barang yang tidak terpakai. Seiton adalah menata barang di tempat yang tepat sehingga mudah diambil. Seiso berarti membersihkan area kerja setiap hari. Seiketsu adalah memelihara kebersihan dan keteraturan secara konsisten. Terakhir, Shitsuke berarti membiasakan diri mengikuti standar yang telah ditetapkan. Dengan menerapkan 5S, kita bisa meningkatkan efisiensi, mengurangi waktu pencarian alat, dan mencegah kecelakaan karena area berantakan. Mari kita mulai dari diri sendiri dan area kerja masing-masing.",
+        trans: "早上好。今天我想解释一下我们工作场所的5S系统。5S来自五个日语单词:整理、整顿、清扫、清洁和素养。整理意味着区分需要和不需要的东西,丢弃不用的物品。整顿是把物品放在正确的位置以便取用。清扫是每天清洁工作区域。清洁是持续保持清洁和有序。最后,素养是养成遵守既定标准的习惯。通过实施5S,我们可以提高效率,减少寻找工具的时间,并防止因区域杂乱而导致的事故。让我们从自己和自己工作区域开始。"
+      },
+      {
+        day: 3,
+        title: "产品质量控制",
+        icon: "✅",
+        words: 150,
+        time: 58,
+        content: "Selamat pagi, tim. Kualitas produk adalah jantung dari reputasi perusahaan kita. Setiap batch produk harus melewati serangkaian pengujian sebelum dikirim ke pelanggan. Proses quality control dimulai dari bahan baku, selama produksi, hingga produk jadi. Tim lab mengambil sampel secara acak setiap dua jam untuk menguji komposisi kimia dan kadar logam. Jika hasil uji tidak sesuai standar, produksi harus dihentikan dan dilakukan investigasi akar masalah. Jangan pernah memutuskan untuk mengirim produk yang tidak memenuhi spesifikasi demi mengejar target. Rejection dari pelanggan akan jauh lebih merugikan daripada sedikit keterlambatan. Mari kita jaga kualitas di setiap titik proses, karena kualitas yang baik datang dari disiplin dan perhatian terhadap detail.",
+        trans: "早上好,团队。产品质量是我们公司声誉的核心。每批产品在发送给客户前必须经过一系列测试。质量控制流程从原料开始,贯穿生产过程,直到成品。实验室团队每两小时随机取样,测试化学成分和金属含量。如果测试结果不符合标准,必须停止生产并进行根本原因调查。永远不要为了追赶目标而发送不符合规格的产品。客户拒收远比稍有延迟更具破坏性。让我们在每个工艺点保持质量,因为良好的质量来自纪律和对细节的关注。"
+      }
+    ],
+    quiz: {
+      title: "现场工作测试 (15题)",
+      questions: [
+        {q: "1. 'Helm' 在现场工作中是指?", options: ["A) 头盔", "B) 安全帽", "C) 帽子"], a: 1, explain: "'Helm' = 安全帽(工业用)"},
+        {q: "2. 'APAR' 的全称和意思是?", options: ["A) 急救站", "B) 灭火器", "C) 警报器"], a: 1, explain: "'APAR' (Alat Pemadam Api Ringan) = 灭火器"},
+        {q: "3. 'LOTO' 在现场安全中表示?", options: ["A) 上锁挂牌", "B) 许可证", "C) 疏散"], a: 0, explain: "'LOTO' (Lock Out Tag Out) = 上锁挂牌,能源隔离程序"},
+        {q: "4. 'Sedang diperbaiki' 的意思是?", options: ["A) 已修好", "B) 正在维修", "C) 需要维修"], a: 1, explain: "'Sedang diperbaiki' = 正在维修(被动语态+sedang)"},
+        {q: "5. 'Inspeksi rutin' 应该多久进行一次?", options: ["A) 每年", "B) 每月", "C) 按标准程序定期"], a: 2, explain: "'Inspeksi rutin' = 例行检查,按SOP规定的频率进行"},
+        {q: "6. 'Kerusakan' 来自哪个动词?", options: ["A) Rusak", "B) Rusakkan", "C) Merusak"], a: 0, explain: "'Kerusakan' 来自 'rusak' (损坏) + 前缀 ke- + 后缀 -an"},
+        {q: "7. 进入危险区域前必须持有?", options: ["A) 身份证", "B) 作业许可证", "C) 名片"], a: 1, explain: "进入危险区域前必须有 'izin kerja' (作业许可证)"},
+        {q: "8. 'Jangan sentuh' 是哪种句式?", options: ["A) 陈述句", "B) 祈使句", "C) 禁止/警告句"], a: 2, explain: "'Jangan sentuh' = 禁止触摸/不要触摸(警告句式)"},
+        {q: "9. 'P3K' 的全称是什么?", options: ["A) Pertolongan Pertama pada Kecelakaan", "B) Perlindungan Pabrik dan Karyawan", "C) Protokol Proses Keselamatan"], a: 0, explain: "'P3K' = Pertolongan Pertama pada Kecelakaan (事故急救)"},
+        {q: "10. 'Komposisi kimia' 的意思是?", options: ["A) 化学反应", "B) 化学成分", "C) 化学实验"], a: 1, explain: "'Komposisi kimia' = 化学成分"},
+        {q: "11. 'Pressure gauge' 用于测量?", options: ["A) 温度", "B) 压力", "C) 流量"], a: 1, explain: "'Pressure gauge' = 压力表,用于测量压力"},
+        {q: "12. 'Maintenance' 在印尼语中的同义词是?", options: ["A) Perbaikan", "B) Perawatan", "C) Produksi"], a: 1, explain: "'Maintenance' = perawatan (保养/维护); 'perbaikan' 更侧重修理"},
+        {q: "13. 'Shift malam' 是指?", options: ["A) 早班", "B) 晚班/夜班", "C) 休息日"], a: 1, explain: "'Shift malam' = 夜班/晚班"},
+        {q: "14. 'Kalibrasi' 的意思是?", options: ["A) 更换", "B) 校准", "C) 清洗"], a: 1, explain: "'Kalibrasi' = 校准/标定"},
+        {q: "15. 发现设备异常时应该首先?", options: ["A) 自己修理", "B) 立即上报", "C) 继续操作"], a: 1, explain: "发现设备异常应立即上报给主管,不要自行处理"}
+      ]
+    },
+    quiz_answers: `Kunci Jawaban Pekerjaan Lapangan (话题23):
+1.B | 2.B | 3.A | 4.B | 5.C | 6.A | 7.B | 8.C | 9.A | 10.B
+11.B | 12.B | 13.B | 14.B | 15.B
+
+Tips: Perhatikan perbedaan kata 'perawatan'(保养) dan 'perbaikan'(修理), serta singkatan-singkatan safety seperti APAR, P3K, LOTO.`
+  },
+  business_trip: {
+    title: "话题24: 出差工作 / Perjalanan Dinas",
+    icon: "✈️",
+    days: 3,
+    grammar: {
+      title: "出差语法 · Tata Bahasa Perjalanan Dinas",
+      rules: [
+        "🔹 未来时：Akan + 动词 = 将要... ，如 akan berangkat (将要出发)、akan tiba (将要到达)",
+        "🔹 完成时：Sudah + 动词 = 已经... ，如 sudah check-in (已入住)、sudah boarding (已登机)",
+        "🔹 目的表达：Untuk + 动词/名词 = 为了... ，如 untuk meeting (为了开会)、untuk inspeksi (为了检查)",
+        "🔹 比较级：Lebih + 形容词 + daripada = 比...更... ，如 lebih cepat (更快)、lebih murah (更便宜)",
+        "🔹 方位移动：Naik + 交通工具 = 乘坐... ，如 naik pesawat (坐飞机)、naik taksi (坐出租车)"
+      ],
+      examples: [
+        "berangkat /bəˈraŋkat/ (v.) → akan berangkat /ˈakan bəˈraŋkat/ = '将要出发'",
+        "tiba /ˈtiba/ (v.) → akan tiba /ˈakan ˈtiba/ = '将要到达'",
+        "check-in /ˈtʃɛk ɪn/ (v.) → sudah check-in /ˈsudah ˈtʃɛk ɪn/ = '已入住'",
+        "cepat /ˈtʃɛpat/ (adj.) → lebih cepat /ˈlɛbih ˈtʃɛpat/ = '更快'",
+        "pesawat /pɛˈsawat/ (n.) → naik pesawat /ˈnaɪk pɛˈsawat/ = '坐飞机'"
+      ]
+    },
+    vocab: [
+      ['tiket', '票', '/ˈtikɛt/'], ['pesawat', '飞机', '/pɛˈsawat/'],
+      ['bandara', '机场', '/ˈbandara/'], ['terminal', '航站楼', '/ˈtɛrminal/'],
+      ['check-in', '值机', '/ˈtʃɛk ɪn/'], ['boarding pass', '登机牌', '/ˈbɔːrdɪŋ pæs/'],
+      ['bagasi', '行李', '/ˈbaɡasi/'], ['kabinet', '手提行李', '/kaˈbinɛt/'],
+      ['asap', '登机口', '/ˈasap/'], ['landas pacu', '跑道', '/ˈlandas ˈpatʃu/'],
+      ['keberangkatan', '出发', '/kɛbəˈraŋkatan/'], ['kedatangan', '到达', '/kɛˈdataŋan/'],
+      ['hotel', '酒店', '/hoˈtɛl/'], ['kamar', '房间', '/ˈkamar/'],
+      ['reservasi', '预订', '/rɛzɛrˈvasi/'], ['booking', '预订', '/ˈbʊkɪŋ/'],
+      ['receptionist', '前台', '/rɛˈsɛpʃənɪst/'], ['check-out', '退房', '/ˈtʃɛk aʊt/'],
+      ['jadwal', '日程', '/ˈdʒadwal/'], ['rute', '路线', '/ˈrutɛ/'],
+      ['perjalanan', '旅行', '/pɛrdʒaˈlaian/'], ['itinerary', '行程', '/aɪˈtɪnərɛri/'],
+      ['kunjungan', '拜访', '/kunˈdʒuŋan/'], ['klien', '客户', '/ˈkliɛn/'],
+      ['mitra', '合作伙伴', '/ˈmitra/'], ['pertemuan', '会面', '/pɛrˈtɛmuan/'],
+      ['reimbursement', '报销', '/rɪɪmˈbɜːrsmənt/'], ['bon', '发票', '/ˈbon/'],
+      ['struk', '小票', '/ˈstruk/'], ['nota', '账单', '/ˈnota/'],
+      ['biaya', '费用', '/biˈaja/'], ['pengeluaran', '支出', '/pɛŋɛˈluaran/'],
+      ['uang saku', '差旅费', '/ˈuaŋ ˈsaku/'], ['penginapan', '住宿', '/pɛŋɪˈnap an/'],
+      ['transportasi', '交通', '/transporˈtasi/'], ['taksi', '出租车', '/ˈtaksi/'],
+      ['ojek online', '网约车', '/ˈodʒɛk ˈonline/'], ['Grab', 'Grab打车', '/ˈɡrab/'],
+      ['Gojek', 'Gojek打车', '/ˈɡoˈdʒɛk/'], ['kereta api', '火车', '/kɛˈrɛta ˈapi/'],
+      ['stasiun', '车站', '/staˈsiun/'], ['KA bandara', '机场快线', '/ˈka ˈbandara/'],
+      ['bus', '巴士', '/ˈbus/'], ['shuttle', '班车', '/ˈʃʌtl/'],
+      ['sewa mobil', '租车', '/ˈsɛwa ˈmobil/'], ['sopir', '司机', '/ˈsopɪr/'],
+      ['BBM', '燃油', '/ˈbɛ bɛ ˈɛm/'], ['tol', '过路费', '/ˈtol/'],
+      ['parkir', '停车', '/ˈparkɪr/'], ['navigasi', '导航', '/naviˈɡasi/'],
+      ['Google Maps', '谷歌地图', '/ˈɡuːɡəl ˈmæps/'], ['maps internal', '内部地图', '/ˈmæps ɪnˈtɜːrnl/'],
+      ['visa', '签证', '/ˈvisa/'], ['paspor', '护照', '/ˈpaspor/'],
+      ['imigrasi', '移民局', '/ɪmɪˈɡrasi/'], ['bea cukai', '海关', '/ˈbɛa ˈtʃukai/'],
+      ['antrean', '排队', '/anˈtrɛan/'], ['x-ray', '安检', '/ˈɛks reɪ/'],
+      ['metal detector', '金属探测器', '/ˈmɛtl dɪˈtɛktər/'], ['barcode', '条形码', '/ˈbɑːrkoʊd/']
+    ],
+    scenes: [
+      {
+        title: "机场值机与安检",
+        icon: "✈️",
+        dialogue: [
+          {
+            "speaker": "A",
+            "text": "Selamat pagi. Saya mau check-in untuk penerbangan ke Jakarta, kode booking ABC123.",
+            "trans": "早上好。我要办理飞往雅加达的航班值机,预订代码ABC123。"
+          },
+          {
+            "speaker": "B",
+            "text": "Baik, Bapak. Bisa tunjukkan passport dan tiketnya? Bagasi ada yang mau di-check-in?",
+            "trans": "好的,先生。请出示护照和机票?有行李要托运吗?"
+          },
+          {
+            "speaker": "A",
+            "text": "Ini passportnya. Saya punya satu koper untuk bagasi, dan satu tas ransel sebagai kabinet.",
+            "trans": "这是护照。我有一个行李箱要托运,一个背包作为手提行李。"
+          },
+          {
+            "speaker": "B",
+            "text": "Berat bagasinya 22 kilo, masih dalam batas 30 kilo. Ini boarding passnya, gate 5. Boarding jam 8.30.",
+            "trans": "行李重量22公斤,仍在30公斤限额内。这是登机牌,5号登机口。8:30开始登机。"
+          },
+          {
+            "speaker": "A",
+            "text": "Terima kasih. Di mana lokasi x-ray untuk pemeriksaan keamanan?",
+            "trans": "谢谢。安检X光机在哪里?"
+          },
+          {
+            "speaker": "B",
+            "text": "Belok kanan dari sini, lalu lurus sekitar 50 meter. Hati-hati, jangan bawa cairan lebih dari 100ml ya.",
+            "trans": "从这里右转,然后直走约50米。注意,不要携带超过100毫升的液体。"
+          }
+        ]
+      },
+      {
+        title: "酒店入住与客户拜访",
+        icon: "🏨",
+        dialogue: [
+          {
+            "speaker": "A",
+            "text": "Selamat sore. Saya punya reservasi atas nama [Nama], untuk tiga malam. Ini konfirmasi bookingnya.",
+            "trans": "下午好。我有预订,姓名是[姓名],住三晚。这是预订确认单。"
+          },
+          {
+            "speaker": "B",
+            "text": "Terima kasih, Pak. Kami sudah menyiapkan kamar deluxe di lantai 12. Bisa isi formulir check-in ini dulu?",
+            "trans": "谢谢,先生。我们已准备好12楼的豪华房。请先填写这份入住登记表?"
+          },
+          {
+            "speaker": "A",
+            "text": "Baik. Apakah hotel ini menyediakan shuttle ke kawasan industri? Saya ada kunjungan ke sana besok.",
+            "trans": "好的。这家酒店提供去工业园区的班车吗?我明天要去那里拜访。"
+          },
+          {
+            "speaker": "B",
+            "text": "Ya, ada shuttle pagi jam 7 dan sore jam 5. Tapi kalau ke kawasan industri Morowali, lebih baik sewa mobil dengan sopir.",
+            "trans": "有的,早上7点和下午5点有班车。但如果去莫罗瓦利工业园区,最好租带司机的车。"
+          },
+          {
+            "speaker": "A",
+            "text": "Bagus. Bisa bantu saya pesan taksi atau sewa mobil untuk besok pagi? Saya harus tiba di sana jam 9.",
+            "trans": "很好。能帮我预订出租车或租车明天早上吗?我必须在9点前到达。"
+          },
+          {
+            "speaker": "B",
+            "text": "Tentu, saya akan hubungi layanan taksi hotel. Nanti malam saya kirim konfirmasi ke kamar Bapak.",
+            "trans": "当然,我会联系酒店出租车服务。今晚我会把确认信息送到您房间。"
+          }
+        ]
+      },
+      {
+        title: "报销流程咨询",
+        icon: "💰",
+        dialogue: [
+          {
+            "speaker": "A",
+            "text": "Bu, saya baru selesai perjalanan dinas ke Surabaya. Mau tanya tentang proses reimbursement.",
+            "trans": "女士,我刚完成泗水出差。想咨询一下报销流程。"
+          },
+          {
+            "speaker": "B",
+            "text": "Baik, Pak. Apakah Bapak sudah mengumpulkan semua bon dan struk pengeluaran selama dinas?",
+            "trans": "好的,先生。您是否已经收集了出差期间的所有发票和支出小票?"
+          },
+          {
+            "speaker": "A",
+            "text": "Sudah. Saya ada struk hotel, bon makan, tiket pesawat, dan nota taksi. Semuanya lengkap.",
+            "trans": "都齐了。我有酒店收据、餐饮发票、机票和出租车账单。全部完整。"
+          },
+          {
+            "speaker": "B",
+            "text": "Bagus. Silakan isi formulir pengajuan reimbursement dan lampirkan nota-notanya. Jangan lupa ditandatangani atasan.",
+            "trans": "很好。请填写报销申请表并附上票据。别忘了让上司签字。"
+          },
+          {
+            "speaker": "A",
+            "text": "Berapa lama prosesnya? Dan apakah uang saku harian juga bisa diklaim?",
+            "trans": "流程需要多久?每日差旅补贴也可以申报吗?"
+          },
+          {
+            "speaker": "B",
+            "text": "Biasanya 5-7 hari kerja. Uang saku harian bisa diklaim sesuai kebijakan perusahaan, Rp500.000 per hari.",
+            "trans": "通常5-7个工作日。每日差旅补贴可按公司政策申报,每天50万印尼盾。"
+          }
+        ]
+      }
+    ],
+    speeches: [
+      {
+        day: 1,
+        title: "商务出行准备",
+        icon: "🎒",
+        words: 145,
+        time: 56,
+        content: "Selamat pagi, rekan-rekan. Sebelum berangkat dinas, ada beberapa hal yang perlu dipersiapkan. Pertama, pastikan tiket pesawat dan reservasi hotel sudah dikonfirmasi. Kedua, siapkan dokumen penting seperti passport, visa jika diperlukan, dan surat tugas dari perusahaan. Ketiga, buatlah itinerary perjalanan yang detail, termasuk jadwal pertemuan dengan klien dan alamat lokasi. Keempat, bawa kartu nama dan materi presentasi secukupnya. Kelima, pastikan ponsel dan laptop sudah di-charge penuh, dan bawa power bank untuk cadangan. Terakhir, siapkan uang tunai secukupnya meskipun sekarang banyak pembayaran digital. Persiapan yang matang akan membuat perjalanan dinas lebih lancar dan produktif.",
+        "trans": "早上好,各位同事。出差前有几件事需要准备。第一,确认机票和酒店预订。第二,准备重要文件如护照、签证(如需)和公司出差函。第三,制作详细的旅行行程,包括与客户会面的时间表和地址。第四,带足够的名片和演示材料。第五,确保手机和笔记本电脑充满电,带上移动电源作为备用。最后,准备足够的现金,尽管现在有很多数字支付方式。充分的准备将使商务旅行更顺利高效。"
+      },
+      {
+        day: 2,
+        title: "雅加达至莫罗瓦利跨城合作",
+        icon: "🌏",
+        words: 150,
+        time: 58,
+        content: "Selamat pagi. Saya ingin berbagi pengalaman bekerja di dua lokasi yang berbeda: Jakarta sebagai pusat bisnis dan Morowali sebagai pusat industri. Jakarta adalah jantung ekonomi Indonesia, di mana kantor pusat perusahaan, klien utama, dan institusi pemerintah berada. Namun, operasional produksi kita berada di Morowali, Sulawesi Tengah. Perjalanan antara kedua kota ini membutuhkan waktu sekitar tiga jam dengan pesawat ditambah perjalanan darat. Oleh karena itu, komunikasi virtual sangat penting untuk menjaga koordinasi. Saat berkunjung ke Morowali, kita harus memahami kondisi lapangan: cuaca panas, infrastruktur yang masih berkembang, dan budaya kerja yang berbeda. Mari kita bangun jembatan antara pusat dan daerah untuk mencapai sinergi yang optimal.",
+        "trans": "早上好。我想分享在两个不同地点工作的经验:雅加达作为商业中心,莫罗瓦利作为工业中心。雅加达是印尼的经济心脏,公司总部、主要客户和政府机构都在那里。但我们的生产运营位于中苏拉威西的莫罗瓦利。两城之间的旅行需要约3小时飞机加地面交通。因此,虚拟沟通对于保持协调非常重要。访问莫罗瓦利时,我们必须了解现场条件:炎热天气、仍在发展的基础设施和不同的工作文化。让我们建立中心与地区的桥梁,实现最佳协同。"
+      },
+      {
+        day: 3,
+        title: "印尼交通概况",
+        icon: "🚗",
+        words: 148,
+        time: 57,
+        content: "Selamat pagi. Indonesia adalah negara kepulauan dengan sistem transportasi yang beragam. Di kota besar seperti Jakarta, pilihan transportasi sangat lengkap: bus TransJakarta, kereta commuter, MRT, LRT, taksi konvensional, dan ojek online seperti Grab dan Gojek. Namun, di kota-kota industri seperti Morowali, pilihan lebih terbatas. Biasanya kita menggunakan taksi, rental mobil, atau shuttle perusahaan. Perjalanan antar pulau umumnya menggunakan pesawat terbang, dengan banyak penerbangan domestik setiap hari. Kereta api hanya tersedia di Pulau Jawa dan Sumatera Selatan. Untuk perjalanan dinas, saya sarankan selalu rencanakan waktu lebih longgar karena macet dan cuaca bisa tidak terduga. Juga, pastikan selalu membawa identitas dan dokumen perjalanan yang lengkap. Keselamatan dan kenyamanan harus selalu menjadi prioritas utama.",
+        "trans": "早上好。印尼是一个群岛国家,拥有多样化的交通系统。在雅加达等大城市,交通选择非常齐全:TransJakarta公交、通勤火车、地铁、轻轨、传统出租车和Grab、Gojek等网约车。但在莫罗瓦利等工业城市,选择更有限。通常我们使用出租车、租车或公司班车。跨岛旅行通常使用飞机,每天有很多国内航班。火车只在爪哇岛和南苏门答腊可用。对于出差,我建议总是预留更充裕的时间,因为交通堵塞和天气可能出乎意料。另外,务必随身携带完整的身份证明和旅行文件。安全和舒适必须始终是首要任务。"
+      }
+    ],
+    quiz: {
+      title: "出差工作测试 (15题)",
+      questions: [
+        {q: "1. 'Boarding pass' 的意思是?", options: ["A) 护照", "B) 登机牌", "C) 签证"], a: 1, explain: "'Boarding pass' = 登机牌"},
+        {q: "2. 'Check-in' 在机场是指?", options: ["A) 安检", "B) 值机", "C) 登机"], a: 1, explain: "'Check-in' = 值机/办理登机手续"},
+        {q: "3. 'Naik pesawat' 的意思是?", options: ["A) 买机票", "B) 坐飞机", "C) 下飞机"], a: 1, explain: "'Naik pesawat' = 乘坐飞机"},
+        {q: "4. 'Reimbursement' 在出差中是指?", options: ["A) 预支", "B) 报销", "C) 借款"], a: 1, explain: "'Reimbursement' = 报销/费用返还"},
+        {q: "5. 'Kabinet' 在航班中是指?", options: ["A) 货舱", "B) 手提行李", "C) 座位"], a: 1, explain: "'Kabinet' = 手提行李/随身行李(cabin baggage)"},
+        {q: "6. 'Akan tiba' 表示什么时态?", options: ["A) 过去时", "B) 现在时", "C) 将来时"], a: 2, explain: "'Akan' + 动词 = 将来时, 'akan tiba' = 将要到达"},
+        {q: "7. 'Ojek online' 包括哪些服务?", options: ["A) 仅外卖", "B) 网约车/摩托", "C) 仅快递"], a: 1, explain: "'Ojek online' = 网约车服务(如Grab, Gojek)"},
+        {q: "8. 'Reservasi' 的同义词是?", options: ["A) Pembatalan", "B) Booking", "C) Perubahan"], a: 1, explain: "'Reservasi' = 预订,同义词 'booking'"},
+        {q: "9. 'Imigrasi' 在机场负责?", options: ["A) 安检", "B) 出入境检查", "C) 行李托运"], a: 1, explain: "'Imigrasi' = 移民局/出入境检查"},
+        {q: "10. 'Lebih cepat' 是什么语法结构?", options: ["A) 被动语态", "B) 比较级", "C) 命令式"], a: 1, explain: "'Lebih + 形容词' = 比较级, 'lebih cepat' = 更快"},
+        {q: "11. 'Bea cukai' 是检查什么的?", options: ["A) 护照", "B) 行李/货物", "C) 登机牌"], a: 1, explain: "'Bea cukai' = 海关,检查行李和货物"},
+        {q: "12. 'Uang saku' 在出差中指?", options: ["A) 工资", "B) 差旅补贴", "C) 奖金"], a: 1, explain: "'Uang saku' = 差旅补贴/每日津贴"},
+        {q: "13. 'Shuttle' 通常由谁提供?", options: ["A) 政府", "B) 酒店/公司", "C) 个人"], a: 1, explain: "'Shuttle' = 班车,通常由酒店或公司提供"},
+        {q: "14. 'Sewa mobil' 的意思是?", options: ["A) 买车", "B) 租车", "C) 修车"], a: 1, explain: "'Sewa mobil' = 租车"},
+        {q: "15. 出差前不需要准备的是?", options: ["A) 护照和签证", "B) 游戏设备", "C) 会议材料"], a: 1, explain: "出差需要准备护照、签证、会议材料等,不需要游戏设备"}
+      ]
+    },
+    quiz_answers: `Kunci Jawaban Perjalanan Dinas (话题24):
+1.B | 2.B | 3.B | 4.B | 5.B | 6.C | 7.B | 8.B | 9.B | 10.B
+11.B | 12.B | 13.B | 14.B | 15.B
+
+Tips: Perhatikan penggunaan kata 'akan'(将来时) dan 'sudah'(完成时), serta kosakata transportasi di Indonesia.`
+  },
+  negotiation: {
+    title: "话题25: 工作谈判 / Negosiasi Kerja",
+    icon: "🤝",
+    days: 3,
+    grammar: {
+      title: "谈判语法 · Tata Bahasa Negosiasi",
+      rules: [
+        "🔹 条件句：Jika ... maka ... = 如果...那么... ，如 Jika harga turun, maka kami setuju (如果降价,我们就同意)",
+        "🔹 建议表达：Sebaiknya ... / Seharusnya ... = 最好.../应该... ，如 Sebaiknya kita diskusi ulang (最好我们重新讨论)",
+        "🔹 委婉拒绝：Maaf, kami belum bisa ... = 抱歉,我们还不能... ，如 belum bisa menerima (还不能接受)",
+        "🔹 征求意见：Bagaimana menurut Bapak/Ibu ...? = 您认为...怎么样?",
+        "🔹 假设表达：Andai/Seandainya ... = 假如... ，如 Seandainya harga naik, ... (假如价格上涨,...)"
+      ],
+      examples: [
+        "turun /ˈturun/ (v.) → jika harga turun /ˈdʒika ˈharga ˈturun/ = '如果价格下降'",
+        "diskusi /dɪsˈkusi/ (v.) → sebaiknya diskusi ulang /sɛˈbaɪkɲa dɪsˈkusi ˈulaŋ/ = '最好重新讨论'",
+        "terima /tɛˈrima/ (v.) → belum bisa menerima /ˈbɛlum ˈbisa mɛnɛˈrima/ = '还不能接受'",
+        "setuju /səˈtudʒu/ (v.) → bagaimana menurut Anda /ˈbagaimana mɛˈnurut ˈanda/ = '您认为怎么样'",
+        "naik /ˈnaɪk/ (v.) → seandainya harga naik /sɛˈandainɲa ˈharga ˈnaɪk/ = '假如价格上涨'"
+      ]
+    },
+    vocab: [
+      ['penawaran', '报价', '/pɛnaˈwaran/'], ['harga', '价格', '/ˈharga/'],
+      ['negosiasi', '谈判', '/nɛɡosɪˈasi/'], ['tawar menawar', '讨价还价', '/ˈtawar mɛˈnawar/'],
+      ['diskon', '折扣', '/ˈdɪskɔn/'], ['potongan harga', '减价', '/poˈtoŋan ˈharga/'],
+      ['kontrak', '合同', '/ˈkɔntrak/'], ['perjanjian', '协议', '/pɛrˈdʒandʒian/'],
+      ['kesepakatan', '共识', '/kɛsəpakaˈtan/'], ['MoU', '谅解备忘录', '/ˈɛm oˈu/'],
+      ['klausul', '条款', '/ˈklausul/'], ['syarat', '条件', '/ˈsʲarat/'],
+      ['ketentuan', '规定', '/kɛˈtɛntuan/'], ['jumlah', '数量', '/ˈdʒumlah/'],
+      ['kualitas', '质量', '/kuaˈlɪtas/'], ['spesifikasi', '规格', '/spɛsɪfɪˈkasi/'],
+      ['standar', '标准', '/ˈstandar/'], ['sertifikasi', '认证', '/sɛrtɪfɪˈkasi/'],
+      ['garansi', '质保', '/ɡaˈransi/'], ['jaminan', '保证', '/dʒaˈminan/'],
+      ['kompromi', '妥协', '/ˈkompromi/'], ['konsensi', '让步', '/ˈkɔnsɛnsi/'],
+      ['saling menguntungkan', '双赢', '/ˈsalɪŋ mɛŋunˈtuŋkan/'], ['win-win', '双赢', '/ˈwɪn ˈwɪn/'],
+      ['jalan buntu', '僵局', '/ˈdʒalan ˈbuntu/'], ['mandek', '停滞', '/ˈmandɛk/'],
+      ['solusi', '解决方案', '/soˈlusi/'], ['jalan keluar', '出路', '/ˈdʒalan kɛˈluar/'],
+      ['alternatif', '替代方案', '/altɛrˈnatɪf/'], ['opsi', '选项', '/ˈɔpsi/'],
+      ['strategi', '策略', '/straˈtɛdʒi/'], ['taktik', '战术', '/ˈtaktɪk/'],
+      ['target harga', '目标价', '/ˈtargɛt ˈharga/'], ['batas bawah', '底价', '/ˈbatas ˈbawah/'],
+      ['batas atas', '上限', '/ˈbatas ˈatas/'], ['patokan', '基准', '/paˈtokan/'],
+      ['anchoring', '锚定', '/ˈæŋkərɪŋ/'], ['BATNA', '最佳替代方案', '/ˈbætnə/'],
+      ['ZOPA', '协议区间', '/ˈzoʊpə/'], ['deadline negosiasi', '谈判截止日', '/ˈdɛdlaɪn nɛɡosɪˈasi/'],
+      ['medsos', '调解', '/ˈmɛdsɔs/'], ['fasilitator', '协调人', '/fasɪlɪˈtator/'],
+      ['pihak pertama', '甲方', '/ˈpihak ˈpɛrtama/'], ['pihak kedua', '乙方', '/ˈpihak ˈkɛdua/'],
+      ['stakeholder', '利益相关方', '/ˈstɛɪkhoʊldər/'], ['mitra', '合作伙伴', '/ˈmitra/'],
+      ['supplier', '供应商', '/səˈplaɪər/'], ['vendor', '卖方', '/ˈvɛndɔr/'],
+      ['pembeli', '买方', '/pɛmˈbɛli/'], ['pelanggan', '客户', '/pɛˈlaŋgan/'],
+      ['komitmen', '承诺', '/koˈmɪtmɛn/'], ['kesediaan', '意愿', '/kɛsəˈdiaan/'],
+      ['penolakan', '拒绝', '/pɛnoˈlakan/'], ['persetujuan', '批准/同意', '/pɛrsəˈtudʒuan/'],
+      ['revisi', '修订', '/rɛˈvɪzi/'], ['amandemen', '修正案', '/aˈmandɛmɛn/'],
+      ['force majeure', '不可抗力', '/ˈfɔːrs məˈʒɜːr/'], ['sanksi', '制裁/处罚', '/ˈsanʃi/'],
+      ['termin', '付款期', '/ˈtɛrmɪn/'], ['DP', '预付款', '/ˈdɛ ˈpɛ/'],
+      ['pelunasan', '尾款', '/pɛluˈnasan/'], ['cicilan', '分期', '/ˈtʃɪlilan/']
+    ],
+    scenes: [
+      {
+        title: "供应商价格谈判",
+        icon: "💰",
+        dialogue: [
+          {
+            "speaker": "A",
+            "text": "Selamat pagi, Pak. Terima kasih atas penawaran harga untuk peralatan smelter. Namun, harga yang Bapak berikan masih di atas anggaran kami.",
+            "trans": "早上好,先生。感谢您提供的冶炼设备报价。但是,您给的价格仍超出我们的预算。"
+          },
+          {
+            "speaker": "B",
+            "text": "Baik, kami mengerti. Harga yang kami tawarkan sudah termasuk instalasi dan pelatihan. Bagaimana jika kami berikan diskon 5%?",
+            "trans": "好的,我们理解。我们的报价已包含安装和培训。如果我们给5%折扣怎么样?"
+          },
+          {
+            "speaker": "A",
+            "text": "Diskon 5% masih belum cukup. Menurut evaluasi kami, harga pasaran untuk peralatan serupa lebih rendah 12% dari penawaran Bapak.",
+            "trans": "5%折扣还不够。根据我们的评估,类似设备的市场价格比您的报价低12%。"
+          },
+          {
+            "speaker": "B",
+            "text": "Kami bisa naikkan diskon menjadi 8%, dengan syarat pembayaran DP 30% dan pelunasan dalam 6 bulan. Itu batas terbaik yang bisa kami berikan.",
+            "trans": "我们可以把折扣提高到8%,条件是30%预付款和6个月内结清尾款。这是我们能给出的最好条件。"
+          },
+          {
+            "speaker": "A",
+            "text": "Baik, kami pertimbangkan. Tapi mohon juga tambahkan garansi 2 tahun dan suku cadang gratis selama 6 bulan pertama.",
+            "trans": "好的,我们考虑。但还请加上2年质保和首6个月免费备件。"
+          },
+          {
+            "speaker": "B",
+            "text": "Garansi 2 tahun bisa kami setujui, tapi untuk suku cadang gratis kami bisa berikan 3 bulan saja. Itu kompromi terbaik kami.",
+            "trans": "2年质保我们可以同意,但免费备件我们只能给3个月。这是我们最好的妥协。"
+          }
+        ]
+      },
+      {
+        title: "技术方案讨论",
+        icon: "⚙️",
+        dialogue: [
+          {
+            "speaker": "A",
+            "text": "Pak, kami sudah pelajari proposal teknis Bapak. Secara umum bagus, tada ada beberapa spesifikasi yang perlu didiskusikan ulang.",
+            "trans": "先生,我们已经研究了您的技术提案。总体不错,但有一些规格需要重新讨论。"
+          },
+          {
+            "speaker": "B",
+            "text": "Tentu, silakan sampaikan. Kami terbuka untuk diskusi teknis demi mencapai solusi terbaik.",
+            "trans": "当然,请讲。为了达成最佳解决方案,我们对技术讨论持开放态度。"
+          },
+          {
+            "speaker": "A",
+            "text": "Pertama, kapasitas produksi yang Bapak usulkan 50.000 ton per tahun. Tapi target kami adalah 75.000 ton. Apakah bisa ditingkatkan?",
+            "trans": "首先,您建议的年产能是5万吨。但我们的目标是7.5万吨。能提高吗?"
+          },
+          {
+            "speaker": "B",
+            "text": "Bisa, tapi membutuhkan penambahan 2 unit reaktor dan perluasan area bangunan sekitar 30%. Ini akan menambah biaya investasi.",
+            "trans": "可以,但需要增加2台反应器和扩大约30%的建筑面积。这将增加投资额。"
+          },
+          {
+            "speaker": "A",
+            "text": "Kami mengerti. Kedua, jadwal pengiriman 12 bulan terlalu lama. Bisa dipercepat menjadi 9 bulan? Proyek kami sangat紧迫.",
+            "trans": "我们理解。第二,12个月的交货期太长。能缩短到9个月吗?我们的项目很紧迫。"
+          },
+          {
+            "speaker": "B",
+            "text": "Itu akan sulit. Tapi kalau Bapak bisa membayar DP lebih besar, kami bisa prioritaskan produksi dan kirim dalam 10 bulan.",
+            "trans": "这会很困难。但如果您的预付款更大,我们可以优先生产并在10个月内发货。"
+          }
+        ]
+      },
+      {
+        title: "合同条款确认",
+        icon: "📄",
+        dialogue: [
+          {
+            "speaker": "A",
+            "text": "Pak, saya sudah baca draft kontraknya. Secara keseluruhan sudah oke, tapi ada beberapa klausul yang perlu diklarifikasi.",
+            "trans": "先生,我已经看过合同草案。总体可以,但有几个条款需要澄清。"
+          },
+          {
+            "speaker": "B",
+            "text": "Silakan, Bapak. Klausul mana yang perlu dibahas? Kami ingin segera mencapai kesepakatan final.",
+            "trans": "请说,先生。哪些条款需要讨论?我们希望尽快达成最终协议。"
+          },
+          {
+            "speaker": "A",
+            "text": "Klausul force majeure. Menurut draft, jika terjadi force majeure, kontrak bisa ditangguhkan selama 6 bulan. Kami minta diperpanjang jadi 12 bulan.",
+            "trans": "不可抗力条款。根据草案,如果发生不可抗力,合同可暂停6个月。我们要求延长到12个月。"
+          },
+          {
+            "speaker": "B",
+            "text": "6 bulan adalah standar industri. Tapi mengingat lokasi proyek di Indonesia yang rawan bencana alam, kami bisa setujui 9 bulan.",
+            "trans": "6个月是行业标准。但考虑到项目位于自然灾害多发的印尼,我们可以同意9个月。"
+          },
+          {
+            "speaker": "A",
+            "text": "Baik, kami terima 9 bulan. Lalu untuk sanksi keterlambatan, draft menuliskan 0,5% per minggu. Bisa dinaikkan jadi 1%?",
+            "trans": "好的,我们接受9个月。然后关于延迟处罚,草案写的是每周0.5%。能提高到1%吗?"
+          },
+          {
+            "speaker": "B",
+            "text": "1% terlalu tinggi. Bagaimana kalau 0,75% per minggu, dengan maksimum 10% dari nilai kontrak? Itu adil untuk kedua pihak.",
+            "trans": "1%太高了。每周0.75%,最高不超过合同金额的10%怎么样?这对双方都公平。"
+          }
+        ]
+      }
+    ],
+    speeches: [
+      {
+        day: 1,
+        title: "谈判准备工作",
+        icon: "📋",
+        words: 148,
+        time: 57,
+        content: "Selamat pagi, rekan-rekan. Sebelum memasuki meja negosiasi, persiapan adalah kunci keberhasilan. Pertama, kita harus mengumpulkan informasi sebanyak mungkin tentang lawan bicara: posisi keuangan mereka, reputasi di industri, dan riwayat negosiasi sebelumnya. Kedua, tentukan target harga ideal, target realistis, dan batas bawah yang tidak bisa ditawar lagi. Ketiga, siapkan BATNA kita — Best Alternative to a Negotiated Agreement — yaitu rencana cadangan jika negosiasi gagal. Keempat, identifikasi ZOPA — Zone of Possible Agreement — yaitu area di mana kedua pihak bisa setuju. Kelima, latih presentasi dan antisipasi pertanyaan sulit dari lawan. Ingat, negosiasi bukan pertempuran yang harus ada pemenang dan kalah, tapi proses mencari solusi saling menguntungkan.",
+        "trans": "早上好,各位同事。在进入谈判桌前,准备是成功的关键。第一,我们必须尽可能多地收集对方信息:他们的财务状况、行业声誉和以往谈判历史。第二,确定理想目标价、现实目标和不可再让步的底价。第三,准备我们的BATNA——谈判协议的最佳替代方案——即谈判失败时的备用计划。第四,识别ZOPA——可能达成协议的区域——即双方可以同意的范围。第五,练习演讲并预判对方的难题。记住,谈判不是必须有赢家和输家的战斗,而是寻找互利共赢方案的过程。"
+      },
+      {
+        day: 2,
+        title: "商务谈判技巧",
+        icon: "🎯",
+        words: 152,
+        time: 59,
+        content: "Selamat pagi. Hari ini saya ingin berbagi beberapa taktik negosiasi yang efektif. Pertama, teknik anchoring — buka dengan angka yang mendukung posisi kita, karena angka pertama yang disebutkan sering menjadi patokan. Kedua, jangan pernah memberikan konsensi gratis; setiap kali kita mengalah, mintalah sesuatu sebagai balasannya. Ketiga, gunakan teknik 'silent pause' setelah mengajukan penawaran; keheningan membuat lawan merasa tidak nyaman dan sering mengisi dengan konsesi. Keempat, pecah masalah besar menjadi bagian-bagian kecil; kesepakatan parsial lebih mudah dicapai dan membangun momentum. Kelima, fokus pada kepentingan bersama, bukan pada posisi yang saling bertentangan. Terakhir, jangan takut dengan jalan buntu; kadang mundur sejenak justru membuka ruang untuk solusi kreatif.",
+        "trans": "早上好。今天我想分享一些有效的谈判技巧。第一,锚定技巧——以支持我方立场的数字开场,因为第一个提到的数字往往成为基准。第二,永远不要免费让步;每次我们让步时,都要要求一些东西作为回报。第三,在提出报价后使用'沉默停顿';沉默让对方感到不自在,往往会用让步来填补。第四,把大问题分解成小块;部分协议更容易达成并建立势头。第五,关注共同利益,而非相互对立的立场。最后,不要害怕僵局;有时暂时退一步反而为创造性解决方案打开空间。"
+      },
+      {
+        day: 3,
+        title: "合同签署与风险防范",
+        icon: "✍️",
+        words: 150,
+        time: 58,
+        content: "Selamat pagi, tim. Setelah negosiasi selesai, tahap paling kritis adalah penandatanganan kontrak. Kontrak yang baik harus jelas, lengkap, dan melindungi kedua belah pihak. Pastikan semua kesepakatan lisan sudah tertulis dengan tepat dalam dokumen. Periksa kembali setiap klausul, terutama yang berkaitan dengan harga, jadwal, spesifikasi, dan sanksi. Jangan lupa memasukkan klausul force majeure untuk melindungi dari risiko yang tidak terduga. Tentukan mekanisme penyelesaian sengketa, apakah melalui mediasi, arbitrase, atau pengadilan. Pastikan juga ada ketentuan mengenai perubahan scope dan cara mengajukan amandemen. Sebelum menandatangani, mintalah tim legal untuk meninjau dokumen. Jika ada yang tidak jelas, jangan ragu untuk bertanya. Kontrak yang ditandatangani dengan pemahaman yang sama akan menghindari konflik di masa depan.",
+        "trans": "早上好,团队。谈判结束后,最关键的阶段是合同签署。好的合同必须清晰、完整并保护双方。确保所有口头协议已准确写入文件。重新检查每个条款,特别是与价格、时间表、规格和处罚相关的。别忘了加入不可抗力条款以防范不可预见的风险。确定争议解决机制,是通过调解、仲裁还是诉讼。还要确保有关于范围变更和提交修正案的规定。签署前,请法律团队审阅文件。如有不清楚的地方,尽管提问。以共同理解签署的合同将避免未来冲突。"
+      }
+    ],
+    quiz: {
+      title: "工作谈判测试 (15题)",
+      questions: [
+        {q: "1. 'Penawaran' 的意思是?", options: ["A) 询问", "B) 报价", "C) 拒绝"], a: 1, explain: "'Penawaran' = 报价/要约"},
+        {q: "2. 'Jalan buntu' 在谈判中表示?", options: ["A) 达成协议", "B) 僵局", "C) 退出谈判"], a: 1, explain: "'Jalan buntu' = 僵局/死胡同"},
+        {q: "3. 'BATNA' 的全称和含义是?", options: ["A) 最佳报价", "B) 谈判协议的最佳替代方案", "C) 最低接受价"], a: 1, explain: "'BATNA' = Best Alternative to a Negotiated Agreement"},
+        {q: "4. 'Kompromi' 的同义词是?", options: ["A) Penolakan", "B) Konsensi", "C) Kesepakatan"], a: 1, explain: "'Kompromi' = 妥协; 'konsensi' = 让步"},
+        {q: "5. 'Anchoring' 是哪种谈判技巧?", options: ["A) 最后通牒", "B) 锚定效应", "C) 分步让步"], a: 1, explain: "'Anchoring' = 锚定效应,以第一个数字影响对方判断"},
+        {q: "6. 'Force majeure' 在合同中是指?", options: ["A) 违约", "B) 不可抗力", "C) 终止条款"], a: 1, explain: "'Force majeure' = 不可抗力(如自然灾害、战争等)"},
+        {q: "7. 'ZOPA' 代表什么?", options: ["A) 零利润区", "B) 可能达成协议的区域", "C) 拒绝区"], a: 1, explain: "'ZOPA' = Zone of Possible Agreement,双方都能接受的协议区间"},
+        {q: "8. 'Seandainya harga naik' 是什么句式?", options: ["A) 陈述句", "B) 假设条件句", "C) 命令句"], a: 1, explain: "'Seandainya' = 假如/如果,用于假设条件句"},
+        {q: "9. 'Klausul' 在合同中是?", options: ["A) 签名", "B) 条款", "C) 日期"], a: 1, explain: "'Klausul' = 条款/条文"},
+        {q: "10. 'Saling menguntungkan' 相当于英文的?", options: ["A) Zero sum", "B) Win-win", "C) Lose-lose"], a: 1, explain: "'Saling menguntungkan' = 双赢 = win-win"},
+        {q: "11. 'Mediasi' 在争议解决中是?", options: ["A) 诉讼", "B) 调解", "C) 仲裁"], a: 1, explain: "'Mediasi' = 调解(第三方协助达成和解)"},
+        {q: "12. 'Garansi' 的意思是?", options: ["A) 折扣", "B) 质保", "C) 定金"], a: 1, explain: "'Garansi' = 质保/保修"},
+        {q: "13. 'Diskon 10%' 表示价格?", options: ["A) 上涨10%", "B) 降低10%", "C) 不变"], a: 1, explain: "'Diskon' = 折扣,10%折扣即价格降低10%"},
+        {q: "14. 'Amandemen' 在合同中是指?", options: ["A) 签署", "B) 修正案", "C) 终止"], a: 1, explain: "'Amandemen' = 修正案/修改"},
+        {q: "15. 谈判中最重要的原则是?", options: ["A) 赢者通吃", "B) 寻找双赢方案", "C) 隐瞒真实意图"], a: 1, explain: "良好的谈判应寻求互利共赢,而非零和博弈"}
+      ]
+    },
+    quiz_answers: `Kunci Jawaban Negosiasi Kerja (话题25):
+1.B | 2.B | 3.B | 4.B | 5.B | 6.B | 7.B | 8.B | 9.B | 10.B
+11.B | 12.B | 13.B | 14.B | 15.B
+
+Tips: Pahami konsep BATNA, ZOPA, dan anchoring. Dalam negosiasi, persiapan adalah 80% dari keberhasilan.`
   }
 };
 
@@ -8255,7 +8881,19 @@ Tips: Perhatikan kosakata wawancara seperti lamaran, gaji, pengalaman, keahlian,
   "2026-09-13": {topic: "sports_body", day: 1, label: "🏃 身体·运动 · 综合", allDays: true},
   "2026-09-14": {topic: "interview", day: 1, label: "💼 面试 · Day 1 · 词汇+语法"},
   "2026-09-15": {topic: "interview", day: 2, label: "💼 面试 · Day 2 · 场景对话"},
-  "2026-09-16": {topic: "interview", day: 3, label: "💼 面试 · Day 3 · 演讲+测试"}
+  "2026-09-16": {topic: "interview", day: 3, label: "💼 面试 · Day 3 · 演讲+测试"},
+  "2026-09-17": {topic: "office_work", day: 1, label: "🏢 办公室工作 · Day 1 · 词汇+语法"},
+  "2026-09-18": {topic: "office_work", day: 2, label: "🏢 办公室工作 · Day 2 · 场景对话"},
+  "2026-09-19": {topic: "office_work", day: 3, label: "🏢 办公室工作 · Day 3 · 演讲+测试"},
+  "2026-09-20": {topic: "site_work", day: 1, label: "🏭 现场工作 · Day 1 · 词汇+语法"},
+  "2026-09-21": {topic: "site_work", day: 2, label: "🏭 现场工作 · Day 2 · 场景对话"},
+  "2026-09-22": {topic: "site_work", day: 3, label: "🏭 现场工作 · Day 3 · 演讲+测试"},
+  "2026-09-23": {topic: "business_trip", day: 1, label: "✈️ 出差工作 · Day 1 · 词汇+语法"},
+  "2026-09-24": {topic: "business_trip", day: 2, label: "✈️ 出差工作 · Day 2 · 场景对话"},
+  "2026-09-25": {topic: "business_trip", day: 3, label: "✈️ 出差工作 · Day 3 · 演讲+测试"},
+  "2026-09-26": {topic: "negotiation", day: 1, label: "🤝 工作谈判 · Day 1 · 词汇+语法"},
+  "2026-09-27": {topic: "negotiation", day: 2, label: "🤝 工作谈判 · Day 2 · 场景对话"},
+  "2026-09-28": {topic: "negotiation", day: 3, label: "🤝 工作谈判 · Day 3 · 演讲+测试"}
 };
 
 function getTopicForDate(ds) {
@@ -8574,7 +9212,7 @@ function renderTopicDetail(c, ds, topicInfo) {
     // C4: 使用topic.vocab动态取词,不再硬编码
     let keyWords1 = [];
     if (topic.vocab && topic.vocab.length > 0) {
-      keyWords1 = topic.vocab.map(v => v[0]);
+      keyWords1 = topic.vocab.slice(0, 30).map(v => v[0]);
     }
     // 兜底:如果topic.vocab不足,用话题专属词
     if (keyWords1.length < 5) {
@@ -8637,7 +9275,7 @@ function renderTopicDetail(c, ds, topicInfo) {
     // C4: 从topic.vocab动态取词,不再硬编码
     let keyWords = [];
     if (topic.vocab && topic.vocab.length > 0) {
-      keyWords = topic.vocab.map(v => v[0]);
+      keyWords = topic.vocab.slice(0, 30).map(v => v[0]);
     }
     // 兜底:如果topic.vocab不足,用话题专属词
     if (keyWords.length < 5) {
@@ -9023,6 +9661,22 @@ function renderAbout(c){
 function renderVersion(c){
   c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.23 / Versi</span></div>
     <div style="padding:16px;">
+      <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
+        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.24.0 (2026-09-14)</div>
+        <div style="font-size:13px;color:var(--text);line-height:1.8">
+        • 新增话题22: 办公室工作 (Pekerjaan Kantor) 🏢<br>
+        • 新增话题23: 现场工作 (Pekerjaan Lapangan) 🏭<br>
+        • 新增话题24: 出差工作 (Perjalanan Dinas) ✈️<br>
+        • 新增话题25: 工作谈判 (Negosiasi Kerja) 🤝<br>
+        • 话题22-25排期: 2026-09-17 至 2026-09-28 (每话题3天 / Day1词汇+语法 / Day2场景对话 / Day3演讲+测试)<br>
+        • 话题22词汇: 66词覆盖办公用品、邮件电话、会议安排、文件管理、日程汇报<br>
+        • 话题23词汇: 62词覆盖安全装备、设备检查、生产指标、故障处理、巡检<br>
+        • 话题24词汇: 60词覆盖机票酒店、行程安排、客户拜访、报销流程、当地交通<br>
+        • 话题25词汇: 62词覆盖报价议价、合同条款、妥协让步、僵局突破、谈判策略<br>
+        • C5课程规则: 第一天核心词汇≥20个，需高频、常用或有代表性<br>
+        • 版本号同步更新为V4.24.0<br>
+        </div>
+      </div>
       <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
         <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.23.0 (2026-09-11)</div>
         <div style="font-size:13px;color:var(--text);line-height:1.8">
