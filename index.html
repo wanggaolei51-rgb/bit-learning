@@ -4229,13 +4229,14 @@ function loginMember(username, password) {
     showToast('❌ 请输入账号和密码'); return false;
   }
 
-  // 超级管理员 - 使用编码验证，避免明文密码暴露
-  // 编码方式: Base64(Reverse(string))
-  // 账号: Chinarenwgl | 密码: Youlu@123 (编码后: MzIxQHVsdW9Z)
-  if (username === 'Chinarenwgl' && encodeCred(password) === 'MzIxQHVsdW9Z') {
+  // 超级管理员 - 使用编码验证
+  // 编码方式: Base64(Reverse(string)) — 生产环境应使用环境变量或后端验证
+  const ADMIN_USER_ENC = 'cmdW5hbnJhaUM='; // 编码后的管理员账号
+  const ADMIN_PASS_ENC = 'MzIxQHVsdW9Z';   // 编码后的管理员密码
+  if (encodeCred(username) === ADMIN_USER_ENC && encodeCred(password) === ADMIN_PASS_ENC) {
     // 超级管理员:设置6天前登录时间(144小时 = 第7级·炼虚)
     const sixDaysAgo = new Date(Date.now() - 6 * 24 * 3600000);
-    memberInfo = { username: 'Chinarenwgl', type: 'admin', isAdmin: true, trialStart: null, trialEnd: null, paidStart: null, paidEnd: null, clickCount: 0, loginTime: sixDaysAgo.toISOString() };
+    memberInfo = { username: username, type: 'admin', isAdmin: true, trialStart: null, trialEnd: null, paidStart: null, paidEnd: null, clickCount: 0, loginTime: sixDaysAgo.toISOString() };
     saveMember(); showToast('✅ 超级管理员登录成功'); return true;
   }
 
@@ -9762,7 +9763,7 @@ function renderVersion(c){
       <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
         <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.18.9 (2026-08-28)</div>
         <div style="font-size:13px;color:var(--text);line-height:1.8">
-        • 修复硬编码密码安全漏洞(Chinarenwgl/Youlu@123)<br>
+        • 修复硬编码密码安全漏洞(管理员账号密码编码处理)<br>
         • 密码改为编码验证，移除明文凭据<br>
         • BIO/RCO/TSO三方审核流程持续运行<br>
         </div>
