@@ -6,7 +6,7 @@
 <meta http-equiv="Expires" content="0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LEO-BIR V4.28.0</title>
+<title>LEO-BIR V4.28.1</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -273,7 +273,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="sidebar-header">
     <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <h1>LEO-BIR</h1>
-    <div class="ver">LEO-BIR V4.28.0 · 话题22-29办公室/现场/出差/谈判/项目管理/环保/供应链/应急</div>
+    <div class="ver">LEO-BIR V4.28.1 · 话题22-29办公室/现场/出差/谈判/项目管理/环保/供应链/应急</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -20435,7 +20435,7 @@ const dailyNotesDB = {
           }
         ],
         "formsNote": "",
-        "note": "口语变体 \"batalin\" 常见于非正式场合，正式场合一律用 membatalkan。",
+        "note": "口语变体 \"batalin\" 常见于非正式场合，正式场合一律用 membatalkan。⚠️ 拼写提醒：学习笔记中曾写作 mebatalkan（漏首字母 m），规范形 membatalkan，b 前鼻音同化为 m。",
         "synonyms": [
           "menarik kembali（撤回）",
           "menganulir（注销，法律/行政用语）",
@@ -21316,6 +21316,11 @@ function renderVersion(c){
   c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.23 / Versi</span></div>
     <div style="padding:16px;">
       <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
+        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.28.1 (2026-09-19)</div>
+        <div style="font-size:13px;color:#666;margin-bottom:4px">热修</div>
+        • 修复: membatalkan 词条补回用户原拼写附注（曾写作 mebatalkan 漏首 m → 规范形，RCO V4.28.0 审计 W1 处置）<br>
+        • 规范: dailynote_0918.js 补源档案禁引注释头（RCO W2 处置），新档案注释规范写入 TOOLS.md 检查清单<br>
+        <br>
         <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.28.0 (2026-09-19)</div>
         <div style="font-size:13px;color:var(--text);line-height:1.8">
         • 新增: 2026-09-18 每日单词笔记 14 词条（话题22 办公室工作 Day 2，场景对话日），BIT V1.0 初稿 → BIO 审查定稿（PASS_WITH_REVISIONS，10 处修订直接落稿）<br>

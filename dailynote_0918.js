@@ -1,3 +1,4 @@
+// ⚠️ 源数据档案（source archive）— 数据已内联合并进 index.html 的 dailyNotesDB，禁止以 <script> 直接引用，否则 const dailyNotesDB 重复声明会导致页面白屏。
 const dailyNotesDB = {
   "2026-09-18": {
     "date": "2026-09-18",
@@ -789,7 +790,7 @@ const dailyNotesDB = {
           }
         ],
         "formsNote": "",
-        "note": "口语变体 \"batalin\" 常见于非正式场合，正式场合一律用 membatalkan。",
+        "note": "口语变体 \"batalin\" 常见于非正式场合，正式场合一律用 membatalkan。⚠️ 拼写提醒：学习笔记中曾写作 mebatalkan（漏首字母 m），规范形 membatalkan，b 前鼻音同化为 m。",
         "synonyms": [
           "menarik kembali（撤回）",
           "menganulir（注销，法律/行政用语）",
