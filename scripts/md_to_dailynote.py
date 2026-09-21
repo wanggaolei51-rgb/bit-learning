@@ -204,8 +204,10 @@ def main():
     # 输出片段文件（可复用存档）
     mmdd = date[5:].replace("-", "")
     snippet_path = "/root/.openclaw/workspace/bit-deploy/dailynote_%s.js" % mmdd
+    archive_header = ("// ⚠️ 源数据档案（source archive）— 数据已内联合并进 index.html 的 dailyNotesDB，"
+                      "禁止以 <script> 直接引用，否则 const dailyNotesDB 重复声明会导致页面白屏。\n")
     with io.open(snippet_path, "w", encoding="utf-8") as f:
-        f.write(js_data)
+        f.write(archive_header + js_data)
 
     with io.open(html_path, encoding="utf-8") as f:
         html = f.read()
