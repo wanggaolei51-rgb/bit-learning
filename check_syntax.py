@@ -36,3 +36,18 @@ if ok:
     print(f"JS PARSE: PASS ({len(blocks)} blocks)")
 else:
     sys.exit(1)
+
+# --- TOOLS.md 检查清单第 8 项：dailynote 源档案禁引注释头 ---
+import glob
+import os
+
+bad = []
+for p in sorted(glob.glob(os.path.join(os.path.dirname(PATH), 'dailynote_*.js'))):
+    with open(p, encoding='utf-8') as f:
+        first = f.readline()
+    if '源数据档案' not in first:
+        bad.append(os.path.basename(p))
+if bad:
+    print(f"ARCHIVE HEADER FAIL: {', '.join(bad)} 缺禁引注释头（首行须含「源数据档案」）")
+    sys.exit(1)
+print(f"ARCHIVE HEADER: PASS ({len(glob.glob(os.path.join(os.path.dirname(PATH), 'dailynote_*.js')))} archives)")

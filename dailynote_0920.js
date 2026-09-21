@@ -1,3 +1,4 @@
+// ⚠️ 源数据档案（source archive）— 数据已内联合并进 index.html 的 dailyNotesDB，禁止以 <script> 直接引用，否则 const dailyNotesDB 重复声明会导致页面白屏。
 const dailyNotesDB = {
   "2026-09-20": {
     "date": "2026-09-20",
