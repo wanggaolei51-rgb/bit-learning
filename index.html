@@ -6,7 +6,7 @@
 <meta http-equiv="Expires" content="0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LEO-BIR V4.29.0</title>
+<title>LEO-BIR V4.30.0</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -96,6 +96,8 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
 .wb-item .wb-act button{padding:4px 10px;border-radius:4px;border:none;cursor:pointer;font-size:11px}
 .wb-item .wb-act .wb-mas{background:rgba(34,197,94,.15);color:var(--success);border:1px solid rgba(34,197,94,.3)}
 .wb-item .wb-act .wb-del{background:rgba(239,68,68,.15);color:var(--danger);border:1px solid rgba(239,68,68,.3)}
+.wb-item .wb-act .wb-bit{background:rgba(212,160,23,.15);color:#d4a017;border:1px solid rgba(212,160,23,.3)}
+.wb-item .wb-act .wb-bit:hover{background:rgba(212,160,23,.28)}
 .wb-empty{text-align:center;padding:50px 20px;color:var(--text-dim)}
 .wb-empty .big{font-size:48px;margin-bottom:10px}
 .quiz-card{padding:18px;background:var(--bg-elev);border-radius:10px;border:1px solid var(--border);margin-bottom:12px}
@@ -273,7 +275,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="sidebar-header">
     <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <h1>LEO-BIR</h1>
-    <div class="ver">LEO-BIR V4.29.0 · 话题22-29办公室/现场/出差/谈判/项目管理/环保/供应链/应急</div>
+    <div class="ver">LEO-BIR V4.30.0 · 课时测试日历化 + 生词本BIT词条弹窗</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -2409,7 +2411,7 @@ function renderWBList(){
     const id2zhIcon = p.id2zh ? '✅' : '❌';
     const zh2idIcon = p.zh2id ? '✅' : '❌';
     const spellIcon = p.spell ? '✅' : '❌';
-    h+=`<div class="wb-item"><div><div class="wb-w">${w.word} <span class="wb-i">${w.ipa||""}</span></div><div class="wb-m">🇨🇳 ${w.cn||""}</div><div class="wb-m" style="font-size:11px">📅 ${w.date} | 印选:${id2zhIcon} 中选:${zh2idIcon} 拼写:${spellIcon}</div><div class="wb-act"><button class="wb-mas" onclick="playWBGame('${w.word}')">🎮 练习</button><button class="wb-del" onclick="delWB(${i})">🗑️ 彻底删除</button>${canRemove ? `<button class="wb-mas" style="background:var(--success)" onclick="removeMasteredWB(${i})">✅ 已掌握移除</button>` : ''}</div></div></div>`;
+    h+=`<div class="wb-item"><div><div class="wb-w">${w.word} <span class="wb-i">${w.ipa||""}</span></div><div class="wb-m">🇨🇳 ${w.cn||""}</div><div class="wb-m" style="font-size:11px">📅 ${w.date} | 印选:${id2zhIcon} 中选:${zh2idIcon} 拼写:${spellIcon}</div><div class="wb-act"><button class="wb-mas" onclick="playWBGame('${(w.word||'').replace(/'/g,"\\'")}')">🎮 练习</button><button class="wb-bit" onclick="showBITInfo('${(w.word||'').replace(/&/g,'&amp;').replace(/\\/g,'\\\\').replace(/'/g,"\\'").replace(/"/g,'&quot;').replace(/\n/g,' ')}')">📓 BIT</button><button class="wb-del" onclick="delWB(${i})">🗑️ 彻底删除</button>${canRemove ? `<button class="wb-mas" style="background:var(--success)" onclick="removeMasteredWB(${i})">✅ 已掌握移除</button>` : ''}</div></div></div>`;
   });
   if(list.length===0&&wbSearchQuery){c.innerHTML=`<div class="wb-empty"><div class="big">🔍</div><div>无匹配 "${wbSearchQuery}" 的生词</div></div>`;return;}
   c.innerHTML=h;
@@ -2432,81 +2434,182 @@ function delWB(i){if(!confirm("确定彻底删除?"))return;wordBank.splice(i,1)
 function exportWB(){if(!checkAccess("导出"))return;if(!wordBank.length){showToast("为空");return;}let t="📚 BIR生词本-"+new Date().toISOString().slice(0,10)+"\n";wordBank.forEach((w,i)=>{t+=(i+1)+". "+w.word+" "+w.ipa+"\n🇨🇳"+w.cn+" | 状态:"+(w.mastered?"✅":"🔄")+"";});navigator.clipboard.writeText(t).then(()=>showToast("已复制"));}
 function clearWB(){if(!checkAccess("清空"))return;if(!confirm("清空?"))return;wordBank=[];saveWB();renderWBList();updateStats();showToast("已清空");}
 
+// ===== V4.30.0 课时测试月日历(独立月份状态 quizCalYear/quizCalMonth,不污染学习日历 currentDate) =====
+let quizCalYear = null, quizCalMonth = null;
+function getQuizCalState(){
+  if(quizCalYear===null||quizCalMonth===null){
+    const n=new Date();
+    quizCalYear=n.getFullYear();
+    quizCalMonth=n.getMonth();
+  }
+  return {y:quizCalYear,m:quizCalMonth};
+}
+function changeQuizMonth(delta){
+  const s=getQuizCalState();
+  const d=new Date(s.y,s.m+delta,1);
+  quizCalYear=d.getFullYear();
+  quizCalMonth=d.getMonth();
+  const c=document.getElementById("appContent");
+  if(c)renderDailyQuiz(c);
+}
+
 function renderDailyQuiz(c) {
-  const today = new Date().toISOString().slice(0,10);
-  const tc = topicCalendar[today] || Object.values(topicCalendar).find(t => t.date === today);
+  const today=new Date().toISOString().slice(0,10);
+  const s=getQuizCalState(),y=s.y,m=s.m;
+  const fd=new Date(y,m,1).getDay(),dim=new Date(y,m+1,0).getDate();
+  const wd=["日","一","二","三","四","五","六"];
 
-  // 收集所有可用的话题/课时(按话题去重,C4架构:一个话题一个测试)
-  const availableTopics = [];
-  const seenTopics = new Set();
-  Object.keys(topicCalendar).forEach(date => {
-    const info = topicCalendar[date];
-    if (info && info.topic) {
-      // C4: 一个话题只生成一个测试,去重
-      if (seenTopics.has(info.topic)) return;
-      seenTopics.add(info.topic);
-      const topic = topicData[info.topic];
-      if (topic) {
-        availableTopics.push({
-          date: date,
-          topicKey: info.topic,
-          topic: topic,
-          day: info.day || 1,
-          label: info.label || `Day ${info.day || 1}`,
-          isToday: date === today
-        });
-      }
+  // 当月课时数统计
+  const mp=`${y}-${String(m+1).padStart(2,"0")}-`;
+  let monthCount=0;
+  Object.keys(topicCalendar).forEach(ds=>{if(ds.indexOf(mp)===0&&topicCalendar[ds]&&topicCalendar[ds].topic)monthCount++;});
+  const allCount=Object.keys(topicCalendar).length;
+
+  let h=`<div class="card"><div class="card-header" style="flex-wrap:wrap;gap:8px;"><h2>🎯 课时测试</h2><span class="badge">${allCount}个课时</span></div><div style="padding:16px;">`;
+  h+=`<div style="font-size:13px;color:var(--text-dim);margin-bottom:16px;padding:12px;background:rgba(0,212,170,.06);border-radius:8px;border-left:3px solid var(--primary);">📋 点击日历中有课日期,进入该课时测试,测试内容根据该课时的词汇和语法生成</div>`;
+  h+=`<div class="cal-wrap"><div class="cal-header"><button class="cal-nav" onclick="changeQuizMonth(-1)">◀</button><h3>${y}年${m+1}月</h3><button class="cal-nav" onclick="changeQuizMonth(1)">▶</button></div><div class="cal-grid">`;
+  wd.forEach(d=>h+=`<div class="cal-wd">${d}</div>`);
+  for(let i=0;i<fd;i++)h+=`<div class="cal-day" style="background:transparent;cursor:default"></div>`;
+  for(let d=1;d<=dim;d++){
+    const ds=`${y}-${String(m+1).padStart(2,"0")}-${String(d).padStart(2,"0")}`;
+    const info=topicCalendar[ds];
+    const ist=ds===today;
+    if(info&&info.topic&&topicData[info.topic]){
+      const t=topicData[info.topic];
+      h+=`<div class="cal-day ${ist?"today":""} has-data" data-qdate="${ds}" style="padding:4px 2px;"><div class="dnum">${d}</div><div style="font-size:14px;line-height:1.2;">${t.icon||"📚"}</div><div class="ddots"><span class="ddot" style="background:var(--accent)"></span></div><div style="font-size:10px;color:var(--text-dim);line-height:1.1;">Day ${info.day||1}</div></div>`;
+    }else{
+      h+=`<div class="cal-day ${ist?"today":""}"><div class="dnum">${d}</div></div>`;
     }
-  });
+  }
+  h+=`</div><div class="cal-legend"><span><span class="ddot" style="display:inline-block;background:var(--accent)"></span> 有课时</span><span>⬤ 今天</span><span>🎯 点击日期进入测试</span></div></div>`;
 
-  // 按日期排序
-  availableTopics.sort((a, b) => a.date.localeCompare(b.date));
-
-  if (availableTopics.length === 0) {
-    c.innerHTML = `<div class="card"><div class="card-header"><h2>🎯 课时测试</h2></div><div style="padding:20px;text-align:center;color:var(--text-dim);">暂无可用课时,请先学习课程</div></div>`;
-    return;
+  if(monthCount===0){
+    h+=`<div style="text-align:center;padding:26px;color:var(--text-dim);">📭 ${y}年${m+1}月暂无课时安排<br><span style="font-size:12px;">使用 ◀ ▶ 切换月份查看其它课时</span></div>`;
   }
 
-  // 生成话题选择卡片
-  let topicsHtml = availableTopics.map(t => {
-    const isTodayClass = t.isToday ? 'border:2px solid var(--primary);background:rgba(0,212,170,.08);' : '';
-    const todayBadge = t.isToday ? '<span style="background:var(--primary);color:#000;padding:2px 8px;border-radius:6px;font-size:11px;margin-left:8px;">今日</span>' : '';
-    return `
-      <div onclick="startTopicQuiz('${t.topicKey}')" style="padding:14px 16px;margin-bottom:10px;border-radius:10px;border:1px solid var(--border);cursor:pointer;transition:all .2s;${isTodayClass}"
-           onmouseenter="this.style.borderColor='var(--primary)';this.style.transform='translateX(4px)';"
-           onmouseleave="this.style.borderColor='var(--border)';this.style.transform='translateX(0)';"
-      >
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;">
-          <div style="font-size:14px;font-weight:600;color:var(--text);display:flex;align-items:center;">
-            <span style="font-size:18px;margin-right:8px;">${t.topic.icon || '📚'}</span>
-            ${t.topic.title}
-            ${todayBadge}
-          </div>
-          <span style="font-size:12px;color:var(--text-dim);background:var(--bg-elev);padding:2px 8px;border-radius:6px;">Day ${t.day}</span>
-        </div>
-        <div style="font-size:12px;color:var(--text-dim);display:flex;gap:12px;align-items:center;">
-          <span>📅 ${t.date}</span>
-          <span>📝 ${t.label}</span>
-          <span style="margin-left:auto;color:var(--primary);font-weight:500;">点击测试 →</span>
-        </div>
-      </div>
-    `;
-  }).join('');
+  // 今日课时快捷入口
+  const tc=topicCalendar[today];
+  if(tc&&tc.topic&&topicData[tc.topic]){
+    const t=topicData[tc.topic];
+    h+=`<div onclick="startTopicQuiz('${tc.topic}')" style="margin-top:14px;padding:14px 16px;border-radius:10px;border:2px solid var(--primary);background:rgba(0,212,170,.08);cursor:pointer;transition:all .2s;" onmouseenter="this.style.transform='translateX(4px)';" onmouseleave="this.style.transform='translateX(0)';"><div style="display:flex;align-items:center;justify-content:space-between;"><div style="font-size:14px;font-weight:600;color:var(--text);"><span style="font-size:18px;margin-right:8px;">${t.icon||"📚"}</span>${t.title}<span style="background:var(--primary);color:#000;padding:2px 8px;border-radius:6px;font-size:11px;margin-left:8px;">今日</span></div><span style="font-size:12px;color:var(--primary);font-weight:500;">Day ${tc.day||1} · 点击测试 →</span></div><div style="font-size:12px;color:var(--text-dim);margin-top:4px;">${tc.label||""}</div></div>`;
+  }
 
-  c.innerHTML = `
-    <div class="card">
-      <div class="card-header" style="flex-wrap:wrap;gap:8px;">
-        <h2>🎯 课时测试</h2>
-        <span class="badge">${availableTopics.length}个课时</span>
-      </div>
-      <div style="padding:16px;">
-        <div style="font-size:13px;color:var(--text-dim);margin-bottom:16px;padding:12px;background:rgba(0,212,170,.06);border-radius:8px;border-left:3px solid var(--primary);">
-          📋 选择下方课时进行测试,测试内容根据该课时的词汇和语法生成
-        </div>
-        ${topicsHtml}
-      </div>
-    </div>
-  `;
+  h+=`</div></div>`;
+  c.innerHTML=h;
+
+  c.querySelectorAll(".cal-day[data-qdate]").forEach(el=>{
+    el.addEventListener("click",()=>{
+      const ds=el.dataset.qdate;
+      const info=topicCalendar[ds];
+      if(info&&info.topic)startTopicQuiz(info.topic);
+    });
+  });
+}
+
+// ===== V4.30.0 生词本 BIT 词条弹窗(三级数据回退) =====
+let _bitSpeakQueue=[],_bitWord="";
+function bitSpeak(i){const t=_bitSpeakQueue[i];if(t)speak(t,"id");}
+function bitSpeakWord(){if(_bitWord)speak(_bitWord,"id");}
+function closeBITInfo(){const o=document.getElementById("bitInfoOverlay");if(o)o.remove();}
+
+function findBITEntry(word){
+  const lw=String(word||"").toLowerCase();
+  if(!lw)return null;
+  if(typeof dailyNotesDB!=="undefined"&&dailyNotesDB){
+    const dates=Object.keys(dailyNotesDB).sort();
+    for(let i=0;i<dates.length;i++){
+      const note=dailyNotesDB[dates[i]];
+      if(!note||!note.entries)continue;
+      for(let j=0;j<note.entries.length;j++){
+        const e=note.entries[j];
+        if(e&&e.word&&String(e.word).toLowerCase()===lw)return{entry:e,date:dates[i]};
+      }
+    }
+  }
+  return null;
+}
+
+function showBITInfo(word){
+  closeBITInfo();
+  word=String(word||"").trim();
+  if(!word)return;
+  const lw=word.toLowerCase();
+  const esc=function(s){return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");};
+  const rich=function(s){return esc(s).replace(/\*\*(.+?)\*\*/g,'<strong style="color:var(--primary)">$1</strong>');};
+  const stripMd=function(s){return String(s==null?"":s).replace(/\*\*/g,"");};
+
+  let data=null,srcLabel="",hintHtml="";
+  // 一级:dailyNotesDB 完整 BIT 词条
+  const hit=findBITEntry(word);
+  if(hit){
+    data={word:hit.entry.word,ipa:hit.entry.ipa||"",cn:hit.entry.cn||"",en:hit.entry.en||"",root:hit.entry.root||"",forms:hit.entry.forms||[],formsNote:hit.entry.formsNote||"",note:hit.entry.note||"",synonyms:hit.entry.synonyms||[],antonyms:hit.entry.antonyms||[],examples:hit.entry.examples||[]};
+    srcLabel="📚 BIT 完整词条 · "+hit.date;
+  }
+  // 二级:vocabDB + 词缀拆解组装
+  if(!data){
+    const v=vocabDB[word]||vocabDB[lw]||vocabDB[word.charAt(0).toUpperCase()+word.slice(1)];
+    if(v){
+      let forms=[];
+      try{
+        const aff=stripAffixes(lw);
+        if(aff&&aff.length){
+          forms=aff.map(a=>{
+            const rv=vocabDB[a.root]||vocabDB[a.root.charAt(0).toUpperCase()+a.root.slice(1)];
+            return{form:word,pos:a.type,mean:a.affix+" + "+a.root+(rv&&rv.cn?"（"+rv.cn+"）":"")};
+          });
+        }
+      }catch(e){}
+      data={word:word,ipa:v.ipa||"",cn:v.cn||"",en:v.en||"",root:v.root||"",forms:forms,formsNote:"",note:"",synonyms:[],antonyms:[],examples:[],tag:v.tag||""};
+      srcLabel="📖 词库组装";
+    }
+  }
+  // 三级:生词本自带字段兜底
+  if(!data){
+    const wbEntry=(typeof wordBank!=="undefined"&&wordBank)?wordBank.find(function(w){return w.word&&String(w.word).toLowerCase()===lw;}):null;
+    data={word:word,ipa:wbEntry&&wbEntry.ipa?wbEntry.ipa:"",cn:wbEntry&&wbEntry.cn?wbEntry.cn:"",en:wbEntry&&wbEntry.en?wbEntry.en:"",root:wbEntry&&wbEntry.root?wbEntry.root:"",forms:[],formsNote:"",note:"",synonyms:[],antonyms:[],examples:[],tag:wbEntry&&wbEntry.tag?wbEntry.tag:""};
+    srcLabel="📦 生词本记录";
+    hintHtml=`<div style="font-size:12px;color:#d4a017;background:rgba(212,160,23,.08);border-left:2px solid #d4a017;padding:8px 10px;border-radius:6px;margin:10px 0;line-height:1.6;">💡 该词暂无 BIT 完整词条,可通过翻译页「🚀 一键BIT」生成</div>`;
+  }
+
+  _bitSpeakQueue=[];
+  _bitWord=data.word;
+  let body="";
+  body+=`<div style="font-size:12px;color:var(--text-dim);margin-bottom:8px;">${esc(srcLabel)}</div>`;
+  if(data.ipa)body+=`<div style="font-size:13px;color:var(--accent);font-family:monospace;margin-bottom:6px;">${esc(data.ipa)}</div>`;
+  body+=`<div style="font-size:15px;color:var(--text);margin-bottom:4px;"><span style="color:var(--primary-dim)">🇨🇳</span> ${esc(data.cn)||"-"}</div>`;
+  if(data.en)body+=`<div style="font-size:13px;color:var(--text-dim);margin-bottom:6px;">🇬🇧 ${esc(data.en)}</div>`;
+  if(data.tag)body+=`<div style="margin-bottom:6px;"><span style="display:inline-block;font-size:11px;background:rgba(0,212,170,.12);color:var(--primary-dim);border-radius:6px;padding:2px 8px;">${esc(data.tag)}</span></div>`;
+  if(data.root)body+=`<div style="font-size:12px;color:var(--text);background:rgba(0,212,170,.06);border-left:2px solid var(--primary);padding:6px 8px;border-radius:6px;margin:8px 0;line-height:1.6;">🌱 词根：${rich(data.root)}</div>`;
+  if(data.forms&&data.forms.length){
+    body+=`<table style="width:100%;border-collapse:collapse;font-size:12px;margin:8px 0;"><tr style="background:var(--bg-elev);"><th style="text-align:left;padding:5px 8px;border:1px solid var(--border);color:var(--text-dim);">形式</th><th style="text-align:left;padding:5px 8px;border:1px solid var(--border);color:var(--text-dim);">词性</th><th style="text-align:left;padding:5px 8px;border:1px solid var(--border);color:var(--text-dim);">含义</th></tr>`
+      +data.forms.map(function(f){return `<tr><td style="padding:5px 8px;border:1px solid var(--border);color:var(--primary);font-weight:600;">${esc(f.form)}</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--text);">${esc(f.pos)}</td><td style="padding:5px 8px;border:1px solid var(--border);color:var(--text);">${esc(f.mean)}</td></tr>`;}).join("")+`</table>`;
+  }
+  if(data.formsNote)body+=`<div style="font-size:12px;color:var(--text-dim);margin:6px 0;line-height:1.6;">📎 变形：${rich(data.formsNote)}</div>`;
+  if(data.note)body+=`<div style="font-size:12px;color:#d4a017;background:rgba(212,160,23,.08);border-left:2px solid #d4a017;padding:6px 8px;border-radius:6px;margin:6px 0;line-height:1.6;">💡 ${rich(data.note)}</div>`;
+  if(hintHtml)body+=hintHtml;
+  if(data.synonyms&&data.synonyms.length)body+=`<div style="margin:8px 0;"><span style="font-size:12px;color:var(--text-dim);">🔗 同义词：</span>`+data.synonyms.map(function(s){return `<span style="display:inline-block;font-size:12px;background:var(--bg-elev);border:1px solid var(--border);border-radius:10px;padding:2px 8px;margin:2px 4px 2px 0;color:var(--text);">${rich(s)}</span>`;}).join("")+`</div>`;
+  if(data.antonyms&&data.antonyms.length)body+=`<div style="margin:8px 0;font-size:12px;color:var(--text);"><span style="color:var(--text-dim);">⚖️ 反义词：</span>`+data.antonyms.map(function(s){return rich(s);}).join('<span style="color:var(--text-dim);">　</span>')+`</div>`;
+  if(data.examples&&data.examples.length){
+    body+=`<div style="margin-top:8px;"><div style="font-size:12px;color:var(--text-dim);margin-bottom:4px;">🗣️ 场景应用：</div>`;
+    body+=data.examples.map(function(x,xi){
+      _bitSpeakQueue.push(stripMd(x.id));
+      return `<div style="font-size:12px;line-height:1.7;margin:6px 0;padding:6px 8px;background:var(--bg-elev);border-radius:6px;"><span style="display:inline-block;font-size:11px;color:var(--primary);background:rgba(0,212,170,.1);border-radius:4px;padding:1px 6px;margin-right:6px;">${esc(x.scene)}</span><button onclick="bitSpeak(${xi})" title="朗读" style="background:none;border:none;color:var(--primary);cursor:pointer;font-size:13px;padding:0 4px;vertical-align:middle;">🔊</button><div style="color:var(--text);margin-top:3px;">${rich(x.id)}</div><div style="color:var(--text-dim);">${esc(x.cn)}</div></div>`;
+    }).join("");
+    body+=`</div>`;
+  }
+
+  const overlay=document.createElement("div");
+  overlay.id="bitInfoOverlay";
+  overlay.style.cssText="position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.7);z-index:10001;display:flex;align-items:center;justify-content:center;padding:16px;";
+  overlay.innerHTML=`<div style="background:var(--bg-card);border-radius:16px;padding:20px;max-width:460px;width:100%;border:1px solid var(--border);max-height:85vh;overflow-y:auto;position:relative;"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;"><div style="display:flex;align-items:center;gap:8px;"><span style="font-size:18px;font-weight:700;color:var(--primary);">${esc(data.word)}</span><button onclick="bitSpeakWord()" title="朗读" style="background:none;border:none;color:var(--primary);cursor:pointer;font-size:16px;padding:2px 4px;">🔊</button></div><button id="bitInfoClose" style="background:none;border:none;color:var(--text-dim);font-size:22px;cursor:pointer;padding:4px 8px;line-height:1;">✕</button></div>${body}</div>`;
+  document.body.appendChild(overlay);
+
+  const closeBtn=document.getElementById("bitInfoClose");
+  if(closeBtn){
+    closeBtn.addEventListener("click",closeBITInfo);
+    closeBtn.addEventListener("touchend",function(e){e.preventDefault();closeBITInfo();});
+  }
+  overlay.addEventListener("click",function(e){if(e.target===overlay)closeBITInfo();});
 }
 
 
@@ -4987,7 +5090,8 @@ function renderWBList(){
         <span style="color:var(--text-dim)">${progress}/3</span>
       </div>
       <div class="wb-act">
-        <button class="wb-mas" onclick="playWBGame('${w.word}')">🎮 练习</button>
+        <button class="wb-mas" onclick="playWBGame('${(w.word||'').replace(/'/g,"\\'")}')">🎮 练习</button>
+        <button class="wb-bit" onclick="showBITInfo('${(w.word||'').replace(/&/g,'&amp;').replace(/\\/g,'\\\\').replace(/'/g,"\\'").replace(/"/g,'&quot;').replace(/\n/g,' ')}')">📓 BIT</button>
         <button class="wb-del" onclick="delWB(${i})">🗑️</button>
       </div></div></div>`;
   });
@@ -35835,6 +35939,9 @@ function renderVersion(c){
   c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.23 / Versi</span></div>
     <div style="padding:16px;">
       <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
+        <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.30.0 (2026-09-28)</div>
+        <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">1. 课时测试改为月日历展示:视觉与学习日历一致(cal-grid/cal-day/has-data/today 高亮),有课日期显示话题图标+Day N,点击即测;独立月份状态 quizCalYear/quizCalMonth,不污染学习日历 currentDate;空月提示+今日课时快捷入口保留</div>
+        <div style="font-size:13px;color:var(--text-light);margin-bottom:12px">2. 生词本新增「📓 BIT」按钮:三级数据回退(dailyNotesDB 完整词条→vocabDB 词缀组装→生词本自带字段),弹窗复用每日笔记词条视觉(词根块/变形表/同反义/场景例句+逐句🔊朗读),关闭按钮 click+touchend 双绑定+遮罩关闭</div>
         <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.29.0 (2026-09-28)</div>
         <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">1. 翻译批量上限由 15 词提升至 50 词(doTranslate 截断阈值+溢出提示同步更新,支持空格/逗号/句号/感叹号/问号/顿号/分号混输批量查询)</div>
         <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">2. 翻译页新增「🚀 一键BIT」按钮:将搜索框单词一键生成 BIT V1.0 笔记任务文本(剪贴板复制+localStorage 双通道,含降级复制方案),粘贴发送给 Leo_kimi 即可触发每日单词笔记流程</div>
