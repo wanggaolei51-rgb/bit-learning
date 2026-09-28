@@ -14,7 +14,9 @@ md_to_dailynote.py — BIT 每日单词笔记 → BIR dailyNotesDB 转换器（�
        a. 在 topicCalendar 结束后插入 dailyNotesDB
        b. 在 function startTopicQuiz(topicKey) 前插入 buildDailyNoteCard/toggleDailyNote
        c. startTopicQuiz 主渲染行前置 ${buildDailyNoteCard(topicKey)}
-  幂等：已存在 dailyNotesDB 时先移除旧块再插入（重跑安全）。
+  4. V4.31.0: 写入 dailyNotesDB 的同时，把该日每个 entry 按 e.word.toLowerCase()
+     并入常驻「BIT 详解库」bitVocabDB（同词覆盖更新，重跑幂等）。
+  幂等：已存在 dailyNotesDB/bitVocabDB 块时先移除旧块再插入（重跑安全）。
 """
 import json, re, sys, io
 
@@ -225,17 +227,44 @@ def main():
     existing.update(new_payload)
     js_data = "const dailyNotesDB = " + json.dumps(existing, ensure_ascii=False, indent=2) + ";\n"
 
+    # V4.31.0: 同步并入 bitVocabDB（按词组织的常驻详解库，键=词小写，同词覆盖更新为最新版详解）
+    # 注意:空库为单行 `const bitVocabDB = {};`,多行块根闭合为列首 `\n};`,两种形态分别处理,
+    # 若直接用多行正则解析空库,会跨匹到下游第一个列首 `}` 造成 json 解析失败。
+    m_bv_empty = re.search(r'const bitVocabDB = \{\};', html)
+    m_bv = re.search(r'const bitVocabDB = (\{.*?\n\});', html, flags=re.S)
+    bv_existing = {}
+    if m_bv_empty:
+        pass  # 空库,无需解析
+    elif m_bv:
+        try:
+            bv_existing = json.loads(m_bv.group(1))
+        except Exception as ex:
+            print("WARN: parse existing bitVocabDB failed:", ex)
+            bv_existing = {}
+    for _e in new_payload[date]["entries"]:
+        bv_existing[_e["word"].lower()] = _e
+    bv_js = ("// ===== BIT 详解库 bitVocabDB V4.31.0 新增:按词组织的累积详解库,"
+             "转换器 scripts/md_to_dailynote.py 在写入每日笔记时自动并入新词条;"
+             "批量生成由 BIT→BIO 流程灌入 =====\n"
+             "const bitVocabDB = " + json.dumps(bv_existing, ensure_ascii=False, indent=2) + ";\n")
+
     # 幂等：移除旧 dailyNotesDB 块（如果重跑）
     html = re.sub(r'\n?const dailyNotesDB = \{.*?\n\};\n', '\n', html, flags=re.S)
+    # 幂等：移除旧 bitVocabDB 块（顺序敏感：先删空库单行块,再删多行块;
+    # 若顺序颠倒,多行正则会从空块 { 一路误配到下游第一个列首 \n}; 造成大片误删）
+    html = re.sub(r'\n?// ===== BIT 详解库 bitVocabDB[^\n]*\n', '\n', html)
+    html = re.sub(r'\n?const bitVocabDB = \{\};\n', '\n', html)
+    html = re.sub(r'\n?const bitVocabDB = \{.*?\n\};\n', '\n', html, flags=re.S)
     # 幂等：移除旧渲染函数块
     html = re.sub(r'\n?// ===== 每日笔记模块（BIT V1\.0 生产 → BIO 审查定稿） V4\.26\.0 新增 =====\n.*?\n\}\n(?=\nfunction startTopicQuiz)', '\n', html, flags=re.S)
 
-    # 1) 插入 dailyNotesDB：topicCalendar 结束后（getTopicForDate 之前）
+    # 1) 插入 dailyNotesDB + bitVocabDB：topicCalendar 结束后（getTopicForDate 之前）
     # 用正则锚点，兼容旧块移除后残留的多余空行
     m_anchor = re.search(r'\n+function getTopicForDate\(ds\) \{', html)
     assert m_anchor, "getTopicForDate anchor not found"
-    html = html[:m_anchor.start()] + '\n\n' + js_data + '\nfunction getTopicForDate(ds) {' + html[m_anchor.end():]
+    html = html[:m_anchor.start()] + '\n\n' + js_data + bv_js + '\nfunction getTopicForDate(ds) {' + html[m_anchor.end():]
     assert html.count('const dailyNotesDB = {') == 1, "dailyNotesDB count=%d" % html.count('const dailyNotesDB = {')
+    assert html.count('const bitVocabDB = {') == 1, "bitVocabDB count=%d" % html.count('const bitVocabDB = {')
 
     # 2) 插入渲染函数：startTopicQuiz 前
     anchor_fn = 'function startTopicQuiz(topicKey) {'
