@@ -6,7 +6,7 @@
 <meta http-equiv="Expires" content="0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LEO-BIR V4.35.0</title>
+<title>LEO-BIR V4.36.0</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -268,7 +268,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
 </style>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="video_registry.js?v=V4.35.0"></script>
+<script src="video_registry.js?v=V4.36.0"></script>
 </head>
 <body>
 <div class="app">
@@ -276,7 +276,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="sidebar-header">
     <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <h1>LEO-BIR</h1>
-    <div class="ver">LEO-BIR V4.35.0 · 每日复习视频 Layer 1（2 集样片）</div>
+    <div class="ver">LEO-BIR V4.36.0 · 每日复习视频 Layer 1（2 集样片 · 剪影引擎 v2）</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -39233,6 +39233,10 @@ function renderAbout(c){
 function renderVersion(c){
   c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.23 / Versi</span></div>
     <div style="padding:16px;">
+      <div style="margin-bottom:14px;padding:14px;background:rgba(59,130,246,.10);border-radius:10px;border-left:3px solid var(--info)">
+        <div style="font-size:15px;font-weight:700;color:var(--info);margin-bottom:6px">V4.36.0 (2026-09-30)</div>
+        <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">1. 每日复习视频引擎升级 daily-1.0.0→daily-2.0.0：弃用纯文字屏显，移植 renderer v1.6 矢量资产（8 型角色剪影库/场景衬底/头顶气泡）→ 例句小剧场化（Pak Guru+Sari 剪影对谈+工业场景） · 用户四条反馈全落地：①中文语音通道全删（双语字幕保留，集时长 4'00"→1'18"、4'30"→1'29"，压减≥67%）②剪影人物+场景动画 ③片头≤5s 印尼语一句直入 ④每集底部导播条（当前集±3 截断 1..8，未产出置灰，项目管理·Bagian N 胶囊） · 词头双读位为时长让位取消（BIO L2 权衡） · 修复骨架两处运行时断裂（renderBeat 未定义/wrapWords 未定义） · 主代理直修 QA 六帧互异零控制台错误</div>
+      </div>
       <div style="margin-bottom:14px;padding:14px;background:rgba(59,130,246,.10);border-radius:10px;border-left:3px solid var(--info)">
         <div style="font-size:15px;font-weight:700;color:var(--info);margin-bottom:6px">V4.35.0 (2026-09-30)</div>
         <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">1. 新增「每日复习视频 / Video Harian」Layer 1：视频库页(今日卡+历史列表+集数圆点已看标记) · overlay 全屏播放器(sandbox=allow-scripts allow-same-origin,关闭重置 about:blank) · 入口四处：侧边栏菜单/学习日历当日详情页横幅/每日测试完成页链接/视频库内跳转 · 首日内容 2026-09-29 项目管理 2 集样片(p1: terlibat→durasi 约4分00秒 / p2: direncanakan→mekanisme 约4分30秒, 引擎 daily-1.0.0 三档时长 L35-45s/M45-55s/H65-80s) · 注册表 video_registry.js 唯一真相源(BIO 印章 sha8=3d63246c 绑定) · VIDEO_DB 未定义时全部入口自动隐藏 · 管线 biv_daily.py(BIO 门+9 项 lint+非空断言)</div>

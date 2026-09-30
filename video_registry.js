@@ -55,12 +55,12 @@ const VIDEO_DB = {
       "videos/daily/2026-09-29/daily_2026-09-29_p2.html"
     ],
     "durations": [
-      237,
-      268
+      78,
+      89
     ],
-    "engine": "daily-1.0.0",
+    "engine": "daily-2.0.0",
     "bioStamp": "3d63246c",
-    "hash": "84d07ebb",
+    "hash": "85cb2642",
     "created": "2026-09-30",
     "status": "bio_passed"
   }
