@@ -60,7 +60,7 @@ const VIDEO_DB = {
     ],
     "engine": "daily-2.0.0",
     "bioStamp": "3d63246c",
-    "hash": "85cb2642",
+    "hash": "d4e4b924",
     "created": "2026-09-30",
     "status": "bio_passed"
   }
