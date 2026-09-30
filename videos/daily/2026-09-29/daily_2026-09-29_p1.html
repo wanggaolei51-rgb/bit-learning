@@ -558,6 +558,7 @@ function playBeat(idx){
   if(scene!==curScene){ renderScene(scene); curScene=scene; }
   stopFx();
   caption('');
+  if(b.kind==='example'){ caption(b.zh||''); }
   renderPanel(item);
   if(item.wordIdx && !wordDone[item.wordIdx]){ wordDone[item.wordIdx]=true; postProgress(item,false); }
   $('uiBar').style.width=(SEQ.length?(cur/SEQ.length)*100:0)+'%';
@@ -712,7 +713,7 @@ function start(){
     const scene=(b.scene)||(item.seg.scene)||'plant';
     renderScene(scene); curScene=scene;
     renderPanel(item);
-    if(b.kind==='example'){ showBubble(speakerFor(b), b.id||((b.tts||[])[0]||{}).t||'', [b.word]); caption(b.zh||''); }
+    if(b.kind==='example'){ showBubble(speakerFor(b), b.id||((b.tts||[])[0]||{}).t||'', [b.word].filter(Boolean)); caption(b.zh||''); }
     $('uiBar').style.width=(SEQ.length?(i/SEQ.length)*100:0)+'%';
     document.querySelectorAll('.dot').forEach((d,di)=>{ d.classList.toggle('cur', SEQ[i].wordIdx===partWords()[di]); });
     return;
