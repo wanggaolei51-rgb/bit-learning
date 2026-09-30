@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BIR Daily 2026-09-29 · Bagian 1</title>
+<style>
+
+:root{
+  --bg:#0a0d12;
+  --panel:#10141c;
+  --line:#232b3a;
+  --ink:#f2f5f9;
+  --ink-dim:#8b95a8;
+  --accent:#00d4aa;
+  --accent-dim:#0a3d34;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;background:var(--bg);color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"PingFang SC","Microsoft YaHei","Noto Sans",sans-serif;
+  -webkit-font-smoothing:antialiased}
+.stage-wrap{height:100%;display:flex;flex-direction:column;max-width:960px;margin:0 auto;padding:10px 14px 8px}
+
+
+.topbar{display:flex;align-items:center;gap:10px;padding:4px 0 8px;border-bottom:1px solid var(--line)}
+.part-tag{font-size:11px;letter-spacing:.12em;color:var(--ink-dim);white-space:nowrap}
+.part-tag b{color:var(--accent);font-weight:700}
+.pbar{flex:1;height:3px;background:var(--line);border-radius:2px;overflow:hidden}
+.pbar>i{display:block;height:100%;width:0%;background:var(--accent);transition:width .35s linear}
+.word-tag{font-size:11px;letter-spacing:.08em;color:var(--ink-dim);white-space:nowrap}
+.word-tag b{color:var(--ink);font-weight:700}
+
+
+.stage{flex:1;display:flex;align-items:center;justify-content:center;min-height:0;padding:10px 0}
+.card{width:100%;height:100%;background:var(--panel);border:1px solid var(--line);border-radius:10px;
+  display:flex;flex-direction:column;justify-content:center;padding:4.5% 6%;overflow:hidden}
+.kicker{font-size:clamp(11px,1.5vw,14px);letter-spacing:.28em;color:var(--accent);text-transform:uppercase;margin-bottom:1.2%}
+.h-word{font-size:clamp(34px,7.2vw,76px);font-weight:800;line-height:1.06;letter-spacing:-.01em}
+.h-cn{font-size:clamp(16px,2.6vw,28px);color:var(--ink);margin-top:1.4%;line-height:1.4}
+.h-en{font-size:clamp(12px,1.6vw,16px);color:var(--ink-dim);margin-top:.8%;letter-spacing:.02em}
+.rule{height:1px;background:var(--line);margin:2.4% 0}
+.b-title{font-size:clamp(11px,1.4vw,13px);letter-spacing:.22em;color:var(--ink-dim);text-transform:uppercase;margin-bottom:1.6%}
+.tbl{display:table;width:100%;border-collapse:collapse}
+.trow{display:table-row}
+.tcell{display:table-cell;padding:.55em .8em;border-bottom:1px solid var(--line);font-size:clamp(13px,1.9vw,20px);vertical-align:top}
+.tcell.f{font-weight:700;white-space:nowrap}
+.tcell.p{color:var(--ink-dim);white-space:nowrap;font-size:.82em;padding-top:.85em}
+.tcell.m{color:var(--ink)}
+.prow{display:flex;gap:1.2em;padding:.5em 0;border-bottom:1px solid var(--line);font-size:clamp(13px,2vw,21px)}
+.prow .pw{font-weight:700;white-space:nowrap}
+.prow .pc{color:var(--ink-dim)}
+.ex-id{font-size:clamp(17px,2.7vw,30px);font-weight:600;line-height:1.5}
+.ex-zh{font-size:clamp(14px,2.1vw,22px);color:var(--ink-dim);margin-top:1.6%;line-height:1.5}
+.list-w{display:flex;flex-direction:column}
+.list-row{display:flex;align-items:baseline;gap:1em;padding:.42em 0;border-bottom:1px solid var(--line)}
+.list-row:last-child{border-bottom:none}
+.list-row .no{font-size:.75em;color:var(--ink-dim);min-width:2.2em}
+.list-row .w{font-weight:700;font-size:clamp(15px,2.3vw,25px)}
+.list-row .c{color:var(--ink-dim);font-size:clamp(12px,1.7vw,18px)}
+.ttl{font-size:clamp(22px,4.4vw,48px);font-weight:800;line-height:1.15}
+.sub{font-size:clamp(14px,2.2vw,24px);color:var(--ink-dim);margin-top:1.6%;line-height:1.5}
+.fadein{animation:fd .45s ease-out}
+@keyframes fd{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+
+.ctl{display:flex;align-items:center;gap:8px;padding:8px 0 2px;border-top:1px solid var(--line)}
+.cbtn{background:var(--panel);border:1px solid var(--line);color:var(--ink);border-radius:8px;
+  min-width:44px;height:38px;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0 10px}
+.cbtn:active{background:var(--accent-dim)}
+.dots{flex:1;display:flex;gap:7px;justify-content:center;flex-wrap:wrap;overflow:hidden}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--line);cursor:pointer;border:none;padding:0}
+.dot.done{background:var(--accent)}
+.dot.cur{box-shadow:0 0 0 2px var(--accent-dim),0 0 0 3px var(--accent)}
+.dot:disabled{cursor:default;opacity:.35}
+
+
+.gate{position:fixed;inset:0;background:var(--bg);z-index:50;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:18px;cursor:pointer}
+.gate .g-ttl{font-size:clamp(20px,3.4vw,34px);font-weight:800}
+.gate .g-sub{font-size:13px;color:var(--ink-dim);letter-spacing:.2em}
+.gate .g-btn{width:84px;height:84px;border-radius:50%;border:2px solid var(--accent);background:var(--accent-dim);
+  color:var(--accent);font-size:34px;display:flex;align-items:center;justify-content:center;padding-left:6px}
+.end-note{position:fixed;inset:0;background:var(--bg);z-index:40;display:none;flex-direction:column;
+  align-items:center;justify-content:center;gap:12px}
+.end-note .e-big{font-size:clamp(22px,4vw,40px);font-weight:800;color:var(--accent)}
+@media (max-width:640px){.card{padding:5% 5.5%}.dots{gap:5px}.dot{width:8px;height:8px}}
+</style>
+</head>
+<body>
+<div class="stage-wrap">
+  <div class="topbar">
+    <span class="part-tag">BAGIAN <b id="uiPart">–</b> / <span id="uiParts">–</span></span>
+    <div class="pbar"><i id="uiBar"></i></div>
+    <span class="word-tag">KATA <b id="uiWord">–</b> / <span id="uiWords">–</span></span>
+  </div>
+  <div class="stage"><div class="card fadein" id="uiCard"></div></div>
+  <div class="ctl">
+    <button class="cbtn" id="btnPrev" title="上一词">⏮</button>
+    <button class="cbtn" id="btnPlay" title="播放/暂停">⏸</button>
+    <button class="cbtn" id="btnNext" title="下一词">⏭</button>
+    <button class="cbtn" id="btnRestart" title="重播本片">🔄</button>
+    <div class="dots" id="uiDots"></div>
+  </div>
+</div>
+
+<div class="gate" id="uiGate">
+  <div class="g-sub" id="gateKicker">LEO-BIR · VIDEO HARIAN</div>
+  <div class="g-ttl" id="gateTitle">每日复习视频</div>
+  <div class="g-btn">▶</div>
+  <div class="g-sub" id="gateMeta"></div>
+</div>
+<div class="end-note" id="uiEnd">
+  <div class="e-big" id="endBig">🎉</div>
+  <div class="g-sub" id="endSub"></div>
+</div>
+
+<script>
+"use strict";
+
+const EPISODE = {"date": "2026-09-29", "topic": {"id": "project_management", "cn": "项目管理", "label": "Day 1"}, "wordCount": 39, "part": 1, "parts": 8, "segments": [{"type": "open", "kicker": "LEO-BIR · VIDEO HARIAN · 2026-09-29", "lines": ["Hari ini: 39 kata · 项目管理", "今天学习 39 个新词 · 话题:项目管理(Day 1)"], "tts": [{"l": "id", "t": "Hari ini kita belajar kata-kata baru. Topik hari ini: project management."}, {"l": "zh", "t": "欢迎收看每日复习视频。今天学习 39 个新词。话题:项目管理。这是第 1 集,共 8 集。"}]}, {"type": "word", "idx": 1, "word": "terlibat", "tier": "M", "beats": [{"kind": "head", "word": "terlibat", "cn": "参与（其中）、涉及；被卷入", "en": "involved (in); engaged", "tts": [{"l": "id", "t": "terlibat"}, {"l": "zh", "t": "参与（其中）、涉及，被卷入"}]}, {"kind": "pairs", "title": "SINONIM · 同义词", "rows": [["ikut serta", "常说"], ["termasuk", "属于其中"]], "tts": [{"l": "id", "t": "ikut serta。termasuk。"}, {"l": "zh", "t": "同义词：常说。属于其中。"}]}, {"kind": "pairs", "title": "ANTONIM · 反义词", "rows": [["terlepas (dari)", "置身事外"]], "tts": [{"l": "id", "t": "terlepas (dari)。"}, {"l": "zh", "t": "反义词：置身事外。"}]}, {"kind": "table", "title": "BENTUK · 变形", "rows": [["melibatkan", "动词", "使参与、涉及（me- + libat + -kan，l 前同化为 mel-）"], ["dilibatkan", "被动动词", "被纳入、被使参与"], ["keterlibatan", "名词", "参与（程度）、涉及"]], "tts": [{"l": "id", "t": "melibatkan"}, {"l": "zh", "t": "动词。使参与、涉及"}, {"l": "id", "t": "dilibatkan"}, {"l": "zh", "t": "被动动词。被纳入、被使参与"}, {"l": "id", "t": "keterlibatan"}, {"l": "zh", "t": "名词。参与（程度）、涉及"}]}, {"kind": "example", "id": "Lima kontraktor besar terlibat dalam pembangunan smelter fase dua.", "zh": "五家大承包商参与了二期冶炼厂建设。", "tts": [{"l": "id", "t": "Lima kontraktor besar terlibat dalam pembangunan smelter fase dua."}, {"l": "zh", "t": "五家大承包商参与了二期冶炼厂建设"}]}, {"kind": "head", "word": "terlibat", "cn": "参与（其中）、涉及；被卷入", "en": "involved (in); engaged", "compact": true, "tts": [{"l": "id", "t": "terlibat"}, {"l": "zh", "t": "参与（其中）、涉及，被卷入"}]}]}, {"type": "word", "idx": 2, "word": "tim inti terdiri dari", "tier": "L", "beats": [{"kind": "head", "word": "tim inti terdiri dari", "cn": "核心团队由……组成", "en": "the core team consists of…", "tts": [{"l": "id", "t": "tim inti terdiri dari"}, {"l": "zh", "t": "核心团队由……组成"}]}, {"kind": "example", "id": "Tim inti terdiri dari tiga orang saja, tapi di balik layar ada dua puluh engineer pendukung.", "zh": "核心团队只有三人，但背后有二十名工程师支持。", "tts": [{"l": "id", "t": "Tim inti terdiri dari tiga orang saja, tapi di balik layar ada dua puluh engineer pendukung."}, {"l": "zh", "t": "核心团队只有三人，但背后有二十名工程师支持"}]}, {"kind": "head", "word": "tim inti terdiri dari", "cn": "核心团队由……组成", "en": "the core team consists of…", "compact": true, "tts": [{"l": "id", "t": "tim inti terdiri dari"}, {"l": "zh", "t": "核心团队由……组成"}]}]}, {"type": "word", "idx": 3, "word": "fase", "tier": "M", "beats": [{"kind": "head", "word": "fase", "cn": "阶段、期", "en": "phase", "tts": [{"l": "id", "t": "fase"}, {"l": "zh", "t": "阶段、期"}]}, {"kind": "pairs", "title": "SINONIM · 同义词", "rows": [["tahap", "步骤、阶段，最常用"]], "tts": [{"l": "id", "t": "tahap。"}, {"l": "zh", "t": "同义词：步骤、阶段，最常用。"}]}, {"kind": "pairs", "title": "ANTONIM · 反义词", "rows": [["keseluruhan", "整体——对「阶段」而言"]], "tts": [{"l": "id", "t": "keseluruhan。"}, {"l": "zh", "t": "反义词：整体——对「阶段」而言。"}]}, {"kind": "table", "title": "BENTUK · 变形", "rows": [["fase-fase", "名词复数", "各阶段（重叠复数）"], ["berfase / berfase-fase", "动词", "分阶段进行"]], "tts": [{"l": "id", "t": "fase-fase"}, {"l": "zh", "t": "名词复数。各阶段（重叠复数）"}, {"l": "id", "t": "berfase / berfase-fase"}, {"l": "zh", "t": "动词。分阶段进行"}]}, {"kind": "example", "id": "Proyek ini masuk fase commissioning, jangan ada pekerjaan tambahan.", "zh": "项目进入调试阶段，不要有额外作业。", "tts": [{"l": "id", "t": "Proyek ini masuk fase commissioning, jangan ada pekerjaan tambahan."}, {"l": "zh", "t": "项目进入调试阶段，不要有额外作业"}]}, {"kind": "head", "word": "fase", "cn": "阶段、期", "en": "phase", "compact": true, "tts": [{"l": "id", "t": "fase"}, {"l": "zh", "t": "阶段、期"}]}]}, {"type": "word", "idx": 4, "word": "anggaran", "tier": "M", "beats": [{"kind": "head", "word": "anggaran", "cn": "预算、经费；筹划（古/雅）", "en": "budget", "tts": [{"l": "id", "t": "anggaran"}, {"l": "zh", "t": "预算、经费，筹划（古/雅）"}]}, {"kind": "pairs", "title": "SINONIM · 同义词", "rows": [["bujet", "budget 口语借词"], ["dana", "资金——指现有款项，语义略不同"]], "tts": [{"l": "id", "t": "bujet。dana。"}, {"l": "zh", "t": "同义词：资金——指现有款项，语义略不同。"}]}, {"kind": "pairs", "title": "ANTONIM · 反义词", "rows": [["pemasukan", "进账——仅在「支出/开销」语境下构成反义；「预算」本身无严格反义词"]], "tts": [{"l": "id", "t": "pemasukan。"}, {"l": "zh", "t": "反义词：进账——仅在「支出/开销」语境下构成反义，「预算」本身无严格反义词。"}]}, {"kind": "table", "title": "BENTUK · 变形", "rows": [["menganggarkan", "动词", "编制预算、列入预算（me- + anggar + -kan）"], ["penganggaran", "名词", "预算编制"], ["anggaran belanja", "名词词组", "支出预算（belanja = 开销）"]], "tts": [{"l": "id", "t": "menganggarkan"}, {"l": "zh", "t": "动词。编制预算、列入预算"}, {"l": "id", "t": "penganggaran"}, {"l": "zh", "t": "名词。预算编制"}, {"l": "id", "t": "anggaran belanja"}, {"l": "zh", "t": "名词词组。支出预算"}]}, {"kind": "example", "id": "Anggaran proyek ini direvisi karena harga baja naik dua puluh persen.", "zh": "因为钢材价格上涨两成，项目预算修订了。", "tts": [{"l": "id", "t": "Anggaran proyek ini direvisi karena harga baja naik dua puluh persen."}, {"l": "zh", "t": "因为钢材价格上涨两成，项目预算修订了"}]}, {"kind": "head", "word": "anggaran", "cn": "预算、经费；筹划（古/雅）", "en": "budget", "compact": true, "tts": [{"l": "id", "t": "anggaran"}, {"l": "zh", "t": "预算、经费，筹划（古/雅）"}]}]}, {"type": "word", "idx": 5, "word": "durasi", "tier": "M", "beats": [{"kind": "head", "word": "durasi", "cn": "持续时间、时长", "en": "duration", "tts": [{"l": "id", "t": "durasi"}, {"l": "zh", "t": "持续时间、时长"}]}, {"kind": "pairs", "title": "SINONIM · 同义词", "rows": [["lama", "时长：sebulan lamanya"], ["jangka waktu", "期限"]], "tts": [{"l": "id", "t": "lama。jangka waktu。"}, {"l": "zh", "t": "同义词：时长。期限。"}]}, {"kind": "table", "title": "BENTUK · 变形", "rows": [["durasi minimum", "名词词组", "最短时长"], ["durasi maksimum", "名词词组", "最长时长"]], "tts": [{"l": "id", "t": "durasi minimum"}, {"l": "zh", "t": "名词词组。最短时长"}, {"l": "id", "t": "durasi maksimum"}, {"l": "zh", "t": "名词词组。最长时长"}]}, {"kind": "example", "id": "Durasi shutdown tahunan kira-kira dua puluh hari.", "zh": "年度大修时长大约二十天。", "tts": [{"l": "id", "t": "Durasi shutdown tahunan kira-kira dua puluh hari."}, {"l": "zh", "t": "年度大修时长大约二十天"}]}, {"kind": "head", "word": "durasi", "cn": "持续时间、时长", "en": "duration", "compact": true, "tts": [{"l": "id", "t": "durasi"}, {"l": "zh", "t": "持续时间、时长"}]}]}, {"type": "review", "title": "ULANG CEPAT · 本集回顾", "words": [{"w": "terlibat", "cn": "参与（其中）"}, {"w": "tim inti terdiri dari", "cn": "核心团队由……组成"}, {"w": "fase", "cn": "阶段"}, {"w": "anggaran", "cn": "预算"}, {"w": "durasi", "cn": "持续时间"}], "tts": [{"l": "zh", "t": "本集回顾。"}, {"l": "id", "t": "terlibat"}, {"l": "zh", "t": "参与（其中）。"}, {"l": "id", "t": "tim inti terdiri dari"}, {"l": "zh", "t": "核心团队由……组成。"}, {"l": "id", "t": "fase"}, {"l": "zh", "t": "阶段。"}, {"l": "id", "t": "anggaran"}, {"l": "zh", "t": "预算。"}, {"l": "id", "t": "durasi"}, {"l": "zh", "t": "持续时间。"}]}, {"type": "close", "kicker": "SELESAI · 本集结束", "lines": ["Bagian 1 selesai · 第 1 集完成", "Itu dia 5 kata bagian ini. 继续加油!"], "tts": [{"l": "id", "t": "Bagian 1 selesai."}, {"l": "zh", "t": "本集 5 个词学习完毕。"}]}], "availableParts": 2};
+
+
+const $ = id => document.getElementById(id);
+const CJK = /[\u4e00-\u9fff\u3400-\u4dbf]/;
+function tokenCount(text){
+  let latin=0, cjk=0;
+  const words = String(text).split(/\s+/).filter(Boolean);
+  for(const w of words){
+    const cjkChars = (w.match(/[\u4e00-\u9fff\u3400-\u4dbf]/g)||[]).length;
+    cjk += cjkChars;
+    latin += (w.replace(/[\u4e00-\u9fff\u3400-\u4dbf]/g,'').match(/[A-Za-z0-9'-]+/g)||[]).length;
+  }
+  return latin + cjk/1.8;
+}
+function estMs(text, lang){
+  if(lang==='id') return Math.round(tokenCount(text)*400)+300;
+  const cjkChars=(String(text).match(/[\u4e00-\u9fff\u3400-\u4dbf]/g)||[]).length;
+  const latin=(String(text).replace(/[\u4e00-\u9fff\u3400-\u4dbf]/g,'').match(/[A-Za-z0-9'-]+/g)||[]).length;
+  return Math.round(cjkChars*280 + latin*400)+300;
+}
+function minShowMs(text){ return Math.round(1600 + tokenCount(text)*520); }
+
+
+const SEQ = [];   
+(function flatten(){
+  for(const seg of EPISODE.segments){
+    if(seg.type==='word'){
+      for(const b of seg.beats) SEQ.push({seg, beat:b, wordIdx:seg.idx});
+    }else{
+      SEQ.push({seg, beat:seg, wordIdx:null});
+    }
+  }
+})();
+
+
+let VOICES=[];
+function loadVoices(){ VOICES = speechSynthesis.getVoices(); }
+if('speechSynthesis' in window){ loadVoices(); speechSynthesis.onvoiceschanged = loadVoices; }
+function pickVoice(lang){
+  const p = lang==='id' ? 'id' : 'zh';
+  const hit = VOICES.filter(v => (v.lang||'').toLowerCase().replace('_','-').startsWith(p));
+  return hit[0] || null;
+}
+function speak(text, lang, onend){
+  const u = new SpeechSynthesisUtterance(text);
+  if(lang==='id'){ u.lang='id-ID'; } else { u.lang='zh-CN'; }
+  const v = pickVoice(lang); if(v) u.voice = v;
+  u.rate = 0.96; u.pitch = 1.0;
+  let ended = false;
+  const est = estMs(text, lang);
+  const hard = setTimeout(()=>{ if(!ended){ ended=true; try{speechSynthesis.cancel();}catch(e){} onend&&onend(); } }, est*3 + 8000);
+  u.onend = ()=>{ if(!ended){ ended=true; clearTimeout(hard); onend&&onend(); } };
+  u.onerror = ()=>{ if(!ended){ ended=true; clearTimeout(hard); onend&&onend(); } };
+  speechSynthesis.speak(u);
+}
+
+
+let cur = 0;               
+let phase = 'gate';        
+let beatToken = 0;         
+let curUtt = 0;
+let wordDone = {};         
+
+
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function renderBeat(item){
+  const b = item.beat, card = $('uiCard');
+  let h = '';
+  if(b.type==='open' || b.type==='close'){
+    h = `<div class="kicker">${esc(b.kicker||'')}</div>` +
+        b.lines.map((l,i)=> i===0
+          ? `<div class="ttl">${esc(l)}</div>`
+          : `<div class="sub">${esc(l)}</div>`).join('');
+  }else if(b.type==='preview' || b.type==='review'){
+    h = `<div class="b-title">${esc(b.title)}</div><div class="list-w">` +
+        b.words.map((w,i)=>`<div class="list-row"><span class="no">${String(i+1).padStart(2,'0')}</span><span class="w">${esc(w.w)}</span><span class="c">${esc(w.cn)}</span></div>`).join('') +
+        `</div>`;
+  }else{
+    switch(b.kind){
+      case 'head':
+        h = `<div class="kicker">${b.compact?'SEBUT LAGI · 再读一次':'KATA · 新词'}</div>`+
+            `<div class="h-word">${esc(b.word)}</div>`+
+            `<div class="h-cn">${esc(b.cn)}</div>`+
+            (b.en?`<div class="h-en">${esc(b.en)}</div>`:'');
+        break;
+      case 'pairs':
+        h = `<div class="b-title">${esc(b.title)}</div>` +
+            b.rows.map(r=>`<div class="prow"><span class="pw">${esc(r[0])}</span><span class="pc">${esc(r[1]||'')}</span></div>`).join('');
+        break;
+      case 'table':
+        h = `<div class="b-title">${esc(b.title)}</div><div class="tbl">` +
+            b.rows.map(r=>`<div class="trow"><span class="tcell f">${esc(r[0])}</span><span class="tcell p">${esc(r[1]||'')}</span><span class="tcell m">${esc(r[2]||'')}</span></div>`).join('') +
+            `</div>`;
+        break;
+      case 'example':
+        h = `<div class="b-title">CONTOH · 例句</div>`+
+            `<div class="ex-id">${esc(b.id)}</div>`+
+            (b.zh?`<div class="ex-zh">${esc(b.zh)}</div>`:'');
+        break;
+      default:
+        h = `<div class="sub">${esc(b.raw||'')}</div>`;
+    }
+  }
+  card.classList.remove('fadein'); void card.offsetWidth;
+  card.innerHTML = h; card.classList.add('fadein');
+  
+  $('uiBar').style.width = (SEQ.length? (cur/SEQ.length)*100 : 0) + '%';
+  if(item.wordIdx){ $('uiWord').textContent = item.wordIdx; }
+  else{
+    
+    for(let i=cur;i>=0;i--){ if(SEQ[i].wordIdx){ $('uiWord').textContent = SEQ[i].wordIdx; break; } }
+  }
+  
+  const ws = partWords();
+  const firstBeat = {};
+  SEQ.forEach((it,i)=>{ if(it.wordIdx!=null && !(it.wordIdx in firstBeat)) firstBeat[it.wordIdx]=i; });
+  document.querySelectorAll('.dot').forEach((d,i)=>{
+    const w = ws[i];
+    d.classList.toggle('done', (w in firstBeat) && firstBeat[w] < cur);
+    d.classList.toggle('cur', item.wordIdx===w);
+  });
+}
+function partWords(){ return EPISODE.segments.filter(s=>s.type==='word').map(s=>s.idx); }
+function buildDots(){
+  const box = $('uiDots'); box.innerHTML='';
+  partWords().forEach((w,i)=>{
+    const btn = document.createElement('button');
+    btn.className='dot'; btn.title='Kata '+w;
+    btn.onclick = ()=> jumpToWord(w);
+    box.appendChild(btn);
+  });
+}
+
+
+function postProgress(item, done){
+  try{
+    if(!window.parent || window.parent===window) return;
+    window.parent.postMessage({type:'video_progress', wordIdx: item.wordIdx||lastWordIdx(), done:!!done}, location.origin);
+  }catch(e){}
+}
+function lastWordIdx(){ const ws=partWords(); return ws.length?ws[ws.length-1]:0; }
+
+function playBeat(idx){
+  const my = ++beatToken;
+  cur = idx;
+  const item = SEQ[cur]; if(!item) return finish();
+  renderBeat(item);
+  if(item.wordIdx && !wordDone[item.wordIdx]){
+    wordDone[item.wordIdx]=true; postProgress(item,false);
+  }
+  const b = item.beat;
+  const utts = b.tts || [];
+  const ests = utts.map(u=>estMs(u.t,u.l));
+  const sumEst = ests.reduce((a,c)=>a+c,420);
+  const maxMin = utts.reduce((a,u)=>Math.max(a,minShowMs(u.t)),0);
+  const floor = Math.max(sumEst, maxMin);
+  const t0 = performance.now();
+  curUtt = 0;
+  
+  const hardBeat = setTimeout(()=>{ if(my!==beatToken) return; forceAdvance(); }, sumEst*3 + 15000);
+  const cleanup = ()=> clearTimeout(hardBeat);
+  const nextUtt = ()=>{
+    if(my!==beatToken){ cleanup(); return; }
+    if(curUtt < utts.length){
+      const u = utts[curUtt++];
+      speak(u.t, u.l, ()=> setTimeout(()=>{ if(my===beatToken) nextUtt(); }, 420));
+    }else{
+      
+      const shown = performance.now()-t0;
+      const wait = floor - shown;
+      if(wait>0) setTimeout(()=>{ if(my===beatToken){ cleanup(); advance(); } }, wait);
+      else { cleanup(); advance(); }
+    }
+  };
+  nextUtt();
+}
+function forceAdvance(){ try{speechSynthesis.cancel();}catch(e){} advance(); }
+function advance(){
+  if(cur+1 < SEQ.length) playBeat(cur+1);
+  else finish();
+}
+function finish(){
+  phase='end';
+  postProgress({wordIdx:lastWordIdx()}, true);
+  try{speechSynthesis.cancel();}catch(e){}
+  const total=Math.min(EPISODE.parts,EPISODE.availableParts||EPISODE.parts);
+  const hasNext=(EPISODE.part||1)<total;
+  const e = $('uiEnd');
+  e.style.display='flex';
+  $('endBig').textContent = hasNext?'▶':'🎉';
+  $('endSub').textContent = hasNext
+    ? 'BAGIAN '+EPISODE.part+' SELESAI · 即将继续第 '+(EPISODE.part+1)+' 集'
+    : 'BAGIAN '+EPISODE.part+' SELESAI · 第 '+EPISODE.part+' 集完成';
+  if(hasNext){ setTimeout(()=>{ location.href='./daily_'+EPISODE.date+'_p'+(EPISODE.part+1)+'.html'; }, 1400); }
+  setTimeout(()=>{ e.style.display='none'; }, 2600);
+}
+
+
+function jumpToWord(w){
+  const i = SEQ.findIndex(it=> it.wordIdx===w);
+  if(i>=0){ phase='play'; $('btnPlay').textContent='⏸'; try{speechSynthesis.cancel();}catch(e){} playBeat(i); }
+}
+function nearestWordStep(dir){
+  const item = SEQ[cur]; if(!item) return;
+  const ws = partWords();
+  let pos;
+  if(item.wordIdx==null){
+    
+    if(dir>0){ for(let i=cur+1;i<SEQ.length;i++){ if(SEQ[i].wordIdx){ playBeat(i); return; } } finish(); return; }
+    else{ for(let i=cur-1;i>=0;i--){ if(SEQ[i].wordIdx){ playBeat(i); return; } } return; }
+  }
+  pos = ws.indexOf(item.wordIdx) + dir;
+  if(pos<0 || pos>=ws.length) return;
+  jumpToWord(ws[pos]);
+}
+$('btnPlay').onclick = ()=>{
+  if(phase==='play'){
+    phase='paused'; $('btnPlay').textContent='▶';
+    beatToken++; try{speechSynthesis.cancel();}catch(e){}
+  }else if(phase==='paused'){
+    phase='play'; $('btnPlay').textContent='⏸';
+    playBeat(cur);   
+  }
+};
+$('btnPrev').onclick = ()=> nearestWordStep(-1);
+$('btnNext').onclick = ()=> nearestWordStep(1);
+$('btnRestart').onclick = ()=>{ phase='play'; $('btnPlay').textContent='⏸'; wordDone={}; playBeat(0); };
+
+
+function start(){
+  if(phase!=='gate') return;
+  phase='play';
+  $('uiGate').style.display='none';
+  $('btnPlay').textContent='⏸';
+  let begin = 0;
+  const rp = new URLSearchParams(location.search).get('resume');
+  if(rp){ const w=parseInt(rp,10); const i=SEQ.findIndex(it=>it.wordIdx===w); if(i>=0) begin=i; }
+  playBeat(begin);
+}
+(function init(){
+  $('uiPart').textContent = EPISODE.part;
+  $('uiParts').textContent = EPISODE.parts;
+  $('uiWords').textContent = EPISODE.wordCount;
+  const meta = EPISODE.topic||{};
+  $('gateKicker').textContent = (meta.label? meta.label+' · ':'') + 'LEO-BIR · VIDEO HARIAN';
+  $('gateTitle').textContent = (meta.cn||'') + ' · ' + (EPISODE.wordCount||'') + ' kata';
+  $('gateMeta').textContent = 'BAGIAN '+EPISODE.part+' / '+EPISODE.parts + ' · ' + EPISODE.date;
+  $('uiWord').textContent = (partWords()[0]||'–');
+  buildDots();
+  renderBeat(SEQ[0]||{beat:{type:'open',lines:[''],kicker:''}});
+  $('uiGate').addEventListener('click', start);
+})();
+</script>
+</body>
+</html>

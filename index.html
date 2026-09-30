@@ -6,7 +6,7 @@
 <meta http-equiv="Expires" content="0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LEO-BIR V4.34.0</title>
+<title>LEO-BIR V4.35.0</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -268,6 +268,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
 </style>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="video_registry.js?v=V4.35.0"></script>
 </head>
 <body>
 <div class="app">
@@ -275,7 +276,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="sidebar-header">
     <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <h1>LEO-BIR</h1>
-    <div class="ver">LEO-BIR V4.34.0 · BIT详解库四级回退 + 转换器自动并入</div>
+    <div class="ver">LEO-BIR V4.35.0 · 每日复习视频 Layer 1（2 集样片）</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -305,6 +306,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
       <li data-route="quiz"><span style="margin-right:8px">🎯</span><div style="display:flex;flex-direction:column;line-height:1.3"><span style="font-size:13px">课时测试</span><span style="font-size:10px;color:var(--text-dim)">Ujian Pelajaran</span></div></li>
       <li data-route="vocabulary"><span style="margin-right:8px">📖</span><div style="display:flex;flex-direction:column;line-height:1.3"><span style="font-size:13px">词汇库</span><span style="font-size:10px;color:var(--text-dim)">Perpustakaan</span></div></li>
       <li data-route="review"><span style="margin-right:8px">🧠</span><div style="display:flex;flex-direction:column;line-height:1.3"><span style="font-size:13px">复习</span><span style="font-size:10px;color:var(--text-dim)">Ulangan</span></div></li>
+      <li data-route="dailyvideo" id="navDailyVideo" style="display:none"><span style="margin-right:8px">🎬</span><div style="display:flex;flex-direction:column;line-height:1.3"><span style="font-size:13px">每日视频</span><span style="font-size:10px;color:var(--text-dim)">Video Harian</span></div></li>
       <li data-route="aichat"><span style="margin-right:8px">🤖</span><div style="display:flex;flex-direction:column;line-height:1.3"><span style="font-size:13px">AI对话</span><span style="font-size:10px;color:var(--text-dim)">Obrolan AI</span></div></li>
       <li data-route="member"><span style="margin-right:8px">👑</span><div style="display:flex;flex-direction:column;line-height:1.3"><span style="font-size:13px">会员中心</span><span style="font-size:10px;color:var(--text-dim)">Anggota</span></div></li>
       <li data-route="phonetics"><span style="margin-right:8px">🔤</span><div style="display:flex;flex-direction:column;line-height:1.3"><span style="font-size:13px">字母发音表</span><span style="font-size:10px;color:var(--text-dim)">Fonetik</span></div></li>
@@ -1809,6 +1811,8 @@ function navigate(r,p){
   updateTopbarButtons();
 }
 function goBack(){
+  // V4.35.0 m5 互斥判据：overlay 打开时优先关闭浮层，不触发页面回退（与 popstate 等价单一行为）
+  if(typeof isVideoOverlayOpen==='function'&&isVideoOverlayOpen()){closeDailyVideo();return;}
   if(pageHistory.length>1){
     pageHistory.pop();
     const prev=pageHistory[pageHistory.length-1]||'home';
@@ -1838,6 +1842,7 @@ function render(){
     case "quiz":t.innerText="🎯 课时测试";renderDailyQuiz(c);break;
     case "vocabulary":t.innerText="📖 词汇库";renderVocabulary(c);break;
     case "review":t.innerText="🔄 复习";renderReview(c);break;
+    case "dailyvideo":t.innerText="🎬 每日视频";renderDailyVideo(c);break;
     case "aichat":t.innerText="🤖 AI对话";renderAIChat(c);break;
     case "member":t.innerText="👑 会员中心";renderMember(c);break;
       case "topicquiz":t.innerText="🎯 话题测试";renderTopicQuiz(c,p);break;
@@ -1883,14 +1888,74 @@ function renderCalHTML(){
 function attachCalEvents(){document.querySelectorAll(".cal-day[data-date]").forEach(el=>{el.addEventListener("click",()=>{const ds=el.dataset.date;if(learningHistory[ds])navigate("date",ds)})})}
 function changeMonth(delta){currentDate.setMonth(currentDate.getMonth()+delta);renderHome(document.getElementById("appContent"))}
 
+// ===== V4.35.0 每日复习视频 Layer 1（video_registry.js 唯一真相源；VIDEO_DB 未定义时入口整体隐藏） =====
+let videoCur=null;
+function getVideoDB(){return (typeof VIDEO_DB!=='undefined')?VIDEO_DB:null;}
+function isVideoOverlayOpen(){const ov=document.getElementById('videoOverlay');return !!ov&&ov.style.display==='flex';}
+function videoSeenKey(d,p){return 'bir_vid_seen_'+d+'_p'+p;}
+function isPartSeen(d,p){try{return localStorage.getItem(videoSeenKey(d,p))==='1';}catch(e){return false;}}
+function markPartSeen(d,p){try{localStorage.setItem(videoSeenKey(d,p),'1');}catch(e){}}
+function showVideoToast(msg){const t=document.createElement('div');t.style.cssText='position:fixed;top:18%;left:50%;transform:translateX(-50%);background:rgba(8,11,18,.95);border:1px solid var(--primary);color:var(--text);padding:14px 22px;border-radius:12px;font-size:15px;z-index:10001;box-shadow:0 8px 30px rgba(0,0,0,.5)';t.innerText=msg;document.body.appendChild(t);setTimeout(()=>t.remove(),3600);}
+function renderVideoBanner(ds,v){return `<div onclick="navigate('dailyvideo')" style="cursor:pointer;margin:0 0 12px;padding:12px 14px;border-radius:10px;background:rgba(59,130,246,.12);border:1px solid rgba(59,130,246,.35);display:flex;align-items:center;gap:10px"><span style="font-size:22px">🎬</span><div style="flex:1"><div style="font-size:13px;font-weight:700;color:var(--info)">本日有复习视频 · Video Harian tersedia</div><div style="font-size:11px;color:var(--text-dim)">${v.parts}/${v.plannedParts} 集 · ${v.wordCount} 词 · 点击进入</div></div><span style="color:var(--text-dim)">›</span></div>`;}
+function renderDailyVideo(c){
+  const db=getVideoDB();
+  if(!db){c.innerHTML='<div class="card" style="text-align:center;padding:40px;color:var(--text-dim)">🎬 视频库暂未开放</div>';return;}
+  const today=new Date().toISOString().slice(0,10);
+  const dates=Object.keys(db).sort().reverse();
+  let html='<div class="card"><div class="card-header"><h2>🎬 每日视频 / Video Harian</h2><span class="badge">Layer 1</span></div><div style="padding:12px 16px">';
+  html+=db[today]?renderVideoDateCard(db[today],today,true):'<div style="color:var(--text-dim);font-size:13px;margin-bottom:4px">今日暂无视频，以下为历史记录。</div>';
+  html+='</div></div>';
+  const hist=dates.filter(d=>!(d===today&&db[today]));
+  if(hist.length){html+='<div class="card"><div class="card-header"><h2>📼 历史 / Riwayat</h2><span class="badge">'+hist.length+' 天</span></div><div style="padding:12px 16px">';hist.forEach(d=>{html+=renderVideoDateCard(db[d],d,false);});html+='</div></div>';}
+  c.innerHTML=html;
+}
+function renderVideoDateCard(v,d,isToday){
+  const n=v.files.length;
+  let dots='',btns='';
+  for(let i=0;i<n;i++){
+    const seen=isPartSeen(d,i+1);
+    dots+=`<span id="vdot-${d}-${i+1}" style="width:22px;height:22px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:11px;border:1px solid var(--primary);${seen?'opacity:.4;':''}">${i+1}</span>`;
+    btns+=`<button class="trans-btn btn-small" style="margin:6px 6px 0 0;${seen?'opacity:.5;':''}" onclick="openDailyVideo('${d}',${i+1})">▶ 第 ${i+1} 集</button>`;
+  }
+  const seenCnt=v.files.filter((f,i)=>isPartSeen(d,i+1)).length;
+  return `<div style="border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:12px;background:rgba(0,212,170,.04)"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;flex-wrap:wrap;gap:6px"><div style="font-size:15px;font-weight:700;color:var(--primary)">${isToday?'⭐ ':''}${d} · ${v.topicCn||''}</div><div style="font-size:11px;color:var(--text-dim)">${v.wordCount} 词 · ${seenCnt}/${n} 集已看</div></div><div style="font-size:12px;color:var(--text-dim);margin-bottom:8px">${v.words.slice(0,8).join('、')}${v.words.length>8?' …':''}</div><div style="display:flex;gap:6px;margin-bottom:4px;flex-wrap:wrap">${dots}</div><div>${btns}</div></div>`;
+}
+function openDailyVideo(d,p){
+  const db=getVideoDB();if(!db||!db[d])return;
+  const f=db[d].files[p-1];if(!f)return;
+  videoCur={date:d,part:p};
+  document.getElementById('videoFrame').src=f;
+  document.getElementById('videoOverlayTitle').innerText='🎬 '+d+' · 第 '+p+' 集 / Bagian '+p;
+  document.getElementById('videoOverlay').style.display='flex';
+}
+function closeDailyVideo(){
+  document.getElementById('videoOverlay').style.display='none';
+  document.getElementById('videoFrame').src='about:blank';
+  videoCur=null;
+  if(currentRoute==='dailyvideo'){try{renderDailyVideo(document.getElementById('appContent'));}catch(e){}}
+}
+window.addEventListener('message',(e)=>{
+  if(e.origin!==location.origin)return; // RCO 审计加固：只收同源 iframe
+  const d=e.data||{};
+  if(d.type!=='video_progress')return;
+  if(d.done&&videoCur){
+    markPartSeen(videoCur.date,videoCur.part);
+    const db=getVideoDB();
+    if(db&&db[videoCur.date]&&videoCur.part>=db[videoCur.date].files.length){showVideoToast('今日 '+db[videoCur.date].files.length+' 集样片完成 🎉');}
+  }
+});
+// V4.35.0 菜单解隐：VIDEO_DB 存在即显示侧边栏「每日视频」入口（script 按序执行时注册表已加载）
+try{if(getVideoDB()){const _nv=document.getElementById('navDailyVideo');if(_nv)_nv.style.display='';}}catch(_e){}
 function renderDateDetail(c,ds){
   const data=learningHistory[ds];
   const tc=getTopicForDate(ds);
+  const vd=getVideoDB();
   // 如果有话题日历, 默认显示话题内容(课程), 可切换学习记录
   if(tc){
     // nickel话题由renderNickelContent自己添加返回键,避免重复
     const backBtn = (tc.topic === 'nickel') ? '' : `<button class="back-btn" onclick="goBack()">← 返回</button>`;
     let html = `<div class="date-detail">${backBtn}`;
+    if(vd&&vd[ds])html+=renderVideoBanner(ds,vd[ds]);
     if(data && (data.vocabNew.length||data.vocabReview.length||data.translations)){
       html += `<div style="display:flex;gap:8px;margin-bottom:12px;"><button onclick="showDateStudyRecord('${ds}')" class="trans-btn btn-small" style="font-size:12px;">📋 查看学习记录</button></div>`;
     }
@@ -2805,7 +2870,7 @@ function showQ(){if(quizState.q>=quizState.total){showQRes();return;}const q=qui
 
 function showQuizQ(){if(quizState.q>=quizState.total){showQRes();return;}const q=quizState.questions[quizState.q];const opts=[q.data.cn,...q.wrong].sort(()=>Math.random()-.5);document.getElementById("quizArea").innerHTML=`<div style="margin-bottom:12px;font-size:13px;color:var(--text-dim)">${quizState.q+1}/${quizState.total}</div><div class="quiz-card"><div class="q-text">「<strong style="color:var(--primary)">${q.word}</strong>」的中文?</div><div style="font-size:12px;color:var(--text-dim);margin-bottom:10px">${q.data.ipa||""}</div>${opts.map((opt,i)=>`<div class="q-opt" onclick="ansQ('${opt.replace(/'/g,"&#39;")}','${q.data.cn.replace(/'/g,"&#39;")}',this)">${String.fromCharCode(65+i)}. ${opt}</div>`).join("")}</div>`;}
 function ansQ(sel,correct,el){const opts=el.parentElement.querySelectorAll(".q-opt");opts.forEach(o=>o.style.pointerEvents="none");const ok=sel===correct;if(ok){el.classList.add("correct");quizState.correct++;}else{el.classList.add("wrong");opts.forEach(o=>{if(o.innerText.includes(correct))o.classList.add("correct");});}quizState.done++;setTimeout(()=>{quizState.q++;if(quizState.questions && quizState.q < quizState.questions.length){showQuizQ();}else{showQRes();}},1200);}
-function showQRes(){const pct=Math.round((quizState.correct/quizState.total)*100);const msg=pct>=80?"优秀!":pct>=60?"不错!":"需多练习!";document.getElementById("quizArea").innerHTML=`<div style="text-align:center;padding:30px"><div style="font-size:56px;margin-bottom:10px">${pct>=80?"🎉":pct>=60?"👍":"💪"}</div><div style="font-size:28px;font-weight:700;color:var(--primary)">${pct}%</div><div style="color:var(--text-dim);margin:8px 0">${quizState.correct}/5</div><div style="color:var(--text);margin-bottom:16px">${msg}</div><button class="trans-btn" onclick="startQuiz()">再测</button></div>`;}
+function showQRes(){const pct=Math.round((quizState.correct/quizState.total)*100);const msg=pct>=80?"优秀!":pct>=60?"不错!":"需多练习!";const _vdb=(typeof getVideoDB==='function')?getVideoDB():null;const _today=new Date().toISOString().slice(0,10);const _vid=(_vdb&&_vdb[_today])?`<button class="trans-btn" style="margin-left:8px" onclick="navigate('dailyvideo')">🎬 今日复习视频</button>`:"";document.getElementById("quizArea").innerHTML=`<div style="text-align:center;padding:30px"><div style="font-size:56px;margin-bottom:10px">${pct>=80?"🎉":pct>=60?"👍":"💪"}</div><div style="font-size:28px;font-weight:700;color:var(--primary)">${pct}%</div><div style="color:var(--text-dim);margin:8px 0">${quizState.correct}/5</div><div style="color:var(--text);margin-bottom:16px">${msg}</div><button class="trans-btn" onclick="startQuiz()">再测</button>${_vid}</div>`;}
 
 function renderVocabulary(c){
   const tags=["all","基础词汇","商务高频","ber-动词","ber-形容词","语法术语","问候语"];
@@ -39168,6 +39233,10 @@ function renderAbout(c){
 function renderVersion(c){
   c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.23 / Versi</span></div>
     <div style="padding:16px;">
+      <div style="margin-bottom:14px;padding:14px;background:rgba(59,130,246,.10);border-radius:10px;border-left:3px solid var(--info)">
+        <div style="font-size:15px;font-weight:700;color:var(--info);margin-bottom:6px">V4.35.0 (2026-09-30)</div>
+        <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">1. 新增「每日复习视频 / Video Harian」Layer 1：视频库页(今日卡+历史列表+集数圆点已看标记) · overlay 全屏播放器(sandbox=allow-scripts allow-same-origin,关闭重置 about:blank) · 入口四处：侧边栏菜单/学习日历当日详情页横幅/每日测试完成页链接/视频库内跳转 · 首日内容 2026-09-29 项目管理 2 集样片(p1: terlibat→durasi 约4分00秒 / p2: direncanakan→mekanisme 约4分30秒, 引擎 daily-1.0.0 三档时长 L35-45s/M45-55s/H65-80s) · 注册表 video_registry.js 唯一真相源(BIO 印章 sha8=3d63246c 绑定) · VIDEO_DB 未定义时全部入口自动隐藏 · 管线 biv_daily.py(BIO 门+9 项 lint+非空断言)</div>
+      </div>
       <div style="margin-bottom:14px;padding:14px;background:rgba(0,212,170,.08);border-radius:10px;border-left:3px solid var(--primary)">
         <div style="font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px">V4.34.0 (2026-09-29)</div>
         <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">1. 每日单词笔记新增 2026-09-29: 39 词条(terlibat→fokus pada) · 词表与 BIT 原始输入逐词对齐（RCO 审计） · 话题 项目管理 Day 1(project_management) · BIT V1.0 初稿→BIO 定稿 PASS_WITH_REVISIONS(R1–R8 修订) · 48 例句 · 103 变形表行 · bitVocabDB 同步并入 39 词（热修：移除非输入词 1、恢复误覆盖旧条目 2） · 日期并存(09-16~09-29)</div>
@@ -43770,5 +43839,15 @@ function queryMIR(){
   // fetch('/api/mir?query=' + encodeURIComponent(query)).then(...)
 }
 </script>
+<!-- V4.35.0 Layer1 视频播放器 overlay：src 仅打开时赋值，关闭重置 about:blank；sandbox 无 top-navigation 防劫持 -->
+<div id="videoOverlay" style="display:none;position:fixed;inset:0;background:rgba(5,8,14,.94);z-index:10000;flex-direction:column;align-items:center;justify-content:center;padding:20px">
+  <div style="width:100%;max-width:calc((100vh - 90px) * 16 / 9);display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
+    <div id="videoOverlayTitle" style="font-size:14px;color:var(--text);font-weight:700">🎬 每日复习视频</div>
+    <button onclick="closeDailyVideo()" style="background:rgba(255,255,255,.08);border:1px solid var(--border);color:var(--text);width:34px;height:34px;border-radius:50%;font-size:16px;cursor:pointer">✕</button>
+  </div>
+  <div style="width:100%;max-width:calc((100vh - 90px) * 16 / 9);aspect-ratio:16/9;background:#000;border-radius:12px;overflow:hidden;border:1px solid var(--border)">
+    <iframe id="videoFrame" sandbox="allow-scripts allow-same-origin" style="width:100%;height:100%;border:0" src="about:blank" allow="autoplay"></iframe>
+  </div>
+</div>
 </body>
 </html>

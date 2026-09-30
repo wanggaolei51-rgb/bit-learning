@@ -1,0 +1,67 @@
+/* BIR Video Registry - 唯一真相源 */
+const VIDEO_DB = {
+  "2026-09-29": {
+    "date": "2026-09-29",
+    "topic": "project_management",
+    "topicCn": "项目管理",
+    "dayLabel": "Day 1",
+    "layer": 1,
+    "parts": 2,
+    "plannedParts": 8,
+    "wordCount": 39,
+    "words": [
+      "terlibat",
+      "tim inti terdiri dari",
+      "fase",
+      "anggaran",
+      "durasi",
+      "direncanakan",
+      "cakupan",
+      "perubahan",
+      "miskin",
+      "mekanisme",
+      "tumben",
+      "pegang",
+      "keren",
+      "terjangkau",
+      "perhiasan",
+      "dompet",
+      "bagan",
+      "mencapai",
+      "busuk",
+      "basi",
+      "rusak",
+      "buruk",
+      "error",
+      "salah",
+      "jahat",
+      "baja",
+      "agar",
+      "supaya",
+      "mengejar",
+      "tenaga kerja",
+      "tetap terjaga",
+      "menolak",
+      "kecelakaan kerja",
+      "musibah",
+      "tabrakan",
+      "biaya melebihi anggaran",
+      "fluktuasi kurs",
+      "pengaruh",
+      "fokus pada"
+    ],
+    "files": [
+      "videos/daily/2026-09-29/daily_2026-09-29_p1.html",
+      "videos/daily/2026-09-29/daily_2026-09-29_p2.html"
+    ],
+    "durations": [
+      237,
+      268
+    ],
+    "engine": "daily-1.0.0",
+    "bioStamp": "3d63246c",
+    "hash": "84d07ebb",
+    "created": "2026-09-30",
+    "status": "bio_passed"
+  }
+};
