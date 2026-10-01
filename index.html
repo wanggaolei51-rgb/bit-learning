@@ -5869,7 +5869,7 @@ function showBITInfo(word){
           });
         }
       }catch(e){}
-      // V4.39.0: 映射 vocabDB 完整字段到 BIT 弹窗格式
+      // V4.39.1: 映射 vocabDB 完整字段到 BIT 弹窗格式
       let vForms=forms,vExamples=[],vSynonyms=[],vAntonyms=[],vNote="";
       if(v.transform&&Array.isArray(v.transform)&&v.transform.length){
         vForms=vForms.concat(v.transform.map(function(t){return{form:t.form||"",pos:t.pos||"",mean:t.cn||""};}));
@@ -5896,7 +5896,11 @@ function showBITInfo(word){
     hintHtml=`<div style="font-size:12px;color:#d4a017;background:rgba(212,160,23,.08);border-left:2px solid #d4a017;padding:8px 10px;border-radius:6px;margin:10px 0;line-height:1.6;">💡 该词暂无 BIT 完整词条,可通过翻译页「🚀 一键BIT」生成</div>`;
   }
 
-  // V4.39.0: BIT 弹窗加入生词本按钮
+  _bitSpeakQueue=[];
+  _bitWord=data.word;
+
+  let body="";
+  // V4.39.1: BIT 弹窗加入生词本按钮
   if(typeof addWB==="function"){
     const inWB=(typeof wordBank!=="undefined"&&wordBank)?wordBank.some(function(w){return w.word&&w.word.toLowerCase()===lw;}):false;
     const _sq=function(s){return String(s==null?"":s).replace(/'/g,"\'");};
@@ -5904,11 +5908,6 @@ function showBITInfo(word){
     if(!inWB){body+='<button onclick="addWB(\''+_sq(data.word)+'\',\''+_sq(data.ipa)+'\',\''+_sq(data.cn)+'\',\''+_sq(data.en)+'\',\''+_sq(data.root)+'\',\''+_sq(data.tag)+'\')" style="flex:1;padding:10px;background:var(--primary);color:#0a0e17;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;">📚 加入生词本</button>';}
     else{body+='<button disabled style="flex:1;padding:10px;background:var(--bg-elev);color:var(--text-dim);border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:default;">✅ 已在生词本</button>';}
     body+='<button onclick="closeBITInfo()" style="flex:1;padding:10px;background:var(--bg-elev);color:var(--text);border:1px solid var(--border);border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;">关闭</button></div>';
-  }
-
-  _bitSpeakQueue=[];
-  _bitWord=data.word;
-  let body="";
   body+=`<div style="font-size:12px;color:var(--text-dim);margin-bottom:8px;">${esc(srcLabel)}</div>`;
   if(data.ipa)body+=`<div style="font-size:13px;color:var(--accent);font-family:monospace;margin-bottom:6px;">${esc(data.ipa)}</div>`;
   body+=`<div style="font-size:15px;color:var(--text);margin-bottom:4px;"><span style="color:var(--primary-dim)">🇨🇳</span> ${esc(data.cn)||"-"}</div>`;
@@ -5934,6 +5933,9 @@ function showBITInfo(word){
   }
 
   const overlay=document.createElement("div");
+
+  }
+
   overlay.id="bitInfoOverlay";
   overlay.style.cssText="position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.7);z-index:10001;display:flex;align-items:center;justify-content:center;padding:16px;";
   overlay.innerHTML=`<div style="background:var(--bg-card);border-radius:16px;padding:20px;max-width:460px;width:100%;border:1px solid var(--border);max-height:85vh;overflow-y:auto;position:relative;"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;"><div style="display:flex;align-items:center;gap:8px;"><span style="font-size:18px;font-weight:700;color:var(--primary);">${esc(data.word)}</span><button onclick="bitSpeakWord()" title="朗读" style="background:none;border:none;color:var(--primary);cursor:pointer;font-size:16px;padding:2px 4px;">🔊</button></div><button id="bitInfoClose" style="background:none;border:none;color:var(--text-dim);font-size:22px;cursor:pointer;padding:4px 8px;line-height:1;">✕</button></div>${body}</div>`;
@@ -6794,7 +6796,7 @@ function showTip(word){
     for(const pre of prefixes){if(w.startsWith(pre)&&w.length>pre.length+2){const root=w.slice(pre.length);if(vocabDB[root]||vocabDB[root.charAt(0).toUpperCase()+root.slice(1)]){v=vocabDB[root]||vocabDB[root.charAt(0).toUpperCase()+root.slice(1)];break;}}}
     if(!v){for(const suf of suffixes){if(w.endsWith(suf)&&w.length>suf.length+2){const root=w.slice(0,-suf.length);if(vocabDB[root]||vocabDB[root.charAt(0).toUpperCase()+root.slice(1)]){v=vocabDB[root]||vocabDB[root.charAt(0).toUpperCase()+root.slice(1)];break;}}}}
   }
-  // V4.39.0: 词条有完整 BIT 字段时,走 BIT 弹窗而非简易 tooltip
+  // V4.39.1: 词条有完整 BIT 字段时,走 BIT 弹窗而非简易 tooltip
   if(v&&(v.transform||v.example||v.synonym)){
     if(typeof showBITInfo==="function"){showBITInfo(word);return;}
   }
@@ -134264,7 +134266,7 @@ function renderVersion(c){
         <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">1. bitVocabDB 全量同步: vocabDB 286条九字段词条中121条唯一词补齐进 bitVocabDB (2160→2281) — 覆盖 environmental_compliance/supply_chain/emergency_response 三话题核心词 · 修复生词本弹窗四级回退二级缺失(用户第4次审核指出的"生词本查不到新词、没同步") · 数据源: V4.38.5 BIT九字段重写(已过BIO双审) · node语法校验通过 · RCO A3词级三方对账: 129词任务词表 vs vocabDB vs bitVocabDB 全PASS</div>
         <div style="font-size:15px;font-weight:700;color:var(--info);margin-bottom:6px">V4.38.10 (2026-10-01)</div>
         <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">1. 拼写勘误: memroyeksikan→memproyeksikan (vocabDB proyek 变形表 + bitVocabDB proyeksi 变形表, 共2处) — 上线复审curl线上比对发现 · RCO A1抽样类问题 · 线上=本地已复核 ✅</div>
-        <div style="font-size:15px;font-weight:700;color:var(--info);margin-bottom:6px">V4.39.0 (2026-10-01)</div>
+        <div style="font-size:15px;font-weight:700;color:var(--info);margin-bottom:6px">V4.39.1 (2026-10-01)</div>
         <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">1. vocabDB补全: 四话题129词BIT标准完整词条同步 — project_management 29词 + environmental_compliance 33词 + supply_chain 31词 + emergency_response 36词 · 全部含 ipa/cn/en/root/tag 五字段 · 覆盖率 29/158 → 158/158 (100%) · 修复Day1词汇页面大量词条不渲染问题</div>
         <div style="font-size:15px;font-weight:700;color:var(--info);margin-bottom:6px">V4.38.3 (2026-10-01)</div>
         <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">1. C5策略全面合规: 10/1-10/10 课程优化 · project_management 词汇68→40(删重3+精简25) 47处英文IPA修复 场景对话5-6→12-13句 · environmental_compliance 词汇75→38 13处英文替换 场景对话5-6→13句 · supply_chain 词汇82→40 场景10→3(保留采购/物流/清关) 每场景5→11-14句 · emergency_response 词汇86→40 场景10→3(保留火灾/泄漏/演练) 每场景5→11-12句 · 四话题全部C5合规: 词汇20-40✅ 场景=3✅ 对话10-20句✅ 测试15题✅</div>
@@ -138923,3 +138925,12 @@ function queryMIR(){
 </div>
 </body>
 </html>
+
+  // V4.38.9: BIT 弹窗加入生词本按钮
+  if(typeof addWB==="function"){
+    const inWB=(typeof wordBank!=="undefined"&&wordBank)?wordBank.some(function(w){return w.word&&w.word.toLowerCase()===lw;}):false;
+    const _sq=function(s){return String(s==null?"":s).replace(/'/g,"\'");};
+    body+='<div style="margin-top:14px;padding-top:12px;border-top:1px solid var(--border);display:flex;gap:10px;">';
+    if(!inWB){body+='<button onclick="addWB(\''+_sq(data.word)+'\',\''+_sq(data.ipa)+'\',\''+_sq(data.cn)+'\',\''+_sq(data.en)+'\',\''+_sq(data.root)+'\',\''+_sq(data.tag)+'\')" style="flex:1;padding:10px;background:var(--primary);color:#0a0e17;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;">📚 加入生词本</button>';}
+    else{body+='<button disabled style="flex:1;padding:10px;background:var(--bg-elev);color:var(--text-dim);border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:default;">✅ 已在生词本</button>';}
+    body+='<button onclick="closeBITInfo()" style="flex:1;padding:10px;background:var(--bg-elev);color:var(--text);border:1px solid var(--border);border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;">关闭</button></div>';
