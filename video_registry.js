@@ -6,7 +6,7 @@ const VIDEO_DB = {
     "topicCn": "项目管理",
     "dayLabel": "Day 1",
     "layer": 1,
-    "parts": 8,
+    "parts": 3,
     "plannedParts": 8,
     "wordCount": 39,
     "words": [
@@ -53,26 +53,16 @@ const VIDEO_DB = {
     "files": [
       "videos/daily/2026-09-29/daily_2026-09-29_p1.html",
       "videos/daily/2026-09-29/daily_2026-09-29_p2.html",
-      "videos/daily/2026-09-29/daily_2026-09-29_p3.html",
-      "videos/daily/2026-09-29/daily_2026-09-29_p4.html",
-      "videos/daily/2026-09-29/daily_2026-09-29_p5.html",
-      "videos/daily/2026-09-29/daily_2026-09-29_p6.html",
-      "videos/daily/2026-09-29/daily_2026-09-29_p7.html",
-      "videos/daily/2026-09-29/daily_2026-09-29_p8.html"
+      "videos/daily/2026-09-29/daily_2026-09-29_p3.html"
     ],
     "durations": [
-      78,
-      89,
-      80,
-      82,
-      85,
-      76,
-      88,
-      94
+      190,
+      199,
+      220
     ],
     "engine": "daily-2.0.0",
     "bioStamp": "3d63246c",
-    "hash": "e094a5f2",
+    "hash": "cb4caa95",
     "created": "2026-10-01",
     "status": "bio_passed"
   }
