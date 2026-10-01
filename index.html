@@ -5685,34 +5685,6 @@ function loadCustomTopics() {
 // 页面启动时调用
 loadCustomTopics();
 
-function renderWordBank(c){
-  const m=wordBank.filter(w=>w.mastered).length;
-  c.innerHTML=`<div class="card"><div class="card-header"><h2>📚 生词本 / Bank Kata</h2><span class="badge">${wordBank.length}词 / kata</span></div><div class="wb-toolbar"><button class="btn-exp" onclick="exportWB()">📥 导出 / Ekspor</button></div><div style="display:flex;gap:20px;margin-bottom:14px;font-size:13px;color:var(--text-dim)"><span>📦 <strong style="color:var(--primary)">${wordBank.length}</strong></span><span>✅ <strong style="color:var(--success)">${m}</strong></span><span>🔄 <strong style="color:var(--accent)">${wordBank.length-m}</strong></span></div><div class="wb-list" id="wbList"></div></div>`;
-  renderWBList();
-}
-function renderWBList(){
-  const c=document.getElementById("wbList");if(!c)return;if(!wordBank.length){c.innerHTML=`<div class="wb-empty"><div class="big">📚</div><div>生词本为空</div></div>`;return;}
-  let list = wordBank.map((w,origIdx)=>({...w,origIdx}));
-  if(wbSearchQuery){
-    list = list.filter(w=>(w.word||"").toLowerCase().includes(wbSearchQuery)||(w.cn||"").includes(wbSearchQuery)||(w.en||"").toLowerCase().includes(wbSearchQuery));
-  }
-  if(wbSortMode==="alpha"){
-    list.sort((a,b)=>(a.word||"").localeCompare(b.word||"","id"));
-  }else{
-    list.sort((a,b)=>{const ta=new Date(a.date||0).getTime();const tb=new Date(b.date||0).getTime();return tb-ta;});
-  }
-  let h="";list.forEach((w,li)=>{
-    const i = w.origIdx;
-    const p = w.passed || {id2zh:false,zh2id:false,spell:false};
-    const canRemove = p.id2zh && p.zh2id && p.spell;
-    const id2zhIcon = p.id2zh ? '✅' : '❌';
-    const zh2idIcon = p.zh2id ? '✅' : '❌';
-    const spellIcon = p.spell ? '✅' : '❌';
-    h+=`<div class="wb-item"><div><div class="wb-w">${w.word} <span class="wb-i">${w.ipa||""}</span></div><div class="wb-m">🇨🇳 ${w.cn||""}</div><div class="wb-m" style="font-size:11px">📅 ${w.date} | 印选:${id2zhIcon} 中选:${zh2idIcon} 拼写:${spellIcon}</div><div class="wb-act"><button class="wb-mas" onclick="playWBGame('${(w.word||'').replace(/'/g,"\\'")}')">🎮 练习</button><button class="wb-bit" onclick="showBITInfo('${(w.word||'').replace(/&/g,'&amp;').replace(/\\/g,'\\\\').replace(/'/g,"\\'").replace(/"/g,'&quot;').replace(/\n/g,' ')}')">📓 BIT</button><button class="wb-del" onclick="delWB(${i})">🗑️ 彻底删除</button>${canRemove ? `<button class="wb-mas" style="background:var(--success)" onclick="removeMasteredWB(${i})">✅ 已掌握移除</button>` : ''}</div></div></div>`;
-  });
-  if(list.length===0&&wbSearchQuery){c.innerHTML=`<div class="wb-empty"><div class="big">🔍</div><div>无匹配 "${wbSearchQuery}" 的生词</div></div>`;return;}
-  c.innerHTML=h;
-}
 function addWB(word,ipa,cn,en,root,tag){if(!checkAccess("添加生词"))return;const existing=wordBank.find(w=>w.word.toLowerCase()===word.toLowerCase());if(existing){let updated=false;if(ipa&&ipa!=="-"&&ipa!==""){existing.ipa=ipa;updated=true;}if(cn&&cn!=="-"&&cn!=="待补充"&&cn!==""){existing.cn=cn;updated=true;}if(en&&en!=="-"&&en!==""){existing.en=en;updated=true;}if(root&&root!=="-"&&root!==""){existing.root=root;updated=true;}if(tag&&tag!=="-"&&tag!==""){existing.tag=tag;updated=true;}if(updated){saveWB();showToast("「"+word+"」翻译已同步更新");updateStats();}else{showToast("已在生词本");}return;}wordBank.unshift({word,ipa:ipa||"-",cn:cn||"-",en:en||"-",root:root||"-",tag:tag||"-",date:new Date().toISOString().slice(0,10),passed:{id2zh:false,zh2id:false,spell:false}});saveWB();showToast("「"+word+"」已保存");updateStats();}
 function toggleWB(i){wordBank[i].mastered=!wordBank[i].mastered;saveWB();renderWBList();updateStats();}
 function removeMasteredWB(i) {
@@ -8318,20 +8290,6 @@ function showGameResult() {
 }
 
 // ===== 覆盖生词本系统 =====
-function parseVocab(){
-  const input=document.getElementById("vInput").value.trim();if(!input){showToast("请先输入");return;}
-  const lines=input.split(/[\s,]+/).map(s=>s.trim()).filter(s=>s);
-  const resultDiv=document.getElementById("vResult");resultDiv.style.display="block";resultDiv.classList.add("show");
-  let found=0,pending=0;let html=`<div style="display:grid;grid-template-columns:1fr;gap:8px;margin-top:12px">`;
-  lines.forEach(word=>{const key=Object.keys(vocabDB).find(k=>k.toLowerCase()===word.toLowerCase());if(key){found++;const v=vocabDB[key];html+=`<div style="padding:12px;background:rgba(34,197,94,.08);border-radius:8px;border-left:3px solid var(--success)"><div style="font-weight:700;color:var("primary")">${key} <span style="color:var(--text-dim);font-weight:400">${v.ipa||""}</span></div><div style="font-size:12px;color:var(--text-dim);margin-top:3px">🇨🇳 ${v.cn||""}</div></div>`;
-      if (!wordBank.find(w=> w.word.toLowerCase() === key.toLowerCase())) {
-        wordBank.push({word:key,ipa:v.ipa||"-",cn:v.cn||"-",en:v.en||"-",root:v.root||"-",tag:v.tag||"-",date:new Date().toISOString().slice(0,10),mastered:false,passed:{id2zh:false,zh2id:false,spell:false},stats:{id2zh:{c:0,w:0},zh2id:{c:0,w:0},spell:{c:0,w:0},totalWrong:0},reviews:[],nextReview:null,lastReview:null});
-      }
-    }else{pending++;html+=`<div style="padding:12px;background:rgba(239,68,68,.08);border-radius:8px;border-left:3px solid var(--danger)"><div style="font-weight:700">${word}</div><div style="font-size:12px;color:var(--text-dim)">⏳ 待补充</div></div>`;}});
-  html+=`</div>`;html+=`<div style="margin-top:14px;font-size:13px;color:var(--text-dim)">✅ ${found} · ⏳ ${pending} · 总计 ${lines.length}</div>`;
-  resultDiv.innerHTML=html;
-  const ds=new Date().toISOString().slice(0,10);if(!learningHistory[ds])learningHistory[ds]={vocabNew:[],vocabReview:[],translations:0,notes:""};lines.forEach(w=>{const key=Object.keys(vocabDB).find(k=>k.toLowerCase()===w.toLowerCase());if(key&&!learningHistory[ds].vocabNew.includes(key))learningHistory[ds].vocabNew.push(key);});saveHistory();saveWB();saveWordStats();updateStats();showToast("录入 "+found+" 词");
-}
 
 function getWBDates(){
   const dates=[];
@@ -8471,7 +8429,6 @@ function exportWB(){
   navigator.clipboard.writeText(t).then(()=>showToast("已复制"));
 }
 
-function toggleWB(i){ /* 已废弃:改为三关系统 */ }
 
 function getWordReviewItems() {
   const now = Date.now();
