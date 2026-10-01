@@ -6,7 +6,7 @@
 <meta http-equiv="Expires" content="0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LEO-BIR V4.38.9</title>
+<title>LEO-BIR V4.38.10</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -268,7 +268,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
 </style>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="video_registry.js?v=V4.38.9"></script>
+<script src="video_registry.js?v=V4.38.10"></script>
 </head>
 <body>
 <div class="app">
@@ -276,7 +276,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="sidebar-header">
     <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <h1>LEO-BIR</h1>
-    <div class="ver">LEO-BIR V4.38.9 · 每日复习视频 Layer 1（2 集样片 · 剪影引擎 v2）</div>
+    <div class="ver">LEO-BIR V4.38.10 · 每日复习视频 Layer 1（2 集样片 · 剪影引擎 v2）</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -719,7 +719,7 @@ const vocabDB = {
   cn:'项目',
   en:'project',
   root:'proyek (Dutch: project)',
-  transform:[{form:'proyek',pos:'n',cn:'项目'},{form:'proyektor',pos:'n',cn:'投影仪'},{form:'memroyeksikan',pos:'v',cn:'投射/预测'},{form:'proyeksi',pos:'n',cn:'预测/规划'}],
+  transform:[{form:'proyek',pos:'n',cn:'项目'},{form:'proyektor',pos:'n',cn:'投影仪'},{form:'memproyeksikan',pos:'v',cn:'投射/预测'},{form:'proyeksi',pos:'n',cn:'预测/规划'}],
   note:'项目管理核心术语；与 proyeksi（预测）区分',
   example:[{id:'Proyek akan dimulai minggu depan.',cn:'项目将于下周开始。'},{id:'Proyek ini membutuhkan anggaran besar.',cn:'这个项目需要大量预算。'}],
   synonym:['proyeksi','rencana kerja','program'],
@@ -118764,7 +118764,7 @@ const bitVocabDB = {
         "mean": "预测"
       },
       {
-        "form": "memroyeksikan",
+        "form": "memproyeksikan",
         "pos": "v",
         "mean": "投射/预测"
       },
@@ -128789,6 +128789,8 @@ function renderVersion(c){
   c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.23 / Versi</span></div>
     <div style="padding:16px;">
       <div style="margin-bottom:14px;padding:14px;background:rgba(59,130,246,.10);border-radius:10px;border-left:3px solid var(--info)">
+        <div style="font-size:15px;font-weight:700;color:var(--info);margin-bottom:6px">V4.38.10 (2026-10-01)</div>
+        <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">1. 拼写勘误: memroyeksikan→memproyeksikan (vocabDB proyek 变形表 + bitVocabDB proyeksi 变形表, 共2处) — 上线复审curl线上比对发现 · RCO A1抽样类问题 · 线上=本地已复核 ✅</div>
         <div style="font-size:15px;font-weight:700;color:var(--info);margin-bottom:6px">V4.38.9 (2026-10-01)</div>
         <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">1. vocabDB补全: 四话题129词BIT标准完整词条同步 — project_management 29词 + environmental_compliance 33词 + supply_chain 31词 + emergency_response 36词 · 全部含 ipa/cn/en/root/tag 五字段 · 覆盖率 29/158 → 158/158 (100%) · 修复Day1词汇页面大量词条不渲染问题</div>
         <div style="font-size:15px;font-weight:700;color:var(--info);margin-bottom:6px">V4.38.3 (2026-10-01)</div>
