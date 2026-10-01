@@ -7,7 +7,7 @@ const VIDEO_DB = {
     "dayLabel": "Day 1",
     "layer": 1,
     "parts": 3,
-    "plannedParts": 8,
+    "plannedParts": 3,
     "wordCount": 39,
     "words": [
       "terlibat",
