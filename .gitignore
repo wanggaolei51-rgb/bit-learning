@@ -11,3 +11,19 @@ verify_*.py
 
 # Temporary files
 new_*.txt
+
+# OpenClaw workspace-private files (not part of the site)
+.openclaw/
+AGENTS.md
+HEARTBEAT.md
+IDENTITY.md
+SOUL.md
+TOOLS.md
+USER.md
+bit-deploy/
+bit-deploy-backup/
+bit-deploy-bak/
+memory/
+tools/
+videos/
+mir-data/
