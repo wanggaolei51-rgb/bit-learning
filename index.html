@@ -6,7 +6,7 @@
 <meta http-equiv="Expires" content="0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LEO-BIR V4.37.0</title>
+<title>LEO-BIR V4.38.0</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -268,7 +268,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
 </style>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="video_registry.js?v=V4.37.0"></script>
+<script src="video_registry.js?v=V4.38.0"></script>
 </head>
 <body>
 <div class="app">
@@ -276,7 +276,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="sidebar-header">
     <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <h1>LEO-BIR</h1>
-    <div class="ver">LEO-BIR V4.37.0 · 每日复习视频 Layer 1（2 集样片 · 剪影引擎 v2）</div>
+    <div class="ver">LEO-BIR V4.38.0 · 每日复习视频 Layer 1（2 集样片 · 剪影引擎 v2）</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -8258,7 +8258,7 @@ Tips: Perhatikan kosakata wawancara seperti lamaran, gaji, pengalaman, keahlian,
       ['laporan', '报告', '/laˈporan/'], ['memo', '备忘录', '/ˈmɛmo/'],
       ['surat', '信件', '/ˈsurat/'], ['proposal', '提案', '/proˈposal/'],
       ['kontrak', '合同', '/ˈkɔntrak/'], ['perjanjian', '协议', '/pɛrˈdʒandʒian/'],
-      ['deadline', '截止日期', '/ˈdɛdlaɪn/'], ['target', '目标', '/ˈtargɛt/'],
+      ['deadline', '截止日期', '/ˈdɛdlaɪn/'], ['sasaran', '目标', '/ˈtargɛt/'],
       ['tugas', '任务', '/ˈtugas/'], ['proyek', '项目', '/proˈjɛk/'],
       ['pekerjaan', '工作', '/pɛˈkɛrdʒaan/'], ['jabatan', '职位', '/dʒaˈbatan/'],
       ['karyawan', '员工', '/karˈjawan/'], ['atasan', '上司', '/aˈtasan/'],
@@ -9668,7 +9668,7 @@ Tips: Perhatikan kosakata wawancara seperti lamaran, gaji, pengalaman, keahlian,
       ['ZOPA', '协议区间', '/ˈzoʊpə/'], ['deadline negosiasi', '谈判截止日', '/ˈdɛdlaɪn nɛɡosɪˈasi/'],
       ['medsos', '调解', '/ˈmɛdsɔs/'], ['fasilitator', '协调人', '/fasɪlɪˈtator/'],
       ['pihak pertama', '甲方', '/ˈpihak ˈpɛrtama/'], ['pihak kedua', '乙方', '/ˈpihak ˈkɛdua/'],
-      ['stakeholder', '利益相关方', '/ˈstɛɪkhoʊldər/'], ['mitra', '合作伙伴', '/ˈmitra/'],
+      ['pemangku kepentingan', '利益相关方', '/ˈstɛɪkhoʊldər/'], ['mitra', '合作伙伴', '/ˈmitra/'],
       ['supplier', '供应商', '/səˈplaɪər/'], ['vendor', '卖方', '/ˈvɛndɔr/'],
       ['pembeli', '买方', '/pɛmˈbɛli/'], ['pelanggan', '客户', '/pɛˈlaŋgan/'],
       ['komitmen', '承诺', '/koˈmɪtmɛn/'], ['kesediaan', '意愿', '/kɛsəˈdiaan/'],
@@ -10115,35 +10115,35 @@ project_management: {
     vocab: [
       ['proyek', '项目', '/proˈjɛk/'], ['manajemen', '管理', '/manaˈʤɛmɛn/'],
       ['perencanaan', '规划', '/pɛrɛnʃaˈnaan/'], ['jadwal', '日程/进度表', '/ˈʤadwal/'],
-      ['timeline', '时间线', '/ˈtaɪmlaɪn/'], ['milestone', '里程碑', '/ˈmaɪlstoʊn/'],
-      ['Gantt chart', '甘特图', '/ˈɡænt ʧɑrt/'], ['WBS', '工作分解结构', '/ˈdabljuː biː ˈɛs/'],
+      ['jadwal', '时间线/日程表', '/ˈɚdwal/'], ['tonggak pencapaian', '里程碑/阶段成果', '/ˈtoŋɡak panˈɚdapaan/'],
+      ['bagan Gantt', '甘特图', '/ˈbaɡan ˈɡant/'], ['SRP (struktur rincian pekerjaan)', '工作分解结构', '/ˈdabljuː biː ˈɛs/'],
       ['sumber daya', '资源', '/ˈsumbɛr ˈdaja/'], ['alokasi', '分配', '/aˈlokasi/'],
       ['anggaran', '预算', '/aŋˈɡaran/'], ['biaya', '成本/费用', '/biˈaja/'],
-      ['CAPEX', '资本支出', '/ˈkeɪpɛks/'], ['OPEX', '运营支出', '/ˈoʊpɛks/'],
-      [' estimasi', '估算', '/ɛstɪˈmasi/'], ['forecast', '预测', '/ˈfɔrkæst/'],
-      ['baseline', '基准线', '/ˈbeɪslaɪn/'], ['scope', '范围', '/ˈskoʊp/'],
-      ['deliverable', '交付物', '/dɪˈlɪvərəbl/'], ['output', '产出', '/ˈaʊtpʊt/'],
-      ['outcome', '成果', '/ˈaʊtkʌm/'], ['KPI', '关键绩效指标', '/ˈkeɪ piː ˈaɪ/'],
-      ['target', '目标', '/ˈtargɛt/'], ['objektif', '目标', '/obˈjɛktɪf/'],
-      ['risk', '风险', '/ˈrɪsk/'], ['risiko', '风险', '/riˈsiko/'],
+      ['belanja modal', '资本支出', '/ˈkeɪpɛks/'], ['belanja operasional', '运营支出', '/ˈoʊpɛks/'],
+      [' estimasi', '估算', '/ɛstɪˈmasi/'], ['prakiraan', '预测', '/ˈfɔrkæst/'],
+      ['garis dasar', '基准线', '/ˈbeɪslaɪn/'], ['ruang lingkup', '范围', '/ˈskoʊp/'],
+      ['hasil yang diserahkan', '交付物', '/dɪˈlɪvərəbl/'], ['luaran', '产出', '/ˈaʊtpʊt/'],
+      ['hasil akhir', '成果/最终结果', '/ˈaʊtkʌm/'], ['IKU (indikator kinerja utama)', '关键绩效指标', '/ˈkeɪ piː ˈaɪ/'],
+      ['sasaran', '目标', '/ˈsasaran/'], ['objektif', '目标', '/obˈjɛktɪf/'],
+      ['risiko', '风险', '/ˈrɪsk/'], ['risiko', '风险', '/riˈsiko/'],
       ['mitigasi', '缓解', '/mɪtɪˈɡasi/'], ['kontingensi', '应急', '/kontɪnˈɡɛnsi/'],
-      ['issue', '问题', '/ˈɪʃuː/'], ['masalah', '问题', '/maˈsalah/'],
-      ['dependency', '依赖关系', '/dɪˈpɛndənsi/'], ['critical path', '关键路径', '/ˈkrɪtɪkəl ˈpæθ/'],
-      ['buffer', '缓冲', '/ˈbʌfɛr/'], ['slack', '浮动时间', '/ˈslæk/'],
-      ['lag', '滞后', '/ˈlæɡ/'], ['lead', '提前', '/ˈliːd/'],
-      ['fast tracking', '快速跟进', '/ˈfæst ˈtrækɪŋ/'], ['crashing', '赶工', '/ˈkræʃɪŋ/'],
-      ['resource leveling', '资源平衡', '/rɪˈsɔrs ˈlɛvəlɪŋ/'], ['smoothing', '平滑', '/ˈsmuːðɪŋ/'],
-      ['quality', '质量', '/ˈkwɒlɪti/'], ['kualitas', '质量', '/kuaˈlɪtas/'],
+      ['isu', '问题/议题', '/ˈɪʃuː/'], ['masalah', '问题', '/maˈsalah/'],
+      ['ketergantungan', '依赖关系', '/dɪˈpɛndənsi/'], ['jalur kritis', '关键路径', '/ˈkrɪtɪkəl ˈpæθ/'],
+      ['penyangga', '缓冲/余地', '/ˈbʌfɛr/'], ['waktu longgar', '浮动时间', '/ˈslæk/'],
+      ['keterlambatan', '滞后', '/ˈlæɡ/'], ['pendahuluan', '提前量', '/ˈliːd/'],
+      ['percepatan paralel', '快速跟进(并行)', '/ˈfæst ˈtrækɪŋ/'], ['percepatan intensif', '赶工(加班赶进度)', '/ˈkræʃɪŋ/'],
+      ['penyeimbangan sumber daya', '资源平衡', '/rɪˈsɔrs ˈlɛvəlɪŋ/'], ['pemulusan', '平滑', '/ˈsmuːðɪŋ/'],
+      ['kualitas', '质量', '/ˈkwɒlɪti/'], ['kualitas', '质量', '/kuaˈlɪtas/'],
       ['standar', '标准', '/ˈstandar/'], ['spesifikasi', '规格', '/spɛsɪfɪˈkasi/'],
-      ['review', '评审', '/rɪˈvjuː/'], ['audit', '审计', '/ˈaʊdɪt/'],
+      ['tinjauan', '评审/审查', '/rɪˈvjuː/'], ['audit', '审计', '/ˈaudit/'],
       ['inspeksi', '检查', '/ɪnˈspɛksi/'], ['verifikasi', '验证', '/vɛrɪfɪˈkasi/'],
-      ['acceptance', '验收', '/əkˈsɛptəns/'], ['handover', '移交', '/ˈhændoʊvɛr/'],
-      ['closing', '收尾', '/ˈkloʊzɪŋ/'], ['lessons learned', '经验教训', '/ˈlɛsənz ˈlɜrnd/'],
-      ['stakeholder', '利益相关方', '/ˈstɛɪkhoʊldər/'], ['sponsor', '发起人', '/ˈspɒnsər/'],
-      ['PMO', '项目管理办公室', '/ˈpiː ɛm ˈoʊ/'], ['PM', '项目经理', '/ˈpiː ˈɛm/'],
-      ['team leader', '团队领导', '/ˈtiːm ˈliːdər/'], ['crew', '班组', '/ˈkruː/'],
-      ['rapat koordinasi', '协调会', '/ˈrapat koˈɔrdɪnasi/'], ['progress meeting', '进度会', '/ˈproʊɡrɛs ˈmiːtɪŋ/'],
-      ['status report', '状态报告', '/ˈsteɪtəs rɪˈpɔrt/'], ['weekly report', '周报', '/ˈwiːkli rɪˈpɔrt/'],
+      ['penerimaan', '验收', '/əkˈsɛptəns/'], ['serah terima', '移交', '/ˈhændoʊvɛr/'],
+      ['penutupan', '收尾/结项', '/ˈkloʊzɪŋ/'], ['lessons learned', '经验教训', '/ˈlɛsənz ˈlɜrnd/'],
+      ['pemangku kepentingan', '利益相关方', '/pəˈmaŋku kəpənˈtiŋan/'], ['penanggung jawab utama', '发起人/主要责任人', '/ˈspɒnsər/'],
+      ['kantor manajemen proyek', '项目管理办公室', '/ˈpiː ɛm ˈoʊ/'], ['manajer proyek', '项目经理', '/ˈpiː ˈɛm/'],
+      ['ketua tim', '团队领导', '/ˈtiːm ˈliːdər/'], ['regu', '班组/工作队', '/ˈkruː/'],
+      ['rapat koordinasi', '协调会', '/ˈrapat koˈɔrdɪnasi/'], ['rapat kemajuan', '进度会', '/ˈproʊɡrɛs ˈmiːtɪŋ/'],
+      ['laporan status', '状态报告', '/ˈsteɪtəs rɪˈpɔrt/'], ['laporan mingguan', '周报', '/ˈwiːkli rɪˈpɔrt/'],
       ['earn value', '挣值', '/ˈɜrn ˈvæljuː/'], ['SPI', '进度绩效指数', '/ˈɛs piː ˈaɪ/'],
       ['CPI', '成本绩效指数', '/ˈsiː piː ˈaɪ/'], ['SV', '进度偏差', '/ˈɛs ˈviː/'],
       ['CV', '成本偏差', '/ˈsiː ˈviː/'], ['BAC', '预算 at completion', '/ˈbiː eɪ ˈsiː/'],
@@ -10174,17 +10174,6 @@ project_management: {
         ]
       },
       {
-        title: "预算控制会议",
-        icon: "💰",
-        dialogue: [
-          {"speaker": "A", "text": "Kita perlu bahas varians biaya proyek. CPI bulan ini turun menjadi 0,92, artinya ada cost overrun.", "trans": "我们需要讨论项目成本偏差。本月CPI下降到0.92,意味着成本超支。"},
-          {"speaker": "B", "text": "Benar, Pak. Penyebab utamanya adalah kenaikan harga baja impor 18% dan fluktuasi kurs rupiah terhadap dolar.", "trans": "是的,先生。主要原因是进口钢材价格上涨18%和印尼盾对美元汇率波动。"},
-          {"speaker": "A", "text": "Berapa EAC terbaru? Apakah masih dalam BAC yang disetujui?", "trans": "最新EAC是多少?还在批准的BAC范围内吗?"},
-          {"speaker": "B", "text": "EAC terbaru adalah 372 juta dolar, melebihi BAC 22 juta. Kita perlu lakukan value engineering atau minta tambahan anggaran.", "trans": "最新EAC是3.72亿美元,超出BAC 2200万。我们需要进行价值工程或申请追加预算。"},
-          {"speaker": "A", "text": "Coba lakukan value engineering dulu. Fokus pada area yang tidak mempengaruhi safety dan kualitas. Laporkan hasilnya minggu depan.", "trans": "先尝试价值工程。聚焦不影响安全和质量的领域。下周报告结果。"}
-        ]
-      },
-      {
         title: "风险评估会议",
         icon: "⚠️",
         dialogue: [
@@ -10193,72 +10182,6 @@ project_management: {
           {"speaker": "A", "text": "Bagus. Risiko kedua?", "trans": "很好。第二个风险?"},
           {"speaker": "C", "text": "Keterlambatan pengiriman equipment dari Cina karena masalah logistik. Probability medium, impact tinggi. Kita sudah cari supplier alternatif dari Jepang.", "trans": "中国设备交货延迟因物流问题。概率中等影响大。我们已寻找日本替代供应商。"},
           {"speaker": "A", "text": "Tindakan yang tepat. Jangan lupa update kontingensi plan untuk setiap risiko dengan impact tinggi. Siapkan dana darurat 5% dari anggaran.", "trans": "措施正确。别忘了为每个高风险更新应急计划。准备预算5%的应急资金。"}
-        ]
-      },
-      {
-        title: "资源分配讨论",
-        icon: "👥",
-        dialogue: [
-          {"speaker": "A", "text": "Minggu depan ada tiga aktivitas paralel: instalasi boiler, pemasangan pipa, dan wiring listrik. Apakah sumber daya cukup?", "trans": "下周有三项并行活动:锅炉安装、管道铺设和电气布线。资源够吗?"},
-          {"speaker": "B", "text": "Kalau dijalankan paralel, kita kekurangan 8 teknisi pipa dan 5 electrician. Harus ada resource leveling atau tambah crew.", "trans": "如果并行执行,我们缺少8名管道技师和5名电工。必须进行资源平衡或增加班组。"},
-          {"speaker": "A", "text": "Bisa nggak kita shift wiring listrik ke minggu berikutnya? Itu bukan di critical path, kan?", "trans": "我们能把电气布线推迟到下周吗?那不是关键路径上的,对吧?"},
-          {"speaker": "B", "text": "Betul, Pak. Wiring punya total float 2 minggu. Kalau di-shift, tidak akan mempengaruhi completion date proyek.", "trans": "对的,先生。布线有2周总浮动。如果推迟,不会影响项目完成日期。"},
-          {"speaker": "A", "text": "Oke, shift wiring listrik ke minggu depan. Gunakan crew yang tersedia untuk fokus pada boiler dan pipa. Update resource histogram hari ini juga.", "trans": "好的,把电气布线推迟到下周。用现有班组专注锅炉和管道。今天也更新资源直方图。"}
-        ]
-      },
-      {
-        title: "质量检查会议",
-        icon: "✅",
-        dialogue: [
-          {"speaker": "A", "text": "Tim QC sudah selesai inspeksi welding joint pada tangki asam sulfat. Apa hasilnya?", "trans": "QC团队已完成硫酸罐焊接接头检查。结果如何?"},
-          {"speaker": "B", "text": "Dari 120 joint yang diinspeksi, 112 lulus uji NDT. Tapi ada 8 joint yang menunjukkan indikasi cacat dan perlu repair.", "trans": "检查的120个接头中,112个通过NDT测试。但有8个接头显示缺陷迹象,需要返修。"},
-          {"speaker": "A", "text": "Ini tidak bisa diterima. Acceptance criteria adalah 100% pass untuk pressure vessel. Apa root cause-nya?", "trans": "这不可接受。压力容器的验收标准是100%通过。根本原因是什么?"},
-          {"speaker": "B", "text": "Root cause-nya adalah welder belum sertifikasi untuk material stainless steel 316L. Mereka biasa mengerjakan carbon steel.", "trans": "根本原因是焊工没有316L不锈钢材料认证。他们通常做碳钢。"},
-          {"speaker": "A", "text": "Segera ganti dengan welder yang bersertifikat 316L. Repair semua joint yang reject dan lakukan re-inspeksi 100%. Jangan kompromi soal safety.", "trans": "立即更换有316L认证的焊工。返修所有不合格接头并进行100%重新检查。安全方面不要妥协。"}
-        ]
-      },
-      {
-        title: "变更请求评审",
-        icon: "🔄",
-        dialogue: [
-          {"speaker": "A", "text": "Ada change request dari owner: mereka minta tambahan sistem monitoring online untuk emissions. Mari kita evaluasi impact-nya.", "trans": "业主有变更请求:他们要求增加在线排放监测系统。我们来评估影响。"},
-          {"speaker": "B", "text": "Impact scope: tambah 3 sensor CEMS, integrasi ke DCS existing, dan training operator. Estimasi biaya tambahan 450 ribu dolar.", "trans": "范围影响:增加3个CEMS传感器、集成到现有DCS、操作员培训。预估额外费用45万美元。"},
-          {"speaker": "A", "text": "Berapa impact ke jadwal? Apakah critical path terganggu?", "trans": "对进度的影响多大?关键路径会受影响吗?"},
-          {"speaker": "B", "text": "Kalau dikerjakan paralel dengan commissioning, tidak ganggu critical path. Tapi butuh tambahan 3 minggu untuk procurement CEMS.", "trans": "如果与调试并行施工,不影响关键路径。但CEMS采购需要额外3周。"},
-          {"speaker": "C", "text": "Saya usulkan approve change request ini. Sistem monitoring emissions sudah jadi requirement regulasi KLHK untuk tahun depan.", "trans": "我建议批准此变更请求。排放监测系统明年将成为KLHK法规要求。"}
-        ]
-      },
-      {
-        title: "供应商协调",
-        icon: "🏭",
-        dialogue: [
-          {"speaker": "A", "text": "Pak, kami dari tim proyek smelter. Kita perlu konfirmasi jadwal pengiriman reaktor HPAL yang tertunda dua minggu.", "trans": "先生,我们是冶炼厂项目团队。我们需要确认延迟两周的HPAL反应器交货时间表。"},
-          {"speaker": "B", "text": "Maaf atas keterlambatannya. Masalahnya adalah keterlambatan approval drawing dari pihak Anda. Kami baru terima approval minggu lalu.", "trans": "抱歉延迟。问题出在贵方图纸审批延迟。我们上周才收到批准。"},
-          {"speaker": "A", "text": "Saya mengerti. Tapi proyek kami sangat tight schedule. Bisa nggak Bapak tambah shift produksi untuk mengejar keterlambatan?", "trans": "我理解。但我们的项目进度很紧。您能否增加生产班次来追赶延迟?"},
-          {"speaker": "B", "text": "Bisa, tapi ada tambahan biaya overtime 8%. Dan pengiriman bisa dipercepat dari 12 minggu jadi 10 minggu.", "trans": "可以,但有8%的加班费附加。交货可以从12周缩短到10周。"},
-          {"speaker": "A", "text": "Kami terima tambahan 8%. Tapi tolong konfirmasi komitmen delivery dalam kontrak amendment. Kami tidak mau ada delay lagi.", "trans": "我们接受8%附加费。但请在合同修正案中确认交货承诺。我们不想再延迟了。"}
-        ]
-      },
-      {
-        title: "项目收尾验收",
-        icon: "🎉",
-        dialogue: [
-          {"speaker": "A", "text": "Pak, proyek smelter sudah mencapai mechanical completion. Kami mohon jadwalkan final acceptance inspection.", "trans": "先生,冶炼厂项目已达到机械完工。我们请求安排最终验收检查。"},
-          {"speaker": "B", "text": "Baik. Tim kami akan datang minggu depan untuk FAC. Apakah semua punch list item dari commissioning sudah di-close?", "trans": "好的。我们团队下周来进行FAC。调试阶段的所有整改项都已关闭了吗?"},
-          {"speaker": "A", "text": "Ya, semua 47 punch list items sudah diselesaikan. Dokumen as-built, O&M manual, dan sertifikat kalibrasi juga sudah lengkap.", "trans": "是的,全部47项整改已完成。竣工图、运行维护手册和校准证书也都齐全。"},
-          {"speaker": "B", "text": "Bagus. Setelah FAC lulus, kita akan proses pembayaran termin terakhir 15%. Dan retention money 5% akan dibebaskan setelah 12 bulan.", "trans": "很好。FAC通过后,我们将处理最后一期15%付款。5%质保金将在12个月后释放。"},
-          {"speaker": "A", "text": "Terima kasih, Pak. Kami juga sudah siapkan lessons learned document untuk proyek ini. Ada banyak pengalaman berharga yang bisa dibagikan.", "trans": "谢谢,先生。我们也已准备好本项目的经验教训文档。有很多宝贵经验可以分享。"}
-        ]
-      },
-      {
-        title: "团队每日站会",
-        icon: "🌅",
-        dialogue: [
-          {"speaker": "A", "text": "Selamat pagi, tim. Ini daily stand-up meeting. Mari masing-masing laporkan progress kemarin, rencana hari ini, dan blocker apa saja.", "trans": "早上好,团队。这是每日站会。请各位报告昨天进度、今天计划和有什么阻塞。"},
-          {"speaker": "B", "text": "Kemarin saya selesaikan erection structural steel area A. Hari ini akan mulai area B. Blocker: crane belum tersedia pukul 8 pagi.", "trans": "昨天我完成了A区钢结构安装。今天开始B区。阻塞:起重机早上8点还不可用。"},
-          {"speaker": "C", "text": "Saya kemarin install piping sistem cooling water. Hari ini pressure test. Tidak ada blocker.", "trans": "我昨天安装了冷却水管道系统。今天做压力测试。没有阻塞。"},
-          {"speaker": "D", "text": "Saya kemarin review electrical drawings. Ada discrepancy antara drawing dan actual installation di panel MCC-02. Perlu klarifikasi.", "trans": "我昨天审查了电气图纸。MCC-02面板处图纸和实际安装有差异。需要澄清。"},
-          {"speaker": "A", "text": "Oke. Saya akan koordinasi crane untuk tersedia pukul 7 pagi. Untuk discrepancy MCC-02, saya minta electrical engineer meeting dengan contractor siang ini.", "trans": "好的。我会协调起重机早上7点可用。对于MCC-02差异,我让电气工程师今天中午与承包商开会。"}
         ]
       }
     ],
@@ -10269,7 +10192,7 @@ project_management: {
         icon: "📚",
         words: 145,
         time: 56,
-        content: "Selamat pagi, rekan-rekan. Proyek adalah usaha sementara yang dilakukan untuk menciptakan produk, layanan, atau hasil yang unik. Manajemen proyek adalah penerapan pengetahuan, keterampilan, alat, dan teknik pada aktivitas proyek untuk memenuhi persyaratan. Ada lima kelompok proses utama: inisiasi, perencanaan, eksekusi, monitoring dan controlling, serta penutupan. Di fase inisiasi, kita mendefinisikan proyek, menetapkan sponsor, dan membuat project charter. Di perencanaan, kita mengembangkan rencana manajemen yang komprehensif meliputi scope, schedule, cost, quality, resource, risk, dan communication. Jadwal proyek biasanya digambarkan dengan Gantt chart atau network diagram. Critical path adalah rangkaian aktivitas terpanjang yang menentukan durasi minimum proyek. Jika ada delay di critical path, seluruh proyek akan terlambat.",
+        content: "Selamat pagi, rekan-rekan. Proyek adalah usaha sementara yang dilakukan untuk menciptakan produk, layanan, atau hasil yang unik. Manajemen proyek adalah penerapan pengetahuan, keterampilan, alat, dan teknik pada aktivitas proyek untuk memenuhi persyaratan. Ada lima kelompok proses utama: inisiasi, perencanaan, eksekusi, monitoring dan controlling, serta penutupan. Di fase inisiasi, kita mendefinisikan proyek, menetapkan sponsor, dan membuat project charter. Di perencanaan, kita mengembangkan rencana manajemen yang komprehensif meliputi ruang lingkup, jadwal, biaya, kualitas, sumber daya, risiko, dan komunikasi. Jadwal proyek biasanya digambarkan dengan bagan Gantt atau diagram jaringan. Jalur kritis adalah rangkaian aktivitas terpanjang yang menentukan durasi minimum proyek. Jika ada keterlambatan di jalur kritis, seluruh proyek akan terlambat.",
         trans: "早上好,各位同事。项目是为创造独特产品、服务或成果而进行的临时性工作。项目管理是将知识、技能、工具和技术应用于项目活动以满足要求。有五个主要过程组:启动、规划、执行、监控和收尾。在启动阶段,我们定义项目、确定发起人并制定项目章程。在规划阶段,我们制定涵盖范围、进度、成本、质量、资源、风险和沟通的综合管理计划。项目进度通常用甘特图或网络图表示。关键路径是确定项目最短工期的最长活动序列。如果关键路径延迟,整个项目都会延迟。"
       },
       {
@@ -10278,7 +10201,7 @@ project_management: {
         icon: "📈",
         words: 148,
         time: 57,
-        content: "Selamat pagi. Hari ini kita bahas pengendalian jadwal dan biaya. Earned Value Management atau EVM adalah metode yang mengintegrasikan scope, schedule, dan resource untuk mengukur kinerja proyek secara objektif. Ada tiga metrik dasar: Planned Value atau PV adalah nilai pekerjaan yang seharusnya selesai; Earned Value atau EV adalah nilai pekerjaan yang benar-benar selesai; dan Actual Cost atau AC adalah biaya aktual yang dikeluarkan. Dari metrik ini, kita bisa hitung Schedule Variance atau SV sama dengan EV dikurangi PV. Kalau SV negatif, proyek tertinggal jadwal. Cost Variance atau CV sama dengan EV dikurangi AC. Kalau CV negatif, ada cost overrun. Schedule Performance Index atau SPI sama dengan EV dibagi PV. Kalau SPI kurang dari satu, proyek lambat. Cost Performance Index atau CPI sama dengan EV dibagi AC. Kalau CPI kurang dari satu, proyek boros.",
+        content: "Selamat pagi. Hari ini kita bahas pengendalian jadwal dan biaya. Manajemen Nilai Hasil atau EV adalah metode yang mengintegrasikan ruang lingkup, jadwal, dan sumber daya untuk mengukur kinerja proyek secara objektif. Ada tiga metrik dasar: Nilai Terencana atau PV adalah nilai pekerjaan yang seharusnya selesai; Nilai Hasil atau EV adalah nilai pekerjaan yang benar-benar selesai; dan Biaya Aktual atau AC adalah biaya aktual yang dikeluarkan. Dari metrik ini, kita bisa hitung Selisih Jadwal atau SV sama dengan EV dikurangi PV. Kalau SV negatif, proyek tertinggal jadwal. Selisih Biaya atau CV sama dengan EV dikurangi AC. Kalau CV negatif, ada pembengkakan biaya. Indeks Kinerja Jadwal atau SPI sama dengan EV dibagi PV. Kalau SPI kurang dari satu, proyek lambat. Indeks Kinerja Biaya atau CPI sama dengan EV dibagi AC. Kalau CPI kurang dari satu, proyek boros.",
         trans: "早上好。今天讨论进度和成本控制。挣值管理(EVM)是一种将范围、进度和资源集成以客观衡量项目绩效的方法。有三个基本指标:计划值(PV)是应完成工作的价值;挣值(EV)是实际完成工作的价值;实际成本(AC)是实际花费。从这些指标,我们可以计算进度偏差(SV)=EV-PV。如果SV为负,项目进度落后。成本偏差(CV)=EV-AC。如果CV为负,存在成本超支。进度绩效指数(SPI)=EV/PV。如果SPI小于1,项目进度慢。成本绩效指数(CPI)=EV/AC。如果CPI小于1,项目超支。"
       },
       {
@@ -10287,7 +10210,7 @@ project_management: {
         icon: "🛡️",
         words: 146,
         time: 57,
-        content: "Selamat pagi, tim. Risiko adalah peristiwa atau kondisi yang tidak pasti yang, jika terjadi, akan berdampak positif atau negatif pada tujuan proyek. Manajemen risiko meliputi identifikasi, analisis, dan respons terhadap risiko. Analisis risiko ada dua jenis: kualitatif dan kuantitatif. Analisis kualitatif menilai probability dan impact setiap risiko untuk menentukan priority. Analisis kuantitatif menggunakan teknik seperti Monte Carlo simulation untuk memperkirakan kemungkinan mencapai target biaya dan jadwal. Untuk risiko dengan probability tinggi dan impact besar, kita perlu buat mitigation plan. Untuk risiko yang tidak bisa dihindari, kita siapkan contingency reserve. Selain risiko, kualitas juga krusial. Quality assurance memastikan proses yang benar, sedangkan quality control memastikan output yang benar. Jangan pernah mengorbankan kualitas dan safety demi menghemat biaya atau mempercepat jadwal.",
+        content: "Selamat pagi, tim. Risiko adalah peristiwa atau kondisi yang tidak pasti yang, jika terjadi, akan berdampak positif atau negatif pada tujuan proyek. Manajemen risiko meliputi identifikasi, analisis, dan respons terhadap risiko. Analisis risiko ada dua jenis: kualitatif dan kuantitatif. Analisis kualitatif menilai probabilitas dan dampak setiap risiko untuk menentukan prioritas. Analisis kuantitatif menggunakan teknik seperti simulasi Monte Carlo untuk memperkirakan kemungkinan mencapai sasaran biaya dan jadwal. Untuk risiko dengan probabilitas tinggi dan dampak besar, kita perlu buat rencana mitigasi. Untuk risiko yang tidak bisa dihindari, kita siapkan cadangan kontinjensi. Selain risiko, kualitas juga krusial. Jaminan kualitas memastikan proses yang benar, sedangkan pengendalian kualitas memastikan luaran yang benar. Jangan pernah mengorbankan kualitas dan safety demi menghemat biaya atau mempercepat jadwal.",
         trans: "早上好,团队。风险是如果发生会对项目目标产生正面或负面影响的未知事件或条件。风险管理包括识别、分析和应对风险。风险分析有两种:定性和定量。定性分析评估每个风险的概率和影响以确定优先级。定量分析使用蒙特卡洛模拟等技术来估算实现成本和进度目标的可能性。对于高概率高影响的风险,我们需要制定缓解计划。对于无法避免的风险,我们准备应急储备。除了风险,质量也至关重要。质量保证确保正确的流程,质量控制确保正确的产出。永远不要为了节省成本或加快进度而牺牲质量和安全。"
       }
     ],
@@ -10343,7 +10266,7 @@ environmental_compliance: {
       ['cair', '液体', '/ˈʧa.ɪr/'], ['berbahaya', '危险', '/bɛrˈba.ha.ja/'],
       ['B3', '危险废弃物', '/ˈbɛ ˈtɛ.ga/'], ['AMDAL', '环境影响评估', '/ˈam.dal/'],
       ['UKL-UPL', '环境管理计划', '/ˈu.ka.ɛl ˈu.pɛ.ɛl/'], ['izin lingkungan', '环境许可证', '/ˈi.zin liŋˈkuŋ.an/'],
-      ['jejak karbon', '碳足迹', '/ˈʤɛ.ʤak ˈkar.bon/'], ['net zero', '净零', '/ˈnɛt ˈzi.ro/'],
+      ['jejak karbon', '碳足迹', '/ˈʤɛ.ʤak ˈkar.bon/'], ['nol bersih', '净零(碳中和)', '/ˈnɔl bərˈsih/'],
       ['karbon', '碳', '/ˈkar.bon/'], ['CO2', '二氧化碳', '/ˈsi ˈo ˈdu.a/'],
       ['GRK', '温室气体', '/ˈgɛ ˈɛr ˈka/'], ['IPCC', '气候变化委员会', '/ˈi.pi.ˈsi.ˈsi/'],
       ['monitoring', '监测', '/ˈmo.ni.to.rɪŋ/'], ['pengukuran', '测量', '/pɛŋˈu.ku.ran/'],
@@ -10400,28 +10323,6 @@ environmental_compliance: {
         ]
       },
       {
-        title: "固废管理讨论",
-        icon: "♻️",
-        dialogue: [
-          {"speaker": "A", "text": "Pak, gudang penyimpanan limbah B3 sudah hampir penuh. Kapasitas 80% terpakai dan kita belum punya vendor pengolahan yang fix.", "trans": "先生,危废仓库快满了。80%容量已使用,我们还没有确定的处理商。"},
-          {"speaker": "B", "text": "Ini tidak boleh terjadi. Izin penyimpanan kita maksimal 90 hari. Kalau melebihi, kita bisa kena sanksi administratif.", "trans": "这不能发生。我们的贮存许可最长90天。如果超过,我们可能受到行政处罚。"},
-          {"speaker": "A", "text": "Saya sudah kontak tiga vendor: PT Green Waste, PT Eco Process, dan PT Clean Industry. PT Green Waste punya fasilitas cement co-processing.", "trans": "我已联系三家处理商:Green Waste、Eco Process和Clean Industry。Green Waste有水泥窑协同处置设施。"},
-          {"speaker": "B", "text": "Cement co-processing bagus untuk sludge dan filter cake. Pastikan mereka punya izin pengolahan dari KLHK dan track record bagus.", "trans": "水泥窑协同处置适合污泥和滤饼。确保他们有KLHK处理许可和良好记录。"},
-          {"speaker": "A", "text": "Baik, Pak. Saya akan lakukan site visit ke fasilitas mereka minggu depan. Sementara itu, saya minta reduce generation rate dari 5 ton jadi 3,5 ton per hari.", "trans": "好的,先生。我下周去他们设施现场考察。同时,我要求将产生量从每天5吨减到3.5吨。"}
-        ]
-      },
-      {
-        title: "碳排放核算",
-        icon: "🌍",
-        dialogue: [
-          {"speaker": "A", "text": "Tim, hari ini kita bahas perhitungan jejak karbon smelter untuk laporan sustainability tahunan. Scope 1 emisi dari pembakaran batubara berapa?", "trans": "团队,今天我们讨论冶炼厂碳足迹计算用于年度可持续发展报告。燃煤的范围1排放多少?"},
-          {"speaker": "B", "text": "Scope 1 dari pembakaran batubara dan diesel adalah 245.000 ton CO2e per tahun. Scope 2 dari listrik PLN sekitar 85.000 ton CO2e.", "trans": "燃煤和柴油的范围1排放是每年24.5万吨CO2当量。PLN电力的范围2约8.5万吨CO2当量。"},
-          {"speaker": "A", "text": "Berarti total Scope 1 dan 2 adalah 330.000 ton. Apakah kita sudah hitung Scope 3 dari supply chain?", "trans": "那么范围1和2总计33万吨。我们计算了供应链的范围3吗?"},
-          {"speaker": "C", "text": "Scope 3 masih dalam perhitungan, Pak. Estimasi dari pengangkutan bijih, pembelian chemical, dan business travel sekitar 120.000 ton CO2e.", "trans": "范围3仍在计算中,先生。矿石运输、化学品采购和商务差旅估计约12万吨CO2当量。"},
-          {"speaker": "A", "text": "Total jejak karbon kita sekitar 450.000 ton CO2e. Target net zero 2050 berarti kita harus kurangi 15.000 ton per tahun mulai sekarang.", "trans": "我们的总碳足迹约45万吨CO2当量。2050净零目标意味着我们必须从现在开始每年减少1.5万吨。"}
-        ]
-      },
-      {
         title: "环境许可证续期",
         icon: "📋",
         dialogue: [
@@ -10431,62 +10332,6 @@ environmental_compliance: {
           {"speaker": "B", "text": "Berapa estimasi waktu prosesnya?", "trans": "流程预计多长时间?"},
           {"speaker": "A", "text": "Kalau dokumen lengkap, proses di KLHK sekitar 3-4 bulan. Tapi kita juga perlu public consultation selama 30 hari.", "trans": "如果文件齐全,KLHK流程约3-4个月。但我们还需要30天公众征询。"},
           {"speaker": "B", "text": "Oke, mulai persiapkan dokumen sekarang. Jangan sampai izin habis sebelum perpanjangan keluar. Itu bisa menghentikan operasi.", "trans": "好的,现在开始准备文件。不要让许可证在续期出来前过期。那可能导致停产。"}
-        ]
-      },
-      {
-        title: "环保法规培训",
-        icon: "📚",
-        dialogue: [
-          {"speaker": "A", "text": "Selamat pagi, rekan-rekan. Hari ini kita training tentang PP No. 22 Tahun 2021 tentang Penyelenggaraan Perlindungan dan Pengelolaan Lingkungan Hidup.", "trans": "早上好,各位同事。今天我们培训关于2021年第22号政府条例《环境保护与管理实施》。"},
-          {"speaker": "B", "text": "Pak, apa sanksi paling berat kalau perusahaan melanggar baku mutu emisi berulang kali?", "trans": "先生,如果企业多次违反排放标准,最严重的处罚是什么?"},
-          {"speaker": "A", "text": "Sanksi paling berat adalah penghentian sementara operasi dan penutupan permanen untuk pelanggaran yang menyebabkan kerusakan lingkungan serius.", "trans": "最严厉处罚是暂时停产和永久关停,针对造成严重环境损害的违规行为。"},
-          {"speaker": "C", "text": "Bagaimana dengan sanksi pidana? Apakah direktur bisa dipenjara?", "trans": "刑事处罚呢?董事可能入狱吗?"},
-          {"speaker": "A", "text": "Ya, menurut UU Lingkungan Hidup, pencemaran yang disengaja bisa dihukum penjara maksimal 10 tahun dan denda maksimal 15 miliar rupiah.", "trans": "是的,根据环境法,故意污染可判最高10年监禁和最高150亿印尼盾罚款。"},
-          {"speaker": "B", "text": "Ini sangat serius. Kita harus patuh 100% pada semua regulasi. Tidak ada kompromi soal lingkungan.", "trans": "这非常严重。我们必须100%遵守所有法规。环境方面没有妥协。"}
-        ]
-      },
-      {
-        title: "环境监测计划",
-        icon: "🔬",
-        dialogue: [
-          {"speaker": "A", "text": "Pak, kita perlu review program pemantauan lingkungan semester depan. Frekuensi monitoring air, udara, dan tanah perlu diatur.", "trans": "先生,我们需要审查下学期环境监测计划。水、气和土壤的监测频率需要安排。"},
-          {"speaker": "B", "text": "Untuk air limbah, monitoring internal setiap hari dan laporan ke KLHK bulanan. Untuk emisi cerobong, continuous monitoring 24 jam.", "trans": "废水每天内部监测,每月向KLHK报告。烟囱排放24小时连续监测。"},
-          {"speaker": "A", "text": "Bagaimana dengan kualitas air tanah dan tanah di sekitar area tailing?", "trans": "尾矿区周围地下水和土壤质量呢?"},
-          {"speaker": "B", "text": "Groundwater monitoring setiap 3 bulan melalui sumur pantau. Tanah di sekitar tailing di-sampling setiap 6 bulan untuk analisis logam berat.", "trans": "通过监测井每3个月监测地下水。尾矿周围土壤每6个月采样分析重金属。"},
-          {"speaker": "A", "text": "Baik. Saya akan update RKL-RPL dan kirim ke KLHK sebelum akhir bulan ini.", "trans": "好的。我将更新环境管理计划并在月底前送交KLHK。"}
-        ]
-      },
-      {
-        title: "污染事故应急",
-        icon: "🚨",
-        dialogue: [
-          {"speaker": "A", "text": "Pak, terjadi kecelakaan! Tangki neutralisasi di wastewater treatment plant bocor dan limbah cair masuk ke saluran drainase.", "trans": "先生,发生事故!废水处理厂中和罐泄漏,废水进入排水沟。"},
-          {"speaker": "B", "text": "Segera aktifkan emergency response plan! Tutup valve outlet, pasang boom penahan, dan panggil tim hazmat.", "trans": "立即启动应急响应计划!关闭出口阀门,安装围油栏,呼叫危险品团队。"},
-          {"speaker": "A", "text": "Tim hazmat sudah di lapangan. Kami juga sudah hubungi Dinas Lingkungan Hidup untuk melaporkan insiden dalam 24 jam sesuai regulasi.", "trans": "危险品团队已在现场。我们也已联系环境局按法规在24小时内报告事故。"},
-          {"speaker": "B", "text": "Bagus. Lakukan sampling air di titik masuk sungai untuk baseline data. Dan siapkan press release jika media menanyakan.", "trans": "很好。在河流入口点采样获取基线数据。如媒体询问,准备新闻稿。"},
-          {"speaker": "A", "text": "Saya juga akan koordinasi dengan tim legal untuk antisipasi sanksi dan proses root cause analysis.", "trans": "我还将与法务团队协调以应对处罚并进行根本原因分析。"}
-        ]
-      },
-      {
-        title: "绿色认证申请",
-        icon: "🏆",
-        dialogue: [
-          {"speaker": "A", "text": "Pak, kita berencana apply sertifikasi PROPER Hijau dari KLHK tahun ini. Apa persyaratannya?", "trans": "先生,我们计划今年申请KLHK绿色PROPER认证。需要什么条件?"},
-          {"speaker": "B", "text": "Untuk PROPER Hijau, perusahaan harus punya ISO 14001, zero pelanggaran lingkungan 3 tahun terakhir, dan program CSR lingkungan.", "trans": "绿色PROPER要求企业有ISO 14001、近3年零环境违规和环境CSR项目。"},
-          {"speaker": "A", "text": "Kita sudah punya ISO 14001 sejak 2022 dan tidak ada pelanggaran. Program CSR lingkungan kita ada reboisasi 100 hektar dan edukasi masyarakat.", "trans": "我们自2022年已有ISO 14001且无违规。我们的环境CSR项目有100公顷重新造林和社区教育。"},
-          {"speaker": "B", "text": "Bagus. Tapi kita juga perlu tunjukkan inovasi teknologi ramah lingkungan. Apa yang bisa kita sampaikan?", "trans": "很好。但我们也需要展示环保技术创新。我们能展示什么?"},
-          {"speaker": "A", "text": "Kita punya teknologi zero liquid discharge untuk wastewater dan recovery acid gas jadi asam sulfat. Itu circular economy.", "trans": "我们有废水零排放技术和酸气回收制硫酸。这是循环经济。"}
-        ]
-      },
-      {
-        title: "环境改善提案",
-        icon: "💡",
-        dialogue: [
-          {"speaker": "A", "text": "Rekan-rekan, saya punya ide untuk reduce jejak karbon smelter kita. Bagaimana kalau kita install solar panel di atap gudang?", "trans": "各位同事,我有个减少冶炼厂碳足迹的想法。如果我们在仓库屋顶安装太阳能板怎么样?"},
-          {"speaker": "B", "text": "Menarik. Berapa kapasitas yang bisa diinstall dan berapa pengurangan emisi yang bisa dicapai?", "trans": "有意思。能安装多大容量,能实现多少减排?"},
-          {"speaker": "A", "text": "Area atap gudang total 8 hektar. Dengan panel efisiensi 22%, kita bisa install 8 MWp. Produksi tahunan sekitar 12 GWh.", "trans": "仓库屋顶总面积8公顷。用22%效率面板,可装8兆瓦峰值。年产量约12吉瓦时。"},
-          {"speaker": "C", "text": "Itu setara mengurangi 8.500 ton CO2e per tahun. Dan bisa menghemat biaya listrik sekitar 15 miliar rupiah per tahun.", "trans": "相当于每年减少8500吨CO2当量。每年可节省电费约150亿印尼盾。"},
-          {"speaker": "A", "text": "Tepat. ROI sekitar 6 tahun. Saya usulkan masukkan ke capital plan 2026 dan apply insentif pemerintah untuk EBT.", "trans": "对。投资回收期约6年。我建议纳入2026年资本计划并申请政府新能源激励。"}
         ]
       }
     ],
@@ -10515,7 +10360,7 @@ environmental_compliance: {
         icon: "🎯",
         words: 145,
         time: 56,
-        content: "Selamat pagi, tim. Indonesia telah berkomitmen mencapai net zero emission pada tahun 2060. Sebagai perusahaan smelter, kita harus punya roadmap dekarbonisasi yang jelas. Langkah pertama adalah mengukur baseline emisi dengan metodologi GHG Protocol. Kita harus hitung Scope 1 dari sumber langsung, Scope 2 dari energi yang dibeli, dan Scope 3 dari supply chain. Langkah kedua adalah menetapkan target pengurangan tahunan. Untuk smelter nikel, opsi dekarbonisasi meliputi: transisi dari batubara ke biomass atau gas, electrification menggunakan renewable energy, carbon capture and storage untuk emisi proses, dan efisiensi energi melalui heat recovery. Langkah ketiga adalah implementasi dan monitoring. Setiap inisiatif harus punya KPI, timeline, dan penanggung jawab. Langkah keempat adalah pelaporan transparan melalui sustainability report yang diaudit pihak ketiga. Ingat, dekarbonisasi bukan hanya kewajiban regulasi, tapi juga peluang bisnis untuk akses pasar hijau internasional.",
+        content: "Selamat pagi, tim. Indonesia telah berkomitmen mencapai emisi nol bersih pada tahun 2060. Sebagai perusahaan smelter, kita harus punya peta jalan dekarbonisasi yang jelas. Langkah pertama adalah mengukur garis dasar emisi dengan metodologi Protokol GRK. Kita harus hitung Lingkup 1 dari sumber langsung, Lingkup 2 dari energi yang dibeli, dan Lingkup 3 dari rantai pasok. Langkah kedua adalah menetapkan sasaran pengurangan tahunan. Untuk smelter nikel, opsi dekarbonisasi meliputi: transisi dari batubara ke biomassa atau gas, elektrifikasi menggunakan energi terbarukan, penangkapan dan penyimpanan karbon untuk emisi proses, dan efisiensi energi melalui pemulihan panas. Langkah ketiga adalah implementasi dan pemantauan. Setiap inisiatif harus punya indikator kinerja, jadwal, dan penanggung jawab. Langkah keempat adalah pelaporan transparan melalui laporan keberlanjutan yang diaudit pihak ketiga. Ingat, dekarbonisasi bukan hanya kewajiban regulasi, tapi juga peluang bisnis untuk akses pasar hijau internasional.",
         trans: "早上好,团队。印尼已承诺2060年实现净零排放。作为冶炼企业,我们必须有清晰的脱碳路线图。第一步是用温室气体协议方法学测量排放基线。我们必须计算范围1直接排放、范围2外购能源排放和范围3供应链排放。第二步是设定年度减排目标。对于镍冶炼厂,脱碳选项包括:从煤炭转向生物质或天然气、使用可再生能源电气化、工艺排放碳捕集与封存、以及通过余热回收提高能效。第三步是实施和监测。每个倡议必须有KPI、时间表和负责人。第四步是通过第三方审计的可持续发展报告进行透明披露。记住,脱碳不仅是法规义务,也是进入国际绿色市场商机。"
       }
     ],
@@ -125779,7 +125624,7 @@ function renderVersion(c){
   c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.23 / Versi</span></div>
     <div style="padding:16px;">
       <div style="margin-bottom:14px;padding:14px;background:rgba(59,130,246,.10);border-radius:10px;border-left:3px solid var(--info)">
-        <div style="font-size:15px;font-weight:700;color:var(--info);margin-bottom:6px">V4.37.0 (2026-09-30)</div>
+        <div style="font-size:15px;font-weight:700;color:var(--info);margin-bottom:6px">V4.38.0 (2026-09-30)</div>
         <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">1. 每日单词笔记新增 2026-09-30: 26 词条(catatan-ringkasan→mengoptimalkan,项目管理 Day 2) · 词表对账: 用户原始 27 词元,pengkabelan 去重 26 唯一(主调度任务书误写23,BIT 按原始输入对账纠正) · 两处拼写勘误(recana→rencana-cadangan / grafik-sumber-day→-daya) · BIT 初稿 78 例句+81 变形行 → BIO 定稿 PASS_WITH_REVISIONS(R1–R17: 1 条例句不含词条词已改/2 拼写/1 中译误译/正字法分写统一;7 项 [待核实] 逐项裁定: 否决 dampak 无据梵语源·确认 kritikal 不存在等) · bitVocabDB 2139→2159(同日重叠 6 词覆盖更新) · 热修隐患: 转换器 bitVocabDB 块 inline 结尾致正则失配,盲跑将 wiped 全库——已规范化(括号配平提取+dumps 重写) · 日期并存(09-16~09-30)</div>
       </div>
       <div style="margin-bottom:14px;padding:14px;background:rgba(59,130,246,.10);border-radius:10px;border-left:3px solid var(--info)">
@@ -126591,9 +126436,37 @@ function findVocab(word){
   return null;
 }
 
+// C4: 查找单词释义+词根信息(返回 {v, root})
+function findVocabWithRoot(word){
+  const clean = word.toLowerCase().replace(/[^a-z]/g,'');
+  let v = vocabDB[clean] || vocabDB[word.toLowerCase()];
+  if(v) return {v, root: null};
+  if(clean.length>3){
+    const prefixes = [['me','meng','meny','men','mem','me'],['ber','be'],['di'],['ter'],['pe','peng','peny','pen','pem'],['se']];
+    for(const group of prefixes){
+      for(const p of group){
+        if(clean.startsWith(p) && clean.length>p.length+2){
+          const root = clean.slice(p.length);
+          v = vocabDB[root];
+          if(v) return {v, root};
+          const changes = {m:'p',n:'t',ng:'k',ny:'s',r:''};
+          for(const [to,from] of Object.entries(changes)){
+            if(root.startsWith(to)){
+              v = vocabDB[from+root.slice(to.length)];
+              if(v) return {v, root: from+root.slice(to.length)};
+            }
+          }
+        }
+      }
+    }
+  }
+  return {v: null, root: null};
+}
+
 function showWordPopup(word){
   const clean = word.toLowerCase().replace(/[^a-z]/g,'');
   let v = vocabDB[clean] || vocabDB[word.toLowerCase()];
+  let rootWord = null;
 
   // 前缀去除查找
   if(!v && clean.length>3){
@@ -126603,12 +126476,12 @@ function showWordPopup(word){
         if(clean.startsWith(p) && clean.length>p.length+2){
           const root = clean.slice(p.length);
           v = vocabDB[root];
-          if(v) break;
+          if(v){ rootWord = root; break; }
           const changes = {m:'p',n:'t',ng:'k',ny:'s',r:''};
           for(const [to,from] of Object.entries(changes)){
             if(root.startsWith(to)){
               v = vocabDB[from+root.slice(to.length)];
-              if(v) break;
+              if(v){ rootWord = from+root.slice(to.length); break; }
             }
           }
         }
@@ -126637,7 +126510,7 @@ function showWordPopup(word){
   if(v){
     // === 已收录单词:直接显示完整信息 ===
     cardHTML += `<div style="margin-bottom:10px;"><div style="font-size:12px;color:var(--text-dim);margin-bottom:2px;">IPA</div><div style="font-size:14px;color:var(--text);">${v.ipa||'/'}</div></div>
-    <div style="margin-bottom:10px;"><div style="font-size:12px;color:var(--text-dim);margin-bottom:2px;">中文</div><div style="font-size:15px;color:var(--primary);font-weight:600;">${v.cn}</div></div>
+    <div style="margin-bottom:10px;"><div style="font-size:12px;color:var(--text-dim);margin-bottom:2px;">中文</div><div style="font-size:15px;color:var(--primary);font-weight:600;">${v.cn||'-'}${rootWord?` <span style="font-size:11px;color:var(--text-dim);font-weight:400;">(变形自: ${rootWord})</span>`:''}</div></div>
     <div style="margin-bottom:10px;"><div style="font-size:12px;color:var(--text-dim);margin-bottom:2px;">English</div><div style="font-size:13px;color:var(--text);">${v.en||'-'}</div></div>
     <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;"><button onclick="speakIndonesian('${word.replace(/'/g,"\\'")}')" style="background:none;border:none;color:var(--primary);cursor:pointer;font-size:14px;padding:4px 8px;border-radius:6px;background:rgba(0,212,170,.1);" title="朗读">🔊 朗读</button></div>
     ${v.root?`<div style="font-size:11px;color:var(--text-dim);margin-bottom:12px;">词根: ${v.root}</div>`:''}
