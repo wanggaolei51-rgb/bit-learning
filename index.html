@@ -6,7 +6,7 @@
 <meta http-equiv="Expires" content="0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LEO-BIR V4.38.4</title>
+<title>LEO-BIR V4.38.5</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -268,7 +268,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
 </style>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="video_registry.js?v=V4.38.4"></script>
+<script src="video_registry.js?v=V4.38.5"></script>
 </head>
 <body>
 <div class="app">
@@ -276,7 +276,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="sidebar-header">
     <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <h1>LEO-BIR</h1>
-    <div class="ver">LEO-BIR V4.38.4 · 每日复习视频 Layer 1（2 集样片 · 剪影引擎 v2）</div>
+    <div class="ver">LEO-BIR V4.38.5 · 每日复习视频 Layer 1（2 集样片 · 剪影引擎 v2）</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -1774,135 +1774,2958 @@ const vocabDB = {
   'puncak':{ipa:'/ˈpuntʃak/',cn:'顶峰/高峰',en:'peak / summit',root:'puncak',tag:'C5复习'},
   'lembah':{ipa:'/ˈlɛmbah/',cn:'山谷',en:'valley',root:'lembah',tag:'C5复习'},
   'aktif':{ipa:'/ˈaktif/',cn:'活跃的',en:'active',root:'aktif (Dutch)',tag:'C5复习'},
-'tonggak pencapaian':{ipa:'/ˈtoŋɡak panˈɚdapaan/',cn:'里程碑/阶段成果',en:'milestone',root:'tonggak (=标桩/基准点) + pencapaian (=达成/实现，capai 达成 + peN--an 名词化)',tag:'项目管理'},
-  'bagan Gantt':{ipa:'/ˈbaɡan ˈɡant/',cn:'甘特图',en:'Gantt chart',root:'bagan (=图表) + Gantt (人名 Henry Gantt，项目管理先驱)',tag:'项目管理'},
-  'SRP':{ipa:'/ɛs ɛr ˈpe/',cn:'工作分解结构',en:'WBS (Work Breakdown Structure)',root:'SRP = struktur rincian pekerjaan (结构+详细+工作)',tag:'项目管理'},
-  'sumber daya':{ipa:'/ˈsumbɛr ˈdaja/',cn:'资源',en:'resources',root:'sumber (=来源/泉源) + daya (=力量/能力)',tag:'项目管理'},
-  'alokasi':{ipa:'/aˈlokasi/',cn:'分配',en:'allocation',root:'荷兰语 allocatie → alokasi (al- 向 + lokas 位置 + -i 动词后缀)',tag:'项目管理'},
-  'belanja modal':{ipa:'/bəˈlaɲa ˈmodəl/',cn:'资本支出',en:'capital expenditure (CapEx)',root:'belanja (=支出/花费) + modal (=资本)',tag:'项目管理'},
-  'belanja operasional':{ipa:'/bəˈlaɲa opəˈrasional/',cn:'运营支出',en:'operating expenditure (OpEx)',root:'belanja (=支出) + operasional (=运营的，operasi 操作 + -onal 形容词后缀)',tag:'项目管理'},
-  'garis dasar':{ipa:'/ˈɡaris ˈdasar/',cn:'基准线',en:'baseline',root:'garis (=线) + dasar (=基础/底部)',tag:'项目管理'},
-  'ruang lingkup':{ipa:'/ˈruaŋ liŋˈkup/',cn:'范围',en:'scope',root:'ruang (=空间) + lingkup (=范围/涵盖)',tag:'项目管理'},
-  'hasil yang diserahkan':{ipa:'/haˈsil jaŋ disəˈrahan/',cn:'交付物',en:'deliverable',root:'hasil (=成果) + serah (=交付) + di-...-kan 被动使役 → diserahkan 被交付',tag:'项目管理'},
-  'luaran':{ipa:'/luˈaran/',cn:'产出',en:'output',root:'luar (=外面) + -an 名词后缀 → 外部产出',tag:'项目管理'},
-  'hasil akhir':{ipa:'/haˈsil ˈaɡir/',cn:'成果/最终结果',en:'final outcome',root:'hasil (=成果) + akhir (=结束/最终)',tag:'项目管理'},
-  'IKU':{ipa:'/i ka ˈu/',cn:'关键绩效指标',en:'KPI (Key Performance Indicator)',root:'IKU = indikator kinerja utama (指示器+绩效+主要的)',tag:'项目管理'},
-  'isu':{ipa:'/ˈisu/',cn:'问题/议题',en:'issue',root:'英语 issue → isu',tag:'项目管理'},
-  'jalur kritis':{ipa:'/ˈʤalur ˈkritis/',cn:'关键路径',en:'critical path',root:'jalur (=路径) + kritis (=关键的，希腊语 kritikos 判断)',tag:'项目管理'},
-  'percepatan paralel':{ipa:'/pərʧəˈpatan paˈralel/',cn:'快速跟进(并行)',en:'fast tracking',root:'percepatan (=加速，cepat 快 + per--an) + paralel (=并行的，希腊语 parallelos)',tag:'项目管理'},
-  'percepatan intensif':{ipa:'/pərʧəˈpatan intənˈsif/',cn:'赶工(加班赶进度)',en:'crashing',root:'percepatan (=加速) + intensif (=强化的，拉丁语 intensus)',tag:'项目管理'},
-  'tinjauan':{ipa:'/tinˈʤauan/',cn:'评审/审查',en:'review',root:'tinjau (=审阅) + -an 名词后缀；词根 jau (巡视)',tag:'项目管理'},
-  'audit':{ipa:'/ˈaudit/',cn:'审计',en:'audit',root:'拉丁语 auditus (听) → 英语 audit → 印尼语',tag:'项目管理'},
-  'penerimaan':{ipa:'/pənərimaˈan/',cn:'验收',en:'acceptance',root:'terima (=接收) + peN-...-an 名词化 → 接收过程',tag:'项目管理'},
-  'serah terima':{ipa:'/ˈserah təˈrima/',cn:'移交',en:'handover',root:'serah (=交付) + terima (=接收) → 交接双动词',tag:'项目管理'},
-  'penutupan':{ipa:'/pənutuˈpan/',cn:'收尾/结项',en:'closure',root:'tutup (=关闭) + peN-...-an 名词化',tag:'项目管理'},
-  'pembelajaran':{ipa:'/pəmbəlaˈʤaran/',cn:'经验教训',en:'lessons learned',root:'ajar (=教) + peN--an 名词化 + 中缀 -ber- → 学习过程',tag:'项目管理'},
-  'pemangku kepentingan':{ipa:'/pəˈmaŋku kəpəntiŋan/',cn:'利益相关方',en:'stakeholder',root:'pangku (=持有/承担) + penting (=重要) + peN-...-an → 持有利益者',tag:'项目管理'},
-  'penanggung jawab utama':{ipa:'/pənaŋɡuŋ ˈʤawab ˈutama/',cn:'发起人/主要责任人',en:'sponsor / primary responsible party',root:'tanggunɡ (=承担) + jawab (=回答/负责) + utama (=主要的)',tag:'项目管理'},
-  'rapat kemajuan':{ipa:'/ˈrapat kəmaˈʤuhan/',cn:'进度会',en:'progress meeting',root:'rapat (=会议) + maju (=前进) + ke-...-an 名词化 → 前进状态',tag:'项目管理'},
-  'laporan status':{ipa:'/laˈporan ˈstatus/',cn:'状态报告',en:'status report',root:'lapor (=报告) + -an 名词后缀 + status (=状态，拉丁语)',tag:'项目管理'},
-  'laporan mingguan':{ipa:'/laˈporan miŋˈɡuan/',cn:'周报',en:'weekly report',root:'laporan (=报告) + minggu (=周) + -an 形容词后缀',tag:'项目管理'},
-  'nilai hasil':{ipa:'/ˈnilai ˈhasil/',cn:'挣值',en:'earned value (EV)',root:'nilai (=价值) + hasil (=成果) → 成果价值',tag:'项目管理'},
-  'kepatuhan':{ipa:'/kəpatuˈhan/',cn:'合规/遵守',en:'compliance',root:'patuh (=服从) + ke-...-an 名词化',tag:'环保合规'},
-  'baku mutu':{ipa:'/ˈbaku ˈmutu/',cn:'质量标准/排放标准',en:'quality standard / emission standard',root:'baku (=标准/基准) + mutu (=质量)',tag:'环保合规'},
-  'limbah':{ipa:'/ˈlimbah/',cn:'废弃物/废料',en:'waste',root:'limbah (=废弃/剩余)',tag:'环保合规'},
-  'air limbah':{ipa:'/ˈair ˈlimbah/',cn:'废水',en:'wastewater',root:'air (=水) + limbah (=废料)',tag:'环保合规'},
-  'gas buang':{ipa:'/ˈgas ˈbuaŋ/',cn:'废气/排放气体',en:'exhaust gas / emissions',root:'gas (=气体，荷兰语) + buang (=丢弃)',tag:'环保合规'},
-  'berbahaya':{ipa:'/bərbaˈhaja/',cn:'危险的',en:'hazardous',root:'bahaya (=危险) + ber- 形容词前缀',tag:'环保合规'},
-  'B3':{ipa:'/be ˈtiga/',cn:'有毒有害易燃易爆',en:'B3 (Bahan Berbahaya dan Beracun)',root:'B3 = Bahan Berbahaya dan Beracun (材料+危险+有毒)',tag:'环保合规'},
-  'AMDAL':{ipa:'/ˈamdal/',cn:'环境影响评价',en:'EIA (Environmental Impact Assessment)',root:'AMDAL = Analisis Mengenai Dampak Lingkungan (分析+关于+影响+环境)',tag:'环保合规'},
-  'UKL-UPL':{ipa:'/u ka ˈɛl u pe ˈɛl/',cn:'环境管理与监测计划',en:'Environmental Management & Monitoring Plan',root:'UKL = Upaya Kesehatan Lingkungan, UPL = Upaya Pemantauan Lingkungan',tag:'环保合规'},
-  'izin lingkungan':{ipa:'/ˈizin liŋˈkunan/',cn:'环境许可证',en:'environmental permit',root:'izin (=许可，阿拉伯语 idzn) + lingkungan (=环境)',tag:'环保合规'},
-  'jejak karbon':{ipa:'/ˈʤeʤak ˈkarbon/',cn:'碳足迹',en:'carbon footprint',root:'jejak (=足迹) + karbon (=碳)',tag:'环保合规'},
-  'nol bersih':{ipa:'/ˈnɔl bərˈsih/',cn:'净零排放',en:'net zero',root:'nol (=零) + bersih (=干净)',tag:'环保合规'},
-  'GRK':{ipa:'/ɡe ɛr ˈka/',cn:'温室气体',en:'GHG (Greenhouse Gas)',root:'GRK = Gas Rumah Kaca (气体+房屋+玻璃)',tag:'环保合规'},
-  'pemantauan':{ipa:'/pəmantauˈan/',cn:'监测',en:'monitoring',root:'pantau (=监视) + peN-...-an 名词化',tag:'环保合规'},
-  'pengambilan contoh':{ipa:'/peŋambilan ˈtonto/',cn:'取样/采样',en:'sampling',root:'ambil (=取) + peng-...-an 名词化 + contoh (=样品)',tag:'环保合规'},
-  'audit lingkungan':{ipa:'/ˈaudit liŋˈkunan/',cn:'环境审计',en:'environmental audit',root:'audit (=审计) + lingkungan (=环境)',tag:'环保合规'},
-  'denda':{ipa:'/ˈdɛnda/',cn:'罚款',en:'fine / penalty',root:'denda (=罚金)',tag:'环保合规'},
-  'penjernihan':{ipa:'/pənʤərniˈhan/',cn:'净化/澄清',en:'purification / clarification',root:'jernih (=清澈) + peN-...-an 名词化',tag:'环保合规'},
-  'osmosis terbalik':{ipa:'/osˈmosis tərˈbalik/',cn:'反渗透',en:'reverse osmosis (RO)',root:'osmosis (=渗透，希腊语) + terbalik (=反向的)',tag:'环保合规'},
-  'penyikat basah':{ipa:'/pəɲikat ˈbasah/',cn:'湿式洗涤器',en:'wet scrubber',root:'sikat (=刷/洗涤) + peN-...-an + basah (=湿)',tag:'环保合规'},
-  'filter kantong':{ipa:'/ˈfiltɛr ˈkantɔŋ/',cn:'袋式过滤器',en:'bag filter',root:'filter (=过滤器，英语) + kantong (=袋子)',tag:'环保合规'},
-  'presipitator elektrostatik':{ipa:'/presipiˈtator elɛktroˈstatik/',cn:'静电除尘器',en:'electrostatic precipitator (ESP)',root:'presipitator (=沉淀器，拉丁语) + elektrostatik (=静电的)',tag:'环保合规'},
-  'konservasi':{ipa:'/konsɛrˈvasi/',cn:'保护/保存',en:'conservation',root:'拉丁语 conservare → konservasi',tag:'环保合规'},
-  'rehabilitasi':{ipa:'/rehabilitaˈsi/',cn:'修复/恢复',en:'rehabilitation / restoration',root:'拉丁语 rehabilitare → rehabilitasi',tag:'环保合规'},
-  'penggunaan kembali':{ipa:'/peŋɡunaaan ˈkɛmbali/',cn:'再利用',en:'reuse',root:'guna (=使用) + kembali (=返回) → 重新使用',tag:'环保合规'},
-  'daur ulang':{ipa:'/ˈdaur ˈulaŋ/',cn:'回收',en:'recycling',root:'daur (=循环) + ulang (=重复)',tag:'环保合规'},
-  'pengurangan':{ipa:'/peŋuraŋan/',cn:'减少',en:'reduction',root:'kurang (=少) + peN-...-an 名词化',tag:'环保合规'},
-  'sabuk hijau':{ipa:'/ˈsabuk hiˈʤau/',cn:'绿化带',en:'green belt',root:'sabuk (=带/腰带) + hijau (=绿色)',tag:'环保合规'},
-  'KLHK':{ipa:'/ka ɛl ha ˈka/',cn:'环境与林业部',en:'Ministry of Environment & Forestry',root:'KLHK = Kementerian Lingkungan Hidup dan Kehutanan',tag:'环保合规'},
-  'ESDM':{ipa:'/e ɛs de ˈɛm/',cn:'能源与矿产资源部',en:'Ministry of Energy & Mineral Resources',root:'ESDM = Energi Sumber Daya Mineral',tag:'环保合规'},
-  'PPLH':{ipa:'/pe pe ɛl ˈha/',cn:'环境管理部',en:'Environmental Management Agency',root:'PPLH = Pengelolaan Lingkungan Hidup',tag:'环保合规'},
-  'SPPL':{ipa:'/ɛs pe pe ˈɛl/',cn:'环境管理声明书',en:'Statement of Environmental Management',root:'SPPL = Surat Pernyataan Pengelolaan Lingkungan',tag:'环保合规'},
-  'PROPER':{ipa:'/ˈpropɛr/',cn:'企业环境绩效评级',en:'Corporate Environmental Performance Rating',root:'PROPER = Program Penilaian Peringkat Kinerja Perusahaan',tag:'环保合规'},
-  'rantai pasok':{ipa:'/ˈrantai paˈsok/',cn:'供应链',en:'supply chain',root:'rantai (=链条) + pasok (=供应)',tag:'供应链'},
-  'pesanan':{ipa:'/pəsaˈnan/',cn:'订单/订购',en:'order',root:'pesan (=订购/留言) + -an 名词后缀',tag:'供应链'},
-  'PO':{ipa:'/pe ˈo/',cn:'采购订单',en:'Purchase Order (PO)',root:'PO = Purchase Order (英语缩写)',tag:'供应链'},
-  'pemasok':{ipa:'/pəmaˈsok/',cn:'供应商',en:'supplier',root:'pasok (=供应) + peN-...-an 施事名词化 → 供应者',tag:'供应链'},
-  'inventori':{ipa:'/invenˈtori/',cn:'库存',en:'inventory',root:'拉丁语 inventarium → inventori',tag:'供应链'},
-  'stok pengaman':{ipa:'/ˈstok peŋaˈman/',cn:'安全库存',en:'safety stock',root:'stok (=库存，英语) + aman (=安全) + peng-...-an',tag:'供应链'},
-  'titik pesan ulang':{ipa:'/ˈtitik pəˈsan ˈulaŋ/',cn:'再订货点',en:'reorder point (ROP)',root:'titik (=点) + pesan (=订购) + ulang (=重新)',tag:'供应链'},
-  'waktu tunggu':{ipa:'/ˈwa ktu ˈtuŋɡu/',cn:'提前期/等待时间',en:'lead time',root:'waktu (=时间) + tunggu (=等待)',tag:'供应链'},
-  'tepat waktu':{ipa:'/təˈpat ˈwa ktu/',cn:'准时制',en:'just-in-time (JIT)',root:'tepat (=精确/恰好) + waktu (=时间)',tag:'供应链'},
-  'JIT':{ipa:'/ʤi ai ˈti/',cn:'准时制',en:'Just-In-Time',root:'JIT = Just In Time (英语缩写)',tag:'供应链'},
-  'batch':{ipa:'/ˈbatʃ/',cn:'批次',en:'batch',root:'英语 batch → 印尼语',tag:'供应链'},
-  'lot':{ipa:'/ˈlot/',cn:'批/ Lot',en:'lot',root:'英语 lot → 印尼语',tag:'供应链'},
-  'nomor seri':{ipa:'/ˈnomɔr ˈsɛri/',cn:'序列号',en:'serial number',root:'nomor (=号码，葡萄牙语 número) + seri (=系列，法语 série)',tag:'供应链'},
-  'kode batang':{ipa:'/ˈkodɛ ˈbataŋ/',cn:'条形码',en:'barcode',root:'kode (=代码，荷兰语 code) + batang (=条/杆)',tag:'供应链'},
-  'pengangkutan':{ipa:'/peŋaŋkutaˈan/',cn:'运输',en:'transportation',root:'angkut (=搬运) + peN-...-an 名词化',tag:'供应链'},
-  'pengapalan':{ipa:'/peŋapaˈlan/',cn:'船运/海运',en:'shipping',root:'kapal (=船) + peN-...-an 名词化 → 用船运输',tag:'供应链'},
-  'pengiriman darat':{ipa:'/peŋiriˈman ˈdarat/',cn:'陆运',en:'land freight / ground shipping',root:'kirim (=发送) + peN-...-an + darat (=陆地)',tag:'供应链'},
-  'pengiriman laut':{ipa:'/peŋiriˈman ˈlaut/',cn:'海运',en:'ocean freight / sea shipping',root:'kirim (=发送) + peN-...-an + laut (=海)',tag:'供应链'},
-  'kontainer':{ipa:'/konˈtainɛr/',cn:'集装箱',en:'container',root:'英语 container → kontainer',tag:'供应链'},
-  'pallet':{ipa:'/ˈpalɛt/',cn:'托盘',en:'pallet',root:'英语 pallet → pallet',tag:'供应链'},
-  'forklift':{ipa:'/ˈforklift/',cn:'叉车',en:'forklift',root:'英语 forklift → forklift',tag:'供应链'},
-  'derek':{ipa:'/ˈdɛrɛk/',cn:'起重机/吊车',en:'crane',root:'derek (=起重装置)',tag:'供应链'},
-  'sabuk konveyor':{ipa:'/ˈsabuk konˈvɛjor/',cn:'传送带',en:'conveyor belt',root:'sabuk (=带) + konveyor (=传送机，英语 conveyor)',tag:'供应链'},
-  'kapal kargo':{ipa:'/ˈkapal ˈkarɡo/',cn:'货船',en:'cargo ship',root:'kapal (=船) + kargo (=货物，西班牙语 cargo)',tag:'供应链'},
-  'dermaga':{ipa:'/ˈdɛrmaɡa/',cn:'码头',en:'dock / wharf',root:'葡萄牙语 dermaga → 码头',tag:'供应链'},
-  'bea cukai':{ipa:'/ˈbɛa ʧuˈkai/',cn:'海关/关税',en:'customs / duty',root:'bea (=税/费，葡萄牙语) + cukai (=关税)',tag:'供应链'},
-  'impor':{ipa:'/ˈimpor/',cn:'进口',en:'import',root:'拉丁语 importare → impor',tag:'供应链'},
-  'ekspor':{ipa:'/ˈɛkspor/',cn:'出口',en:'export',root:'拉丁语 exportare → ekspor',tag:'供应链'},
-  'dokumen pengiriman':{ipa:'/ˈdokumɛn peŋiriˈman/',cn:'货运单据',en:'shipping documents',root:'dokumen (=文件，拉丁语) + kirim (=发送) + peN-...-an',tag:'供应链'},
-  'ongkos kirim':{ipa:'/ˈoŋkos ˈkirim/',cn:'运费',en:'shipping cost / freight',root:'ongkos (=费用) + kirim (=发送)',tag:'供应链'},
-  'biaya tambahan':{ipa:'/biˈaja tamˈbahan/',cn:'附加费',en:'surcharge / additional fee',root:'biaya (=费用) + tambah (=增加) + -an 名词后缀',tag:'供应链'},
-  'tanggap darurat':{ipa:'/ˈtaŋɡap daˈru rat/',cn:'应急响应',en:'emergency response',root:'tanggap (=响应/应对) + darurat (=紧急)',tag:'应急响应'},
-  'evakuasi':{ipa:'/evaˈkuasi/',cn:'疏散/撤离',en:'evacuation',root:'拉丁语 evacuare → evakuasi',tag:'应急响应'},
-  'penyelamatan':{ipa:'/pəɲəlaˈmatan/',cn:'救援/营救',en:'rescue',root:'selamat (=安全) + peN-...-an 名词化 → 使安全的过程',tag:'应急响应'},
-  'bencana':{ipa:'/bənˈʧana/',cn:'灾害/灾难',en:'disaster',root:'bencana (=灾难)',tag:'应急响应'},
-  'kebakaran':{ipa:'/kəbaˈkaran/',cn:'火灾',en:'fire',root:'bakar (=燃烧) + ke-...-an 名词化',tag:'应急响应'},
-  'ledakan':{ipa:'/ləˈdakan/',cn:'爆炸',en:'explosion',root:'ledak (=爆炸) + -an 名词后缀',tag:'应急响应'},
-  'kebocoran':{ipa:'/kəboˈtʃoran/',cn:'泄漏',en:'leak',root:'bocor (=泄漏) + ke-...-an 名词化',tag:'应急响应'},
-  'tumpahan':{ipa:'/tumˈpahan/',cn:'溢洒/泼洒',en:'spill',root:'tumpah (=洒出) + -an 名词后缀',tag:'应急响应'},
-  'gas beracun':{ipa:'/ˈgas bəˈratʧun/',cn:'有毒气体',en:'toxic gas',root:'gas (=气体) + racun (=毒) + ber- 前缀',tag:'应急响应'},
-  'asap':{ipa:'/ˈasap/',cn:'烟雾',en:'smoke',root:'asap (=烟)',tag:'应急响应'},
-  'gempa bumi':{ipa:'/ˈɡɛmpa ˈbumi/',cn:'地震',en:'earthquake',root:'gempa (=震动) + bumi (=地球/土地)',tag:'应急响应'},
-  'SOP darurat':{ipa:'/ɛs o ˈpe daˈru rat/',cn:'应急标准作业程序',en:'emergency SOP',root:'SOP = Standard Operating Procedure + darurat (=紧急)',tag:'应急响应'},
-  'rencana darurat':{ipa:'/rənˈʧana daˈru rat/',cn:'应急预案',en:'emergency plan',root:'rencana (=计划) + darurat (=紧急)',tag:'应急响应'},
-  'tim tanggap':{ipa:'/ˈtim ˈtaŋɡap/',cn:'应急小组',en:'response team',root:'tim (=团队，英语) + tanggap (=响应)',tag:'应急响应'},
-  'posko':{ipa:'/ˈposko/',cn:'指挥所/应急站',en:'command post / emergency station',root:'posko (=post 指挥所)',tag:'应急响应'},
-  'jalan evakuasi':{ipa:'/ˈʤalan evaˈkuasi/',cn:'疏散通道',en:'evacuation route',root:'jalan (=路) + evakuasi (=疏散)',tag:'应急响应'},
-  'titik kumpul':{ipa:'/ˈtitik ˈkumpul/',cn:'集合点',en:'assembly point / muster point',root:'titik (=点) + kumpul (=集合)',tag:'应急响应'},
-  'alarm':{ipa:'/aˈlarm/',cn:'警报器',en:'alarm',root:'拉丁语 ad arma → alarm',tag:'应急响应'},
-  'sirine':{ipa:'/ˈsirine/',cn:'警报器/汽笛',en:'siren',root:'荷兰语 sirene → sirine',tag:'应急响应'},
-  'APAR':{ipa:'/a ˈpar/',cn:'便携式灭火器',en:'fire extinguisher',root:'APAR = Alat Pemadam Api Ringan (工具+扑灭+火+轻型)',tag:'应急响应'},
-  'hidran':{ipa:'/ˈhidran/',cn:'消防栓',en:'hydrant',root:'荷兰语 hydrant → hidran',tag:'应急响应'},
-  'sprinkler':{ipa:'/ˈspriŋklɛr/',cn:'喷淋系统',en:'sprinkler',root:'英语 sprinkler → sprinkler',tag:'应急响应'},
-  'detektor asap':{ipa:'/dɛˈtɛktɔr ˈasap/',cn:'烟雾探测器',en:'smoke detector',root:'detektor (=探测器，英语) + asap (=烟)',tag:'应急响应'},
-  'APD':{ipa:'/a pe ˈde/',cn:'个人防护装备',en:'PPE (Personal Protective Equipment)',root:'APD = Alat Pelindung Diri (工具+保护+自身)',tag:'应急响应'},
-  'helm keselamatan':{ipa:'/ˈhɛlm kəsəlaˈmatan/',cn:'安全帽',en:'safety helmet',root:'helm (=头盔) + selamat (=安全) + -an 名词化',tag:'应急响应'},
-  'sepatu keselamatan':{ipa:'/səˈpatu kəsəlaˈmatan/',cn:'安全鞋',en:'safety shoes',root:'sepatu (=鞋，葡萄牙语 sapato) + keselamatan (=安全)',tag:'应急响应'},
-  'sarung tangan':{ipa:'/ˈsaruŋ ˈtaŋan/',cn:'手套',en:'gloves',root:'sarung (=套/覆盖) + tangan (=手)',tag:'应急响应'},
-  'respirator':{ipa:'/rɛspiˈratɔr/',cn:'呼吸器',en:'respirator',root:'拉丁语 respirare → respirator',tag:'应急响应'},
-  'kotak P3K':{ipa:'/ˈkotak pe ˈtiga ka/',cn:'急救箱',en:'first aid kit',root:'kotak (=盒子) + P3K = Pertolongan Pertama Pada Kecelakaan (急救)',tag:'应急响应'},
-  'tandu':{ipa:'/ˈtandu/',cn:'担架',en:'stretcher',root:'tandu (=担架/抬)',tag:'应急响应'},
-  'paramedis':{ipa:'/paraˈmɛdis/',cn:'急救员/医护',en:'paramedic',root:'英语 paramedic → paramedis',tag:'应急响应'},
-  'latihan darurat':{ipa:'/latiˈhan daˈru rat/',cn:'应急演练',en:'emergency drill',root:'latih (=训练) + -an 名词后缀 + darurat (=紧急)',tag:'应急响应'},
-  'simulasi':{ipa:'/simuˈlasi/',cn:'模拟演习',en:'simulation',root:'拉丁语 simulare → simulasi',tag:'应急响应'},
-  'penyelidikan':{ipa:'/pəɲəliˈdikan/',cn:'调查',en:'investigation',root:'selidik (=调查) + peN-...-an 名词化',tag:'应急响应'},
-  'laporan insiden':{ipa:'/laˈporan inˈsidɛn/',cn:'事故报告',en:'incident report',root:'lapor (=报告) + -an + insiden (=事件，英语)',tag:'应急响应'},
-  'hampir celaka':{ipa:'/ˈhampir ʧəˈlaka/',cn:'未遂事故/险情',en:'near miss',root:'hampir (=几乎) + celaka (=灾祸)',tag:'应急响应'}
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+,
+'tonggak pencapaian':{
+  ipa:'/ˈtoŋɡak pantʃapaɪˈan/',
+  cn:'里程碑/阶段成果',
+  en:'milestone',
+  root:'tonggak (=标桩/基准点) + pencapaian (=达成，capai 达成 + peN--an 名词化)',
+  transform:[{form:'tonggak',pos:'n',cn:'标桩/基准点'},{form:'capai',pos:'v',cn:'达成/实现'},{form:'mencapai',pos:'v',cn:'达成/实现（meN- + capai）'},{form:'pencapaian',pos:'n',cn:'达成/成就'},{form:'tercapai',pos:'pass.v',cn:'被达成'}],
+  note:'项目管理核心术语，也用于泛指人生/项目重要节点',
+  example:[{id:'Proyek mencapai tonggak pencapaian penting bulan ini.',cn:'项目本月达到了重要里程碑。'},{id:'Setiap tonggak pencapaian harus disahkan oleh direksi.',cn:'每个里程碑都必须经董事会确认。'}],
+  synonym:['tahap penting','tanda jadi'],
+  tag:'项目管理'
+},
+'bagan Gantt':{
+  ipa:'/ˈbaɡan ɡant/',
+  cn:'甘特图',
+  en:'Gantt chart',
+  root:'bagan (=图表) + Gantt (人名 Henry Gantt，项目管理先驱)',
+  transform:[{form:'bagan',pos:'n',cn:'图表/示意图'}],
+  note:'借词：Gantt 来自人名 Henry L. Gantt (1861-1919)',
+  example:[{id:'Bagan Gantt menunjukkan jadwal proyek secara visual.',cn:'甘特图以可视化方式展示项目进度。'},{id:'Tim proyek memperbarui bagan Gantt setiap minggu.',cn:'项目团队每周更新甘特图。'}],
+  synonym:['diagram batang','jadwal visual'],
+  tag:'项目管理'
+},
+'SRP':{
+  ipa:'/ɛs ɛr ˈpe/',
+  cn:'工作分解结构',
+  en:'WBS (Work Breakdown Structure)',
+  root:'SRP = struktur rincian pekerjaan (结构+详细+工作)',
+  transform:[],
+  note:'缩写词：struktur rincian pekerjaan；等同英语 WBS',
+  example:[{id:'SRP proyek dibagi menjadi lima level utama.',cn:'项目工作分解结构分为五个主要层级。'},{id:'Setiap paket kerja di SRP punya penanggung jawab sendiri.',cn:'SRP中每个工作包都有各自的负责人。'}],
+  synonym:['struktur rincian pekerjaan'],
+  tag:'项目管理'
+},
+'sumber daya':{
+  ipa:'/ˈsumbɛr ˈdaja/',
+  cn:'资源',
+  en:'resources',
+  root:'sumber (=来源/泉源) + daya (=力量/能力)',
+  transform:[{form:'sumber',pos:'n',cn:'来源/泉源'},{form:'daya',pos:'n',cn:'力量/能力'},{form:'berdaya',pos:'adj',cn:'有能力的'},{form:'memberdayakan',pos:'v',cn:'赋能/使有资源'}],
+  note:'sumber daya manusia (SDM) = 人力资源',
+  example:[{id:'Proyek ini membutuhkan sumber daya yang besar.',cn:'这个项目需要大量资源。'},{id:'Sumber daya manusia terampil sangat dibutuhkan.',cn:'非常需要熟练的人力资源。'}],
+  synonym:['sumber','modal','fasilitas'],
+  tag:'项目管理'
+},
+'alokasi':{
+  ipa:'/aˈlokasi/',
+  cn:'分配',
+  en:'allocation',
+  root:'荷兰语 allocatie → alokasi (al- 向 + lokas 位置 + -i 动词后缀)',
+  transform:[{form:'alokasi',pos:'n',cn:'分配'},{form:'mengalokasikan',pos:'v',cn:'分配/拨给'},{form:'dialokasikan',pos:'pass.v',cn:'被分配'},{form:'pengalokasian',pos:'n',cn:'分配过程'}],
+  note:'借词：荷兰语 allocatie',
+  example:[{id:'Alokasi anggaran untuk proyek naik 20% tahun ini.',cn:'今年项目预算分配增加了20%。'},{id:'Manajer mengalokasikan tenaga kerja ke area kritis.',cn:'经理将劳动力分配到关键区域。'}],
+  synonym:['distribusi','pembagian','penempatan'],
+  tag:'项目管理'
+},
+'belanja modal':{
+  ipa:'/bəˈlaɲa ˈmodal/',
+  cn:'资本支出',
+  en:'capital expenditure (CapEx)',
+  root:'belanja (=购买) + modal [待核实]（词源不确定，可能源自葡萄牙语/荷兰语）',
+  transform:[{form:'belanja',pos:'n/v',cn:'支出/花费/购物'},{form:'berbelanja',pos:'v',cn:'购物/支出'},{form:'modal',pos:'n',cn:'资本/资金'},{form:'memodali',pos:'v',cn:'提供资金'}],
+  note:'财务术语：CapEx vs OpEx（belanja operasional）',
+  example:[{id:'Belanja modal untuk smelter mencapai triliunan rupiah.',cn:'冶炼厂的资本支出达数万亿印尼盾。'},{id:'Rencana belanja modal disetujui oleh direksi.',cn:'资本支出计划已获董事会批准。'}],
+  synonym:['CapEx','pengeluaran modal'],
+  tag:'项目管理'
+},
+'belanja operasional':{
+  ipa:'/bəˈlaɲa opəˈrasional/',
+  cn:'运营支出',
+  en:'operating expenditure (OpEx)',
+  root:'belanja (=支出) + operasional (=运营的，operasi 操作 + -onal 形容词后缀)',
+  transform:[{form:'operasi',pos:'n',cn:'操作/运营/手术'},{form:'beroperasi',pos:'v',cn:'运营/运转'},{form:'mengoperasikan',pos:'v',cn:'操作/使运转'}],
+  note:'财务术语：OpEx vs CapEx（belanja modal）',
+  example:[{id:'Belanja operasional bulanan pabrik sangat besar.',cn:'工厂每月运营支出巨大。'},{id:'Kami berusaha menekan belanja operasional tanpa mengurangi kualitas.',cn:'我们努力在不降低质量的前提下压缩运营支出。'}],
+  synonym:['OpEx','biaya operasional','pengeluaran rutin'],
+  tag:'项目管理'
+},
+'garis dasar':{
+  ipa:'/ˈɡaris ˈdasar/',
+  cn:'基准线',
+  en:'baseline',
+  root:'garis (=线) + dasar (=基础/底部)',
+  transform:[{form:'garis',pos:'n',cn:'线'},{form:'dasar',pos:'n/adj',cn:'基础/基本的'},{form:'menggariskan',pos:'v',cn:'划线/规定'},{form:'berdasar',pos:'v',cn:'基于'}],
+  note:'项目管理中用于对比实际进度与计划进度',
+  example:[{id:'Garis dasar proyek ditetapkan setelah kontrak ditandatangani.',cn:'项目基准线在合同签署后确定。'},{id:'Keterlambatan dibandingkan garis dasar sudah dua minggu.',cn:'与基准线相比已延迟两周。'}],
+  synonym:['baseline','acuan','titik tolak'],
+  tag:'项目管理'
+},
+'ruang lingkup':{
+  ipa:'/ˈruaŋ liŋˈkup/',
+  cn:'范围',
+  en:'scope',
+  root:'ruang (=空间) + lingkup (=范围/涵盖)',
+  transform:[{form:'ruang',pos:'n',cn:'空间/房间'},{form:'lingkup',pos:'n',cn:'范围/涵盖'},{form:'melingkupi',pos:'v',cn:'涵盖/包围'},{form:'terlingkup',pos:'pass.v',cn:'被涵盖'}],
+  note:'项目管理三角：ruang lingkup(范围) / waktu(时间) / biaya(成本)',
+  example:[{id:'Ruang lingkup pekerjaan sudah didefinisikan dalam kontrak.',cn:'工作范围已在合同中定义。'},{id:'Perubahan ruang lingkup memerlukan persetujuan tertulis.',cn:'范围变更需要书面批准。'}],
+  synonym:['lingkup','cakupan','skop'],
+  tag:'项目管理'
+},
+'hasil yang diserahkan':{
+  ipa:'/haˈsil jaŋ disəˈrahan/',
+  cn:'交付物',
+  en:'deliverable',
+  root:'hasil (=成果) + serah (=交付) + di-...-kan 被动使役 → diserahkan 被交付',
+  transform:[{form:'hasil',pos:'n',cn:'成果/结果'},{form:'serah',pos:'v',cn:'交付/提交'},{form:'menyerahkan',pos:'v',cn:'交付/呈交'},{form:'diserahkan',pos:'pass.v',cn:'被交付'},{form:'penyerahan',pos:'n',cn:'交付过程'}],
+  note:'更常用简写：deliverable 或直接说 hasil',
+  example:[{id:'Hasil yang diserahkan meliputi desain dan dokumen teknis.',cn:'交付物包括设计和技术文件。'},{id:'Setiap hasil yang diserahkan harus melewati tinjauan mutu.',cn:'每个交付物都必须经过质量评审。'}],
+  synonym:['deliverable','luaran','produk akhir'],
+  tag:'项目管理'
+},
+'luaran':{
+  ipa:'/luˈaˈran/',
+  cn:'产出',
+  en:'output',
+  root:'luar (=外面) + -an 名词后缀 → 外部产出',
+  transform:[{form:'luar',pos:'n/adj',cn:'外面/外部'},{form:'mengeluarkan',pos:'v',cn:'排出/支出/出版'},{form:'dikeluarkan',pos:'pass.v',cn:'被排出/被支出'},{form:'pengeluaran',pos:'n',cn:'支出/排出'}],
+  note:'与 hasil（成果）近义，luaran 强调系统/流程的直接输出',
+  example:[{id:'Luaran proses produksi harus memenuhi baku mutu.',cn:'生产过程的产出必须符合质量标准。'},{id:'Luaran mesin ini digunakan sebagai bahan baku.',cn:'这台机器的产出被用作原材料。'}],
+  synonym:['hasil','produk','output'],
+  antonym:['masukan','input'],
+  tag:'项目管理'
+},
+'hasil akhir':{
+  ipa:'/haˈsil ˈaʁir/',
+  cn:'成果/最终结果',
+  en:'final outcome',
+  root:'hasil (=成果) + akhir (=结束/最终，阿拉伯语 aḫīr)',
+  transform:[{form:'hasil',pos:'n',cn:'成果/结果'},{form:'akhir',pos:'n/adj',cn:'结束/最终'},{form:'mengakhiri',pos:'v',cn:'结束/终止'},{form:'berakhir',pos:'v',cn:'结束'}],
+  note:'也常用于学术：hasil akhir penelitian = 研究成果',
+  example:[{id:'Hasil akhir proyek melebihi ekspektasi klien.',cn:'项目最终成果超出客户期望。'},{id:'Hasil akhir evaluasi akan disampaikan minggu depan.',cn:'评估最终结果将于下周公布。'}],
+  synonym:['outcome','produk akhir'],
+  tag:'项目管理'
+},
+'IKU':{
+  ipa:'/i ka ˈu/',
+  cn:'关键绩效指标',
+  en:'KPI (Key Performance Indicator)',
+  root:'IKU = indikator kinerja utama (指示器+绩效+主要的)',
+  transform:[{form:'indikator',pos:'n',cn:'指示器/指标'},{form:'kinerja',pos:'n',cn:'绩效/表现'},{form:'utama',pos:'adj',cn:'主要的'}],
+  note:'等同英语 KPI；完整形式：indikator kinerja utama',
+  example:[{id:'IKU proyek ditetapkan dalam dokumen perencanaan.',cn:'项目KPI在规划文件中确定。'},{id:'Pencapaian IKU dievaluasi setiap triwulan.',cn:'KPI达成情况每季度评估。'}],
+  synonym:['KPI','indikator kinerja','metrik'],
+  tag:'项目管理'
+},
+'isu':{
+  ipa:'/ˈisu/',
+  cn:'问题/议题',
+  en:'issue',
+  root:'英语 issue → isu',
+  transform:[],
+  note:'借词：英语 issue；项目管理中特指需要跟踪解决的问题',
+  example:[{id:'Isu utama proyek adalah keterlambatan pengiriman material.',cn:'项目的主要问题是材料交付延迟。'},{id:'Semua isu harus dicatat dalam log isu.',cn:'所有问题都必须记录在问题日志中。'}],
+  synonym:['masalah','persoalan','kendala'],
+  antonym:['solusi','penyelesaian'],
+  tag:'项目管理'
+},
+'jalur kritis':{
+  ipa:'/ˈʤalur ˈkritis/',
+  cn:'关键路径',
+  en:'critical path',
+  root:'jalur (=路径) + kritis (=关键的，希腊语 kritikos 判断)',
+  transform:[{form:'jalur',pos:'n',cn:'路径/路线'},{form:'kritis',pos:'adj',cn:'关键的/批判的'},{form:'menjalur',pos:'v',cn:'走路线（罕）'}],
+  note:'项目管理核心概念：决定项目最短工期的任务序列',
+  example:[{id:'Keterlambatan di jalur kritis akan menunda seluruh proyek.',cn:'关键路径上的延迟将导致整个项目延期。'},{id:'Tim fokus pada aktivitas jalur kritis untuk mengejar jadwal.',cn:'团队聚焦于关键路径活动以追赶进度。'}],
+  synonym:['critical path','rute kritis'],
+  tag:'项目管理'
+},
+'percepatan paralel':{
+  ipa:'/pərtʃəˈpatan paˈralel/',
+  cn:'快速跟进(并行)',
+  en:'fast tracking',
+  root:'percepatan (=加速，cepat 快 + per--an) + paralel (=并行的，希腊语 parallelos)',
+  transform:[{form:'cepat',pos:'adj',cn:'快'},{form:'mempercepat',pos:'v',cn:'加速'},{form:'percepatan',pos:'n',cn:'加速/提速'},{form:'paralel',pos:'adj',cn:'并行的'}],
+  note:'项目管理压缩工期两种方法之一（另一个是 percepatan intensif = crashing）',
+  example:[{id:'Percepatan paralel dilakukan dengan menjalankan dua tahap bersamaan.',cn:'快速跟进通过并行执行两个阶段来实现。'},{id:'Percepatan paralel meningkatkan risiko tetapi memangkas waktu.',cn:'快速跟进增加风险但缩短工期。'}],
+  synonym:['fast tracking'],
+  tag:'项目管理'
+},
+'percepatan intensif':{
+  ipa:'/pərtʃəˈpatan intənˈsif/',
+  cn:'赶工(加班赶进度)',
+  en:'crashing',
+  root:'percepatan (=加速) + intensif (=强化的，拉丁语 intensus)',
+  transform:[{form:'intensif',pos:'adj',cn:'强化的/密集的'},{form:'intensitas',pos:'n',cn:'强度'}],
+  note:'项目管理压缩工期方法：增加资源/加班来缩短关键活动工期',
+  example:[{id:'Percepatan intensif dilakukan dengan menambah shift kerja.',cn:'通过增加工作班次来进行赶工。'},{id:'Biaya percepatan intensif lebih tinggi dari anggaran.',cn:'赶工成本超出预算。'}],
+  synonym:['crashing','percepatan sumber daya'],
+  tag:'项目管理'
+},
+'tinjauan':{
+  ipa:'/tinˈʤauan/',
+  cn:'评审/审查',
+  en:'review',
+  root:'tinjau (=审阅) + -an 名词后缀；词根 jau (巡视)',
+  transform:[{form:'tinjau',pos:'v',cn:'审阅/巡视'},{form:'meninjau',pos:'v',cn:'审阅/视察'},{form:'ditinjau',pos:'pass.v',cn:'被审阅'},{form:'peninjau',pos:'n',cn:'审阅人/视察员'}],
+  note:'也可指现场视察：meninjau lokasi = 视察现场',
+  example:[{id:'Tinjauan desain dilakukan sebelum masuk tahap konstruksi.',cn:'设计评审在施工阶段开始前进行。'},{id:'Direktur meninjau progres proyek setiap bulan.',cn:'总监每月视察项目进展。'}],
+  synonym:['review','penelaahan','pemeriksaan'],
+  tag:'项目管理'
+},
+'audit':{
+  ipa:'/ˈaudit/',
+  cn:'审计',
+  en:'audit',
+  root:'拉丁语 auditus (听) → 英语 audit → 印尼语',
+  transform:[{form:'audit',pos:'n/v',cn:'审计'},{form:'mengaudit',pos:'v',cn:'审计/稽核'},{form:'auditor',pos:'n',cn:'审计员'},{form:'diaudit',pos:'pass.v',cn:'被审计'}],
+  note:'借词：拉丁语/英语',
+  example:[{id:'Audit keuangan dilakukan oleh firma independen.',cn:'财务审计由独立事务所执行。'},{id:'Perusahaan diaudit setiap tahun oleh BPK.',cn:'公司每年接受审计局审计。'}],
+  synonym:['pemeriksaan','inspeksi','penelusuran'],
+  tag:'项目管理'
+},
+'penerimaan':{
+  ipa:'/pənərimaˈan/',
+  cn:'验收',
+  en:'acceptance',
+  root:'terima (=接收) + peN-...-an 名词化 → 接收过程',
+  transform:[{form:'terima',pos:'v',cn:'接收'},{form:'menerima',pos:'v',cn:'接收/接受'},{form:'diterima',pos:'pass.v',cn:'被接受'},{form:'penerima',pos:'n',cn:'接收人'},{form:'penerimaan',pos:'n',cn:'接收/验收'}],
+  note:'项目管理中指客户正式验收交付物',
+  example:[{id:'Penerimaan hasil kerja dilakukan oleh tim kualitas.',cn:'工作成果的验收由质量团队执行。'},{id:'Berita acara penerimaan ditandatangani oleh kedua pihak.',cn:'验收纪要由双方签署。'}],
+  synonym:['acceptance','serah terima','pengambilalihan'],
+  antonym:['penolakan','pengembalian'],
+  tag:'项目管理'
+},
+'serah terima':{
+  ipa:'/ˈserah təˈrima/',
+  cn:'移交',
+  en:'handover',
+  root:'serah (=交付) + terima (=接收) → 交接双动词',
+  transform:[{form:'serah',pos:'v',cn:'交付'},{form:'terima',pos:'v',cn:'接收'},{form:'menyerahkan',pos:'v',cn:'移交/递交'},{form:'menerima',pos:'v',cn:'接收'}],
+  note:'也可简称 serah terima proyek = 项目移交',
+  example:[{id:'Serah terima proyek dari kontraktor ke pemilik dilakukan hari ini.',cn:'项目从承包商向业主的移交今日进行。'},{id:'Proses serah terima mencakup dokumen dan aset fisik.',cn:'移交过程包括文件和实物资产。'}],
+  synonym:['handover','pengalihan','penyerahan'],
+  tag:'项目管理'
+},
+'penutupan':{
+  ipa:'/pənutuˈpan/',
+  cn:'收尾/结项',
+  en:'closure',
+  root:'tutup (=关闭) + peN-...-an 名词化',
+  transform:[{form:'tutup',pos:'v/adj',cn:'关闭'},{form:'menutup',pos:'v',cn:'关闭'},{form:'ditutup',pos:'pass.v',cn:'被关闭'},{form:'penutup',pos:'n',cn:'关闭者/盖子'},{form:'penutupan',pos:'n',cn:'关闭/收尾'}],
+  note:'项目管理五大过程组最后一个：penutupan (closing)',
+  example:[{id:'Penutupan proyek meliputi evaluasi dan dokumentasi pembelajaran.',cn:'项目收尾包括评估和经验教训文档化。'},{id:'Upacara penutupan dihadiri oleh semua pemangku kepentingan.',cn:'结项仪式由所有利益相关方出席。'}],
+  synonym:['closing','penyelesaian','akhir proyek'],
+  antonym:['pembukaan'],
+  tag:'项目管理'
+},
+'pembelajaran':{
+  ipa:'/pəmbəlaˈʤaran/',
+  cn:'经验教训',
+  en:'lessons learned',
+  root:'ajar (=教) + peN--an 名词化 + 中缀 -ber- → 学习过程',
+  transform:[{form:'ajar',pos:'v',cn:'教'},{form:'belajar',pos:'v',cn:'学习'},{form:'mengajar',pos:'v',cn:'教（课）'},{form:'pelajaran',pos:'n',cn:'课程/教训'},{form:'pembelajaran',pos:'n',cn:'学习过程/经验教训'}],
+  note:'项目管理中 lessons learned = 项目结束后总结的经验教训',
+  example:[{id:'Pembelajaran dari proyek sebelumnya diterapkan pada proyek baru.',cn:'从前一项目中学到的经验应用于新项目。'},{id:'Dokumen pembelajaran disimpan dalam knowledge base perusahaan.',cn:'经验教训文档保存在公司知识库中。'}],
+  synonym:['lessons learned','pengalaman','pelajaran'],
+  tag:'项目管理'
+},
+'pemangku kepentingan':{
+  ipa:'/pəˈmaŋku kəpəntiŋan/',
+  cn:'利益相关方',
+  en:'stakeholder',
+  root:'pangku (=持有/承担) + penting (=重要) + peN-...-an → 持有利益者',
+  transform:[{form:'pangku',pos:'v',cn:'持有/承担'},{form:'penting',pos:'adj',cn:'重要的'},{form:'kepentingan',pos:'n',cn:'利益/重要性'},{form:'memangku',pos:'v',cn:'承担/担任'},{form:'pemangku',pos:'n',cn:'持有者/承担者'}],
+  note:'也可拼写 pihak yang berkepentingan；简写：stakeholder',
+  example:[{id:'Semua pemangku kepentingan diundang ke rapat koordinasi.',cn:'所有利益相关方被邀请参加协调会。'},{id:'Pemangku kepentingan utama termasuk pemerintah dan masyarakat lokal.',cn:'主要利益相关方包括政府和当地社区。'}],
+  synonym:['stakeholder','pihak terkait','pihak berkepentingan'],
+  tag:'项目管理'
+},
+'penanggung jawab utama':{
+  ipa:'/pənaŋˈɡuŋ ˈʤawab ˈutama/',
+  cn:'发起人/主要责任人',
+  en:'sponsor / primary responsible party',
+  root:'tanggung (=承担) + jawab (=回答/负责) + utama (=主要的)',
+  transform:[{form:'tanggung jawab',pos:'n',cn:'责任'},{form:'bertanggung jawab',pos:'v',cn:'负责'},{form:'jawab',pos:'v',cn:'回答'},{form:'menjawab',pos:'v',cn:'回答'},{form:'utama',pos:'adj',cn:'主要的'}],
+  note:'penanggung jawab = 负责人；utama = 主要的',
+  example:[{id:'Penanggung jawab utama proyek menyetujui perubahan besar.',cn:'项目主要责任人批准重大变更。'},{id:'Dia ditunjuk sebagai penanggung jawab utama keselamatan.',cn:'他被任命为安全第一责任人。'}],
+  synonym:['sponsor','PJ','penanggung jawab'],
+  tag:'项目管理'
+},
+'rapat kemajuan':{
+  ipa:'/ˈrapat kəmaˈʤuhan/',
+  cn:'进度会',
+  en:'progress meeting',
+  root:'rapat (=会议) + maju (=前进) + ke-...-an 名词化 → 前进状态',
+  transform:[{form:'rapat',pos:'n/v',cn:'会议/集会'},{form:'berrapat',pos:'v',cn:'开会'},{form:'maju',pos:'v/adj',cn:'前进/先进'},{form:'kemajuan',pos:'n',cn:'进展/进步'}],
+  note:'项目管理常规会议：每日站会/周进度会',
+  example:[{id:'Rapat kemajuan diadakan setiap Senin pagi.',cn:'进度会每周一上午举行。'},{id:'Hasil rapat kemajuan dicatat dalam notulen.',cn:'进度会结果记录在会议纪要中。'}],
+  synonym:['progress meeting','rapat koordinasi','rapat mingguan'],
+  tag:'项目管理'
+},
+'laporan status':{
+  ipa:'/laˈporan ˈstatus/',
+  cn:'状态报告',
+  en:'status report',
+  root:'lapor (=报告) + -an 名词后缀 + status (=状态，拉丁语)',
+  transform:[{form:'lapor',pos:'v',cn:'报告'},{form:'melapor',pos:'v',cn:'报告/汇报'},{form:'melaporkan',pos:'v',cn:'报告'},{form:'laporan',pos:'n',cn:'报告'},{form:'status',pos:'n',cn:'状态'}],
+  note:'项目管理常规交付物：日报/周报/月报',
+  example:[{id:'Laporan status proyek dikirim ke sponsor setiap Jumat.',cn:'项目状态报告每周五发送给发起人。'},{id:'Laporan status mencakup progres, risiko, dan isu terkini.',cn:'状态报告包括进展、风险和当前问题。'}],
+  synonym:['status report','laporan progres','laporan berkala'],
+  tag:'项目管理'
+},
+'laporan mingguan':{
+  ipa:'/laˈporan miŋˈɡuan/',
+  cn:'周报',
+  en:'weekly report',
+  root:'laporan (=报告) + minggu (=周) + -an 形容词后缀',
+  transform:[{form:'minggu',pos:'n',cn:'周/星期'},{form:'mingguan',pos:'adj',cn:'每周的'}],
+  example:[{id:'Laporan mingguan harus dikirim sebelum Jumat sore.',cn:'周报必须在周五下午前发送。'},{id:'Laporan mingguan mencakup pencapaian dan rencana minggu depan.',cn:'周报包括本周成就和下周计划。'}],
+  synonym:['weekly report','laporan pekanan'],
+  tag:'项目管理'
+},
+'nilai hasil':{
+  ipa:'/ˈnilai ˈhasil/',
+  cn:'挣值',
+  en:'earned value (EV)',
+  root:'nilai (=价值) + hasil (=成果) → 成果价值',
+  transform:[{form:'nilai',pos:'n/v',cn:'价值/评价'},{form:'menilai',pos:'v',cn:'评价/评估'},{form:'hasil',pos:'n',cn:'成果/结果'},{form:'bernila',pos:'v',cn:'有价值'}],
+  note:'项目管理挣值管理(EVM)核心指标：EV/PV/AC',
+  example:[{id:'Nilai hasil proyek sudah mencapai 75% dari rencana.',cn:'项目挣值已达到计划的75%。'},{id:'Perhitungan nilai hasil membandingkan progres aktual dengan anggaran.',cn:'挣值计算对比实际进度与预算。'}],
+  synonym:['earned value','EV','nilai capaian'],
+  tag:'项目管理'
+},
+'kepatuhan':{
+  ipa:'/kəpatuˈhan/',
+  cn:'合规/遵守',
+  en:'compliance',
+  root:'patuh (=服从) + ke-...-an 名词化',
+  transform:[{form:'patuh',pos:'adj/v',cn:'服从/顺从'},{form:'mematuhi',pos:'v',cn:'遵守/服从'},{form:'kepatuhan',pos:'n',cn:'合规/遵守'}],
+  note:'常搭配：kepatuhan lingkungan (环境合规), kepatuhan regulasi (法规合规)',
+  example:[{id:'Kepatuhan lingkungan merupakan kewajiban seluruh perusahaan.',cn:'环境合规是所有企业的义务。'},{id:'Perusahaan wajib mematuhi baku mutu emisi yang berlaku.',cn:'企业必须遵守适用的排放标准。'}],
+  synonym:['kepatuhan regulasi','kepatuhan lingkungan'],
+  antonym:['pelanggaran','ketidakpatuhan'],
+  tag:'环保合规'
+},
+'baku mutu':{
+  ipa:'/ˈbaku ˈmutu/',
+  cn:'质量标准/排放标准',
+  en:'quality standard / emission standard',
+  root:'baku (=标准/基准) + mutu (=质量)',
+  transform:[{form:'baku',pos:'n/adj',cn:'标准/基准'},{form:'mutu',pos:'n',cn:'质量'}],
+  note:'常搭配：baku mutu air (水质标准), baku mutu emisi (排放标准)',
+  example:[{id:'Baku mutu air limbah ditetapkan oleh peraturan pemerintah.',cn:'废水排放标准由政府法规规定。'},{id:'Hasil uji harus dibandingkan dengan baku mutu yang berlaku.',cn:'检测结果必须与适用质量标准对比。'}],
+  synonym:['standar mutu','kadar baku','standar'],
+  tag:'环保合规'
+},
+'limbah':{
+  ipa:'/ˈlimbah/',
+  cn:'废弃物/废料',
+  en:'waste',
+  root:'limbah (=废弃/剩余)',
+  transform:[{form:'limbah',pos:'n',cn:'废弃物'},{form:'melimbahkan',pos:'v',cn:'遗弃/丢弃（罕）'},{form:'berlimbah',pos:'adj',cn:'充满废料的（口语）'}],
+  note:'B3 废料 = 有毒有害废料 (limbah Bahan Berbahaya dan Beracun)',
+  example:[{id:'Limbah industri harus dikelola sesuai peraturan.',cn:'工业废料必须按规定管理。'},{id:'Pengelolaan limbah B3 memerlukan izin khusus.',cn:'B3废料处理需要特别许可。'}],
+  synonym:['sampah','buangan','sisa'],
+  tag:'环保合规'
+},
+'air limbah':{
+  ipa:'/ˈair ˈlimbah/',
+  cn:'废水',
+  en:'wastewater',
+  root:'air (=水) + limbah (=废料)',
+  transform:[{form:'air',pos:'n',cn:'水'},{form:'limbah',pos:'n',cn:'废料'}],
+  note:'IPAL (Instalasi Pengolahan Air Limbah) = 废水处理厂',
+  example:[{id:'Air limbah dari produksi harus diolah sebelum dibuang.',cn:'生产废水必须在排放前处理。'},{id:'Kualitas air limbah diuji setiap hari di laboratorium.',cn:'废水质量每天在实验室检测。'}],
+  synonym:['air buangan','air kotor','efluen'],
+  tag:'环保合规'
+},
+'gas buang':{
+  ipa:'/ˈɡas ˈbuaŋ/',
+  cn:'废气/排放气体',
+  en:'exhaust gas / emissions',
+  root:'gas (=气体，荷兰语) + buang (=丢弃)',
+  transform:[{form:'gas',pos:'n',cn:'气体'},{form:'buang',pos:'v',cn:'丢弃/排出'},{form:'membuang',pos:'v',cn:'丢弃/排放'},{form:'buangan',pos:'n',cn:'排出物'}],
+  note:'也常称 emisi gas (气体排放)',
+  example:[{id:'Gas buang dari cerobong harus memenuhi baku mutu.',cn:'烟囱废气必须符合排放标准。'},{id:'Filter dipasang untuk menyaring gas buang.',cn:'安装过滤器以过滤废气。'}],
+  synonym:['emisi','gas emisi','gas sisa'],
+  tag:'环保合规'
+},
+'berbahaya':{
+  ipa:'/bərbaˈhaja/',
+  cn:'危险的',
+  en:'hazardous',
+  root:'bahaya (=危险) + ber- 形容词前缀',
+  transform:[{form:'bahaya',pos:'n',cn:'危险'},{form:'berbahaya',pos:'adj',cn:'危险的'},{form:'membahayakan',pos:'v',cn:'危及/危害'},{form:'dibahayakan',pos:'pass.v',cn:'被危害'}],
+  note:'B3 = Bahan Berbahaya dan Beracun (危险和有毒物质)',
+  example:[{id:'Limbah berbahaya harus disimpan di tempat khusus.',cn:'危险废料必须存放在专用场所。'},{id:'Pekerjaan di ruang terbatas sangat berbahaya.',cn:'有限空间作业非常危险。'}],
+  synonym:['berisiko','membahayakan','genting'],
+  antonym:['aman','selamat'],
+  tag:'环保合规'
+},
+'B3':{
+  ipa:'/be ˈtiga/',
+  cn:'有毒有害易燃易爆',
+  en:'B3 (Bahan Berbahaya dan Beracun)',
+  root:'B3 = Bahan Berbahaya dan Beracun (材料+危险+有毒)',
+  transform:[{form:'bahan',pos:'n',cn:'材料/物质'},{form:'berbahaya',pos:'adj',cn:'危险的'},{form:'beracun',pos:'adj',cn:'有毒的'}],
+  note:'印尼法规术语：B3 = Bahan Berbahaya dan Beracun；对应英语 HAZMAT/Hazardous Material',
+  example:[{id:'Penanganan limbah B3 diatur dalam PP No. 22 tahun 2021.',cn:'B3废料处理受2021年第22号政府条例规管。'},{id:'Semua bahan B3 harus dilabeli dengan jelas.',cn:'所有B3物质必须清楚标注。'}],
+  synonym:['bahan berbahaya','HAZMAT','bahan kimia berbahaya'],
+  tag:'环保合规'
+},
+'AMDAL':{
+  ipa:'/ˈamdal/',
+  cn:'环境影响评价',
+  en:'EIA (Environmental Impact Assessment)',
+  root:'AMDAL = Analisis Mengenai Dampak Lingkungan (分析+关于+影响+环境)',
+  transform:[{form:'analisis',pos:'n',cn:'分析'},{form:'dampak',pos:'n',cn:'影响'},{form:'lingkungan',pos:'n',cn:'环境'},{form:'menganalisis',pos:'v',cn:'分析'}],
+  note:'大型项目必须编制 AMDAL；小型项目用 UKL-UPL 或 SPPL',
+  example:[{id:'Proyek smelter wajib menyusun AMDAL sebelum izin diterbitkan.',cn:'冶炼厂项目必须在许可证颁发前编制环评。'},{id:'Dokumen AMDAL ditetapkan dengan peraturan menteri.',cn:'环评文件根据部长条例确定。'}],
+  synonym:['EIA','analisis dampak lingkungan','studi lingkungan'],
+  tag:'环保合规'
+},
+'UKL-UPL':{
+  ipa:'/u ka ɛl - u pe ɛl/',
+  cn:'环境管理与监测计划',
+  en:'Environmental Management & Monitoring Plan',
+  root:'UKL = Upaya Kesehatan Lingkungan (环境保健措施), UPL = Upaya Pemantauan Lingkungan (环境监测措施)',
+  transform:[{form:'upaya',pos:'n',cn:'措施/努力'},{form:'kesehatan',pos:'n',cn:'健康'},{form:'pemantauan',pos:'n',cn:'监测'},{form:'lingkungan',pos:'n',cn:'环境'}],
+  note:'中等影响项目用 UKL-UPL；大型用 AMDAL；小型用 SPPL',
+  example:[{id:'UKL-UPL disusun untuk proyek dengan dampak tidak signifikan.',cn:'UKL-UPL为影响不显著的项目编制。'},{id:'Pelaksanaan UKL-UPL diawasi oleh KLHK.',cn:'UKL-UPL的执行由环境与林业部监督。'}],
+  synonym:['rencana pengelolaan lingkungan'],
+  tag:'环保合规'
+},
+'izin lingkungan':{
+  ipa:'/ˈizin liŋˈkunan/',
+  cn:'环境许可证',
+  en:'environmental permit',
+  root:'izin (=许可，阿拉伯语 idzn) + lingkungan (=环境)',
+  transform:[{form:'izin',pos:'n',cn:'许可'},{form:'mengizinkan',pos:'v',cn:'允许/许可'},{form:'diizinkan',pos:'pass.v',cn:'被允许'},{form:'lingkungan',pos:'n',cn:'环境'}],
+  note:'2021年第22号PP（Peraturan Pemerintah）整合了环境许可',
+  example:[{id:'Izin lingkungan diterbitkan setelah AMDAL disetujui.',cn:'环评获批后颁发环境许可证。'},{id:'Perusahaan tidak boleh beroperasi tanpa izin lingkungan.',cn:'企业没有环境许可证不得运营。'}],
+  synonym:['izin lingkungan hidup','perizinan lingkungan','izin KLHK'],
+  tag:'环保合规'
+},
+'jejak karbon':{
+  ipa:'/ˈʤeʤak ˈkarbon/',
+  cn:'碳足迹',
+  en:'carbon footprint',
+  root:'jejak (=足迹) + karbon (=碳)',
+  transform:[{form:'jejak',pos:'n',cn:'足迹/痕迹'},{form:'karbon',pos:'n',cn:'碳'},{form:'menjejak',pos:'v',cn:'追踪/留下痕迹'}],
+  example:[{id:'Perusahaan berkomitmen mengurangi jejak karbon 30% dalam 5 tahun.',cn:'企业承诺5年内减少碳足迹30%。'},{id:'Jejak karbon dihitung dari konsumsi energi dan transportasi.',cn:'碳足迹根据能源消耗和运输计算。'}],
+  synonym:['carbon footprint','jejak CO2'],
+  tag:'环保合规'
+},
+'nol bersih':{
+  ipa:'/ˈnɔl bərˈsih/',
+  cn:'净零排放',
+  en:'net zero',
+  root:'nol (=零，荷兰语 nul) + bersih (=干净)',
+  transform:[{form:'nol',pos:'num',cn:'零'},{form:'bersih',pos:'adj',cn:'干净的'},{form:'membersihkan',pos:'v',cn:'清洁/清理'}],
+  note:'印尼目标：2060年实现 net zero emission (NZE)',
+  example:[{id:'Indonesia menargetkan nol bersih pada tahun 2060.',cn:'印尼目标2060年实现净零排放。'},{id:'Transformasi energi diperlukan untuk mencapai nol bersih.',cn:'实现净零排放需要能源转型。'}],
+  synonym:['net zero','nol neto','emisi nol'],
+  tag:'环保合规'
+},
+'GRK':{
+  ipa:'/ɡe ɛr ˈka/',
+  cn:'温室气体',
+  en:'GHG (Greenhouse Gas)',
+  root:'GRK = Gas Rumah Kaca (气体+房屋+玻璃)',
+  transform:[{form:'gas',pos:'n',cn:'气体'},{form:'rumah',pos:'n',cn:'房屋'},{form:'kaca',pos:'n',cn:'玻璃'}],
+  note:'等同英语 GHG；主要类型：CO2, CH4, N2O',
+  example:[{id:'GRK dari industri harus dilaporkan setiap tahun.',cn:'工业温室气体必须每年报告。'},{id:'Pengurangan GRK menjadi komitmen global.',cn:'减少温室气体是全球承诺。'}],
+  synonym:['GHG','gas rumah kaca','gas efek rumah kaca'],
+  tag:'环保合规'
+},
+'pemantauan':{
+  ipa:'/pəmantauˈan/',
+  cn:'监测',
+  en:'monitoring',
+  root:'pantau (=监视) + peN-...-an 名词化',
+  transform:[{form:'pantau',pos:'v',cn:'监视/监控'},{form:'memantau',pos:'v',cn:'监测/监视'},{form:'pantauan',pos:'n',cn:'监视（结果）'},{form:'pemantau',pos:'n',cn:'监测员'},{form:'pemantauan',pos:'n',cn:'监测/监控过程'}],
+  example:[{id:'Pemantauan kualitas udara dilakukan secara berkala.',cn:'空气质量监测定期进行。'},{id:'Data pemantauan dikirim ke KLHK setiap bulan.',cn:'监测数据每月报送环境与林业部。'}],
+  synonym:['monitoring','pengawasan','pengamatan'],
+  tag:'环保合规'
+},
+'pengambilan contoh':{
+  ipa:'/peŋambilan ˈtontʃoh/',
+  cn:'取样/采样',
+  en:'sampling',
+  root:'ambil (=取) + peng-...-an 名词化 + contoh (=样品)',
+  transform:[{form:'ambil',pos:'v',cn:'取/拿'},{form:'mengambil',pos:'v',cn:'拿取/采取'},{form:'pengambilan',pos:'n',cn:'取样/获取'},{form:'contoh',pos:'n',cn:'样品/例子'}],
+  note:'也常称 sampling (英语借词)',
+  example:[{id:'Pengambilan contoh air dilakukan di titik pembuangan.',cn:'在排放点进行水样采集。'},{id:'Contoh diuji di laboratorium terakreditasi.',cn:'样品在获认可的实验室检测。'}],
+  synonym:['sampling','penarikan contoh','pengambilan sampel'],
+  tag:'环保合规'
+},
+'audit lingkungan':{
+  ipa:'/ˈaudit liŋˈkunan/',
+  cn:'环境审计',
+  en:'environmental audit',
+  root:'audit (=审计，拉丁语 auditus) + lingkungan (=环境)',
+  transform:[{form:'audit',pos:'n/v',cn:'审计'},{form:'mengaudit',pos:'v',cn:'审计'},{form:'lingkungan',pos:'n',cn:'环境'}],
+  example:[{id:'Audit lingkungan dilakukan untuk memastikan kepatuhan.',cn:'环境审计用于确保合规。'},{id:'Hasil audit lingkungan menjadi dasar perbaikan.',cn:'环境审计结果成为改进基础。'}],
+  synonym:['audit lingkungan hidup','audit KLHK','penilaian lingkungan'],
+  tag:'环保合规'
+},
+'denda':{
+  ipa:'/ˈdɛnda/',
+  cn:'罚款',
+  en:'fine / penalty',
+  root:'denda (=罚金，梵语 danda)',
+  transform:[{form:'denda',pos:'n/v',cn:'罚款'},{form:'mendenda',pos:'v',cn:'处以罚款'},{form:'didenda',pos:'pass.v',cn:'被罚款'}],
+  note:'也可指违约金 (denda keterlambatan)',
+  example:[{id:'Perusahaan didenda karena melanggar baku mutu.',cn:'企业因违反排放标准被罚款。'},{id:'Denda lingkungan diberikan sesuai tingkat pelanggaran.',cn:'环境罚款根据违规程度处以。'}],
+  synonym:['sanksi','penalti','hukuman denda'],
+  antonym:['penghargaan','bonus'],
+  tag:'环保合规'
+},
+'penjernihan':{
+  ipa:'/pənʤərniˈhan/',
+  cn:'净化/澄清',
+  en:'purification / clarification',
+  root:'jernih (=清澈) + peN-...-an 名词化',
+  transform:[{form:'jernih',pos:'adj',cn:'清澈的'},{form:'menjernihkan',pos:'v',cn:'澄清/净化'},{form:'penjernih',pos:'n',cn:'净化器'},{form:'penjernihan',pos:'n',cn:'净化/澄清过程'}],
+  example:[{id:'Proses penjernihan air limbah menggunakan teknologi membran.',cn:'废水净化过程使用膜技术。'},{id:'Penjernihan udara dilakukan dengan filter HEPA.',cn:'空气净化使用HEPA过滤器。'}],
+  synonym:['pemurnian','purifikasi','penyaringan'],
+  antonym:['pencemaran','kontaminasi'],
+  tag:'环保合规'
+},
+'osmosis terbalik':{
+  ipa:'/osˈmosis tərˈbalik/',
+  cn:'反渗透',
+  en:'reverse osmosis (RO)',
+  root:'osmosis (=渗透，希腊语 osmos) + terbalik (=反向的，balik 返回 + ter-)',
+  transform:[{form:'osmosis',pos:'n',cn:'渗透'},{form:'balik',pos:'v/adj',cn:'返回/反向'},{form:'terbalik',pos:'adj',cn:'反向的/颠倒的'}],
+  note:'RO 技术常用于海水淡化和超纯水制备',
+  example:[{id:'Osmosis terbalik digunakan untuk menghasilkan air demineralisasi.',cn:'反渗透用于生产去离子水。'},{id:'Sistem osmosis terbalik membutuhkan tekanan tinggi.',cn:'反渗透系统需要高压。'}],
+  synonym:['RO','reverse osmosis','osmosis balik'],
+  tag:'环保合规'
+},
+'penyikat basah':{
+  ipa:'/pəɲikat ˈbasah/',
+  cn:'湿式洗涤器',
+  en:'wet scrubber',
+  root:'sikat (=刷/洗涤) + peN-...-an + basah (=湿)',
+  transform:[{form:'sikat',pos:'n/v',cn:'刷/洗涤'},{form:'menyikat',pos:'v',cn:'刷洗'},{form:'basah',pos:'adj',cn:'湿的'},{form:'pemasangan',pos:'n',cn:'安装'}],
+  note:'工业废气处理设备：用液体洗涤去除气体污染物',
+  example:[{id:'Penyikat basah terpasang di cerobong untuk mengurangi emisi.',cn:'湿式洗涤器安装在烟囱上以减少排放。'},{id:'Penyikat basah efektif menangkap partikel halus.',cn:'湿式洗涤器能有效捕获细颗粒。'}],
+  synonym:['wet scrubber','scrubber basah','penyerap gas'],
+  tag:'环保合规'
+},
+'filter kantong':{
+  ipa:'/ˈfiltɛr ˈkantɔŋ/',
+  cn:'袋式过滤器',
+  en:'bag filter',
+  root:'filter (=过滤器，英语) + kantong (=袋子)',
+  transform:[{form:'filter',pos:'n',cn:'过滤器'},{form:'kantong',pos:'n',cn:'袋子'},{form:'memfilter',pos:'v',cn:'过滤'},{form:'menyaring',pos:'v',cn:'筛选/过滤'}],
+  note:'也常称 baghouse (英语)',
+  example:[{id:'Filter kantong diganti setiap 6 bulan.',cn:'袋式过滤器每6个月更换。'},{id:'Filter kantong menangkap debu dengan efisiensi tinggi.',cn:'袋式过滤器高效捕集粉尘。'}],
+  synonym:['bag filter','baghouse','saringan kantong'],
+  tag:'环保合规'
+},
+'presipitator elektrostatik':{
+  ipa:'/presipiˈtator elɛktroˈstatik/',
+  cn:'静电除尘器',
+  en:'electrostatic precipitator (ESP)',
+  root:'presipitator (=沉淀器，拉丁语 praecipitare) + elektrostatik (=静电的)',
+  transform:[{form:'presipitasi',pos:'n',cn:'沉淀/析出'},{form:'elektrostatik',pos:'adj',cn:'静电的'},{form:'presipitator',pos:'n',cn:'沉淀器/除尘器'}],
+  note:'简称 ESP；利用静电力去除烟气中的颗粒物',
+  example:[{id:'Presipitator elektrostatik mengurangi partikel hingga 99%.',cn:'静电除尘器可减少99%的颗粒物。'},{id:'ESP dipasang pada unit pembangkit listrik.',cn:'静电除尘器安装在发电单元上。'}],
+  synonym:['ESP','electrostatic precipitator','pengendap elektrostatik'],
+  tag:'环保合规'
+},
+'konservasi':{
+  ipa:'/konsɛrˈvasi/',
+  cn:'保护/保存',
+  en:'conservation',
+  root:'拉丁语 conservare (com- 共同 + servare 保存) → konservasi',
+  transform:[{form:'konservasi',pos:'n',cn:'保护/保存'},{form:'mengonservasi',pos:'v',cn:'保护/保存'},{form:'konservasionis',pos:'n',cn:'环保主义者'}],
+  note:'借词：拉丁语/英语',
+  example:[{id:'Konservasi energi menjadi prioritas perusahaan.',cn:'节能成为企业的优先事项。'},{id:'Program konservasi air mengurangi konsumsi 20%.',cn:'节水计划减少了20%的用水量。'}],
+  synonym:['pelestarian','preservasi','perlindungan'],
+  antonym:['eksploitasi','destruksi'],
+  tag:'环保合规'
+},
+'rehabilitasi':{
+  ipa:'/rehabilitaˈsi/',
+  cn:'修复/恢复',
+  en:'rehabilitation / restoration',
+  root:'拉丁语 rehabilitare (re- 重新 + habilitas 能力) → rehabilitasi',
+  transform:[{form:'rehabilitasi',pos:'n',cn:'修复/康复'},{form:'merehabilitasi',pos:'v',cn:'修复/恢复'},{form:'rehabilitatif',pos:'adj',cn:'修复性的'}],
+  note:'常搭配：rehabilitasi lingkungan (环境修复), rehabilitasi tambang (矿山修复)',
+  example:[{id:'Rehabilitasi lahan pasca-tambang wajib dilakukan.',cn:'矿山闭坑后必须进行土地修复。'},{id:'Program rehabilitasi mangrove melibatkan masyarakat.',cn:'红树林修复计划涉及社区参与。'}],
+  synonym:['restorasi','pemulihan','rekonstruksi'],
+  antonym:['degradasi','kerusakan'],
+  tag:'环保合规'
+},
+'penggunaan kembali':{
+  ipa:'/peŋɡunaan ˈkɛmbali/',
+  cn:'再利用',
+  en:'reuse',
+  root:'guna (=使用) + kembali (=返回) → 重新使用',
+  transform:[{form:'guna',pos:'n/v',cn:'使用/功能'},{form:'menggunakan',pos:'v',cn:'使用/利用'},{form:'kembali',pos:'v/adv',cn:'返回/重新'},{form:'penggunaan',pos:'n',cn:'使用/利用'}],
+  note:'3R: Reduce (pengurangan), Reuse (penggunaan kembali), Recycle (daur ulang)',
+  example:[{id:'Penggunaan kembali air proses mengurangi konsumsi air bersih.',cn:'工艺水再利用减少清水消耗。'},{id:'Wadah bekas dapat digunakan kembali untuk penyimpanan.',cn:'旧容器可再利用于储存。'}],
+  synonym:['reuse','pemakaian ulang','penggunaan ulang'],
+  antonym:['pembuangan','pemusnahan'],
+  tag:'环保合规'
+},
+'daur ulang':{
+  ipa:'/ˈdaur ˈulaŋ/',
+  cn:'回收',
+  en:'recycling',
+  root:'daur (=循环，阿拉伯语 daur) + ulang (=重复)',
+  transform:[{form:'daur',pos:'n',cn:'循环/周期'},{form:'ulang',pos:'v',cn:'重复'},{form:'mengulang',pos:'v',cn:'重复/重做'},{form:'didaur ulang',pos:'pass.v',cn:'被回收'}],
+  note:'3R 之一；也称 recycle (英语借词)',
+  example:[{id:'Limbah plastik didaur ulang menjadi produk baru.',cn:'塑料废料回收制成新产品。'},{id:'Fasilitas daur ulang logam menghemat bijih tambang.',cn:'金属回收设施节省矿石。'}],
+  synonym:['recycle','pengolahan ulang'],
+  tag:'环保合规'
+},
+'pengurangan':{
+  ipa:'/peŋuraŋan/',
+  cn:'减少',
+  en:'reduction',
+  root:'kurang (=少) + peN-...-an 名词化',
+  transform:[{form:'kurang',pos:'adj/adv',cn:'少/不足'},{form:'mengurangi',pos:'v',cn:'减少/削减'},{form:'berkurang',pos:'v',cn:'减少（自动）'},{form:'pengurangan',pos:'n',cn:'减少/削减'}],
+  example:[{id:'Pengurangan emisi GRK menjadi target nasional.',cn:'温室气体减排成为国家目标。'},{id:'Pengurangan limbah dimulai dari sumber produksi.',cn:'废物减排从生产源头开始。'}],
+  synonym:['reduksi','penurunan'],
+  antonym:['peningkatan','penambahan'],
+  tag:'环保合规'
+},
+'sabuk hijau':{
+  ipa:'/ˈsabuk hiˈʤau/',
+  cn:'绿化带',
+  en:'green belt',
+  root:'sabuk (=带/腰带) + hijau (=绿色)',
+  transform:[{form:'sabuk',pos:'n',cn:'带/腰带'},{form:'hijau',pos:'adj',cn:'绿色的'},{form:'menghijaukan',pos:'v',cn:'绿化'}],
+  note:'工业区与居民区之间的缓冲绿化带',
+  example:[{id:'Sabuk hijau ditanami pohon penyerap polusi.',cn:'绿化带种植了吸收污染的树木。'},{id:'Sabuk hijau memisahkan pabrik dari permukiman.',cn:'绿化带将工厂与居民区分隔。'}],
+  synonym:['green belt','jalur hijau','zona hijau'],
+  tag:'环保合规'
+},
+'KLHK':{
+  ipa:'/ka ɛl ha ˈka/',
+  cn:'环境与林业部',
+  en:'Ministry of Environment & Forestry',
+  root:'KLHK = Kementerian Lingkungan Hidup dan Kehutanan',
+  transform:[{form:'kementerian',pos:'n',cn:'部/部会'},{form:'lingkungan',pos:'n',cn:'环境'},{form:'hidup',pos:'n/adj',cn:'生活/活的'},{form:'kehutanan',pos:'n',cn:'林业'}],
+  note:'印尼中央政府主管环境与林业的部委',
+  example:[{id:'KLHK menerbitkan peraturan tentang baku mutu.',cn:'环境与林业部发布排放标准规定。'},{id:'Perusahaan melaporkan ketaatan lingkungan ke KLHK.',cn:'企业向环境与林业部报告环境合规情况。'}],
+  synonym:['Kementerian LHK','Kementerian Lingkungan'],
+  tag:'环保合规'
+},
+'ESDM':{
+  ipa:'/e ɛs de ˈɛm/',
+  cn:'能源与矿产资源部',
+  en:'Ministry of Energy & Mineral Resources',
+  root:'ESDM = Energi dan Sumber Daya Mineral (能源+和+资源+矿产)',
+  transform:[{form:'energi',pos:'n',cn:'能源'},{form:'sumber',pos:'n',cn:'来源'},{form:'daya',pos:'n',cn:'力量/能力'},{form:'mineral',pos:'n',cn:'矿产'}],
+  note:'印尼主管能源和矿业的部委',
+  example:[{id:'ESDM mengeluarkan izin usaha pertambangan.',cn:'能源与矿产资源部颁发矿业经营许可证。'},{id:'Kebijakan ESDM mendorong energi terbarukan.',cn:'能源与矿产资源部的政策推动可再生能源。'}],
+  synonym:['Kementerian ESDM','KESDM'],
+  tag:'环保合规'
+},
+'PPLH':{
+  ipa:'/pe pe ɛl ˈha/',
+  cn:'环境管理部',
+  en:'Environmental Management Agency',
+  root:'PPLH = Pengelolaan Lingkungan Hidup (管理+环境+生活)',
+  transform:[{form:'pengelolaan',pos:'n',cn:'管理'},{form:'lingkungan',pos:'n',cn:'环境'},{form:'hidup',pos:'n/adj',cn:'生活/活的'},{form:'mengelola',pos:'v',cn:'管理/经营'}],
+  note:'也常用于企业内部环保部门',
+  example:[{id:'PPLH bertanggung jawab atas pengelolaan lingkungan kawasan.',cn:'环境管理部负责园区的环境管理。'},{id:'PPLH bekerja sama dengan KLHK dalam pemantauan.',cn:'环境管理部与环境与林业部协作监测。'}],
+  synonym:['BPLH (Badan Pengelolaan Lingkungan Hidup)'],
+  tag:'环保合规'
+},
+'SPPL':{
+  ipa:'/ɛs pe pe ˈɛl/',
+  cn:'环境管理声明书',
+  en:'Statement of Environmental Management',
+  root:'SPPL = Surat Pernyataan Pengelolaan Lingkungan (函+声明+管理+环境)',
+  transform:[{form:'surat',pos:'n',cn:'函/信/文件'},{form:'pernyataan',pos:'n',cn:'声明'},{form:'pengelolaan',pos:'n',cn:'管理'},{form:'lingkungan',pos:'n',cn:'环境'}],
+  note:'最低级别环境文件：小型/低影响项目用SPPL替代AMDAL/UKL-UPL',
+  example:[{id:'Usaha kecil cukup menyusun SPPL untuk izin lingkungan.',cn:'小型企业只需编制环境管理声明书获取环境许可。'},{id:'SPPL diserahkan ke dinas lingkungan setempat.',cn:'环境管理声明书提交给地方环境局。'}],
+  synonym:['surat pernyataan pengelolaan lingkungan'],
+  tag:'环保合规'
+},
+'PROPER':{
+  ipa:'/ˈpropɛr/',
+  cn:'企业环境绩效评级',
+  en:'Corporate Environmental Performance Rating',
+  root:'PROPER = Program Penilaian Peringkat Kinerja Perusahaan (计划+评估+等级+绩效+企业)',
+  transform:[{form:'penilaian',pos:'n',cn:'评估'},{form:'peringkat',pos:'n',cn:'等级/排名'},{form:'kinerja',pos:'n',cn:'绩效'},{form:'perusahaan',pos:'n',cn:'公司'}],
+  note:'KLHK 年度环境评级：金/绿/蓝/红/黑 五色评级',
+  example:[{id:'Perusahaan meraih peringkat hijau dalam PROPER tahun ini.',cn:'公司今年获得PROPER绿色评级。'},{id:'Peringkat PROPER mempengaruhi citra perusahaan.',cn:'PROPER评级影响企业形象。'}],
+  synonym:['PROPER KLHK','peringkat kinerja lingkungan'],
+  tag:'环保合规'
+},
+'rantai pasok':{
+  ipa:'/ˈrantai paˈsok/',
+  cn:'供应链',
+  en:'supply chain',
+  root:'rantai (=链条) + pasok (=供应)',
+  transform:[{form:'rantai',pos:'n',cn:'链条'},{form:'pasok',pos:'v',cn:'供应/供给'},{form:'memasok',pos:'v',cn:'供应（meN- + pasok → memasok）'},{form:'pemasok',pos:'n',cn:'供应商'},{form:'pasokan',pos:'n',cn:'供给/供应品'}],
+  note:'也可说 rantai pasokan（更正式）',
+  example:[{id:'Rantai pasok global terganggu oleh pandemi.',cn:'全球供应链受疫情干扰。'},{id:'Manajemen rantai pasok sangat penting bagi industri.',cn:'供应链管理对工业至关重要。'}],
+  synonym:['rantai pasokan','supply chain','mata rantai pasok'],
+  tag:'供应链'
+},
+'pesanan':{
+  ipa:'/pəsaˈnan/',
+  cn:'订单/订购',
+  en:'order',
+  root:'pesan (=订购/留言) + -an 名词后缀',
+  transform:[{form:'pesan',pos:'v/n',cn:'订购/留言/消息'},{form:'memesan',pos:'v',cn:'订购/点餐'},{form:'dipasok',pos:'pass.v',cn:'被供应'},{form:'pemesan',pos:'n',cn:'订购人'},{form:'pesanan',pos:'n',cn:'订单'}],
+  note:'pesan 也可指留言/消息，需根据上下文区分',
+  example:[{id:'Pesanan material sudah dikirim oleh pemasok.',cn:'材料订单已由供应商发出。'},{id:'Kami menerima pesanan besar dari luar negeri.',cn:'我们收到来自国外的大订单。'}],
+  synonym:['order','permintaan','pesan'],
+  tag:'供应链'
+},
+'PO':{
+  ipa:'/pe ˈo/',
+  cn:'采购订单',
+  en:'Purchase Order (PO)',
+  root:'PO = Purchase Order (英语缩写)',
+  transform:[{form:'pesanan',pos:'n',cn:'订单'},{form:'pembelian',pos:'n',cn:'采购'}],
+  note:'全称：pesanan pembelian；PO 是商务通用缩写',
+  example:[{id:'PO dikeluarkan setelah kontrak ditandatangani.',cn:'合同签署后发出采购订单。'},{id:'Faktur harus sesuai dengan PO yang terbit.',cn:'发票必须与已发出的采购订单一致。'}],
+  synonym:['purchase order','pesanan pembelian','surat pesanan'],
+  tag:'供应链'
+},
+'pemasok':{
+  ipa:'/pəmaˈsok/',
+  cn:'供应商',
+  en:'supplier',
+  root:'pasok (=供应) + peN-... 施事名词化 → 供应者',
+  transform:[{form:'pasok',pos:'v',cn:'供应'},{form:'memasok',pos:'v',cn:'供应'},{form:'dipasok',pos:'pass.v',cn:'被供应'},{form:'pemasok',pos:'n',cn:'供应商'},{form:'pasokan',pos:'n',cn:'供给'}],
+  note:'peN- + pasok → pemasok (p→m 辅音同化)',
+  example:[{id:'Pemasok harus lulus audit kualitas.',cn:'供应商必须通过质量审计。'},{id:'Kami memiliki tiga pemasok utama untuk bahan baku.',cn:'我们有三个主要原材料供应商。'}],
+  synonym:['supplier','vendor','penyedia'],
+  antonym:['pembeli','pelanggan'],
+  tag:'供应链'
+},
+'inventori':{
+  ipa:'/invenˈtori/',
+  cn:'库存',
+  en:'inventory',
+  root:'拉丁语 inventarium → 荷兰语 inventaris → inventori',
+  transform:[{form:'inventori',pos:'n',cn:'库存/存货清单'},{form:'inventarisasi',pos:'n',cn:'盘点/清查'}],
+  note:'借词；也说 stok (=库存)',
+  example:[{id:'Inventori barang jadi dikontrol setiap akhir bulan.',cn:'成品库存每月底盘点。'},{id:'Sistem inventori real-time terhubung dengan gudang.',cn:'实时库存系统与仓库联网。'}],
+  synonym:['stok','persediaan','gudang'],
+  tag:'供应链'
+},
+'stok pengaman':{
+  ipa:'/ˈstok peŋaˈman/',
+  cn:'安全库存',
+  en:'safety stock',
+  root:'stok (=库存，英语) + aman (=安全) + peng-...-an',
+  transform:[{form:'stok',pos:'n',cn:'库存'},{form:'aman',pos:'adj',cn:'安全的'},{form:'keamanan',pos:'n',cn:'安全'},{form:'mengamankan',pos:'v',cn:'保障安全'}],
+  note:'防止供应链中断的缓冲库存',
+  example:[{id:'Stok pengaman bahan kimia cukup untuk dua minggu.',cn:'化学品安全库存足够维持两周。'},{id:'Stok pengaman dihitung berdasarkan waktu tunggu.',cn:'安全库存根据提前期计算。'}],
+  synonym:['safety stock','stok cadangan','stok buffer'],
+  tag:'供应链'
+},
+'titik pesan ulang':{
+  ipa:'/ˈtitik pəˈsan ˈulaŋ/',
+  cn:'再订货点',
+  en:'reorder point (ROP)',
+  root:'titik (=点) + pesan (=订购) + ulang (=重新)',
+  transform:[{form:'titik',pos:'n',cn:'点'},{form:'pesan',pos:'v',cn:'订购'},{form:'memesan',pos:'v',cn:'订购'},{form:'ulang',pos:'v',cn:'重复'}],
+  note:'ROP = titik di mana harus memesan ulang',
+  example:[{id:'Titik pesan ulang tercapai, segera buat PO.',cn:'已达到再订货点，立即创建采购订单。'},{id:'Sistem menghitung titik pesan ulang secara otomatis.',cn:'系统自动计算再订货点。'}],
+  synonym:['ROP','reorder point','titik pemesanan ulang'],
+  tag:'供应链'
+},
+'waktu tunggu':{
+  ipa:'/ˈwa ktu ˈtuŋɡu/',
+  cn:'提前期/等待时间',
+  en:'lead time',
+  root:'waktu (=时间) + tunggu (=等待)',
+  transform:[{form:'waktu',pos:'n',cn:'时间'},{form:'tunggu',pos:'v',cn:'等待'},{form:'menunggu',pos:'v',cn:'等待'}],
+  note:'供应链中指从下单到收货的时间',
+  example:[{id:'Waktu tunggu pengiriman dari China dua minggu.',cn:'从中国发货的提前期为两周。'},{id:'Waktu tunggu harus dipertimbangkan dalam perencanaan stok.',cn:'提前期必须在库存规划中考虑。'}],
+  synonym:['lead time','masa tunggu','waktu pengiriman'],
+  tag:'供应链'
+},
+'tepat waktu':{
+  ipa:'/təˈpat ˈwa ktu/',
+  cn:'准时制',
+  en:'just-in-time (JIT)',
+  root:'tepat (=精确/恰好) + waktu (=时间)',
+  transform:[{form:'tepat',pos:'adj/adv',cn:'精确的/恰好'},{form:'waktu',pos:'n',cn:'时间'}],
+  note:'JIT = tepat waktu；丰田生产方式的核心概念',
+  example:[{id:'Produksi tepat waktu mengurangi biaya penyimpanan.',cn:'准时制生产减少仓储成本。'},{id:'Material tiba tepat waktu untuk lini perakitan.',cn:'物料准时到达装配线。'}],
+  synonym:['JIT','just-in-time','tepat pada waktunya'],
+  tag:'供应链'
+},
+'JIT':{
+  ipa:'/ʤi ai ˈti/',
+  cn:'准时制',
+  en:'Just-In-Time',
+  root:'JIT = Just In Time (英语缩写)',
+  transform:[],
+  note:'等同印尼语 tepat waktu',
+  example:[{id:'Sistem JIT meminimalkan stok gudang.',cn:'JIT系统最小化仓库库存。'},{id:'JIT membutuhkan pemasok yang sangat andal.',cn:'JIT需要非常可靠的供应商。'}],
+  synonym:['tepat waktu','just-in-time'],
+  tag:'供应链'
+},
+'batch':{
+  ipa:'/ˈbatʃ/',
+  cn:'批次',
+  en:'batch',
+  root:'英语 batch → 印尼语',
+  transform:[],
+  note:'借词：英语 batch',
+  example:[{id:'Setiap batch produksi memiliki nomor identifikasi.',cn:'每个生产批次都有识别编号。'},{id:'Sampel diuji dari setiap batch sebelum dikirim.',cn:'每批产品在发货前都要抽样检测。'}],
+  synonym:['lot','kelompok','golongan'],
+  tag:'供应链'
+},
+'lot':{
+  ipa:'/ˈlot/',
+  cn:'批/ Lot',
+  en:'lot',
+  root:'英语 lot → 印尼语',
+  transform:[],
+  note:'借词：英语 lot；与 batch 近义，常用于质量追溯',
+  example:[{id:'Lot ini harus ditolak karena cacat.',cn:'这批因缺陷必须拒收。'},{id:'Nomor lot dicatat untuk traceability.',cn:'记录批号以便追溯。'}],
+  synonym:['batch','nomor lot'],
+  tag:'供应链'
+},
+'nomor seri':{
+  ipa:'/ˈnomɔr ˈsɛri/',
+  cn:'序列号',
+  en:'serial number',
+  root:'nomor (=号码，葡萄牙语 número) + seri (=系列，法语 série)',
+  transform:[{form:'nomor',pos:'n',cn:'号码/编号'},{form:'seri',pos:'n',cn:'系列/序列'},{form:'menomori',pos:'v',cn:'编号'}],
+  example:[{id:'Nomor seri dicatat untuk garansi produk.',cn:'记录序列号用于产品保修。'},{id:'Setiap unit memiliki nomor seri unik.',cn:'每台设备都有唯一序列号。'}],
+  synonym:['serial number','SN','nomor urut'],
+  tag:'供应链'
+},
+'kode batang':{
+  ipa:'/ˈkodɛ ˈbataŋ/',
+  cn:'条形码',
+  en:'barcode',
+  root:'kode (=代码，荷兰语 code) + batang (=条/杆)',
+  transform:[{form:'kode',pos:'n',cn:'代码/编码'},{form:'batang',pos:'n',cn:'条/杆'},{form:'mengode',pos:'v',cn:'编码'}],
+  note:'也说 barcode (英语借词)',
+  example:[{id:'Kode batang dipindai untuk identifikasi barang.',cn:'扫描条形码识别货物。'},{id:'Sistem gudang menggunakan kode batang otomatis.',cn:'仓库系统使用自动条形码。'}],
+  synonym:['barcode','kode bar','strip kode'],
+  tag:'供应链'
+},
+'pengangkutan':{
+  ipa:'/peŋaŋkutaˈan/',
+  cn:'运输',
+  en:'transportation',
+  root:'angkut (=搬运) + peN-...-an 名词化',
+  transform:[{form:'angkut',pos:'v',cn:'搬运/运输'},{form:'mengangkut',pos:'v',cn:'运输/搬运'},{form:'diangkut',pos:'pass.v',cn:'被运输'},{form:'pengangkut',pos:'n',cn:'运输者/运输工具'},{form:'pengangkutan',pos:'n',cn:'运输'}],
+  example:[{id:'Pengangkutan bahan kimia memerlukan izin khusus.',cn:'化学品运输需要特别许可。'},{id:'Biaya pengangkutan naik karena harga BBM.',cn:'由于燃油价格上涨，运输成本上升。'}],
+  synonym:['transportasi','pengiriman','pemindahan'],
+  tag:'供应链'
+},
+'pengapalan':{
+  ipa:'/peŋapaˈlan/',
+  cn:'船运/海运',
+  en:'shipping',
+  root:'kapal (=船) + peN-...-an 名词化 → 用船运输',
+  transform:[{form:'kapal',pos:'n',cn:'船'},{form:'mengapalkan',pos:'v',cn:'装船/发运'},{form:'diapalkan',pos:'pass.v',cn:'被装运'}],
+  note:'peN- + kapal → pengapalan (k 脱落，插入 ng)',
+  example:[{id:'Pengapalan bijih nikel ke China rutin dilakukan.',cn:'镍矿石海运至中国定期进行。'},{id:'Jadwal pengapalan tergantung cuaca.',cn:'船运日程取决于天气。'}],
+  synonym:['pelayaran','pengiriman laut','shipping'],
+  tag:'供应链'
+},
+'pengiriman darat':{
+  ipa:'/peŋiriˈman ˈdarat/',
+  cn:'陆运',
+  en:'land freight / ground shipping',
+  root:'kirim (=发送) + peN-...-an + darat (=陆地)',
+  transform:[{form:'kirim',pos:'v',cn:'发送/寄送'},{form:'mengirim',pos:'v',cn:'发送/寄出'},{form:'mengirimkan',pos:'v',cn:'寄送'},{form:'pengiriman',pos:'n',cn:'运输/寄送'},{form:'darat',pos:'n/adj',cn:'陆地'}],
+  note:'meN- + kirim → mengirim (k 脱落，插入 ng)',
+  example:[{id:'Pengiriman darat menggunakan truk kontainer.',cn:'陆运使用集装箱卡车。'},{id:'Biaya pengiriman darat lebih murah untuk jarak dekat.',cn:'短距离陆运费用更低。'}],
+  synonym:['angkutan darat','trucking','pengangkutan darat'],
+  tag:'供应链'
+},
+'pengiriman laut':{
+  ipa:'/peŋiriˈman ˈlaut/',
+  cn:'海运',
+  en:'ocean freight / sea shipping',
+  root:'kirim (=发送) + peN-...-an + laut (=海)',
+  transform:[{form:'kirim',pos:'v',cn:'发送'},{form:'mengirimkan',pos:'v',cn:'寄送'},{form:'pengiriman',pos:'n',cn:'运输'},{form:'laut',pos:'n',cn:'海'}],
+  example:[{id:'Pengiriman laut membutuhkan waktu dua minggu.',cn:'海运需要两周时间。'},{id:'Pengiriman laut lebih ekonomis untuk volume besar.',cn:'大批量货物海运更经济。'}],
+  synonym:['pengapalan','ocean freight','pelayaran'],
+  tag:'供应链'
+},
+'kontainer':{
+  ipa:'/konˈtainɛr/',
+  cn:'集装箱',
+  en:'container',
+  root:'英语 container → kontainer',
+  transform:[],
+  note:'借词：英语；标准集装箱 20ft (TEU) / 40ft (FEU)',
+  example:[{id:'Barang diangkut dalam kontainer 40 kaki.',cn:'货物用40英尺集装箱运输。'},{id:'Kontainer dibongkar di terminal pelabuhan.',cn:'集装箱在港口码头卸货。'}],
+  synonym:['container','peti kemas'],
+  tag:'供应链'
+},
+'pallet':{
+  ipa:'/ˈpalɛt/',
+  cn:'托盘',
+  en:'pallet',
+  root:'英语 pallet → pallet',
+  transform:[],
+  note:'借词：英语 pallet；也常拼写 palet',
+  example:[{id:'Barang disusun di atas pallet untuk memudahkan forklift.',cn:'货物堆放在托盘上便于叉车作业。'},{id:'Pallet kayu harus disertifikasi bebas karantina.',cn:'木托盘必须有检疫免检认证。'}],
+  synonym:['palet','alat bantu angkut'],
+  tag:'供应链'
+},
+'forklift':{
+  ipa:'/ˈforklift/',
+  cn:'叉车',
+  en:'forklift',
+  root:'英语 forklift (fork 叉 + lift 举) → forklift',
+  transform:[],
+  note:'借词：英语',
+  example:[{id:'Forklift digunakan untuk memindahkan pallet.',cn:'叉车用于搬运托盘。'},{id:'Operator forklift harus memiliki sertifikat.',cn:'叉车操作员必须持证上岗。'}],
+  synonym:['mobil garpu','forklift truck'],
+  tag:'供应链'
+},
+'derek':{
+  ipa:'/ˈdɛrɛk/',
+  cn:'起重机/吊车',
+  en:'crane',
+  root:'derek (=起重装置)',
+  transform:[{form:'derek',pos:'n',cn:'起重装置'},{form:'menderek',pos:'v',cn:'用起重机吊运'}],
+  note:'大型起重设备也称 crane (英语借词)',
+  example:[{id:'Derek dipakai untuk memuat kontainer ke kapal.',cn:'起重机用于将集装箱装载上船。'},{id:'Kapasitas derek pelabuhan 50 ton.',cn:'港口起重机起重能力50吨。'}],
+  synonym:['crane','alat pengangkat'],
+  tag:'供应链'
+},
+'sabuk konveyor':{
+  ipa:'/ˈsabuk konˈvɛjor/',
+  cn:'传送带',
+  en:'conveyor belt',
+  root:'sabuk (=带) + konveyor (=传送机，英语 conveyor)',
+  transform:[{form:'sabuk',pos:'n',cn:'带/腰带'},{form:'konveyor',pos:'n',cn:'传送机'}],
+  example:[{id:'Sabuk konveyor memindahkan material ke gudang.',cn:'传送带将物料输送到仓库。'},{id:'Kecepatan sabuk konveyor dapat diatur.',cn:'传送带速度可以调节。'}],
+  synonym:['conveyor belt','ban berjalan','sabuk berjalan'],
+  tag:'供应链'
+},
+'kapal kargo':{
+  ipa:'/ˈkapal ˈkarɡo/',
+  cn:'货船',
+  en:'cargo ship',
+  root:'kapal (=船) + kargo (=货物，西班牙语 cargo)',
+  transform:[{form:'kapal',pos:'n',cn:'船'},{form:'kargo',pos:'n',cn:'货物'}],
+  example:[{id:'Kapal kargo sandar di dermaga untuk bongkar muat.',cn:'货船停靠码头装卸货物。'},{id:'Kapal kargo membawa 20.000 ton batu bara.',cn:'货船载有2万吨煤炭。'}],
+  synonym:['kapal barang','cargo ship','kapal niaga'],
+  tag:'供应链'
+},
+'dermaga':{
+  ipa:'/ˈdɛrmaɡa/',
+  cn:'码头',
+  en:'dock / wharf',
+  root:'dermaga [待核实]（词源不确定，可能源自葡萄牙语/荷兰语）',
+  transform:[{form:'dermaga',pos:'n',cn:'码头/泊位'},{form:'sandar',pos:'v',cn:'停靠'},{form:'bersandar',pos:'v',cn:'停靠'}],
+  note:'借词：葡萄牙语',
+  example:[{id:'Kapal kargo sandar di dermaga untuk memuat nikel.',cn:'货船停靠码头装载镍。'},{id:'Dermaga baru dibangun untuk kapal besar.',cn:'新建码头供大型船舶使用。'}],
+  synonym:['pelabuhan','jeti','labuhan'],
+  tag:'供应链'
+},
+'bea cukai':{
+  ipa:'/ˈbɛa ʧuˈkai/',
+  cn:'海关/关税',
+  en:'customs / duty',
+  root:'bea (=税/费，葡萄牙语) + cukai (=关税)',
+  transform:[{form:'bea',pos:'n',cn:'税/费'},{form:'cukai',pos:'n',cn:'关税/消费税'},{form:'mencukai',pos:'v',cn:'征收关税'}],
+  note:'DJBC (Direktorat Jenderal Bea dan Cukai) = 海关总署',
+  example:[{id:'Barang impor dikenakan bea cukai.',cn:'进口商品需缴纳关税。'},{id:'Bea cukai dicek di pelabuhan masuk.',cn:'关税在入境港口检查。'}],
+  synonym:['customs','pabean','bea masuk'],
+  tag:'供应链'
+},
+'impor':{
+  ipa:'/ˈimpor/',
+  cn:'进口',
+  en:'import',
+  root:'拉丁语 importare (in- 进入 + portare 携带) → impor',
+  transform:[{form:'impor',pos:'n/v',cn:'进口'},{form:'mengimpor',pos:'v',cn:'进口'},{form:'imporir',pos:'n',cn:'进口商'},{form:'barang impor',pos:'n',cn:'进口商品'}],
+  note:'借词：拉丁语/荷兰语',
+  example:[{id:'Indonesia mengimpor mesin dari Jepang.',cn:'印尼从日本进口机械。'},{id:'Nilai impor naik 15% tahun ini.',cn:'今年进口额上升15%。'}],
+  synonym:['importasi','masuk (barang)'],
+  antonym:['ekspor'],
+  tag:'供应链'
+},
+'ekspor':{
+  ipa:'/ˈɛkspor/',
+  cn:'出口',
+  en:'export',
+  root:'拉丁语 exportare (ex- 出 + portare 携带) → ekspor',
+  transform:[{form:'ekspor',pos:'n/v',cn:'出口'},{form:'mengekspor',pos:'v',cn:'出口'},{form:'eksportir',pos:'n',cn:'出口商'},{form:'barang ekspor',pos:'n',cn:'出口商品'}],
+  note:'借词：拉丁语/荷兰语',
+  example:[{id:'Indonesia mengekspor nikel ke seluruh dunia.',cn:'印尼向全世界出口镍。'},{id:'Ekspor MHP menjadi sumber devisa utama.',cn:'MHP出口成为主要外汇来源。'}],
+  synonym:['exportasi','pengiriman keluar'],
+  antonym:['impor'],
+  tag:'供应链'
+},
+'dokumen pengiriman':{
+  ipa:'/ˈdokumɛn peŋiriˈman/',
+  cn:'货运单据',
+  en:'shipping documents',
+  root:'dokumen (=文件，拉丁语 documentum) + kirim (=发送) + peN-...-an',
+  transform:[{form:'dokumen',pos:'n',cn:'文件'},{form:'pengiriman',pos:'n',cn:'运输/寄送'},{form:'kirim',pos:'v',cn:'发送'},{form:'mengirim',pos:'v',cn:'发送'}],
+  note:'包括：B/L (bill of lading), invoice, packing list 等',
+  example:[{id:'Dokumen pengiriman harus lengkap sebelum kapal berangkat.',cn:'船开前货运单据必须齐全。'},{id:'Dokumen pengiriman diperiksa oleh bea cukai.',cn:'货运单据由海关检查。'}],
+  synonym:['dokumen kapal','shipping documents','surat muatan'],
+  tag:'供应链'
+},
+'ongkos kirim':{
+  ipa:'/ˈoŋkos ˈkirim/',
+  cn:'运费',
+  en:'shipping cost / freight',
+  root:'ongkos (=费用) + kirim (=发送)',
+  transform:[{form:'ongkos',pos:'n',cn:'费用/成本'},{form:'kirim',pos:'v',cn:'发送'},{form:'mengirim',pos:'v',cn:'发送'},{form:'biaya',pos:'n',cn:'费用'}],
+  note:'ongkos 源自闽南语 王哥 (ɔŋ-ko)',
+  example:[{id:'Ongkos kirim ke Kalimantan sangat mahal.',cn:'到加里曼丹的运费很贵。'},{id:'Ongkos kirim sudah termasuk dalam harga.',cn:'运费已包含在价格中。'}],
+  synonym:['biaya kirim','freight','ongkos angkut'],
+  tag:'供应链'
+},
+'biaya tambahan':{
+  ipa:'/biˈaja tamˈbahan/',
+  cn:'附加费',
+  en:'surcharge / additional fee',
+  root:'biaya (=费用) + tambah (=增加) + -an 名词后缀',
+  transform:[{form:'biaya',pos:'n',cn:'费用'},{form:'tambah',pos:'v',cn:'增加'},{form:'menambah',pos:'v',cn:'增加'},{form:'tambahan',pos:'n/adj',cn:'附加的/额外的'}],
+  example:[{id:'Biaya tambahan dikenakan untuk pengiriman kilat.',cn:'快递收取附加费。'},{id:'Ada biaya tambahan untuk penanganan bahan berbahaya.',cn:'危险品处理有附加费。'}],
+  synonym:['surcharge','biaya ekstra'],
+  tag:'供应链'
+},
+'tanggap darurat':{
+  ipa:'/ˈtaŋɡap daˈrurat/',
+  cn:'应急响应',
+  en:'emergency response',
+  root:'tanggap (=响应/应对) + darurat (=紧急，阿拉伯语 ḍarūrah)',
+  transform:[{form:'tanggap',pos:'adj/v',cn:'响应/反应'},{form:'menanggapi',pos:'v',cn:'响应/回应'},{form:'darurat',pos:'n/adj',cn:'紧急'}],
+  note:'也常用于日常语境：tanggap terhadap kritik (对批评的反应)',
+  example:[{id:'Tim tanggap darurat siaga 24 jam.',cn:'应急响应团队24小时待命。'},{id:'Kecepatan tanggap darurat menentukan korban jiwa.',cn:'应急响应速度决定伤亡人数。'}],
+  synonym:['respons darurat','reaksi darurat','penanggulangan darurat'],
+  tag:'应急响应'
+},
+'evakuasi':{
+  ipa:'/evaˈkuasi/',
+  cn:'疏散/撤离',
+  en:'evacuation',
+  root:'拉丁语 evacuare (e- 出 + vacuus 空) → evakuasi',
+  transform:[{form:'evakuasi',pos:'n/v',cn:'疏散/撤离'},{form:'mengevakuasi',pos:'v',cn:'疏散/撤离'},{form:'dievakuasi',pos:'pass.v',cn:'被疏散'}],
+  note:'借词：拉丁语/英语',
+  example:[{id:'Evakuasi karyawan dilakukan segera setelah alarm.',cn:'警报响起后立即疏散员工。'},{id:'Semua penghuni gedung dievakuasi dalam 5 menit.',cn:'所有楼内人员在5分钟内被疏散。'}],
+  synonym:['pengungsian','pemindahan','evacuation'],
+  tag:'应急响应'
+},
+'penyelamatan':{
+  ipa:'/pəɲəlaˈmatan/',
+  cn:'救援/营救',
+  en:'rescue',
+  root:'selamat (=安全) + peN-...-an 名词化 → 使安全的过程',
+  transform:[{form:'selamat',pos:'adj',cn:'安全的'},{form:'menyelamatkan',pos:'v',cn:'拯救/营救'},{form:'diselamatkan',pos:'pass.v',cn:'获救'},{form:'penyelamat',pos:'n',cn:'救援者'},{form:'penyelamatan',pos:'n',cn:'救援'}],
+  note:'peN- + selamat → penyelamat (s→ny 同化)',
+  example:[{id:'Tim penyelamatan berhasil mengevakuasi korban.',cn:'救援队成功疏散了受害者。'},{id:'Operasi penyelamatan berlangsung sepanjang malam.',cn:'救援行动持续了一整夜。'}],
+  synonym:['rescue','pertolongan','evakuasi'],
+  tag:'应急响应'
+},
+'bencana':{
+  ipa:'/bənˈʧana/',
+  cn:'灾害/灾难',
+  en:'disaster',
+  root:'bencana (=灾难)',
+  transform:[{form:'bencana',pos:'n',cn:'灾难'},{form:'berbencana',pos:'adj',cn:'受灾的'}],
+  note:'BNPB (Badan Nasional Penanggulangan Bencana) = 国家灾害管理局',
+  example:[{id:'Bencana gempa melanda wilayah itu.',cn:'地震灾害袭击了该地区。'},{id:'Pencegahan bencana lebih baik daripada penanggulangan.',cn:'防灾胜于救灾。'}],
+  synonym:['malapetaka','musibah','katastropi'],
+  antonym:['keberuntungan','keselamatan'],
+  tag:'应急响应'
+},
+'kebakaran':{
+  ipa:'/kəbaˈkaran/',
+  cn:'火灾',
+  en:'fire',
+  root:'bakar (=燃烧) + ke-...-an 名词化',
+  transform:[{form:'bakar',pos:'v',cn:'燃烧/烧'},{form:'membakar',pos:'v',cn:'点燃/焚烧'},{form:'terbakar',pos:'pass.v',cn:'着火/被烧'},{form:'kebakaran',pos:'n',cn:'火灾'}],
+  note:'ke-...-an 表示自然发生的事件',
+  example:[{id:'Kebakaran terjadi di gudang bahan kimia.',cn:'化学品仓库发生火灾。'},{id:'Api kebakaran berhasil dipadamkan dalam satu jam.',cn:'火灾在一小时内被扑灭。'}],
+  synonym:['pemadaman','kobaran api'],
+  tag:'应急响应'
+},
+'ledakan':{
+  ipa:'/ləˈdakan/',
+  cn:'爆炸',
+  en:'explosion',
+  root:'ledak (=爆炸) + -an 名词后缀',
+  transform:[{form:'ledak',pos:'v',cn:'爆炸'},{form:'meledak',pos:'v',cn:'爆炸/爆裂'},{form:'diledakkan',pos:'pass.v',cn:'被引爆'},{form:'ledakan',pos:'n',cn:'爆炸'},{form:'peledak',pos:'n',cn:'炸药/爆炸物'}],
+  example:[{id:'Ledakan gas terjadi di area produksi.',cn:'生产区域发生气体爆炸。'},{id:'Ledakan menyebabkan kerusakan parah pada peralatan.',cn:'爆炸导致设备严重损坏。'}],
+  synonym:['eksplosi','letusan','dentuman'],
+  tag:'应急响应'
+},
+'kebocoran':{
+  ipa:'/kəboˈʧoran/',
+  cn:'泄漏',
+  en:'leak',
+  root:'bocor (=泄漏) + ke-...-an 名词化',
+  transform:[{form:'bocor',pos:'v/adj',cn:'泄漏'},{form:'kebocoran',pos:'n',cn:'泄漏'},{form:'membocorkan',pos:'v',cn:'使泄漏/泄露'},{form:'berbocor',pos:'v',cn:'正在泄漏'}],
+  note:'ke-...-an 表示事件/事故',
+  example:[{id:'Kebocoran pipa menyebabkan tumpahan asam.',cn:'管道泄漏导致酸液溢出。'},{id:'Kebocoran gas beracun segera ditangani.',cn:'有毒气体泄漏立即得到处理。'}],
+  synonym:['keluarnya zat'],
+  tag:'应急响应'
+},
+'tumpahan':{
+  ipa:'/tumˈpahan/',
+  cn:'溢洒/泼洒',
+  en:'spill',
+  root:'tumpah (=洒出) + -an 名词后缀',
+  transform:[{form:'tumpah',pos:'v',cn:'洒出/溢出'},{form:'menumpahkan',pos:'v',cn:'泼洒/倾倒'},{form:'tumpahan',pos:'n',cn:'溢洒物'},{form:'tertumpah',pos:'pass.v',cn:'被洒出'}],
+  note:'HSE 术语：oil spill = tumpahan minyak',
+  example:[{id:'Tumpahan bahan kimia segera ditangani dengan spill kit.',cn:'化学品溢洒立即用泄漏应急包处理。'},{id:'Tumpahan minyak mencemari tanah di sekitar.',cn:'油溢洒污染了周围土壤。'}],
+  synonym:['spill','curahan'],
+  tag:'应急响应'
+},
+'gas beracun':{
+  ipa:'/ˈɡas bəˈratʧun/',
+  cn:'有毒气体',
+  en:'toxic gas',
+  root:'gas (=气体) + racun (=毒) + ber- 前缀',
+  transform:[{form:'gas',pos:'n',cn:'气体'},{form:'racun',pos:'n',cn:'毒'},{form:'beracun',pos:'adj',cn:'有毒的'},{form:'meracuni',pos:'v',cn:'毒害'}],
+  example:[{id:'Detektor gas beracun terpasang di area produksi.',cn:'生产区域安装有毒气体探测器。'},{id:'Gas beracun H2S sangat berbahaya.',cn:'有毒气体硫化氢非常危险。'}],
+  synonym:['gas toksik','gas racun','gas berbahaya'],
+  tag:'应急响应'
+},
+'asap':{
+  ipa:'/ˈasap/',
+  cn:'烟雾',
+  en:'smoke',
+  root:'asap (=烟)',
+  transform:[{form:'asap',pos:'n',cn:'烟/烟雾'},{form:'berasap',pos:'adj/v',cn:'冒烟的'}],
+  example:[{id:'Asap tebal keluar dari cerobong pabrik.',cn:'浓烟从工厂烟囱冒出。'},{id:'Asap kebakaran memenuhi ruangan.',cn:'火灾烟雾弥漫整个房间。'}],
+  synonym:['kabut asap','tebal (asap)','asap tebal'],
+  tag:'应急响应'
+},
+'gempa bumi':{
+  ipa:'/ˈɡɛmpa ˈbumi/',
+  cn:'地震',
+  en:'earthquake',
+  root:'gempa (=震动) + bumi (=地球/土地)',
+  transform:[{form:'gempa',pos:'n/v',cn:'震动'},{form:'bumi',pos:'n',cn:'地球/土地'},{form:'bergempa',pos:'v',cn:'发生地震'}],
+  note:'BMKG (Badan Meteorologi, Klimatologi, dan Geofisika) 负责地震监测',
+  example:[{id:'Gempa bumi berkekuatan 6.5 mengguncang wilayah ini.',cn:'6.5级地震震动了该地区。'},{id:'Bangunan harus tahan gempa bumi.',cn:'建筑必须抗震。'}],
+  synonym:['seisme','guncangan bumi','gempa'],
+  tag:'应急响应'
+},
+'SOP darurat':{
+  ipa:'/ɛs o ˈpe daˈrurat/',
+  cn:'应急标准作业程序',
+  en:'emergency SOP',
+  root:'SOP = Standard Operating Procedure + darurat (=紧急)',
+  transform:[{form:'SOP',pos:'n',cn:'标准作业程序'},{form:'darurat',pos:'n/adj',cn:'紧急'}],
+  note:'SOP darurat harus dipraktikkan melalui latihan rutin',
+  example:[{id:'SOP darurat harus dipahami seluruh karyawan.',cn:'所有员工必须理解应急SOP。'},{id:'SOP darurat dievaluasi setelah setiap insiden.',cn:'每次事故后对应急SOP进行评估。'}],
+  synonym:['prosedur darurat','SOP emergency'],
+  tag:'应急响应'
+},
+'rencana darurat':{
+  ipa:'/rənˈʧana daˈrurat/',
+  cn:'应急预案',
+  en:'emergency plan',
+  root:'rencana (=计划) + darurat (=紧急)',
+  transform:[{form:'rencana',pos:'n',cn:'计划'},{form:'merencanakan',pos:'v',cn:'计划'},{form:'terencana',pos:'adj',cn:'有计划的'}],
+  example:[{id:'Rencana darurat harus diperbarui setiap tahun.',cn:'应急预案必须每年更新。'},{id:'Rencana darurat mencakup semua skenario kecelakaan.',cn:'应急预案涵盖所有事故场景。'}],
+  synonym:['emergency plan','rencana tanggap darurat','ren-dar'],
+  tag:'应急响应'
+},
+'tim tanggap':{
+  ipa:'/ˈtim ˈtaŋɡap/',
+  cn:'应急小组',
+  en:'response team',
+  root:'tim (=团队，英语) + tanggap (=响应)',
+  transform:[{form:'tim',pos:'n',cn:'团队'},{form:'tanggap',pos:'v/adj',cn:'响应'}],
+  example:[{id:'Tim tanggap siaga 24 jam setiap hari.',cn:'应急小组每天24小时待命。'},{id:'Tim tanggap dilatih menangani berbagai insiden.',cn:'应急小组接受各类事故处理训练。'}],
+  synonym:['tim darurat','tim respons','rescue team'],
+  tag:'应急响应'
+},
+'posko':{
+  ipa:'/ˈposko/',
+  cn:'指挥所/应急站',
+  en:'command post / emergency station',
+  root:'posko (=post 指挥所，荷兰语 post)',
+  transform:[{form:'posko',pos:'n',cn:'指挥所/应急站'}],
+  note:'也常拼写 pos command / pos komando',
+  example:[{id:'Posko darurat didirikan di area aman.',cn:'应急指挥所设立在安全区域。'},{id:'Korban melaporkan ke posko bencana.',cn:'灾民向救灾指挥所报告。'}],
+  synonym:['pos komando','pos darurat','command post'],
+  tag:'应急响应'
+},
+'jalan evakuasi':{
+  ipa:'/ˈʤalan evaˈkuasi/',
+  cn:'疏散通道',
+  en:'evacuation route',
+  root:'jalan (=路) + evakuasi (=疏散)',
+  transform:[{form:'jalan',pos:'n',cn:'路/通道'},{form:'evakuasi',pos:'n',cn:'疏散/撤离'}],
+  example:[{id:'Jalan evakuasi harus bebas dari penghalang.',cn:'疏散通道必须无障碍物。'},{id:'Ikuti tanda jalan evakuasi menuju titik kumpul.',cn:'跟随疏散通道标志前往集合点。'}],
+  synonym:['rute evakuasi','jalur evakuasi','jalan keluar darurat'],
+  tag:'应急响应'
+},
+'titik kumpul':{
+  ipa:'/ˈtitik ˈkumpul/',
+  cn:'集合点',
+  en:'assembly point / muster point',
+  root:'titik (=点) + kumpul (=集合)',
+  transform:[{form:'titik',pos:'n',cn:'点'},{form:'kumpul',pos:'v',cn:'集合/聚集'},{form:'berkumpul',pos:'v',cn:'聚集/集合'}],
+  example:[{id:'Titik kumpul berada di lapangan utama.',cn:'集合点位于主广场。'},{id:'Semua karyawan berkumpul di titik kumpul.',cn:'所有员工在集合点集合。'}],
+  synonym:['assembly point','titik berkumpul','muster point'],
+  tag:'应急响应'
+},
+'alarm':{
+  ipa:'/aˈlarm/',
+  cn:'警报器',
+  en:'alarm',
+  root:'拉丁语 ad arma (拿起武器) → 法语 alarme → 英语 alarm',
+  transform:[{form:'alarm',pos:'n',cn:'警报/警报器'},{form:'mengalarmkan',pos:'v',cn:'使警报响起'}],
+  note:'借词：英语',
+  example:[{id:'Alarm kebakaran berbunyi keras.',cn:'火灾警报响起。'},{id:'Suara alarm memperingatkan karyawan.',cn:'警报声警示员工。'}],
+  synonym:['sirine','bel alarm','peringatan'],
+  tag:'应急响应'
+},
+'sirine':{
+  ipa:'/ˈsirine/',
+  cn:'警报器/汽笛',
+  en:'siren',
+  root:'荷兰语 sirene → sirine',
+  transform:[{form:'sirine',pos:'n',cn:'警报器/汽笛'}],
+  note:'借词：荷兰语 sirene',
+  example:[{id:'Sirine berbunyi saat latihan darurat.',cn:'应急演练时汽笛响起。'},{id:'Suara sirine terdengar dari kejauhan.',cn:'远处传来警报声。'}],
+  synonym:['alarm','bel','terompet udara'],
+  tag:'应急响应'
+},
+'APAR':{
+  ipa:'/a ˈpar/',
+  cn:'便携式灭火器',
+  en:'fire extinguisher',
+  root:'APAR = Alat Pemadam Api Ringan (工具+扑灭+火+轻型)',
+  transform:[{form:'alat',pos:'n',cn:'工具'},{form:'pemadam',pos:'n',cn:'扑灭者/灭火器'},{form:'memadamkan',pos:'v',cn:'扑灭'},{form:'api',pos:'n',cn:'火'},{form:'ringan',pos:'adj',cn:'轻的'}],
+  note:'APAR 分为几类：ABC (serbuk kimia), CO2, foam 等',
+  example:[{id:'APAR harus dicek setiap bulan.',cn:'灭火器必须每月检查。'},{id:'Gunakan APAR untuk memadamkan api kecil.',cn:'使用灭火器扑灭初期火灾。'}],
+  synonym:['pemadam api','alat pemadam api','fire extinguisher'],
+  tag:'应急响应'
+},
+'hidran':{
+  ipa:'/ˈhidran/',
+  cn:'消防栓',
+  en:'hydrant',
+  root:'荷兰语 hydrant → hidran',
+  transform:[{form:'hidran',pos:'n',cn:'消防栓'}],
+  note:'借词：荷兰语',
+  example:[{id:'Hidran harus mudah diakses saat darurat.',cn:'消防栓在紧急情况下必须易于取用。'},{id:'Hidran dekat gudang diperiksa rutin.',cn:'仓库附近的消防栓定期检查。'}],
+  synonym:['hydrant','keran air kebakaran','pilar hidran'],
+  tag:'应急响应'
+},
+'sprinkler':{
+  ipa:'/ˈspriŋklɛr/',
+  cn:'喷淋系统',
+  en:'sprinkler',
+  root:'英语 sprinkler (sprinkle 洒) → sprinkler',
+  transform:[{form:'sprinkler',pos:'n',cn:'喷淋装置'}],
+  note:'借词：英语',
+  example:[{id:'Sprinkler otomatis menyala saat terdeteksi panas.',cn:'喷淋系统检测到热量时自动启动。'},{id:'Sistem sprinkler melindungi area penyimpanan.',cn:'喷淋系统保护储存区。'}],
+  synonym:['sistem sprinkler','pemadam otomatis','sprinkler otomatis'],
+  tag:'应急响应'
+},
+'detektor asap':{
+  ipa:'/dɛˈtɛktɔr ˈasap/',
+  cn:'烟雾探测器',
+  en:'smoke detector',
+  root:'detektor (=探测器，英语 detector) + asap (=烟)',
+  transform:[{form:'detektor',pos:'n',cn:'探测器'},{form:'asap',pos:'n',cn:'烟'},{form:'mendeteksi',pos:'v',cn:'检测/探测'}],
+  example:[{id:'Detektor asap terpasang di setiap ruangan.',cn:'每个房间都安装烟雾探测器。'},{id:'Detektor asap berbunyi ketika ada kebakaran.',cn:'发生火灾时烟雾探测器响起。'}],
+  synonym:['smoke detector','sensor asap','alarm asap'],
+  tag:'应急响应'
+},
+'APD':{
+  ipa:'/a pe ˈde/',
+  cn:'个人防护装备',
+  en:'PPE (Personal Protective Equipment)',
+  root:'APD = Alat Pelindung Diri (工具+保护+自身)',
+  transform:[{form:'alat',pos:'n',cn:'工具/装备'},{form:'pelindung',pos:'n',cn:'保护物'},{form:'melindungi',pos:'v',cn:'保护'},{form:'diri',pos:'n',cn:'自己/自身'}],
+  note:'等同英语 PPE',
+  example:[{id:'APD wajib dipakai di area produksi.',cn:'生产区域必须穿戴个人防护装备。'},{id:'Helm, sarung tangan, dan sepatu keselamatan adalah APD wajib.',cn:'安全帽、手套和安全鞋是必备个人防护装备。'}],
+  synonym:['PPE','alat pelindung diri','perlengkapan keselamatan'],
+  tag:'应急响应'
+},
+'helm keselamatan':{
+  ipa:'/ˈhɛlm kəsəlaˈmatan/',
+  cn:'安全帽',
+  en:'safety helmet',
+  root:'helm (=头盔) + selamat (=安全) + -an 名词化',
+  transform:[{form:'helm',pos:'n',cn:'头盔'},{form:'selamat',pos:'adj',cn:'安全的'},{form:'keselamatan',pos:'n',cn:'安全'},{form:'berhelm',pos:'v',cn:'戴头盔'}],
+  note:'印尼法规要求工地必须戴 helm keselamatan',
+  example:[{id:'Semua pekerja wajib memakai helm keselamatan.',cn:'所有工人必须佩戴安全帽。'},{id:'Helm keselamatan melindungi kepala dari benturan.',cn:'安全帽保护头部免受撞击。'}],
+  synonym:['helm proyek','helm safety','topi keselamatan'],
+  tag:'应急响应'
+},
+'sepatu keselamatan':{
+  ipa:'/səˈpatu kəsəlaˈmatan/',
+  cn:'安全鞋',
+  en:'safety shoes',
+  root:'sepatu (=鞋，葡萄牙语 sapato) + keselamatan (=安全)',
+  transform:[{form:'sepatu',pos:'n',cn:'鞋'},{form:'selamat',pos:'adj',cn:'安全的'},{form:'keselamatan',pos:'n',cn:'安全'}],
+  example:[{id:'Sepatu keselamatan melindungi kaki dari benda berat.',cn:'安全鞋保护脚部免受重物砸伤。'},{id:'Sepatu keselamatan memiliki pelindung baja di ujung.',cn:'安全鞋前端有钢头保护。'}],
+  synonym:['safety shoes','sepatu safety','sepatu pelindung'],
+  tag:'应急响应'
+},
+'sarung tangan':{
+  ipa:'/ˈsaruŋ ˈtaŋan/',
+  cn:'手套',
+  en:'gloves',
+  root:'sarung (=套/覆盖) + tangan (=手)',
+  transform:[{form:'sarung',pos:'n',cn:'套/覆盖'},{form:'tangan',pos:'n',cn:'手'},{form:'bersarung tangan',pos:'v',cn:'戴手套'}],
+  note:'sarung tangan kerja = 工作手套；sarung tangan karet = 橡胶手套',
+  example:[{id:'Sarung tangan wajib dipakai saat menangani bahan kimia.',cn:'处理化学品时必须戴手套。'},{id:'Gunakan sarung tangan anti-potong untuk pekerjaan tajam.',cn:'处理锋利工件时使用防割手套。'}],
+  synonym:['gloves','sarung tangan kerja','pelindung tangan'],
+  tag:'应急响应'
+},
+'respirator':{
+  ipa:'/rɛspiˈratɔr/',
+  cn:'呼吸器',
+  en:'respirator',
+  root:'拉丁语 respirare (re- 再 + spirare 呼吸) → respirator',
+  transform:[{form:'respirator',pos:'n',cn:'呼吸器/口罩'},{form:'respirasi',pos:'n',cn:'呼吸'},{form:'bernapas',pos:'v',cn:'呼吸'}],
+  note:'借词：拉丁语/英语',
+  example:[{id:'Respirator wajib dipakai di area berdebu.',cn:'在有粉尘的区域必须佩戴呼吸器。'},{id:'Respirator menyaring udara beracun.',cn:'呼吸器过滤有毒空气。'}],
+  synonym:['masker','alat pernapasan','penyaring udara'],
+  tag:'应急响应'
+},
+'kotak P3K':{
+  ipa:'/ˈkotak pe ˈtiga ka/',
+  cn:'急救箱',
+  en:'first aid kit',
+  root:'kotak (=盒子) + P3K = Pertolongan Pertama Pada Kecelakaan (急救)',
+  transform:[{form:'kotak',pos:'n',cn:'盒子/箱'},{form:'pertolongan',pos:'n',cn:'救助'},{form:'pertama',pos:'adj',cn:'第一'},{form:'kecelakaan',pos:'n',cn:'事故'}],
+  note:'P3K = Pertolongan Pertama Pada Kecelakaan',
+  example:[{id:'Kotak P3K tersedia di setiap lantai gedung.',cn:'每层楼都备有急救箱。'},{id:'Isi kotak P3K diperiksa setiap bulan.',cn:'急救箱内容每月检查。'}],
+  synonym:['P3K','first aid kit','kotak pertolongan pertama'],
+  tag:'应急响应'
+},
+'tandu':{
+  ipa:'/ˈtandu/',
+  cn:'担架',
+  en:'stretcher',
+  root:'tandu (=担架/抬)',
+  transform:[{form:'tandu',pos:'n',cn:'担架'},{form:'menandu',pos:'v',cn:'用担架抬'}],
+  example:[{id:'Korban dibawa ke rumah sakit dengan tandu.',cn:'伤者用担架送往医院。'},{id:'Tandu disimpan di dekat posko darurat.',cn:'担架存放在应急指挥所附近。'}],
+  synonym:['stretcher','brankar','alas angkat'],
+  tag:'应急响应'
+},
+'paramedis':{
+  ipa:'/paraˈmɛdis/',
+  cn:'急救员/医护',
+  en:'paramedic',
+  root:'英语 paramedic (para- 辅助 + medic 医疗) → paramedis',
+  transform:[{form:'paramedis',pos:'n',cn:'急救员/医护'},{form:'medis',pos:'adj',cn:'医疗的'}],
+  note:'借词：英语',
+  example:[{id:'Paramedis segera menangani korban luka.',cn:'急救员立即处理受伤人员。'},{id:'Paramedis dilatih memberikan pertolongan pertama.',cn:'急救员接受急救培训。'}],
+  synonym:['medis','tenaga medis','petugas P3K'],
+  tag:'应急响应'
+},
+'latihan darurat':{
+  ipa:'/latiˈhan daˈrurat/',
+  cn:'应急演练',
+  en:'emergency drill',
+  root:'latih (=训练) + -an 名词后缀 + darurat (=紧急)',
+  transform:[{form:'latih',pos:'v',cn:'训练'},{form:'melatih',pos:'v',cn:'训练'},{form:'berlatih',pos:'v',cn:'练习/训练'},{form:'latihan',pos:'n',cn:'训练/演练'}],
+  example:[{id:'Latihan darurat diadakan setiap enam bulan.',cn:'每六个月举行一次应急演练。'},{id:'Latihan darurat simulasi kebakaran gedung.',cn:'应急演练模拟楼宇火灾。'}],
+  synonym:['drill','simulasi darurat','uji coba darurat'],
+  tag:'应急响应'
+},
+'simulasi':{
+  ipa:'/simuˈlasi/',
+  cn:'模拟演习',
+  en:'simulation',
+  root:'拉丁语 simulare (模仿) → simulasi',
+  transform:[{form:'simulasi',pos:'n',cn:'模拟/仿真'},{form:'mensimulasikan',pos:'v',cn:'模拟'},{form:'mensimulasi',pos:'v',cn:'模拟'}],
+  note:'借词：拉丁语/英语',
+  example:[{id:'Simulasi kebakaran diadakan di kawasan industri.',cn:'工业园区举行火灾模拟演习。'},{id:'Hasil simulasi menunjukkan waktu evakuasi 10 menit.',cn:'模拟结果显示疏散时间为10分钟。'}],
+  synonym:['simulation','latihan simulasi','replikasi'],
+  tag:'应急响应'
+},
+'penyelidikan':{
+  ipa:'/pəɲəliˈdikan/',
+  cn:'调查',
+  en:'investigation',
+  root:'selidik (=调查) + peN-...-an 名词化',
+  transform:[{form:'selidik',pos:'v',cn:'调查'},{form:'menyelidiki',pos:'v',cn:'调查'},{form:'penyelidik',pos:'n',cn:'调查员'},{form:'penyelidikan',pos:'n',cn:'调查'}],
+  note:'peN- + selidik → penyelidik (s→ny 同化)',
+  example:[{id:'Penyelidikan insiden dilakukan oleh tim HSE.',cn:'事故调查由HSE团队进行。'},{id:'Hasil penyelidikan menunjukkan penyebab kebakaran.',cn:'调查结果显示火灾原因。'}],
+  synonym:['investigasi','penelusuran','pemeriksaan'],
+  tag:'应急响应'
+},
+'laporan insiden':{
+  ipa:'/laˈporan inˈsidɛn/',
+  cn:'事故报告',
+  en:'incident report',
+  root:'lapor (=报告) + -an 名词后缀 + insiden (=事件，英语 incident)',
+  transform:[{form:'lapor',pos:'v',cn:'报告'},{form:'melapor',pos:'v',cn:'报告'},{form:'laporan',pos:'n',cn:'报告'},{form:'insiden',pos:'n',cn:'事件/事故'}],
+  example:[{id:'Laporan insiden harus disampaikan dalam 24 jam.',cn:'事故报告必须在24小时内提交。'},{id:'Laporan insiden mencatat semua detail kejadian.',cn:'事故报告记录事件的所有细节。'}],
+  synonym:['insiden report','laporan kejadian','laporan kecelakaan'],
+  tag:'应急响应'
+},
+'hampir celaka':{
+  ipa:'/ˈhampir ʧəˈlaka/',
+  cn:'未遂事故/险情',
+  en:'near miss',
+  root:'hampir (=几乎) + celaka (=灾祸)',
+  transform:[{form:'hampir',pos:'adv',cn:'几乎'},{form:'celaka',pos:'n/adj',cn:'灾祸/倒霉的'}],
+  note:'HSE 术语：没有造成实际伤害但有可能的事故',
+  example:[{id:'Hampir celaka harus dilaporkan untuk pencegahan.',cn:'未遂事故必须报告以预防再次发生。'},{id:'Pencatatan hampir celaka membantu meningkatkan keselamatan.',cn:'记录险情有助于提高安全性。'}],
+  synonym:['near miss','hampir terjadi','potensi bahaya'],
+  tag:'应急响应'
+},
+'tonggak pencapaian':{
+  ipa:'/ˈtoŋɡak pantʃapaɪˈan/',
+  cn:'里程碑/阶段成果',
+  en:'milestone',
+  root:'tonggak (=标桩/基准点) + pencapaian (=达成，capai 达成 + peN--an 名词化)',
+  transform:[{form:'tonggak',pos:'n',cn:'标桩/基准点'},{form:'capai',pos:'v',cn:'达成/实现'},{form:'mencapai',pos:'v',cn:'达成/实现（meN- + capai）'},{form:'pencapaian',pos:'n',cn:'达成/成就'},{form:'tercapai',pos:'pass.v',cn:'被达成'}],
+  note:'项目管理核心术语，也用于泛指人生/项目重要节点',
+  example:[{id:'Proyek mencapai tonggak pencapaian penting bulan ini.',cn:'项目本月达到了重要里程碑。'},{id:'Setiap tonggak pencapaian harus disahkan oleh direksi.',cn:'每个里程碑都必须经董事会确认。'}],
+  synonym:['tahap penting','tanda jadi'],
+  tag:'项目管理'
+},
+'bagan Gantt':{
+  ipa:'/ˈbaɡan ɡant/',
+  cn:'甘特图',
+  en:'Gantt chart',
+  root:'bagan (=图表) + Gantt (人名 Henry Gantt，项目管理先驱)',
+  transform:[{form:'bagan',pos:'n',cn:'图表/示意图'}],
+  note:'借词：Gantt 来自人名 Henry L. Gantt (1861-1919)',
+  example:[{id:'Bagan Gantt menunjukkan jadwal proyek secara visual.',cn:'甘特图以可视化方式展示项目进度。'},{id:'Tim proyek memperbarui bagan Gantt setiap minggu.',cn:'项目团队每周更新甘特图。'}],
+  synonym:['diagram batang','jadwal visual'],
+  tag:'项目管理'
+},
+'SRP':{
+  ipa:'/ɛs ɛr ˈpe/',
+  cn:'工作分解结构',
+  en:'WBS (Work Breakdown Structure)',
+  root:'SRP = struktur rincian pekerjaan (结构+详细+工作)',
+  transform:[],
+  note:'缩写词：struktur rincian pekerjaan；等同英语 WBS',
+  example:[{id:'SRP proyek dibagi menjadi lima level utama.',cn:'项目工作分解结构分为五个主要层级。'},{id:'Setiap paket kerja di SRP punya penanggung jawab sendiri.',cn:'SRP中每个工作包都有各自的负责人。'}],
+  synonym:['struktur rincian pekerjaan'],
+  tag:'项目管理'
+},
+'sumber daya':{
+  ipa:'/ˈsumbɛr ˈdaja/',
+  cn:'资源',
+  en:'resources',
+  root:'sumber (=来源/泉源) + daya (=力量/能力)',
+  transform:[{form:'sumber',pos:'n',cn:'来源/泉源'},{form:'daya',pos:'n',cn:'力量/能力'},{form:'berdaya',pos:'adj',cn:'有能力的'},{form:'memberdayakan',pos:'v',cn:'赋能/使有资源'}],
+  note:'sumber daya manusia (SDM) = 人力资源',
+  example:[{id:'Proyek ini membutuhkan sumber daya yang besar.',cn:'这个项目需要大量资源。'},{id:'Sumber daya manusia terampil sangat dibutuhkan.',cn:'非常需要熟练的人力资源。'}],
+  synonym:['sumber','modal','fasilitas'],
+  tag:'项目管理'
+},
+'alokasi':{
+  ipa:'/aˈlokasi/',
+  cn:'分配',
+  en:'allocation',
+  root:'荷兰语 allocatie → alokasi (al- 向 + lokas 位置 + -i 动词后缀)',
+  transform:[{form:'alokasi',pos:'n',cn:'分配'},{form:'mengalokasikan',pos:'v',cn:'分配/拨给'},{form:'dialokasikan',pos:'pass.v',cn:'被分配'},{form:'pengalokasian',pos:'n',cn:'分配过程'}],
+  note:'借词：荷兰语 allocatie',
+  example:[{id:'Alokasi anggaran untuk proyek naik 20% tahun ini.',cn:'今年项目预算分配增加了20%。'},{id:'Manajer mengalokasikan tenaga kerja ke area kritis.',cn:'经理将劳动力分配到关键区域。'}],
+  synonym:['distribusi','pembagian','penempatan'],
+  tag:'项目管理'
+},
+'belanja modal':{
+  ipa:'/bəˈlaɲa ˈmodal/',
+  cn:'资本支出',
+  en:'capital expenditure (CapEx)',
+  root:'belanja (=购买) + modal [待核实]（词源不确定，可能源自葡萄牙语/荷兰语）',
+  transform:[{form:'belanja',pos:'n/v',cn:'支出/花费/购物'},{form:'berbelanja',pos:'v',cn:'购物/支出'},{form:'modal',pos:'n',cn:'资本/资金'},{form:'memodali',pos:'v',cn:'提供资金'}],
+  note:'财务术语：CapEx vs OpEx（belanja operasional）',
+  example:[{id:'Belanja modal untuk smelter mencapai triliunan rupiah.',cn:'冶炼厂的资本支出达数万亿印尼盾。'},{id:'Rencana belanja modal disetujui oleh direksi.',cn:'资本支出计划已获董事会批准。'}],
+  synonym:['CapEx','pengeluaran modal'],
+  tag:'项目管理'
+},
+'belanja operasional':{
+  ipa:'/bəˈlaɲa opəˈrasional/',
+  cn:'运营支出',
+  en:'operating expenditure (OpEx)',
+  root:'belanja (=支出) + operasional (=运营的，operasi 操作 + -onal 形容词后缀)',
+  transform:[{form:'operasi',pos:'n',cn:'操作/运营/手术'},{form:'beroperasi',pos:'v',cn:'运营/运转'},{form:'mengoperasikan',pos:'v',cn:'操作/使运转'}],
+  note:'财务术语：OpEx vs CapEx（belanja modal）',
+  example:[{id:'Belanja operasional bulanan pabrik sangat besar.',cn:'工厂每月运营支出巨大。'},{id:'Kami berusaha menekan belanja operasional tanpa mengurangi kualitas.',cn:'我们努力在不降低质量的前提下压缩运营支出。'}],
+  synonym:['OpEx','biaya operasional','pengeluaran rutin'],
+  tag:'项目管理'
+},
+'garis dasar':{
+  ipa:'/ˈɡaris ˈdasar/',
+  cn:'基准线',
+  en:'baseline',
+  root:'garis (=线) + dasar (=基础/底部)',
+  transform:[{form:'garis',pos:'n',cn:'线'},{form:'dasar',pos:'n/adj',cn:'基础/基本的'},{form:'menggariskan',pos:'v',cn:'划线/规定'},{form:'berdasar',pos:'v',cn:'基于'}],
+  note:'项目管理中用于对比实际进度与计划进度',
+  example:[{id:'Garis dasar proyek ditetapkan setelah kontrak ditandatangani.',cn:'项目基准线在合同签署后确定。'},{id:'Keterlambatan dibandingkan garis dasar sudah dua minggu.',cn:'与基准线相比已延迟两周。'}],
+  synonym:['baseline','acuan','titik tolak'],
+  tag:'项目管理'
+},
+'ruang lingkup':{
+  ipa:'/ˈruaŋ liŋˈkup/',
+  cn:'范围',
+  en:'scope',
+  root:'ruang (=空间) + lingkup (=范围/涵盖)',
+  transform:[{form:'ruang',pos:'n',cn:'空间/房间'},{form:'lingkup',pos:'n',cn:'范围/涵盖'},{form:'melingkupi',pos:'v',cn:'涵盖/包围'},{form:'terlingkup',pos:'pass.v',cn:'被涵盖'}],
+  note:'项目管理三角：ruang lingkup(范围) / waktu(时间) / biaya(成本)',
+  example:[{id:'Ruang lingkup pekerjaan sudah didefinisikan dalam kontrak.',cn:'工作范围已在合同中定义。'},{id:'Perubahan ruang lingkup memerlukan persetujuan tertulis.',cn:'范围变更需要书面批准。'}],
+  synonym:['lingkup','cakupan','skop'],
+  tag:'项目管理'
+},
+'hasil yang diserahkan':{
+  ipa:'/haˈsil jaŋ disəˈrahan/',
+  cn:'交付物',
+  en:'deliverable',
+  root:'hasil (=成果) + serah (=交付) + di-...-kan 被动使役 → diserahkan 被交付',
+  transform:[{form:'hasil',pos:'n',cn:'成果/结果'},{form:'serah',pos:'v',cn:'交付/提交'},{form:'menyerahkan',pos:'v',cn:'交付/呈交'},{form:'diserahkan',pos:'pass.v',cn:'被交付'},{form:'penyerahan',pos:'n',cn:'交付过程'}],
+  note:'更常用简写：deliverable 或直接说 hasil',
+  example:[{id:'Hasil yang diserahkan meliputi desain dan dokumen teknis.',cn:'交付物包括设计和技术文件。'},{id:'Setiap hasil yang diserahkan harus melewati tinjauan mutu.',cn:'每个交付物都必须经过质量评审。'}],
+  synonym:['deliverable','luaran','produk akhir'],
+  tag:'项目管理'
+},
+'luaran':{
+  ipa:'/luˈaˈran/',
+  cn:'产出',
+  en:'output',
+  root:'luar (=外面) + -an 名词后缀 → 外部产出',
+  transform:[{form:'luar',pos:'n/adj',cn:'外面/外部'},{form:'mengeluarkan',pos:'v',cn:'排出/支出/出版'},{form:'dikeluarkan',pos:'pass.v',cn:'被排出/被支出'},{form:'pengeluaran',pos:'n',cn:'支出/排出'}],
+  note:'与 hasil（成果）近义，luaran 强调系统/流程的直接输出',
+  example:[{id:'Luaran proses produksi harus memenuhi baku mutu.',cn:'生产过程的产出必须符合质量标准。'},{id:'Luaran mesin ini digunakan sebagai bahan baku.',cn:'这台机器的产出被用作原材料。'}],
+  synonym:['hasil','produk','output'],
+  antonym:['masukan','input'],
+  tag:'项目管理'
+},
+'hasil akhir':{
+  ipa:'/haˈsil ˈaʁir/',
+  cn:'成果/最终结果',
+  en:'final outcome',
+  root:'hasil (=成果) + akhir (=结束/最终，阿拉伯语 aḫīr)',
+  transform:[{form:'hasil',pos:'n',cn:'成果/结果'},{form:'akhir',pos:'n/adj',cn:'结束/最终'},{form:'mengakhiri',pos:'v',cn:'结束/终止'},{form:'berakhir',pos:'v',cn:'结束'}],
+  note:'也常用于学术：hasil akhir penelitian = 研究成果',
+  example:[{id:'Hasil akhir proyek melebihi ekspektasi klien.',cn:'项目最终成果超出客户期望。'},{id:'Hasil akhir evaluasi akan disampaikan minggu depan.',cn:'评估最终结果将于下周公布。'}],
+  synonym:['outcome','produk akhir'],
+  tag:'项目管理'
+},
+'IKU':{
+  ipa:'/i ka ˈu/',
+  cn:'关键绩效指标',
+  en:'KPI (Key Performance Indicator)',
+  root:'IKU = indikator kinerja utama (指示器+绩效+主要的)',
+  transform:[{form:'indikator',pos:'n',cn:'指示器/指标'},{form:'kinerja',pos:'n',cn:'绩效/表现'},{form:'utama',pos:'adj',cn:'主要的'}],
+  note:'等同英语 KPI；完整形式：indikator kinerja utama',
+  example:[{id:'IKU proyek ditetapkan dalam dokumen perencanaan.',cn:'项目KPI在规划文件中确定。'},{id:'Pencapaian IKU dievaluasi setiap triwulan.',cn:'KPI达成情况每季度评估。'}],
+  synonym:['KPI','indikator kinerja','metrik'],
+  tag:'项目管理'
+},
+'isu':{
+  ipa:'/ˈisu/',
+  cn:'问题/议题',
+  en:'issue',
+  root:'英语 issue → isu',
+  transform:[],
+  note:'借词：英语 issue；项目管理中特指需要跟踪解决的问题',
+  example:[{id:'Isu utama proyek adalah keterlambatan pengiriman material.',cn:'项目的主要问题是材料交付延迟。'},{id:'Semua isu harus dicatat dalam log isu.',cn:'所有问题都必须记录在问题日志中。'}],
+  synonym:['masalah','persoalan','kendala'],
+  antonym:['solusi','penyelesaian'],
+  tag:'项目管理'
+},
+'jalur kritis':{
+  ipa:'/ˈʤalur ˈkritis/',
+  cn:'关键路径',
+  en:'critical path',
+  root:'jalur (=路径) + kritis (=关键的，希腊语 kritikos 判断)',
+  transform:[{form:'jalur',pos:'n',cn:'路径/路线'},{form:'kritis',pos:'adj',cn:'关键的/批判的'},{form:'menjalur',pos:'v',cn:'走路线（罕）'}],
+  note:'项目管理核心概念：决定项目最短工期的任务序列',
+  example:[{id:'Keterlambatan di jalur kritis akan menunda seluruh proyek.',cn:'关键路径上的延迟将导致整个项目延期。'},{id:'Tim fokus pada aktivitas jalur kritis untuk mengejar jadwal.',cn:'团队聚焦于关键路径活动以追赶进度。'}],
+  synonym:['critical path','rute kritis'],
+  tag:'项目管理'
+},
+'percepatan paralel':{
+  ipa:'/pərtʃəˈpatan paˈralel/',
+  cn:'快速跟进(并行)',
+  en:'fast tracking',
+  root:'percepatan (=加速，cepat 快 + per--an) + paralel (=并行的，希腊语 parallelos)',
+  transform:[{form:'cepat',pos:'adj',cn:'快'},{form:'mempercepat',pos:'v',cn:'加速'},{form:'percepatan',pos:'n',cn:'加速/提速'},{form:'paralel',pos:'adj',cn:'并行的'}],
+  note:'项目管理压缩工期两种方法之一（另一个是 percepatan intensif = crashing）',
+  example:[{id:'Percepatan paralel dilakukan dengan menjalankan dua tahap bersamaan.',cn:'快速跟进通过并行执行两个阶段来实现。'},{id:'Percepatan paralel meningkatkan risiko tetapi memangkas waktu.',cn:'快速跟进增加风险但缩短工期。'}],
+  synonym:['fast tracking'],
+  tag:'项目管理'
+},
+'percepatan intensif':{
+  ipa:'/pərtʃəˈpatan intənˈsif/',
+  cn:'赶工(加班赶进度)',
+  en:'crashing',
+  root:'percepatan (=加速) + intensif (=强化的，拉丁语 intensus)',
+  transform:[{form:'intensif',pos:'adj',cn:'强化的/密集的'},{form:'intensitas',pos:'n',cn:'强度'}],
+  note:'项目管理压缩工期方法：增加资源/加班来缩短关键活动工期',
+  example:[{id:'Percepatan intensif dilakukan dengan menambah shift kerja.',cn:'通过增加工作班次来进行赶工。'},{id:'Biaya percepatan intensif lebih tinggi dari anggaran.',cn:'赶工成本超出预算。'}],
+  synonym:['crashing','percepatan sumber daya'],
+  tag:'项目管理'
+},
+'tinjauan':{
+  ipa:'/tinˈʤauan/',
+  cn:'评审/审查',
+  en:'review',
+  root:'tinjau (=审阅) + -an 名词后缀；词根 jau (巡视)',
+  transform:[{form:'tinjau',pos:'v',cn:'审阅/巡视'},{form:'meninjau',pos:'v',cn:'审阅/视察'},{form:'ditinjau',pos:'pass.v',cn:'被审阅'},{form:'peninjau',pos:'n',cn:'审阅人/视察员'}],
+  note:'也可指现场视察：meninjau lokasi = 视察现场',
+  example:[{id:'Tinjauan desain dilakukan sebelum masuk tahap konstruksi.',cn:'设计评审在施工阶段开始前进行。'},{id:'Direktur meninjau progres proyek setiap bulan.',cn:'总监每月视察项目进展。'}],
+  synonym:['review','penelaahan','pemeriksaan'],
+  tag:'项目管理'
+},
+'audit':{
+  ipa:'/ˈaudit/',
+  cn:'审计',
+  en:'audit',
+  root:'拉丁语 auditus (听) → 英语 audit → 印尼语',
+  transform:[{form:'audit',pos:'n/v',cn:'审计'},{form:'mengaudit',pos:'v',cn:'审计/稽核'},{form:'auditor',pos:'n',cn:'审计员'},{form:'diaudit',pos:'pass.v',cn:'被审计'}],
+  note:'借词：拉丁语/英语',
+  example:[{id:'Audit keuangan dilakukan oleh firma independen.',cn:'财务审计由独立事务所执行。'},{id:'Perusahaan diaudit setiap tahun oleh BPK.',cn:'公司每年接受审计局审计。'}],
+  synonym:['pemeriksaan','inspeksi','penelusuran'],
+  tag:'项目管理'
+},
+'penerimaan':{
+  ipa:'/pənərimaˈan/',
+  cn:'验收',
+  en:'acceptance',
+  root:'terima (=接收) + peN-...-an 名词化 → 接收过程',
+  transform:[{form:'terima',pos:'v',cn:'接收'},{form:'menerima',pos:'v',cn:'接收/接受'},{form:'diterima',pos:'pass.v',cn:'被接受'},{form:'penerima',pos:'n',cn:'接收人'},{form:'penerimaan',pos:'n',cn:'接收/验收'}],
+  note:'项目管理中指客户正式验收交付物',
+  example:[{id:'Penerimaan hasil kerja dilakukan oleh tim kualitas.',cn:'工作成果的验收由质量团队执行。'},{id:'Berita acara penerimaan ditandatangani oleh kedua pihak.',cn:'验收纪要由双方签署。'}],
+  synonym:['acceptance','serah terima','pengambilalihan'],
+  antonym:['penolakan','pengembalian'],
+  tag:'项目管理'
+},
+'serah terima':{
+  ipa:'/ˈserah təˈrima/',
+  cn:'移交',
+  en:'handover',
+  root:'serah (=交付) + terima (=接收) → 交接双动词',
+  transform:[{form:'serah',pos:'v',cn:'交付'},{form:'terima',pos:'v',cn:'接收'},{form:'menyerahkan',pos:'v',cn:'移交/递交'},{form:'menerima',pos:'v',cn:'接收'}],
+  note:'也可简称 serah terima proyek = 项目移交',
+  example:[{id:'Serah terima proyek dari kontraktor ke pemilik dilakukan hari ini.',cn:'项目从承包商向业主的移交今日进行。'},{id:'Proses serah terima mencakup dokumen dan aset fisik.',cn:'移交过程包括文件和实物资产。'}],
+  synonym:['handover','pengalihan','penyerahan'],
+  tag:'项目管理'
+},
+'penutupan':{
+  ipa:'/pənutuˈpan/',
+  cn:'收尾/结项',
+  en:'closure',
+  root:'tutup (=关闭) + peN-...-an 名词化',
+  transform:[{form:'tutup',pos:'v/adj',cn:'关闭'},{form:'menutup',pos:'v',cn:'关闭'},{form:'ditutup',pos:'pass.v',cn:'被关闭'},{form:'penutup',pos:'n',cn:'关闭者/盖子'},{form:'penutupan',pos:'n',cn:'关闭/收尾'}],
+  note:'项目管理五大过程组最后一个：penutupan (closing)',
+  example:[{id:'Penutupan proyek meliputi evaluasi dan dokumentasi pembelajaran.',cn:'项目收尾包括评估和经验教训文档化。'},{id:'Upacara penutupan dihadiri oleh semua pemangku kepentingan.',cn:'结项仪式由所有利益相关方出席。'}],
+  synonym:['closing','penyelesaian','akhir proyek'],
+  antonym:['pembukaan'],
+  tag:'项目管理'
+},
+'pembelajaran':{
+  ipa:'/pəmbəlaˈʤaran/',
+  cn:'经验教训',
+  en:'lessons learned',
+  root:'ajar (=教) + peN--an 名词化 + 中缀 -ber- → 学习过程',
+  transform:[{form:'ajar',pos:'v',cn:'教'},{form:'belajar',pos:'v',cn:'学习'},{form:'mengajar',pos:'v',cn:'教（课）'},{form:'pelajaran',pos:'n',cn:'课程/教训'},{form:'pembelajaran',pos:'n',cn:'学习过程/经验教训'}],
+  note:'项目管理中 lessons learned = 项目结束后总结的经验教训',
+  example:[{id:'Pembelajaran dari proyek sebelumnya diterapkan pada proyek baru.',cn:'从前一项目中学到的经验应用于新项目。'},{id:'Dokumen pembelajaran disimpan dalam knowledge base perusahaan.',cn:'经验教训文档保存在公司知识库中。'}],
+  synonym:['lessons learned','pengalaman','pelajaran'],
+  tag:'项目管理'
+},
+'pemangku kepentingan':{
+  ipa:'/pəˈmaŋku kəpəntiŋan/',
+  cn:'利益相关方',
+  en:'stakeholder',
+  root:'pangku (=持有/承担) + penting (=重要) + peN-...-an → 持有利益者',
+  transform:[{form:'pangku',pos:'v',cn:'持有/承担'},{form:'penting',pos:'adj',cn:'重要的'},{form:'kepentingan',pos:'n',cn:'利益/重要性'},{form:'memangku',pos:'v',cn:'承担/担任'},{form:'pemangku',pos:'n',cn:'持有者/承担者'}],
+  note:'也可拼写 pihak yang berkepentingan；简写：stakeholder',
+  example:[{id:'Semua pemangku kepentingan diundang ke rapat koordinasi.',cn:'所有利益相关方被邀请参加协调会。'},{id:'Pemangku kepentingan utama termasuk pemerintah dan masyarakat lokal.',cn:'主要利益相关方包括政府和当地社区。'}],
+  synonym:['stakeholder','pihak terkait','pihak berkepentingan'],
+  tag:'项目管理'
+},
+'penanggung jawab utama':{
+  ipa:'/pənaŋˈɡuŋ ˈʤawab ˈutama/',
+  cn:'发起人/主要责任人',
+  en:'sponsor / primary responsible party',
+  root:'tanggung (=承担) + jawab (=回答/负责) + utama (=主要的)',
+  transform:[{form:'tanggung jawab',pos:'n',cn:'责任'},{form:'bertanggung jawab',pos:'v',cn:'负责'},{form:'jawab',pos:'v',cn:'回答'},{form:'menjawab',pos:'v',cn:'回答'},{form:'utama',pos:'adj',cn:'主要的'}],
+  note:'penanggung jawab = 负责人；utama = 主要的',
+  example:[{id:'Penanggung jawab utama proyek menyetujui perubahan besar.',cn:'项目主要责任人批准重大变更。'},{id:'Dia ditunjuk sebagai penanggung jawab utama keselamatan.',cn:'他被任命为安全第一责任人。'}],
+  synonym:['sponsor','PJ','penanggung jawab'],
+  tag:'项目管理'
+},
+'rapat kemajuan':{
+  ipa:'/ˈrapat kəmaˈʤuhan/',
+  cn:'进度会',
+  en:'progress meeting',
+  root:'rapat (=会议) + maju (=前进) + ke-...-an 名词化 → 前进状态',
+  transform:[{form:'rapat',pos:'n/v',cn:'会议/集会'},{form:'berrapat',pos:'v',cn:'开会'},{form:'maju',pos:'v/adj',cn:'前进/先进'},{form:'kemajuan',pos:'n',cn:'进展/进步'}],
+  note:'项目管理常规会议：每日站会/周进度会',
+  example:[{id:'Rapat kemajuan diadakan setiap Senin pagi.',cn:'进度会每周一上午举行。'},{id:'Hasil rapat kemajuan dicatat dalam notulen.',cn:'进度会结果记录在会议纪要中。'}],
+  synonym:['progress meeting','rapat koordinasi','rapat mingguan'],
+  tag:'项目管理'
+},
+'laporan status':{
+  ipa:'/laˈporan ˈstatus/',
+  cn:'状态报告',
+  en:'status report',
+  root:'lapor (=报告) + -an 名词后缀 + status (=状态，拉丁语)',
+  transform:[{form:'lapor',pos:'v',cn:'报告'},{form:'melapor',pos:'v',cn:'报告/汇报'},{form:'melaporkan',pos:'v',cn:'报告'},{form:'laporan',pos:'n',cn:'报告'},{form:'status',pos:'n',cn:'状态'}],
+  note:'项目管理常规交付物：日报/周报/月报',
+  example:[{id:'Laporan status proyek dikirim ke sponsor setiap Jumat.',cn:'项目状态报告每周五发送给发起人。'},{id:'Laporan status mencakup progres, risiko, dan isu terkini.',cn:'状态报告包括进展、风险和当前问题。'}],
+  synonym:['status report','laporan progres','laporan berkala'],
+  tag:'项目管理'
+},
+'laporan mingguan':{
+  ipa:'/laˈporan miŋˈɡuan/',
+  cn:'周报',
+  en:'weekly report',
+  root:'laporan (=报告) + minggu (=周) + -an 形容词后缀',
+  transform:[{form:'minggu',pos:'n',cn:'周/星期'},{form:'mingguan',pos:'adj',cn:'每周的'}],
+  example:[{id:'Laporan mingguan harus dikirim sebelum Jumat sore.',cn:'周报必须在周五下午前发送。'},{id:'Laporan mingguan mencakup pencapaian dan rencana minggu depan.',cn:'周报包括本周成就和下周计划。'}],
+  synonym:['weekly report','laporan pekanan'],
+  tag:'项目管理'
+},
+'nilai hasil':{
+  ipa:'/ˈnilai ˈhasil/',
+  cn:'挣值',
+  en:'earned value (EV)',
+  root:'nilai (=价值) + hasil (=成果) → 成果价值',
+  transform:[{form:'nilai',pos:'n/v',cn:'价值/评价'},{form:'menilai',pos:'v',cn:'评价/评估'},{form:'hasil',pos:'n',cn:'成果/结果'},{form:'bernila',pos:'v',cn:'有价值'}],
+  note:'项目管理挣值管理(EVM)核心指标：EV/PV/AC',
+  example:[{id:'Nilai hasil proyek sudah mencapai 75% dari rencana.',cn:'项目挣值已达到计划的75%。'},{id:'Perhitungan nilai hasil membandingkan progres aktual dengan anggaran.',cn:'挣值计算对比实际进度与预算。'}],
+  synonym:['earned value','EV','nilai capaian'],
+  tag:'项目管理'
+},
+'kepatuhan':{
+  ipa:'/kəpatuˈhan/',
+  cn:'合规/遵守',
+  en:'compliance',
+  root:'patuh (=服从) + ke-...-an 名词化',
+  transform:[{form:'patuh',pos:'adj/v',cn:'服从/顺从'},{form:'mematuhi',pos:'v',cn:'遵守/服从'},{form:'kepatuhan',pos:'n',cn:'合规/遵守'}],
+  note:'常搭配：kepatuhan lingkungan (环境合规), kepatuhan regulasi (法规合规)',
+  example:[{id:'Kepatuhan lingkungan merupakan kewajiban seluruh perusahaan.',cn:'环境合规是所有企业的义务。'},{id:'Perusahaan wajib mematuhi baku mutu emisi yang berlaku.',cn:'企业必须遵守适用的排放标准。'}],
+  synonym:['kepatuhan regulasi','kepatuhan lingkungan'],
+  antonym:['pelanggaran','ketidakpatuhan'],
+  tag:'环保合规'
+},
+'baku mutu':{
+  ipa:'/ˈbaku ˈmutu/',
+  cn:'质量标准/排放标准',
+  en:'quality standard / emission standard',
+  root:'baku (=标准/基准) + mutu (=质量)',
+  transform:[{form:'baku',pos:'n/adj',cn:'标准/基准'},{form:'mutu',pos:'n',cn:'质量'}],
+  note:'常搭配：baku mutu air (水质标准), baku mutu emisi (排放标准)',
+  example:[{id:'Baku mutu air limbah ditetapkan oleh peraturan pemerintah.',cn:'废水排放标准由政府法规规定。'},{id:'Hasil uji harus dibandingkan dengan baku mutu yang berlaku.',cn:'检测结果必须与适用质量标准对比。'}],
+  synonym:['standar mutu','kadar baku','standar'],
+  tag:'环保合规'
+},
+'limbah':{
+  ipa:'/ˈlimbah/',
+  cn:'废弃物/废料',
+  en:'waste',
+  root:'limbah (=废弃/剩余)',
+  transform:[{form:'limbah',pos:'n',cn:'废弃物'},{form:'melimbahkan',pos:'v',cn:'遗弃/丢弃（罕）'},{form:'berlimbah',pos:'adj',cn:'充满废料的（口语）'}],
+  note:'B3 废料 = 有毒有害废料 (limbah Bahan Berbahaya dan Beracun)',
+  example:[{id:'Limbah industri harus dikelola sesuai peraturan.',cn:'工业废料必须按规定管理。'},{id:'Pengelolaan limbah B3 memerlukan izin khusus.',cn:'B3废料处理需要特别许可。'}],
+  synonym:['sampah','buangan','sisa'],
+  tag:'环保合规'
+},
+'air limbah':{
+  ipa:'/ˈair ˈlimbah/',
+  cn:'废水',
+  en:'wastewater',
+  root:'air (=水) + limbah (=废料)',
+  transform:[{form:'air',pos:'n',cn:'水'},{form:'limbah',pos:'n',cn:'废料'}],
+  note:'IPAL (Instalasi Pengolahan Air Limbah) = 废水处理厂',
+  example:[{id:'Air limbah dari produksi harus diolah sebelum dibuang.',cn:'生产废水必须在排放前处理。'},{id:'Kualitas air limbah diuji setiap hari di laboratorium.',cn:'废水质量每天在实验室检测。'}],
+  synonym:['air buangan','air kotor','efluen'],
+  tag:'环保合规'
+},
+'gas buang':{
+  ipa:'/ˈɡas ˈbuaŋ/',
+  cn:'废气/排放气体',
+  en:'exhaust gas / emissions',
+  root:'gas (=气体，荷兰语) + buang (=丢弃)',
+  transform:[{form:'gas',pos:'n',cn:'气体'},{form:'buang',pos:'v',cn:'丢弃/排出'},{form:'membuang',pos:'v',cn:'丢弃/排放'},{form:'buangan',pos:'n',cn:'排出物'}],
+  note:'也常称 emisi gas (气体排放)',
+  example:[{id:'Gas buang dari cerobong harus memenuhi baku mutu.',cn:'烟囱废气必须符合排放标准。'},{id:'Filter dipasang untuk menyaring gas buang.',cn:'安装过滤器以过滤废气。'}],
+  synonym:['emisi','gas emisi','gas sisa'],
+  tag:'环保合规'
+},
+'berbahaya':{
+  ipa:'/bərbaˈhaja/',
+  cn:'危险的',
+  en:'hazardous',
+  root:'bahaya (=危险) + ber- 形容词前缀',
+  transform:[{form:'bahaya',pos:'n',cn:'危险'},{form:'berbahaya',pos:'adj',cn:'危险的'},{form:'membahayakan',pos:'v',cn:'危及/危害'},{form:'dibahayakan',pos:'pass.v',cn:'被危害'}],
+  note:'B3 = Bahan Berbahaya dan Beracun (危险和有毒物质)',
+  example:[{id:'Limbah berbahaya harus disimpan di tempat khusus.',cn:'危险废料必须存放在专用场所。'},{id:'Pekerjaan di ruang terbatas sangat berbahaya.',cn:'有限空间作业非常危险。'}],
+  synonym:['berisiko','membahayakan','genting'],
+  antonym:['aman','selamat'],
+  tag:'环保合规'
+},
+'B3':{
+  ipa:'/be ˈtiga/',
+  cn:'有毒有害易燃易爆',
+  en:'B3 (Bahan Berbahaya dan Beracun)',
+  root:'B3 = Bahan Berbahaya dan Beracun (材料+危险+有毒)',
+  transform:[{form:'bahan',pos:'n',cn:'材料/物质'},{form:'berbahaya',pos:'adj',cn:'危险的'},{form:'beracun',pos:'adj',cn:'有毒的'}],
+  note:'印尼法规术语：B3 = Bahan Berbahaya dan Beracun；对应英语 HAZMAT/Hazardous Material',
+  example:[{id:'Penanganan limbah B3 diatur dalam PP No. 22 tahun 2021.',cn:'B3废料处理受2021年第22号政府条例规管。'},{id:'Semua bahan B3 harus dilabeli dengan jelas.',cn:'所有B3物质必须清楚标注。'}],
+  synonym:['bahan berbahaya','HAZMAT','bahan kimia berbahaya'],
+  tag:'环保合规'
+},
+'AMDAL':{
+  ipa:'/ˈamdal/',
+  cn:'环境影响评价',
+  en:'EIA (Environmental Impact Assessment)',
+  root:'AMDAL = Analisis Mengenai Dampak Lingkungan (分析+关于+影响+环境)',
+  transform:[{form:'analisis',pos:'n',cn:'分析'},{form:'dampak',pos:'n',cn:'影响'},{form:'lingkungan',pos:'n',cn:'环境'},{form:'menganalisis',pos:'v',cn:'分析'}],
+  note:'大型项目必须编制 AMDAL；小型项目用 UKL-UPL 或 SPPL',
+  example:[{id:'Proyek smelter wajib menyusun AMDAL sebelum izin diterbitkan.',cn:'冶炼厂项目必须在许可证颁发前编制环评。'},{id:'Dokumen AMDAL ditetapkan dengan peraturan menteri.',cn:'环评文件根据部长条例确定。'}],
+  synonym:['EIA','analisis dampak lingkungan','studi lingkungan'],
+  tag:'环保合规'
+},
+'UKL-UPL':{
+  ipa:'/u ka ɛl - u pe ɛl/',
+  cn:'环境管理与监测计划',
+  en:'Environmental Management & Monitoring Plan',
+  root:'UKL = Upaya Kesehatan Lingkungan (环境保健措施), UPL = Upaya Pemantauan Lingkungan (环境监测措施)',
+  transform:[{form:'upaya',pos:'n',cn:'措施/努力'},{form:'kesehatan',pos:'n',cn:'健康'},{form:'pemantauan',pos:'n',cn:'监测'},{form:'lingkungan',pos:'n',cn:'环境'}],
+  note:'中等影响项目用 UKL-UPL；大型用 AMDAL；小型用 SPPL',
+  example:[{id:'UKL-UPL disusun untuk proyek dengan dampak tidak signifikan.',cn:'UKL-UPL为影响不显著的项目编制。'},{id:'Pelaksanaan UKL-UPL diawasi oleh KLHK.',cn:'UKL-UPL的执行由环境与林业部监督。'}],
+  synonym:['rencana pengelolaan lingkungan'],
+  tag:'环保合规'
+},
+'izin lingkungan':{
+  ipa:'/ˈizin liŋˈkunan/',
+  cn:'环境许可证',
+  en:'environmental permit',
+  root:'izin (=许可，阿拉伯语 idzn) + lingkungan (=环境)',
+  transform:[{form:'izin',pos:'n',cn:'许可'},{form:'mengizinkan',pos:'v',cn:'允许/许可'},{form:'diizinkan',pos:'pass.v',cn:'被允许'},{form:'lingkungan',pos:'n',cn:'环境'}],
+  note:'2021年第22号PP（Peraturan Pemerintah）整合了环境许可',
+  example:[{id:'Izin lingkungan diterbitkan setelah AMDAL disetujui.',cn:'环评获批后颁发环境许可证。'},{id:'Perusahaan tidak boleh beroperasi tanpa izin lingkungan.',cn:'企业没有环境许可证不得运营。'}],
+  synonym:['izin lingkungan hidup','perizinan lingkungan','izin KLHK'],
+  tag:'环保合规'
+},
+'jejak karbon':{
+  ipa:'/ˈʤeʤak ˈkarbon/',
+  cn:'碳足迹',
+  en:'carbon footprint',
+  root:'jejak (=足迹) + karbon (=碳)',
+  transform:[{form:'jejak',pos:'n',cn:'足迹/痕迹'},{form:'karbon',pos:'n',cn:'碳'},{form:'menjejak',pos:'v',cn:'追踪/留下痕迹'}],
+  example:[{id:'Perusahaan berkomitmen mengurangi jejak karbon 30% dalam 5 tahun.',cn:'企业承诺5年内减少碳足迹30%。'},{id:'Jejak karbon dihitung dari konsumsi energi dan transportasi.',cn:'碳足迹根据能源消耗和运输计算。'}],
+  synonym:['carbon footprint','jejak CO2'],
+  tag:'环保合规'
+},
+'nol bersih':{
+  ipa:'/ˈnɔl bərˈsih/',
+  cn:'净零排放',
+  en:'net zero',
+  root:'nol (=零，荷兰语 nul) + bersih (=干净)',
+  transform:[{form:'nol',pos:'num',cn:'零'},{form:'bersih',pos:'adj',cn:'干净的'},{form:'membersihkan',pos:'v',cn:'清洁/清理'}],
+  note:'印尼目标：2060年实现 net zero emission (NZE)',
+  example:[{id:'Indonesia menargetkan nol bersih pada tahun 2060.',cn:'印尼目标2060年实现净零排放。'},{id:'Transformasi energi diperlukan untuk mencapai nol bersih.',cn:'实现净零排放需要能源转型。'}],
+  synonym:['net zero','nol neto','emisi nol'],
+  tag:'环保合规'
+},
+'GRK':{
+  ipa:'/ɡe ɛr ˈka/',
+  cn:'温室气体',
+  en:'GHG (Greenhouse Gas)',
+  root:'GRK = Gas Rumah Kaca (气体+房屋+玻璃)',
+  transform:[{form:'gas',pos:'n',cn:'气体'},{form:'rumah',pos:'n',cn:'房屋'},{form:'kaca',pos:'n',cn:'玻璃'}],
+  note:'等同英语 GHG；主要类型：CO2, CH4, N2O',
+  example:[{id:'GRK dari industri harus dilaporkan setiap tahun.',cn:'工业温室气体必须每年报告。'},{id:'Pengurangan GRK menjadi komitmen global.',cn:'减少温室气体是全球承诺。'}],
+  synonym:['GHG','gas rumah kaca','gas efek rumah kaca'],
+  tag:'环保合规'
+},
+'pemantauan':{
+  ipa:'/pəmantauˈan/',
+  cn:'监测',
+  en:'monitoring',
+  root:'pantau (=监视) + peN-...-an 名词化',
+  transform:[{form:'pantau',pos:'v',cn:'监视/监控'},{form:'memantau',pos:'v',cn:'监测/监视'},{form:'pantauan',pos:'n',cn:'监视（结果）'},{form:'pemantau',pos:'n',cn:'监测员'},{form:'pemantauan',pos:'n',cn:'监测/监控过程'}],
+  example:[{id:'Pemantauan kualitas udara dilakukan secara berkala.',cn:'空气质量监测定期进行。'},{id:'Data pemantauan dikirim ke KLHK setiap bulan.',cn:'监测数据每月报送环境与林业部。'}],
+  synonym:['monitoring','pengawasan','pengamatan'],
+  tag:'环保合规'
+},
+'pengambilan contoh':{
+  ipa:'/peŋambilan ˈtontʃoh/',
+  cn:'取样/采样',
+  en:'sampling',
+  root:'ambil (=取) + peng-...-an 名词化 + contoh (=样品)',
+  transform:[{form:'ambil',pos:'v',cn:'取/拿'},{form:'mengambil',pos:'v',cn:'拿取/采取'},{form:'pengambilan',pos:'n',cn:'取样/获取'},{form:'contoh',pos:'n',cn:'样品/例子'}],
+  note:'也常称 sampling (英语借词)',
+  example:[{id:'Pengambilan contoh air dilakukan di titik pembuangan.',cn:'在排放点进行水样采集。'},{id:'Contoh diuji di laboratorium terakreditasi.',cn:'样品在获认可的实验室检测。'}],
+  synonym:['sampling','penarikan contoh','pengambilan sampel'],
+  tag:'环保合规'
+},
+'audit lingkungan':{
+  ipa:'/ˈaudit liŋˈkunan/',
+  cn:'环境审计',
+  en:'environmental audit',
+  root:'audit (=审计，拉丁语 auditus) + lingkungan (=环境)',
+  transform:[{form:'audit',pos:'n/v',cn:'审计'},{form:'mengaudit',pos:'v',cn:'审计'},{form:'lingkungan',pos:'n',cn:'环境'}],
+  example:[{id:'Audit lingkungan dilakukan untuk memastikan kepatuhan.',cn:'环境审计用于确保合规。'},{id:'Hasil audit lingkungan menjadi dasar perbaikan.',cn:'环境审计结果成为改进基础。'}],
+  synonym:['audit lingkungan hidup','audit KLHK','penilaian lingkungan'],
+  tag:'环保合规'
+},
+'denda':{
+  ipa:'/ˈdɛnda/',
+  cn:'罚款',
+  en:'fine / penalty',
+  root:'denda (=罚金，梵语 danda)',
+  transform:[{form:'denda',pos:'n/v',cn:'罚款'},{form:'mendenda',pos:'v',cn:'处以罚款'},{form:'didenda',pos:'pass.v',cn:'被罚款'}],
+  note:'也可指违约金 (denda keterlambatan)',
+  example:[{id:'Perusahaan didenda karena melanggar baku mutu.',cn:'企业因违反排放标准被罚款。'},{id:'Denda lingkungan diberikan sesuai tingkat pelanggaran.',cn:'环境罚款根据违规程度处以。'}],
+  synonym:['sanksi','penalti','hukuman denda'],
+  antonym:['penghargaan','bonus'],
+  tag:'环保合规'
+},
+'penjernihan':{
+  ipa:'/pənʤərniˈhan/',
+  cn:'净化/澄清',
+  en:'purification / clarification',
+  root:'jernih (=清澈) + peN-...-an 名词化',
+  transform:[{form:'jernih',pos:'adj',cn:'清澈的'},{form:'menjernihkan',pos:'v',cn:'澄清/净化'},{form:'penjernih',pos:'n',cn:'净化器'},{form:'penjernihan',pos:'n',cn:'净化/澄清过程'}],
+  example:[{id:'Proses penjernihan air limbah menggunakan teknologi membran.',cn:'废水净化过程使用膜技术。'},{id:'Penjernihan udara dilakukan dengan filter HEPA.',cn:'空气净化使用HEPA过滤器。'}],
+  synonym:['pemurnian','purifikasi','penyaringan'],
+  antonym:['pencemaran','kontaminasi'],
+  tag:'环保合规'
+},
+'osmosis terbalik':{
+  ipa:'/osˈmosis tərˈbalik/',
+  cn:'反渗透',
+  en:'reverse osmosis (RO)',
+  root:'osmosis (=渗透，希腊语 osmos) + terbalik (=反向的，balik 返回 + ter-)',
+  transform:[{form:'osmosis',pos:'n',cn:'渗透'},{form:'balik',pos:'v/adj',cn:'返回/反向'},{form:'terbalik',pos:'adj',cn:'反向的/颠倒的'}],
+  note:'RO 技术常用于海水淡化和超纯水制备',
+  example:[{id:'Osmosis terbalik digunakan untuk menghasilkan air demineralisasi.',cn:'反渗透用于生产去离子水。'},{id:'Sistem osmosis terbalik membutuhkan tekanan tinggi.',cn:'反渗透系统需要高压。'}],
+  synonym:['RO','reverse osmosis','osmosis balik'],
+  tag:'环保合规'
+},
+'penyikat basah':{
+  ipa:'/pəɲikat ˈbasah/',
+  cn:'湿式洗涤器',
+  en:'wet scrubber',
+  root:'sikat (=刷/洗涤) + peN-...-an + basah (=湿)',
+  transform:[{form:'sikat',pos:'n/v',cn:'刷/洗涤'},{form:'menyikat',pos:'v',cn:'刷洗'},{form:'basah',pos:'adj',cn:'湿的'},{form:'pemasangan',pos:'n',cn:'安装'}],
+  note:'工业废气处理设备：用液体洗涤去除气体污染物',
+  example:[{id:'Penyikat basah terpasang di cerobong untuk mengurangi emisi.',cn:'湿式洗涤器安装在烟囱上以减少排放。'},{id:'Penyikat basah efektif menangkap partikel halus.',cn:'湿式洗涤器能有效捕获细颗粒。'}],
+  synonym:['wet scrubber','scrubber basah','penyerap gas'],
+  tag:'环保合规'
+},
+'filter kantong':{
+  ipa:'/ˈfiltɛr ˈkantɔŋ/',
+  cn:'袋式过滤器',
+  en:'bag filter',
+  root:'filter (=过滤器，英语) + kantong (=袋子)',
+  transform:[{form:'filter',pos:'n',cn:'过滤器'},{form:'kantong',pos:'n',cn:'袋子'},{form:'memfilter',pos:'v',cn:'过滤'},{form:'menyaring',pos:'v',cn:'筛选/过滤'}],
+  note:'也常称 baghouse (英语)',
+  example:[{id:'Filter kantong diganti setiap 6 bulan.',cn:'袋式过滤器每6个月更换。'},{id:'Filter kantong menangkap debu dengan efisiensi tinggi.',cn:'袋式过滤器高效捕集粉尘。'}],
+  synonym:['bag filter','baghouse','saringan kantong'],
+  tag:'环保合规'
+},
+'presipitator elektrostatik':{
+  ipa:'/presipiˈtator elɛktroˈstatik/',
+  cn:'静电除尘器',
+  en:'electrostatic precipitator (ESP)',
+  root:'presipitator (=沉淀器，拉丁语 praecipitare) + elektrostatik (=静电的)',
+  transform:[{form:'presipitasi',pos:'n',cn:'沉淀/析出'},{form:'elektrostatik',pos:'adj',cn:'静电的'},{form:'presipitator',pos:'n',cn:'沉淀器/除尘器'}],
+  note:'简称 ESP；利用静电力去除烟气中的颗粒物',
+  example:[{id:'Presipitator elektrostatik mengurangi partikel hingga 99%.',cn:'静电除尘器可减少99%的颗粒物。'},{id:'ESP dipasang pada unit pembangkit listrik.',cn:'静电除尘器安装在发电单元上。'}],
+  synonym:['ESP','electrostatic precipitator','pengendap elektrostatik'],
+  tag:'环保合规'
+},
+'konservasi':{
+  ipa:'/konsɛrˈvasi/',
+  cn:'保护/保存',
+  en:'conservation',
+  root:'拉丁语 conservare (com- 共同 + servare 保存) → konservasi',
+  transform:[{form:'konservasi',pos:'n',cn:'保护/保存'},{form:'mengonservasi',pos:'v',cn:'保护/保存'},{form:'konservasionis',pos:'n',cn:'环保主义者'}],
+  note:'借词：拉丁语/英语',
+  example:[{id:'Konservasi energi menjadi prioritas perusahaan.',cn:'节能成为企业的优先事项。'},{id:'Program konservasi air mengurangi konsumsi 20%.',cn:'节水计划减少了20%的用水量。'}],
+  synonym:['pelestarian','preservasi','perlindungan'],
+  antonym:['eksploitasi','destruksi'],
+  tag:'环保合规'
+},
+'rehabilitasi':{
+  ipa:'/rehabilitaˈsi/',
+  cn:'修复/恢复',
+  en:'rehabilitation / restoration',
+  root:'拉丁语 rehabilitare (re- 重新 + habilitas 能力) → rehabilitasi',
+  transform:[{form:'rehabilitasi',pos:'n',cn:'修复/康复'},{form:'merehabilitasi',pos:'v',cn:'修复/恢复'},{form:'rehabilitatif',pos:'adj',cn:'修复性的'}],
+  note:'常搭配：rehabilitasi lingkungan (环境修复), rehabilitasi tambang (矿山修复)',
+  example:[{id:'Rehabilitasi lahan pasca-tambang wajib dilakukan.',cn:'矿山闭坑后必须进行土地修复。'},{id:'Program rehabilitasi mangrove melibatkan masyarakat.',cn:'红树林修复计划涉及社区参与。'}],
+  synonym:['restorasi','pemulihan','rekonstruksi'],
+  antonym:['degradasi','kerusakan'],
+  tag:'环保合规'
+},
+'penggunaan kembali':{
+  ipa:'/peŋɡunaan ˈkɛmbali/',
+  cn:'再利用',
+  en:'reuse',
+  root:'guna (=使用) + kembali (=返回) → 重新使用',
+  transform:[{form:'guna',pos:'n/v',cn:'使用/功能'},{form:'menggunakan',pos:'v',cn:'使用/利用'},{form:'kembali',pos:'v/adv',cn:'返回/重新'},{form:'penggunaan',pos:'n',cn:'使用/利用'}],
+  note:'3R: Reduce (pengurangan), Reuse (penggunaan kembali), Recycle (daur ulang)',
+  example:[{id:'Penggunaan kembali air proses mengurangi konsumsi air bersih.',cn:'工艺水再利用减少清水消耗。'},{id:'Wadah bekas dapat digunakan kembali untuk penyimpanan.',cn:'旧容器可再利用于储存。'}],
+  synonym:['reuse','pemakaian ulang','penggunaan ulang'],
+  antonym:['pembuangan','pemusnahan'],
+  tag:'环保合规'
+},
+'daur ulang':{
+  ipa:'/ˈdaur ˈulaŋ/',
+  cn:'回收',
+  en:'recycling',
+  root:'daur (=循环，阿拉伯语 daur) + ulang (=重复)',
+  transform:[{form:'daur',pos:'n',cn:'循环/周期'},{form:'ulang',pos:'v',cn:'重复'},{form:'mengulang',pos:'v',cn:'重复/重做'},{form:'didaur ulang',pos:'pass.v',cn:'被回收'}],
+  note:'3R 之一；也称 recycle (英语借词)',
+  example:[{id:'Limbah plastik didaur ulang menjadi produk baru.',cn:'塑料废料回收制成新产品。'},{id:'Fasilitas daur ulang logam menghemat bijih tambang.',cn:'金属回收设施节省矿石。'}],
+  synonym:['recycle','pengolahan ulang'],
+  tag:'环保合规'
+},
+'pengurangan':{
+  ipa:'/peŋuraŋan/',
+  cn:'减少',
+  en:'reduction',
+  root:'kurang (=少) + peN-...-an 名词化',
+  transform:[{form:'kurang',pos:'adj/adv',cn:'少/不足'},{form:'mengurangi',pos:'v',cn:'减少/削减'},{form:'berkurang',pos:'v',cn:'减少（自动）'},{form:'pengurangan',pos:'n',cn:'减少/削减'}],
+  example:[{id:'Pengurangan emisi GRK menjadi target nasional.',cn:'温室气体减排成为国家目标。'},{id:'Pengurangan limbah dimulai dari sumber produksi.',cn:'废物减排从生产源头开始。'}],
+  synonym:['reduksi','penurunan'],
+  antonym:['peningkatan','penambahan'],
+  tag:'环保合规'
+},
+'sabuk hijau':{
+  ipa:'/ˈsabuk hiˈʤau/',
+  cn:'绿化带',
+  en:'green belt',
+  root:'sabuk (=带/腰带) + hijau (=绿色)',
+  transform:[{form:'sabuk',pos:'n',cn:'带/腰带'},{form:'hijau',pos:'adj',cn:'绿色的'},{form:'menghijaukan',pos:'v',cn:'绿化'}],
+  note:'工业区与居民区之间的缓冲绿化带',
+  example:[{id:'Sabuk hijau ditanami pohon penyerap polusi.',cn:'绿化带种植了吸收污染的树木。'},{id:'Sabuk hijau memisahkan pabrik dari permukiman.',cn:'绿化带将工厂与居民区分隔。'}],
+  synonym:['green belt','jalur hijau','zona hijau'],
+  tag:'环保合规'
+},
+'KLHK':{
+  ipa:'/ka ɛl ha ˈka/',
+  cn:'环境与林业部',
+  en:'Ministry of Environment & Forestry',
+  root:'KLHK = Kementerian Lingkungan Hidup dan Kehutanan',
+  transform:[{form:'kementerian',pos:'n',cn:'部/部会'},{form:'lingkungan',pos:'n',cn:'环境'},{form:'hidup',pos:'n/adj',cn:'生活/活的'},{form:'kehutanan',pos:'n',cn:'林业'}],
+  note:'印尼中央政府主管环境与林业的部委',
+  example:[{id:'KLHK menerbitkan peraturan tentang baku mutu.',cn:'环境与林业部发布排放标准规定。'},{id:'Perusahaan melaporkan ketaatan lingkungan ke KLHK.',cn:'企业向环境与林业部报告环境合规情况。'}],
+  synonym:['Kementerian LHK','Kementerian Lingkungan'],
+  tag:'环保合规'
+},
+'ESDM':{
+  ipa:'/e ɛs de ˈɛm/',
+  cn:'能源与矿产资源部',
+  en:'Ministry of Energy & Mineral Resources',
+  root:'ESDM = Energi dan Sumber Daya Mineral (能源+和+资源+矿产)',
+  transform:[{form:'energi',pos:'n',cn:'能源'},{form:'sumber',pos:'n',cn:'来源'},{form:'daya',pos:'n',cn:'力量/能力'},{form:'mineral',pos:'n',cn:'矿产'}],
+  note:'印尼主管能源和矿业的部委',
+  example:[{id:'ESDM mengeluarkan izin usaha pertambangan.',cn:'能源与矿产资源部颁发矿业经营许可证。'},{id:'Kebijakan ESDM mendorong energi terbarukan.',cn:'能源与矿产资源部的政策推动可再生能源。'}],
+  synonym:['Kementerian ESDM','KESDM'],
+  tag:'环保合规'
+},
+'PPLH':{
+  ipa:'/pe pe ɛl ˈha/',
+  cn:'环境管理部',
+  en:'Environmental Management Agency',
+  root:'PPLH = Pengelolaan Lingkungan Hidup (管理+环境+生活)',
+  transform:[{form:'pengelolaan',pos:'n',cn:'管理'},{form:'lingkungan',pos:'n',cn:'环境'},{form:'hidup',pos:'n/adj',cn:'生活/活的'},{form:'mengelola',pos:'v',cn:'管理/经营'}],
+  note:'也常用于企业内部环保部门',
+  example:[{id:'PPLH bertanggung jawab atas pengelolaan lingkungan kawasan.',cn:'环境管理部负责园区的环境管理。'},{id:'PPLH bekerja sama dengan KLHK dalam pemantauan.',cn:'环境管理部与环境与林业部协作监测。'}],
+  synonym:['BPLH (Badan Pengelolaan Lingkungan Hidup)'],
+  tag:'环保合规'
+},
+'SPPL':{
+  ipa:'/ɛs pe pe ˈɛl/',
+  cn:'环境管理声明书',
+  en:'Statement of Environmental Management',
+  root:'SPPL = Surat Pernyataan Pengelolaan Lingkungan (函+声明+管理+环境)',
+  transform:[{form:'surat',pos:'n',cn:'函/信/文件'},{form:'pernyataan',pos:'n',cn:'声明'},{form:'pengelolaan',pos:'n',cn:'管理'},{form:'lingkungan',pos:'n',cn:'环境'}],
+  note:'最低级别环境文件：小型/低影响项目用SPPL替代AMDAL/UKL-UPL',
+  example:[{id:'Usaha kecil cukup menyusun SPPL untuk izin lingkungan.',cn:'小型企业只需编制环境管理声明书获取环境许可。'},{id:'SPPL diserahkan ke dinas lingkungan setempat.',cn:'环境管理声明书提交给地方环境局。'}],
+  synonym:['surat pernyataan pengelolaan lingkungan'],
+  tag:'环保合规'
+},
+'PROPER':{
+  ipa:'/ˈpropɛr/',
+  cn:'企业环境绩效评级',
+  en:'Corporate Environmental Performance Rating',
+  root:'PROPER = Program Penilaian Peringkat Kinerja Perusahaan (计划+评估+等级+绩效+企业)',
+  transform:[{form:'penilaian',pos:'n',cn:'评估'},{form:'peringkat',pos:'n',cn:'等级/排名'},{form:'kinerja',pos:'n',cn:'绩效'},{form:'perusahaan',pos:'n',cn:'公司'}],
+  note:'KLHK 年度环境评级：金/绿/蓝/红/黑 五色评级',
+  example:[{id:'Perusahaan meraih peringkat hijau dalam PROPER tahun ini.',cn:'公司今年获得PROPER绿色评级。'},{id:'Peringkat PROPER mempengaruhi citra perusahaan.',cn:'PROPER评级影响企业形象。'}],
+  synonym:['PROPER KLHK','peringkat kinerja lingkungan'],
+  tag:'环保合规'
+},
+'rantai pasok':{
+  ipa:'/ˈrantai paˈsok/',
+  cn:'供应链',
+  en:'supply chain',
+  root:'rantai (=链条) + pasok (=供应)',
+  transform:[{form:'rantai',pos:'n',cn:'链条'},{form:'pasok',pos:'v',cn:'供应/供给'},{form:'memasok',pos:'v',cn:'供应（meN- + pasok → memasok）'},{form:'pemasok',pos:'n',cn:'供应商'},{form:'pasokan',pos:'n',cn:'供给/供应品'}],
+  note:'也可说 rantai pasokan（更正式）',
+  example:[{id:'Rantai pasok global terganggu oleh pandemi.',cn:'全球供应链受疫情干扰。'},{id:'Manajemen rantai pasok sangat penting bagi industri.',cn:'供应链管理对工业至关重要。'}],
+  synonym:['rantai pasokan','supply chain','mata rantai pasok'],
+  tag:'供应链'
+},
+'pesanan':{
+  ipa:'/pəsaˈnan/',
+  cn:'订单/订购',
+  en:'order',
+  root:'pesan (=订购/留言) + -an 名词后缀',
+  transform:[{form:'pesan',pos:'v/n',cn:'订购/留言/消息'},{form:'memesan',pos:'v',cn:'订购/点餐'},{form:'dipasok',pos:'pass.v',cn:'被供应'},{form:'pemesan',pos:'n',cn:'订购人'},{form:'pesanan',pos:'n',cn:'订单'}],
+  note:'pesan 也可指留言/消息，需根据上下文区分',
+  example:[{id:'Pesanan material sudah dikirim oleh pemasok.',cn:'材料订单已由供应商发出。'},{id:'Kami menerima pesanan besar dari luar negeri.',cn:'我们收到来自国外的大订单。'}],
+  synonym:['order','permintaan','pesan'],
+  tag:'供应链'
+},
+'PO':{
+  ipa:'/pe ˈo/',
+  cn:'采购订单',
+  en:'Purchase Order (PO)',
+  root:'PO = Purchase Order (英语缩写)',
+  transform:[{form:'pesanan',pos:'n',cn:'订单'},{form:'pembelian',pos:'n',cn:'采购'}],
+  note:'全称：pesanan pembelian；PO 是商务通用缩写',
+  example:[{id:'PO dikeluarkan setelah kontrak ditandatangani.',cn:'合同签署后发出采购订单。'},{id:'Faktur harus sesuai dengan PO yang terbit.',cn:'发票必须与已发出的采购订单一致。'}],
+  synonym:['purchase order','pesanan pembelian','surat pesanan'],
+  tag:'供应链'
+},
+'pemasok':{
+  ipa:'/pəmaˈsok/',
+  cn:'供应商',
+  en:'supplier',
+  root:'pasok (=供应) + peN-... 施事名词化 → 供应者',
+  transform:[{form:'pasok',pos:'v',cn:'供应'},{form:'memasok',pos:'v',cn:'供应'},{form:'dipasok',pos:'pass.v',cn:'被供应'},{form:'pemasok',pos:'n',cn:'供应商'},{form:'pasokan',pos:'n',cn:'供给'}],
+  note:'peN- + pasok → pemasok (p→m 辅音同化)',
+  example:[{id:'Pemasok harus lulus audit kualitas.',cn:'供应商必须通过质量审计。'},{id:'Kami memiliki tiga pemasok utama untuk bahan baku.',cn:'我们有三个主要原材料供应商。'}],
+  synonym:['supplier','vendor','penyedia'],
+  antonym:['pembeli','pelanggan'],
+  tag:'供应链'
+},
+'inventori':{
+  ipa:'/invenˈtori/',
+  cn:'库存',
+  en:'inventory',
+  root:'拉丁语 inventarium → 荷兰语 inventaris → inventori',
+  transform:[{form:'inventori',pos:'n',cn:'库存/存货清单'},{form:'inventarisasi',pos:'n',cn:'盘点/清查'}],
+  note:'借词；也说 stok (=库存)',
+  example:[{id:'Inventori barang jadi dikontrol setiap akhir bulan.',cn:'成品库存每月底盘点。'},{id:'Sistem inventori real-time terhubung dengan gudang.',cn:'实时库存系统与仓库联网。'}],
+  synonym:['stok','persediaan','gudang'],
+  tag:'供应链'
+},
+'stok pengaman':{
+  ipa:'/ˈstok peŋaˈman/',
+  cn:'安全库存',
+  en:'safety stock',
+  root:'stok (=库存，英语) + aman (=安全) + peng-...-an',
+  transform:[{form:'stok',pos:'n',cn:'库存'},{form:'aman',pos:'adj',cn:'安全的'},{form:'keamanan',pos:'n',cn:'安全'},{form:'mengamankan',pos:'v',cn:'保障安全'}],
+  note:'防止供应链中断的缓冲库存',
+  example:[{id:'Stok pengaman bahan kimia cukup untuk dua minggu.',cn:'化学品安全库存足够维持两周。'},{id:'Stok pengaman dihitung berdasarkan waktu tunggu.',cn:'安全库存根据提前期计算。'}],
+  synonym:['safety stock','stok cadangan','stok buffer'],
+  tag:'供应链'
+},
+'titik pesan ulang':{
+  ipa:'/ˈtitik pəˈsan ˈulaŋ/',
+  cn:'再订货点',
+  en:'reorder point (ROP)',
+  root:'titik (=点) + pesan (=订购) + ulang (=重新)',
+  transform:[{form:'titik',pos:'n',cn:'点'},{form:'pesan',pos:'v',cn:'订购'},{form:'memesan',pos:'v',cn:'订购'},{form:'ulang',pos:'v',cn:'重复'}],
+  note:'ROP = titik di mana harus memesan ulang',
+  example:[{id:'Titik pesan ulang tercapai, segera buat PO.',cn:'已达到再订货点，立即创建采购订单。'},{id:'Sistem menghitung titik pesan ulang secara otomatis.',cn:'系统自动计算再订货点。'}],
+  synonym:['ROP','reorder point','titik pemesanan ulang'],
+  tag:'供应链'
+},
+'waktu tunggu':{
+  ipa:'/ˈwa ktu ˈtuŋɡu/',
+  cn:'提前期/等待时间',
+  en:'lead time',
+  root:'waktu (=时间) + tunggu (=等待)',
+  transform:[{form:'waktu',pos:'n',cn:'时间'},{form:'tunggu',pos:'v',cn:'等待'},{form:'menunggu',pos:'v',cn:'等待'}],
+  note:'供应链中指从下单到收货的时间',
+  example:[{id:'Waktu tunggu pengiriman dari China dua minggu.',cn:'从中国发货的提前期为两周。'},{id:'Waktu tunggu harus dipertimbangkan dalam perencanaan stok.',cn:'提前期必须在库存规划中考虑。'}],
+  synonym:['lead time','masa tunggu','waktu pengiriman'],
+  tag:'供应链'
+},
+'tepat waktu':{
+  ipa:'/təˈpat ˈwa ktu/',
+  cn:'准时制',
+  en:'just-in-time (JIT)',
+  root:'tepat (=精确/恰好) + waktu (=时间)',
+  transform:[{form:'tepat',pos:'adj/adv',cn:'精确的/恰好'},{form:'waktu',pos:'n',cn:'时间'}],
+  note:'JIT = tepat waktu；丰田生产方式的核心概念',
+  example:[{id:'Produksi tepat waktu mengurangi biaya penyimpanan.',cn:'准时制生产减少仓储成本。'},{id:'Material tiba tepat waktu untuk lini perakitan.',cn:'物料准时到达装配线。'}],
+  synonym:['JIT','just-in-time','tepat pada waktunya'],
+  tag:'供应链'
+},
+'JIT':{
+  ipa:'/ʤi ai ˈti/',
+  cn:'准时制',
+  en:'Just-In-Time',
+  root:'JIT = Just In Time (英语缩写)',
+  transform:[],
+  note:'等同印尼语 tepat waktu',
+  example:[{id:'Sistem JIT meminimalkan stok gudang.',cn:'JIT系统最小化仓库库存。'},{id:'JIT membutuhkan pemasok yang sangat andal.',cn:'JIT需要非常可靠的供应商。'}],
+  synonym:['tepat waktu','just-in-time'],
+  tag:'供应链'
+},
+'batch':{
+  ipa:'/ˈbatʃ/',
+  cn:'批次',
+  en:'batch',
+  root:'英语 batch → 印尼语',
+  transform:[],
+  note:'借词：英语 batch',
+  example:[{id:'Setiap batch produksi memiliki nomor identifikasi.',cn:'每个生产批次都有识别编号。'},{id:'Sampel diuji dari setiap batch sebelum dikirim.',cn:'每批产品在发货前都要抽样检测。'}],
+  synonym:['lot','kelompok','golongan'],
+  tag:'供应链'
+},
+'lot':{
+  ipa:'/ˈlot/',
+  cn:'批/ Lot',
+  en:'lot',
+  root:'英语 lot → 印尼语',
+  transform:[],
+  note:'借词：英语 lot；与 batch 近义，常用于质量追溯',
+  example:[{id:'Lot ini harus ditolak karena cacat.',cn:'这批因缺陷必须拒收。'},{id:'Nomor lot dicatat untuk traceability.',cn:'记录批号以便追溯。'}],
+  synonym:['batch','nomor lot'],
+  tag:'供应链'
+},
+'nomor seri':{
+  ipa:'/ˈnomɔr ˈsɛri/',
+  cn:'序列号',
+  en:'serial number',
+  root:'nomor (=号码，葡萄牙语 número) + seri (=系列，法语 série)',
+  transform:[{form:'nomor',pos:'n',cn:'号码/编号'},{form:'seri',pos:'n',cn:'系列/序列'},{form:'menomori',pos:'v',cn:'编号'}],
+  example:[{id:'Nomor seri dicatat untuk garansi produk.',cn:'记录序列号用于产品保修。'},{id:'Setiap unit memiliki nomor seri unik.',cn:'每台设备都有唯一序列号。'}],
+  synonym:['serial number','SN','nomor urut'],
+  tag:'供应链'
+},
+'kode batang':{
+  ipa:'/ˈkodɛ ˈbataŋ/',
+  cn:'条形码',
+  en:'barcode',
+  root:'kode (=代码，荷兰语 code) + batang (=条/杆)',
+  transform:[{form:'kode',pos:'n',cn:'代码/编码'},{form:'batang',pos:'n',cn:'条/杆'},{form:'mengode',pos:'v',cn:'编码'}],
+  note:'也说 barcode (英语借词)',
+  example:[{id:'Kode batang dipindai untuk identifikasi barang.',cn:'扫描条形码识别货物。'},{id:'Sistem gudang menggunakan kode batang otomatis.',cn:'仓库系统使用自动条形码。'}],
+  synonym:['barcode','kode bar','strip kode'],
+  tag:'供应链'
+},
+'pengangkutan':{
+  ipa:'/peŋaŋkutaˈan/',
+  cn:'运输',
+  en:'transportation',
+  root:'angkut (=搬运) + peN-...-an 名词化',
+  transform:[{form:'angkut',pos:'v',cn:'搬运/运输'},{form:'mengangkut',pos:'v',cn:'运输/搬运'},{form:'diangkut',pos:'pass.v',cn:'被运输'},{form:'pengangkut',pos:'n',cn:'运输者/运输工具'},{form:'pengangkutan',pos:'n',cn:'运输'}],
+  example:[{id:'Pengangkutan bahan kimia memerlukan izin khusus.',cn:'化学品运输需要特别许可。'},{id:'Biaya pengangkutan naik karena harga BBM.',cn:'由于燃油价格上涨，运输成本上升。'}],
+  synonym:['transportasi','pengiriman','pemindahan'],
+  tag:'供应链'
+},
+'pengapalan':{
+  ipa:'/peŋapaˈlan/',
+  cn:'船运/海运',
+  en:'shipping',
+  root:'kapal (=船) + peN-...-an 名词化 → 用船运输',
+  transform:[{form:'kapal',pos:'n',cn:'船'},{form:'mengapalkan',pos:'v',cn:'装船/发运'},{form:'diapalkan',pos:'pass.v',cn:'被装运'}],
+  note:'peN- + kapal → pengapalan (k 脱落，插入 ng)',
+  example:[{id:'Pengapalan bijih nikel ke China rutin dilakukan.',cn:'镍矿石海运至中国定期进行。'},{id:'Jadwal pengapalan tergantung cuaca.',cn:'船运日程取决于天气。'}],
+  synonym:['pelayaran','pengiriman laut','shipping'],
+  tag:'供应链'
+},
+'pengiriman darat':{
+  ipa:'/peŋiriˈman ˈdarat/',
+  cn:'陆运',
+  en:'land freight / ground shipping',
+  root:'kirim (=发送) + peN-...-an + darat (=陆地)',
+  transform:[{form:'kirim',pos:'v',cn:'发送/寄送'},{form:'mengirim',pos:'v',cn:'发送/寄出'},{form:'mengirimkan',pos:'v',cn:'寄送'},{form:'pengiriman',pos:'n',cn:'运输/寄送'},{form:'darat',pos:'n/adj',cn:'陆地'}],
+  note:'meN- + kirim → mengirim (k 脱落，插入 ng)',
+  example:[{id:'Pengiriman darat menggunakan truk kontainer.',cn:'陆运使用集装箱卡车。'},{id:'Biaya pengiriman darat lebih murah untuk jarak dekat.',cn:'短距离陆运费用更低。'}],
+  synonym:['angkutan darat','trucking','pengangkutan darat'],
+  tag:'供应链'
+},
+'pengiriman laut':{
+  ipa:'/peŋiriˈman ˈlaut/',
+  cn:'海运',
+  en:'ocean freight / sea shipping',
+  root:'kirim (=发送) + peN-...-an + laut (=海)',
+  transform:[{form:'kirim',pos:'v',cn:'发送'},{form:'mengirimkan',pos:'v',cn:'寄送'},{form:'pengiriman',pos:'n',cn:'运输'},{form:'laut',pos:'n',cn:'海'}],
+  example:[{id:'Pengiriman laut membutuhkan waktu dua minggu.',cn:'海运需要两周时间。'},{id:'Pengiriman laut lebih ekonomis untuk volume besar.',cn:'大批量货物海运更经济。'}],
+  synonym:['pengapalan','ocean freight','pelayaran'],
+  tag:'供应链'
+},
+'kontainer':{
+  ipa:'/konˈtainɛr/',
+  cn:'集装箱',
+  en:'container',
+  root:'英语 container → kontainer',
+  transform:[],
+  note:'借词：英语；标准集装箱 20ft (TEU) / 40ft (FEU)',
+  example:[{id:'Barang diangkut dalam kontainer 40 kaki.',cn:'货物用40英尺集装箱运输。'},{id:'Kontainer dibongkar di terminal pelabuhan.',cn:'集装箱在港口码头卸货。'}],
+  synonym:['container','peti kemas'],
+  tag:'供应链'
+},
+'pallet':{
+  ipa:'/ˈpalɛt/',
+  cn:'托盘',
+  en:'pallet',
+  root:'英语 pallet → pallet',
+  transform:[],
+  note:'借词：英语 pallet；也常拼写 palet',
+  example:[{id:'Barang disusun di atas pallet untuk memudahkan forklift.',cn:'货物堆放在托盘上便于叉车作业。'},{id:'Pallet kayu harus disertifikasi bebas karantina.',cn:'木托盘必须有检疫免检认证。'}],
+  synonym:['palet','alat bantu angkut'],
+  tag:'供应链'
+},
+'forklift':{
+  ipa:'/ˈforklift/',
+  cn:'叉车',
+  en:'forklift',
+  root:'英语 forklift (fork 叉 + lift 举) → forklift',
+  transform:[],
+  note:'借词：英语',
+  example:[{id:'Forklift digunakan untuk memindahkan pallet.',cn:'叉车用于搬运托盘。'},{id:'Operator forklift harus memiliki sertifikat.',cn:'叉车操作员必须持证上岗。'}],
+  synonym:['mobil garpu','forklift truck'],
+  tag:'供应链'
+},
+'derek':{
+  ipa:'/ˈdɛrɛk/',
+  cn:'起重机/吊车',
+  en:'crane',
+  root:'derek (=起重装置)',
+  transform:[{form:'derek',pos:'n',cn:'起重装置'},{form:'menderek',pos:'v',cn:'用起重机吊运'}],
+  note:'大型起重设备也称 crane (英语借词)',
+  example:[{id:'Derek dipakai untuk memuat kontainer ke kapal.',cn:'起重机用于将集装箱装载上船。'},{id:'Kapasitas derek pelabuhan 50 ton.',cn:'港口起重机起重能力50吨。'}],
+  synonym:['crane','alat pengangkat'],
+  tag:'供应链'
+},
+'sabuk konveyor':{
+  ipa:'/ˈsabuk konˈvɛjor/',
+  cn:'传送带',
+  en:'conveyor belt',
+  root:'sabuk (=带) + konveyor (=传送机，英语 conveyor)',
+  transform:[{form:'sabuk',pos:'n',cn:'带/腰带'},{form:'konveyor',pos:'n',cn:'传送机'}],
+  example:[{id:'Sabuk konveyor memindahkan material ke gudang.',cn:'传送带将物料输送到仓库。'},{id:'Kecepatan sabuk konveyor dapat diatur.',cn:'传送带速度可以调节。'}],
+  synonym:['conveyor belt','ban berjalan','sabuk berjalan'],
+  tag:'供应链'
+},
+'kapal kargo':{
+  ipa:'/ˈkapal ˈkarɡo/',
+  cn:'货船',
+  en:'cargo ship',
+  root:'kapal (=船) + kargo (=货物，西班牙语 cargo)',
+  transform:[{form:'kapal',pos:'n',cn:'船'},{form:'kargo',pos:'n',cn:'货物'}],
+  example:[{id:'Kapal kargo sandar di dermaga untuk bongkar muat.',cn:'货船停靠码头装卸货物。'},{id:'Kapal kargo membawa 20.000 ton batu bara.',cn:'货船载有2万吨煤炭。'}],
+  synonym:['kapal barang','cargo ship','kapal niaga'],
+  tag:'供应链'
+},
+'dermaga':{
+  ipa:'/ˈdɛrmaɡa/',
+  cn:'码头',
+  en:'dock / wharf',
+  root:'dermaga [待核实]（词源不确定，可能源自葡萄牙语/荷兰语）',
+  transform:[{form:'dermaga',pos:'n',cn:'码头/泊位'},{form:'sandar',pos:'v',cn:'停靠'},{form:'bersandar',pos:'v',cn:'停靠'}],
+  note:'借词：葡萄牙语',
+  example:[{id:'Kapal kargo sandar di dermaga untuk memuat nikel.',cn:'货船停靠码头装载镍。'},{id:'Dermaga baru dibangun untuk kapal besar.',cn:'新建码头供大型船舶使用。'}],
+  synonym:['pelabuhan','jeti','labuhan'],
+  tag:'供应链'
+},
+'bea cukai':{
+  ipa:'/ˈbɛa ʧuˈkai/',
+  cn:'海关/关税',
+  en:'customs / duty',
+  root:'bea (=税/费，葡萄牙语) + cukai (=关税)',
+  transform:[{form:'bea',pos:'n',cn:'税/费'},{form:'cukai',pos:'n',cn:'关税/消费税'},{form:'mencukai',pos:'v',cn:'征收关税'}],
+  note:'DJBC (Direktorat Jenderal Bea dan Cukai) = 海关总署',
+  example:[{id:'Barang impor dikenakan bea cukai.',cn:'进口商品需缴纳关税。'},{id:'Bea cukai dicek di pelabuhan masuk.',cn:'关税在入境港口检查。'}],
+  synonym:['customs','pabean','bea masuk'],
+  tag:'供应链'
+},
+'impor':{
+  ipa:'/ˈimpor/',
+  cn:'进口',
+  en:'import',
+  root:'拉丁语 importare (in- 进入 + portare 携带) → impor',
+  transform:[{form:'impor',pos:'n/v',cn:'进口'},{form:'mengimpor',pos:'v',cn:'进口'},{form:'imporir',pos:'n',cn:'进口商'},{form:'barang impor',pos:'n',cn:'进口商品'}],
+  note:'借词：拉丁语/荷兰语',
+  example:[{id:'Indonesia mengimpor mesin dari Jepang.',cn:'印尼从日本进口机械。'},{id:'Nilai impor naik 15% tahun ini.',cn:'今年进口额上升15%。'}],
+  synonym:['importasi','masuk (barang)'],
+  antonym:['ekspor'],
+  tag:'供应链'
+},
+'ekspor':{
+  ipa:'/ˈɛkspor/',
+  cn:'出口',
+  en:'export',
+  root:'拉丁语 exportare (ex- 出 + portare 携带) → ekspor',
+  transform:[{form:'ekspor',pos:'n/v',cn:'出口'},{form:'mengekspor',pos:'v',cn:'出口'},{form:'eksportir',pos:'n',cn:'出口商'},{form:'barang ekspor',pos:'n',cn:'出口商品'}],
+  note:'借词：拉丁语/荷兰语',
+  example:[{id:'Indonesia mengekspor nikel ke seluruh dunia.',cn:'印尼向全世界出口镍。'},{id:'Ekspor MHP menjadi sumber devisa utama.',cn:'MHP出口成为主要外汇来源。'}],
+  synonym:['exportasi','pengiriman keluar'],
+  antonym:['impor'],
+  tag:'供应链'
+},
+'dokumen pengiriman':{
+  ipa:'/ˈdokumɛn peŋiriˈman/',
+  cn:'货运单据',
+  en:'shipping documents',
+  root:'dokumen (=文件，拉丁语 documentum) + kirim (=发送) + peN-...-an',
+  transform:[{form:'dokumen',pos:'n',cn:'文件'},{form:'pengiriman',pos:'n',cn:'运输/寄送'},{form:'kirim',pos:'v',cn:'发送'},{form:'mengirim',pos:'v',cn:'发送'}],
+  note:'包括：B/L (bill of lading), invoice, packing list 等',
+  example:[{id:'Dokumen pengiriman harus lengkap sebelum kapal berangkat.',cn:'船开前货运单据必须齐全。'},{id:'Dokumen pengiriman diperiksa oleh bea cukai.',cn:'货运单据由海关检查。'}],
+  synonym:['dokumen kapal','shipping documents','surat muatan'],
+  tag:'供应链'
+},
+'ongkos kirim':{
+  ipa:'/ˈoŋkos ˈkirim/',
+  cn:'运费',
+  en:'shipping cost / freight',
+  root:'ongkos (=费用) + kirim (=发送)',
+  transform:[{form:'ongkos',pos:'n',cn:'费用/成本'},{form:'kirim',pos:'v',cn:'发送'},{form:'mengirim',pos:'v',cn:'发送'},{form:'biaya',pos:'n',cn:'费用'}],
+  note:'ongkos 源自闽南语 王哥 (ɔŋ-ko)',
+  example:[{id:'Ongkos kirim ke Kalimantan sangat mahal.',cn:'到加里曼丹的运费很贵。'},{id:'Ongkos kirim sudah termasuk dalam harga.',cn:'运费已包含在价格中。'}],
+  synonym:['biaya kirim','freight','ongkos angkut'],
+  tag:'供应链'
+},
+'biaya tambahan':{
+  ipa:'/biˈaja tamˈbahan/',
+  cn:'附加费',
+  en:'surcharge / additional fee',
+  root:'biaya (=费用) + tambah (=增加) + -an 名词后缀',
+  transform:[{form:'biaya',pos:'n',cn:'费用'},{form:'tambah',pos:'v',cn:'增加'},{form:'menambah',pos:'v',cn:'增加'},{form:'tambahan',pos:'n/adj',cn:'附加的/额外的'}],
+  example:[{id:'Biaya tambahan dikenakan untuk pengiriman kilat.',cn:'快递收取附加费。'},{id:'Ada biaya tambahan untuk penanganan bahan berbahaya.',cn:'危险品处理有附加费。'}],
+  synonym:['surcharge','biaya ekstra'],
+  tag:'供应链'
+},
+'tanggap darurat':{
+  ipa:'/ˈtaŋɡap daˈrurat/',
+  cn:'应急响应',
+  en:'emergency response',
+  root:'tanggap (=响应/应对) + darurat (=紧急，阿拉伯语 ḍarūrah)',
+  transform:[{form:'tanggap',pos:'adj/v',cn:'响应/反应'},{form:'menanggapi',pos:'v',cn:'响应/回应'},{form:'darurat',pos:'n/adj',cn:'紧急'}],
+  note:'也常用于日常语境：tanggap terhadap kritik (对批评的反应)',
+  example:[{id:'Tim tanggap darurat siaga 24 jam.',cn:'应急响应团队24小时待命。'},{id:'Kecepatan tanggap darurat menentukan korban jiwa.',cn:'应急响应速度决定伤亡人数。'}],
+  synonym:['respons darurat','reaksi darurat','penanggulangan darurat'],
+  tag:'应急响应'
+},
+'evakuasi':{
+  ipa:'/evaˈkuasi/',
+  cn:'疏散/撤离',
+  en:'evacuation',
+  root:'拉丁语 evacuare (e- 出 + vacuus 空) → evakuasi',
+  transform:[{form:'evakuasi',pos:'n/v',cn:'疏散/撤离'},{form:'mengevakuasi',pos:'v',cn:'疏散/撤离'},{form:'dievakuasi',pos:'pass.v',cn:'被疏散'}],
+  note:'借词：拉丁语/英语',
+  example:[{id:'Evakuasi karyawan dilakukan segera setelah alarm.',cn:'警报响起后立即疏散员工。'},{id:'Semua penghuni gedung dievakuasi dalam 5 menit.',cn:'所有楼内人员在5分钟内被疏散。'}],
+  synonym:['pengungsian','pemindahan','evacuation'],
+  tag:'应急响应'
+},
+'penyelamatan':{
+  ipa:'/pəɲəlaˈmatan/',
+  cn:'救援/营救',
+  en:'rescue',
+  root:'selamat (=安全) + peN-...-an 名词化 → 使安全的过程',
+  transform:[{form:'selamat',pos:'adj',cn:'安全的'},{form:'menyelamatkan',pos:'v',cn:'拯救/营救'},{form:'diselamatkan',pos:'pass.v',cn:'获救'},{form:'penyelamat',pos:'n',cn:'救援者'},{form:'penyelamatan',pos:'n',cn:'救援'}],
+  note:'peN- + selamat → penyelamat (s→ny 同化)',
+  example:[{id:'Tim penyelamatan berhasil mengevakuasi korban.',cn:'救援队成功疏散了受害者。'},{id:'Operasi penyelamatan berlangsung sepanjang malam.',cn:'救援行动持续了一整夜。'}],
+  synonym:['rescue','pertolongan','evakuasi'],
+  tag:'应急响应'
+},
+'bencana':{
+  ipa:'/bənˈʧana/',
+  cn:'灾害/灾难',
+  en:'disaster',
+  root:'bencana (=灾难)',
+  transform:[{form:'bencana',pos:'n',cn:'灾难'},{form:'berbencana',pos:'adj',cn:'受灾的'}],
+  note:'BNPB (Badan Nasional Penanggulangan Bencana) = 国家灾害管理局',
+  example:[{id:'Bencana gempa melanda wilayah itu.',cn:'地震灾害袭击了该地区。'},{id:'Pencegahan bencana lebih baik daripada penanggulangan.',cn:'防灾胜于救灾。'}],
+  synonym:['malapetaka','musibah','katastropi'],
+  antonym:['keberuntungan','keselamatan'],
+  tag:'应急响应'
+},
+'kebakaran':{
+  ipa:'/kəbaˈkaran/',
+  cn:'火灾',
+  en:'fire',
+  root:'bakar (=燃烧) + ke-...-an 名词化',
+  transform:[{form:'bakar',pos:'v',cn:'燃烧/烧'},{form:'membakar',pos:'v',cn:'点燃/焚烧'},{form:'terbakar',pos:'pass.v',cn:'着火/被烧'},{form:'kebakaran',pos:'n',cn:'火灾'}],
+  note:'ke-...-an 表示自然发生的事件',
+  example:[{id:'Kebakaran terjadi di gudang bahan kimia.',cn:'化学品仓库发生火灾。'},{id:'Api kebakaran berhasil dipadamkan dalam satu jam.',cn:'火灾在一小时内被扑灭。'}],
+  synonym:['pemadaman','kobaran api'],
+  tag:'应急响应'
+},
+'ledakan':{
+  ipa:'/ləˈdakan/',
+  cn:'爆炸',
+  en:'explosion',
+  root:'ledak (=爆炸) + -an 名词后缀',
+  transform:[{form:'ledak',pos:'v',cn:'爆炸'},{form:'meledak',pos:'v',cn:'爆炸/爆裂'},{form:'diledakkan',pos:'pass.v',cn:'被引爆'},{form:'ledakan',pos:'n',cn:'爆炸'},{form:'peledak',pos:'n',cn:'炸药/爆炸物'}],
+  example:[{id:'Ledakan gas terjadi di area produksi.',cn:'生产区域发生气体爆炸。'},{id:'Ledakan menyebabkan kerusakan parah pada peralatan.',cn:'爆炸导致设备严重损坏。'}],
+  synonym:['eksplosi','letusan','dentuman'],
+  tag:'应急响应'
+},
+'kebocoran':{
+  ipa:'/kəboˈʧoran/',
+  cn:'泄漏',
+  en:'leak',
+  root:'bocor (=泄漏) + ke-...-an 名词化',
+  transform:[{form:'bocor',pos:'v/adj',cn:'泄漏'},{form:'kebocoran',pos:'n',cn:'泄漏'},{form:'membocorkan',pos:'v',cn:'使泄漏/泄露'},{form:'berbocor',pos:'v',cn:'正在泄漏'}],
+  note:'ke-...-an 表示事件/事故',
+  example:[{id:'Kebocoran pipa menyebabkan tumpahan asam.',cn:'管道泄漏导致酸液溢出。'},{id:'Kebocoran gas beracun segera ditangani.',cn:'有毒气体泄漏立即得到处理。'}],
+  synonym:['keluarnya zat'],
+  tag:'应急响应'
+},
+'tumpahan':{
+  ipa:'/tumˈpahan/',
+  cn:'溢洒/泼洒',
+  en:'spill',
+  root:'tumpah (=洒出) + -an 名词后缀',
+  transform:[{form:'tumpah',pos:'v',cn:'洒出/溢出'},{form:'menumpahkan',pos:'v',cn:'泼洒/倾倒'},{form:'tumpahan',pos:'n',cn:'溢洒物'},{form:'tertumpah',pos:'pass.v',cn:'被洒出'}],
+  note:'HSE 术语：oil spill = tumpahan minyak',
+  example:[{id:'Tumpahan bahan kimia segera ditangani dengan spill kit.',cn:'化学品溢洒立即用泄漏应急包处理。'},{id:'Tumpahan minyak mencemari tanah di sekitar.',cn:'油溢洒污染了周围土壤。'}],
+  synonym:['spill','curahan'],
+  tag:'应急响应'
+},
+'gas beracun':{
+  ipa:'/ˈɡas bəˈratʧun/',
+  cn:'有毒气体',
+  en:'toxic gas',
+  root:'gas (=气体) + racun (=毒) + ber- 前缀',
+  transform:[{form:'gas',pos:'n',cn:'气体'},{form:'racun',pos:'n',cn:'毒'},{form:'beracun',pos:'adj',cn:'有毒的'},{form:'meracuni',pos:'v',cn:'毒害'}],
+  example:[{id:'Detektor gas beracun terpasang di area produksi.',cn:'生产区域安装有毒气体探测器。'},{id:'Gas beracun H2S sangat berbahaya.',cn:'有毒气体硫化氢非常危险。'}],
+  synonym:['gas toksik','gas racun','gas berbahaya'],
+  tag:'应急响应'
+},
+'asap':{
+  ipa:'/ˈasap/',
+  cn:'烟雾',
+  en:'smoke',
+  root:'asap (=烟)',
+  transform:[{form:'asap',pos:'n',cn:'烟/烟雾'},{form:'berasap',pos:'adj/v',cn:'冒烟的'}],
+  example:[{id:'Asap tebal keluar dari cerobong pabrik.',cn:'浓烟从工厂烟囱冒出。'},{id:'Asap kebakaran memenuhi ruangan.',cn:'火灾烟雾弥漫整个房间。'}],
+  synonym:['kabut asap','tebal (asap)','asap tebal'],
+  tag:'应急响应'
+},
+'gempa bumi':{
+  ipa:'/ˈɡɛmpa ˈbumi/',
+  cn:'地震',
+  en:'earthquake',
+  root:'gempa (=震动) + bumi (=地球/土地)',
+  transform:[{form:'gempa',pos:'n/v',cn:'震动'},{form:'bumi',pos:'n',cn:'地球/土地'},{form:'bergempa',pos:'v',cn:'发生地震'}],
+  note:'BMKG (Badan Meteorologi, Klimatologi, dan Geofisika) 负责地震监测',
+  example:[{id:'Gempa bumi berkekuatan 6.5 mengguncang wilayah ini.',cn:'6.5级地震震动了该地区。'},{id:'Bangunan harus tahan gempa bumi.',cn:'建筑必须抗震。'}],
+  synonym:['seisme','guncangan bumi','gempa'],
+  tag:'应急响应'
+},
+'SOP darurat':{
+  ipa:'/ɛs o ˈpe daˈrurat/',
+  cn:'应急标准作业程序',
+  en:'emergency SOP',
+  root:'SOP = Standard Operating Procedure + darurat (=紧急)',
+  transform:[{form:'SOP',pos:'n',cn:'标准作业程序'},{form:'darurat',pos:'n/adj',cn:'紧急'}],
+  note:'SOP darurat harus dipraktikkan melalui latihan rutin',
+  example:[{id:'SOP darurat harus dipahami seluruh karyawan.',cn:'所有员工必须理解应急SOP。'},{id:'SOP darurat dievaluasi setelah setiap insiden.',cn:'每次事故后对应急SOP进行评估。'}],
+  synonym:['prosedur darurat','SOP emergency'],
+  tag:'应急响应'
+},
+'rencana darurat':{
+  ipa:'/rənˈʧana daˈrurat/',
+  cn:'应急预案',
+  en:'emergency plan',
+  root:'rencana (=计划) + darurat (=紧急)',
+  transform:[{form:'rencana',pos:'n',cn:'计划'},{form:'merencanakan',pos:'v',cn:'计划'},{form:'terencana',pos:'adj',cn:'有计划的'}],
+  example:[{id:'Rencana darurat harus diperbarui setiap tahun.',cn:'应急预案必须每年更新。'},{id:'Rencana darurat mencakup semua skenario kecelakaan.',cn:'应急预案涵盖所有事故场景。'}],
+  synonym:['emergency plan','rencana tanggap darurat','ren-dar'],
+  tag:'应急响应'
+},
+'tim tanggap':{
+  ipa:'/ˈtim ˈtaŋɡap/',
+  cn:'应急小组',
+  en:'response team',
+  root:'tim (=团队，英语) + tanggap (=响应)',
+  transform:[{form:'tim',pos:'n',cn:'团队'},{form:'tanggap',pos:'v/adj',cn:'响应'}],
+  example:[{id:'Tim tanggap siaga 24 jam setiap hari.',cn:'应急小组每天24小时待命。'},{id:'Tim tanggap dilatih menangani berbagai insiden.',cn:'应急小组接受各类事故处理训练。'}],
+  synonym:['tim darurat','tim respons','rescue team'],
+  tag:'应急响应'
+},
+'posko':{
+  ipa:'/ˈposko/',
+  cn:'指挥所/应急站',
+  en:'command post / emergency station',
+  root:'posko (=post 指挥所，荷兰语 post)',
+  transform:[{form:'posko',pos:'n',cn:'指挥所/应急站'}],
+  note:'也常拼写 pos command / pos komando',
+  example:[{id:'Posko darurat didirikan di area aman.',cn:'应急指挥所设立在安全区域。'},{id:'Korban melaporkan ke posko bencana.',cn:'灾民向救灾指挥所报告。'}],
+  synonym:['pos komando','pos darurat','command post'],
+  tag:'应急响应'
+},
+'jalan evakuasi':{
+  ipa:'/ˈʤalan evaˈkuasi/',
+  cn:'疏散通道',
+  en:'evacuation route',
+  root:'jalan (=路) + evakuasi (=疏散)',
+  transform:[{form:'jalan',pos:'n',cn:'路/通道'},{form:'evakuasi',pos:'n',cn:'疏散/撤离'}],
+  example:[{id:'Jalan evakuasi harus bebas dari penghalang.',cn:'疏散通道必须无障碍物。'},{id:'Ikuti tanda jalan evakuasi menuju titik kumpul.',cn:'跟随疏散通道标志前往集合点。'}],
+  synonym:['rute evakuasi','jalur evakuasi','jalan keluar darurat'],
+  tag:'应急响应'
+},
+'titik kumpul':{
+  ipa:'/ˈtitik ˈkumpul/',
+  cn:'集合点',
+  en:'assembly point / muster point',
+  root:'titik (=点) + kumpul (=集合)',
+  transform:[{form:'titik',pos:'n',cn:'点'},{form:'kumpul',pos:'v',cn:'集合/聚集'},{form:'berkumpul',pos:'v',cn:'聚集/集合'}],
+  example:[{id:'Titik kumpul berada di lapangan utama.',cn:'集合点位于主广场。'},{id:'Semua karyawan berkumpul di titik kumpul.',cn:'所有员工在集合点集合。'}],
+  synonym:['assembly point','titik berkumpul','muster point'],
+  tag:'应急响应'
+},
+'alarm':{
+  ipa:'/aˈlarm/',
+  cn:'警报器',
+  en:'alarm',
+  root:'拉丁语 ad arma (拿起武器) → 法语 alarme → 英语 alarm',
+  transform:[{form:'alarm',pos:'n',cn:'警报/警报器'},{form:'mengalarmkan',pos:'v',cn:'使警报响起'}],
+  note:'借词：英语',
+  example:[{id:'Alarm kebakaran berbunyi keras.',cn:'火灾警报响起。'},{id:'Suara alarm memperingatkan karyawan.',cn:'警报声警示员工。'}],
+  synonym:['sirine','bel alarm','peringatan'],
+  tag:'应急响应'
+},
+'sirine':{
+  ipa:'/ˈsirine/',
+  cn:'警报器/汽笛',
+  en:'siren',
+  root:'荷兰语 sirene → sirine',
+  transform:[{form:'sirine',pos:'n',cn:'警报器/汽笛'}],
+  note:'借词：荷兰语 sirene',
+  example:[{id:'Sirine berbunyi saat latihan darurat.',cn:'应急演练时汽笛响起。'},{id:'Suara sirine terdengar dari kejauhan.',cn:'远处传来警报声。'}],
+  synonym:['alarm','bel','terompet udara'],
+  tag:'应急响应'
+},
+'APAR':{
+  ipa:'/a ˈpar/',
+  cn:'便携式灭火器',
+  en:'fire extinguisher',
+  root:'APAR = Alat Pemadam Api Ringan (工具+扑灭+火+轻型)',
+  transform:[{form:'alat',pos:'n',cn:'工具'},{form:'pemadam',pos:'n',cn:'扑灭者/灭火器'},{form:'memadamkan',pos:'v',cn:'扑灭'},{form:'api',pos:'n',cn:'火'},{form:'ringan',pos:'adj',cn:'轻的'}],
+  note:'APAR 分为几类：ABC (serbuk kimia), CO2, foam 等',
+  example:[{id:'APAR harus dicek setiap bulan.',cn:'灭火器必须每月检查。'},{id:'Gunakan APAR untuk memadamkan api kecil.',cn:'使用灭火器扑灭初期火灾。'}],
+  synonym:['pemadam api','alat pemadam api','fire extinguisher'],
+  tag:'应急响应'
+},
+'hidran':{
+  ipa:'/ˈhidran/',
+  cn:'消防栓',
+  en:'hydrant',
+  root:'荷兰语 hydrant → hidran',
+  transform:[{form:'hidran',pos:'n',cn:'消防栓'}],
+  note:'借词：荷兰语',
+  example:[{id:'Hidran harus mudah diakses saat darurat.',cn:'消防栓在紧急情况下必须易于取用。'},{id:'Hidran dekat gudang diperiksa rutin.',cn:'仓库附近的消防栓定期检查。'}],
+  synonym:['hydrant','keran air kebakaran','pilar hidran'],
+  tag:'应急响应'
+},
+'sprinkler':{
+  ipa:'/ˈspriŋklɛr/',
+  cn:'喷淋系统',
+  en:'sprinkler',
+  root:'英语 sprinkler (sprinkle 洒) → sprinkler',
+  transform:[{form:'sprinkler',pos:'n',cn:'喷淋装置'}],
+  note:'借词：英语',
+  example:[{id:'Sprinkler otomatis menyala saat terdeteksi panas.',cn:'喷淋系统检测到热量时自动启动。'},{id:'Sistem sprinkler melindungi area penyimpanan.',cn:'喷淋系统保护储存区。'}],
+  synonym:['sistem sprinkler','pemadam otomatis','sprinkler otomatis'],
+  tag:'应急响应'
+},
+'detektor asap':{
+  ipa:'/dɛˈtɛktɔr ˈasap/',
+  cn:'烟雾探测器',
+  en:'smoke detector',
+  root:'detektor (=探测器，英语 detector) + asap (=烟)',
+  transform:[{form:'detektor',pos:'n',cn:'探测器'},{form:'asap',pos:'n',cn:'烟'},{form:'mendeteksi',pos:'v',cn:'检测/探测'}],
+  example:[{id:'Detektor asap terpasang di setiap ruangan.',cn:'每个房间都安装烟雾探测器。'},{id:'Detektor asap berbunyi ketika ada kebakaran.',cn:'发生火灾时烟雾探测器响起。'}],
+  synonym:['smoke detector','sensor asap','alarm asap'],
+  tag:'应急响应'
+},
+'APD':{
+  ipa:'/a pe ˈde/',
+  cn:'个人防护装备',
+  en:'PPE (Personal Protective Equipment)',
+  root:'APD = Alat Pelindung Diri (工具+保护+自身)',
+  transform:[{form:'alat',pos:'n',cn:'工具/装备'},{form:'pelindung',pos:'n',cn:'保护物'},{form:'melindungi',pos:'v',cn:'保护'},{form:'diri',pos:'n',cn:'自己/自身'}],
+  note:'等同英语 PPE',
+  example:[{id:'APD wajib dipakai di area produksi.',cn:'生产区域必须穿戴个人防护装备。'},{id:'Helm, sarung tangan, dan sepatu keselamatan adalah APD wajib.',cn:'安全帽、手套和安全鞋是必备个人防护装备。'}],
+  synonym:['PPE','alat pelindung diri','perlengkapan keselamatan'],
+  tag:'应急响应'
+},
+'helm keselamatan':{
+  ipa:'/ˈhɛlm kəsəlaˈmatan/',
+  cn:'安全帽',
+  en:'safety helmet',
+  root:'helm (=头盔) + selamat (=安全) + -an 名词化',
+  transform:[{form:'helm',pos:'n',cn:'头盔'},{form:'selamat',pos:'adj',cn:'安全的'},{form:'keselamatan',pos:'n',cn:'安全'},{form:'berhelm',pos:'v',cn:'戴头盔'}],
+  note:'印尼法规要求工地必须戴 helm keselamatan',
+  example:[{id:'Semua pekerja wajib memakai helm keselamatan.',cn:'所有工人必须佩戴安全帽。'},{id:'Helm keselamatan melindungi kepala dari benturan.',cn:'安全帽保护头部免受撞击。'}],
+  synonym:['helm proyek','helm safety','topi keselamatan'],
+  tag:'应急响应'
+},
+'sepatu keselamatan':{
+  ipa:'/səˈpatu kəsəlaˈmatan/',
+  cn:'安全鞋',
+  en:'safety shoes',
+  root:'sepatu (=鞋，葡萄牙语 sapato) + keselamatan (=安全)',
+  transform:[{form:'sepatu',pos:'n',cn:'鞋'},{form:'selamat',pos:'adj',cn:'安全的'},{form:'keselamatan',pos:'n',cn:'安全'}],
+  example:[{id:'Sepatu keselamatan melindungi kaki dari benda berat.',cn:'安全鞋保护脚部免受重物砸伤。'},{id:'Sepatu keselamatan memiliki pelindung baja di ujung.',cn:'安全鞋前端有钢头保护。'}],
+  synonym:['safety shoes','sepatu safety','sepatu pelindung'],
+  tag:'应急响应'
+},
+'sarung tangan':{
+  ipa:'/ˈsaruŋ ˈtaŋan/',
+  cn:'手套',
+  en:'gloves',
+  root:'sarung (=套/覆盖) + tangan (=手)',
+  transform:[{form:'sarung',pos:'n',cn:'套/覆盖'},{form:'tangan',pos:'n',cn:'手'},{form:'bersarung tangan',pos:'v',cn:'戴手套'}],
+  note:'sarung tangan kerja = 工作手套；sarung tangan karet = 橡胶手套',
+  example:[{id:'Sarung tangan wajib dipakai saat menangani bahan kimia.',cn:'处理化学品时必须戴手套。'},{id:'Gunakan sarung tangan anti-potong untuk pekerjaan tajam.',cn:'处理锋利工件时使用防割手套。'}],
+  synonym:['gloves','sarung tangan kerja','pelindung tangan'],
+  tag:'应急响应'
+},
+'respirator':{
+  ipa:'/rɛspiˈratɔr/',
+  cn:'呼吸器',
+  en:'respirator',
+  root:'拉丁语 respirare (re- 再 + spirare 呼吸) → respirator',
+  transform:[{form:'respirator',pos:'n',cn:'呼吸器/口罩'},{form:'respirasi',pos:'n',cn:'呼吸'},{form:'bernapas',pos:'v',cn:'呼吸'}],
+  note:'借词：拉丁语/英语',
+  example:[{id:'Respirator wajib dipakai di area berdebu.',cn:'在有粉尘的区域必须佩戴呼吸器。'},{id:'Respirator menyaring udara beracun.',cn:'呼吸器过滤有毒空气。'}],
+  synonym:['masker','alat pernapasan','penyaring udara'],
+  tag:'应急响应'
+},
+'kotak P3K':{
+  ipa:'/ˈkotak pe ˈtiga ka/',
+  cn:'急救箱',
+  en:'first aid kit',
+  root:'kotak (=盒子) + P3K = Pertolongan Pertama Pada Kecelakaan (急救)',
+  transform:[{form:'kotak',pos:'n',cn:'盒子/箱'},{form:'pertolongan',pos:'n',cn:'救助'},{form:'pertama',pos:'adj',cn:'第一'},{form:'kecelakaan',pos:'n',cn:'事故'}],
+  note:'P3K = Pertolongan Pertama Pada Kecelakaan',
+  example:[{id:'Kotak P3K tersedia di setiap lantai gedung.',cn:'每层楼都备有急救箱。'},{id:'Isi kotak P3K diperiksa setiap bulan.',cn:'急救箱内容每月检查。'}],
+  synonym:['P3K','first aid kit','kotak pertolongan pertama'],
+  tag:'应急响应'
+},
+'tandu':{
+  ipa:'/ˈtandu/',
+  cn:'担架',
+  en:'stretcher',
+  root:'tandu (=担架/抬)',
+  transform:[{form:'tandu',pos:'n',cn:'担架'},{form:'menandu',pos:'v',cn:'用担架抬'}],
+  example:[{id:'Korban dibawa ke rumah sakit dengan tandu.',cn:'伤者用担架送往医院。'},{id:'Tandu disimpan di dekat posko darurat.',cn:'担架存放在应急指挥所附近。'}],
+  synonym:['stretcher','brankar','alas angkat'],
+  tag:'应急响应'
+},
+'paramedis':{
+  ipa:'/paraˈmɛdis/',
+  cn:'急救员/医护',
+  en:'paramedic',
+  root:'英语 paramedic (para- 辅助 + medic 医疗) → paramedis',
+  transform:[{form:'paramedis',pos:'n',cn:'急救员/医护'},{form:'medis',pos:'adj',cn:'医疗的'}],
+  note:'借词：英语',
+  example:[{id:'Paramedis segera menangani korban luka.',cn:'急救员立即处理受伤人员。'},{id:'Paramedis dilatih memberikan pertolongan pertama.',cn:'急救员接受急救培训。'}],
+  synonym:['medis','tenaga medis','petugas P3K'],
+  tag:'应急响应'
+},
+'latihan darurat':{
+  ipa:'/latiˈhan daˈrurat/',
+  cn:'应急演练',
+  en:'emergency drill',
+  root:'latih (=训练) + -an 名词后缀 + darurat (=紧急)',
+  transform:[{form:'latih',pos:'v',cn:'训练'},{form:'melatih',pos:'v',cn:'训练'},{form:'berlatih',pos:'v',cn:'练习/训练'},{form:'latihan',pos:'n',cn:'训练/演练'}],
+  example:[{id:'Latihan darurat diadakan setiap enam bulan.',cn:'每六个月举行一次应急演练。'},{id:'Latihan darurat simulasi kebakaran gedung.',cn:'应急演练模拟楼宇火灾。'}],
+  synonym:['drill','simulasi darurat','uji coba darurat'],
+  tag:'应急响应'
+},
+'simulasi':{
+  ipa:'/simuˈlasi/',
+  cn:'模拟演习',
+  en:'simulation',
+  root:'拉丁语 simulare (模仿) → simulasi',
+  transform:[{form:'simulasi',pos:'n',cn:'模拟/仿真'},{form:'mensimulasikan',pos:'v',cn:'模拟'},{form:'mensimulasi',pos:'v',cn:'模拟'}],
+  note:'借词：拉丁语/英语',
+  example:[{id:'Simulasi kebakaran diadakan di kawasan industri.',cn:'工业园区举行火灾模拟演习。'},{id:'Hasil simulasi menunjukkan waktu evakuasi 10 menit.',cn:'模拟结果显示疏散时间为10分钟。'}],
+  synonym:['simulation','latihan simulasi','replikasi'],
+  tag:'应急响应'
+},
+'penyelidikan':{
+  ipa:'/pəɲəliˈdikan/',
+  cn:'调查',
+  en:'investigation',
+  root:'selidik (=调查) + peN-...-an 名词化',
+  transform:[{form:'selidik',pos:'v',cn:'调查'},{form:'menyelidiki',pos:'v',cn:'调查'},{form:'penyelidik',pos:'n',cn:'调查员'},{form:'penyelidikan',pos:'n',cn:'调查'}],
+  note:'peN- + selidik → penyelidik (s→ny 同化)',
+  example:[{id:'Penyelidikan insiden dilakukan oleh tim HSE.',cn:'事故调查由HSE团队进行。'},{id:'Hasil penyelidikan menunjukkan penyebab kebakaran.',cn:'调查结果显示火灾原因。'}],
+  synonym:['investigasi','penelusuran','pemeriksaan'],
+  tag:'应急响应'
+},
+'laporan insiden':{
+  ipa:'/laˈporan inˈsidɛn/',
+  cn:'事故报告',
+  en:'incident report',
+  root:'lapor (=报告) + -an 名词后缀 + insiden (=事件，英语 incident)',
+  transform:[{form:'lapor',pos:'v',cn:'报告'},{form:'melapor',pos:'v',cn:'报告'},{form:'laporan',pos:'n',cn:'报告'},{form:'insiden',pos:'n',cn:'事件/事故'}],
+  example:[{id:'Laporan insiden harus disampaikan dalam 24 jam.',cn:'事故报告必须在24小时内提交。'},{id:'Laporan insiden mencatat semua detail kejadian.',cn:'事故报告记录事件的所有细节。'}],
+  synonym:['insiden report','laporan kejadian','laporan kecelakaan'],
+  tag:'应急响应'
+},
+'hampir celaka':{
+  ipa:'/ˈhampir ʧəˈlaka/',
+  cn:'未遂事故/险情',
+  en:'near miss',
+  root:'hampir (=几乎) + celaka (=灾祸)',
+  transform:[{form:'hampir',pos:'adv',cn:'几乎'},{form:'celaka',pos:'n/adj',cn:'灾祸/倒霉的'}],
+  note:'HSE 术语：没有造成实际伤害但有可能的事故',
+  example:[{id:'Hampir celaka harus dilaporkan untuk pencegahan.',cn:'未遂事故必须报告以预防再次发生。'},{id:'Pencatatan hampir celaka membantu meningkatkan keselamatan.',cn:'记录险情有助于提高安全性。'}],
+  synonym:['near miss','hampir terjadi','potensi bahaya'],
+  tag:'应急响应'
+}
 };
 
 
@@ -125613,7 +128436,7 @@ function renderVersion(c){
   c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.23 / Versi</span></div>
     <div style="padding:16px;">
       <div style="margin-bottom:14px;padding:14px;background:rgba(59,130,246,.10);border-radius:10px;border-left:3px solid var(--info)">
-        <div style="font-size:15px;font-weight:700;color:var(--info);margin-bottom:6px">V4.38.4 (2026-10-01)</div>
+        <div style="font-size:15px;font-weight:700;color:var(--info);margin-bottom:6px">V4.38.5 (2026-10-01)</div>
         <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">1. vocabDB补全: 四话题129词BIT标准完整词条同步 — project_management 29词 + environmental_compliance 33词 + supply_chain 31词 + emergency_response 36词 · 全部含 ipa/cn/en/root/tag 五字段 · 覆盖率 29/158 → 158/158 (100%) · 修复Day1词汇页面大量词条不渲染问题</div>
         <div style="font-size:15px;font-weight:700;color:var(--info);margin-bottom:6px">V4.38.3 (2026-10-01)</div>
         <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">1. C5策略全面合规: 10/1-10/10 课程优化 · project_management 词汇68→40(删重3+精简25) 47处英文IPA修复 场景对话5-6→12-13句 · environmental_compliance 词汇75→38 13处英文替换 场景对话5-6→13句 · supply_chain 词汇82→40 场景10→3(保留采购/物流/清关) 每场景5→11-14句 · emergency_response 词汇86→40 场景10→3(保留火灾/泄漏/演练) 每场景5→11-12句 · 四话题全部C5合规: 词汇20-40✅ 场景=3✅ 对话10-20句✅ 测试15题✅</div>
