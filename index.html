@@ -6,7 +6,7 @@
 <meta http-equiv="Expires" content="0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LEO-BIR V4.38.3</title>
+<title>LEO-BIR V4.38.4</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -268,7 +268,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
 </style>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="video_registry.js?v=V4.38.3"></script>
+<script src="video_registry.js?v=V4.38.4"></script>
 </head>
 <body>
 <div class="app">
@@ -276,7 +276,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="sidebar-header">
     <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <h1>LEO-BIR</h1>
-    <div class="ver">LEO-BIR V4.38.3 · 每日复习视频 Layer 1（2 集样片 · 剪影引擎 v2）</div>
+    <div class="ver">LEO-BIR V4.38.4 · 每日复习视频 Layer 1（2 集样片 · 剪影引擎 v2）</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -1773,7 +1773,137 @@ const vocabDB = {
   'periode':{ipa:'/ˈpɛriodɛ/',cn:'时期/周期',en:'period',root:'periode (Dutch)',tag:'C5复习'},
   'puncak':{ipa:'/ˈpuntʃak/',cn:'顶峰/高峰',en:'peak / summit',root:'puncak',tag:'C5复习'},
   'lembah':{ipa:'/ˈlɛmbah/',cn:'山谷',en:'valley',root:'lembah',tag:'C5复习'},
-  'aktif':{ipa:'/ˈaktif/',cn:'活跃的',en:'active',root:'aktif (Dutch)',tag:'C5复习'}};
+  'aktif':{ipa:'/ˈaktif/',cn:'活跃的',en:'active',root:'aktif (Dutch)',tag:'C5复习'},
+'tonggak pencapaian':{ipa:'/ˈtoŋɡak panˈɚdapaan/',cn:'里程碑/阶段成果',en:'milestone',root:'tonggak (=标桩/基准点) + pencapaian (=达成/实现，capai 达成 + peN--an 名词化)',tag:'项目管理'},
+  'bagan Gantt':{ipa:'/ˈbaɡan ˈɡant/',cn:'甘特图',en:'Gantt chart',root:'bagan (=图表) + Gantt (人名 Henry Gantt，项目管理先驱)',tag:'项目管理'},
+  'SRP':{ipa:'/ɛs ɛr ˈpe/',cn:'工作分解结构',en:'WBS (Work Breakdown Structure)',root:'SRP = struktur rincian pekerjaan (结构+详细+工作)',tag:'项目管理'},
+  'sumber daya':{ipa:'/ˈsumbɛr ˈdaja/',cn:'资源',en:'resources',root:'sumber (=来源/泉源) + daya (=力量/能力)',tag:'项目管理'},
+  'alokasi':{ipa:'/aˈlokasi/',cn:'分配',en:'allocation',root:'荷兰语 allocatie → alokasi (al- 向 + lokas 位置 + -i 动词后缀)',tag:'项目管理'},
+  'belanja modal':{ipa:'/bəˈlaɲa ˈmodəl/',cn:'资本支出',en:'capital expenditure (CapEx)',root:'belanja (=支出/花费) + modal (=资本)',tag:'项目管理'},
+  'belanja operasional':{ipa:'/bəˈlaɲa opəˈrasional/',cn:'运营支出',en:'operating expenditure (OpEx)',root:'belanja (=支出) + operasional (=运营的，operasi 操作 + -onal 形容词后缀)',tag:'项目管理'},
+  'garis dasar':{ipa:'/ˈɡaris ˈdasar/',cn:'基准线',en:'baseline',root:'garis (=线) + dasar (=基础/底部)',tag:'项目管理'},
+  'ruang lingkup':{ipa:'/ˈruaŋ liŋˈkup/',cn:'范围',en:'scope',root:'ruang (=空间) + lingkup (=范围/涵盖)',tag:'项目管理'},
+  'hasil yang diserahkan':{ipa:'/haˈsil jaŋ disəˈrahan/',cn:'交付物',en:'deliverable',root:'hasil (=成果) + serah (=交付) + di-...-kan 被动使役 → diserahkan 被交付',tag:'项目管理'},
+  'luaran':{ipa:'/luˈaran/',cn:'产出',en:'output',root:'luar (=外面) + -an 名词后缀 → 外部产出',tag:'项目管理'},
+  'hasil akhir':{ipa:'/haˈsil ˈaɡir/',cn:'成果/最终结果',en:'final outcome',root:'hasil (=成果) + akhir (=结束/最终)',tag:'项目管理'},
+  'IKU':{ipa:'/i ka ˈu/',cn:'关键绩效指标',en:'KPI (Key Performance Indicator)',root:'IKU = indikator kinerja utama (指示器+绩效+主要的)',tag:'项目管理'},
+  'isu':{ipa:'/ˈisu/',cn:'问题/议题',en:'issue',root:'英语 issue → isu',tag:'项目管理'},
+  'jalur kritis':{ipa:'/ˈʤalur ˈkritis/',cn:'关键路径',en:'critical path',root:'jalur (=路径) + kritis (=关键的，希腊语 kritikos 判断)',tag:'项目管理'},
+  'percepatan paralel':{ipa:'/pərʧəˈpatan paˈralel/',cn:'快速跟进(并行)',en:'fast tracking',root:'percepatan (=加速，cepat 快 + per--an) + paralel (=并行的，希腊语 parallelos)',tag:'项目管理'},
+  'percepatan intensif':{ipa:'/pərʧəˈpatan intənˈsif/',cn:'赶工(加班赶进度)',en:'crashing',root:'percepatan (=加速) + intensif (=强化的，拉丁语 intensus)',tag:'项目管理'},
+  'tinjauan':{ipa:'/tinˈʤauan/',cn:'评审/审查',en:'review',root:'tinjau (=审阅) + -an 名词后缀；词根 jau (巡视)',tag:'项目管理'},
+  'audit':{ipa:'/ˈaudit/',cn:'审计',en:'audit',root:'拉丁语 auditus (听) → 英语 audit → 印尼语',tag:'项目管理'},
+  'penerimaan':{ipa:'/pənərimaˈan/',cn:'验收',en:'acceptance',root:'terima (=接收) + peN-...-an 名词化 → 接收过程',tag:'项目管理'},
+  'serah terima':{ipa:'/ˈserah təˈrima/',cn:'移交',en:'handover',root:'serah (=交付) + terima (=接收) → 交接双动词',tag:'项目管理'},
+  'penutupan':{ipa:'/pənutuˈpan/',cn:'收尾/结项',en:'closure',root:'tutup (=关闭) + peN-...-an 名词化',tag:'项目管理'},
+  'pembelajaran':{ipa:'/pəmbəlaˈʤaran/',cn:'经验教训',en:'lessons learned',root:'ajar (=教) + peN--an 名词化 + 中缀 -ber- → 学习过程',tag:'项目管理'},
+  'pemangku kepentingan':{ipa:'/pəˈmaŋku kəpəntiŋan/',cn:'利益相关方',en:'stakeholder',root:'pangku (=持有/承担) + penting (=重要) + peN-...-an → 持有利益者',tag:'项目管理'},
+  'penanggung jawab utama':{ipa:'/pənaŋɡuŋ ˈʤawab ˈutama/',cn:'发起人/主要责任人',en:'sponsor / primary responsible party',root:'tanggunɡ (=承担) + jawab (=回答/负责) + utama (=主要的)',tag:'项目管理'},
+  'rapat kemajuan':{ipa:'/ˈrapat kəmaˈʤuhan/',cn:'进度会',en:'progress meeting',root:'rapat (=会议) + maju (=前进) + ke-...-an 名词化 → 前进状态',tag:'项目管理'},
+  'laporan status':{ipa:'/laˈporan ˈstatus/',cn:'状态报告',en:'status report',root:'lapor (=报告) + -an 名词后缀 + status (=状态，拉丁语)',tag:'项目管理'},
+  'laporan mingguan':{ipa:'/laˈporan miŋˈɡuan/',cn:'周报',en:'weekly report',root:'laporan (=报告) + minggu (=周) + -an 形容词后缀',tag:'项目管理'},
+  'nilai hasil':{ipa:'/ˈnilai ˈhasil/',cn:'挣值',en:'earned value (EV)',root:'nilai (=价值) + hasil (=成果) → 成果价值',tag:'项目管理'},
+  'kepatuhan':{ipa:'/kəpatuˈhan/',cn:'合规/遵守',en:'compliance',root:'patuh (=服从) + ke-...-an 名词化',tag:'环保合规'},
+  'baku mutu':{ipa:'/ˈbaku ˈmutu/',cn:'质量标准/排放标准',en:'quality standard / emission standard',root:'baku (=标准/基准) + mutu (=质量)',tag:'环保合规'},
+  'limbah':{ipa:'/ˈlimbah/',cn:'废弃物/废料',en:'waste',root:'limbah (=废弃/剩余)',tag:'环保合规'},
+  'air limbah':{ipa:'/ˈair ˈlimbah/',cn:'废水',en:'wastewater',root:'air (=水) + limbah (=废料)',tag:'环保合规'},
+  'gas buang':{ipa:'/ˈgas ˈbuaŋ/',cn:'废气/排放气体',en:'exhaust gas / emissions',root:'gas (=气体，荷兰语) + buang (=丢弃)',tag:'环保合规'},
+  'berbahaya':{ipa:'/bərbaˈhaja/',cn:'危险的',en:'hazardous',root:'bahaya (=危险) + ber- 形容词前缀',tag:'环保合规'},
+  'B3':{ipa:'/be ˈtiga/',cn:'有毒有害易燃易爆',en:'B3 (Bahan Berbahaya dan Beracun)',root:'B3 = Bahan Berbahaya dan Beracun (材料+危险+有毒)',tag:'环保合规'},
+  'AMDAL':{ipa:'/ˈamdal/',cn:'环境影响评价',en:'EIA (Environmental Impact Assessment)',root:'AMDAL = Analisis Mengenai Dampak Lingkungan (分析+关于+影响+环境)',tag:'环保合规'},
+  'UKL-UPL':{ipa:'/u ka ˈɛl u pe ˈɛl/',cn:'环境管理与监测计划',en:'Environmental Management & Monitoring Plan',root:'UKL = Upaya Kesehatan Lingkungan, UPL = Upaya Pemantauan Lingkungan',tag:'环保合规'},
+  'izin lingkungan':{ipa:'/ˈizin liŋˈkunan/',cn:'环境许可证',en:'environmental permit',root:'izin (=许可，阿拉伯语 idzn) + lingkungan (=环境)',tag:'环保合规'},
+  'jejak karbon':{ipa:'/ˈʤeʤak ˈkarbon/',cn:'碳足迹',en:'carbon footprint',root:'jejak (=足迹) + karbon (=碳)',tag:'环保合规'},
+  'nol bersih':{ipa:'/ˈnɔl bərˈsih/',cn:'净零排放',en:'net zero',root:'nol (=零) + bersih (=干净)',tag:'环保合规'},
+  'GRK':{ipa:'/ɡe ɛr ˈka/',cn:'温室气体',en:'GHG (Greenhouse Gas)',root:'GRK = Gas Rumah Kaca (气体+房屋+玻璃)',tag:'环保合规'},
+  'pemantauan':{ipa:'/pəmantauˈan/',cn:'监测',en:'monitoring',root:'pantau (=监视) + peN-...-an 名词化',tag:'环保合规'},
+  'pengambilan contoh':{ipa:'/peŋambilan ˈtonto/',cn:'取样/采样',en:'sampling',root:'ambil (=取) + peng-...-an 名词化 + contoh (=样品)',tag:'环保合规'},
+  'audit lingkungan':{ipa:'/ˈaudit liŋˈkunan/',cn:'环境审计',en:'environmental audit',root:'audit (=审计) + lingkungan (=环境)',tag:'环保合规'},
+  'denda':{ipa:'/ˈdɛnda/',cn:'罚款',en:'fine / penalty',root:'denda (=罚金)',tag:'环保合规'},
+  'penjernihan':{ipa:'/pənʤərniˈhan/',cn:'净化/澄清',en:'purification / clarification',root:'jernih (=清澈) + peN-...-an 名词化',tag:'环保合规'},
+  'osmosis terbalik':{ipa:'/osˈmosis tərˈbalik/',cn:'反渗透',en:'reverse osmosis (RO)',root:'osmosis (=渗透，希腊语) + terbalik (=反向的)',tag:'环保合规'},
+  'penyikat basah':{ipa:'/pəɲikat ˈbasah/',cn:'湿式洗涤器',en:'wet scrubber',root:'sikat (=刷/洗涤) + peN-...-an + basah (=湿)',tag:'环保合规'},
+  'filter kantong':{ipa:'/ˈfiltɛr ˈkantɔŋ/',cn:'袋式过滤器',en:'bag filter',root:'filter (=过滤器，英语) + kantong (=袋子)',tag:'环保合规'},
+  'presipitator elektrostatik':{ipa:'/presipiˈtator elɛktroˈstatik/',cn:'静电除尘器',en:'electrostatic precipitator (ESP)',root:'presipitator (=沉淀器，拉丁语) + elektrostatik (=静电的)',tag:'环保合规'},
+  'konservasi':{ipa:'/konsɛrˈvasi/',cn:'保护/保存',en:'conservation',root:'拉丁语 conservare → konservasi',tag:'环保合规'},
+  'rehabilitasi':{ipa:'/rehabilitaˈsi/',cn:'修复/恢复',en:'rehabilitation / restoration',root:'拉丁语 rehabilitare → rehabilitasi',tag:'环保合规'},
+  'penggunaan kembali':{ipa:'/peŋɡunaaan ˈkɛmbali/',cn:'再利用',en:'reuse',root:'guna (=使用) + kembali (=返回) → 重新使用',tag:'环保合规'},
+  'daur ulang':{ipa:'/ˈdaur ˈulaŋ/',cn:'回收',en:'recycling',root:'daur (=循环) + ulang (=重复)',tag:'环保合规'},
+  'pengurangan':{ipa:'/peŋuraŋan/',cn:'减少',en:'reduction',root:'kurang (=少) + peN-...-an 名词化',tag:'环保合规'},
+  'sabuk hijau':{ipa:'/ˈsabuk hiˈʤau/',cn:'绿化带',en:'green belt',root:'sabuk (=带/腰带) + hijau (=绿色)',tag:'环保合规'},
+  'KLHK':{ipa:'/ka ɛl ha ˈka/',cn:'环境与林业部',en:'Ministry of Environment & Forestry',root:'KLHK = Kementerian Lingkungan Hidup dan Kehutanan',tag:'环保合规'},
+  'ESDM':{ipa:'/e ɛs de ˈɛm/',cn:'能源与矿产资源部',en:'Ministry of Energy & Mineral Resources',root:'ESDM = Energi Sumber Daya Mineral',tag:'环保合规'},
+  'PPLH':{ipa:'/pe pe ɛl ˈha/',cn:'环境管理部',en:'Environmental Management Agency',root:'PPLH = Pengelolaan Lingkungan Hidup',tag:'环保合规'},
+  'SPPL':{ipa:'/ɛs pe pe ˈɛl/',cn:'环境管理声明书',en:'Statement of Environmental Management',root:'SPPL = Surat Pernyataan Pengelolaan Lingkungan',tag:'环保合规'},
+  'PROPER':{ipa:'/ˈpropɛr/',cn:'企业环境绩效评级',en:'Corporate Environmental Performance Rating',root:'PROPER = Program Penilaian Peringkat Kinerja Perusahaan',tag:'环保合规'},
+  'rantai pasok':{ipa:'/ˈrantai paˈsok/',cn:'供应链',en:'supply chain',root:'rantai (=链条) + pasok (=供应)',tag:'供应链'},
+  'pesanan':{ipa:'/pəsaˈnan/',cn:'订单/订购',en:'order',root:'pesan (=订购/留言) + -an 名词后缀',tag:'供应链'},
+  'PO':{ipa:'/pe ˈo/',cn:'采购订单',en:'Purchase Order (PO)',root:'PO = Purchase Order (英语缩写)',tag:'供应链'},
+  'pemasok':{ipa:'/pəmaˈsok/',cn:'供应商',en:'supplier',root:'pasok (=供应) + peN-...-an 施事名词化 → 供应者',tag:'供应链'},
+  'inventori':{ipa:'/invenˈtori/',cn:'库存',en:'inventory',root:'拉丁语 inventarium → inventori',tag:'供应链'},
+  'stok pengaman':{ipa:'/ˈstok peŋaˈman/',cn:'安全库存',en:'safety stock',root:'stok (=库存，英语) + aman (=安全) + peng-...-an',tag:'供应链'},
+  'titik pesan ulang':{ipa:'/ˈtitik pəˈsan ˈulaŋ/',cn:'再订货点',en:'reorder point (ROP)',root:'titik (=点) + pesan (=订购) + ulang (=重新)',tag:'供应链'},
+  'waktu tunggu':{ipa:'/ˈwa ktu ˈtuŋɡu/',cn:'提前期/等待时间',en:'lead time',root:'waktu (=时间) + tunggu (=等待)',tag:'供应链'},
+  'tepat waktu':{ipa:'/təˈpat ˈwa ktu/',cn:'准时制',en:'just-in-time (JIT)',root:'tepat (=精确/恰好) + waktu (=时间)',tag:'供应链'},
+  'JIT':{ipa:'/ʤi ai ˈti/',cn:'准时制',en:'Just-In-Time',root:'JIT = Just In Time (英语缩写)',tag:'供应链'},
+  'batch':{ipa:'/ˈbatʃ/',cn:'批次',en:'batch',root:'英语 batch → 印尼语',tag:'供应链'},
+  'lot':{ipa:'/ˈlot/',cn:'批/ Lot',en:'lot',root:'英语 lot → 印尼语',tag:'供应链'},
+  'nomor seri':{ipa:'/ˈnomɔr ˈsɛri/',cn:'序列号',en:'serial number',root:'nomor (=号码，葡萄牙语 número) + seri (=系列，法语 série)',tag:'供应链'},
+  'kode batang':{ipa:'/ˈkodɛ ˈbataŋ/',cn:'条形码',en:'barcode',root:'kode (=代码，荷兰语 code) + batang (=条/杆)',tag:'供应链'},
+  'pengangkutan':{ipa:'/peŋaŋkutaˈan/',cn:'运输',en:'transportation',root:'angkut (=搬运) + peN-...-an 名词化',tag:'供应链'},
+  'pengapalan':{ipa:'/peŋapaˈlan/',cn:'船运/海运',en:'shipping',root:'kapal (=船) + peN-...-an 名词化 → 用船运输',tag:'供应链'},
+  'pengiriman darat':{ipa:'/peŋiriˈman ˈdarat/',cn:'陆运',en:'land freight / ground shipping',root:'kirim (=发送) + peN-...-an + darat (=陆地)',tag:'供应链'},
+  'pengiriman laut':{ipa:'/peŋiriˈman ˈlaut/',cn:'海运',en:'ocean freight / sea shipping',root:'kirim (=发送) + peN-...-an + laut (=海)',tag:'供应链'},
+  'kontainer':{ipa:'/konˈtainɛr/',cn:'集装箱',en:'container',root:'英语 container → kontainer',tag:'供应链'},
+  'pallet':{ipa:'/ˈpalɛt/',cn:'托盘',en:'pallet',root:'英语 pallet → pallet',tag:'供应链'},
+  'forklift':{ipa:'/ˈforklift/',cn:'叉车',en:'forklift',root:'英语 forklift → forklift',tag:'供应链'},
+  'derek':{ipa:'/ˈdɛrɛk/',cn:'起重机/吊车',en:'crane',root:'derek (=起重装置)',tag:'供应链'},
+  'sabuk konveyor':{ipa:'/ˈsabuk konˈvɛjor/',cn:'传送带',en:'conveyor belt',root:'sabuk (=带) + konveyor (=传送机，英语 conveyor)',tag:'供应链'},
+  'kapal kargo':{ipa:'/ˈkapal ˈkarɡo/',cn:'货船',en:'cargo ship',root:'kapal (=船) + kargo (=货物，西班牙语 cargo)',tag:'供应链'},
+  'dermaga':{ipa:'/ˈdɛrmaɡa/',cn:'码头',en:'dock / wharf',root:'葡萄牙语 dermaga → 码头',tag:'供应链'},
+  'bea cukai':{ipa:'/ˈbɛa ʧuˈkai/',cn:'海关/关税',en:'customs / duty',root:'bea (=税/费，葡萄牙语) + cukai (=关税)',tag:'供应链'},
+  'impor':{ipa:'/ˈimpor/',cn:'进口',en:'import',root:'拉丁语 importare → impor',tag:'供应链'},
+  'ekspor':{ipa:'/ˈɛkspor/',cn:'出口',en:'export',root:'拉丁语 exportare → ekspor',tag:'供应链'},
+  'dokumen pengiriman':{ipa:'/ˈdokumɛn peŋiriˈman/',cn:'货运单据',en:'shipping documents',root:'dokumen (=文件，拉丁语) + kirim (=发送) + peN-...-an',tag:'供应链'},
+  'ongkos kirim':{ipa:'/ˈoŋkos ˈkirim/',cn:'运费',en:'shipping cost / freight',root:'ongkos (=费用) + kirim (=发送)',tag:'供应链'},
+  'biaya tambahan':{ipa:'/biˈaja tamˈbahan/',cn:'附加费',en:'surcharge / additional fee',root:'biaya (=费用) + tambah (=增加) + -an 名词后缀',tag:'供应链'},
+  'tanggap darurat':{ipa:'/ˈtaŋɡap daˈru rat/',cn:'应急响应',en:'emergency response',root:'tanggap (=响应/应对) + darurat (=紧急)',tag:'应急响应'},
+  'evakuasi':{ipa:'/evaˈkuasi/',cn:'疏散/撤离',en:'evacuation',root:'拉丁语 evacuare → evakuasi',tag:'应急响应'},
+  'penyelamatan':{ipa:'/pəɲəlaˈmatan/',cn:'救援/营救',en:'rescue',root:'selamat (=安全) + peN-...-an 名词化 → 使安全的过程',tag:'应急响应'},
+  'bencana':{ipa:'/bənˈʧana/',cn:'灾害/灾难',en:'disaster',root:'bencana (=灾难)',tag:'应急响应'},
+  'kebakaran':{ipa:'/kəbaˈkaran/',cn:'火灾',en:'fire',root:'bakar (=燃烧) + ke-...-an 名词化',tag:'应急响应'},
+  'ledakan':{ipa:'/ləˈdakan/',cn:'爆炸',en:'explosion',root:'ledak (=爆炸) + -an 名词后缀',tag:'应急响应'},
+  'kebocoran':{ipa:'/kəboˈtʃoran/',cn:'泄漏',en:'leak',root:'bocor (=泄漏) + ke-...-an 名词化',tag:'应急响应'},
+  'tumpahan':{ipa:'/tumˈpahan/',cn:'溢洒/泼洒',en:'spill',root:'tumpah (=洒出) + -an 名词后缀',tag:'应急响应'},
+  'gas beracun':{ipa:'/ˈgas bəˈratʧun/',cn:'有毒气体',en:'toxic gas',root:'gas (=气体) + racun (=毒) + ber- 前缀',tag:'应急响应'},
+  'asap':{ipa:'/ˈasap/',cn:'烟雾',en:'smoke',root:'asap (=烟)',tag:'应急响应'},
+  'gempa bumi':{ipa:'/ˈɡɛmpa ˈbumi/',cn:'地震',en:'earthquake',root:'gempa (=震动) + bumi (=地球/土地)',tag:'应急响应'},
+  'SOP darurat':{ipa:'/ɛs o ˈpe daˈru rat/',cn:'应急标准作业程序',en:'emergency SOP',root:'SOP = Standard Operating Procedure + darurat (=紧急)',tag:'应急响应'},
+  'rencana darurat':{ipa:'/rənˈʧana daˈru rat/',cn:'应急预案',en:'emergency plan',root:'rencana (=计划) + darurat (=紧急)',tag:'应急响应'},
+  'tim tanggap':{ipa:'/ˈtim ˈtaŋɡap/',cn:'应急小组',en:'response team',root:'tim (=团队，英语) + tanggap (=响应)',tag:'应急响应'},
+  'posko':{ipa:'/ˈposko/',cn:'指挥所/应急站',en:'command post / emergency station',root:'posko (=post 指挥所)',tag:'应急响应'},
+  'jalan evakuasi':{ipa:'/ˈʤalan evaˈkuasi/',cn:'疏散通道',en:'evacuation route',root:'jalan (=路) + evakuasi (=疏散)',tag:'应急响应'},
+  'titik kumpul':{ipa:'/ˈtitik ˈkumpul/',cn:'集合点',en:'assembly point / muster point',root:'titik (=点) + kumpul (=集合)',tag:'应急响应'},
+  'alarm':{ipa:'/aˈlarm/',cn:'警报器',en:'alarm',root:'拉丁语 ad arma → alarm',tag:'应急响应'},
+  'sirine':{ipa:'/ˈsirine/',cn:'警报器/汽笛',en:'siren',root:'荷兰语 sirene → sirine',tag:'应急响应'},
+  'APAR':{ipa:'/a ˈpar/',cn:'便携式灭火器',en:'fire extinguisher',root:'APAR = Alat Pemadam Api Ringan (工具+扑灭+火+轻型)',tag:'应急响应'},
+  'hidran':{ipa:'/ˈhidran/',cn:'消防栓',en:'hydrant',root:'荷兰语 hydrant → hidran',tag:'应急响应'},
+  'sprinkler':{ipa:'/ˈspriŋklɛr/',cn:'喷淋系统',en:'sprinkler',root:'英语 sprinkler → sprinkler',tag:'应急响应'},
+  'detektor asap':{ipa:'/dɛˈtɛktɔr ˈasap/',cn:'烟雾探测器',en:'smoke detector',root:'detektor (=探测器，英语) + asap (=烟)',tag:'应急响应'},
+  'APD':{ipa:'/a pe ˈde/',cn:'个人防护装备',en:'PPE (Personal Protective Equipment)',root:'APD = Alat Pelindung Diri (工具+保护+自身)',tag:'应急响应'},
+  'helm keselamatan':{ipa:'/ˈhɛlm kəsəlaˈmatan/',cn:'安全帽',en:'safety helmet',root:'helm (=头盔) + selamat (=安全) + -an 名词化',tag:'应急响应'},
+  'sepatu keselamatan':{ipa:'/səˈpatu kəsəlaˈmatan/',cn:'安全鞋',en:'safety shoes',root:'sepatu (=鞋，葡萄牙语 sapato) + keselamatan (=安全)',tag:'应急响应'},
+  'sarung tangan':{ipa:'/ˈsaruŋ ˈtaŋan/',cn:'手套',en:'gloves',root:'sarung (=套/覆盖) + tangan (=手)',tag:'应急响应'},
+  'respirator':{ipa:'/rɛspiˈratɔr/',cn:'呼吸器',en:'respirator',root:'拉丁语 respirare → respirator',tag:'应急响应'},
+  'kotak P3K':{ipa:'/ˈkotak pe ˈtiga ka/',cn:'急救箱',en:'first aid kit',root:'kotak (=盒子) + P3K = Pertolongan Pertama Pada Kecelakaan (急救)',tag:'应急响应'},
+  'tandu':{ipa:'/ˈtandu/',cn:'担架',en:'stretcher',root:'tandu (=担架/抬)',tag:'应急响应'},
+  'paramedis':{ipa:'/paraˈmɛdis/',cn:'急救员/医护',en:'paramedic',root:'英语 paramedic → paramedis',tag:'应急响应'},
+  'latihan darurat':{ipa:'/latiˈhan daˈru rat/',cn:'应急演练',en:'emergency drill',root:'latih (=训练) + -an 名词后缀 + darurat (=紧急)',tag:'应急响应'},
+  'simulasi':{ipa:'/simuˈlasi/',cn:'模拟演习',en:'simulation',root:'拉丁语 simulare → simulasi',tag:'应急响应'},
+  'penyelidikan':{ipa:'/pəɲəliˈdikan/',cn:'调查',en:'investigation',root:'selidik (=调查) + peN-...-an 名词化',tag:'应急响应'},
+  'laporan insiden':{ipa:'/laˈporan inˈsidɛn/',cn:'事故报告',en:'incident report',root:'lapor (=报告) + -an + insiden (=事件，英语)',tag:'应急响应'},
+  'hampir celaka':{ipa:'/ˈhampir ʧəˈlaka/',cn:'未遂事故/险情',en:'near miss',root:'hampir (=几乎) + celaka (=灾祸)',tag:'应急响应'}
+};
 
 
 let learningHistory; try{ learningHistory=JSON.parse(localStorage.getItem("bir_h3")||"{}"); }catch(e){ learningHistory={}; }
@@ -125483,6 +125613,8 @@ function renderVersion(c){
   c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.23 / Versi</span></div>
     <div style="padding:16px;">
       <div style="margin-bottom:14px;padding:14px;background:rgba(59,130,246,.10);border-radius:10px;border-left:3px solid var(--info)">
+        <div style="font-size:15px;font-weight:700;color:var(--info);margin-bottom:6px">V4.38.4 (2026-10-01)</div>
+        <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">1. vocabDB补全: 四话题129词BIT标准完整词条同步 — project_management 29词 + environmental_compliance 33词 + supply_chain 31词 + emergency_response 36词 · 全部含 ipa/cn/en/root/tag 五字段 · 覆盖率 29/158 → 158/158 (100%) · 修复Day1词汇页面大量词条不渲染问题</div>
         <div style="font-size:15px;font-weight:700;color:var(--info);margin-bottom:6px">V4.38.3 (2026-10-01)</div>
         <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">1. C5策略全面合规: 10/1-10/10 课程优化 · project_management 词汇68→40(删重3+精简25) 47处英文IPA修复 场景对话5-6→12-13句 · environmental_compliance 词汇75→38 13处英文替换 场景对话5-6→13句 · supply_chain 词汇82→40 场景10→3(保留采购/物流/清关) 每场景5→11-14句 · emergency_response 词汇86→40 场景10→3(保留火灾/泄漏/演练) 每场景5→11-12句 · 四话题全部C5合规: 词汇20-40✅ 场景=3✅ 对话10-20句✅ 测试15题✅</div>
       </div>
