@@ -6,7 +6,7 @@
 <meta http-equiv="Expires" content="0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LEO-BIR V4.38.6</title>
+<title>LEO-BIR V4.38.7</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -268,7 +268,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
 </style>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="video_registry.js?v=V4.38.6"></script>
+<script src="video_registry.js?v=V4.38.7"></script>
 </head>
 <body>
 <div class="app">
@@ -276,7 +276,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="sidebar-header">
     <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <h1>LEO-BIR</h1>
-    <div class="ver">LEO-BIR V4.38.6 · 每日复习视频 Layer 1（2 集样片 · 剪影引擎 v2）</div>
+    <div class="ver">LEO-BIR V4.38.7 · 每日复习视频 Layer 1（2 集样片 · 剪影引擎 v2）</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -412,7 +412,17 @@ const vocabDB = {
 'Jangan':{ipa:'/ˈdʒaŋan/',cn:'不要/别',en:'dont / do not',root:'jangan',tag:'基础词汇'},
 'lupa':{ipa:'/ˈlupa/',cn:'忘记',en:'to forget',root:'lupa',tag:'基础词汇'},
 'bawa':{ipa:'/ˈbawa/',cn:'携带/带来',en:'to bring / carry',root:'bawa',tag:'基础词汇'},
-'laporan':{ipa:'/laˈporan/',cn:'报告/汇报',en:'report',root:'lapor + -an',tag:'商务高频'},
+'laporan':{
+  ipa:'/laˈporan/',
+  cn:'报告/汇报',
+  en:'report',
+  root:'lapor (=报告) + -an → laporan',
+  transform:[{form:'lapor',pos:'v',cn:'报告'},{form:'laporan',pos:'n',cn:'报告'},{form:'melapor',pos:'v',cn:'汇报'},{form:'pelapor',pos:'n',cn:'报告人'},{form:'dilaporkan',pos:'passive',cn:'被报告'}],
+  note:'lapor + -an；商务高频',
+  example:[{id:'Laporan keuangan disampaikan setiap triwulan.',cn:'财务报告每季度提交。'},{id:'Laporan lingkungan wajib disampaikan kepada KLHK.',cn:'环境报告必须提交给环境和林业部。'}],
+  synonym:['report','berkas','dokumen'],
+  tag:'环保合规'
+},
 'kemarin':{ipa:'/kəˈmarin/',cn:'昨天',en:'yesterday',root:'kemarin',tag:'时间词'},
 'Halo':{ipa:'/ˈhalo/',cn:'你好(非正式)',en:'hello',root:'halo',tag:'问候语'},
 'kalian':{ipa:'/kaˈlian/',cn:'你们(复数)',en:'you (plural)',root:'kalian',tag:'代词'},
@@ -420,7 +430,17 @@ const vocabDB = {
 'ini':{ipa:'/ˈini/',cn:'这/这个',en:'this',root:'ini',tag:'基础词汇'},
 'tim':{ipa:'/ˈtim/',cn:'团队/队',en:'team',root:'tim (English)',tag:'商务高频'},
 'maintenance':{ipa:'/ˈmɛntɛnəns/',cn:'维护/维修',en:'maintenance',root:'maintenance (English)',tag:'商务高频'},
-'gudang':{ipa:'/ˈɡudaŋ/',cn:'仓库/储藏室',en:'warehouse / store',root:'gudang',tag:'地点'},
+'gudang':{
+  ipa:'/ˈɡudaŋ/',
+  cn:'仓库/储藏室',
+  en:'warehouse / store',
+  root:'gudang (Proto-Malay)',
+  transform:[{form:'gudang',pos:'n',cn:'仓库'},{form:'gudang penyimpanan',pos:'phrase',cn:'储藏仓库'},{form:'gudang pendingin',pos:'phrase',cn:'冷库'},{form:'penyimpanan',pos:'n',cn:'储存'}],
+  note:'基础词汇，无需词根拆解',
+  example:[{id:'Gudang penyimpanan penuh dengan barang.',cn:'储藏仓库堆满了货物。'},{id:'Sistem gudang harus tertata rapi.',cn:'仓库系统必须整齐有序。'}],
+  synonym:['gudang penyimpanan','lumbung','warehouse'],
+  tag:'供应链'
+},
 'delapan':{ipa:'/dəˈlapən/',cn:'八',en:'eight',root:'delapan',tag:'数词'},
 'siap':{ipa:'/ˈsiap/',cn:'准备好/预备',en:'ready / prepared',root:'siap',tag:'基础词汇'},
 'Ada':{ipa:'/ˈada/',cn:'有/存在',en:'there is / have',root:'ada',tag:'基础词汇'},
@@ -449,7 +469,17 @@ const vocabDB = {
 'meluangkan':{ipa:'/məˈluaŋkan/',cn:'抽出(时间)',en:'to spare (time)',root:'luang = free + me-+-kan',tag:'商务高频'},
 'Sempurna':{ipa:'/səmˈpurna/',cn:'完美/极好',en:'perfect / excellent',root:'sempurna',tag:'基础词汇'},
 'mulai':{ipa:'/ˈmulai/',cn:'开始',en:'to start / begin',root:'mulai',tag:'基础词汇'},
-'pengadaan':{ipa:'/pəˈɡadaan/',cn:'采购/供应',en:'procurement',root:'ada = exist + pe-/-an',tag:'商务高频'},
+'pengadaan':{
+  ipa:'/pəŋaˈdaan/',
+  cn:'采购/供应',
+  en:'procurement',
+  root:'ada (=存在) + peN- + -an → pengadaan',
+  transform:[{form:'ada',pos:'v',cn:'存在/有'},{form:'pengadaan',pos:'n',cn:'采购/供应'},{form:'mengadaan',pos:'v',cn:'采购/供应'},{form:'barang pengadaan',pos:'phrase',cn:'采购物资'}],
+  note:'ada + peN- + -an；商务/供应链高频',
+  example:[{id:'Pengadaan barang dilakukan melalui tender.',cn:'货物采购通过招标进行。'},{id:'Pengadaan bahan baku sangat penting.',cn:'原材料采购非常重要。'}],
+  synonym:['pembelian','procurement','akuisisi'],
+  tag:'供应链'
+},
 'peralatan':{ipa:'/pəraˈlatan/',cn:'设备/工具',en:'equipment / tools',root:'alat = tool + per-/-an',tag:'商务高频'},
 'teknologi':{ipa:'/tɛkˈnoloɡi/',cn:'技术',en:'technology',root:'teknologi (Dutch)',tag:'商务高频'},
 'terbaru':{ipa:'/tərˈbaru/',cn:'最新的',en:'latest / newest',root:'baru = new + ter-',tag:'基础词汇'},
@@ -463,7 +493,17 @@ const vocabDB = {
 'Tengah':{ipa:'/ˈtɛŋah/',cn:'中部/中央',en:'central / middle',root:'tengah',tag:'地点'},
 'bergerak':{ipa:'/bərˈɡɛrɛk/',cn:'活动/从事',en:'to move / engage in',root:'gerak = move + ber-',tag:'ber-动词'},
 'bidang':{ipa:'/ˈbidaŋ/',cn:'领域/方面',en:'field / area',root:'bidang',tag:'商务高频'},
-'pengolahan':{ipa:'/pəŋoˈlahan/',cn:'加工/处理',en:'processing',root:'olah = process + peng-/-an',tag:'商务高频'},
+'pengolahan':{
+  ipa:'/pəŋoˈlahan/',
+  cn:'加工/处理',
+  en:'processing / treatment',
+  root:'olah (=处理) + peN- + -an → pengolahan',
+  transform:[{form:'olah',pos:'v',cn:'处理/加工'},{form:'pengolahan',pos:'n',cn:'加工/处理'},{form:'mengolah',pos:'v',cn:'加工/处理'},{form:'pengolahan limbah',pos:'phrase',cn:'废物处理'},{form:'pengolahan air',pos:'phrase',cn:'水处理'}],
+  note:'olah + peN- + -an；鼻音同化 ŋ',
+  example:[{id:'Pengolahan limbah harus sesuai standar.',cn:'废物处理必须符合标准。'},{id:'Pengolahan air bersih sangat penting.',cn:'清洁水处理非常重要。'}],
+  synonym:['pemrosesan','treatment','pengelolaan'],
+  tag:'环保合规'
+},
 'nikel':{ipa:'/ˈnikɛl/',cn:'镍',en:'nickel',root:'nikel (Dutch)',tag:'商务高频'},
 'hulu':{ipa:'/ˈhulu/',cn:'上游(产业链)',en:'upstream',root:'hulu',tag:'商务高频'},
 'hingga':{ipa:'/ˈhiŋɡa/',cn:'直到/至',en:'until / up to',root:'hingga',tag:'基础词汇'},
@@ -674,7 +714,17 @@ const vocabDB = {
 'berpikir':{ipa:'/bərˈpikir/',cn:'思考/想',en:'to think',root:'pikir + ber-',tag:'ber-动词'},
 'bertanya':{ipa:'/bərˈtanja/',cn:'提问/询问',en:'to ask',root:'tanya + ber-',tag:'ber-动词'},
 'bersama-sama':{ipa:'/bərˈsama ˈsama/',cn:'一起/共同',en:'together',root:'sama + ber- reduplication',tag:'基础词汇'},
-'proyek':{ipa:'/ˈprodʒɛk/',cn:'项目',en:'project',root:'proyek (Dutch)',tag:'商务高频'},
+'proyek':{
+  ipa:'/ˈprodʒɛk/',
+  cn:'项目',
+  en:'project',
+  root:'proyek (Dutch: project)',
+  transform:[{form:'proyek',pos:'n',cn:'项目'},{form:'proyektor',pos:'n',cn:'投影仪'},{form:'memroyeksikan',pos:'v',cn:'投射/预测'},{form:'proyeksi',pos:'n',cn:'预测/规划'}],
+  note:'项目管理核心术语；与 proyeksi（预测）区分',
+  example:[{id:'Proyek akan dimulai minggu depan.',cn:'项目将于下周开始。'},{id:'Proyek ini membutuhkan anggaran besar.',cn:'这个项目需要大量预算。'}],
+  synonym:['proyeksi','rencana kerja','program'],
+  tag:'项目管理'
+},
 'smelt':{ipa:'/ˈsmɛltɛr/',cn:'冶炼厂',en:'smelter',root:'smelter (English)',tag:'商务高频'},
 'hari':{ipa:'/ˈhari/',cn:'天/日子',en:'day',root:'hari',tag:'时间词'},
 'sudah':{ipa:'/ˈsudah/',cn:'已经',en:'already',root:'sudah',tag:'基础词汇'},
@@ -744,9 +794,39 @@ const vocabDB = {
   'alhamdulillah':{ipa:'/alhamduˈlɪllah/',cn:'感谢真主',en:'praise God',root:'Arabic',tag:'常用词'},
   'alternatif':{ipa:'/altərnaˈtif/',cn:'替代的',en:'alternative',root:'alternatif',tag:'常用词'},
   'ambil':{ipa:'/ˈambɪl/',cn:'拿/取',en:'to take',root:'ambil',tag:'常用词'},
-  'ambulans':{ipa:'/ˈambulans/',cn:'救护车',en:'ambulance',root:'ambulance',tag:'常用词'},
-  'analisis':{ipa:'/anaˈlɪsis/',cn:'分析',en:'analysis',root:'analisis',tag:'常用词'},
-  'anggaran':{ipa:'/aŋˈgaran/',cn:'预算',en:'budget',root:'anggar + -an',tag:'常用词'},
+  'ambulans':{
+  ipa:'/ˈambulans/',
+  cn:'救护车',
+  en:'ambulance',
+  root:'ambulans (Latin: ambulantia)',
+  transform:[{form:'ambulans',pos:'n',cn:'救护车'},{form:'panggilan ambulans',pos:'phrase',cn:'呼叫救护车'},{form:'layanan ambulans',pos:'phrase',cn:'救护车服务'},{form:'nomor ambulans',pos:'phrase',cn:'救护车号码'}],
+  note:'拉丁语借词；急救核心术语',
+  example:[{id:'Ambulans datang dalam waktu lima menit.',cn:'救护车五分钟内到达。'},{id:'Korban dilarikan ke rumah sakit dengan ambulans.',cn:'伤者被救护车送往医院。'}],
+  synonym:['mobil darurat','kendaraan medis','rescue'],
+  tag:'应急响应'
+},
+  'analisis':{
+  ipa:'/anaˈlɪsɪs/',
+  cn:'分析',
+  en:'analysis',
+  root:'analisis (Greek: analysis)',
+  transform:[{form:'analisis',pos:'n',cn:'分析'},{form:'menganalisis',pos:'v',cn:'分析'},{form:'penganalisis',pos:'n',cn:'分析师'},{form:'analisis data',pos:'phrase',cn:'数据分析'}],
+  note:'希腊语借词；注意重音在第二音节',
+  example:[{id:'Analisis risiko dilakukan sebelum proyek dimulai.',cn:'项目开始前进行风险分析。'},{id:'Analisis data menunjukkan tren positif.',cn:'数据分析显示积极趋势。'}],
+  synonym:['pemeriksaan','kajian','studi'],
+  tag:'环保合规'
+},
+  'anggaran':{
+  ipa:'/aŋˈɡaran/',
+  cn:'预算',
+  en:'budget',
+  root:'anggar (=估算) + -an → anggaran',
+  transform:[{form:'anggar',pos:'v',cn:'估算'},{form:'anggaran',pos:'n',cn:'预算'},{form:'menganggar',pos:'v',cn:'做预算'},{form:'penganggaran',pos:'n',cn:'预算编制'}],
+  note:'anggar + -an；项目管理/财务核心术语',
+  example:[{id:'Anggaran proyek disetujui oleh direksi.',cn:'项目预算获董事会批准。'},{id:'Anggaran harus dikelola dengan hati-hati.',cn:'预算必须谨慎管理。'}],
+  synonym:['budget','rencana biaya','alokasi dana'],
+  tag:'项目管理'
+},
   'angkot':{ipa:'/ˈaŋkot/',cn:'小型公共汽车',en:'minibus',root:'angkutan + kota',tag:'常用词'},
   'anti-banjir':{ipa:'/ˈantɪ ˈbandʒɪr/',cn:'防洪的',en:'flood-proof',root:'anti + banjir',tag:'常用词'},
   'antibiotik':{ipa:'/antɪbɪˈɔtɪk/',cn:'抗生素',en:'antibiotic',root:'antibiotic',tag:'常用词'},
@@ -756,7 +836,17 @@ const vocabDB = {
   'arahkan':{ipa:'/aˈrahkan/',cn:'指向/引导',en:'to direct',root:'arah + -kan',tag:'常用词'},
   'area':{ipa:'/ˈarɛa/',cn:'区域',en:'area',root:'area',tag:'常用词'},
   'asik':{ipa:'/ˈasɪk/',cn:'有趣的/酷',en:'cool',root:'asik',tag:'常用词'},
-  'asuransi':{ipa:'/asurˈansɪ/',cn:'保险',en:'insurance',root:'asuransi',tag:'常用词'},
+  'asuransi':{
+  ipa:'/asurˈansɪ/',
+  cn:'保险',
+  en:'insurance',
+  root:'asuransi (Dutch: assurantie)',
+  transform:[{form:'asuransi',pos:'n',cn:'保险'},{form:'mengasuransikan',pos:'v',cn:'投保'},{form:'polis asuransi',pos:'phrase',cn:'保险单'},{form:'klaim asuransi',pos:'phrase',cn:'保险索赔'}],
+  note:'借词 from Dutch；商务/供应链高频',
+  example:[{id:'Asuransi kargo melindungi barang selama pengiriman.',cn:'货运保险在运输过程中保护货物。'},{id:'Perusahaan mengasuransikan semua aset.',cn:'公司给所有资产投保。'}],
+  synonym:['jaminan','perlindungan','pertanggungan'],
+  tag:'供应链'
+},
   'badan':{ipa:'/ˈbadan/',cn:'身体/机构',en:'body',root:'badan',tag:'常用词'},
   'bagaimana':{ipa:'/bagaiˈmana/',cn:'如何',en:'how',root:'bagaimana',tag:'常用词'},
   'bagus':{ipa:'/ˈbagus/',cn:'好的',en:'good',root:'bagus',tag:'常用词'},
@@ -810,10 +900,30 @@ const vocabDB = {
   'ceritakan':{ipa:'/tʃɛrɪˈtakan/',cn:'讲述',en:'to tell',root:'cerita + -kan',tag:'常用词'},
   'china':{ipa:'/ˈtʃɪna/',cn:'中国',en:'China',root:'China',tag:'常用词'},
   'cukup':{ipa:'/ˈtʃukup/',cn:'足够的',en:'enough',root:'cukup',tag:'常用词'},
-  'curah':{ipa:'/ˈtʃurah/',cn:'倾盆(雨)',en:'pouring',root:'curah',tag:'常用词'},
+  'curah':{
+  ipa:'/ˈtʃurah/',
+  cn:'散装的/倾泻',
+  en:'bulk / pouring',
+  root:'curah (=倾泻/散放)',
+  transform:[{form:'curah',pos:'adj/n',cn:'散装/倾泻'},{form:'barang curah',pos:'phrase',cn:'散装货物'},{form:'mengcurah',pos:'v',cn:'倾倒'},{form:'pengcurahan',pos:'n',cn:'倾倒（行为）'}],
+  note:'供应链术语中常指"散货"',
+  example:[{id:'Barang curah dimuat langsung ke kapal.',cn:'散货直接装载到船上。'},{id:'Hujan curah menyebabkan banjir.',cn:'倾盆大雨导致洪水。'}],
+  synonym:['bulk','curahan','tercurah'],
+  tag:'供应链'
+},
   'daftar':{ipa:'/ˈdaftar/',cn:'名单/列表',en:'list/register',root:'daftar',tag:'常用词'},
   'darah':{ipa:'/ˈdarah/',cn:'血',en:'blood',root:'darah',tag:'常用词'},
-  'darurat':{ipa:'/daˈrurat/',cn:'紧急',en:'emergency',root:'darurat',tag:'常用词'},
+  'darurat':{
+  ipa:'/daˈrurat/',
+  cn:'紧急/应急',
+  en:'emergency',
+  root:'darurat (Arabic: ḍarūra ضرورة)',
+  transform:[{form:'darurat',pos:'n/adj',cn:'紧急/应急'},{form:'tanggap darurat',pos:'phrase',cn:'应急响应'},{form:'keadaan darurat',pos:'phrase',cn:'紧急状态'},{form:'tombol darurat',pos:'phrase',cn:'紧急按钮'}],
+  note:'阿拉伯语借词；安全应急核心术语',
+  example:[{id:'Keadaan darurat dinyatakan setelah kecelakaan besar.',cn:'重大事故后宣布紧急状态。'},{id:'Tim tanggap darurat siap 24 jam.',cn:'应急响应团队24小时待命。'}],
+  synonym:['emergensi','krisis','genting'],
+  tag:'应急响应'
+},
   'departemen':{ipa:'/dɛpartəˈmɛn/',cn:'部门',en:'department',root:'departemen',tag:'常用词'},
   'dia':{ipa:'/ˈdia/',cn:'他/她',en:'he/she',root:'dia',tag:'常用词'},
   'diaspal':{ipa:'/diˈaspal/',cn:'铺设沥青的',en:'asphalted',root:'diaspal',tag:'常用词'},
@@ -908,7 +1018,17 @@ const vocabDB = {
   'lift':{ipa:'/lift/',cn:'电梯',en:'lift',root:'lift',tag:'常用词'},
   'lihat':{ipa:'/ˈlihat/',cn:'看',en:'to see',root:'lihat',tag:'常用词'},
   'lini':{ipa:'/lini/',cn:'生产线',en:'lini',root:'lini',tag:'常用词'},
-  'logistik':{ipa:'/logistik/',cn:'物流',en:'logistik',root:'logistik',tag:'常用词'},
+  'logistik':{
+  ipa:'/loˈɡɪstɪk/',
+  cn:'物流',
+  en:'logistics',
+  root:'logistik (English: logistics)',
+  transform:[{form:'logistik',pos:'n',cn:'物流'},{form:'manajemen logistik',pos:'phrase',cn:'物流管理'},{form:'rantai pasok',pos:'phrase',cn:'供应链'},{form:'jaringan logistik',pos:'phrase',cn:'物流网络'}],
+  note:'借词 from English；供应链核心术语',
+  example:[{id:'Logistik proyek sangat kompleks.',cn:'项目物流非常复杂。'},{id:'Manajemen logistik memastikan pengiriman tepat waktu.',cn:'物流管理确保按时交付。'}],
+  synonym:['pengiriman','distribusi','rantai pasok'],
+  tag:'供应链'
+},
   'lokal':{ipa:'/lokal/',cn:'当地',en:'lokal',root:'lokal',tag:'常用词'},
   'lokasi':{ipa:'/lokasi/',cn:'lokas(及物动词)',en:'to lokas (tr.)',root:'lokasi',tag:'常用词'},
   'luka':{ipa:'/ˈluka/',cn:'伤口',en:'wound',root:'luka',tag:'常用词'},
@@ -920,7 +1040,17 @@ const vocabDB = {
   'malaria':{ipa:'/malaria/',cn:'"疟疾" "Malaria."',en:'malaria',root:'malaria',tag:'常用词'},
   'mall':{ipa:'/mall/',cn:'商場',en:'mall',root:'mall',tag:'常用词'},
   'mana':{ipa:'/mana/',cn:'严盼旋',en:'mana',root:'mana',tag:'常用词'},
-  'manajemen':{ipa:'/manaˈdʒɛmɛn/',cn:'管理',en:'management',root:'manajemen',tag:'常用词'},
+  'manajemen':{
+  ipa:'/manaˈdʒɛmɛn/',
+  cn:'管理',
+  en:'management',
+  root:'manajemen (English: management)',
+  transform:[{form:'manajemen',pos:'n',cn:'管理'},{form:'manajer',pos:'n',cn:'经理'},{form:'mengelola',pos:'v',cn:'管理/经营'},{form:'pengelolaan',pos:'n',cn:'管理（行为）'}],
+  note:'借词 from English management',
+  example:[{id:'Manajemen proyek memerlukan keterampilan khusus.',cn:'项目管理需要特殊技能。'},{id:'Manajemen perusahaan sangat efisien.',cn:'公司管理非常高效。'}],
+  synonym:['pengelolaan','administrasi','manajerial'],
+  tag:'项目管理'
+},
   'manis':{ipa:'/ˈmanis/',cn:'甜的',en:'sweet',root:'manis',tag:'常用词'},
   'maps':{ipa:'/maps/',cn:'地图',en:'maps',root:'maps',tag:'常用词'},
   'maret':{ipa:'/maret/',cn:'三月份',en:'maret',root:'maret',tag:'常用词'},
@@ -952,7 +1082,17 @@ const vocabDB = {
   'minta':{ipa:'/ˈminta/',cn:'请求',en:'to ask',root:'minta',tag:'常用词'},
   'minum':{ipa:'/ˈminum/',cn:'喝',en:'to drink',root:'minum',tag:'常用词'},
   'minumnya':{ipa:'/minumnya/',cn:'饮料(他的)',en:'his/her minum',root:'minum + -nya',tag:'常用词'},
-  'mitigasi':{ipa:'/mitigasi/',cn:'mitigas(及物动词)',en:'to mitigas (tr.)',root:'mitigasi',tag:'常用词'},
+  'mitigasi':{
+  ipa:'/mɪtɪˈɡasi/',
+  cn:'缓解/减轻',
+  en:'mitigation',
+  root:'mitigasi (English: mitigation)',
+  transform:[{form:'mitigasi',pos:'n',cn:'缓解'},{form:'memitigasi',pos:'v',cn:'缓解/减轻'},{form:'mitigasi risiko',pos:'phrase',cn:'风险缓解'},{form:'rencana mitigasi',pos:'phrase',cn:'缓解计划'}],
+  note:'借词 from English；正式用语，日常口语用 pengurangan',
+  example:[{id:'Mitigasi risiko lingkungan sangat penting.',cn:'环境风险缓解非常重要。'},{id:'Perusahaan menyusun rencana mitigasi bencana.',cn:'公司制定灾害缓解计划。'}],
+  synonym:['pengurangan','penanganan','pencegahan'],
+  tag:'项目管理'
+},
   'mobil':{ipa:'/ˈmobɪl/',cn:'汽车',en:'car',root:'mobil',tag:'常用词'},
   'mohon':{ipa:'/ˈmohon/',cn:'恳请',en:'please (formal)',root:'mohon',tag:'常用词'},
   'mungkin':{ipa:'/ˈmungkɪn/',cn:'可能',en:'maybe',root:'mungkin',tag:'常用词'},
@@ -985,7 +1125,17 @@ const vocabDB = {
   'payung':{ipa:'/payung/',cn:'傘',en:'payung',root:'payung',tag:'常用词'},
   'pekan':{ipa:'/pekan/',cn:'kan的人/物',en:'kan person',root:'kan + pe-',tag:'常用词'},
   'pekerja':{ipa:'/pekerja/',cn:'kerja的人/物',en:'kerja person',root:'kerja + pe-',tag:'常用词'},
-  'pelabuhan':{ipa:'/pelabuhan/',cn:'labuhan的人/物',en:'labuhan person',root:'labuhan + pe-',tag:'常用词'},
+  'pelabuhan':{
+  ipa:'/pəlaˈbuhan/',
+  cn:'港口/码头',
+  en:'port / harbor',
+  root:'labuh (=停泊) + peN- + -an → pelabuhan',
+  transform:[{form:'labuh',pos:'v',cn:'停泊'},{form:'pelabuhan',pos:'n',cn:'港口'},{form:'berlabuh',pos:'v',cn:'停靠/停泊'},{form:'labuhan',pos:'n',cn:'锚地/泊地'}],
+  note:'labuh + peN- + -an；鼻音同化 l→l（无变化）',
+  example:[{id:'Pelabuhan Morowali adalah pelabuhan terbesar di kawasan ini.',cn:'Morowali 港是该地区最大的港口。'},{id:'Kapal kargo berlabuh di pelabuhan.',cn:'货船停靠在港口。'}],
+  synonym:['dermaga','labuhan','port'],
+  tag:'供应链'
+},
   'pemandangannya':{ipa:'/pemandangannya/',cn:'mandangannya的人/物',en:'mandangannya person',root:'mandangannya + pe-',tag:'常用词'},
   'pemasaran':{ipa:'/pemasaran/',cn:'masaran的人/物',en:'masaran person',root:'masaran + pe-',tag:'常用词'},
   'pembahasan':{ipa:'/pembahasan/',cn:'mbahasan的人/物',en:'mbahasan person',root:'mbahasan + pe-',tag:'常用词'},
@@ -994,7 +1144,17 @@ const vocabDB = {
   'penambangan':{ipa:'/penambangan/',cn:'nambangan的人/物',en:'nambangan person',root:'nambangan + pe-',tag:'常用词'},
   'penerbangan':{ipa:'/penerbangan/',cn:'nerbangan的人/物',en:'nerbangan person',root:'nerbangan + pe-',tag:'常用词'},
   'penggiling':{ipa:'/penggiling/',cn:'nggiling的人/物',en:'nggiling person',root:'nggiling + pe-',tag:'常用词'},
-  'pengiriman':{ipa:'/pengiriman/',cn:'ngiriman的人/物',en:'ngiriman person',root:'ngiriman + pe-',tag:'常用词'},
+  'pengiriman':{
+  ipa:'/pəŋɪˈrɪman/',
+  cn:'运输/发货',
+  en:'shipping / delivery',
+  root:'kirim (=发送) + peN- + -an → pengiriman',
+  transform:[{form:'kirim',pos:'v',cn:'发送'},{form:'pengiriman',pos:'n',cn:'运输/发货'},{form:'mengirim',pos:'v',cn:'发送'},{form:'pengirim',pos:'n',cn:'发货人'},{form:'penerima',pos:'n',cn:'收货人'}],
+  note:'kirim + peN- + -an；n→ŋ 鼻音同化',
+  example:[{id:'Pengiriman barang tertunda karena cuaca buruk.',cn:'由于天气恶劣货物发运延迟。'},{id:'Pengiriman dilakukan melalui pelabuhan.',cn:'运输通过港口进行。'}],
+  synonym:['pengangkutan','delivery','pengapalan'],
+  tag:'供应链'
+},
   'penting':{ipa:'/penting/',cn:'nting的人/物',en:'nting person',root:'nting + pe-',tag:'常用词'},
   'penurun':{ipa:'/penurun/',cn:'nurun的人/物',en:'nurun person',root:'nurun + pe-',tag:'常用词'},
   'per':{ipa:'/per/',cn:'弹簧',en:'per',root:'per',tag:'常用词'},
@@ -1013,7 +1173,17 @@ const vocabDB = {
   'pindah':{ipa:'/ˈpɪndah/',cn:'搬家/移动',en:'to move',root:'pindah',tag:'常用词'},
   'pindahkan':{ipa:'/pindahkan/',cn:'使pindah',en:'to make pindah',root:'pindah + -kan',tag:'常用词'},
   'pos':{ipa:'/ˈpos/',cn:'邮局/岗位',en:'post',root:'pos',tag:'常用词'},
-  'prakiraan':{ipa:'/prakiraan/',cn:'prakira(名词)',en:'prakira (noun)',root:'prakira + -an',tag:'常用词'},
+  'prakiraan':{
+  ipa:'/prakɪˈraan/',
+  cn:'预测/预报',
+  en:'forecast / prediction',
+  root:'pra- (=前) + kira (=估计) + -an → prakiraan',
+  transform:[{form:'kira',pos:'v',cn:'估计/认为'},{form:'prakira',pos:'n',cn:'预测（基础）'},{form:'prakiraan',pos:'n',cn:'预测/预报'},{form:'memprakirakan',pos:'v',cn:'预测'}],
+  note:'pra- + kira + -an；与 proyeksi 近义但 kira 更口语',
+  example:[{id:'Prakiraan cuaca menunjukkan hujan deras.',cn:'天气预报显示大雨。'},{id:'Prakiraan keuangan perusahaan sangat positif.',cn:'公司财务预测非常乐观。'}],
+  synonym:['prediksi','perkiraan','proyeksi','ramalan'],
+  tag:'项目管理'
+},
   'produk':{ipa:'/ˈprodʊk/',cn:'产品',en:'product',root:'produk',tag:'常用词'},
   'produsen':{ipa:'/produsen/',cn:'制造商',en:'produsen',root:'produsen',tag:'常用词'},
   'proposalnya':{ipa:'/proposalnya/',cn:'提案(他的)',en:'his/her proposal',root:'proposal + -nya',tag:'常用词'},
@@ -1025,7 +1195,17 @@ const vocabDB = {
   'ratus':{ipa:'/ratus/',cn:'百',en:'ratus',root:'ratus',tag:'常用词'},
   'rencana':{ipa:'/rɛnˈtʃana/',cn:'计划',en:'plan',root:'rencana',tag:'常用词'},
   'resep':{ipa:'/ˈrɛsɛp/',cn:'处方/食谱',en:'prescription/recipe',root:'resep',tag:'常用词'},
-  'risiko':{ipa:'/risiko/',cn:'风险',en:'risiko',root:'risiko',tag:'常用词'},
+  'risiko':{
+  ipa:'/rɪˈsiko/',
+  cn:'风险',
+  en:'risk',
+  root:'risiko (Dutch: risico)',
+  transform:[{form:'risiko',pos:'n',cn:'风险'},{form:'berisiko',pos:'adj',cn:'有风险的'},{form:'merisikokan',pos:'v',cn:'使冒风险'},{form:'manajemen risiko',pos:'phrase',cn:'风险管理'}],
+  note:'借词 from Dutch；HSE/项目管理核心术语',
+  example:[{id:'Setiap proyek memiliki risiko tersendiri.',cn:'每个项目都有其风险。'},{id:'Risiko kecelakaan harus diminimalisasi.',cn:'事故风险必须最小化。'}],
+  synonym:['bahaya','ancaman','potensi kerugian'],
+  tag:'项目管理'
+},
   'rontgen':{ipa:'/rontgen/',cn:'x射线',en:'rontgen',root:'rontgen',tag:'常用词'},
   'rumah':{ipa:'/ˈrumah/',cn:'家',en:'house/home',root:'rumah',tag:'常用词'},
   'rupiah':{ipa:'/rupiah/',cn:'印尼盾',en:'rupiah',root:'rupiah',tag:'常用词'},
@@ -1059,7 +1239,17 @@ const vocabDB = {
   'sore':{ipa:'/ˈsorɛ/',cn:'傍晚',en:'late afternoon',root:'sore',tag:'常用词'},
   'standar':{ipa:'/ˈstandar/',cn:'标准',en:'standard',root:'standar',tag:'常用词'},
   'stasiun':{ipa:'/staˈsiun/',cn:'车站',en:'station',root:'stasiun',tag:'常用词'},
-  'stok':{ipa:'/stok/',cn:'库存',en:'stok',root:'stok',tag:'常用词'},
+  'stok':{
+  ipa:'/stok/',
+  cn:'库存/存货',
+  en:'stock / inventory',
+  root:'stok (Dutch: stock)',
+  transform:[{form:'stok',pos:'n',cn:'库存'},{form:'stok barang',pos:'phrase',cn:'货物库存'},{form:'stok minimum',pos:'phrase',cn:'最低库存'},{form:'manajemen stok',pos:'phrase',cn:'库存管理'}],
+  note:'借词 from Dutch',
+  example:[{id:'Stok bahan baku menipis.',cn:'原材料库存减少。'},{id:'Stok minimum harus selalu tersedia.',cn:'最低库存必须始终可用。'}],
+  synonym:['persediaan','inventaris','cadangan'],
+  tag:'供应链'
+},
   'sunscreen':{ipa:'/sunscreen/',cn:'防晒霜',en:'sunscreen',root:'sunscreen',tag:'常用词'},
   'surabaya':{ipa:'/surabaya/',cn:'泗水',en:'surabaya',root:'surabaya',tag:'常用词'},
   'tahu':{ipa:'/ˈtahu/',cn:'豆腐/知道',en:'tofu/know',root:'tahu',tag:'常用词'},
@@ -1339,7 +1529,17 @@ const vocabDB = {
   'bagi':{ipa:'/ˈbagɪ/',cn:'对于/分给',en:'for',root:'bagi',tag:'常用词'},
 'bali':{ipa:'-',cn:'巴厘岛',en:'Bali',root:'bali',tag:'地名'},
 'bangun':{ipa:'-',cn:'醒来/建立',en:'to wake up / build',root:'bangun',tag:'基础动词'},
-'banjir':{ipa:'-',cn:'洪水',en:'flood',root:'banjir',tag:'名词'},
+'banjir':{
+  ipa:'/ˈbandʒɪr/',
+  cn:'洪水',
+  en:'flood',
+  root:'banjir (Proto-Malay)',
+  transform:[{form:'banjir',pos:'n',cn:'洪水'},{form:'kebanjiran',pos:'adj',cn:'被水淹'},{form:'terbanjir',pos:'adj',cn:'遭洪水'},{form:'musim banjir',pos:'phrase',cn:'洪水季节'}],
+  note:'基础词汇，无需词根拆解',
+  example:[{id:'Banjir bandang melanda kawasan tambang.',cn:'山洪暴发袭击矿区。'},{id:'Sistem drainase mencegah banjir.',cn:'排水系统预防洪水。'}],
+  synonym:['genangan','luapan air','bencana air'],
+  tag:'应急响应'
+},
 'batin':{ipa:'-',cn:'内心',en:'inner self',root:'batin',tag:'名词'},
   'bawah':{ipa:'/ˈbawah/',cn:'下面',en:'below',root:'bawah',tag:'常用词'},
 'beasiswa':{ipa:'-',cn:'奖学金',en:'scholarship',root:'beasiswa',tag:'名词'},
@@ -1365,7 +1565,17 @@ const vocabDB = {
 'berlemak':{ipa:'-',cn:'有脂肪的',en:'fatty',root:'lemak + ber-',tag:'形容词'},
   'bermanfaat':{ipa:'/bərmanˈfaʔat/',cn:'有益的',en:'beneficial',root:'manfaat + ber-',tag:'常用词'},
   'besaran':{ipa:'/bəˈsaran/',cn:'尺寸',en:'size',root:'besar + -an',tag:'常用词'},
-  'biaya':{ipa:'/bɪˈaja/',cn:'费用',en:'cost',root:'biaya',tag:'常用词'},
+  'biaya':{
+  ipa:'/bɪˈaja/',
+  cn:'成本/费用',
+  en:'cost / expense',
+  root:'biaya (Sanskrit: vyaya व्यय)',
+  transform:[{form:'biaya',pos:'n',cn:'成本/费用'},{form:'berbiaya',pos:'adj',cn:'有成本的'},{form:'menghemat biaya',pos:'phrase',cn:'节省成本'},{form:'biaya operasional',pos:'phrase',cn:'运营成本'}],
+  note:'梵语借词；财务/项目管理高频',
+  example:[{id:'Biaya proyek melebihi anggaran.',cn:'项目成本超出预算。'},{id:'Biaya operasional harus dikendalikan.',cn:'运营成本必须控制。'}],
+  synonym:['kos','pengeluaran','beban'],
+  tag:'项目管理'
+},
   'bonus':{ipa:'/ˈbonus/',cn:'奖金',en:'bonus',root:'bonus',tag:'常用词'},
   'buatlah':{ipa:'/ˈbuʔatlah/',cn:'请做',en:'please do',root:'buat + -lah',tag:'常用词'},
   'bukan':{ipa:'/ˈbukan/',cn:'不是',en:'not',root:'bukan',tag:'常用词'},
@@ -1406,7 +1616,17 @@ const vocabDB = {
 'ekonomi':{ipa:'-',cn:'经济',en:'economy',root:'ekonomi',tag:'名词'},
 'ekstrem':{ipa:'-',cn:'极端的',en:'extreme',root:'ekstrem (Dutch)',tag:'形容词'},
   'elektronik':{ipa:'/elektronik/',cn:'电子',en:'elektronik',root:'elektronik',tag:'常用词'},
-'emisi':{ipa:'-',cn:'排放',en:'emission',root:'emisi (Dutch)',tag:'名词'},
+'emisi':{
+  ipa:'/eˈmɪsɪ/',
+  cn:'排放',
+  en:'emission',
+  root:'emisi (Latin: emission)',
+  transform:[{form:'emisi',pos:'n',cn:'排放'},{form:'emisi gas buang',pos:'phrase',cn:'废气排放'},{form:'emisi karbon',pos:'phrase',cn:'碳排放'},{form:'zero emisi',pos:'phrase',cn:'零排放'}],
+  note:'拉丁语借词；环保/气候核心术语',
+  example:[{id:'Emisi karbon harus dikurangi secara signifikan.',cn:'碳排放必须显著减少。'},{id:'Emisi gas buang kendaraan mencemari udara.',cn:'车辆废气排放污染空气。'}],
+  synonym:['pelepasan','buangan','gas rumah kaca'],
+  tag:'环保合规'
+},
 'energi':{ipa:'-',cn:'能量',en:'energy',root:'energi',tag:'名词'},
   'estimasi':{ipa:'/estimasi/',cn:'estimas(及物动词)',en:'to estimas (tr.)',root:'estimasi',tag:'常用词'},
   'expired':{ipa:'/expired/',cn:'已过期',en:'expired',root:'expired',tag:'常用词'},
@@ -1437,7 +1657,17 @@ const vocabDB = {
   'isinya':{ipa:'/isinya/',cn:'内容(他的)',en:'his/her isi',root:'isi + -nya',tag:'常用词'},
 'istimewa':{ipa:'-',cn:'特殊的',en:'special',root:'istimewa',tag:'形容词'},
 'izin':{ipa:'-',cn:'许可',en:'permission',root:'izin',tag:'名词'},
-'jadwal':{ipa:'-',cn:'日程',en:'schedule',root:'jadwal',tag:'名词'},
+'jadwal':{
+  ipa:'/ˈdʒadwal/',
+  cn:'日程/进度表',
+  en:'schedule',
+  root:'jadwal (Arabic: jadwal جدول)',
+  transform:[{form:'jadwal',pos:'n',cn:'日程/时间表'},{form:'menjadwalkan',pos:'v',cn:'安排日程'},{form:'terjadwal',pos:'adj',cn:'已排定的'},{form:'penjadwalan',pos:'n',cn:'排程（行为）'}],
+  note:'借词 from Arabic，项目管理高频术语',
+  example:[{id:'Jadwal proyek sudah disusun.',cn:'项目进度表已编制。'},{id:'Kami harus mengikuti jadwal yang ketat.',cn:'我们必须遵守严格的日程。'}],
+  synonym:['agenda','timetable','rentang waktu'],
+  tag:'项目管理'
+},
 'jaga':{ipa:'-',cn:'守护/保持',en:'to guard / keep',root:'jaga',tag:'基础动词'},
 'jalur':{ipa:'-',cn:'路线/通道',en:'route / path',root:'jalur',tag:'名词'},
 'jelas':{ipa:'-',cn:'清楚',en:'clear',root:'jelas',tag:'形容词'},
@@ -1453,7 +1683,17 @@ const vocabDB = {
 'keberhasilan':{ipa:'-',cn:'成功',en:'success',root:'berhasil + ke- + -an',tag:'名词'},
   'kebesaran':{ipa:'/kebesaran/',cn:'kebesar(名词)',en:'kebesar (noun)',root:'kebesar + -an',tag:'常用词'},
 'kebisingan':{ipa:'-',cn:'噪音',en:'noise',root:'bising + ke- + -an',tag:'名词'},
-'kecelakaan':{ipa:'-',cn:'事故',en:'accident',root:'celaka + ke- + -an',tag:'名词'},
+'kecelakaan':{
+  ipa:'/kəʧəˈlakaan/',
+  cn:'事故/意外',
+  en:'accident',
+  root:'celaka (=灾祸) + ke- + -an → kecelakaan',
+  transform:[{form:'celaka',pos:'adj',cn:'倒霉/灾祸'},{form:'kecelakaan',pos:'n',cn:'事故'},{form:'mengalami kecelakaan',pos:'phrase',cn:'遭遇事故'},{form:'korban kecelakaan',pos:'phrase',cn:'事故受害者'}],
+  note:'celaka + ke- + -an；HSE 核心术语',
+  example:[{id:'Kecelakaan kerja harus dilaporkan segera.',cn:'工伤事故必须立即报告。'},{id:'Kecelakaan di jalan raya menyebabkan kemacetan.',cn:'道路交通事故导致拥堵。'}],
+  synonym:['insiden','musibah','bencana'],
+  tag:'应急响应'
+},
   'keenam':{ipa:'/keenam/',cn:'第六',en:'keenam',root:'keenam',tag:'常用词'},
 'kelas':{ipa:'-',cn:'班级',en:'class',root:'kelas',tag:'名词'},
 'kelelahan':{ipa:'-',cn:'疲劳',en:'fatigue',root:'lelah + ke- + -an',tag:'名词'},
@@ -1490,7 +1730,17 @@ const vocabDB = {
 'letak':{ipa:'-',cn:'位置',en:'location',root:'letak',tag:'名词'},
   'lewat':{ipa:'/ˈlɛwat/',cn:'经过/通过',en:'to pass',root:'lewat',tag:'常用词'},
 'liburan':{ipa:'-',cn:'假期',en:'holiday',root:'libur + -an',tag:'名词'},
-'lingkungan':{ipa:'-',cn:'环境',en:'environment',root:'lingkung + -an',tag:'名词'},
+'lingkungan':{
+  ipa:'/lɪŋˈkuŋan/',
+  cn:'环境',
+  en:'environment',
+  root:'lingkung (=环绕) + -an → lingkungan',
+  transform:[{form:'lingkung',pos:'v',cn:'环绕（古）'},{form:'lingkungan',pos:'n',cn:'环境'},{form:'lingkungan hidup',pos:'phrase',cn:'生活环境'},{form:'lingkungan kerja',pos:'phrase',cn:'工作环境'}],
+  note:'lingkung + -an；环保合规核心术语',
+  example:[{id:'Lingkungan kerja harus aman dan sehat.',cn:'工作环境必须安全健康。'},{id:'Perlindungan lingkungan adalah tanggung jawab kita.',cn:'环境保护是我们的责任。'}],
+  synonym:['alam','sekitar','ambient'],
+  tag:'环保合规'
+},
   'lolos':{ipa:'/lolos/',cn:'逃出来了！',en:'lolos',root:'lolos',tag:'常用词'},
   'malu':{ipa:'/malu/',cn:'羞耻',en:'malu',root:'malu',tag:'常用词'},
 'manajer':{ipa:'-',cn:'经理',en:'manager',root:'manajer (Dutch)',tag:'名词'},
@@ -1566,7 +1816,17 @@ const vocabDB = {
   'pasok':{ipa:'/pasok/',cn:'供应/提供',en:'supply',root:'pasok',tag:'常用词'},
   'pelanggan':{ipa:'/pelanggan/',cn:'langgan的人/物',en:'langgan person',root:'langgan + pe-',tag:'常用词'},
   'pemain':{ipa:'/pemain/',cn:'main的人/物',en:'main person',root:'main + pe-',tag:'常用词'},
-  'pembelian':{ipa:'/pembelian/',cn:'mbelian的人/物',en:'mbelian person',root:'mbelian + pe-',tag:'常用词'},
+  'pembelian':{
+  ipa:'/pəmbəˈlɪan/',
+  cn:'购买/采购',
+  en:'purchase / buying',
+  root:'beli (=买) + peN- + -an → pembelian',
+  transform:[{form:'beli',pos:'v',cn:'买'},{form:'pembelian',pos:'n',cn:'购买/采购'},{form:'membeli',pos:'v',cn:'购买'},{form:'pembeli',pos:'n',cn:'买方/采购员'}],
+  note:'beli + peN- + -an；m→p 鼻音同化',
+  example:[{id:'Pembelian peralatan dilakukan secara terpusat.',cn:'设备采购集中进行。'},{id:'Pembelian bahan baku dari pemasok lokal.',cn:'从本地供应商采购原材料。'}],
+  synonym:['akuisisi','pengadaan','transaksi'],
+  tag:'供应链'
+},
   'pendidikan':{ipa:'/pendidikan/',cn:'ndidikan的人/物',en:'ndidikan person',root:'ndidikan + pe-',tag:'常用词'},
 'pengalaman':{ipa:'-',cn:'经验',en:'experience',root:'alami + peng- + -an',tag:'名词'},
   'pengemudi':{ipa:'/pengemudi/',cn:'ngemudi的人/物',en:'ngemudi person',root:'ngemudi + pe-',tag:'常用词'},
@@ -1574,7 +1834,17 @@ const vocabDB = {
   'penyimpanan':{ipa:'/penyimpanan/',cn:'nyimpanan的人/物',en:'nyimpanan person',root:'nyimpanan + pe-',tag:'常用词'},
   'percaya':{ipa:'/percaya/',cn:'rcaya的人/物',en:'rcaya person',root:'rcaya + pe-',tag:'常用词'},
   'perdagangan':{ipa:'/perdagangan/',cn:'rdagangan的人/物',en:'rdagangan person',root:'rdagangan + pe-',tag:'常用词'},
-  'perencanaan':{ipa:'/perencanaan/',cn:'rencanaan的人/物',en:'rencanaan person',root:'rencanaan + pe-',tag:'常用词'},
+  'perencanaan':{
+  ipa:'/pərɛnʧaˈnaan/',
+  cn:'规划/计划',
+  en:'planning',
+  root:'rencana (=计划) + peN- + -an → perencanaan',
+  transform:[{form:'rencana',pos:'n',cn:'计划'},{form:'merencanakan',pos:'v',cn:'计划/规划'},{form:'perencana',pos:'n',cn:'规划师'},{form:'perencanaan',pos:'n',cn:'规划（行为/过程）'}],
+  note:'rencana + peN- + -an；勿与 rencana（计划）混淆',
+  example:[{id:'Perencanaan proyek harus matang sebelum dimulai.',cn:'项目规划必须在开始前完善。'},{id:'Perencanaan anggaran dilakukan setiap tahun.',cn:'预算规划每年进行。'}],
+  synonym:['perencanaan','planning','pengaturan'],
+  tag:'项目管理'
+},
   'periksa':{ipa:'/periksa/',cn:'riksa的人/物',en:'riksa person',root:'riksa + pe-',tag:'常用词'},
   'persiapan':{ipa:'/persiapan/',cn:'rsiapan的人/物',en:'rsiapan person',root:'rsiapan + pe-',tag:'常用词'},
   'perwakilan':{ipa:'/perwakilan/',cn:'rwakilan的人/物',en:'rwakilan person',root:'rwakilan + pe-',tag:'常用词'},
@@ -1754,7 +2024,17 @@ const vocabDB = {
   'relevan':{ipa:'/ˈrɛlɛvan/',cn:'相关的',en:'relevant',root:'relevan',tag:'UKBI'},
   'ringkasan':{ipa:'/rɪŋˈkasan/',cn:'摘要',en:'summary',root:'ringkasan',tag:'UKBI'},
   'sarkasme':{ipa:'/sarˈkasmɛ/',cn:'讥讽',en:'sarcasm',root:'sarkasme',tag:'UKBI'},
-  'sasaran':{ipa:'/ˈsasaran/',cn:'目标',en:'target',root:'sasaran',tag:'UKBI'},
+  'sasaran':{
+  ipa:'/saˈsaran/',
+  cn:'目标/靶子',
+  en:'target / objective',
+  root:'sasar (=瞄准) + -an → sasaran',
+  transform:[{form:'sasar',pos:'v',cn:'瞄准'},{form:'sasaran',pos:'n',cn:'目标/靶子'},{form:'menyasar',pos:'v',cn:'瞄准/针对'},{form:'tersasar',pos:'adj',cn:'被瞄准的'}],
+  note:'sasar + -an；与 target 同义但更印尼语化',
+  example:[{id:'Sasaran proyek tercapai tepat waktu.',cn:'项目目标按时达成。'},{id:'Sasaran penjualan naik 20% tahun ini.',cn:'今年销售目标上升20%。'}],
+  synonym:['target','tujuan','goal'],
+  tag:'项目管理'
+},
   'sinekdoke':{ipa:'/sɪnɛkˈdokɛ/',cn:'提喻',en:'synecdoche',root:'sinekdoke',tag:'UKBI'},
   'sintesis':{ipa:'/sɪnˈtɛsis/',cn:'综合',en:'synthesis',root:'sintesis',tag:'UKBI'},
   'struktur':{ipa:'/ˈstruktur/',cn:'结构',en:'structure',root:'struktur',tag:'UKBI'},
@@ -128435,7 +128715,7 @@ function renderVersion(c){
   c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.23 / Versi</span></div>
     <div style="padding:16px;">
       <div style="margin-bottom:14px;padding:14px;background:rgba(59,130,246,.10);border-radius:10px;border-left:3px solid var(--info)">
-        <div style="font-size:15px;font-weight:700;color:var(--info);margin-bottom:6px">V4.38.6 (2026-10-01)</div>
+        <div style="font-size:15px;font-weight:700;color:var(--info);margin-bottom:6px">V4.38.7 (2026-10-01)</div>
         <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">1. vocabDB补全: 四话题129词BIT标准完整词条同步 — project_management 29词 + environmental_compliance 33词 + supply_chain 31词 + emergency_response 36词 · 全部含 ipa/cn/en/root/tag 五字段 · 覆盖率 29/158 → 158/158 (100%) · 修复Day1词汇页面大量词条不渲染问题</div>
         <div style="font-size:15px;font-weight:700;color:var(--info);margin-bottom:6px">V4.38.3 (2026-10-01)</div>
         <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">1. C5策略全面合规: 10/1-10/10 课程优化 · project_management 词汇68→40(删重3+精简25) 47处英文IPA修复 场景对话5-6→12-13句 · environmental_compliance 词汇75→38 13处英文替换 场景对话5-6→13句 · supply_chain 词汇82→40 场景10→3(保留采购/物流/清关) 每场景5→11-14句 · emergency_response 词汇86→40 场景10→3(保留火灾/泄漏/演练) 每场景5→11-12句 · 四话题全部C5合规: 词汇20-40✅ 场景=3✅ 对话10-20句✅ 测试15题✅</div>
