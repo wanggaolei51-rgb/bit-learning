@@ -160,6 +160,258 @@
             "trans": "1%太高了。每周0.75%,最高不超过合同金额的10%怎么样?这对双方都公平。"
           }
         ]
+      },
+      {
+        title: "付款方式协商",
+        icon: "💳",
+        dialogue: [
+          {
+            "speaker": "A",
+            "text": "Pak, terkait pembayaran proyek smelter ini, kami mengusulkan sistem termin: 30% DP, 40% saat pengiriman, dan 30% setelah commissioning.",
+            "trans": "先生,关于这个冶炼厂项目的付款,我们建议分期付款:30%预付款,40%发货时,30%调试后。"
+          },
+          {
+            "speaker": "B",
+            "text": "Saya mengerti. Tapi untuk kami, cash flow sangat penting. Bisa DP dinaikkan jadi 40% dan termin kedua 50%?",
+            "trans": "我理解。但对我们而言现金流很重要。能否把预付款提高到40%,第二期50%?"
+          },
+          {
+            "speaker": "A",
+            "text": "40% DP bisa kami pertimbangkan, tapi 50% saat pengirisan terlalu besar. Bagaimana kalau 40% DP, 45% pengiriman, 15% commissioning?",
+            "trans": "40%预付款我们可以考虑,但发货时50%太多了。40%预付款,45%发货,15%调试怎么样?"
+          },
+          {
+            "speaker": "B",
+            "text": "Baik, kami bisa terima. Tapi untuk 15% terakhir, mohon dibayar dalam 30 hari setelah commissioning berhasil, bukan 60 hari.",
+            "trans": "好的,我们可以接受。但最后15%,请在调试成功后30天内支付,不是60天。"
+          },
+          {
+            "speaker": "A",
+            "text": "30 hari terlalu cepat untuk proses verifikasi kami. Bagaimana kalau 45 hari dengan letter of credit dari bank?",
+            "trans": "30天对我们的核实流程来说太快了。45天加银行信用证怎么样?"
+          },
+          {
+            "speaker": "B",
+            "text": "Deal. 45 hari dengan L/C. Tapi L/C harus irrevocable dan confirmed oleh bank tier-1. Itu syarat mutlak kami.",
+            "trans": "成交。45天加信用证。但信用证必须是不可撤销的且由一级银行保兑。这是我们的硬性条件。"
+          }
+        ]
+      },
+      {
+        title: "交货期谈判",
+        icon: "📅",
+        dialogue: [
+          {
+            "speaker": "A",
+            "text": "Pak, jadwal pengiriman 18 bulan di proposal Bapak terlalu lama. Proyek kami butuh beroperasi dalam 14 bulan.",
+            "trans": "先生,您提案中18个月的交货期太长了。我们的项目需要在14个月内运营。"
+          },
+          {
+            "speaker": "B",
+            "text": "18 bulan adalah waktu standar untuk proyek sebesar ini. Percepat menjadi 14 bulan akan menambah biaya overtime dan shift malam.",
+            "trans": "18个月是这种规模项目的标准时间。缩短到14个月会增加加班费和夜班成本。"
+          },
+          {
+            "speaker": "A",
+            "text": "Kami mengerti ada biaya tambahan. Berapa penambahan biayanya? Dan apakah Bapak bisa parallelkan beberapa pekerjaan?",
+            "trans": "我们理解有额外费用。增加多少成本?能否并行处理一些工作?"
+          },
+          {
+            "speaker": "B",
+            "text": "Kalau dipercepat 4 bulan, biaya tambahan sekitar 8% dari nilai kontrak. Kami bisa parallelkan fabrikasi dan civil work.",
+            "trans": "如果缩短4个月,额外费用约为合同金额的8%。我们可以并行进行制造和土建工程。"
+          },
+          {
+            "speaker": "A",
+            "text": "8% terlalu tinggi. Bagaimana kalau 5% tambahan, dengan syarat Bapak kirim tim engineering tambahan ke lapangan?",
+            "trans": "8%太高了。加5%怎么样,条件是您派额外工程队到现场?"
+          },
+          {
+            "speaker": "B",
+            "text": "5% terlalu tipis untuk risiko percepatan ini. Tapi kami bisa kompromi di 6,5% dengan tim engineering tambahan 3 orang. Itu final offer kami.",
+            "trans": "5%对加速的风险来说太少了。但我们可以妥协到6.5%,加派3名工程师。这是我们的最终报价。"
+          }
+        ]
+      },
+      {
+        title: "违约责任界定",
+        icon: "⚖️",
+        dialogue: [
+          {
+            "speaker": "A",
+            "text": "Pak, klausul default dalam draft kontrak perlu lebih detail. Apa definisi 'event of default' menurut Bapak?",
+            "trans": "先生,合同草案中的违约条款需要更详细。您认为'违约事件'的定义是什么?"
+          },
+          {
+            "speaker": "B",
+            "text": "Event of default meliputi: keterlambatan pengiriman lebih dari 30 hari, kegagalan commissioning 3 kali, atau pembayaran terlambat lebih dari 60 hari.",
+            "trans": "违约事件包括:交货延迟超过30天,调试失败3次,或付款延迟超过60天。"
+          },
+          {
+            "speaker": "A",
+            "text": "Keterlambatan karena force majeure tidak boleh dianggap default. Mohon tambahkan clause pembebasan untuk keadaan memaksa.",
+            "trans": "因不可抗力导致的延迟不应视为违约。请加不可抗力免责条款。"
+          },
+          {
+            "speaker": "B",
+            "text": "Setuju. Tapi force majeure harus dibuktikan dengan surat dari instansi berwen setempat, bukan sekadar klaim dari pihak Bapak.",
+            "trans": "同意。但不可抗力必须有当地主管机构出具的证明,不能仅凭贵方声称。"
+          },
+          {
+            "speaker": "A",
+            "text": "Wajar. Dan untuk penalty, saya usulkan 0,5% per minggu keterlambatan, maksimum 10% nilai kontrak. Setuju?",
+            "trans": "合理。对于违约金,我建议每周延迟0.5%,最高合同金额的10%。同意吗?"
+          },
+          {
+            "speaker": "B",
+            "text": "0,5% per minggu bisa diterima, tapi maksimum kami batasi 8%. Di atas itu, kontrak bisa dihentikan oleh pihak kami.",
+            "trans": "每周0.5%可以接受,但我们上限定为8%。超过这个,我方有权终止合同。"
+          }
+        ]
+      },
+      {
+        title: "保密协议签署",
+        icon: "🔒",
+        dialogue: [
+          {
+            "speaker": "A",
+            "text": "Pak, sebelum kita lanjut ke detail teknis, kami ingin kedua pihak menandatangani NDA terlebih dahulu.",
+            "trans": "先生,在我们进入技术细节之前,我们希望双方先签署保密协议。"
+          },
+          {
+            "speaker": "B",
+            "text": "Saya setuju. NDA penting untuk melindungi IP dan data teknis. Berapa lama masa berlaku NDA yang Bapak usulkan?",
+            "trans": "我同意。保密协议对保护知识产权和技术数据很重要。您建议的保密协议有效期多长?"
+          },
+          {
+            "speaker": "A",
+            "text": "Kami usulkan 5 tahun setelah berakhirnya kontrak. Informasi teknis dan data proses termasuk dalam cakupan rahasia.",
+            "trans": "我们建议合同结束后5年。技术信息和工艺数据都包含在保密范围内。"
+          },
+          {
+            "speaker": "B",
+            "text": "5 tahun terlalu lama untuk data proses yang cepat berubah. Bagaimana kalau 3 tahun untuk data teknis umum, dan 5 tahun untuk formula proprietary?",
+            "trans": "对快速变化的工艺数据来说5年太长了。通用技术数据3年,专有配方5年怎么样?"
+          },
+          {
+            "speaker": "A",
+            "text": "Itu bisa diterima. Tapi karyawan yang pernah akses informasi rahasia harus tetap terikat NDA meski sudah resign.",
+            "trans": "这可以接受。但曾接触保密信息的员工即使离职也必须受保密协议约束。"
+          },
+          {
+            "speaker": "B",
+            "text": "Setuju. Kami akan sertakan clause non-disclosure untuk karyawan dalam kontrak kerja. Siapa yang akan menyimpan salinan NDA?",
+            "trans": "同意。我们会在劳动合同中加入员工保密条款。谁来保管保密协议副本?"
+          }
+        ]
+      },
+      {
+        title: "长期合作协议",
+        icon: "🤝",
+        dialogue: [
+          {
+            "speaker": "A",
+            "text": "Pak, selain proyek ini, kami ingin menjalin kerjasama jangka panjang. Apakah Bapak tertarik framework agreement 5 tahun?",
+            "trans": "先生,除了这个项目,我们希望建立长期合作。您是否有兴趣签5年框架协议?"
+          },
+          {
+            "speaker": "B",
+            "text": "Tertarik sekali. Tapi kami butuh jaminan volume minimal per tahun agar investasi kami di produksi terbayar.",
+            "trans": "非常感兴趣。但我们需要每年最低采购量保证,以收回我们的生产投资。"
+          },
+          {
+            "speaker": "A",
+            "text": "Kami bisa komit volume minimal 500 unit per tahun untuk 5 tahun pertama. Harga akan direview setiap tahun.",
+            "trans": "我们承诺前5年每年最低500台。价格每年审核一次。"
+          },
+          {
+            "speaker": "B",
+            "text": "500 unit per tahun masuk akal. Tapi untuk harga, kami ingin locked price untuk tahun pertama dan kedua, baru review di tahun ketiga.",
+            "trans": "每年500台合理。但价格方面,我们希望第一年和第二年锁定价格,第三年才审核。"
+          },
+          {
+            "speaker": "A",
+            "text": "Locked price 2 tahun bisa, tapi dengan syarat pembayaran dipercepat 15 hari. Dan kalau harga bahan baku naik di atas 15%, ada price adjustment clause.",
+            "trans": "锁定2年价格可以,但条件是付款提前15天。如果原料价格上涨超过15%,要有价格调整条款。"
+          },
+          {
+            "speaker": "B",
+            "text": "Deal. Pembayaran dipercepat 15 hari dengan locked price 2 tahun. Dan price adjustment kalau material cost naik di atas 15%. Saya siapkan MoU-nya.",
+            "trans": "成交。提前15天付款,锁定2年价格。原料成本上涨超15%可调价。我来准备谅解备忘录。"
+          }
+        ]
+      },
+      {
+        title: "争议解决机制",
+        icon: "⚖️",
+        dialogue: [
+          {
+            "speaker": "A",
+            "text": "Pak, untuk menghindari konflik di masa depan, kita perlu atur mekanisme penyelesaian sengketa di kontrak.",
+            "trans": "先生,为避免未来冲突,我们需要在合同中规定争议解决机制。"
+          },
+          {
+            "speaker": "B",
+            "text": "Setuju. Saya usulkan tiga tahap: pertama, negosiasi langsung antar direksi. Kedua, mediasi oleh pihak ketiga netral.",
+            "trans": "同意。我建议三个阶段:第一,双方高管直接谈判。第二,由中立第三方调解。"
+          },
+          {
+            "speaker": "A",
+            "text": "Dan kalau mediasi gagal? Apakah kita langsung ke pengadilan atau arbitrase internasional?",
+            "trans": "如果调解失败呢?我们直接诉讼还是国际仲裁?"
+          },
+          {
+            "speaker": "B",
+            "text": "Saya sarankan arbitrase di Singapore International Arbitration Centre. Lebih cepat dan bersifat rahasia, tidak seperti pengadilan umum.",
+            "trans": "我建议在新加坡国际仲裁中心仲裁。比诉讼更快且保密,不像公开法庭。"
+          },
+          {
+            "speaker": "A",
+            "text": "SIAC bisa diterima. Tapi untuk biaya arbitrase, masing-masing pihak tanggung sendiri. Pemenang tidak perlu bayar biaya pihak kalah.",
+            "trans": "新加坡国际仲裁中心可以接受。但仲裁费用各方自理。胜诉方不需要支付败诉方费用。"
+          },
+          {
+            "speaker": "B",
+            "text": "Baik, biaya masing-masing. Tapi keputusan arbitrase harus final dan binding, tidak bisa di-appeal ke pengadilan mana pun.",
+            "trans": "好的,费用各自承担。但仲裁裁决必须是终局且有约束力的,不能向任何法院上诉。"
+          }
+        ]
+      },
+      {
+        title: "谈判复盘总结",
+        icon: "📊",
+        dialogue: [
+          {
+            "speaker": "A",
+            "text": "Rekan-rekan, negosiasi dengan PT Maju Jaya sudah selesai. Mari kita review hasilnya dan pelajaran yang bisa diambil.",
+            "trans": "各位,与Maju Jaya公司的谈判已结束。让我们回顾结果和吸取的教训。"
+          },
+          {
+            "speaker": "B",
+            "text": "Secara keseluruhan berhasil, Pak. Kami dapat diskon 8%, garansi 2 tahun, dan payment terms yang lebih fleksibel.",
+            "trans": "总体很成功,先生。我们获得了8%折扣、2年质保和更灵活的付款条件。"
+          },
+          {
+            "speaker": "A",
+            "text": "Bagus. Tapi apa yang bisa kita perbaiki? Saya rasa kami terlalu cepat memberikan konsesi di tahap awal.",
+            "trans": "很好。但我们有什么可以改进的?我觉得我们在初期让步太快了。"
+          },
+          {
+            "speaker": "B",
+            "text": "Setuju, Pak. Sebaiknya di negosiasi berikutnya kita pertahankan posisi lebih lama sebelum memberikan kompromi. Juga persiapan data pasar perlu lebih kuat.",
+            "trans": "同意,先生。下次谈判我们应该在让步前更长时间坚守立场。市场调研数据也需要更充分。"
+          },
+          {
+            "speaker": "A",
+            "text": "Benar. Dan komunikasi internal tim kita perlu lebih baik. Jangan sampai ada perbedaan informasi yang disampaikan ke lawan bicara.",
+            "trans": "对。而且我们团队内部沟通需要更好。不要让对方得到不一致的信息。"
+          },
+          {
+            "speaker": "B",
+            "text": "Baik, Pak. Saya akan buatkan lessons learned document dan distribusikan ke semua tim negosiasi untuk referensi ke depan.",
+            "trans": "好的,先生。我会制作经验教训文档并分发给所有谈判团队作为未来参考。"
+          }
+        ]
       }
     ],
     speeches: [

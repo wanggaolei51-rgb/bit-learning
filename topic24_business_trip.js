@@ -159,6 +159,258 @@
             "trans": "通常5-7个工作日。每日差旅补贴可按公司政策申报,每天50万印尼盾。"
           }
         ]
+      },
+      {
+        title: "签证材料准备",
+        icon: "📋",
+        dialogue: [
+          {
+            "speaker": "A",
+            "text": "Bu, saya akan dinas ke China minggu depan. Dokumen apa saja yang perlu disiapkan untuk visa bisnis?",
+            "trans": "女士,我下周要去中国出差。商务签证需要准备哪些文件?"
+          },
+          {
+            "speaker": "B",
+            "text": "Untuk visa bisnis China, Bapak perlu passport dengan masa berlaku minimal 6 bulan, foto 4x6 latar putih, dan surat undangan dari perusahaan di China.",
+            "trans": "中国商务签证需要有效期至少6个月的护照、4x6白底照片和中国公司的邀请函。"
+          },
+          {
+            "speaker": "A",
+            "text": "Surat undangan sudah saya terima. Apakah perlu surat tugas dari kantor juga? Dan berapa biaya visanya?",
+            "trans": "邀请函我已收到。还需要公司出差函吗?签证费用多少?"
+          },
+          {
+            "speaker": "B",
+            "text": "Ya, surat tugas wajib dilampirkan. Biaya visa bisnis single entry Rp1.500.000, prosesnya 4 hari kerja.",
+            "trans": "是的,必须附上出差函。单次入境商务签证费用150万印尼盾,办理需4个工作日。"
+          },
+          {
+            "speaker": "A",
+            "text": "Baik. Saya juga perlu asuransi perjalanan ya? Apakah perusahaan menyediakan?",
+            "trans": "好的。我还需要旅行保险对吗?公司提供吗?"
+          },
+          {
+            "speaker": "B",
+            "text": "Asuransi wajib, dan perusahaan sudah cover. Saya akan kirimkan polis asuransi via email hari ini. Jangan lupa bawa hardcopy saat berangkat.",
+            "trans": "保险是必须的,公司已承保。我今天会通过邮件发送保单。出发时别忘了带纸质版。"
+          }
+        ]
+      },
+      {
+        title: "航班延误应对",
+        icon: "⏰",
+        dialogue: [
+          {
+            "speaker": "A",
+            "text": "Maaf, penumpang untuk penerbangan GA-512 ke Jakarta. Penerbangan Anda tertunda 3 jam karena cuaca buruk di Jakarta.",
+            "trans": "抱歉,GA-512航班前往雅加达的乘客。由于雅加达天气恶劣,您的航班延误3小时。"
+          },
+          {
+            "speaker": "B",
+            "text": "Tiga jam? Saya punya rapat penting jam 2 siang di Jakarta. Apakah ada penerbangan alternatif?",
+            "trans": "三小时?我下午2点在雅加达有重要会议。有替代航班吗?"
+          },
+          {
+            "speaker": "A",
+            "text": "Maaf, semua penerbangan ke Jakarta juga tertunda. Maskapai menyediakan makan siang dan voucher hotel kalau delay lebih dari 4 jam.",
+            "trans": "抱歉,所有飞往雅加达的航班都延误了。如果延误超过4小时,航空公司提供午餐和酒店代金券。"
+          },
+          {
+            "speaker": "B",
+            "text": "Baik, saya ambil voucher makan dulu. Bisa tolong informasikan ke kantor saya bahwa saya akan terlambat?",
+            "trans": "好的,我先领餐券。能麻烦通知我公司我会迟到吗?"
+          },
+          {
+            "speaker": "A",
+            "text": "Tentu, Bapak bisa gunakan WiFi bandara gratis untuk video call. Atau saya bisa hubungi nomor yang Bapak berikan.",
+            "trans": "当然,您可以使用机场免费WiFi进行视频通话。或者我可以拨打您提供的号码。"
+          },
+          {
+            "speaker": "B",
+            "text": "Terima kasih. Saya akan video call kantor. Mohon informasikan juga kalau boarding dimulai, ya.",
+            "trans": "谢谢。我会给公司视频通话。开始登机时也请通知我。"
+          }
+        ]
+      },
+      {
+        title: "租车自驾出行",
+        icon: "🚗",
+        dialogue: [
+          {
+            "speaker": "A",
+            "text": "Selamat pagi. Saya mau sewa mobil untuk 3 hari, tipe SUV yang bisa untuk medan berat.",
+            "trans": "早上好。我想租一辆车3天,要SUV类型能走烂路的。"
+          },
+          {
+            "speaker": "B",
+            "text": "Baik, Pak. Kami ada Toyota Fortuner dan Mitsubishi Pajero. Keduanya 4WD dan cocok untuk jalan tambang.",
+            "trans": "好的,先生。我们有丰田Fortuner和三菱Pajero。都是四轮驱动,适合矿区道路。"
+          },
+          {
+            "speaker": "A",
+            "text": "Saya ambil Fortuner saja. Apakah sudah termasuk asuransi? Dan apa yang perlu saya perhatikan saat mengemudi di Indonesia?",
+            "trans": "我选Fortuner吧。已包含保险吗?在印尼开车需要注意什么?"
+          },
+          {
+            "speaker": "B",
+            "text": "Sudah termasuk asuransi dasar. Untuk mengemudi di Indonesia, Bapak perlu SIM internasional atau SIM Indonesia. Juga hati-hati dengan motor yang banyak.",
+            "trans": "已包含基础保险。在印尼开车需要国际驾照或印尼驾照。还要注意路上很多摩托车。"
+          },
+          {
+            "speaker": "A",
+            "text": "Saya punya SIM internasional. Bagaimana dengan bensin? Apakah saya isi sendiri?",
+            "trans": "我有国际驾照。油费呢?我自己加吗?"
+          },
+          {
+            "speaker": "B",
+            "text": "Ya, Bapak isi sendiri. Mobil diserahkan dengan tangki penuh, dan harus dikembalikan penuh juga. BBM di sini sekitar Rp12.000 per liter.",
+            "trans": "是的,您自己加。交车时油箱是满的,还车时也需要满油。这里油价约12000印尼盾每升。"
+          }
+        ]
+      },
+      {
+        title: "商务宴请安排",
+        icon: "🍽️",
+        dialogue: [
+          {
+            "speaker": "A",
+            "text": "Pak, mitra bisnis dari Jepang akan datang malam ini. Saya mau pesan meja untuk dinner bisnis. Ada rekomendasi restoran?",
+            "trans": "先生,日本商业伙伴今晚要来。我想预订商务晚餐的桌子。有餐厅推荐吗?"
+          },
+          {
+            "speaker": "B",
+            "text": "Untuk tamu Jepang, saya sarankan restoran seafood di Pantai Losari atau fine dining di hotel berbintang. Yang mana Bapak prefer?",
+            "trans": "日本客人我推荐Losari海滩的海鲜餐厅或星级酒店的精致餐饮。您偏好哪个?"
+          },
+          {
+            "speaker": "A",
+            "text": "Fine dining di hotel saja, lebih nyaman untuk diskusi bisnis. Untuk 6 orang, jam 7 malam.",
+            "trans": "还是酒店精致餐饮吧,商务讨论更舒适。6人,晚上7点。"
+          },
+          {
+            "speaker": "B",
+            "text": "Baik, saya pesankan private room di hotel Gran Melia. Menu set seafood atau internasional?",
+            "trans": "好的,我给您预订Gran Melia酒店的包间。海鲜套餐还是国际套餐?"
+          },
+          {
+            "speaker": "A",
+            "text": "Seafood set saja, tapi pastikan ada opsi non-pork dan non-alcohol karena tamu kami Muslim juga ada.",
+            "trans": "海鲜套餐吧,但要确保有无猪肉和无酒精选项,因为我们的客人中也有穆斯林。"
+          },
+          {
+            "speaker": "B",
+            "text": "Tentu, saya akan informasikan ke restoran. Juga saya siapkan bunga welcome dan name card di meja. Apakah perlu interpreter?",
+            "trans": "当然,我会通知餐厅。我还会准备迎宾鲜花和桌牌。需要翻译吗?"
+          }
+        ]
+      },
+      {
+        title: "当地文化禁忌",
+        icon: "🙏",
+        dialogue: [
+          {
+            "speaker": "A",
+            "text": "Pak, ini pertama kali saya dinas ke daerah Sulawesi. Ada hal-hal budaya yang harus saya perhatikan?",
+            "trans": "先生,这是我第一次到苏拉威西出差。有什么文化方面需要注意的吗?"
+          },
+          {
+            "speaker": "B",
+            "text": "Di Sulawesi, masyarakat Bugis dan Makassar sangat menghargai sopan santun. Jangan pernah menyentuh kepala orang, itu sangat tidak sopan.",
+            "trans": "在苏拉威西,布吉斯和望加锡人非常注重礼貌。千万不要摸别人的头,那是非常不礼貌的。"
+          },
+          {
+            "speaker": "A",
+            "text": "Baik, saya catat. Bagaimana dengan makan? Apakah ada aturan khusus saat makan bersama?",
+            "trans": "好的,我记下了。吃饭方面呢?一起用餐有什么特殊规矩吗?"
+          },
+          {
+            "speaker": "B",
+            "text": "Kalau makan bersama, tunggu tuan rumah mulai dulu. Gunakan tangan kanan untuk makan dan memberi sesuatu. Tangan kiri dianggap tidak bersih.",
+            "trans": "一起吃饭时,等主人先开始。用右手吃饭和递东西。左手被认为是不干净的。"
+          },
+          {
+            "speaker": "A",
+            "text": "Apakah saya perlu membawa oleh-oleh saat pertama kali bertemu mitra bisnis di sana?",
+            "trans": "我第一次在那里见商业伙伴时需要带礼物吗?"
+          },
+          {
+            "speaker": "B",
+            "text": "Sangat disarankan. Bawa oleh-oleh kecil dari kota asal Bapak. Jangan terlalu mahal, yang penting gestur dan niat baiknya.",
+            "trans": "非常建议。带些您家乡的小礼物。不用太贵,重要的是 gesture 和善意。"
+          }
+        ]
+      },
+      {
+        title: "时差调整与休息",
+        icon: "😴",
+        dialogue: [
+          {
+            "speaker": "A",
+            "text": "Bu, saya baru tiba di Jakarta dari Surabaya. Rasanya sangat lelah meski beda waktunya cuma 1 jam.",
+            "trans": "女士,我刚从泗水到达雅加达。虽然时差只有1小时,但感觉非常累。"
+          },
+          {
+            "speaker": "B",
+            "text": "Itu normal, Pak. Perjalanan dan jet lag bisa membuat tubuh lelah. Cobalah tidur sesuai jadwal lokal segera.",
+            "trans": "这很正常,先生。旅行和时差会让身体疲惫。尽量按当地时间作息。"
+          },
+          {
+            "speaker": "A",
+            "text": "Besok saya ada rapat penting jam 8 pagi. Apakah ada tips agar saya bisa fokus meski masih merasa lelah?",
+            "trans": "明天我早上8点有重要会议。有什么技巧能让我即使还累也能集中注意力?"
+          },
+          {
+            "speaker": "B",
+            "text": "Minum banyak air, hindari kopi setelah jam 4 sore, dan coba tidur paling lambat jam 10 malam. Pagi-pagi sedikit olahraga ringan juga membantu.",
+            "trans": "多喝水,下午4点后避免咖啡,尽量晚上10点前睡。早上做些轻度运动也有帮助。"
+          },
+          {
+            "speaker": "A",
+            "text": "Baik, saya akan coba. Apakah hotel menyediakan layanan pijat atau spa? Saya pikir itu bisa membantu rileks.",
+            "trans": "好的,我会试试。酒店提供按摩或水疗服务吗?我想那能帮助放松。"
+          },
+          {
+            "speaker": "B",
+            "text": "Ada, Pak. Spa hotel buka sampai jam 10 malam. Saya bisa bantu reservasi untuk jam 8 malam ini kalau Bapak mau.",
+            "trans": "有的,先生。酒店水疗营业到晚上10点。如果您需要,我可以帮您预订今晚8点。"
+          }
+        ]
+      },
+      {
+        title: "回国入境流程",
+        icon: "🏠",
+        dialogue: [
+          {
+            "speaker": "A",
+            "text": "Selamat datang di Bandara Soekarno-Hatta. Silakan siapkan passport dan kartu perhatian bea cukai.",
+            "trans": "欢迎来到苏加诺-哈达机场。请准备好护照和海关申报卡。"
+          },
+          {
+            "speaker": "B",
+            "text": "Baik, ini passport dan kartu bea cukai saya. Saya baru kembali dari dinas bisnis ke China.",
+            "trans": "好的,这是我的护照和海关申报卡。我刚从中国商务出差回来。"
+          },
+          {
+            "speaker": "A",
+            "text": "Terima kasih. Apakah Bapak membawa barang yang harus dilaporkan? Elektronik, perhiasan, atau uang tunai di atas Rp100 juta?",
+            "trans": "谢谢。您有携带需要申报的物品吗?电子产品、珠宝或超过1亿印尼盾的现金?"
+          },
+          {
+            "speaker": "B",
+            "text": "Saya bawa laptop kerja dan beberapa oleh-oleh kecil. Uang tunai hanya Rp5 juta. Tidak ada yang melebihi batas.",
+            "trans": "我带了工作笔记本电脑和一些小礼物。现金只有500万印尼盾。没有超过限额。"
+          },
+          {
+            "speaker": "A",
+            "text": "Baik, silakan lewat. Untuk bagasi, ambil di carousel nomor 3. Kalau ada yang diperiksa, petugas bea cukai akan panggil.",
+            "trans": "好的,请通过。行李在3号转盘领取。如有需要检查,海关人员会叫您。"
+          },
+          {
+            "speaker": "B",
+            "text": "Terima kasih. Satu lagi, di mana lokasi taksi resmi bandara? Saya perlu ke kantor di Jakarta Selatan.",
+            "trans": "谢谢。还有一个问题,机场正规出租车在哪里?我要去南雅加达的办公室。"
+          }
+        ]
       }
     ],
     speeches: [

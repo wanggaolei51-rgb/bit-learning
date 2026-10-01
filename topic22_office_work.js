@@ -162,6 +162,258 @@
             "trans": "好的,我会准备所有文件。完成后,我会通过邮件发送并复印一份硬拷贝到您桌上。"
           }
         ]
+      },
+      {
+        title: "文件归档管理",
+        icon: "📁",
+        dialogue: [
+          {
+            "speaker": "A",
+            "text": "Bu, saya mau tanya tentang sistem arsip dokumen di kantor ini. Dokumen kontrak tahun lalu disimpan di mana ya?",
+            "trans": "女士,我想问一下办公室的档案系统。去年的合同文件存放在哪里?"
+          },
+          {
+            "speaker": "B",
+            "text": "Dokumen kontrak disimpan di ruang arsip lantai dasar. Setiap dokumen sudah dikodekan berdasarkan tahun dan jenisnya.",
+            "trans": "合同文件存放在一楼的档案室。每份文件都已按年份和类型编码。"
+          },
+          {
+            "speaker": "A",
+            "text": "Bagus. Kalau saya mau mengambil arsip proyek smelter 2023, apa yang harus saya lakukan?",
+            "trans": "很好。如果我要取2023年冶炼厂项目的档案,需要怎么做?"
+          },
+          {
+            "speaker": "B",
+            "text": "Isi formulir peminjaman arsip dulu, lalu serahkan ke staf arsip. Mereka akan carikan dokumennya dalam 30 menit.",
+            "trans": "先填写档案借阅表,然后交给档案员。他们会在30分钟内找到文件。"
+          },
+          {
+            "speaker": "A",
+            "text": "Apakah ada arsip digital juga? Jadi saya tidak perlu ke ruang arsip setiap kali butuh dokumen.",
+            "trans": "有数字档案吗?这样我就不必每次需要文件都去档案室。"
+          },
+          {
+            "speaker": "B",
+            "text": "Ada, tapi hanya untuk dokumen setelah 2022. Dokumen lama masih dalam bentuk hardcopy. Silakan akses melalui intranet kantor.",
+            "trans": "有,但只有2022年以后的文件。旧文件仍是纸质版。请通过公司内部网访问。"
+          }
+        ]
+      },
+      {
+        title: "会议室预约",
+        icon: "📅",
+        dialogue: [
+          {
+            "speaker": "A",
+            "text": "Selamat pagi, Bu. Saya mau reservasi ruang rapat untuk rapat dengan mitra Jepang minggu depan.",
+            "trans": "早上好,女士。我想预订会议室用于下周与日本合作伙伴的会议。"
+          },
+          {
+            "speaker": "B",
+            "text": "Baik, Pak. Ruang rapat A dan B masih tersedia. Berapa orang yang akan hadir dan berapa lama durasinya?",
+            "trans": "好的,先生。A和B会议室都还有空。有多少人参加,持续多长时间?"
+          },
+          {
+            "speaker": "A",
+            "text": "Sekitar 15 orang, dari jam 10 pagi sampai jam 1 siang. Kami butuh proyektor dan sound system juga.",
+            "trans": "大约15人,从上午10点到下午1点。我们还需要投影仪和音响系统。"
+          },
+          {
+            "speaker": "B",
+            "text": "Ruang rapat B cukup untuk 20 orang dan sudah dilengkapi proyektor. Saya catat untuk Selasa jam 10-13, ya?",
+            "trans": "B会议室可容纳20人,已配备投影仪。我记下周二10点到13点,对吗?"
+          },
+          {
+            "speaker": "A",
+            "text": "Ya, tepat. Dan tolong siapkan kopi dan snack untuk coffee break, ya. Juga notulen untuk mencatat hasil rapat.",
+            "trans": "是的,没错。还请准备茶歇的咖啡和点心。还有记录会议结果的纪要本。"
+          },
+          {
+            "speaker": "B",
+            "text": "Tentu, saya akan koordinasi dengan bagian umum untuk kopi dan snack. Notulen saya siapkan juga. Konfirmasi saya kirim via email.",
+            "trans": "当然,我会与总务部门协调咖啡和点心。纪要本我也准备好。确认信息我会通过邮件发送。"
+          }
+        ]
+      },
+      {
+        title: "请假申请流程",
+        icon: "📝",
+        dialogue: [
+          {
+            "speaker": "A",
+            "text": "Pak, saya mau mengajukan cuti tahunan selama 5 hari, dari tanggal 15 sampai 19 bulan depan.",
+            "trans": "先生,我想申请年假5天,从下个月15号到19号。"
+          },
+          {
+            "speaker": "B",
+            "text": "Baik. Apakah Bapak masih punya sisa cuti tahunan? Dan apakah sudah koordinasi dengan tim terkait tugas selama Bapak cuti?",
+            "trans": "好的。您还有剩余年假吗?是否已与团队协调好您休假期间的工作交接?"
+          },
+          {
+            "speaker": "A",
+            "text": "Masih ada 10 hari sisa cuti. Saya sudah diskusi dengan rekan tim, dan Pak Adi bersedia menggantikan tugas saya sementara.",
+            "trans": "还剩10天年假。我已与团队成员讨论,阿迪先生愿意暂时接替我的工作。"
+          },
+          {
+            "speaker": "B",
+            "text": "Bagus. Silakan isi formulir pengajuan cuti di sistem HR, lampirkan surat penggantian tugas, dan minta tanda tangan atasan.",
+            "trans": "很好。请在人力资源系统中填写请假申请表,附上工作交接函,并请上司签字。"
+          },
+          {
+            "speaker": "A",
+            "text": "Berapa lama proses persetujuannya? Dan apakah saya perlu menyerahkan hardcopy juga?",
+            "trans": "审批流程需要多久?我还需要提交纸质版吗?"
+          },
+          {
+            "speaker": "B",
+            "text": "Biasanya 3 hari kerja. Hardcopy tidak perlu, semua sudah digital. Setelah disetujui, Bapak akan menerima notifikasi via email.",
+            "trans": "通常3个工作日。不需要纸质版,已全部数字化。批准后,您会收到邮件通知。"
+          }
+        ]
+      },
+      {
+        title: "绩效考核面谈",
+        icon: "📊",
+        dialogue: [
+          {
+            "speaker": "A",
+            "text": "Selamat pagi, Pak. Saya terima jadwal penilaian kinerja hari ini. Apa yang perlu saya persiapkan?",
+            "trans": "早上好,先生。我收到了今天的绩效评估安排。我需要准备什么?"
+          },
+          {
+            "speaker": "B",
+            "text": "Silakan siapkan laporan pencapaian kerja Anda selama 6 bulan terakhir, termasuk target yang tercapai dan yang belum.",
+            "trans": "请准备您过去6个月的工作成果报告,包括已完成和未完成的目标。"
+          },
+          {
+            "speaker": "A",
+            "text": "Baik, Pak. Saya sudah siapkan. Target produksi saya tercapai 105%, tapi ada satu proyek yang terlambat 2 minggu karena masalah supplier.",
+            "trans": "好的,先生。我已准备好。我的生产目标达成了105%,但有一个项目因供应商问题延迟了2周。"
+          },
+          {
+            "speaker": "B",
+            "text": "Bagus untuk pencapaian produksi. Untuk proyek yang terlambat, apakah Bapak sudah ada rencana mitigasi agar tidak terulang?",
+            "trans": "生产成果很好。对于延迟的项目,您是否有缓解计划以防止再次发生?"
+          },
+          {
+            "speaker": "A",
+            "text": "Sudah, Pak. Saya sudah menyiapkan daftar supplier cadangan dan sistem monitoring deadline yang lebih ketat.",
+            "trans": "已经有了,先生。我已准备了备用供应商名单和更严格的截止日期监控系统。"
+          },
+          {
+            "speaker": "B",
+            "text": "Sangat bagus. Secara keseluruhan kinerja Bapak memuaskan. Saya akan rekomendasikan bonus dan naik pangkat di periode berikutnya.",
+            "trans": "非常好。总体而言您的绩效令人满意。我会在下期推荐奖金和晋升。"
+          }
+        ]
+      },
+      {
+        title: "办公软件使用",
+        icon: "💻",
+        dialogue: [
+          {
+            "speaker": "A",
+            "text": "Bu, saya kesulitan menggunakan fitur pivot table di Excel untuk laporan penjualan bulanan. Bisa bantu?",
+            "trans": "女士,我在使用Excel的数据透视表功能做月度销售报告时遇到困难。能帮帮我吗?"
+          },
+          {
+            "speaker": "B",
+            "text": "Tentu, Pak. Pertama, pastikan data Bapak sudah dalam format tabel yang rapi, tanpa baris kosong di tengah.",
+            "trans": "当然,先生。首先,确保您的数据格式整齐,中间没有空行。"
+          },
+          {
+            "speaker": "A",
+            "text": "Data sudah rapi. Tapi saya bingung cara mengelompokkan penjualan per wilayah dan per produk dalam satu tabel.",
+            "trans": "数据已经整齐了。但我不清楚如何在一个表中按地区和产品分组销售数据。"
+          },
+          {
+            "speaker": "B",
+            "text": "Pilih seluruh data, lalu klik Insert > PivotTable. Tarik kolom 'Wilayah' ke area Rows, dan 'Produk' ke area Columns.",
+            "trans": "选择所有数据,然后点击插入>数据透视表。将'地区'列拖到行区域,'产品'列拖到列区域。"
+          },
+          {
+            "speaker": "A",
+            "text": "Oh, saya mengerti. Dan kolom 'Jumlah Penjualan' saya tarik ke area Values, ya?",
+            "trans": "哦,我明白了。然后把'销售数量'列拖到值区域,对吗?"
+          },
+          {
+            "speaker": "B",
+            "text": "Benar, Pak. Setelah itu Bapak bisa filter per bulan dan export ke PDF untuk laporan. Saya juga bisa kirimkan tutorial video via email.",
+            "trans": "对的,先生。之后您可以按月筛选并导出PDF作为报告。我还可以通过邮件发送教程视频。"
+          }
+        ]
+      },
+      {
+        title: "客户来访接待",
+        icon: "🤝",
+        dialogue: [
+          {
+            "speaker": "A",
+            "text": "Bu, klien dari Australia akan berkunjung besok jam 10 pagi. Apa yang perlu dipersiapkan untuk menyambut mereka?",
+            "trans": "女士,澳大利亚客户明天上午10点来访。迎接他们需要准备什么?"
+          },
+          {
+            "speaker": "B",
+            "text": "Baik, Pak. Saya akan siapkan ruang rapat VIP, name tag untuk tamu, dan profil perusahaan dalam bahasa Inggris.",
+            "trans": "好的,先生。我会准备VIP会议室、客人姓名牌和英文版公司简介。"
+          },
+          {
+            "speaker": "A",
+            "text": "Bagus. Jangan lupa siapkan kopi, teh, dan snack ringan. Mereka juga ingin melihat pabrik setelah rapat.",
+            "trans": "很好。别忘了准备咖啡、茶和轻食。他们还想在会议后参观工厂。"
+          },
+          {
+            "speaker": "B",
+            "text": "Saya akan koordinasi dengan bagian pabrik untuk tour guide dan APD untuk tamu. Apakah perlu translator juga?",
+            "trans": "我会与工厂部门协调导游和客人的个人防护装备。需要翻译吗?"
+          },
+          {
+            "speaker": "A",
+            "text": "Ya, tolong sediakan translator Bahasa Inggris-Indonesia. Dan siapkan souvenir perusahaan untuk mereka bawa pulang.",
+            "trans": "是的,请提供英语-印尼语翻译。还要准备公司纪念品让他们带回去。"
+          },
+          {
+            "speaker": "B",
+            "text": "Tentu, semuanya saya siapkan. Saya juga akan buat itinerary kunjungan dan kirim ke email Bapak malam ini.",
+            "trans": "当然,所有我都会准备好。我还会制作访问行程并今晚发到您的邮箱。"
+          }
+        ]
+      },
+      {
+        title: "办公设备报修",
+        icon: "🔧",
+        dialogue: [
+          {
+            "speaker": "A",
+            "text": "Pak, printer di ruang kerja saya tidak bisa mencetak sejak pagi ini. Lampu indikatornya berkedip merah terus.",
+            "trans": "先生,我工作间的打印机从今天早上起就无法打印。指示灯一直闪红光。"
+          },
+          {
+            "speaker": "B",
+            "text": "Baik, saya akan cek. Biasanya lampu merah berkedip artinya toner habis atau ada kertas yang nyangkut. Bapak sudah cek?",
+            "trans": "好的,我会检查。通常红灯闪烁意味着墨粉用完或有卡纸。您检查过吗?"
+          },
+          {
+            "speaker": "A",
+            "text": "Saya sudah cek, tidak ada kertas nyangkut. Toner juga masih setengah. Tapi layar menunjukkan error kode E3.",
+            "trans": "我检查过了,没有卡纸。墨粉还有一半。但屏幕显示错误代码E3。"
+          },
+          {
+            "speaker": "B",
+            "text": "Error E3 biasanya masalah pada drum unit. Saya akan datang ke ruang Bapak dalam 15 menit untuk cek langsung.",
+            "trans": "E3错误通常是感光鼓组件问题。我15分钟内到您办公室来直接检查。"
+          },
+          {
+            "speaker": "A",
+            "text": "Terima kasih, Pak. Kalau memang drum unit yang rusak, berapa lama penggantiannya? Saya butuh cetak dokumen penting hari ini.",
+            "trans": "谢谢,先生。如果确实是感光鼓坏了,更换需要多久?我今天需要打印重要文件。"
+          },
+          {
+            "speaker": "B",
+            "text": "Kalau stock ada, saya ganti hari ini juga. Kalau tidak, saya pinjamkan printer cadangan sementara. Jangan khawatir.",
+            "trans": "如果有库存,我今天就能换。如果没有,我会借给您一台备用打印机暂时使用。别担心。"
+          }
+        ]
       }
     ],
     speeches: [

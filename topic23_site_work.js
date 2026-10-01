@@ -160,6 +160,258 @@
             "trans": "好的,我明天准备好报告。还会附上效率数据和与上周的对比。"
           }
         ]
+      },
+      {
+        title: "生产日报填写",
+        icon: "📋",
+        dialogue: [
+          {
+            "speaker": "A",
+            "text": "Pak, saya baru selesai shift malam. Mau tanya cara mengisi laporan produksi harian yang benar.",
+            "trans": "先生,我刚下夜班。想请教如何正确填写每日生产报告。"
+          },
+          {
+            "speaker": "B",
+            "text": "Baik. Laporan harian harus mencakup output produksi, jumlah reject, downtime mesin, dan konsumsi bahan baku.",
+            "trans": "好的。日报必须包括产量、不合格品数量、停机时间和原料消耗。"
+          },
+          {
+            "speaker": "A",
+            "text": "Output shift malam kami 450 ton, dengan 5 ton reject karena kadar air tinggi. Downtime total 45 menit untuk perbaikan pompa.",
+            "trans": "我们夜班产量450吨,因水分偏高有5吨不合格。停机共45分钟用于维修泵。"
+          },
+          {
+            "speaker": "B",
+            "text": "Catat semuanya di formulir LPH-001. Untuk reject, tuliskan alasan dan tindakan perbaikannya juga.",
+            "trans": "把所有内容记在LPH-001表格上。对于不合格品,也要写明原因和改进措施。"
+          },
+          {
+            "speaker": "A",
+            "text": "Sudah saya catat. Apakah perlu ditandatangani oleh kepala shift dan supervisor sebelum diserahkan?",
+            "trans": "我已经记录了。是否需要班长和主管签字后再提交?"
+          },
+          {
+            "speaker": "B",
+            "text": "Ya, wajib ditandatangani oleh kedua pihak. Setelah itu serahkan ke kantor produksi sebelum jam 8 pagi.",
+            "trans": "是的,双方都必须签字。然后请在上午8点前交到生产办公室。"
+          }
+        ]
+      },
+      {
+        title: "危险区域进入许可",
+        icon: "⚠️",
+        dialogue: [
+          {
+            "speaker": "A",
+            "text": "Pak, tim inspeksi mau masuk ke area tangki asam untuk pemeriksaan rutin. Apa prosedurnya?",
+            "trans": "先生,检查团队要进入酸罐区进行例行检查。程序是什么?"
+          },
+          {
+            "speaker": "B",
+            "text": "Area tangki asam termasuk zona berbahaya. Harus mengajukan izin kerja khusus dan JSA sebelum masuk.",
+            "trans": "酸罐区属于危险区域。进入前必须申请特殊作业许可证和作业安全分析。"
+          },
+          {
+            "speaker": "A",
+            "text": "JSA sudah kami siapkan. Apakah perlu gas detector dan breathing apparatus juga?",
+            "trans": "作业安全分析我们已经准备好了。还需要气体检测仪和呼吸器吗?"
+          },
+          {
+            "speaker": "B",
+            "text": "Wajib. Gas detector untuk cek kandungan H2S dan O2. Breathing apparatus standby di luar area. Minimal 2 orang masuk bersama.",
+            "trans": "必须。气体检测仪用于检测H2S和O2含量。呼吸器在区域外待命。至少2人一起进入。"
+          },
+          {
+            "speaker": "A",
+            "text": "Baik. Kami juga sudah siapkan tali pengaman dan petugas standby di luar. Berapa lama maksimal di dalam?",
+            "trans": "好的。我们还准备了安全绳和外部待命人员。在里面最多多久?"
+          },
+          {
+            "speaker": "B",
+            "text": "Maksimal 30 menit per masuk. Setelah keluar, istirahat 15 menit sebelum masuk lagi. Safety officer harus mengawasi terus.",
+            "trans": "每次最多30分钟。出来后休息15分钟才能再进入。安全员必须持续监督。"
+          }
+        ]
+      },
+      {
+        title: "化学品泄漏处理",
+        icon: "☣️",
+        dialogue: [
+          {
+            "speaker": "A",
+            "text": "Pak! Ada kebocoran asam sulfat di area pompa P-203! Saya sudah matikan valve utama.",
+            "trans": "先生!P-203泵区域有硫酸泄漏!我已经关闭了主阀门。"
+          },
+          {
+            "speaker": "B",
+            "text": "Baik tindakan cepatnya! Segera nyalakan alarm dan evakuasi semua karyawan di radius 50 meter. Jangan ada yang mendekat tanpa APD kimia!",
+            "trans": "反应很快!立即拉响警报并疏散50米半径内所有员工。没有化学防护服不要靠近!"
+          },
+          {
+            "speaker": "A",
+            "text": "Sudah saya instruksikan. Tim P3K sudah di lokasi. Apakah kita pakai pasir atau neutralizer untuk menampung tumpahan?",
+            "trans": "我已经指示了。急救队已在现场。我们用沙子还是中和剂来收容泄漏物?"
+          },
+          {
+            "speaker": "B",
+            "text": "Pakai neutralizer soda ash dulu, lalu tutup dengan pasir pengikat. Jangan biarkan asam masuk ke saluran drainase!",
+            "trans": "先用纯碱中和剂,然后用吸附沙覆盖。不要让酸液流入排水沟!"
+          },
+          {
+            "speaker": "A",
+            "text": "Tim hazmat sudah mulai proses neutralisasi. Saya akan ambil sampel untuk analisis dampak lingkungan.",
+            "trans": "危险品处理队已开始中和作业。我会取样做环境影响分析。"
+          },
+          {
+            "speaker": "B",
+            "text": "Bagus. Setelah area aman, buatkan laporan kecelakaan dan informasikan ke KLHK. Juga periksa penyebab kebocorannya.",
+            "trans": "很好。区域安全后,制作事故报告并通知环境林业部。还要检查泄漏原因。"
+          }
+        ]
+      },
+      {
+        title: "高温作业防护",
+        icon: "🔥",
+        dialogue: [
+          {
+            "speaker": "A",
+            "text": "Pak, suhu di area furnace hari ini mencapai 55 derajat. Tim kami kesulitan bekerja lebih dari 15 menit.",
+            "trans": "先生,今天熔炉区域温度达到55度。我们团队工作超过15分钟就很困难。"
+          },
+          {
+            "speaker": "B",
+            "text": "Suhu 55 derajat sudah melewati batas aman. Kerja di atas 45 derajat harus dengan istirahat bergantian setiap 15 menit.",
+            "trans": "55度已超过安全限值。45度以上作业必须每15分钟轮换休息。"
+          },
+          {
+            "speaker": "A",
+            "text": "Kami sudah pakai baju tahan panas dan minum banyak air. Tapi beberapa pekerja sudah keluhan pusing dan mual.",
+            "trans": "我们已穿隔热服并多喝水。但有几名工人已出现头晕恶心症状。"
+          },
+          {
+            "speaker": "B",
+            "text": "Itu tanda heat stroke awal! Segera bawa mereka ke pos P3K. Dan kurangi jam kerja di area panas hari ini.",
+            "trans": "这是中暑前兆!立即带他们去急救站。今天减少高温区域工作时间。"
+          },
+          {
+            "speaker": "A",
+            "text": "Baik, Pak. Apakah kita perlu tambahan cooling fan atau portable AC untuk area tersebut?",
+            "trans": "好的,先生。我们需要为那个区域增加冷却风扇或便携式空调吗?"
+          },
+          {
+            "speaker": "B",
+            "text": "Saya akan ajukan request ke tim engineering untuk pasang additional ventilation. Sementara ini, kerja shift pendek 2 jam saja.",
+            "trans": "我会向工程团队申请安装额外通风设备。暂时改为2小时短班作业。"
+          }
+        ]
+      },
+      {
+        title: "吊装作业安全",
+        icon: "🏗️",
+        dialogue: [
+          {
+            "speaker": "A",
+            "text": "Pak, kami akan melakukan lifting reaktor berat 30 ton hari ini. Izin kerja sudah disetujui.",
+            "trans": "先生,我们今天要吊装一台30吨重的反应器。作业许可证已获批。"
+          },
+          {
+            "speaker": "B",
+            "text": "Baik. Pastikan crane sudah diinspeksi hari ini dan operator punya sertifikat yang masih berlaku. Rigging team siap?",
+            "trans": "好的。确保吊车今天已检查且操作员证书有效。吊装组准备好了吗?"
+          },
+          {
+            "speaker": "A",
+            "text": "Crane sudah diinspeksi, sertifikat operator masih berlaku sampai Desember. Rigging team sudah briefing safety.",
+            "trans": "吊车已检查,操作员证书有效期至12月。吊装组已做安全交底。"
+          },
+          {
+            "speaker": "B",
+            "text": "Bagus. Area lifting sudah di-barrage? Dan pastikan tidak ada pekerja di bawah muatan selama lifting berlangsung.",
+            "trans": "很好。吊装区域已围蔽?确保吊装过程中没有工人在重物下方。"
+          },
+          {
+            "speaker": "A",
+            "text": "Area sudah di-barrage dengan warning tape. Spotter sudah ditugaskan untuk mengarahkan traffic pejalan kaki.",
+            "trans": "区域已用警示带围蔽。已指派观察员引导行人通行。"
+          },
+          {
+            "speaker": "B",
+            "text": "Sempurna. Jangan lupa cek angin, kalau kecepatan di atas 20 km/jam, lifting harus dihentikan. Safety first!",
+            "trans": "完美。别忘了检查风速,如果超过20公里/小时必须停止吊装。安全第一!"
+          }
+        ]
+      },
+      {
+        title: "交接班记录",
+        icon: "📝",
+        dialogue: [
+          {
+            "speaker": "A",
+            "text": "Selamat pagi, Pak. Saya dari shift malam. Ini laporan serah terima untuk shift pagi hari ini.",
+            "trans": "早上好,先生。我是夜班人员。这是今天白班的交接报告。"
+          },
+          {
+            "speaker": "B",
+            "text": "Terima kasih. Ada masalah atau abnormalitas selama shift malam yang perlu saya ketahui?",
+            "trans": "谢谢。夜班期间有什么问题或异常情况我需要知道的吗?"
+          },
+          {
+            "speaker": "A",
+            "text": "Ada dua hal. Pertama, valve V-105 bocor sedikit, tim maintenance sudah diinformasikan. Kedua, level tangki T-3 hanya 40%, perlu isi ulang.",
+            "trans": "有两件事。第一,V-105阀门有点漏,已通知维修队。第二,T-3罐液位只有40%,需要补料。"
+          },
+          {
+            "speaker": "B",
+            "text": "Baik, saya catat. Apakah ada work order yang belum selesai dan perlu dilanjutkan shift pagi?",
+            "trans": "好的,我记下了。有没有未完成的工作单需要白班继续的?"
+          },
+          {
+            "speaker": "A",
+            "text": "Ada WO-231 untuk kalibrasi flow meter yang baru sampai 70%. Sisa pekerjaannya tinggal verifikasi akurasi.",
+            "trans": "有WO-231流量计校准工作只完成了70%。剩余工作只需验证精度。"
+          },
+          {
+            "speaker": "B",
+            "text": "Saya akan lanjutkan WO-231. Terima kasih atas informasinya. Shift malam bisa pulang, hati-hati di jalan.",
+            "trans": "我会继续WO-231。谢谢你的信息。夜班可以下班了,路上小心。"
+          }
+        ]
+      },
+      {
+        title: "应急疏散演练",
+        icon: "🚨",
+        dialogue: [
+          {
+            "speaker": "A",
+            "text": "Perhatian! Perhatian! Ini adalah drill evakuasi. Semua karyawan segera tinggalkan area kerja dan menuju assembly point!",
+            "trans": "注意!注意!这是疏散演练。所有员工立即离开工作区域前往集合点!"
+          },
+          {
+            "speaker": "B",
+            "text": "Pak, saya di area smelter. Rute evakuasi ke assembly point lewat mana? Ada dua pintu keluar.",
+            "trans": "先生,我在冶炼区。去集合点的疏散路线走哪边?有两个出口。"
+          },
+          {
+            "speaker": "A",
+            "text": "Gunakan pintu keluar B, yang terdekat dengan assembly point. Jangan pakai lift, gunakan tangga darurat!",
+            "trans": "使用B出口,离集合点最近。不要乘电梯,用紧急楼梯!"
+          },
+          {
+            "speaker": "B",
+            "text": "Baik, tim saya sudah mulai bergerak. Apakah perlu cek kehadiran setelah sampai di assembly point?",
+            "trans": "好的,我的团队已开始撤离。到达集合点后需要点名吗?"
+          },
+          {
+            "speaker": "A",
+            "text": "Ya, setiap kepala departemen wajib cek kehadiran anggotanya dan laporkan ke petugas safety. Yang hilang segera dilaporkan!",
+            "trans": "是的,每个部门主管必须清点成员并向安全员报告。有缺失立即上报!"
+          },
+          {
+            "speaker": "B",
+            "text": "Tim produksi sudah lengkap, 25 orang semua hadir. Waktu evakuasi kami 4 menit 30 detik dari smelter.",
+            "trans": "生产队全员到齐,25人全部在场。我们从冶炼区撤离用时4分30秒。"
+          }
+        ]
       }
     ],
     speeches: [
