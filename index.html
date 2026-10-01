@@ -6,7 +6,7 @@
 <meta http-equiv="Expires" content="0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LEO-BIR V4.39.3</title>
+<title>LEO-BIR V4.39.4</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -268,7 +268,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
 </style>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="video_registry.js?v=V4.39.3"></script>
+<script src="video_registry.js?v=V4.39.4"></script>
 </head>
 <body>
 <div class="app">
@@ -276,7 +276,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="sidebar-header">
     <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <h1>LEO-BIR</h1>
-    <div class="ver">LEO-BIR V4.39.3 · 每日复习视频 Layer 1（2 集样片 · 剪影引擎 v2）</div>
+    <div class="ver">LEO-BIR V4.39.4 · 每日复习视频 Layer 1（2 集样片 · 剪影引擎 v2）</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -6767,8 +6767,9 @@ function showTip(word){
     for(const pre of prefixes){if(w.startsWith(pre)&&w.length>pre.length+2){const root=w.slice(pre.length);if(vocabDB[root]||vocabDB[root.charAt(0).toUpperCase()+root.slice(1)]){v=vocabDB[root]||vocabDB[root.charAt(0).toUpperCase()+root.slice(1)];break;}}}
     if(!v){for(const suf of suffixes){if(w.endsWith(suf)&&w.length>suf.length+2){const root=w.slice(0,-suf.length);if(vocabDB[root]||vocabDB[root.charAt(0).toUpperCase()+root.slice(1)]){v=vocabDB[root]||vocabDB[root.charAt(0).toUpperCase()+root.slice(1)];break;}}}}
   }
-  // V4.39.3: 词条有完整 BIT 字段时,走 BIT 弹窗而非简易 tooltip
-  if(v&&(v.transform||v.example||v.synonym)){
+  // V4.39.4: 词条有完整 BIT 字段 或 bitVocabDB 常驻详解库命中时,走 BIT 弹窗而非简易 tooltip
+  const _be=(typeof bitVocabDB!=="undefined"&&bitVocabDB)?(bitVocabDB[word.toLowerCase()]||bitVocabDB[word]||bitVocabDB[word.charAt(0).toUpperCase()+word.slice(1)]):null;
+  if((v&&(v.transform||v.example||v.synonym))||_be){
     if(typeof showBITInfo==="function"){showBITInfo(word);return;}
   }
   const tt=document.getElementById("tooltip");
@@ -134208,8 +134209,11 @@ function renderAbout(c){
 }
 
 function renderVersion(c){
-  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.23 / Versi</span></div>
+  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.39.4 / Versi</span></div>
     <div style="padding:16px;">
+      <div style="margin-bottom:14px;padding:14px;background:rgba(59,130,246,.10);border-radius:10px;border-left:3px solid var(--info)">
+        <div style="font-size:15px;font-weight:700;color:var(--info);margin-bottom:6px">V4.39.4 (2026-10-01)</div>
+        <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">1. 修复主页日历下方显示代码: V4.38.9 addWB 旧代码块残留于 &lt;/html&gt; 之后被当成纯文本渲染(上一版只删了注释行,整块9行残留) — 本次截断至 &lt;/html&gt; 收尾 · 2. 核心词 BIT 接入课程: showTip 路由条件原只查 vocabDB.transform/example/synonym(五字段词条永不命中)导致 Day1 词卡点击永不打开 BIT 弹窗 — 现改为同时查 bitVocabDB 常驻详解库(O(1)命中即走 showBITInfo 四级回退链) · 3. showWordPopup(场景对话/演讲点词) 原仅显示五字段 — 现 bitVocabDB 命中时补全 🔄变形/🔗同义/↔️反义/📝例句/💡note · 覆盖 10/2-10/10 三话题(环保合规38词+供应链40词+应急响应40词)全部118核心词 · node语法校验通过</div>
       <div style="margin-bottom:14px;padding:14px;background:rgba(59,130,246,.10);border-radius:10px;border-left:3px solid var(--info)">
         <div style="font-size:15px;font-weight:700;color:var(--info);margin-bottom:6px">V4.39.3 (2026-10-01)</div>
         <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">1. bitVocabDB 全量同步: vocabDB 286条九字段词条中121条唯一词补齐进 bitVocabDB (2160→2281) — 覆盖 environmental_compliance/supply_chain/emergency_response 三话题核心词 · 修复生词本弹窗四级回退二级缺失(用户第4次审核指出的"生词本查不到新词、没同步") · 数据源: V4.38.5 BIT九字段重写(已过BIO双审) · node语法校验通过 · RCO A3词级三方对账: 129词任务词表 vs vocabDB vs bitVocabDB 全PASS</div>
@@ -135088,6 +135092,10 @@ function showWordPopup(word){
     }
   }
 
+  // V4.39.4: bitVocabDB 常驻详解库 — 对话/演讲点击词补全 BIT(变形/同反义/例句)
+  const _bit=(typeof bitVocabDB!=="undefined"&&bitVocabDB)?(bitVocabDB[clean]||bitVocabDB[word.toLowerCase()]||null):null;
+  const _stripMd=function(s){return String(s==null?"":s).replace(/\*\*/g,"");};
+
   let existing = document.getElementById('wordPopupOverlay');
   if(existing) existing.remove();
 
@@ -135112,6 +135120,15 @@ function showWordPopup(word){
     <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;"><button onclick="speakIndonesian('${word.replace(/'/g,"\\'")}')" style="background:none;border:none;color:var(--primary);cursor:pointer;font-size:14px;padding:4px 8px;border-radius:6px;background:rgba(0,212,170,.1);" title="朗读">🔊 朗读</button></div>
     ${v.root?`<div style="font-size:11px;color:var(--text-dim);margin-bottom:12px;">词根: ${v.root}</div>`:''}
     <button id="wordPopupAddBtn" data-wid="${wid}" style="width:100%;padding:10px;background:${inWB?'var(--bg-elev)':'var(--primary)'};color:${inWB?'var(--text-dim)':'#0a0e17'};border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;" ${inWB?'disabled':''}>${inWB?'✅ 已在生词本':'📚 加入生词本'}</button>`;
+    if(_bit){
+      const bf=_bit.forms||[],bs=_bit.synonyms||[],ba=_bit.antonyms||[],bx=_bit.examples||[];
+      if(bf.length){cardHTML+=`<div style="margin-bottom:10px;"><div style="font-size:12px;color:var(--primary);font-weight:600;margin-bottom:4px;">🔄 变形 (${bf.length})</div>${bf.map(f=>`<div style="font-size:12px;color:var(--text);padding:3px 0;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;gap:8px;"><span><strong>${_stripMd(f.form)}</strong> <span style="color:var(--text-dim);font-size:11px;">${_stripMd(f.pos||'')}</span></span><span style="color:var(--text-dim);text-align:right;">${_stripMd(f.mean||'')}</span></div>`).join('')}</div>`;}
+      if(_bit.formsNote){cardHTML+=`<div style="font-size:11px;color:var(--accent);margin-bottom:10px;padding:6px 8px;background:rgba(245,158,11,.08);border-radius:6px;line-height:1.5;">${_stripMd(_bit.formsNote)}</div>`;}
+      if(bs.length){cardHTML+=`<div style="margin-bottom:10px;"><div style="font-size:12px;color:var(--primary);font-weight:600;margin-bottom:4px;">🔗 同义</div><div style="font-size:12px;color:var(--text);">${bs.map(s=>_stripMd(typeof s==='string'?s:(s.word||''))).join('、')}</div></div>`;}
+      if(ba.length){cardHTML+=`<div style="margin-bottom:10px;"><div style="font-size:12px;color:var(--primary);font-weight:600;margin-bottom:4px;">↔️ 反义</div><div style="font-size:12px;color:var(--text);">${ba.map(s=>_stripMd(typeof s==='string'?s:(s.word||''))).join('、')}</div></div>`;}
+      if(bx.length){cardHTML+=`<div style="margin-bottom:10px;"><div style="font-size:12px;color:var(--primary);font-weight:600;margin-bottom:4px;">📝 例句</div>${bx.slice(0,3).map(e=>`<div style="font-size:12px;color:var(--text);padding:4px 0;border-bottom:1px solid var(--border);line-height:1.5;">${(e.scene?`<span style="color:var(--text-dim);font-size:11px;">[${_stripMd(e.scene)}] </span>`:'')}<span>${_stripMd(e.id||'')}</span> — <span style="color:var(--text-dim);">${_stripMd(e.cn||'')}</span></div>`).join('')}</div>`;}
+      if(_bit.note){cardHTML+=`<div style="font-size:11px;color:var(--text-dim);margin-bottom:12px;padding:6px 8px;background:var(--bg-elev);border-radius:6px;line-height:1.6;">💡 ${_stripMd(_bit.note)}</div>`;}
+    }
   } else {
     // === 未收录单词:显示加载中,后台自动查询 ===
     cardHTML += `<div style="text-align:center;padding:20px 0;"><div style="font-size:36px;margin-bottom:12px;">🔍</div><div style="font-size:14px;color:var(--text-dim);margin-bottom:8px;">「${word}」未收录</div><div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:12px;"><button onclick="speakIndonesian('${word.replace(/'/g,"\\'")}')" style="background:none;border:none;color:var(--primary);cursor:pointer;font-size:14px;padding:4px 8px;border-radius:6px;background:rgba(0,212,170,.1);" title="朗读">🔊 朗读</button></div><div id="autoQueryStatus" style="font-size:12px;color:var(--primary);margin-bottom:12px;">⏳ 正在在线查询...</div>
@@ -138874,12 +138891,3 @@ function queryMIR(){
 </div>
 </body>
 </html>
-
-  
-  if(typeof addWB==="function"){
-    const inWB=(typeof wordBank!=="undefined"&&wordBank)?wordBank.some(function(w){return w.word&&w.word.toLowerCase()===lw;}):false;
-    const _sq=function(s){return String(s==null?"":s).replace(/'/g,"\'");};
-    body+='<div style="margin-top:14px;padding-top:12px;border-top:1px solid var(--border);display:flex;gap:10px;">';
-    if(!inWB){body+='<button onclick="addWB(\''+_sq(data.word)+'\',\''+_sq(data.ipa)+'\',\''+_sq(data.cn)+'\',\''+_sq(data.en)+'\',\''+_sq(data.root)+'\',\''+_sq(data.tag)+'\')" style="flex:1;padding:10px;background:var(--primary);color:#0a0e17;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;">📚 加入生词本</button>';}
-    else{body+='<button disabled style="flex:1;padding:10px;background:var(--bg-elev);color:var(--text-dim);border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:default;">✅ 已在生词本</button>';}
-    body+='<button onclick="closeBITInfo()" style="flex:1;padding:10px;background:var(--bg-elev);color:var(--text);border:1px solid var(--border);border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;">关闭</button></div>';
