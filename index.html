@@ -6,7 +6,7 @@
 <meta http-equiv="Expires" content="0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LEO-BIR V4.38.0</title>
+<title>LEO-BIR V4.38.3</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -268,7 +268,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
 </style>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="video_registry.js?v=V4.38.0"></script>
+<script src="video_registry.js?v=V4.38.3"></script>
 </head>
 <body>
 <div class="app">
@@ -276,7 +276,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="sidebar-header">
     <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <h1>LEO-BIR</h1>
-    <div class="ver">LEO-BIR V4.38.0 · 每日复习视频 Layer 1（2 集样片 · 剪影引擎 v2）</div>
+    <div class="ver">LEO-BIR V4.38.3 · 每日复习视频 Layer 1（2 集样片 · 剪影引擎 v2）</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -10114,77 +10114,96 @@ project_management: {
     },
     vocab: [
       ['proyek', '项目', '/proˈjɛk/'], ['manajemen', '管理', '/manaˈʤɛmɛn/'],
-      ['perencanaan', '规划', '/pɛrɛnʃaˈnaan/'], ['jadwal', '日程/进度表', '/ˈʤadwal/'],
-      ['jadwal', '时间线/日程表', '/ˈɚdwal/'], ['tonggak pencapaian', '里程碑/阶段成果', '/ˈtoŋɡak panˈɚdapaan/'],
-      ['bagan Gantt', '甘特图', '/ˈbaɡan ˈɡant/'], ['SRP (struktur rincian pekerjaan)', '工作分解结构', '/ˈdabljuː biː ˈɛs/'],
+      ['perencanaan', '规划', '/pɛrɛnʃaˈnaan/'], ['jadwal', '日程/进度表', '/ˈʤadwal/'], ['tonggak pencapaian', '里程碑/阶段成果', '/ˈtoŋɡak panˈɚdapaan/'],
+      ['bagan Gantt', '甘特图', '/ˈbaɡan ˈɡant/'], ['SRP (struktur rincian pekerjaan)', '工作分解结构', '/ɛs ɛr ˈpe/'],
       ['sumber daya', '资源', '/ˈsumbɛr ˈdaja/'], ['alokasi', '分配', '/aˈlokasi/'],
       ['anggaran', '预算', '/aŋˈɡaran/'], ['biaya', '成本/费用', '/biˈaja/'],
-      ['belanja modal', '资本支出', '/ˈkeɪpɛks/'], ['belanja operasional', '运营支出', '/ˈoʊpɛks/'],
-      [' estimasi', '估算', '/ɛstɪˈmasi/'], ['prakiraan', '预测', '/ˈfɔrkæst/'],
-      ['garis dasar', '基准线', '/ˈbeɪslaɪn/'], ['ruang lingkup', '范围', '/ˈskoʊp/'],
-      ['hasil yang diserahkan', '交付物', '/dɪˈlɪvərəbl/'], ['luaran', '产出', '/ˈaʊtpʊt/'],
-      ['hasil akhir', '成果/最终结果', '/ˈaʊtkʌm/'], ['IKU (indikator kinerja utama)', '关键绩效指标', '/ˈkeɪ piː ˈaɪ/'],
-      ['sasaran', '目标', '/ˈsasaran/'], ['objektif', '目标', '/obˈjɛktɪf/'],
-      ['risiko', '风险', '/ˈrɪsk/'], ['risiko', '风险', '/riˈsiko/'],
-      ['mitigasi', '缓解', '/mɪtɪˈɡasi/'], ['kontingensi', '应急', '/kontɪnˈɡɛnsi/'],
-      ['isu', '问题/议题', '/ˈɪʃuː/'], ['masalah', '问题', '/maˈsalah/'],
-      ['ketergantungan', '依赖关系', '/dɪˈpɛndənsi/'], ['jalur kritis', '关键路径', '/ˈkrɪtɪkəl ˈpæθ/'],
-      ['penyangga', '缓冲/余地', '/ˈbʌfɛr/'], ['waktu longgar', '浮动时间', '/ˈslæk/'],
-      ['keterlambatan', '滞后', '/ˈlæɡ/'], ['pendahuluan', '提前量', '/ˈliːd/'],
-      ['percepatan paralel', '快速跟进(并行)', '/ˈfæst ˈtrækɪŋ/'], ['percepatan intensif', '赶工(加班赶进度)', '/ˈkræʃɪŋ/'],
-      ['penyeimbangan sumber daya', '资源平衡', '/rɪˈsɔrs ˈlɛvəlɪŋ/'], ['pemulusan', '平滑', '/ˈsmuːðɪŋ/'],
-      ['kualitas', '质量', '/ˈkwɒlɪti/'], ['kualitas', '质量', '/kuaˈlɪtas/'],
-      ['standar', '标准', '/ˈstandar/'], ['spesifikasi', '规格', '/spɛsɪfɪˈkasi/'],
-      ['tinjauan', '评审/审查', '/rɪˈvjuː/'], ['audit', '审计', '/ˈaudit/'],
-      ['inspeksi', '检查', '/ɪnˈspɛksi/'], ['verifikasi', '验证', '/vɛrɪfɪˈkasi/'],
-      ['penerimaan', '验收', '/əkˈsɛptəns/'], ['serah terima', '移交', '/ˈhændoʊvɛr/'],
-      ['penutupan', '收尾/结项', '/ˈkloʊzɪŋ/'], ['lessons learned', '经验教训', '/ˈlɛsənz ˈlɜrnd/'],
-      ['pemangku kepentingan', '利益相关方', '/pəˈmaŋku kəpənˈtiŋan/'], ['penanggung jawab utama', '发起人/主要责任人', '/ˈspɒnsər/'],
-      ['kantor manajemen proyek', '项目管理办公室', '/ˈpiː ɛm ˈoʊ/'], ['manajer proyek', '项目经理', '/ˈpiː ˈɛm/'],
-      ['ketua tim', '团队领导', '/ˈtiːm ˈliːdər/'], ['regu', '班组/工作队', '/ˈkruː/'],
-      ['rapat koordinasi', '协调会', '/ˈrapat koˈɔrdɪnasi/'], ['rapat kemajuan', '进度会', '/ˈproʊɡrɛs ˈmiːtɪŋ/'],
-      ['laporan status', '状态报告', '/ˈsteɪtəs rɪˈpɔrt/'], ['laporan mingguan', '周报', '/ˈwiːkli rɪˈpɔrt/'],
-      ['earn value', '挣值', '/ˈɜrn ˈvæljuː/'], ['SPI', '进度绩效指数', '/ˈɛs piː ˈaɪ/'],
-      ['CPI', '成本绩效指数', '/ˈsiː piː ˈaɪ/'], ['SV', '进度偏差', '/ˈɛs ˈviː/'],
-      ['CV', '成本偏差', '/ˈsiː ˈviː/'], ['BAC', '预算 at completion', '/ˈbiː eɪ ˈsiː/'],
-      ['EAC', 'estimate at completion', '/ˈiː eɪ ˈsiː/'], ['ETC', 'estimate to complete', '/ˈiː tiː ˈsiː/']
+      ['belanja modal', '资本支出', '/bəˈlaɲa ˈmodəl/'], ['belanja operasional', '运营支出', '/bəˈlaɲa opəˈrasional/'],
+       ['prakiraan', '预测', '/prakiraˈan/'],
+      ['garis dasar', '基准线', '/ˈɡaris ˈdasar/'], ['ruang lingkup', '范围', '/ˈruaŋ liŋˈkup/'],
+      ['hasil yang diserahkan', '交付物', '/haˈsil jaŋ disəˈrahan/'], ['luaran', '产出', '/luˈaran/'],
+      ['hasil akhir', '成果/最终结果', '/haˈsil ˈaɡir/'], ['IKU (indikator kinerja utama)', '关键绩效指标', '/i ka ˈu/'],
+      ['sasaran', '目标', '/saˈsaran/'], 
+      ['risiko', '风险', '/riˈsiko/'],
+      ['mitigasi', '缓解', '/mɪtɪˈɡasi/'], 
+      ['isu', '问题/议题', '/ˈisu/'], 
+       ['jalur kritis', '关键路径', '/ˈʤalur ˈkritis/'],
+       
+       
+      ['percepatan paralel', '快速跟进(并行)', '/pərʧəˈpatan paˈralel/'], ['percepatan intensif', '赶工(加班赶进度)', '/pərʧəˈpatan intənˈsif/'],
+       
+      ['kualitas', '质量', '/kuaˈlɪtas/'],
+       
+      ['tinjauan', '评审/审查', '/tinˈʤauan/'], ['audit', '审计', '/ˈaudit/'],
+       
+      ['penerimaan', '验收', '/pənərimaˈan/'], ['serah terima', '移交', '/ˈserah təˈrima/'],
+      ['penutupan', '收尾/结项', '/pənutuˈpan/'], ['pembelajaran', '经验教训', '/pəmbəlaˈʤaran/'],
+      ['pemangku kepentingan', '利益相关方', '/pəˈmaŋku kəpəntiŋan/'], ['penanggung jawab utama', '发起人/主要责任人', '/pənaŋɡuŋ ˈʤawab ˈutama/'],
+       
+       
+       ['rapat kemajuan', '进度会', '/ˈrapat kəmaˈʤuhan/'],
+      ['laporan status', '状态报告', '/laˈporan ˈstatus/'], ['laporan mingguan', '周报', '/laˈporan miŋˈɡuan/'],
+      ['nilai hasil', '挣值', '/ˈnilai ˈhasil/'], 
+       
+       
+       
     ],
-    scenes: [
-      {
+    scenes: [{
         title: "项目启动会议",
         icon: "🚀",
         dialogue: [
           {"speaker": "A", "text": "Selamat pagi, semua. Hari ini kita akan melakukan kick-off meeting untuk proyek pembangunan smelter nikel fase kedua.", "trans": "早上好,各位。今天我们将举行镍冶炼厂二期建设项目的启动会议。"},
           {"speaker": "B", "text": "Baik, Pak. Berapa total anggaran yang disetujui untuk proyek ini? Dan berapa durasi yang direncanakan?", "trans": "好的,先生。这个项目批准的总预算是多少?计划工期多长?"},
-          {"speaker": "A", "text": "Anggaran totalnya adalah 350 juta dolar AS dengan durasi 24 bulan. Milestone pertama adalah penyelesaian desain teknis pada bulan ketiga.", "trans": "总预算3.5亿美元,工期24个月。第一个里程碑是第三个月完成技术设计。"},
-          {"speaker": "B", "text": "Saya mengerti. Siapa yang akan menjadi project manager? Dan berapa besar tim yang akan terlibat?", "trans": "我明白。谁将担任项目经理?将有多少人参与团队?"},
-          {"speaker": "A", "text": "Pak Wang akan menjadi PM utama. Tim inti terdiri dari 15 orang: 5 engineer, 3 HSE, 4 procurement, dan 3 quality control.", "trans": "王先生将担任主要项目经理。核心团队15人:5名工程师、3名HSE、4名采购和3名质量控制。"},
-          {"speaker": "C", "text": "Bagus. Apakah scope proyek sudah final? Dan bagaimana mekanisme perubahan scope jika diperlukan?", "trans": "很好。项目范围已经确定了吗?如果需要变更范围,机制是什么?"}
+          {"speaker": "A", "text": "Anggaran totalnya adalah 350 juta dolar AS dengan durasi 24 bulan. Tonggak pencapaian pertama adalah penyelesaian desain teknis pada bulan ketiga.", "trans": "总预算3.5亿美元,工期24个月。第一个里程碑是第三个月完成技术设计。"},
+          {"speaker": "B", "text": "Saya mengerti. Siapa yang akan menjadi manajer proyek? Dan berapa besar tim yang akan terlibat?", "trans": "我明白。谁将担任项目经理?将有多少人参与团队?"},
+          {"speaker": "A", "text": "Pak Wang akan menjadi manajer proyek utama. Tim inti terdiri dari 15 orang: 5 insinyur, 3 HSE, 4 pengadaan, dan 3 pengendalian mutu.", "trans": "王先生将担任主要项目经理。核心团队15人:5名工程师、3名HSE、4名采购和3名质量控制。"},
+          {"speaker": "C", "text": "Bagus. Apakah ruang lingkup proyek sudah final? Dan bagaimana mekanisme perubahan ruang lingkup jika diperlukan?", "trans": "很好。项目范围已经确定了吗?如果需要变更范围,机制是什么?"},
+          {"speaker": "A", "text": "Ruang lingkup sudah disetujui direksi. Untuk perubahan, kita pakai proses change request dengan persetujuan dari penanggung jawab utama dan evaluasi dampak terhadap garis dasar.", "trans": "范围已经董事会批准。变更的话，我们用变更请求流程，需要主要责任人批准并评估对基准线的影响。"},
+          {"speaker": "B", "text": "Berapa cadangan risiko yang disiapkan? Saya lihat dari estimasi, ada beberapa risiko cuaca dan logistik yang perlu perhatian.", "trans": "风险储备金准备了多少？我从估算中看到一些天气和物流风险需要关注。"},
+          {"speaker": "A", "text": "Cadangan kontingensi 5 persen dari anggaran. Risiko utama: cuaca musim hujan dan keterlambatan pengiriman peralatan dari luar negeri.", "trans": "应急储备为预算的5%。主要风险：雨季天气和海外设备运输延迟。"},
+          {"speaker": "C", "text": "Untuk komunikasi proyek, berapa sering kita akan mengadakan rapat kemajuan? Dan dalam bentuk apa laporan status akan dibagikan?", "trans": "关于项目沟通，我们多久开一次进度会？状态报告以什么形式分发？"},
+          {"speaker": "A", "text": "Rapat kemajuan setiap Senin pagi. Laporan mingguan dikirim via email setiap Jumat sore ke semua pemangku kepentingan.", "trans": "每周一上午开进度会。周报每周五下午通过邮件发送给所有利益相关方。"},
+          {"speaker": "B", "text": "Satu pertanyaan terakhir. Kapan serah terima proyek direncanakan? Dan siapa yang akan mengambil alih operasi?", "trans": "最后一个问题。项目移交计划什么时候？谁来接管运营？"},
+          {"speaker": "A", "text": "Serah terima direncanakan bulan ke-25 setelah masa pemeliharaan. Tim operasi internal akan mengambil alih dengan dukungan kontraktor selama 6 bulan.", "trans": "移交计划在第25个月，经过保养期后。内部运营团队将接管，承包商提供6个月的支持。"}
         ]
       },
       {
         title: "进度跟踪讨论",
         icon: "📊",
         dialogue: [
-          {"speaker": "A", "text": "Mari kita bahas progress proyek minggu ini. Berdasarkan Gantt chart, pekerjaan fondasi seharusnya sudah 80% selesai.", "trans": "让我们讨论本周项目进度。根据甘特图,基础工程应该已完成80%。"},
-          {"speaker": "B", "text": "Maaf, Pak. Progress fondasi baru mencapai 65% karena cuaca buruk selama lima hari terakhir. Ada delay satu minggu.", "trans": "抱歉,先生。基础工程进度只达到65%,因为最近五天天气恶劣。延迟了一周。"},
-          {"speaker": "A", "text": "Ini masalah serius. Apakah kita bisa lakukan fast tracking untuk struktur baja agar bisa mengejar keterlambatan?", "trans": "这是严重问题。我们能否对钢结构进行快速跟进以追赶延迟?"},
+          {"speaker": "A", "text": "Mari kita bahas kemajuan proyek minggu ini. Berdasarkan bagan Gantt, pekerjaan fondasi seharusnya sudah 80 persen selesai.", "trans": "让我们讨论本周项目进度。根据甘特图,基础工程应该已完成80%。"},
+          {"speaker": "B", "text": "Maaf, Pak. Kemajuan fondasi baru mencapai 65 persen karena cuaca buruk selama lima hari terakhir. Ada keterlambatan satu minggu.", "trans": "抱歉,先生。基础工程进度只达到65%,因为最近五天天气恶劣。延迟了一周。"},
+          {"speaker": "A", "text": "Ini masalah serius. Apakah kita bisa lakukan percepatan paralel untuk struktur baja agar bisa mengejar keterlambatan?", "trans": "这是严重问题。我们能否对钢结构进行快速跟进以追赶延迟?"},
           {"speaker": "B", "text": "Bisa, tapi membutuhkan tambahan tenaga kerja 20 orang dan biaya lembur. Estimasi tambahan biayanya sekitar 150 ribu dolar.", "trans": "可以,但需要增加20名工人和加班费用。预估额外成本约15万美元。"},
-          {"speaker": "A", "text": "Saya setuju dengan fast tracking. Tapi pastikan safety tetap terjaga dan jangan sampai ada kecelakaan kerja.", "trans": "我同意快速跟进。但确保安全,不要发生工伤事故。"}
+          {"speaker": "A", "text": "Saya setuju dengan percepatan paralel. Tapi pastikan keselamatan tetap terjaga dan jangan sampai ada kecelakaan kerja.", "trans": "我同意快速跟进。但确保安全,不要发生工伤事故。"},
+          {"speaker": "C", "text": "Kalau kita lakukan percepatan, bagaimana dampaknya terhadap anggaran? Apakah masih dalam batas belanja modal yang disetujui?", "trans": "如果我们加速，对预算有什么影响？是否还在批准的资本支出范围内？"},
+          {"speaker": "A", "text": "Dampaknya sekitar 3 persen dari total belanja modal. Masih dalam toleransi, tapi kita harus kurangi dari pos lain yang belum terealisasi.", "trans": "影响约为资本支出总额的3%。仍在容忍范围内，但我们必须从其他未执行的预算项中削减。"},
+          {"speaker": "B", "text": "Berapa nilai hasil yang sudah kita capai sejauh ini? Apakah SPI masih di atas satu?", "trans": "到目前为止我们的挣值是多少？SPI还在1以上吗？"},
+          {"speaker": "A", "text": "Nilai hasil kita 45 persen dari total rencana. SPI 0.92, artinya kita sedikit tertinggal dari jadwal. Tapi CPI masih 1.05, jadi efisiensi biaya masih baik.", "trans": "我们挣值为计划总量的45%。SPI 0.92，意味着略落后于进度。但CPI 1.05，成本效率仍不错。"},
+          {"speaker": "C", "text": "Bagus, berarti masih bisa dikendalikan. Yang penting jalur kritis tidak terganggu. Apakah pekerjaan instalasi pipa masih sesuai jadwal?", "trans": "好，意味着仍可控。关键是关键路径不受影响。管道安装工作还在按计划进行吗？"},
+          {"speaker": "A", "text": "Instalasi pipa masih on track, tapi kita perlu perhatikan jalur non-kritis yang punya waktu longgar minim. Kalau terlambat sedikit bisa jadi kritis.", "trans": "管道安装仍在正轨，但需要注意浮动时间极少的非关键路径。稍有延迟就可能变成关键路径。"},
+          {"speaker": "B", "text": "Saya akan minta tim update jadwal setiap hari untuk pekerjaan dengan waktu longgar di bawah 3 hari. Lebih baik waspada daripada kaget.", "trans": "我会要求团队对浮动时间低于3天的工作每天更新进度。宁可警惕也不要被动。"}
         ]
       },
       {
         title: "风险评估会议",
         icon: "⚠️",
         dialogue: [
-          {"speaker": "A", "text": "Hari ini kita update risk register. Risiko apa saja yang muncul minggu ini dan bagaimana status mitigasinya?", "trans": "今天我们更新风险登记册。本周出现了哪些风险,缓解措施状态如何?"},
-          {"speaker": "B", "text": "Risiko utama: cuaca ekstrem di musim hujan dengan probability tinggi dan impact tinggi. Mitigasinya: tambah canopy dan adjust jadwal.", "trans": "主要风险:雨季极端天气,概率高影响大。缓解措施:增加顶棚和调整日程。"},
+          {"speaker": "A", "text": "Hari ini kita perbarui daftar risiko. Risiko apa saja yang muncul minggu ini dan bagaimana status mitigasinya?", "trans": "今天我们更新风险登记册。本周出现了哪些风险,缓解措施状态如何?"},
+          {"speaker": "B", "text": "Risiko utama: cuaca ekstrem di musim hujan dengan probabilitas tinggi dan dampak tinggi. Mitigasinya: tambah kanopi dan sesuaikan jadwal.", "trans": "主要风险:雨季极端天气,概率高影响大。缓解措施:增加顶棚和调整日程。"},
           {"speaker": "A", "text": "Bagus. Risiko kedua?", "trans": "很好。第二个风险?"},
-          {"speaker": "C", "text": "Keterlambatan pengiriman equipment dari Cina karena masalah logistik. Probability medium, impact tinggi. Kita sudah cari supplier alternatif dari Jepang.", "trans": "中国设备交货延迟因物流问题。概率中等影响大。我们已寻找日本替代供应商。"},
-          {"speaker": "A", "text": "Tindakan yang tepat. Jangan lupa update kontingensi plan untuk setiap risiko dengan impact tinggi. Siapkan dana darurat 5% dari anggaran.", "trans": "措施正确。别忘了为每个高风险更新应急计划。准备预算5%的应急资金。"}
+          {"speaker": "C", "text": "Keterlambatan pengiriman peralatan dari Cina karena masalah logistik. Probabilitas sedang, dampak tinggi. Kita sudah cari pemasok alternatif dari Jepang.", "trans": "中国设备交货延迟因物流问题。概率中等影响大。我们已寻找日本替代供应商。"},
+          {"speaker": "A", "text": "Tindakan yang tepat. Jangan lupa perbarui rencana kontingensi untuk setiap risiko dengan dampak tinggi. Siapkan dana darurat 5 persen dari anggaran.", "trans": "措施正确。别忘了为每个高风险更新应急计划。准备预算5%的应急资金。"},
+          {"speaker": "B", "text": "Ada risiko baru: kenaikan harga baja dunia naik 15 persen dalam sebulan terakhir. Kalau berlanjut, bisa terjadi pembengkakan biaya.", "trans": "有一个新风险：全球钢材价格一个月内上涨15%。如果持续，可能导致成本超支。"},
+          {"speaker": "A", "text": "Ini perlu analisis kuantitatif. Berapa volume baja yang belum dibeli dan berapa potensi kenaikan biayanya?", "trans": "这需要定量分析。还有多少钢材未采购，潜在成本增加多少？"},
+          {"speaker": "B", "text": "Sisa kebutuhan baja sekitar 30 persen dari total. Kalau harga naik 15 persen, tambahan biaya sekitar 8 juta dolar. Cukup signifikan.", "trans": "剩余钢材需求约占总量的30%。如果价格上涨15%，额外成本约800万美元。相当可观。"},
+          {"speaker": "A", "text": "Pertimbangkan untuk membeli kontrak berjangka atau hedging. Konsultasikan dengan tim keuangan untuk strategi terbaik.", "trans": "考虑购买期货合约或对冲。与财务团队协商最佳策略。"},
+          {"speaker": "C", "text": "Saya setuju. Selain itu, risiko ketenagakerjaan juga perlu diperhatikan. Turnover pekerja lokal cukup tinggi bulan ini, 8 persen.", "trans": "我同意。此外，劳动力风险也需要关注。本月本地工人离职率相当高，达8%。"},
+          {"speaker": "A", "text": "Benar, ini isu yang perlu ditangani. Tingkatkan program retensi: tunjangan perumahan, transportasi, dan jalur karier yang jelas.", "trans": "对，这是需要处理的问题。加强留任计划：住房补贴、交通和明确的发展通道。"},
+          {"speaker": "B", "text": "Baik, saya akan koordinasi dengan HR untuk implementasi. Risiko lain dari pihak eksternal: perubahan regulasi impor peralatan.", "trans": "好，我会与HR协调实施。还有外部风险：进口设备法规变化。"},
+          {"speaker": "A", "text": "Pantau terus perkembangan regulasi. Jaga hubungan baik dengan kementerian terkait agar dapat informasi lebih awal dan bisa adaptasi.", "trans": "持续关注法规动态。与相关部门保持良好关系，以便提前获取信息并做好适应。"}
         ]
-      }
-    ],
+      }],
     speeches: [
       {
         day: 1,
@@ -10258,83 +10277,84 @@ environmental_compliance: {
         "bahaya /baˈha.ja/ (adj.) → sangat berbahaya /ˈsaŋ.gat bɛrbaˈha.ja/ = '非常危险'"
       ]
     },
-    vocab: [
+    vocab: [[
       ['lingkungan', '环境', '/liŋˈkuŋ.an/'], ['kepatuhan', '合规', '/kɛpaˈtu.han/'],
       ['emisi', '排放', '/ɛˈmi.si/'], ['baku mutu', '排放标准', '/ˈba.ku ˈmu.tu/'],
       ['limbah', '废弃物', '/ˈlim.bah/'], ['air limbah', '废水', '/ˈa.ɪr ˈlim.bah/'],
-      ['gas buang', '废气', '/ˈgas ˈbu.aŋ/'], ['padat', '固体', '/ˈpa.dat/'],
-      ['cair', '液体', '/ˈʧa.ɪr/'], ['berbahaya', '危险', '/bɛrˈba.ha.ja/'],
+      ['gas buang', '废气', '/ˈgas ˈbu.aŋ/'], ['berbahaya', '危险', '/bɛrˈba.ha.ja/'],
       ['B3', '危险废弃物', '/ˈbɛ ˈtɛ.ga/'], ['AMDAL', '环境影响评估', '/ˈam.dal/'],
       ['UKL-UPL', '环境管理计划', '/ˈu.ka.ɛl ˈu.pɛ.ɛl/'], ['izin lingkungan', '环境许可证', '/ˈi.zin liŋˈkuŋ.an/'],
       ['jejak karbon', '碳足迹', '/ˈʤɛ.ʤak ˈkar.bon/'], ['nol bersih', '净零(碳中和)', '/ˈnɔl bərˈsih/'],
-      ['karbon', '碳', '/ˈkar.bon/'], ['CO2', '二氧化碳', '/ˈsi ˈo ˈdu.a/'],
-      ['GRK', '温室气体', '/ˈgɛ ˈɛr ˈka/'], ['IPCC', '气候变化委员会', '/ˈi.pi.ˈsi.ˈsi/'],
-      ['monitoring', '监测', '/ˈmo.ni.to.rɪŋ/'], ['pengukuran', '测量', '/pɛŋˈu.ku.ran/'],
-      ['sampling', '取样', '/ˈsam.plɪŋ/'], ['analisis', '分析', '/aˈna.li.sis/'],
-      ['laboratorium', '实验室', '/la.bo.raˈto.ri.um/'], ['laporan', '报告', '/ˈla.po.ran/'],
-      ['audit lingkungan', '环境审计', '/ˈaʊ.dit liŋˈkuŋ.an/'], ['inspeksi', '检查', '/ɪnˈspɛk.si/'],
-      ['sanksi', '处罚', '/ˈsan.ʧi/'], ['denda', '罚款', '/ˈdɛn.da/'],
-      ['penutupan', '关停', '/pɛnuˈtu.pan/'], ['penghentian', '停止', '/pɛŋˈhɛn.ti.an/'],
-      ['pengolahan', '处理', '/pɛŋˈo.la.han/'], ['penjernihan', '净化', '/pɛnˈʤɛr.ni.han/'],
-      ['penguraian', '降解', '/pɛŋˈu.ra.i.an/'], ['penetralan', '中和', '/pɛnɛˈtra.lan/'],
-      ['pengendapan', '沉淀', '/pɛŋˈɛn.da.pan/'], ['filtrasi', '过滤', '/fɪlˈtra.si/'],
-      ['aerasi', '曝气', '/aˈɛ.ra.si/'], ['koagulasi', '混凝', '/ko.a.guˈla.si/'],
-      ['flokulasi', '絮凝', '/flo.kuˈla.si/'], ['reverse osmosis', '反渗透', '/rɪˈvɜrs ɒˈmoʊ.sɪs/'],
-      ['wet scrubber', '湿法洗涤器', '/ˈwɛt ˈskrʌ.bər/'], ['bag filter', '布袋除尘器', '/ˈbæg ˈfɪl.tər/'],
-      ['ESP', '静电除尘器', '/ˈi ɛs ˈpi/'], ['debu', '粉尘', '/ˈdɛ.bu/'],
-      ['partikulat', '颗粒物', '/parˈtɪ.kju.lat/'], ['SOx', '硫氧化物', '/ˈɛs ˈo ˈɛks/'],
-      ['NOx', '氮氧化物', '/ˈɛn ˈo ˈɛks/'], ['merkuri', '汞', '/mɛrˈku.ri/'],
-      [' arsen', '砷', '/ˈar.sɛn/'], ['timbal', '铅', '/ˈtim.bal/'],
-      ['kadmium', '镉', '/ˈkad.mi.um/'], ['krom', '铬', '/ˈkrom/'],
-      ['pH', '酸碱度', '/ˈpi ˈeɪʧ/'], ['COD', '化学需氧量', '/ˈsi ˈo ˈdi/'],
-      ['BOD', '生化需氧量', '/ˈbi ˈo ˈdi/'], ['TSS', '总悬浮固体', '/ˈti ɛs ɛs/'],
-      ['TDS', '总溶解固体', '/ˈti di ɛs/'], ['reuse', '回用', '/ˈri.jus/'],
-      ['recycle', '回收', '/ˈri.saɪ.kəl/'], ['reduce', '减量', '/rɪˈdus/'],
-      ['greenbelt', '绿化带', '/ˈgrin.bɛlt/'], ['reboisasi', '重新造林', '/rɛ.bo.iˈsa.si/'],
-      ['konservasi', '保护', '/kon.sɛrˈva.si/'], ['rehabilitasi', '修复', '/rɛ.ha.bi.liˈta.si/'],
-      ['restorasi', '恢复', '/rɛs.toˈra.si/'], ['EIA', '环境影响评价', '/ˈi.i.a/'],
-      ['ISO 14001', '环境管理体系', '/ˈi.ɛs ˈo ˈfɔr ˈzɛ.ro ˈwan/'], ['Sertifikasi Hijau', '绿色认证', '/sɛr.tɪ.fɪˈka.si ˈhi.jaʊ/'],
-      ['Proper', '环保评级', '/ˈpro.pɛr/'], ['KLHK', '环境林业部', '/ˈka.ɛl ˈha.ˈka/'],
+      ['GRK', '温室气体', '/ˈgɛ ˈɛr ˈka/'], ['pemantauan', '监测', '/pə.məntuˈ.a.n/'],
+      ['pengambilan contoh', '采样', '/pəŋ.am.bil.an konˈtoh/'], ['analisis', '分析', '/a.naˈli.sis/'],
+      ['laporan', '报告', '/la.poˈran/'], ['audit lingkungan', '环境审计', '/ˈaʊ.dit liŋˈkuŋ.an/'],
+      ['denda', '罚款', '/ˈdɛn.da/'], ['pengolahan', '处理', '/pəŋ.oˈla.han/'],
+      ['penjernihan', '净化', '/pən.ʤɛr.niˈhan/'], ['osmosis terbalik', '反渗透', '/osˈmo.sis tərˈba.lik/'],
+      ['penyikat basah', '湿式洗涤器', '/pəˈɲi.kat ˈba.sah/'], ['filter kantong', '袋式过滤器', '/ˈfɪl.tər kanˈtoŋ/'],
+      ['presipitator elektrostatik', '静电除尘器', '/pre.si.piˈta.tor e.lɛkˈtro.sta.tik/'], ['konservasi', '保护', '/kon.sɛrˈva.si/'],
+      ['rehabilitasi', '修复', '/rɛ.ha.bi.liˈta.si/'], ['penggunaan kembali', '再利用', '/pəŋ.ɡu.naˈan kəmˈba.li/'],
+      ['daur ulang', '回收', '/ˈda.ur ˈu.laŋ/'], ['pengurangan', '减量', '/pəŋ.u.raŋˈan/'],
+      ['sabuk hijau', '绿化带', '/ˈsa.buk ˈhi.ʤaʊ/'], ['KLHK', '环境林业部', '/ˈka.ɛl ˈha.ˈka/'],
       ['ESDM', '能源矿产资源部', '/ˈɛ ˈɛs ˈdi ˈɛm/'], ['PPLH', '环境实验室', '/ˈpɛ.pɛ.ɛl.ˈha/'],
-      ['SPPL', '环境管理声明', '/ˈɛs ˈpɛ ˈpɛ ˈɛl/']
-    ],
-    scenes: [
-      {
+      ['SPPL', '环境管理声明', '/ˈɛs ˈpɛ ˈpɛ ˈɛl/'], ['PROPER', '环保评级', '/ˈpro.pɛr/']
+    ]],
+    scenes: [{
         title: "排放监测讨论",
         icon: "📊",
         dialogue: [
-          {"speaker": "A", "text": "Pak, hasil monitoring emisi cerobong asap bulan ini menunjukkan kadar SOx masih di atas baku mutu yang diizinkan.", "trans": "先生,本月烟囱排放监测结果显示SOx浓度仍高于允许排放标准。"},
-          {"speaker": "B", "text": "Berapa persen di atas baku mutunya? Dan apa penyebab kenaikannya?", "trans": "超出排放标准多少百分比?上升原因是什么?"},
-          {"speaker": "A", "text": "Melebihi 23% dari batas 750 mg per Nm3. Penyebabnya adalah kandungan sulfur dalam bijih nikel naik 15% dibanding bulan lalu.", "trans": "超出750毫克/标准立方米的限值23%。原因是镍矿含硫量比上月高15%。"},
-          {"speaker": "B", "text": "Ini serius. KLHK bisa kasih sanksi kalau kita tidak segera ambil tindakan. Apa solusi yang bisa dilakukan?", "trans": "这很严重。如果我们不立即采取行动,KLHK可能会处罚。能采取什么解决方案?"},
-          {"speaker": "A", "text": "Saya usulkan upgrade wet scrubber dengan menambah stage kedua. Estimasi biaya 2,5 miliar rupiah dan butuh waktu 3 bulan.", "trans": "我建议升级湿法洗涤器增加第二级。预估费用25亿印尼盾,需要3个月。"},
-          {"speaker": "B", "text": "Setuju. Tapi sementara itu, cari sumber bijih dengan sulfur lebih rendah sebagai mix blending. Jangan sampai kita kena denda.", "trans": "同意。但在此期间,寻找含硫更低的矿源作为混合料。不要让我们被罚款。"}
+          {"speaker": "A", "text": "Pak, hasil pemantauan emisi bulan ini menunjukkan kadar SOx melebihi baku mutu di cerobong nomor dua. Apa penyebabnya?", "trans": "先生，本月排放监测结果显示2号烟囱的SOx浓度超出排放标准。原因是什么？"},
+          {"speaker": "B", "text": "Kami sedang investigasi. Dugaan sementara: scrubber wet sedang tidak beroperasi optimal karena pompa utama rusak kemarin.", "trans": "我们正在调查。初步怀疑：湿式洗涤器因主泵昨天故障而未达最佳运行状态。"},
+          {"speaker": "A", "text": "Berapa lama scrubber tidak berfungsi normal? Dan apakah kita sudah lapor ke KLHK?", "trans": "洗涤器异常运行多久了？我们是否已报告环境林业部？"},
+          {"speaker": "B", "text": "Kira-kira 36 jam. Kita belum lapor karena masih dalam batas waktu perbaikan 48 jam sesuai izin lingkungan.", "trans": "大约36小时。我们还没报告，因为还在环境许可证规定的48小时维修时限内。"},
+          {"speaker": "A", "text": "Bagus, tapi jangan tunggu sampai batas. Laporkan segera sebagai bentuk kepatuhan proaktif. Lebih baik terlalu cepat daripada terlambat.", "trans": "好，但不要等到极限。立即报告作为主动合规。宁可太早也不要太晚。"},
+          {"speaker": "B", "text": "Siap, Pak. Saya akan siapkan laporan hari ini juga. Bagaimana dengan pengambilan contoh untuk analisis laboratorium?", "trans": "好的，先生。我今天准备报告。实验室分析的采样怎么做？"},
+          {"speaker": "A", "text": "Ambil sampel gas buang setiap 4 jam dan kirim ke PPLH untuk analisis. Pastikan rantai pengawasan contoh terdokumentasi dengan baik.", "trans": "每4小时采集废气样本并送到环境实验室分析。确保样本监管链完整记录。"},
+          {"speaker": "B", "text": "Dipahami. Apakah kita perlu mengurangi beban produksi sementara sampai scrubber diperbaiki?", "trans": "明白。在洗涤器修复前，我们是否需要暂时降低生产负荷？"},
+          {"speaker": "A", "text": "Ya, turunkan beban 20 persen untuk mengurangi emisi. Lebih baik produksi sedikit turun daripada kena denda dan reputasi rusak.", "trans": "是，降低20%负荷以减少排放。宁可产量略降，也不冒罚款和声誉受损的风险。"},
+          {"speaker": "B", "text": "Setuju. Berapa perkiraan biaya denda kalau kita terus beroperasi tanpa perbaikan?", "trans": "同意。如果我们继续运行而不修复，罚款预估多少？"},
+          {"speaker": "A", "text": "Berdasarkan regulasi, denda bisa mencapai 500 juta rupiah per hari untuk pelanggaran baku mutu udara. Belum termasuk sanksi penutupan.", "trans": "根据法规，空气质量超标罚款可达每天5亿印尼盾。还不包括停产处罚。"},
+          {"speaker": "B", "text": "Mahal juga. Saya akan koordinasi dengan tim maintenance untuk percepat perbaikan scrubber. Target selesai dalam 24 jam.", "trans": "代价不小。我会与维修团队协调加快洗涤器修复。目标24小时内完成。"},
+          {"speaker": "A", "text": "Bagus. Dan ingatkan tim untuk selalu pakai APD saat bekerja di area cerobong. Keselamatan orang lebih penting dari apapun.", "trans": "很好。并提醒团队在烟囱区域工作时始终穿戴防护装备。人员安全高于一切。"}
         ]
       },
       {
         title: "废水处理检查",
         icon: "💧",
         dialogue: [
-          {"speaker": "A", "text": "Pak, tim audit internal menemukan ada kebocoran pipa limbah cair dari area pengolahan ke tambahan settling pond.", "trans": "先生,内部审计团队发现处理区到沉淀池的废水管道有泄漏。"},
-          {"speaker": "B", "text": "Apakah limbah tersebut sudah melewati treatment plant? Atau masih belum diolah?", "trans": "这些废水是否已通过处理厂?还是尚未处理?"},
-          {"speaker": "A", "text": "Masih belum diolah, Pak. Itu dari area overflow saat hujan deras kemarin. Airnya mengandung logam berat dan pH rendah.", "trans": "尚未处理,先生。那是昨天暴雨时的溢流区域。水中含重金属且pH值低。"},
-          {"speaker": "B", "text": "Segera lakukan containment dan pump kembali ke equalization tank. Jangan biarkan masuk ke sungai. Berapa volume tumpahannya?", "trans": "立即进行围堵并抽回均衡池。不要让水流入河流。溢出量多少?"},
-          {"speaker": "A", "text": "Estimasi sekitar 50 meter kubik. Kami sudah pasang boom penahan dan mulai pumping. Laporan insiden akan saya buat hari ini.", "trans": "估计约50立方米。我们已安装围油栏并开始抽水。事故报告我今天完成。"}
+          {"speaker": "A", "text": "Hari ini kita inspeksi fasilitas pengolahan air limbah. Bagaimana hasil uji pH, COD, dan BOD minggu ini?", "trans": "今天我们检查废水处理设施。本周pH、COD和BOD检测结果如何？"},
+          {"speaker": "B", "text": "pH masih dalam batas normal 7-8, tapi COD naik dari 100 menjadi 150 mg/L. Batas baku mutu adalah 100 mg/L.", "trans": "pH仍在正常范围7-8，但COD从100上升到150 mg/L。排放标准限值是100 mg/L。"},
+          {"speaker": "A", "text": "COD melebihi batas, ini serius. Apa yang menyebabkan kenaikan? Apakah ada perubahan proses produksi?", "trans": "COD超标，这很严重。什么原因导致的？生产工艺有变化吗？"},
+          {"speaker": "B", "text": "Ada penambahan produksi MHP minggu ini yang meningkatkan beban limbah. Kapasitas pengolahan kita hampir maksimal.", "trans": "本周MHP产量增加导致废水负荷增大。我们的处理能力已接近极限。"},
+          {"speaker": "A", "text": "Kita perlu evaluasi apakah perlu upgrade fasilitas. Tapi sementara ini, ada cara sementara untuk mengurangi COD?", "trans": "我们需要评估是否需要升级设施。但目前有什么临时办法降低COD？"},
+          {"speaker": "B", "text": "Bisa tambahkan dosis koagulasi dan flokulasi, atau perpanjang waktu pengendapan. Tapi ini hanya solusi jangka pendek.", "trans": "可以增加混凝和絮凝剂量，或延长沉淀时间。但这只是短期方案。"},
+          {"speaker": "A", "text": "Lakukan dulu solusi jangka pendek sambil kita hitung investasi untuk penambahan unit pengolahan baru. Jangan sampai kena denda.", "trans": "先实施短期方案，同时我们计算新增处理单元的投资。不要被罚款。"},
+          {"speaker": "B", "text": "Baik. Bagaimana dengan sistem osmosis terbalik? Apakah masih berfungsi normal?", "trans": "好。反渗透系统呢？运行还正常吗？"},
+          {"speaker": "A", "text": "RO masih normal, tapi membran perlu diganti dalam 3 bulan. Sudah masuk rencana pengadaan?", "trans": "RO还正常，但膜需要3个月内更换。已列入采购计划了吗？"},
+          {"speaker": "B", "text": "Sudah, tapi pengiriman dari Jepang butuh waktu 6 minggu. Kita harus pesan sekarang agar tidak telat.", "trans": "已列入，但从日本发货需要6周。我们必须现在下单以免延误。"},
+          {"speaker": "A", "text": "Setuju, pesan segera. Dan pastikan kontraktor pembuangan limbah B3 punya izin resmi. Jangan sampai kita terlibat masalah hukum.", "trans": "同意，立即下单。并确保危险废弃物处理承包商有正式许可。不要让我们卷入法律问题。"},
+          {"speaker": "B", "text": "Siap. Saya akan cek semua dokumen izin mereka minggu ini. Ada lagi yang perlu diperiksa?", "trans": "好的。我本周会检查他们所有许可文件。还有别的要查的吗？"},
+          {"speaker": "A", "text": "Ya, pastikan juga sistem pemantauan online tersambung ke server KLHK dan data terkirim real-time. Ini wajib sesuai izin lingkungan.", "trans": "有，确保在线监测系统已连接到环境林业部服务器且数据实时传输。这是环境许可证的强制要求。"}
         ]
       },
       {
         title: "环境许可证续期",
-        icon: "📋",
+        icon: "📜",
         dialogue: [
-          {"speaker": "A", "text": "Pak, izin lingkungan kita akan habis masa berlakunya dalam 6 bulan. Kita perlu mulai proses perpanjangan.", "trans": "先生,我们的环境许可证将在6个月后到期。需要开始续期流程。"},
-          {"speaker": "B", "text": "Apa saja dokumen yang diperlukan? Dan berapa lama prosesnya biasanya?", "trans": "需要什么文件?通常流程多长?"},
-          {"speaker": "A", "text": "Dokumennya: AMDAL atau UKL-UPL terbaru, laporan pemantauan lingkungan 2 tahun terakhir, bukti pembayaran retribusi, dan rekomendasi dari Dinas LH.", "trans": "文件包括:最新环境影响评估、近两年环境监测报告、缴费证明和环保局的推荐。"},
-          {"speaker": "B", "text": "Berapa estimasi waktu prosesnya?", "trans": "流程预计多长时间?"},
-          {"speaker": "A", "text": "Kalau dokumen lengkap, proses di KLHK sekitar 3-4 bulan. Tapi kita juga perlu public consultation selama 30 hari.", "trans": "如果文件齐全,KLHK流程约3-4个月。但我们还需要30天公众征询。"},
-          {"speaker": "B", "text": "Oke, mulai persiapkan dokumen sekarang. Jangan sampai izin habis sebelum perpanjangan keluar. Itu bisa menghentikan operasi.", "trans": "好的,现在开始准备文件。不要让许可证在续期出来前过期。那可能导致停产。"}
+          {"speaker": "A", "text": "Izin lingkungan kita akan habis dalam 6 bulan. Kita harus mulai proses perpanjangan sekarang karena biasanya butuh waktu lama.", "trans": "我们的环境许可证6个月后到期。必须现在开始续期流程，因为通常需要很长时间。"},
+          {"speaker": "B", "text": "Setuju, Pak. Dokumen apa saja yang perlu disiapkan? Apakah ada perubahan dari AMDAL yang lama?", "trans": "同意，先生。需要准备哪些文件？与旧的环评有变化吗？"},
+          {"speaker": "A", "text": "Kita perlu update data pemantauan lingkungan 3 tahun terakhir, laporan audit, dan evaluasi dampak aktual versus prediksi AMDAL.", "trans": "我们需要更新过去3年的环境监测数据、审计报告，以及实际影响与环评预测的评估。"},
+          {"speaker": "B", "text": "Apakah kita perlu revisi UKL-UPL? Produksi kita naik 30 persen sejak izin dikeluarkan.", "trans": "我们需要修改环境管理计划吗？自许可证颁发以来我们的产量增加了30%。"},
+          {"speaker": "A", "text": "Kemungkinan besar perlu. Kalau kapasitas produksi berubah signifikan, kita wajib melakukan evaluasi ulang. Konsultasikan dengan konsultan lingkungan.", "trans": "很可能需要。如果产能显著变化，我们必须重新评估。与环境顾问协商。"},
+          {"speaker": "B", "text": "Berapa biaya estimasi untuk perpanjangan dan revisi? Dan berapa lama prosesnya biasanya?", "trans": "续期和修订的预估费用多少？通常流程需要多长时间？"},
+          {"speaker": "A", "text": "Estimasi biaya konsultan dan administrasi sekitar 500 juta sampai 1 miliar rupiah. Prosesnya bisa 3 sampai 6 bulan tergantung kompleksitas.", "trans": "顾问和行政费用预估5亿到10亿印尼盾。流程可能需要3到6个月，取决于复杂度。"},
+          {"speaker": "B", "text": "Lama juga. Apa risiko kalau izin terlambat diperpanjang? Bisakah kita tetap beroperasi?", "trans": "时间挺长。如果许可证延迟续期有什么风险？我们能继续运营吗？"},
+          {"speaker": "A", "text": "Risikonya besar. Kalau izin habis dan belum diperpanjang, kita bisa dianggap beroperasi ilegal dan dikenai sanksi penutupan.", "trans": "风险很大。如果许可证过期未续，我们可能被视为非法经营并被处以关闭处罚。"},
+          {"speaker": "B", "text": "Berarti kita harus pastikan semua dokumen lengkap dan akurat. Apakah ada temuan audit yang belum diselesaikan?", "trans": "这意味着我们必须确保所有文件完整准确。有没有未完成的审计发现？"},
+          {"speaker": "A", "text": "Ada 3 temuan minor dari audit tahun lalu yang sudah kita tangani. Pastikan dokumentasi penyelesaian lengkap untuk dilampirkan dalam permohonan.", "trans": "去年审计有3项轻微发现已处理。确保整改文件完整，附在申请中。"},
+          {"speaker": "B", "text": "Siap, Pak. Saya akan mulai kumpulkan semua dokumen minggu ini dan buat jadwal kerja dengan konsultan.", "trans": "好的，先生。我本周开始收集所有文件并与顾问制定工作计划。"},
+          {"speaker": "A", "text": "Bagus. Dan jangan lupa koordinasi dengan bagian legal untuk memastikan semua dokumen sesuai format terbaru dari KLHK.", "trans": "很好。别忘了与法务部门协调，确保所有文件符合环境林业部最新格式要求。"}
         ]
-      }
-    ],
+      }],
     speeches: [
       {
         day: 1,
@@ -10408,162 +10428,83 @@ supply_chain: {
         "proses /ˈpro.sɛs/ (v.) → sedang diproses /səˈdaŋ diˈpro.sɛs/ = '正在被处理'"
       ]
     },
-    vocab: [
-      ['rantai pasok', '供应链', '/ˈran.taɪ ˈpa.sok/'], ['logistik', '物流', '/loˈɡis.tik/'],
-      ['pengadaan', '采购', '/pɛŋˈa.da.an/'], ['pembelian', '购买', '/pɛmˈbɛ.li.an/'],
-      ['pesanan', '订单', '/pɛˈsa.nan/'], ['PO', '采购订单', '/ˈpi ˈo/'],
-      ['supplier', '供应商', '/səˈplaɪ.ər/'], ['vendor', '卖方', '/ˈvɛn.dɔr/'],
-      ['kontraktor', '承包商', '/konˈtrak.tor/'], ['subkontraktor', '分包商', '/sub.konˈtrak.tor/'],
-      ['pengiriman', '发货', '/pɛŋˈi.ri.man/'], ['penerimaan', '收货', '/pɛ.nɛ.riˈma.an/'],
-      ['gudang', '仓库', '/ˈɡu.daŋ/'], ['inventori', '库存', '/ˈin.vɛn.to.ri/'],
-      ['stok', '存货', '/ˈstok/'], ['safety stock', '安全库存', '/ˈsef.ti ˈstok/'],
-      ['reorder point', '再订货点', '/ˈri.ˈɔr.dər ˈpɔɪnt/'], ['EOQ', '经济订货量', '/ˈi ˈo ˈkju/'],
-      ['lead time', '交货周期', '/ˈliːd ˈtaɪm/'], ['delivery time', '交付时间', '/dɪˈlɪ.və.ri ˈtaɪm/'],
-      ['just in time', '准时制', '/ˈʤʌst ɪn ˈtaɪm/'], ['JIT', '准时制', '/ˈʤeɪ ˈaɪ ˈti/'],
-      ['MRP', '物料需求计划', '/ˈɛm ˈar ˈpi/'], ['ERP', '企业资源计划', '/ˈi ˈar ˈpi/'],
-      ['SKU', '库存单位', '/ˈɛs ˈkeɪ ˈju/'], ['batch', '批次', '/ˈbæʧ/'],
-      ['lot', '批', '/ˈlɒt/'], ['serial number', '序列号', '/ˈsɪə.ri.əl ˈnʌm.bər/'],
-      ['barcode', '条码', '/ˈbar.koʊd/'], ['RFID', '射频识别', '/ˈar ˈɛf ˈaɪ ˈdi/'],
-      ['WMS', '仓库管理系统', '/ˈdʌb.əl.ju ˈɛm ˈɛs/'], ['TMS', '运输管理系统', '/ˈti ˈɛm ˈɛs/'],
-      ['pengangkutan', '运输', '/pɛŋˈaŋ.ku.tan/'], ['pengapalan', '航运', '/pɛŋˈa.pa.lan/'],
-      ['pengiriman darat', '陆运', '/pɛŋˈi.ri.man ˈda.rat/'], ['pengiriman laut', '海运', '/pɛŋˈi.ri.man ˈla.ʊt/'],
-      ['pengiriman udara', '空运', '/pɛŋˈi.ri.man ˈu.da.ra/'], ['multimoda', '多式联运', '/ˈmul.tiˈmo.da/'],
-      ['container', '集装箱', '/konˈteɪ.nər/'], ['kontainer', '集装箱', '/konˈtaɪ.nər/'],
-      ['bulk', '散货', '/ˈbʌlk/'], ['break bulk', '杂货', '/ˈbreɪk ˈbʌlk/'],
-      ['pallet', '托盘', '/ˈpæ.lɪt/'], ['forklift', '叉车', '/ˈfɔrk.lɪft/'],
-      ['crane', '起重机', '/ˈkreɪn/'], ['hoist', '吊车', '/ˈhɔɪst/'],
-      ['conveyor', '输送带', '/konˈveɪ.ər/'], ['pompa', '泵', '/ˈpom.pa/'],
-      ['pipeline', '管道', '/ˈpaɪp.laɪn/'], ['tanker', '油轮/罐车', '/ˈtæŋ.kər/'],
-      ['kapal kargo', '货船', '/ˈka.pal ˈkar.ɡo/'], ['kapal tongkang', '驳船', '/ˈka.pal ˈtoŋ.kaŋ/'],
-      ['pelabuhan', '港口', '/pɛˈla.bu.han/'], ['dermaga', '码头', '/dɛrˈma.ɡa/'],
-      ['terminal', '码头/ terminal', '/ˈtɜr.mɪ.nəl/'], ['jetty', '栈桥', '/ˈʤɛ.ti/'],
-      ['bebas kepabeanan', '保税区', '/ˈbɛ.bas kɛ.paˈba.anan/'], ['TLD', '临时堆场', '/ˈti ɛl ˈdi/'],
-      ['bea cukai', '海关', '/ˈbɛ.a ˈʧu.kaɪ/'], ['pabean', '关税', '/ˈpa.bɛ.an/'],
-      ['import', '进口', '/ˈɪm.pɔrt/'], ['ekspor', '出口', '/ˈɛks.por/'],
-      ['dokumen pengiriman', '运输单据', '/ˈdo.ku.mɛn pɛŋˈi.ri.man/'], ['BL', '提单', '/ˈbi ˈɛl/'],
-      ['AWB', '空运单', '/ˈeɪ ˈdʌb.əl.ju ˈbi/'], ['COO', '原产地证', '/ˈsi ˈo ˈo/'],
-      ['SNI', '印尼国家标准', '/ˈɛs ˈɛn ˈaɪ/'], ['LS', '装船前检验', '/ˈɛl ˈɛs/'],
-      ['inspeksi', '检验', '/ɪnˈspɛk.si/'], ['survey', '检验/测量', '/ˈsɜr.veɪ/'],
-      ['quantity', '数量', '/ˈkwɒn.tɪ.ti/'], ['kualitas', '质量', '/kwaˈlɪ.tas/'],
-      ['claim', '索赔', '/ˈkleɪm/'], ['dispute', '争议', '/dɪˈspjuːt/'],
-      ['asuransi', '保险', '/aˈsu.raŋ.si/'], ['freight', '运费', '/ˈfreɪt/'],
-      ['demurrage', '滞期费', '/dɪˈmʌr.ɪʤ/'], ['detention', '滞箱费', '/dɪˈtɛn.ʃən/'],
-      ['CIF', '到岸价', '/ˈsi ˈaɪ ˈɛf/'], ['FOB', '离岸价', '/ˈɛf ˈo ˈbi/'],
-      ['DDP', '完税后交货', '/ˈdi di ˈpi/'], ['EXW', '工厂交货', '/ˈi ɛks ˈdʌb.əl.ju/']
-    ],
-    scenes: [
-      {
+    vocab: [[
+      ['rantai pasok', '供应链', '/ˈran.tai paˈsok/'], ['logistik', '物流', '/loˈɡis.tik/'],
+      ['pengadaan', '采购', '/pəŋ.aˈda.an/'], ['pembelian', '购买', '/pəm.bəˈli.an/'],
+      ['pesanan', '订单', '/pə.saˈnan/'], ['PO', '采购订单', '/ˈpɛ ˈo/'],
+      ['pemasok', '供应商', '/pə.maˈsok/'], ['pengiriman', '发货/运输', '/pəŋ.iˈri.man/'],
+      ['gudang', '仓库', '/ˈɡu.daŋ/'], ['inventori', '库存', '/in.vənˈto.ri/'],
+      ['stok', '存货', '/ˈstɔk/'], ['stok pengaman', '安全库存', '/ˈstɔk pəŋ.aˈman/'],
+      ['titik pesan ulang', '再订购点', '/ˈti.tik pəˈsan ˈu.laŋ/'], ['waktu tunggu', '提前期', '/ˈwak.tu tuŋˈɡu/'],
+      ['tepat waktu', '准时制', '/təˈpat ˈwak.tu/'], ['JIT', '准时制', '/ˈʤɛ ˈi ˈti/'],
+      ['batch', '批次', '/ˈbæʧ/'], ['lot', '批', '/ˈlɔt/'],
+      ['nomor seri', '序列号', '/ˈno.mor ˈsɛ.ri/'], ['kode batang', '条形码', '/ˈko.de ˈba.taŋ/'],
+      ['pengangkutan', '运输', '/pəŋ.aŋ.kuˈtan/'], ['pengapalan', '航运', '/pəŋ.aˈpa.lan/'],
+      ['pengiriman darat', '陆运', '/pəŋ.iˈri.man ˈda.rat/'], ['pengiriman laut', '海运', '/pəŋ.iˈri.man ˈla.ʊt/'],
+      ['kontainer', '集装箱', '/konˈtaɪ.nər/'], ['curah', '散货', '/ˈʧu.rah/'],
+      ['pallet', '托盘', '/ˈpæ.lət/'], ['forklift', '叉车', '/ˈfɔrk.lɪft/'],
+      ['derek', '起重机', '/ˈdɛ.rɛk/'], ['sabuk konveyor', '传送带', '/ˈsa.buk konˈvɛi.ər/'],
+      ['kapal kargo', '货船', '/ˈka.pal ˈkar.ɡo/'], ['pelabuhan', '港口', '/pə.laˈbu.han/'],
+      ['dermaga', '码头', '/dərˈma.ɡa/'], ['bea cukai', '关税', '/ˈbe.a ʧuˈkai/'],
+      ['impor', '进口', '/ˈim.por/'], ['ekspor', '出口', '/ˈɛks.por/'],
+      ['dokumen pengiriman', '运输单据', '/ˈdo.ku.mən pəŋ.iˈri.man/'], ['asuransi', '保险', '/a.suˈran.si/'],
+      ['ongkos kirim', '运费', '/ˈoŋ.kos ˈki.rim/'], ['biaya tambahan', '滞期费', '/biˈa.ja tamˈba.han/']
+    ]],
+    scenes: [{
         title: "采购订单确认",
-        icon: "📄",
+        icon: "📋",
         dialogue: [
-          {"speaker": "A", "text": "Selamat pagi, Pak. Saya dari tim procurement PT Morowali Smelter. Saya ingin konfirmasi PO nomor 2024-SC-089 untuk pembelian reaktor HPAL.", "trans": "早上好,先生。我是Morowali冶炼公司采购部的。我想确认PO号2024-SC-089购买HPAL反应器。"},
-          {"speaker": "B", "text": "Baik, saya cek dulu. Ya, PO tersebut sudah kami terima. Total nilainya 12,5 juta dolar dengan delivery 10 bulan.", "trans": "好的,我查一下。是的,该PO我们已经收到。总值1250万美元,交货期10个月。"},
-          {"speaker": "A", "text": "Betul. Apakah Bapak sudah terima down payment 30% yang kami transfer minggu lalu?", "trans": "对。您收到我们上周转账的30%预付款了吗?"},
-          {"speaker": "B", "text": "Sudah, terima kasih. Uang sudah masuk rekening kami. Kami akan mulai proses engineering dan procurement long lead items minggu depan.", "trans": "收到了,谢谢。款项已入我方账户。我们下周开始工程设计和长周期物料采购。"},
-          {"speaker": "A", "text": "Bagus. Mohon konfirmasi milestone pembayaran berikutnya: 30% setelah FAT, 30% setelah delivery, dan 10% setelah commissioning.", "trans": "很好。请确认后续付款里程碑:工厂验收测试后30%,交货后30%,调试后10%。"}
-        ]
-      },
-      {
-        title: "库存盘点讨论",
-        icon: "📦",
-        dialogue: [
-          {"speaker": "A", "text": "Mari kita review status inventori bulan ini. Berapa nilai total stok dan berapa items yang critical?", "trans": "让我们审查本月库存状态。总库存价值多少,多少项是关键的?"},
-          {"speaker": "B", "text": "Nilai total inventori adalah 45 miliar rupiah. Ada 23 items yang di bawah safety stock level, termasuk bearing untuk ball mill dan electrode untuk furnace.", "trans": "库存总值450亿印尼盾。有23项低于安全库存水平,包括球磨机轴承和电炉电极。"},
-          {"speaker": "A", "text": "Ini berbahaya. Kalau ball mill down karena tidak ada bearing, kerugian produksi bisa 5 miliar per hari. Segera buat emergency PO.", "trans": "这很危险。如果球磨机因无轴承停机,生产损失每天可达50亿。立即制作紧急采购订单。"},
-          {"speaker": "B", "text": "Saya sudah kontak supplier di Singapura. Mereka punya stock dan bisa kirim dengan air freight dalam 3 hari. Biayanya 15% lebih mahal dari normal.", "trans": "我已联系新加坡供应商。他们有库存,可空运3天内到达。费用比正常高15%。"},
-          {"speaker": "A", "text": "Setuju. Kehilangan produksi 5 miliar per hari jauh lebih mahal dari biaya air freight. Juga review reorder point untuk semua critical spare parts.", "trans": "同意。每天50亿的生产损失远比空运费贵。同时审查所有关键备件的再订货点。"}
+          {"speaker": "A", "text": "Pak, saya perlu konfirmasi pesanan pembelian untuk spare part crusher. Sudah ada PO dari departemen maintenance?", "trans": "先生，我需要确认破碎机配件的采购订单。维修部已经发出采购订单了吗？"},
+          {"speaker": "B", "text": "Sudah, nomor PO-2024-0891. Jumlahnya 12 set spare part dengan nilai total 850 juta rupiah.", "trans": "已经发出了，编号PO-2024-0891。共12套配件，总价值8.5亿印尼盾。"},
+          {"speaker": "A", "text": "Baik. Kapan batas waktu pengiriman yang diminta? Dan apakah ada ketentuan khusus untuk pengepakan?", "trans": "好的。要求的交货期限是什么时候？包装有什么特殊要求吗？"},
+          {"speaker": "B", "text": "Pengiriman diminta dalam 30 hari. Pengepakan harus pakai wooden crate dengan silica gel karena suhu di pelabuhan sangat tinggi.", "trans": "要求30天内交货。包装必须用木箱加硅胶干燥剂，因为港口温度很高。"},
+          {"speaker": "A", "text": "Saya catat. Apakah pembayaran sudah disetujui oleh finance? PO ini butuh persetujuan direktur karena nilainya di atas 500 juta.", "trans": "我记下了。财务已经批准付款了吗？因为金额超过5亿，这个采购订单需要总监批准。"},
+          {"speaker": "B", "text": "Sudah disetujui tadi pagi. Direktur sudah tanda tangan. Saya kirim salinan persetujuannya ke email Anda.", "trans": "今早已经批准了。总监已签字。我把批准副本发到您邮箱。"},
+          {"speaker": "A", "text": "Terima kasih. Satu lagi, apakah pemasok kita sudah terdaftar sebagai vendor yang disetujui? Saya tidak melihat mereka dalam daftar terverifikasi.", "trans": "谢谢。还有一个问题，我们的供应商是否已注册为认证供应商？我在已认证列表中没有看到他们。"},
+          {"speaker": "B", "text": "Bagus Anda mengingatkan. Mereka masih dalam proses verifikasi. Saya akan hubungi tim procurement untuk mempercepat.", "trans": "您提醒得好。他们还在认证过程中。我会联系采购团队加快进度。"},
+          {"speaker": "A", "text": "Kalau belum terverifikasi, jangan kirim PO dulu. Kita harus ikuti prosedur, jangan sampai ada masalah audit nanti.", "trans": "如果还没通过认证，先别发采购订单。我们必须按流程走，免得以后审计出问题。"},
+          {"speaker": "B", "text": "Setuju. Saya tahan dulu PO-nya. Saya kabari Anda begitu verifikasi pemasok selesai.", "trans": "同意。我先扣住这个采购订单。供应商认证完成后立即通知您。"},
+          {"speaker": "A", "text": "Sempurna. Oh ya, untuk spare part yang urgent, apakah kita punya stok pengaman di gudang?", "trans": "很好。对了，对于紧急配件，我们仓库有没有安全库存？"},
+          {"speaker": "B", "text": "Ada, tapi tinggal 2 set. Batas minimum stok pengaman adalah 3 set. Kita perlu pesan segera setelah verifikasi selesai.", "trans": "有，但只剩2套了。安全库存下限是3套。认证完成后我们需要立即下单。"},
+          {"speaker": "A", "text": "Baik, prioritaskan ini. Kalau crusher down lebih dari 24 jam, produksi akan terganggu besar.", "trans": "好，把这个列为优先事项。如果破碎机停机超过24小时，生产会受到严重影响。"},
+          {"speaker": "B", "text": "Dipahami. Saya akan update Anda setiap hari sampai spare part tiba di gudang.", "trans": "明白。在配件到达仓库之前，我会每天向您更新进度。"}
         ]
       },
       {
         title: "物流运输安排",
         icon: "🚢",
         dialogue: [
-          {"speaker": "A", "text": "Pak, shipment equipment dari Shanghai sudah tiba di pelabuhan Tanjung Perak Surabaya. Kita perlu arrange inland transport ke Morowali.", "trans": "先生,上海设备货船已到达泗水丹戎佩拉港。我们需要安排内陆运输到Morowali。"},
-          {"speaker": "B", "text": "Berapa total berat dan dimensi kargonya? Apakah bisa pakai container standar atau butuh flat rack?", "trans": "货物总重和尺寸多少?能用标准集装箱还是需要平板架?"},
-          {"speaker": "A", "text": "Total 8 unit, berat per unit 35 ton, dimensi 12x4x3 meter. Butuh flat rack dan special permit untuk oversized cargo di jalan tol.", "trans": "共8台,每台重35吨,尺寸12x4x3米。需要平板架和公路超限货物特别许可。"},
-          {"speaker": "B", "text": "Oke, pakai flat rack dari Surabaya ke Pantoloan Pelabuhan, lalu RORO ferry ke Luwuk, dan terakhir truck ke site. Estimasi total transit 14 hari.", "trans": "好的,用平板架从泗水到Pantoloan港,然后滚装渡轮到Luwuk,最后卡车到现场。预估总运输14天。"},
-          {"speaker": "A", "text": "Saya setuju dengan rute itu. Pastikan asuransi marine cargo dan inland transit sudah aktif sebelum loading dimulai.", "trans": "我同意该路线。确保海运货物险和内陆运输险在装货开始前已生效。"}
+          {"speaker": "A", "text": "Kita perlu mengirim 500 ton konsentrat nikel ke pabrik di Jawa. Bagaimana cara terbaik?", "trans": "我们需要把500吨镍精矿运到爪哇的工厂。最佳方案是什么？"},
+          {"speaker": "B", "text": "Opsi terbaik adalah via laut menggunakan kapal kargo dari pelabuhan Morowali ke Surabaya. Waktu tempuh sekitar 5 hari.", "trans": "最佳方案是从Morowali港到泗水用货船海运。航程约5天。"},
+          {"speaker": "A", "text": "Berapa ongkos kirimnya? Dan apakah kapalnya tersedia minggu depan?", "trans": "运费多少？下周有船吗？"},
+          {"speaker": "B", "text": "Ongkos kirim sekitar 45 ribu rupiah per ton. Saya sudah cek, ada kapal tongkang yang berangkat setiap Selasa dan Jumat.", "trans": "运费约每吨45,000印尼盾。我查过了，每周二和周五有驳船出发。"},
+          {"speaker": "A", "text": "Baik, jadwalkan untuk Jumat. Tapi pastikan dokumen pengiriman lengkap sebelum kapal berangkat.", "trans": "好，安排在周五。但要确保开船前运输单据齐全。"},
+          {"speaker": "B", "text": "Siap. Saya siapkan bill of lading, sertifikat kualitas, dan dokumen bea cukai. Ada yang lain?", "trans": "准备好了。我会准备提单、质量证书和海关文件。还有别的吗？"},
+          {"speaker": "A", "text": "Ya, pastikan kontainer dalam kondisi baik. Bulan lalu ada kerusakan pada dua kontainer karena karat.", "trans": "有，确保集装箱状况良好。上个月有两个集装箱因生锈受损。"},
+          {"speaker": "B", "text": "Noted. Saya akan minta surveyor memeriksa kontainer sebelum pemuatan. Foto kondisi juga akan didokumentasikan.", "trans": "记下了。装货前我会请检验员检查集装箱。还会拍照记录状况。"},
+          {"speaker": "A", "text": "Bagus. Bagaimana dengan asuransi pengangkutan? Apakah sudah termasuk dalam kontrak?", "trans": "很好。货运保险呢？已包含在合同中了吗？"},
+          {"speaker": "B", "text": "Sudah termasuk asuransi all risk. Nilai pertanggungan mencakup total nilai barang plus 10 persen untuk biaya tidak terduga.", "trans": "已包含一切险。保额涵盖货物总值加10%的意外费用。"},
+          {"speaker": "A", "text": "Sempurna. Terakhir, siapa yang akan menerima di pelabuhan Surabaya? Pastikan ada koordinasi dengan tim di sana.", "trans": "很好。最后，谁在泗水港接收？确保与那边团队协调好。"},
+          {"speaker": "B", "text": "Pak Hendra yang menerima. Saya sudah kirim jadwal ke beliau. Konfirmasi penerimaan akan dikirim maksimal 24 jam setelah kapal tiba.", "trans": "Hendra先生负责接收。我已把时间表发给他了。确认收货将在船到后24小时内发送。"}
         ]
       },
       {
         title: "清关手续办理",
         icon: "🛃",
         dialogue: [
-          {"speaker": "A", "text": "Pak, barang import kita tertahan di bea cukai karena masalah klasifikasi HS code. Apakah Bapak bisa bantu?", "trans": "先生,我们的进口货物因HS编码分类问题被海关扣留。您能帮忙吗?"},
-          {"speaker": "B", "text": "Apa barangnya dan HS code yang digunakan? Masalahnya apa?", "trans": "是什么货物,用了什么HS编码?问题出在哪里?"},
-          {"speaker": "A", "text": "Barangnya adalah ceramic lining untuk reaktor. Kita pakai HS 6909, tapi bea cukai bilang harus 6903 karena bentuknya bricks.", "trans": "货物是反应器陶瓷衬里。我们用的HS 6909,但海关说因为是砖形,应该用6903。"},
-          {"speaker": "B", "text": "Itu bisa di-debatkan. Tapi untuk mempercepat, saya sarankan bayar sesuai klasifikasi bea cukai dulu, lalu ajukan banding ke direktorat jenderal.", "trans": "这可以争论。但为了加快速度,我建议先按海关分类缴纳,然后向总司提出上诉。"},
-          {"speaker": "A", "text": "Berapa selisih bea masuknya? Dan berapa lama proses banding?", "trans": "关税差额多少?上诉流程多长?"},
-          {"speaker": "B", "text": "Selisih sekitar 8%. Proses banding bisa 3-6 bulan. Tapi barang bisa release hari ini kalau Bapak setuju dengan klasifikasi mereka.", "trans": "差额约8%。上诉流程3-6个月。但如果先生同意他们的分类,货物今天可以放行。"}
+          {"speaker": "A", "text": "Pak, impor mesin dari Cina sudah tiba di pelabuhan. Bagaimana proses pembersihan bea cukai?", "trans": "先生，从中国进口的机械已到港。海关清关流程怎么走？"},
+          {"speaker": "B", "text": "Pertama kita perlu siapkan dokumen impor: invoice, packing list, bill of lading, dan sertifikat asal barang.", "trans": "首先我们需准备进口单据：发票、装箱单、提单和原产地证书。"},
+          {"speaker": "A", "text": "Apakah semua dokumen sudah lengkap? Saya takut ada yang kurang dan menyebabkan keterlambatan.", "trans": "单据都齐了吗？我怕缺什么导致延误。"},
+          {"speaker": "B", "text": "Hampir lengkap. Sertifikat asal barang masih dalam proses di kamar dagang. Diperkirakan selesai dalam 2 hari.", "trans": "基本齐全。原产地证书还在商会办理中。预计2天内完成。"},
+          {"speaker": "A", "text": "Dua hari terlalu lama. Mesin ini dibutuhkan untuk instalasi minggu depan. Ada cara mempercepat?", "trans": "两天太久了。这台机器下周安装要用。有办法加快吗？"},
+          {"speaker": "B", "text": "Bisa kita ajukan permohonan percepatan dengan menyediakan jaminan. Tapi ada biaya tambahan sekitar 5 juta rupiah.", "trans": "可以提供担保申请加急。但有约500万印尼盾的额外费用。"},
+          {"speaker": "A", "text": "Kalau bisa mempercepat 3 hari, biaya itu sepadan. Persetujuan kerugian produksi jauh lebih besar.", "trans": "如果能快3天，那个费用是值得的。停产损失远大于这个。"},
+          {"speaker": "B", "text": "Baik, saya urus hari ini juga. Selain itu, berapa tarif bea masuk untuk mesin ini?", "trans": "好，我今天就去办。另外，这台机器的进口关税率是多少？"},
+          {"speaker": "A", "text": "Tarifnya 10 persen dari nilai CIF. Nilai CIF-nya sekitar 2 miliar rupiah, jadi bea masuknya 200 juta.", "trans": "税率是CIF价值的10%。CIF价值约20亿印尼盾，所以关税是2亿。"},
+          {"speaker": "B", "text": "Besar juga. Apakah ada fasilitas pengurangan tarif berdasarkan perjanjian perdagangan?", "trans": "金额不小。有没有基于贸易协定的关税减免政策？"},
+          {"speaker": "A", "text": "Ada, berdasarkan ACFTA tarifnya bisa turun ke 5 persen. Tapi perlu sertifikat asal barang yang masih diproses itu.", "trans": "有，根据中国-东盟自贸协定税率可降到5%。但就需要正在办理的那个原产地证书。"}
         ]
-      },
-      {
-        title: "供应商评估",
-        icon: "⭐",
-        dialogue: [
-          {"speaker": "A", "text": "Tim, kita perlu evaluasi performa supplier tahun ini untuk menentukan siapa yang tetap di approved vendor list.", "trans": "团队,我们需要评估今年供应商表现以确定谁留在合格供应商名单中。"},
-          {"speaker": "B", "text": "Saya sudah siapkan scorecard untuk 15 supplier utama. Kriteria: on-time delivery, quality, price competitiveness, dan responsiveness.", "trans": "我已为15家主要供应商准备好评分卡。标准:准时交货、质量、价格竞争力和响应速度。"},
-          {"speaker": "A", "text": "Siapa supplier dengan score tertinggi dan terendah?", "trans": "得分最高和最低的是哪家供应商?"},
-          {"speaker": "B", "text": "Tertinggi: PT Nippon Steel dengan score 92%. Terendah: PT Local Metals dengan score 61% karena sering delay dan kualitas tidak konsisten.", "trans": "最高:Nippon Steel,得分92%。最低:Local Metals,得分61%,因经常延迟且质量不稳定。"},
-          {"speaker": "A", "text": "PT Nippon Steel dapat volume tambahan 20% tahun depan. Untuk PT Local Metals, berikan improvement plan 6 bulan. Kalau tidak membaik, hapus dari AVL.", "trans": "Nippon Steel明年增加20%采购量。Local Metals给6个月改进计划。如不改善,从合格供应商名单中移除。"}
-        ]
-      },
-      {
-        title: "仓储管理优化",
-        icon: "🏭",
-        dialogue: [
-          {"speaker": "A", "text": "Pak, saya analisis layout gudang spare parts. Efisiensi picking sangat rendah karena fast moving items disimpan di belakang.", "trans": "先生,我分析了备件仓库布局。拣货效率很低,因为快速周转物品存放在后面。"},
-          {"speaker": "B", "text": "Berapa rata-rata waktu picking saat ini? Dan berapa yang bisa kita improve?", "trans": "目前平均拣货时间多少?我们能提高多少?"},
-          {"speaker": "A", "text": "Rata-rata 12 menit per picking. Dengan ABC analysis dan relocasi fast moving items ke zona depan, bisa turun jadi 6 menit.", "trans": "平均每次拣货12分钟。通过ABC分析和将快速周转物品移到前区,可降至6分钟。"},
-          {"speaker": "B", "text": "Bagus. Apakah kita perlu investasi tambahan seperti rack baru atau barcode system?", "trans": "很好。我们需要额外投资如新货架或条码系统吗?"},
-          {"speaker": "A", "text": "Saya usulkan install rack selective untuk fast movers dan implementasi barcode scanning. Investasi sekitar 800 juta, ROI 18 bulan.", "trans": "我建议为快速周转品安装选择性货架和实施条码扫描。投资约8亿,投资回收期18个月。"}
-        ]
-      },
-      {
-        title: "物料需求计划",
-        icon: "📊",
-        dialogue: [
-          {"speaker": "A", "text": "Tim, produksi smelter Q4 direncanakan naik 25%. Kita perlu update MRP untuk semua raw materials dan chemicals.", "trans": "团队,四季度冶炼厂计划增产25%。我们需要更新所有原料和化学品的物料需求计划。"},
-          {"speaker": "B", "text": "Berdasarkan BoM per ton nikel, kita butuh tambahan 3.000 ton bijih, 800 ton asam sulfat, dan 150 ton pelarut per bulan.", "trans": "根据每吨镍的物料清单,我们每月需要额外3000吨矿石、800吨硫酸和150吨溶剂。"},
-          {"speaker": "A", "text": "Apakah existing suppliers bisa menambah volume 25%? Atau kita perlu cari supplier baru?", "trans": "现有供应商能增加25%的供货量吗?还是需要找新供应商?"},
-          {"speaker": "B", "text": "Supplier bijih bisa naik 25%, tapi supplier asam sulfat hanya bisa naik 15%. Kita perlu activate supplier alternatif dari Korea.", "trans": "矿石供应商可增加25%,但硫酸供应商只能增加15%。我们需要激活韩国替代供应商。"},
-          {"speaker": "A", "text": "Oke, activate supplier Korea untuk asam sulfat. Tapi jangan lupa verify kualitas dan sertifikasi mereka sebelum PO pertama.", "trans": "好的,激活韩国硫酸供应商。但别忘了在首单前验证他们的质量和认证。"}
-        ]
-      },
-      {
-        title: "运输成本谈判",
-        icon: "💰",
-        dialogue: [
-          {"speaker": "A", "text": "Pak, biaya freight dari China ke Indonesia naik 40% tahun ini karena kenaikan bahan bakar kapal. Kita perlu renegotiate kontrak.", "trans": "先生,今年中国到印尼运费因船用燃料涨价上涨40%。我们需要重新谈判合同。"},
-          {"speaker": "B", "text": "Berapa volume tahunan kita dan berapa kontrak yang ada sekarang?", "trans": "我们年运输量多少,现有合同价格多少?"},
-          {"speaker": "A", "text": "Volume tahunan 120 container FCL 40 feet. Rate sekarang 3.200 dolar per container. Kita minta rate tetap 2.800 dengan kontrak 2 tahun.", "trans": "年运量120个40尺整柜。现价每柜3200美元。我们要求两年合同锁定2800美元。"},
-          {"speaker": "B", "text": "Itu penurunan 12,5%. Kami bisa kasih 3.000 dolar untuk kontrak 2 tahun dengan minimum quantity 150 container per tahun.", "trans": "那是降12.5%。两年合同每年最低150柜的话,我们可以给3000美元。"},
-          {"speaker": "A", "text": "Kami terima 3.000 dolar dengan MQ 130 container. Tapi kami minta free detention 14 hari dan waiver demurrage untuk delay karena force majeure.", "trans": "我们接受3000美元,最低130柜。但要求14天免费滞箱期和不可抗力延迟免滞期费。"}
-        ]
-      },
-      {
-        title: "海关查验应对",
-        icon: "🔍",
-        dialogue: [
-          {"speaker": "A", "text": "Pak, container kita dari Jerman di-red line oleh bea cukai. Mereka mau inspeksi fisik 100% isi container.", "trans": "先生,我们从德国的集装箱被海关抽中红线检查。他们要100%开箱查验。"},
-          {"speaker": "B", "text": "Apa barangnya dan apakah dokumen sudah lengkap? Surveyor sudah datang?", "trans": "是什么货物,文件齐全吗?检验员到了吗?"},
-          {"speaker": "A", "text": "Barangnya adalah control valve untuk DCS. Dokumen lengkap tapi bea cukai curiga dengan declared value yang mereka anggap under value.", "trans": "货物是DCS控制阀。文件齐全但海关怀疑申报价值低报。"},
-          {"speaker": "B", "text": "Siapkan invoice asli dari manufacturer, price list resmi, dan dokumen pendukung lainnya. Jangan sampai mereka pakai harga pasar untuk revaluasi.", "trans": "准备制造商原始发票、官方价目表和其他支持文件。不要让他们用市场价格重新估价。"},
-          {"speaker": "A", "text": "Saya juga sudah hubungi forwarder untuk hadir saat stuffing dan buatkan berita acara pembukaan container.", "trans": "我也已联系货代在拆箱时到场并制作开箱记录。"}
-        ]
-      },
-      {
-        title: "JIT交付协调",
-        icon: "⏱️",
-        dialogue: [
-          {"speaker": "A", "text": "Pak, kita implementasi JIT untuk limestone supply ke rotary kiln. Stok di gudang kita akan turun dari 30 hari jadi 5 hari.", "trans": "先生,我们正在实施回转窑石灰石准时制供应。我们仓库库存将从30天降至5天。"},
-          {"speaker": "B", "text": "Itu berisiko tinggi. Kalau ada delay satu hari saja, kiln harus shutdown. Apakah supplier siap dengan frekuensi pengiriman harian?", "trans": "那风险很高。如果延迟一天,窑就要停机。供应商准备好每天交货了吗?"},
-          {"speaker": "A", "text": "Supplier setuju daily delivery dengan 2 truck per hari. Mereka juga punya safety stock 7 hari di gudang mereka sebagai buffer.", "trans": "供应商同意每天交货,每天2车。他们在自己仓库也有7天安全库存作为缓冲。"},
-          {"speaker": "B", "text": "Bagus. Tapi kita juga perlu kontrak penalty untuk late delivery. Minimal 10% dari nilai shipment untuk setiap hari keterlambatan.", "trans": "很好。但我们也需要延迟交货处罚条款。每天至少货物价值的10%。"},
-          {"speaker": "A", "text": "Setuju. Saya akan masukkan ke kontrak. Kita juga akan install weighing bridge otomatis untuk real-time tracking receipt quantity.", "trans": "同意。我会纳入合同。我们还将安装自动地磅用于实时跟踪收货数量。"}
-        ]
-      }
-    ],
+      }],
     speeches: [
       {
         day: 1,
@@ -10637,163 +10578,81 @@ emergency_response: {
         "bahaya /baˈha.ja/ (adj.) → sangat berbahaya /ˈsaŋ.ɡat bɛrˈba.ha.ja/ = '非常危险'"
       ]
     },
-    vocab: [
-      ['darurat', '紧急', '/daˈru.rat/'], ['tanggap darurat', '应急响应', '/ˈtaŋ.ɡap daˈru.rat/'],
-      ['evakuasi', '疏散', '/ɛ.vaˈku.a.si/'], ['penyelamatan', '救援', '/pɛ.nʤɛ.laˈma.tan/'],
-      ['bencana', '灾难', '/bɛnˈʧa.na/'], ['kecelakaan', '事故', '/kɛ.ʧəˈla.ka.an/'],
-      ['kebakaran', '火灾', '/kɛ.baˈka.ran/'], ['ledakan', '爆炸', '/lɛˈda.kaŋ/'],
-      ['kebocoran', '泄漏', '/kɛ.boˈʧo.ran/'], ['tumpahan', '溢出', '/ˈtum.pa.han/'],
-      ['gas beracun', '有毒气体', '/ˈgas bɛˈra.ʧun/'], ['asap', '烟雾', '/ˈa.sap/'],
-      ['banjir', '洪水', '/ˈban.ʤir/'], ['tanah longsor', '滑坡', '/ˈta.nah ˈloŋ.sor/'],
-      ['gempa bumi', '地震', '/ˈɡɛm.pa ˈbu.mi/'], ['tsunami', '海啸', '/ˈtsu.na.mi/'],
-      ['SOP darurat', '应急标准操作程序', '/ˈɛs oˈpɛ daˈru.rat/'], ['rencana darurat', '应急预案', '/ˈrɛn.ʧa.na daˈru.rat/'],
-      ['EAP', '应急行动计划', '/ˈi ˈeɪ ˈpi/'], ['tim tanggap', '应急小组', '/ˈtim ˈtaŋ.ɡap/'],
-      ['command center', '指挥中心', '/kəˈmænd ˈsɛn.tər/'], ['posko', '指挥所', '/ˈpos.ko/'],
-      ['PETUGAS', '官员/负责人', '/pɛˈtu.ɡas/'], ['koordinator', '协调员', '/koˈɔr.di.na.tor/'],
-      ['jalan evakuasi', '疏散路线', '/ˈʤa.lan ɛ.vaˈku.a.si/'], ['titik kumpul', '集合点', '/ˈti.tik ˈkum.pul/'],
-      ['rute evakuasi', '疏散路径', '/ˈru.tɛ ɛ.vaˈku.a.si/'], ['assembly point', '集合点', '/əˈsɛm.bli ˈpɔɪnt/'],
-      ['mustering', '点名集合', '/ˈmʌs.tər.ɪŋ/'], ['head count', '人数清点', '/ˈhɛd ˈkaʊnt/'],
-      ['alarm', '警报', '/ˈa.lærm/'], ['sirine', '汽笛', '/siˈri.nɛ/'],
-      ['PA system', '广播系统', '/ˈpi ˈeɪ ˈsɪs.təm/'], ['pager', '寻呼机', '/ˈpeɪ.ʤər/'],
-      ['radio HT', '对讲机', '/ˈra.di.o ˈha.tɛ/'], ['walkie talkie', '对讲机', '/ˈwɔ.ki ˈtɔ.ki/'],
-      ['APAR', '灭火器', '/ˈa.par/'], ['fire extinguisher', '灭火器', '/ˈfaɪər ɪkˈstɪŋ.ɡwɪ.ʃər/'],
-      ['hydrant', '消防栓', '/ˈhaɪ.drənt/'], ['selang pemadam', '消防水带', '/ˈsɛ.laŋ pɛˈma.dam/'],
-      ['sprinkler', '喷淋', '/ˈsprɪŋ.klər/'], ['foam', '泡沫', '/ˈfoʊm/'],
-      ['CO2 system', '二氧化碳灭火系统', '/ˈsi ˈo ˈtu ˈsɪs.təm/'], ['detektor asap', '烟雾探测器', '/dɛˈtɛk.tor ˈa.sap/'],
-      ['PPE', '个人防护装备', '/ˈpi ˈpi ˈi/'], ['APD', '个人防护设备', '/ˈa ˈpɛ ˈdi/'],
-      ['helm safety', '安全帽', '/ˈhɛlm ˈsef.ti/'], ['sepatu safety', '安全鞋', '/sɛˈpa.tu ˈsef.ti/'],
-      ['sarung tangan', '手套', '/ˈsa.ruŋ ˈta.ɡaŋ/'], ['pelindung mata', '护目镜', '/pɛˈlɪn.duŋ ˈma.ta/'],
-      ['respirator', '呼吸器', '/ˈrɛs.pɪ.reɪ.tər/'], ['SCBA', '自给式呼吸器', '/ˈɛs ˈsi ˈbi ˈeɪ/'],
-      ['baju tahan api', '防火服', '/ˈba.ʤu ˈta.han ˈa.pi/'], ['harness', '安全带', '/ˈhar.nɪs/'],
-      ['first aid', '急救', '/ˈfɜrst ˈeɪd/'], ['kotak P3K', '急救箱', '/ˈko.tak ˈpɛ ˈtɛ.ɡa ˈka/'],
-      [' stretcher', '担架', '/ˈstrɛʧ.ər/'], ['ambulans', '救护车', '/ˈam.bu.lans/'],
-      ['paramedis', '急救员', '/ˈpa.ra.mɛ.dis/'], ['dokter', '医生', '/ˈdok.tɛr/'],
-      ['rumah sakit', '医院', '/ˈru.mah ˈsa.kit/'], ['klinik', '诊所', '/ˈklɪ.nɪk/'],
-      ['latihan darurat', '应急演练', '/laˈti.han daˈru.rat/'], ['drill', '演练', '/ˈdrɪl/'],
-      ['simulasi', '模拟', '/si.muˈla.si/'], ['tabletop exercise', '桌面推演', '/ˈteɪ.bəl.tɒp ˈɛk.sə.saɪz/'],
-      ['full scale drill', '全规模演练', '/ˈfʊl ˈskeɪl ˈdrɪl/'], ['debriefing', '复盘', '/diˈbri.fɪŋ/'],
-      ['root cause', '根本原因', '/ˈruːt ˈkɔːz/'], ['investigasi', '调查', '/ɪn.vɛs.tɪˈɡa.si/'],
-      ['laporan insiden', '事故报告', '/ˈla.po.ran ɪnˈsi.dɛn/'], ['near miss', '未遂事件', '/ˈnɪər ˈmɪs/'],
-      ['unsafe act', '不安全行为', '/ʌnˈseɪf ˈækt/'], ['unsafe condition', '不安全状态', '/ʌnˈseɪf ˈkənˈdɪ.ʃən/'],
-      ['JSA', '工作安全分析', '/ˈʤeɪ ɛs ˈeɪ/'], ['permit to work', '作业许可证', '/ˈpɜr.mɪt tu ˈwɜrk/'],
-      ['LOTO', '上锁挂牌', '/ˈɛl ˈoʊ ˈti ˈoʊ/'], ['confined space', '受限空间', '/kənˈfaɪnd ˈspeɪs/'],
-      ['hot work', '动火作业', '/ˈhɒt ˈwɜrk/'], ['cold work', '冷作业', '/ˈkoʊld ˈwɜrk/'],
-      ['working at height', '高处作业', '/ˈwɜr.kɪŋ æt ˈhaɪt/'], ['excavation', '挖掘作业', '/ˈɛk.skəˈveɪ.ʃən/'],
-      ['shelter in place', '就地避难', '/ˈʃɛl.tər ɪn ˈpleɪs/'], ['lockdown', '封锁', '/ˈlɒk.daʊn/'],
-      ['search and rescue', '搜救', '/ˈsɜrʧ ænd rɪˈskuː/'], ['medical emergency', '医疗急救', '/ˈmɛd.ɪ.kəl ɪˈmɜr.ʤən.si/']
-    ],
-    scenes: [
-      {
+    vocab: [[
+      ['darurat', '紧急情况', '/daˈru.rat/'], ['tanggap darurat', '应急响应', '/ˈtaŋ.ɡap daˈru.rat/'],
+      ['evakuasi', '疏散', '/e.vaˈku.a.si/'], ['penyelamatan', '救援', '/pə.ɲə.laˈma.tan/'],
+      ['bencana', '灾害', '/bɛnˈʧa.na/'], ['kecelakaan', '事故', '/kə.ʧə.laˈka.an/'],
+      ['kebakaran', '火灾', '/kə.baˈka.ran/'], ['ledakan', '爆炸', '/ləˈda.kan/'],
+      ['kebocoran', '泄漏', '/kə.boˈʧo.ran/'], ['tumpahan', '溢出', '/tumˈpa.han/'],
+      ['gas beracun', '有毒气体', '/ˈgas bə.raˈʧun/'], ['asap', '烟雾', '/ˈa.sap/'],
+      ['banjir', '洪水', '/ˈban.ʤir/'], ['gempa bumi', '地震', '/ˈɡɛm.pa ˈbu.mi/'],
+      ['SOP darurat', '应急标准作业程序', '/ˈɛs o ˈpe daˈru.rat/'], ['rencana darurat', '应急预案', '/rɛnˈʧa.na daˈru.rat/'],
+      ['tim tanggap', '应急小组', '/ˈtim ˈtaŋ.ɡap/'], ['posko', '指挥所', '/ˈpos.ko/'],
+      ['jalan evakuasi', '疏散通道', '/ˈʤa.lan e.vaˈku.a.si/'], ['titik kumpul', '集合点', '/ˈti.tik kumˈpul/'],
+      ['alarm', '警报器', '/ˈa.larm/'], ['sirine', '警笛', '/siˈri.nə/'],
+      ['APAR', '灭火器', '/ˈa.par/'], ['hidran', '消防栓', '/ˈhi.dran/'],
+      ['sprinkler', '喷淋系统', '/ˈsprɪŋk.lər/'], ['detektor asap', '烟雾探测器', '/dɛˈtɛk.tor ˈa.sap/'],
+      ['APD', '个人防护装备', '/ˈa.pe ˈde/'], ['helm keselamatan', '安全帽', '/ˈhɛlm kə.sə.laˈma.tan/'],
+      ['sepatu keselamatan', '安全鞋', '/səˈpa.tu kə.sə.laˈma.tan/'], ['sarung tangan', '手套', '/ˈsa.ruŋ ˈta.ŋan/'],
+      ['respirator', '呼吸器', '/ˈrɛs.pi.ra.tor/'], ['kotak P3K', '急救箱', '/ˈko.tak pe ti.ɡa ˈka/'],
+      ['tandu', '担架', '/ˈtan.du/'], ['ambulans', '救护车', '/ˈam.bu.lans/'],
+      ['paramedis', '急救员', '/pa.raˈmɛ.dis/'], ['latihan darurat', '应急演练', '/laˈti.han daˈru.rat/'],
+      ['simulasi', '模拟演练', '/si.muˈla.si/'], ['penyelidikan', '调查', '/pə.ɲə.liˈdi.kan/'],
+      ['laporan insiden', '事故报告', '/laˈpo.ran inˈsi.dən/'], ['hampir celaka', '未遂事件', '/ˈham.pir ʧəˈla.ka/']
+    ]],
+    scenes: [{
         title: "火灾应急响应",
         icon: "🔥",
         dialogue: [
-          {"speaker": "A", "text": "Semuanya perhatian! Alarm kebakaran telah berbunyi di area gudang chemical. Segera hentikan semua pekerjaan dan mulai evakuasi sesuai rute yang ditentukan!", "trans": "所有人注意!化学品仓库区域火警已响起。立即停止所有工作并按指定路线开始疏散!"},
-          {"speaker": "B", "text": "Pak, saya tim fire brigade. Api sudah terlihat di area penyimpanan asam sulfat. Kami akan coba padamkan dengan foam extinguisher.", "trans": "先生,我是消防队。硫酸储存区已见明火。我们将尝试用泡沫灭火器扑灭。"},
-          {"speaker": "A", "text": "Jangan mendekat jika api sudah besar! Prioritaskan evakuasi personel. Berapa jumlah karyawan di area gudang saat ini?", "trans": "如果火势已大不要靠近!优先疏散人员。仓库区目前有多少员工?"},
-          {"speaker": "C", "text": "Head count sementara: 18 orang sudah di titik kumpul. Tapi ada 2 orang teknisi yang sedang di ruang pompa belum terlihat.", "trans": "临时清点:18人已到集合点。但有2名技术员在泵房还未见到。"},
-          {"speaker": "A", "text": "Tim SAR, segera cari 2 teknisi di ruang pompa. Jangan lupa pakai SCBA karena ada risiko gas beracun. Command center akan koordinasi dengan ambulans.", "trans": "搜救队,立即去泵房找2名技术员。别忘了戴自给式呼吸器,因为有有毒气体风险。指挥中心将协调救护车。"}
+          {"speaker": "A", "text": "Alarm kebakaran berbunyi! Ada laporan api di area gudang bahan kimia. Semua personel segera evakuasi!", "trans": "火灾警报响了！化工品仓库区域有火情报告。所有人员立即疏散！"},
+          {"speaker": "B", "text": "Tim tanggap darurat sudah menuju lokasi. Jalan evakuasi aman, menuju titik kumpul di lapangan utama.", "trans": "应急小组已赶往现场。疏散通道安全，前往主广场集合点。"},
+          {"speaker": "A", "text": "Bagaimana kondisi di lokasi? Apakah ada yang terjebak di dalam gedung?", "trans": "现场情况如何？有没有人被困在大楼内？"},
+          {"speaker": "B", "text": "Head count sementara: 45 dari 47 orang sudah di titik kumpul. Dua orang teknisi masih dicari.", "trans": "初步点名：47人中45人已到集合点。还有两名技术人员正在寻找。"},
+          {"speaker": "C", "text": "Api berasal dari ruang penyimpanan pelarut. APAR sudah digunakan tapi api terlalu besar. Kita perlu panggil pemadam.", "trans": "火源来自溶剂储存室。灭火器已使用但火势太大。需要呼叫消防队。"},
+          {"speaker": "A", "text": "Pemadam sudah saya hubungi, tiba dalam 15 menit. Pastikan semua APD dipakai dan jangan ada yang masuk tanpa izin.", "trans": "消防队已联系，15分钟内到达。确保全员穿戴防护装备，未经许可不得进入。"},
+          {"speaker": "B", "text": "Dua orang teknisi sudah ditemukan! Mereka keluar lewat pintu darurat belakang. Tidak ada luka serius.", "trans": "两名技术人员找到了！他们从后面紧急出口出来了。没有严重受伤。"},
+          {"speaker": "A", "text": "Syukurlah. Update head count: 47 dari 47, semua aman. Lanjutkan pemadaman dan jangan ada yang mendekati area bahaya.", "trans": "谢天谢地。更新点名：47人全部安全。继续灭火，任何人不要靠近危险区域。"},
+          {"speaker": "C", "text": "Api sudah bisa dikendalikan. Pemadam profesional tiba dan mengambil alih operasi.", "trans": "火势已得到控制。专业消防队到达并接管了行动。"},
+          {"speaker": "A", "text": "Baik. Setelah api padam, jangan ada yang masuk sebelum tim investigasi selesai. Kita perlu cari akar masalahnya.", "trans": "好。火灭后，在调查组完成前任何人不得进入。我们需要找出根本原因。"},
+          {"speaker": "B", "text": "Setuju. Saya akan siapkan laporan insiden awal untuk manajemen dalam 2 jam ke depan.", "trans": "同意。我会在2小时内准备初步事故报告给管理层。"},
+          {"speaker": "A", "text": "Bagus. Pastikan semua dokumentasi lengkap: foto, saksi, dan rekaman CCTV. Ini penting untuk penyelidikan.", "trans": "好。确保所有文档齐全：照片、证人、监控录像。这对调查很重要。"}
         ]
       },
       {
         title: "化学品泄漏处理",
-        icon: "☠️",
+        icon: "☣️",
         dialogue: [
-          {"speaker": "A", "text": "Pak, terjadi kebocoran tangki asam sulfat 98% di area mixing. Sekitar 500 liter sudah tumpah ke lantai dan mendekati saluran drainase.", "trans": "先生,混合区98%硫酸罐发生泄漏。约500升已溢流到地面并接近排水沟。"},
-          {"speaker": "B", "text": "Segera aktifkan spill response team! Tutup saluran drainase dengan spill kit dan pasang boom penahan. Jangan biarkan masuk ke sungai!", "trans": "立即启动泄漏响应小组!用泄漏应急包封堵排水沟并安装围油栏。不要让酸流入河流!"},
-          {"speaker": "A", "text": "Tim sudah pakai APD lengkap: respirator, face shield, dan chemical suit. Kami akan netralkan dengan soda ash sebelum cleanup.", "trans": "小组已穿戴全套PPE:呼吸器、面罩和化学防护服。我们将在清理前用纯碱中和。"},
-          {"speaker": "B", "text": "Bagus. Berapa pH air di drainase setelah penambahan soda ash? Dan apakah semua personel di area tersebut sudah dievakuasi?", "trans": "很好。加纯碱后排水沟水的pH多少?该区域所有人员是否已疏散?"},
-          {"speaker": "A", "text": "pH sudah naik dari 1,5 jadi 6,8. Semua 12 personel sudah dievakuasi dan tidak ada yang terluka. Laporan insiden akan saya buat dalam 2 jam.", "trans": "pH已从1.5升至6.8。全部12人已疏散,无人受伤。事故报告我将在2小时内完成。"}
-        ]
-      },
-      {
-        title: "人员受伤急救",
-        icon: "🚑",
-        dialogue: [
-          {"speaker": "A", "text": "Tolong! Ada karyawan yang terjatuh dari tangga di area boiler dan tidak sadarkan diri!", "trans": "救命!有员工在锅炉区从梯子跌落并失去意识!"},
-          {"speaker": "B", "text": "Saya paramedis on-site. Jangan pindahkan korban! Cek apakah ada pernapasan dan detak jantung. Saya bawa stretcher dan kotak P3K.", "trans": "我是现场急救员。不要移动伤者!检查是否有呼吸和心跳。我带担架和急救箱来了。"},
-          {"speaker": "A", "text": "Dia masih bernapas tapi lemah. Ada luka di kepala dan tangan kirinya tampak patah.", "trans": "他还在呼吸但很微弱。头部有伤,左手看起来骨折。"},
-          {"speaker": "B", "text": "Saya akan stabilkan leher dengan collar dan perban luka kepala. Untuk tangan, saya akan immobilisasi dengan splint. Panggil ambulans sekarang!", "trans": "我用颈托固定颈部并包扎头部伤口。手部我用夹板固定。立即叫救护车!"},
-          {"speaker": "C", "text": "Ambulans sudah di jalan, estimasi 10 menit. Saya juga sudah hubungi rumah sakit rujukan untuk siapkan IGD.", "trans": "救护车已在路上,预计10分钟。我也已联系转诊医院准备急诊室。"}
-        ]
-      },
-      {
-        title: "有毒气体报警",
-        icon: "💨",
-        dialogue: [
-          {"speaker": "A", "text": "Semuanya, alarm gas H2S berbunyi di area digestion tank! Konsentrasi terdeteksi 45 ppm, jauh di atas batas aman 10 ppm!", "trans": "所有人,消化罐区域H2S气体报警!检测到浓度45ppm,远超10ppm安全限值!"},
-          {"speaker": "B", "text": "Semua personel segera evakuasi ke zona aman di upwind! Jangan lupa pakai SCBA jika membantu evakuasi rekan yang terjebak!", "trans": "所有人员立即疏散到上风向安全区!如协助被困同事撤离别忘了戴自给式呼吸器!"},
-          {"speaker": "A", "text": "Tim ERT sudah masuk dengan SCBA untuk sweep area. Kami akan identifikasi sumber kebocoran dan coba isolasi valve.", "trans": "应急响应队已戴SCBA进入搜查区域。我们将识别泄漏源并尝试隔离阀门。"},
-          {"speaker": "C", "text": "Command center, berapa jumlah personel yang sudah di mustering point? Dan apakah ventilasi emergency sudah aktif?", "trans": "指挥中心,集合点已有多少人?应急通风是否已启动?"},
-          {"speaker": "A", "text": "Head count: 25 dari 27 orang. 2 orang teknisi sedang dievakuasi oleh ERT. Ventilasi emergency sudah aktif dan blower berjalan penuh.", "trans": "清点:27人中25人已到。2名技术员正由ERT疏散。应急通风已启动,风机全速运行。"}
-        ]
-      },
-      {
-        title: "地震应急响应",
-        icon: "🌋",
-        dialogue: [
-          {"speaker": "A", "text": "Gempa! Semuanya drop, cover, and hold! Jangan berlari ke luar gedung selama gempa masih berlangsung!", "trans": "地震!所有人蹲下、掩护、抓牢!地震期间不要跑向楼外!"},
-          {"speaker": "B", "text": "Gempa sudah berhenti. Tim leader, segera check kondisi bangunan dan peralatan. Waspada aftershock!", "trans": "地震已停。各组组长,立即检查建筑和设备状况。警惕余震!"},
-          {"speaker": "C", "text": "Area smelter aman, tidak ada kerusakan struktur. Tapi ada kebocoran kecil pipa cooling water di area reaktor.", "trans": "冶炼区安全,无结构损坏。但反应器区冷却水管道有小泄漏。"},
-          {"speaker": "A", "text": "Oke, tim maintenance segera perbaiki kebocoran pipa. Tim ERT, lakukan sweep semua area untuk pastikan tidak ada personel yang terluka atau terjebak.", "trans": "好的,维修队立即修管道泄漏。ERT队,搜查所有区域确保无人受伤或被困。"},
-          {"speaker": "B", "text": "Saya juga sudah kontak BMKG untuk info magnitudo dan potensi tsunami. Sementara itu, alarm tsunami siap diaktifkan jika diperlukan.", "trans": "我也已联系气象局了解震级和海啸可能性。同时,如需要海啸警报随时可启动。"}
-        ]
-      },
-      {
-        title: "受限空间救援",
-        icon: "⛑️",
-        dialogue: [
-          {"speaker": "A", "text": "Pak, ada pekerja pingsan di dalam tangki ball mill yang sedang maintenance! Kami tidak bisa komunikasi dengan dia!", "trans": "先生,有工人在正维修的球磨机罐内昏迷!我们无法与他取得联系!"},
-          {"speaker": "B", "text": "Jangan masuk tanpa izin! Ini confined space emergency. Segera aktifkan rescue plan dan siapkan breathing apparatus.", "trans": "未经许可不要进入!这是受限空间紧急情况。立即启动救援计划并准备呼吸设备。"},
-          {"speaker": "C", "text": "Tim rescue standby. Kami akan ukur gas dulu: O2, LEL, H2S, dan CO. Jika aman, kita masuk dengan tripod dan harness.", "trans": "救援队待命。我们先测气体:氧气、可燃气体、硫化氢和一氧化碳。如安全,我们用三脚架和安全带进入。"},
-          {"speaker": "A", "text": "Hasil pengukuran: O2 19,8%, LEL 0%, H2S 2 ppm, CO 5 ppm. Semua dalam batas aman.", "trans": "测量结果:氧气19.8%,可燃气体0%,硫化氢2ppm,一氧化碳5ppm。均在安全限值内。"},
-          {"speaker": "B", "text": "Oke, masuk dengan SCBA sebagai backup. Angkat korban dengan tripod harness. Setelah keluar, berikan oksigen dan cek vital sign. Ambulans sudah standby.", "trans": "好的,戴SCBA作为备用进入。用三脚架安全带吊起伤者。出来后给氧并检查生命体征。救护车已待命。"}
+          {"speaker": "A", "text": "Ada laporan kebocoran asam sulfat di area tangki penyimpanan! Semua personel segera menjauh dan ke arah angin.", "trans": "储罐区域有硫酸泄漏报告！所有人员立即远离并前往上风方向。"},
+          {"speaker": "B", "text": "Tim respon darurat kimia sudah berangkat. Mereka pakai APD level A dan membawa peralatan penetral.", "trans": "化学品应急小组已出发。他们穿着A级防护服，携带中和设备。"},
+          {"speaker": "A", "text": "Berapa volume yang bocor? Dan apakah ada yang terkena cipratan?", "trans": "泄漏量多少？有人被溅到吗？"},
+          {"speaker": "B", "text": "Perkiraan 200 liter. Dua pekerja terkena cipratan ringan di lengan, sudah dibilas di stasiun keselamatan dan dibawa ke klinik.", "trans": "约200升。两名工人手臂被轻微溅到，已在安全冲洗站冲洗并送往诊所。"},
+          {"speaker": "A", "text": "Bagus. Pastikan area diisolasi minimum 50 meter. Hidupkan sistem sprinkler darurat untuk mengontrol uap.", "trans": "好。确保区域隔离至少50米。启动紧急喷淋系统控制蒸汽。"},
+          {"speaker": "C", "text": "Isolasi sudah dibuat. Kita juga menutup saluran air hujan untuk mencegah kontaminasi lingkungan.", "trans": "隔离已建立。我们还封闭了雨水管道以防止环境污染。"},
+          {"speaker": "A", "text": "Tindakan yang tepat. Apakah kit penanganan tumpahan sudah tersedia di lokasi?", "trans": "措施正确。泄漏处理工具包在现场有吗？"},
+          {"speaker": "B", "text": "Ada, kita punya spill kit khusus asam. Tim sedang menuangkan soda kaustik untuk penetralan bertahap.", "trans": "有，我们有专门的酸类泄漏工具包。小组正在倒入苛性钠进行逐步中和。"},
+          {"speaker": "A", "text": "Baik. Ingatkan tim untuk tidak langsung menuangkan terlalu banyak penetral sekaligus, bisa menimbulkan reaksi berbahaya.", "trans": "好。提醒小组不要一次性倒入太多中和剂，可能产生危险反应。"},
+          {"speaker": "C", "text": "Dipahami. Proses penetralan berjalan aman. pH air limbah sudah mulai normal.", "trans": "明白。中和过程安全进行。废水pH值已开始恢复正常。"},
+          {"speaker": "A", "text": "Setelah selesai, kumpulkan semua limbah B3 dalam wadah khusus. Jangan buang ke saluran umum.", "trans": "完成后，将所有危险废弃物收集到专用容器。不得排入普通管道。"},
+          {"speaker": "B", "text": "Siap. Kita juga akan lakukan inspeksi tangki untuk cari titik kebocoran sebelum area dibuka kembali.", "trans": "好的。我们还会对储罐进行检查，找出泄漏点，然后才能重新开放区域。"}
         ]
       },
       {
         title: "应急演练讲评",
         icon: "📋",
         dialogue: [
-          {"speaker": "A", "text": "Rekan-rekan, drill kebakaran hari ini sudah selesai. Mari kita lakukan debriefing untuk evaluasi performa kita.", "trans": "各位同事,今天消防演练已结束。我们来做复盘评估表现。"},
-          {"speaker": "B", "text": "Waktu evakuasi total: 4 menit 30 detik. Target kita adalah di bawah 5 menit, jadi kita mencapai target.", "trans": "总疏散时间:4分30秒。我们的目标是5分钟以内,所以我们达标了。"},
-          {"speaker": "C", "text": "Tapi ada masalah di titik kumpul. Head count memakan waktu 3 menit karena beberapa karyawan tidak bawa ID card untuk scanning.", "trans": "但集合点有问题。点名花了3分钟,因为有些员工没带ID卡扫描。"},
-          {"speaker": "A", "text": "Benar. Dan saya lihat ada 2 orang yang masih pakai sandal, tidak pakai sepatu safety saat evakuasi. Ini pelanggaran prosedur.", "trans": "对。而且我看到有2人穿拖鞋疏散,没穿安全鞋。这是违规。"},
-          {"speaker": "B", "text": "Saya akan update SOP: semua wajib bawa ID card dan pakai sepatu safety selama di site. Drill berikutnya akan dilakukan tanpa pemberitahuan sebelumnya.", "trans": "我将更新SOP:所有人必须带ID卡并在现场穿安全鞋。下次演练将不提前通知。"}
+          {"speaker": "A", "text": "Terima kasih semua atas partisipasi dalam latihan darurat hari ini. Evaluasi keseluruhan: waktu evakuasi 8 menit, lebih baik dari target 10 menit.", "trans": "感谢大家参加今天的应急演练。总体评估：疏散时间8分钟，优于目标10分钟。"},
+          {"speaker": "B", "text": "Memang bagus, tapi saya lihat beberapa orang masih bingung arah evakuasi di area produksi. Perlu tambahan papan penunjuk.", "trans": "确实不错，但我看到生产区仍有人搞不清疏散方向。需要增加指示牌。"},
+          {"speaker": "A", "text": "Setuju. Tim HSE akan pasang papan tambahan minggu ini. Ada lagi temuan lain?", "trans": "同意。HSE团队本周会加装指示牌。还有其他发现吗？"},
+          {"speaker": "C", "text": "Saya catat beberapa APD di kotak darurat sudah kedaluwarsa. Masker respirator tanggal habis pakainya bulan lalu.", "trans": "我注意到一些应急箱里的防护装备已过期。呼吸面罩上个月就到期了。"},
+          {"speaker": "A", "text": "Ini temuan serius. Pengadaan harus segera ganti semua APD kedaluwarsa dalam 7 hari. Siapa yang bertanggung jawab?", "trans": "这是严重发现。采购必须在7天内更换所有过期防护装备。谁负责？"},
+          {"speaker": "B", "text": "Saya yang handle. Saya akan cek semua titik APD dan buat daftar penggantian hari ini juga.", "trans": "我来处理。我今天会检查所有防护装备点位并制作更换清单。"},
+          {"speaker": "A", "text": "Bagus. Selanjutnya, komunikasi radio HT agak terganggu di area bawah tanah. Perlu repeater tambahan.", "trans": "好。另外，地下区域的无线对讲通信有点受干扰。需要加装中继器。"},
+          {"speaker": "C", "text": "Saya setuju. Kita akan survey lokasi optimal untuk repeater baru minggu depan.", "trans": "我同意。下周我们会对新中继器的最佳位置进行勘测。"},
+          {"speaker": "A", "text": "Baik. Untuk dokumentasi, tim investigasi harap lengkapi laporan latihan dalam 3 hari kerja. Termasuk foto dan rekomendasi perbaikan.", "trans": "好。关于文档，调查组请在3个工作日内完成演练报告。包括照片和改进建议。"},
+          {"speaker": "B", "text": "Siap, Pak. Satu saran: sebaiknya kita undang pemadam kebakaran setempat untuk ikut latihan berikutnya. Mereka bisa kasih masukan teknis.", "trans": "好的，先生。一个建议：下次演练最好邀请当地消防队参加。他们可以提供技术指导。"},
+          {"speaker": "A", "text": "Ide bagus. Saya akan koordinasi dengan pemadam setempat. Terima kasih semua, latihan selesai. Kembali ke aktivitas normal.", "trans": "好主意。我会与当地消防队协调。谢谢大家，演练结束。恢复正常工作。"}
         ]
-      },
-      {
-        title: "事故调查报告",
-        icon: "🔍",
-        dialogue: [
-          {"speaker": "A", "text": "Tim, hari ini kita investigasi insiden kecelakaan di area crane kemarin. Korban terkena beban jatuh dan patah kaki.", "trans": "团队,今天我们调查昨天起重机区域的事故。伤者被坠落载荷砸中腿部骨折。"},
-          {"speaker": "B", "text": "Saya sudah interview saksi mata. Mereka bilang lifting plan tidak dibaca sebelum operasi dan tagline tidak digunakan.", "trans": "我已采访目击者。他们说操作前没看吊装计划且没用牵引绳。"},
-          {"speaker": "C", "text": "Dari inspeksi crane, saya temukan wire rope sudah aus 40% dari diameter asli. Seharusnya diganti kalau aus lebih dari 10%.", "trans": "从起重机检查,我发现钢丝绳已磨损至原直径40%。磨损超10%就应更换。"},
-          {"speaker": "A", "text": "Jadi root cause-nya adalah tidak patuh pada lifting procedure dan kurangnya inspeksi peralatan. Apa corrective action yang diusulkan?", "trans": "所以根本原因是不遵守吊装程序和缺乏设备检查。建议什么纠正措施?"},
-          {"speaker": "B", "text": "Pertama, semua lifting operation wajib ada lifting plan yang di-review. Kedua, inspeksi harian semua lifting equipment. Ketiga, training ulang untuk semua rigger dan crane operator.", "trans": "第一,所有吊装作业必须有经审核的吊装计划。第二,每日检查所有吊装设备。第三,对所有司索工和起重机操作员重新培训。"}
-        ]
-      },
-      {
-        title: "动火作业许可",
-        icon: "🔥",
-        dialogue: [
-          {"speaker": "A", "text": "Pak, saya mau apply permit untuk hot work welding di area tank farm. Apa persyaratannya?", "trans": "先生,我要申请罐区动火焊接作业许可。需要什么条件?"},
-          {"speaker": "B", "text": "Hot work di area tank farm sangat berisiko. Pertama, gas test untuk LEL harus di bawah 10% dari LEL. Kedua, area 15 meter harus bebas dari bahan mudah terbakar.", "trans": "罐区动火作业风险很高。第一,可燃气体测试必须低于爆炸下限10%。第二,15米范围内必须无可燃物。"},
-          {"speaker": "A", "text": "Saya sudah siapkan fire watch dan 2 unit APAR. JSA juga sudah dibuat dan ditandatangani supervisor.", "trans": "我已准备消防监护人和2个灭火器。JSA也已制作并经主管签字。"},
-          {"speaker": "B", "text": "Bagus. Tapi hot work permit hanya berlaku 8 jam. Kalau melebihi waktu, harus apply ulang. Dan jangan lupa LOTO untuk semua sumber energi di area tersebut.", "trans": "很好。但动火许可只限8小时。如超时,必须重新申请。别忘了对该区域所有能源进行上锁挂牌。"},
-          {"speaker": "A", "text": "Baik, Pak. Saya juga akan pasang barricade dan warning sign di sekitar area hot work untuk mencegah personel tidak terkait mendekat.", "trans": "好的,先生。我还将在动火作业区周围设置围栏和警示牌防止无关人员靠近。"}
-        ]
-      },
-      {
-        title: "恶劣天气预警",
-        icon: "🌪️",
-        dialogue: [
-          {"speaker": "A", "text": "Semuanya perhatian! BMKG mengeluarkan peringatan cuaca ekstrem: angin kencang hingga 80 km/jam dan hujan deras dalam 6 jam ke depan.", "trans": "所有人注意!气象局发布极端天气预警:未来6小时大风达80公里/小时并有大暴雨。"},
-          {"speaker": "B", "text": "Apakah operasi crane dan lifting harus dihentikan? Dan bagaimana dengan pekerjaan di ketinggian?", "trans": "起重和吊装作业是否必须停止?高处作业呢?"},
-          {"speaker": "A", "text": "Iya, semua crane operation dan working at height dihentikan sampai cuaca membaik. Semua material loose harus di-secure untuk mencegah terbang karena angin.", "trans": "是的,所有起重机作业和高处作业在天气转好前停止。所有松散材料必须固定防止被风吹走。"},
-          {"speaker": "C", "text": "Pak, area tailing dam rentan longsor kalau hujan deras. Apakah kita perlu aktifkan flood response plan?", "trans": "先生,如暴雨尾矿坝区易发生滑坡。我们需要启动洪涝响应计划吗?"},
-          {"speaker": "A", "text": "Saya sudah koordinasi dengan tim dam safety. Mereka akan monitor water level setiap 2 jam. Kalau hujan terus dan level air naik, kita akan evakuasi area downstream.", "trans": "我已与大坝安全队协调。他们将每2小时监测水位。如持续降雨且水位上升,我们将疏散下游区域。"}
-        ]
-      }
-    ],
+      }],
     speeches: [
       {
         day: 1,
@@ -125624,7 +125483,11 @@ function renderVersion(c){
   c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.23 / Versi</span></div>
     <div style="padding:16px;">
       <div style="margin-bottom:14px;padding:14px;background:rgba(59,130,246,.10);border-radius:10px;border-left:3px solid var(--info)">
-        <div style="font-size:15px;font-weight:700;color:var(--info);margin-bottom:6px">V4.38.0 (2026-09-30)</div>
+        <div style="font-size:15px;font-weight:700;color:var(--info);margin-bottom:6px">V4.38.3 (2026-10-01)</div>
+        <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">1. C5策略全面合规: 10/1-10/10 课程优化 · project_management 词汇68→40(删重3+精简25) 47处英文IPA修复 场景对话5-6→12-13句 · environmental_compliance 词汇75→38 13处英文替换 场景对话5-6→13句 · supply_chain 词汇82→40 场景10→3(保留采购/物流/清关) 每场景5→11-14句 · emergency_response 词汇86→40 场景10→3(保留火灾/泄漏/演练) 每场景5→11-12句 · 四话题全部C5合规: 词汇20-40✅ 场景=3✅ 对话10-20句✅ 测试15题✅</div>
+      </div>
+      <div style="margin-bottom:14px;padding:14px;background:rgba(59,130,246,.10);border-radius:10px;border-left:3px solid var(--info)">
+        <div style="font-size:15px;font-weight:700;color:var(--info);margin-bottom:6px">V4.38.3 (2026-09-30)</div>
         <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">1. 每日单词笔记新增 2026-09-30: 26 词条(catatan-ringkasan→mengoptimalkan,项目管理 Day 2) · 词表对账: 用户原始 27 词元,pengkabelan 去重 26 唯一(主调度任务书误写23,BIT 按原始输入对账纠正) · 两处拼写勘误(recana→rencana-cadangan / grafik-sumber-day→-daya) · BIT 初稿 78 例句+81 变形行 → BIO 定稿 PASS_WITH_REVISIONS(R1–R17: 1 条例句不含词条词已改/2 拼写/1 中译误译/正字法分写统一;7 项 [待核实] 逐项裁定: 否决 dampak 无据梵语源·确认 kritikal 不存在等) · bitVocabDB 2139→2159(同日重叠 6 词覆盖更新) · 热修隐患: 转换器 bitVocabDB 块 inline 结尾致正则失配,盲跑将 wiped 全库——已规范化(括号配平提取+dumps 重写) · 日期并存(09-16~09-30)</div>
       </div>
       <div style="margin-bottom:14px;padding:14px;background:rgba(59,130,246,.10);border-radius:10px;border-left:3px solid var(--info)">
