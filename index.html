@@ -6,7 +6,7 @@
 <meta http-equiv="Expires" content="0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LEO-BIR V4.38.8</title>
+<title>LEO-BIR V4.38.9</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -268,7 +268,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
 </style>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="video_registry.js?v=V4.38.8"></script>
+<script src="video_registry.js?v=V4.38.9"></script>
 </head>
 <body>
 <div class="app">
@@ -276,7 +276,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="sidebar-header">
     <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <h1>LEO-BIR</h1>
-    <div class="ver">LEO-BIR V4.38.8 · 每日复习视频 Layer 1（2 集样片 · 剪影引擎 v2）</div>
+    <div class="ver">LEO-BIR V4.38.9 · 每日复习视频 Layer 1（2 集样片 · 剪影引擎 v2）</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -5869,7 +5869,22 @@ function showBITInfo(word){
           });
         }
       }catch(e){}
-      data={word:word,ipa:v.ipa||"",cn:v.cn||"",en:v.en||"",root:v.root||"",forms:forms,formsNote:"",note:"",synonyms:[],antonyms:[],examples:[],tag:v.tag||""};
+      // V4.38.9: 映射 vocabDB 完整字段到 BIT 弹窗格式
+      let vForms=forms,vExamples=[],vSynonyms=[],vAntonyms=[],vNote="";
+      if(v.transform&&Array.isArray(v.transform)&&v.transform.length){
+        vForms=vForms.concat(v.transform.map(function(t){return{form:t.form||"",pos:t.pos||"",mean:t.cn||""};}));
+      }
+      if(v.example&&Array.isArray(v.example)&&v.example.length){
+        vExamples=v.example.map(function(e){return{id:e.id||"",cn:e.cn||""};});
+      }
+      if(v.synonym&&Array.isArray(v.synonym)){
+        vSynonyms=v.synonym.map(function(s){return{word:s,cn:""};});
+      }
+      if(v.antonym&&Array.isArray(v.antonym)){
+        vAntonyms=v.antonym.map(function(a){return{word:a,cn:""};});
+      }
+      if(v.note)vNote=v.note;
+      data={word:word,ipa:v.ipa||"",cn:v.cn||"",en:v.en||"",root:v.root||"",forms:vForms,formsNote:"",note:vNote,synonyms:vSynonyms,antonyms:vAntonyms,examples:vExamples,tag:v.tag||""};
       srcLabel="📖 词库组装";
     }
   }
@@ -5879,6 +5894,15 @@ function showBITInfo(word){
     data={word:word,ipa:wbEntry&&wbEntry.ipa?wbEntry.ipa:"",cn:wbEntry&&wbEntry.cn?wbEntry.cn:"",en:wbEntry&&wbEntry.en?wbEntry.en:"",root:wbEntry&&wbEntry.root?wbEntry.root:"",forms:[],formsNote:"",note:"",synonyms:[],antonyms:[],examples:[],tag:wbEntry&&wbEntry.tag?wbEntry.tag:""};
     srcLabel="📦 生词本记录";
     hintHtml=`<div style="font-size:12px;color:#d4a017;background:rgba(212,160,23,.08);border-left:2px solid #d4a017;padding:8px 10px;border-radius:6px;margin:10px 0;line-height:1.6;">💡 该词暂无 BIT 完整词条,可通过翻译页「🚀 一键BIT」生成</div>`;
+  }
+
+  // V4.38.9: BIT 弹窗加入生词本按钮
+  if(typeof addWB==="function"){
+    const inWB=(typeof wordBank!=="undefined"&&wordBank)?wordBank.some(function(w){return w.word&&w.word.toLowerCase()===lw;}):false;
+    body+=`<div style="margin-top:14px;padding-top:12px;border-top:1px solid var(--border);display:flex;gap:10px;">`;
+    if(!inWB){body+=`<button onclick="addWB('${data.word.replace(/'/g,"\'")}','${(data.ipa||"").replace(/'/g,"\'")}','${(data.cn||"").replace(/'/g,"\'")}','${(data.en||"").replace(/'/g,"\'")}','${(data.root||"").replace(/'/g,"\'")}','${(data.tag||"").replace(/'/g,"\'")}')" style="flex:1;padding:10px;background:var(--primary);color:#0a0e17;border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;">📚 加入生词本</button>`;}
+    else{body+=`<button disabled style="flex:1;padding:10px;background:var(--bg-elev);color:var(--text-dim);border:none;border-radius:8px;font-size:13px;font-weight:600;cursor:default;">✅ 已在生词本</button>`;}
+    body+=`<button onclick="closeBITInfo()" style="flex:1;padding:10px;background:var(--bg-elev);color:var(--text);border:1px solid var(--border);border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;">关闭</button></div>`;
   }
 
   _bitSpeakQueue=[];
@@ -6768,6 +6792,10 @@ function showTip(word){
     const suffixes=['kan','i','an','lah','nya','pun'];
     for(const pre of prefixes){if(w.startsWith(pre)&&w.length>pre.length+2){const root=w.slice(pre.length);if(vocabDB[root]||vocabDB[root.charAt(0).toUpperCase()+root.slice(1)]){v=vocabDB[root]||vocabDB[root.charAt(0).toUpperCase()+root.slice(1)];break;}}}
     if(!v){for(const suf of suffixes){if(w.endsWith(suf)&&w.length>suf.length+2){const root=w.slice(0,-suf.length);if(vocabDB[root]||vocabDB[root.charAt(0).toUpperCase()+root.slice(1)]){v=vocabDB[root]||vocabDB[root.charAt(0).toUpperCase()+root.slice(1)];break;}}}}
+  }
+  // V4.38.9: 词条有完整 BIT 字段时,走 BIT 弹窗而非简易 tooltip
+  if(v&&(v.transform||v.example||v.synonym)){
+    if(typeof showBITInfo==="function"){showBITInfo(word);return;}
   }
   const tt=document.getElementById("tooltip");
   if(v){
@@ -128761,7 +128789,7 @@ function renderVersion(c){
   c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.23 / Versi</span></div>
     <div style="padding:16px;">
       <div style="margin-bottom:14px;padding:14px;background:rgba(59,130,246,.10);border-radius:10px;border-left:3px solid var(--info)">
-        <div style="font-size:15px;font-weight:700;color:var(--info);margin-bottom:6px">V4.38.8 (2026-10-01)</div>
+        <div style="font-size:15px;font-weight:700;color:var(--info);margin-bottom:6px">V4.38.9 (2026-10-01)</div>
         <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">1. vocabDB补全: 四话题129词BIT标准完整词条同步 — project_management 29词 + environmental_compliance 33词 + supply_chain 31词 + emergency_response 36词 · 全部含 ipa/cn/en/root/tag 五字段 · 覆盖率 29/158 → 158/158 (100%) · 修复Day1词汇页面大量词条不渲染问题</div>
         <div style="font-size:15px;font-weight:700;color:var(--info);margin-bottom:6px">V4.38.3 (2026-10-01)</div>
         <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">1. C5策略全面合规: 10/1-10/10 课程优化 · project_management 词汇68→40(删重3+精简25) 47处英文IPA修复 场景对话5-6→12-13句 · environmental_compliance 词汇75→38 13处英文替换 场景对话5-6→13句 · supply_chain 词汇82→40 场景10→3(保留采购/物流/清关) 每场景5→11-14句 · emergency_response 词汇86→40 场景10→3(保留火灾/泄漏/演练) 每场景5→11-12句 · 四话题全部C5合规: 词汇20-40✅ 场景=3✅ 对话10-20句✅ 测试15题✅</div>
