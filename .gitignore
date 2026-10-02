@@ -27,3 +27,6 @@ memory/
 tools/
 videos/
 mir-data/
+
+# Download temp dir
+downloads/
