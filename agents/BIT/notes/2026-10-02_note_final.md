@@ -1,13 +1,14 @@
 # BIT 每日单词笔记 - 定稿(BIO 审查修订)
 
-> **日期**: 2026-10-02 | **词条总数**: 41 | **状态**: 定稿(BIO 审查修订 R1-R3)
-> **整理**: BIT V1.0 | **审查**: BIO(流程 1.2)| **主题**: 项目管理 (project_management) Day 4 — PMBOK 概念复习(项目定义·五大过程组·EVM·风险定义)
-> **BIO 判定**: PASS_WITH_REVISIONS（41/41 收录，用户输入 48 词元逐词对齐见附录一对账表，无 FAIL 级问题）
+> **日期**: 2026-10-02 | **词条总数**: 55 | **状态**: 定稿(BIO 审查修订 R1-R4)
+> **整理**: BIT V1.0 | **审查**: BIO(流程 1.2)| **主题**: 项目管理 (project_management) Day 4 — PMBOK 概念复习(项目定义·五大过程组·EVM·风险定义与定性/定量分析)
+> **BIO 判定**: PASS_WITH_REVISIONS（55/55 收录，两批输入 64 词元逐词对齐见附录一对账表一/二，无 FAIL 级问题）
 
 **BIO 修订记录**:
 - **R1 词组绑定裁定**：用户以连字符/空格混合输入词组，按语义单元归并——`piagam proyek`(项目章程，PMBOK 术语)、`monitoring dan controlling`(监控过程组，PMBOK 五大过程组之一)、`nilai hasil`(挣值 EV) 等 11 组收为词组词条；`(memantau kontrol)` 为监控过程组的印尼语释义，拆为 `memantau`、`kontrol` 两独立词条。
 - **R2 输入讹误修复 ×2**：`-inerja` 依上下文 `mengukur -inerja metrik` 及后文 `Indeks Kinerja` 判定为 `kinerja`（首字母 k 脱落，复制断行所致）；`rencana-manajemen-yang-komprehensif()` 空括号 `()` 为输入残留，词条取 `rencana manajemen yang komprehensif`。
 - **R3 词表对齐用户原始输入**：去重 `meliputi`(输入×2，词条×1)、忽略空词元 `，`(×2)；`Indeks`+`Kinerja`→`indeks kinerja`、`positif-atau-`+`negatif`→`positif atau negatif` 两对相邻词元各并为一条；无任何非用户输入词条（RCO A3 词级对账通过）。
+- **R4 追加批次（22:55 指令）**：第二批 16 词元为量化风险分析专题——去重 `kuantitatif`(输入×2)、`kualitatif` 本日 #41 已收录（同词覆盖更新机制，不重复建条）；新增 14 条（#42–#55），词条总数 41→55。
 
 ---
 
@@ -881,3 +882,305 @@
 | 48 | kualitatif | kualitatif | 直收 |
 
 **对账结论**：48 词元 → 41 词条（忽略空词元×1、去重×1、归并×5 组）；无任何非用户输入词条；`kinerja` 讹误修复 1 处。RCO A3 词级三方对账 PASS。
+
+### 42. mencapai sasaran
+
+- **中文**: 达到目标；实现指标
+- **English**: to achieve targets/objectives
+- **词根**: capai（达到，本土词）+ me- + -i → mencapai；sasar（瞄准，本土词）+ -an → sasaran
+- **变形**:
+
+  | 形式 | 词性 | 含义 |
+  |------|------|------|
+  | capai | 词根 | 达到 |
+  | mencapai | 动词 | 达到 |
+  | dicapai | 被动动词 | 被达到 |
+  | pencapaian | 名词 | 成就；达成 |
+  | sasar | 词根/动词 | 瞄准 |
+  | sasaran | 名词 | 目标 |
+
+- **同义词**: mencapai target（达到目标）、mencapai tujuan（达到目的）、merealisasikan sasaran（实现目标）
+- **反义词**: gagal mencapai sasaran（未达到目标）、meleset dari sasaran（偏离目标）
+- **词汇注释**: 项目成功三标准：mencapai sasaran **biaya**（成本）、**jadwal**（进度）、**mutu**（质量）；EVM 即用于量化 pencapaian。
+- 项目管理: *Proyek dianggap berhasil jika mencapai sasaran biaya dan jadwal.*（项目达成成本与进度目标才算成功。）
+- 商务: *Kami berhasil mencapai sasaran penjualan tiga bulan lebih awal.*（我们提前三个月达成销售目标。）
+
+### 43. biaya dan jadwal
+
+- **中文**: 成本与进度（项目约束双基石）
+- **English**: cost and schedule
+- **词根**: biaya（费用，本土词）；jadwal（时间表，阿拉伯语 جدول「表格」借词）
+- **变形**:
+
+  | 形式 | 词性 | 含义 |
+  |------|------|------|
+  | berbiaya | 动词 | 花费 |
+  | pembiayaan | 名词 | 融资 |
+  | penjadwalan | 名词 | 排程 |
+  | jadwal proyek | 名词短语 | 项目进度表 |
+
+- **同义词**: anggaran dan jadwal（预算与进度）、biaya serta tenggat（成本与期限）
+- **词汇注释**: 三重约束（triple constraint）两维：`biaya`（成本）+ `jadwal`（进度）+ `ruang lingkup`（范围）；EVM 的 SV/CV 正是对 biaya dan jadwal 的偏差度量。
+- 项目管理: *Kontrol utama proyek adalah membandingkan biaya dan jadwal aktual dengan rencana.*（项目管控核心是比对实际成本与进度和计划。）
+- 商务: *Klien meminta rincian biaya dan jadwal sebelum menandatangani kontrak.*（客户要求签约前列出成本与进度明细。）
+
+### 44. dihindari
+
+- **中文**: （被）避免；（被）规避
+- **English**: (is) avoided
+- **词根**: hindar（躲避，本土词）+ di- → dihindari
+- **变形**:
+
+  | 形式 | 词性 | 含义 |
+  |------|------|------|
+  | hindar | 词根 | 躲避 |
+  | menghindari | 动词 | 避免 |
+  | dihindari | 被动动词 | 被避免 |
+  | penghindaran | 名词 | 规避（行为） |
+  | terhindar | 形容词/被动 | 得以避免 |
+
+- **同义词**: dicegah（被预防）、dielakkan（被避开）
+- **反义词**: diterima（被接受）、ditanggung（被承担）
+- **词汇注释**: 风险应对四策略之一：`menghindari`（规避）——改变计划使风险完全不发生，如取消高风险工序。
+- 项目管理: *Risiko kelangkaan material dapat dihindari dengan pemasok ganda.*（材料短缺风险可通过双供应商策略规避。）
+- 工作园区: *Kecelakaan dapat dihindari dengan disiplin memakai APD.*（遵守劳保穿戴纪律可避免事故。）
+
+### 45. cadangan kontinjensi
+
+- **中文**: 应急储备（已识别风险的预留资金/时间）
+- **English**: contingency reserve
+- **词根**: cadang（储备，本土词）+ -an → cadangan；kontinjensi（应急——欧洲语言 contingency 借词）
+- **变形**:
+
+  | 形式 | 词性 | 含义 |
+  |------|------|------|
+  | cadangan | 名词 | 储备 |
+  | mencadangkan | 动词 | 预留 |
+  | kontinjensi | 名词 | 应急；偶发事件 |
+  | dana cadangan | 名词短语 | 储备金 |
+
+- **同义词**: dana kontinjensi（应急资金）、cadangan darurat（紧急储备）
+- **反义词**: —（概念无反义；对比项见下）
+- **词汇注释**: 与 `cadangan manajemen`（管理储备——未知未知风险 unknown-unknowns）区分：kontinjensi 应对已知风险（known-unknowns），动用需变更控制。
+- 项目管理: *Cadangan kontinjensi sebesar sepuluh persen dialokasikan untuk risiko harga nikel.*（为镍价风险预留百分之十的应急储备。）
+- 商务: *Proyek tanpa cadangan kontinjensi sangat rentan terhadap kejutan pasar.*（没有应急储备的项目极易受市场波动冲击。）
+
+### 46. krusial
+
+- **中文**: 至关重要的；关键性的
+- **English**: crucial
+- **词根**: 欧洲语言借词（英 crucial / 荷 cruciaal，终源拉丁 crux「十字路口/关键」）
+- **变形**:
+
+  | 形式 | 词性 | 含义 |
+  |------|------|------|
+  | krusial | 形容词 | 关键的 |
+  | sangat krusial | 形容词短语 | 极其关键 |
+  | kerugian krusial | 名词短语 | 关键损失 |
+
+- **同义词**: penting（重要）、vital（要害）、kritis（关键——本日 #41 呼应）
+- **反义词**: sepele（琐碎）、remeh（微小）
+- 项目管理: *Keputusan pemilihan lokasi smelter bersifat krusial bagi keseluruhan proyek.*（冶炼厂选址决策对整个项目至关重要。）
+- 商务: *Minggu ini krusial untuk penyelesaian negosiasi kontrak utama.*（本周是完成主合同谈判的关键期。）
+
+### 47. jaminan memastikan
+
+- **中文**: 保证·确保（QA 定义词组：质量保证 = 确保持续符合要求）
+- **English**: assurance — to ensure (QA context)
+- **词根**: jamin（担保，本土词）+ -an → jaminan；pasti（确定，本土词）+ me- + -kan → memastikan
+- **变形**:
+
+  | 形式 | 词性 | 含义 |
+  |------|------|------|
+  | jaminan | 名词 | 保证 |
+  | jamin | 动词（少用） | 担保 |
+  | mengjamin | 动词 | 担保 |
+  | pasti | 形容词 | 确定的 |
+  | memastikan | 动词 | 确保 |
+  | dipastikan | 被动动词 | 被确保 |
+
+- **同义词**: jaminan mutu（质量保证——规范术语）、penjaminan kualitas（品质保证）
+- **词汇注释**: 用户输入 `Jaminan-memastikan` 为 QA 定义词组；PMBOK 规范术语是 `jaminan mutu`（质量保证）——通过审计过程确保持续满足要求，与控制（pengendalian mutu 质量控制——检查成果）相对。本条目忠实保留用户原始输入词组。
+- 项目管理: *Jaminan mutu memastikan proyek konsisten memenuhi persyaratan kontrak.*（质量保证确保项目持续满足合同要求。）
+- 商务: *Audit pihak ketiga memberikan jaminan kepada investor.*（第三方审计向投资者提供保障。）
+
+### 48. sedangkan pengendalian
+
+- **中文**: 而管控；然而控制（对照连词句）
+- **English**: whereas control / while controlling
+- **词根**: sedangkan（而/然而，本土连词）；kendali（操控）+ pe- + -an → pengendalian（本日 #25）
+- **变形**:
+
+  | 形式 | 词性 | 含义 |
+  |------|------|------|
+  | sedangkan | 连词 | 而；然而（表对照） |
+  | pengendalian | 名词 | 控制 |
+  | sedangkan itu | 短语 | 而那时/与此同时 |
+
+- **同义词**: sementara itu（而/与此同时）、padahal（然而）
+- **词汇注释**: `sedangkan` 用于引出对照：`X melakukan Y, sedangkan pengendalian dilakukan Z`（X 做 Y，而控制由 Z 执行）——教材对比质量管理与质量控制时的典型句式。
+- 项目管理: *Jaminan mutu menjaga proses, sedangkan pengendalian mutu memeriksa hasil.*（质量保证管过程，而质量控制查结果。）
+- 商务: *Pemasok mengirim bahan baku, sedangkan pengendalian kualitas tetap di pabrik kami.*（供应商发原料，而质量管控仍在我厂。）
+
+### 49. luaran
+
+- **中文**: 输出（PMBOK 印尼版标准术语）
+- **English**: output
+- **词根**: luar（外，本土词）+ -an → luaran
+- **变形**:
+
+  | 形式 | 词性 | 含义 |
+  |------|------|------|
+  | luaran | 名词 | 输出 |
+  | keluaran | 名词 | 输出（通用变体） |
+  | mengeluarkan | 动词 | 输出；发放 |
+  | keluar | 动词 | 出去 |
+
+- **同义词**: keluaran（输出——通用）、hasil（成果）、produk（产品）
+- **反义词**: masukan（输入）、input（输入——借词通用）
+- **词汇注释**: PMBOK 印尼版四件套：`masukan`（输入）→ `alat dan teknik`（工具与技术）→ `luaran`（输出）；项目管理语境优先用 `luaran` 而非 `keluaran`。
+- 项目管理: *Luaran proses perencanaan adalah rencana manajemen proyek.*（规划过程的输出是项目管理计划。）
+- 工作园区: *Luaran produksi harian dicatat dalam laporan shift.*（每日产出记录在班组报告中。）
+
+### 50. mengorbankan
+
+- **中文**: 牺牲；舍弃（trade-off 权衡）
+- **English**: to sacrifice; to trade off
+- **词根**: korban（牺牲/祭品，本土词）+ me- + -kan → mengorbankan
+- **变形**:
+
+  | 形式 | 词性 | 含义 |
+  |------|------|------|
+  | korban | 名词 | 牺牲品；受害者 |
+  | berkorban | 动词 | 牺牲 |
+  | mengorbankan | 动词 | 牺牲（某物） |
+  | pengorbanan | 名词 | 牺牲（行为） |
+
+- **同义词**: menukar（交换——权衡）、mengorbankan kualitas（牺牲质量）、trade-off（权衡——行业惯用）
+- **词汇注释**: 三重约束权衡：`mengorbankan biaya demi jadwal`（为赶进度牺牲成本）、`mengorbankan mutu`（牺牲质量）——谈判与项目决策高频。
+- 项目管理: *Kita tidak boleh mengorbankan keselamatan demi kecepatan.*（我们绝不能为赶工牺牲安全。）
+- 商务: *Perusahaan mengorbankan margin demi pangsa pasar jangka panjang.*（公司为长期市场份额牺牲利润率。）
+
+### 51. kuantitatif
+
+- **中文**: 定量的
+- **English**: quantitative
+- **词根**: 欧洲语言借词（英 quantitative / 荷 kwantitatief，终源拉丁 quantitas「量」）
+- **变形**:
+
+  | 形式 | 词性 | 含义 |
+  |------|------|------|
+  | kuantitatif | 形容词 | 定量的 |
+  | kuantitas | 名词 | 数量 |
+  | kuantitatifnya | 副词 | 在定量方面 |
+
+- **同义词**: secara kuantitatif（定量地）、terukur（可量化的）
+- **反义词**: kualitatif（定性的——本日 #41）
+- **词汇注释**: `analisis risiko kuantitatif`（定量风险分析）——货币化建模（如蒙特卡洛模拟），与定性（矩阵分级）互补；EVM 本身即 kuantitatif 工具。
+- 项目管理: *Analisis risiko kuantitatif menghitung dampak moneter setiap risiko.*（定量风险分析计算每项风险的货币影响。）
+- 商务: *Survei menghasilkan data kuantitatif tentang preferensi konsumen.*（调查产出消费者偏好的定量数据。）
+
+### 52. menilai
+
+- **中文**: 评估；评价；估价
+- **English**: to assess; to evaluate
+- **词根**: nilai（价值，本土词）+ me- + -i → menilai
+- **变形**:
+
+  | 形式 | 词性 | 含义 |
+  |------|------|------|
+  | nilai | 名词 | 价值；分数 |
+  | menilai | 动词 | 评估 |
+  | dinilai | 被动动词 | 被评估 |
+  | penilaian | 名词 | 评估（过程） |
+  | penilai | 名词 | 评估师 |
+
+- **同义词**: mengevaluasi（评价）、mengukur（衡量——本日 #28）、menaksir（估算）
+- **反义词**: menebak-nebak（乱猜）
+- **词汇注释**: 风险管理定性分析核心动作：`menilai probabilitas dan dampak`（评估概率与影响）——见 #53。
+- 项目管理: *Tim menilai setiap risiko berdasarkan matriks probabilitas-dampak.*（团队按概率-影响矩阵评估每项风险。）
+- 商务: *Bank menilai kelayakan kredit sebelum pencairan.*（银行放款前评估信用资质。）
+
+### 53. probabilitas dan dampak
+
+- **中文**: 概率与影响（风险矩阵两维）
+- **English**: probability and impact
+- **词根**: probabilitas（概率，欧洲语言借词）；dampak（影响——本日 #36 berdampak 同根）
+- **变形**:
+
+  | 形式 | 词性 | 含义 |
+  |------|------|------|
+  | probabilitas | 名词 | 概率 |
+  | dampak | 名词 | 影响 |
+  | berdampak | 动词 | 产生影响 |
+  | dampaknya | 名词 | 其影响 |
+
+- **同义词**: peluang dan akibat（机会与后果）、kemungkinan dan pengaruh（可能性与作用）
+- **词汇注释**: 定性风险分析标尺：`matriks probabilitas-dampak`（概率-影响矩阵）——概率（rendah/sedang/tinggi）× 影响（minor/moderat/major）定位风险优先级。
+- 项目管理: *Probabilitas dan dampak dikalikan untuk mendapatkan skor risiko.*（概率与影响相乘得出风险分值。）
+- 商务: *Investor menimbang probabilitas dan dampak sebelum masuk pasar baru.*（投资者进入新市场前权衡概率与影响。）
+
+### 54. menentukan prioritas
+
+- **中文**: 确定优先级；排定先后
+- **English**: to determine priorities
+- **词根**: tentu（确定——本日 #19 menentukan 同根）；prioritas（优先级，欧洲语言 priority 借词）
+- **变形**:
+
+  | 形式 | 词性 | 含义 |
+  |------|------|------|
+  | prioritas | 名词 | 优先级 |
+  | memprioritaskan | 动词 | 优先考虑 |
+  | diprioritaskan | 被动动词 | 被优先处理 |
+  | berprioritas | 动词 | 具有优先权 |
+
+- **同义词**: menetapkan prioritas（定优先级）、mengurutkan（排序）、memprioritaskan（优先化）
+- **词汇注释**: 定性分析目的：`menentukan prioritas risiko`（确定风险优先级）——资源有限时先处理高分风险。
+- 项目管理: *Setelah penilaian, tim menentukan prioritas lima risiko teratas.*（评估后，团队排定前五项优先风险。）
+- 商务: *Manajemen menentukan prioritas anggaran tahun depan.*（管理层排定明年预算优先级。）
+
+### 55. memperkirakan kemungkinan
+
+- **中文**: 估算可能性（= 评估概率）
+- **English**: to estimate likelihood
+- **词根**: kira（估算，本土词）+ per- + -an → perkiraan；memperkirakan = me- + per- + kira + -kan；mungkin（可能，本土词）+ ke- + -an → kemungkinan
+- **变形**:
+
+  | 形式 | 词性 | 含义 |
+  |------|------|------|
+  | kira | 词根 | 估算 |
+  | perkiraan | 名词 | 估算（结果） |
+  | memperkirakan | 动词 | 预估 |
+  | mungkin | 形容词/副词 | 可能 |
+  | kemungkinan | 名词 | 可能性 |
+  | sepertinya | 副词 | 大概 |
+
+- **同义词**: menaksir kemungkinan（估算可能）、mengestimasi peluang（估计机会）
+- **词汇注释**: 定量分析动作：`memperkirakan kemungkinan terjadinya risiko`（估算风险发生的可能性）——输出与 `probabilitas`（#53）同义互换。
+- 项目管理: *Ahli statistik membantu memperkirakan kemungkinan keterlambatan panen hujan.*（统计专家协助估算雨季延期的可能性。）
+- 商务: *Analis memperkirakan kemungkinan kenaikan suku bunga.*（分析师估算加息的可能性。）
+
+---
+
+## 对账表二：追加批次（22:55 指令，16 词元 → 14 新词条）
+
+| # | 用户输入词元 | 最终词条 | 处理 |
+|---|---|---|---|
+| 1 | mencapai sasaran | mencapai sasaran | 直收（空格词组） |
+| 2 | biaya-dan-jadwal | biaya dan jadwal | 连字符词组归并 |
+| 3 | dihindari | dihindari | 直收 |
+| 4 | cadangan-kontinjensi | cadangan kontinjensi | 连字符词组归并 |
+| 5 | krusial | krusial | 直收 |
+| 6 | Jaminan-memastikan | jaminan memastikan | 连字符词组归并（QA 定义词组，规范术语见词条注） |
+| 7 | sedangkan-pengendalian | sedangkan pengendalian | 连字符词组归并（对照连词句） |
+| 8 | luaran | luaran | 直收 |
+| 9 | mengorbankan | mengorbankan | 直收 |
+| 10 | kuantitatif | kuantitatif | 直收（输入×2 去重） |
+| 11 | kualitatif | —（重复） | 本日 #41 已收录，同词覆盖更新机制，不重复建条 |
+| 12 | kuantitatif | —（重复） | 去重 |
+| 13 | menilai | menilai | 直收 |
+| 14 | probabilitas-dan-dampak | probabilitas dan dampak | 连字符词组归并 |
+| 15 | menentukan-prioritas | menentukan prioritas | 连字符词组归并 |
+| 16 | memperkirakan-kemungkinan | memperkirakan kemungkinan | 连字符词组归并 |
+
+**对账结论**：追加 16 词元 → 14 新词条（去重×2，其中 `kualitatif` 为同日已收录覆盖）；两批合计 64 词元 → 55 词条。RCO A3 词级对账 PASS。

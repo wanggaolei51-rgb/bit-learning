@@ -6,7 +6,7 @@
 <meta http-equiv="Expires" content="0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LEO-BIR V4.39.7</title>
+<title>LEO-BIR V4.39.8</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -276,7 +276,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="sidebar-header">
     <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <h1>LEO-BIR</h1>
-    <div class="ver">LEO-BIR V4.39.7 · 每日复习视频 Layer 1（2 集样片 · 剪影引擎 v2）</div>
+    <div class="ver">LEO-BIR V4.39.8 · 每日复习视频 Layer 1（2 集样片 · 剪影引擎 v2）</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -5919,6 +5919,7 @@ function showBITInfo(word){
   }
   overlay.addEventListener("click",function(e){if(e.target===overlay)closeBITInfo();});
 }
+
 
 
 
@@ -46328,6 +46329,713 @@ const dailyNotesDB = {
             "scene": "商务",
             "id": "Survei kepuasan pelanggan menghasilkan data kualitatif dan kuantitatif.",
             "cn": "（客户满意度调查产生定性和定量数据。）"
+          }
+        ]
+      },
+      {
+        "word": "mencapai sasaran",
+        "cn": "达到目标；实现指标",
+        "en": "to achieve targets/objectives",
+        "root": "capai（达到，本土词）+ me- + -i → mencapai；sasar（瞄准，本土词）+ -an → sasaran",
+        "forms": [
+          {
+            "form": "capai",
+            "pos": "词根",
+            "mean": "达到"
+          },
+          {
+            "form": "mencapai",
+            "pos": "动词",
+            "mean": "达到"
+          },
+          {
+            "form": "dicapai",
+            "pos": "被动动词",
+            "mean": "被达到"
+          },
+          {
+            "form": "pencapaian",
+            "pos": "名词",
+            "mean": "成就；达成"
+          },
+          {
+            "form": "sasar",
+            "pos": "词根/动词",
+            "mean": "瞄准"
+          },
+          {
+            "form": "sasaran",
+            "pos": "名词",
+            "mean": "目标"
+          }
+        ],
+        "formsNote": "",
+        "note": "项目成功三标准：mencapai sasaran **biaya**（成本）、**jadwal**（进度）、**mutu**（质量）；EVM 即用于量化 pencapaian。",
+        "synonyms": [
+          "mencapai target（达到目标）",
+          "mencapai tujuan（达到目的）",
+          "merealisasikan sasaran（实现目标）"
+        ],
+        "antonyms": [
+          "gagal mencapai sasaran（未达到目标）",
+          "meleset dari sasaran（偏离目标）"
+        ],
+        "examples": [
+          {
+            "scene": "项目管理",
+            "id": "Proyek dianggap berhasil jika mencapai sasaran biaya dan jadwal.",
+            "cn": "（项目达成成本与进度目标才算成功。）"
+          },
+          {
+            "scene": "商务",
+            "id": "Kami berhasil mencapai sasaran penjualan tiga bulan lebih awal.",
+            "cn": "（我们提前三个月达成销售目标。）"
+          }
+        ]
+      },
+      {
+        "word": "biaya dan jadwal",
+        "cn": "成本与进度（项目约束双基石）",
+        "en": "cost and schedule",
+        "root": "biaya（费用，本土词）；jadwal（时间表，阿拉伯语 جدول「表格」借词）",
+        "forms": [
+          {
+            "form": "berbiaya",
+            "pos": "动词",
+            "mean": "花费"
+          },
+          {
+            "form": "pembiayaan",
+            "pos": "名词",
+            "mean": "融资"
+          },
+          {
+            "form": "penjadwalan",
+            "pos": "名词",
+            "mean": "排程"
+          },
+          {
+            "form": "jadwal proyek",
+            "pos": "名词短语",
+            "mean": "项目进度表"
+          }
+        ],
+        "formsNote": "",
+        "note": "三重约束（triple constraint）两维：`biaya`（成本）+ `jadwal`（进度）+ `ruang lingkup`（范围）；EVM 的 SV/CV 正是对 biaya dan jadwal 的偏差度量。",
+        "synonyms": [
+          "anggaran dan jadwal（预算与进度）",
+          "biaya serta tenggat（成本与期限）"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "scene": "项目管理",
+            "id": "Kontrol utama proyek adalah membandingkan biaya dan jadwal aktual dengan rencana.",
+            "cn": "（项目管控核心是比对实际成本与进度和计划。）"
+          },
+          {
+            "scene": "商务",
+            "id": "Klien meminta rincian biaya dan jadwal sebelum menandatangani kontrak.",
+            "cn": "（客户要求签约前列出成本与进度明细。）"
+          }
+        ]
+      },
+      {
+        "word": "dihindari",
+        "cn": "（被）避免；（被）规避",
+        "en": "(is) avoided",
+        "root": "hindar（躲避，本土词）+ di- → dihindari",
+        "forms": [
+          {
+            "form": "hindar",
+            "pos": "词根",
+            "mean": "躲避"
+          },
+          {
+            "form": "menghindari",
+            "pos": "动词",
+            "mean": "避免"
+          },
+          {
+            "form": "dihindari",
+            "pos": "被动动词",
+            "mean": "被避免"
+          },
+          {
+            "form": "penghindaran",
+            "pos": "名词",
+            "mean": "规避（行为）"
+          },
+          {
+            "form": "terhindar",
+            "pos": "形容词/被动",
+            "mean": "得以避免"
+          }
+        ],
+        "formsNote": "",
+        "note": "风险应对四策略之一：`menghindari`（规避）——改变计划使风险完全不发生，如取消高风险工序。",
+        "synonyms": [
+          "dicegah（被预防）",
+          "dielakkan（被避开）"
+        ],
+        "antonyms": [
+          "diterima（被接受）",
+          "ditanggung（被承担）"
+        ],
+        "examples": [
+          {
+            "scene": "项目管理",
+            "id": "Risiko kelangkaan material dapat dihindari dengan pemasok ganda.",
+            "cn": "（材料短缺风险可通过双供应商策略规避。）"
+          },
+          {
+            "scene": "工作园区",
+            "id": "Kecelakaan dapat dihindari dengan disiplin memakai APD.",
+            "cn": "（遵守劳保穿戴纪律可避免事故。）"
+          }
+        ]
+      },
+      {
+        "word": "cadangan kontinjensi",
+        "cn": "应急储备（已识别风险的预留资金/时间）",
+        "en": "contingency reserve",
+        "root": "cadang（储备，本土词）+ -an → cadangan；kontinjensi（应急——欧洲语言 contingency 借词）",
+        "forms": [
+          {
+            "form": "cadangan",
+            "pos": "名词",
+            "mean": "储备"
+          },
+          {
+            "form": "mencadangkan",
+            "pos": "动词",
+            "mean": "预留"
+          },
+          {
+            "form": "kontinjensi",
+            "pos": "名词",
+            "mean": "应急；偶发事件"
+          },
+          {
+            "form": "dana cadangan",
+            "pos": "名词短语",
+            "mean": "储备金"
+          }
+        ],
+        "formsNote": "",
+        "note": "与 `cadangan manajemen`（管理储备——未知未知风险 unknown-unknowns）区分：kontinjensi 应对已知风险（known-unknowns），动用需变更控制。",
+        "synonyms": [
+          "dana kontinjensi（应急资金）",
+          "cadangan darurat（紧急储备）"
+        ],
+        "antonyms": [
+          "—（概念无反义；对比项见下）"
+        ],
+        "examples": [
+          {
+            "scene": "项目管理",
+            "id": "Cadangan kontinjensi sebesar sepuluh persen dialokasikan untuk risiko harga nikel.",
+            "cn": "（为镍价风险预留百分之十的应急储备。）"
+          },
+          {
+            "scene": "商务",
+            "id": "Proyek tanpa cadangan kontinjensi sangat rentan terhadap kejutan pasar.",
+            "cn": "（没有应急储备的项目极易受市场波动冲击。）"
+          }
+        ]
+      },
+      {
+        "word": "krusial",
+        "cn": "至关重要的；关键性的",
+        "en": "crucial",
+        "root": "欧洲语言借词（英 crucial / 荷 cruciaal，终源拉丁 crux「十字路口/关键」）",
+        "forms": [
+          {
+            "form": "krusial",
+            "pos": "形容词",
+            "mean": "关键的"
+          },
+          {
+            "form": "sangat krusial",
+            "pos": "形容词短语",
+            "mean": "极其关键"
+          },
+          {
+            "form": "kerugian krusial",
+            "pos": "名词短语",
+            "mean": "关键损失"
+          }
+        ],
+        "formsNote": "",
+        "note": "",
+        "synonyms": [
+          "penting（重要）",
+          "vital（要害）",
+          "kritis（关键——本日 #41 呼应）"
+        ],
+        "antonyms": [
+          "sepele（琐碎）",
+          "remeh（微小）"
+        ],
+        "examples": [
+          {
+            "scene": "项目管理",
+            "id": "Keputusan pemilihan lokasi smelter bersifat krusial bagi keseluruhan proyek.",
+            "cn": "（冶炼厂选址决策对整个项目至关重要。）"
+          },
+          {
+            "scene": "商务",
+            "id": "Minggu ini krusial untuk penyelesaian negosiasi kontrak utama.",
+            "cn": "（本周是完成主合同谈判的关键期。）"
+          }
+        ]
+      },
+      {
+        "word": "jaminan memastikan",
+        "cn": "保证·确保（QA 定义词组：质量保证 = 确保持续符合要求）",
+        "en": "assurance — to ensure (QA context)",
+        "root": "jamin（担保，本土词）+ -an → jaminan；pasti（确定，本土词）+ me- + -kan → memastikan",
+        "forms": [
+          {
+            "form": "jaminan",
+            "pos": "名词",
+            "mean": "保证"
+          },
+          {
+            "form": "jamin",
+            "pos": "动词（少用）",
+            "mean": "担保"
+          },
+          {
+            "form": "mengjamin",
+            "pos": "动词",
+            "mean": "担保"
+          },
+          {
+            "form": "pasti",
+            "pos": "形容词",
+            "mean": "确定的"
+          },
+          {
+            "form": "memastikan",
+            "pos": "动词",
+            "mean": "确保"
+          },
+          {
+            "form": "dipastikan",
+            "pos": "被动动词",
+            "mean": "被确保"
+          }
+        ],
+        "formsNote": "",
+        "note": "用户输入 `Jaminan-memastikan` 为 QA 定义词组；PMBOK 规范术语是 `jaminan mutu`（质量保证）——通过审计过程确保持续满足要求，与控制（pengendalian mutu 质量控制——检查成果）相对。本条目忠实保留用户原始输入词组。",
+        "synonyms": [
+          "jaminan mutu（质量保证——规范术语）",
+          "penjaminan kualitas（品质保证）"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "scene": "项目管理",
+            "id": "Jaminan mutu memastikan proyek konsisten memenuhi persyaratan kontrak.",
+            "cn": "（质量保证确保项目持续满足合同要求。）"
+          },
+          {
+            "scene": "商务",
+            "id": "Audit pihak ketiga memberikan jaminan kepada investor.",
+            "cn": "（第三方审计向投资者提供保障。）"
+          }
+        ]
+      },
+      {
+        "word": "sedangkan pengendalian",
+        "cn": "而管控；然而控制（对照连词句）",
+        "en": "whereas control / while controlling",
+        "root": "sedangkan（而/然而，本土连词）；kendali（操控）+ pe- + -an → pengendalian（本日 #25）",
+        "forms": [
+          {
+            "form": "sedangkan",
+            "pos": "连词",
+            "mean": "而；然而（表对照）"
+          },
+          {
+            "form": "pengendalian",
+            "pos": "名词",
+            "mean": "控制"
+          },
+          {
+            "form": "sedangkan itu",
+            "pos": "短语",
+            "mean": "而那时/与此同时"
+          }
+        ],
+        "formsNote": "",
+        "note": "`sedangkan` 用于引出对照：`X melakukan Y, sedangkan pengendalian dilakukan Z`（X 做 Y，而控制由 Z 执行）——教材对比质量管理与质量控制时的典型句式。",
+        "synonyms": [
+          "sementara itu（而/与此同时）",
+          "padahal（然而）"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "scene": "项目管理",
+            "id": "Jaminan mutu menjaga proses, sedangkan pengendalian mutu memeriksa hasil.",
+            "cn": "（质量保证管过程，而质量控制查结果。）"
+          },
+          {
+            "scene": "商务",
+            "id": "Pemasok mengirim bahan baku, sedangkan pengendalian kualitas tetap di pabrik kami.",
+            "cn": "（供应商发原料，而质量管控仍在我厂。）"
+          }
+        ]
+      },
+      {
+        "word": "luaran",
+        "cn": "输出（PMBOK 印尼版标准术语）",
+        "en": "output",
+        "root": "luar（外，本土词）+ -an → luaran",
+        "forms": [
+          {
+            "form": "luaran",
+            "pos": "名词",
+            "mean": "输出"
+          },
+          {
+            "form": "keluaran",
+            "pos": "名词",
+            "mean": "输出（通用变体）"
+          },
+          {
+            "form": "mengeluarkan",
+            "pos": "动词",
+            "mean": "输出；发放"
+          },
+          {
+            "form": "keluar",
+            "pos": "动词",
+            "mean": "出去"
+          }
+        ],
+        "formsNote": "",
+        "note": "PMBOK 印尼版四件套：`masukan`（输入）→ `alat dan teknik`（工具与技术）→ `luaran`（输出）；项目管理语境优先用 `luaran` 而非 `keluaran`。",
+        "synonyms": [
+          "keluaran（输出——通用）",
+          "hasil（成果）",
+          "produk（产品）"
+        ],
+        "antonyms": [
+          "masukan（输入）",
+          "input（输入——借词通用）"
+        ],
+        "examples": [
+          {
+            "scene": "项目管理",
+            "id": "Luaran proses perencanaan adalah rencana manajemen proyek.",
+            "cn": "（规划过程的输出是项目管理计划。）"
+          },
+          {
+            "scene": "工作园区",
+            "id": "Luaran produksi harian dicatat dalam laporan shift.",
+            "cn": "（每日产出记录在班组报告中。）"
+          }
+        ]
+      },
+      {
+        "word": "mengorbankan",
+        "cn": "牺牲；舍弃（trade-off 权衡）",
+        "en": "to sacrifice; to trade off",
+        "root": "korban（牺牲/祭品，本土词）+ me- + -kan → mengorbankan",
+        "forms": [
+          {
+            "form": "korban",
+            "pos": "名词",
+            "mean": "牺牲品；受害者"
+          },
+          {
+            "form": "berkorban",
+            "pos": "动词",
+            "mean": "牺牲"
+          },
+          {
+            "form": "mengorbankan",
+            "pos": "动词",
+            "mean": "牺牲（某物）"
+          },
+          {
+            "form": "pengorbanan",
+            "pos": "名词",
+            "mean": "牺牲（行为）"
+          }
+        ],
+        "formsNote": "",
+        "note": "三重约束权衡：`mengorbankan biaya demi jadwal`（为赶进度牺牲成本）、`mengorbankan mutu`（牺牲质量）——谈判与项目决策高频。",
+        "synonyms": [
+          "menukar（交换——权衡）",
+          "mengorbankan kualitas（牺牲质量）",
+          "trade-off（权衡——行业惯用）"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "scene": "项目管理",
+            "id": "Kita tidak boleh mengorbankan keselamatan demi kecepatan.",
+            "cn": "（我们绝不能为赶工牺牲安全。）"
+          },
+          {
+            "scene": "商务",
+            "id": "Perusahaan mengorbankan margin demi pangsa pasar jangka panjang.",
+            "cn": "（公司为长期市场份额牺牲利润率。）"
+          }
+        ]
+      },
+      {
+        "word": "kuantitatif",
+        "cn": "定量的",
+        "en": "quantitative",
+        "root": "欧洲语言借词（英 quantitative / 荷 kwantitatief，终源拉丁 quantitas「量」）",
+        "forms": [
+          {
+            "form": "kuantitatif",
+            "pos": "形容词",
+            "mean": "定量的"
+          },
+          {
+            "form": "kuantitas",
+            "pos": "名词",
+            "mean": "数量"
+          },
+          {
+            "form": "kuantitatifnya",
+            "pos": "副词",
+            "mean": "在定量方面"
+          }
+        ],
+        "formsNote": "",
+        "note": "`analisis risiko kuantitatif`（定量风险分析）——货币化建模（如蒙特卡洛模拟），与定性（矩阵分级）互补；EVM 本身即 kuantitatif 工具。",
+        "synonyms": [
+          "secara kuantitatif（定量地）",
+          "terukur（可量化的）"
+        ],
+        "antonyms": [
+          "kualitatif（定性的——本日 #41）"
+        ],
+        "examples": [
+          {
+            "scene": "项目管理",
+            "id": "Analisis risiko kuantitatif menghitung dampak moneter setiap risiko.",
+            "cn": "（定量风险分析计算每项风险的货币影响。）"
+          },
+          {
+            "scene": "商务",
+            "id": "Survei menghasilkan data kuantitatif tentang preferensi konsumen.",
+            "cn": "（调查产出消费者偏好的定量数据。）"
+          }
+        ]
+      },
+      {
+        "word": "menilai",
+        "cn": "评估；评价；估价",
+        "en": "to assess; to evaluate",
+        "root": "nilai（价值，本土词）+ me- + -i → menilai",
+        "forms": [
+          {
+            "form": "nilai",
+            "pos": "名词",
+            "mean": "价值；分数"
+          },
+          {
+            "form": "menilai",
+            "pos": "动词",
+            "mean": "评估"
+          },
+          {
+            "form": "dinilai",
+            "pos": "被动动词",
+            "mean": "被评估"
+          },
+          {
+            "form": "penilaian",
+            "pos": "名词",
+            "mean": "评估（过程）"
+          },
+          {
+            "form": "penilai",
+            "pos": "名词",
+            "mean": "评估师"
+          }
+        ],
+        "formsNote": "",
+        "note": "风险管理定性分析核心动作：`menilai probabilitas dan dampak`（评估概率与影响）——见 #53。",
+        "synonyms": [
+          "mengevaluasi（评价）",
+          "mengukur（衡量——本日 #28）",
+          "menaksir（估算）"
+        ],
+        "antonyms": [
+          "menebak-nebak（乱猜）"
+        ],
+        "examples": [
+          {
+            "scene": "项目管理",
+            "id": "Tim menilai setiap risiko berdasarkan matriks probabilitas-dampak.",
+            "cn": "（团队按概率-影响矩阵评估每项风险。）"
+          },
+          {
+            "scene": "商务",
+            "id": "Bank menilai kelayakan kredit sebelum pencairan.",
+            "cn": "（银行放款前评估信用资质。）"
+          }
+        ]
+      },
+      {
+        "word": "probabilitas dan dampak",
+        "cn": "概率与影响（风险矩阵两维）",
+        "en": "probability and impact",
+        "root": "probabilitas（概率，欧洲语言借词）；dampak（影响——本日 #36 berdampak 同根）",
+        "forms": [
+          {
+            "form": "probabilitas",
+            "pos": "名词",
+            "mean": "概率"
+          },
+          {
+            "form": "dampak",
+            "pos": "名词",
+            "mean": "影响"
+          },
+          {
+            "form": "berdampak",
+            "pos": "动词",
+            "mean": "产生影响"
+          },
+          {
+            "form": "dampaknya",
+            "pos": "名词",
+            "mean": "其影响"
+          }
+        ],
+        "formsNote": "",
+        "note": "定性风险分析标尺：`matriks probabilitas-dampak`（概率-影响矩阵）——概率（rendah/sedang/tinggi）× 影响（minor/moderat/major）定位风险优先级。",
+        "synonyms": [
+          "peluang dan akibat（机会与后果）",
+          "kemungkinan dan pengaruh（可能性与作用）"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "scene": "项目管理",
+            "id": "Probabilitas dan dampak dikalikan untuk mendapatkan skor risiko.",
+            "cn": "（概率与影响相乘得出风险分值。）"
+          },
+          {
+            "scene": "商务",
+            "id": "Investor menimbang probabilitas dan dampak sebelum masuk pasar baru.",
+            "cn": "（投资者进入新市场前权衡概率与影响。）"
+          }
+        ]
+      },
+      {
+        "word": "menentukan prioritas",
+        "cn": "确定优先级；排定先后",
+        "en": "to determine priorities",
+        "root": "tentu（确定——本日 #19 menentukan 同根）；prioritas（优先级，欧洲语言 priority 借词）",
+        "forms": [
+          {
+            "form": "prioritas",
+            "pos": "名词",
+            "mean": "优先级"
+          },
+          {
+            "form": "memprioritaskan",
+            "pos": "动词",
+            "mean": "优先考虑"
+          },
+          {
+            "form": "diprioritaskan",
+            "pos": "被动动词",
+            "mean": "被优先处理"
+          },
+          {
+            "form": "berprioritas",
+            "pos": "动词",
+            "mean": "具有优先权"
+          }
+        ],
+        "formsNote": "",
+        "note": "定性分析目的：`menentukan prioritas risiko`（确定风险优先级）——资源有限时先处理高分风险。",
+        "synonyms": [
+          "menetapkan prioritas（定优先级）",
+          "mengurutkan（排序）",
+          "memprioritaskan（优先化）"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "scene": "项目管理",
+            "id": "Setelah penilaian, tim menentukan prioritas lima risiko teratas.",
+            "cn": "（评估后，团队排定前五项优先风险。）"
+          },
+          {
+            "scene": "商务",
+            "id": "Manajemen menentukan prioritas anggaran tahun depan.",
+            "cn": "（管理层排定明年预算优先级。）"
+          }
+        ]
+      },
+      {
+        "word": "memperkirakan kemungkinan",
+        "cn": "估算可能性（= 评估概率）",
+        "en": "to estimate likelihood",
+        "root": "kira（估算，本土词）+ per- + -an → perkiraan；memperkirakan = me- + per- + kira + -kan；mungkin（可能，本土词）+ ke- + -an → kemungkinan",
+        "forms": [
+          {
+            "form": "kira",
+            "pos": "词根",
+            "mean": "估算"
+          },
+          {
+            "form": "perkiraan",
+            "pos": "名词",
+            "mean": "估算（结果）"
+          },
+          {
+            "form": "memperkirakan",
+            "pos": "动词",
+            "mean": "预估"
+          },
+          {
+            "form": "mungkin",
+            "pos": "形容词/副词",
+            "mean": "可能"
+          },
+          {
+            "form": "kemungkinan",
+            "pos": "名词",
+            "mean": "可能性"
+          },
+          {
+            "form": "sepertinya",
+            "pos": "副词",
+            "mean": "大概"
+          }
+        ],
+        "formsNote": "",
+        "note": "定量分析动作：`memperkirakan kemungkinan terjadinya risiko`（估算风险发生的可能性）——输出与 `probabilitas`（#53）同义互换。",
+        "synonyms": [
+          "menaksir kemungkinan（估算可能）",
+          "mengestimasi peluang（估计机会）"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "scene": "项目管理",
+            "id": "Ahli statistik membantu memperkirakan kemungkinan keterlambatan panen hujan.",
+            "cn": "（统计专家协助估算雨季延期的可能性。）"
+          },
+          {
+            "scene": "商务",
+            "id": "Analis memperkirakan kemungkinan kenaikan suku bunga.",
+            "cn": "（分析师估算加息的可能性。）"
           }
         ]
       }
@@ -101922,50 +102630,49 @@ const bitVocabDB = {
   },
   "mengorbankan": {
     "word": "mengorbankan",
-    "ipa": "/məŋˈor.ban.kan/",
-    "cn": "牺牲",
-    "en": "to sacrifice",
-    "root": "korban",
+    "cn": "牺牲；舍弃（trade-off 权衡）",
+    "en": "to sacrifice; to trade off",
+    "root": "korban（牺牲/祭品，本土词）+ me- + -kan → mengorbankan",
     "forms": [
       {
         "form": "korban",
-        "pos": "n",
-        "mean": "牺牲/受害者"
+        "pos": "名词",
+        "mean": "牺牲品；受害者"
       },
       {
         "form": "berkorban",
-        "pos": "v",
-        "mean": "自我牺牲"
+        "pos": "动词",
+        "mean": "牺牲"
+      },
+      {
+        "form": "mengorbankan",
+        "pos": "动词",
+        "mean": "牺牲（某物）"
       },
       {
         "form": "pengorbanan",
-        "pos": "n",
-        "mean": "牺牲（名词）"
-      },
-      {
-        "form": "dikorbankan",
-        "pos": "v",
-        "mean": "被牺牲"
+        "pos": "名词",
+        "mean": "牺牲（行为）"
       }
     ],
-    "formsNote": "meN-…-kan 使动缀，词根 korban「牺牲/受害者」",
-    "note": "mengorbankan waktu/uang 牺牲时间/金钱；korban jiwa 遇难者",
+    "formsNote": "",
+    "note": "三重约束权衡：`mengorbankan biaya demi jadwal`（为赶进度牺牲成本）、`mengorbankan mutu`（牺牲质量）——谈判与项目决策高频。",
     "synonyms": [
-      "merelakan"
+      "menukar（交换——权衡）",
+      "mengorbankan kualitas（牺牲质量）",
+      "trade-off（权衡——行业惯用）"
     ],
-    "antonyms": [
-      "menyelamatkan"
-    ],
+    "antonyms": [],
     "examples": [
       {
-        "scene": "Dia rela mengorbankan waktu luangnya.",
-        "id": "mengorbankan",
-        "cn": "他甘愿牺牲业余时间。"
+        "scene": "项目管理",
+        "id": "Kita tidak boleh mengorbankan keselamatan demi kecepatan.",
+        "cn": "（我们绝不能为赶工牺牲安全。）"
       },
       {
-        "scene": "Pengorbanan besar membuahkan hasil.",
-        "id": "pengorbanan",
-        "cn": "巨大牺牲换来成果。"
+        "scene": "商务",
+        "id": "Perusahaan mengorbankan margin demi pangsa pasar jangka panjang.",
+        "cn": "（公司为长期市场份额牺牲利润率。）"
       }
     ]
   },
@@ -110161,38 +110868,47 @@ const bitVocabDB = {
   },
   "krusial": {
     "word": "krusial",
-    "ipa": "/kruˈsial/",
-    "cn": "关键的",
+    "cn": "至关重要的；关键性的",
     "en": "crucial",
-    "root": "krusial",
+    "root": "欧洲语言借词（英 crucial / 荷 cruciaal，终源拉丁 crux「十字路口/关键」）",
     "forms": [
       {
-        "form": "sangat penting",
-        "pos": "phrase",
-        "mean": "至关重要（纯印尼语）"
+        "form": "krusial",
+        "pos": "形容词",
+        "mean": "关键的"
       },
       {
-        "form": "titik krusial",
-        "pos": "n",
-        "mean": "关键点"
+        "form": "sangat krusial",
+        "pos": "形容词短语",
+        "mean": "极其关键"
+      },
+      {
+        "form": "kerugian krusial",
+        "pos": "名词短语",
+        "mean": "关键损失"
       }
     ],
-    "formsNote": "借词；无派生，正式同义词 penting/sentral",
-    "note": "管理语境高频：masalah krusial 关键问题；tahap krusial 关键阶段",
+    "formsNote": "",
+    "note": "",
     "synonyms": [
-      "penting",
-      "sentral",
-      "vital"
+      "penting（重要）",
+      "vital（要害）",
+      "kritis（关键——本日 #41 呼应）"
     ],
     "antonyms": [
-      "sepele",
-      "tidak penting"
+      "sepele（琐碎）",
+      "remeh（微小）"
     ],
     "examples": [
       {
-        "scene": "Ini momen krusial bagi perusahaan.",
-        "id": "krusial",
-        "cn": "这是公司的关键时刻。"
+        "scene": "项目管理",
+        "id": "Keputusan pemilihan lokasi smelter bersifat krusial bagi keseluruhan proyek.",
+        "cn": "（冶炼厂选址决策对整个项目至关重要。）"
+      },
+      {
+        "scene": "商务",
+        "id": "Minggu ini krusial untuk penyelesaian negosiasi kontrak utama.",
+        "cn": "（本周是完成主合同谈判的关键期。）"
       }
     ]
   },
@@ -132172,53 +132888,52 @@ const bitVocabDB = {
   },
   "luaran": {
     "word": "luaran",
-    "ipa": "/luˈaˈran/",
-    "cn": "产出",
+    "cn": "输出（PMBOK 印尼版标准术语）",
     "en": "output",
-    "root": "luar (=外面) + -an 名词后缀 → 外部产出",
+    "root": "luar（外，本土词）+ -an → luaran",
     "forms": [
       {
-        "form": "luar",
-        "pos": "n/adj",
-        "mean": "外面/外部"
+        "form": "luaran",
+        "pos": "名词",
+        "mean": "输出"
+      },
+      {
+        "form": "keluaran",
+        "pos": "名词",
+        "mean": "输出（通用变体）"
       },
       {
         "form": "mengeluarkan",
-        "pos": "v",
-        "mean": "排出/支出/出版"
+        "pos": "动词",
+        "mean": "输出；发放"
       },
       {
-        "form": "dikeluarkan",
-        "pos": "pass.v",
-        "mean": "被排出/被支出"
-      },
-      {
-        "form": "pengeluaran",
-        "pos": "n",
-        "mean": "支出/排出"
+        "form": "keluar",
+        "pos": "动词",
+        "mean": "出去"
       }
     ],
     "formsNote": "",
-    "note": "与 hasil（成果）近义，luaran 强调系统/流程的直接输出 | 标签:项目管理",
+    "note": "PMBOK 印尼版四件套：`masukan`（输入）→ `alat dan teknik`（工具与技术）→ `luaran`（输出）；项目管理语境优先用 `luaran` 而非 `keluaran`。",
     "synonyms": [
-      "hasil",
-      "produk",
-      "output"
+      "keluaran（输出——通用）",
+      "hasil（成果）",
+      "produk（产品）"
     ],
     "antonyms": [
-      "masukan",
-      "input"
+      "masukan（输入）",
+      "input（输入——借词通用）"
     ],
     "examples": [
       {
-        "scene": "Luaran proses produksi harus memenuhi baku mutu.",
-        "id": "luaran",
-        "cn": "生产过程的产出必须符合质量标准。"
+        "scene": "项目管理",
+        "id": "Luaran proses perencanaan adalah rencana manajemen proyek.",
+        "cn": "（规划过程的输出是项目管理计划。）"
       },
       {
-        "scene": "Luaran mesin ini digunakan sebagai bahan baku.",
-        "id": "luaran",
-        "cn": "这台机器的产出被用作原材料。"
+        "scene": "工作园区",
+        "id": "Luaran produksi harian dicatat dalam laporan shift.",
+        "cn": "（每日产出记录在班组报告中。）"
       }
     ]
   },
@@ -139674,6 +140389,568 @@ const bitVocabDB = {
         "cn": "（客户满意度调查产生定性和定量数据。）"
       }
     ]
+  },
+  "mencapai sasaran": {
+    "word": "mencapai sasaran",
+    "cn": "达到目标；实现指标",
+    "en": "to achieve targets/objectives",
+    "root": "capai（达到，本土词）+ me- + -i → mencapai；sasar（瞄准，本土词）+ -an → sasaran",
+    "forms": [
+      {
+        "form": "capai",
+        "pos": "词根",
+        "mean": "达到"
+      },
+      {
+        "form": "mencapai",
+        "pos": "动词",
+        "mean": "达到"
+      },
+      {
+        "form": "dicapai",
+        "pos": "被动动词",
+        "mean": "被达到"
+      },
+      {
+        "form": "pencapaian",
+        "pos": "名词",
+        "mean": "成就；达成"
+      },
+      {
+        "form": "sasar",
+        "pos": "词根/动词",
+        "mean": "瞄准"
+      },
+      {
+        "form": "sasaran",
+        "pos": "名词",
+        "mean": "目标"
+      }
+    ],
+    "formsNote": "",
+    "note": "项目成功三标准：mencapai sasaran **biaya**（成本）、**jadwal**（进度）、**mutu**（质量）；EVM 即用于量化 pencapaian。",
+    "synonyms": [
+      "mencapai target（达到目标）",
+      "mencapai tujuan（达到目的）",
+      "merealisasikan sasaran（实现目标）"
+    ],
+    "antonyms": [
+      "gagal mencapai sasaran（未达到目标）",
+      "meleset dari sasaran（偏离目标）"
+    ],
+    "examples": [
+      {
+        "scene": "项目管理",
+        "id": "Proyek dianggap berhasil jika mencapai sasaran biaya dan jadwal.",
+        "cn": "（项目达成成本与进度目标才算成功。）"
+      },
+      {
+        "scene": "商务",
+        "id": "Kami berhasil mencapai sasaran penjualan tiga bulan lebih awal.",
+        "cn": "（我们提前三个月达成销售目标。）"
+      }
+    ]
+  },
+  "biaya dan jadwal": {
+    "word": "biaya dan jadwal",
+    "cn": "成本与进度（项目约束双基石）",
+    "en": "cost and schedule",
+    "root": "biaya（费用，本土词）；jadwal（时间表，阿拉伯语 جدول「表格」借词）",
+    "forms": [
+      {
+        "form": "berbiaya",
+        "pos": "动词",
+        "mean": "花费"
+      },
+      {
+        "form": "pembiayaan",
+        "pos": "名词",
+        "mean": "融资"
+      },
+      {
+        "form": "penjadwalan",
+        "pos": "名词",
+        "mean": "排程"
+      },
+      {
+        "form": "jadwal proyek",
+        "pos": "名词短语",
+        "mean": "项目进度表"
+      }
+    ],
+    "formsNote": "",
+    "note": "三重约束（triple constraint）两维：`biaya`（成本）+ `jadwal`（进度）+ `ruang lingkup`（范围）；EVM 的 SV/CV 正是对 biaya dan jadwal 的偏差度量。",
+    "synonyms": [
+      "anggaran dan jadwal（预算与进度）",
+      "biaya serta tenggat（成本与期限）"
+    ],
+    "antonyms": [],
+    "examples": [
+      {
+        "scene": "项目管理",
+        "id": "Kontrol utama proyek adalah membandingkan biaya dan jadwal aktual dengan rencana.",
+        "cn": "（项目管控核心是比对实际成本与进度和计划。）"
+      },
+      {
+        "scene": "商务",
+        "id": "Klien meminta rincian biaya dan jadwal sebelum menandatangani kontrak.",
+        "cn": "（客户要求签约前列出成本与进度明细。）"
+      }
+    ]
+  },
+  "dihindari": {
+    "word": "dihindari",
+    "cn": "（被）避免；（被）规避",
+    "en": "(is) avoided",
+    "root": "hindar（躲避，本土词）+ di- → dihindari",
+    "forms": [
+      {
+        "form": "hindar",
+        "pos": "词根",
+        "mean": "躲避"
+      },
+      {
+        "form": "menghindari",
+        "pos": "动词",
+        "mean": "避免"
+      },
+      {
+        "form": "dihindari",
+        "pos": "被动动词",
+        "mean": "被避免"
+      },
+      {
+        "form": "penghindaran",
+        "pos": "名词",
+        "mean": "规避（行为）"
+      },
+      {
+        "form": "terhindar",
+        "pos": "形容词/被动",
+        "mean": "得以避免"
+      }
+    ],
+    "formsNote": "",
+    "note": "风险应对四策略之一：`menghindari`（规避）——改变计划使风险完全不发生，如取消高风险工序。",
+    "synonyms": [
+      "dicegah（被预防）",
+      "dielakkan（被避开）"
+    ],
+    "antonyms": [
+      "diterima（被接受）",
+      "ditanggung（被承担）"
+    ],
+    "examples": [
+      {
+        "scene": "项目管理",
+        "id": "Risiko kelangkaan material dapat dihindari dengan pemasok ganda.",
+        "cn": "（材料短缺风险可通过双供应商策略规避。）"
+      },
+      {
+        "scene": "工作园区",
+        "id": "Kecelakaan dapat dihindari dengan disiplin memakai APD.",
+        "cn": "（遵守劳保穿戴纪律可避免事故。）"
+      }
+    ]
+  },
+  "cadangan kontinjensi": {
+    "word": "cadangan kontinjensi",
+    "cn": "应急储备（已识别风险的预留资金/时间）",
+    "en": "contingency reserve",
+    "root": "cadang（储备，本土词）+ -an → cadangan；kontinjensi（应急——欧洲语言 contingency 借词）",
+    "forms": [
+      {
+        "form": "cadangan",
+        "pos": "名词",
+        "mean": "储备"
+      },
+      {
+        "form": "mencadangkan",
+        "pos": "动词",
+        "mean": "预留"
+      },
+      {
+        "form": "kontinjensi",
+        "pos": "名词",
+        "mean": "应急；偶发事件"
+      },
+      {
+        "form": "dana cadangan",
+        "pos": "名词短语",
+        "mean": "储备金"
+      }
+    ],
+    "formsNote": "",
+    "note": "与 `cadangan manajemen`（管理储备——未知未知风险 unknown-unknowns）区分：kontinjensi 应对已知风险（known-unknowns），动用需变更控制。",
+    "synonyms": [
+      "dana kontinjensi（应急资金）",
+      "cadangan darurat（紧急储备）"
+    ],
+    "antonyms": [
+      "—（概念无反义；对比项见下）"
+    ],
+    "examples": [
+      {
+        "scene": "项目管理",
+        "id": "Cadangan kontinjensi sebesar sepuluh persen dialokasikan untuk risiko harga nikel.",
+        "cn": "（为镍价风险预留百分之十的应急储备。）"
+      },
+      {
+        "scene": "商务",
+        "id": "Proyek tanpa cadangan kontinjensi sangat rentan terhadap kejutan pasar.",
+        "cn": "（没有应急储备的项目极易受市场波动冲击。）"
+      }
+    ]
+  },
+  "jaminan memastikan": {
+    "word": "jaminan memastikan",
+    "cn": "保证·确保（QA 定义词组：质量保证 = 确保持续符合要求）",
+    "en": "assurance — to ensure (QA context)",
+    "root": "jamin（担保，本土词）+ -an → jaminan；pasti（确定，本土词）+ me- + -kan → memastikan",
+    "forms": [
+      {
+        "form": "jaminan",
+        "pos": "名词",
+        "mean": "保证"
+      },
+      {
+        "form": "jamin",
+        "pos": "动词（少用）",
+        "mean": "担保"
+      },
+      {
+        "form": "mengjamin",
+        "pos": "动词",
+        "mean": "担保"
+      },
+      {
+        "form": "pasti",
+        "pos": "形容词",
+        "mean": "确定的"
+      },
+      {
+        "form": "memastikan",
+        "pos": "动词",
+        "mean": "确保"
+      },
+      {
+        "form": "dipastikan",
+        "pos": "被动动词",
+        "mean": "被确保"
+      }
+    ],
+    "formsNote": "",
+    "note": "用户输入 `Jaminan-memastikan` 为 QA 定义词组；PMBOK 规范术语是 `jaminan mutu`（质量保证）——通过审计过程确保持续满足要求，与控制（pengendalian mutu 质量控制——检查成果）相对。本条目忠实保留用户原始输入词组。",
+    "synonyms": [
+      "jaminan mutu（质量保证——规范术语）",
+      "penjaminan kualitas（品质保证）"
+    ],
+    "antonyms": [],
+    "examples": [
+      {
+        "scene": "项目管理",
+        "id": "Jaminan mutu memastikan proyek konsisten memenuhi persyaratan kontrak.",
+        "cn": "（质量保证确保项目持续满足合同要求。）"
+      },
+      {
+        "scene": "商务",
+        "id": "Audit pihak ketiga memberikan jaminan kepada investor.",
+        "cn": "（第三方审计向投资者提供保障。）"
+      }
+    ]
+  },
+  "sedangkan pengendalian": {
+    "word": "sedangkan pengendalian",
+    "cn": "而管控；然而控制（对照连词句）",
+    "en": "whereas control / while controlling",
+    "root": "sedangkan（而/然而，本土连词）；kendali（操控）+ pe- + -an → pengendalian（本日 #25）",
+    "forms": [
+      {
+        "form": "sedangkan",
+        "pos": "连词",
+        "mean": "而；然而（表对照）"
+      },
+      {
+        "form": "pengendalian",
+        "pos": "名词",
+        "mean": "控制"
+      },
+      {
+        "form": "sedangkan itu",
+        "pos": "短语",
+        "mean": "而那时/与此同时"
+      }
+    ],
+    "formsNote": "",
+    "note": "`sedangkan` 用于引出对照：`X melakukan Y, sedangkan pengendalian dilakukan Z`（X 做 Y，而控制由 Z 执行）——教材对比质量管理与质量控制时的典型句式。",
+    "synonyms": [
+      "sementara itu（而/与此同时）",
+      "padahal（然而）"
+    ],
+    "antonyms": [],
+    "examples": [
+      {
+        "scene": "项目管理",
+        "id": "Jaminan mutu menjaga proses, sedangkan pengendalian mutu memeriksa hasil.",
+        "cn": "（质量保证管过程，而质量控制查结果。）"
+      },
+      {
+        "scene": "商务",
+        "id": "Pemasok mengirim bahan baku, sedangkan pengendalian kualitas tetap di pabrik kami.",
+        "cn": "（供应商发原料，而质量管控仍在我厂。）"
+      }
+    ]
+  },
+  "kuantitatif": {
+    "word": "kuantitatif",
+    "cn": "定量的",
+    "en": "quantitative",
+    "root": "欧洲语言借词（英 quantitative / 荷 kwantitatief，终源拉丁 quantitas「量」）",
+    "forms": [
+      {
+        "form": "kuantitatif",
+        "pos": "形容词",
+        "mean": "定量的"
+      },
+      {
+        "form": "kuantitas",
+        "pos": "名词",
+        "mean": "数量"
+      },
+      {
+        "form": "kuantitatifnya",
+        "pos": "副词",
+        "mean": "在定量方面"
+      }
+    ],
+    "formsNote": "",
+    "note": "`analisis risiko kuantitatif`（定量风险分析）——货币化建模（如蒙特卡洛模拟），与定性（矩阵分级）互补；EVM 本身即 kuantitatif 工具。",
+    "synonyms": [
+      "secara kuantitatif（定量地）",
+      "terukur（可量化的）"
+    ],
+    "antonyms": [
+      "kualitatif（定性的——本日 #41）"
+    ],
+    "examples": [
+      {
+        "scene": "项目管理",
+        "id": "Analisis risiko kuantitatif menghitung dampak moneter setiap risiko.",
+        "cn": "（定量风险分析计算每项风险的货币影响。）"
+      },
+      {
+        "scene": "商务",
+        "id": "Survei menghasilkan data kuantitatif tentang preferensi konsumen.",
+        "cn": "（调查产出消费者偏好的定量数据。）"
+      }
+    ]
+  },
+  "menilai": {
+    "word": "menilai",
+    "cn": "评估；评价；估价",
+    "en": "to assess; to evaluate",
+    "root": "nilai（价值，本土词）+ me- + -i → menilai",
+    "forms": [
+      {
+        "form": "nilai",
+        "pos": "名词",
+        "mean": "价值；分数"
+      },
+      {
+        "form": "menilai",
+        "pos": "动词",
+        "mean": "评估"
+      },
+      {
+        "form": "dinilai",
+        "pos": "被动动词",
+        "mean": "被评估"
+      },
+      {
+        "form": "penilaian",
+        "pos": "名词",
+        "mean": "评估（过程）"
+      },
+      {
+        "form": "penilai",
+        "pos": "名词",
+        "mean": "评估师"
+      }
+    ],
+    "formsNote": "",
+    "note": "风险管理定性分析核心动作：`menilai probabilitas dan dampak`（评估概率与影响）——见 #53。",
+    "synonyms": [
+      "mengevaluasi（评价）",
+      "mengukur（衡量——本日 #28）",
+      "menaksir（估算）"
+    ],
+    "antonyms": [
+      "menebak-nebak（乱猜）"
+    ],
+    "examples": [
+      {
+        "scene": "项目管理",
+        "id": "Tim menilai setiap risiko berdasarkan matriks probabilitas-dampak.",
+        "cn": "（团队按概率-影响矩阵评估每项风险。）"
+      },
+      {
+        "scene": "商务",
+        "id": "Bank menilai kelayakan kredit sebelum pencairan.",
+        "cn": "（银行放款前评估信用资质。）"
+      }
+    ]
+  },
+  "probabilitas dan dampak": {
+    "word": "probabilitas dan dampak",
+    "cn": "概率与影响（风险矩阵两维）",
+    "en": "probability and impact",
+    "root": "probabilitas（概率，欧洲语言借词）；dampak（影响——本日 #36 berdampak 同根）",
+    "forms": [
+      {
+        "form": "probabilitas",
+        "pos": "名词",
+        "mean": "概率"
+      },
+      {
+        "form": "dampak",
+        "pos": "名词",
+        "mean": "影响"
+      },
+      {
+        "form": "berdampak",
+        "pos": "动词",
+        "mean": "产生影响"
+      },
+      {
+        "form": "dampaknya",
+        "pos": "名词",
+        "mean": "其影响"
+      }
+    ],
+    "formsNote": "",
+    "note": "定性风险分析标尺：`matriks probabilitas-dampak`（概率-影响矩阵）——概率（rendah/sedang/tinggi）× 影响（minor/moderat/major）定位风险优先级。",
+    "synonyms": [
+      "peluang dan akibat（机会与后果）",
+      "kemungkinan dan pengaruh（可能性与作用）"
+    ],
+    "antonyms": [],
+    "examples": [
+      {
+        "scene": "项目管理",
+        "id": "Probabilitas dan dampak dikalikan untuk mendapatkan skor risiko.",
+        "cn": "（概率与影响相乘得出风险分值。）"
+      },
+      {
+        "scene": "商务",
+        "id": "Investor menimbang probabilitas dan dampak sebelum masuk pasar baru.",
+        "cn": "（投资者进入新市场前权衡概率与影响。）"
+      }
+    ]
+  },
+  "menentukan prioritas": {
+    "word": "menentukan prioritas",
+    "cn": "确定优先级；排定先后",
+    "en": "to determine priorities",
+    "root": "tentu（确定——本日 #19 menentukan 同根）；prioritas（优先级，欧洲语言 priority 借词）",
+    "forms": [
+      {
+        "form": "prioritas",
+        "pos": "名词",
+        "mean": "优先级"
+      },
+      {
+        "form": "memprioritaskan",
+        "pos": "动词",
+        "mean": "优先考虑"
+      },
+      {
+        "form": "diprioritaskan",
+        "pos": "被动动词",
+        "mean": "被优先处理"
+      },
+      {
+        "form": "berprioritas",
+        "pos": "动词",
+        "mean": "具有优先权"
+      }
+    ],
+    "formsNote": "",
+    "note": "定性分析目的：`menentukan prioritas risiko`（确定风险优先级）——资源有限时先处理高分风险。",
+    "synonyms": [
+      "menetapkan prioritas（定优先级）",
+      "mengurutkan（排序）",
+      "memprioritaskan（优先化）"
+    ],
+    "antonyms": [],
+    "examples": [
+      {
+        "scene": "项目管理",
+        "id": "Setelah penilaian, tim menentukan prioritas lima risiko teratas.",
+        "cn": "（评估后，团队排定前五项优先风险。）"
+      },
+      {
+        "scene": "商务",
+        "id": "Manajemen menentukan prioritas anggaran tahun depan.",
+        "cn": "（管理层排定明年预算优先级。）"
+      }
+    ]
+  },
+  "memperkirakan kemungkinan": {
+    "word": "memperkirakan kemungkinan",
+    "cn": "估算可能性（= 评估概率）",
+    "en": "to estimate likelihood",
+    "root": "kira（估算，本土词）+ per- + -an → perkiraan；memperkirakan = me- + per- + kira + -kan；mungkin（可能，本土词）+ ke- + -an → kemungkinan",
+    "forms": [
+      {
+        "form": "kira",
+        "pos": "词根",
+        "mean": "估算"
+      },
+      {
+        "form": "perkiraan",
+        "pos": "名词",
+        "mean": "估算（结果）"
+      },
+      {
+        "form": "memperkirakan",
+        "pos": "动词",
+        "mean": "预估"
+      },
+      {
+        "form": "mungkin",
+        "pos": "形容词/副词",
+        "mean": "可能"
+      },
+      {
+        "form": "kemungkinan",
+        "pos": "名词",
+        "mean": "可能性"
+      },
+      {
+        "form": "sepertinya",
+        "pos": "副词",
+        "mean": "大概"
+      }
+    ],
+    "formsNote": "",
+    "note": "定量分析动作：`memperkirakan kemungkinan terjadinya risiko`（估算风险发生的可能性）——输出与 `probabilitas`（#53）同义互换。",
+    "synonyms": [
+      "menaksir kemungkinan（估算可能）",
+      "mengestimasi peluang（估计机会）"
+    ],
+    "antonyms": [],
+    "examples": [
+      {
+        "scene": "项目管理",
+        "id": "Ahli statistik membantu memperkirakan kemungkinan keterlambatan panen hujan.",
+        "cn": "（统计专家协助估算雨季延期的可能性。）"
+      },
+      {
+        "scene": "商务",
+        "id": "Analis memperkirakan kemungkinan kenaikan suku bunga.",
+        "cn": "（分析师估算加息的可能性。）"
+      }
+    ]
   }
 };
 
@@ -140441,8 +141718,11 @@ function renderAbout(c){
 }
 
 function renderVersion(c){
-  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.39.7 / Versi</span></div>
+  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.39.8 / Versi</span></div>
     <div style="padding:16px;">
+      <div style="margin-bottom:14px;padding:14px;background:rgba(59,130,246,.10);border-radius:10px;border-left:3px solid var(--info)">
+        <div style="font-size:15px;font-weight:700;color:var(--info);margin-bottom:6px">V4.39.8 (2026-10-02)</div>
+        <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">1. 每日笔记 2026-10-02 追加批次(22:55指令): 量化风险分析专题 14词条(#42-55) — 16词元去重(kuantitatif×2/kualitatif同日覆盖) · cadangan kontinjensi应急储备/luaran输出(PMBOK印尼版标准术语)/probabilitas dan dampak概率影响矩阵 · 61变形行+28例句 · 词条总数41→55 源档案dailynote_1002.js 重生成 · BIT V1.0+BIO R4 对账表二 · check_syntax PASS · deploy-check 8项PASS</div>
       <div style="margin-bottom:14px;padding:14px;background:rgba(59,130,246,.10);border-radius:10px;border-left:3px solid var(--info)">
         <div style="font-size:15px;font-weight:700;color:var(--info);margin-bottom:6px">V4.39.7 (2026-10-02)</div>
         <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">1. 每日笔记 2026-10-02 上线: 项目管理 Day4(PMBOK概念复习) 41词条 — 48词元去重归并(空词元×1/重复meliputi×1/词组归并×5组) · 输入讹误修复×2(-inerja→kinerja断行/k修复, rencana-manajemen-yang-komprehensif()空括号) · 185变形行+82例句 · 附录一词数勘误对账表 · 源档案 dailynote_1002.js + agents/BIT/notes/2026-10-02_note_final.md · BIT V1.0 初稿→BIO 定稿(R1-R3修订) RCO A3 词级对账 PASS · check_syntax.py PASS · deploy-check 8项PASS</div>
