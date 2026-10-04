@@ -30,3 +30,4 @@ mir-data/
 
 # Download temp dir
 downloads/
+__pycache__/

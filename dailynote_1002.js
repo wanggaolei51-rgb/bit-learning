@@ -2,7 +2,7 @@
 const dailyNotesDB = {
   "2026-10-02": {
     "date": "2026-10-02",
-    "topicKey": "project_management",
+    "topicKey": "environmental_compliance",
     "source": "BIT V1.0 + BIO 审查",
     "entries": [
       {
@@ -2834,6 +2834,972 @@ const dailyNotesDB = {
             "scene": "商务",
             "id": "Analis memperkirakan kemungkinan kenaikan suku bunga.",
             "cn": "（分析师估算加息的可能性。）"
+          }
+        ]
+      },
+      {
+        "word": "limbah",
+        "cn": "废弃物；废料；废水（生产/生活活动产生的残余物）",
+        "en": "waste",
+        "root": "limbah（残余物——本土词，语源不确定[待核实]）",
+        "forms": [
+          {
+            "form": "limbah",
+            "pos": "名词",
+            "mean": "废弃物；废料"
+          },
+          {
+            "form": "limbah cair",
+            "pos": "名词短语",
+            "mean": "废水"
+          },
+          {
+            "form": "limbah padat",
+            "pos": "名词短语",
+            "mean": "固体废物"
+          },
+          {
+            "form": "limbah B3",
+            "pos": "名词短语",
+            "mean": "危险有毒废物（Bahan Berbahaya dan Beracun——#72/#73）"
+          },
+          {
+            "form": "pengolahan limbah",
+            "pos": "名词短语",
+            "mean": "废物处理"
+          }
+        ],
+        "formsNote": "",
+        "note": "冶炼园区环保合规核心词：`pengelolaan limbah B3`（危险废物管理）受 UU No. 32/2009 环境法约束；`IPAL`（Instalasi Pengolahan Air Limbah，废水处理设施）为园区标配。勿与 `sampah`（生活垃圾）混淆——`limbah` 侧重工业/生产残余。",
+        "synonyms": [
+          "sampah（垃圾——义域更窄，指生活固废）",
+          "buangan（排放物）",
+          "residu（残余物——借词）"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "scene": "项目管理",
+            "id": "Pabrik wajib mengolah limbah cair sebelum dibuang ke badan air.",
+            "cn": "（工厂废水排入水体前必须处理。）"
+          },
+          {
+            "scene": "商务",
+            "id": "Kontraktor bertanggung jawab atas pengangkutan limbah B3 ke fasilitas berlisensi.",
+            "cn": "（承包商负责将危险废物转运至有资质的处置设施。）"
+          }
+        ]
+      },
+      {
+        "word": "wajib",
+        "cn": "必须的；强制的；有义务的",
+        "en": "obligatory; mandatory; required",
+        "root": "wajib（义务——阿拉伯语借词 wājib）",
+        "forms": [
+          {
+            "form": "wajib",
+            "pos": "形容词",
+            "mean": "必须的"
+          },
+          {
+            "form": "mewajibkan",
+            "pos": "动词",
+            "mean": "规定…为义务"
+          },
+          {
+            "form": "diwajibkan",
+            "pos": "被动动词",
+            "mean": "被要求必须"
+          },
+          {
+            "form": "kewajiban",
+            "pos": "名词",
+            "mean": "义务；责任"
+          }
+        ],
+        "formsNote": "",
+        "note": "法规高频词：`wajib` 后接动词原形构成义务句型（`wajib mengolah limbah` 必须处理废物）；名词化 `kewajiban`（义务）如 `kewajiban pelaporan`（报告义务）。",
+        "synonyms": [
+          "harus（必须）",
+          "diperlukan（被要求的）",
+          "mandatory（强制的——英语借词）"
+        ],
+        "antonyms": [
+          "pilihan（可选择的）",
+          "tidak wajib（非强制）"
+        ],
+        "examples": [
+          {
+            "scene": "项目管理",
+            "id": "Semua pekerja wajib mengikuti induksi keselamatan sebelum masuk area.",
+            "cn": "（所有人员进入现场前必须参加安全入场培训。）"
+          },
+          {
+            "scene": "商务",
+            "id": "Perusahaan wajib membayar retribusi lingkungan sesuai peraturan daerah.",
+            "cn": "（公司必须按地方法规缴纳环境费。）"
+          }
+        ]
+      },
+      {
+        "word": "baku-mutu",
+        "cn": "（环境）质量标准；排放/水质标准",
+        "en": "(environmental) quality standard",
+        "root": "baku（基准；标准——语源不确定[待核实]）+ mutu（质量——语源不确定[待核实]），合成名词",
+        "forms": [
+          {
+            "form": "baku mutu",
+            "pos": "名词短语",
+            "mean": "质量标准（规范书写为分写）"
+          },
+          {
+            "form": "baku mutu air limbah",
+            "pos": "名词短语",
+            "mean": "废水排放水质标准"
+          },
+          {
+            "form": "baku mutu emisi",
+            "pos": "名词短语",
+            "mean": "排放标准"
+          },
+          {
+            "form": "baku mutu udara ambien",
+            "pos": "名词短语",
+            "mean": "环境空气质量标准"
+          }
+        ],
+        "formsNote": "",
+        "note": "印尼环保法规核心术语（UU 32/2009、PP 22/2021）：`pemenuhan baku mutu`（达标）是企业环保合规的硬性判据——超标即 `ketidakpatuhan`（不合规），可致停产。规范书写为分写 `baku mutu`；输入形式 `baku-mutu` 为连字符变体，按保守不拆原则作整体词条收录。",
+        "synonyms": [
+          "standar mutu（质量规范）",
+          "ambang batas（限值阈值）",
+          "kriteria kualitas（质量判据）"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "scene": "项目管理",
+            "id": "Hasil uji laboratorium membuktikan baku mutu air limbah terpenuhi.",
+            "cn": "（实验室检测证明废水水质达标。）"
+          },
+          {
+            "scene": "商务",
+            "id": "Kegagalan memenuhi baku mutu dapat menghentikan seluruh operasi pabrik.",
+            "cn": "（不达标可能导致全厂停产。）"
+          }
+        ]
+      },
+      {
+        "word": "diolah",
+        "cn": "被处理；被加工",
+        "en": "processed; treated",
+        "root": "olah（处理；加工——本土词）+ di-（被动前缀）→ diolah",
+        "forms": [
+          {
+            "form": "olah",
+            "pos": "词根",
+            "mean": "处理；加工"
+          },
+          {
+            "form": "mengolah",
+            "pos": "动词",
+            "mean": "处理；加工"
+          },
+          {
+            "form": "diolah",
+            "pos": "被动动词",
+            "mean": "被处理"
+          },
+          {
+            "form": "pengolahan",
+            "pos": "名词",
+            "mean": "处理；加工"
+          },
+          {
+            "form": "olahan",
+            "pos": "名词",
+            "mean": "加工制品"
+          }
+        ],
+        "formsNote": "",
+        "note": "废水处理固定搭配：`limbah diolah`（废物被处理）；`pengolahan air limbah`（废水处理）；园区设施 `IPAL` 全称含 `pengolahan`。",
+        "synonyms": [
+          "diproses（被加工——借词）",
+          "dirawat（被养护）"
+        ],
+        "antonyms": [
+          "dibuang（被丢弃）",
+          "terbuang（被废弃）"
+        ],
+        "examples": [
+          {
+            "scene": "项目管理",
+            "id": "Limbah cair diolah di IPAL sebelum dilepaskan ke lingkungan.",
+            "cn": "（废水在污水处理设施处理后才排入环境。）"
+          },
+          {
+            "scene": "商务",
+            "id": "Bijih nikel diolah di fasilitas pengolahan dalam negeri untuk menambah nilai.",
+            "cn": "（镍矿在国内加工设施处理以增值。）"
+          }
+        ]
+      },
+      {
+        "word": "pencemaran",
+        "cn": "污染",
+        "en": "pollution",
+        "root": "cemar（肮脏——本土词）+ pe- + -an → pencemaran（名词化）",
+        "forms": [
+          {
+            "form": "cemar",
+            "pos": "词根",
+            "mean": "脏；污秽"
+          },
+          {
+            "form": "mencemari",
+            "pos": "动词",
+            "mean": "污染"
+          },
+          {
+            "form": "dicemari",
+            "pos": "被动动词",
+            "mean": "被污染"
+          },
+          {
+            "form": "pencemar",
+            "pos": "名词",
+            "mean": "污染者；污染物"
+          },
+          {
+            "form": "pencemaran",
+            "pos": "名词",
+            "mean": "污染"
+          }
+        ],
+        "formsNote": "",
+        "note": "三大搭配：`pencemaran air`（水污染）、`pencemaran udara`（空气污染）、`pencemaran tanah`（土壤污染）；动词 `mencemari lingkungan`（污染环境）。",
+        "synonyms": [
+          "polusi（污染——借词）",
+          "kontaminasi（沾染——技术语）"
+        ],
+        "antonyms": [
+          "kebersihan（清洁）",
+          "pemurnian（净化）"
+        ],
+        "examples": [
+          {
+            "scene": "项目管理",
+            "id": "Pencemaran air akibat limbah tambang menjadi fokus pengawasan regulasi.",
+            "cn": "（矿山废水造成的水污染成为监管重点。）"
+          },
+          {
+            "scene": "商务",
+            "id": "Denda pencemaran dapat mencapai miliaran rupiah per insiden.",
+            "cn": "（单次污染事件罚款可达数十亿印尼盾。）"
+          }
+        ]
+      },
+      {
+        "word": "membran",
+        "cn": "膜；隔膜",
+        "en": "membrane",
+        "root": "membran（欧洲语言借词：英 membrane / 荷 membraan，终源拉丁 membrana「皮肤」）",
+        "forms": [
+          {
+            "form": "membran",
+            "pos": "名词",
+            "mean": "膜"
+          },
+          {
+            "form": "membran filter",
+            "pos": "名词短语",
+            "mean": "过滤膜"
+          },
+          {
+            "form": "membran sel",
+            "pos": "名词短语",
+            "mean": "细胞膜"
+          },
+          {
+            "form": "filtrasi membran",
+            "pos": "名词短语",
+            "mean": "膜过滤"
+          },
+          {
+            "form": "osmosis terbalik",
+            "pos": "名词短语",
+            "mean": "反渗透（RO）"
+          }
+        ],
+        "formsNote": "",
+        "note": "水处理技术词：反渗透膜（`membran RO`）用于海水淡化与超纯水制备；冶炼废水回用与零排放（`zero liquid discharge`）工艺链常用膜分离。",
+        "synonyms": [
+          "selaput（薄膜——本土词）",
+          "lapisan filter（过滤层）"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "scene": "项目管理",
+            "id": "Teknologi membran dipasang untuk mendaur ulang air limbah industri.",
+            "cn": "（安装膜技术以回用工业废水。）"
+          },
+          {
+            "scene": "商务",
+            "id": "Biaya operasi membran turun signifikan dalam lima tahun terakhir.",
+            "cn": "（膜运行成本近五年显著下降。）"
+          }
+        ]
+      },
+      {
+        "word": "gesek",
+        "cn": "摩擦；擦；刮",
+        "en": "friction; to rub",
+        "root": "gesek（本土词）",
+        "forms": [
+          {
+            "form": "gesek",
+            "pos": "词根",
+            "mean": "擦；刮"
+          },
+          {
+            "form": "gesekan",
+            "pos": "名词",
+            "mean": "摩擦"
+          },
+          {
+            "form": "menggesek",
+            "pos": "动词",
+            "mean": "摩擦；拉奏（弦乐）"
+          },
+          {
+            "form": "bergesekan",
+            "pos": "动词",
+            "mean": "相互摩擦"
+          }
+        ],
+        "formsNote": "",
+        "note": "物理义 `gesekan`（摩擦力）；日常义 `menggesek kartu`（刷卡）；勿与 `geser`（滑动）混淆。",
+        "synonyms": [
+          "friksi（摩擦——物理借词）",
+          "gosok（擦——日常义）"
+        ],
+        "antonyms": [
+          "licin（光滑）"
+        ],
+        "examples": [
+          {
+            "scene": "项目管理",
+            "id": "Gesekan pada sabuk konveyor meningkatkan konsumsi energi.",
+            "cn": "（传送带摩擦增加能耗。）"
+          },
+          {
+            "scene": "商务",
+            "id": "Biaya gesekan administrasi berkurang lewat digitalisasi dokumen.",
+            "cn": "（文件数字化降低行政摩擦成本。）"
+          }
+        ]
+      },
+      {
+        "word": "yakin",
+        "cn": "确信；有信心",
+        "en": "confident; certain",
+        "root": "yakin（确信——阿拉伯语借词 yaqīn）",
+        "forms": [
+          {
+            "form": "yakin",
+            "pos": "形容词",
+            "mean": "确信的"
+          },
+          {
+            "form": "keyakinan",
+            "pos": "名词",
+            "mean": "信念；信心"
+          },
+          {
+            "form": "meyakini",
+            "pos": "动词",
+            "mean": "坚信"
+          },
+          {
+            "form": "diyakini",
+            "pos": "被动动词",
+            "mean": "被相信"
+          }
+        ],
+        "formsNote": "",
+        "note": "宗教源词世俗化：阿拉伯语 yaqīn 原指宗教确信，今通用；`keyakinan` 仍可指宗教信仰；商务高频 `yakin akan kualitas`（对质量有信心）。",
+        "synonyms": [
+          "percaya diri（自信）",
+          "mantap（笃定）"
+        ],
+        "antonyms": [
+          "ragu（怀疑）",
+          "kurang yakin（没把握）"
+        ],
+        "examples": [
+          {
+            "scene": "项目管理",
+            "id": "Saya yakin proyek ini selesai tepat waktu dengan tim yang solid.",
+            "cn": "（我确信项目有坚实团队能按期完成。）"
+          },
+          {
+            "scene": "商务",
+            "id": "Investor yakin akan prospek industri nikel Indonesia.",
+            "cn": "（投资者看好印尼镍产业前景。）"
+          }
+        ]
+      },
+      {
+        "word": "tanaman",
+        "cn": "植物；作物（人工种植的）",
+        "en": "plants; crops (cultivated)",
+        "root": "tanam（种植——本土词）+ -an（名词后缀，所种之物）→ tanaman",
+        "forms": [
+          {
+            "form": "tanam",
+            "pos": "词根",
+            "mean": "种；植"
+          },
+          {
+            "form": "menanam",
+            "pos": "动词",
+            "mean": "种植"
+          },
+          {
+            "form": "tanaman",
+            "pos": "名词",
+            "mean": "植物；作物"
+          },
+          {
+            "form": "penanaman",
+            "pos": "名词",
+            "mean": "种植；（资金）投放"
+          }
+        ],
+        "formsNote": "",
+        "note": "复垦关键词：`tanaman penutup tanah`（覆土作物）、`tanaman pionir`（先锋植物）用于矿区生态修复；`penanaman modal`（投资——资金义转喻）。",
+        "synonyms": [
+          "tumbuhan（植物总称——#65 辨析）",
+          "kultur tanaman（作物栽培）"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "scene": "项目管理",
+            "id": "Reklamasi lahan tambang dimulai dengan tanaman penutup tanah.",
+            "cn": "（矿区复垦从种植覆土作物开始。）"
+          },
+          {
+            "scene": "商务",
+            "id": "Tanaman kelapa sawit menjadi komoditas ekspor utama regional.",
+            "cn": "（油棕种植园成为区域主要出口商品。）"
+          }
+        ]
+      },
+      {
+        "word": "tumbuhan",
+        "cn": "植物；植被（自然总称）",
+        "en": "vegetation; plants (natural, general)",
+        "root": "tumbuh（生长——本土词）+ -an（生长之物）→ tumbuhan",
+        "forms": [
+          {
+            "form": "tumbuh",
+            "pos": "动词",
+            "mean": "生长"
+          },
+          {
+            "form": "tumbuhan",
+            "pos": "名词",
+            "mean": "植物总称"
+          },
+          {
+            "form": "tumbuh-tumbuhan",
+            "pos": "名词",
+            "mean": "各类植物"
+          },
+          {
+            "form": "pertumbuhan",
+            "pos": "名词",
+            "mean": "增长"
+          }
+        ],
+        "formsNote": "",
+        "note": "`tanaman`（#64）指人工种植的植物（作物/园艺），`tumbuhan` 指自然界植物总称——对植物区分人工/野生。",
+        "synonyms": [
+          "flora（植物群——借词）",
+          "vegetasi（植被——技术借词）"
+        ],
+        "antonyms": [
+          "hewani（动物的）",
+          "satwa liar（野生动物）"
+        ],
+        "examples": [
+          {
+            "scene": "项目管理",
+            "id": "Pembangunan pabrik menghindari kawasan lindung tumbuhan langka.",
+            "cn": "（工厂建设避开珍稀植物保护区。）"
+          },
+          {
+            "scene": "商务",
+            "id": "Ekowisata tumbuhan hutan menarik investasi berkelanjutan.",
+            "cn": "（森林植物生态旅游吸引可持续投资。）"
+          }
+        ]
+      },
+      {
+        "word": "pelestarian",
+        "cn": "保护；保育（使…永续）",
+        "en": "conservation; preservation",
+        "root": "lestari（永续——语源存争议[待核实]，常视为本土词）+ pe- + -an → pelestarian",
+        "forms": [
+          {
+            "form": "lestari",
+            "pos": "形容词",
+            "mean": "永续的"
+          },
+          {
+            "form": "melestarikan",
+            "pos": "动词",
+            "mean": "保护；使永续"
+          },
+          {
+            "form": "dilestarikan",
+            "pos": "被动动词",
+            "mean": "被保护"
+          },
+          {
+            "form": "pelestarian",
+            "pos": "名词",
+            "mean": "保护；保育"
+          }
+        ],
+        "formsNote": "",
+        "note": "常见搭配：`pelestarian lingkungan`（环境保护）、`pelestarian sumber daya alam`（自然资源保护）、`pelestarian budaya`（文化保护）；企业 ESG 报告高频词。",
+        "synonyms": [
+          "konservasi（保育——借词）",
+          "perlindungan（保护）"
+        ],
+        "antonyms": [
+          "kepunahan（灭绝——#71）",
+          "kerusakan（破坏）"
+        ],
+        "examples": [
+          {
+            "scene": "项目管理",
+            "id": "Program pelestarian mangrove menjadi bagian tanggung jawab sosial perusahaan.",
+            "cn": "（红树林保护计划纳入企业社会责任项目。）"
+          },
+          {
+            "scene": "商务",
+            "id": "Pelestarian reputasi brand membutuhkan kepatuhan lingkungan nyata.",
+            "cn": "（维护品牌声誉需要真实的环境合规。）"
+          }
+        ]
+      },
+      {
+        "word": "degradasi",
+        "cn": "退化；降解",
+        "en": "degradation",
+        "root": "degradasi（欧洲语言借词：英 degradation / 荷 degradatie，终源拉丁 degradare「降格」）",
+        "forms": [
+          {
+            "form": "degradasi",
+            "pos": "名词",
+            "mean": "退化"
+          },
+          {
+            "form": "mengalami degradasi",
+            "pos": "动词短语",
+            "mean": "发生退化"
+          },
+          {
+            "form": "terdegradasi",
+            "pos": "动词",
+            "mean": "已退化"
+          },
+          {
+            "form": "biodegradasi",
+            "pos": "名词",
+            "mean": "生物降解"
+          }
+        ],
+        "formsNote": "",
+        "note": "双场景：环境义 `degradasi tanah`（土壤退化）/`degradasi lahan`（土地退化）；化学义 `biodegradable`（可生物降解）。读音 de-gra-da-si，重音在倒数第二音节。",
+        "synonyms": [
+          "penurunan mutu（品质下降）",
+          "kerusakan（破坏）",
+          "erosi（侵蚀）"
+        ],
+        "antonyms": [
+          "pemulihan（恢复）",
+          "restorasi（修复）"
+        ],
+        "examples": [
+          {
+            "scene": "项目管理",
+            "id": "Degradasi lahan di sekitar tambang dipantau setiap semester.",
+            "cn": "（矿区周边土地退化每半年监测一次。）"
+          },
+          {
+            "scene": "商务",
+            "id": "Kemasan biodegradable mengurangi volume limbah domestik.",
+            "cn": "（可降解包装减少生活垃圾量。）"
+          }
+        ]
+      },
+      {
+        "word": "membunuh",
+        "cn": "杀死；消灭",
+        "en": "to kill",
+        "root": "bunuh（杀——本土词）+ me- → membunuh",
+        "forms": [
+          {
+            "form": "bunuh",
+            "pos": "词根",
+            "mean": "杀"
+          },
+          {
+            "form": "membunuh",
+            "pos": "动词",
+            "mean": "杀死"
+          },
+          {
+            "form": "dibunuh",
+            "pos": "被动动词",
+            "mean": "被杀"
+          },
+          {
+            "form": "pembunuhan",
+            "pos": "名词",
+            "mean": "杀害"
+          },
+          {
+            "form": "pembunuh",
+            "pos": "名词",
+            "mean": "杀手；凶手"
+          }
+        ],
+        "formsNote": "",
+        "note": "法律语境慎用：`pembunuhan`（杀人罪）；技术/日常语境中性：`membunuh bakteri`（杀菌）；商业比喻：`membunuh prospek`（断送前景）。",
+        "synonyms": [
+          "menewaskan（致死——新闻语）",
+          "mematikan（使死亡）",
+          "memusnahkan（消灭——#70）"
+        ],
+        "antonyms": [
+          "menghidupkan（使存活）",
+          "menyelamatkan（挽救）"
+        ],
+        "examples": [
+          {
+            "scene": "项目管理",
+            "id": "Klorin digunakan untuk membunuh bakteri di air bersih.",
+            "cn": "（氯用于杀灭净水中的细菌。）"
+          },
+          {
+            "scene": "商务",
+            "id": "Kesepakatan buruk bisa membunuh prospek bisnis jangka panjang.",
+            "cn": "（糟糕协议可能断送长期商业前景。）"
+          }
+        ]
+      },
+      {
+        "word": "dunia",
+        "cn": "世界",
+        "en": "world",
+        "root": "dunia（尘世——阿拉伯语借词 dunyā）",
+        "forms": [
+          {
+            "form": "dunia",
+            "pos": "名词",
+            "mean": "世界"
+          },
+          {
+            "form": "duniawi",
+            "pos": "形容词",
+            "mean": "世俗的"
+          },
+          {
+            "form": "keduniaan",
+            "pos": "名词",
+            "mean": "世俗性"
+          }
+        ],
+        "formsNote": "",
+        "note": "高频搭配：`pasar dunia`（世界市场）、`permintaan dunia`（全球需求）、`dunia usaha`（工商界）。",
+        "synonyms": [
+          "jagat（宇宙——文学语）",
+          "alam（世间）"
+        ],
+        "antonyms": [
+          "akhirat（来世）"
+        ],
+        "examples": [
+          {
+            "scene": "项目管理",
+            "id": "Permintaan nikel dunia meningkat pesat karena kendaraan listrik.",
+            "cn": "（电动汽车拉动全球镍需求快速增长。）"
+          },
+          {
+            "scene": "商务",
+            "id": "Perusahaan bersaing di pasar dunia dengan mutu dan efisiensi.",
+            "cn": "（公司以品质与效率参与全球市场竞争。）"
+          }
+        ]
+      },
+      {
+        "word": "pemusnahan",
+        "cn": "销毁；歼灭；根除",
+        "en": "destruction; extermination",
+        "root": "musnah（毁灭——梵语借词[待核实]）+ pe- + -an → pemusnahan",
+        "forms": [
+          {
+            "form": "musnah",
+            "pos": "形容词/动词",
+            "mean": "毁灭；消失"
+          },
+          {
+            "form": "memusnahkan",
+            "pos": "动词",
+            "mean": "销毁；歼灭"
+          },
+          {
+            "form": "dimusnahkan",
+            "pos": "被动动词",
+            "mean": "被销毁"
+          },
+          {
+            "form": "pemusnahan",
+            "pos": "名词",
+            "mean": "销毁"
+          }
+        ],
+        "formsNote": "",
+        "note": "官方固定搭配：`pemusnahan barang bukti`（销毁证物/走私品）、`pemusnahan limbah B3`（危废销毁）；主动/被动语态转换（memusnahkan/dimusnahkan）为练习重点。",
+        "synonyms": [
+          "penghancuran（摧毁）",
+          "eliminasi（消除——借词）",
+          "pembasmian（扑灭）"
+        ],
+        "antonyms": [
+          "pelestarian（保护——#66）",
+          "pemeliharaan（养护）"
+        ],
+        "examples": [
+          {
+            "scene": "项目管理",
+            "id": "Limbah medis menjalani pemusnahan di insinerator khusus bersuhu tinggi.",
+            "cn": "（医疗废物经高温专用焚烧炉销毁。）"
+          },
+          {
+            "scene": "商务",
+            "id": "Pemusnahan stok kedaluwarsa mengurangi risiko kesehatan publik.",
+            "cn": "（销毁过期库存降低公共健康风险。）"
+          }
+        ]
+      },
+      {
+        "word": "kepunahan",
+        "cn": "灭绝",
+        "en": "extinction",
+        "root": "punah（灭绝——本土词）+ ke- + -an → kepunahan",
+        "forms": [
+          {
+            "form": "punah",
+            "pos": "动词/形容词",
+            "mean": "灭绝"
+          },
+          {
+            "form": "kepunahan",
+            "pos": "名词",
+            "mean": "灭绝"
+          },
+          {
+            "form": "terancam punah",
+            "pos": "动词短语",
+            "mean": "濒临灭绝"
+          }
+        ],
+        "formsNote": "",
+        "note": "生物多样性议题：`spesies terancam punah`（濒危物种）为 IUCN 红色名录及印尼法规标准语；环境评估（AMDAL）必查项。",
+        "synonyms": [
+          "musnahnya（…的灭亡）",
+          "kelenyapan（消失）"
+        ],
+        "antonyms": [
+          "kelestarian（存续——#66 同根反义）"
+        ],
+        "examples": [
+          {
+            "scene": "项目管理",
+            "id": "Proyek diaudit untuk memastikan tidak mengancam kepunahan spesies lokal.",
+            "cn": "（项目经审计确保不威胁本地物种生存。）"
+          },
+          {
+            "scene": "商务",
+            "id": "Kepunahan pasar tradisional memaksa transformasi digital.",
+            "cn": "（传统市场消亡迫使数字化转型。）"
+          }
+        ]
+      },
+      {
+        "word": "berbahaya",
+        "cn": "危险的；有害的",
+        "en": "dangerous; hazardous",
+        "root": "bahaya（危险——梵语借词 bhaya「恐惧」）+ ber-（具有）→ berbahaya",
+        "forms": [
+          {
+            "form": "bahaya",
+            "pos": "名词",
+            "mean": "危险"
+          },
+          {
+            "form": "berbahaya",
+            "pos": "形容词",
+            "mean": "危险的"
+          },
+          {
+            "form": "membahayakan",
+            "pos": "动词",
+            "mean": "危及"
+          },
+          {
+            "form": "bahayanya",
+            "pos": "名词",
+            "mean": "其危险性"
+          }
+        ],
+        "formsNote": "",
+        "note": "法规固定缩写 B3 = `Bahan Berbahaya dan Beracun`（危险有毒物质——#73 联记）；`limbah B3`（危废）为冶炼园区最高管控等级废物。",
+        "synonyms": [
+          "berisiko（有风险的）",
+          "mengancam（威胁性的）"
+        ],
+        "antonyms": [
+          "aman（安全）",
+          "tidak berbahaya（无害）"
+        ],
+        "examples": [
+          {
+            "scene": "项目管理",
+            "id": "Penyimpanan bahan berbahaya memerlukan izin khusus dan ventilasi aman.",
+            "cn": "（危险化学品储存需特别许可与安全通风。）"
+          },
+          {
+            "scene": "商务",
+            "id": "Keterlambatan pembayaran berbahaya bagi arus kas usaha kecil.",
+            "cn": "（拖欠付款对小企业现金流构成危险。）"
+          }
+        ]
+      },
+      {
+        "word": "beracun",
+        "cn": "有毒的",
+        "en": "poisonous; toxic",
+        "root": "racun（毒——本土词）+ ber- → beracun",
+        "forms": [
+          {
+            "form": "racun",
+            "pos": "名词",
+            "mean": "毒"
+          },
+          {
+            "form": "beracun",
+            "pos": "形容词",
+            "mean": "有毒的"
+          },
+          {
+            "form": "meracuni",
+            "pos": "动词",
+            "mean": "毒害；下毒"
+          },
+          {
+            "form": "keracunan",
+            "pos": "名词",
+            "mean": "中毒"
+          },
+          {
+            "form": "peracun",
+            "pos": "名词",
+            "mean": "施毒者"
+          }
+        ],
+        "formsNote": "",
+        "note": "`beracun`（有毒——接触/摄入中毒）≠ `mematikan`（致命——致死剂量）；冶炼场景高频 `gas beracun`（有毒气体）。",
+        "synonyms": [
+          "toksik（有毒的——借词）",
+          "mematikan（致命的——程度差异见易混提示）"
+        ],
+        "antonyms": [
+          "tidak beracun（无毒）",
+          "aman untuk dikonsumsi（可安全食用）"
+        ],
+        "examples": [
+          {
+            "scene": "项目管理",
+            "id": "Detektor gas beracun dipasang di area peleburan dan pemurnian.",
+            "cn": "（熔炼与精炼区安装有毒气体探测器。）"
+          },
+          {
+            "scene": "商务",
+            "id": "Wacana beracun di media sosial merusak citra perusahaan.",
+            "cn": "（社交媒体有毒言论损害企业形象。）"
+          }
+        ]
+      },
+      {
+        "word": "pantau",
+        "cn": "监测；监视（词根形式）",
+        "en": "to monitor (root form)",
+        "root": "pantau（本土词）——正式动词形态 memantau（me- 派生）",
+        "forms": [
+          {
+            "form": "pantau",
+            "pos": "词根",
+            "mean": "监测"
+          },
+          {
+            "form": "memantau",
+            "pos": "动词",
+            "mean": "监测"
+          },
+          {
+            "form": "dipantau",
+            "pos": "被动动词",
+            "mean": "被监测"
+          },
+          {
+            "form": "pemantauan",
+            "pos": "名词",
+            "mean": "监测"
+          },
+          {
+            "form": "pemantau",
+            "pos": "名词",
+            "mean": "监测员"
+          }
+        ],
+        "formsNote": "",
+        "note": "词根直收原则：词条以 `pantau` 为词根收录，正式使用须加 me- → `memantau`；环保合规高频：`pemantauan berkala`（定期监测）、`memantau baku mutu`（监测排放标准——#58 联动）。",
+        "synonyms": [
+          "mengawasi（监视——含管制义）",
+          "mengamati（观察）"
+        ],
+        "antonyms": [
+          "mengabaikan（无视）",
+          "membiarkan（放任）"
+        ],
+        "examples": [
+          {
+            "scene": "项目管理",
+            "id": "Sensor otomatis memantau kualitas udara secara real-time.",
+            "cn": "（传感器实时监测空气质量。）"
+          },
+          {
+            "scene": "商务",
+            "id": "Tim kepatuhan memantau perubahan regulasi setiap minggu.",
+            "cn": "（合规团队每周跟踪法规变化。）"
           }
         ]
       }
