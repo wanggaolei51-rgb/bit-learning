@@ -1,14 +1,18 @@
 # BIT 每日单词笔记 - 定稿(BIO 审查修订)
 
-> **日期**: 2026-10-03 | **词条总数**: 27 | **状态**: 定稿(BIO 审查修订 R1-R4)
-> **整理**: BIT V1.0 | **审查**: BIO(流程 1.2)| **主题**: 环境合规 (environmental_compliance) Day 2 —— 烟雾事件新闻词汇（烟尘调查 · KLHK 执法 · 违规处罚 · 防护装备）
-> **BIO 判定**: PASS_WITH_REVISIONS（26 词元 → 27 词条逐词对齐见附录一对账表，无 FAIL 级问题）
+> **日期**: 2026-10-03 | **词条总数**: 54 | **状态**: 定稿(BIO 审查修订 R1-R8，两批合并)
+> **整理**: BIT V1.0 | **审查**: BIO(流程 1.2)| **主题**: 环境合规 (environmental_compliance) Day 2 —— 批次一（27 词）为烟雾事件新闻词汇（烟尘调查 · KLHK 执法 · 违规处罚 · 防护装备），批次二（27 词）为环境许可修订法律程序词汇（2026-10-04 18:50 指令追加）
+> **BIO 判定**: PASS_WITH_REVISIONS（批次一 26 词元→27 词条 + 批次二 28 词元→27 词条，逐词对齐见对账表一/二，无 FAIL 级问题）
 
 **BIO 修订记录**:
 - **R1 词组绑定裁定（×5）**：用户连字符输入按语义单元归并——`buta-nada`(跑调)、`beroperasi-optimal`(最优运行)、`tidak-berfungsi-normal`(运行不正常)、`sesuai-izin-lingkungan`(符合环境许可)、`mengurangi-beban`(减轻负担)。
 - **R2 词组拆分裁定（×1）**：`rantai-pengawasan-contoh` 依语义单元拆为 `rantai pengawasan`(监管链) + `contoh`(例子) 两条——`contoh` 为独立常用词（bitVocabDB 已存），并入词组将致词义不通；拆分后两词各归各位。
 - **R3 大小写归一（×1）**：`Dugaan` 输入首字母大写，按惯例归一化为 `dugaan`；`KLHK`/`PPLH`/`APD` 为缩写/专名，保持大写。
 - **R4 覆盖更新声明（×13）**：`kadar`/`asap`/`investigasi`/`sementara`/`mencapai`/`segera`/`tanpa`/`sanksi`/`penutupan`/`contoh` 已存 bitVocabDB（前日收录）；`KLHK`/`PPLH`/`APD` 三缩写经 RCO A3 核验发现库内已存小写键 `klhk`/`pplh`/`apd`（旧 stub 条目，源不可考），按小写归一命中覆盖更新——13 词全部覆盖更新为九字段完整版，无重复建条。`beroperasi` 已存单词条与新词组 `beroperasi optimal` 并存不冲突（词条主键不同）；`rantai` 已存单词条，本日仅收词组 `rantai pengawasan`，单词条未动。
+- **R5 输入去重（批次二）**：`revisi` 输入 ×2（#4/#16 词元），词条 ×1——按同日同词覆盖更新机制处理，不重复建条。
+- **R6 大小写归一（批次二 ×3）**：`Kemungkinan`/`Konsultasikan`/`Berarti` 输入首字母大写，归一化为 `kemungkinan`/`konsultasikan`/`berarti`（对账表二注明）。
+- **R7 同日重收声明（批次二 ×3）**：`sanksi`/`penutupan`/`KLHK` 已于本日批次一收录（10-03 #25/#26/#12），本批重收按同词覆盖更新为最新版——复习日重收同词覆盖为设计行为，对账表二注明。
+- **R8 覆盖更新声明（批次二 ×9）**：`prediksi`/`sejak`/`izin`/`dikeluarkan`/`kemungkinan`/`dianggap`/`estimasi`/`akurat` 八词已存 bitVocabDB 覆盖更新；`UKL-UPL` 经小写键核验命中库内已存 `ukl-upl` stub，覆盖更新——九字段完整版替换。
 
 ---
 
@@ -572,6 +576,546 @@
 - 工作园区: *Seluruh pekerja wajib mengenakan APD sebelum masuk area smelter.*（所有工人进入冶炼区前必须穿戴防护装备。）
 - 环境合规: *Investigasi insiden memeriksa apakah korban menggunakan APD.*（事件调查检查受害者是否佩戴防护装备。）
 
+### 28. aktual
+
+- **中文**: 实际的；当前的；事实的
+- **English**: actual; current; factual
+- **词根**: aktual（拉丁 actualis 经荷兰语/英语借词）
+- **变形**:
+
+  | 形式 | 词性 | 含义 |
+  |------|------|------|
+  | aktual | 形容词 | 实际的；当前的 |
+  | aktualisasi | 名词 | 实现；现实化 |
+  | secara aktual | 副词短语 | 实际上 |
+
+- **同义词**: nyata（真实的）、faktual（事实的）、terkini（当前的）
+- **反义词**: potensial（潜在的）、teoritis（理论上的）
+- **词汇注释**: 数据对比高频 `aktual versus prediksi`（实际 vs 预测——#29 联记）。
+- 项目管理: *Angka aktual produksi melebihi prediksi 8 persen.*（实际产量超出预测 8%。）
+- 商务: *Kondisi aktual di lapangan berbeda dari laporan.*（现场实际情况与报告不符。）
+
+### 29. versus
+
+- **中文**: 对；与……相对（对比介词）
+- **English**: versus; against
+- **词根**: versus（拉丁语借词——经法律/体育语体进入印尼语）
+- **变形**:
+
+  | 形式 | 词性 | 含义 |
+  |------|------|------|
+  | versus | 介词 | 对；与……相比 |
+  | vs. | 缩写 | 同上（书面） |
+
+- **同义词**: melawan（对抗）、berhadapan dengan（面对）
+- **反义词**: —
+- **词汇注释**: 对比句式 `A versus B` 高频于分析报告/赛事；口语用 `lawan`。
+- 商务: *Analisis biaya aktual versus anggaran dilakukan tiap bulan.*（每月做实际成本与预算对比分析——#28 联记。）
+- 日常: *Pertandingan besok: tim smelter versus tim EPC.*（明日比赛：冶炼队对总包队——#43 联记。）
+
+### 30. prediksi
+
+- **中文**: 预测；预言
+- **English**: prediction; forecast
+- **词根**: prediksi（拉丁 praedictio 经荷兰语/英语借词）
+- **变形**:
+
+  | 形式 | 词性 | 含义 |
+  |------|------|------|
+  | prediksi | 名词 | 预测 |
+  | memprediksi | 动词 | 预测 |
+  | diprediksi | 被动动词 | 被预测 |
+  | prediksi cuaca | 名词短语 | 天气预报 |
+
+- **同义词**: ramalan（预言——本土）、perkiraan（预估——10-03 #2 联记）、proyeksi（投影预测）
+- **反义词**: kenyataan（现实）、fakta（事实）
+- **易混提示**: 近义三角——prediksi 偏模型/数据推断，perkiraan 偏人工估算，estimasi 偏技术测算（#42 联记）。
+- 商务: *Prediksi permintaan nikel menunjukkan tren naik.*（镍需求预测呈上升趋势。）
+- 项目管理: *Aktual versus prediksi dibahas dalam review bulanan.*（月度复盘讨论实际与预测对比。）
+
+### 31. revisi
+
+- **中文**: 修订；修正；改版
+- **English**: revision; amendment
+- **词根**: revisi（拉丁 revisio 经荷兰语 revisie 借词）
+- **变形**:
+
+  | 形式 | 词性 | 含义 |
+  |------|------|------|
+  | revisi | 名词 | 修订 |
+  | merevisi | 动词 | 修订 |
+  | direvisi | 被动动词 | 被修订 |
+  | revisi ulang | 名词短语 | 再次修订 |
+
+- **同义词**: perubahan（更改）、amendemen（修正——法律）、pembaruan（更新）
+- **反义词**: —
+- **词汇注释**: 环保合规高频 `revisi UKL-UPL`（环境管理监测计划修订——#32 联记）；文件版本 `revisi kedua`（第二修订版）。
+- 环境合规: *Revisi UKL-UPL wajib sejak izin dikeluarkan.*（UKL-UPL 修订自许可颁发起即为必需——#32/#33/#35 联记。）
+- 项目管理: *Revisi jadwal disetujui setelah evaluasi milestone.*（进度修订经里程碑评估后获批。）
+
+### 32. UKL-UPL
+
+- **中文**: 环境管理-环境监测措施（环评技术文件，缩写）
+- **English**: Environmental Management & Monitoring Efforts (abbrev.)
+- **词根**: 缩写——**U**paya **K**elola **L**ingkungan – **U**paya **P**emantauan **L**ingkungan（PP 22/2021 环境许可技术文件）
+- **变形**:
+
+  | 形式 | 词性 | 含义 |
+  |------|------|------|
+  | Upaya Kelola Lingkungan | 全称前段 | 环境管理措施 |
+  | Upaya Pemantauan Lingkungan | 全称后段 | 环境监测措施 |
+  | UKL-UPL | 缩写 | 环境管理-监测计划 |
+  | dokumen UKL-UPL | 词组 | UKL-UPL 文件 |
+
+- **同义词**: AMDAL（完整环评——重大项目）、UKL-UPL（简化环评——一般项目）
+- **反义词**: —
+- **词汇注释**: 印尼环评两级体系：重大项目 AMDAL，一般项目 UKL-UPL；`revisi UKL-UPL` 与 `izin dikeluarkan` 为合规时间线固定搭配。库内原存小写键 ukl-upl（stub），本日覆盖更新。
+- 环境合规: *Perusahaan menyusun UKL-UPL sebelum mengajukan izin lingkungan.*（企业申请环境许可前须编制 UKL-UPL。）
+- 项目管理: *Revisi UKL-UPL mencakup pemantauan emisi tambahan.*（UKL-UPL 修订纳入增补排放监测。）
+
+### 33. sejak
+
+- **中文**: 自从；自……以来
+- **English**: since
+- **词根**: sejak（本土词）
+- **变形**:
+
+  | 形式 | 词性 | 含义 |
+  |------|------|------|
+  | sejak | 介词 | 自从 |
+  | sejak itu | 副词短语 | 从那以后 |
+  | sejak awal | 副词短语 | 从一开始 |
+
+- **同义词**: dari（从）、semenjak（自——书面）
+- **反义词**: sampai（直到）、hingga（至）
+- **词汇注释**: 时间线高频 `sejak izin dikeluarkan`（自许可颁发以来——#35 联记）；`sejak + 时间点 + 现在时` 表持续至今。
+- 环境合规: *Pabrik beroperasi sejak 2022 tanpa pelanggaran.*（工厂自 2022 年运营至今零违规——#24 联记。）
+- 项目管理: *Sejak insiden, audit keamanan diperketat.*（自事件发生后，安全审计收紧。）
+
+### 34. izin
+
+- **中文**: 许可；准许；许可证
+- **English**: permit; permission
+- **词根**: izin（阿拉伯语 iḍhn「准许」借词）
+- **变形**:
+
+  | 形式 | 词性 | 含义 |
+  |------|------|------|
+  | izin | 名词 | 许可 |
+  | mengizinkan | 动词 | 允许 |
+  | diizinkan | 被动动词 | 被允许 |
+  | perizinan | 名词 | 许可制度 |
+  | izinnya | 名词 | 其许可 |
+
+- **同义词**: persetujuan（同意）、restu（准许——口语）
+- **反义词**: larangan（禁止）、pelarangan（禁令）
+- **词汇注释**: 合规核心词：`izin lingkungan`（环境许可——10-03 #13 联记）、`izin dikeluarkan`（许可颁发——#35 联记）、`tanpa izin`（未经许可——10-03 #23 联记）。
+- 环境合规: *Izin lingkungan dikeluarkan KLHK setelah verifikasi dokumen.*（环境许可经文件核验后由环境林业部颁发。）
+- 商务: *Tidak ada aktivitas tanpa izin tertulis.*（未经书面许可不得开展任何活动。）
+
+### 35. dikeluarkan
+
+- **中文**: 被颁发；被签发；被排出
+- **English**: issued; released; discharged
+- **词根**: keluar（出去——本土词）+ di- → dikeluarkan
+- **变形**:
+
+  | 形式 | 词性 | 含义 |
+  |------|------|------|
+  | keluar | 动词/词根 | 出去 |
+  | mengeluarkan | 动词 | 签发；排出 |
+  | dikeluarkan | 被动动词 | 被颁发 |
+  | pengeluaran | 名词 | 签发；支出 |
+  | keluaran | 名词 | 输出；产品 |
+
+- **同义词**: diterbitkan（发布——正式）、diserahkan（交付）
+- **反义词**: ditarik（被撤销）、dibatalkan（被取消）
+- **易混提示**: 双域高频：①公文 `izin dikeluarkan`（许可颁发）；②工艺 `air limbah dikeluarkan`（废水排放——注意排放合规）；10-02 #42 `keluaran`（输出——PMBOK）同根。
+- 环境合规: *Sejak izin dikeluarkan, pemantauan berjalan wajib.*（许可颁发后，监测必须持续进行。）
+- 项目管理: *Surat peringatan dikeluarkan kepada kontraktor.*（向承包商签发了警告函。）
+
+### 36. kemungkinan
+
+- **中文**: 可能性；可能
+- **English**: possibility; probability
+- **词根**: mungkin（可能——本土词[语源待核实]）+ ke- + -an → kemungkinan
+- **变形**:
+
+  | 形式 | 词性 | 含义 |
+  |------|------|------|
+  | mungkin | 副词/形容词 | 可能 |
+  | kemungkinan | 名词 | 可能性 |
+  | kemungkinan besar | 名词短语 | 很可能 |
+  | semungkin mungkin | 副词短语 | 尽可能 |
+
+- **同义词**: probabilitas（概率——10-02 #49 联记）、peluang（机会）
+- **反义词**: ketidakmungkinan（不可能）、mustahil（不可能——口语）
+- **词汇注释**: 风险分析高频 `kemungkinan dan dampak`（可能性与影响——10-02 #49 联记）；`kemungkinan tetap beroperasi`（继续运营的可能性——#37 联记）。
+- 项目管理: *Kemungkinan keterlambatan dievaluasi tiap minggu.*（延误可能性每周评估。）
+- 商务: *Kemungkinan besar negosiasi berakhir bulan ini.*（谈判很可能本月结束。）
+
+### 37. tetap beroperasi
+
+- **中文**: 继续运营；保持运转
+- **English**: to continue operating
+- **词根**: tetap（保持——本土词）+ beroperasi（运转——10-03 #10 联记）
+- **变形**:
+
+  | 形式 | 词性 | 含义 |
+  |------|------|------|
+  | tetap | 副词/形容词 | 保持；仍然 |
+  | tetap beroperasi | 动词短语 | 继续运营 |
+  | beroperasi | 动词 | 运转 |
+  | ketetapan | 名词 | 规定 |
+
+- **同义词**: terus berjalan（持续运行）、berlanjut（继续）
+- **反义词**: berhenti operasi（停运）、ditutup（被关停——10-03 #26 联记）
+- **易混提示**: 法律语境 `tetap beroperasi tanpa izin`（无证继续经营）→ `dianggap ilegal`（被视为非法——#38/#39 联记）。
+- 环境合规: *Tanpa revisi izin, tetap beroperasi dianggap ilegal.*（无许可修订，继续运营被视为非法。）
+- 项目管理: *Kami tetap beroperasi dengan generator cadangan.*（我们靠备用发电机维持运转。）
+
+### 38. dianggap
+
+- **中文**: 被认为；被视为
+- **English**: considered; deemed; regarded as
+- **词根**: anggap（认为——本土词[语源待核实]）+ di- → dianggap
+- **变形**:
+
+  | 形式 | 词性 | 含义 |
+  |------|------|------|
+  | anggap | 动词/词根 | 认为 |
+  | menganggap | 动词 | 认为；看待 |
+  | dianggap | 被动动词 | 被认为 |
+  | anggapan | 名词 | 看法 |
+
+- **同义词**: dipandang（被视作）、dinilai（被评定）
+- **反义词**: diabaikan（被忽视）、dikesampingkan（被排除）
+- **词汇注释**: 法律/评估高频 `dianggap ilegal`（被视为非法——#39 联记）、`dianggap melanggar`（被视为违反）；正式公文体被动式。
+- 环境合规: *Operasi tanpa izin dianggap pelanggaran hukum.*（无证经营被视为违法——#4 联记。）
+- 商务: *Usulan itu dianggap tidak memenuhi syarat.*（该提案被认定不符合条件。）
+
+### 39. ilegal
+
+- **中文**: 非法的；不合法的
+- **English**: illegal; unlawful
+- **词根**: ilegal（拉丁 illegalis 经欧洲语言借词）
+- **变形**:
+
+  | 形式 | 词性 | 含义 |
+  |------|------|------|
+  | ilegal | 形容词 | 非法的 |
+  | secara ilegal | 副词短语 | 非法地 |
+  | ilegalitas | 名词 | 非法性（少用） |
+
+- **同义词**: melawan hukum（违法——本土）、tidak sah（无效）
+- **反义词**: legal（合法）、sah（有效）、resmi（正式）
+- **词汇注释**: 执法新闻高频 `dianggap ilegal`（被视为非法——#38 联记）；`legal` ↔ `ilegal` 借词对。
+- 环境合规: *Pembuangan limbah tanpa izin adalah tindakan ilegal.*（无证排污属非法行为。）
+- 商务: *Impor ilegal barang bekas diberantas.*（打击非法进口废旧物资。）
+
+### 40. signifikan
+
+- **中文**: 显著的；重大的
+- **English**: significant
+- **词根**: signifikan（拉丁 significans 经荷兰语/英语借词）
+- **变形**:
+
+  | 形式 | 词性 | 含义 |
+  |------|------|------|
+  | signifikan | 形容词 | 显著的 |
+  | signifikansi | 名词 | 显著性 |
+  | secara signifikan | 副词短语 | 显著地 |
+
+- **同义词**: penting（重要）、bermakna（有意义）、drastis（急剧——程度义）
+- **反义词**: tidak signifikan（不显著）、sepele（微不足道）
+- **词汇注释**: 报告/研究高频 `penurunan signifikan`（显著下降）、`perbedaan signifikan`（显著差异）；统计义 `signifikansi 95%`。
+- 环境合规: *Filter baru mengurangi emisi secara signifikan.*（新过滤器显著降低排放。）
+- 项目管理: *Penambahan signifikan anggota tim diusulkan.*（建议大幅增派团队成员——10-04 #2 联记。）
+
+### 41. konsultasikan
+
+- **中文**: 请协商；经咨议（祈使/敬语体）
+- **English**: please consult; to be consulted
+- **词根**: konsultasi（咨询——拉丁 consultatio 经荷兰语借词）+ -kan → konsultasikan
+- **变形**:
+
+  | 形式 | 词性 | 含义 |
+  |------|------|------|
+  | konsultasi | 名词 | 咨询；协商 |
+  | berkonsultasi | 动词 | 协商 |
+  | konsultasikan | 动词 | 请协商 |
+  | dikonsultasikan | 被动动词 | 被协商 |
+  | konsultan | 名词 | 顾问 |
+
+- **同义词**: diskusikan（讨论）、musyawarahkan（商议——本土）
+- **反义词**: putuskan sendiri（自行决定）
+- **词汇注释**: 公文体 `-kan` 命令式 `konsultasikan dengan ahli`（请与专家协商）；正式名词 `konsultasi publik`（公众咨询）。
+- 商务: *Konsultasikan revisi kontrak dengan bagian hukum.*（合同修订请与法务部门协商。）
+- 项目管理: *Perubahan lingkup harus dikonsultasikan dengan sponsor.*（范围变更须与发起人协商。）
+
+### 42. estimasi
+
+- **中文**: 估算；估计（技术/正式）
+- **English**: estimation; estimate
+- **词根**: estimasi（拉丁 aestimatio 经荷兰语 estimatie 借词）
+- **变形**:
+
+  | 形式 | 词性 | 含义 |
+  |------|------|------|
+  | estimasi | 名词 | 估算 |
+  | mengestimasi | 动词 | 估算 |
+  | estimasi biaya | 名词短语 | 费用估算 |
+
+- **同义词**: perkiraan（预估——10-03 #2 联记）、prediksi（预测——#30 联记）、kalkulasi（计算）
+- **反义词**: kenyataan（实际）
+- **易混提示**: 近义三角——estimasi=技术测算（工程估价）/perkiraan=一般预估/prediksi=数据预测；正式技术文档用 estimasi。
+- 项目管理: *Estimasi biaya revisi dokumen lingkungan disusun.*（编制环保文件修订的费用估算。）
+- 商务: *Estimasi waktu pengiriman: dua minggu.*（运输时间估算：两周。）
+
+### 43. pertandingan
+
+- **中文**: 比赛；竞赛
+- **English**: match; competition; game
+- **词根**: tanding（对抗/比赛——本土词）+ pe- + -an → pertandingan
+- **变形**:
+
+  | 形式 | 词性 | 含义 |
+  |------|------|------|
+  | tanding | 动词/词根 | 对抗；比试 |
+  | bertanding | 动词 | 比赛 |
+  | pertandingan | 名词 | 比赛 |
+  | menandingi | 动词 | 匹敌；媲美 |
+  | tandingan | 名词 | 对手；配对物 |
+
+- **同义词**: kompetisi（竞争/赛——借词）、lomba（竞赛）
+- **反义词**: —
+- **词汇注释**: 体育/团建高频 `pertandingan persahabatan`（友谊赛）；园区文体活动通知常见词。
+- 日常: *Tim smelter menang pertandingan persahabatan melawan tim EPC.*（冶炼队战胜总包队友谊赛。）
+- 商务: *Dua vendor bersaing seperti pertandingan tender.*（两家供应商如竞标般角逐。）
+
+### 44. nyusul
+
+- **中文**: 随后跟上；补上；后加（口语）
+- **English**: to follow up; to catch up; to add later (colloquial)
+- **词根**: susul（追赶——本土词）→ me- 派生 menyusul；nyusul 为口语缩略
+- **变形**:
+
+  | 形式 | 词性 | 含义 |
+  |------|------|------|
+  | susul | 词根 | 追赶 |
+  | menyusul | 动词 | 随后；补上（正式） |
+  | nyusul | 动词 | 随后（口语） |
+  | susulan | 名词 | 后续；补件 |
+
+- **同义词**: menyusul（随后——正式）、melengkapi（补齐）
+- **反义词**: mendahului（抢先）、tertinggal（落后）
+- **易混提示**: 口语/书面差异：正式文书 `menyusul`，口语 `nyusul`；`berkas susulan`（补充文件）。
+- 日常: *Saya nyusul setelah rapat selesai.*（散会后我随后到。）
+- 项目管理: *Laporan menyusul dalam dua hari kerja.*（报告两个工作日内补上。）
+
+### 45. kompleksitas
+
+- **中文**: 复杂性；复杂程度
+- **English**: complexity
+- **词根**: kompleks（复杂——拉丁 complexus 经荷兰语借词）+ -itas → kompleksitas
+- **变形**:
+
+  | 形式 | 词性 | 含义 |
+  |------|------|------|
+  | kompleks | 形容词 | 复杂的 |
+  | kompleksitas | 名词 | 复杂性 |
+  | secara kompleks | 副词短语 | 复杂地 |
+
+- **同义词**: kerumitan（复杂——本土）、kesulitan（难度——程度差异）
+- **反义词**: kesederhanaan（简单）、kepraktisan（简便）
+- **词汇注释**: 项目/系统高频 `kompleksitas proyek`（项目复杂性）；工程评估维度之一。
+- 项目管理: *Kompleksitas revisi UKL-UPL memerlukan konsultan.*（UKL-UPL 修订的复杂性需要顾问介入——#31/#41 联记。）
+- 商务: *Kompleksitas regulasi lintas negara meningkat.*（跨国法规复杂性上升。）
+
+### 46. dikenai
+
+- **中文**: 被处以；被课以；被沾上
+- **English**: subject to; liable to; incurred
+- **词根**: kena（碰上/遭受——本土词）+ di- → dikenai
+- **变形**:
+
+  | 形式 | 词性 | 含义 |
+  |------|------|------|
+  | kena | 动词/词根 | 碰上；遭受 |
+  | mengenai | 动词 | 涉及；击中 |
+  | dikenai | 被动动词 | 被处以 |
+  | terkena | 动词 | 遭遇；沾染 |
+
+- **同义词**: dibebani（被加负）、terkena（遭受）
+- **反义词**: dibebaskan（被免除）、terhindar（幸免）
+- **词汇注释**: 执法高频 `dikenai sanksi`（被处以处罚——#47 联记）、`dikenai denda`（被罚款）；工艺 `dikenai beban`（承载负荷）。
+- 环境合规: *Perusahaan dikenai sanksi administratif.*（企业被处以行政处罚。）
+- 商务: *Keterlambatan dikenai penalti kontrak.*（延误被课以合同罚金。）
+
+### 47. sanksi
+
+- **中文**: 制裁；处罚；惩罚
+- **English**: sanction; penalty
+- **词根**: sanksi（拉丁 sanctio 经荷兰语 sanctie 借词）
+- **变形**:
+
+  | 形式 | 词性 | 含义 |
+  |------|------|------|
+  | sanksi | 名词 | 处罚 |
+  | memberi sanksi | 动词短语 | 给予处罚 |
+  | disanksi | 被动动词 | 被处罚 |
+  | sanksi administratif | 名词短语 | 行政处罚 |
+  | sanksi pidana | 名词短语 | 刑事处罚 |
+
+- **同义词**: hukuman（惩罚）、denda（罚款——具体）、penalti（罚则）
+- **反义词**: penghargaan（奖励）、ampunan（赦免）
+- **词汇注释**: 同日重收（本日 #25 覆盖更新）——本批语境 `dikenai sanksi penutupan`（被处以关停处罚——#48 联记）。
+- 环境合规: *Pelanggar izin dikenai sanksi hingga penutupan.*（违反许可者被处以直至关停的处罚。）
+- 商务: *Sanksi keterlambatan pembayaran diterapkan.*（适用逾期付款罚则。）
+
+### 48. penutupan
+
+- **中文**: 关闭；关停；封闭
+- **English**: closure; shutdown
+- **词根**: tutup（关闭——本土词）+ pe- + -an → penutupan
+- **变形**:
+
+  | 形式 | 词性 | 含义 |
+  |------|------|------|
+  | tutup | 动词/词根 | 关闭 |
+  | menutup | 动词 | 关闭 |
+  | ditutup | 被动动词 | 被关闭 |
+  | penutup | 名词 | 盖子；关闭者 |
+  | penutupan | 名词 | 关闭；关停 |
+  | tertutup | 形容词 | 关闭的 |
+
+- **同义词**: pembekuan（冻结——机构）、penghentian（停止）
+- **反义词**: pembukaan（开放）、peresmian（启用）
+- **词汇注释**: 同日重收（本日 #26 覆盖更新）——本批语境 `sanksi penutupan`（关停处罚）；执法链终点：pelanggaran → sanksi administratif → sanksi penutupan（#24/#25/#26 联记）。
+- 环境合规: *Penutupan sementara diberlakukan hingga revisi izin selesai.*（在许可修订完成前实施暂时关停——#9 联记。）
+- 项目管理: *Penutupan proyek memerlukan audit final.*（项目收尾需最终审计。）
+
+### 49. akurat
+
+- **中文**: 准确的；精确的
+- **English**: accurate; precise
+- **词根**: akurat（拉丁 accuratus 经荷兰语/英语借词）
+- **变形**:
+
+  | 形式 | 词性 | 含义 |
+  |------|------|------|
+  | akurat | 形容词 | 准确的 |
+  | secara akurat | 副词短语 | 准确地 |
+  | akurasi | 名词 | 准确度 |
+
+- **同义词**: tepat（准确——本土）、presisi（精密——技术）、cermat（细致）
+- **反义词**: tidak akurat（不准）、keliru（错误）、meleset（偏离）
+- **词汇注释**: 数据/测量高频 `data akurat`（准确数据）、`pengukuran akurat`（精确测量）；`estimasi akurat`（准确估算——#42 联记）。
+- 环境合规: *Alat pemantau harus akurat dan terkalibrasi.*（监测仪器必须准确且已校准。）
+- 项目管理: *Laporan kemajuan harus akurat dan tepat waktu.*（进度报告须准确及时。）
+
+### 50. temuan
+
+- **中文**: 发现；查见（调查/审计结果）
+- **English**: finding; discovery
+- **词根**: temu（遇见/找到——本土词）+ -an → temuan
+- **变形**:
+
+  | 形式 | 词性 | 含义 |
+  |------|------|------|
+  | temu | 词根 | 遇见 |
+  | menemukan | 动词 | 发现 |
+  | ditemukan | 被动动词 | 被发现 |
+  | temuan | 名词 | 发现；调查结果 |
+  | pertemuan | 名词 | 会议（同根派生） |
+
+- **同义词**: penemuan（发现——通用）、hasil audit（审计结果）、kesimpulan（结论）
+- **反义词**: —
+- **词汇注释**: 审计/调查高频 `temuan audit`（审计发现）、`temuan investigasi`（调查发现——10-03 #7 联记）；`temuan dilampirkan`（发现随附——#51 联记）。
+- 环境合规: *Temuan investigasi dilampirkan dalam laporan akhir.*（调查发现随附于最终报告。）
+- 项目管理: *Temuan audit menunjukkan tiga defek mayor.*（审计发现三项重大缺陷。）
+
+### 51. dilampirkan
+
+- **中文**: 被附上；被随附
+- **English**: attached; enclosed; appended
+- **词根**: lampir（附着——本土词）+ di- → dilampirkan
+- **变形**:
+
+  | 形式 | 词性 | 含义 |
+  |------|------|------|
+  | lampir | 词根 | 附着 |
+  | melampirkan | 动词 | 附上 |
+  | dilampirkan | 被动动词 | 被附上 |
+  | lampiran | 名词 | 附件 |
+  | terlampir | 动词/形容词 | 已附于 |
+
+- **同义词**: disertakan（随附）、terlampir（已附上）
+- **反义词**: dilepaskan（被分离）、dikecualikan（被除外）
+- **词汇注释**: 公文高频 `dokumen dilampirkan`（文件随附）、`lihat lampiran`（见附件）；`dilampirkan dalam permohonan`（随附于申请——#52 联记）。
+- 商务: *Dokumen pendukung dilampirkan dalam permohonan.*（支持文件随附于申请。）
+- 项目管理: *CV dan sertifikat dilampirkan sesuai format.*（简历与证书按格式附上。）
+
+### 52. permohonan
+
+- **中文**: 申请；请求；呈请
+- **English**: application; request; petition
+- **词根**: mohon（请求——本土词[语源待核实]）+ per- + -an → permohonan
+- **变形**:
+
+  | 形式 | 词性 | 含义 |
+  |------|------|------|
+  | mohon | 动词/词根 | 请求 |
+  | memohon | 动词 | 恳求 |
+  | permohonan | 名词 | 申请 |
+  | pemohon | 名词 | 申请人 |
+
+- **同义词**: aplikasi（申请——借词）、pengajuan（提交）、permintaan（请求）
+- **反义词**: penolakan（拒绝）、persetujuan（批准——结果）
+- **词汇注释**: 行政高频 `permohonan izin`（许可申请）、`formulir permohonan`（申请表）；`permohonan diajukan ke KLHK`（向环境林业部提交申请——#53 联记）。
+- 环境合规: *Permohonan revisi UKL-UPL diajukan ke KLHK.*（UKL-UPL 修订申请提交环境林业部。）
+- 商务: *Permohonan perpanjangan kontrak disampaikan tertulis.*（合同延期申请书面提出——10-04 #5 联记。）
+
+### 53. KLHK
+
+- **中文**: （印尼）环境与林业部（机构缩写）
+- **English**: Ministry of Environment and Forestry (Indonesia)
+- **词根**: 缩写——**K**ementerian **L**ingkungan **H**idup dan **K**ehutanan（同日重收，见本日 #12）
+- **变形**:
+
+  | 形式 | 词性 | 含义 |
+  |------|------|------|
+  | Kementerian Lingkungan Hidup dan Kehutanan | 全称 | 环境与林业部 |
+  | KLHK | 缩写 | 环境林业部 |
+  | Menteri LHK | 简称 | 环境林业部长 |
+
+- **同义词**: DLHK（地方环境局）
+- **反义词**: —
+- **词汇注释**: 同日重收（本日 #12 覆盖更新）——本批语境 `permohonan diajukan ke KLHK`（向环境林业部提交申请——#52 联记）。
+- 环境合规: *Permohonan revisi izin disampaikan kepada KLHK.*（许可修订申请呈交环境林业部。）
+- 商务: *Jadwal audiensi dengan KLHK dikonfirmasi.*（与环境林业部的会面日程已确认。）
+
+### 54. berarti
+
+- **中文**: 意味着；也就是说；有意义的
+- **English**: to mean; that is to say; meaningful
+- **词根**: arti（意思/意义——本土词，梵语 artha 借词[待核实]）+ ber- → berarti
+- **变形**:
+
+  | 形式 | 词性 | 含义 |
+  |------|------|------|
+  | arti | 名词 | 意思；意义 |
+  | berarti | 动词/形容词 | 意味着；有意义的 |
+  | artinya | 名词/连词 | 即；意思是 |
+  | mengartikan | 动词 | 理解；解释 |
+  | pengertian | 名词 | 理解 |
+
+- **同义词**: bermakna（有意义）、artinya（也就是说）
+- **反义词**: tak berarti（无意义）、tidak jelas（不明确）
+- **词汇注释**: 高频推理连接词 `berarti`（那么/也就是说）：`Harga naik 10%, berarti anggaran bertambah.`（涨价 10%，即预算增加。）
+- 商务: *Total biaya naik, berarti kita perlu revisi anggaran.*（总费用上升，即我们需修订预算——#31 联记。）
+- 项目管理: *Milestone terlewat berarti jadwal mundur.*（里程碑延误意味着进度推迟。）
+
 ---
 
 ## 附录一：词数勘误对账表（用户输入 26 词元 → 27 词条）
@@ -606,3 +1150,38 @@
 | 26 | APD | APD | 直收（缩写，保持大写） |
 
 **对账汇总**：输入 26 词元 → 拆分 +1（#19 → 2 条）→ 27 词条；无忽略/去重词元；13 词覆盖更新（kadar/asap/investigasi/sementara/mencapai/segera/tanpa/sanksi/penutupan/contoh/KLHK/PPLH/APD——后三经小写键核验）；词组条目 beroperasi optimal / rantai pengawasan 与已存单词 beroperasi / rantai 主键不同，并存不冲突；bitVocabDB 2354 → 2368（+14 新键）。RCO A3 词级三方对账：26=26=27 映射闭合，PASS。
+
+## 对账表二：追加批次（2026-10-04 18:50 指令，28 词元 → 27 词条）
+
+| # | 用户输入词元 | 最终词条 | 处理 |
+|---|---|---|---|
+| 1 | aktual | aktual | 直收 |
+| 2 | versus | versus | 直收 |
+| 3 | prediksi | prediksi | 直收（bitVocabDB 已存，覆盖更新） |
+| 4 | revisi | revisi | 直收 |
+| 5 | UKL-UPL | UKL-UPL | 直收（缩写；库内已存小写键 ukl-upl，覆盖更新） |
+| 6 | sejak | sejak | 直收（覆盖更新） |
+| 7 | izin | izin | 直收（覆盖更新） |
+| 8 | dikeluarkan | dikeluarkan | 直收（覆盖更新） |
+| 9 | Kemungkinan | kemungkinan | 大写归一（覆盖更新） |
+| 10 | tetap-beroperasi | tetap beroperasi | 连字符词组归并 |
+| 11 | dianggap | dianggap | 直收（覆盖更新） |
+| 12 | ilegal | ilegal | 直收 |
+| 13 | signifikan | signifikan | 直收 |
+| 14 | Konsultasikan | konsultasikan | 大写归一 |
+| 15 | estimasi | estimasi | 直收（覆盖更新） |
+| 16 | revisi | revisi | 输入×2 去重（与 #4 合并，同日覆盖更新） |
+| 17 | pertandingan | pertandingan | 直收 |
+| 18 | nyusul | nyusul | 直收 |
+| 19 | kompleksitas | kompleksitas | 直收 |
+| 20 | dikenai | dikenai | 直收 |
+| 21 | sanksi | sanksi | 同日重收（#25 覆盖更新，R7 注明） |
+| 22 | penutupan | penutupan | 同日重收（#26 覆盖更新，R7 注明） |
+| 23 | akurat | akurat | 直收（覆盖更新） |
+| 24 | temuan | temuan | 直收 |
+| 25 | dilampirkan | dilampirkan | 直收 |
+| 26 | permohonan | permohonan | 直收 |
+| 27 | KLHK | KLHK | 同日重收（#12 覆盖更新，R7 注明） |
+| 28 | Berarti | berarti | 大写归一 |
+
+**对账汇总二**：输入 28 词元 → 去重 revisi（×2）→ 27 词条；大写归一 ×3（Kemungkinan/Konsultasikan/Berarti）；连字符词组归并 ×1；同日重收 ×3（sanksi/penutupan/KLHK）；bitVocabDB 覆盖更新 ×9（prediksi/ukl-upl/sejak/izin/dikeluarkan/kemungkinan/dianggap/estimasi/akurat）。10-03 全笔记词条总数 27→54。RCO A3 词级三方对账：28=28=27 映射闭合，PASS。
