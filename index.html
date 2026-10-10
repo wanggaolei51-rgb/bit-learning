@@ -6,7 +6,7 @@
 <meta http-equiv="Expires" content="0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LEO-BIR V4.40.8</title>
+<title>LEO-BIR V4.40.9</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -276,7 +276,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="sidebar-header">
     <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <h1>LEO-BIR</h1>
-    <div class="ver">LEO-BIR V4.40.8 · 每日复习视频 Layer 1（2 集样片 · 剪影引擎 v2）</div>
+    <div class="ver">LEO-BIR V4.40.9 · 每日复习视频 Layer 1（2 集样片 · 剪影引擎 v2）</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -5919,6 +5919,7 @@ function showBITInfo(word){
   }
   overlay.addEventListener("click",function(e){if(e.target===overlay)closeBITInfo();});
 }
+
 
 
 
@@ -59612,6 +59613,579 @@ const dailyNotesDB = {
             "cn": "不要使用食品容器存放化学品。"
           }
         ]
+      },
+      {
+        "word": "partisipasi",
+        "cn": "参与；参加",
+        "en": "participation",
+        "root": "partisipasi（外来词，源自荷兰语 participatie）",
+        "forms": [
+          {
+            "form": "partisipasi",
+            "pos": "名词",
+            "mean": "参与（外来词）"
+          },
+          {
+            "form": "berpartisipasi",
+            "pos": "动词",
+            "mean": "参与（ber- 动词化）"
+          },
+          {
+            "form": "berpartisipasi dalam",
+            "pos": "动词短语",
+            "mean": "参与……"
+          }
+        ],
+        "formsNote": "",
+        "note": "外来词名词，动词化用 ber-partisipasi 正式用语，常用于会议/培训语境",
+        "synonyms": [
+          "keterlibatan",
+          "peran serta",
+          "keikutsertaan"
+        ],
+        "antonyms": [
+          "penolakan",
+          "ketidakhadiran"
+        ],
+        "examples": [
+          {
+            "scene": "安全应急",
+            "id": "Partisipasi seluruh karyawan dalam latihan kebakaran wajib 100%.",
+            "cn": "所有员工参与消防演练必须达到100%。"
+          },
+          {
+            "scene": "安全应急",
+            "id": "Partisipasi aktif dalam investigasi insiden sangat dihargai.",
+            "cn": "积极参与事故调查非常值得赞赏。"
+          }
+        ]
+      },
+      {
+        "word": "bergabung",
+        "cn": "加入；合并",
+        "en": "to join; to merge",
+        "root": "gabung",
+        "forms": [
+          {
+            "form": "gabung",
+            "pos": "基础动词",
+            "mean": "合并、联合"
+          },
+          {
+            "form": "bergabung",
+            "pos": "动词",
+            "mean": "加入（ber- 动词化）"
+          },
+          {
+            "form": "bergabung dengan",
+            "pos": "动词短语",
+            "mean": "加入……"
+          },
+          {
+            "form": "penggabungan",
+            "pos": "名词",
+            "mean": "合并（peN-an 名词化）"
+          }
+        ],
+        "formsNote": "",
+        "note": "ber- 动词化：bergabung 加入；peN-an：penggabungan 合并；固定搭配 bergabung dengan 加入组织/团队/活动时使用",
+        "synonyms": [
+          "menyertai",
+          "ikut serta",
+          "bergabung bersama"
+        ],
+        "antonyms": [
+          "keluar",
+          "berpisah",
+          "meninggalkan"
+        ],
+        "examples": [
+          {
+            "scene": "安全应急",
+            "id": "Semua personel harus bergabung dengan tim evakuasi darurat.",
+            "cn": "所有人员必须加入紧急疏散队。"
+          },
+          {
+            "scene": "安全应急",
+            "id": "Dua regu pemadam bergabung untuk mengendalikan api.",
+            "cn": "两个消防队合并以控制火势。"
+          }
+        ]
+      },
+      {
+        "word": "mengikuti",
+        "cn": "跟随；参加；遵循",
+        "en": "to follow; to attend; to comply with",
+        "root": "ikut",
+        "forms": [
+          {
+            "form": "ikut",
+            "pos": "基础动词",
+            "mean": "跟随"
+          },
+          {
+            "form": "mengikuti",
+            "pos": "动词",
+            "mean": "参加、遵循（meN- 主动）"
+          },
+          {
+            "form": "diikuti",
+            "pos": "被动动词",
+            "mean": "被参加/被遵循（di- 被动）"
+          },
+          {
+            "form": "pengikut",
+            "pos": "名词",
+            "mean": "跟随者（peN- 施事）"
+          },
+          {
+            "form": "mengikuti pelatihan",
+            "pos": "动词短语",
+            "mean": "参加培训"
+          }
+        ],
+        "formsNote": "",
+        "note": "meN- 主动：mengikuti；di- 被动：diikuti；peN- 施事：pengikut 多义词：跟随、参加（培训/会议）、遵循（程序）",
+        "synonyms": [
+          "menyertai",
+          "mengambil bagian",
+          "patuh pada"
+        ],
+        "antonyms": [
+          "meninggalkan",
+          "mengabaikan"
+        ],
+        "examples": [
+          {
+            "scene": "安全应急",
+            "id": "Seluruh pekerja baru wajib mengikuti pelatihan HSE induction.",
+            "cn": "所有新员工必须参加HSE入职培训。"
+          },
+          {
+            "scene": "安全应急",
+            "id": "Kita harus mengikuti prosedur evakuasi dengan tertib.",
+            "cn": "我们必须有序遵循疏散程序。"
+          }
+        ]
+      },
+      {
+        "word": "keseluruhan",
+        "cn": "全部；整体",
+        "en": "entirety; whole; overall",
+        "root": "seluruh",
+        "forms": [
+          {
+            "form": "seluruh",
+            "pos": "形容词/限定词",
+            "mean": "整个的"
+          },
+          {
+            "form": "keseluruhan",
+            "pos": "名词",
+            "mean": "整体、全部（ke-an 名词化）"
+          },
+          {
+            "form": "secara keseluruhan",
+            "pos": "副词短语",
+            "mean": "整体上"
+          },
+          {
+            "form": "menyeluruh",
+            "pos": "形容词",
+            "mean": "全面的（meN- 形容词化）"
+          }
+        ],
+        "formsNote": "",
+        "note": "ke-an 名词化：keseluruhan 整体；se- 副词化：secara keseluruhan；meN- 形容词化：menyeluruh 正式用语，secara keseluruhan 常用于总结/报告",
+        "synonyms": [
+          "seluruhnya",
+          "semua",
+          "kesemuanya"
+        ],
+        "antonyms": [
+          "sebagian",
+          "parsial"
+        ],
+        "examples": [
+          {
+            "scene": "安全应急",
+            "id": "Evakuasi secara keseluruhan berlangsung dalam waktu 8 menit.",
+            "cn": "整体疏散在8分钟内完成。"
+          },
+          {
+            "scene": "安全应急",
+            "id": "Keseluruhan sistem alarm telah diperbarui tahun ini.",
+            "cn": "整个警报系统今年已经更新。"
+          }
+        ]
+      },
+      {
+        "word": "pasang",
+        "cn": "安装；设置；潮涨",
+        "en": "to install; to set up; rising tide",
+        "root": "pasang",
+        "forms": [
+          {
+            "form": "pasang",
+            "pos": "动词/名词",
+            "mean": "安装；涨潮"
+          },
+          {
+            "form": "memasang",
+            "pos": "动词",
+            "mean": "安装（meN- 主动）"
+          },
+          {
+            "form": "dipasang",
+            "pos": "被动动词",
+            "mean": "被安装（di- 被动）"
+          },
+          {
+            "form": "pemasangan",
+            "pos": "名词",
+            "mean": "安装（peN-an 名词化）"
+          },
+          {
+            "form": "terpasang",
+            "pos": "状态动词",
+            "mean": "已安装（ter- 状态）"
+          }
+        ],
+        "formsNote": "",
+        "note": "meN-：memasang；di-：dipasang；peN-an：pemasangan；ter- 状态：terpasang 工业高频词：memasang alarm/detector/pipa",
+        "synonyms": [
+          "memasang",
+          "instalasi",
+          "menyeting"
+        ],
+        "antonyms": [
+          "mencabut",
+          "melepas",
+          "mencopot"
+        ],
+        "examples": [
+          {
+            "scene": "安全应急",
+            "id": "Tim teknis memasang detektor gas baru di area penyimpanan pelarut.",
+            "cn": "技术团队在溶剂储存区安装了新的气体探测器。"
+          },
+          {
+            "scene": "安全应急",
+            "id": "Alarm kebakaran dipasang di setiap lorong gedung.",
+            "cn": "每个楼层走廊都安装了火警警报器。"
+          }
+        ]
+      },
+      {
+        "word": "catat",
+        "cn": "记录；记下",
+        "en": "to record; to note",
+        "root": "catat",
+        "forms": [
+          {
+            "form": "catat",
+            "pos": "基础动词",
+            "mean": "记录"
+          },
+          {
+            "form": "mencatat",
+            "pos": "动词",
+            "mean": "记录（meN- 主动）"
+          },
+          {
+            "form": "dicatat",
+            "pos": "被动动词",
+            "mean": "被记录（di- 被动）"
+          },
+          {
+            "form": "pencatatan",
+            "pos": "名词",
+            "mean": "记录（peN-an 名词化）"
+          },
+          {
+            "form": "catatan",
+            "pos": "名词",
+            "mean": "笔记、备注（-an 名词）"
+          }
+        ],
+        "formsNote": "",
+        "note": "meN-：mencatat；di-：dicatat；peN-an：pencatatan；-an：catatan mencatat 记录行为，catatan 记录产物",
+        "synonyms": [
+          "merekam",
+          "mencatit",
+          "menuliskan"
+        ],
+        "antonyms": [
+          "menghapus",
+          "melupakan"
+        ],
+        "examples": [
+          {
+            "scene": "安全应急",
+            "id": "Petugas keamanan mencatat setiap kendaraan yang keluar masuk.",
+            "cn": "安保人员记录每一辆进出的车辆。"
+          },
+          {
+            "scene": "安全应急",
+            "id": "Temuan insiden harus dicatat dalam laporan resmi.",
+            "cn": "事故发现必须记录在正式报告中。"
+          }
+        ]
+      },
+      {
+        "word": "pengadaan",
+        "cn": "采购；供应",
+        "en": "procurement; supply",
+        "root": "adat",
+        "forms": [
+          {
+            "form": "adat",
+            "pos": "名词",
+            "mean": "习惯、习俗"
+          },
+          {
+            "form": "mengadakan",
+            "pos": "动词",
+            "mean": "举办、采购（meN- 主动）"
+          },
+          {
+            "form": "pengadaan",
+            "pos": "名词",
+            "mean": "采购（peN-an 名词化）"
+          },
+          {
+            "form": "barang pengadaan",
+            "pos": "名词短语",
+            "mean": "采购物资"
+          }
+        ],
+        "formsNote": "",
+        "note": "meN-：mengadakan 举办/采购；peN-an：pengadaan 采购行为 企业采购部门 = Departemen Pengadaan；比 pembelian 更正式",
+        "synonyms": [
+          "pembelian",
+          "akuisisi",
+          "pengadaan barang"
+        ],
+        "antonyms": [
+          "penjualan",
+          "distribusi"
+        ],
+        "examples": [
+          {
+            "scene": "安全应急",
+            "id": "Departemen pengadaan memesan APD tambahan untuk tim darurat.",
+            "cn": "采购部门为应急团队订购了额外的个人防护装备。"
+          },
+          {
+            "scene": "安全应急",
+            "id": "Pengadaan peralatan pemadam api mengikuti standar NFPA.",
+            "cn": "消防设备的采购遵循NFPA标准。"
+          }
+        ]
+      },
+      {
+        "word": "saya-yang-handle",
+        "cn": "我来处理（口语强调句）",
+        "en": "I'll handle it (colloquial emphasis)",
+        "root": "saya-yang-handle [待核实]",
+        "forms": [
+          {
+            "form": "saya yang handle",
+            "pos": "口语句",
+            "mean": "我来处理（口语分写）"
+          },
+          {
+            "form": "handle",
+            "pos": "动词（英语借词）",
+            "mean": "处理"
+          },
+          {
+            "form": "saya yang menangani",
+            "pos": "正式句",
+            "mean": "我来处理（正式说法）"
+          }
+        ],
+        "formsNote": "",
+        "note": "口语强调结构：saya yang + 动词；正式场合用 saya yang menangani/mengurus 口语/工作群聊高频，正式报告用 saya yang menangani；handle 为英语借词",
+        "synonyms": [
+          "saya yang urus",
+          "saya yang tangani",
+          "biar saya yang urus"
+        ],
+        "antonyms": [
+          "orang lain yang urus"
+        ],
+        "examples": [
+          {
+            "scene": "安全应急",
+            "id": "Jangan khawatir, saya yang handle masalah ini sampai selesai.",
+            "cn": "别担心，这个问题我来处理到底。"
+          },
+          {
+            "scene": "安全应急",
+            "id": "Koordinasi evakuasi — saya yang handle, kamu fokus di assembly point.",
+            "cn": "疏散协调——我来处理，你专注于集合点。"
+          }
+        ]
+      },
+      {
+        "word": "agak-terganggu",
+        "cn": "有点受干扰/受阻",
+        "en": "somewhat disturbed; slightly disrupted",
+        "root": "ganggu",
+        "forms": [
+          {
+            "form": "ganggu",
+            "pos": "基础动词",
+            "mean": "干扰"
+          },
+          {
+            "form": "terganggu",
+            "pos": "状态动词",
+            "mean": "受干扰（ter- 状态）"
+          },
+          {
+            "form": "agak terganggu",
+            "pos": "形容词短语",
+            "mean": "有点受干扰（agak+terganggu，常分写）"
+          },
+          {
+            "form": "gangguan",
+            "pos": "名词",
+            "mean": "干扰（-an 名词）"
+          }
+        ],
+        "formsNote": "",
+        "note": "ter- 状态：terganggu 受干扰；agak 程度副词；agak terganggu 常分写 agak = 有点；agak-terganggu 可连写也可分写为 agak terganggu",
+        "synonyms": [
+          "sedikit terganggu",
+          "kurang lancar",
+          "terhambat"
+        ],
+        "antonyms": [
+          "lancar",
+          "normal",
+          "tidak terganggu"
+        ],
+        "examples": [
+          {
+            "scene": "安全应急",
+            "id": "Proses evakuasi agak terganggu karena hujan deras.",
+            "cn": "疏散过程因大雨而有点受阻。"
+          },
+          {
+            "scene": "安全应急",
+            "id": "Komunikasi radio agak-terganggu di area basement.",
+            "cn": "地下室区域的无线电通讯有点受干扰。"
+          }
+        ]
+      },
+      {
+        "word": "tanah",
+        "cn": "土地；土壤",
+        "en": "land; soil; ground",
+        "root": "tanah",
+        "forms": [
+          {
+            "form": "tanah",
+            "pos": "名词",
+            "mean": "土地、土壤"
+          },
+          {
+            "form": "tanah air",
+            "pos": "名词短语",
+            "mean": "祖国"
+          },
+          {
+            "form": "tanah liat",
+            "pos": "名词短语",
+            "mean": "黏土"
+          },
+          {
+            "form": "tanah longsor",
+            "pos": "名词短语",
+            "mean": "滑坡"
+          },
+          {
+            "form": "pertanahan",
+            "pos": "名词",
+            "mean": "土地事务（per- 名词化）"
+          }
+        ],
+        "formsNote": "",
+        "note": "名词，常用复合词：tanah air 祖国 / tanah longsor 滑坡 / tanah liat 黏土 环保语境中常与 kontaminasi 搭配：kontaminasi tanah 土壤污染",
+        "synonyms": [
+          "tanah",
+          "wilayah",
+          "lahan"
+        ],
+        "antonyms": [
+          "air",
+          "udara"
+        ],
+        "examples": [
+          {
+            "scene": "安全应急",
+            "id": "Tumpahan bahan kimia mencemari tanah di sekitar area tangki.",
+            "cn": "化学品泄漏污染了储罐周围的土壤。"
+          },
+          {
+            "scene": "安全应急",
+            "id": "Uji laboratorium menunjukkan tanah di lokasi bekas tumpahan sudah aman.",
+            "cn": "实验室检测显示 Former泄漏点的土壤已安全。"
+          }
+        ]
+      },
+      {
+        "word": "perbaikan",
+        "cn": "修复；改进；纠正",
+        "en": "repair; improvement; correction",
+        "root": "baik",
+        "forms": [
+          {
+            "form": "baik",
+            "pos": "形容词",
+            "mean": "好"
+          },
+          {
+            "form": "memperbaiki",
+            "pos": "动词",
+            "mean": "修复（mem-per- -kan）"
+          },
+          {
+            "form": "perbaikan",
+            "pos": "名词",
+            "mean": "修复（per-an 名词化）"
+          },
+          {
+            "form": "diperbaiki",
+            "pos": "被动动词",
+            "mean": "被修复"
+          }
+        ],
+        "formsNote": "",
+        "note": "mem-per- -kan：memperbaiki 修复；per-an：perbaikan 修复行为；di-：diperbaiki memperbaiki 修复具体物品，perbaikan 修复过程/行为",
+        "synonyms": [
+          "perbaikan",
+          "reparasi",
+          "pemulihan"
+        ],
+        "antonyms": [
+          "kerusakan",
+          "penurunan"
+        ],
+        "examples": [
+          {
+            "scene": "安全应急",
+            "id": "Perbaikan pipa bocor harus selesai sebelum produksi dimulai lagi.",
+            "cn": "管道泄漏修复必须在恢复生产前完成。"
+          },
+          {
+            "scene": "安全应急",
+            "id": "Tim teknis melakukan perbaikan sistem alarm setelah insiden.",
+            "cn": "技术团队在事故后修复了警报系统。"
+          }
+        ]
       }
     ]
   }
@@ -63314,24 +63888,57 @@ const bitVocabDB = {
   },
   "tanah": {
     "word": "tanah",
-    "cn": "土地/土壤",
-    "en": "land, soil, ground",
-    "root": "tanah（纯词根，南岛语固有词）",
-    "forms": [],
-    "formsNote": "pertanahan（土地事务）、menanam（种植）、pertanian（农业）",
-    "note": "环保高频搭配：kontaminasi tanah（土壤污染）",
-    "synonyms": [],
-    "antonyms": [],
-    "examples": [
+    "cn": "土地；土壤",
+    "en": "land; soil; ground",
+    "root": "tanah",
+    "forms": [
       {
-        "scene": "环保合规",
-        "id": "Kontaminasi tanah di sekitar smelter wajib dipulihkan sesuai regulasi.",
-        "cn": "必须按法规修复冶炼厂周边的土壤污染。"
+        "form": "tanah",
+        "pos": "名词",
+        "mean": "土地、土壤"
       },
       {
-        "scene": "项目管理",
-        "id": "Uji laboratorium menunjukkan logam berat dalam tanah melebihi ambang batas.",
-        "cn": "实验室检测显示土壤中重金属超过限值。"
+        "form": "tanah air",
+        "pos": "名词短语",
+        "mean": "祖国"
+      },
+      {
+        "form": "tanah liat",
+        "pos": "名词短语",
+        "mean": "黏土"
+      },
+      {
+        "form": "tanah longsor",
+        "pos": "名词短语",
+        "mean": "滑坡"
+      },
+      {
+        "form": "pertanahan",
+        "pos": "名词",
+        "mean": "土地事务（per- 名词化）"
+      }
+    ],
+    "formsNote": "",
+    "note": "名词，常用复合词：tanah air 祖国 / tanah longsor 滑坡 / tanah liat 黏土 环保语境中常与 kontaminasi 搭配：kontaminasi tanah 土壤污染",
+    "synonyms": [
+      "tanah",
+      "wilayah",
+      "lahan"
+    ],
+    "antonyms": [
+      "air",
+      "udara"
+    ],
+    "examples": [
+      {
+        "scene": "安全应急",
+        "id": "Tumpahan bahan kimia mencemari tanah di sekitar area tangki.",
+        "cn": "化学品泄漏污染了储罐周围的土壤。"
+      },
+      {
+        "scene": "安全应急",
+        "id": "Uji laboratorium menunjukkan tanah di lokasi bekas tumpahan sudah aman.",
+        "cn": "实验室检测显示 Former泄漏点的土壤已安全。"
       }
     ]
   },
@@ -83450,57 +84057,57 @@ const bitVocabDB = {
   },
   "mengikuti": {
     "word": "mengikuti",
-    "ipa": "/məŋiˈkuti/",
-    "cn": "跟随",
-    "en": "to follow, to join, to comply with",
+    "cn": "跟随；参加；遵循",
+    "en": "to follow; to attend; to comply with",
     "root": "ikut",
     "forms": [
       {
         "form": "ikut",
-        "pos": "v",
-        "mean": "跟随/参加"
+        "pos": "基础动词",
+        "mean": "跟随"
       },
       {
         "form": "mengikuti",
-        "pos": "v",
-        "mean": "跟随/遵循"
-      },
-      {
-        "form": "pengikut",
-        "pos": "n",
-        "mean": "追随者"
-      },
-      {
-        "form": "ikutan",
-        "pos": "n/v",
-        "mean": "跟风/跟着"
+        "pos": "动词",
+        "mean": "参加、遵循（meN- 主动）"
       },
       {
         "form": "diikuti",
-        "pos": "v",
-        "mean": "被跟随"
+        "pos": "被动动词",
+        "mean": "被参加/被遵循（di- 被动）"
+      },
+      {
+        "form": "pengikut",
+        "pos": "名词",
+        "mean": "跟随者（peN- 施事）"
+      },
+      {
+        "form": "mengikuti pelatihan",
+        "pos": "动词短语",
+        "mean": "参加培训"
       }
     ],
-    "formsNote": "meN- 缀同化 ikut→mengikuti",
-    "note": "mengikuti aturan 遵守规则；mengikuti kursus 参加课程",
+    "formsNote": "",
+    "note": "meN- 主动：mengikuti；di- 被动：diikuti；peN- 施事：pengikut 多义词：跟随、参加（培训/会议）、遵循（程序）",
     "synonyms": [
-      "mengamati",
-      "menaati"
+      "menyertai",
+      "mengambil bagian",
+      "patuh pada"
     ],
     "antonyms": [
-      "memimpin",
-      "mendahului"
+      "meninggalkan",
+      "mengabaikan"
     ],
     "examples": [
       {
-        "scene": "Silakan mengikuti arahan petugas.",
-        "id": "mengikuti",
-        "cn": "请听从工作人员的指引。"
+        "scene": "安全应急",
+        "id": "Seluruh pekerja baru wajib mengikuti pelatihan HSE induction.",
+        "cn": "所有新员工必须参加HSE入职培训。"
       },
       {
-        "scene": "Dia mengikuti pelatihan selama tiga bulan.",
-        "id": "mengikuti",
-        "cn": "他参加了三个月的培训。"
+        "scene": "安全应急",
+        "id": "Kita harus mengikuti prosedur evakuasi dengan tertib.",
+        "cn": "我们必须有序遵循疏散程序。"
       }
     ]
   },
@@ -90340,51 +90947,57 @@ const bitVocabDB = {
   },
   "catat": {
     "word": "catat",
-    "ipa": "/ˈtʃatat/",
-    "cn": "记录",
-    "en": "to note down, to record",
+    "cn": "记录；记下",
+    "en": "to record; to note",
     "root": "catat",
     "forms": [
       {
         "form": "catat",
-        "pos": "v",
-        "mean": "记录（词根/祈使）"
-      },
-      {
-        "form": "mencatat",
-        "pos": "v",
+        "pos": "基础动词",
         "mean": "记录"
       },
       {
-        "form": "catatan",
-        "pos": "n",
-        "mean": "笔记/记录"
+        "form": "mencatat",
+        "pos": "动词",
+        "mean": "记录（meN- 主动）"
+      },
+      {
+        "form": "dicatat",
+        "pos": "被动动词",
+        "mean": "被记录（di- 被动）"
       },
       {
         "form": "pencatatan",
-        "pos": "n",
-        "mean": "记录工作"
+        "pos": "名词",
+        "mean": "记录（peN-an 名词化）"
+      },
+      {
+        "form": "catatan",
+        "pos": "名词",
+        "mean": "笔记、备注（-an 名词）"
       }
     ],
-    "formsNote": "meN- 动词化；-an 名词化",
-    "note": "Catat!（祈使）记下！；catatan kaki 脚注；mencatat rekaman 录音",
+    "formsNote": "",
+    "note": "meN-：mencatat；di-：dicatat；peN-an：pencatatan；-an：catatan mencatat 记录行为，catatan 记录产物",
     "synonyms": [
       "merekam",
-      "menulis"
+      "mencatit",
+      "menuliskan"
     ],
     "antonyms": [
-      "menghapus"
+      "menghapus",
+      "melupakan"
     ],
     "examples": [
       {
-        "scene": "Catat nomor telepon saya.",
-        "id": "catat",
-        "cn": "记下我的电话号码。"
+        "scene": "安全应急",
+        "id": "Petugas keamanan mencatat setiap kendaraan yang keluar masuk.",
+        "cn": "安保人员记录每一辆进出的车辆。"
       },
       {
-        "scene": "Saya sudah mencatat semua pengeluaran.",
-        "id": "mencatat",
-        "cn": "我已经记下了所有开支。"
+        "scene": "安全应急",
+        "id": "Temuan insiden harus dicatat dalam laporan resmi.",
+        "cn": "事故发现必须记录在正式报告中。"
       }
     ]
   },
@@ -95360,32 +95973,53 @@ const bitVocabDB = {
   },
   "bergabung": {
     "word": "bergabung",
-    "cn": "加入；联合",
-    "en": "to join, to merge with",
+    "cn": "加入；合并",
+    "en": "to join; to merge",
     "root": "gabung",
-    "forms": [],
-    "formsNote": "gabung、gabungan、menggabungkan",
-    "note": "ber- 前缀构成动词「加入」；gabungan 名词「联合体/组合」；menggabungkan 使动「使合并」 固定搭配 bergabung dengan（加入某组织/与某方联合）；正式商务语境高频动词",
+    "forms": [
+      {
+        "form": "gabung",
+        "pos": "基础动词",
+        "mean": "合并、联合"
+      },
+      {
+        "form": "bergabung",
+        "pos": "动词",
+        "mean": "加入（ber- 动词化）"
+      },
+      {
+        "form": "bergabung dengan",
+        "pos": "动词短语",
+        "mean": "加入……"
+      },
+      {
+        "form": "penggabungan",
+        "pos": "名词",
+        "mean": "合并（peN-an 名词化）"
+      }
+    ],
+    "formsNote": "",
+    "note": "ber- 动词化：bergabung 加入；peN-an：penggabungan 合并；固定搭配 bergabung dengan 加入组织/团队/活动时使用",
     "synonyms": [
-      "berpartisipasi",
-      "menyatu",
-      "ikut serta"
+      "menyertai",
+      "ikut serta",
+      "bergabung bersama"
     ],
     "antonyms": [
       "keluar",
-      "meninggalkan",
-      "berpisah"
+      "berpisah",
+      "meninggalkan"
     ],
     "examples": [
       {
-        "scene": "商务",
-        "id": "Tiga pemasok lokal bergabung membentuk konsorsium untuk mengikuti tender pengadaan.",
-        "cn": "三家本地供应商联合组成财团参与采购招标。"
+        "scene": "安全应急",
+        "id": "Semua personel harus bergabung dengan tim evakuasi darurat.",
+        "cn": "所有人员必须加入紧急疏散队。"
       },
       {
-        "scene": "商务",
-        "id": "Perusahaan logistik internasional itu bergabung dengan proyek pembangunan kawasan industri.",
-        "cn": "那家国际物流公司加入了工业园区的建设项目。"
+        "scene": "安全应急",
+        "id": "Dua regu pemadam bergabung untuk mengendalikan api.",
+        "cn": "两个消防队合并以控制火势。"
       }
     ]
   },
@@ -108359,56 +108993,52 @@ const bitVocabDB = {
   },
   "pengadaan": {
     "word": "pengadaan",
-    "cn": "采购； procurement（政府/企业物资采购正式词）",
+    "cn": "采购；供应",
     "en": "procurement; supply",
-    "root": "ada（存在/获得——本土词）+ peng- + -an → pengadaan",
+    "root": "adat",
     "forms": [
       {
-        "form": "ada",
-        "pos": "动词/词根",
-        "mean": "存在；有"
+        "form": "adat",
+        "pos": "名词",
+        "mean": "习惯、习俗"
       },
       {
         "form": "mengadakan",
         "pos": "动词",
-        "mean": "举办；置办"
-      },
-      {
-        "form": "diadakan",
-        "pos": "被动动词",
-        "mean": "被举办/置办"
+        "mean": "举办、采购（meN- 主动）"
       },
       {
         "form": "pengadaan",
         "pos": "名词",
-        "mean": "采购；筹办"
+        "mean": "采购（peN-an 名词化）"
       },
       {
-        "form": "pengadaan barang/jasa",
+        "form": "barang pengadaan",
         "pos": "名词短语",
-        "mean": "货物/服务采购"
+        "mean": "采购物资"
       }
     ],
     "formsNote": "",
-    "note": "合规高频：`tender pengadaan`（采购招标——10-03 #8 联记 dugaan korupsi tender）、` LPSE 电子采购系统`；供应链主题（10-05 supply_chain）核心前置词。",
+    "note": "meN-：mengadakan 举办/采购；peN-an：pengadaan 采购行为 企业采购部门 = Departemen Pengadaan；比 pembelian 更正式",
     "synonyms": [
-      "pembelian（购买——一般）",
-      "akuisisi（收购——企业级）",
-      "pengadaan (e-procurement 电子采购)"
+      "pembelian",
+      "akuisisi",
+      "pengadaan barang"
     ],
     "antonyms": [
-      "—（无直接反义）"
+      "penjualan",
+      "distribusi"
     ],
     "examples": [
       {
-        "scene": "商务",
-        "id": "Pengadaan suku cadang mengikuti prosedur tender terbuka.",
-        "cn": "（备件采购执行公开招标程序。）"
+        "scene": "安全应急",
+        "id": "Departemen pengadaan memesan APD tambahan untuk tim darurat.",
+        "cn": "采购部门为应急团队订购了额外的个人防护装备。"
       },
       {
-        "scene": "项目管理",
-        "id": "Tim pengadaan terlibat sejak fase perencanaan.",
-        "cn": "（采购团队自规划阶段介入——#8 联记。）"
+        "scene": "安全应急",
+        "id": "Pengadaan peralatan pemadam api mengikuti standar NFPA.",
+        "cn": "消防设备的采购遵循NFPA标准。"
       }
     ]
   },
@@ -160149,6 +160779,308 @@ const bitVocabDB = {
         "cn": "不要使用食品容器存放化学品。"
       }
     ]
+  },
+  "partisipasi": {
+    "word": "partisipasi",
+    "cn": "参与；参加",
+    "en": "participation",
+    "root": "partisipasi（外来词，源自荷兰语 participatie）",
+    "forms": [
+      {
+        "form": "partisipasi",
+        "pos": "名词",
+        "mean": "参与（外来词）"
+      },
+      {
+        "form": "berpartisipasi",
+        "pos": "动词",
+        "mean": "参与（ber- 动词化）"
+      },
+      {
+        "form": "berpartisipasi dalam",
+        "pos": "动词短语",
+        "mean": "参与……"
+      }
+    ],
+    "formsNote": "",
+    "note": "外来词名词，动词化用 ber-partisipasi 正式用语，常用于会议/培训语境",
+    "synonyms": [
+      "keterlibatan",
+      "peran serta",
+      "keikutsertaan"
+    ],
+    "antonyms": [
+      "penolakan",
+      "ketidakhadiran"
+    ],
+    "examples": [
+      {
+        "scene": "安全应急",
+        "id": "Partisipasi seluruh karyawan dalam latihan kebakaran wajib 100%.",
+        "cn": "所有员工参与消防演练必须达到100%。"
+      },
+      {
+        "scene": "安全应急",
+        "id": "Partisipasi aktif dalam investigasi insiden sangat dihargai.",
+        "cn": "积极参与事故调查非常值得赞赏。"
+      }
+    ]
+  },
+  "keseluruhan": {
+    "word": "keseluruhan",
+    "cn": "全部；整体",
+    "en": "entirety; whole; overall",
+    "root": "seluruh",
+    "forms": [
+      {
+        "form": "seluruh",
+        "pos": "形容词/限定词",
+        "mean": "整个的"
+      },
+      {
+        "form": "keseluruhan",
+        "pos": "名词",
+        "mean": "整体、全部（ke-an 名词化）"
+      },
+      {
+        "form": "secara keseluruhan",
+        "pos": "副词短语",
+        "mean": "整体上"
+      },
+      {
+        "form": "menyeluruh",
+        "pos": "形容词",
+        "mean": "全面的（meN- 形容词化）"
+      }
+    ],
+    "formsNote": "",
+    "note": "ke-an 名词化：keseluruhan 整体；se- 副词化：secara keseluruhan；meN- 形容词化：menyeluruh 正式用语，secara keseluruhan 常用于总结/报告",
+    "synonyms": [
+      "seluruhnya",
+      "semua",
+      "kesemuanya"
+    ],
+    "antonyms": [
+      "sebagian",
+      "parsial"
+    ],
+    "examples": [
+      {
+        "scene": "安全应急",
+        "id": "Evakuasi secara keseluruhan berlangsung dalam waktu 8 menit.",
+        "cn": "整体疏散在8分钟内完成。"
+      },
+      {
+        "scene": "安全应急",
+        "id": "Keseluruhan sistem alarm telah diperbarui tahun ini.",
+        "cn": "整个警报系统今年已经更新。"
+      }
+    ]
+  },
+  "pasang": {
+    "word": "pasang",
+    "cn": "安装；设置；潮涨",
+    "en": "to install; to set up; rising tide",
+    "root": "pasang",
+    "forms": [
+      {
+        "form": "pasang",
+        "pos": "动词/名词",
+        "mean": "安装；涨潮"
+      },
+      {
+        "form": "memasang",
+        "pos": "动词",
+        "mean": "安装（meN- 主动）"
+      },
+      {
+        "form": "dipasang",
+        "pos": "被动动词",
+        "mean": "被安装（di- 被动）"
+      },
+      {
+        "form": "pemasangan",
+        "pos": "名词",
+        "mean": "安装（peN-an 名词化）"
+      },
+      {
+        "form": "terpasang",
+        "pos": "状态动词",
+        "mean": "已安装（ter- 状态）"
+      }
+    ],
+    "formsNote": "",
+    "note": "meN-：memasang；di-：dipasang；peN-an：pemasangan；ter- 状态：terpasang 工业高频词：memasang alarm/detector/pipa",
+    "synonyms": [
+      "memasang",
+      "instalasi",
+      "menyeting"
+    ],
+    "antonyms": [
+      "mencabut",
+      "melepas",
+      "mencopot"
+    ],
+    "examples": [
+      {
+        "scene": "安全应急",
+        "id": "Tim teknis memasang detektor gas baru di area penyimpanan pelarut.",
+        "cn": "技术团队在溶剂储存区安装了新的气体探测器。"
+      },
+      {
+        "scene": "安全应急",
+        "id": "Alarm kebakaran dipasang di setiap lorong gedung.",
+        "cn": "每个楼层走廊都安装了火警警报器。"
+      }
+    ]
+  },
+  "saya-yang-handle": {
+    "word": "saya-yang-handle",
+    "cn": "我来处理（口语强调句）",
+    "en": "I'll handle it (colloquial emphasis)",
+    "root": "saya-yang-handle [待核实]",
+    "forms": [
+      {
+        "form": "saya yang handle",
+        "pos": "口语句",
+        "mean": "我来处理（口语分写）"
+      },
+      {
+        "form": "handle",
+        "pos": "动词（英语借词）",
+        "mean": "处理"
+      },
+      {
+        "form": "saya yang menangani",
+        "pos": "正式句",
+        "mean": "我来处理（正式说法）"
+      }
+    ],
+    "formsNote": "",
+    "note": "口语强调结构：saya yang + 动词；正式场合用 saya yang menangani/mengurus 口语/工作群聊高频，正式报告用 saya yang menangani；handle 为英语借词",
+    "synonyms": [
+      "saya yang urus",
+      "saya yang tangani",
+      "biar saya yang urus"
+    ],
+    "antonyms": [
+      "orang lain yang urus"
+    ],
+    "examples": [
+      {
+        "scene": "安全应急",
+        "id": "Jangan khawatir, saya yang handle masalah ini sampai selesai.",
+        "cn": "别担心，这个问题我来处理到底。"
+      },
+      {
+        "scene": "安全应急",
+        "id": "Koordinasi evakuasi — saya yang handle, kamu fokus di assembly point.",
+        "cn": "疏散协调——我来处理，你专注于集合点。"
+      }
+    ]
+  },
+  "agak-terganggu": {
+    "word": "agak-terganggu",
+    "cn": "有点受干扰/受阻",
+    "en": "somewhat disturbed; slightly disrupted",
+    "root": "ganggu",
+    "forms": [
+      {
+        "form": "ganggu",
+        "pos": "基础动词",
+        "mean": "干扰"
+      },
+      {
+        "form": "terganggu",
+        "pos": "状态动词",
+        "mean": "受干扰（ter- 状态）"
+      },
+      {
+        "form": "agak terganggu",
+        "pos": "形容词短语",
+        "mean": "有点受干扰（agak+terganggu，常分写）"
+      },
+      {
+        "form": "gangguan",
+        "pos": "名词",
+        "mean": "干扰（-an 名词）"
+      }
+    ],
+    "formsNote": "",
+    "note": "ter- 状态：terganggu 受干扰；agak 程度副词；agak terganggu 常分写 agak = 有点；agak-terganggu 可连写也可分写为 agak terganggu",
+    "synonyms": [
+      "sedikit terganggu",
+      "kurang lancar",
+      "terhambat"
+    ],
+    "antonyms": [
+      "lancar",
+      "normal",
+      "tidak terganggu"
+    ],
+    "examples": [
+      {
+        "scene": "安全应急",
+        "id": "Proses evakuasi agak terganggu karena hujan deras.",
+        "cn": "疏散过程因大雨而有点受阻。"
+      },
+      {
+        "scene": "安全应急",
+        "id": "Komunikasi radio agak-terganggu di area basement.",
+        "cn": "地下室区域的无线电通讯有点受干扰。"
+      }
+    ]
+  },
+  "perbaikan": {
+    "word": "perbaikan",
+    "cn": "修复；改进；纠正",
+    "en": "repair; improvement; correction",
+    "root": "baik",
+    "forms": [
+      {
+        "form": "baik",
+        "pos": "形容词",
+        "mean": "好"
+      },
+      {
+        "form": "memperbaiki",
+        "pos": "动词",
+        "mean": "修复（mem-per- -kan）"
+      },
+      {
+        "form": "perbaikan",
+        "pos": "名词",
+        "mean": "修复（per-an 名词化）"
+      },
+      {
+        "form": "diperbaiki",
+        "pos": "被动动词",
+        "mean": "被修复"
+      }
+    ],
+    "formsNote": "",
+    "note": "mem-per- -kan：memperbaiki 修复；per-an：perbaikan 修复行为；di-：diperbaiki memperbaiki 修复具体物品，perbaikan 修复过程/行为",
+    "synonyms": [
+      "perbaikan",
+      "reparasi",
+      "pemulihan"
+    ],
+    "antonyms": [
+      "kerusakan",
+      "penurunan"
+    ],
+    "examples": [
+      {
+        "scene": "安全应急",
+        "id": "Perbaikan pipa bocor harus selesai sebelum produksi dimulai lagi.",
+        "cn": "管道泄漏修复必须在恢复生产前完成。"
+      },
+      {
+        "scene": "安全应急",
+        "id": "Tim teknis melakukan perbaikan sistem alarm setelah insiden.",
+        "cn": "技术团队在事故后修复了警报系统。"
+      }
+    ]
   }
 };
 
@@ -160916,8 +161848,11 @@ function renderAbout(c){
 }
 
 function renderVersion(c){
-  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.40.8 / Versi</span></div>
+  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.40.9 / Versi</span></div>
     <div style="padding:16px;">
+      <div style="margin-bottom:14px;padding:14px;background:rgba(59,130,246,.10);border-radius:10px;border-left:3px solid var(--info)">
+        <div style="font-size:15px;font-weight:700;color:var(--info);margin-bottom:6px">V4.40.9 (2026-10-11)</div>
+        <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">1. 每日笔记 2026-10-09 追加批次上线: 同日累计 41→52 词条 — 追加11词(partisipasi/bergabung/mengikuti/keseluruhan/pasang/catat/pengadaan/saya-yang-handle/agak-terganggu/tanah/perbaikan) · 大写归一×2(Pengadaan/Saya-yang-handle) · 新增22例句 · 追加44行变形表格 · saya-yang-handle口语标注 · 例句锚定HSE场景 · 同日整体覆盖(md_to_dailynote日期键幂等) · BIT V1.0+BIO审校 RCO A3对账52=41+11 PASS · check_syntax.py PASS · deploy-check PASS</div>
       <div style="margin-bottom:14px;padding:14px;background:rgba(59,130,246,.10);border-radius:10px;border-left:3px solid var(--info)">
         <div style="font-size:15px;font-weight:700;color:var(--info);margin-bottom:6px">V4.40.8 (2026-10-10)</div>
         <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">1. 每日笔记 2026-10-09 上线: 安全应急 Day2 配套词汇 41词条 — 40词元去重0 · 粘连词拆分×1(kontaminasiHidupkan→kontaminasi+hidupkan) · 大写归一×6(Menangis/Refleksi/Rasa/Syukur/Hidupkan/Tindakan) · 82例句 · 153行变形表格 · 源档案 dailynote_1009.js · 两批sub-agent并行(20+21) M2 v2.4规则 · BIT V1.0+BIO审校 RCO A3词级对账40+1拆+6归一=41 PASS · check_syntax.py PASS · deploy-check PASS</div>
