@@ -6,7 +6,7 @@
 <meta http-equiv="Expires" content="0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LEO-BIR V4.40.9</title>
+<title>LEO-BIR V4.41.0</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -276,7 +276,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="sidebar-header">
     <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <h1>LEO-BIR</h1>
-    <div class="ver">LEO-BIR V4.40.9 · 每日复习视频 Layer 1（2 集样片 · 剪影引擎 v2）</div>
+    <div class="ver">LEO-BIR V4.41.0 · 每日复习视频 Layer 1（2 集样片 · 剪影引擎 v2）</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -5004,7 +5004,27 @@ const vocabDB = {
   example:[{id:'Hampir celaka harus dilaporkan untuk pencegahan.',cn:'未遂事故必须报告以预防再次发生。'},{id:'Pencatatan hampir celaka membantu meningkatkan keselamatan.',cn:'记录险情有助于提高安全性。'}],
   synonym:['near miss','hampir terjadi','potensi bahaya'],
   tag:'应急响应'
-}
+},
+'mengajukan':{ipa:'/məŋaˈdʒukan/',cn:'提交（报告/申请）',en:'to submit',root:'aju',tag:'REP2C周汇报'},
+'merevisi':{ipa:'/məˈrɛvisi/',cn:'修订',en:'to revise',root:'revisi',tag:'REP2C周汇报'},
+'menguji':{ipa:'/məˈŋudʒi/',cn:'试验/测试',en:'to test',root:'uji',tag:'REP2C周汇报'},
+'menyetujui':{ipa:'/məɲɛˈtudʒui/',cn:'批复/批准',en:'to approve',root:'setuju',tag:'REP2C周汇报'},
+'membebaskan':{ipa:'/məmbɛˈbaskan/',cn:'征收（土地）',en:'to acquire (land)',root:'bebas',tag:'REP2C周汇报'},
+'menghasilkan':{ipa:'/məŋhaˈsilkan/',cn:'产生/产出',en:'to generate / to produce',root:'hasil',tag:'REP2C周汇报'},
+'membangkitkan':{ipa:'/məmbaŋˈkitkan/',cn:'发电',en:'to generate (power)',root:'bangkit',tag:'REP2C周汇报'},
+'melelangkan':{ipa:'/məleˈlaŋkan/',cn:'招标',en:'to tender / to auction',root:'lelang',tag:'REP2C周汇报'},
+'mengoordinasikan':{ipa:'/məŋɔrdiˈnasikan/',cn:'协调',en:'to coordinate',root:'koordinasi',tag:'REP2C周汇报'},
+'menindaklanjuti':{ipa:'/məˌnindaklanˈdʒuti/',cn:'跟进',en:'to follow up',root:'lanjut',tag:'REP2C周汇报'},
+'membatasi':{ipa:'/məmbˈatasi/',cn:'限定/限制',en:'to limit',root:'batas',tag:'REP2C周汇报'},
+'memetakan':{ipa:'/məmɛˈtakan/',cn:'测绘/绘制',en:'to map / to survey',root:'peta',tag:'REP2C周汇报'},
+'mengumpulkan':{ipa:'/məŋumˈpulkan/',cn:'收集',en:'to collect',root:'kumpul',tag:'REP2C周汇报'},
+'mempersiapkan':{ipa:'/məmpɛrˈsiapkan/',cn:'准备',en:'to prepare',root:'siap',tag:'REP2C周汇报'},
+'membandingkan':{ipa:'/məmbanˈdiŋkan/',cn:'比选/比较',en:'to compare',root:'banding',tag:'REP2C周汇报'},
+'memilih':{ipa:'/məˈmilih/',cn:'选择',en:'to select / to choose',root:'pilih',tag:'REP2C周汇报'},
+'mengadakan':{ipa:'/məŋaˈdakan/',cn:'召开/举行',en:'to hold (a meeting)',root:'ada',tag:'REP2C周汇报'},
+'membutuhkan':{ipa:'/məmbuˈtuhkan/',cn:'需要',en:'to need / to require',root:'butuh',tag:'REP2C周汇报'},
+'merahasiakan':{ipa:'/məˌrahasiˈakan/',cn:'保密',en:'to keep confidential',root:'rahasia',tag:'REP2C周汇报'},
+'mendorong':{ipa:'/məndɔˈrɔŋ/',cn:'推进/推动',en:'to push forward / to promote',root:'dorong',tag:'REP2C周汇报'},
 };
 
 
@@ -5919,6 +5939,7 @@ function showBITInfo(word){
   }
   overlay.addEventListener("click",function(e){if(e.target===overlay)closeBITInfo();});
 }
+
 
 
 
@@ -13930,8 +13951,609 @@ emergency_response: {
       ]
     },
     quiz_answers: `Kunci Jawaban Tanggap Darurat (话题29):\n1.B | 2.B | 3.A | 4.B | 5.B | 6.A | 7.B | 8.B | 9.B | 10.B\n11.B | 12.B | 13.B | 14.A | 15.B\n\nTips: Pahami segitiga api (bahan bakar-oksigen-panas), perbedaan jenis APAR, dan Heinrich's Law. Keselamatan adalah tanggung jawab setiap orang, bukan hanya tim HSE.`
-  }
+  },
 
+weekly_report: {
+  title: "话题30: 周汇报 / Laporan Mingguan",
+  icon: "📊",
+  days: 3,
+  grammar: {
+    title: "周汇报语法 · Tata Bahasa Laporan Mingguan",
+    rules: [
+      "🔹 meN- 前缀主动式 — 词根首音决定形态：k→meng- (mengumpulkan)、t/d→men- (meninjau)、p/b→mem- (memantau)、s→meny- (menyimpan)、元音→menge- (mengevaluasi)",
+      "🔹 di- 被动式 — 汇报事实常用被动：pekerjaan sudah diselesaikan (工作已完成)、izin telah disetujui (许可已获批)",
+      "🔹 时态梯度 — sedang(正在) → telah/sudah(已完成) → akan(将要)：Saat ini sedang ditinjau → Minggu ini telah selesai → Minggu depan akan dikirim",
+      "🔹 sebesar 引数字 — 商务规范：mencapai angka sebesar {angka} persen (达到{angka}%)",
+      "🔹 时间状语前置 — Pada minggu ini, kami telah menyelesaikan... (本周我们已完成...)",
+      "🔹 四段式回答 — 被追问时用：态度→事实→措施→承诺 (Benar... Penyebabnya... Kami sudah... Akan selesai...)"
+    ],
+    examples: [
+      "menyelesaikan /məɲɛlɛˈsaɪkan/ → Minggu ini kami telah menyelesaikan tinjauan desain. = '本周我们已完成设计审核。'",
+      "ditinjau /diˈnindʒaʊ/ → Laporan versi antara sedang ditinjau. = '中间版报告正在审核中。'",
+      "akan /ˈakan/ → Rencana minggu depan: kami akan mengirim dokumen. = '下周计划：我们将发送文件。'",
+      "sebesar /səˈbasar/ → Progres telah mencapai angka sebesar {angka} persen. = '进度已达{angka}%。'",
+      "menindaklanjuti /məˌnindaklanˈdʒuti/ → Kami akan menindaklanjuti semua temuan. = '我们将跟进所有问题。'"
+    ]
+  },
+  vocab: [
+    [
+      "menyelesaikan",
+      "完成（工作/任务）",
+      "/məɲɛlɛˈsaɪkan/"
+    ],
+    [
+      "mengajukan",
+      "提交（报告/申请）",
+      "/məŋaˈdʒukan/"
+    ],
+    [
+      "meninjau",
+      "审核/审查",
+      "/məˈnindʒaʊ/"
+    ],
+    [
+      "masukan",
+      "反馈/意见",
+      "/maˈsukan/"
+    ],
+    [
+      "merevisi",
+      "修订",
+      "/məˈrɛvisi/"
+    ],
+    [
+      "menguji",
+      "试验/测试",
+      "/məˈŋudʒi/"
+    ],
+    [
+      "menyetujui",
+      "批复/批准",
+      "/məɲɛˈtudʒui/"
+    ],
+    [
+      "membebaskan",
+      "征收（土地）",
+      "/məmbɛˈbaskan/"
+    ],
+    [
+      "mengambil",
+      "取（水）/采集",
+      "/məˈŋambil/"
+    ],
+    [
+      "membangun",
+      "建设",
+      "/məmˈbaŋun/"
+    ],
+    [
+      "menghasilkan",
+      "产生/产出",
+      "/məŋhaˈsilkan/"
+    ],
+    [
+      "membangkitkan",
+      "发电",
+      "/məmbaŋˈkitkan/"
+    ],
+    [
+      "menyimpan",
+      "储存",
+      "/məˈɲimpan/"
+    ],
+    [
+      "menilai",
+      "评估",
+      "/məˈnilai/"
+    ],
+    [
+      "melelangkan",
+      "招标",
+      "/məleˈlaŋkan/"
+    ],
+    [
+      "menjadwalkan",
+      "排定（日程）",
+      "/məndʒadˈwalkan/"
+    ],
+    [
+      "mengoordinasikan",
+      "协调",
+      "/məŋɔrdiˈnasikan/"
+    ],
+    [
+      "menindaklanjuti",
+      "跟进",
+      "/məˌnindaklanˈdʒuti/"
+    ],
+    [
+      "membatasi",
+      "限定/限制",
+      "/məmbˈatasi/"
+    ],
+    [
+      "memantau",
+      "督办/监控",
+      "/məmˈantaʊ/"
+    ],
+    [
+      "mematuhi",
+      "遵守（合规）",
+      "/məmˈatuhi/"
+    ],
+    [
+      "memetakan",
+      "测绘/绘制",
+      "/məmɛˈtakan/"
+    ],
+    [
+      "membuang",
+      "排放/丢弃",
+      "/məmˈbuaŋ/"
+    ],
+    [
+      "mengumpulkan",
+      "收集",
+      "/məŋumˈpulkan/"
+    ],
+    [
+      "mengirim",
+      "发送",
+      "/məˈŋirim/"
+    ],
+    [
+      "mempersiapkan",
+      "准备",
+      "/məmpɛrˈsiapkan/"
+    ],
+    [
+      "membandingkan",
+      "比选/比较",
+      "/məmbanˈdiŋkan/"
+    ],
+    [
+      "memilih",
+      "选择",
+      "/məˈmilih/"
+    ],
+    [
+      "membahas",
+      "讨论",
+      "/məmˈbahas/"
+    ],
+    [
+      "menghadiri",
+      "出席/到场",
+      "/məŋhaˈdiri/"
+    ],
+    [
+      "mengadakan",
+      "召开/举行",
+      "/məŋaˈdakan/"
+    ],
+    [
+      "membutuhkan",
+      "需要",
+      "/məmbuˈtuhkan/"
+    ],
+    [
+      "mempercepat",
+      "加快",
+      "/məmpɛrˈtʃəpat/"
+    ],
+    [
+      "menjelaskan",
+      "澄清/说明",
+      "/məndʒəˈlaskan/"
+    ],
+    [
+      "menutup",
+      "闭环/关闭",
+      "/məˈnutup/"
+    ],
+    [
+      "melaporkan",
+      "汇报",
+      "/məlaˈpɔrkan/"
+    ],
+    [
+      "merahasiakan",
+      "保密",
+      "/məˌrahasiˈakan/"
+    ],
+    [
+      "mendorong",
+      "推进/推动",
+      "/məndɔˈrɔŋ/"
+    ]
+  ],
+  scenes: [
+    {
+      title: "向董事长汇报周进度",
+      icon: "📊",
+      dialogue: [
+        {
+          speaker: "A",
+          text: "Bapak Liu, terima kasih atas waktunya, hari ini saya melaporkan progres mingguan tiga proyek.",
+          trans: "刘董，感谢您的时间，今天我汇报三个项目的周进度。"
+        },
+        {
+          speaker: "B",
+          text: "Silakan langsung ke poin utama.",
+          trans: "请直接讲重点。"
+        },
+        {
+          speaker: "A",
+          text: "Minggu ini kami menyelesaikan tinjauan desain awal fasilitas tailing sesuai jadwal.",
+          trans: "本周我们按计划完成尾渣库初设审核。"
+        },
+        {
+          speaker: "A",
+          text: "Institut desain juga telah mengajukan laporan versi antara untuk ditinjau.",
+          trans: "设计院也提交了中间版报告供审核。"
+        },
+        {
+          speaker: "B",
+          text: "Bagaimana dengan izin yang terlambat?",
+          trans: "逾期许可情况如何？"
+        },
+        {
+          speaker: "A",
+          text: "Ada {angka} tugas terlambat, terutama pembebasan lahan dan perizinan.",
+          trans: "有 {angka} 项任务逾期，集中在征地和许可。"
+        },
+        {
+          speaker: "A",
+          text: "Tim Indonesia memantau setiap izin dan kami mengoordinasikan jalur persetujuan.",
+          trans: "印尼团队督办各项许可，我们协调批复路径。"
+        },
+        {
+          speaker: "B",
+          text: "Apa langkah percepatan minggu depan?",
+          trans: "下周有什么加快措施？"
+        },
+        {
+          speaker: "A",
+          text: "Kami mempercepat pengumpulan data hidrologi dan menyiapkan opsi cadangan.",
+          trans: "我们加快水文数据收集并准备替代方案。"
+        },
+        {
+          speaker: "A",
+          text: "Kami juga mengadakan rapat mingguan untuk menindaklanjuti semua temuan.",
+          trans: "我们也召开周例会跟进所有问题。"
+        },
+        {
+          speaker: "B",
+          text: "Kapan komentar desain bisa dikembalikan?",
+          trans: "设计审核意见何时能返回？"
+        },
+        {
+          speaker: "A",
+          text: "Komentar teks paling lambat tanggal {angka} Oktober; untuk gambar, konsultan menjelaskan minggu depan.",
+          trans: "文本意见最迟 {angka} 月 {angka} 日；图纸问题设计方下周澄清。"
+        },
+        {
+          speaker: "A",
+          text: "Untuk fotovoltaik, kami membandingkan skema dari beberapa pemasok dan memilih yang terbaik.",
+          trans: "光伏方面，我们正比选多家供应商方案并选定最优。"
+        },
+        {
+          speaker: "A",
+          text: "Pembangkit panas sisa nantinya membangkitkan listrik dari gas buang pabrik.",
+          trans: "余热电厂将来利用厂区废气发电。"
+        },
+        {
+          speaker: "A",
+          text: "Empat paket energi juga mencakup penyimpanan listrik dari fotovoltaik.",
+          trans: "能源四专项还包括光伏电力储能。"
+        },
+        {
+          speaker: "B",
+          text: "Baik, pastikan semua tenggat terpenuhi dan item terlambat segera ditutup.",
+          trans: "好，确保所有节点兑现，逾期事项尽快闭环。"
+        }
+      ]
+    },
+    {
+      title: "与能源组协调初设反馈节点",
+      icon: "🤝",
+      dialogue: [
+        {
+          speaker: "A",
+          text: "Halo, mari kita membahas dan mengoordinasikan jadwal umpan balik desain minggu ini.",
+          trans: "你好，我们讨论并协调一下本周设计反馈的安排。"
+        },
+        {
+          speaker: "B",
+          text: "Baik, tim saya sedang meninjau gambar proses dari empat paket energi.",
+          trans: "好，我团队正在审核能源四专项的过程版图纸。"
+        },
+        {
+          speaker: "A",
+          text: "Komentar teks harus diselesaikan sebelum tanggal {angka} Oktober.",
+          trans: "文本意见须在 {angka} 月 {angka} 日前完成。"
+        },
+        {
+          speaker: "B",
+          text: "Kami membutuhkan klarifikasi dari konsultan untuk beberapa gambar.",
+          trans: "部分图纸我们需要设计方澄清。"
+        },
+        {
+          speaker: "A",
+          text: "Saya akan menjelaskan pertanyaan itu lewat surat resmi.",
+          trans: "我会通过正式函件澄清这些问题。"
+        },
+        {
+          speaker: "B",
+          text: "Kapan rapat koordinasi bisa diadakan?",
+          trans: "协调会何时能召开？"
+        },
+        {
+          speaker: "A",
+          text: "Saya menjadwalkan rapat hari Kamis; semua masukan dikumpulkan sebelum itu.",
+          trans: "我把会议排在周四，所有意见在此前汇总。"
+        },
+        {
+          speaker: "B",
+          text: "Setuju, tim saya mempersiapkan daftar masalah dan memantau tenggat setiap hari.",
+          trans: "同意，我团队提前准备问题清单并每天督办节点。"
+        },
+        {
+          speaker: "A",
+          text: "Mohon kirim masukan teknis sebelum rapat supaya efisien.",
+          trans: "请在会前发来技术意见，提高效率。"
+        },
+        {
+          speaker: "B",
+          text: "Baik, kami juga menilai setiap komentar sebelum rapat.",
+          trans: "好，会前我们也会评估每条意见。"
+        },
+        {
+          speaker: "A",
+          text: "Tim saya menindaklanjuti komentar dari Neo Energy.",
+          trans: "我团队负责跟进 Neo Energy 的意见。"
+        },
+        {
+          speaker: "B",
+          text: "Kalau ada kendala, segera kami laporkan ke Anda.",
+          trans: "如有障碍，我们立即向您汇报。"
+        },
+        {
+          speaker: "A",
+          text: "Satu lagi, kita akan mempercepat dukungan pembebasan lahan untuk paket energi.",
+          trans: "另外，我们将加快能源专项的征地支持。"
+        },
+        {
+          speaker: "B",
+          text: "Siap, kita tutup semua komentar sebelum tenggat.",
+          trans: "收到，我们在截止前闭环所有意见。"
+        }
+      ]
+    },
+    {
+      title: "与 PLN 对接光伏并网政策",
+      icon: "🏢",
+      dialogue: [
+        {
+          speaker: "A",
+          text: "Selamat pagi, kami ingin membahas kebijakan interkoneksi proyek fotovoltaik.",
+          trans: "早上好，我们想沟通光伏项目的并网政策。"
+        },
+        {
+          speaker: "B",
+          text: "Silakan jelaskan kapasitasnya dan bagaimana Anda menjadwalkan proyek ini.",
+          trans: "请说明项目容量以及贵方如何排定进度。"
+        },
+        {
+          speaker: "A",
+          text: "Proyek kami membangkitkan listrik untuk kawasan smelter, kapasitas {angka} megawatt.",
+          trans: "本项目为冶炼园区发电，容量 {angka} 兆瓦。"
+        },
+        {
+          speaker: "A",
+          text: "Energi disimpan dalam baterai untuk menyeimbangkan beban.",
+          trans: "电能由电池储存以平衡负荷。"
+        },
+        {
+          speaker: "B",
+          text: "Skema seperti ini perlu dinilai sesuai aturan terbaru.",
+          trans: "此类方案需按最新规定评估。"
+        },
+        {
+          speaker: "A",
+          text: "Kami membandingkan beberapa skema dan memilih yang paling sesuai.",
+          trans: "我们正在比选多个方案并选定最合适的。"
+        },
+        {
+          speaker: "B",
+          text: "Silakan ajukan dokumen kebutuhan pemilik secara resmi.",
+          trans: "请正式提交业主需求文件。"
+        },
+        {
+          speaker: "A",
+          text: "Dokumen sudah kami persiapkan dan akan dikirim minggu ini.",
+          trans: "文件我们已准备好，本周内发送。"
+        },
+        {
+          speaker: "B",
+          text: "Kami juga membutuhkan data pola beban kawasan Anda.",
+          trans: "我们还需要贵园区的负荷曲线数据。"
+        },
+        {
+          speaker: "A",
+          text: "Kami mengumpulkan data itu bersama tim operasional.",
+          trans: "我们正在与运营团队收集这些数据。"
+        },
+        {
+          speaker: "B",
+          text: "Baik, kami akan melaporkan rencana ini ke kantor pusat.",
+          trans: "好，我们将向总部汇报此方案。"
+        },
+        {
+          speaker: "A",
+          text: "Terima kasih, kami menindaklanjuti setiap masukan dari PLN.",
+          trans: "谢谢，我们将跟进 PLN 的每条意见。"
+        }
+      ]
+    }
+  ],
+  quiz: {
+    title: "周汇报测试 (15题)",
+    questions: [
+      {
+        q: "1. 董事长问 'Mengapa ada tugas yang terlambat minggu ini?'（为什么本周有逾期任务？），标准回答的第一段应该是？",
+        options: [
+          "A) 承诺新的完成时限",
+          "B) 承认并严肃对待逾期（态度）",
+          "C) 解释客观归因"
+        ],
+        a: 1,
+        explain: "标准答四段式=态度→事实→措施→承诺，第一步先表态：Kami mengakui...（我们承认）"
+      },
+      {
+        q: "2. 'Benar, item memang tertunda. Penyebabnya adalah...' 这段话在标准答结构中属于？",
+        options: [
+          "A) 态度+事实",
+          "B) 措施+承诺",
+          "C) 数据口径说明"
+        ],
+        a: 0,
+        explain: "Benar...承认=态度；Penyebabnya adalah...=客观归因（事实），禁推责"
+      },
+      {
+        q: "3. 被追问数字口径时，标准回应的正确顺序是？",
+        options: [
+          "A) 口径→来源→对比→确认",
+          "B) 来源→口径→确认→对比",
+          "C) 对比→口径→来源→确认"
+        ],
+        a: 0,
+        explain: "REP-ANS-02 公式：Angka dihitung dengan metode（口径）→ Sumber datanya（来源）→ Dibandingkan（对比）→ Jika perlu detail（确认）"
+      },
+      {
+        q: "4. 'Angka progres dihitung dengan metode bobot pekerjaan, bukan perkiraan kasar.' 回答的是哪类追问？",
+        options: [
+          "A) 进度质疑",
+          "B) 数据追问",
+          "C) 资源请求"
+        ],
+        a: 1,
+        explain: "解释数字怎么算的=数据追问（Q-T2）"
+      },
+      {
+        q: "5. 回答风险询问时，'Penanggung jawabnya tim pengadaan, pemantauan setiap tiga hari.' 属于四段中的？",
+        options: [
+          "A) 风险排序",
+          "B) 影响面",
+          "C) 责任+监控频率"
+        ],
+        a: 2,
+        explain: "风险四段=排序→影响→措施→责任（含监控频率）"
+      },
+      {
+        q: "6. 'Risiko utamanya adalah keterlambatan pengiriman peralatan impor.' 在风险回答中这是？",
+        options: [
+          "A) 风险排序（最大风险）",
+          "B) 缓解措施",
+          "C) 影响面"
+        ],
+        a: 0,
+        explain: "Risiko utamanya=最大的风险，先排序再展开"
+      },
+      {
+        q: "7. 资源请求回答 'Idealnya tersedia sebelum bulan depan.' 是四段式的？",
+        options: [
+          "A) 需求",
+          "B) 时限",
+          "C) 用途"
+        ],
+        a: 1,
+        explain: "资源四段=需求→数量→用途→时限（Idealnya sebelum=最晚何时）"
+      },
+      {
+        q: "8. 精简变体的砍段顺序固定为？",
+        options: [
+          "A) 先砍态度",
+          "B) 对比→确认→责任",
+          "C) 先砍承诺"
+        ],
+        a: 1,
+        explain: "先砍次要信息：对比、确认、责任；态度和承诺保留"
+      },
+      {
+        q: "9. 'menindaklanjuti' 在汇报语境中的意思是？",
+        options: [
+          "A) 讨论",
+          "B) 跟进",
+          "C) 批准"
+        ],
+        a: 1,
+        explain: "menindaklanjuti=跟进（tindak lanjut），RCO 例句：Kami akan menindaklanjuti komentar dari Neo Energy"
+      },
+      {
+        q: "10. 'memantau' 与 'mengoordinasikan' 的区别是？",
+        options: [
+          "A) 前者=督办监控，后者=多方协调",
+          "B) 前者=协调，后者=监控",
+          "C) 同义词可互换"
+        ],
+        a: 0,
+        explain: "memantau=监控/督办（pantau）；koordinasi=协调（多部门对齐）"
+      },
+      {
+        q: "11. 'Pembangkit listrik tenaga panas sisa' 中 'membangkitkan' 的含义是？",
+        options: [
+          "A) 建设电厂",
+          "B) 发电",
+          "C) 储存电力"
+        ],
+        a: 1,
+        explain: "membangkitkan=发电（bangkit=升起/唤起），pembangkit listrik=发电厂"
+      },
+      {
+        q: "12. S-A 场景中董事长问 'Bagaimana dengan izin yang terlambat?' 属于什么话轮？",
+        options: [
+          "A) 非善意话轮（质疑/追问）",
+          "B) 寒暄开场",
+          "C) 行动项确认"
+        ],
+        a: 0,
+        explain: "对逾期事项的质疑=非善意话轮，是问答对的钩子（H-01）"
+      },
+      {
+        q: "13. 'Progres proyek telah mencapai angka sebesar {angka} persen.' 中 sebesar 的用法是？",
+        options: [
+          "A) 数字后置的商务规范表达",
+          "B) 时间状语前置标记",
+          "C) 被动语态标记"
+        ],
+        a: 0,
+        explain: "印尼语商务汇报数字用 sebesar 引出：mencapai angka sebesar X persen"
+      },
+      {
+        q: "14. 汇报五段叙事主线的正确顺序是？",
+        options: [
+          "A) 风险→完成→计划",
+          "B) 完成→进度→计划→风险→请求",
+          "C) 请求→计划→完成"
+        ],
+        a: 1,
+        explain: "REP2C 五段切片：P1已完成→P2进行中→P3计划→P4风险→P5请求"
+      },
+      {
+        q: "15. 'merahasiakan'（保密）的变形表包含？",
+        options: [
+          "A) dirahasiakan / kerahasiaan",
+          "B) memrahasia / perahasiaan",
+          "C) 无变形"
+        ],
+        a: 0,
+        explain: "meN--kan 动词：merahasiakan→dirahasiakan（被动）→kerahasiaan（ke--an 名词）"
+      }
+    ]
+  },
+  quiz_answers: "Kunci Jawaban Laporan Mingguan (话题30):\n1.B | 2.A | 3.A | 4.B | 5.C | 6.A | 7.B | 8.B | 9.B | 10.A\n11.B | 12.A | 13.A | 14.B | 15.A\n\nTips: Kuasai pola jawaban 4 bagian (sikap→fakta→langkah→komitmen) saat ditanya atasan. Gunakan sebesar untuk angka, dan awali dengan keterangan waktu. Semangat!"
+},
 };
 
   const topicCalendar = {
@@ -14022,6 +14644,7 @@ emergency_response: {
   "2026-10-08": {topic: "emergency_response", day: 1, label: "词汇+语法+语型"},
   "2026-10-09": {topic: "emergency_response", day: 2, label: "第2课 · 场景对话"},
   "2026-10-10": {topic: "emergency_response", day: 3, label: "第3课 · 演讲+复习", allDays: true},
+  "2026-10-11": {topic: "weekly_report", day: 1, label: "📊 周汇报 · REP2C · 词汇+场景+测试", allDays: true},
 };
 
 
@@ -60188,6 +60811,1723 @@ const dailyNotesDB = {
         ]
       }
     ]
+  },
+  "2026-10-11": {
+    "date": "2026-10-11",
+    "topicKey": "weekly_report",
+    "source": "BIT V1.0 + BIO 审查",
+    "entries": [
+      {
+        "word": "menyelesaikan",
+        "cn": "完成（工作/任务）",
+        "en": "to complete / to finish",
+        "root": "selesai",
+        "forms": [
+          {
+            "form": "menyelesaikan",
+            "pos": "动词",
+            "mean": "完成（meN- 主动）"
+          },
+          {
+            "form": "diselesaikan",
+            "pos": "被动动词",
+            "mean": "被完成（di- 被动）"
+          },
+          {
+            "form": "penyelesaian",
+            "pos": "名词",
+            "mean": "完成/解决（peN--an 名词化）"
+          }
+        ],
+        "formsNote": "",
+        "note": "meN- 主动 / di- 被动 / peN--an 名词化 REP2C 原始词",
+        "synonyms": [
+          "menuntaskan",
+          "merampungkan"
+        ],
+        "antonyms": [
+          "menunda",
+          "menghentikan"
+        ],
+        "examples": [
+          {
+            "scene": "场景",
+            "id": "Tim kami telah menyelesaikan tinjauan desain awal fasilitas tailing.",
+            "cn": "我们团队已完成尾渣库初步设计审核。"
+          },
+          {
+            "scene": "场景",
+            "id": "Umpan balik teks akan diselesaikan sebelum tenggat waktu.",
+            "cn": "文本反馈将在截止日期前完成。"
+          }
+        ]
+      },
+      {
+        "word": "mengajukan",
+        "cn": "提交（报告/申请）",
+        "en": "to submit",
+        "root": "aju",
+        "forms": [
+          {
+            "form": "mengajukan",
+            "pos": "动词",
+            "mean": "提交（meN- 主动）"
+          },
+          {
+            "form": "diajukan",
+            "pos": "被动动词",
+            "mean": "被提交（di- 被动）"
+          },
+          {
+            "form": "pengajuan",
+            "pos": "名词",
+            "mean": "提交/申请（peN--an 名词化）"
+          }
+        ],
+        "formsNote": "",
+        "note": "meN- 主动 / di- 被动 / peN--an 名词化 REP2C 原始词",
+        "synonyms": [
+          "menyampaikan",
+          "menyerahkan"
+        ],
+        "antonyms": [
+          "menarik",
+          "menahan"
+        ],
+        "examples": [
+          {
+            "scene": "场景",
+            "id": "Institut desain telah mengajukan draf laporan desain awal.",
+            "cn": "设计院已提交初设报告初稿。"
+          },
+          {
+            "scene": "场景",
+            "id": "Berkas pengajuan izin dermaga sudah lengkap.",
+            "cn": "码头许可申请文件已齐备。"
+          }
+        ]
+      },
+      {
+        "word": "meninjau",
+        "cn": "审核/审查",
+        "en": "to review",
+        "root": "tinjau",
+        "forms": [
+          {
+            "form": "meninjau",
+            "pos": "动词",
+            "mean": "审核（meN- 主动）"
+          },
+          {
+            "form": "ditinjau",
+            "pos": "被动动词",
+            "mean": "被审核（di- 被动）"
+          },
+          {
+            "form": "tinjauan",
+            "pos": "名词",
+            "mean": "审核/评估（peN--an 不规则：tinjauan）"
+          }
+        ],
+        "formsNote": "",
+        "note": "meN- 主动 / di- 被动 / 名词化 tinjauan REP2C 原始词",
+        "synonyms": [
+          "memeriksa",
+          "mengkaji"
+        ],
+        "antonyms": [
+          "menyetujui",
+          "melewatkan"
+        ],
+        "examples": [
+          {
+            "scene": "场景",
+            "id": "Tim Neo Energy sedang meninjau laporan versi antara.",
+            "cn": "Neo Energy 团队正在审核中间版报告。"
+          },
+          {
+            "scene": "场景",
+            "id": "Gambar proses akan ditinjau oleh tim energi.",
+            "cn": "过程版图纸将由能源组审核。"
+          }
+        ]
+      },
+      {
+        "word": "masukan",
+        "cn": "反馈/意见",
+        "en": "feedback / input",
+        "root": "masuk",
+        "forms": [
+          {
+            "form": "masukan",
+            "pos": "名词",
+            "mean": "反馈/意见（词根派生名词）"
+          },
+          {
+            "form": "memasukkan",
+            "pos": "动词",
+            "mean": "输入/列入（meN--kan）"
+          },
+          {
+            "form": "dimasukkan",
+            "pos": "被动动词",
+            "mean": "被列入（di- 被动）"
+          }
+        ],
+        "formsNote": "",
+        "note": "词根派生名词 / meN--kan 及物 / di- 被动 自中文'反馈'转译",
+        "synonyms": [
+          "umpan balik",
+          "tanggapan"
+        ],
+        "antonyms": [
+          "sanggahan",
+          "penolakan"
+        ],
+        "examples": [
+          {
+            "scene": "场景",
+            "id": "Masukan dari tim desain sudah kami terima.",
+            "cn": "设计团队的反馈意见我们已收到。"
+          },
+          {
+            "scene": "场景",
+            "id": "Semua masukan akan dimasukkan ke dalam daftar tindak lanjut.",
+            "cn": "所有意见将列入跟进清单。"
+          }
+        ]
+      },
+      {
+        "word": "merevisi",
+        "cn": "修订",
+        "en": "to revise",
+        "root": "revisi",
+        "forms": [
+          {
+            "form": "merevisi",
+            "pos": "动词",
+            "mean": "修订（meN- 主动）"
+          },
+          {
+            "form": "direvisi",
+            "pos": "被动动词",
+            "mean": "被修订（di- 被动）"
+          },
+          {
+            "form": "revisi",
+            "pos": "名词",
+            "mean": "修订（词根作名词）"
+          }
+        ],
+        "formsNote": "",
+        "note": "meN- 主动 / di- 被动 / 词根作名词 REP2C 原始词",
+        "synonyms": [
+          "memperbaiki",
+          "mengubah"
+        ],
+        "antonyms": [
+          "mempertahankan",
+          "mengesahkan"
+        ],
+        "examples": [
+          {
+            "scene": "场景",
+            "id": "Institut Changsha sedang merevisi laporan desain awal.",
+            "cn": "长沙院正在修订初设报告。"
+          },
+          {
+            "scene": "场景",
+            "id": "Draf final akan dikirim setelah revisi selesai.",
+            "cn": "修订完成后将发送定稿。"
+          }
+        ]
+      },
+      {
+        "word": "menguji",
+        "cn": "试验/测试",
+        "en": "to test",
+        "root": "uji",
+        "forms": [
+          {
+            "form": "menguji",
+            "pos": "动词",
+            "mean": "试验（meN- 主动）"
+          },
+          {
+            "form": "diuji",
+            "pos": "被动动词",
+            "mean": "被试验（di- 被动）"
+          },
+          {
+            "form": "pengujian",
+            "pos": "名词",
+            "mean": "试验/检测（peN--an 名词化）"
+          }
+        ],
+        "formsNote": "",
+        "note": "meN- 主动 / di- 被动 / peN--an 名词化 REP2C 原始词",
+        "synonyms": [
+          "mencoba",
+          "mengetes"
+        ],
+        "antonyms": [
+          "mengabaikan",
+          "melewati"
+        ],
+        "examples": [
+          {
+            "scene": "场景",
+            "id": "Sampel bijih sedang diuji di laboratorium.",
+            "cn": "矿石样品正在实验室试验。"
+          },
+          {
+            "scene": "场景",
+            "id": "Pengujian metalurgi berjalan sesuai jadwal.",
+            "cn": "冶金试验按计划推进。"
+          }
+        ]
+      },
+      {
+        "word": "menyetujui",
+        "cn": "批复/批准",
+        "en": "to approve",
+        "root": "setuju",
+        "forms": [
+          {
+            "form": "menyetujui",
+            "pos": "动词",
+            "mean": "批准（meN- 主动）"
+          },
+          {
+            "form": "disetujui",
+            "pos": "被动动词",
+            "mean": "被批准（di- 被动）"
+          },
+          {
+            "form": "persetujuan",
+            "pos": "名词",
+            "mean": "批复/同意（peN--an 名词化）"
+          }
+        ],
+        "formsNote": "",
+        "note": "meN- 主动 / di- 被动 / peN--an 名词化 REP2C 原始词",
+        "synonyms": [
+          "mengizinkan",
+          "mengesahkan"
+        ],
+        "antonyms": [
+          "menolak",
+          "menangguhkan"
+        ],
+        "examples": [
+          {
+            "scene": "场景",
+            "id": "Pemerintah telah menyetujui izin pembangunan dermaga khusus.",
+            "cn": "政府已批复专用码头建设许可。"
+          },
+          {
+            "scene": "场景",
+            "id": "Izin perairan tahap pertama telah disetujui.",
+            "cn": "水域许可首次批复已获批。"
+          }
+        ]
+      },
+      {
+        "word": "membebaskan",
+        "cn": "征收（土地）",
+        "en": "to acquire (land)",
+        "root": "bebas",
+        "forms": [
+          {
+            "form": "membebaskan",
+            "pos": "动词",
+            "mean": "征收/释放（meN--kan）"
+          },
+          {
+            "form": "dibebaskan",
+            "pos": "被动动词",
+            "mean": "被征收（di- 被动）"
+          },
+          {
+            "form": "pembebasan",
+            "pos": "名词",
+            "mean": "征收/释放（peN--an 名词化）"
+          }
+        ],
+        "formsNote": "",
+        "note": "meN--kan 主动 / di- 被动 / peN--an 名词化 REP2C 原始词",
+        "synonyms": [
+          "mengambil alih",
+          "memperoleh"
+        ],
+        "antonyms": [
+          "menjual",
+          "melepaskan"
+        ],
+        "examples": [
+          {
+            "scene": "场景",
+            "id": "Pembebasan lahan masih terlambat dan perlu didorong.",
+            "cn": "征地进度仍逾期，需重点推进。"
+          },
+          {
+            "scene": "场景",
+            "id": "Lahan untuk proyek energi sedang dibebaskan.",
+            "cn": "能源项目用地正在征收中。"
+          }
+        ]
+      },
+      {
+        "word": "mengambil",
+        "cn": "取（水）/采集",
+        "en": "to take / to abstract",
+        "root": "ambil",
+        "forms": [
+          {
+            "form": "mengambil",
+            "pos": "动词",
+            "mean": "取/采集（meN- 主动）"
+          },
+          {
+            "form": "diambil",
+            "pos": "被动动词",
+            "mean": "被取用（di- 被动）"
+          },
+          {
+            "form": "pengambilan",
+            "pos": "名词",
+            "mean": "取用/采集（peN--an 名词化）"
+          }
+        ],
+        "formsNote": "",
+        "note": "meN- 主动 / di- 被动 / peN--an 名词化 REP2C 原始词",
+        "synonyms": [
+          "memperoleh",
+          "mengangkut"
+        ],
+        "antonyms": [
+          "mengembalikan",
+          "memberikan"
+        ],
+        "examples": [
+          {
+            "scene": "场景",
+            "id": "Izin pengambilan air masih dalam proses.",
+            "cn": "取水许可仍在办理中。"
+          },
+          {
+            "scene": "场景",
+            "id": "Data hidrologi diambil oleh tim survei.",
+            "cn": "水文数据由勘测团队采集。"
+          }
+        ]
+      },
+      {
+        "word": "membangun",
+        "cn": "建设",
+        "en": "to build / to construct",
+        "root": "bangun",
+        "forms": [
+          {
+            "form": "membangun",
+            "pos": "动词",
+            "mean": "建设（meN- 主动）"
+          },
+          {
+            "form": "dibangun",
+            "pos": "被动动词",
+            "mean": "被建设（di- 被动）"
+          },
+          {
+            "form": "pembangunan",
+            "pos": "名词",
+            "mean": "建设（peN--an 名词化）"
+          }
+        ],
+        "formsNote": "",
+        "note": "meN- 主动 / di- 被动 / peN--an 名词化 REP2C 原始词",
+        "synonyms": [
+          "mendirikan",
+          "mengerjakan"
+        ],
+        "antonyms": [
+          "membongkar",
+          "merobohkan"
+        ],
+        "examples": [
+          {
+            "scene": "场景",
+            "id": "Perusahaan akan membangun dermaga khusus di kawasan industri.",
+            "cn": "公司将在园区建设专用码头。"
+          },
+          {
+            "scene": "场景",
+            "id": "Pembangunan pembangkit listrik tenaga air sedang disiapkan.",
+            "cn": "水电工程建设正在筹备中。"
+          }
+        ]
+      },
+      {
+        "word": "menghasilkan",
+        "cn": "产生/产出",
+        "en": "to generate / to produce",
+        "root": "hasil",
+        "forms": [
+          {
+            "form": "menghasilkan",
+            "pos": "动词",
+            "mean": "产生（meN--kan）"
+          },
+          {
+            "form": "dihasilkan",
+            "pos": "被动动词",
+            "mean": "被产出（di- 被动）"
+          },
+          {
+            "form": "hasil",
+            "pos": "名词",
+            "mean": "成果/结果（词根作名词）"
+          }
+        ],
+        "formsNote": "",
+        "note": "meN--kan 使动 / di- 被动 / 词根作名词 REP2C 原始词",
+        "synonyms": [
+          "memproduksi",
+          "menciptakan"
+        ],
+        "antonyms": [
+          "mengonsumsi",
+          "menghabiskan"
+        ],
+        "examples": [
+          {
+            "scene": "场景",
+            "id": "Pembangkit listrik tenaga uap menghasilkan listrik untuk pabrik.",
+            "cn": "蒸汽电厂为厂区发电。"
+          },
+          {
+            "scene": "场景",
+            "id": "Laporan bulanan menghasilkan data yang dapat dilacak.",
+            "cn": "月度汇报产出可追踪的数据。"
+          }
+        ]
+      },
+      {
+        "word": "membangkitkan",
+        "cn": "发电",
+        "en": "to generate (power)",
+        "root": "bangkit",
+        "forms": [
+          {
+            "form": "membangkitkan",
+            "pos": "动词",
+            "mean": "发电/唤起（meN--kan）"
+          },
+          {
+            "form": "dibangkitkan",
+            "pos": "被动动词",
+            "mean": "被发出（di- 被动）"
+          },
+          {
+            "form": "pembangkitan",
+            "pos": "名词",
+            "mean": "发电（peN--an 名词化）"
+          }
+        ],
+        "formsNote": "",
+        "note": "meN--kan 主动 / di- 被动 / peN--an 名词化 REP2C 原始词",
+        "synonyms": [
+          "menghasilkan",
+          "memproduksi"
+        ],
+        "antonyms": [
+          "menghentikan",
+          "mematikan"
+        ],
+        "examples": [
+          {
+            "scene": "场景",
+            "id": "Pembangkit listrik tenaga panas sisa membangkitkan listrik dari gas buang.",
+            "cn": "余热电厂利用废气发电。"
+          },
+          {
+            "scene": "场景",
+            "id": "Pembangkitan listrik dari tenaga surya sedang dikaji.",
+            "cn": "光伏发电正在研究中。"
+          }
+        ]
+      },
+      {
+        "word": "menyimpan",
+        "cn": "储存",
+        "en": "to store",
+        "root": "simpan",
+        "forms": [
+          {
+            "form": "menyimpan",
+            "pos": "动词",
+            "mean": "储存（meN- 主动）"
+          },
+          {
+            "form": "disimpan",
+            "pos": "被动动词",
+            "mean": "被储存（di- 被动）"
+          },
+          {
+            "form": "penyimpanan",
+            "pos": "名词",
+            "mean": "储存（peN--an 名词化）"
+          }
+        ],
+        "formsNote": "",
+        "note": "meN- 主动 / di- 被动 / peN--an 名词化 REP2C 原始词",
+        "synonyms": [
+          "menampung",
+          "menimbun"
+        ],
+        "antonyms": [
+          "mengeluarkan",
+          "menghabiskan"
+        ],
+        "examples": [
+          {
+            "scene": "场景",
+            "id": "Baterai menyimpan listrik dari panel surya.",
+            "cn": "电池储存光伏电力。"
+          },
+          {
+            "scene": "场景",
+            "id": "Penyimpanan energi menjadi bagian desain sistem energi.",
+            "cn": "储能是能源系统设计的组成部分。"
+          }
+        ]
+      },
+      {
+        "word": "menilai",
+        "cn": "评估",
+        "en": "to evaluate / to assess",
+        "root": "nilai",
+        "forms": [
+          {
+            "form": "menilai",
+            "pos": "动词",
+            "mean": "评估（meN- 主动）"
+          },
+          {
+            "form": "dinilai",
+            "pos": "被动动词",
+            "mean": "被评估（di- 被动）"
+          },
+          {
+            "form": "penilaian",
+            "pos": "名词",
+            "mean": "评估（peN--an 名词化）"
+          }
+        ],
+        "formsNote": "",
+        "note": "meN- 主动 / di- 被动 / peN--an 名词化 REP2C 原始词",
+        "synonyms": [
+          "mengevaluasi",
+          "menaksir"
+        ],
+        "antonyms": [
+          "mengabaikan",
+          "meremehkan"
+        ],
+        "examples": [
+          {
+            "scene": "场景",
+            "id": "Panitia akan menilai penawaran teknis para pemasok.",
+            "cn": "评标组将评估供应商的技术标。"
+          },
+          {
+            "scene": "场景",
+            "id": "Penilaian teknis dijadwalkan awal tahun depan.",
+            "cn": "技术评标排定于明年初。"
+          }
+        ]
+      },
+      {
+        "word": "melelangkan",
+        "cn": "招标",
+        "en": "to tender / to auction",
+        "root": "lelang",
+        "forms": [
+          {
+            "form": "melelangkan",
+            "pos": "动词",
+            "mean": "招标（meN--kan）"
+          },
+          {
+            "form": "dilelangkan",
+            "pos": "被动动词",
+            "mean": "被招标（di- 被动）"
+          },
+          {
+            "form": "pelelangan",
+            "pos": "名词",
+            "mean": "招标/拍卖（peN--an 名词化）"
+          }
+        ],
+        "formsNote": "",
+        "note": "meN--kan 主动 / di- 被动 / peN--an 名词化 自中文'招标'转译",
+        "synonyms": [
+          "menenderkan",
+          "membuka penawaran"
+        ],
+        "antonyms": [
+          "membatalkan",
+          "menunjuk langsung"
+        ],
+        "examples": [
+          {
+            "scene": "场景",
+            "id": "Pekerjaan pengambilan air akan dilelangkan tahun depan.",
+            "cn": "取水工程将于明年招标。"
+          },
+          {
+            "scene": "场景",
+            "id": "Pelelangan dokumen tender sedang disiapkan.",
+            "cn": "招标文件正在准备中。"
+          }
+        ]
+      },
+      {
+        "word": "menjadwalkan",
+        "cn": "排定（日程）",
+        "en": "to schedule",
+        "root": "jadwal",
+        "forms": [
+          {
+            "form": "menjadwalkan",
+            "pos": "动词",
+            "mean": "排定（meN--kan）"
+          },
+          {
+            "form": "dijadwalkan",
+            "pos": "被动动词",
+            "mean": "被排定（di- 被动）"
+          },
+          {
+            "form": "penjadwalan",
+            "pos": "名词",
+            "mean": "排程（peN--an 名词化）"
+          }
+        ],
+        "formsNote": "",
+        "note": "meN--kan 主动 / di- 被动 / peN--an 名词化 REP2C 原始词",
+        "synonyms": [
+          "mengatur",
+          "menetapkan"
+        ],
+        "antonyms": [
+          "membatalkan",
+          "menunda"
+        ],
+        "examples": [
+          {
+            "scene": "场景",
+            "id": "Kami telah menjadwalkan rapat mingguan setiap Senin.",
+            "cn": "我们已排定每周一例会。"
+          },
+          {
+            "scene": "场景",
+            "id": "Evaluasi teknis dijadwalkan setelah penerimaan dokumen tender.",
+            "cn": "技术评标排定在接收投标文件之后。"
+          }
+        ]
+      },
+      {
+        "word": "mengoordinasikan",
+        "cn": "协调",
+        "en": "to coordinate",
+        "root": "koordinasi",
+        "forms": [
+          {
+            "form": "mengoordinasikan",
+            "pos": "动词",
+            "mean": "协调（meN--kan）"
+          },
+          {
+            "form": "dikoordinasikan",
+            "pos": "被动动词",
+            "mean": "被协调（di- 被动）"
+          },
+          {
+            "form": "koordinasi",
+            "pos": "名词",
+            "mean": "协调（词根作名词）"
+          }
+        ],
+        "formsNote": "",
+        "note": "meN--kan 主动 / di- 被动 / 词根作名词 REP2C 原始词",
+        "synonyms": [
+          "menyelaraskan",
+          "mengatur"
+        ],
+        "antonyms": [
+          "memisahkan",
+          "membiarkan"
+        ],
+        "examples": [
+          {
+            "scene": "场景",
+            "id": "Tim Indonesia mengoordinasikan perizinan dengan pemerintah daerah.",
+            "cn": "印尼团队与地方政府协调许可事项。"
+          },
+          {
+            "scene": "场景",
+            "id": "Koordinasi desain membutuhkan satu jendela komunikasi.",
+            "cn": "设计协调需要统一的沟通窗口。"
+          }
+        ]
+      },
+      {
+        "word": "menindaklanjuti",
+        "cn": "跟进",
+        "en": "to follow up",
+        "root": "lanjut",
+        "forms": [
+          {
+            "form": "menindaklanjuti",
+            "pos": "动词",
+            "mean": "跟进（meN-...-i 及物）"
+          },
+          {
+            "form": "ditindaklanjuti",
+            "pos": "被动动词",
+            "mean": "被跟进（di- 被动）"
+          },
+          {
+            "form": "tindak lanjut",
+            "pos": "名词",
+            "mean": "跟进事项（复合名词）"
+          }
+        ],
+        "formsNote": "",
+        "note": "meN-...-i 及物 / di- 被动 / 复合名词 REP2C 原始词",
+        "synonyms": [
+          "melanjutkan",
+          "memantau"
+        ],
+        "antonyms": [
+          "mengabaikan",
+          "melupakan"
+        ],
+        "examples": [
+          {
+            "scene": "场景",
+            "id": "Kami akan menindaklanjuti komentar dari Neo Energy.",
+            "cn": "我们将跟进 Neo Energy 的审核意见。"
+          },
+          {
+            "scene": "场景",
+            "id": "Semua temuan ditindaklanjuti sampai selesai.",
+            "cn": "所有问题跟进至闭环。"
+          }
+        ]
+      },
+      {
+        "word": "membatasi",
+        "cn": "限定/限制",
+        "en": "to limit",
+        "root": "batas",
+        "forms": [
+          {
+            "form": "membatasi",
+            "pos": "动词",
+            "mean": "限定（meN--i）"
+          },
+          {
+            "form": "dibatasi",
+            "pos": "被动动词",
+            "mean": "被限制（di- 被动）"
+          },
+          {
+            "form": "batasan",
+            "pos": "名词",
+            "mean": "限制（-an 名词化）"
+          }
+        ],
+        "formsNote": "",
+        "note": "meN--i 主动 / di- 被动 / -an 名词化 [REP2C-EXT 同义:mengekang]",
+        "synonyms": [
+          "mengekang",
+          "mengerem"
+        ],
+        "antonyms": [
+          "memperluas",
+          "membebaskan"
+        ],
+        "examples": [
+          {
+            "scene": "场景",
+            "id": "Kita harus membatasi jumlah putaran umpan balik.",
+            "cn": "我们必须限定反馈轮次。"
+          },
+          {
+            "scene": "场景",
+            "id": "Batas waktu umpan balik teks sudah ditetapkan.",
+            "cn": "文本反馈截止时间已定。"
+          }
+        ]
+      },
+      {
+        "word": "memantau",
+        "cn": "督办/监控",
+        "en": "to monitor",
+        "root": "pantau",
+        "forms": [
+          {
+            "form": "memantau",
+            "pos": "动词",
+            "mean": "督办/监控（meN- 主动）"
+          },
+          {
+            "form": "dipantau",
+            "pos": "被动动词",
+            "mean": "被督办（di- 被动）"
+          },
+          {
+            "form": "pemantauan",
+            "pos": "名词",
+            "mean": "督办/监测（peN--an 名词化）"
+          }
+        ],
+        "formsNote": "",
+        "note": "meN- 主动 / di- 被动 / peN--an 名词化 REP2C 原始词",
+        "synonyms": [
+          "mengawasi",
+          "mengendalikan"
+        ],
+        "antonyms": [
+          "mengabaikan",
+          "melepaskan"
+        ],
+        "examples": [
+          {
+            "scene": "场景",
+            "id": "Tim memantau tugas yang terlambat setiap minggu.",
+            "cn": "团队每周督办逾期任务。"
+          },
+          {
+            "scene": "场景",
+            "id": "Pemantauan izin dilakukan oleh tim Indonesia.",
+            "cn": "许可督办由印尼团队执行。"
+          }
+        ]
+      },
+      {
+        "word": "mematuhi",
+        "cn": "遵守（合规）",
+        "en": "to comply with",
+        "root": "patuh",
+        "forms": [
+          {
+            "form": "mematuhi",
+            "pos": "动词",
+            "mean": "遵守（meN--i）"
+          },
+          {
+            "form": "dipatuhi",
+            "pos": "被动动词",
+            "mean": "被遵守（di- 被动）"
+          },
+          {
+            "form": "kepatuhan",
+            "pos": "名词",
+            "mean": "合规（ke--an 名词化）"
+          }
+        ],
+        "formsNote": "",
+        "note": "meN--i 主动 / di- 被动 / ke--an 名词化 REP2C 原始词",
+        "synonyms": [
+          "menaati",
+          "mengikuti"
+        ],
+        "antonyms": [
+          "melanggar",
+          "mengabaikan"
+        ],
+        "examples": [
+          {
+            "scene": "场景",
+            "id": "Semua staf harus mematuhi peraturan Indonesia.",
+            "cn": "所有人员须遵守印尼法规。"
+          },
+          {
+            "scene": "场景",
+            "id": "Kepatuhan terhadap aturan lingkungan sangat penting.",
+            "cn": "环保合规非常重要。"
+          }
+        ]
+      },
+      {
+        "word": "memetakan",
+        "cn": "测绘/绘制",
+        "en": "to map / to survey",
+        "root": "peta",
+        "forms": [
+          {
+            "form": "memetakan",
+            "pos": "动词",
+            "mean": "测绘（meN--kan）"
+          },
+          {
+            "form": "dipetakan",
+            "pos": "被动动词",
+            "mean": "被测绘（di- 被动）"
+          },
+          {
+            "form": "pemetaan",
+            "pos": "名词",
+            "mean": "测绘（peN--an 名词化）"
+          }
+        ],
+        "formsNote": "",
+        "note": "meN--kan 主动 / di- 被动 / peN--an 名词化 自中文'测绘'转译",
+        "synonyms": [
+          "mengukur",
+          "mensurvei"
+        ],
+        "antonyms": [
+          "mengabaikan",
+          "menghapus"
+        ],
+        "examples": [
+          {
+            "scene": "场景",
+            "id": "Tim survei telah memetakan medan lokasi proyek.",
+            "cn": "测绘团队已完成项目现场地形测绘。"
+          },
+          {
+            "scene": "场景",
+            "id": "Hasil pemetaan akhir sudah diserahkan.",
+            "cn": "最终测绘资料已提交。"
+          }
+        ]
+      },
+      {
+        "word": "membuang",
+        "cn": "排放/丢弃",
+        "en": "to discharge / to dump",
+        "root": "buang",
+        "forms": [
+          {
+            "form": "membuang",
+            "pos": "动词",
+            "mean": "排放（meN- 主动）"
+          },
+          {
+            "form": "dibuang",
+            "pos": "被动动词",
+            "mean": "被排放（di- 被动）"
+          },
+          {
+            "form": "pembuangan",
+            "pos": "名词",
+            "mean": "排放（peN--an 名词化）"
+          }
+        ],
+        "formsNote": "",
+        "note": "meN- 主动 / di- 被动 / peN--an 名词化 REP2C 原始词",
+        "synonyms": [
+          "mengeluarkan",
+          "menyalurkan"
+        ],
+        "antonyms": [
+          "menampung",
+          "menahan"
+        ],
+        "examples": [
+          {
+            "scene": "场景",
+            "id": "Titik pembuangan air limbah sudah ditentukan.",
+            "cn": "污水排放点已明确。"
+          },
+          {
+            "scene": "场景",
+            "id": "Air limbah tidak boleh dibuang tanpa izin.",
+            "cn": "污水不得无证排放。"
+          }
+        ]
+      },
+      {
+        "word": "mengumpulkan",
+        "cn": "收集",
+        "en": "to collect",
+        "root": "kumpul",
+        "forms": [
+          {
+            "form": "mengumpulkan",
+            "pos": "动词",
+            "mean": "收集（meN--kan）"
+          },
+          {
+            "form": "dikumpulkan",
+            "pos": "被动动词",
+            "mean": "被收集（di- 被动）"
+          },
+          {
+            "form": "pengumpulan",
+            "pos": "名词",
+            "mean": "收集（peN--an 名词化）"
+          }
+        ],
+        "formsNote": "",
+        "note": "meN--kan 主动 / di- 被动 / peN--an 名词化 REP2C 原始词",
+        "synonyms": [
+          "menghimpun",
+          "mendata"
+        ],
+        "antonyms": [
+          "menyebarkan",
+          "membagikan"
+        ],
+        "examples": [
+          {
+            "scene": "场景",
+            "id": "Tim sedang mengumpulkan data pihak ketiga.",
+            "cn": "团队正在收集第三方数据。"
+          },
+          {
+            "scene": "场景",
+            "id": "Pengumpulan data hidrologi masih terlambat.",
+            "cn": "水文数据收集仍然逾期。"
+          }
+        ]
+      },
+      {
+        "word": "mengirim",
+        "cn": "发送",
+        "en": "to send",
+        "root": "kirim",
+        "forms": [
+          {
+            "form": "mengirim",
+            "pos": "动词",
+            "mean": "发送（meN- 主动）"
+          },
+          {
+            "form": "dikirim",
+            "pos": "被动动词",
+            "mean": "被发送（di- 被动）"
+          },
+          {
+            "form": "pengiriman",
+            "pos": "名词",
+            "mean": "发送/寄送（peN--an 名词化）"
+          }
+        ],
+        "formsNote": "",
+        "note": "meN- 主动 / di- 被动 / peN--an 名词化 REP2C 原始词",
+        "synonyms": [
+          "menyampaikan",
+          "menyerahkan"
+        ],
+        "antonyms": [
+          "menerima",
+          "menahan"
+        ],
+        "examples": [
+          {
+            "scene": "场景",
+            "id": "Kami telah mengirim perjanjian kerahasiaan kepada mitra.",
+            "cn": "我们已向合作方发送保密协议。"
+          },
+          {
+            "scene": "场景",
+            "id": "Dokumen kebutuhan pemilik akan dikirim minggu ini.",
+            "cn": "业主需求文件将于本周发送。"
+          }
+        ]
+      },
+      {
+        "word": "mempersiapkan",
+        "cn": "准备",
+        "en": "to prepare",
+        "root": "siap",
+        "forms": [
+          {
+            "form": "mempersiapkan",
+            "pos": "动词",
+            "mean": "准备（meNper--kan）"
+          },
+          {
+            "form": "dipersiapkan",
+            "pos": "被动动词",
+            "mean": "被准备（diper- 被动）"
+          },
+          {
+            "form": "persiapan",
+            "pos": "名词",
+            "mean": "准备（peNper--an 名词化）"
+          }
+        ],
+        "formsNote": "",
+        "note": "meNper--kan 主动 / diper- 被动 / peNper--an 名词化 REP2C 原始词",
+        "synonyms": [
+          "menyiapkan",
+          "merencanakan"
+        ],
+        "antonyms": [
+          "mengabaikan",
+          "menunda"
+        ],
+        "examples": [
+          {
+            "scene": "场景",
+            "id": "Tim telah mempersiapkan dokumen kebutuhan MES.",
+            "cn": "团队已准备好 MES 需求文件。"
+          },
+          {
+            "scene": "场景",
+            "id": "Persiapan tender dimulai lebih awal.",
+            "cn": "招标准备工作提前启动。"
+          }
+        ]
+      },
+      {
+        "word": "membandingkan",
+        "cn": "比选/比较",
+        "en": "to compare",
+        "root": "banding",
+        "forms": [
+          {
+            "form": "membandingkan",
+            "pos": "动词",
+            "mean": "比较/比选（meN--kan）"
+          },
+          {
+            "form": "dibandingkan",
+            "pos": "被动动词",
+            "mean": "被比较（di- 被动）"
+          },
+          {
+            "form": "perbandingan",
+            "pos": "名词",
+            "mean": "比选/对比（per--an 名词化）"
+          }
+        ],
+        "formsNote": "",
+        "note": "meN--kan 主动 / di- 被动 / per--an 名词化 REP2C 原始词",
+        "synonyms": [
+          "menilai",
+          "menimbang"
+        ],
+        "antonyms": [
+          "menyamakan",
+          "menyatukan"
+        ],
+        "examples": [
+          {
+            "scene": "场景",
+            "id": "Kami sedang membandingkan skema dari beberapa pemasok.",
+            "cn": "我们正在比选多家供应商方案。"
+          },
+          {
+            "scene": "场景",
+            "id": "Perbandingan skema fotovoltaik dimulai bulan ini.",
+            "cn": "光伏方案比选本月启动。"
+          }
+        ]
+      },
+      {
+        "word": "memilih",
+        "cn": "选择",
+        "en": "to select / to choose",
+        "root": "pilih",
+        "forms": [
+          {
+            "form": "memilih",
+            "pos": "动词",
+            "mean": "选择（meN- 主动）"
+          },
+          {
+            "form": "dipilih",
+            "pos": "被动动词",
+            "mean": "被选中（di- 被动）"
+          },
+          {
+            "form": "pemilihan",
+            "pos": "名词",
+            "mean": "选择（peN--an 名词化）"
+          }
+        ],
+        "formsNote": "",
+        "note": "meN- 主动 / di- 被动 / peN--an 名词化 REP2C 原始词",
+        "synonyms": [
+          "menyaring",
+          "menetapkan"
+        ],
+        "antonyms": [
+          "menolak",
+          "mengabaikan"
+        ],
+        "examples": [
+          {
+            "scene": "场景",
+            "id": "Perusahaan telah memilih subkontraktor fotovoltaik.",
+            "cn": "公司已选定光伏分包商。"
+          },
+          {
+            "scene": "场景",
+            "id": "Pemilihan konsultan desain sedang berjalan.",
+            "cn": "设计单位比选正在进行中。"
+          }
+        ]
+      },
+      {
+        "word": "membahas",
+        "cn": "讨论",
+        "en": "to discuss",
+        "root": "bahas",
+        "forms": [
+          {
+            "form": "membahas",
+            "pos": "动词",
+            "mean": "讨论（meN- 主动）"
+          },
+          {
+            "form": "dibahas",
+            "pos": "被动动词",
+            "mean": "被讨论（di- 被动）"
+          },
+          {
+            "form": "pembahasan",
+            "pos": "名词",
+            "mean": "讨论（peN--an 名词化）"
+          }
+        ],
+        "formsNote": "",
+        "note": "meN- 主动 / di- 被动 / peN--an 名词化 REP2C 原始词",
+        "synonyms": [
+          "mendiskusikan",
+          "menelaah"
+        ],
+        "antonyms": [
+          "menghindari",
+          "menutupi"
+        ],
+        "examples": [
+          {
+            "scene": "场景",
+            "id": "Kedua pihak membahas skema awal MES.",
+            "cn": "双方讨论 MES 初步方案。"
+          },
+          {
+            "scene": "场景",
+            "id": "Topik risiko dibahas dalam rapat mingguan.",
+            "cn": "风险议题在周例会上讨论。"
+          }
+        ]
+      },
+      {
+        "word": "menghadiri",
+        "cn": "出席/到场",
+        "en": "to attend",
+        "root": "hadir",
+        "forms": [
+          {
+            "form": "menghadiri",
+            "pos": "动词",
+            "mean": "出席（meN--i）"
+          },
+          {
+            "form": "dihadiri",
+            "pos": "被动动词",
+            "mean": "被出席（di- 被动）"
+          },
+          {
+            "form": "kehadiran",
+            "pos": "名词",
+            "mean": "出席/到场（ke--an 名词化）"
+          }
+        ],
+        "formsNote": "",
+        "note": "meN--i 主动 / di- 被动 / ke--an 名词化 REP2C 原始词",
+        "synonyms": [
+          "mengikuti",
+          "datang"
+        ],
+        "antonyms": [
+          "melewatkan",
+          "meninggalkan"
+        ],
+        "examples": [
+          {
+            "scene": "场景",
+            "id": "Teknisi Tiongkok akan menghadiri dukungan di lokasi.",
+            "cn": "中方技术人员将到场支持。"
+          },
+          {
+            "scene": "场景",
+            "id": "Kehadiran semua pemangku kepentingan diperlukan.",
+            "cn": "需要所有相关方到场。"
+          }
+        ]
+      },
+      {
+        "word": "mengadakan",
+        "cn": "召开/举行",
+        "en": "to hold (a meeting)",
+        "root": "ada",
+        "forms": [
+          {
+            "form": "mengadakan",
+            "pos": "动词",
+            "mean": "召开（meN--kan）"
+          },
+          {
+            "form": "diadakan",
+            "pos": "被动动词",
+            "mean": "被举行（di- 被动）"
+          },
+          {
+            "form": "pengadaan",
+            "pos": "名词",
+            "mean": "筹办/采购（peN--an 名词化）"
+          }
+        ],
+        "formsNote": "",
+        "note": "meN--kan 主动 / di- 被动 / peN--an 名词化 REP2C 原始词",
+        "synonyms": [
+          "menyelenggarakan",
+          "menggelar"
+        ],
+        "antonyms": [
+          "membatalkan",
+          "menunda"
+        ],
+        "examples": [
+          {
+            "scene": "场景",
+            "id": "Manajemen mengadakan rapat mingguan proyek.",
+            "cn": "管理层召开项目周例会。"
+          },
+          {
+            "scene": "场景",
+            "id": "Rapat koordinasi diadakan setiap minggu.",
+            "cn": "协调会每周举行。"
+          }
+        ]
+      },
+      {
+        "word": "membutuhkan",
+        "cn": "需要",
+        "en": "to need / to require",
+        "root": "butuh",
+        "forms": [
+          {
+            "form": "membutuhkan",
+            "pos": "动词",
+            "mean": "需要（meN--kan）"
+          },
+          {
+            "form": "dibutuhkan",
+            "pos": "被动动词",
+            "mean": "被需要（di- 被动）"
+          },
+          {
+            "form": "kebutuhan",
+            "pos": "名词",
+            "mean": "需求（ke--an 名词化）"
+          }
+        ],
+        "formsNote": "",
+        "note": "meN--kan 主动 / di- 被动 / ke--an 名词化 REP2C 原始词",
+        "synonyms": [
+          "memerlukan",
+          "menghendaki"
+        ],
+        "antonyms": [
+          "menyediakan",
+          "memiliki"
+        ],
+        "examples": [
+          {
+            "scene": "场景",
+            "id": "Proyek membutuhkan data pihak ketiga yang lengkap.",
+            "cn": "项目需要完整的第三方数据。"
+          },
+          {
+            "scene": "场景",
+            "id": "Kebutuhan pemilik sudah disiapkan dalam dokumen resmi.",
+            "cn": "业主需求已编制成正式文件。"
+          }
+        ]
+      },
+      {
+        "word": "mempercepat",
+        "cn": "加快",
+        "en": "to accelerate",
+        "root": "cepat",
+        "forms": [
+          {
+            "form": "mempercepat",
+            "pos": "动词",
+            "mean": "加快（meNper-）"
+          },
+          {
+            "form": "dipercepat",
+            "pos": "被动动词",
+            "mean": "被加快（diper- 被动）"
+          },
+          {
+            "form": "percepatan",
+            "pos": "名词",
+            "mean": "加速（per--an 名词化）"
+          }
+        ],
+        "formsNote": "",
+        "note": "meNper- 主动 / diper- 被动 / per--an 名词化 REP2C 原始词",
+        "synonyms": [
+          "memacu",
+          "mendesak"
+        ],
+        "antonyms": [
+          "memperlambat",
+          "menunda"
+        ],
+        "examples": [
+          {
+            "scene": "场景",
+            "id": "Kita harus mempercepat pembebasan lahan.",
+            "cn": "我们必须加快征地进度。"
+          },
+          {
+            "scene": "场景",
+            "id": "Percepatan izin menjadi prioritas minggu ini.",
+            "cn": "许可加速是本周重点。"
+          }
+        ]
+      },
+      {
+        "word": "menjelaskan",
+        "cn": "澄清/说明",
+        "en": "to clarify / to explain",
+        "root": "jelas",
+        "forms": [
+          {
+            "form": "menjelaskan",
+            "pos": "动词",
+            "mean": "说明/澄清（meN--kan）"
+          },
+          {
+            "form": "dijelaskan",
+            "pos": "被动动词",
+            "mean": "被说明（di- 被动）"
+          },
+          {
+            "form": "penjelasan",
+            "pos": "名词",
+            "mean": "澄清/说明（peN--an 名词化）"
+          }
+        ],
+        "formsNote": "",
+        "note": "meN--kan 主动 / di- 被动 / peN--an 名词化 REP2C 原始词",
+        "synonyms": [
+          "menerangkan",
+          "menguraikan"
+        ],
+        "antonyms": [
+          "menyembunyikan",
+          "membingungkan"
+        ],
+        "examples": [
+          {
+            "scene": "场景",
+            "id": "Konsultan telah menjelaskan pertanyaan desain.",
+            "cn": "设计方已澄清设计问题。"
+          },
+          {
+            "scene": "场景",
+            "id": "Surat penjelasan dikirim sebelum batas waktu.",
+            "cn": "澄清函件在截止前发出。"
+          }
+        ]
+      },
+      {
+        "word": "menutup",
+        "cn": "闭环/关闭",
+        "en": "to close",
+        "root": "tutup",
+        "forms": [
+          {
+            "form": "menutup",
+            "pos": "动词",
+            "mean": "关闭/闭环（meN- 主动）"
+          },
+          {
+            "form": "ditutup",
+            "pos": "被动动词",
+            "mean": "被关闭（di- 被动）"
+          },
+          {
+            "form": "penutupan",
+            "pos": "名词",
+            "mean": "闭环/关闭（peN--an 名词化）"
+          }
+        ],
+        "formsNote": "",
+        "note": "meN- 主动 / di- 被动 / peN--an 名词化 自中文'闭环'转译",
+        "synonyms": [
+          "mengakhiri",
+          "menyelesaikan"
+        ],
+        "antonyms": [
+          "membuka",
+          "memulai"
+        ],
+        "examples": [
+          {
+            "scene": "场景",
+            "id": "Kami akan menutup semua item yang terlambat.",
+            "cn": "我们将闭环所有逾期事项。"
+          },
+          {
+            "scene": "场景",
+            "id": "Penutupan item tindakan dipantau setiap minggu.",
+            "cn": "行动项闭环每周督办。"
+          }
+        ]
+      },
+      {
+        "word": "melaporkan",
+        "cn": "汇报",
+        "en": "to report",
+        "root": "lapor",
+        "forms": [
+          {
+            "form": "melaporkan",
+            "pos": "动词",
+            "mean": "汇报（meN--kan）"
+          },
+          {
+            "form": "dilaporkan",
+            "pos": "被动动词",
+            "mean": "被汇报（di- 被动）"
+          },
+          {
+            "form": "laporan",
+            "pos": "名词",
+            "mean": "报告/汇报（peN--an 名词化）"
+          }
+        ],
+        "formsNote": "",
+        "note": "meN--kan 主动 / di- 被动 / peN--an 名词化 REP2C 原始词",
+        "synonyms": [
+          "memberitahukan",
+          "menyampaikan"
+        ],
+        "antonyms": [
+          "menyembunyikan",
+          "menutupi"
+        ],
+        "examples": [
+          {
+            "scene": "场景",
+            "id": "Saya akan melaporkan progres mingguan kepada direksi.",
+            "cn": "我将向董事会汇报周进度。"
+          },
+          {
+            "scene": "场景",
+            "id": "Laporan mingguan dilaporkan setiap Jumat.",
+            "cn": "周报每周五汇报。"
+          }
+        ]
+      },
+      {
+        "word": "merahasiakan",
+        "cn": "保密",
+        "en": "to keep confidential",
+        "root": "rahasia",
+        "forms": [
+          {
+            "form": "merahasiakan",
+            "pos": "动词",
+            "mean": "保密（meN--kan）"
+          },
+          {
+            "form": "dirahasiakan",
+            "pos": "被动动词",
+            "mean": "被保密（di- 被动）"
+          },
+          {
+            "form": "kerahasiaan",
+            "pos": "名词",
+            "mean": "保密性（ke--an 名词化）"
+          }
+        ],
+        "formsNote": "",
+        "note": "meN--kan 主动 / di- 被动 / ke--an 名词化 自中文'保密协议'转译",
+        "synonyms": [
+          "menyembunyikan",
+          "melindungi"
+        ],
+        "antonyms": [
+          "mengumumkan",
+          "membocorkan"
+        ],
+        "examples": [
+          {
+            "scene": "场景",
+            "id": "Kedua pihak merahasiakan data teknis proyek.",
+            "cn": "双方对项目技术数据保密。"
+          },
+          {
+            "scene": "场景",
+            "id": "Perjanjian kerahasiaan telah dikirim kepada mitra.",
+            "cn": "保密协议已发送给合作方。"
+          }
+        ]
+      },
+      {
+        "word": "mendorong",
+        "cn": "推进/推动",
+        "en": "to push forward / to promote",
+        "root": "dorong",
+        "forms": [
+          {
+            "form": "mendorong",
+            "pos": "动词",
+            "mean": "推进（meN- 主动）"
+          },
+          {
+            "form": "didorong",
+            "pos": "被动动词",
+            "mean": "被推动（di- 被动）"
+          },
+          {
+            "form": "dorongan",
+            "pos": "名词",
+            "mean": "推动/推力（-an 名词化）"
+          }
+        ],
+        "formsNote": "",
+        "note": "meN- 主动 / di- 被动 / -an 名词化 [REP2C-EXT 同义:memajukan]",
+        "synonyms": [
+          "memajukan",
+          "mempercepat"
+        ],
+        "antonyms": [
+          "menghambat",
+          "menahan"
+        ],
+        "examples": [
+          {
+            "scene": "场景",
+            "id": "Kami mendorong penyelesaian izin yang terlambat.",
+            "cn": "我们推进逾期许可的办结。"
+          },
+          {
+            "scene": "场景",
+            "id": "Koordinasi lintas tim didorong oleh manajemen.",
+            "cn": "跨团队协调由管理层推动。"
+          }
+        ]
+      }
+    ]
   }
 };
 // ===== BIT 详解库 bitVocabDB V4.31.0 新增:按词组织的累积详解库,转换器 scripts/md_to_dailynote.py 在写入每日笔记时自动并入新词条;批量生成由 BIT→BIO 流程灌入 =====
@@ -63558,54 +65898,46 @@ const bitVocabDB = {
   },
   "menguji": {
     "word": "menguji",
-    "ipa": "/məˈuʤi/",
-    "cn": "测试",
+    "cn": "试验/测试",
     "en": "to test",
     "root": "uji",
     "forms": [
       {
-        "form": "uji",
-        "pos": "n/v",
-        "mean": "试验（词根）"
-      },
-      {
         "form": "menguji",
-        "pos": "v",
-        "mean": "测试"
-      },
-      {
-        "form": "pengujian",
-        "pos": "n",
-        "mean": "测试/检验"
-      },
-      {
-        "form": "ujian",
-        "pos": "n",
-        "mean": "考试"
+        "pos": "动词",
+        "mean": "试验（meN- 主动）"
       },
       {
         "form": "diuji",
-        "pos": "v.pass",
-        "mean": "被测试"
-      }
-    ],
-    "formsNote": "meN- + uji；peN-…-an 名词化",
-    "note": "menguji kualitas 测试质量；ujian 考试 vs uji coba 试验",
-    "synonyms": [
-      "mengetes",
-      "memeriksa"
-    ],
-    "antonyms": [],
-    "examples": [
-      {
-        "scene": "Tim QA menguji setiap produk.",
-        "id": "menguji",
-        "cn": "QA团队测试每个产品。"
+        "pos": "被动动词",
+        "mean": "被试验（di- 被动）"
       },
       {
-        "scene": "Baterai baru sedang diuji coba.",
-        "id": "diuji",
-        "cn": "新电池正在试验中。"
+        "form": "pengujian",
+        "pos": "名词",
+        "mean": "试验/检测（peN--an 名词化）"
+      }
+    ],
+    "formsNote": "",
+    "note": "meN- 主动 / di- 被动 / peN--an 名词化 REP2C 原始词",
+    "synonyms": [
+      "mencoba",
+      "mengetes"
+    ],
+    "antonyms": [
+      "mengabaikan",
+      "melewati"
+    ],
+    "examples": [
+      {
+        "scene": "场景",
+        "id": "Sampel bijih sedang diuji di laboratorium.",
+        "cn": "矿石样品正在实验室试验。"
+      },
+      {
+        "scene": "场景",
+        "id": "Pengujian metalurgi berjalan sesuai jadwal.",
+        "cn": "冶金试验按计划推进。"
       }
     ]
   },
@@ -65072,48 +67404,46 @@ const bitVocabDB = {
   },
   "membahas": {
     "word": "membahas",
-    "ipa": "/məmˈbahas/",
-    "cn": "讨论/探讨",
+    "cn": "讨论",
     "en": "to discuss",
     "root": "bahas",
     "forms": [
       {
-        "form": "bahas",
-        "pos": "v",
-        "mean": "讨论（口语基础形）"
+        "form": "membahas",
+        "pos": "动词",
+        "mean": "讨论（meN- 主动）"
       },
       {
-        "form": "membahas",
-        "pos": "v",
-        "mean": "讨论（正式主动）"
+        "form": "dibahas",
+        "pos": "被动动词",
+        "mean": "被讨论（di- 被动）"
       },
       {
         "form": "pembahasan",
-        "pos": "n",
-        "mean": "讨论内容/论述"
-      },
-      {
-        "form": "bahasan",
-        "pos": "n",
-        "mean": "话题（口语）"
+        "pos": "名词",
+        "mean": "讨论（peN--an 名词化）"
       }
     ],
-    "formsNote": "mem- 主动前缀（b 浊化），词根 bahas",
-    "note": "正式场合用 membahas；口语也直接用 bahas：nanti kita bahas 待会儿讨论",
+    "formsNote": "",
+    "note": "meN- 主动 / di- 被动 / peN--an 名词化 REP2C 原始词",
     "synonyms": [
-      "mendiskusikan"
+      "mendiskusikan",
+      "menelaah"
     ],
-    "antonyms": [],
+    "antonyms": [
+      "menghindari",
+      "menutupi"
+    ],
     "examples": [
       {
-        "scene": "Rapat membahas rencana ekspansi smelter.",
-        "id": "membahas",
-        "cn": "会议讨论冶炼厂扩建计划。"
+        "scene": "场景",
+        "id": "Kedua pihak membahas skema awal MES.",
+        "cn": "双方讨论 MES 初步方案。"
       },
       {
-        "scene": "Pembahasan berlanjut ke sesi sore.",
-        "id": "Pembahasan",
-        "cn": "讨论延续到下午场。"
+        "scene": "场景",
+        "id": "Topik risiko dibahas dalam rapat mingguan.",
+        "cn": "风险议题在周例会上讨论。"
       }
     ]
   },
@@ -70291,60 +72621,46 @@ const bitVocabDB = {
   },
   "meninjau": {
     "word": "meninjau",
-    "ipa": "/mənɪnˈdʒau/",
-    "cn": "审查；视察",
-    "en": "to inspect; to review",
-    "root": "tinjau（视察，词根）+ meN- 动词化",
+    "cn": "审核/审查",
+    "en": "to review",
+    "root": "tinjau",
     "forms": [
       {
-        "form": "tinjau",
-        "pos": "v",
-        "mean": "视察（词根形）"
-      },
-      {
         "form": "meninjau",
-        "pos": "v",
-        "mean": "审查、视察（meN-）"
-      },
-      {
-        "form": "tinjauan",
-        "pos": "n",
-        "mean": "观察、审查报告（-an）"
-      },
-      {
-        "form": "peninjau",
-        "pos": "n",
-        "mean": "视察者（peN-）"
-      },
-      {
-        "form": "peninjauan",
-        "pos": "n",
-        "mean": "视察（活动）"
+        "pos": "动词",
+        "mean": "审核（meN- 主动）"
       },
       {
         "form": "ditinjau",
-        "pos": "v",
-        "mean": "被审查"
-      }
-    ],
-    "formsNote": "meN- 在 t 前同化为 n：tinjau → meninjau",
-    "note": "官僚/新闻语体：meninjau lokasi 视察现场、meninjau perkembangan 审查进展。",
-    "synonyms": [
-      "memeriksa",
-      "menelaah",
-      "mengawasi"
-    ],
-    "antonyms": [],
-    "examples": [
-      {
-        "scene": "Menteri **meninjau** pembangunan smelter tahap dua.",
-        "id": "meninjau",
-        "cn": "部长视察了二期冶炼厂建设。"
+        "pos": "被动动词",
+        "mean": "被审核（di- 被动）"
       },
       {
-        "scene": "**Tinjauan** ulang kontrak dilakukan tiap tahun.",
-        "id": "Tinjauan",
-        "cn": "合同每年复审一次。"
+        "form": "tinjauan",
+        "pos": "名词",
+        "mean": "审核/评估（peN--an 不规则：tinjauan）"
+      }
+    ],
+    "formsNote": "",
+    "note": "meN- 主动 / di- 被动 / 名词化 tinjauan REP2C 原始词",
+    "synonyms": [
+      "memeriksa",
+      "mengkaji"
+    ],
+    "antonyms": [
+      "menyetujui",
+      "melewatkan"
+    ],
+    "examples": [
+      {
+        "scene": "场景",
+        "id": "Tim Neo Energy sedang meninjau laporan versi antara.",
+        "cn": "Neo Energy 团队正在审核中间版报告。"
+      },
+      {
+        "scene": "场景",
+        "id": "Gambar proses akan ditinjau oleh tim energi.",
+        "cn": "过程版图纸将由能源组审核。"
       }
     ]
   },
@@ -71564,73 +73880,46 @@ const bitVocabDB = {
   },
   "mengambil": {
     "word": "mengambil",
-    "ipa": "/məŋˈambil/",
-    "cn": "拿取；采取",
-    "en": "to take; to fetch",
-    "root": "ambil（拿）+ meng- 动词化",
+    "cn": "取（水）/采集",
+    "en": "to take / to abstract",
+    "root": "ambil",
     "forms": [
       {
-        "form": "ambil",
-        "pos": "v",
-        "mean": "拿"
-      },
-      {
         "form": "mengambil",
-        "pos": "v",
-        "mean": "拿取"
+        "pos": "动词",
+        "mean": "取/采集（meN- 主动）"
       },
       {
         "form": "diambil",
-        "pos": "v",
-        "mean": "被拿"
-      },
-      {
-        "form": "terambil",
-        "pos": "v",
-        "mean": "被拿走（ter-）"
-      },
-      {
-        "form": "pengambil",
-        "pos": "n",
-        "mean": "领取者（peN-）"
+        "pos": "被动动词",
+        "mean": "被取用（di- 被动）"
       },
       {
         "form": "pengambilan",
-        "pos": "n",
-        "mean": "领取；取景"
-      },
-      {
-        "form": "mengambil alih",
-        "pos": "phr",
-        "mean": "接管"
-      },
-      {
-        "form": "mengambil keputusan",
-        "pos": "phr",
-        "mean": "做决定"
+        "pos": "名词",
+        "mean": "取用/采集（peN--an 名词化）"
       }
     ],
-    "formsNote": "meng- + ambil（k→ng 同化）；pengambilan 是行政高频（pengambilan sampel 取样）",
-    "note": "固定搭配：mengambil keputusan 做决定、mengambil alih 接管、mengambil langkah 采取措施、pengambilan gambar 拍摄取景。",
+    "formsNote": "",
+    "note": "meN- 主动 / di- 被动 / peN--an 名词化 REP2C 原始词",
     "synonyms": [
-      "memungut",
-      "mengangkat",
-      "membawa"
+      "memperoleh",
+      "mengangkut"
     ],
     "antonyms": [
-      "memberikan",
-      "menyerahkan"
+      "mengembalikan",
+      "memberikan"
     ],
     "examples": [
       {
-        "scene": "Saya mau **mengambil** paket di kantor pos.",
-        "id": "mengambil",
-        "cn": "我要去邮局取包裹。"
+        "scene": "场景",
+        "id": "Izin pengambilan air masih dalam proses.",
+        "cn": "取水许可仍在办理中。"
       },
       {
-        "scene": "Kita harus **mengambil** keputusan sebelum akhir bulan.",
-        "id": "mengambil",
-        "cn": "我们必须在月底前做决定。"
+        "scene": "场景",
+        "id": "Data hidrologi diambil oleh tim survei.",
+        "cn": "水文数据由勘测团队采集。"
       }
     ]
   },
@@ -84976,51 +87265,46 @@ const bitVocabDB = {
   },
   "mengadakan": {
     "word": "mengadakan",
-    "ipa": "/məŋaˈdakan/",
-    "cn": "举办",
-    "en": "to hold, to organize, to conduct",
+    "cn": "召开/举行",
+    "en": "to hold (a meeting)",
     "root": "ada",
     "forms": [
       {
-        "form": "ada",
-        "pos": "v",
-        "mean": "存在/有（词根）"
-      },
-      {
         "form": "mengadakan",
-        "pos": "v",
-        "mean": "举办/进行"
+        "pos": "动词",
+        "mean": "召开（meN--kan）"
       },
       {
         "form": "diadakan",
-        "pos": "v",
-        "mean": "被举办"
+        "pos": "被动动词",
+        "mean": "被举行（di- 被动）"
       },
       {
         "form": "pengadaan",
-        "pos": "n",
-        "mean": "举办/采购（procurement）"
+        "pos": "名词",
+        "mean": "筹办/采购（peN--an 名词化）"
       }
     ],
-    "formsNote": "meN-…-kan 使动缀，词根 ada「存在」",
-    "note": "注意 pengadaan 在商业语境常指「采购」而非举办",
+    "formsNote": "",
+    "note": "meN--kan 主动 / di- 被动 / peN--an 名词化 REP2C 原始词",
     "synonyms": [
       "menyelenggarakan",
-      "mengatur"
+      "menggelar"
     ],
     "antonyms": [
-      "membatalkan"
+      "membatalkan",
+      "menunda"
     ],
     "examples": [
       {
-        "scene": "Sekolah mengadakan lomba antarkelas.",
-        "id": "mengadakan",
-        "cn": "学校举办班级间的比赛。"
+        "scene": "场景",
+        "id": "Manajemen mengadakan rapat mingguan proyek.",
+        "cn": "管理层召开项目周例会。"
       },
       {
-        "scene": "Rapat akan diadakan besok pagi.",
-        "id": "diadakan",
-        "cn": "会议将于明天上午举行。"
+        "scene": "场景",
+        "id": "Rapat koordinasi diadakan setiap minggu.",
+        "cn": "协调会每周举行。"
       }
     ]
   },
@@ -99710,51 +101994,46 @@ const bitVocabDB = {
   },
   "menjelaskan": {
     "word": "menjelaskan",
-    "ipa": "/mən.dʒə.ˈlas.kan/",
-    "cn": "解释",
-    "en": "to explain, to clarify",
+    "cn": "澄清/说明",
+    "en": "to clarify / to explain",
     "root": "jelas",
     "forms": [
       {
-        "form": "jelas",
-        "pos": "adj",
-        "mean": "清楚的"
-      },
-      {
-        "form": "penjelasan",
-        "pos": "n",
-        "mean": "解释/说明"
+        "form": "menjelaskan",
+        "pos": "动词",
+        "mean": "说明/澄清（meN--kan）"
       },
       {
         "form": "dijelaskan",
-        "pos": "v",
-        "mean": "被解释"
+        "pos": "被动动词",
+        "mean": "被说明（di- 被动）"
       },
       {
-        "form": "jelaskan!",
-        "pos": "v",
-        "mean": "请说明（命令式）"
+        "form": "penjelasan",
+        "pos": "名词",
+        "mean": "澄清/说明（peN--an 名词化）"
       }
     ],
-    "formsNote": "mən-dʒelas-kan：meN-…-kan，词根 jelas「清楚」",
-    "note": "Tolong jelaskan! 请解释一下；penjelasan rinci 详细说明；belum jelas 还不清楚",
+    "formsNote": "",
+    "note": "meN--kan 主动 / di- 被动 / peN--an 名词化 REP2C 原始词",
     "synonyms": [
       "menerangkan",
       "menguraikan"
     ],
     "antonyms": [
-      "menyembunyikan"
+      "menyembunyikan",
+      "membingungkan"
     ],
     "examples": [
       {
-        "scene": "Guru menjelaskan aturan main dengan sabar.",
-        "id": "menjelaskan",
-        "cn": "老师耐心地讲解规则。"
+        "scene": "场景",
+        "id": "Konsultan telah menjelaskan pertanyaan desain.",
+        "cn": "设计方已澄清设计问题。"
       },
       {
-        "scene": "Masalahnya belum dijelaskan dalam laporan.",
-        "id": "dijelaskan",
-        "cn": "报告中尚未说明该问题。"
+        "scene": "场景",
+        "id": "Surat penjelasan dikirim sebelum batas waktu.",
+        "cn": "澄清函件在截止前发出。"
       }
     ]
   },
@@ -114570,57 +116849,46 @@ const bitVocabDB = {
   },
   "memantau": {
     "word": "memantau",
-    "cn": "监控；监测；注视",
+    "cn": "督办/监控",
     "en": "to monitor",
-    "root": "pantau（注视，本土词）+ me- → memantau",
+    "root": "pantau",
     "forms": [
-      {
-        "form": "pantau",
-        "pos": "词根/动词（口语）",
-        "mean": "注视"
-      },
       {
         "form": "memantau",
         "pos": "动词",
-        "mean": "监控"
+        "mean": "督办/监控（meN- 主动）"
+      },
+      {
+        "form": "dipantau",
+        "pos": "被动动词",
+        "mean": "被督办（di- 被动）"
       },
       {
         "form": "pemantauan",
         "pos": "名词",
-        "mean": "监控（过程）"
-      },
-      {
-        "form": "pantauan",
-        "pos": "名词",
-        "mean": "监视（视角）"
-      },
-      {
-        "form": "pemantau",
-        "pos": "名词",
-        "mean": "监控者"
+        "mean": "督办/监测（peN--an 名词化）"
       }
     ],
     "formsNote": "",
-    "note": "",
+    "note": "meN- 主动 / di- 被动 / peN--an 名词化 REP2C 原始词",
     "synonyms": [
-      "mengawasi（监视）",
-      "mengontrol（控制）",
-      "melacak（追踪）"
+      "mengawasi",
+      "mengendalikan"
     ],
     "antonyms": [
-      "mengabaikan（无视）",
-      "melepaskan（放任）"
+      "mengabaikan",
+      "melepaskan"
     ],
     "examples": [
       {
-        "scene": "工作园区",
-        "id": "Sensor otomatis memantau kualitas udara di area smelter setiap menit.",
-        "cn": "（传感器每分钟监测冶炼厂区空气质量。）"
+        "scene": "场景",
+        "id": "Tim memantau tugas yang terlambat setiap minggu.",
+        "cn": "团队每周督办逾期任务。"
       },
       {
-        "scene": "项目管理",
-        "id": "Manajer proyek memantau kemajuan harian melalui rapat koordinasi pagi.",
-        "cn": "（项目经理通过每日早会监控进度。）"
+        "scene": "场景",
+        "id": "Pemantauan izin dilakukan oleh tim Indonesia.",
+        "cn": "许可督办由印尼团队执行。"
       }
     ]
   },
@@ -117649,52 +119917,46 @@ const bitVocabDB = {
   },
   "membangun": {
     "word": "membangun",
-    "ipa": "/məmˈbaŋun/",
     "cn": "建设",
-    "en": "to build, to develop",
+    "en": "to build / to construct",
     "root": "bangun",
     "forms": [
       {
-        "form": "bangun",
-        "pos": "v",
-        "mean": "建造/醒来（词根）"
+        "form": "membangun",
+        "pos": "动词",
+        "mean": "建设（meN- 主动）"
       },
       {
         "form": "dibangun",
-        "pos": "v",
-        "mean": "被建设"
+        "pos": "被动动词",
+        "mean": "被建设（di- 被动）"
       },
       {
         "form": "pembangunan",
-        "pos": "n",
-        "mean": "建设/发展"
-      },
-      {
-        "form": "bangunan",
-        "pos": "n",
-        "mean": "建筑物"
+        "pos": "名词",
+        "mean": "建设（peN--an 名词化）"
       }
     ],
-    "formsNote": "meN- 及物化，词根 bangun 多义「建造/醒来」",
-    "note": "政治高频词：pembangunan nasional（国家建设）；bangun tidur 睡醒",
+    "formsNote": "",
+    "note": "meN- 主动 / di- 被动 / peN--an 名词化 REP2C 原始词",
     "synonyms": [
       "mendirikan",
-      "mengembangkan"
+      "mengerjakan"
     ],
     "antonyms": [
-      "meruntuhkan",
-      "menghancurkan"
+      "membongkar",
+      "merobohkan"
     ],
     "examples": [
       {
-        "scene": "Pemerintah membangun jalan tol baru.",
-        "id": "membangun",
-        "cn": "政府修建新高速公路。"
+        "scene": "场景",
+        "id": "Perusahaan akan membangun dermaga khusus di kawasan industri.",
+        "cn": "公司将在园区建设专用码头。"
       },
       {
-        "scene": "Bangunan tua itu akan direnovasi.",
-        "id": "bangunan",
-        "cn": "那座老建筑将被翻修。"
+        "scene": "场景",
+        "id": "Pembangunan pembangkit listrik tenaga air sedang disiapkan.",
+        "cn": "水电工程建设正在筹备中。"
       }
     ]
   },
@@ -139299,42 +141561,46 @@ const bitVocabDB = {
   },
   "menyelesaikan": {
     "word": "menyelesaikan",
-    "ipa": "/mənjələˈsaikan/",
-    "cn": "完成/解决",
-    "en": "to finish, to complete, to resolve",
+    "cn": "完成（工作/任务）",
+    "en": "to complete / to finish",
     "root": "selesai",
     "forms": [
       {
-        "form": "selesai",
-        "pos": "adj",
-        "mean": "完成"
-      },
-      {
-        "form": "penyelesaian",
-        "pos": "n",
-        "mean": "解决/完成"
+        "form": "menyelesaikan",
+        "pos": "动词",
+        "mean": "完成（meN- 主动）"
       },
       {
         "form": "diselesaikan",
-        "pos": "v",
-        "mean": "被解决"
+        "pos": "被动动词",
+        "mean": "被完成（di- 被动）"
+      },
+      {
+        "form": "penyelesaian",
+        "pos": "名词",
+        "mean": "完成/解决（peN--an 名词化）"
       }
     ],
-    "formsNote": "meN-…-kan 使动；词根 selesai",
-    "note": "menyelesaikan masalah = 解决问题",
+    "formsNote": "",
+    "note": "meN- 主动 / di- 被动 / peN--an 名词化 REP2C 原始词",
     "synonyms": [
-      "mengakhiri",
-      "menuntaskan"
+      "menuntaskan",
+      "merampungkan"
     ],
     "antonyms": [
-      "memulai",
-      "menunda"
+      "menunda",
+      "menghentikan"
     ],
     "examples": [
       {
-        "scene": "Dia menyelesaikan tugas tepat waktu.",
-        "id": "menyelesaikan",
-        "cn": "他按时完成了任务。"
+        "scene": "场景",
+        "id": "Tim kami telah menyelesaikan tinjauan desain awal fasilitas tailing.",
+        "cn": "我们团队已完成尾渣库初步设计审核。"
+      },
+      {
+        "scene": "场景",
+        "id": "Umpan balik teks akan diselesaikan sebelum tenggat waktu.",
+        "cn": "文本反馈将在截止日期前完成。"
       }
     ]
   },
@@ -153050,56 +155316,46 @@ const bitVocabDB = {
   },
   "menilai": {
     "word": "menilai",
-    "cn": "评估；评价；估价",
-    "en": "to assess; to evaluate",
-    "root": "nilai（价值，本土词）+ me- + -i → menilai",
+    "cn": "评估",
+    "en": "to evaluate / to assess",
+    "root": "nilai",
     "forms": [
-      {
-        "form": "nilai",
-        "pos": "名词",
-        "mean": "价值；分数"
-      },
       {
         "form": "menilai",
         "pos": "动词",
-        "mean": "评估"
+        "mean": "评估（meN- 主动）"
       },
       {
         "form": "dinilai",
         "pos": "被动动词",
-        "mean": "被评估"
+        "mean": "被评估（di- 被动）"
       },
       {
         "form": "penilaian",
         "pos": "名词",
-        "mean": "评估（过程）"
-      },
-      {
-        "form": "penilai",
-        "pos": "名词",
-        "mean": "评估师"
+        "mean": "评估（peN--an 名词化）"
       }
     ],
     "formsNote": "",
-    "note": "风险管理定性分析核心动作：`menilai probabilitas dan dampak`（评估概率与影响）——见 #53。",
+    "note": "meN- 主动 / di- 被动 / peN--an 名词化 REP2C 原始词",
     "synonyms": [
-      "mengevaluasi（评价）",
-      "mengukur（衡量——本日 #28）",
-      "menaksir（估算）"
+      "mengevaluasi",
+      "menaksir"
     ],
     "antonyms": [
-      "menebak-nebak（乱猜）"
+      "mengabaikan",
+      "meremehkan"
     ],
     "examples": [
       {
-        "scene": "项目管理",
-        "id": "Tim menilai setiap risiko berdasarkan matriks probabilitas-dampak.",
-        "cn": "（团队按概率-影响矩阵评估每项风险。）"
+        "scene": "场景",
+        "id": "Panitia akan menilai penawaran teknis para pemasok.",
+        "cn": "评标组将评估供应商的技术标。"
       },
       {
-        "scene": "商务",
-        "id": "Bank menilai kelayakan kredit sebelum pencairan.",
-        "cn": "（银行放款前评估信用资质。）"
+        "scene": "场景",
+        "id": "Penilaian teknis dijadwalkan awal tahun depan.",
+        "cn": "技术评标排定于明年初。"
       }
     ]
   },
@@ -161081,6 +163337,1266 @@ const bitVocabDB = {
         "cn": "技术团队在事故后修复了警报系统。"
       }
     ]
+  },
+  "mengajukan": {
+    "word": "mengajukan",
+    "cn": "提交（报告/申请）",
+    "en": "to submit",
+    "root": "aju",
+    "forms": [
+      {
+        "form": "mengajukan",
+        "pos": "动词",
+        "mean": "提交（meN- 主动）"
+      },
+      {
+        "form": "diajukan",
+        "pos": "被动动词",
+        "mean": "被提交（di- 被动）"
+      },
+      {
+        "form": "pengajuan",
+        "pos": "名词",
+        "mean": "提交/申请（peN--an 名词化）"
+      }
+    ],
+    "formsNote": "",
+    "note": "meN- 主动 / di- 被动 / peN--an 名词化 REP2C 原始词",
+    "synonyms": [
+      "menyampaikan",
+      "menyerahkan"
+    ],
+    "antonyms": [
+      "menarik",
+      "menahan"
+    ],
+    "examples": [
+      {
+        "scene": "场景",
+        "id": "Institut desain telah mengajukan draf laporan desain awal.",
+        "cn": "设计院已提交初设报告初稿。"
+      },
+      {
+        "scene": "场景",
+        "id": "Berkas pengajuan izin dermaga sudah lengkap.",
+        "cn": "码头许可申请文件已齐备。"
+      }
+    ]
+  },
+  "masukan": {
+    "word": "masukan",
+    "cn": "反馈/意见",
+    "en": "feedback / input",
+    "root": "masuk",
+    "forms": [
+      {
+        "form": "masukan",
+        "pos": "名词",
+        "mean": "反馈/意见（词根派生名词）"
+      },
+      {
+        "form": "memasukkan",
+        "pos": "动词",
+        "mean": "输入/列入（meN--kan）"
+      },
+      {
+        "form": "dimasukkan",
+        "pos": "被动动词",
+        "mean": "被列入（di- 被动）"
+      }
+    ],
+    "formsNote": "",
+    "note": "词根派生名词 / meN--kan 及物 / di- 被动 自中文'反馈'转译",
+    "synonyms": [
+      "umpan balik",
+      "tanggapan"
+    ],
+    "antonyms": [
+      "sanggahan",
+      "penolakan"
+    ],
+    "examples": [
+      {
+        "scene": "场景",
+        "id": "Masukan dari tim desain sudah kami terima.",
+        "cn": "设计团队的反馈意见我们已收到。"
+      },
+      {
+        "scene": "场景",
+        "id": "Semua masukan akan dimasukkan ke dalam daftar tindak lanjut.",
+        "cn": "所有意见将列入跟进清单。"
+      }
+    ]
+  },
+  "merevisi": {
+    "word": "merevisi",
+    "cn": "修订",
+    "en": "to revise",
+    "root": "revisi",
+    "forms": [
+      {
+        "form": "merevisi",
+        "pos": "动词",
+        "mean": "修订（meN- 主动）"
+      },
+      {
+        "form": "direvisi",
+        "pos": "被动动词",
+        "mean": "被修订（di- 被动）"
+      },
+      {
+        "form": "revisi",
+        "pos": "名词",
+        "mean": "修订（词根作名词）"
+      }
+    ],
+    "formsNote": "",
+    "note": "meN- 主动 / di- 被动 / 词根作名词 REP2C 原始词",
+    "synonyms": [
+      "memperbaiki",
+      "mengubah"
+    ],
+    "antonyms": [
+      "mempertahankan",
+      "mengesahkan"
+    ],
+    "examples": [
+      {
+        "scene": "场景",
+        "id": "Institut Changsha sedang merevisi laporan desain awal.",
+        "cn": "长沙院正在修订初设报告。"
+      },
+      {
+        "scene": "场景",
+        "id": "Draf final akan dikirim setelah revisi selesai.",
+        "cn": "修订完成后将发送定稿。"
+      }
+    ]
+  },
+  "menyetujui": {
+    "word": "menyetujui",
+    "cn": "批复/批准",
+    "en": "to approve",
+    "root": "setuju",
+    "forms": [
+      {
+        "form": "menyetujui",
+        "pos": "动词",
+        "mean": "批准（meN- 主动）"
+      },
+      {
+        "form": "disetujui",
+        "pos": "被动动词",
+        "mean": "被批准（di- 被动）"
+      },
+      {
+        "form": "persetujuan",
+        "pos": "名词",
+        "mean": "批复/同意（peN--an 名词化）"
+      }
+    ],
+    "formsNote": "",
+    "note": "meN- 主动 / di- 被动 / peN--an 名词化 REP2C 原始词",
+    "synonyms": [
+      "mengizinkan",
+      "mengesahkan"
+    ],
+    "antonyms": [
+      "menolak",
+      "menangguhkan"
+    ],
+    "examples": [
+      {
+        "scene": "场景",
+        "id": "Pemerintah telah menyetujui izin pembangunan dermaga khusus.",
+        "cn": "政府已批复专用码头建设许可。"
+      },
+      {
+        "scene": "场景",
+        "id": "Izin perairan tahap pertama telah disetujui.",
+        "cn": "水域许可首次批复已获批。"
+      }
+    ]
+  },
+  "membebaskan": {
+    "word": "membebaskan",
+    "cn": "征收（土地）",
+    "en": "to acquire (land)",
+    "root": "bebas",
+    "forms": [
+      {
+        "form": "membebaskan",
+        "pos": "动词",
+        "mean": "征收/释放（meN--kan）"
+      },
+      {
+        "form": "dibebaskan",
+        "pos": "被动动词",
+        "mean": "被征收（di- 被动）"
+      },
+      {
+        "form": "pembebasan",
+        "pos": "名词",
+        "mean": "征收/释放（peN--an 名词化）"
+      }
+    ],
+    "formsNote": "",
+    "note": "meN--kan 主动 / di- 被动 / peN--an 名词化 REP2C 原始词",
+    "synonyms": [
+      "mengambil alih",
+      "memperoleh"
+    ],
+    "antonyms": [
+      "menjual",
+      "melepaskan"
+    ],
+    "examples": [
+      {
+        "scene": "场景",
+        "id": "Pembebasan lahan masih terlambat dan perlu didorong.",
+        "cn": "征地进度仍逾期，需重点推进。"
+      },
+      {
+        "scene": "场景",
+        "id": "Lahan untuk proyek energi sedang dibebaskan.",
+        "cn": "能源项目用地正在征收中。"
+      }
+    ]
+  },
+  "menghasilkan": {
+    "word": "menghasilkan",
+    "cn": "产生/产出",
+    "en": "to generate / to produce",
+    "root": "hasil",
+    "forms": [
+      {
+        "form": "menghasilkan",
+        "pos": "动词",
+        "mean": "产生（meN--kan）"
+      },
+      {
+        "form": "dihasilkan",
+        "pos": "被动动词",
+        "mean": "被产出（di- 被动）"
+      },
+      {
+        "form": "hasil",
+        "pos": "名词",
+        "mean": "成果/结果（词根作名词）"
+      }
+    ],
+    "formsNote": "",
+    "note": "meN--kan 使动 / di- 被动 / 词根作名词 REP2C 原始词",
+    "synonyms": [
+      "memproduksi",
+      "menciptakan"
+    ],
+    "antonyms": [
+      "mengonsumsi",
+      "menghabiskan"
+    ],
+    "examples": [
+      {
+        "scene": "场景",
+        "id": "Pembangkit listrik tenaga uap menghasilkan listrik untuk pabrik.",
+        "cn": "蒸汽电厂为厂区发电。"
+      },
+      {
+        "scene": "场景",
+        "id": "Laporan bulanan menghasilkan data yang dapat dilacak.",
+        "cn": "月度汇报产出可追踪的数据。"
+      }
+    ]
+  },
+  "membangkitkan": {
+    "word": "membangkitkan",
+    "cn": "发电",
+    "en": "to generate (power)",
+    "root": "bangkit",
+    "forms": [
+      {
+        "form": "membangkitkan",
+        "pos": "动词",
+        "mean": "发电/唤起（meN--kan）"
+      },
+      {
+        "form": "dibangkitkan",
+        "pos": "被动动词",
+        "mean": "被发出（di- 被动）"
+      },
+      {
+        "form": "pembangkitan",
+        "pos": "名词",
+        "mean": "发电（peN--an 名词化）"
+      }
+    ],
+    "formsNote": "",
+    "note": "meN--kan 主动 / di- 被动 / peN--an 名词化 REP2C 原始词",
+    "synonyms": [
+      "menghasilkan",
+      "memproduksi"
+    ],
+    "antonyms": [
+      "menghentikan",
+      "mematikan"
+    ],
+    "examples": [
+      {
+        "scene": "场景",
+        "id": "Pembangkit listrik tenaga panas sisa membangkitkan listrik dari gas buang.",
+        "cn": "余热电厂利用废气发电。"
+      },
+      {
+        "scene": "场景",
+        "id": "Pembangkitan listrik dari tenaga surya sedang dikaji.",
+        "cn": "光伏发电正在研究中。"
+      }
+    ]
+  },
+  "menyimpan": {
+    "word": "menyimpan",
+    "cn": "储存",
+    "en": "to store",
+    "root": "simpan",
+    "forms": [
+      {
+        "form": "menyimpan",
+        "pos": "动词",
+        "mean": "储存（meN- 主动）"
+      },
+      {
+        "form": "disimpan",
+        "pos": "被动动词",
+        "mean": "被储存（di- 被动）"
+      },
+      {
+        "form": "penyimpanan",
+        "pos": "名词",
+        "mean": "储存（peN--an 名词化）"
+      }
+    ],
+    "formsNote": "",
+    "note": "meN- 主动 / di- 被动 / peN--an 名词化 REP2C 原始词",
+    "synonyms": [
+      "menampung",
+      "menimbun"
+    ],
+    "antonyms": [
+      "mengeluarkan",
+      "menghabiskan"
+    ],
+    "examples": [
+      {
+        "scene": "场景",
+        "id": "Baterai menyimpan listrik dari panel surya.",
+        "cn": "电池储存光伏电力。"
+      },
+      {
+        "scene": "场景",
+        "id": "Penyimpanan energi menjadi bagian desain sistem energi.",
+        "cn": "储能是能源系统设计的组成部分。"
+      }
+    ]
+  },
+  "melelangkan": {
+    "word": "melelangkan",
+    "cn": "招标",
+    "en": "to tender / to auction",
+    "root": "lelang",
+    "forms": [
+      {
+        "form": "melelangkan",
+        "pos": "动词",
+        "mean": "招标（meN--kan）"
+      },
+      {
+        "form": "dilelangkan",
+        "pos": "被动动词",
+        "mean": "被招标（di- 被动）"
+      },
+      {
+        "form": "pelelangan",
+        "pos": "名词",
+        "mean": "招标/拍卖（peN--an 名词化）"
+      }
+    ],
+    "formsNote": "",
+    "note": "meN--kan 主动 / di- 被动 / peN--an 名词化 自中文'招标'转译",
+    "synonyms": [
+      "menenderkan",
+      "membuka penawaran"
+    ],
+    "antonyms": [
+      "membatalkan",
+      "menunjuk langsung"
+    ],
+    "examples": [
+      {
+        "scene": "场景",
+        "id": "Pekerjaan pengambilan air akan dilelangkan tahun depan.",
+        "cn": "取水工程将于明年招标。"
+      },
+      {
+        "scene": "场景",
+        "id": "Pelelangan dokumen tender sedang disiapkan.",
+        "cn": "招标文件正在准备中。"
+      }
+    ]
+  },
+  "menjadwalkan": {
+    "word": "menjadwalkan",
+    "cn": "排定（日程）",
+    "en": "to schedule",
+    "root": "jadwal",
+    "forms": [
+      {
+        "form": "menjadwalkan",
+        "pos": "动词",
+        "mean": "排定（meN--kan）"
+      },
+      {
+        "form": "dijadwalkan",
+        "pos": "被动动词",
+        "mean": "被排定（di- 被动）"
+      },
+      {
+        "form": "penjadwalan",
+        "pos": "名词",
+        "mean": "排程（peN--an 名词化）"
+      }
+    ],
+    "formsNote": "",
+    "note": "meN--kan 主动 / di- 被动 / peN--an 名词化 REP2C 原始词",
+    "synonyms": [
+      "mengatur",
+      "menetapkan"
+    ],
+    "antonyms": [
+      "membatalkan",
+      "menunda"
+    ],
+    "examples": [
+      {
+        "scene": "场景",
+        "id": "Kami telah menjadwalkan rapat mingguan setiap Senin.",
+        "cn": "我们已排定每周一例会。"
+      },
+      {
+        "scene": "场景",
+        "id": "Evaluasi teknis dijadwalkan setelah penerimaan dokumen tender.",
+        "cn": "技术评标排定在接收投标文件之后。"
+      }
+    ]
+  },
+  "mengoordinasikan": {
+    "word": "mengoordinasikan",
+    "cn": "协调",
+    "en": "to coordinate",
+    "root": "koordinasi",
+    "forms": [
+      {
+        "form": "mengoordinasikan",
+        "pos": "动词",
+        "mean": "协调（meN--kan）"
+      },
+      {
+        "form": "dikoordinasikan",
+        "pos": "被动动词",
+        "mean": "被协调（di- 被动）"
+      },
+      {
+        "form": "koordinasi",
+        "pos": "名词",
+        "mean": "协调（词根作名词）"
+      }
+    ],
+    "formsNote": "",
+    "note": "meN--kan 主动 / di- 被动 / 词根作名词 REP2C 原始词",
+    "synonyms": [
+      "menyelaraskan",
+      "mengatur"
+    ],
+    "antonyms": [
+      "memisahkan",
+      "membiarkan"
+    ],
+    "examples": [
+      {
+        "scene": "场景",
+        "id": "Tim Indonesia mengoordinasikan perizinan dengan pemerintah daerah.",
+        "cn": "印尼团队与地方政府协调许可事项。"
+      },
+      {
+        "scene": "场景",
+        "id": "Koordinasi desain membutuhkan satu jendela komunikasi.",
+        "cn": "设计协调需要统一的沟通窗口。"
+      }
+    ]
+  },
+  "menindaklanjuti": {
+    "word": "menindaklanjuti",
+    "cn": "跟进",
+    "en": "to follow up",
+    "root": "lanjut",
+    "forms": [
+      {
+        "form": "menindaklanjuti",
+        "pos": "动词",
+        "mean": "跟进（meN-...-i 及物）"
+      },
+      {
+        "form": "ditindaklanjuti",
+        "pos": "被动动词",
+        "mean": "被跟进（di- 被动）"
+      },
+      {
+        "form": "tindak lanjut",
+        "pos": "名词",
+        "mean": "跟进事项（复合名词）"
+      }
+    ],
+    "formsNote": "",
+    "note": "meN-...-i 及物 / di- 被动 / 复合名词 REP2C 原始词",
+    "synonyms": [
+      "melanjutkan",
+      "memantau"
+    ],
+    "antonyms": [
+      "mengabaikan",
+      "melupakan"
+    ],
+    "examples": [
+      {
+        "scene": "场景",
+        "id": "Kami akan menindaklanjuti komentar dari Neo Energy.",
+        "cn": "我们将跟进 Neo Energy 的审核意见。"
+      },
+      {
+        "scene": "场景",
+        "id": "Semua temuan ditindaklanjuti sampai selesai.",
+        "cn": "所有问题跟进至闭环。"
+      }
+    ]
+  },
+  "membatasi": {
+    "word": "membatasi",
+    "cn": "限定/限制",
+    "en": "to limit",
+    "root": "batas",
+    "forms": [
+      {
+        "form": "membatasi",
+        "pos": "动词",
+        "mean": "限定（meN--i）"
+      },
+      {
+        "form": "dibatasi",
+        "pos": "被动动词",
+        "mean": "被限制（di- 被动）"
+      },
+      {
+        "form": "batasan",
+        "pos": "名词",
+        "mean": "限制（-an 名词化）"
+      }
+    ],
+    "formsNote": "",
+    "note": "meN--i 主动 / di- 被动 / -an 名词化 [REP2C-EXT 同义:mengekang]",
+    "synonyms": [
+      "mengekang",
+      "mengerem"
+    ],
+    "antonyms": [
+      "memperluas",
+      "membebaskan"
+    ],
+    "examples": [
+      {
+        "scene": "场景",
+        "id": "Kita harus membatasi jumlah putaran umpan balik.",
+        "cn": "我们必须限定反馈轮次。"
+      },
+      {
+        "scene": "场景",
+        "id": "Batas waktu umpan balik teks sudah ditetapkan.",
+        "cn": "文本反馈截止时间已定。"
+      }
+    ]
+  },
+  "mematuhi": {
+    "word": "mematuhi",
+    "cn": "遵守（合规）",
+    "en": "to comply with",
+    "root": "patuh",
+    "forms": [
+      {
+        "form": "mematuhi",
+        "pos": "动词",
+        "mean": "遵守（meN--i）"
+      },
+      {
+        "form": "dipatuhi",
+        "pos": "被动动词",
+        "mean": "被遵守（di- 被动）"
+      },
+      {
+        "form": "kepatuhan",
+        "pos": "名词",
+        "mean": "合规（ke--an 名词化）"
+      }
+    ],
+    "formsNote": "",
+    "note": "meN--i 主动 / di- 被动 / ke--an 名词化 REP2C 原始词",
+    "synonyms": [
+      "menaati",
+      "mengikuti"
+    ],
+    "antonyms": [
+      "melanggar",
+      "mengabaikan"
+    ],
+    "examples": [
+      {
+        "scene": "场景",
+        "id": "Semua staf harus mematuhi peraturan Indonesia.",
+        "cn": "所有人员须遵守印尼法规。"
+      },
+      {
+        "scene": "场景",
+        "id": "Kepatuhan terhadap aturan lingkungan sangat penting.",
+        "cn": "环保合规非常重要。"
+      }
+    ]
+  },
+  "memetakan": {
+    "word": "memetakan",
+    "cn": "测绘/绘制",
+    "en": "to map / to survey",
+    "root": "peta",
+    "forms": [
+      {
+        "form": "memetakan",
+        "pos": "动词",
+        "mean": "测绘（meN--kan）"
+      },
+      {
+        "form": "dipetakan",
+        "pos": "被动动词",
+        "mean": "被测绘（di- 被动）"
+      },
+      {
+        "form": "pemetaan",
+        "pos": "名词",
+        "mean": "测绘（peN--an 名词化）"
+      }
+    ],
+    "formsNote": "",
+    "note": "meN--kan 主动 / di- 被动 / peN--an 名词化 自中文'测绘'转译",
+    "synonyms": [
+      "mengukur",
+      "mensurvei"
+    ],
+    "antonyms": [
+      "mengabaikan",
+      "menghapus"
+    ],
+    "examples": [
+      {
+        "scene": "场景",
+        "id": "Tim survei telah memetakan medan lokasi proyek.",
+        "cn": "测绘团队已完成项目现场地形测绘。"
+      },
+      {
+        "scene": "场景",
+        "id": "Hasil pemetaan akhir sudah diserahkan.",
+        "cn": "最终测绘资料已提交。"
+      }
+    ]
+  },
+  "membuang": {
+    "word": "membuang",
+    "cn": "排放/丢弃",
+    "en": "to discharge / to dump",
+    "root": "buang",
+    "forms": [
+      {
+        "form": "membuang",
+        "pos": "动词",
+        "mean": "排放（meN- 主动）"
+      },
+      {
+        "form": "dibuang",
+        "pos": "被动动词",
+        "mean": "被排放（di- 被动）"
+      },
+      {
+        "form": "pembuangan",
+        "pos": "名词",
+        "mean": "排放（peN--an 名词化）"
+      }
+    ],
+    "formsNote": "",
+    "note": "meN- 主动 / di- 被动 / peN--an 名词化 REP2C 原始词",
+    "synonyms": [
+      "mengeluarkan",
+      "menyalurkan"
+    ],
+    "antonyms": [
+      "menampung",
+      "menahan"
+    ],
+    "examples": [
+      {
+        "scene": "场景",
+        "id": "Titik pembuangan air limbah sudah ditentukan.",
+        "cn": "污水排放点已明确。"
+      },
+      {
+        "scene": "场景",
+        "id": "Air limbah tidak boleh dibuang tanpa izin.",
+        "cn": "污水不得无证排放。"
+      }
+    ]
+  },
+  "mengumpulkan": {
+    "word": "mengumpulkan",
+    "cn": "收集",
+    "en": "to collect",
+    "root": "kumpul",
+    "forms": [
+      {
+        "form": "mengumpulkan",
+        "pos": "动词",
+        "mean": "收集（meN--kan）"
+      },
+      {
+        "form": "dikumpulkan",
+        "pos": "被动动词",
+        "mean": "被收集（di- 被动）"
+      },
+      {
+        "form": "pengumpulan",
+        "pos": "名词",
+        "mean": "收集（peN--an 名词化）"
+      }
+    ],
+    "formsNote": "",
+    "note": "meN--kan 主动 / di- 被动 / peN--an 名词化 REP2C 原始词",
+    "synonyms": [
+      "menghimpun",
+      "mendata"
+    ],
+    "antonyms": [
+      "menyebarkan",
+      "membagikan"
+    ],
+    "examples": [
+      {
+        "scene": "场景",
+        "id": "Tim sedang mengumpulkan data pihak ketiga.",
+        "cn": "团队正在收集第三方数据。"
+      },
+      {
+        "scene": "场景",
+        "id": "Pengumpulan data hidrologi masih terlambat.",
+        "cn": "水文数据收集仍然逾期。"
+      }
+    ]
+  },
+  "mengirim": {
+    "word": "mengirim",
+    "cn": "发送",
+    "en": "to send",
+    "root": "kirim",
+    "forms": [
+      {
+        "form": "mengirim",
+        "pos": "动词",
+        "mean": "发送（meN- 主动）"
+      },
+      {
+        "form": "dikirim",
+        "pos": "被动动词",
+        "mean": "被发送（di- 被动）"
+      },
+      {
+        "form": "pengiriman",
+        "pos": "名词",
+        "mean": "发送/寄送（peN--an 名词化）"
+      }
+    ],
+    "formsNote": "",
+    "note": "meN- 主动 / di- 被动 / peN--an 名词化 REP2C 原始词",
+    "synonyms": [
+      "menyampaikan",
+      "menyerahkan"
+    ],
+    "antonyms": [
+      "menerima",
+      "menahan"
+    ],
+    "examples": [
+      {
+        "scene": "场景",
+        "id": "Kami telah mengirim perjanjian kerahasiaan kepada mitra.",
+        "cn": "我们已向合作方发送保密协议。"
+      },
+      {
+        "scene": "场景",
+        "id": "Dokumen kebutuhan pemilik akan dikirim minggu ini.",
+        "cn": "业主需求文件将于本周发送。"
+      }
+    ]
+  },
+  "mempersiapkan": {
+    "word": "mempersiapkan",
+    "cn": "准备",
+    "en": "to prepare",
+    "root": "siap",
+    "forms": [
+      {
+        "form": "mempersiapkan",
+        "pos": "动词",
+        "mean": "准备（meNper--kan）"
+      },
+      {
+        "form": "dipersiapkan",
+        "pos": "被动动词",
+        "mean": "被准备（diper- 被动）"
+      },
+      {
+        "form": "persiapan",
+        "pos": "名词",
+        "mean": "准备（peNper--an 名词化）"
+      }
+    ],
+    "formsNote": "",
+    "note": "meNper--kan 主动 / diper- 被动 / peNper--an 名词化 REP2C 原始词",
+    "synonyms": [
+      "menyiapkan",
+      "merencanakan"
+    ],
+    "antonyms": [
+      "mengabaikan",
+      "menunda"
+    ],
+    "examples": [
+      {
+        "scene": "场景",
+        "id": "Tim telah mempersiapkan dokumen kebutuhan MES.",
+        "cn": "团队已准备好 MES 需求文件。"
+      },
+      {
+        "scene": "场景",
+        "id": "Persiapan tender dimulai lebih awal.",
+        "cn": "招标准备工作提前启动。"
+      }
+    ]
+  },
+  "membandingkan": {
+    "word": "membandingkan",
+    "cn": "比选/比较",
+    "en": "to compare",
+    "root": "banding",
+    "forms": [
+      {
+        "form": "membandingkan",
+        "pos": "动词",
+        "mean": "比较/比选（meN--kan）"
+      },
+      {
+        "form": "dibandingkan",
+        "pos": "被动动词",
+        "mean": "被比较（di- 被动）"
+      },
+      {
+        "form": "perbandingan",
+        "pos": "名词",
+        "mean": "比选/对比（per--an 名词化）"
+      }
+    ],
+    "formsNote": "",
+    "note": "meN--kan 主动 / di- 被动 / per--an 名词化 REP2C 原始词",
+    "synonyms": [
+      "menilai",
+      "menimbang"
+    ],
+    "antonyms": [
+      "menyamakan",
+      "menyatukan"
+    ],
+    "examples": [
+      {
+        "scene": "场景",
+        "id": "Kami sedang membandingkan skema dari beberapa pemasok.",
+        "cn": "我们正在比选多家供应商方案。"
+      },
+      {
+        "scene": "场景",
+        "id": "Perbandingan skema fotovoltaik dimulai bulan ini.",
+        "cn": "光伏方案比选本月启动。"
+      }
+    ]
+  },
+  "memilih": {
+    "word": "memilih",
+    "cn": "选择",
+    "en": "to select / to choose",
+    "root": "pilih",
+    "forms": [
+      {
+        "form": "memilih",
+        "pos": "动词",
+        "mean": "选择（meN- 主动）"
+      },
+      {
+        "form": "dipilih",
+        "pos": "被动动词",
+        "mean": "被选中（di- 被动）"
+      },
+      {
+        "form": "pemilihan",
+        "pos": "名词",
+        "mean": "选择（peN--an 名词化）"
+      }
+    ],
+    "formsNote": "",
+    "note": "meN- 主动 / di- 被动 / peN--an 名词化 REP2C 原始词",
+    "synonyms": [
+      "menyaring",
+      "menetapkan"
+    ],
+    "antonyms": [
+      "menolak",
+      "mengabaikan"
+    ],
+    "examples": [
+      {
+        "scene": "场景",
+        "id": "Perusahaan telah memilih subkontraktor fotovoltaik.",
+        "cn": "公司已选定光伏分包商。"
+      },
+      {
+        "scene": "场景",
+        "id": "Pemilihan konsultan desain sedang berjalan.",
+        "cn": "设计单位比选正在进行中。"
+      }
+    ]
+  },
+  "menghadiri": {
+    "word": "menghadiri",
+    "cn": "出席/到场",
+    "en": "to attend",
+    "root": "hadir",
+    "forms": [
+      {
+        "form": "menghadiri",
+        "pos": "动词",
+        "mean": "出席（meN--i）"
+      },
+      {
+        "form": "dihadiri",
+        "pos": "被动动词",
+        "mean": "被出席（di- 被动）"
+      },
+      {
+        "form": "kehadiran",
+        "pos": "名词",
+        "mean": "出席/到场（ke--an 名词化）"
+      }
+    ],
+    "formsNote": "",
+    "note": "meN--i 主动 / di- 被动 / ke--an 名词化 REP2C 原始词",
+    "synonyms": [
+      "mengikuti",
+      "datang"
+    ],
+    "antonyms": [
+      "melewatkan",
+      "meninggalkan"
+    ],
+    "examples": [
+      {
+        "scene": "场景",
+        "id": "Teknisi Tiongkok akan menghadiri dukungan di lokasi.",
+        "cn": "中方技术人员将到场支持。"
+      },
+      {
+        "scene": "场景",
+        "id": "Kehadiran semua pemangku kepentingan diperlukan.",
+        "cn": "需要所有相关方到场。"
+      }
+    ]
+  },
+  "membutuhkan": {
+    "word": "membutuhkan",
+    "cn": "需要",
+    "en": "to need / to require",
+    "root": "butuh",
+    "forms": [
+      {
+        "form": "membutuhkan",
+        "pos": "动词",
+        "mean": "需要（meN--kan）"
+      },
+      {
+        "form": "dibutuhkan",
+        "pos": "被动动词",
+        "mean": "被需要（di- 被动）"
+      },
+      {
+        "form": "kebutuhan",
+        "pos": "名词",
+        "mean": "需求（ke--an 名词化）"
+      }
+    ],
+    "formsNote": "",
+    "note": "meN--kan 主动 / di- 被动 / ke--an 名词化 REP2C 原始词",
+    "synonyms": [
+      "memerlukan",
+      "menghendaki"
+    ],
+    "antonyms": [
+      "menyediakan",
+      "memiliki"
+    ],
+    "examples": [
+      {
+        "scene": "场景",
+        "id": "Proyek membutuhkan data pihak ketiga yang lengkap.",
+        "cn": "项目需要完整的第三方数据。"
+      },
+      {
+        "scene": "场景",
+        "id": "Kebutuhan pemilik sudah disiapkan dalam dokumen resmi.",
+        "cn": "业主需求已编制成正式文件。"
+      }
+    ]
+  },
+  "mempercepat": {
+    "word": "mempercepat",
+    "cn": "加快",
+    "en": "to accelerate",
+    "root": "cepat",
+    "forms": [
+      {
+        "form": "mempercepat",
+        "pos": "动词",
+        "mean": "加快（meNper-）"
+      },
+      {
+        "form": "dipercepat",
+        "pos": "被动动词",
+        "mean": "被加快（diper- 被动）"
+      },
+      {
+        "form": "percepatan",
+        "pos": "名词",
+        "mean": "加速（per--an 名词化）"
+      }
+    ],
+    "formsNote": "",
+    "note": "meNper- 主动 / diper- 被动 / per--an 名词化 REP2C 原始词",
+    "synonyms": [
+      "memacu",
+      "mendesak"
+    ],
+    "antonyms": [
+      "memperlambat",
+      "menunda"
+    ],
+    "examples": [
+      {
+        "scene": "场景",
+        "id": "Kita harus mempercepat pembebasan lahan.",
+        "cn": "我们必须加快征地进度。"
+      },
+      {
+        "scene": "场景",
+        "id": "Percepatan izin menjadi prioritas minggu ini.",
+        "cn": "许可加速是本周重点。"
+      }
+    ]
+  },
+  "menutup": {
+    "word": "menutup",
+    "cn": "闭环/关闭",
+    "en": "to close",
+    "root": "tutup",
+    "forms": [
+      {
+        "form": "menutup",
+        "pos": "动词",
+        "mean": "关闭/闭环（meN- 主动）"
+      },
+      {
+        "form": "ditutup",
+        "pos": "被动动词",
+        "mean": "被关闭（di- 被动）"
+      },
+      {
+        "form": "penutupan",
+        "pos": "名词",
+        "mean": "闭环/关闭（peN--an 名词化）"
+      }
+    ],
+    "formsNote": "",
+    "note": "meN- 主动 / di- 被动 / peN--an 名词化 自中文'闭环'转译",
+    "synonyms": [
+      "mengakhiri",
+      "menyelesaikan"
+    ],
+    "antonyms": [
+      "membuka",
+      "memulai"
+    ],
+    "examples": [
+      {
+        "scene": "场景",
+        "id": "Kami akan menutup semua item yang terlambat.",
+        "cn": "我们将闭环所有逾期事项。"
+      },
+      {
+        "scene": "场景",
+        "id": "Penutupan item tindakan dipantau setiap minggu.",
+        "cn": "行动项闭环每周督办。"
+      }
+    ]
+  },
+  "melaporkan": {
+    "word": "melaporkan",
+    "cn": "汇报",
+    "en": "to report",
+    "root": "lapor",
+    "forms": [
+      {
+        "form": "melaporkan",
+        "pos": "动词",
+        "mean": "汇报（meN--kan）"
+      },
+      {
+        "form": "dilaporkan",
+        "pos": "被动动词",
+        "mean": "被汇报（di- 被动）"
+      },
+      {
+        "form": "laporan",
+        "pos": "名词",
+        "mean": "报告/汇报（peN--an 名词化）"
+      }
+    ],
+    "formsNote": "",
+    "note": "meN--kan 主动 / di- 被动 / peN--an 名词化 REP2C 原始词",
+    "synonyms": [
+      "memberitahukan",
+      "menyampaikan"
+    ],
+    "antonyms": [
+      "menyembunyikan",
+      "menutupi"
+    ],
+    "examples": [
+      {
+        "scene": "场景",
+        "id": "Saya akan melaporkan progres mingguan kepada direksi.",
+        "cn": "我将向董事会汇报周进度。"
+      },
+      {
+        "scene": "场景",
+        "id": "Laporan mingguan dilaporkan setiap Jumat.",
+        "cn": "周报每周五汇报。"
+      }
+    ]
+  },
+  "merahasiakan": {
+    "word": "merahasiakan",
+    "cn": "保密",
+    "en": "to keep confidential",
+    "root": "rahasia",
+    "forms": [
+      {
+        "form": "merahasiakan",
+        "pos": "动词",
+        "mean": "保密（meN--kan）"
+      },
+      {
+        "form": "dirahasiakan",
+        "pos": "被动动词",
+        "mean": "被保密（di- 被动）"
+      },
+      {
+        "form": "kerahasiaan",
+        "pos": "名词",
+        "mean": "保密性（ke--an 名词化）"
+      }
+    ],
+    "formsNote": "",
+    "note": "meN--kan 主动 / di- 被动 / ke--an 名词化 自中文'保密协议'转译",
+    "synonyms": [
+      "menyembunyikan",
+      "melindungi"
+    ],
+    "antonyms": [
+      "mengumumkan",
+      "membocorkan"
+    ],
+    "examples": [
+      {
+        "scene": "场景",
+        "id": "Kedua pihak merahasiakan data teknis proyek.",
+        "cn": "双方对项目技术数据保密。"
+      },
+      {
+        "scene": "场景",
+        "id": "Perjanjian kerahasiaan telah dikirim kepada mitra.",
+        "cn": "保密协议已发送给合作方。"
+      }
+    ]
+  },
+  "mendorong": {
+    "word": "mendorong",
+    "cn": "推进/推动",
+    "en": "to push forward / to promote",
+    "root": "dorong",
+    "forms": [
+      {
+        "form": "mendorong",
+        "pos": "动词",
+        "mean": "推进（meN- 主动）"
+      },
+      {
+        "form": "didorong",
+        "pos": "被动动词",
+        "mean": "被推动（di- 被动）"
+      },
+      {
+        "form": "dorongan",
+        "pos": "名词",
+        "mean": "推动/推力（-an 名词化）"
+      }
+    ],
+    "formsNote": "",
+    "note": "meN- 主动 / di- 被动 / -an 名词化 [REP2C-EXT 同义:memajukan]",
+    "synonyms": [
+      "memajukan",
+      "mempercepat"
+    ],
+    "antonyms": [
+      "menghambat",
+      "menahan"
+    ],
+    "examples": [
+      {
+        "scene": "场景",
+        "id": "Kami mendorong penyelesaian izin yang terlambat.",
+        "cn": "我们推进逾期许可的办结。"
+      },
+      {
+        "scene": "场景",
+        "id": "Koordinasi lintas tim didorong oleh manajemen.",
+        "cn": "跨团队协调由管理层推动。"
+      }
+    ]
   }
 };
 
@@ -161848,10 +165364,10 @@ function renderAbout(c){
 }
 
 function renderVersion(c){
-  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.40.9 / Versi</span></div>
+  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.41.0 / Versi</span></div>
     <div style="padding:16px;">
       <div style="margin-bottom:14px;padding:14px;background:rgba(59,130,246,.10);border-radius:10px;border-left:3px solid var(--info)">
-        <div style="font-size:15px;font-weight:700;color:var(--info);margin-bottom:6px">V4.40.9 (2026-10-11)</div>
+        <div style="font-size:15px;font-weight:700;color:var(--info);margin-bottom:6px">V4.41.0 (2026-10-11)</div>
         <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">1. 每日笔记 2026-10-09 追加批次上线: 同日累计 41→52 词条 — 追加11词(partisipasi/bergabung/mengikuti/keseluruhan/pasang/catat/pengadaan/saya-yang-handle/agak-terganggu/tanah/perbaikan) · 大写归一×2(Pengadaan/Saya-yang-handle) · 新增22例句 · 追加44行变形表格 · saya-yang-handle口语标注 · 例句锚定HSE场景 · 同日整体覆盖(md_to_dailynote日期键幂等) · BIT V1.0+BIO审校 RCO A3对账52=41+11 PASS · check_syntax.py PASS · deploy-check PASS</div>
       <div style="margin-bottom:14px;padding:14px;background:rgba(59,130,246,.10);border-radius:10px;border-left:3px solid var(--info)">
         <div style="font-size:15px;font-weight:700;color:var(--info);margin-bottom:6px">V4.40.8 (2026-10-10)</div>
