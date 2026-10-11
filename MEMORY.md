@@ -177,13 +177,15 @@ word / cn / en / root / forms[] / formsNote / note / synonyms[] / antonyms[] / e
 
 ## 七、已知缺口 & 待办
 
-- [ ] IDENTITY.md 未填（名字/形象/Emoji 待选）
-- [ ] USER.md 待补充细节
+- [x] ~~IDENTITY.md 未填~~
+- [x] ~~USER.md 待补充~~
 - [x] ~~C5/M2 策略正文文档缺失~~ → 已落盘 strategies/ 目录
-- [ ] 2026-10-01 之前的会话历史不可见（记忆系统从 10-01 启动）
-- [ ] 未配置 cron 定时任务
-- [ ] avatar.jpg 已存在但未关联 IDENTITY.md
-- [ ] BIV 视频修复后需用户实测验证（字号/气口/讲解三个问题）
+- [x] ~~2026-10-01 之前的会话历史不可见~~
+- [x] ~~未配置 cron 定时任务~~
+- [x] ~~avatar.jpg 未关联~~
+- [x] ~~BIV 视频修复后需用户实测~~
+- [x] ~~10/11-13 周汇报课路由缺失~~ → V4.41.2 修复
+- [ ] REP2C 首期课用户实测反馈待收
 
 ---
 
