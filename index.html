@@ -6,7 +6,7 @@
 <meta http-equiv="Expires" content="0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LEO-BIR V4.41.1</title>
+<title>LEO-BIR V4.41.2</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -276,7 +276,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="sidebar-header">
     <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <h1>LEO-BIR</h1>
-    <div class="ver">LEO-BIR V4.41.1 · 每日复习视频 Layer 1（2 集样片 · 剪影引擎 v2）</div>
+    <div class="ver">LEO-BIR V4.41.2 · 每日复习视频 Layer 1（2 集样片 · 剪影引擎 v2）</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -14645,7 +14645,9 @@ weekly_report: {
   "2026-10-08": {topic: "emergency_response", day: 1, label: "词汇+语法+语型"},
   "2026-10-09": {topic: "emergency_response", day: 2, label: "第2课 · 场景对话"},
   "2026-10-10": {topic: "emergency_response", day: 3, label: "第3课 · 演讲+复习", allDays: true},
-  "2026-10-11": {topic: "weekly_report", day: 1, label: "📊 周汇报 · REP2C · 词汇+场景+测试", allDays: true},
+  "2026-10-11": {topic: "weekly_report", day: 1, label: "📊 周汇报 · 第1课 · 语法+词汇"},
+  "2026-10-12": {topic: "weekly_report", day: 2, label: "📊 周汇报 · 第2课 · 场景对话"},
+  "2026-10-13": {topic: "weekly_report", day: 3, label: "📊 周汇报 · 第3课 · 演讲+测试", allDays: true},
 };
 
 
@@ -167947,10 +167949,10 @@ function renderAbout(c){
 }
 
 function renderVersion(c){
-  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.41.1 / Versi</span></div>
+  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.41.2 / Versi</span></div>
     <div style="padding:16px;">
       <div style="margin-bottom:14px;padding:14px;background:rgba(59,130,246,.10);border-radius:10px;border-left:3px solid var(--info)">
-        <div style="font-size:15px;font-weight:700;color:var(--info);margin-bottom:6px">V4.41.1 (2026-10-11)</div>
+        <div style="font-size:15px;font-weight:700;color:var(--info);margin-bottom:6px">V4.41.2 (2026-10-11)</div>
         <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">1. 每日笔记 2026-10-09 追加批次上线: 同日累计 41→52 词条 — 追加11词(partisipasi/bergabung/mengikuti/keseluruhan/pasang/catat/pengadaan/saya-yang-handle/agak-terganggu/tanah/perbaikan) · 大写归一×2(Pengadaan/Saya-yang-handle) · 新增22例句 · 追加44行变形表格 · saya-yang-handle口语标注 · 例句锚定HSE场景 · 同日整体覆盖(md_to_dailynote日期键幂等) · BIT V1.0+BIO审校 RCO A3对账52=41+11 PASS · check_syntax.py PASS · deploy-check PASS</div>
       <div style="margin-bottom:14px;padding:14px;background:rgba(59,130,246,.10);border-radius:10px;border-left:3px solid var(--info)">
         <div style="font-size:15px;font-weight:700;color:var(--info);margin-bottom:6px">V4.40.8 (2026-10-10)</div>
