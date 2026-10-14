@@ -1,7 +1,7 @@
 # MEMORY.md — 长期记忆（任何会话重开必读）
 
 > 本文件是跨会话的核心记忆。每次启动优先读本文件。
-> 最后更新：2026-10-02（策略库落盘 + V4.39.6 核心词修复 + BIV 三修复）
+> 最后更新：2026-10-14（V4.42.4 镍地图补全 ASPIRE-Stargate + INDUSTRY-DATA v1.0）
 
 ---
 
@@ -25,7 +25,7 @@
 ## 二、LEO-BIR 策略体系（核心认知，不得再说不认识）
 
 ### 产品本体
-**LEO-BIR** 印尼语学习平台——单文件 HTML + GitHub Pages，当前 **V4.41.0**，245 个 commit。
+**LEO-BIR** 印尼语学习平台——单文件 HTML + GitHub Pages，当前 **V4.42.1**，246 个 commit。
 为印尼 Morowali 冶炼工业园区总经理定制的个人学习工具。词库 120+ 词条，主题课 topic22–29。
 
 ### 策略代号一览
@@ -89,7 +89,13 @@ V4.39.7-.9    1002笔记三批(41→55→74词条, PMBOK复习+量化风险+环�
 V4.40.0       1003笔记 27词(26词元语义拆分+1, 13词覆盖更新含缩写小写键核验klhk/pplh/apd)
 V4.40.1       1004笔记 11词(连字符归并x2, 4覆盖更新)
 V4.40.2       1003笔记追加批次二 27词(28词元去重+同日重收x3, 54词条累计, ukl-upl小写键核验)
-V4.41.0       REP2C首期课程上线: 0929周报转化话题30周汇报(38词+3场景16/14/12句+15题) · vocabDB插入查重WARN修复(18撞库撤重插20) · 话题30 allDays综合路由10-11 · 线上MD5验证PASS ★当前版本
+V4.41.0       REP2C首期课程上线: 0929周报转化话题30周汇报(38词+3场景16/14/12句+15题) · vocabDB插入查重WARN修复(18撞库撤重插20) · 话题30 allDays综合路由10-11 · 线上MD5验证PASS
+V4.41.1-.3    1010笔记35词(K3应急) → 周汇报3天路由补全(10-11/12/13) → 话题30补speeches修Day3白屏
+V4.42.0       任务三合一: 词根释义规范落地 + REP2C月报课monthly_report(10/14-16, 38词+3场景15/15/14句+3演讲+6语法{新对象格式}) + 1011日记补批17词
+V4.42.1       月报课10-14/10-16白屏热修: grammar新格式{name,detail}无examples→渲染崩溃(同类第2次, check_syntax/deploy-check拦不住) · fmtGrammarRule双格式兼容+8渲染点适配 · renderTopicQuiz回退topic.vocab(修REP2C中文tag不匹配) · 线上数据端到端6/6 PASS
+V4.42.2       1012笔记30词(综合事务: 32词元去重2+重收覆盖9, 谚语kepala-di-pijat-kelapa-di-parut+连字符due-date, 105变形+60例句, RCO对账逐词映射)
+V4.42.3       1013笔记39词(园区运维专题: 40词元去重1+大小写归一3+重收覆盖13, 清淤排水pengerukan/saluran/pipa+合规治理transparan/dirahasiakan, 148变形+78例句, RCO对账逐词映射) · 线上MD5验证PASS
+V4.42.4       镍冶炼地图补全: ASPIRE-Stargate工业园(东南苏拉威西省北科纳威Molore) — Astra集团United Tractors项目 · RKEF 2×33MVA在建1.31万镍吨+HPAL 3万吨级规划 · MottMac总体规划WBS5000(4×33MW RKEF+镍冰铜/硫酸镍常压浸出+450MW LNG电厂+Molore/Lameruru双码头) · 复盘: 中文研报信源盲区致本土项目漏检 → INDUSTRY-DATA v1.0监测策略落地 ★当前版本
 ```
 
 ---
@@ -131,12 +137,14 @@ word / cn / en / root / forms[] / formsNote / note / synonyms[] / antonyms[] / e
 - 印尼语纯度（C5 要求，禁方言混入）
 
 ### 关键教训（血泪史）
+0. **结构不匹配运行时崩溃查不出**（V4.41.3 speeches白屏 + V4.42.1 grammar白屏 同类2次）——课程上线前必须用 node 模拟渲染该 topic 三天内容冒烟；BIT 体例必须声明字段唯一格式
 1. **"页面显示代码"→ 先查 `</html>` 之后是否有残留代码块**（V4.39.4 教训）
 2. **BIT 弹窗路由查 bitVocabDB 而非 vocabDB**——两库字段名不一致：vocabDB 用五字段（ipa/cn/en/root/tag），bitVocabDB 用九字段（transform/example/synonym vs forms/examples/synonyms 命名不一致坑过一次）
 3. **vocabDB 词条间多一个逗号 → 整页白屏**（V4.38.6 教训，孤立逗号行 1906）
 4. **历史 commit 只提交 index.html**，untracked 文件堆积是常态；已加 .gitignore 治理
 5. **RCO 审计必须词级对齐**——用户输入词元 vs 最终词条逐词对账（V4.34.0 教训：23→26 词对账纠正）
 6. **备份习惯**：合并前 index.html 备份到 /tmp/；bit-deploy-bak 有 60+ 份历史备份
+7. **行业数据信源盲区**（V4.42.4 复盘）：镍地图建库依赖中文研报→印尼本土开发商项目漏检（ASPIRE-Stargate 案例）——收录必须三问：信源是什么/为何此前没收录/同类还有谁可能漏；A级信源=公司官网+IR，Petromindo是印尼项目进度最细的行业媒体
 
 ### 数据检索方法
 - **找策略/历史信息：挖 git log + index.html 版本记录**，不能只看 memory/*.md
@@ -185,6 +193,7 @@ word / cn / en / root / forms[] / formsNote / note / synonyms[] / antonyms[] / e
 - [x] ~~avatar.jpg 未关联~~
 - [x] ~~BIV 视频修复后需用户实测~~
 - [x] ~~10/11-13 周汇报课路由缺失~~ → V4.41.2 修复
+- [x] ~~镍地图本土项目漏检~~ → V4.42.4 补录 ASPIRE-Stargate + INDUSTRY-DATA v1.0 监测策略
 - [ ] REP2C 首期课用户实测反馈待收
 
 ---
