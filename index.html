@@ -6,7 +6,7 @@
 <meta http-equiv="Expires" content="0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LEO-BIR V4.42.5</title>
+<title>LEO-BIR V4.42.6</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -276,7 +276,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="sidebar-header">
     <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <h1>LEO-BIR</h1>
-    <div class="ver">LEO-BIR V4.42.5 · 每日复习视频 Layer 1（2 集样片 · 剪影引擎 v2）</div>
+    <div class="ver">LEO-BIR V4.42.6 · 每日复习视频 Layer 1（2 集样片 · 剪影引擎 v2）</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -5971,6 +5971,8 @@ function showBITInfo(word){
   }
   overlay.addEventListener("click",function(e){if(e.target===overlay)closeBITInfo();});
 }
+
+
 
 
 
@@ -65553,6 +65555,430 @@ const dailyNotesDB = {
             "cn": "成本数据与 Benny 团队共同分析。"
           }
         ]
+      },
+      {
+        "word": "sesuai",
+        "cn": "按照；符合；适合",
+        "en": "according to; in accordance with; suitable",
+        "root": "suai（适合）· 形容词/介词",
+        "forms": [
+          {
+            "form": "sesuai",
+            "pos": "形容词/介词",
+            "mean": "按照；符合"
+          },
+          {
+            "form": "kesesuaian",
+            "pos": "名词",
+            "mean": "适合性；一致性（ke--an 名词化）"
+          },
+          {
+            "form": "menyesuaikan",
+            "pos": "动词",
+            "mean": "使适应；调整（meN--kan）"
+          },
+          {
+            "form": "disesuaikan",
+            "pos": "被动动词",
+            "mean": "被调整（di- 被动）"
+          },
+          {
+            "form": "penyesuaian",
+            "pos": "名词",
+            "mean": "调整；适配（peN--an 名词化）"
+          }
+        ],
+        "formsNote": "",
+        "note": "ke--an 名词化 / meN--kan 使动 / di- 被动；高频搭配 sesuai dengan（按照…）、sesuai jadwal（按进度）",
+        "synonyms": [
+          "menurut",
+          "berdasarkan",
+          "cocok"
+        ],
+        "antonyms": [
+          "menyimpang",
+          "bertentangan"
+        ],
+        "examples": [
+          {
+            "scene": "月报",
+            "id": "Laporan bulanan disusun sesuai format perusahaan.",
+            "cn": "月报按公司格式编制。"
+          },
+          {
+            "scene": "园区",
+            "id": "Pekerjaan konstruksi berjalan sesuai jadwal.",
+            "cn": "施工按计划推进。"
+          },
+          {
+            "scene": "合规",
+            "id": "Tindakan kami sesuai dengan peraturan LH.",
+            "cn": "我们的措施符合环保法规。"
+          }
+        ]
+      },
+      {
+        "word": "pendapat",
+        "cn": "意见；看法；观点",
+        "en": "opinion; view",
+        "root": "pandang（看）· peN--an 名词化",
+        "forms": [
+          {
+            "form": "pendapat",
+            "pos": "名词",
+            "mean": "意见；观点"
+          },
+          {
+            "form": "berpendapat",
+            "pos": "动词",
+            "mean": "认为；持观点（ber- 拥有）"
+          },
+          {
+            "form": "memandang",
+            "pos": "动词",
+            "mean": "看待；认为（meN- 主动）"
+          },
+          {
+            "form": "pandangan",
+            "pos": "名词",
+            "mean": "看法；视野（pandang + -an）"
+          }
+        ],
+        "formsNote": "",
+        "note": "peN--an 名词化；berpendapat = 持有观点（ber- 缀）；与 memandang 同源近义",
+        "synonyms": [
+          "opini",
+          "anggapan"
+        ],
+        "antonyms": [
+          "fakta",
+          "kenyataan"
+        ],
+        "examples": [
+          {
+            "scene": "会议",
+            "id": "Saya berpendapat proyek perlu percepatan.",
+            "cn": "我认为项目需要提速。"
+          },
+          {
+            "scene": "月报",
+            "id": "Pendapat pemangku kepentingan dicatat dalam laporan.",
+            "cn": "相关方意见记录在报告中。"
+          },
+          {
+            "scene": "谈判",
+            "id": "Kami menghargai pendapat mitra kerja.",
+            "cn": "我们尊重合作伙伴的意见。"
+          }
+        ]
+      },
+      {
+        "word": "dengan",
+        "cn": "和；用；以；随着",
+        "en": "with; by; using",
+        "root": "基础介词（无派生词根）",
+        "forms": [],
+        "formsNote": "—（无派生形态；功能介词）",
+        "note": "印尼语最高频介词：dengan + 名词 = 用/与；固定短语 dengan demikian（因此）、dengan cara ini（以此方式）、dengan segera（立即）",
+        "synonyms": [
+          "serta",
+          "bersama"
+        ],
+        "antonyms": [
+          "tanpa"
+        ],
+        "examples": [
+          {
+            "scene": "商务",
+            "id": "Kami berkoordinasi dengan pemasok setiap minggu.",
+            "cn": "我们每周与供应商协调。"
+          },
+          {
+            "scene": "园区",
+            "id": "Inspeksi dilakukan dengan check list K3.",
+            "cn": "检查以安全清单进行。"
+          },
+          {
+            "scene": "月报",
+            "id": "Dengan demikian, target produksi tercapai.",
+            "cn": "因此产量目标达成。"
+          }
+        ]
+      },
+      {
+        "word": "diprioritaskan",
+        "cn": "被优先处理；列为优先",
+        "en": "to be prioritized",
+        "root": "prioritas（优先，荷兰语 prioriteit 借词）· di- 被动缀",
+        "forms": [
+          {
+            "form": "memprioritaskan",
+            "pos": "动词",
+            "mean": "优先考虑（meN--kan 主动）"
+          },
+          {
+            "form": "diprioritaskan",
+            "pos": "被动动词",
+            "mean": "被优先处理（di- 被动）"
+          },
+          {
+            "form": "prioritas",
+            "pos": "名词",
+            "mean": "优先事项"
+          },
+          {
+            "form": "prioritisasi",
+            "pos": "名词",
+            "mean": "优先化（peng--an）"
+          }
+        ],
+        "formsNote": "",
+        "note": "di- 被动 / meN--kan 主动；月报38词已有主动态 memprioritaskan，本词为其被动式",
+        "synonyms": [
+          "didahulukan",
+          "diutamakan"
+        ],
+        "antonyms": [
+          "ditunda",
+          "diabaikan"
+        ],
+        "examples": [
+          {
+            "scene": "月报",
+            "id": "Isu keselamatan diprioritaskan dalam rapat bulanan.",
+            "cn": "安全问题在月度会议中被优先处理。"
+          },
+          {
+            "scene": "项目",
+            "id": "Pengadaan material kritis diprioritaskan minggu ini.",
+            "cn": "关键材料采购本周优先办理。"
+          },
+          {
+            "scene": "园区",
+            "id": "Penanganan limbah B3 diprioritaskan manajemen.",
+            "cn": "危废处理被管理层列为优先。"
+          }
+        ]
+      },
+      {
+        "word": "susun",
+        "cn": "编写；整理；排列",
+        "en": "to arrange; to compile; to draft",
+        "root": "susun（排列，基础动词）",
+        "forms": [
+          {
+            "form": "susun",
+            "pos": "动词",
+            "mean": "排列；编写（原形）"
+          },
+          {
+            "form": "menyusun",
+            "pos": "动词",
+            "mean": "编写；整理（meN- 主动）"
+          },
+          {
+            "form": "disusun",
+            "pos": "被动动词",
+            "mean": "被编制（di- 被动）"
+          },
+          {
+            "form": "susunan",
+            "pos": "名词",
+            "mean": "结构；汇编（-an 名词化）"
+          },
+          {
+            "form": "penyusun",
+            "pos": "名词",
+            "mean": "编者；起草人（peN- 名词化）"
+          }
+        ],
+        "formsNote": "",
+        "note": "meN- 主动（s→sy 音变：susun→menyusun）；月报38词已有 menyusun，本词为词根原形",
+        "synonyms": [
+          "merangkai",
+          "mengatur"
+        ],
+        "antonyms": [
+          "membongkar",
+          "mengacaukan"
+        ],
+        "examples": [
+          {
+            "scene": "月报",
+            "id": "Silakan susun draf laporan sebelum Jumat.",
+            "cn": "请在周五前起草报告。"
+          },
+          {
+            "scene": "会议",
+            "id": "Kami susun agenda rapat mingguan bersama.",
+            "cn": "我们共同编列周会议程。"
+          },
+          {
+            "scene": "园区",
+            "id": "Susunan komisi keselamatan diperbarui.",
+            "cn": "安全委员会构成已更新。"
+          }
+        ]
+      },
+      {
+        "word": "penyusunan",
+        "cn": "编制；起草；编写",
+        "en": "compilation; drafting",
+        "root": "susun（排列）· peN--an 名词化",
+        "forms": [
+          {
+            "form": "penyusunan",
+            "pos": "名词",
+            "mean": "编制；起草"
+          },
+          {
+            "form": "penyusun",
+            "pos": "名词",
+            "mean": "编者；起草人（peN- 名词化）"
+          },
+          {
+            "form": "disusun",
+            "pos": "被动动词",
+            "mean": "被编制"
+          },
+          {
+            "form": "susunan",
+            "pos": "名词",
+            "mean": "结构；汇编"
+          }
+        ],
+        "formsNote": "",
+        "note": "peN--an 名词化；与 susun/menyusun 构成\"动—名\"词族",
+        "synonyms": [
+          "pengumpulan",
+          "pengolahan"
+        ],
+        "antonyms": [
+          "pembongkaran"
+        ],
+        "examples": [
+          {
+            "scene": "月报",
+            "id": "Penyusunan laporan bulanan memakan waktu dua hari.",
+            "cn": "月报编制耗时两天。"
+          },
+          {
+            "scene": "项目",
+            "id": "Penyusunan jadwal proyek melibatkan semua divisi.",
+            "cn": "项目进度编制涉及所有部门。"
+          },
+          {
+            "scene": "合规",
+            "id": "Penyusunan dokumen AMDAL wajib melibatkan konsultan.",
+            "cn": "AMDAL 文件编制必须聘请咨询机构。"
+          }
+        ]
+      },
+      {
+        "word": "mengakui",
+        "cn": "承认；认可",
+        "en": "to admit; to acknowledge; to recognize",
+        "root": "aku（承认，梵语 akui 借词）· meN- 主动缀",
+        "forms": [
+          {
+            "form": "mengakui",
+            "pos": "动词",
+            "mean": "承认；认可（meN- 主动）"
+          },
+          {
+            "form": "diakui",
+            "pos": "被动动词",
+            "mean": "被承认（di- 被动）"
+          },
+          {
+            "form": "pengakuan",
+            "pos": "名词",
+            "mean": "承认；认可（peN--an 名词化）"
+          },
+          {
+            "form": "pengakuan resmi",
+            "pos": "名词短语",
+            "mean": "官方承认"
+          }
+        ],
+        "formsNote": "",
+        "note": "meN- 主动 / di- 被动 / peN--an 名词化",
+        "synonyms": [
+          "menyetujui",
+          "mengiyakan"
+        ],
+        "antonyms": [
+          "menyangkal",
+          "menolak"
+        ],
+        "examples": [
+          {
+            "scene": "商务",
+            "id": "Kontraktor mengakui keterlambatan pengiriman.",
+            "cn": "承包商承认交货延迟。"
+          },
+          {
+            "scene": "月报",
+            "id": "Kami mengakui adanya deviasi anggaran.",
+            "cn": "我们承认存在预算偏差。"
+          },
+          {
+            "scene": "审计",
+            "id": "Hasil audit diakui oleh semua pihak.",
+            "cn": "审计结果获各方认可。"
+          }
+        ]
+      },
+      {
+        "word": "faktanya",
+        "cn": "事实上；实际上",
+        "en": "in fact; as a matter of fact",
+        "root": "fakta（事实，荷兰语 feit 借词）+ -nya（定语后缀）",
+        "forms": [
+          {
+            "form": "fakta",
+            "pos": "名词",
+            "mean": "事实"
+          },
+          {
+            "form": "faktanya",
+            "pos": "副词短语",
+            "mean": "事实上；-nya 附于名词副词化"
+          },
+          {
+            "form": "faktual",
+            "pos": "形容词",
+            "mean": "事实的（fakta + -ual）"
+          }
+        ],
+        "formsNote": "",
+        "note": "-nya 附于名词构成副词短语，常置句首表转折/强调（≈ sebenarnya）",
+        "synonyms": [
+          "sebenarnya",
+          "nyatanya",
+          "sesungguhnya"
+        ],
+        "antonyms": [
+          "seharusnya",
+          "kelihatannya"
+        ],
+        "examples": [
+          {
+            "scene": "月报",
+            "id": "Faktanya, produksi naik lima persen bulan ini.",
+            "cn": "事实上，本月产量上升5%。"
+          },
+          {
+            "scene": "谈判",
+            "id": "Faktanya kontrak belum ditandatangani.",
+            "cn": "实际上合同尚未签署。"
+          },
+          {
+            "scene": "复盘",
+            "id": "Faktanya keterlambatan bisa dihindari.",
+            "cn": "事实上延误本可避免。"
+          }
+        ]
       }
     ]
   },
@@ -73614,28 +74040,62 @@ const bitVocabDB = {
   },
   "sesuai": {
     "word": "sesuai",
-    "cn": "符合/合适",
-    "en": "suitable, in accordance with",
-    "root": "se- 前缀（表「一致」）+ suai（适合，词根）",
-    "forms": [],
-    "formsNote": "menyesuaikan（调整/使适应）、penyesuaian（调整）、kesesuaian（符合性）",
-    "note": "常与 dengan 连用：sesuai dengan peraturan（符合法规）",
+    "cn": "按照；符合；适合",
+    "en": "according to; in accordance with; suitable",
+    "root": "suai（适合）· 形容词/介词",
+    "forms": [
+      {
+        "form": "sesuai",
+        "pos": "形容词/介词",
+        "mean": "按照；符合"
+      },
+      {
+        "form": "kesesuaian",
+        "pos": "名词",
+        "mean": "适合性；一致性（ke--an 名词化）"
+      },
+      {
+        "form": "menyesuaikan",
+        "pos": "动词",
+        "mean": "使适应；调整（meN--kan）"
+      },
+      {
+        "form": "disesuaikan",
+        "pos": "被动动词",
+        "mean": "被调整（di- 被动）"
+      },
+      {
+        "form": "penyesuaian",
+        "pos": "名词",
+        "mean": "调整；适配（peN--an 名词化）"
+      }
+    ],
+    "formsNote": "",
+    "note": "ke--an 名词化 / meN--kan 使动 / di- 被动；高频搭配 sesuai dengan（按照…）、sesuai jadwal（按进度）",
     "synonyms": [
+      "menurut",
+      "berdasarkan",
       "cocok"
     ],
     "antonyms": [
-      "tidak-sesuai"
+      "menyimpang",
+      "bertentangan"
     ],
     "examples": [
       {
-        "scene": "项目管理",
-        "id": "Desain fasilitas harus sesuai dengan standar internasional.",
-        "cn": "设施设计必须符合国际标准。"
+        "scene": "月报",
+        "id": "Laporan bulanan disusun sesuai format perusahaan.",
+        "cn": "月报按公司格式编制。"
       },
       {
-        "scene": "商务",
-        "id": "Kontraktor wajib bekerja sesuai dengan jadwal yang disepakati.",
-        "cn": "承包商必须按商定的进度工作。"
+        "scene": "园区",
+        "id": "Pekerjaan konstruksi berjalan sesuai jadwal.",
+        "cn": "施工按计划推进。"
+      },
+      {
+        "scene": "合规",
+        "id": "Tindakan kami sesuai dengan peraturan LH.",
+        "cn": "我们的措施符合环保法规。"
       }
     ]
   },
@@ -123578,50 +124038,56 @@ const bitVocabDB = {
   },
   "pendapat": {
     "word": "pendapat",
-    "ipa": "/pənˈda.pat/",
-    "cn": "观点",
-    "en": "opinion, view",
-    "root": "dapat",
+    "cn": "意见；看法；观点",
+    "en": "opinion; view",
+    "root": "pandang（看）· peN--an 名词化",
     "forms": [
       {
-        "form": "dapat",
-        "pos": "v",
-        "mean": "得到/能够"
+        "form": "pendapat",
+        "pos": "名词",
+        "mean": "意见；观点"
       },
       {
         "form": "berpendapat",
-        "pos": "v",
-        "mean": "认为"
+        "pos": "动词",
+        "mean": "认为；持观点（ber- 拥有）"
       },
       {
-        "form": "mengemukakan pendapat",
-        "pos": "phrase",
-        "mean": "发表意见"
+        "form": "memandang",
+        "pos": "动词",
+        "mean": "看待；认为（meN- 主动）"
       },
       {
-        "form": "pendapat umum",
-        "pos": "n",
-        "mean": "舆论"
+        "form": "pandangan",
+        "pos": "名词",
+        "mean": "看法；视野（pandang + -an）"
       }
     ],
-    "formsNote": "关联 dapat「得到」，派生 berpendapat「发表意见」",
-    "note": "menurut pendapat saya 依我看；自由表达 pendapat bebas",
+    "formsNote": "",
+    "note": "peN--an 名词化；berpendapat = 持有观点（ber- 缀）；与 memandang 同源近义",
     "synonyms": [
       "opini",
-      "pandangan",
       "anggapan"
     ],
-    "antonyms": [],
+    "antonyms": [
+      "fakta",
+      "kenyataan"
+    ],
     "examples": [
       {
-        "scene": "Setiap orang berhak mengemukakan pendapat.",
-        "id": "pendapat",
-        "cn": "每个人都有权发表意见。"
+        "scene": "会议",
+        "id": "Saya berpendapat proyek perlu percepatan.",
+        "cn": "我认为项目需要提速。"
       },
       {
-        "scene": "Saya berpendapat sebaliknya.",
-        "id": "berpendapat",
-        "cn": "我持相反看法。"
+        "scene": "月报",
+        "id": "Pendapat pemangku kepentingan dicatat dalam laporan.",
+        "cn": "相关方意见记录在报告中。"
+      },
+      {
+        "scene": "谈判",
+        "id": "Kami menghargai pendapat mitra kerja.",
+        "cn": "我们尊重合作伙伴的意见。"
       }
     ]
   },
@@ -133332,14 +133798,14 @@ const bitVocabDB = {
   },
   "dengan": {
     "word": "dengan",
-    "ipa": "/ˈdɛŋan/",
-    "cn": "和；与；用",
-    "en": "with, by, using",
-    "root": "dengan",
+    "cn": "和；用；以；随着",
+    "en": "with; by; using",
+    "root": "基础介词（无派生词根）",
     "forms": [],
-    "formsNote": "核心介词，无形态变化",
-    "note": "功能极多：工具（dengan pensil 用铅笔）、伴随（dengan teman 和朋友）、情状（dengan senang 高兴地）",
+    "formsNote": "—（无派生形态；功能介词）",
+    "note": "印尼语最高频介词：dengan + 名词 = 用/与；固定短语 dengan demikian（因此）、dengan cara ini（以此方式）、dengan segera（立即）",
     "synonyms": [
+      "serta",
       "bersama"
     ],
     "antonyms": [
@@ -133347,9 +133813,19 @@ const bitVocabDB = {
     ],
     "examples": [
       {
-        "scene": "Saya menulis laporan dengan komputer.",
-        "id": "dengan",
-        "cn": "我用电脑写报告。"
+        "scene": "商务",
+        "id": "Kami berkoordinasi dengan pemasok setiap minggu.",
+        "cn": "我们每周与供应商协调。"
+      },
+      {
+        "scene": "园区",
+        "id": "Inspeksi dilakukan dengan check list K3.",
+        "cn": "检查以安全清单进行。"
+      },
+      {
+        "scene": "月报",
+        "id": "Dengan demikian, target produksi tercapai.",
+        "cn": "因此产量目标达成。"
       }
     ]
   },
@@ -175919,6 +176395,281 @@ const bitVocabDB = {
         "cn": "运营受主管部门监管。"
       }
     ]
+  },
+  "diprioritaskan": {
+    "word": "diprioritaskan",
+    "cn": "被优先处理；列为优先",
+    "en": "to be prioritized",
+    "root": "prioritas（优先，荷兰语 prioriteit 借词）· di- 被动缀",
+    "forms": [
+      {
+        "form": "memprioritaskan",
+        "pos": "动词",
+        "mean": "优先考虑（meN--kan 主动）"
+      },
+      {
+        "form": "diprioritaskan",
+        "pos": "被动动词",
+        "mean": "被优先处理（di- 被动）"
+      },
+      {
+        "form": "prioritas",
+        "pos": "名词",
+        "mean": "优先事项"
+      },
+      {
+        "form": "prioritisasi",
+        "pos": "名词",
+        "mean": "优先化（peng--an）"
+      }
+    ],
+    "formsNote": "",
+    "note": "di- 被动 / meN--kan 主动；月报38词已有主动态 memprioritaskan，本词为其被动式",
+    "synonyms": [
+      "didahulukan",
+      "diutamakan"
+    ],
+    "antonyms": [
+      "ditunda",
+      "diabaikan"
+    ],
+    "examples": [
+      {
+        "scene": "月报",
+        "id": "Isu keselamatan diprioritaskan dalam rapat bulanan.",
+        "cn": "安全问题在月度会议中被优先处理。"
+      },
+      {
+        "scene": "项目",
+        "id": "Pengadaan material kritis diprioritaskan minggu ini.",
+        "cn": "关键材料采购本周优先办理。"
+      },
+      {
+        "scene": "园区",
+        "id": "Penanganan limbah B3 diprioritaskan manajemen.",
+        "cn": "危废处理被管理层列为优先。"
+      }
+    ]
+  },
+  "susun": {
+    "word": "susun",
+    "cn": "编写；整理；排列",
+    "en": "to arrange; to compile; to draft",
+    "root": "susun（排列，基础动词）",
+    "forms": [
+      {
+        "form": "susun",
+        "pos": "动词",
+        "mean": "排列；编写（原形）"
+      },
+      {
+        "form": "menyusun",
+        "pos": "动词",
+        "mean": "编写；整理（meN- 主动）"
+      },
+      {
+        "form": "disusun",
+        "pos": "被动动词",
+        "mean": "被编制（di- 被动）"
+      },
+      {
+        "form": "susunan",
+        "pos": "名词",
+        "mean": "结构；汇编（-an 名词化）"
+      },
+      {
+        "form": "penyusun",
+        "pos": "名词",
+        "mean": "编者；起草人（peN- 名词化）"
+      }
+    ],
+    "formsNote": "",
+    "note": "meN- 主动（s→sy 音变：susun→menyusun）；月报38词已有 menyusun，本词为词根原形",
+    "synonyms": [
+      "merangkai",
+      "mengatur"
+    ],
+    "antonyms": [
+      "membongkar",
+      "mengacaukan"
+    ],
+    "examples": [
+      {
+        "scene": "月报",
+        "id": "Silakan susun draf laporan sebelum Jumat.",
+        "cn": "请在周五前起草报告。"
+      },
+      {
+        "scene": "会议",
+        "id": "Kami susun agenda rapat mingguan bersama.",
+        "cn": "我们共同编列周会议程。"
+      },
+      {
+        "scene": "园区",
+        "id": "Susunan komisi keselamatan diperbarui.",
+        "cn": "安全委员会构成已更新。"
+      }
+    ]
+  },
+  "penyusunan": {
+    "word": "penyusunan",
+    "cn": "编制；起草；编写",
+    "en": "compilation; drafting",
+    "root": "susun（排列）· peN--an 名词化",
+    "forms": [
+      {
+        "form": "penyusunan",
+        "pos": "名词",
+        "mean": "编制；起草"
+      },
+      {
+        "form": "penyusun",
+        "pos": "名词",
+        "mean": "编者；起草人（peN- 名词化）"
+      },
+      {
+        "form": "disusun",
+        "pos": "被动动词",
+        "mean": "被编制"
+      },
+      {
+        "form": "susunan",
+        "pos": "名词",
+        "mean": "结构；汇编"
+      }
+    ],
+    "formsNote": "",
+    "note": "peN--an 名词化；与 susun/menyusun 构成\"动—名\"词族",
+    "synonyms": [
+      "pengumpulan",
+      "pengolahan"
+    ],
+    "antonyms": [
+      "pembongkaran"
+    ],
+    "examples": [
+      {
+        "scene": "月报",
+        "id": "Penyusunan laporan bulanan memakan waktu dua hari.",
+        "cn": "月报编制耗时两天。"
+      },
+      {
+        "scene": "项目",
+        "id": "Penyusunan jadwal proyek melibatkan semua divisi.",
+        "cn": "项目进度编制涉及所有部门。"
+      },
+      {
+        "scene": "合规",
+        "id": "Penyusunan dokumen AMDAL wajib melibatkan konsultan.",
+        "cn": "AMDAL 文件编制必须聘请咨询机构。"
+      }
+    ]
+  },
+  "mengakui": {
+    "word": "mengakui",
+    "cn": "承认；认可",
+    "en": "to admit; to acknowledge; to recognize",
+    "root": "aku（承认，梵语 akui 借词）· meN- 主动缀",
+    "forms": [
+      {
+        "form": "mengakui",
+        "pos": "动词",
+        "mean": "承认；认可（meN- 主动）"
+      },
+      {
+        "form": "diakui",
+        "pos": "被动动词",
+        "mean": "被承认（di- 被动）"
+      },
+      {
+        "form": "pengakuan",
+        "pos": "名词",
+        "mean": "承认；认可（peN--an 名词化）"
+      },
+      {
+        "form": "pengakuan resmi",
+        "pos": "名词短语",
+        "mean": "官方承认"
+      }
+    ],
+    "formsNote": "",
+    "note": "meN- 主动 / di- 被动 / peN--an 名词化",
+    "synonyms": [
+      "menyetujui",
+      "mengiyakan"
+    ],
+    "antonyms": [
+      "menyangkal",
+      "menolak"
+    ],
+    "examples": [
+      {
+        "scene": "商务",
+        "id": "Kontraktor mengakui keterlambatan pengiriman.",
+        "cn": "承包商承认交货延迟。"
+      },
+      {
+        "scene": "月报",
+        "id": "Kami mengakui adanya deviasi anggaran.",
+        "cn": "我们承认存在预算偏差。"
+      },
+      {
+        "scene": "审计",
+        "id": "Hasil audit diakui oleh semua pihak.",
+        "cn": "审计结果获各方认可。"
+      }
+    ]
+  },
+  "faktanya": {
+    "word": "faktanya",
+    "cn": "事实上；实际上",
+    "en": "in fact; as a matter of fact",
+    "root": "fakta（事实，荷兰语 feit 借词）+ -nya（定语后缀）",
+    "forms": [
+      {
+        "form": "fakta",
+        "pos": "名词",
+        "mean": "事实"
+      },
+      {
+        "form": "faktanya",
+        "pos": "副词短语",
+        "mean": "事实上；-nya 附于名词副词化"
+      },
+      {
+        "form": "faktual",
+        "pos": "形容词",
+        "mean": "事实的（fakta + -ual）"
+      }
+    ],
+    "formsNote": "",
+    "note": "-nya 附于名词构成副词短语，常置句首表转折/强调（≈ sebenarnya）",
+    "synonyms": [
+      "sebenarnya",
+      "nyatanya",
+      "sesungguhnya"
+    ],
+    "antonyms": [
+      "seharusnya",
+      "kelihatannya"
+    ],
+    "examples": [
+      {
+        "scene": "月报",
+        "id": "Faktanya, produksi naik lima persen bulan ini.",
+        "cn": "事实上，本月产量上升5%。"
+      },
+      {
+        "scene": "谈判",
+        "id": "Faktanya kontrak belum ditandatangani.",
+        "cn": "实际上合同尚未签署。"
+      },
+      {
+        "scene": "复盘",
+        "id": "Faktanya keterlambatan bisa dihindari.",
+        "cn": "事实上延误本可避免。"
+      }
+    ]
   }
 };
 
@@ -176693,8 +177444,12 @@ function renderAbout(c){
 }
 
 function renderVersion(c){
-  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.42.5 / Versi</span></div>
+  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.42.6 / Versi</span></div>
     <div style="padding:16px;">
+      <div style="margin-bottom:14px;padding:14px;background:rgba(34,197,94,.10);border-radius:10px;border-left:3px solid var(--success)">
+        <div style="font-size:15px;font-weight:700;color:var(--success);margin-bottom:6px">V4.42.6 (2026-10-14)</div>
+        <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">每日笔记 2026-10-14 追加批次上线: 12词元→12唯一词(Faktanya→faktanya句首大写归一) · 今日笔记38→46词条(+8) · 月报词表内重收覆盖4词(menerbitkan/membagikan/menugaskan/menyelaraskan) · 库内重收+今日新增3词(sesuai/pendapat/dengan) · 全新收录5词(diprioritaskan被动优先/susun词根原形/penyusunan编制名词/mengakui承认/faktanya事实上) · 143变形行+100例句 · 全量核验12词全在册·dengan无派生形态为设计行为 · RCO对账38+8=46逐词映射 · check_syntax PASS</div>
+      </div>
       <div style="margin-bottom:14px;padding:14px;background:rgba(245,158,11,.10);border-radius:10px;border-left:3px solid var(--warning)">
         <div style="font-size:15px;font-weight:700;color:var(--warning);margin-bottom:6px">V4.42.5 (2026-10-14)</div>
         <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">行业地图热修: 用户实测V4.42.4地图列表有ASPIRE-Stargate新园区但搜索栏查不到·二次弹窗无数据 — 根因: 行业数据页搜索(searchIndustry)与弹窗(flyToIndustryItem)走 industryData.nickel 快照副本(8.5万字节硬编码旧拷贝),与主数据 nickelData 双库并行失同步 — 修复: industryData.nickel 改为 nickelData 活引用(单一真相源),删快照行 · 效果: 搜索 aspire/stargate/molore/北科纳威 均命中2项目 · flyToIndustryItem 键查找 FOUND 2 projects · acid/power/aluminum 数据完好 · 文件瘦身84KB · 同类隐患根除: 今后镍数据只改一处全链路生效 · check_syntax PASS · node渲染链冒烟 PASS(47园区/搜索4关键词/弹窗键查找/其他品类完整性)</div>
