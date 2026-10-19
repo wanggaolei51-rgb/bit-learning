@@ -1,6 +1,3 @@
-// ===== Source Archive: dailynote_1018.js (2026-10-18 35词) =====
-// ===== Source Archive: dailynote_1017.js (2026-10-17 20词) =====
-// ===== Source Archive: dailynote_1016.js (2026-10-16 第二批 14词) =====
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -9,7 +6,7 @@
 <meta http-equiv="Expires" content="0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LEO-BIR V4.43.4</title>
+<title>LEO-BIR V4.44.0</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -279,7 +276,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="sidebar-header">
     <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <h1>LEO-BIR</h1>
-    <div class="ver">LEO-BIR V4.43.4 · 1018笔记35词</div>
+    <div class="ver">LEO-BIR V4.44.0 · 1019笔记49词+双库同步</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -5299,6 +5296,12 @@ async function doTranslate(){if(!checkAccess("翻译"))return;
       html+=`<div style="margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--border)"><div class="r-word">${word}</div><div class="r-ipa">${v.ipa||"-"}</div><div class="r-mean"><span style="color:var(--primary-dim)">🇨🇳</span> ${v.cn||"-"}<br><span style="color:var(--primary-dim)">🇬🇧</span> ${v.en||"-"}</div><div class="r-tag">词根:${v.root||"-"} | 标签:${v.tag||"-"}</div><div class="r-source">来源: BIT词库</div><div class="r-action"><button class="btn-save" onclick="addWB('${word.replace(/'/g,"\'")}','${(v.ipa||"").replace(/'/g,"\'")}','${(v.cn||"").replace(/'/g,"\'")}','${(v.en||"").replace(/'/g,"\'")}','${(v.root||"").replace(/'/g,"\'")}','${(v.tag||"").replace(/'/g,"\'")}')">💾 加入生词本</button><button class="btn-speak" onclick="speak('${word.replace(/'/g,"\'")}','id')">🔊 朗读</button></div></div>`;
       tc++;
     }else{
+      // V4.44.0: bitVocabDB 双库查询 — BIT 词条优先于词缀拆解和在线翻译
+      const _bv=(typeof bitVocabDB!=="undefined"&&bitVocabDB)?(bitVocabDB[w]||bitVocabDB[w.charAt(0).toUpperCase()+w.slice(1)]||null):null;
+      if(_bv){
+        html+=`<div style="margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--border)"><div class="r-word">${word}</div><div class="r-ipa">${_bv.ipa||"-"}</div><div class="r-mean"><span style="color:var(--primary-dim)">🇨🇳</span> ${_bv.cn||"-"}<br><span style="color:var(--primary-dim)">🇬🇧</span> ${_bv.en||"-"}</div><div class="r-tag">词根:${_bv.root||"-"} | BIT V1.0 九字段词条</div><div class="r-source">来源: BIT词库(双库)</div><div class="r-action"><button class="btn-save" onclick="showBITInfo('${word.replace(/'/g,"\\'")}')">📓 BIT详情</button><button class="btn-save" onclick="addWB('${word.replace(/'/g,"\\'")}','${(_bv.ipa||"").replace(/'/g,"\\'")}','${(_bv.cn||"").replace(/'/g,"\\'")}','${(_bv.en||"").replace(/'/g,"\\'")}','${(_bv.root||"").replace(/'/g,"\\'")}','BIT')">💾 加入生词本</button><button class="btn-speak" onclick="speak('${word.replace(/'/g,"\\'")}','id')">🔊 朗读</button></div></div>`;
+        tc++;continue;
+      }
       const aff=stripAffixes(w);let found=false;
       for(const a of aff){const rv=vocabDB[a.root]||vocabDB[a.root.charAt(0).toUpperCase()+a.root.slice(1)];if(rv){html+=`<div style="margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid var(--border)"><div class="r-word">${word}</div><div class="r-ipa">${rv.ipa||"-"}</div><div class="r-mean"><span style="color:var(--primary-dim)">🇨🇳</span> ${rv.cn||"-"}</div><div style="font-size:12px;color:var(--accent);margin-top:6px">🔧 词缀:${a.affix}+${a.root}(${a.type})</div><div class="r-source">来源:词缀拆解</div><div class="r-action"><button class="btn-save" onclick="addWB('${word.replace(/'/g,"\'")}','${(rv.ipa||"").replace(/'/g,"\'")}','${(rv.cn||"").replace(/'/g,"\'")}','${(rv.en||"").replace(/'/g,"\'")}','${(rv.root||"").replace(/'/g,"\'")}','${(rv.tag||"").replace(/'/g,"\'")}')">💾 加入生词本</button><button class="btn-speak" onclick="speak('${word.replace(/'/g,"\'")}','id')">🔊 朗读</button></div></div>`;found=true;tc++;break;}}
       if(!found){
@@ -8443,6 +8446,10 @@ function renderWBList(){
       wb.ipa = fresh.ipa || wb.ipa;
       wb.en = fresh.en || wb.en;
     }
+    // V4.44.0: bitVocabDB 双库同步 — BIT 词条的翻译/音标/英文同步进生词本
+    const wl=(wb.word||"").toLowerCase();
+    const bf=(typeof bitVocabDB!=="undefined"&&bitVocabDB)?(bitVocabDB[wl]||bitVocabDB[wb.word]||bitVocabDB[wb.word.charAt(0).toUpperCase()+wb.word.slice(1)]):null;
+    if (bf && bf.cn && bf.cn !== wb.cn) { wb.cn = bf.cn; wb.ipa = bf.ipa || wb.ipa; wb.en = bf.en || wb.en; }
   });
   const c=document.getElementById("wbList");if(!c)return;if(!wordBank.length){c.innerHTML=`<div class="wb-empty"><div class="big">📚</div><div>生词本为空</div></div>`;return;}
   let list = wordBank.map((w,origIdx)=>({...w,origIdx}));
@@ -21991,6 +21998,2206 @@ const dailyNotesDB = {
             "scene": "Kualitas terbukti melalui sertifikasi independen.",
             "id": "terbukti",
             "cn": "质量经独立认证证明。"
+          }
+        ]
+      }
+    ]
+  },
+  "2026-10-19": {
+    "date": "2026-10-19",
+    "topicKey": "dailynote",
+    "source": "BIT V1.0 + BIO 审查",
+    "entries": [
+      {
+        "word": "penutur",
+        "ipa": "/pəˈnu.tur/",
+        "cn": "说话者；母语者；使用者",
+        "en": "speaker; native speaker",
+        "root": "tutur（说话）+ peN-",
+        "forms": [
+          {
+            "form": "tutur",
+            "pos": "v",
+            "mean": "说话；讲述（词根）"
+          },
+          {
+            "form": "menuturkan",
+            "pos": "v",
+            "mean": "讲述；说出"
+          },
+          {
+            "form": "penutur",
+            "pos": "n",
+            "mean": "说话者；使用者"
+          },
+          {
+            "form": "tuturan",
+            "pos": "n",
+            "mean": "话语；言论"
+          }
+        ],
+        "formsNote": "peN- 施动者名词；tutur → penutur。",
+        "note": "语言统计核心词：penutur asli 母语者、jumlah penutur 使用者数量（印尼语 2.8 亿使用者世界第6）。",
+        "synonyms": [
+          "pemaka（使用者）",
+          "pembicara（说话者）"
+        ],
+        "antonyms": [
+          "pendengar（听众）"
+        ],
+        "examples": [
+          {
+            "scene": "Indonesia memiliki lebih dari 280 juta penutur.",
+            "id": "penutur",
+            "cn": "印尼语拥有超过 2.8 亿使用者。"
+          },
+          {
+            "scene": "Ia penutur asli bahasa Bugis.",
+            "id": "penutur asli",
+            "cn": "他是布吉语母语者。"
+          }
+        ]
+      },
+      {
+        "word": "dilaksanakan",
+        "ipa": "/di.lakˈsa.nan/",
+        "cn": "被执行；被实施",
+        "en": "to be implemented; to be carried out",
+        "root": "laksana（执行）+ di- + -kan",
+        "forms": [
+          {
+            "form": "laksana",
+            "pos": "v",
+            "mean": "执行（词根）"
+          },
+          {
+            "form": "melaksanakan",
+            "pos": "v",
+            "mean": "执行；实施（主动）"
+          },
+          {
+            "form": "dilaksanakan",
+            "pos": "v.pass",
+            "mean": "被执行"
+          },
+          {
+            "form": "pelaksanaan",
+            "pos": "n",
+            "mean": "执行；实施（10/17 已收录）"
+          }
+        ],
+        "formsNote": "di--kan 被动；meN--kan 主动 melaksanakan。",
+        "note": "项目/考试语境高频被动式：ujian dilaksanakan daring 考试在线实施、proyek dilaksanakan bertahap 项目分阶段执行。",
+        "synonyms": [
+          "dijalankan（被运行）",
+          "dilakukan（被做）"
+        ],
+        "antonyms": [
+          "dibatalkan（被取消）"
+        ],
+        "examples": [
+          {
+            "scene": "UKBI dilaksanakan secara daring dan tatap muka.",
+            "id": "dilaksanakan",
+            "cn": "UKBI 以线上和面对面方式实施。"
+          },
+          {
+            "scene": "Audit dilaksanakan setiap akhir tahun fiskal.",
+            "id": "dilaksanakan",
+            "cn": "审计在每个财年结束时执行。"
+          }
+        ]
+      },
+      {
+        "word": "secara",
+        "ipa": "/səˈtʃa.ra/",
+        "cn": "以…方式；通过（正式副词前缀）",
+        "en": "in a ... manner; by way of",
+        "root": "cara（方式）+ se-",
+        "forms": [
+          {
+            "form": "cara",
+            "pos": "n",
+            "mean": "方式；方法（词根）"
+          },
+          {
+            "form": "secara",
+            "pos": "prep",
+            "mean": "以…方式"
+          },
+          {
+            "form": "secara resmi",
+            "pos": "短语",
+            "mean": "正式地"
+          },
+          {
+            "form": "secara keseluruhan",
+            "pos": "短语",
+            "mean": "整体地"
+          }
+        ],
+        "formsNote": "se- 前缀 + cara 构成正式副词；后接形容词构成方式状语。",
+        "note": "正式书面语核心构词：secara umum 一般地、secara keseluruhan 整体地、secara bertahap 分阶段地。",
+        "synonyms": [
+          "dengan（以…）",
+          "melalui（通过）"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "scene": "Proyek dilaksanakan secara bertahap.",
+            "id": "secara",
+            "cn": "项目分阶段实施。"
+          },
+          {
+            "scene": "Secara keseluruhan hasil memuaskan.",
+            "id": "Secara keseluruhan",
+            "cn": "整体结果令人满意。"
+          }
+        ]
+      },
+      {
+        "word": "keseluruhan",
+        "ipa": "/kə.səˈlu.ru.han/",
+        "cn": "整体；全部",
+        "en": "entirety; whole",
+        "root": "seluru（全）+ ke- + -an",
+        "forms": [
+          {
+            "form": "seluruh",
+            "pos": "adj",
+            "mean": "全部的；整个的"
+          },
+          {
+            "form": "keseluruhan",
+            "pos": "n",
+            "mean": "整体；全体"
+          },
+          {
+            "form": "secara keseluruhan",
+            "pos": "短语",
+            "mean": "整体上"
+          }
+        ],
+        "formsNote": "ke-an 名词化；常用搭配 secara keseluruhan（整体而言）。",
+        "note": "总结/评估语境：hasil secara keseluruhan 整体结果、target keseluruhan 总目标。",
+        "synonyms": [
+          "seluruhnya（全部）",
+          "total（总计）"
+        ],
+        "antonyms": [
+          "sebagian（部分）"
+        ],
+        "examples": [
+          {
+            "scene": "Secara keseluruhan proses berjalan lancar.",
+            "id": "keseluruhan",
+            "cn": "整体流程进展顺利。"
+          },
+          {
+            "scene": "Keseluruhan biaya ditanggung perusahaan.",
+            "id": "Keseluruhan",
+            "cn": "全部费用由公司承担。"
+          }
+        ]
+      },
+      {
+        "word": "secara-bertahap",
+        "ipa": "/səˈtʃa.ra bərˈta.hap/",
+        "cn": "分阶段地；逐步地",
+        "en": "in stages; gradually",
+        "root": "secara（以…方式）+ bertahap（分阶段的）",
+        "forms": [
+          {
+            "form": "secara bertahap",
+            "pos": "副词短语",
+            "mean": "规范分写形式"
+          },
+          {
+            "form": "bertahap",
+            "pos": "adv",
+            "mean": "分阶段地"
+          },
+          {
+            "form": "tahap",
+            "pos": "n",
+            "mean": "阶段；步骤"
+          }
+        ],
+        "formsNote": "用户输入连字符连接，规范分写：secara bertahap。tahap（阶段）→ bertahap（ber- 状态）。",
+        "note": "项目管理高频：implementasi secara bertahap 分阶段实施、pembangunan bertahap 分阶段建设。",
+        "synonyms": [
+          "bertahap（分阶段）",
+          "sedikit demi sedikit（逐步）"
+        ],
+        "antonyms": [
+          "sekaligus（一次性）",
+          "serentak（同时）"
+        ],
+        "examples": [
+          {
+            "scene": "Sistem baru diluncurkan secara bertahap.",
+            "id": "secara bertahap",
+            "cn": "新系统分阶段上线。"
+          },
+          {
+            "scene": "Penghematan dicapai secara bertahap tiap kuartal.",
+            "id": "secara bertahap",
+            "cn": "节约每季度分阶段达成。"
+          }
+        ]
+      },
+      {
+        "word": "daring",
+        "ipa": "/ˈda.rɪŋ/",
+        "cn": "在线的；网络的",
+        "en": "online",
+        "root": "daring（英语 online 缩略 dararing 的规范形式）",
+        "forms": [
+          {
+            "form": "daring",
+            "pos": "adj/adv",
+            "mean": "在线（的）"
+          },
+          {
+            "form": "ujian daring",
+            "pos": "短语",
+            "mean": "在线考试"
+          },
+          {
+            "form": "pembelajaran daring",
+            "pos": "短语",
+            "mean": "在线学习"
+          }
+        ],
+        "formsNote": "无变形；dar+ing 构词，印尼语标准写法（非 online）。",
+        "note": "UKBI 两种考试模式之一：UKBI Daring 在线版（vs UKBI Adaptif 自适应版）。复习日重收覆盖更新（10/16 UKBI 课已收录）。",
+        "synonyms": [
+          "online（英借）",
+          "mayantara（正式同义）"
+        ],
+        "antonyms": [
+          "luring（离线·线下）"
+        ],
+        "examples": [
+          {
+            "scene": "UKBI daring memerlukan koneksi internet stabil.",
+            "id": "daring",
+            "cn": "UKBI 在线版需要稳定的网络连接。"
+          },
+          {
+            "scene": "Pelatihan daring lebih fleksibel waktunya.",
+            "id": "daring",
+            "cn": "在线培训时间更灵活。"
+          }
+        ]
+      },
+      {
+        "word": "tatap-tatap",
+        "ipa": "/ˈta.tap ˈta.tap/",
+        "cn": "面对面的",
+        "en": "face-to-face",
+        "root": "tatap（注视）叠词",
+        "forms": [
+          {
+            "form": "tatap muka",
+            "pos": "短语",
+            "mean": "面对面（更常用）"
+          },
+          {
+            "form": "secara tatap muka",
+            "pos": "短语",
+            "mean": "以面对面方式"
+          }
+        ],
+        "formsNote": "叠词形式 tatap-tatap；常用搭配为 tatap muka（面对面）。",
+        "note": "UKBI 考试模式：secara tatap-tatap 面对面方式（与 daring 在线对举）。",
+        "synonyms": [
+          "tatap muka（面对面）",
+          "langsung（直接）"
+        ],
+        "antonyms": [
+          "daring（在线）",
+          "virtual（虚拟）"
+        ],
+        "examples": [
+          {
+            "scene": "Ujian lisan dilakukan secara tatap-tatap.",
+            "id": "tatap-tatap",
+            "cn": "口语考试以面对面方式进行。"
+          },
+          {
+            "scene": "Sesi konsultasi tatap muka dijadwalkan mingguan.",
+            "id": "tatap muka",
+            "cn": "面对面咨询环节每周安排。"
+          }
+        ]
+      },
+      {
+        "word": "kolektif",
+        "ipa": "/koˈlɛk.tif/",
+        "cn": "集体的；共同的",
+        "en": "collective",
+        "root": "kolektif（拉丁语借词）",
+        "forms": [
+          {
+            "form": "kolektif",
+            "pos": "adj",
+            "mean": "集体的"
+          },
+          {
+            "form": "secara kolektif",
+            "pos": "adv",
+            "mean": "集体地"
+          }
+        ],
+        "formsNote": "外来形容词。复习日重收覆盖更新（10/16 UKBI 课 + 10/18 已收录，本次强化）。",
+        "note": "UKBI 报名模式：pendaftaran kolektif 集体报名（机构统一组织）。",
+        "synonyms": [
+          "bersama（共同）"
+        ],
+        "antonyms": [
+          "mandiri（独立）"
+        ],
+        "examples": [
+          {
+            "scene": "Pendaftaran kolektif untuk karyawan lebih efisien.",
+            "id": "kolektif",
+            "cn": "员工集体报名更高效。"
+          },
+          {
+            "scene": "Keputusan diambil secara kolektif oleh dewan.",
+            "id": "secara kolektif",
+            "cn": "决定由委员会集体作出。"
+          }
+        ]
+      },
+      {
+        "word": "lembaga",
+        "ipa": "/ləmˈba.ga/",
+        "cn": "机构；组织",
+        "en": "institution; organization",
+        "root": "lembaga（非派生）",
+        "forms": [
+          {
+            "form": "lembaga",
+            "pos": "n",
+            "mean": "机构；组织"
+          },
+          {
+            "form": "lembaga resmi",
+            "pos": "短语",
+            "mean": "正式机构"
+          },
+          {
+            "form": "lembaga pendidikan",
+            "pos": "短语",
+            "mean": "教育机构"
+          }
+        ],
+        "formsNote": "无变形；lembaga negara 国家机关。复习日重收覆盖更新（10/16 UKBI 课已收录）。",
+        "note": "UKBI 集体报名主体：lembaga/instansi 机构统一报名。",
+        "synonyms": [
+          "instansi（机关）",
+          "badan（局/机构）"
+        ],
+        "antonyms": [
+          "individu（个人）"
+        ],
+        "examples": [
+          {
+            "scene": "Lembaga pendidikan dapat mendaftar kolektif.",
+            "id": "Lembaga",
+            "cn": "教育机构可以集体报名。"
+          },
+          {
+            "scene": "Lembaga sertifikasi mengakui hasil UKBI.",
+            "id": "Lembaga",
+            "cn": "认证机构认可 UKBI 成绩。"
+          }
+        ]
+      },
+      {
+        "word": "peserta",
+        "ipa": "/pəˈsər.ta/",
+        "cn": "参与者；考生",
+        "en": "participant; test-taker",
+        "root": "serta（一起）+ peN-",
+        "forms": [
+          {
+            "form": "serta",
+            "pos": "v/prep",
+            "mean": "一起；随同"
+          },
+          {
+            "form": "peserta",
+            "pos": "n",
+            "mean": "参与者"
+          },
+          {
+            "form": "peserta didik",
+            "pos": "短语",
+            "mean": "学生（学习者）"
+          }
+        ],
+        "formsNote": "peN- 施动者名词。用户输入 Peserta 首字母大写已归一。复习日重收覆盖更新（10/16 UKBI 课已收录）。",
+        "note": "UKBI 考生统称：peserta UKBI。peN- + serta（伴随）→ 参与者。",
+        "synonyms": [
+          "peserta ujian（考生）",
+          "partisipan（参与者）"
+        ],
+        "antonyms": [
+          "pengawas（监考员）"
+        ],
+        "examples": [
+          {
+            "scene": "Peserta wajib hadir 30 menit sebelum ujian.",
+            "id": "Peserta",
+            "cn": "考生须提前 30 分钟到场。"
+          },
+          {
+            "scene": "Seluruh peserta mendapat sertifikat digital.",
+            "id": "peserta",
+            "cn": "所有考生获得数字证书。"
+          }
+        ]
+      },
+      {
+        "word": "akun",
+        "ipa": "/ˈa.kun/",
+        "cn": "账户；账号",
+        "en": "account",
+        "root": "akun（英语 account 借词）",
+        "forms": [
+          {
+            "form": "akun",
+            "pos": "n",
+            "mean": "账户"
+          },
+          {
+            "form": "membuat akun",
+            "pos": "短语",
+            "mean": "创建账户"
+          },
+          {
+            "form": "dasbor akun",
+            "pos": "短语",
+            "mean": "账户面板"
+          }
+        ],
+        "formsNote": "外来名词。复习日重收覆盖更新（10/16 UKBI 课 + 10/18 已收录，本次强化）。",
+        "note": "UKBI 注册第一步：membuat akun di ukbi.kemdikbud.go.id。",
+        "synonyms": [
+          "rekening（户头）"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "scene": "Buat akun UKBI sebelum mengisi formulir.",
+            "id": "akun",
+            "cn": "填表前请先创建 UKBI 账户。"
+          },
+          {
+            "scene": "Dasbor akun menampilkan jadwal ujian.",
+            "id": "akun",
+            "cn": "账户面板显示考试时间表。"
+          }
+        ]
+      },
+      {
+        "word": "identitas",
+        "ipa": "/i.denˈti.tas/",
+        "cn": "身份；证件",
+        "en": "identity",
+        "root": "identitas（拉丁语借词）",
+        "forms": [
+          {
+            "form": "identitas",
+            "pos": "n",
+            "mean": "身份"
+          },
+          {
+            "form": "identitas diri",
+            "pos": "短语",
+            "mean": "个人身份"
+          },
+          {
+            "form": "kartu identitas",
+            "pos": "短语",
+            "mean": "身份证件"
+          }
+        ],
+        "formsNote": "无变形；相关 kartu identitas 身份证。复习日重收覆盖更新（10/16 UKBI 课已收录）。",
+        "note": "UKBI 注册材料：mengunggah identitas 上传身份证件（KTP/护照）。",
+        "synonyms": [
+          "kartu pengenal（识别卡）"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "scene": "Unggah identitas untuk verifikasi akun.",
+            "id": "identitas",
+            "cn": "上传身份证件以验证账户。"
+          },
+          {
+            "scene": "Petugas memeriksa identitas sebelum masuk ruang ujian.",
+            "id": "identitas",
+            "cn": "工作人员考前核验身份。"
+          }
+        ]
+      },
+      {
+        "word": "unggah",
+        "ipa": "/ˈʊŋ.gaʔ/",
+        "cn": "上传",
+        "en": "to upload",
+        "root": "unggah（非派生）",
+        "forms": [
+          {
+            "form": "unggah",
+            "pos": "v",
+            "mean": "上传（词根）"
+          },
+          {
+            "form": "mengunggah",
+            "pos": "v",
+            "mean": "上传（主动）"
+          },
+          {
+            "form": "diunggah",
+            "pos": "v.pass",
+            "mean": "被上传"
+          },
+          {
+            "form": "unggahan",
+            "pos": "n",
+            "mean": "上传的内容"
+          }
+        ],
+        "formsNote": "meN- 主动；di- 被动；-an 名词。用户输入 Unggah 首字母大写已归一。复习日重收覆盖更新。",
+        "note": "UKBI 注册核心动词：unggah pasfoto 上传证件照、unggah identitas 上传证件。",
+        "synonyms": [
+          "upload（英借）"
+        ],
+        "antonyms": [
+          "unduh（下载）"
+        ],
+        "examples": [
+          {
+            "scene": "Unggah pasfoto berlatar putih.",
+            "id": "Unggah",
+            "cn": "上传白底证件照。"
+          },
+          {
+            "scene": "Berkas diunggah melalui portal resmi.",
+            "id": "diunggah",
+            "cn": "文件通过官方门户上传。"
+          }
+        ]
+      },
+      {
+        "word": "sesuai-dengan",
+        "ipa": "/səˈsu.ʔaɪ dəŋˈgan/",
+        "cn": "根据；按照；符合",
+        "en": "according to; in accordance with",
+        "root": "sesuai（符合）+ dengan（与）",
+        "forms": [
+          {
+            "form": "sesuai dengan",
+            "pos": "介词短语",
+            "mean": "规范分写形式"
+          },
+          {
+            "form": "sesuai",
+            "pos": "adj",
+            "mean": "合适的；符合的"
+          }
+        ],
+        "formsNote": "用户输入连字符连接，规范分写：sesuai dengan。sesuai 为 se- + suai（合）。",
+        "note": "正式文书高频：sesuai dengan peraturan 按照规定、sesuai dengan jadwal 按照时间表。",
+        "synonyms": [
+          "menurut（按…）",
+          "berdasarkan（基于）"
+        ],
+        "antonyms": [
+          "bertentangan dengan（违背）"
+        ],
+        "examples": [
+          {
+            "scene": "Prosedur sesuai dengan standar internasional.",
+            "id": "sesuai dengan",
+            "cn": "程序符合国际标准。"
+          },
+          {
+            "scene": "Pembayaran sesuai dengan tarif resmi.",
+            "id": "sesuai dengan",
+            "cn": "付款按官方费率执行。"
+          }
+        ]
+      },
+      {
+        "word": "pembayaran-dapat-dilakukan-melalui",
+        "ipa": "/pəmˈba.ja.ran ˈda.pat diˈla.kuk.kan məˈla.lui/",
+        "cn": "付款可通过…进行",
+        "en": "payment can be made via",
+        "root": "bayar（支付）+ peN- + -an；dapat（能）；lakukan（做）；melalui（通过）",
+        "forms": [
+          {
+            "form": "pembayaran dapat dilakukan melalui",
+            "pos": "短语",
+            "mean": "规范分写形式"
+          },
+          {
+            "form": "pembayaran",
+            "pos": "n",
+            "mean": "支付；付款"
+          },
+          {
+            "form": "melalui",
+            "pos": "prep",
+            "mean": "通过；经由"
+          }
+        ],
+        "formsNote": "用户输入五词连字符连接，规范分写分词。pembayaran = peN- + bayar + -an。",
+        "note": "UKBI 报名页原文句式：Pembayaran dapat dilakukan melalui teller bank/dompet digital（付款可通过银行柜员/数字钱包进行）。",
+        "synonyms": [
+          "pembayaran melalui（通过…支付）"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "scene": "Pembayaran dapat dilakukan melalui transfer bank.",
+            "id": "pembayaran dapat dilakukan melalui",
+            "cn": "付款可通过银行转账进行。"
+          },
+          {
+            "scene": "Pembayaran biaya pendaftaran dapat dilakukan melalui teller.",
+            "id": "Pembayaran dapat dilakukan melalui",
+            "cn": "报名费可通过柜员办理。"
+          }
+        ]
+      },
+      {
+        "word": "berupa",
+        "ipa": "/bəˈru.pa/",
+        "cn": "以…形式；呈…形态",
+        "en": "in the form of; consisting of",
+        "root": "rupa（形态）+ ber-",
+        "forms": [
+          {
+            "form": "rupa",
+            "pos": "n",
+            "mean": "形态；样子（词根）"
+          },
+          {
+            "form": "berupa",
+            "pos": "prep",
+            "mean": "以…形式"
+          },
+          {
+            "form": "berbagai rupa",
+            "pos": "短语",
+            "mean": "各种形态"
+          }
+        ],
+        "formsNote": "ber- 状态/具有。10/18 Soal-berupa 词条已含本词根，本次收录独立词条。",
+        "note": "描述构成形式：soal berupa pilihan ganda 选择题形式的题目、data berupa tabel 表格形式的数据。",
+        "synonyms": [
+          "berbentuk（呈…状）"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "scene": "Soal berupa esai panjang di bagian menulis.",
+            "id": "berupa",
+            "cn": "写作部分是长篇简答题。"
+          },
+          {
+            "scene": "Sertifikat berupa file PDF digital.",
+            "id": "berupa",
+            "cn": "证书为 PDF 数字文件形式。"
+          }
+        ]
+      },
+      {
+        "word": "bentuk",
+        "ipa": "/ˈbən.tuk/",
+        "cn": "形式；形状",
+        "en": "form; shape",
+        "root": "bentuk（非派生）",
+        "forms": [
+          {
+            "form": "bentuk",
+            "pos": "n",
+            "mean": "形式；形状"
+          },
+          {
+            "form": "berbentuk",
+            "pos": "adj",
+            "mean": "呈…形状的"
+          },
+          {
+            "form": "bentukan",
+            "pos": "n",
+            "mean": "构造成果"
+          }
+        ],
+        "formsNote": "ber- 状态 berbentuk；-an 名词 bentukan。",
+        "note": "UKBI 测试形式描述：bentuk dialog 对话形式、bentuk monolog 独白形式。通用高频。",
+        "synonyms": [
+          "wujud（形态）",
+          "ragam（变体）",
+          "format（格式）"
+        ],
+        "antonyms": [
+          "esensi（本质）"
+        ],
+        "examples": [
+          {
+            "scene": "Wacana lisan ada bentuk dialog dan monolog.",
+            "id": "bentuk",
+            "cn": "口头语篇有对话和独白两种形式。"
+          },
+          {
+            "scene": "Laporan berbentuk tabel lebih mudah dibaca.",
+            "id": "berbentuk",
+            "cn": "表格形式的报告更易读。"
+          }
+        ]
+      },
+      {
+        "word": "wacana-lisan",
+        "ipa": "/waˈtʃa.na ˈli.san/",
+        "cn": "口头语篇",
+        "en": "oral discourse",
+        "root": "wacana（语篇）+ lisan（口头的）",
+        "forms": [
+          {
+            "form": "wacana lisan",
+            "pos": "n",
+            "mean": "规范分写形式"
+          },
+          {
+            "form": "wacana",
+            "pos": "n",
+            "mean": "语篇（10/16 已收录）"
+          },
+          {
+            "form": "lisan",
+            "pos": "adj",
+            "mean": "口头的"
+          }
+        ],
+        "formsNote": "用户输入连字符连接，规范分写：wacana lisan。10/16 收录 wacana 独立词条；10/18 收录 Wacana-lisan-bentuk。",
+        "note": "UKBI 听力和口语测试对象：merespons kaidah wacana lisan（响应口头语篇规则）。",
+        "synonyms": [
+          "ragam lisan（口语变体）"
+        ],
+        "antonyms": [
+          "wacana tulis（书面语篇）"
+        ],
+        "examples": [
+          {
+            "scene": "Teslet mendengarkan berisi wacana lisan.",
+            "id": "wacana lisan",
+            "cn": "听力单元包含口头语篇。"
+          },
+          {
+            "scene": "Kemampuan merespons wacana lisan dinilai UKBI.",
+            "id": "wacana lisan",
+            "cn": "UKBI 评估响应口头语篇的能力。"
+          }
+        ]
+      },
+      {
+        "word": "merespons",
+        "ipa": "/məˈrɛs.pons/",
+        "cn": "响应；回应",
+        "en": "to respond; to react",
+        "root": "respons（回应）+ meN-",
+        "forms": [
+          {
+            "form": "respons",
+            "pos": "n",
+            "mean": "回应（词根）"
+          },
+          {
+            "form": "merespons",
+            "pos": "v",
+            "mean": "响应；回应"
+          },
+          {
+            "form": "direspons",
+            "pos": "v.pass",
+            "mean": "被回应"
+          },
+          {
+            "form": "responsif",
+            "pos": "adj",
+            "mean": "响应迅速的"
+          }
+        ],
+        "formsNote": "meN- 主动（p 在 s 前脱落 → merespons）。用户输入 Merespons 首字母大写已归一。10/18 Merespons-Kaidah 组合词条已含，本次收录独立词条。",
+        "note": "UKBI 题型核心动词：merespons kaidah wacana lisan（响应口头语篇规则）。",
+        "synonyms": [
+          "menanggapi（应对）",
+          "menjawab（回答）"
+        ],
+        "antonyms": [
+          "mengabaikan（无视）"
+        ],
+        "examples": [
+          {
+            "scene": "Peserta merespons kaidah dengan pilihan jawaban.",
+            "id": "merespons",
+            "cn": "考生以选项回应规则。"
+          },
+          {
+            "scene": "Tim helpdesk merespons laporan dalam 24 jam.",
+            "id": "merespons",
+            "cn": "支持团队 24 小时内响应报障。"
+          }
+        ]
+      },
+      {
+        "word": "kaidah",
+        "ipa": "/ˈka.idah/",
+        "cn": "规则；准则；规范",
+        "en": "rule; principle; norm",
+        "root": "kaidah（阿拉伯语 qaidah 借词）",
+        "forms": [
+          {
+            "form": "kaidah",
+            "pos": "n",
+            "mean": "规则；准则"
+          },
+          {
+            "form": "kaidah bahasa",
+            "pos": "短语",
+            "mean": "语言规则"
+          },
+          {
+            "form": "mengikuti kaidah",
+            "pos": "短语",
+            "mean": "遵循规则"
+          }
+        ],
+        "formsNote": "无变形。用户输入 Kaidah 首字母大写已归一。复习日重收覆盖更新（10/16 UKBI 课已收录）。",
+        "note": "UKBI 语法考点：kaidah tata bahasa 语法规则、merespons kaidah wacana 响应语篇规则。",
+        "synonyms": [
+          "aturan（规则）",
+          "norma（规范）"
+        ],
+        "antonyms": [
+          "pelanggaran（违规）"
+        ],
+        "examples": [
+          {
+            "scene": "Soal menguji pemahaman kaidah tata bahasa.",
+            "id": "kaidah",
+            "cn": "题目考查语法规则理解。"
+          },
+          {
+            "scene": "Penulisan laporan harus mengikuti kaidah baku.",
+            "id": "kaidah",
+            "cn": "报告撰写须遵循规范标准。"
+          }
+        ]
+      },
+      {
+        "word": "mengandung",
+        "ipa": "/məˈŋan.duŋ/",
+        "cn": "包含；含有",
+        "en": "to contain",
+        "root": "kandung（包含）+ meN-",
+        "forms": [
+          {
+            "form": "kandung",
+            "pos": "v",
+            "mean": "包含（词根）"
+          },
+          {
+            "form": "mengandung",
+            "pos": "v",
+            "mean": "包含；含有"
+          },
+          {
+            "form": "kandungan",
+            "pos": "n",
+            "mean": "含量；内容"
+          }
+        ],
+        "formsNote": "meN- 主动（k 脱落 → meng-）；-an 名词 kandungan。复习日重收覆盖更新（10/18 已收录）。",
+        "note": "UKBI 题目结构：butir soal mengandung empat opsi 每题含四个选项。",
+        "synonyms": [
+          "memuat（载有）",
+          "berisi（含有）"
+        ],
+        "antonyms": [
+          "kosong（空）"
+        ],
+        "examples": [
+          {
+            "scene": "Setiap butir soal mengandung empat pilihan.",
+            "id": "mengandung",
+            "cn": "每道试题包含四个选项。"
+          },
+          {
+            "scene": "Bahan ini mengandung zat berbahaya.",
+            "id": "mengandung",
+            "cn": "这种物质含有有害成分。"
+          }
+        ]
+      },
+      {
+        "word": "terlebih-dahulu",
+        "ipa": "/tərˈlə.bih ˈda.hu.lu/",
+        "cn": "事先；预先；首先",
+        "en": "beforehand; in advance; first",
+        "root": "lebih（更）+ dahulu（先前）",
+        "forms": [
+          {
+            "form": "terlebih dahulu",
+            "pos": "副词短语",
+            "mean": "规范分写形式"
+          },
+          {
+            "form": "dahulu",
+            "pos": "adv",
+            "mean": "先前；以前"
+          },
+          {
+            "form": "terlebih-lebih",
+            "pos": "adv",
+            "mean": "尤其（不同词）"
+          }
+        ],
+        "formsNote": "用户输入连字符连接，规范分写：terlebih dahulu。ter- 强调前缀 + lebih dahulu（更早）。",
+        "note": "流程指令高频：membaca petunjuk terlebih dahulu 请先阅读说明、verifikasi terlebih dahulu 预先验证。",
+        "synonyms": [
+          "sebelumnya（之前）",
+          "awalnya（起初）"
+        ],
+        "antonyms": [
+          "kemudian（随后）"
+        ],
+        "examples": [
+          {
+            "scene": "Daftar akun terlebih dahulu sebelum membayar.",
+            "id": "terlebih dahulu",
+            "cn": "请先注册账户再付款。"
+          },
+          {
+            "scene": "Periksa jadwal terlebih dahulu.",
+            "id": "terlebih dahulu",
+            "cn": "请事先核对时间表。"
+          }
+        ]
+      },
+      {
+        "word": "disajikan",
+        "ipa": "/diˈsa.dʒi.kan/",
+        "cn": "被呈现；被提供",
+        "en": "to be presented; to be served",
+        "root": "saji（呈现）+ di- + -kan",
+        "forms": [
+          {
+            "form": "saji",
+            "pos": "v",
+            "mean": "呈现；端上（词根）"
+          },
+          {
+            "form": "menyajikan",
+            "pos": "v",
+            "mean": "呈现；提供（主动）"
+          },
+          {
+            "form": "disajikan",
+            "pos": "v.pass",
+            "mean": "被呈现"
+          },
+          {
+            "form": "sajian",
+            "pos": "n",
+            "mean": "呈现物；餐食"
+          }
+        ],
+        "formsNote": "meN- 主动 menyajikan（s→ny 音变）；di--kan 被动。",
+        "note": "内容呈现：materi disajikan dalam bentuk dialog 材料以对话形式呈现、data disajikan dalam grafik 数据以图表呈现。",
+        "synonyms": [
+          "ditampilkan（被显示）",
+          "diberikan（被给予）"
+        ],
+        "antonyms": [
+          "disembunyikan（被隐藏）"
+        ],
+        "examples": [
+          {
+            "scene": "Soal disajikan dengan perekaman audio.",
+            "id": "disajikan",
+            "cn": "题目以录音形式呈现。"
+          },
+          {
+            "scene": "Data disajikan dalam bentuk tabel.",
+            "id": "disajikan",
+            "cn": "数据以表格呈现。"
+          }
+        ]
+      },
+      {
+        "word": "kalimat-pemantik",
+        "ipa": "/kaˈli.mat pəˈman.tik/",
+        "cn": "提示句；引导句",
+        "en": "prompt sentence; trigger sentence",
+        "root": "kalimat（句）+ pemantik（触发器）",
+        "forms": [
+          {
+            "form": "kalimat pemantik",
+            "pos": "n",
+            "mean": "规范分写形式"
+          },
+          {
+            "form": "kalimat",
+            "pos": "n",
+            "mean": "句子（10/16 已收录）"
+          },
+          {
+            "form": "pemantik",
+            "pos": "n",
+            "mean": "触发物；引导物"
+          },
+          {
+            "form": "pemantik semangat",
+            "pos": "短语",
+            "mean": "激励话语"
+          }
+        ],
+        "formsNote": "用户输入连字符连接，规范分写：kalimat pemantik。pantik（触发）→ pemantik。",
+        "note": "UKBI 口语题型：kalimat pemantik disertai gambar（配图的提示句）——看图说话题。",
+        "synonyms": [
+          "kalimat pengantar（引导句）"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "scene": "Peserta merespons kalimat pemantik dengan monolog.",
+            "id": "kalimat pemantik",
+            "cn": "考生以独白回应提示句。"
+          },
+          {
+            "scene": "Kalimat pemantik disertai gambar ilustrasi.",
+            "id": "kalimat pemantik",
+            "cn": "提示句配有插图。"
+          }
+        ]
+      },
+      {
+        "word": "disertai",
+        "ipa": "/diˈsər.taɪ/",
+        "cn": "被附上；被伴随",
+        "en": "to be accompanied by",
+        "root": "serta（一起）+ di-",
+        "forms": [
+          {
+            "form": "serta",
+            "pos": "prep/v",
+            "mean": "一起；随同（词根）"
+          },
+          {
+            "form": "menyertai",
+            "pos": "v",
+            "mean": "陪同；附上（主动）"
+          },
+          {
+            "form": "disertai",
+            "pos": "v.pass",
+            "mean": "被附上"
+          },
+          {
+            "form": "lampiran",
+            "pos": "n",
+            "mean": "附件"
+          }
+        ],
+        "formsNote": "di- 被动；meN- 主动 menyertai。",
+        "note": "材料说明高频：kalimat pemantik disertai gambar 提示句附图、dokumen disertai tanda tangan 文件附签名。",
+        "synonyms": [
+          "dilampirkan（被附上）",
+          "ditambah（被增加）"
+        ],
+        "antonyms": [
+          "tanpa（无）"
+        ],
+        "examples": [
+          {
+            "scene": "Setiap soal disertai rekaman audio.",
+            "id": "disertai",
+            "cn": "每题附录音。"
+          },
+          {
+            "scene": "Laporan disertai bukti pendukung.",
+            "id": "disertai",
+            "cn": "报告附证明材料。"
+          }
+        ]
+      },
+      {
+        "word": "gambar",
+        "ipa": "/ˈgam.bar/",
+        "cn": "图画；图像；图表",
+        "en": "picture; image; diagram",
+        "root": "gambar（非派生）",
+        "forms": [
+          {
+            "form": "gambar",
+            "pos": "n",
+            "mean": "图画"
+          },
+          {
+            "form": "menggambar",
+            "pos": "v",
+            "mean": "画画（主动）"
+          },
+          {
+            "form": "bergambar",
+            "pos": "adj",
+            "mean": "带图的"
+          },
+          {
+            "form": "penggambaran",
+            "pos": "n",
+            "mean": "描绘"
+          }
+        ],
+        "formsNote": "meN- 动词 menggambar；ber- 状态 bergambar。",
+        "note": "UKBI 口语题素材：kalimat pemantik disertai gambar 配图提示句。通用高频。",
+        "synonyms": [
+          "ilustrasi（插图）",
+          "diagram（图表）"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "scene": "Deskripsikan gambar tersebut dalam monolog.",
+            "id": "gambar",
+            "cn": "请用独白描述该图片。"
+          },
+          {
+            "scene": "Buku teks bergambar lebih menarik.",
+            "id": "bergambar",
+            "cn": "带插图的教材更有趣。"
+          }
+        ]
+      },
+      {
+        "word": "perekaman",
+        "ipa": "/pə.rəˈka.man/",
+        "cn": "录音；录制",
+        "en": "recording",
+        "root": "rekam（录）+ peN- + -an",
+        "forms": [
+          {
+            "form": "rekam",
+            "pos": "v",
+            "mean": "记录；录制（词根）"
+          },
+          {
+            "form": "merekam",
+            "pos": "v",
+            "mean": "录制（主动）"
+          },
+          {
+            "form": "perekaman",
+            "pos": "n",
+            "mean": "录制（过程）"
+          },
+          {
+            "form": "rekaman",
+            "pos": "n",
+            "mean": "录音；录像（成品）"
+          }
+        ],
+        "formsNote": "peN--an 过程名词；meN- 主动 merekam。",
+        "note": "UKBI 听力材料载体：soal disajikan dengan perekaman audio（题目以音频录音呈现）。",
+        "synonyms": [
+          "rekaman（录音成品）",
+          "penyaringan（录制）"
+        ],
+        "antonyms": [
+          "pemutaran（播放）"
+        ],
+        "examples": [
+          {
+            "scene": "Perekaman audio soal jelas dan lantang.",
+            "id": "Perekaman",
+            "cn": "题目的音频录音清晰洪亮。"
+          },
+          {
+            "scene": "Perekaman teslet dinilai dua penguji.",
+            "id": "Perekaman",
+            "cn": "单元录音由两名考官评分。"
+          }
+        ]
+      },
+      {
+        "word": "peramban-mutakhir",
+        "ipa": "/pəˈram.ban muˈta.xir/",
+        "cn": "现代化浏览器",
+        "en": "modern browser",
+        "root": "peramban（浏览器）+ mutakhir（最新的）",
+        "forms": [
+          {
+            "form": "peramban mutakhir",
+            "pos": "n",
+            "mean": "规范分写形式"
+          },
+          {
+            "form": "peramban",
+            "pos": "n",
+            "mean": "浏览器（10/18 已收录）"
+          },
+          {
+            "form": "mutakhir",
+            "pos": "adj",
+            "mean": "最新的；现代的"
+          }
+        ],
+        "formsNote": "用户输入连字符连接，规范分写：peramban mutakhir。mutakhir（阿拉伯语借词）= 最新/现代。",
+        "note": "UKBI Adaptif 系统要求：peramban mutakhir dengan koneksi stabil（稳定连接的现代化浏览器）。",
+        "synonyms": [
+          "browser terkini（最新浏览器）"
+        ],
+        "antonyms": [
+          "peramban usang（过时浏览器）"
+        ],
+        "examples": [
+          {
+            "scene": "Gunakan peramban mutakhir untuk pengalaman terbaik.",
+            "id": "peramban mutakhir",
+            "cn": "请使用现代化浏览器以获得最佳体验。"
+          },
+          {
+            "scene": "Sistem memerlukan peramban mutakhir dan kamera.",
+            "id": "peramban mutakhir",
+            "cn": "系统需要现代化浏览器和摄像头。"
+          }
+        ]
+      },
+      {
+        "word": "peringkat",
+        "ipa": "/pəˈriŋ.kat/",
+        "cn": "等级；排名；级别",
+        "en": "rank; level; grade",
+        "root": "ringkat → peN- 派生",
+        "forms": [
+          {
+            "form": "peringkat",
+            "pos": "n",
+            "mean": "等级；排名"
+          },
+          {
+            "form": "memeringkat",
+            "pos": "v",
+            "mean": "排名"
+          },
+          {
+            "form": "peringkat pertama",
+            "pos": "短语",
+            "mean": "第一名"
+          }
+        ],
+        "formsNote": "peN- 名词。复习日重收覆盖更新（10/16 UKBI 课 + 10/18 已收录，本次强化）。",
+        "note": "UKBI 七级评定：Istimewa 特优 > Sangat Unggul > Unggul > Madya > Semenjana > Marginal > Terbatas。",
+        "synonyms": [
+          "tingkat（层级）",
+          "kelas（级别）"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "scene": "Peringkat kemahiran dibagi tujuh tingkat.",
+            "id": "peringkat",
+            "cn": "能力等级分为七级。"
+          },
+          {
+            "scene": "Peringkat sertifikat diakui nasional.",
+            "id": "Peringkat",
+            "cn": "证书等级获全国认可。"
+          }
+        ]
+      },
+      {
+        "word": "sesuatu-dipetakan-ke-dalam-beberapa-bagian",
+        "ipa": "/səˈsu.ʔaɪ diˈpə.ta.kan kə ˈda.lam bəˈbə.pa ˈba.gi.an/",
+        "cn": "某物被划分为若干部分（规范分写）",
+        "en": "something is divided into several parts",
+        "root": "sesuatu（某物）+ petakan（映射）+ ke dalam（到…里）+ beberapa（若干）+ bagian（部分）",
+        "forms": [
+          {
+            "form": "sesuatu dipetakan ke dalam beberapa bagian",
+            "pos": "短语",
+            "mean": "规范分写形式"
+          },
+          {
+            "form": "dipetakan",
+            "pos": "v.pass",
+            "mean": "被映射/划分（10/18 已收录）"
+          },
+          {
+            "form": "beberapa bagian",
+            "pos": "短语",
+            "mean": "若干部分"
+          }
+        ],
+        "formsNote": "用户输入七词连字符连接，规范应分写。描述 UKBI 测试结构划分。",
+        "note": "UKBI 内容组织描述：teslet dipetakan ke dalam beberapa bagian（测试单元划分为若干部分）。",
+        "synonyms": [
+          "dibagi menjadi（被分为）"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "scene": "Konten uji dipetakan ke dalam beberapa bagian teslet.",
+            "id": "dipetakan ke dalam beberapa bagian",
+            "cn": "测试内容被划分为若干单元部分。"
+          },
+          {
+            "scene": "Sistem dipetakan ke dalam beberapa modul.",
+            "id": "dipetakan ke dalam",
+            "cn": "系统被划分为若干模块。"
+          }
+        ]
+      },
+      {
+        "word": "memuaskan",
+        "ipa": "/məˈmu.a.skan/",
+        "cn": "令人满意的",
+        "en": "satisfying",
+        "root": "puas（满意）+ meN- + -kan",
+        "forms": [
+          {
+            "form": "puas",
+            "pos": "adj",
+            "mean": "满意的"
+          },
+          {
+            "form": "memuaskan",
+            "pos": "v/adj",
+            "mean": "令人满意（的）"
+          },
+          {
+            "form": "dipuaskan",
+            "pos": "v.pass",
+            "mean": "被满足"
+          },
+          {
+            "form": "kepuasan",
+            "pos": "n",
+            "mean": "满意度"
+          }
+        ],
+        "formsNote": "meN--kan 使役（使满意）；ke-an 名词 kepuasan。",
+        "note": "质量评估高频：hasil memuaskan 令人满意的结果、tingkat kepuasan 满意度。",
+        "synonyms": [
+          "menyenangkan（令人愉快）",
+          "menggembirakan（令人高兴）"
+        ],
+        "antonyms": [
+          "mengecewakan（令人失望）"
+        ],
+        "examples": [
+          {
+            "scene": "Secara keseluruhan layanan sangat memuaskan.",
+            "id": "memuaskan",
+            "cn": "整体服务非常令人满意。"
+          },
+          {
+            "scene": "Survei kepuasan pelanggan rutin dilakukan.",
+            "id": "kepuasan",
+            "cn": "定期开展客户满意度调查。"
+          }
+        ]
+      },
+      {
+        "word": "predikat",
+        "ipa": "/prəˈdi.kat/",
+        "cn": "称号；等级评定；谓语",
+        "en": "predicate; title; classification",
+        "root": "predikat（拉丁语 praedicatum 借词）",
+        "forms": [
+          {
+            "form": "predikat",
+            "pos": "n",
+            "mean": "称号；评定"
+          },
+          {
+            "form": "predikat kelulusan",
+            "pos": "短语",
+            "mean": "等级评定"
+          }
+        ],
+        "formsNote": "无变形。复习日重收覆盖更新（10/16 UKBI 课已收录）。",
+        "note": "UKBI 成绩评定：predikat berdasarkan skor 按分数评定等级（Istimewa 至 Terbatas 七级）。",
+        "synonyms": [
+          "sebutan（称号）",
+          "gelar（头衔）"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "scene": "Predikat UKBI tercantum dalam sertifikat.",
+            "id": "Predikat",
+            "cn": "UKBI 等级写在证书上。"
+          },
+          {
+            "scene": "Ia meraih predikat sangat unggul.",
+            "id": "predikat",
+            "cn": "他获得「特优」评定。"
+          }
+        ]
+      },
+      {
+        "word": "personal",
+        "ipa": "/pərˈso.nal/",
+        "cn": "个人的；私人的",
+        "en": "personal",
+        "root": "personal（拉丁语 personalis 借词）",
+        "forms": [
+          {
+            "form": "personal",
+            "pos": "adj",
+            "mean": "个人的"
+          },
+          {
+            "form": "secara personal",
+            "pos": "adv",
+            "mean": "亲自地"
+          },
+          {
+            "form": "personalia",
+            "pos": "n",
+            "mean": "人事（部门）"
+          }
+        ],
+        "formsNote": "无变形；personalia 为相关人事名词。",
+        "note": "UKBI 三种用途之一：kebutuhan personal 个人需求（自我评估/求职）。",
+        "synonyms": [
+          "pribadi（私人）",
+          "perorangan（个人）"
+        ],
+        "antonyms": [
+          "umum（公共）",
+          "publik（公众）"
+        ],
+        "examples": [
+          {
+            "scene": "Sertifikat untuk kebutuhan personal maupun profesional.",
+            "id": "personal",
+            "cn": "证书可用于个人或职业需求。"
+          },
+          {
+            "scene": "Data personal dilindungi undang-undang.",
+            "id": "personal",
+            "cn": "个人数据受法律保护。"
+          }
+        ]
+      },
+      {
+        "word": "sosial",
+        "ipa": "/soˈsi.al/",
+        "cn": "社会的；社交的",
+        "en": "social",
+        "root": "sosial（拉丁语 socialis 借词）",
+        "forms": [
+          {
+            "form": "sosial",
+            "pos": "adj",
+            "mean": "社会的"
+          },
+          {
+            "form": "kehidupan sosial",
+            "pos": "短语",
+            "mean": "社交生活"
+          },
+          {
+            "form": "media sosial",
+            "pos": "短语",
+            "mean": "社交媒体"
+          }
+        ],
+        "formsNote": "无变形。",
+        "note": "UKBI 用途之一：persyaratan sosial 社会需求。通用高频：interaksi sosial 社会交往。",
+        "synonyms": [
+          "kemasyarakatan（社会的）"
+        ],
+        "antonyms": [
+          "individu（个体）"
+        ],
+        "examples": [
+          {
+            "scene": "Bahasa Indonesia memainkan peran sosial penting.",
+            "id": "sosial",
+            "cn": "印尼语扮演重要社会角色。"
+          },
+          {
+            "scene": "Komunikasi sosial memerlukan kepekaan budaya.",
+            "id": "sosial",
+            "cn": "社交需要文化敏感度。"
+          }
+        ]
+      },
+      {
+        "word": "keprofesian",
+        "ipa": "/kə.pro.fəˈsi.an/",
+        "cn": "职业的；专业性的",
+        "en": "professional",
+        "root": "profesi（职业）+ ke- + -an",
+        "forms": [
+          {
+            "form": "profesi",
+            "pos": "n",
+            "mean": "职业（借词）"
+          },
+          {
+            "form": "keprofesian",
+            "pos": "adj",
+            "mean": "职业的"
+          },
+          {
+            "form": "profesional",
+            "pos": "adj/n",
+            "mean": "专业的/专业人士"
+          }
+        ],
+        "formsNote": "ke-an 形容词化（profesi → keprofesian）；同义 profesional。",
+        "note": "UKBI 用途核心词：kebutuhan keprofesian 职业需求（求职/晋升），与 keilmiahan 并列。",
+        "synonyms": [
+          "profesional（职业性）"
+        ],
+        "antonyms": [
+          "amateur（业余）"
+        ],
+        "examples": [
+          {
+            "scene": "Sertifikat UKBI menunjang kebutuhan keprofesian.",
+            "id": "keprofesian",
+            "cn": "UKBI 证书支持职业需求。"
+          },
+          {
+            "scene": "Pengembangan keprofesian berkelanjutan penting.",
+            "id": "keprofesian",
+            "cn": "持续职业发展很重要。"
+          }
+        ]
+      },
+      {
+        "word": "dan",
+        "ipa": "/ˈdan/",
+        "cn": "和；与；以及",
+        "en": "and",
+        "root": "dan（非派生连词）",
+        "forms": [
+          {
+            "form": "dan",
+            "pos": "conj",
+            "mean": "和；与"
+          }
+        ],
+        "formsNote": "并列连词；连接词/短语/句子。",
+        "note": "印尼语最高频连词；注意 dan 后不再加逗号（与英语不同）。",
+        "synonyms": [
+          "serta（以及）",
+          "lalu（然后）"
+        ],
+        "antonyms": [
+          "atau（或）",
+          "tetapi（但）"
+        ],
+        "examples": [
+          {
+            "scene": "Kemahiran personal dan keprofesian dinilai UKBI.",
+            "id": "dan",
+            "cn": "个人和职业能力由 UKBI 评估。"
+          },
+          {
+            "scene": "Dialog dan monolog keduanya diuji.",
+            "id": "dan",
+            "cn": "对话和独白都要考。"
+          }
+        ]
+      },
+      {
+        "word": "keilmiahan",
+        "ipa": "/kə.il.miˈa.han/",
+        "cn": "学术的；学术性的",
+        "en": "academic; scholarly",
+        "root": "ilmu（知识）+ -iah（…的）+ ke-an",
+        "forms": [
+          {
+            "form": "ilmu",
+            "pos": "n",
+            "mean": "知识；科学（词根）"
+          },
+          {
+            "form": "ilmiah",
+            "pos": "adj",
+            "mean": "学术的"
+          },
+          {
+            "form": "keilmiahan",
+            "pos": "adj/n",
+            "mean": "学术性"
+          },
+          {
+            "form": "keilmuan",
+            "pos": "n",
+            "mean": "学术领域"
+          }
+        ],
+        "formsNote": "ilmu → ilmiah（-iah 化）→ keilmiahan（ke-an）。",
+        "note": "UKBI 用途之一：kebutuhan keilmiahan 学术需求（论文/学术评估），与 keprofesian 并列。",
+        "synonyms": [
+          "akademis（学院派的）",
+          "ilmiah（学术的）"
+        ],
+        "antonyms": [
+          "populer（通俗的）"
+        ],
+        "examples": [
+          {
+            "scene": "Penelitian memerlukan bahasa baku keilmiahan.",
+            "id": "keilmiahan",
+            "cn": "研究需要规范的学术语言。"
+          },
+          {
+            "scene": "Gaya keilmiahan berbeda dengan gaya jurnalistik.",
+            "id": "keilmiahan",
+            "cn": "学术风格不同于新闻风格。"
+          }
+        ]
+      },
+      {
+        "word": "unggul",
+        "ipa": "/ˈʊŋ.gul/",
+        "cn": "优秀的；卓越的",
+        "en": "excellent; superior",
+        "root": "unggul（非派生）",
+        "forms": [
+          {
+            "form": "unggul",
+            "pos": "adj",
+            "mean": "优秀的"
+          },
+          {
+            "form": "mengungguli",
+            "pos": "v",
+            "mean": "超越"
+          },
+          {
+            "form": "keunggulan",
+            "pos": "n",
+            "mean": "优势"
+          },
+          {
+            "form": "sangat unggul",
+            "pos": "短语",
+            "mean": "特优秀（UKBI 二级 641-724）"
+          }
+        ],
+        "formsNote": "meN--i 动词 mengungguli；ke-an 名词 keunggulan。用户输入 Unggul 首字母大写已归一。复习日重收覆盖更新。",
+        "note": "UKBI 第三级：Unggul（578-640）；第二级：Sangat Unggul（641-724）。商业高频：produk unggul 优势产品。",
+        "synonyms": [
+          "istimewa（特优）",
+          "unggulan（优秀的）"
+        ],
+        "antonyms": [
+          "terbatas（有限）",
+          "lemah（弱）"
+        ],
+        "examples": [
+          {
+            "scene": "Peringkat unggul dibutuhkan untuk melamar beasiswa.",
+            "id": "unggul",
+            "cn": "申请奖学金需优秀等级。"
+          },
+          {
+            "scene": "Keunggulan kompetitif dipertahankan lewat inovasi.",
+            "id": "keunggulan",
+            "cn": "通过创新保持竞争优势。"
+          }
+        ]
+      },
+      {
+        "word": "terkendala",
+        "ipa": "/tərˈkən.da.la/",
+        "cn": "受阻的；遇到障碍的",
+        "en": "hindered; obstructed",
+        "root": "kendala（障碍）+ ter-",
+        "forms": [
+          {
+            "form": "kendala",
+            "pos": "n",
+            "mean": "障碍"
+          },
+          {
+            "form": "terkendala",
+            "pos": "adj/v",
+            "mean": "受阻的"
+          }
+        ],
+        "formsNote": "ter- 状态形容词。复习日重收覆盖更新（10/18 已收录）。",
+        "note": "运营/项目高频：terkendala jaringan 受网络影响、terkendala cuaca 受天气影响。",
+        "synonyms": [
+          "terhambat（受阻）",
+          "terganggu（受扰）"
+        ],
+        "antonyms": [
+          "lancar（顺利）"
+        ],
+        "examples": [
+          {
+            "scene": "Ujian daring terkendala gangguan koneksi.",
+            "id": "terkendala",
+            "cn": "在线考试受连接故障影响。"
+          },
+          {
+            "scene": "Pengiriman terkendala pembatasan wilayah.",
+            "id": "terkendala",
+            "cn": "运输受区域限制影响。"
+          }
+        ]
+      },
+      {
+        "word": "madya",
+        "ipa": "/ˈmad.ya/",
+        "cn": "中级的；中等的（UKBI 第四级 482-577）",
+        "en": "intermediate (level)",
+        "root": "madya（梵语 madhya 借词，非派生）",
+        "forms": [
+          {
+            "form": "madya",
+            "pos": "adj/n",
+            "mean": "中级"
+          },
+          {
+            "form": "bahasa madya",
+            "pos": "短语",
+            "mean": "中等语言水平"
+          }
+        ],
+        "formsNote": "无变形；印尼语等级体系核心词。用户输入 Madya 首字母大写已归一。",
+        "note": "UKBI 第四级 Madya（482-577）：中等熟练度，多数机构招聘门槛。",
+        "synonyms": [
+          "menengah（中等）"
+        ],
+        "antonyms": [
+          "tingkat tinggi（高级）",
+          "dasar（初级）"
+        ],
+        "examples": [
+          {
+            "scene": "Peringkat madya cukup untuk sebagian besar pekerjaan.",
+            "id": "madya",
+            "cn": "中级对大多数工作已够用。"
+          },
+          {
+            "scene": "Target minimal peserta adalah madya.",
+            "id": "madya",
+            "cn": "考生最低目标为中级。"
+          }
+        ]
+      },
+      {
+        "word": "semenjana",
+        "ipa": "/səˈmən.dʒa.na/",
+        "cn": "中低级的（UKBI 第五级 405-481）",
+        "en": "lower-intermediate",
+        "root": "semenjana（se- + menjana，梵语借词）",
+        "forms": [
+          {
+            "form": "semenjana",
+            "pos": "adj/n",
+            "mean": "中低级"
+          }
+        ],
+        "formsNote": "无变形。用户输入 Semenjana 首字母大写已归一。",
+        "note": "UKBI 第五级 Semenjana（405-481）：中等偏下，基本交流能力。",
+        "synonyms": [
+          "standar（标准）"
+        ],
+        "antonyms": [
+          "unggul（优秀）"
+        ],
+        "examples": [
+          {
+            "scene": "Skor 420 tergolong semenjana.",
+            "id": "semenjana",
+            "cn": "420 分属中低级。"
+          },
+          {
+            "scene": "Kemampuan semenjana memadai untuk percakapan harian.",
+            "id": "semenjana",
+            "cn": "中低级能力足以应付日常会话。"
+          }
+        ]
+      },
+      {
+        "word": "marginal",
+        "ipa": "/marˈgi.nal/",
+        "cn": "边缘的；低水平的（UKBI 第六级 326-404）",
+        "en": "marginal; borderline",
+        "root": "marginal（拉丁语 marginalis 借词）",
+        "forms": [
+          {
+            "form": "marginal",
+            "pos": "adj/n",
+            "mean": "边缘的；低水平"
+          }
+        ],
+        "formsNote": "无变形。用户输入 Marginal 首字母大写已归一。",
+        "note": "UKBI 第六级 Marginal（326-404）：仅基本语言能力。经济语境：pendapatan marginal 边际收入。",
+        "synonyms": [
+          "terbatas（有限）"
+        ],
+        "antonyms": [
+          "istimewa（特优）"
+        ],
+        "examples": [
+          {
+            "scene": "Peringkat marginal menunjukkan kemampuan terbatas.",
+            "id": "marginal",
+            "cn": "边缘级表明能力有限。"
+          },
+          {
+            "scene": "Biaya marginal harus dihitung hati-hati.",
+            "id": "marginal",
+            "cn": "边际成本须仔细计算。"
+          }
+        ]
+      },
+      {
+        "word": "terendah",
+        "ipa": "/təˈrən.dah/",
+        "cn": "最低的",
+        "en": "lowest",
+        "root": "rendah（低）+ ter-",
+        "forms": [
+          {
+            "form": "rendah",
+            "pos": "adj",
+            "mean": "低的（词根）"
+          },
+          {
+            "form": "terendah",
+            "pos": "adj",
+            "mean": "最低的（ter- 最高级）"
+          },
+          {
+            "form": "menurunkan",
+            "pos": "v",
+            "mean": "降低"
+          }
+        ],
+        "formsNote": "ter- 最高级前缀；rendah → terendah。",
+        "note": "UKBI 最低级 Terbatas 为七级中最低（251-325）。通用：peringkat terendah 最低等级。",
+        "synonyms": [
+          "paling rendah（最低）"
+        ],
+        "antonyms": [
+          "tertinggi（最高）"
+        ],
+        "examples": [
+          {
+            "scene": "Terbatas adalah peringkat terendah UKBI.",
+            "id": "terendah",
+            "cn": "「有限」是 UKBI 最低等级。"
+          },
+          {
+            "scene": "Suhu terendah tercatat malam ini.",
+            "id": "terendah",
+            "cn": "今晚记录了最低温度。"
+          }
+        ]
+      },
+      {
+        "word": "mengunduh",
+        "ipa": "/məˈʊn.duʔ/",
+        "cn": "下载",
+        "en": "to download",
+        "root": "unduh（下载）+ meN-",
+        "forms": [
+          {
+            "form": "unduh",
+            "pos": "v",
+            "mean": "下载（词根）"
+          },
+          {
+            "form": "mengunduh",
+            "pos": "v",
+            "mean": "下载（主动）"
+          },
+          {
+            "form": "diunduh",
+            "pos": "v.pass",
+            "mean": "被下载（10/17 已收录）"
+          },
+          {
+            "form": "unduhan",
+            "pos": "n",
+            "mean": "下载内容"
+          }
+        ],
+        "formsNote": "meN- 主动；di- 被动 diunduh。",
+        "note": "UKBI 证书获取：sertifikat dapat diunduh 证书可下载。10/17 收录被动 diunduh，本次补主动 mengunduh。",
+        "synonyms": [
+          "download（英借）"
+        ],
+        "antonyms": [
+          "mengunggah（上传）"
+        ],
+        "examples": [
+          {
+            "scene": "Peserta mengunduh sertifikat dari dasbor.",
+            "id": "mengunduh",
+            "cn": "考生从面板下载证书。"
+          },
+          {
+            "scene": "Aplikasi dapat mengunduh materi untuk belajar offline.",
+            "id": "mengunduh",
+            "cn": "应用可下载学习材料供离线使用。"
+          }
+        ]
+      },
+      {
+        "word": "berlaku-selama-dua-tahun",
+        "ipa": "/bərˈla.ku səˈla.ma ˈdu.a ˈta.hun/",
+        "cn": "有效期两年（规范分写）",
+        "en": "valid for two years",
+        "root": "berlaku（有效）+ selama（长达）+ dua（二）+ tahun（年）",
+        "forms": [
+          {
+            "form": "berlaku selama dua tahun",
+            "pos": "短语",
+            "mean": "规范分写形式"
+          },
+          {
+            "form": "masa berlaku",
+            "pos": "短语",
+            "mean": "有效期"
+          },
+          {
+            "form": "berlaku",
+            "pos": "v/adj",
+            "mean": "有效（10/17 已收录）"
+          }
+        ],
+        "formsNote": "用户输入四词连字符连接，规范应分写。berlaku = ber- + laku。",
+        "note": "UKBI 证书规则原文：Sertifikat UKBI berlaku selama dua tahun（UKBI 证书有效期两年）。",
+        "synonyms": [
+          "valid dua tahun（有效两年）"
+        ],
+        "antonyms": [
+          "kedaluwarsa（过期）"
+        ],
+        "examples": [
+          {
+            "scene": "Sertifikat UKBI berlaku selama dua tahun.",
+            "id": "berlaku selama dua tahun",
+            "cn": "UKBI 证书有效期两年。"
+          },
+          {
+            "scene": "Masa berlaku sertifikat diperpanjang otomatis?",
+            "id": "masa berlaku",
+            "cn": "证书有效期会自动延长吗？"
+          }
+        ]
+      },
+      {
+        "word": "pembinaan",
+        "ipa": "/pəmˈbi.nan/",
+        "cn": "指导；培育；发展",
+        "en": "guidance; development; fostering",
+        "root": "bina（培育）+ peN- + -an",
+        "forms": [
+          {
+            "form": "bina",
+            "pos": "v",
+            "mean": "培育（词根）"
+          },
+          {
+            "form": "membina",
+            "pos": "v",
+            "mean": "培育（主动）"
+          },
+          {
+            "form": "pembinaan",
+            "pos": "n",
+            "mean": "培育"
+          },
+          {
+            "form": "pembina",
+            "pos": "n",
+            "mean": "辅导员"
+          }
+        ],
+        "formsNote": "peN--an 名词化。用户输入 Pembinaan 首字母大写已归一。复习日重收覆盖更新（10/17 已收录）。",
+        "note": "机构名：Badan Pengembangan dan Pembinaan Bahasa 语言发展培育局（UKBI 主管）。",
+        "synonyms": [
+          "pengembangan（发展）"
+        ],
+        "antonyms": [
+          "penghancuran（破坏）"
+        ],
+        "examples": [
+          {
+            "scene": "Badan Pembinaan mengelola sertifikasi bahasa.",
+            "id": "Pembinaan",
+            "cn": "培育局管理语言认证。"
+          },
+          {
+            "scene": "Pembinaan atlet dimulai dari usia muda.",
+            "id": "pembinaan",
+            "cn": "运动员培养从年轻时开始。"
+          }
+        ]
+      },
+      {
+        "word": "bervariasi",
+        "ipa": "/bərˈva.ri.ʔa.si/",
+        "cn": "多样的；有变化的",
+        "en": "varied; diverse",
+        "root": "variasi（变化）+ ber-",
+        "forms": [
+          {
+            "form": "variasi",
+            "pos": "n",
+            "mean": "变化；变体（借词）"
+          },
+          {
+            "form": "bervariasi",
+            "pos": "adj",
+            "mean": "多样的"
+          },
+          {
+            "form": "berbagai variasi",
+            "pos": "短语",
+            "mean": "各种变体"
+          },
+          {
+            "form": "variatif",
+            "pos": "adj",
+            "mean": "变化的"
+          }
+        ],
+        "formsNote": "ber- 状态动词。",
+        "note": "描述多样性：soal bervariasi 题目多样、tingkat kesulitan bervariasi 难度不一。",
+        "synonyms": [
+          "beragam（多样）",
+          "bermacam（各种）"
+        ],
+        "antonyms": [
+          "seragam（统一）",
+          "monoton（单调）"
+        ],
+        "examples": [
+          {
+            "scene": "Soal UKBI bervariasi dari mudah sampai sulit.",
+            "id": "bervariasi",
+            "cn": "UKBI 题目从易到难各不相同。"
+          },
+          {
+            "scene": "Tarif pembayaran bervariasi per wilayah.",
+            "id": "bervariasi",
+            "cn": "付款费率因地区而异。"
+          }
+        ]
+      },
+      {
+        "word": "masyarakat-umum",
+        "ipa": "/maˈʃa.ra.kat ˈu.mum/",
+        "cn": "社会公众",
+        "en": "general public",
+        "root": "masyarakat（社会）+ umum（公共的）",
+        "forms": [
+          {
+            "form": "masyarakat umum",
+            "pos": "n",
+            "mean": "规范分写形式"
+          },
+          {
+            "form": "masyarakat",
+            "pos": "n",
+            "mean": "社会；社区"
+          },
+          {
+            "form": "umum",
+            "pos": "adj",
+            "mean": "公共的；一般的"
+          }
+        ],
+        "formsNote": "用户输入连字符连接，规范分写：masyarakat umum。",
+        "note": "UKBI 适用对象：masyarakat umum dapat mengikuti UKBI 社会公众可参加 UKBI（不限学生/公务员）。",
+        "synonyms": [
+          "khalayak umum（公众）",
+          "publik（大众）"
+        ],
+        "antonyms": [
+          "kalangan terbatas（特定圈子）"
+        ],
+        "examples": [
+          {
+            "scene": "UKBI terbuka bagi masyarakat umum.",
+            "id": "masyarakat umum",
+            "cn": "UKBI 面向社会公众开放。"
+          },
+          {
+            "scene": "Informasi ini dapat diakses masyarakat umum.",
+            "id": "masyarakat umum",
+            "cn": "此信息公众可获取。"
+          }
+        ]
+      },
+      {
+        "word": "teruji-lebih-terpuji",
+        "ipa": "/təˈrudʒi ˈlə.bih tərˈputʃi/",
+        "cn": "久经考验且表现优异（规范分写）",
+        "en": "well-tested and even more praiseworthy",
+        "root": "uji（测试）+ ter-；lebih（更）；puji（赞扬）+ ter-",
+        "forms": [
+          {
+            "form": "teruji lebih terpuji",
+            "pos": "短语",
+            "mean": "规范分写形式"
+          },
+          {
+            "form": "teruji terpuji",
+            "pos": "短语",
+            "mean": "久经考验（10/18 已收录 Teruji-terpuji）"
+          },
+          {
+            "form": "terpuji",
+            "pos": "adj",
+            "mean": "值得赞扬的"
+          }
+        ],
+        "formsNote": "用户输入三词连字符连接，规范应分写。lebih 插入表递进：teruji → lebih terpuji。10/18 Teruji-terpuji 组合词条已收录，本次为递进变体。",
+        "note": "印尼语比较级插入强调：teruji terpuji → teruji lebih terpuji（程度更强）。正式表彰/宣传语境。",
+        "synonyms": [
+          "teruji dan terpuji（经考验且优秀）"
+        ],
+        "antonyms": [
+          "terbukti gagal（已证明失败）"
+        ],
+        "examples": [
+          {
+            "scene": "Sistem kami teruji lebih terpuji dari kompetitor.",
+            "id": "teruji lebih terpuji",
+            "cn": "我们的系统比竞品更久经考验。"
+          },
+          {
+            "scene": "Metode teruji lebih terpuji dalam industri ini.",
+            "id": "teruji lebih terpuji",
+            "cn": "该方法在本行业表现优异。"
           }
         ]
       }
@@ -75177,36 +77384,6 @@ const bitVocabDB = {
       }
     ]
   },
-  "dan": {
-    "word": "dan",
-    "ipa": "/ˈdan/",
-    "cn": "和",
-    "en": "and",
-    "root": "dan",
-    "forms": [],
-    "formsNote": "并列连词，无构词变化",
-    "note": "连接词/短语/句子；或 = atau；雅语用 serta",
-    "synonyms": [
-      "serta",
-      "lalu"
-    ],
-    "antonyms": [
-      "atau",
-      "tetapi"
-    ],
-    "examples": [
-      {
-        "scene": "Air dan listrik adalah kebutuhan dasar.",
-        "id": "dan",
-        "cn": "水和电是基本需求。"
-      },
-      {
-        "scene": "Dia datang dan langsung bekerja.",
-        "id": "dan",
-        "cn": "他来了并立刻工作。"
-      }
-    ]
-  },
   "tahunan": {
     "word": "tahunan",
     "ipa": "/taˈhunan/",
@@ -87378,61 +89555,6 @@ const bitVocabDB = {
         "scene": "Pujian darinya membuat saya malu.",
         "id": "pujian",
         "cn": "他的称赞让我不好意思。"
-      }
-    ]
-  },
-  "secara": {
-    "word": "secara",
-    "cn": "以……方式；在……方面",
-    "en": "in a ... manner; in terms of",
-    "root": "cara（方式/方法，词根）+ se-...-nya 固化 → secara（以某种方式），后接形容词/副词构成方式状语",
-    "forms": [
-      {
-        "form": "cara",
-        "pos": "名词",
-        "mean": "方式/方法"
-      },
-      {
-        "form": "secara keseluruhan",
-        "pos": "副词短语",
-        "mean": "总体上"
-      },
-      {
-        "form": "secara bertahap",
-        "pos": "副词短语",
-        "mean": "分阶段地（tahap 见本日 #11）"
-      },
-      {
-        "form": "berbagai cara",
-        "pos": "名词短语",
-        "mean": "各种方式"
-      }
-    ],
-    "formsNote": "",
-    "note": "",
-    "synonyms": [
-      "dengan cara（以……方式）",
-      "dalam hal（在……方面）",
-      "melalui（通过）"
-    ],
-    "antonyms": [
-      "—（小品词无反义）"
-    ],
-    "examples": [
-      {
-        "scene": "项目管理",
-        "id": "Kinerja proyek diukur secara objektif dengan EVM.",
-        "cn": "项目绩效用挣值管理客观衡量。"
-      },
-      {
-        "scene": "商务",
-        "id": "Kontrak ditinjau secara hati-hati sebelum ditandatangani.",
-        "cn": "合同签署前被仔细审查。"
-      },
-      {
-        "scene": "日常",
-        "id": "Belajar bahasa Indonesia secara intensif selama sebulan.",
-        "cn": "集中强化学习印尼语一个月。"
       }
     ]
   },
@@ -110567,52 +112689,6 @@ const bitVocabDB = {
         "scene": "Dia mengklaim menemukan obat baru.",
         "id": "mengklaim",
         "cn": "他声称发现了新药。"
-      }
-    ]
-  },
-  "dilaksanakan": {
-    "word": "dilaksanakan",
-    "ipa": "/dilakˈsanakan/",
-    "cn": "被执行/被实施",
-    "en": "to be carried out, to be implemented",
-    "root": "laksana",
-    "forms": [
-      {
-        "form": "melaksanakan",
-        "pos": "v",
-        "mean": "执行/实施"
-      },
-      {
-        "form": "pelaksana",
-        "pos": "n",
-        "mean": "执行者"
-      },
-      {
-        "form": "pelaksanaan",
-        "pos": "n",
-        "mean": "执行/实施（名词）"
-      }
-    ],
-    "formsNote": "di- 被动；meN-…-kan 主动；peN-…-an 名词",
-    "note": "公文超高频：akan dilaksanakan「将实施」；pelaksanaan proyek「项目执行」",
-    "synonyms": [
-      "dijalankan",
-      "direalisasikan"
-    ],
-    "antonyms": [
-      "dibatalkan",
-      "ditangguhkan"
-    ],
-    "examples": [
-      {
-        "scene": "Proyek itu akan dilaksanakan tahun depan.",
-        "id": "dilaksanakan",
-        "cn": "该项目将于明年实施。"
-      },
-      {
-        "scene": "Mereka sedang melaksanakan rencana baru.",
-        "id": "melaksanakan",
-        "cn": "他们正在执行新计划。"
       }
     ]
   },
@@ -140767,44 +142843,6 @@ const bitVocabDB = {
       }
     ]
   },
-  "disajikan": {
-    "word": "disajikan",
-    "ipa": "/disaˈdʒikan/",
-    "cn": "被提供；被呈上",
-    "en": "to be served, to be presented",
-    "root": "saji",
-    "forms": [
-      {
-        "form": "menyajikan",
-        "pos": "v",
-        "mean": "提供；上菜（主动）"
-      },
-      {
-        "form": "sajian",
-        "pos": "n",
-        "mean": "菜肴；呈现内容"
-      },
-      {
-        "form": "penyaji",
-        "pos": "n",
-        "mean": "服务者；呈现者"
-      }
-    ],
-    "formsNote": "di-…-kan 被动；词根 saji",
-    "note": "餐饮/数据双域：makanan disajikan panas（热菜上桌）、data disajikan dalam grafik（数据以图表呈现）",
-    "synonyms": [
-      "dihidangkan",
-      "dipresentasikan"
-    ],
-    "antonyms": [],
-    "examples": [
-      {
-        "scene": "Laporan disajikan dalam bentuk grafik.",
-        "id": "disajikan",
-        "cn": "报告以图表形式呈现。"
-      }
-    ]
-  },
   "tumbuh": {
     "word": "tumbuh",
     "ipa": "/tumbuh/",
@@ -167933,67 +169971,6 @@ const bitVocabDB = {
       }
     ]
   },
-  "bentuk": {
-    "word": "bentuk",
-    "cn": "形式；形状；建立；组建（动词）",
-    "en": "form; shape; to establish",
-    "root": "bentuk（形状/形式——本土词）",
-    "forms": [
-      {
-        "form": "bentuk",
-        "pos": "名词/动词",
-        "mean": "形式；建立"
-      },
-      {
-        "form": "membentuk",
-        "pos": "动词",
-        "mean": "建立；组成"
-      },
-      {
-        "form": "dibentuk",
-        "pos": "被动动词",
-        "mean": "被组建"
-      },
-      {
-        "form": "pembentukan",
-        "pos": "名词",
-        "mean": "组建；构成"
-      },
-      {
-        "form": "berbentuk",
-        "pos": "动词",
-        "mean": "呈……形状"
-      },
-      {
-        "form": "bentukan",
-        "pos": "名词",
-        "mean": "形成物"
-      }
-    ],
-    "formsNote": "",
-    "note": "机构组建高频：`membentuk tim investigasi`（组建调查组——#7 联记）、`membentuk PPLH`（成立环境污染控制机构——#18 联记）；名词义 `bentuk laporan`（报告形式）。",
-    "synonyms": [
-      "mendirikan（建立——机构）",
-      "mengorganisir（组织）",
-      "merancang（设计）"
-    ],
-    "antonyms": [
-      "membubarkan（解散）",
-      "membongkar（拆除）"
-    ],
-    "examples": [
-      {
-        "scene": "环境合规",
-        "id": "KLHK akan membentuk tim khusus untuk insiden ini.",
-        "cn": "（环境林业部将为此次事件组建专门团队。）"
-      },
-      {
-        "scene": "项目管理",
-        "id": "Kami membentuk satuan tugas untuk rantai pasok.",
-        "cn": "（我们组建了供应链特别工作组。）"
-      }
-    ]
-  },
   "rantai pengawasan": {
     "word": "rantai pengawasan",
     "cn": "监管链；监督链条",
@@ -171800,37 +173777,6 @@ const bitVocabDB = {
       }
     ]
   },
-  "terendah": {
-    "word": "terendah",
-    "cn": "最低的；最少的",
-    "en": "lowest; minimum",
-    "root": "rendah",
-    "forms": [],
-    "formsNote": "rendah、lebih rendah、terendah、kerendahan",
-    "note": "形容词 rendah（低的）→ 最高级 terendah（最低的）；比较级 lebih rendah 常用于最低成本（biaya terendah）、最低库存（stok terendah）、最低价格（harga terendah）；与 tertinggi 相对",
-    "synonyms": [
-      "paling rendah",
-      "minimal",
-      "terkecil"
-    ],
-    "antonyms": [
-      "tertinggi",
-      "maksimal",
-      "terbesar"
-    ],
-    "examples": [
-      {
-        "scene": "商务",
-        "id": "Strategi just-in-time bertujuan menjaga tingkat stok pada level terendah yang memungkinkan.",
-        "cn": "准时制策略旨在将库存保持在尽可能低的水平。"
-      },
-      {
-        "scene": "商务",
-        "id": "Kami mendapat penawaran harga terendah dari pemasok lokal dibandingkan pemasok impor.",
-        "cn": "我们从本地供应商那里获得了比进口供应商更低的价格。"
-      }
-    ]
-  },
   "melibatkan": {
     "word": "melibatkan",
     "cn": "涉及；使参与；包含",
@@ -174173,57 +176119,6 @@ const bitVocabDB = {
         "scene": "安全应急",
         "id": "Partisipasi aktif dalam investigasi insiden sangat dihargai.",
         "cn": "积极参与事故调查非常值得赞赏。"
-      }
-    ]
-  },
-  "keseluruhan": {
-    "word": "keseluruhan",
-    "cn": "全部；整体",
-    "en": "entirety; whole; overall",
-    "root": "seluruh",
-    "forms": [
-      {
-        "form": "seluruh",
-        "pos": "形容词/限定词",
-        "mean": "整个的"
-      },
-      {
-        "form": "keseluruhan",
-        "pos": "名词",
-        "mean": "整体、全部（ke-an 名词化）"
-      },
-      {
-        "form": "secara keseluruhan",
-        "pos": "副词短语",
-        "mean": "整体上"
-      },
-      {
-        "form": "menyeluruh",
-        "pos": "形容词",
-        "mean": "全面的（meN- 形容词化）"
-      }
-    ],
-    "formsNote": "",
-    "note": "ke-an 名词化：keseluruhan 整体；se- 副词化：secara keseluruhan；meN- 形容词化：menyeluruh 正式用语，secara keseluruhan 常用于总结/报告",
-    "synonyms": [
-      "seluruhnya",
-      "semua",
-      "kesemuanya"
-    ],
-    "antonyms": [
-      "sebagian",
-      "parsial"
-    ],
-    "examples": [
-      {
-        "scene": "安全应急",
-        "id": "Evakuasi secara keseluruhan berlangsung dalam waktu 8 menit.",
-        "cn": "整体疏散在8分钟内完成。"
-      },
-      {
-        "scene": "安全应急",
-        "id": "Keseluruhan sistem alarm telah diperbarui tahun ini.",
-        "cn": "整个警报系统今年已经更新。"
       }
     ]
   },
@@ -178745,54 +180640,6 @@ const bitVocabDB = {
       }
     ]
   },
-  "gambar": {
-    "word": "gambar",
-    "cn": "图画 / 图片 / 图纸",
-    "en": "picture / drawing",
-    "root": "原始马来词 · 无词缀",
-    "forms": [
-      {
-        "form": "gambar",
-        "pos": "名词",
-        "mean": "图画；图纸"
-      },
-      {
-        "form": "menggambar",
-        "pos": "动词",
-        "mean": "画画"
-      },
-      {
-        "form": "gambaran",
-        "pos": "名词",
-        "mean": "图景；描述"
-      },
-      {
-        "form": "bergambar",
-        "pos": "形容词",
-        "mean": "带图的"
-      }
-    ],
-    "formsNote": "",
-    "note": "-an 派生表\"描述/图景\"；工程图纸 gambar teknik / gambar kerja。",
-    "synonyms": [
-      "ilustrasi"
-    ],
-    "antonyms": [
-      "—"
-    ],
-    "examples": [
-      {
-        "scene": "项目管理",
-        "id": "Gambar teknik proyek sudah disetujui konsultan.",
-        "cn": "项目工程图纸已获顾问批准。"
-      },
-      {
-        "scene": "日常",
-        "id": "Gambar tata letak pabrik dipasang di dinding kantor.",
-        "cn": "厂区平面图挂在办公室墙上。"
-      }
-    ]
-  },
   "konsultan": {
     "word": "konsultan",
     "cn": "顾问 / 咨询师",
@@ -180145,54 +181992,6 @@ const bitVocabDB = {
       }
     ]
   },
-  "peserta": {
-    "word": "peserta",
-    "cn": "参与者 / 参加者",
-    "en": "participant",
-    "root": "serta（参与）· pe- 表人前缀",
-    "forms": [
-      {
-        "form": "peserta",
-        "pos": "名词",
-        "mean": "参加者"
-      },
-      {
-        "form": "mengikuti",
-        "pos": "动词",
-        "mean": "参加（活动）"
-      },
-      {
-        "form": "kesertaan",
-        "pos": "名词",
-        "mean": "参与（状态）"
-      },
-      {
-        "form": "ikut serta",
-        "pos": "短语",
-        "mean": "参与"
-      }
-    ],
-    "formsNote": "",
-    "note": "pe- 表\"参与者\"；动词\"参加\"用 mengikuti / ikut serta。",
-    "synonyms": [
-      "peserta ≈ partisipan（借词）"
-    ],
-    "antonyms": [
-      "—"
-    ],
-    "examples": [
-      {
-        "scene": "HSE",
-        "id": "Semua peserta wajib mengikuti safety briefing.",
-        "cn": "所有参加者必须参加安全简报。"
-      },
-      {
-        "scene": "商务",
-        "id": "Peserta tender terdaftar resmi.",
-        "cn": "投标方正式注册。"
-      }
-    ]
-  },
   "undang": {
     "word": "undang",
     "cn": "邀请 / 召请",
@@ -181356,51 +183155,6 @@ const bitVocabDB = {
     }
   ]
 },
-  "peserta": {
-  "word": "peserta",
-  "ipa": "/pəˈsɛrta/",
-  "cn": "考生/参与者",
-  "en": "participant",
-  "root": "serta",
-  "forms": [
-    {
-      "form": "serta",
-      "pos": "prep/v",
-      "mean": "一起/参加"
-    },
-    {
-      "form": "peserta",
-      "pos": "n",
-      "mean": "参与者"
-    },
-    {
-      "form": "berserta",
-      "pos": "v",
-      "mean": "一起/附带"
-    }
-  ],
-  "formsNote": "serta（一起）+ pe- 名词化 → 参与者；pe- 表示'做…的人'",
-  "note": "考试/活动正式用语；UKBI 全文高频",
-  "synonyms": [
-    "partisipan",
-    "pelaku"
-  ],
-  "antonyms": [
-    "penonton"
-  ],
-  "examples": [
-    {
-      "scene": "Peserta mengklik tautan verifikasi di pos-el.",
-      "id": "Peserta",
-      "cn": "考生点击邮件中的验证链接。"
-    },
-    {
-      "scene": "Setiap peserta mendapatkan jumlah soal yang berbeda.",
-      "id": "peserta",
-      "cn": "每位考生获得不同数量的题目。"
-    }
-  ]
-},
   "mandiri": {
   "word": "mandiri",
   "ipa": "/mandiˈri/",
@@ -181444,46 +183198,6 @@ const bitVocabDB = {
       "scene": "Bank Mandiri adalah bank terbesar di Indonesia.",
       "id": "Mandiri",
       "cn": "曼迪利银行是印尼最大的银行。"
-    }
-  ]
-},
-  "lembaga": {
-  "word": "lembaga",
-  "ipa": "/lɛmbaˈga/",
-  "cn": "机构",
-  "en": "institution/agency",
-  "root": "lembaga",
-  "forms": [
-    {
-      "form": "lembaga",
-      "pos": "n",
-      "mean": "机构/组织"
-    },
-    {
-      "form": "berlembaga",
-      "pos": "v",
-      "mean": "有组织的"
-    }
-  ],
-  "formsNote": "纯名词，无常见派生",
-  "note": "泛指各种组织机构：Badan/lembaga bahasa（语言机构）",
-  "synonyms": [
-    "institusi",
-    "organisasi"
-  ],
-  "antonyms": [
-    "individu"
-  ],
-  "examples": [
-    {
-      "scene": "Lembaga dapat mendaftarkan peserta secara kolektif.",
-      "id": "Lembaga",
-      "cn": "机构可以集体方式报名考生。"
-    },
-    {
-      "scene": "Badan Pengembangan dan Pembinaan Bahasa adalah lembaga pemerintah.",
-      "id": "lembaga",
-      "cn": "语言发展培育局是政府机构。"
     }
   ]
 },
@@ -181574,46 +183288,6 @@ const bitVocabDB = {
       "scene": "Klik tautan untuk mengunduh panduan.",
       "id": "tautan",
       "cn": "点击链接下载指南。"
-    }
-  ]
-},
-  "identitas": {
-  "word": "identitas",
-  "ipa": "/idɛnˈtitas/",
-  "cn": "身份",
-  "en": "identity",
-  "root": "identitas",
-  "forms": [
-    {
-      "form": "identitas",
-      "pos": "n",
-      "mean": "身份"
-    },
-    {
-      "form": "identitas diri",
-      "pos": "n.phrase",
-      "mean": "个人身份"
-    }
-  ],
-  "formsNote": "拉丁借词 identitas",
-  "note": "固定搭配：pengisian identitas（填写身份）、kartu identitas（身份证）",
-  "synonyms": [
-    "jati diri",
-    "kenali"
-  ],
-  "antonyms": [
-    "anonimitas"
-  ],
-  "examples": [
-    {
-      "scene": "Isi data diri dengan benar dan lengkap pada pengisian identitas.",
-      "id": "identitas",
-      "cn": "在填写身份信息时正确完整地填写个人资料。"
-    },
-    {
-      "scene": "Unggah foto kartu identitas yang masih berlaku.",
-      "id": "identitas",
-      "cn": "上传仍在有效期内的身份证照片。"
     }
   ]
 },
@@ -181869,46 +183543,6 @@ const bitVocabDB = {
     }
   ]
 },
-  "kaidah": {
-  "word": "kaidah",
-  "ipa": "/kaɪˈdah/",
-  "cn": "语法规则",
-  "en": "grammar rule",
-  "root": "kaidah",
-  "forms": [
-    {
-      "form": "kaidah",
-      "pos": "n",
-      "mean": "规则/准则"
-    },
-    {
-      "form": "berkaidah",
-      "pos": "v",
-      "mean": "符合规则"
-    }
-  ],
-  "formsNote": "阿拉伯借词 qāʿidah（规则/底座）",
-  "note": "UKBI Seksi II 核心：Merespons Kaidah（语法反应）",
-  "synonyms": [
-    "aturan",
-    "tata bahasa"
-  ],
-  "antonyms": [
-    "pelanggaran"
-  ],
-  "examples": [
-    {
-      "scene": "Seksi II Merespons Kaidah menguji pemahaman kaidah bahasa Indonesia.",
-      "id": "Kaidah",
-      "cn": "第二部分语法反应测试印尼语语法规则理解。"
-    },
-    {
-      "scene": "Kalimat yang mengandung bagian yang salah tentang kaidah bahasa.",
-      "id": "kaidah",
-      "cn": "含有语法错误部分的句子。"
-    }
-  ]
-},
   "mendengarkan": {
   "word": "mendengarkan",
   "ipa": "/mɛndɛŋˈgarkan/",
@@ -182116,44 +183750,6 @@ const bitVocabDB = {
     }
   ]
 },
-  "predikat": {
-  "word": "predikat",
-  "ipa": "/prɛdiˈkat/",
-  "cn": "等级称号",
-  "en": "predicate/rating title",
-  "root": "predikat",
-  "forms": [
-    {
-      "form": "predikat",
-      "pos": "n",
-      "mean": "称号/等级"
-    },
-    {
-      "form": "predikat kelulusan",
-      "pos": "n.phrase",
-      "mean": "毕业称号"
-    }
-  ],
-  "formsNote": "拉丁借词 praedicatum",
-  "note": "UKBI 七个等级称号：Istimewa→Terbatas",
-  "synonyms": [
-    "gelar",
-    "sebutan"
-  ],
-  "antonyms": [],
-  "examples": [
-    {
-      "scene": "Predikat Istimewa menunjukkan kemahiran yang sempurna.",
-      "id": "Predikat",
-      "cn": "特优称号表示完美的熟练度。"
-    },
-    {
-      "scene": "Tujuh predikat dari Istimewa hingga Terbatas.",
-      "id": "predikat",
-      "cn": "从特优到受限共七个等级称号。"
-    }
-  ]
-},
   "skor": {
   "word": "skor",
   "ipa": "/ˈskɔr/",
@@ -182194,52 +183790,6 @@ const bitVocabDB = {
       "scene": "Skor UKBI dapat langsung diketahui setelah uji selesai untuk Paket 1.",
       "id": "Skor",
       "cn": "套餐 1 的 UKBI 成绩在考完后立即可知。"
-    }
-  ]
-},
-  "unggul": {
-  "word": "unggul",
-  "ipa": "/ˈuŋgul/",
-  "cn": "优秀",
-  "en": "superior/excellent",
-  "root": "unggul",
-  "forms": [
-    {
-      "form": "unggul",
-      "pos": "adj",
-      "mean": "优秀的/占优的"
-    },
-    {
-      "form": "keunggulan",
-      "pos": "n",
-      "mean": "优势/卓越"
-    },
-    {
-      "form": "mengungguli",
-      "pos": "v",
-      "mean": "胜过/超越"
-    }
-  ],
-  "formsNote": "纯词根形容词；ke--an 名词化、meN--i 动词化",
-  "note": "UKBI 第三等级（578-640）；Sangat Unggul 为第二等级（641-724）",
-  "synonyms": [
-    "unggul",
-    "hebat"
-  ],
-  "antonyms": [
-    "lemah",
-    "kurang"
-  ],
-  "examples": [
-    {
-      "scene": "Predikat Unggul menunjukkan kemahiran sangat memadai.",
-      "id": "Unggul",
-      "cn": "优秀称号表示非常充分的熟练度。"
-    },
-    {
-      "scene": "Produk Indonesia unggul di pasar global.",
-      "id": "unggul",
-      "cn": "印尼产品在全球市场占优。"
     }
   ]
 },
@@ -182334,47 +183884,6 @@ const bitVocabDB = {
       "scene": "Sertifikat berlaku selama dua tahun.",
       "id": "Sertifikat",
       "cn": "证书有效期两年。"
-    }
-  ]
-},
-  "daring": {
-  "word": "daring",
-  "ipa": "/ˈdariŋ/",
-  "cn": "在线",
-  "en": "online",
-  "root": "daring",
-  "forms": [
-    {
-      "form": "daring",
-      "pos": "adj/adv",
-      "mean": "在线的/地"
-    },
-    {
-      "form": "dalam jejaring",
-      "pos": "n.phrase",
-      "mean": "在网络中（全称）"
-    }
-  ],
-  "formsNote": "daring = dalam jejaring 的缩合；反义词 luring = luar jejaring",
-  "note": "UKBI Adaptif dilaksanakan secara daring（在线进行）",
-  "synonyms": [
-    "online",
-    "mayapada"
-  ],
-  "antonyms": [
-    "luring",
-    "offline"
-  ],
-  "examples": [
-    {
-      "scene": "UKBI Adaptif dilaksanakan secara daring.",
-      "id": "daring",
-      "cn": "UKBI Adaptif 在线进行。"
-    },
-    {
-      "scene": "Ujian daring memerlukan jaringan internet stabil.",
-      "id": "daring",
-      "cn": "在线考试需要稳定的互联网。"
     }
   ]
 },
@@ -183901,46 +185410,6 @@ const bitVocabDB = {
       }
     ]
   },
-  "kolektif": {
-    "ipa": "/koˈlɛk.tif/",
-    "cn": "集体的；共同的；集体报名",
-    "en": "collective",
-    "root": "kolektif（拉丁语 collectivus 借词）",
-    "forms": [
-      {
-        "form": "kolektif",
-        "pos": "adj",
-        "mean": "集体的；共同的"
-      },
-      {
-        "form": "secara kolektif",
-        "pos": "adv",
-        "mean": "集体地"
-      }
-    ],
-    "formsNote": "外来形容词；无印尼语词缀变形。",
-    "note": "UKBI 报名模式之一：pendaftaran kolektif 集体报名（机构统一报名）。复习日重收覆盖更新（10/16 UKBI 课已收录）。",
-    "synonyms": [
-      "bersama（共同）",
-      "komunal（公社式）"
-    ],
-    "antonyms": [
-      "mandiri（独立）",
-      "individu（个人）"
-    ],
-    "examples": [
-      {
-        "scene": "Perusahaan mendaftar kolektif untuk 50 karyawan.",
-        "id": "kolektif",
-        "cn": "公司为 50 名员工集体报名。"
-      },
-      {
-        "scene": "Harga kolektif lebih murah daripada pendaftaran mandiri.",
-        "id": "kolektif",
-        "cn": "集体报名价格比个人报名便宜。"
-      }
-    ]
-  },
   "laman": {
     "ipa": "/ˈla.man/",
     "cn": "页面；网页；栏目",
@@ -183983,48 +185452,6 @@ const bitVocabDB = {
       }
     ]
   },
-  "akun": {
-    "ipa": "/ˈa.kun/",
-    "cn": "账户；账号",
-    "en": "account",
-    "root": "akun（英语 account 借词）",
-    "forms": [
-      {
-        "form": "akun",
-        "pos": "n",
-        "mean": "账户"
-      },
-      {
-        "form": "membuat akun",
-        "pos": "短语",
-        "mean": "创建账户"
-      },
-      {
-        "form": "dasbor akun",
-        "pos": "短语",
-        "mean": "账户面板"
-      }
-    ],
-    "formsNote": "外来名词；相关动词短语 membuat/memiliki akun。",
-    "note": "UKBI 注册核心：membuat akun UKBI 创建 UKBI 账户。复习日重收覆盖更新（10/16 UKBI 课已收录）。",
-    "synonyms": [
-      "rekening（银行户头）",
-      "profil（资料）"
-    ],
-    "antonyms": [],
-    "examples": [
-      {
-        "scene": "Setiap peserta wajib memiliki akun UKBI yang aktif.",
-        "id": "akun",
-        "cn": "每位考生必须有活跃的 UKBI 账户。"
-      },
-      {
-        "scene": "Verifikasi akun dilakukan melalui tautan pos-el.",
-        "id": "akun",
-        "cn": "账户验证通过邮件链接完成。"
-      }
-    ]
-  },
   "pasfoto": {
     "ipa": "/ˈpasˈfo.to/",
     "cn": "证件照；免冠照片",
@@ -184058,49 +185485,6 @@ const bitVocabDB = {
         "scene": "Unggah pasfoto sebelum batas waktu pendaftaran.",
         "id": "pasfoto",
         "cn": "请在报名截止前上传证件照。"
-      }
-    ]
-  },
-  "unggah": {
-    "ipa": "/ˈʊŋ.gaʔ/",
-    "cn": "上传",
-    "en": "to upload",
-    "root": "unggah（非派生）",
-    "forms": [
-      {
-        "form": "unggah",
-        "pos": "v",
-        "mean": "上传（词根）"
-      },
-      {
-        "form": "mengunggah",
-        "pos": "v",
-        "mean": "上传（主动）"
-      },
-      {
-        "form": "diunggah",
-        "pos": "v.pass",
-        "mean": "被上传"
-      }
-    ],
-    "formsNote": "meN- 主动 mengunggah；di- 被动 diunggah。",
-    "note": "UKBI 注册流程核心动词：unggah identitas 上传身份文件。复习日重收覆盖更新（10/16 UKBI 课已收录，本次补充 unggah 词根本体）。",
-    "synonyms": [
-      "upload（英借）"
-    ],
-    "antonyms": [
-      "unduh（下载）"
-    ],
-    "examples": [
-      {
-        "scene": "Silakan unggah dokumen dalam format PDF.",
-        "id": "unggah",
-        "cn": "请以 PDF 格式上传文件。"
-      },
-      {
-        "scene": "Berkas yang diunggah tidak boleh melebihi 2 MB.",
-        "id": "diunggah",
-        "cn": "上传的文件不得超过 2 MB。"
       }
     ]
   },
@@ -184406,51 +185790,6 @@ const bitVocabDB = {
         "scene": "Butir soal mengandung empat pilihan jawaban.",
         "id": "butir soal",
         "cn": "每道试题含四个选项。"
-      }
-    ]
-  },
-  "mengandung": {
-    "ipa": "/məˈŋan.duŋ/",
-    "cn": "包含；含有",
-    "en": "to contain; to include",
-    "root": "kandung（包含）+ meN-",
-    "forms": [
-      {
-        "form": "kandung",
-        "pos": "v",
-        "mean": "包含（词根）"
-      },
-      {
-        "form": "mengandung",
-        "pos": "v",
-        "mean": "包含；含有（主动）"
-      },
-      {
-        "form": "kandungan",
-        "pos": "n",
-        "mean": "含量；内容物"
-      }
-    ],
-    "formsNote": "meN- 主动（k 在 meN- 后脱落 → meng-）；-an 名词 kandungan。",
-    "note": "描述内容构成：soal mengandung empat opsi 题目含四个选项、makanan mengandung gizi 食物含营养。",
-    "synonyms": [
-      "memuat（载有）",
-      "berisi（含有）"
-    ],
-    "antonyms": [
-      "kosong（空）",
-      "tidak mengandung（不含）"
-    ],
-    "examples": [
-      {
-        "scene": "Teslet mendengarkan mengandung dialog dan monolog.",
-        "id": "mengandung",
-        "cn": "听力单元包含对话和独白。"
-      },
-      {
-        "scene": "Bahan bakar ini mengandung kadar sulfur rendah.",
-        "id": "mengandung",
-        "cn": "这种燃料含硫量低。"
       }
     ]
   },
@@ -184922,93 +186261,6 @@ const bitVocabDB = {
       }
     ]
   },
-  "peringkat": {
-    "ipa": "/pəˈriŋ.kat/",
-    "cn": "等级；排名；级别",
-    "en": "rank; level; grade",
-    "root": "peringkat（ringkat → peN- 派生）",
-    "forms": [
-      {
-        "form": "peringkat",
-        "pos": "n",
-        "mean": "等级；排名"
-      },
-      {
-        "form": "memeringkat",
-        "pos": "v",
-        "mean": "排名（主动）"
-      },
-      {
-        "form": "peringkat pertama",
-        "pos": "短语",
-        "mean": "第一名"
-      }
-    ],
-    "formsNote": "peN- 名词化；meN- 动词 memeringkat。",
-    "note": "UKBI 七级评定核心词：peringkat Istimewa 特优级。复习日重收覆盖更新（10/16 UKBI 课已收录）。",
-    "synonyms": [
-      "tingkat（层级）",
-      "kelas（级别）"
-    ],
-    "antonyms": [],
-    "examples": [
-      {
-        "scene": "UKBI memiliki tujuh peringkat kemahiran.",
-        "id": "peringkat",
-        "cn": "UKBI 有七个能力等级。"
-      },
-      {
-        "scene": "Peringkat perusahaan naik tahun ini.",
-        "id": "Peringkat",
-        "cn": "公司排名今年上升。"
-      }
-    ]
-  },
-  "terkendala": {
-    "ipa": "/tərˈkən.da.la/",
-    "cn": "受阻的；遇到障碍的",
-    "en": "hindered; obstructed",
-    "root": "kendala（障碍）+ ter-",
-    "forms": [
-      {
-        "form": "kendala",
-        "pos": "n",
-        "mean": "障碍；问题"
-      },
-      {
-        "form": "terkendala",
-        "pos": "adj/v",
-        "mean": "受阻的"
-      },
-      {
-        "form": "berkendala",
-        "pos": "v",
-        "mean": "遇到障碍"
-      }
-    ],
-    "formsNote": "ter- 状态/被动形容词；词根 kendala。",
-    "note": "项目与运营高频：proyek terkendala cuaca 项目受天气影响、proses terkendala jaringan 流程受网络阻碍。",
-    "synonyms": [
-      "terhambat（受阻碍）",
-      "terganggu（受干扰）"
-    ],
-    "antonyms": [
-      "lancar（顺利）",
-      "berjalan（进行中）"
-    ],
-    "examples": [
-      {
-        "scene": "Ujian daring terkendala gangguan server.",
-        "id": "terkendala",
-        "cn": "在线考试受服务器故障影响。"
-      },
-      {
-        "scene": "Pengiriman terkendala cuaca buruk.",
-        "id": "terkendala",
-        "cn": "运输受恶劣天气影响。"
-      }
-    ]
-  },
   "berlaku": {
     "ipa": "/bərˈla.ku/",
     "cn": "有效的；适用的；生效",
@@ -185365,6 +186617,2150 @@ const bitVocabDB = {
         "scene": "Kualitas terbukti melalui sertifikasi independen.",
         "id": "terbukti",
         "cn": "质量经独立认证证明。"
+      }
+    ]
+  },
+  "penutur": {
+    "ipa": "/pəˈnu.tur/",
+    "cn": "说话者；母语者；使用者",
+    "en": "speaker; native speaker",
+    "root": "tutur（说话）+ peN-",
+    "forms": [
+      {
+        "form": "tutur",
+        "pos": "v",
+        "mean": "说话；讲述（词根）"
+      },
+      {
+        "form": "menuturkan",
+        "pos": "v",
+        "mean": "讲述；说出"
+      },
+      {
+        "form": "penutur",
+        "pos": "n",
+        "mean": "说话者；使用者"
+      },
+      {
+        "form": "tuturan",
+        "pos": "n",
+        "mean": "话语；言论"
+      }
+    ],
+    "formsNote": "peN- 施动者名词；tutur → penutur。",
+    "note": "语言统计核心词：penutur asli 母语者、jumlah penutur 使用者数量（印尼语 2.8 亿使用者世界第6）。",
+    "synonyms": [
+      "pemaka（使用者）",
+      "pembicara（说话者）"
+    ],
+    "antonyms": [
+      "pendengar（听众）"
+    ],
+    "examples": [
+      {
+        "scene": "Indonesia memiliki lebih dari 280 juta penutur.",
+        "id": "penutur",
+        "cn": "印尼语拥有超过 2.8 亿使用者。"
+      },
+      {
+        "scene": "Ia penutur asli bahasa Bugis.",
+        "id": "penutur asli",
+        "cn": "他是布吉语母语者。"
+      }
+    ]
+  },
+  "dilaksanakan": {
+    "ipa": "/di.lakˈsa.nan/",
+    "cn": "被执行；被实施",
+    "en": "to be implemented; to be carried out",
+    "root": "laksana（执行）+ di- + -kan",
+    "forms": [
+      {
+        "form": "laksana",
+        "pos": "v",
+        "mean": "执行（词根）"
+      },
+      {
+        "form": "melaksanakan",
+        "pos": "v",
+        "mean": "执行；实施（主动）"
+      },
+      {
+        "form": "dilaksanakan",
+        "pos": "v.pass",
+        "mean": "被执行"
+      },
+      {
+        "form": "pelaksanaan",
+        "pos": "n",
+        "mean": "执行；实施（10/17 已收录）"
+      }
+    ],
+    "formsNote": "di--kan 被动；meN--kan 主动 melaksanakan。",
+    "note": "项目/考试语境高频被动式：ujian dilaksanakan daring 考试在线实施、proyek dilaksanakan bertahap 项目分阶段执行。",
+    "synonyms": [
+      "dijalankan（被运行）",
+      "dilakukan（被做）"
+    ],
+    "antonyms": [
+      "dibatalkan（被取消）"
+    ],
+    "examples": [
+      {
+        "scene": "UKBI dilaksanakan secara daring dan tatap muka.",
+        "id": "dilaksanakan",
+        "cn": "UKBI 以线上和面对面方式实施。"
+      },
+      {
+        "scene": "Audit dilaksanakan setiap akhir tahun fiskal.",
+        "id": "dilaksanakan",
+        "cn": "审计在每个财年结束时执行。"
+      }
+    ]
+  },
+  "secara": {
+    "ipa": "/səˈtʃa.ra/",
+    "cn": "以…方式；通过（正式副词前缀）",
+    "en": "in a ... manner; by way of",
+    "root": "cara（方式）+ se-",
+    "forms": [
+      {
+        "form": "cara",
+        "pos": "n",
+        "mean": "方式；方法（词根）"
+      },
+      {
+        "form": "secara",
+        "pos": "prep",
+        "mean": "以…方式"
+      },
+      {
+        "form": "secara resmi",
+        "pos": "短语",
+        "mean": "正式地"
+      },
+      {
+        "form": "secara keseluruhan",
+        "pos": "短语",
+        "mean": "整体地"
+      }
+    ],
+    "formsNote": "se- 前缀 + cara 构成正式副词；后接形容词构成方式状语。",
+    "note": "正式书面语核心构词：secara umum 一般地、secara keseluruhan 整体地、secara bertahap 分阶段地。",
+    "synonyms": [
+      "dengan（以…）",
+      "melalui（通过）"
+    ],
+    "antonyms": [],
+    "examples": [
+      {
+        "scene": "Proyek dilaksanakan secara bertahap.",
+        "id": "secara",
+        "cn": "项目分阶段实施。"
+      },
+      {
+        "scene": "Secara keseluruhan hasil memuaskan.",
+        "id": "Secara keseluruhan",
+        "cn": "整体结果令人满意。"
+      }
+    ]
+  },
+  "keseluruhan": {
+    "ipa": "/kə.səˈlu.ru.han/",
+    "cn": "整体；全部",
+    "en": "entirety; whole",
+    "root": "seluru（全）+ ke- + -an",
+    "forms": [
+      {
+        "form": "seluruh",
+        "pos": "adj",
+        "mean": "全部的；整个的"
+      },
+      {
+        "form": "keseluruhan",
+        "pos": "n",
+        "mean": "整体；全体"
+      },
+      {
+        "form": "secara keseluruhan",
+        "pos": "短语",
+        "mean": "整体上"
+      }
+    ],
+    "formsNote": "ke-an 名词化；常用搭配 secara keseluruhan（整体而言）。",
+    "note": "总结/评估语境：hasil secara keseluruhan 整体结果、target keseluruhan 总目标。",
+    "synonyms": [
+      "seluruhnya（全部）",
+      "total（总计）"
+    ],
+    "antonyms": [
+      "sebagian（部分）"
+    ],
+    "examples": [
+      {
+        "scene": "Secara keseluruhan proses berjalan lancar.",
+        "id": "keseluruhan",
+        "cn": "整体流程进展顺利。"
+      },
+      {
+        "scene": "Keseluruhan biaya ditanggung perusahaan.",
+        "id": "Keseluruhan",
+        "cn": "全部费用由公司承担。"
+      }
+    ]
+  },
+  "secara-bertahap": {
+    "ipa": "/səˈtʃa.ra bərˈta.hap/",
+    "cn": "分阶段地；逐步地",
+    "en": "in stages; gradually",
+    "root": "secara（以…方式）+ bertahap（分阶段的）",
+    "forms": [
+      {
+        "form": "secara bertahap",
+        "pos": "副词短语",
+        "mean": "规范分写形式"
+      },
+      {
+        "form": "bertahap",
+        "pos": "adv",
+        "mean": "分阶段地"
+      },
+      {
+        "form": "tahap",
+        "pos": "n",
+        "mean": "阶段；步骤"
+      }
+    ],
+    "formsNote": "用户输入连字符连接，规范分写：secara bertahap。tahap（阶段）→ bertahap（ber- 状态）。",
+    "note": "项目管理高频：implementasi secara bertahap 分阶段实施、pembangunan bertahap 分阶段建设。",
+    "synonyms": [
+      "bertahap（分阶段）",
+      "sedikit demi sedikit（逐步）"
+    ],
+    "antonyms": [
+      "sekaligus（一次性）",
+      "serentak（同时）"
+    ],
+    "examples": [
+      {
+        "scene": "Sistem baru diluncurkan secara bertahap.",
+        "id": "secara bertahap",
+        "cn": "新系统分阶段上线。"
+      },
+      {
+        "scene": "Penghematan dicapai secara bertahap tiap kuartal.",
+        "id": "secara bertahap",
+        "cn": "节约每季度分阶段达成。"
+      }
+    ]
+  },
+  "daring": {
+    "ipa": "/ˈda.rɪŋ/",
+    "cn": "在线的；网络的",
+    "en": "online",
+    "root": "daring（英语 online 缩略 dararing 的规范形式）",
+    "forms": [
+      {
+        "form": "daring",
+        "pos": "adj/adv",
+        "mean": "在线（的）"
+      },
+      {
+        "form": "ujian daring",
+        "pos": "短语",
+        "mean": "在线考试"
+      },
+      {
+        "form": "pembelajaran daring",
+        "pos": "短语",
+        "mean": "在线学习"
+      }
+    ],
+    "formsNote": "无变形；dar+ing 构词，印尼语标准写法（非 online）。",
+    "note": "UKBI 两种考试模式之一：UKBI Daring 在线版（vs UKBI Adaptif 自适应版）。复习日重收覆盖更新（10/16 UKBI 课已收录）。",
+    "synonyms": [
+      "online（英借）",
+      "mayantara（正式同义）"
+    ],
+    "antonyms": [
+      "luring（离线·线下）"
+    ],
+    "examples": [
+      {
+        "scene": "UKBI daring memerlukan koneksi internet stabil.",
+        "id": "daring",
+        "cn": "UKBI 在线版需要稳定的网络连接。"
+      },
+      {
+        "scene": "Pelatihan daring lebih fleksibel waktunya.",
+        "id": "daring",
+        "cn": "在线培训时间更灵活。"
+      }
+    ]
+  },
+  "tatap-tatap": {
+    "ipa": "/ˈta.tap ˈta.tap/",
+    "cn": "面对面的",
+    "en": "face-to-face",
+    "root": "tatap（注视）叠词",
+    "forms": [
+      {
+        "form": "tatap muka",
+        "pos": "短语",
+        "mean": "面对面（更常用）"
+      },
+      {
+        "form": "secara tatap muka",
+        "pos": "短语",
+        "mean": "以面对面方式"
+      }
+    ],
+    "formsNote": "叠词形式 tatap-tatap；常用搭配为 tatap muka（面对面）。",
+    "note": "UKBI 考试模式：secara tatap-tatap 面对面方式（与 daring 在线对举）。",
+    "synonyms": [
+      "tatap muka（面对面）",
+      "langsung（直接）"
+    ],
+    "antonyms": [
+      "daring（在线）",
+      "virtual（虚拟）"
+    ],
+    "examples": [
+      {
+        "scene": "Ujian lisan dilakukan secara tatap-tatap.",
+        "id": "tatap-tatap",
+        "cn": "口语考试以面对面方式进行。"
+      },
+      {
+        "scene": "Sesi konsultasi tatap muka dijadwalkan mingguan.",
+        "id": "tatap muka",
+        "cn": "面对面咨询环节每周安排。"
+      }
+    ]
+  },
+  "kolektif": {
+    "ipa": "/koˈlɛk.tif/",
+    "cn": "集体的；共同的",
+    "en": "collective",
+    "root": "kolektif（拉丁语借词）",
+    "forms": [
+      {
+        "form": "kolektif",
+        "pos": "adj",
+        "mean": "集体的"
+      },
+      {
+        "form": "secara kolektif",
+        "pos": "adv",
+        "mean": "集体地"
+      }
+    ],
+    "formsNote": "外来形容词。复习日重收覆盖更新（10/16 UKBI 课 + 10/18 已收录，本次强化）。",
+    "note": "UKBI 报名模式：pendaftaran kolektif 集体报名（机构统一组织）。",
+    "synonyms": [
+      "bersama（共同）"
+    ],
+    "antonyms": [
+      "mandiri（独立）"
+    ],
+    "examples": [
+      {
+        "scene": "Pendaftaran kolektif untuk karyawan lebih efisien.",
+        "id": "kolektif",
+        "cn": "员工集体报名更高效。"
+      },
+      {
+        "scene": "Keputusan diambil secara kolektif oleh dewan.",
+        "id": "secara kolektif",
+        "cn": "决定由委员会集体作出。"
+      }
+    ]
+  },
+  "lembaga": {
+    "ipa": "/ləmˈba.ga/",
+    "cn": "机构；组织",
+    "en": "institution; organization",
+    "root": "lembaga（非派生）",
+    "forms": [
+      {
+        "form": "lembaga",
+        "pos": "n",
+        "mean": "机构；组织"
+      },
+      {
+        "form": "lembaga resmi",
+        "pos": "短语",
+        "mean": "正式机构"
+      },
+      {
+        "form": "lembaga pendidikan",
+        "pos": "短语",
+        "mean": "教育机构"
+      }
+    ],
+    "formsNote": "无变形；lembaga negara 国家机关。复习日重收覆盖更新（10/16 UKBI 课已收录）。",
+    "note": "UKBI 集体报名主体：lembaga/instansi 机构统一报名。",
+    "synonyms": [
+      "instansi（机关）",
+      "badan（局/机构）"
+    ],
+    "antonyms": [
+      "individu（个人）"
+    ],
+    "examples": [
+      {
+        "scene": "Lembaga pendidikan dapat mendaftar kolektif.",
+        "id": "Lembaga",
+        "cn": "教育机构可以集体报名。"
+      },
+      {
+        "scene": "Lembaga sertifikasi mengakui hasil UKBI.",
+        "id": "Lembaga",
+        "cn": "认证机构认可 UKBI 成绩。"
+      }
+    ]
+  },
+  "peserta": {
+    "ipa": "/pəˈsər.ta/",
+    "cn": "参与者；考生",
+    "en": "participant; test-taker",
+    "root": "serta（一起）+ peN-",
+    "forms": [
+      {
+        "form": "serta",
+        "pos": "v/prep",
+        "mean": "一起；随同"
+      },
+      {
+        "form": "peserta",
+        "pos": "n",
+        "mean": "参与者"
+      },
+      {
+        "form": "peserta didik",
+        "pos": "短语",
+        "mean": "学生（学习者）"
+      }
+    ],
+    "formsNote": "peN- 施动者名词。用户输入 Peserta 首字母大写已归一。复习日重收覆盖更新（10/16 UKBI 课已收录）。",
+    "note": "UKBI 考生统称：peserta UKBI。peN- + serta（伴随）→ 参与者。",
+    "synonyms": [
+      "peserta ujian（考生）",
+      "partisipan（参与者）"
+    ],
+    "antonyms": [
+      "pengawas（监考员）"
+    ],
+    "examples": [
+      {
+        "scene": "Peserta wajib hadir 30 menit sebelum ujian.",
+        "id": "Peserta",
+        "cn": "考生须提前 30 分钟到场。"
+      },
+      {
+        "scene": "Seluruh peserta mendapat sertifikat digital.",
+        "id": "peserta",
+        "cn": "所有考生获得数字证书。"
+      }
+    ]
+  },
+  "akun": {
+    "ipa": "/ˈa.kun/",
+    "cn": "账户；账号",
+    "en": "account",
+    "root": "akun（英语 account 借词）",
+    "forms": [
+      {
+        "form": "akun",
+        "pos": "n",
+        "mean": "账户"
+      },
+      {
+        "form": "membuat akun",
+        "pos": "短语",
+        "mean": "创建账户"
+      },
+      {
+        "form": "dasbor akun",
+        "pos": "短语",
+        "mean": "账户面板"
+      }
+    ],
+    "formsNote": "外来名词。复习日重收覆盖更新（10/16 UKBI 课 + 10/18 已收录，本次强化）。",
+    "note": "UKBI 注册第一步：membuat akun di ukbi.kemdikbud.go.id。",
+    "synonyms": [
+      "rekening（户头）"
+    ],
+    "antonyms": [],
+    "examples": [
+      {
+        "scene": "Buat akun UKBI sebelum mengisi formulir.",
+        "id": "akun",
+        "cn": "填表前请先创建 UKBI 账户。"
+      },
+      {
+        "scene": "Dasbor akun menampilkan jadwal ujian.",
+        "id": "akun",
+        "cn": "账户面板显示考试时间表。"
+      }
+    ]
+  },
+  "identitas": {
+    "ipa": "/i.denˈti.tas/",
+    "cn": "身份；证件",
+    "en": "identity",
+    "root": "identitas（拉丁语借词）",
+    "forms": [
+      {
+        "form": "identitas",
+        "pos": "n",
+        "mean": "身份"
+      },
+      {
+        "form": "identitas diri",
+        "pos": "短语",
+        "mean": "个人身份"
+      },
+      {
+        "form": "kartu identitas",
+        "pos": "短语",
+        "mean": "身份证件"
+      }
+    ],
+    "formsNote": "无变形；相关 kartu identitas 身份证。复习日重收覆盖更新（10/16 UKBI 课已收录）。",
+    "note": "UKBI 注册材料：mengunggah identitas 上传身份证件（KTP/护照）。",
+    "synonyms": [
+      "kartu pengenal（识别卡）"
+    ],
+    "antonyms": [],
+    "examples": [
+      {
+        "scene": "Unggah identitas untuk verifikasi akun.",
+        "id": "identitas",
+        "cn": "上传身份证件以验证账户。"
+      },
+      {
+        "scene": "Petugas memeriksa identitas sebelum masuk ruang ujian.",
+        "id": "identitas",
+        "cn": "工作人员考前核验身份。"
+      }
+    ]
+  },
+  "unggah": {
+    "ipa": "/ˈʊŋ.gaʔ/",
+    "cn": "上传",
+    "en": "to upload",
+    "root": "unggah（非派生）",
+    "forms": [
+      {
+        "form": "unggah",
+        "pos": "v",
+        "mean": "上传（词根）"
+      },
+      {
+        "form": "mengunggah",
+        "pos": "v",
+        "mean": "上传（主动）"
+      },
+      {
+        "form": "diunggah",
+        "pos": "v.pass",
+        "mean": "被上传"
+      },
+      {
+        "form": "unggahan",
+        "pos": "n",
+        "mean": "上传的内容"
+      }
+    ],
+    "formsNote": "meN- 主动；di- 被动；-an 名词。用户输入 Unggah 首字母大写已归一。复习日重收覆盖更新。",
+    "note": "UKBI 注册核心动词：unggah pasfoto 上传证件照、unggah identitas 上传证件。",
+    "synonyms": [
+      "upload（英借）"
+    ],
+    "antonyms": [
+      "unduh（下载）"
+    ],
+    "examples": [
+      {
+        "scene": "Unggah pasfoto berlatar putih.",
+        "id": "Unggah",
+        "cn": "上传白底证件照。"
+      },
+      {
+        "scene": "Berkas diunggah melalui portal resmi.",
+        "id": "diunggah",
+        "cn": "文件通过官方门户上传。"
+      }
+    ]
+  },
+  "sesuai-dengan": {
+    "ipa": "/səˈsu.ʔaɪ dəŋˈgan/",
+    "cn": "根据；按照；符合",
+    "en": "according to; in accordance with",
+    "root": "sesuai（符合）+ dengan（与）",
+    "forms": [
+      {
+        "form": "sesuai dengan",
+        "pos": "介词短语",
+        "mean": "规范分写形式"
+      },
+      {
+        "form": "sesuai",
+        "pos": "adj",
+        "mean": "合适的；符合的"
+      }
+    ],
+    "formsNote": "用户输入连字符连接，规范分写：sesuai dengan。sesuai 为 se- + suai（合）。",
+    "note": "正式文书高频：sesuai dengan peraturan 按照规定、sesuai dengan jadwal 按照时间表。",
+    "synonyms": [
+      "menurut（按…）",
+      "berdasarkan（基于）"
+    ],
+    "antonyms": [
+      "bertentangan dengan（违背）"
+    ],
+    "examples": [
+      {
+        "scene": "Prosedur sesuai dengan standar internasional.",
+        "id": "sesuai dengan",
+        "cn": "程序符合国际标准。"
+      },
+      {
+        "scene": "Pembayaran sesuai dengan tarif resmi.",
+        "id": "sesuai dengan",
+        "cn": "付款按官方费率执行。"
+      }
+    ]
+  },
+  "pembayaran-dapat-dilakukan-melalui": {
+    "ipa": "/pəmˈba.ja.ran ˈda.pat diˈla.kuk.kan məˈla.lui/",
+    "cn": "付款可通过…进行",
+    "en": "payment can be made via",
+    "root": "bayar（支付）+ peN- + -an；dapat（能）；lakukan（做）；melalui（通过）",
+    "forms": [
+      {
+        "form": "pembayaran dapat dilakukan melalui",
+        "pos": "短语",
+        "mean": "规范分写形式"
+      },
+      {
+        "form": "pembayaran",
+        "pos": "n",
+        "mean": "支付；付款"
+      },
+      {
+        "form": "melalui",
+        "pos": "prep",
+        "mean": "通过；经由"
+      }
+    ],
+    "formsNote": "用户输入五词连字符连接，规范分写分词。pembayaran = peN- + bayar + -an。",
+    "note": "UKBI 报名页原文句式：Pembayaran dapat dilakukan melalui teller bank/dompet digital（付款可通过银行柜员/数字钱包进行）。",
+    "synonyms": [
+      "pembayaran melalui（通过…支付）"
+    ],
+    "antonyms": [],
+    "examples": [
+      {
+        "scene": "Pembayaran dapat dilakukan melalui transfer bank.",
+        "id": "pembayaran dapat dilakukan melalui",
+        "cn": "付款可通过银行转账进行。"
+      },
+      {
+        "scene": "Pembayaran biaya pendaftaran dapat dilakukan melalui teller.",
+        "id": "Pembayaran dapat dilakukan melalui",
+        "cn": "报名费可通过柜员办理。"
+      }
+    ]
+  },
+  "berupa": {
+    "ipa": "/bəˈru.pa/",
+    "cn": "以…形式；呈…形态",
+    "en": "in the form of; consisting of",
+    "root": "rupa（形态）+ ber-",
+    "forms": [
+      {
+        "form": "rupa",
+        "pos": "n",
+        "mean": "形态；样子（词根）"
+      },
+      {
+        "form": "berupa",
+        "pos": "prep",
+        "mean": "以…形式"
+      },
+      {
+        "form": "berbagai rupa",
+        "pos": "短语",
+        "mean": "各种形态"
+      }
+    ],
+    "formsNote": "ber- 状态/具有。10/18 Soal-berupa 词条已含本词根，本次收录独立词条。",
+    "note": "描述构成形式：soal berupa pilihan ganda 选择题形式的题目、data berupa tabel 表格形式的数据。",
+    "synonyms": [
+      "berbentuk（呈…状）"
+    ],
+    "antonyms": [],
+    "examples": [
+      {
+        "scene": "Soal berupa esai panjang di bagian menulis.",
+        "id": "berupa",
+        "cn": "写作部分是长篇简答题。"
+      },
+      {
+        "scene": "Sertifikat berupa file PDF digital.",
+        "id": "berupa",
+        "cn": "证书为 PDF 数字文件形式。"
+      }
+    ]
+  },
+  "bentuk": {
+    "ipa": "/ˈbən.tuk/",
+    "cn": "形式；形状",
+    "en": "form; shape",
+    "root": "bentuk（非派生）",
+    "forms": [
+      {
+        "form": "bentuk",
+        "pos": "n",
+        "mean": "形式；形状"
+      },
+      {
+        "form": "berbentuk",
+        "pos": "adj",
+        "mean": "呈…形状的"
+      },
+      {
+        "form": "bentukan",
+        "pos": "n",
+        "mean": "构造成果"
+      }
+    ],
+    "formsNote": "ber- 状态 berbentuk；-an 名词 bentukan。",
+    "note": "UKBI 测试形式描述：bentuk dialog 对话形式、bentuk monolog 独白形式。通用高频。",
+    "synonyms": [
+      "wujud（形态）",
+      "ragam（变体）",
+      "format（格式）"
+    ],
+    "antonyms": [
+      "esensi（本质）"
+    ],
+    "examples": [
+      {
+        "scene": "Wacana lisan ada bentuk dialog dan monolog.",
+        "id": "bentuk",
+        "cn": "口头语篇有对话和独白两种形式。"
+      },
+      {
+        "scene": "Laporan berbentuk tabel lebih mudah dibaca.",
+        "id": "berbentuk",
+        "cn": "表格形式的报告更易读。"
+      }
+    ]
+  },
+  "wacana-lisan": {
+    "ipa": "/waˈtʃa.na ˈli.san/",
+    "cn": "口头语篇",
+    "en": "oral discourse",
+    "root": "wacana（语篇）+ lisan（口头的）",
+    "forms": [
+      {
+        "form": "wacana lisan",
+        "pos": "n",
+        "mean": "规范分写形式"
+      },
+      {
+        "form": "wacana",
+        "pos": "n",
+        "mean": "语篇（10/16 已收录）"
+      },
+      {
+        "form": "lisan",
+        "pos": "adj",
+        "mean": "口头的"
+      }
+    ],
+    "formsNote": "用户输入连字符连接，规范分写：wacana lisan。10/16 收录 wacana 独立词条；10/18 收录 Wacana-lisan-bentuk。",
+    "note": "UKBI 听力和口语测试对象：merespons kaidah wacana lisan（响应口头语篇规则）。",
+    "synonyms": [
+      "ragam lisan（口语变体）"
+    ],
+    "antonyms": [
+      "wacana tulis（书面语篇）"
+    ],
+    "examples": [
+      {
+        "scene": "Teslet mendengarkan berisi wacana lisan.",
+        "id": "wacana lisan",
+        "cn": "听力单元包含口头语篇。"
+      },
+      {
+        "scene": "Kemampuan merespons wacana lisan dinilai UKBI.",
+        "id": "wacana lisan",
+        "cn": "UKBI 评估响应口头语篇的能力。"
+      }
+    ]
+  },
+  "merespons": {
+    "ipa": "/məˈrɛs.pons/",
+    "cn": "响应；回应",
+    "en": "to respond; to react",
+    "root": "respons（回应）+ meN-",
+    "forms": [
+      {
+        "form": "respons",
+        "pos": "n",
+        "mean": "回应（词根）"
+      },
+      {
+        "form": "merespons",
+        "pos": "v",
+        "mean": "响应；回应"
+      },
+      {
+        "form": "direspons",
+        "pos": "v.pass",
+        "mean": "被回应"
+      },
+      {
+        "form": "responsif",
+        "pos": "adj",
+        "mean": "响应迅速的"
+      }
+    ],
+    "formsNote": "meN- 主动（p 在 s 前脱落 → merespons）。用户输入 Merespons 首字母大写已归一。10/18 Merespons-Kaidah 组合词条已含，本次收录独立词条。",
+    "note": "UKBI 题型核心动词：merespons kaidah wacana lisan（响应口头语篇规则）。",
+    "synonyms": [
+      "menanggapi（应对）",
+      "menjawab（回答）"
+    ],
+    "antonyms": [
+      "mengabaikan（无视）"
+    ],
+    "examples": [
+      {
+        "scene": "Peserta merespons kaidah dengan pilihan jawaban.",
+        "id": "merespons",
+        "cn": "考生以选项回应规则。"
+      },
+      {
+        "scene": "Tim helpdesk merespons laporan dalam 24 jam.",
+        "id": "merespons",
+        "cn": "支持团队 24 小时内响应报障。"
+      }
+    ]
+  },
+  "kaidah": {
+    "ipa": "/ˈka.idah/",
+    "cn": "规则；准则；规范",
+    "en": "rule; principle; norm",
+    "root": "kaidah（阿拉伯语 qaidah 借词）",
+    "forms": [
+      {
+        "form": "kaidah",
+        "pos": "n",
+        "mean": "规则；准则"
+      },
+      {
+        "form": "kaidah bahasa",
+        "pos": "短语",
+        "mean": "语言规则"
+      },
+      {
+        "form": "mengikuti kaidah",
+        "pos": "短语",
+        "mean": "遵循规则"
+      }
+    ],
+    "formsNote": "无变形。用户输入 Kaidah 首字母大写已归一。复习日重收覆盖更新（10/16 UKBI 课已收录）。",
+    "note": "UKBI 语法考点：kaidah tata bahasa 语法规则、merespons kaidah wacana 响应语篇规则。",
+    "synonyms": [
+      "aturan（规则）",
+      "norma（规范）"
+    ],
+    "antonyms": [
+      "pelanggaran（违规）"
+    ],
+    "examples": [
+      {
+        "scene": "Soal menguji pemahaman kaidah tata bahasa.",
+        "id": "kaidah",
+        "cn": "题目考查语法规则理解。"
+      },
+      {
+        "scene": "Penulisan laporan harus mengikuti kaidah baku.",
+        "id": "kaidah",
+        "cn": "报告撰写须遵循规范标准。"
+      }
+    ]
+  },
+  "mengandung": {
+    "ipa": "/məˈŋan.duŋ/",
+    "cn": "包含；含有",
+    "en": "to contain",
+    "root": "kandung（包含）+ meN-",
+    "forms": [
+      {
+        "form": "kandung",
+        "pos": "v",
+        "mean": "包含（词根）"
+      },
+      {
+        "form": "mengandung",
+        "pos": "v",
+        "mean": "包含；含有"
+      },
+      {
+        "form": "kandungan",
+        "pos": "n",
+        "mean": "含量；内容"
+      }
+    ],
+    "formsNote": "meN- 主动（k 脱落 → meng-）；-an 名词 kandungan。复习日重收覆盖更新（10/18 已收录）。",
+    "note": "UKBI 题目结构：butir soal mengandung empat opsi 每题含四个选项。",
+    "synonyms": [
+      "memuat（载有）",
+      "berisi（含有）"
+    ],
+    "antonyms": [
+      "kosong（空）"
+    ],
+    "examples": [
+      {
+        "scene": "Setiap butir soal mengandung empat pilihan.",
+        "id": "mengandung",
+        "cn": "每道试题包含四个选项。"
+      },
+      {
+        "scene": "Bahan ini mengandung zat berbahaya.",
+        "id": "mengandung",
+        "cn": "这种物质含有有害成分。"
+      }
+    ]
+  },
+  "terlebih-dahulu": {
+    "ipa": "/tərˈlə.bih ˈda.hu.lu/",
+    "cn": "事先；预先；首先",
+    "en": "beforehand; in advance; first",
+    "root": "lebih（更）+ dahulu（先前）",
+    "forms": [
+      {
+        "form": "terlebih dahulu",
+        "pos": "副词短语",
+        "mean": "规范分写形式"
+      },
+      {
+        "form": "dahulu",
+        "pos": "adv",
+        "mean": "先前；以前"
+      },
+      {
+        "form": "terlebih-lebih",
+        "pos": "adv",
+        "mean": "尤其（不同词）"
+      }
+    ],
+    "formsNote": "用户输入连字符连接，规范分写：terlebih dahulu。ter- 强调前缀 + lebih dahulu（更早）。",
+    "note": "流程指令高频：membaca petunjuk terlebih dahulu 请先阅读说明、verifikasi terlebih dahulu 预先验证。",
+    "synonyms": [
+      "sebelumnya（之前）",
+      "awalnya（起初）"
+    ],
+    "antonyms": [
+      "kemudian（随后）"
+    ],
+    "examples": [
+      {
+        "scene": "Daftar akun terlebih dahulu sebelum membayar.",
+        "id": "terlebih dahulu",
+        "cn": "请先注册账户再付款。"
+      },
+      {
+        "scene": "Periksa jadwal terlebih dahulu.",
+        "id": "terlebih dahulu",
+        "cn": "请事先核对时间表。"
+      }
+    ]
+  },
+  "disajikan": {
+    "ipa": "/diˈsa.dʒi.kan/",
+    "cn": "被呈现；被提供",
+    "en": "to be presented; to be served",
+    "root": "saji（呈现）+ di- + -kan",
+    "forms": [
+      {
+        "form": "saji",
+        "pos": "v",
+        "mean": "呈现；端上（词根）"
+      },
+      {
+        "form": "menyajikan",
+        "pos": "v",
+        "mean": "呈现；提供（主动）"
+      },
+      {
+        "form": "disajikan",
+        "pos": "v.pass",
+        "mean": "被呈现"
+      },
+      {
+        "form": "sajian",
+        "pos": "n",
+        "mean": "呈现物；餐食"
+      }
+    ],
+    "formsNote": "meN- 主动 menyajikan（s→ny 音变）；di--kan 被动。",
+    "note": "内容呈现：materi disajikan dalam bentuk dialog 材料以对话形式呈现、data disajikan dalam grafik 数据以图表呈现。",
+    "synonyms": [
+      "ditampilkan（被显示）",
+      "diberikan（被给予）"
+    ],
+    "antonyms": [
+      "disembunyikan（被隐藏）"
+    ],
+    "examples": [
+      {
+        "scene": "Soal disajikan dengan perekaman audio.",
+        "id": "disajikan",
+        "cn": "题目以录音形式呈现。"
+      },
+      {
+        "scene": "Data disajikan dalam bentuk tabel.",
+        "id": "disajikan",
+        "cn": "数据以表格呈现。"
+      }
+    ]
+  },
+  "kalimat-pemantik": {
+    "ipa": "/kaˈli.mat pəˈman.tik/",
+    "cn": "提示句；引导句",
+    "en": "prompt sentence; trigger sentence",
+    "root": "kalimat（句）+ pemantik（触发器）",
+    "forms": [
+      {
+        "form": "kalimat pemantik",
+        "pos": "n",
+        "mean": "规范分写形式"
+      },
+      {
+        "form": "kalimat",
+        "pos": "n",
+        "mean": "句子（10/16 已收录）"
+      },
+      {
+        "form": "pemantik",
+        "pos": "n",
+        "mean": "触发物；引导物"
+      },
+      {
+        "form": "pemantik semangat",
+        "pos": "短语",
+        "mean": "激励话语"
+      }
+    ],
+    "formsNote": "用户输入连字符连接，规范分写：kalimat pemantik。pantik（触发）→ pemantik。",
+    "note": "UKBI 口语题型：kalimat pemantik disertai gambar（配图的提示句）——看图说话题。",
+    "synonyms": [
+      "kalimat pengantar（引导句）"
+    ],
+    "antonyms": [],
+    "examples": [
+      {
+        "scene": "Peserta merespons kalimat pemantik dengan monolog.",
+        "id": "kalimat pemantik",
+        "cn": "考生以独白回应提示句。"
+      },
+      {
+        "scene": "Kalimat pemantik disertai gambar ilustrasi.",
+        "id": "kalimat pemantik",
+        "cn": "提示句配有插图。"
+      }
+    ]
+  },
+  "disertai": {
+    "ipa": "/diˈsər.taɪ/",
+    "cn": "被附上；被伴随",
+    "en": "to be accompanied by",
+    "root": "serta（一起）+ di-",
+    "forms": [
+      {
+        "form": "serta",
+        "pos": "prep/v",
+        "mean": "一起；随同（词根）"
+      },
+      {
+        "form": "menyertai",
+        "pos": "v",
+        "mean": "陪同；附上（主动）"
+      },
+      {
+        "form": "disertai",
+        "pos": "v.pass",
+        "mean": "被附上"
+      },
+      {
+        "form": "lampiran",
+        "pos": "n",
+        "mean": "附件"
+      }
+    ],
+    "formsNote": "di- 被动；meN- 主动 menyertai。",
+    "note": "材料说明高频：kalimat pemantik disertai gambar 提示句附图、dokumen disertai tanda tangan 文件附签名。",
+    "synonyms": [
+      "dilampirkan（被附上）",
+      "ditambah（被增加）"
+    ],
+    "antonyms": [
+      "tanpa（无）"
+    ],
+    "examples": [
+      {
+        "scene": "Setiap soal disertai rekaman audio.",
+        "id": "disertai",
+        "cn": "每题附录音。"
+      },
+      {
+        "scene": "Laporan disertai bukti pendukung.",
+        "id": "disertai",
+        "cn": "报告附证明材料。"
+      }
+    ]
+  },
+  "gambar": {
+    "ipa": "/ˈgam.bar/",
+    "cn": "图画；图像；图表",
+    "en": "picture; image; diagram",
+    "root": "gambar（非派生）",
+    "forms": [
+      {
+        "form": "gambar",
+        "pos": "n",
+        "mean": "图画"
+      },
+      {
+        "form": "menggambar",
+        "pos": "v",
+        "mean": "画画（主动）"
+      },
+      {
+        "form": "bergambar",
+        "pos": "adj",
+        "mean": "带图的"
+      },
+      {
+        "form": "penggambaran",
+        "pos": "n",
+        "mean": "描绘"
+      }
+    ],
+    "formsNote": "meN- 动词 menggambar；ber- 状态 bergambar。",
+    "note": "UKBI 口语题素材：kalimat pemantik disertai gambar 配图提示句。通用高频。",
+    "synonyms": [
+      "ilustrasi（插图）",
+      "diagram（图表）"
+    ],
+    "antonyms": [],
+    "examples": [
+      {
+        "scene": "Deskripsikan gambar tersebut dalam monolog.",
+        "id": "gambar",
+        "cn": "请用独白描述该图片。"
+      },
+      {
+        "scene": "Buku teks bergambar lebih menarik.",
+        "id": "bergambar",
+        "cn": "带插图的教材更有趣。"
+      }
+    ]
+  },
+  "perekaman": {
+    "ipa": "/pə.rəˈka.man/",
+    "cn": "录音；录制",
+    "en": "recording",
+    "root": "rekam（录）+ peN- + -an",
+    "forms": [
+      {
+        "form": "rekam",
+        "pos": "v",
+        "mean": "记录；录制（词根）"
+      },
+      {
+        "form": "merekam",
+        "pos": "v",
+        "mean": "录制（主动）"
+      },
+      {
+        "form": "perekaman",
+        "pos": "n",
+        "mean": "录制（过程）"
+      },
+      {
+        "form": "rekaman",
+        "pos": "n",
+        "mean": "录音；录像（成品）"
+      }
+    ],
+    "formsNote": "peN--an 过程名词；meN- 主动 merekam。",
+    "note": "UKBI 听力材料载体：soal disajikan dengan perekaman audio（题目以音频录音呈现）。",
+    "synonyms": [
+      "rekaman（录音成品）",
+      "penyaringan（录制）"
+    ],
+    "antonyms": [
+      "pemutaran（播放）"
+    ],
+    "examples": [
+      {
+        "scene": "Perekaman audio soal jelas dan lantang.",
+        "id": "Perekaman",
+        "cn": "题目的音频录音清晰洪亮。"
+      },
+      {
+        "scene": "Perekaman teslet dinilai dua penguji.",
+        "id": "Perekaman",
+        "cn": "单元录音由两名考官评分。"
+      }
+    ]
+  },
+  "peramban-mutakhir": {
+    "ipa": "/pəˈram.ban muˈta.xir/",
+    "cn": "现代化浏览器",
+    "en": "modern browser",
+    "root": "peramban（浏览器）+ mutakhir（最新的）",
+    "forms": [
+      {
+        "form": "peramban mutakhir",
+        "pos": "n",
+        "mean": "规范分写形式"
+      },
+      {
+        "form": "peramban",
+        "pos": "n",
+        "mean": "浏览器（10/18 已收录）"
+      },
+      {
+        "form": "mutakhir",
+        "pos": "adj",
+        "mean": "最新的；现代的"
+      }
+    ],
+    "formsNote": "用户输入连字符连接，规范分写：peramban mutakhir。mutakhir（阿拉伯语借词）= 最新/现代。",
+    "note": "UKBI Adaptif 系统要求：peramban mutakhir dengan koneksi stabil（稳定连接的现代化浏览器）。",
+    "synonyms": [
+      "browser terkini（最新浏览器）"
+    ],
+    "antonyms": [
+      "peramban usang（过时浏览器）"
+    ],
+    "examples": [
+      {
+        "scene": "Gunakan peramban mutakhir untuk pengalaman terbaik.",
+        "id": "peramban mutakhir",
+        "cn": "请使用现代化浏览器以获得最佳体验。"
+      },
+      {
+        "scene": "Sistem memerlukan peramban mutakhir dan kamera.",
+        "id": "peramban mutakhir",
+        "cn": "系统需要现代化浏览器和摄像头。"
+      }
+    ]
+  },
+  "peringkat": {
+    "ipa": "/pəˈriŋ.kat/",
+    "cn": "等级；排名；级别",
+    "en": "rank; level; grade",
+    "root": "ringkat → peN- 派生",
+    "forms": [
+      {
+        "form": "peringkat",
+        "pos": "n",
+        "mean": "等级；排名"
+      },
+      {
+        "form": "memeringkat",
+        "pos": "v",
+        "mean": "排名"
+      },
+      {
+        "form": "peringkat pertama",
+        "pos": "短语",
+        "mean": "第一名"
+      }
+    ],
+    "formsNote": "peN- 名词。复习日重收覆盖更新（10/16 UKBI 课 + 10/18 已收录，本次强化）。",
+    "note": "UKBI 七级评定：Istimewa 特优 > Sangat Unggul > Unggul > Madya > Semenjana > Marginal > Terbatas。",
+    "synonyms": [
+      "tingkat（层级）",
+      "kelas（级别）"
+    ],
+    "antonyms": [],
+    "examples": [
+      {
+        "scene": "Peringkat kemahiran dibagi tujuh tingkat.",
+        "id": "peringkat",
+        "cn": "能力等级分为七级。"
+      },
+      {
+        "scene": "Peringkat sertifikat diakui nasional.",
+        "id": "Peringkat",
+        "cn": "证书等级获全国认可。"
+      }
+    ]
+  },
+  "sesuatu-dipetakan-ke-dalam-beberapa-bagian": {
+    "ipa": "/səˈsu.ʔaɪ diˈpə.ta.kan kə ˈda.lam bəˈbə.pa ˈba.gi.an/",
+    "cn": "某物被划分为若干部分（规范分写）",
+    "en": "something is divided into several parts",
+    "root": "sesuatu（某物）+ petakan（映射）+ ke dalam（到…里）+ beberapa（若干）+ bagian（部分）",
+    "forms": [
+      {
+        "form": "sesuatu dipetakan ke dalam beberapa bagian",
+        "pos": "短语",
+        "mean": "规范分写形式"
+      },
+      {
+        "form": "dipetakan",
+        "pos": "v.pass",
+        "mean": "被映射/划分（10/18 已收录）"
+      },
+      {
+        "form": "beberapa bagian",
+        "pos": "短语",
+        "mean": "若干部分"
+      }
+    ],
+    "formsNote": "用户输入七词连字符连接，规范应分写。描述 UKBI 测试结构划分。",
+    "note": "UKBI 内容组织描述：teslet dipetakan ke dalam beberapa bagian（测试单元划分为若干部分）。",
+    "synonyms": [
+      "dibagi menjadi（被分为）"
+    ],
+    "antonyms": [],
+    "examples": [
+      {
+        "scene": "Konten uji dipetakan ke dalam beberapa bagian teslet.",
+        "id": "dipetakan ke dalam beberapa bagian",
+        "cn": "测试内容被划分为若干单元部分。"
+      },
+      {
+        "scene": "Sistem dipetakan ke dalam beberapa modul.",
+        "id": "dipetakan ke dalam",
+        "cn": "系统被划分为若干模块。"
+      }
+    ]
+  },
+  "memuaskan": {
+    "ipa": "/məˈmu.a.skan/",
+    "cn": "令人满意的",
+    "en": "satisfying",
+    "root": "puas（满意）+ meN- + -kan",
+    "forms": [
+      {
+        "form": "puas",
+        "pos": "adj",
+        "mean": "满意的"
+      },
+      {
+        "form": "memuaskan",
+        "pos": "v/adj",
+        "mean": "令人满意（的）"
+      },
+      {
+        "form": "dipuaskan",
+        "pos": "v.pass",
+        "mean": "被满足"
+      },
+      {
+        "form": "kepuasan",
+        "pos": "n",
+        "mean": "满意度"
+      }
+    ],
+    "formsNote": "meN--kan 使役（使满意）；ke-an 名词 kepuasan。",
+    "note": "质量评估高频：hasil memuaskan 令人满意的结果、tingkat kepuasan 满意度。",
+    "synonyms": [
+      "menyenangkan（令人愉快）",
+      "menggembirakan（令人高兴）"
+    ],
+    "antonyms": [
+      "mengecewakan（令人失望）"
+    ],
+    "examples": [
+      {
+        "scene": "Secara keseluruhan layanan sangat memuaskan.",
+        "id": "memuaskan",
+        "cn": "整体服务非常令人满意。"
+      },
+      {
+        "scene": "Survei kepuasan pelanggan rutin dilakukan.",
+        "id": "kepuasan",
+        "cn": "定期开展客户满意度调查。"
+      }
+    ]
+  },
+  "predikat": {
+    "ipa": "/prəˈdi.kat/",
+    "cn": "称号；等级评定；谓语",
+    "en": "predicate; title; classification",
+    "root": "predikat（拉丁语 praedicatum 借词）",
+    "forms": [
+      {
+        "form": "predikat",
+        "pos": "n",
+        "mean": "称号；评定"
+      },
+      {
+        "form": "predikat kelulusan",
+        "pos": "短语",
+        "mean": "等级评定"
+      }
+    ],
+    "formsNote": "无变形。复习日重收覆盖更新（10/16 UKBI 课已收录）。",
+    "note": "UKBI 成绩评定：predikat berdasarkan skor 按分数评定等级（Istimewa 至 Terbatas 七级）。",
+    "synonyms": [
+      "sebutan（称号）",
+      "gelar（头衔）"
+    ],
+    "antonyms": [],
+    "examples": [
+      {
+        "scene": "Predikat UKBI tercantum dalam sertifikat.",
+        "id": "Predikat",
+        "cn": "UKBI 等级写在证书上。"
+      },
+      {
+        "scene": "Ia meraih predikat sangat unggul.",
+        "id": "predikat",
+        "cn": "他获得「特优」评定。"
+      }
+    ]
+  },
+  "personal": {
+    "ipa": "/pərˈso.nal/",
+    "cn": "个人的；私人的",
+    "en": "personal",
+    "root": "personal（拉丁语 personalis 借词）",
+    "forms": [
+      {
+        "form": "personal",
+        "pos": "adj",
+        "mean": "个人的"
+      },
+      {
+        "form": "secara personal",
+        "pos": "adv",
+        "mean": "亲自地"
+      },
+      {
+        "form": "personalia",
+        "pos": "n",
+        "mean": "人事（部门）"
+      }
+    ],
+    "formsNote": "无变形；personalia 为相关人事名词。",
+    "note": "UKBI 三种用途之一：kebutuhan personal 个人需求（自我评估/求职）。",
+    "synonyms": [
+      "pribadi（私人）",
+      "perorangan（个人）"
+    ],
+    "antonyms": [
+      "umum（公共）",
+      "publik（公众）"
+    ],
+    "examples": [
+      {
+        "scene": "Sertifikat untuk kebutuhan personal maupun profesional.",
+        "id": "personal",
+        "cn": "证书可用于个人或职业需求。"
+      },
+      {
+        "scene": "Data personal dilindungi undang-undang.",
+        "id": "personal",
+        "cn": "个人数据受法律保护。"
+      }
+    ]
+  },
+  "sosial": {
+    "ipa": "/soˈsi.al/",
+    "cn": "社会的；社交的",
+    "en": "social",
+    "root": "sosial（拉丁语 socialis 借词）",
+    "forms": [
+      {
+        "form": "sosial",
+        "pos": "adj",
+        "mean": "社会的"
+      },
+      {
+        "form": "kehidupan sosial",
+        "pos": "短语",
+        "mean": "社交生活"
+      },
+      {
+        "form": "media sosial",
+        "pos": "短语",
+        "mean": "社交媒体"
+      }
+    ],
+    "formsNote": "无变形。",
+    "note": "UKBI 用途之一：persyaratan sosial 社会需求。通用高频：interaksi sosial 社会交往。",
+    "synonyms": [
+      "kemasyarakatan（社会的）"
+    ],
+    "antonyms": [
+      "individu（个体）"
+    ],
+    "examples": [
+      {
+        "scene": "Bahasa Indonesia memainkan peran sosial penting.",
+        "id": "sosial",
+        "cn": "印尼语扮演重要社会角色。"
+      },
+      {
+        "scene": "Komunikasi sosial memerlukan kepekaan budaya.",
+        "id": "sosial",
+        "cn": "社交需要文化敏感度。"
+      }
+    ]
+  },
+  "keprofesian": {
+    "ipa": "/kə.pro.fəˈsi.an/",
+    "cn": "职业的；专业性的",
+    "en": "professional",
+    "root": "profesi（职业）+ ke- + -an",
+    "forms": [
+      {
+        "form": "profesi",
+        "pos": "n",
+        "mean": "职业（借词）"
+      },
+      {
+        "form": "keprofesian",
+        "pos": "adj",
+        "mean": "职业的"
+      },
+      {
+        "form": "profesional",
+        "pos": "adj/n",
+        "mean": "专业的/专业人士"
+      }
+    ],
+    "formsNote": "ke-an 形容词化（profesi → keprofesian）；同义 profesional。",
+    "note": "UKBI 用途核心词：kebutuhan keprofesian 职业需求（求职/晋升），与 keilmiahan 并列。",
+    "synonyms": [
+      "profesional（职业性）"
+    ],
+    "antonyms": [
+      "amateur（业余）"
+    ],
+    "examples": [
+      {
+        "scene": "Sertifikat UKBI menunjang kebutuhan keprofesian.",
+        "id": "keprofesian",
+        "cn": "UKBI 证书支持职业需求。"
+      },
+      {
+        "scene": "Pengembangan keprofesian berkelanjutan penting.",
+        "id": "keprofesian",
+        "cn": "持续职业发展很重要。"
+      }
+    ]
+  },
+  "dan": {
+    "ipa": "/ˈdan/",
+    "cn": "和；与；以及",
+    "en": "and",
+    "root": "dan（非派生连词）",
+    "forms": [
+      {
+        "form": "dan",
+        "pos": "conj",
+        "mean": "和；与"
+      }
+    ],
+    "formsNote": "并列连词；连接词/短语/句子。",
+    "note": "印尼语最高频连词；注意 dan 后不再加逗号（与英语不同）。",
+    "synonyms": [
+      "serta（以及）",
+      "lalu（然后）"
+    ],
+    "antonyms": [
+      "atau（或）",
+      "tetapi（但）"
+    ],
+    "examples": [
+      {
+        "scene": "Kemahiran personal dan keprofesian dinilai UKBI.",
+        "id": "dan",
+        "cn": "个人和职业能力由 UKBI 评估。"
+      },
+      {
+        "scene": "Dialog dan monolog keduanya diuji.",
+        "id": "dan",
+        "cn": "对话和独白都要考。"
+      }
+    ]
+  },
+  "keilmiahan": {
+    "ipa": "/kə.il.miˈa.han/",
+    "cn": "学术的；学术性的",
+    "en": "academic; scholarly",
+    "root": "ilmu（知识）+ -iah（…的）+ ke-an",
+    "forms": [
+      {
+        "form": "ilmu",
+        "pos": "n",
+        "mean": "知识；科学（词根）"
+      },
+      {
+        "form": "ilmiah",
+        "pos": "adj",
+        "mean": "学术的"
+      },
+      {
+        "form": "keilmiahan",
+        "pos": "adj/n",
+        "mean": "学术性"
+      },
+      {
+        "form": "keilmuan",
+        "pos": "n",
+        "mean": "学术领域"
+      }
+    ],
+    "formsNote": "ilmu → ilmiah（-iah 化）→ keilmiahan（ke-an）。",
+    "note": "UKBI 用途之一：kebutuhan keilmiahan 学术需求（论文/学术评估），与 keprofesian 并列。",
+    "synonyms": [
+      "akademis（学院派的）",
+      "ilmiah（学术的）"
+    ],
+    "antonyms": [
+      "populer（通俗的）"
+    ],
+    "examples": [
+      {
+        "scene": "Penelitian memerlukan bahasa baku keilmiahan.",
+        "id": "keilmiahan",
+        "cn": "研究需要规范的学术语言。"
+      },
+      {
+        "scene": "Gaya keilmiahan berbeda dengan gaya jurnalistik.",
+        "id": "keilmiahan",
+        "cn": "学术风格不同于新闻风格。"
+      }
+    ]
+  },
+  "unggul": {
+    "ipa": "/ˈʊŋ.gul/",
+    "cn": "优秀的；卓越的",
+    "en": "excellent; superior",
+    "root": "unggul（非派生）",
+    "forms": [
+      {
+        "form": "unggul",
+        "pos": "adj",
+        "mean": "优秀的"
+      },
+      {
+        "form": "mengungguli",
+        "pos": "v",
+        "mean": "超越"
+      },
+      {
+        "form": "keunggulan",
+        "pos": "n",
+        "mean": "优势"
+      },
+      {
+        "form": "sangat unggul",
+        "pos": "短语",
+        "mean": "特优秀（UKBI 二级 641-724）"
+      }
+    ],
+    "formsNote": "meN--i 动词 mengungguli；ke-an 名词 keunggulan。用户输入 Unggul 首字母大写已归一。复习日重收覆盖更新。",
+    "note": "UKBI 第三级：Unggul（578-640）；第二级：Sangat Unggul（641-724）。商业高频：produk unggul 优势产品。",
+    "synonyms": [
+      "istimewa（特优）",
+      "unggulan（优秀的）"
+    ],
+    "antonyms": [
+      "terbatas（有限）",
+      "lemah（弱）"
+    ],
+    "examples": [
+      {
+        "scene": "Peringkat unggul dibutuhkan untuk melamar beasiswa.",
+        "id": "unggul",
+        "cn": "申请奖学金需优秀等级。"
+      },
+      {
+        "scene": "Keunggulan kompetitif dipertahankan lewat inovasi.",
+        "id": "keunggulan",
+        "cn": "通过创新保持竞争优势。"
+      }
+    ]
+  },
+  "terkendala": {
+    "ipa": "/tərˈkən.da.la/",
+    "cn": "受阻的；遇到障碍的",
+    "en": "hindered; obstructed",
+    "root": "kendala（障碍）+ ter-",
+    "forms": [
+      {
+        "form": "kendala",
+        "pos": "n",
+        "mean": "障碍"
+      },
+      {
+        "form": "terkendala",
+        "pos": "adj/v",
+        "mean": "受阻的"
+      }
+    ],
+    "formsNote": "ter- 状态形容词。复习日重收覆盖更新（10/18 已收录）。",
+    "note": "运营/项目高频：terkendala jaringan 受网络影响、terkendala cuaca 受天气影响。",
+    "synonyms": [
+      "terhambat（受阻）",
+      "terganggu（受扰）"
+    ],
+    "antonyms": [
+      "lancar（顺利）"
+    ],
+    "examples": [
+      {
+        "scene": "Ujian daring terkendala gangguan koneksi.",
+        "id": "terkendala",
+        "cn": "在线考试受连接故障影响。"
+      },
+      {
+        "scene": "Pengiriman terkendala pembatasan wilayah.",
+        "id": "terkendala",
+        "cn": "运输受区域限制影响。"
+      }
+    ]
+  },
+  "madya": {
+    "ipa": "/ˈmad.ya/",
+    "cn": "中级的；中等的（UKBI 第四级 482-577）",
+    "en": "intermediate (level)",
+    "root": "madya（梵语 madhya 借词，非派生）",
+    "forms": [
+      {
+        "form": "madya",
+        "pos": "adj/n",
+        "mean": "中级"
+      },
+      {
+        "form": "bahasa madya",
+        "pos": "短语",
+        "mean": "中等语言水平"
+      }
+    ],
+    "formsNote": "无变形；印尼语等级体系核心词。用户输入 Madya 首字母大写已归一。",
+    "note": "UKBI 第四级 Madya（482-577）：中等熟练度，多数机构招聘门槛。",
+    "synonyms": [
+      "menengah（中等）"
+    ],
+    "antonyms": [
+      "tingkat tinggi（高级）",
+      "dasar（初级）"
+    ],
+    "examples": [
+      {
+        "scene": "Peringkat madya cukup untuk sebagian besar pekerjaan.",
+        "id": "madya",
+        "cn": "中级对大多数工作已够用。"
+      },
+      {
+        "scene": "Target minimal peserta adalah madya.",
+        "id": "madya",
+        "cn": "考生最低目标为中级。"
+      }
+    ]
+  },
+  "semenjana": {
+    "ipa": "/səˈmən.dʒa.na/",
+    "cn": "中低级的（UKBI 第五级 405-481）",
+    "en": "lower-intermediate",
+    "root": "semenjana（se- + menjana，梵语借词）",
+    "forms": [
+      {
+        "form": "semenjana",
+        "pos": "adj/n",
+        "mean": "中低级"
+      }
+    ],
+    "formsNote": "无变形。用户输入 Semenjana 首字母大写已归一。",
+    "note": "UKBI 第五级 Semenjana（405-481）：中等偏下，基本交流能力。",
+    "synonyms": [
+      "standar（标准）"
+    ],
+    "antonyms": [
+      "unggul（优秀）"
+    ],
+    "examples": [
+      {
+        "scene": "Skor 420 tergolong semenjana.",
+        "id": "semenjana",
+        "cn": "420 分属中低级。"
+      },
+      {
+        "scene": "Kemampuan semenjana memadai untuk percakapan harian.",
+        "id": "semenjana",
+        "cn": "中低级能力足以应付日常会话。"
+      }
+    ]
+  },
+  "marginal": {
+    "ipa": "/marˈgi.nal/",
+    "cn": "边缘的；低水平的（UKBI 第六级 326-404）",
+    "en": "marginal; borderline",
+    "root": "marginal（拉丁语 marginalis 借词）",
+    "forms": [
+      {
+        "form": "marginal",
+        "pos": "adj/n",
+        "mean": "边缘的；低水平"
+      }
+    ],
+    "formsNote": "无变形。用户输入 Marginal 首字母大写已归一。",
+    "note": "UKBI 第六级 Marginal（326-404）：仅基本语言能力。经济语境：pendapatan marginal 边际收入。",
+    "synonyms": [
+      "terbatas（有限）"
+    ],
+    "antonyms": [
+      "istimewa（特优）"
+    ],
+    "examples": [
+      {
+        "scene": "Peringkat marginal menunjukkan kemampuan terbatas.",
+        "id": "marginal",
+        "cn": "边缘级表明能力有限。"
+      },
+      {
+        "scene": "Biaya marginal harus dihitung hati-hati.",
+        "id": "marginal",
+        "cn": "边际成本须仔细计算。"
+      }
+    ]
+  },
+  "terendah": {
+    "ipa": "/təˈrən.dah/",
+    "cn": "最低的",
+    "en": "lowest",
+    "root": "rendah（低）+ ter-",
+    "forms": [
+      {
+        "form": "rendah",
+        "pos": "adj",
+        "mean": "低的（词根）"
+      },
+      {
+        "form": "terendah",
+        "pos": "adj",
+        "mean": "最低的（ter- 最高级）"
+      },
+      {
+        "form": "menurunkan",
+        "pos": "v",
+        "mean": "降低"
+      }
+    ],
+    "formsNote": "ter- 最高级前缀；rendah → terendah。",
+    "note": "UKBI 最低级 Terbatas 为七级中最低（251-325）。通用：peringkat terendah 最低等级。",
+    "synonyms": [
+      "paling rendah（最低）"
+    ],
+    "antonyms": [
+      "tertinggi（最高）"
+    ],
+    "examples": [
+      {
+        "scene": "Terbatas adalah peringkat terendah UKBI.",
+        "id": "terendah",
+        "cn": "「有限」是 UKBI 最低等级。"
+      },
+      {
+        "scene": "Suhu terendah tercatat malam ini.",
+        "id": "terendah",
+        "cn": "今晚记录了最低温度。"
+      }
+    ]
+  },
+  "mengunduh": {
+    "ipa": "/məˈʊn.duʔ/",
+    "cn": "下载",
+    "en": "to download",
+    "root": "unduh（下载）+ meN-",
+    "forms": [
+      {
+        "form": "unduh",
+        "pos": "v",
+        "mean": "下载（词根）"
+      },
+      {
+        "form": "mengunduh",
+        "pos": "v",
+        "mean": "下载（主动）"
+      },
+      {
+        "form": "diunduh",
+        "pos": "v.pass",
+        "mean": "被下载（10/17 已收录）"
+      },
+      {
+        "form": "unduhan",
+        "pos": "n",
+        "mean": "下载内容"
+      }
+    ],
+    "formsNote": "meN- 主动；di- 被动 diunduh。",
+    "note": "UKBI 证书获取：sertifikat dapat diunduh 证书可下载。10/17 收录被动 diunduh，本次补主动 mengunduh。",
+    "synonyms": [
+      "download（英借）"
+    ],
+    "antonyms": [
+      "mengunggah（上传）"
+    ],
+    "examples": [
+      {
+        "scene": "Peserta mengunduh sertifikat dari dasbor.",
+        "id": "mengunduh",
+        "cn": "考生从面板下载证书。"
+      },
+      {
+        "scene": "Aplikasi dapat mengunduh materi untuk belajar offline.",
+        "id": "mengunduh",
+        "cn": "应用可下载学习材料供离线使用。"
+      }
+    ]
+  },
+  "berlaku-selama-dua-tahun": {
+    "ipa": "/bərˈla.ku səˈla.ma ˈdu.a ˈta.hun/",
+    "cn": "有效期两年（规范分写）",
+    "en": "valid for two years",
+    "root": "berlaku（有效）+ selama（长达）+ dua（二）+ tahun（年）",
+    "forms": [
+      {
+        "form": "berlaku selama dua tahun",
+        "pos": "短语",
+        "mean": "规范分写形式"
+      },
+      {
+        "form": "masa berlaku",
+        "pos": "短语",
+        "mean": "有效期"
+      },
+      {
+        "form": "berlaku",
+        "pos": "v/adj",
+        "mean": "有效（10/17 已收录）"
+      }
+    ],
+    "formsNote": "用户输入四词连字符连接，规范应分写。berlaku = ber- + laku。",
+    "note": "UKBI 证书规则原文：Sertifikat UKBI berlaku selama dua tahun（UKBI 证书有效期两年）。",
+    "synonyms": [
+      "valid dua tahun（有效两年）"
+    ],
+    "antonyms": [
+      "kedaluwarsa（过期）"
+    ],
+    "examples": [
+      {
+        "scene": "Sertifikat UKBI berlaku selama dua tahun.",
+        "id": "berlaku selama dua tahun",
+        "cn": "UKBI 证书有效期两年。"
+      },
+      {
+        "scene": "Masa berlaku sertifikat diperpanjang otomatis?",
+        "id": "masa berlaku",
+        "cn": "证书有效期会自动延长吗？"
+      }
+    ]
+  },
+  "pembinaan": {
+    "ipa": "/pəmˈbi.nan/",
+    "cn": "指导；培育；发展",
+    "en": "guidance; development; fostering",
+    "root": "bina（培育）+ peN- + -an",
+    "forms": [
+      {
+        "form": "bina",
+        "pos": "v",
+        "mean": "培育（词根）"
+      },
+      {
+        "form": "membina",
+        "pos": "v",
+        "mean": "培育（主动）"
+      },
+      {
+        "form": "pembinaan",
+        "pos": "n",
+        "mean": "培育"
+      },
+      {
+        "form": "pembina",
+        "pos": "n",
+        "mean": "辅导员"
+      }
+    ],
+    "formsNote": "peN--an 名词化。用户输入 Pembinaan 首字母大写已归一。复习日重收覆盖更新（10/17 已收录）。",
+    "note": "机构名：Badan Pengembangan dan Pembinaan Bahasa 语言发展培育局（UKBI 主管）。",
+    "synonyms": [
+      "pengembangan（发展）"
+    ],
+    "antonyms": [
+      "penghancuran（破坏）"
+    ],
+    "examples": [
+      {
+        "scene": "Badan Pembinaan mengelola sertifikasi bahasa.",
+        "id": "Pembinaan",
+        "cn": "培育局管理语言认证。"
+      },
+      {
+        "scene": "Pembinaan atlet dimulai dari usia muda.",
+        "id": "pembinaan",
+        "cn": "运动员培养从年轻时开始。"
+      }
+    ]
+  },
+  "bervariasi": {
+    "ipa": "/bərˈva.ri.ʔa.si/",
+    "cn": "多样的；有变化的",
+    "en": "varied; diverse",
+    "root": "variasi（变化）+ ber-",
+    "forms": [
+      {
+        "form": "variasi",
+        "pos": "n",
+        "mean": "变化；变体（借词）"
+      },
+      {
+        "form": "bervariasi",
+        "pos": "adj",
+        "mean": "多样的"
+      },
+      {
+        "form": "berbagai variasi",
+        "pos": "短语",
+        "mean": "各种变体"
+      },
+      {
+        "form": "variatif",
+        "pos": "adj",
+        "mean": "变化的"
+      }
+    ],
+    "formsNote": "ber- 状态动词。",
+    "note": "描述多样性：soal bervariasi 题目多样、tingkat kesulitan bervariasi 难度不一。",
+    "synonyms": [
+      "beragam（多样）",
+      "bermacam（各种）"
+    ],
+    "antonyms": [
+      "seragam（统一）",
+      "monoton（单调）"
+    ],
+    "examples": [
+      {
+        "scene": "Soal UKBI bervariasi dari mudah sampai sulit.",
+        "id": "bervariasi",
+        "cn": "UKBI 题目从易到难各不相同。"
+      },
+      {
+        "scene": "Tarif pembayaran bervariasi per wilayah.",
+        "id": "bervariasi",
+        "cn": "付款费率因地区而异。"
+      }
+    ]
+  },
+  "masyarakat-umum": {
+    "ipa": "/maˈʃa.ra.kat ˈu.mum/",
+    "cn": "社会公众",
+    "en": "general public",
+    "root": "masyarakat（社会）+ umum（公共的）",
+    "forms": [
+      {
+        "form": "masyarakat umum",
+        "pos": "n",
+        "mean": "规范分写形式"
+      },
+      {
+        "form": "masyarakat",
+        "pos": "n",
+        "mean": "社会；社区"
+      },
+      {
+        "form": "umum",
+        "pos": "adj",
+        "mean": "公共的；一般的"
+      }
+    ],
+    "formsNote": "用户输入连字符连接，规范分写：masyarakat umum。",
+    "note": "UKBI 适用对象：masyarakat umum dapat mengikuti UKBI 社会公众可参加 UKBI（不限学生/公务员）。",
+    "synonyms": [
+      "khalayak umum（公众）",
+      "publik（大众）"
+    ],
+    "antonyms": [
+      "kalangan terbatas（特定圈子）"
+    ],
+    "examples": [
+      {
+        "scene": "UKBI terbuka bagi masyarakat umum.",
+        "id": "masyarakat umum",
+        "cn": "UKBI 面向社会公众开放。"
+      },
+      {
+        "scene": "Informasi ini dapat diakses masyarakat umum.",
+        "id": "masyarakat umum",
+        "cn": "此信息公众可获取。"
+      }
+    ]
+  },
+  "teruji-lebih-terpuji": {
+    "ipa": "/təˈrudʒi ˈlə.bih tərˈputʃi/",
+    "cn": "久经考验且表现优异（规范分写）",
+    "en": "well-tested and even more praiseworthy",
+    "root": "uji（测试）+ ter-；lebih（更）；puji（赞扬）+ ter-",
+    "forms": [
+      {
+        "form": "teruji lebih terpuji",
+        "pos": "短语",
+        "mean": "规范分写形式"
+      },
+      {
+        "form": "teruji terpuji",
+        "pos": "短语",
+        "mean": "久经考验（10/18 已收录 Teruji-terpuji）"
+      },
+      {
+        "form": "terpuji",
+        "pos": "adj",
+        "mean": "值得赞扬的"
+      }
+    ],
+    "formsNote": "用户输入三词连字符连接，规范应分写。lebih 插入表递进：teruji → lebih terpuji。10/18 Teruji-terpuji 组合词条已收录，本次为递进变体。",
+    "note": "印尼语比较级插入强调：teruji terpuji → teruji lebih terpuji（程度更强）。正式表彰/宣传语境。",
+    "synonyms": [
+      "teruji dan terpuji（经考验且优秀）"
+    ],
+    "antonyms": [
+      "terbukti gagal（已证明失败）"
+    ],
+    "examples": [
+      {
+        "scene": "Sistem kami teruji lebih terpuji dari kompetitor.",
+        "id": "teruji lebih terpuji",
+        "cn": "我们的系统比竞品更久经考验。"
+      },
+      {
+        "scene": "Metode teruji lebih terpuji dalam industri ini.",
+        "id": "teruji lebih terpuji",
+        "cn": "该方法在本行业表现优异。"
       }
     ]
   }
@@ -186156,9 +189552,11 @@ function renderAbout(c){
 }
 
 function renderVersion(c){
-  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.43.4 / Versi</span></div>
+  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.44.0 / Versi</span></div>
     <div style="padding:16px;">
       <div style="margin-bottom:14px;padding:14px;background:rgba(34,197,94,.10);border-radius:10px;border-left:3px solid var(--success)">
+        <div style="font-size:15px;font-weight:700;color:var(--success);margin-bottom:6px">V4.44.0 (2026-10-19)</div>
+        <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">四合一任务: ①1019笔记49词(UKBI七级评定madya-semenjana-marginal-terendah+penutur说话者等, 历史最大批) ②主页源码注释泄露修复(DOCTYPE前JS注释删除) ③生词双库同步修复V4.44.0 — showWordPopup短文点击BIT优先(vocabDB未命中+bitVocabDB命中→showBITInfo不再走在线翻译) · doTranslate翻译页加bitVocabDB分支 · renderWBList生词本同步加bitVocabDB分支 ④BIT策略v1.3新增「生词查询双库同步条款」(5入口清单+部署前检查口诀) · check_syntax PASS</div>
         <div style="font-size:15px;font-weight:700;color:var(--success);margin-bottom:6px">V4.43.4 (2026-10-18)</div>
         <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">1018笔记35词(UKBI实操深化·最大单批): iIstimewa归一istimewa+大小写归一Terbatas · 重收覆盖12{kolektif/akun/pasfoto/unggah/dialog/monolog/butir-soal/istimewa/terbatas/peringkat(UKBI课)+pelaksanaan/berlaku(1017)} · 新词23{teller-bank柜员-dompet钱包-seksi科室(≠sexy!)-peramban浏览器-perangkat设备-mengandung包含-dipetakan被映射-terkendala受阻-memenuhi满足-syarat条件-bukti凭证-teruji-terpuji久经考验-lamaran-pekerjaan求职-jabatan-fungsional职能岗位等} · 规范分写标注×6 · bitVocabDB幂等+21旧清理 · check_syntax PASS</div>
         <div style="font-size:15px;font-weight:700;color:var(--success);margin-bottom:6px">V4.43.3 (2026-10-17)</div>
@@ -187120,8 +190518,11 @@ function showWordPopup(word){
   }
 
   // V4.39.4: bitVocabDB 常驻详解库 — 对话/演讲点击词补全 BIT(变形/同反义/例句)
-  const _bit=(typeof bitVocabDB!=="undefined"&&bitVocabDB)?(bitVocabDB[clean]||bitVocabDB[word.toLowerCase()]||null):null;
+  const _bit=(typeof bitVocabDB!=="undefined"&&bitVocabDB)?(bitVocabDB[clean]||bitVocabDB[word.toLowerCase()]||bitVocabDB[word.charAt(0).toUpperCase()+word.slice(1)]||null):null;
   const _stripMd=function(s){return String(s==null?"":s).replace(/\*\*/g,"");};
+
+  // V4.44.0: BIT 双库优先 — vocabDB 未命中但 bitVocabDB 命中时,直接走 BIT 完整弹窗,不再走在线翻译
+  if(!v&&_bit&&typeof showBITInfo==="function"){showBITInfo(word);return;}
 
   let existing = document.getElementById('wordPopupOverlay');
   if(existing) existing.remove();
