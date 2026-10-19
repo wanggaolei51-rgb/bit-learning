@@ -6,7 +6,7 @@
 <meta http-equiv="Expires" content="0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LEO-BIR V4.44.0</title>
+<title>LEO-BIR V4.45.0</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -276,7 +276,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="sidebar-header">
     <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <h1>LEO-BIR</h1>
-    <div class="ver">LEO-BIR V4.44.0 · 1019笔记49词+双库同步</div>
+    <div class="ver">LEO-BIR V4.45.0 · CA进阶课话题1上线</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -5082,7 +5082,7 @@ function initHistory(){
 function saveHistory(){localStorage.setItem("bir_h3",JSON.stringify(learningHistory))}
 function saveWB(){localStorage.setItem("bir_wb3",JSON.stringify(wordBank))}
 
-function parseRoute(){const h=location.hash.replace("#","")||"home";if(h.startsWith("date/"))return{route:"date",param:h.replace("date/","")};if(h.startsWith("reviewmindmap/"))return{route:"reviewmindmap",param:h.replace("reviewmindmap/","")};return{route:h,param:null}}
+function parseRoute(){const h=location.hash.replace("#","")||"home";if(h.startsWith("date/"))return{route:"date",param:h.replace("date/","")};if(h.startsWith("reviewmindmap/"))return{route:"reviewmindmap",param:h.replace("reviewmindmap/","")};if(h.startsWith("ca/")){const cp=h.split("/");return{route:"ca",param:cp[1]||"meet",param2:cp[2]||"1"}}return{route:h,param:null}}
 function navigate(r,p){
   const prev=currentRoute||'home';
   const currentPath=r+(p?('/'+p):'');
@@ -5141,6 +5141,7 @@ function render(){
     case "prefixgame":t.innerText="🎯 词根射击";renderPrefixGame(c);break;
     case "reviewmindmap":t.innerText="🗺️ 思维导图复习";renderReviewMindMap(r.param);break;
     case "affixRose":t.innerText="🌹 词缀玫瑰图";renderAffixRose(c);break;
+    case "ca":t.innerText="🚀 CA进阶课";renderCA(c,r.param,r.param2);break;
     default:t.innerText="🏠 主页";renderHome(c);
   }
   window.scrollTo(0,0);
@@ -5150,7 +5151,7 @@ function updateNav(){document.querySelectorAll(".nav-list li").forEach(li=>{li.c
 function renderHome(c){
   const today=new Date().toISOString().slice(0,10),td=learningHistory[today],tdn=td?td.vocabNew.length:0;
   c.innerHTML=`<div class="welcome-banner" style="background:linear-gradient(135deg,rgba(0,212,170,.15),rgba(59,130,246,.1));border:1px solid rgba(0,212,170,.25);position:relative;"><div id="homeMemberBadge" style="position:absolute;top:8px;right:8px;font-size:11px;padding:3px 8px;border-radius:6px;"></div><div style="display:flex;align-items:center;gap:16px;margin-bottom:12px;"><div style="width:56px;height:56px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div><div><h2 style="font-size:22px;color:var(--primary);margin-bottom:4px">LEO-BIR</h2><p style="color:var(--text-dim);font-size:13px">Bahasa Indonesia Learning · 印尼语学习平台</p></div></div></div><div class="quick-grid"><div class="quick-btn" onclick="navigate('translate')"><span class="icon">🌐</span><div style="display:flex;flex-direction:column;gap:2px"><div class="label">翻译</div><div style="font-size:9px;color:var(--text-dim)">Terjemahan</div></div></div><div class="quick-btn" onclick="navigate('input')"><span class="icon">📝</span><div style="display:flex;flex-direction:column;gap:2px"><div class="label">话题生成</div><div style="font-size:9px;color:var(--text-dim)">Generator</div></div></div><div class="quick-btn" onclick="navigate('wordbank')"><span class="icon">📚</span><div style="display:flex;flex-direction:column;gap:2px"><div class="label">生词本</div><div style="font-size:9px;color:var(--text-dim)">Bank Kata</div></div></div><div class="quick-btn" onclick="navigate('review')"><span class="icon">🧠</span><div style="display:flex;flex-direction:column;gap:2px"><div class="label">复习</div><div style="font-size:9px;color:var(--text-dim)">Ulangan</div></div></div><div class="quick-btn" onclick="navigate('vocabulary')"><span class="icon">📖</span><div style="display:flex;flex-direction:column;gap:2px"><div class="label">词汇库</div><div style="font-size:9px;color:var(--text-dim)">Perpustakaan</div></div></div><div class="quick-btn" onclick="navigate('quiz')"><span class="icon">🎮</span><div style="display:flex;flex-direction:column;gap:2px"><div class="label">百词斩</div><div style="font-size:9px;color:var(--text-dim)">Seratus Kata</div></div></div>
-<div class="quick-btn" onclick="navigate('prefixgame')"><span class="icon">🎯</span><div style="display:flex;flex-direction:column;gap:2px"><div class="label">词根射击</div><div style="font-size:9px;color:var(--text-dim)">Tembak Akar</div></div></div></div><div class="card"><div class="card-header"><h2>📅 学习日历 / Kalender Belajar</h2><span class="badge">点击日期查看 / Klik tanggal</span></div>${renderCalHTML()}</div>`;
+<div class="quick-btn" onclick="navigate('prefixgame')"><span class="icon">🎯</span><div style="display:flex;flex-direction:column;gap:2px"><div class="label">词根射击</div><div style="font-size:9px;color:var(--text-dim)">Tembak Akar</div></div></div><div class="quick-btn" onclick="location.hash='#/ca/meet/1'"><span class="icon">🚀</span><div style="display:flex;flex-direction:column;gap:2px"><div class="label">CA进阶课</div><div style="font-size:9px;color:var(--text-dim)">Kursak Lanjutan</div></div></div></div><div class="card"><div class="card-header"><h2>📅 学习日历 / Kalender Belajar</h2><span class="badge">点击日期查看 / Klik tanggal</span></div>${renderCalHTML()}</div>`;
   attachCalEvents();
 }
 
@@ -5233,6 +5234,7 @@ window.addEventListener('message',(e)=>{
 try{if(getVideoDB()){const _nv=document.getElementById('navDailyVideo');if(_nv)_nv.style.display='';}}catch(_e){}
 function renderDateDetail(c,ds){
   const data=learningHistory[ds];
+  if(typeof caCalendar!=="undefined"&&caCalendar[ds]){renderCADate(c,ds);return;}
   const tc=getTopicForDate(ds);
   const vd=getVideoDB();
   // 如果有话题日历, 默认显示话题内容(课程), 可切换学习记录
@@ -188763,7 +188765,909 @@ const bitVocabDB = {
         "cn": "该方法在本行业表现优异。"
       }
     ]
+  },
+  "berjabat tangan": {
+    "word": "berjabat tangan",
+    "ipa": "/bərdʒabat ˈtaŋan/",
+    "cn": "握手",
+    "en": "to shake hands",
+    "root": "jabat",
+    "forms": [
+      {
+        "form": "jabat tangan",
+        "pos": "phrase",
+        "mean": "握手（动宾词组）"
+      },
+      {
+        "form": "berjabat tangan",
+        "pos": "v",
+        "mean": "握手（动词）"
+      },
+      {
+        "form": "berjabat-tangan",
+        "pos": "v",
+        "mean": "握手（连字符变体）"
+      }
+    ],
+    "formsNote": "ber- + 动宾词组 jabat tangan；规范分写，连字符形式亦通行",
+    "note": "正式场合见面/道别礼仪核心动作；商务会面几乎必用",
+    "synonyms": [
+      "bersalaman"
+    ],
+    "antonyms": [],
+    "examples": [
+      {
+        "scene": "Mereka berjabat tangan di depan ruang rapat.",
+        "id": "berjabat tangan",
+        "cn": "他们在会议室前握手。"
+      },
+      {
+        "scene": "Kami berjabat tangan sebelum memulai diskusi.",
+        "id": "berjabat tangan",
+        "cn": "我们在开始讨论前握手。"
+      }
+    ]
+  },
+  "pertemuan": {
+    "word": "pertemuan",
+    "ipa": "/pərtəˈmuːan/",
+    "cn": "会面；会议",
+    "en": "meeting; encounter",
+    "root": "temu",
+    "forms": [
+      {
+        "form": "temu",
+        "pos": "v",
+        "mean": "遇见（词根）"
+      },
+      {
+        "form": "bertemu",
+        "pos": "v",
+        "mean": "见面"
+      },
+      {
+        "form": "pertemuan",
+        "pos": "n",
+        "mean": "会面；会议"
+      }
+    ],
+    "formsNote": "per- + -an 环绕派生：temu → pertemuan",
+    "note": "可指正式会议或一般会面；工作会议更常用 rapat",
+    "synonyms": [
+      "rapat",
+      "perjumpaan"
+    ],
+    "antonyms": [
+      "perpisahan"
+    ],
+    "examples": [
+      {
+        "scene": "Pertemuan pertama berjalan dengan lancar.",
+        "id": "Pertemuan",
+        "cn": "第一次会面进行顺利。"
+      },
+      {
+        "scene": "Kami mengadakan pertemuan rutin setiap Senin.",
+        "id": "pertemuan rutin",
+        "cn": "我们每周一举行例会。"
+      }
+    ]
+  },
+  "perkenalan": {
+    "word": "perkenalan",
+    "ipa": "/pərkəˈnalan/",
+    "cn": "介绍；相识",
+    "en": "introduction; acquaintance",
+    "root": "kenal",
+    "forms": [
+      {
+        "form": "kenal",
+        "pos": "v",
+        "mean": "认识（词根）"
+      },
+      {
+        "form": "mengenal",
+        "pos": "v",
+        "mean": "认识（主动）"
+      },
+      {
+        "form": "perkenalan",
+        "pos": "n",
+        "mean": "介绍；相识"
+      }
+    ],
+    "formsNote": "per- + kenal + -an 名词化",
+    "note": "固定套语 salam perkenalan 问候兼介绍",
+    "synonyms": [
+      "pengenalan"
+    ],
+    "antonyms": [],
+    "examples": [
+      {
+        "scene": "Salam perkenalan, nama saya Budi.",
+        "id": "Salam perkenalan",
+        "cn": "问候并介绍，我叫布迪。"
+      },
+      {
+        "scene": "Terima kasih atas perkenalannya.",
+        "id": "perkenalannya",
+        "cn": "感谢您的介绍。"
+      }
+    ]
+  },
+  "kesan": {
+    "word": "kesan",
+    "ipa": "/kəˈsan/",
+    "cn": "印象",
+    "en": "impression",
+    "root": "[待核实]",
+    "forms": [
+      {
+        "form": "kesan",
+        "pos": "n",
+        "mean": "印象"
+      },
+      {
+        "form": "berkesan",
+        "pos": "adj",
+        "mean": "令人印象深刻的"
+      }
+    ],
+    "formsNote": "整体词根保守处理，标 [待核实]",
+    "note": "kesan pertama 第一印象；kesannya bagus 印象不错",
+    "synonyms": [
+      "impresi"
+    ],
+    "antonyms": [],
+    "examples": [
+      {
+        "scene": "Kesan pertama saya tentang pabrik ini sangat baik.",
+        "id": "Kesan pertama",
+        "cn": "我对这家工厂的第一印象非常好。"
+      },
+      {
+        "scene": "Pertemuan itu berkesan bagi semua peserta.",
+        "id": "berkesan",
+        "cn": "那次会面给所有参会者留下深刻印象。"
+      }
+    ]
+  },
+  "tamu": {
+    "word": "tamu",
+    "ipa": "/ˈtamu/",
+    "cn": "客人；来宾",
+    "en": "guest; visitor",
+    "root": "tamu",
+    "forms": [
+      {
+        "form": "tamu",
+        "pos": "n",
+        "mean": "客人；来宾"
+      },
+      {
+        "form": "tamu undangan",
+        "pos": "n",
+        "mean": "受邀宾客"
+      }
+    ],
+    "formsNote": "名词，无派生；复合词 tamu undangan",
+    "note": "接待场景核心词：menyambut tamu 迎接客人",
+    "synonyms": [
+      "pengunjung"
+    ],
+    "antonyms": [
+      "tuan rumah"
+    ],
+    "examples": [
+      {
+        "scene": "Tamu-tamu disambut di pintu utama.",
+        "id": "Tamu-tamu",
+        "cn": "客人们在大门口受到迎接。"
+      },
+      {
+        "scene": "Kami mengundang tamu dari Jakarta.",
+        "id": "tamu",
+        "cn": "我们邀请了来自雅加达的客人。"
+      }
+    ]
+  },
+  "pendatang": {
+    "word": "pendatang",
+    "ipa": "/pənˈdataŋ/",
+    "cn": "来客；新来的人",
+    "en": "newcomer; arrival",
+    "root": "datang",
+    "forms": [
+      {
+        "form": "datang",
+        "pos": "v",
+        "mean": "来（词根）"
+      },
+      {
+        "form": "pendatang",
+        "pos": "n",
+        "mean": "来客；新来者"
+      }
+    ],
+    "formsNote": "peN- 施事者缀：datang → pendatang",
+    "note": "语境含'外来者/新迁入者'，注意与 tamu（宾客）语义差别",
+    "synonyms": [
+      "pendatang baru"
+    ],
+    "antonyms": [
+      "pribumi"
+    ],
+    "examples": [
+      {
+        "scene": "Pendatang baru disambut dengan antusias.",
+        "id": "Pendatang baru",
+        "cn": "新来的人受到热烈欢迎。"
+      },
+      {
+        "scene": "Daftar pendatang harus dilaporkan ke keamanan.",
+        "id": "pendatang",
+        "cn": "来客名单必须上报安保。"
+      }
+    ]
+  },
+  "menghadap": {
+    "word": "menghadap",
+    "ipa": "/məŋˈhadap/",
+    "cn": "谒见；正式会见",
+    "en": "to have an audience with",
+    "root": "hadap",
+    "forms": [
+      {
+        "form": "hadap",
+        "pos": "v",
+        "mean": "面向（词根）"
+      },
+      {
+        "form": "menghadap",
+        "pos": "v",
+        "mean": "谒见；面向"
+      },
+      {
+        "form": "hadapan",
+        "pos": "n",
+        "mean": "面前"
+      }
+    ],
+    "formsNote": "meng- + hadap → menghadap",
+    "note": "正式/官方用语：menghadap bupati 谒见县长；日常'见'用 bertemu/ketemu",
+    "synonyms": [
+      "menemui"
+    ],
+    "antonyms": [],
+    "examples": [
+      {
+        "scene": "Delegasi menghadap bupati untuk membicarakan investasi.",
+        "id": "menghadap",
+        "cn": "代表团谒见县长商谈投资。"
+      },
+      {
+        "scene": "Silakan menghadap ke ruang tamu utama.",
+        "id": "menghadap",
+        "cn": "请前往主会客厅。"
+      }
+    ]
+  },
+  "berpamitan": {
+    "word": "berpamitan",
+    "ipa": "/bərˈpamitan/",
+    "cn": "告辞；道别",
+    "en": "to take leave; say goodbye",
+    "root": "pamit",
+    "forms": [
+      {
+        "form": "pamit",
+        "pos": "v/n",
+        "mean": "告辞"
+      },
+      {
+        "form": "berpamit",
+        "pos": "v",
+        "mean": "告辞（口语）"
+      },
+      {
+        "form": "berpamitan",
+        "pos": "v",
+        "mean": "告辞（含礼节）"
+      }
+    ],
+    "formsNote": "ber- + pamit + -an；离开前的礼节性表达",
+    "note": "印尼礼节：离开必须 berpamitan，不可不辞而别",
+    "synonyms": [
+      "berpisah"
+    ],
+    "antonyms": [
+      "bertemu"
+    ],
+    "examples": [
+      {
+        "scene": "Kami berpamitan setelah pertemuan selesai.",
+        "id": "berpamitan",
+        "cn": "会议结束后我们告辞。"
+      },
+      {
+        "scene": "Dia pamit dulu karena ada urusan mendadak.",
+        "id": "pamit dulu",
+        "cn": "他有急事，先告辞了。"
+      }
+    ]
+  },
+  "menyambut": {
+    "word": "menyambut",
+    "ipa": "/məˈnyambut/",
+    "cn": "迎接；接待",
+    "en": "to welcome; receive",
+    "root": "sambut",
+    "forms": [
+      {
+        "form": "sambut",
+        "pos": "v",
+        "mean": "迎接（词根）"
+      },
+      {
+        "form": "menyambut",
+        "pos": "v",
+        "mean": "迎接（主动）"
+      },
+      {
+        "form": "penyambutan",
+        "pos": "n",
+        "mean": "迎接（仪式）"
+      }
+    ],
+    "formsNote": "meny- + sambut（s 音前 meN- → meny-）",
+    "note": "接待礼仪核心词：menyambut tamu 迎接客人",
+    "synonyms": [
+      "menerima"
+    ],
+    "antonyms": [
+      "mengantar"
+    ],
+    "examples": [
+      {
+        "scene": "Kami menyambut tamu dengan ramah.",
+        "id": "menyambut",
+        "cn": "我们热情地迎接客人。"
+      },
+      {
+        "scene": "Penyambutan resmi diadakan di aula utama.",
+        "id": "Penyambutan",
+        "cn": "正式欢迎仪式在主礼堂举行。"
+      }
+    ]
+  },
+  "sapaan": {
+    "word": "sapaan",
+    "ipa": "/saˈpaːan/",
+    "cn": "称呼；问候语",
+    "en": "form of address; greeting",
+    "root": "sapa",
+    "forms": [
+      {
+        "form": "sapa",
+        "pos": "v",
+        "mean": "打招呼（词根）"
+      },
+      {
+        "form": "menyapa",
+        "pos": "v",
+        "mean": "打招呼"
+      },
+      {
+        "form": "sapaan",
+        "pos": "n",
+        "mean": "称呼；问候语"
+      }
+    ],
+    "formsNote": "sapa + -an 名词化",
+    "note": "印尼称呼体系：Bapak/Ibu/Pak/Bu/Mas/Mba",
+    "synonyms": [
+      "panggilan"
+    ],
+    "antonyms": [],
+    "examples": [
+      {
+        "scene": "Sapaannya membuat tamu merasa dihargai.",
+        "id": "Sapaannya",
+        "cn": "他的问候让客人感到受重视。"
+      },
+      {
+        "scene": "Sapaan 'Pak' digunakan untuk pria dewasa.",
+        "id": "Sapaan",
+        "cn": "'Pak'用于称呼成年男性。"
+      }
+    ]
+  },
+  "panggilan": {
+    "word": "panggilan",
+    "ipa": "/paŋˈgilan/",
+    "cn": "称呼；呼叫",
+    "en": "call; form of address",
+    "root": "panggil",
+    "forms": [
+      {
+        "form": "panggil",
+        "pos": "v",
+        "mean": "叫（词根）"
+      },
+      {
+        "form": "memanggil",
+        "pos": "v",
+        "mean": "叫唤"
+      },
+      {
+        "form": "panggilan",
+        "pos": "n",
+        "mean": "称呼；呼叫"
+      }
+    ],
+    "formsNote": "panggil + -an 名词化",
+    "note": "panggilan saya 'Bli' 对我的称呼叫 Bli",
+    "synonyms": [
+      "sapaan"
+    ],
+    "antonyms": [],
+    "examples": [
+      {
+        "scene": "Panggilannya untuk saya adalah 'Mas'.",
+        "id": "Panggilannya",
+        "cn": "他对我的称呼是'Mas'。"
+      },
+      {
+        "scene": "Kami menerima panggilan telepon penting.",
+        "id": "panggilan",
+        "cn": "我们接到一个重要电话。"
+      }
+    ]
+  },
+  "keakraban": {
+    "word": "keakraban",
+    "ipa": "/kəakˈraban/",
+    "cn": "亲密；熟络",
+    "en": "closeness; familiarity",
+    "root": "akrab",
+    "forms": [
+      {
+        "form": "akrab",
+        "pos": "adj",
+        "mean": "亲密的"
+      },
+      {
+        "form": "keakraban",
+        "pos": "n",
+        "mean": "亲密；熟络"
+      }
+    ],
+    "formsNote": "ke- + akrab + -an 环绕派生",
+    "note": "arab 借词根；menjalin keakraban 建立亲密关系",
+    "synonyms": [
+      "kedekatan"
+    ],
+    "antonyms": [
+      "kerenggangan"
+    ],
+    "examples": [
+      {
+        "scene": "Keakraban tim sangat terasa.",
+        "id": "Keakraban",
+        "cn": "团队的亲密氛围非常明显。"
+      },
+      {
+        "scene": "Makan malam bersama menjalin keakraban.",
+        "id": "keakraban",
+        "cn": "共进晚餐增进亲密感。"
+      }
+    ]
+  },
+  "kolega": {
+    "word": "kolega",
+    "ipa": "/koˈlɛga/",
+    "cn": "同事（正式）",
+    "en": "colleague (formal)",
+    "root": "kolega",
+    "forms": [
+      {
+        "form": "kolega",
+        "pos": "n",
+        "mean": "同事（正式）"
+      }
+    ],
+    "formsNote": "荷兰语借词，无派生",
+    "note": "正式场合用 kolega，口语用 rekan/teman kerja",
+    "synonyms": [
+      "rekan",
+      "teman kerja"
+    ],
+    "antonyms": [],
+    "examples": [
+      {
+        "scene": "Saya berdiskusi dengan kolega dari kantor pusat.",
+        "id": "kolega",
+        "cn": "我与总部的同事讨论。"
+      },
+      {
+        "scene": "Para kolega menyambutnya dengan hangat.",
+        "id": "kolega",
+        "cn": "同事们热烈欢迎他。"
+      }
+    ]
+  },
+  "asal": {
+    "word": "asal",
+    "ipa": "/ˈasal/",
+    "cn": "来历；籍贯；来源",
+    "en": "origin; source",
+    "root": "asal",
+    "forms": [
+      {
+        "form": "asal",
+        "pos": "n",
+        "mean": "来源；籍贯"
+      },
+      {
+        "form": "berasal",
+        "pos": "v",
+        "mean": "来自"
+      },
+      {
+        "form": "asal-usul",
+        "pos": "n",
+        "mean": "来历；出身"
+      }
+    ],
+    "formsNote": "ber- + asal → berasal 动词化",
+    "note": "Anda berasal dari mana? 询问籍贯标准句",
+    "synonyms": [
+      "sumber",
+      "keturunan"
+    ],
+    "antonyms": [],
+    "examples": [
+      {
+        "scene": "Anda berasal dari mana?",
+        "id": "berasal",
+        "cn": "您是哪里人？"
+      },
+      {
+        "scene": "Asal-usul perusahaan ini dari Surabaya.",
+        "id": "Asal-usul",
+        "cn": "这家公司起家于泗水。"
+      }
+    ]
+  },
+  "berbincang": {
+    "word": "berbincang",
+    "ipa": "/bərˈbintʃaŋ/",
+    "cn": "交谈；叙谈",
+    "en": "to converse; chat",
+    "root": "bincang",
+    "forms": [
+      {
+        "form": "bincang",
+        "pos": "v",
+        "mean": "商谈（词根）"
+      },
+      {
+        "form": "berbincang",
+        "pos": "v",
+        "mean": "交谈"
+      },
+      {
+        "form": "berbincang-bincang",
+        "pos": "v",
+        "mean": "闲聊（重叠式）"
+      }
+    ],
+    "formsNote": "ber- + bincang；重叠式表随意",
+    "note": "比 berbicara（讲话）更强调双向交流",
+    "synonyms": [
+      "berbicara",
+      "mengobrol"
+    ],
+    "antonyms": [
+      "diam"
+    ],
+    "examples": [
+      {
+        "scene": "Kami berbincang santai setelah makan malam.",
+        "id": "berbincang",
+        "cn": "晚饭后我们轻松地交谈。"
+      },
+      {
+        "scene": "Mereka berbincang-bincang sambil menunggu.",
+        "id": "berbincang-bincang",
+        "cn": "他们边等边闲聊。"
+      }
+    ]
+  },
+  "audiensi": {
+    "word": "audiensi",
+    "ipa": "/auˈdiensi/",
+    "cn": "正式会见；谒见",
+    "en": "formal audience (with official)",
+    "root": "audiensi",
+    "forms": [
+      {
+        "form": "audiensi",
+        "pos": "n",
+        "mean": "正式会见"
+      }
+    ],
+    "formsNote": "外来词（拉丁/荷兰渠道），无派生",
+    "note": "高规格正式会见，如对部长/元首；一般会面不用",
+    "synonyms": [
+      "pertemuan resmi"
+    ],
+    "antonyms": [],
+    "examples": [
+      {
+        "scene": "Delegasi meminta audiensi dengan menteri.",
+        "id": "audiensi",
+        "cn": "代表团请求部长接见。"
+      },
+      {
+        "scene": "Audiensi dijadwalkan pukul sepuluh pagi.",
+        "id": "Audiensi",
+        "cn": "正式会见安排在上午十点。"
+      }
+    ]
+  },
+  "penandatanganan": {
+    "word": "penandatanganan",
+    "ipa": "/pənaŋdatˈŋanan/",
+    "cn": "签署",
+    "en": "signing (ceremony)",
+    "root": "tanda tangan",
+    "forms": [
+      {
+        "form": "tanda tangan",
+        "pos": "n",
+        "mean": "签名（规范分写）"
+      },
+      {
+        "form": "menandatangani",
+        "pos": "v",
+        "mean": "签署"
+      },
+      {
+        "form": "penandatanganan",
+        "pos": "n",
+        "mean": "签署（仪式/行为）"
+      }
+    ],
+    "formsNote": "peN- + tanda tangan + -an 三缀叠加长词",
+    "note": "商务/公文高频：penandatanganan perjanjian 协议签署",
+    "synonyms": [
+      "penandatangan"
+    ],
+    "antonyms": [],
+    "examples": [
+      {
+        "scene": "Penandatanganan perjanjian dilakukan besok.",
+        "id": "Penandatanganan",
+        "cn": "协议签署将于明天进行。"
+      },
+      {
+        "scene": "Dua direktur menandatangani kontrak kerja sama.",
+        "id": "menandatangani",
+        "cn": "两位总监签署合作协议。"
+      }
+    ]
+  },
+  "tindak lanjut": {
+    "word": "tindak lanjut",
+    "ipa": "/ˈtindak ˈlanjut/",
+    "cn": "后续行动；跟进",
+    "en": "follow-up action",
+    "root": "tindak + lanjut",
+    "forms": [
+      {
+        "form": "tindak",
+        "pos": "v/n",
+        "mean": "行动"
+      },
+      {
+        "form": "lanjut",
+        "pos": "v/adj",
+        "mean": "继续"
+      },
+      {
+        "form": "tindak lanjut",
+        "pos": "n",
+        "mean": "后续行动"
+      }
+    ],
+    "formsNote": "规范分写；可动词化 menindaklanjuti（书面）",
+    "note": "印尼公文极高频：会议必有 tindak lanjut",
+    "synonyms": [
+      "lanjutan"
+    ],
+    "antonyms": [],
+    "examples": [
+      {
+        "scene": "Tindak lanjut pertemuan akan dikirim via email.",
+        "id": "Tindak lanjut",
+        "cn": "会议后续行动将通过邮件发送。"
+      },
+      {
+        "scene": "Tim kami menindaklanjuti semua temuan audit.",
+        "id": "menindaklanjuti",
+        "cn": "我们团队跟进所有审计发现。"
+      }
+    ]
+  },
+  "perpisahan": {
+    "word": "perpisahan",
+    "ipa": "/pərpisˈahan/",
+    "cn": "离别；告别",
+    "en": "parting; farewell",
+    "root": "pisah",
+    "forms": [
+      {
+        "form": "pisah",
+        "pos": "v/adj",
+        "mean": "分开（词根）"
+      },
+      {
+        "form": "berpisah",
+        "pos": "v",
+        "mean": "分别"
+      },
+      {
+        "form": "perpisahan",
+        "pos": "n",
+        "mean": "离别；告别"
+      }
+    ],
+    "formsNote": "per- + pisah + -an 名词化",
+    "note": "perpisahan resmi 正式告别；acara perpisahan 欢送会",
+    "synonyms": [
+      "pemisahan"
+    ],
+    "antonyms": [
+      "pertemuan"
+    ],
+    "examples": [
+      {
+        "scene": "Acara perpisahan diadakan di aula utama.",
+        "id": "perpisahan",
+        "cn": "欢送会在主礼堂举行。"
+      },
+      {
+        "scene": "Kita berpisah di bandara pagi ini.",
+        "id": "berpisah",
+        "cn": "我们今天早上在机场分别。"
+      }
+    ]
+  },
+  "pamit": {
+    "word": "pamit",
+    "ipa": "/ˈpamit/",
+    "cn": "告辞",
+    "en": "to take leave",
+    "root": "pamit",
+    "forms": [
+      {
+        "form": "pamit",
+        "pos": "v/n",
+        "mean": "告辞"
+      },
+      {
+        "form": "berpamitan",
+        "pos": "v",
+        "mean": "礼节性告辞"
+      }
+    ],
+    "formsNote": "可独立使用；berpamitan 更完整",
+    "note": "pamit dulu 先告辞了（日常高频）",
+    "synonyms": [
+      "minta diri"
+    ],
+    "antonyms": [
+      "datang"
+    ],
+    "examples": [
+      {
+        "scene": "Saya pamit dulu, besok kita lanjutkan.",
+        "id": "pamit dulu",
+        "cn": "我先告辞了，明天继续。"
+      },
+      {
+        "scene": "Tamu pamit setelah jam makan malam.",
+        "id": "pamit",
+        "cn": "客人在晚餐时间后告辞。"
+      }
+    ]
+  },
+  "mengantar": {
+    "word": "mengantar",
+    "ipa": "/məŋˈantar/",
+    "cn": "送行；陪同前往",
+    "en": "to escort; see off",
+    "root": "antar",
+    "forms": [
+      {
+        "form": "antar",
+        "pos": "v",
+        "mean": "送（词根）"
+      },
+      {
+        "form": "mengantar",
+        "pos": "v",
+        "mean": "送行"
+      },
+      {
+        "form": "pengantar",
+        "pos": "n",
+        "mean": "护送者；引言"
+      }
+    ],
+    "formsNote": "meng- + antar（元音 a 前 meN- → meng-）",
+    "note": "mengantar ke bandara 送机；印尼礼节：主人应 mengantar 到门口/车",
+    "synonyms": [
+      "menyertai"
+    ],
+    "antonyms": [
+      "menjemput"
+    ],
+    "examples": [
+      {
+        "scene": "Kami mengantar tamu sampai ke mobil.",
+        "id": "mengantar",
+        "cn": "我们送客人直到车旁。"
+      },
+      {
+        "scene": "Dia mengantar saya ke bandara pagi-pagi.",
+        "id": "mengantar",
+        "cn": "他一大早送我去机场。"
+      }
+    ]
+  },
+  "tuan rumah": {
+    "word": "tuan rumah",
+    "ipa": "/ˈtuan ˈrumah/",
+    "cn": "东道主；主人",
+    "en": "host",
+    "root": "tuan + rumah",
+    "forms": [
+      {
+        "form": "tuan",
+        "pos": "n",
+        "mean": "主人；先生"
+      },
+      {
+        "form": "tuan rumah",
+        "pos": "n",
+        "mean": "东道主"
+      }
+    ],
+    "formsNote": "规范分写",
+    "note": "正式宴会/接待场合：berperan sebagai tuan rumah 担任东道主",
+    "synonyms": [
+      "tuan rumah",
+      "inang"
+    ],
+    "antonyms": [
+      "tamu"
+    ],
+    "examples": [
+      {
+        "scene": "PT BIR bertindak sebagai tuan rumah acara ini.",
+        "id": "tuan rumah",
+        "cn": "BIR公司担任本次活动东道主。"
+      },
+      {
+        "scene": "Tuan rumah menyambut tamu di pintu masuk.",
+        "id": "Tuan rumah",
+        "cn": "主人在入口处迎接客人。"
+      }
+    ]
   }
+
 };
 
 function getTopicForDate(ds) {
@@ -189304,7 +190208,7 @@ renderCalHTML = function() {
   for (let d = 1; d <= td; d++) {
     const ds = `${y}-${String(m+1).padStart(2,"0")}-${String(d).padStart(2,"0")}`;
     const data = learningHistory[ds], ist = ds === tds, hd = data && (data.vocabNew.length || data.vocabReview.length || data.translations);
-    const tinfo = getTopicForDate(ds);
+    const tinfo = getTopicForDate(ds); const cai = (typeof caCalendar!=="undefined") ? caCalendar[ds] : null;
     let dots = "";
     if (data) {
       if (data.vocabNew.length) dots += `<span class="ddot neww"></span>`;
@@ -189312,9 +190216,10 @@ renderCalHTML = function() {
       if (data.translations) dots += `<span class="ddot"></span>`;
     }
     if (tinfo) dots += `<span class="ddot" style="background:var(--accent)"></span>`;
-    h += `<div class="cal-day ${ist ? "today" : ""} ${hd || tinfo ? "has-data" : ""}" data-date="${ds}"><div class="dnum">${d}</div><div class="ddots">${dots}</div></div>`;
+    if (cai) dots += '<span class="ddot" style="background:#a78bfa"></span>';
+    h += `<div class="cal-day ${ist ? "today" : ""} ${hd || tinfo || cai ? "has-data" : ""}" data-date="${ds}"><div class="dnum">${d}</div><div class="ddots">${dots}</div></div>`;
   }
-  h += `</div><div class="cal-legend"><span><span class="ddot neww" style="display:inline-block"></span> 新词</span><span><span class="ddot rev" style="display:inline-block"></span> 复习</span><span><span class="ddot" style="display:inline-block"></span> 翻译</span><span><span class="ddot" style="display:inline-block;background:var(--accent)"></span> 话题</span><span>⬤ 今天</span></div></div>`;
+  h += `</div><div class="cal-legend"><span><span class="ddot neww" style="display:inline-block"></span> 新词</span><span><span class="ddot rev" style="display:inline-block"></span> 复习</span><span><span class="ddot" style="display:inline-block"></span> 翻译</span><span><span class="ddot" style="display:inline-block;background:var(--accent)"></span> 话题</span><span><span class="ddot" style="display:inline-block;background:#a78bfa"></span> CA进阶</span><span>⬤ 今天</span></div></div>`;
   return h;
 };
 
@@ -189324,8 +190229,8 @@ attachCalEvents = function() {
   document.querySelectorAll(".cal-day[data-date]").forEach(el => {
     el.addEventListener("click", () => {
       const ds = el.dataset.date;
-      const tinfo = getTopicForDate(ds);
-      if (tinfo || learningHistory[ds]) navigate("date", ds);
+      const tinfo = getTopicForDate(ds); const cai = (typeof caCalendar!=="undefined") ? caCalendar[ds] : null;
+      if (tinfo || cai || learningHistory[ds]) navigate("date", ds);
     });
   });
 };
@@ -189552,9 +190457,11 @@ function renderAbout(c){
 }
 
 function renderVersion(c){
-  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.44.0 / Versi</span></div>
+  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.45.0 / Versi</span></div>
     <div style="padding:16px;">
       <div style="margin-bottom:14px;padding:14px;background:rgba(34,197,94,.10);border-radius:10px;border-left:3px solid var(--success)">
+        <div style="font-size:15px;font-weight:700;color:var(--success);margin-bottom:6px">V4.45.0 (2026-10-20)</div>
+        <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">CA进阶课程首期上线(CA策略v1.1九项裁定全落实): 话题1见面Bertemu×3天(10/20-22) · 独立caData+caCalendar数据结构+独立路由ca/topic/day · 每日四块: 词汇15(BIT核心词源自C5 topic.vocab+新增入库)/词组10/万能句型12(基础3折1:进阶6:专业3)/常用表达15(基础3折1:进阶8:专业4)/词缀10(30词缀3天一轮·coef1·月度封顶5+月末评判)/每日一测15题按当日内容 · 新增22词BIT九字段入库bitVocabDB(2784→2806) · 主页CA入口+日历CA紫点+日期页CA分支(纯增量4处) · 平行新开零影响C5课程 · 部署前全量备份backup-V4.44.0-preCA2-20261020-072942.tar.gz · check_syntax PASS</div>
         <div style="font-size:15px;font-weight:700;color:var(--success);margin-bottom:6px">V4.44.0 (2026-10-19)</div>
         <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">四合一任务: ①1019笔记49词(UKBI七级评定madya-semenjana-marginal-terendah+penutur说话者等, 历史最大批) ②主页源码注释泄露修复(DOCTYPE前JS注释删除) ③生词双库同步修复V4.44.0 — showWordPopup短文点击BIT优先(vocabDB未命中+bitVocabDB命中→showBITInfo不再走在线翻译) · doTranslate翻译页加bitVocabDB分支 · renderWBList生词本同步加bitVocabDB分支 ④BIT策略v1.3新增「生词查询双库同步条款」(5入口清单+部署前检查口诀) · check_syntax PASS</div>
         <div style="font-size:15px;font-weight:700;color:var(--success);margin-bottom:6px">V4.43.4 (2026-10-18)</div>
@@ -194317,5 +195224,3001 @@ function queryMIR(){
     <iframe id="videoFrame" sandbox="allow-scripts allow-same-origin" style="width:100%;height:100%;border:0" src="about:blank" allow="autoplay"></iframe>
   </div>
 </div>
+<script>
+// ===== CA 进阶课程 v1.1 (2026-10-20) 独立数据+渲染块 =====
+// ============================================================
+// CA 进阶课程数据块（CA v1.1 · 2026-10-20）BIO 定稿 · RCO 校验通过
+// 独立数据结构 caData + caCalendar，平行于 C5，不影响任何现有课程
+// 话题1 见面 / Bertemu · 3天 · B1-B2 · coef 1（月度封顶5）
+// ============================================================
+const caData = {
+ "meet": {
+  "title": "话题1: 见面 / Bertemu",
+  "icon": "🤝",
+  "level": "B1-B2",
+  "days": 3,
+  "intro": "CA 进阶课沿用 C5 话题序列全面升级：同一话题二次行军。每日四块：词汇10-20 · 万能句型10-20(三级别配比) · 常用表达10-20(三级别配比) · 词缀10个/天(30词缀3天一轮, coef 1)",
+  "day1": {
+   "date": "2026-10-20",
+   "theme": "Salam & Pertemuan Pertama 问候与初见",
+   "vocab": [
+    {
+     "w": "berjabat tangan",
+     "cn": "握手",
+     "ipa": "/bərdʒabat ˈtaŋan/",
+     "level": "核心",
+     "note": "正式场合见面礼仪核心动作；规范分写，连字符形式亦通行"
+    },
+    {
+     "w": "pertemuan",
+     "cn": "会面；会议",
+     "ipa": "/pərtəˈmuːan/",
+     "level": "进阶",
+     "note": "per- + -an 环绕派生；rapat 偏工作会议"
+    },
+    {
+     "w": "saling",
+     "cn": "互相；彼此",
+     "ipa": "/ˈsaːliŋ/",
+     "level": "进阶",
+     "note": "置于动词前：saling mengenal 互相认识"
+    },
+    {
+     "w": "memperkenalkan",
+     "cn": "介绍（他人）",
+     "ipa": "/məmpərkəˈnalkan/",
+     "level": "进阶",
+     "note": "memper- 加强使役 + kenal"
+    },
+    {
+     "w": "perkenalan",
+     "cn": "介绍；相识",
+     "ipa": "/pərkəˈnalan/",
+     "level": "进阶",
+     "note": "名词形式；salam perkenalan 问候+介绍"
+    },
+    {
+     "w": "kesan",
+     "cn": "印象",
+     "ipa": "/kəˈsan/",
+     "level": "进阶",
+     "note": "kesan pertama 第一印象；词根标[待核实]"
+    },
+    {
+     "w": "tamu",
+     "cn": "客人；来宾",
+     "ipa": "/ˈtamu/",
+     "level": "核心",
+     "note": "tamu undangan 受邀宾客"
+    },
+    {
+     "w": "pendatang",
+     "cn": "来客；新来的人",
+     "ipa": "/pənˈdataŋ/",
+     "level": "高阶",
+     "note": "peN- 施事者 + datang 来"
+    },
+    {
+     "w": "jadwal",
+     "cn": "日程；时间表",
+     "ipa": "/ˈdʒadwal/",
+     "level": "进阶",
+     "note": "阿拉伯语借词；jadwal pertemuan 会议日程"
+    },
+    {
+     "w": "resmi",
+     "cn": "正式的",
+     "ipa": "/ˈrəsmi/",
+     "level": "进阶",
+     "note": "反义 santai/nonresmi；pertemuan resmi 正式会晤"
+    },
+    {
+     "w": "santai",
+     "cn": "轻松的；不拘礼的",
+     "ipa": "/ˈsantai/",
+     "level": "高阶",
+     "note": "口语高频；suasana santai 轻松的氛围"
+    },
+    {
+     "w": "menghadap",
+     "cn": "谒见；正式会见",
+     "ipa": "/məŋˈhadap/",
+     "level": "高阶",
+     "note": "正式用语：menghadap bupati 谒见县长"
+    },
+    {
+     "w": "berpamitan",
+     "cn": "告辞；道别",
+     "ipa": "/bərˈpamitan/",
+     "level": "进阶",
+     "note": "ber- + pamit + -an；离开前礼节"
+    },
+    {
+     "w": "menyambut",
+     "cn": "迎接；接待",
+     "ipa": "/məˈnyambut/",
+     "level": "进阶",
+     "note": "meN- + sambut；menyambut tamu 迎接客人"
+    },
+    {
+     "w": "bertemu",
+     "cn": "见面",
+     "ipa": "/bərˈtɛmu/",
+     "level": "核心",
+     "note": "C5 核心词回顾；ber- + temu"
+    }
+   ],
+   "phrases": [
+    {
+     "id": "bertemu dengan",
+     "cn": "与…见面",
+     "usage": "通用",
+     "note": "介词 dengan 引出对象"
+    },
+    {
+     "id": "berjabat tangan",
+     "cn": "握手",
+     "usage": "正式",
+     "note": "见面时或道别时均可"
+    },
+    {
+     "id": "saling mengenal",
+     "cn": "互相认识",
+     "usage": "通用",
+     "note": "saling + 动词"
+    },
+    {
+     "id": "salam perkenalan",
+     "cn": "问候兼介绍（开场套语）",
+     "usage": "正式",
+     "note": "商务开场固定套"
+    },
+    {
+     "id": "senang bertemu dengan Anda",
+     "cn": "很高兴见到您",
+     "usage": "正式/通用",
+     "note": "Anda 敬称"
+    },
+    {
+     "id": "apa kabar",
+     "cn": "你好吗",
+     "usage": "口语",
+     "note": "回应：kabar baik"
+    },
+    {
+     "id": "kabar baik",
+     "cn": "（我）很好",
+     "usage": "口语",
+     "note": "kabar=消息/近况"
+    },
+    {
+     "id": "terima kasih banyak",
+     "cn": "非常感谢",
+     "usage": "通用",
+     "note": "banyak 加强"
+    },
+    {
+     "id": "sampai jumpa",
+     "cn": "再见",
+     "usage": "通用",
+     "note": "字面：直到再见"
+    },
+    {
+     "id": "perkenalkan, nama saya",
+     "cn": "请允许我介绍，我叫…",
+     "usage": "开场",
+     "note": "perkenalkan 为祈使式"
+    }
+   ],
+   "patterns": [
+    {
+     "cat": "问候骨架",
+     "level": "basic",
+     "formula": "Selamat [pagi/siang/sore/malam]",
+     "structure": "[时段]好",
+     "grammar": "selamat+时段名词",
+     "scene": "任何见面开场",
+     "ex": [
+      "Selamat pagi, Pak!（早上好，先生！）",
+      "Selamat malam, Bu Direktur.（晚上好，总监女士。）"
+     ],
+     "slots": [
+      "pagi",
+      "siang",
+      "sore",
+      "malam"
+     ],
+     "reuse": 5
+    },
+    {
+     "cat": "问候应答",
+     "level": "basic",
+     "formula": "Apa kabar [Anda]? – Kabar [baik/baik sekali]",
+     "structure": "—好吗？—很好",
+     "grammar": "apa 引导疑问；kabar 近况",
+     "scene": "寒暄",
+     "ex": [
+      "Apa kabar, Bapak? – Kabar baik.（您好吗？——很好。）",
+      "Apa kabar Anda hari ini? – Kabar baik sekali.（您今天好吗？——非常好。）"
+     ],
+     "slots": [
+      "Anda",
+      "kamu",
+      "baik",
+      "lumayan"
+     ],
+     "reuse": 4
+    },
+    {
+     "cat": "自我介绍",
+     "level": "basic",
+     "formula": "Perkenalkan, nama saya [Nama]. Saya dari [Asal].",
+     "structure": "请允许我介绍，我叫…，来自…",
+     "grammar": "perkenalkan 祈使；saya 我",
+     "scene": "初次见面",
+     "ex": [
+      "Perkenalkan, nama saya Li Ming. Saya dari Tiongkok.（请允许我介绍，我叫李明，来自中国。）",
+      "Perkenalkan, nama saya Sari. Saya dari Jakarta.（我叫萨丽，来自雅加达。）"
+     ],
+     "slots": [
+      "Li Ming",
+      "Tiongkok",
+      "Sari"
+     ],
+     "reuse": 6
+    },
+    {
+     "cat": "欣喜相逢",
+     "level": "adv",
+     "formula": "Senang (sekali/akhirnya) bisa [V] dengan [Anda/N]",
+     "structure": "很高兴（终于）能与…[动词]",
+     "grammar": "akhirnya 表'终于'；bisa 能",
+     "scene": "久别或期待后的会面",
+     "ex": [
+      "Senang akhirnya bisa bertemu dengan Anda.（很高兴终于能与您见面。）",
+      "Senang sekali bisa berjumpa dengan rekan-rekan baru.（非常高兴能见到新同事。）"
+     ],
+     "slots": [
+      "bertemu",
+      "berjumpa",
+      "Anda",
+      "rekan baru"
+     ],
+     "reuse": 7
+    },
+    {
+     "cat": "久别重逢",
+     "level": "adv",
+     "formula": "Sudah lama tidak [V]. – Iya, terakhir [waktu].",
+     "structure": "好久没…了。——是啊，上次还是…",
+     "grammar": "sudah lama 很久；terakhir 上次",
+     "scene": "熟人重逢",
+     "ex": [
+      "Sudah lama tidak jumpa! – Iya, terakhir di Jakarta.（好久没见了！——是啊，上次还是在雅加达。）",
+      "Sudah lama tidak bertemu. – Iya, terakhir dua tahun lalu.（好久没见了。——是啊，上次还是两年前。）"
+     ],
+     "slots": [
+      "jumpa",
+      "ketemu",
+      "dua tahun lalu"
+     ],
+     "reuse": 4
+    },
+    {
+     "cat": "介绍他人",
+     "level": "adv",
+     "formula": "[Kenalkan], ini [Nama], [jabatan/dari X].",
+     "structure": "介绍，这位是…，（职务/来自…）",
+     "grammar": "ini 这位；同位语",
+     "scene": "介绍第三方",
+     "ex": [
+      "Kenalkan, ini Bapak Anton, manajer pabrik kami.（介绍一下，这位是安东先生，我们工厂经理。）",
+      "Kenalkan, ini Ibu Ratna, dari kantor pusat.（介绍一下，这位是拉特娜女士，来自总部。）"
+     ],
+     "slots": [
+      "Bapak Anton",
+      "manajer",
+      "direktur"
+     ],
+     "reuse": 6
+    },
+    {
+     "cat": "提议转场",
+     "level": "adv",
+     "formula": "Mari kita [V] ke [tempat].",
+     "structure": "我们一起去…吧",
+     "grammar": "mari 提议祈使",
+     "scene": "会面后转场",
+     "ex": [
+      "Mari kita masuk ke ruang rapat.（我们进会议室吧。）",
+      "Mari kita duduk di ruang tamu.（我们去客厅坐吧。）"
+     ],
+     "slots": [
+      "masuk",
+      "duduk",
+      "ruang rapat",
+      "ruang tamu"
+     ],
+     "reuse": 8
+    },
+    {
+     "cat": "寒暄问经历",
+     "level": "adv",
+     "formula": "Apakah sudah pernah [V] ke [tempat]?",
+     "structure": "（您）去过…吗？",
+     "grammar": "apakah 正式疑问；pernah 曾经",
+     "scene": "破冰寒暄",
+     "ex": [
+      "Apakah Bapak sudah pernah ke Morowali?（先生去过莫罗瓦利吗？）",
+      "Apakah Bapak sudah pernah ke kawasan industri ini?（先生来过这个工业园区吗？）"
+     ],
+     "slots": [
+      "ke Morowali",
+      "ke pabrik kami"
+     ],
+     "reuse": 5
+    },
+    {
+     "cat": "表达希望",
+     "level": "adv",
+     "formula": "Saya harap [klausa].",
+     "structure": "我希望…",
+     "grammar": "harap 后接从句",
+     "scene": "会面结尾",
+     "ex": [
+      "Saya harap kita bisa bekerja sama dengan baik.（希望我们能好好合作。）",
+      "Saya harap pertemuan ini berjalan lancar.（我希望本次会面顺利进行。）"
+     ],
+     "slots": [
+      "kita bisa bekerja sama",
+      "pertemuan ini lancar"
+     ],
+     "reuse": 7
+    },
+    {
+     "cat": "正式开场",
+     "level": "pro",
+     "formula": "Dengan hormat, perkenalkan kami dari [perusahaan], yang bergerak di bidang [bidang].",
+     "structure": "谨向贵方介绍，我们来自…，从事…领域",
+     "grammar": "dengan hormat 谨；yang 定语从句",
+     "scene": "正式商务开场",
+     "ex": [
+      "Dengan hormat, perkenalkan kami dari PT BIR Nickel, yang bergerak di bidang pengolahan nikel.（谨介绍，我们来自BIR镍业，从事镍加工领域。）",
+      "Dengan hormat, perkenalkan kami dari universitas mitra, yang bergerak di bidang riset nikel.（谨介绍，我们来自合作大学，从事镍研究领域。）"
+     ],
+     "slots": [
+      "PT BIR Nickel",
+      "pengolahan nikel"
+     ],
+     "reuse": 8
+    },
+    {
+     "cat": "礼貌请求许可",
+     "level": "pro",
+     "formula": "[Kami] mohon izin untuk [V].",
+     "structure": "（我们）请求允许…",
+     "grammar": "mohon izin 正式请求",
+     "scene": "正式场合",
+     "ex": [
+      "Kami mohon izin untuk memperkenalkan tim kami.（请允许我们介绍团队。）",
+      "Saya mohon izin bertanya.（请允许我提问。）"
+     ],
+     "slots": [
+      "memperkenalkan tim",
+      "bertanya",
+      "foto bersama"
+     ],
+     "reuse": 9
+    },
+    {
+     "cat": "正式致谢",
+     "level": "pro",
+     "formula": "Terima kasih atas [N]-nya; senang bisa [V] hari ini.",
+     "structure": "感谢…；很高兴今天能…",
+     "grammar": "atas…-nya 正式致谢结构",
+     "scene": "会谈致谢",
+     "ex": [
+      "Terima kasih atas kesediaannya; senang bisa bertemu hari ini.（谢谢您的赏光，很高兴今天能见面。）",
+      "Terima kasih atas perhatiannya; senang bisa berdiskusi hari ini.（感谢您的关注，很高兴今天能讨论。）"
+     ],
+     "slots": [
+      "kesediaan",
+      "waktunya",
+      "bertemu",
+      "berdiskusi"
+     ],
+     "reuse": 8
+    }
+   ],
+   "expressions": [
+    {
+     "level": "basic",
+     "scene": "问候",
+     "id": "Selamat pagi!",
+     "cn": "早上好！",
+     "note": "通用"
+    },
+    {
+     "level": "basic",
+     "scene": "问候",
+     "id": "Halo!",
+     "cn": "你好！",
+     "note": "非正式"
+    },
+    {
+     "level": "basic",
+     "scene": "寒暄",
+     "id": "Apa kabar?",
+     "cn": "你好吗？",
+     "note": "回应 kabar baik"
+    },
+    {
+     "level": "adv",
+     "scene": "职场问候",
+     "id": "Selamat pagi, Bapak/Ibu.",
+     "cn": "先生/女士，早上好。",
+     "note": "正式敬称"
+    },
+    {
+     "level": "adv",
+     "scene": "见面",
+     "id": "Senang bertemu Anda.",
+     "cn": "很高兴见到您。",
+     "note": "正式/通用"
+    },
+    {
+     "level": "adv",
+     "scene": "重逢",
+     "id": "Lama tidak jumpa!",
+     "cn": "好久不见！",
+     "note": "熟人"
+    },
+    {
+     "level": "adv",
+     "scene": "寒暄",
+     "id": "Bagaimana kabar keluarga?",
+     "cn": "家人好吗？",
+     "note": "关心式寒暄"
+    },
+    {
+     "level": "adv",
+     "scene": "接待",
+     "id": "Silakan masuk.",
+     "cn": "请进。",
+     "note": "接待宾客"
+    },
+    {
+     "level": "adv",
+     "scene": "接待",
+     "id": "Silakan duduk.",
+     "cn": "请坐。",
+     "note": "接待宾客"
+    },
+    {
+     "level": "adv",
+     "scene": "服务",
+     "id": "Ada yang bisa saya bantu?",
+     "cn": "有什么可以帮您？",
+     "note": "服务场景"
+    },
+    {
+     "level": "adv",
+     "scene": "寒暄",
+     "id": "Silakan, jangan sungkan.",
+     "cn": "请随意，别客气。",
+     "note": "sungkan=拘谨/见外"
+    },
+    {
+     "level": "pro",
+     "scene": "商务接待",
+     "id": "Selamat datang di kawasan industri kami. Kami sangat terhormat menyambut Anda.",
+     "cn": "欢迎来到我们园区。我们非常荣幸迎接您。",
+     "note": "高规格接待"
+    },
+    {
+     "level": "pro",
+     "scene": "致歉",
+     "id": "Mohon maaf atas keterlambatannya.",
+     "cn": "对迟到深表歉意。",
+     "note": "正式致歉"
+    },
+    {
+     "level": "pro",
+     "scene": "致谢",
+     "id": "Terima kasih telah meluangkan waktu.",
+     "cn": "感谢您拨冗。",
+     "note": "正式致谢"
+    },
+    {
+     "level": "pro",
+     "scene": "祝颂",
+     "id": "Semoga pertemuan ini bermanfaat.",
+     "cn": "愿本次会面富有成效。",
+     "note": "正式会面结尾"
+    }
+   ],
+   "affixes": [
+    {
+     "no": 1,
+     "affix": "ber-",
+     "type": "前缀",
+     "func": "构成动词：拥有/使用/进行活动",
+     "rule": "直接加词根；r音前用 be-",
+     "derivs": [
+      {
+       "root": "temu",
+       "der": "bertemu",
+       "zh": "见面"
+      },
+      {
+       "root": "kerja",
+       "der": "bekerja",
+       "zh": "工作"
+      },
+      {
+       "root": "jabat tangan",
+       "der": "berjabat tangan",
+       "zh": "握手"
+      }
+     ],
+     "examples": [
+      {
+       "id": "Kita bertemu di kantor pagi ini.",
+       "cn": "我们今天早上在办公室见面。"
+      },
+      {
+       "id": "Mereka berjabat tangan di depan ruang rapat.",
+       "cn": "他们在会议室前握手。"
+      }
+     ],
+     "link": "玫瑰图 No.01"
+    },
+    {
+     "no": 2,
+     "affix": "be-",
+     "type": "前缀",
+     "func": "ber- 在 r 音前的变体",
+     "rule": "词根以 r 开头时用 be-",
+     "derivs": [
+      {
+       "root": "renang",
+       "der": "berenang",
+       "zh": "游泳"
+      },
+      {
+       "root": "kerja",
+       "der": "bekerja",
+       "zh": "工作（r音前亦作 be-）"
+      }
+     ],
+     "examples": [
+      {
+       "id": "Hobi saya berenang setiap pagi.",
+       "cn": "我的爱好是每天早游泳。"
+      },
+      {
+       "id": "Dia bekerja di sektor pertambangan.",
+       "cn": "他在矿业部门工作。"
+      }
+     ],
+     "link": "玫瑰图 No.02"
+    },
+    {
+     "no": 3,
+     "affix": "meN-",
+     "type": "前缀",
+     "func": "构成主动及物动词",
+     "rule": "mem-(b/p/f/v) men-(d/t/c/j/z) meny-(s) meng-(元音/g/h/k) menge-(单音节) me-(其它)",
+     "derivs": [
+      {
+       "root": "sambut",
+       "der": "menyambut",
+       "zh": "迎接"
+      },
+      {
+       "root": "kenal",
+       "der": "mengenal",
+       "zh": "认识"
+      },
+      {
+       "root": "panggil",
+       "der": "memanggil",
+       "zh": "叫唤"
+      }
+     ],
+     "examples": [
+      {
+       "id": "Kami menyambut tamu di pintu utama.",
+       "cn": "我们在正门迎接客人。"
+      },
+      {
+       "id": "Dia memanggil nama saya dengan ramah.",
+       "cn": "他亲切地叫我的名字。"
+      }
+     ],
+     "link": "玫瑰图 No.03"
+    },
+    {
+     "no": 4,
+     "affix": "di-",
+     "type": "前缀",
+     "func": "构成被动语态",
+     "rule": "无变形；可接 -kan/-i",
+     "derivs": [
+      {
+       "root": "sambut",
+       "der": "disambut",
+       "zh": "被迎接"
+      },
+      {
+       "root": "terima",
+       "der": "diterima",
+       "zh": "被接收/接见"
+      },
+      {
+       "root": "jadwalkan",
+       "der": "dijadwalkan",
+       "zh": "被安排日程"
+      }
+     ],
+     "examples": [
+      {
+       "id": "Tamu disambut dengan hangat.",
+       "cn": "客人受到热烈欢迎。"
+      },
+      {
+       "id": "Pertemuan dijadwalkan pukul sembilan.",
+       "cn": "会议安排在九点。"
+      }
+     ],
+     "link": "玫瑰图 No.04"
+    },
+    {
+     "no": 5,
+     "affix": "ter-",
+     "type": "前缀",
+     "func": "无意被/最/完成态",
+     "rule": "无变形",
+     "derivs": [
+      {
+       "root": "tulis",
+       "der": "tertulis",
+       "zh": "写着/已写上"
+      },
+      {
+       "root": "kenal",
+       "der": "terkenal",
+       "zh": "著名的"
+      },
+      {
+       "root": "lupa",
+       "der": "terlupakan",
+       "zh": "被遗忘的"
+      }
+     ],
+     "examples": [
+      {
+       "id": "Namanya tertulis di daftar tamu.",
+       "cn": "他的名字写在来宾名单上。"
+      },
+      {
+       "id": "Dia terkenal ramah di perusahaan.",
+       "cn": "他在公司以友善著称。"
+      }
+     ],
+     "link": "玫瑰图 No.05"
+    },
+    {
+     "no": 6,
+     "affix": "peN-",
+     "type": "前缀",
+     "func": "施动者/工具/职业",
+     "rule": "变形同 meN-：pem- pen- peny- peng- penge- pe-",
+     "derivs": [
+      {
+       "root": "datang",
+       "der": "pendatang",
+       "zh": "来客/新来者"
+      },
+      {
+       "root": "sambut",
+       "der": "penyambut",
+       "zh": "迎接者"
+      },
+      {
+       "root": "temu",
+       "der": "penemu",
+       "zh": "发现者/发明人"
+      }
+     ],
+     "examples": [
+      {
+       "id": "Pendatang baru disambut dengan antusias.",
+       "cn": "新来者受到热烈欢迎。"
+      }
+     ],
+     "link": "玫瑰图 No.06"
+    },
+    {
+     "no": 7,
+     "affix": "per-",
+     "type": "前缀",
+     "func": "使…/使成为（使役）",
+     "rule": "加于形容词/名词前",
+     "derivs": [
+      {
+       "root": "kenal",
+       "der": "perkenalkan(→memperkenalkan)",
+       "zh": "介绍"
+      },
+      {
+       "root": "besar",
+       "der": "perbesar(→memperbesar)",
+       "zh": "扩大"
+      }
+     ],
+     "examples": [
+      {
+       "id": "Izinkan saya memperkenalkan rekan saya.",
+       "cn": "请允许我介绍我的同事。"
+      }
+     ],
+     "link": "玫瑰图 No.07"
+    },
+    {
+     "no": 8,
+     "affix": "memper-/diper-",
+     "type": "前缀",
+     "func": "加强使役（主动/被动）",
+     "rule": "memper-+词根 / diper-+词根",
+     "derivs": [
+      {
+       "root": "kenal",
+       "der": "memperkenalkan / diperkenalkan",
+       "zh": "介绍/被介绍"
+      },
+      {
+       "root": "kenalan",
+       "der": "memperkenalkan diri",
+       "zh": "自我介绍"
+      }
+     ],
+     "examples": [
+      {
+       "id": "Dia memperkenalkan diri dengan percaya diri.",
+       "cn": "他自信地作了自我介绍。"
+      }
+     ],
+     "link": "玫瑰图 No.08"
+    },
+    {
+     "no": 9,
+     "affix": "se-",
+     "type": "前缀",
+     "func": "一/整/相同",
+     "rule": "无变形直接加",
+     "derivs": [
+      {
+       "root": "hari",
+       "der": "sehari",
+       "zh": "一天/一整天"
+      },
+      {
+       "root": "sama",
+       "der": "sesama",
+       "zh": "彼此/同为"
+      }
+     ],
+     "examples": [
+      {
+       "id": "Kami bekerja seharian kemarin.",
+       "cn": "昨天我们工作了一整天。"
+      },
+      {
+       "id": "Kita sesama rekan kerja.",
+       "cn": "我们彼此是同事。"
+      }
+     ],
+     "link": "玫瑰图 No.09"
+    },
+    {
+     "no": 10,
+     "affix": "ke-",
+     "type": "前缀",
+     "func": "序数词'第…'",
+     "rule": "ke-+数词",
+     "derivs": [
+      {
+       "root": "satu",
+       "der": "kesatu",
+       "zh": "第一/首先"
+      },
+      {
+       "root": "dua",
+       "der": "kedua",
+       "zh": "第二"
+      }
+     ],
+     "examples": [
+      {
+       "id": "Pertemuan kesatu berjalan lancar.",
+       "cn": "第一次会面进行顺利。"
+      }
+     ],
+     "link": "玫瑰图 No.10"
+    }
+   ],
+   "quiz": [
+    {
+     "q": "berjabat tangan 的意思是？",
+     "opts": [
+      "拥抱",
+      "握手",
+      "鞠躬",
+      "挥手"
+     ],
+     "a": 1,
+     "exp": "berjabat tangan = 握手，正式场合见面/道别礼仪。"
+    },
+    {
+     "q": "pertemuan 的构词是？",
+     "opts": [
+      "peN-+temu",
+      "per-+temu+-an",
+      "meN-+temu",
+      "ke-+temu"
+     ],
+     "a": 1,
+     "exp": "per-+-an 环绕派生：temu(见)→pertemuan(会面/会议)。"
+    },
+    {
+     "q": "saling 在句中的位置？",
+     "opts": [
+      "动词前",
+      "动词后",
+      "句尾",
+      "名词后"
+     ],
+     "a": 0,
+     "exp": "saling 置于动词前：saling mengenal 互相认识。"
+    },
+    {
+     "q": "正式开场 'Dengan hormat, perkenalkan kami dari…' 中 dengan hormat 意为？",
+     "opts": [
+      "顺便",
+      "谨/郑重地",
+      "随意地",
+      "很遗憾"
+     ],
+     "a": 1,
+     "exp": "dengan hormat = 谨/郑重，正式开场套语。"
+    },
+    {
+     "q": "Terima kasih atas kesediaannya 中 atas…-nya 结构表示？",
+     "opts": [
+      "所属",
+      "正式致谢对象",
+      "否定",
+      "将来时"
+     ],
+     "a": 1,
+     "exp": "atas+N-nya 是正式致谢结构：感谢……。"
+    },
+    {
+     "q": "memperkenalkan 的词根是？",
+     "opts": [
+      "perkenal",
+      "kenal",
+      "kenalan",
+      "perkenalan"
+     ],
+     "a": 1,
+     "exp": "memper-+kenal(认识)+-kan → memperkenalkan 介绍。"
+    },
+    {
+     "q": "'好久不见'对应哪个句型骨架？",
+     "opts": [
+      "Sudah lama tidak [V]",
+      "Mari kita [V]",
+      "Saya harap [klausa]",
+      "Apakah pernah [V]"
+     ],
+     "a": 0,
+     "exp": "Sudah lama tidak jumpa! 久别重逢寒暄。"
+    },
+    {
+     "q": "tamu undangan 中 undangan 的意思是？",
+     "opts": [
+      "邀请函/受邀的",
+      "护照",
+      "行李",
+      "司机"
+     ],
+     "a": 0,
+     "exp": "undangan=邀请；tamu undangan=受邀宾客。"
+    },
+    {
+     "q": "menghadap 的语体是？",
+     "opts": [
+      "口语随意",
+      "正式/官方",
+      "仅方言",
+      "古旧不用"
+     ],
+     "a": 1,
+     "exp": "menghadap=谒见，正式用语，如 menghadap bupati。"
+    },
+    {
+     "q": "berpamitan 的构成是？",
+     "opts": [
+      "ber-+pamit+-an",
+      "meN-+pamit",
+      "di-+pamit",
+      "ke-+pamit"
+     ],
+     "a": 0,
+     "exp": "ber-pamit-an：告辞（含礼节性 -an）。"
+    },
+    {
+     "q": "例句 'Tamu disambut dengan hangat.' 的语态？",
+     "opts": [
+      "主动",
+      "被动 di-",
+      "完成 ter-",
+      "命令"
+     ],
+     "a": 1,
+     "exp": "di- 被动：客人被热烈欢迎。"
+    },
+    {
+     "q": "peN- 缀 pendatang 中词根是？",
+     "opts": [
+      "pendar",
+      "datang",
+      "tangi",
+      "penda"
+     ],
+     "a": 1,
+     "exp": "peN-+datang(来)→pendatang 来客/新来者。"
+    },
+    {
+     "q": "选择正确表达：'我们进会议室吧'",
+     "opts": [
+      "Mari kita masuk ke ruang rapat",
+      "Kita masuk ruang rapat sudah",
+      "Masuklah ruang rapat mari",
+      "Ruang rapat mari kita"
+     ],
+     "a": 0,
+     "exp": "Mari kita [V] ke [tempat] 提议转场句型。"
+    },
+    {
+     "q": "kesan pertama 意为？",
+     "opts": [
+      "第一印象",
+      "最后通牒",
+      "常见问题",
+      "会议记录"
+     ],
+     "a": 0,
+     "exp": "kesan=印象；pertama=第一。"
+    },
+    {
+     "q": "以下哪个是正式敬称的正确使用？",
+     "opts": [
+      "Apa kabar, kamu?（对官员）",
+      "Selamat pagi, Bapak Menteri.",
+      "Halo, lo!",
+      "Eh, dengar!"
+     ],
+     "a": 1,
+     "exp": "对官员用 Bapak/Ibu+职衔；kamu 偏随意。"
+    }
+   ]
+  },
+  "day2": {
+   "date": "2026-10-21",
+   "theme": "Saling Mengenal 相互认识与深入交流",
+   "vocab": [
+    {
+     "w": "menyapa",
+     "cn": "招呼；称呼",
+     "ipa": "/məˈnyapa/",
+     "level": "进阶",
+     "note": "meN-+sapa；menyapa dengan ramah 亲切打招呼"
+    },
+    {
+     "w": "sapaan",
+     "cn": "称呼；问候语",
+     "ipa": "/saˈpaːan/",
+     "level": "进阶",
+     "note": "sapa+-an 名词化"
+    },
+    {
+     "w": "panggilan",
+     "cn": "称呼；呼叫",
+     "ipa": "/paŋˈgilan/",
+     "level": "进阶",
+     "note": "panggil+-an；panggilan saya 'Bli' 对我的称呼"
+    },
+    {
+     "w": "akrab",
+     "cn": "亲密的；熟络的",
+     "ipa": "/ˈakrab/",
+     "level": "进阶",
+     "note": "反义 asing/dingin"
+    },
+    {
+     "w": "keakraban",
+     "cn": "亲密；熟络",
+     "ipa": "/kəakˈraban/",
+     "level": "高阶",
+     "note": "ke-akrab-an 环绕派生"
+    },
+    {
+     "w": "rekan",
+     "cn": "同事；伙伴",
+     "ipa": "/rəˈkan/",
+     "level": "核心",
+     "note": "rekan kerja 同事；rekan bisnis 商业伙伴"
+    },
+    {
+     "w": "kolega",
+     "cn": "同事（正式）",
+     "ipa": "/koˈlɛga/",
+     "level": "高阶",
+     "note": "荷兰语借词；正式场合"
+    },
+    {
+     "w": "mitra",
+     "cn": "合作伙伴",
+     "ipa": "/ˈmitra/",
+     "level": "进阶",
+     "note": "mitra bisnis 商业伙伴；mitra kerja sama"
+    },
+    {
+     "w": "asal",
+     "cn": "来历；籍贯",
+     "ipa": "/ˈasal/",
+     "level": "核心",
+     "note": "berasal dari 来自（正式）"
+    },
+    {
+     "w": "pekerjaan",
+     "cn": "职业；工作",
+     "ipa": "/pəkərˈdʒaan/",
+     "level": "核心",
+     "note": "kerja→peN-an；Apa pekerjaan Anda? 您做什么工作"
+    },
+    {
+     "w": "jabatan",
+     "cn": "职位；职务",
+     "ipa": "/dʒaˈbatan/",
+     "level": "进阶",
+     "note": "jabatan tinggi 高职"
+    },
+    {
+     "w": "bidang",
+     "cn": "领域；方面",
+     "ipa": "/ˈbidaŋ/",
+     "level": "进阶",
+     "note": "di bidang tambang 在矿业领域"
+    },
+    {
+     "w": "pengalaman",
+     "cn": "经验；经历",
+     "ipa": "/pəŋˈalaman/",
+     "level": "进阶",
+     "note": "alam→peN-an；pengalaman kerja 工作经验"
+    },
+    {
+     "w": "keahlian",
+     "cn": "专长；技能",
+     "ipa": "/kəahˈlian/",
+     "level": "高阶",
+     "note": "ahli(专家)→ke-an"
+    },
+    {
+     "w": "berbincang",
+     "cn": "交谈；叙谈",
+     "ipa": "/bərˈbintʃaŋ/",
+     "level": "进阶",
+     "note": "ber-+bincang；berbincang-bincang 闲聊"
+    }
+   ],
+   "phrases": [
+    {
+     "id": "saling mengenal",
+     "cn": "互相认识",
+     "usage": "通用",
+     "note": "saling+动词"
+    },
+    {
+     "id": "rekan kerja",
+     "cn": "同事",
+     "usage": "通用",
+     "note": "= kolega（正式）"
+    },
+    {
+     "id": "bertukar kartu nama",
+     "cn": "交换名片",
+     "usage": "商务",
+     "note": "bertukar 交换（ber-）"
+    },
+    {
+     "id": "berasal dari",
+     "cn": "来自（正式）",
+     "usage": "通用",
+     "note": "ber-asal 源自动词化"
+    },
+    {
+     "id": "bekerja di bidang",
+     "cn": "从事…领域工作",
+     "usage": "通用",
+     "note": "bidang+领域名词"
+    },
+    {
+     "id": "berbincang-bincang",
+     "cn": "闲聊；交谈",
+     "usage": "口语",
+     "note": "重叠式表随意"
+    },
+    {
+     "id": "merasa akrab",
+     "cn": "感到亲切",
+     "usage": "通用",
+     "note": "merasa 感到"
+    },
+    {
+     "id": "menyapa dengan ramah",
+     "cn": "亲切地打招呼",
+     "usage": "通用",
+     "note": "ramah 亲切"
+    },
+    {
+     "id": "memperkenalkan diri",
+     "cn": "自我介绍",
+     "usage": "正式",
+     "note": "diri 自己"
+    },
+    {
+     "id": "menjalin hubungan",
+     "cn": "建立关系",
+     "usage": "正式",
+     "note": "menjalin 编织/建立"
+    }
+   ],
+   "patterns": [
+    {
+     "cat": "询问姓名",
+     "level": "basic",
+     "formula": "Siapa nama [Anda/kamu]? – Nama saya [N].",
+     "structure": "—您叫什么名字？—我叫…",
+     "grammar": "siapa 谁；nama 名字",
+     "scene": "初次认识",
+     "ex": [
+      "Siapa nama Anda? – Nama saya Budi.（您叫什么名字？——我叫布迪。）",
+      "Siapa nama kamu? – Nama saya Ani.（你叫什么名字？——我叫阿妮。）"
+     ],
+     "slots": [
+      "Budi",
+      "Ani",
+      "Anda"
+     ],
+     "reuse": 6
+    },
+    {
+     "cat": "询问籍贯",
+     "level": "basic",
+     "formula": "Anda berasal dari mana? – Saya dari [tempat].",
+     "structure": "—您是哪里人？—我来自…",
+     "grammar": "mana 哪里；dari 从",
+     "scene": "认识破冰",
+     "ex": [
+      "Anda berasal dari mana? – Saya dari Tiongkok.（您是哪里人？——我来自中国。）",
+      "Anda berasal dari mana? – Saya dari Shanghai.（您是哪里人？——我来自上海。）"
+     ],
+     "slots": [
+      "Tiongkok",
+      "Jakarta",
+      "Sulawesi"
+     ],
+     "reuse": 5
+    },
+    {
+     "cat": "询问职业",
+     "level": "basic",
+     "formula": "Apa [pekerjaan/jabatan] Anda? – Saya [jabatan] di [perusahaan].",
+     "structure": "—您做什么工作？—我是…（公司）的…",
+     "grammar": "apa 什么；di+地点",
+     "scene": "认识破冰",
+     "ex": [
+      "Apa pekerjaan Anda? – Saya insinyur di PT BIR.（您做什么工作？——我是BIR公司的工程师。）",
+      "Apa jabatan Anda? – Saya direktur operasional di PT BIR.（您的职务是什么？——我是BIR公司的运营总监。）"
+     ],
+     "slots": [
+      "insinyur",
+      "manajer",
+      "PT BIR"
+     ],
+     "reuse": 6
+    },
+    {
+     "cat": "定语从句",
+     "level": "adv",
+     "formula": "Saya [N] yang [keterangan].",
+     "structure": "我是…的（人）",
+     "grammar": "yang 关系代词，必考",
+     "scene": "介绍自己/他人",
+     "ex": [
+      "Saya orang yang bekerja di bidang tambang.（我是从事矿业的人。）",
+      "Ini rekan yang akan mendampingi Anda.（这是将陪同您的同事。）"
+     ],
+     "slots": [
+      "orang",
+      "rekan",
+      "bekerja di bidang tambang"
+     ],
+     "reuse": 9
+    },
+    {
+     "cat": "比较级",
+     "level": "adv",
+     "formula": "[N1] lebih [Adj] daripada [N2].",
+     "structure": "…比…更…",
+     "grammar": "lebih…daripada 比较",
+     "scene": "比较评价",
+     "ex": [
+      "Rekan baru lebih ramah daripada yang lama.（新同事比以前的更友善。）",
+      "Pengalaman dia lebih banyak daripada saya.（他的经验比我多。）"
+     ],
+     "slots": [
+      "ramah",
+      "pengalaman",
+      "profesional"
+     ],
+     "reuse": 7
+    },
+    {
+     "cat": "时长表达",
+     "level": "adv",
+     "formula": "Saya sudah [V] selama [durasi].",
+     "structure": "我已经…了（多长时间）",
+     "grammar": "selama+时段；sudah 完成",
+     "scene": "谈经历",
+     "ex": [
+      "Saya sudah bekerja di sini selama tiga tahun.（我已经在这儿工作三年了。）",
+      "Saya sudah tinggal di Morowali selama dua tahun.（我在莫罗瓦利住了两年。）"
+     ],
+     "slots": [
+      "tiga tahun",
+      "lima bulan"
+     ],
+     "reuse": 7
+    },
+    {
+     "cat": "礼貌探问",
+     "level": "adv",
+     "formula": "Boleh saya tahu, [klausa]?",
+     "structure": "能告诉我…吗？",
+     "grammar": "boleh 许可；逗号后接问句",
+     "scene": "礼貌询问",
+     "ex": [
+      "Boleh saya tahu, di mana Anda bekerja?（能告诉我您在哪里工作吗？）",
+      "Boleh saya tahu, apa jabatan Anda?（能告诉我您的职位吗？）"
+     ],
+     "slots": [
+      "di mana Anda bekerja",
+      "apa jabatan Anda"
+     ],
+     "reuse": 8
+    },
+    {
+     "cat": "条件假设",
+     "level": "adv",
+     "formula": "Kalau [kondisi], saya akan [aksi].",
+     "structure": "如果…，我就…",
+     "grammar": "kalau 如果；akan 将",
+     "scene": "假设交流",
+     "ex": [
+      "Kalau ada waktu, saya akan berkunjung ke pabrik Anda.（如果有时间，我会去参观你们的工厂。）",
+      "Kalau cuaca baik, kami akan mengunjungi tambang.（如果天气好，我们就去矿区看看。）"
+     ],
+     "slots": [
+      "ada waktu",
+      "berkunjung ke pabrik Anda"
+     ],
+     "reuse": 7
+    },
+    {
+     "cat": "新近动作",
+     "level": "adv",
+     "formula": "Kami baru saja [V]; belum sempat [V2].",
+     "structure": "我们刚刚…，还没来得及…",
+     "grammar": "baru saja 刚刚；sempat 来得及",
+     "scene": "解释近况",
+     "ex": [
+      "Kami baru saja tiba; belum sempat istirahat.（我们刚到，还没来得及休息。）",
+      "Kami baru saja selesai rapat; belum sempat makan siang.（我们刚开完会，还没来得及吃午饭。）"
+     ],
+     "slots": [
+      "tiba",
+      "istirahat",
+      "makan siang"
+     ],
+     "reuse": 5
+    },
+    {
+     "cat": "正式引见",
+     "level": "pro",
+     "formula": "[Nama], izinkan saya memperkenalkan [Nama2], [jabatan] kami.",
+     "structure": "…，请允许我介绍我们的一…",
+     "grammar": "izinkan 请允许（izin 名词）",
+     "scene": "正式引见",
+     "ex": [
+      "Pak Direktur, izinkan saya memperkenalkan Ibu Sari, manajer HR kami.（总监先生，请允许我介绍我们的人力经理萨丽女士。）",
+      "Bu Sari, izinkan saya memperkenalkan Pak Budi, kolega saya dari Jakarta.（萨丽女士，请允许我介绍布迪先生，我雅加达的同事。）"
+     ],
+     "slots": [
+      "Ibu Sari",
+      "manajer HR"
+     ],
+     "reuse": 9
+    },
+    {
+     "cat": "机构介绍",
+     "level": "pro",
+     "formula": "Perkenalkan kami dari [instansi], yang bertugas di bidang [bidang].",
+     "structure": "请允许介绍我们来自…，负责…领域",
+     "grammar": "yang 从句；bertugas 负责",
+     "scene": "正式场合",
+     "ex": [
+      "Perkenalkan kami dari PT BIR, yang bertugas di bidang pengolahan nikel.（我们来自BIR公司，负责镍加工领域。）",
+      "Perkenalkan kami dari dinas pariwisata, yang bertugas di bidang promosi.（请允许介绍，我们来自旅游局，负责推广领域。）"
+     ],
+     "slots": [
+      "PT BIR",
+      "pengolahan nikel"
+     ],
+     "reuse": 8
+    },
+    {
+     "cat": "渐进关系",
+     "level": "pro",
+     "formula": "Semakin [Adj1], semakin [Adj2].",
+     "structure": "越…，越…",
+     "grammar": "semakin 越",
+     "scene": "正式评价",
+     "ex": [
+      "Semakin akrab, semakin nyaman bekerja sama.（越熟络，合作越愉快。）",
+      "Semakin sering berlatih, semakin lancar bahasanya.（越常练习，语言越流利。）"
+     ],
+     "slots": [
+      "akrab",
+      "nyaman"
+     ],
+     "reuse": 6
+    }
+   ],
+   "expressions": [
+    {
+     "level": "basic",
+     "scene": "询问",
+     "id": "Siapa nama Anda?",
+     "cn": "您叫什么名字？",
+     "note": "亦可用 Boleh saya tahu…更礼貌"
+    },
+    {
+     "level": "basic",
+     "scene": "询问",
+     "id": "Anda dari mana?",
+     "cn": "您是哪里人？",
+     "note": "口语简洁式"
+    },
+    {
+     "level": "basic",
+     "scene": "相识",
+     "id": "Senang berkenalan dengan Anda.",
+     "cn": "很高兴认识您。",
+     "note": "berkenalan=相识"
+    },
+    {
+     "level": "adv",
+     "scene": "礼貌询问",
+     "id": "Boleh saya tahu nama Anda?",
+     "cn": "能告诉我您的名字吗？",
+     "note": "比 siapa nama 更礼貌"
+    },
+    {
+     "level": "adv",
+     "scene": "寒暄",
+     "id": "Di mana Anda bekerja?",
+     "cn": "您在哪里工作？",
+     "note": "破冰常用"
+    },
+    {
+     "level": "adv",
+     "scene": "寒暄",
+     "id": "Sudah berapa lama di Indonesia?",
+     "cn": "来印尼多久了？",
+     "note": "对访客常用"
+    },
+    {
+     "level": "adv",
+     "scene": "询问",
+     "id": "Apa pekerjaan Anda?",
+     "cn": "您做什么工作？",
+     "note": "正式可用 Apa jabatan Anda?"
+    },
+    {
+     "level": "adv",
+     "scene": "自述",
+     "id": "Saya baru tiga bulan di sini.",
+     "cn": "我刚来三个月。",
+     "note": "baru+时长"
+    },
+    {
+     "level": "adv",
+     "scene": "道别",
+     "id": "Kita bertemu lagi nanti.",
+     "cn": "我们回头见。",
+     "note": "nanti 稍后/以后"
+    },
+    {
+     "level": "adv",
+     "scene": "寒暄",
+     "id": "Ada keluarga di sini?",
+     "cn": "家人在这儿吗？",
+     "note": "关心式寒暄"
+    },
+    {
+     "level": "pro",
+     "scene": "引见",
+     "id": "Silakan berkenalan dengan rekan-rekan kami.",
+     "cn": "请与我们的同事认识一下。",
+     "note": "rekan-rekan 复数"
+    },
+    {
+     "level": "pro",
+     "scene": "自述",
+     "id": "Izinkan saya memperkenalkan diri lebih lanjut.",
+     "cn": "请允许我进一步自我介绍。",
+     "note": "正式场合"
+    },
+    {
+     "level": "pro",
+     "scene": "祝愿",
+     "id": "Semoga kita bisa bekerja sama dengan baik.",
+     "cn": "希望我们合作愉快。",
+     "note": "semoga+从句"
+    },
+    {
+     "level": "pro",
+     "scene": "致谢",
+     "id": "Terima kasih atas perkenalannya.",
+     "cn": "感谢您的介绍。",
+     "note": "atas 正式致谢"
+    }
+   ],
+   "affixes": [
+    {
+     "no": 11,
+     "affix": "-an",
+     "type": "后缀",
+     "func": "名词化/约数",
+     "rule": "加于词根后，无变形",
+     "derivs": [
+      {
+       "root": "sapa",
+       "der": "sapaan",
+       "zh": "称呼/问候语"
+      },
+      {
+       "root": "panggil",
+       "der": "panggilan",
+       "zh": "称呼"
+      },
+      {
+       "root": "temu",
+       "der": "pertemuan(经per-+-an)",
+       "zh": "会面"
+      }
+     ],
+     "examples": [
+      {
+       "id": "Sapaannya membuat tamu merasa dihargai.",
+       "cn": "他的问候让客人感到受重视。"
+      }
+     ],
+     "link": "玫瑰图 No.11"
+    },
+    {
+     "no": 12,
+     "affix": "-kan",
+     "type": "后缀",
+     "func": "使役/方向",
+     "rule": "命令句或 meN-kan 中",
+     "derivs": [
+      {
+       "root": "kenal",
+       "der": "(memper)kenalkan",
+       "zh": "介绍"
+      },
+      {
+       "root": "tukar",
+       "der": "bertukar",
+       "zh": "互相交换"
+      }
+     ],
+     "examples": [
+      {
+       "id": "Perkenalkan nama Anda, silakan.",
+       "cn": "请介绍您的名字。"
+      }
+     ],
+     "link": "玫瑰图 No.12"
+    },
+    {
+     "no": 13,
+     "affix": "-i",
+     "type": "后缀",
+     "func": "方向/反复",
+     "rule": "命令句或 meN-i",
+     "derivs": [
+      {
+       "root": "nama",
+       "der": "namai",
+       "zh": "命名"
+      },
+      {
+       "root": "sapa",
+       "der": "(menyapai→少用)",
+       "zh": "—"
+      }
+     ],
+     "examples": [
+      {
+       "id": "Jalan itu dinamai Jalan Merdeka.",
+       "cn": "那条街被命名为独立路。"
+      }
+     ],
+     "link": "玫瑰图 No.13"
+    },
+    {
+     "no": 14,
+     "affix": "-nya",
+     "type": "后缀",
+     "func": "第三人称所有格/特指",
+     "rule": "附于词后",
+     "derivs": [
+      {
+       "root": "nama",
+       "der": "namanya",
+       "zh": "他/她的名字"
+      },
+      {
+       "root": "perusahaan",
+       "der": "perusahaannya",
+       "zh": "他的公司"
+      }
+     ],
+     "examples": [
+      {
+       "id": "Namanya terkenal di bidang ini.",
+       "cn": "他在这个领域很有名。"
+      }
+     ],
+     "link": "玫瑰图 No.14"
+    },
+    {
+     "no": 15,
+     "affix": "-ku",
+     "type": "后缀",
+     "func": "我的（第一人称）",
+     "rule": "附于词后，不单独用",
+     "derivs": [
+      {
+       "root": "nama",
+       "der": "namaku",
+       "zh": "我的名字"
+      },
+      {
+       "root": "rekan",
+       "der": "rekanku",
+       "zh": "我的同事"
+      }
+     ],
+     "examples": [
+      {
+       "id": "Namaku Li Ming, senang bertemu Anda.",
+       "cn": "我叫李明，很高兴见到您。"
+      }
+     ],
+     "link": "玫瑰图 No.15"
+    },
+    {
+     "no": 16,
+     "affix": "-mu",
+     "type": "后缀",
+     "func": "你的（第二人称）",
+     "rule": "附于词后",
+     "derivs": [
+      {
+       "root": "nama",
+       "der": "namamu",
+       "zh": "你的名字"
+      },
+      {
+       "root": "pekerjaan",
+       "der": "pekerjaanmu",
+       "zh": "你的工作"
+      }
+     ],
+     "examples": [
+      {
+       "id": "Apa pekerjaanmu sekarang?",
+       "cn": "你现在做什么工作？"
+      }
+     ],
+     "link": "玫瑰图 No.16"
+    },
+    {
+     "no": 17,
+     "affix": "-lah/-kah/-pun/-tah",
+     "type": "语助词",
+     "func": "语气/疑问/强调",
+     "rule": "附于句首词或谓语",
+     "derivs": [
+      {
+       "root": "sudah",
+       "der": "sudahkah",
+       "zh": "已经…了吗"
+      },
+      {
+       "root": "dia",
+       "der": "dialah",
+       "zh": "正是他"
+      },
+      {
+       "root": "aku",
+       "der": "akupun",
+       "zh": "连我也"
+      }
+     ],
+     "examples": [
+      {
+       "id": "Sudahkah Anda saling mengenal?",
+       "cn": "你们已经互相认识了吗？"
+      }
+     ],
+     "link": "玫瑰图 No.17"
+    },
+    {
+     "no": 18,
+     "affix": "meN-kan",
+     "type": "环绕",
+     "func": "使役/处置/为动",
+     "rule": "meN-变形 + -kan",
+     "derivs": [
+      {
+       "root": "kenal",
+       "der": "memperkenalkan(经memper-)",
+       "zh": "介绍"
+      },
+      {
+       "root": "senang",
+       "der": "menyenangkan",
+       "zh": "使愉快"
+      }
+     ],
+     "examples": [
+      {
+       "id": "Perkenalan itu menyenangkan semua orang.",
+       "cn": "那次介绍让所有人都很愉快。"
+      }
+     ],
+     "link": "玫瑰图 No.18"
+    },
+    {
+     "no": 19,
+     "affix": "meN-i",
+     "type": "环绕",
+     "func": "反复/持续/代替介词",
+     "rule": "meN-变形 + -i",
+     "derivs": [
+      {
+       "root": "hadir",
+       "der": "menghadiri",
+       "zh": "出席/参加"
+      },
+      {
+       "root": "warna",
+       "der": "mewarnai",
+       "zh": "着色"
+      }
+     ],
+     "examples": [
+      {
+       "id": "Dia menghadiri pertemuan setiap Senin.",
+       "cn": "他每周一都出席会议。"
+      }
+     ],
+     "link": "玫瑰图 No.19"
+    },
+    {
+     "no": 20,
+     "affix": "ke-an",
+     "type": "环绕",
+     "func": "抽象名词/极端/遭受",
+     "rule": "ke-+词根+-an",
+     "derivs": [
+      {
+       "root": "akrab",
+       "der": "keakraban",
+       "zh": "亲密/熟络"
+      },
+      {
+       "root": "sehat",
+       "der": "kesehatan",
+       "zh": "健康"
+      }
+     ],
+     "examples": [
+      {
+       "id": "Keakraban tim sangat terasa.",
+       "cn": "团队的亲密氛围非常明显。"
+      }
+     ],
+     "link": "玫瑰图 No.20"
+    }
+   ],
+   "quiz": [
+    {
+     "q": "akrab 的反义是？",
+     "opts": [
+      "asing/dingin",
+      "ramah",
+      "santai",
+      "resmi"
+     ],
+     "a": 0,
+     "exp": "akrab=亲密；反义 asing(陌生)/dingin(冷淡)。"
+    },
+    {
+     "q": "keakraban 的构词？",
+     "opts": [
+      "peN-+akrab",
+      "ke-+akrab+-an",
+      "ber-+akrab",
+      "meN-+akrab"
+     ],
+     "a": 1,
+     "exp": "ke-an 环绕：akrab→keakraban 亲密。"
+    },
+    {
+     "q": "pekerjaan 词根是？",
+     "opts": [
+      "kerja",
+      "pekerja",
+      "kerj",
+      "peker"
+     ],
+     "a": 0,
+     "exp": "peN-+kerja+-an：pekerjaan 职业/工作。"
+    },
+    {
+     "q": "正式场合'同事'更常用？",
+     "opts": [
+      "teman",
+      "kolega",
+      "sahabat",
+      "kawan"
+     ],
+     "a": 1,
+     "exp": "kolega 正式；teman/kawan 朋友；sahabat 挚友。"
+    },
+    {
+     "q": "'来自'的正式表达？",
+     "opts": [
+      "dari saja",
+      "berasal dari",
+      "datang aja",
+      "pergi dari"
+     ],
+     "a": 1,
+     "exp": "berasal dari 来自（正式）；Asal Anda dari mana? 籍贯。"
+    },
+    {
+     "q": "yang 在 'Saya orang yang bekerja di bidang tambang.' 中的功能是？",
+     "opts": [
+      "疑问代词",
+      "关系代词（定语从句）",
+      "指示代词",
+      "人称代词"
+     ],
+     "a": 1,
+     "exp": "yang 连接定语从句：在矿业工作的人。"
+    },
+    {
+     "q": "比较级正确结构？",
+     "opts": [
+      "[N1] lebih [Adj] dari [N2]",
+      "[N1] lebih [Adj] daripada [N2]",
+      "[N1] paling [Adj] daripada [N2]",
+      "[N1] sangat [Adj] daripada [N2]"
+     ],
+     "a": 1,
+     "exp": "lebih…daripada 比较；paling… 最高级不接 daripada。"
+    },
+    {
+     "q": "'Boleh saya tahu, …' 的语用功能是？",
+     "opts": [
+      "命令",
+      "礼貌探问",
+      "感叹",
+      "告别"
+     ],
+     "a": 1,
+     "exp": "boleh saya tahu 礼貌询问缓冲语。"
+    },
+    {
+     "q": "pengalaman 的派生路径？",
+     "opts": [
+      "alam→pengalaman(peN-)",
+      "alami→pengalaman",
+      "alaman→pengalaman",
+      "pengal→pengalaman"
+     ],
+     "a": 0,
+     "exp": "peN-+alam→pengalaman 经验/经历。"
+    },
+    {
+     "q": "'我们刚刚到'正确表达？",
+     "opts": [
+      "Kami sudah lama tiba",
+      "Kami baru saja tiba",
+      "Kami akan tiba",
+      "Kami belum tiba"
+     ],
+     "a": 1,
+     "exp": "baru saja 刚刚。"
+    },
+    {
+     "q": "bertukar kartu nama 中 bertukar 表示？",
+     "opts": [
+      "单方面给予",
+      "互相交换",
+      "接受",
+      "丢失"
+     ],
+     "a": 1,
+     "exp": "ber- 相互：bertukar 互相交换。"
+    },
+    {
+     "q": "'越熟络，合作越愉快'对应句型？",
+     "opts": [
+      "Kalau akrab, nyaman",
+      "Semakin akrab, semakin nyaman",
+      "Lebih akrab lebih nyaman",
+      "Sudah akrab jadi nyaman"
+     ],
+     "a": 1,
+     "exp": "semakin…semakin… 越…越…。"
+    },
+    {
+     "q": "jabatan 意思是？",
+     "opts": [
+      "工资",
+      "职位/职务",
+      "部门",
+      "简历"
+     ],
+     "a": 1,
+     "exp": "jabatan=职位；gaji 工资；departemen 部门。"
+    },
+    {
+     "q": "keahlian 词根 ahli 意为？",
+     "opts": [
+      "工人",
+      "专家",
+      "老板",
+      "客户"
+     ],
+     "a": 1,
+     "exp": "ahli 专家；ke-ahli-an 专长。"
+    },
+    {
+     "q": "menyapa dengan ramah 中 ramah 是？",
+     "opts": [
+      "副词'亲切'修饰 menyapa",
+      "名词'亲切的人'",
+      "动词'变得亲切'",
+      "连词"
+     ],
+     "a": 0,
+     "exp": "dengan ramah 介词短语作状语，修饰动词 menyapa。"
+    }
+   ]
+  },
+  "day3": {
+   "date": "2026-10-22",
+   "theme": "Pertemuan Resmi & Perpisahan 正式会晤与道别",
+   "vocab": [
+    {
+     "w": "audiensi",
+     "cn": "正式会见；谒见",
+     "ipa": "/auˈdiensi/",
+     "level": "高阶",
+     "note": "高规格正式会见（如对元首/部长）"
+    },
+    {
+     "w": "kunjungan",
+     "cn": "访问；拜访",
+     "ipa": "/kunˈdʒuŋan/",
+     "level": "进阶",
+     "note": "kunjung→peN-an；kunjungan kerja 工作访问"
+    },
+    {
+     "w": "menerima",
+     "cn": "接见；接收",
+     "ipa": "/mənərima/",
+     "level": "进阶",
+     "note": "meN-+terima；tamu diterima 客人被接见"
+    },
+    {
+     "w": "kesepakatan",
+     "cn": "共识；协议",
+     "ipa": "/kəsepˈakatan/",
+     "level": "进阶",
+     "note": "sepakat(一致)→ke-an；mencapai kesepakatan 达成共识"
+    },
+    {
+     "w": "kerja sama",
+     "cn": "合作",
+     "ipa": "/ˈkərʤa ˈsama/",
+     "level": "核心",
+     "note": "规范分写；kerja sama erat 紧密合作"
+    },
+    {
+     "w": "penandatanganan",
+     "cn": "签署",
+     "ipa": "/pənaŋdatˈŋanan/",
+     "level": "高阶",
+     "note": "tanda tangan→peN-an-an 三缀叠加长词"
+    },
+    {
+     "w": "notulen",
+     "cn": "会议纪要",
+     "ipa": "/noˈtulen/",
+     "level": "高阶",
+     "note": "荷兰语借词；menulis notulen 做纪要"
+    },
+    {
+     "w": "kesimpulan",
+     "cn": "结论",
+     "ipa": "/kəsimˈpulLan/",
+     "level": "进阶",
+     "note": "simpul(结)→ke-an；mengambil kesimpulan 得出结论"
+    },
+    {
+     "w": "tindak lanjut",
+     "cn": "后续行动",
+     "ipa": "/ˈtindak ˈlanjut/",
+     "level": "进阶",
+     "note": "规范分写；公文高频"
+    },
+    {
+     "w": "perpisahan",
+     "cn": "离别；告别",
+     "ipa": "/pərpisˈahan/",
+     "level": "进阶",
+     "note": "pisah→per-an；perpisahan resmi 正式告别"
+    },
+    {
+     "w": "pamit",
+     "cn": "告辞（动词/名词）",
+     "ipa": "/ˈpamit/",
+     "level": "核心",
+     "note": "pamit dulu 先告辞了"
+    },
+    {
+     "w": "mengantar",
+     "cn": "送行；陪同前往",
+     "ipa": "/məŋˈantar/",
+     "level": "进阶",
+     "note": "meN-+antar；mengantar ke bandara 送机"
+    },
+    {
+     "w": "ucapan",
+     "cn": "话语；致辞",
+     "ipa": "/uˈtʃapan/",
+     "level": "进阶",
+     "note": "ucap+-an；ucapan terima kasih 致谢辞"
+    },
+    {
+     "w": "terhormat",
+     "cn": "荣幸的；受尊敬的",
+     "ipa": "/tərˈhormat/",
+     "level": "进阶",
+     "note": "ter-最/受 + hormat 尊敬"
+    },
+    {
+     "w": "tuan rumah",
+     "cn": "东道主",
+     "ipa": "/ˈtuan ˈrumah/",
+     "level": "高阶",
+     "note": "规范分写；= tuan rumah (host)"
+    }
+   ],
+   "phrases": [
+    {
+     "id": "jadwal pertemuan",
+     "cn": "会议日程",
+     "usage": "正式",
+     "note": "jadwal=日程表"
+    },
+    {
+     "id": "kunjungan kerja",
+     "cn": "工作访问",
+     "usage": "正式",
+     "note": "官方往来常用"
+    },
+    {
+     "id": "menjalin kerja sama",
+     "cn": "建立合作",
+     "usage": "正式",
+     "note": "menjalin 编织/建立"
+    },
+    {
+     "id": "mencapai kesepakatan",
+     "cn": "达成共识",
+     "usage": "正式",
+     "note": "mencapai 达到"
+    },
+    {
+     "id": "tanda tangan bersama",
+     "cn": "共同签署",
+     "usage": "正式",
+     "note": "规范分写 tanda tangan"
+    },
+    {
+     "id": "tindak lanjut pertemuan",
+     "cn": "会议后续行动",
+     "usage": "公文",
+     "note": "印尼公文高频词"
+    },
+    {
+     "id": "mengantar ke bandara",
+     "cn": "送机",
+     "usage": "通用",
+     "note": "mengantar+地点"
+    },
+    {
+     "id": "ucapan terima kasih",
+     "cn": "致谢辞",
+     "usage": "正式",
+     "note": "ucapan=致辞"
+    },
+    {
+     "id": "pertemuan resmi",
+     "cn": "正式会晤",
+     "usage": "正式",
+     "note": "resmi 正式的"
+    },
+    {
+     "id": "saling mengantar salam",
+     "cn": "互致问候",
+     "usage": "正式",
+     "note": "salam 问候"
+    }
+   ],
+   "patterns": [
+    {
+     "cat": "正式致谢",
+     "level": "basic",
+     "formula": "Terima kasih atas [N]-nya.",
+     "structure": "感谢…",
+     "grammar": "atas+N-nya 正式结构",
+     "scene": "致谢",
+     "ex": [
+      "Terima kasih atas kesediaannya.（感谢您的赏光。）",
+      "Terima kasih atas kunjungannya.（感谢您的来访。）"
+     ],
+     "slots": [
+      "kesediaan",
+      "kunjungan",
+      "perhatian"
+     ],
+     "reuse": 8
+    },
+    {
+     "cat": "道别",
+     "level": "basic",
+     "formula": "Selamat [tinggal/jalan]!",
+     "structure": "再见（留守方说 tinggal/出行方说 jalan）",
+     "grammar": "selamat+动词",
+     "scene": "道别",
+     "ex": [
+      "Selamat jalan!（一路平安！对离开的人说）",
+      "Selamat tinggal!（再见！对留下的人说）"
+     ],
+     "slots": [
+      "tinggal",
+      "jalan"
+     ],
+     "reuse": 5
+    },
+    {
+     "cat": "再会",
+     "level": "basic",
+     "formula": "Sampai [jumpa/bertemu] [lagi/nanti/waktu]!",
+     "structure": "回头见/改天见",
+     "grammar": "sampai 直到",
+     "scene": "道别",
+     "ex": [
+      "Sampai jumpa lagi minggu depan!（下周再见！）",
+      "Sampai bertemu di Jakarta!（雅加达见！）"
+     ],
+     "slots": [
+      "lagi",
+      "minggu depan",
+      "di Jakarta"
+     ],
+     "reuse": 5
+    },
+    {
+     "cat": "被动正式",
+     "level": "adv",
+     "formula": "[Kegiatan] [diadakan/digelar/diselenggarakan] [waktu/tempat].",
+     "structure": "（活动）于…举行",
+     "grammar": "di- 被动无人称",
+     "scene": "公告/报道",
+     "ex": [
+      "Pertemuan diadakan di aula utama.（会议在主礼堂举行。）",
+      "Acara perpisahan diselenggarakan di aula utama.（告别会在主礼堂举行。）"
+     ],
+     "slots": [
+      "diadakan",
+      "di gelar"
+     ],
+     "reuse": 7
+    },
+    {
+     "cat": "表达希望",
+     "level": "adv",
+     "formula": "Kami berharap [klausa].",
+     "structure": "我们希望…",
+     "grammar": "berharap 后接从句",
+     "scene": "会谈",
+     "ex": [
+      "Kami berharap kunjungan ini mempererat hubungan.（我们希望此次访问巩固关系。）",
+      "Kami berharap kerja sama ini berlanjut lama.（我们希望此次合作长久延续。）"
+     ],
+     "slots": [
+      "kunjungan ini mempererat hubungan"
+     ],
+     "reuse": 8
+    },
+    {
+     "cat": "先后动作",
+     "level": "adv",
+     "formula": "Setelah [V], kami akan [V2].",
+     "structure": "…之后，我们将…",
+     "grammar": "setelah+动词",
+     "scene": "日程说明",
+     "ex": [
+      "Setelah pertemuan, kami akan mengunjungi pabrik.（会后我们将参观工厂。）",
+      "Setelah penandatanganan, kami akan makan malam bersama.（签署之后我们将共进晚餐。）"
+     ],
+     "slots": [
+      "pertemuan",
+      "mengunjungi pabrik"
+     ],
+     "reuse": 7
+    },
+    {
+     "cat": "事前提醒",
+     "level": "adv",
+     "formula": "Sebelum [V], harap [V2/konfirmasi].",
+     "structure": "在…之前，请…",
+     "grammar": "sebelum 在…前；harap 请",
+     "scene": "行程安排",
+     "ex": [
+      "Sebelum berangkat, harap konfirmasi jadwal.（出发前请确认日程。）",
+      "Sebelum memulai, harap semua menandatangani daftar hadir.（开始之前请大家签签到表。）"
+     ],
+     "slots": [
+      "berangkat",
+      "konfirmasi jadwal"
+     ],
+     "reuse": 6
+    },
+    {
+     "cat": "目的从句",
+     "level": "adv",
+     "formula": "[Klausa utama] agar/supaya [klausa tujuan].",
+     "structure": "…以便…",
+     "grammar": "agar/supaya 目的连词",
+     "scene": "说明意图",
+     "ex": [
+      "Kami mengadakan rapat agar semua paham.（我们开会以便大家都明白。）",
+      "Kami mengirim notulen agar semua ingat tindak lanjutnya.（我们发送纪要以便大家记住后续行动。）"
+     ],
+     "slots": [
+      "semua paham",
+      "tidak ada kesalahpahaman"
+     ],
+     "reuse": 8
+    },
+    {
+     "cat": "让步",
+     "level": "adv",
+     "formula": "Walaupun [klausa], [klausa utama].",
+     "structure": "尽管…，还是…",
+     "grammar": "walaupun 让步连词",
+     "scene": "正式表达",
+     "ex": [
+      "Walaupun sibuk, beliau tetap menerima kami.（尽管很忙，他还是接见了我 们。）",
+      "Walaupun hujan, acara tetap berjalan lancar.（尽管下雨，活动照常顺利举行。）"
+     ],
+     "slots": [
+      "sibuk",
+      "tetap menerima kami"
+     ],
+     "reuse": 7
+    },
+    {
+     "cat": "公文引述",
+     "level": "pro",
+     "formula": "Dengan ini kami menyampaikan [N].",
+     "structure": "谨此致送…",
+     "grammar": "dengan ini 公文套语",
+     "scene": "公函",
+     "ex": [
+      "Dengan ini kami menyampaikan ucapan terima kasih.（谨此致以谢意。）",
+      "Dengan ini kami menyampaikan salam hormat dari direksi.（谨此转达董事会的敬意。）"
+     ],
+     "slots": [
+      "ucapan terima kasih",
+      "salam hormat"
+     ],
+     "reuse": 9
+    },
+    {
+     "cat": "正式请求",
+     "level": "pro",
+     "formula": "Mohon kiranya [klausa].",
+     "structure": "敬请…",
+     "grammar": "mohon kiranya 双重敬语",
+     "scene": "正式请求",
+     "ex": [
+      "Mohon kiranya Bapak berkenan hadir.（敬请先生拨冗出席。）",
+      "Mohon kiranya jadwal kunjungan dapat dikonfirmasi.（敬请确认访问日程。）"
+     ],
+     "slots": [
+      "Bapak berkenan hadir"
+     ],
+     "reuse": 9
+    },
+    {
+     "cat": "会议收尾",
+     "level": "pro",
+     "formula": "Atas perhatian dan kerja samanya, kami ucapkan terima kasih.",
+     "structure": "感谢您的关注与合作。",
+     "grammar": "公文结尾套语",
+     "scene": "闭幕/公函结尾",
+     "ex": [
+      "Demikian, atas perhatian dan kerja samanya, kami ucapkan terima kasih.（谨此，感谢您的关注与合作。）",
+      "Atas perhatian Bapak, kami ucapkan terima kasih.（感谢您的关注。）"
+     ],
+     "slots": [
+      "perhatian",
+      "kerja sama"
+     ],
+     "reuse": 10
+    }
+   ],
+   "expressions": [
+    {
+     "level": "basic",
+     "scene": "道别",
+     "id": "Sampai jumpa lagi!",
+     "cn": "回头见！",
+     "note": "最通用道别"
+    },
+    {
+     "level": "basic",
+     "scene": "送别",
+     "id": "Hati-hati di jalan!",
+     "cn": "路上小心！",
+     "note": "送行人说"
+    },
+    {
+     "level": "basic",
+     "scene": "道别",
+     "id": "Sampai besok!",
+     "cn": "明天见！",
+     "note": "约定次日"
+    },
+    {
+     "level": "adv",
+     "scene": "致谢",
+     "id": "Terima kasih atas kesediaan Anda.",
+     "cn": "谢谢您的赏光。",
+     "note": "kesediaan=赏光/应允"
+    },
+    {
+     "level": "adv",
+     "scene": "致歉",
+     "id": "Maaf mengganggu waktunya.",
+     "cn": "抱歉打扰您的时间。",
+     "note": "mengganggu 打扰"
+    },
+    {
+     "level": "adv",
+     "scene": "祝愿",
+     "id": "Semoga sukses selalu!",
+     "cn": "祝您一切顺利！",
+     "note": "semoga+愿望"
+    },
+    {
+     "level": "adv",
+     "scene": "再约",
+     "id": "Kapan kita bisa bertemu lagi?",
+     "cn": "我们什么时候能再见面？",
+     "note": "约下次"
+    },
+    {
+     "level": "adv",
+     "scene": "邀请",
+     "id": "Silakan berkunjung lagi ke Morowali.",
+     "cn": "欢迎再来莫罗瓦利。",
+     "note": "berkunjung 来访"
+    },
+    {
+     "level": "adv",
+     "scene": "致意",
+     "id": "Tolong sampaikan salam untuk keluarga.",
+     "cn": "请代我向家人问好。",
+     "note": "sampaikan salam 转达问候"
+    },
+    {
+     "level": "adv",
+     "scene": "惜别",
+     "id": "Kami akan sangat merindukan Anda.",
+     "cn": "我们会非常想念您。",
+     "note": "merindukan 想念"
+    },
+    {
+     "level": "pro",
+     "scene": "代表致谢",
+     "id": "Atas nama perusahaan, kami mengucapkan terima kasih.",
+     "cn": "我谨代表公司表示感谢。",
+     "note": "atas nama 代表…"
+    },
+    {
+     "level": "pro",
+     "scene": "期待",
+     "id": "Kami menantikan kunjungan balasan Anda.",
+     "cn": "我们期待您的回访。",
+     "note": "menantikan 期待；balasan 回访"
+    },
+    {
+     "level": "pro",
+     "scene": "祝愿",
+     "id": "Semoga hubungan kita semakin erat.",
+     "cn": "愿我们的关系日益紧密。",
+     "note": "semakin 越来越"
+    },
+    {
+     "level": "pro",
+     "scene": "闭幕",
+     "id": "Dengan mengucapkan terima kasih, kami akhiri pertemuan ini.",
+     "cn": "谨致谢意，本次会议到此结束。",
+     "note": "akhiri 结束（meN-）"
+    }
+   ],
+   "affixes": [
+    {
+     "no": 21,
+     "affix": "per-an / peN-an",
+     "type": "环绕",
+     "func": "抽象名词（过程/结果）",
+     "rule": "per-+-an 或 peN-+-an",
+     "derivs": [
+      {
+       "root": "sepakat",
+       "der": "kesepakatan(经ke-)",
+       "zh": "共识/协议"
+      },
+      {
+       "root": "temu",
+       "der": "pertemuan",
+       "zh": "会面/会议"
+      },
+      {
+       "root": "kerja",
+       "der": "pekerjaan",
+       "zh": "职业/工作"
+      }
+     ],
+     "examples": [
+      {
+       "id": "Kedua pihak mencapai kesepakatan.",
+       "cn": "双方达成了共识。"
+      }
+     ],
+     "link": "玫瑰图 No.21"
+    },
+    {
+     "no": 22,
+     "affix": "ber-an",
+     "type": "环绕",
+     "func": "反复/相互",
+     "rule": "ber-+-an",
+     "derivs": [
+      {
+       "root": "pisah",
+       "der": "berpisah",
+       "zh": "分别/离别(相互)"
+      },
+      {
+       "root": "sebelah",
+       "der": "bersebelahan",
+       "zh": "相邻"
+      }
+     ],
+     "examples": [
+      {
+       "id": "Kita berpisah di bandara.",
+       "cn": "我们在机场分别。"
+      }
+     ],
+     "link": "玫瑰图 No.22"
+    },
+    {
+     "no": 23,
+     "affix": "ber-kan",
+     "type": "环绕",
+     "func": "以…为基础/主题",
+     "rule": "ber-+-kan",
+     "derivs": [
+      {
+       "root": "dasar",
+       "der": "berdasarkan",
+       "zh": "基于"
+      },
+      {
+       "root": "tema",
+       "der": "bertemakan",
+       "zh": "以…为主题"
+      }
+     ],
+     "examples": [
+      {
+       "id": "Berdasarkan jadwal, rapat dimulai pukul sembilan.",
+       "cn": "根据日程，会议九点开始。"
+      }
+     ],
+     "link": "玫瑰图 No.23"
+    },
+    {
+     "no": 24,
+     "affix": "berke-an / berpe-an",
+     "type": "环绕",
+     "func": "状态/书面语（低频）",
+     "rule": "ber-+ke-an/pe-an",
+     "derivs": [
+      {
+       "root": "adil",
+       "der": "berkeadilan",
+       "zh": "秉持公正（书面）"
+      }
+     ],
+     "examples": [
+      {
+       "id": "Mereka ingin hidup berkeadilan.",
+       "cn": "他们希望生活在公正之中。"
+      }
+     ],
+     "link": "玫瑰图 No.24"
+    },
+    {
+     "no": 25,
+     "affix": "-er-/-el-/-em-",
+     "type": "中缀",
+     "func": "插入词根构成新词",
+     "rule": "插于词根第一音节后",
+     "derivs": [
+      {
+       "root": "tunjuk",
+       "der": "telunjuk",
+       "zh": "食指"
+      },
+      {
+       "root": "getar",
+       "der": "gemétar",
+       "zh": "颤抖"
+      }
+     ],
+     "examples": [
+      {
+       "id": "Dia menunjuk dengan jari telunjuk.",
+       "cn": "他用食指指着。"
+      }
+     ],
+     "link": "玫瑰图 No.25"
+    },
+    {
+     "no": 26,
+     "affix": "-wan/-wati",
+     "type": "外来后缀",
+     "func": "职业/身份人（阴性-wati）",
+     "rule": "直接加于词基",
+     "derivs": [
+      {
+       "root": "karya",
+       "der": "karyawan/karyawati",
+       "zh": "职员/女职员"
+      },
+      {
+       "root": "warta",
+       "der": "wartawan",
+       "zh": "记者"
+      }
+     ],
+     "examples": [
+      {
+       "id": "Karyawan baru disambut hangat.",
+       "cn": "新员工受到热烈欢迎。"
+      }
+     ],
+     "link": "玫瑰图 No.26"
+    },
+    {
+     "no": 27,
+     "affix": "-man",
+     "type": "外来后缀",
+     "func": "具某品质/职业的人",
+     "rule": "直接加于词基",
+     "derivs": [
+      {
+       "root": "seni",
+       "der": "seniman",
+       "zh": "艺术家"
+      }
+     ],
+     "examples": [
+      {
+       "id": "Seniman itu menghadiri perpisahan.",
+       "cn": "那位艺术家出席了告别会。"
+      }
+     ],
+     "link": "玫瑰图 No.27"
+    },
+    {
+     "no": 28,
+     "affix": "-is/-isme/-isasi/-logi",
+     "type": "外来后缀",
+     "func": "…者/主义/化/学",
+     "rule": "直接加于词基",
+     "derivs": [
+      {
+       "root": "modern",
+       "der": "modernisasi",
+       "zh": "现代化"
+      },
+      {
+       "root": "teknologi",
+       "der": "teknologi",
+       "zh": "科技"
+      }
+     ],
+     "examples": [
+      {
+       "id": "Modernisasi kawasan industri berlanjut.",
+       "cn": "园区的现代化建设在继续。"
+      }
+     ],
+     "link": "玫瑰图 No.28"
+    },
+    {
+     "no": 29,
+     "affix": "ku-/kau-",
+     "type": "前缀",
+     "func": "口语被动（我/你施动）",
+     "rule": "ku-/kau-+词根，与主语连写",
+     "derivs": [
+      {
+       "root": "terima",
+       "der": "kuterima/kauterima",
+       "zh": "我被接待/你被接待"
+      }
+     ],
+     "examples": [
+      {
+       "id": "Tamu-tamu kami terima dengan baik.",
+       "cn": "客人们我们都接待好了。（口语）"
+      }
+     ],
+     "link": "玫瑰图 No.29"
+    },
+    {
+     "no": 30,
+     "affix": "-in",
+     "type": "后缀",
+     "func": "口语代替-kan/-i",
+     "rule": "口语命令句",
+     "derivs": [
+      {
+       "root": "antar",
+       "der": "antarin(口语)",
+       "zh": "送去（给我）"
+      },
+      {
+       "root": "sapa",
+       "der": "sapain(口语)",
+       "zh": "招呼一下"
+      }
+     ],
+     "examples": [
+      {
+       "id": "Antarin tamu ke lobby, ya.",
+       "cn": "（口语）把客人送到大堂吧。"
+      }
+     ],
+     "link": "玫瑰图 No.30"
+    }
+   ],
+   "quiz": [
+    {
+     "q": "tindak lanjut 的意思是？",
+     "opts": [
+      "立即行动",
+      "后续行动",
+      "临时动议",
+      "行动计划"
+     ],
+     "a": 1,
+     "exp": "tindak lanjut=后续行动，印尼公文高频。"
+    },
+    {
+     "q": "kesepakatan 构词路径？",
+     "opts": [
+      "sepakat→ke-an",
+      "sepakat→per-an",
+      "sepakat→peN-an",
+      "sepakat→ber-an"
+     ],
+     "a": 0,
+     "exp": "sepakat(一致)→ke-an：kesepakatan 共识/协议。"
+    },
+    {
+     "q": "penandatanganan 含几个词缀？",
+     "opts": [
+      "1",
+      "2",
+      "3",
+      "4"
+     ],
+     "a": 2,
+     "exp": "peN-+tanda tangan+-an：三缀叠加长词，签署。"
+    },
+    {
+     "q": "正式会见（如见部长）称？",
+     "opts": [
+      "jumpa",
+      "audiensi",
+      "bincang",
+      "sapa"
+     ],
+     "a": 1,
+     "exp": "audiensi=正式谒见/会见，高规格。"
+    },
+    {
+     "q": "'（会议）在主礼堂举行'正确表达？",
+     "opts": [
+      "Pertemuan mengadakan di aula",
+      "Pertemuan diadakan di aula utama",
+      "Pertemuan mengadakan aula utama",
+      "Aula mengadakan pertemuan"
+     ],
+     "a": 1,
+     "exp": "di- 无人称被动：diadakan 被举行。"
+    },
+    {
+     "q": "Selamat tinggal 对谁说？",
+     "opts": [
+      "对离开的人",
+      "对留下的人",
+      "对上级",
+      "对客人"
+     ],
+     "a": 1,
+     "exp": "tinggal=留下；对留下的人说 selamat tinggal，对离开的人说 selamat jalan。"
+    },
+    {
+     "q": "'敬请出席'最正式的表达？",
+     "opts": [
+      "Tolong datang",
+      "Harap hadir",
+      "Mohon kiranya Bapak berkenan hadir",
+      "Datanglah"
+     ],
+     "a": 2,
+     "exp": "mohon kiranya+berkenan 双重敬语，最正式。"
+    },
+    {
+     "q": "agar 引导什么从句？",
+     "opts": [
+      "原因",
+      "目的",
+      "条件",
+      "让步"
+     ],
+     "a": 1,
+     "exp": "agar/supaya 引导目的从句：以便…。"
+    },
+    {
+     "q": "notulen 对应中文？",
+     "opts": [
+      "邀请函",
+      "会议纪要",
+      "合同",
+      "日程表"
+     ],
+     "a": 1,
+     "exp": "notulen=会议纪要（荷兰语借词）。"
+    },
+    {
+     "q": "ucapan terima kasih 中 ucapan 构词？",
+     "opts": [
+      "ucap+-an",
+      "meN-+ucap",
+      "peN-+ucap",
+      "ke-+ucap"
+     ],
+     "a": 0,
+     "exp": "ucap(说)+-an 名词化：话语/致辞。"
+    },
+    {
+     "q": "'我谨代表公司'对应？",
+     "opts": [
+      "Dari perusahaan saya",
+      "Atas nama perusahaan",
+      "Nama perusahaan",
+      "Perusahaan saya"
+     ],
+     "a": 1,
+     "exp": "atas nama+机构=代表…（正式）。"
+    },
+    {
+     "q": "kunjungan balasan 中 balasan 意为？",
+     "opts": [
+      "初次",
+      "回访/回敬",
+      "告别",
+      "顺道"
+     ],
+     "a": 1,
+     "exp": "balas(回)+-an：回访。"
+    },
+    {
+     "q": "mengantar ke bandara 中 mengantar 是？",
+     "opts": [
+      "meN-+antar",
+      "ber-+antar",
+      "di-+antar",
+      "peN-+antar"
+     ],
+     "a": 0,
+     "exp": "meN- 主动：antar→mengantar 送行。"
+    },
+    {
+     "q": "公文结尾套语 'Atas perhatian dan kerja samanya, …' 中 -nya 的功能？",
+     "opts": [
+      "所属格",
+      "特指敬语化",
+      "复数",
+      "将来时"
+     ],
+     "a": 1,
+     "exp": "-nya 将名词敬语化：您的关注与合作（atas perhatiannya）。"
+    },
+    {
+     "q": "'尽管很忙，他还是接见了我们'对应句型？",
+     "opts": [
+      "Karena sibuk, beliau menerima kami",
+      "Walaupun sibuk, beliau tetap menerima kami",
+      "Kalau sibuk, beliau menerima kami",
+      "Sebelum sibuk, beliau menerima kami"
+     ],
+     "a": 1,
+     "exp": "walaupun 尽管，让步从句。"
+    }
+   ]
+  }
+ }
+};
+
+const caCalendar = {
+ "2026-10-20": {
+  "topic": "meet",
+  "day": 1,
+  "label": "🚀 CA进阶 · 见面 Day1 问候与初见"
+ },
+ "2026-10-21": {
+  "topic": "meet",
+  "day": 2,
+  "label": "🚀 CA进阶 · 见面 Day2 相互认识"
+ },
+ "2026-10-22": {
+  "topic": "meet",
+  "day": 3,
+  "label": "🚀 CA进阶 · 见面 Day3 正式会晤与道别"
+ }
+};
+
+// ============================================================
+// CA 进阶课程渲染器（CA v1.1 · 2026-10-20）
+// 独立渲染：#/ca/<topic>/<day> · 双库词卡 · 每日一测
+// ============================================================
+let caQuizAnswers = {};
+let caQuizSubmitted = false;
+
+function caE(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+function caLvBadge(lv){const m={basic:"基础",adv:"进阶",pro:"专业"};const c={basic:"#2ecc71",adv:"#3498db",pro:"#9b59b6"};return `<span style="font-size:10px;padding:1px 7px;border-radius:8px;background:${c[lv]}22;color:${c[lv]};border:1px solid ${c[lv]}55;font-weight:600">${m[lv]}</span>`;}
+function caLvTag(lv){const m={核心:"核心",进阶:"进阶",高阶:"高阶"};const c={核心:"#e67e22",进阶:"#3498db",高阶:"#9b59b6"};return `<span style="font-size:10px;padding:0 6px;border-radius:6px;background:${c[lv]}18;color:${c[lv]};border:1px solid ${c[lv]}44">${m[lv]||lv}</span>`;}
+
+function caWordPopup(w){
+  try{
+    if(typeof bitVocabDB!=="undefined"&&bitVocabDB[w]){showBITInfo(w);return;}
+    if(typeof vocabDB!=="undefined"&&vocabDB[w]){showTip(w);return;}
+  }catch(e){}
+  showToast("该词详情见课程卡片（未入库词条）");
+}
+
+function caInjectStyles(){
+  if(document.getElementById("ca-styles"))return;
+  const st=document.createElement("style");st.id="ca-styles";
+  st.textContent=`
+.ca-tabs{display:flex;gap:8px;margin:10px 0 14px;flex-wrap:wrap}
+.ca-tab{padding:7px 14px;border-radius:10px;border:1px solid var(--line,#333);background:var(--bg-card,#1a1d24);color:var(--text-dim,#889);cursor:pointer;font-size:13px;font-weight:600}
+.ca-tab.on{background:linear-gradient(135deg,rgba(167,139,250,.25),rgba(0,212,170,.15));border-color:#a78bfa;color:#c4b5fd}
+.ca-chips{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+.ca-chip{border:1px solid var(--line,#2a2f3a);border-radius:10px;padding:8px 10px;background:var(--bg-card,#15181f);cursor:pointer;transition:all .15s}
+.ca-chip:hover{border-color:#a78bfa;transform:translateY(-1px)}
+.ca-chip .w{font-weight:700;font-size:14px;color:var(--text,#e8ecf3)}
+.ca-chip .i{font-size:10px;color:var(--text-dim,#778);font-family:monospace}
+.ca-chip .c{font-size:12px;color:var(--text-light,#aab);margin-top:2px}
+.ca-chip .n{font-size:10px;color:var(--text-dim,#667);margin-top:2px;line-height:1.4}
+.ca-pat{border:1px solid var(--line,#2a2f3a);border-radius:12px;padding:12px 14px;margin-bottom:10px;background:var(--bg-card,#15181f)}
+.ca-pat .f{font-size:15px;font-weight:700;color:#8be8c8;cursor:pointer;margin:4px 0}
+.ca-pat .f:hover{text-decoration:underline}
+.ca-pat .row{font-size:12px;color:var(--text-light,#aab);margin-top:3px;line-height:1.55}
+.ca-pat .ex{font-size:13px;color:var(--text,#dde);padding-left:10px;border-left:2px solid #a78bfa55;margin-top:5px;line-height:1.6}
+.ca-slot{display:inline-block;font-size:10px;padding:1px 8px;border-radius:8px;background:rgba(0,212,170,.1);border:1px dashed rgba(0,212,170,.35);color:#7ee8c7;margin:2px 3px 0 0;cursor:pointer}
+.ca-expr{border-bottom:1px dashed var(--line,#2a2f3a);padding:7px 2px;display:flex;gap:8px;align-items:flex-start;flex-wrap:wrap}
+.ca-expr:last-child{border-bottom:0}
+.ca-expr .id{font-weight:700;color:var(--text,#e8ecf3);cursor:pointer;font-size:14px}
+.ca-expr .id:hover{color:#8be8c8}
+.ca-expr .cn{font-size:13px;color:var(--text-light,#aab)}
+.ca-expr .nt{font-size:11px;color:var(--text-dim,#778)}
+.ca-aff{border:1px solid var(--line,#2a2f3a);border-radius:12px;padding:10px 12px;margin-bottom:8px;background:var(--bg-card,#15181f)}
+.ca-aff .h{font-weight:700;color:#fbbf24;font-size:14px}
+.ca-aff .d{font-size:11px;color:#a3abbd;margin:2px 0}
+.ca-aff .der{font-size:12px;color:#8be8c8;font-family:monospace}
+.ca-aff .ex2{font-size:12px;color:#dde;margin-top:3px;line-height:1.5}
+.ca-aff .link{font-size:10px;color:#a78bfa;cursor:pointer;margin-top:4px}
+.caq{border:1px solid var(--line,#2a2f3a);border-radius:12px;padding:12px 14px;margin-bottom:10px;background:var(--bg-card,#15181f)}
+.caq .q{font-weight:700;font-size:14px;margin-bottom:8px;color:var(--text,#e8ecf3)}
+.caq-opt{display:block;width:100%;text-align:left;margin:4px 0;padding:8px 12px;border-radius:8px;border:1px solid var(--line,#2a2f3a);background:var(--bg,#0f1117);color:var(--text-light,#c9d1e0);cursor:pointer;font-size:13px}
+.caq-opt:hover{border-color:#a78bfa}
+.caq-opt.sel{border-color:#3498db;background:rgba(52,152,219,.12)}
+.caq-opt.ok{border-color:#2ecc71;background:rgba(46,204,113,.15);color:#7ee8c7}
+.caq-opt.bad{border-color:#e74c3c;background:rgba(231,76,60,.12);color:#ff9b8a}
+.caq-exp{display:none;margin-top:8px;font-size:12px;color:#fbbf24;background:rgba(251,191,36,.07);border-left:3px solid #fbbf24;padding:8px 10px;border-radius:0 8px 8px 0;line-height:1.55}
+.ca-audit{width:100%;border-collapse:collapse;font-size:12px}
+.ca-audit td,.ca-audit th{border:1px solid var(--line,#2a2f3a);padding:6px 10px;text-align:left}
+.ca-audit th{background:rgba(167,139,250,.08);color:#c4b5fd;font-weight:600}
+`;
+  document.head.appendChild(st);
+}
+
+function renderCA(c, topic, day){
+  caInjectStyles();
+  const t=caData[topic];if(!t){location.hash="#/home";return;}
+  let n=parseInt(day)||1;if(n<1)n=1;if(n>t.days)n=t.days;
+  const d=t["day"+n];
+  caQuizAnswers={};caQuizSubmitted=false;
+  const pct=Math.round(n/t.days*100);
+  const pb=caCount(d.patterns,"basic"),pa=caCount(d.patterns,"adv"),pp=caCount(d.patterns,"pro");
+  const eb=caCount(d.expressions,"basic"),ea=caCount(d.expressions,"adv"),ep=caCount(d.expressions,"pro");
+  const tabs=[1,2,3].map(i=>`<button class="ca-tab ${i===n?"on":""}" onclick="location.hash='#/ca/${topic}/${i}'">Day ${i} · ${caE(caData[topic]["day"+i].theme.split(" ")[0])}</button>`).join("");
+  const vocabHtml=d.vocab.map(v=>`<div class="ca-chip" onclick="caWordPopup('${caE(v.w)}')"><div class="w">${caE(v.w)} 🔊</div><div class="i">${caE(v.ipa)}</div><div class="c">${caE(v.cn)} ${caLvTag(v.level)}</div><div class="n">${caE(v.note)}</div></div>`).join("");
+  const phraseHtml=d.phrases.map(p=>`<div class="ca-expr"><span class="id" onclick="speak('${caE(p.id)}')">${caE(p.id)} 🔊</span><span class="cn">${caE(p.cn)}</span><span class="nt">[${caE(p.usage)}] ${caE(p.note)}</span></div>`).join("");
+  const patHtml=d.patterns.map((p,i)=>`<div class="ca-pat"><div>${caLvBadge(p.level)} <span style="font-size:11px;color:var(--text-dim)">${caE(p.cat)} · 复用${p.reuse}次</span></div><div class="f" onclick="speak('${caE(p.formula.replace(/\[.*?\]/g,""))}')">${caE(p.formula)} 🔊</div><div class="row">结构：${caE(p.structure)}</div><div class="row">语法：${caE(p.grammar)}</div><div class="row">场景：${caE(p.scene)}</div>${p.ex.map(e=>`<div class="ex">${caE(e)}</div>`).join("")}<div class="row" style="margin-top:5px">替换成分：${p.slots.map(s=>`<span class="ca-slot" onclick="speak('${caE(s)}')">${caE(s)}</span>`).join("")}</div></div>`).join("");
+  const exprHtml=d.expressions.map(e=>`<div class="ca-expr">${caLvBadge(e.level)}<span style="font-size:10px;color:var(--text-dim)">${caE(e.scene)}</span><span class="id" onclick="speak('${caE(e.id)}')">${caE(e.id)} 🔊</span><span class="cn">${caE(e.cn)}</span><span class="nt">${caE(e.note)}</span></div>`).join("");
+  const affHtml=d.affixes.map(a=>`<div class="ca-aff"><div class="h">${a.no}. ${caE(a.affix)} <span style="font-size:10px;color:var(--text-dim)">[${caE(a.type)}]</span></div><div class="d">功能：${caE(a.func)} ｜ 变形：${caE(a.rule)}</div><div class="der">${a.derivs.map(x=>`${caE(x.root)} → <b>${caE(x.der)}</b>（${caE(x.zh)}）`).join(" ｜ ")}</div>${a.examples.map(x=>`<div class="ex2">▸ ${caE(x.id)}<br><span style="color:var(--text-dim)">　${caE(x.cn)}</span></div>`).join("")}<div class="link" onclick="location.hash='#/affixRose'">↗ 词缀玫瑰图联动 · ${caE(a.link)}</div></div>`).join("");
+  const quizHtml=d.quiz.map((q,i)=>`<div class="caq" id="caq${i}"><div class="q">${i+1}. ${caE(q.q)}</div>${q.opts.map((o,j)=>`<button class="caq-opt" id="caqo${i}_${j}" onclick="caPick(${i},${j})">${String.fromCharCode(65+j)}. ${caE(o)}</button>`).join("")}<div class="caq-exp" id="caqe${i}">💡 ${caE(q.exp)}</div></div>`).join("");
+  c.innerHTML=`
+<div style="max-width:860px;margin:0 auto;padding:0 4px">
+<div style="margin-bottom:10px"><a href="#/home" style="color:var(--text-dim);font-size:12px">← 返回主页</a></div>
+<div class="card" style="border:1px solid rgba(167,139,250,.35);background:linear-gradient(135deg,rgba(167,139,250,.08),rgba(0,212,170,.05))">
+  <div class="card-header"><h2>${t.icon} ${caE(t.title)} <span style="font-size:11px;color:#c4b5fd;border:1px solid #a78bfa55;padding:1px 8px;border-radius:8px">CA 进阶 · ${t.level} · coef 1（月封顶5）</span></h2><span class="badge">Day ${n}/${t.days} · ${d.date}</span></div>
+  <div style="font-size:17px;font-weight:700;color:var(--text);margin:6px 0 2px">${caE(d.theme)}</div>
+  <div style="height:6px;background:rgba(255,255,255,.08);border-radius:3px;margin-top:8px"><div style="width:${pct}%;height:100%;border-radius:3px;background:linear-gradient(90deg,#a78bfa,#34d399)"></div></div>
+  <div class="ca-tabs">${tabs}</div>
+</div>
+<div class="card"><div class="card-header"><h2>📋 CA 合规审计表</h2><span class="badge">v1.1 裁定落实</span></div>
+<table class="ca-audit">
+<tr><th>内容块</th><th>数量</th><th>三级别配比（基础折抵后）</th></tr>
+<tr><td>① 词汇（核心词源自 C5 topic.vocab · 新增词 BIT 九字段入库）</td><td>${d.vocab.length}</td><td>核心${d.vocab.filter(v=>v.level==="核心").length} / 进阶${d.vocab.filter(v=>v.level==="进阶").length} / 高阶${d.vocab.filter(v=>v.level==="高阶").length}</td></tr>
+<tr><td>② 高频词组</td><td>${d.phrases.length}</td><td>—</td></tr>
+<tr><td>③ 万能句型</td><td>${d.patterns.length}</td><td>基础${pb}条(折${Math.floor(pb/3)}) : 进阶${pa} : 专业${pp} → 约 ${Math.round(Math.floor(pb/3)/(Math.floor(pb/3)+pa+pp)*100)}% / ${Math.round(pa/(Math.floor(pb/3)+pa+pp)*100)}% / ${Math.round(pp/(Math.floor(pb/3)+pa+pp)*100)}%</td></tr>
+<tr><td>④ 常用表达</td><td>${d.expressions.length}</td><td>基础${eb}条(折${Math.floor(eb/3)}) : 进阶${ea} : 专业${ep} → 约 ${Math.round(Math.floor(eb/3)/(Math.floor(eb/3)+ea+ep)*100)}% / ${Math.round(ea/(Math.floor(eb/3)+ea+ep)*100)}% / ${Math.round(ep/(Math.floor(eb/3)+ea+ep)*100)}%</td></tr>
+<tr><td>⑤ 词缀专项（30 词缀 3 天一轮 · coef 1）</td><td>${d.affixes.length}</td><td>当日第 ${d.affixes[0].no}–${d.affixes[d.affixes.length-1].no} 号</td></tr>
+<tr><td>⑥ 每日一测（当日内容生成）</td><td>${d.quiz.length} 题</td><td>词汇/句型/词缀混合</td></tr>
+</table></div>
+<div class="card"><div class="card-header"><h2>① 词汇 / Kosakata（点击词卡看 BIT 详情 🔊）</h2><span class="badge">${d.vocab.length} 词</span></div><div class="ca-chips">${vocabHtml}</div></div>
+<div class="card"><div class="card-header"><h2>② 高频词组 / Frasa（🔊 朗读）</h2><span class="badge">${d.phrases.length} 组</span></div>${phraseHtml}</div>
+<div class="card"><div class="card-header"><h2>③ 万能句型 / Pola Kalimat（点公式 🔊）</h2><span class="badge">${d.patterns.length} 条</span></div>${patHtml}</div>
+<div class="card"><div class="card-header"><h2>④ 常用表达 / Ekspresi（🔊 朗读）</h2><span class="badge">${d.expressions.length} 条</span></div>${exprHtml}</div>
+<div class="card"><div class="card-header"><h2>⑤ 词缀专项 / Afiks（当日 10 个）</h2><span class="badge">coef 1 · 月度封顶 5</span></div>${affHtml}</div>
+<div class="card"><div class="card-header"><h2>⑥ 每日一测 / Kuis Harian</h2><span class="badge">${d.quiz.length} 题 · 当日内容</span></div>
+<div id="caScore"></div>${quizHtml}
+<button class="ca-tab" style="width:100%;padding:12px;font-size:15px" onclick="caSubmit()">✅ 提交答案 / Kumpulkan</button></div>
+<div style="display:flex;gap:10px;margin:16px 0 30px">
+${n>1?`<button class="ca-tab" style="flex:1" onclick="location.hash='#/ca/${topic}/${n-1}">← Day ${n-1}</button>`:""}
+${n<t.days?`<button class="ca-tab" style="flex:1" onclick="location.hash='#/ca/${topic}/${n+1}">Day ${n+1} →</button>`:"<span style='flex:1;text-align:center;color:var(--text-dim);font-size:12px;padding:7px'>🎉 本话题 CA 课程完成 · 等待下一话题指令</span>"}
+</div></div>`;
+}
+
+function caCount(arr,lv){return arr.filter(x=>x.level===lv).length;}
+function caPick(i,j){
+  if(caQuizSubmitted)return;
+  caQuizAnswers[i]=j;
+  const opts=document.querySelectorAll(`#caq${i} .caq-opt`);
+  opts.forEach((o,k)=>o.classList.toggle("sel",k===j));
+}
+function caSubmit(){
+  if(caQuizSubmitted)return;
+  const t=caData["meet"];const route=parseRoute();const n=parseInt(route.param2)||1;const d=t["day"+n];
+  let score=0,answered=0;
+  d.quiz.forEach((q,i)=>{
+    const pick=caQuizAnswers[i];
+    if(pick!==undefined)answered++;
+    if(pick===q.a)score++;
+    const opts=document.querySelectorAll(`#caq${i} .caq-opt`);
+    opts.forEach((o,k)=>{
+      o.classList.remove("sel");
+      if(k===q.a)o.classList.add("ok");
+      else if(k===pick)o.classList.add("bad");
+      o.style.cursor="default";
+    });
+    document.getElementById("caqe"+i).style.display="block";
+  });
+  caQuizSubmitted=true;
+  const el=document.getElementById("caScore");
+  el.innerHTML=`<div style="border:1px solid ${score>=12?"#2ecc77":"#fbbf24"};border-radius:12px;padding:14px;margin-bottom:12px;background:${score>=12?"rgba(46,204,113,.08)":"rgba(251,191,36,.07)"}"><div style="font-size:22px;font-weight:800;color:${score>=12?"#7ee8c7":"#fbbf24"}">${score} / ${d.quiz.length} 分</div><div style="font-size:12px;color:var(--text-dim);margin-top:4px">已作答 ${answered} 题 · ${score>=12?"优秀，可以进入下一天 ✅":"建议复盘错题后重测（刷新页面可重做）"}</div></div>`;
+  el.scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+// 日历日期页 CA 分支
+function renderCADate(c,ds){
+  caInjectStyles();
+  const info=caCalendar[ds];const t=caData[info.topic];const d=t["day"+info.day];
+  c.innerHTML=`<div style="max-width:860px;margin:0 auto;padding:0 4px">
+<div class="card"><div class="card-header"><h2>📅 学习记录 / Catatan Belajar</h2><span class="badge">${ds}</span></div>
+<div style="font-size:13px;color:var(--text-dim)">${ds} · 星期一至星期日 · <span style="color:#c4b5fd">🚀 CA 进阶课程日</span></div></div>
+<div class="card" style="border:1px solid rgba(167,139,250,.4);background:linear-gradient(135deg,rgba(167,139,250,.1),rgba(0,212,170,.06))">
+<div class="card-header"><h2>${t.icon} ${caE(t.title)}</h2><span class="badge">CA · Day ${info.day}/${t.days}</span></div>
+<div style="font-size:16px;font-weight:700;margin:6px 0">${caE(d.theme)}</div>
+<div style="font-size:12px;color:var(--text-light);line-height:1.8">词汇 ${d.vocab.length} · 词组 ${d.phrases.length} · 句型 ${d.patterns.length} · 表达 ${d.expressions.length} · 词缀 ${d.affixes.length} · 一测 ${d.quiz.length} 题</div>
+<button class="ca-tab" style="margin-top:10px;padding:10px 20px;font-size:14px" onclick="location.hash='#/ca/${info.topic}/${info.day}'">▶ 进入 CA Day ${info.day} 课程</button>
+</div></div>`;
+}
+
+</script>
 </body>
 </html>
