@@ -1,0 +1,288 @@
+[
+  {
+    "word": "sepuluh-detik-pertama",
+    "ipa": "/səˈpu.luh dəˈtik pərˈta.ma/",
+    "cn": "前十秒",
+    "en": "the first ten seconds",
+    "root": "sepuluh（十）+ detik（秒）+ pertama（第一）",
+    "forms": [
+      {"form": "sepuluh detik pertama", "pos": "短语", "mean": "规范分写形式：前十秒"},
+      {"form": "detik-detik pertama", "pos": "短语", "mean": "最初时刻"}
+    ],
+    "formsNote": "数词+量词+序数词三词复合；规范书写应分写。用户输入为连字符连接形式，已保留并标注规范写法。",
+    "note": "用于强调开场关键时刻（演讲、面试、应急反应）。",
+    "synonyms": ["awal yang penting（重要开端）"],
+    "antonyms": ["saat-saat terakhir（最后时刻）"],
+    "examples": [
+      {"scene": "Sepuluh detik pertama presentasi menentukan perhatian audiens.", "id": "sepuluh detik pertama", "cn": "演讲的前十秒决定了听众的注意力。"},
+      {"scene": "Dalam sepuluh detik pertama, alarm akan berbunyi jika ada kebocoran gas.", "id": "sepuluh detik pertama", "cn": "前十秒内，如有燃气泄漏警报会响起。"}
+    ]
+  },
+  {
+    "word": "secara-mendalam",
+    "ipa": "/səˈtʃa.ra mənˈda.lam/",
+    "cn": "深入地；全面地",
+    "en": "in depth; thoroughly",
+    "root": "cara（方式）+ dalam（深）→ secara（以…方式）+ mendalam",
+    "forms": [
+      {"form": "secara mendalam", "pos": "副词短语", "mean": "规范分写形式：深入地"},
+      {"form": "secara komprehensif", "pos": "副词短语", "mean": "全面地"},
+      {"form": "secara tuntas", "pos": "副词短语", "mean": "彻底地"}
+    ],
+    "formsNote": "secara + 形容词 = 正式方式副词构式，书面语高频。用户输入连字符形式已保留，规范应分写。",
+    "note": "修饰动词或全句，正式报告/审计语境标配。",
+    "synonyms": ["secara komprehensif（全面地）", "dengan tuntas（彻底地）"],
+    "antonyms": ["secara dangkal（肤浅地）", "secara ringkas（简要地）"],
+    "examples": [
+      {"scene": "Tim audit menganalisis data pengeluaran secara mendalam.", "id": "secara mendalam", "cn": "审计团队深入分析了支出数据。"},
+      {"scene": "Kita perlu memahami akar masalah ini secara mendalam sebelum bertindak.", "id": "secara mendalam", "cn": "行动前我们需要深入理解问题的根源。"}
+    ]
+  },
+  {
+    "word": "konsumsi",
+    "ipa": "/konˈsump.si/",
+    "cn": "消费；消耗（量）",
+    "en": "consumption",
+    "root": "konsumsi（荷兰语 consumptie 借词）",
+    "forms": [
+      {"form": "konsumsi", "pos": "n", "mean": "消费；消耗"},
+      {"form": "mengonsumsi", "pos": "v", "mean": "消费；消耗（及物）"},
+      {"form": "konsumen", "pos": "n", "mean": "消费者"}
+    ],
+    "formsNote": "外来词无印尼语词缀变形；动词化加 meN- → mengonsumsi。",
+    "note": "能源/燃料管理高频：konsumsi listrik 电力消耗、konsumsi bahan bakar 燃料消耗。",
+    "synonyms": ["pemakaian（使用）", "penggunaan（用量）"],
+    "antonyms": ["produksi（生产）", "penghematan（节约）"],
+    "examples": [
+      {"scene": "Konsumsi listrik pabrik naik 12% bulan ini.", "id": "Konsumsi", "cn": "本月工厂用电量上升12%。"},
+      {"scene": "Konsumsi bahan bakar armada truk perlu diawasi ketat.", "id": "Konsumsi", "cn": "卡车车队的燃料消耗需要严格监控。"}
+    ]
+  },
+  {
+    "word": "verifikasi",
+    "ipa": "/və.ri.fiˈka.si/",
+    "cn": "验证；核实；确认",
+    "en": "verification",
+    "root": "verifikasi（拉丁语 verificare 借词）",
+    "forms": [
+      {"form": "verifikasi", "pos": "n", "mean": "验证；核实"},
+      {"form": "mengverifikasi", "pos": "v", "mean": "验证；核实（主动）"},
+      {"form": "diverifikasi", "pos": "v.pass", "mean": "被验证"},
+      {"form": "verifikator", "pos": "n", "mean": "验证员"}
+    ],
+    "formsNote": "外来词动词化 meN- → mengverifikasi；被动 di- → diverifikasi。",
+    "note": "UKBI Adaptif 注册核心步骤：unggah identitas untuk diverifikasi（上传身份待验证）。复习日重收覆盖更新。",
+    "synonyms": ["konfirmasi（确认）", "validasi（校验）", "pemeriksaan（核查）"],
+    "antonyms": ["pembatalan（取消）", "penolakan（拒绝）"],
+    "examples": [
+      {"scene": "Akun Anda akan aktif setelah proses verifikasi selesai.", "id": "verifikasi", "cn": "验证流程完成后您的账户将激活。"},
+      {"scene": "Petugas harus mengverifikasi dokumen asli sebelum penerbitan kartu.", "id": "mengverifikasi", "cn": "发卡前工作人员须验证原始文件。"}
+    ]
+  },
+  {
+    "word": "cahaya",
+    "ipa": "/tʃaˈha.ja/",
+    "cn": "光；光线",
+    "en": "light",
+    "root": "cahaya（阿拉伯语借词，非派生固有词）",
+    "forms": [
+      {"form": "cahaya", "pos": "n", "mean": "光；光线"},
+      {"form": "bercahaya", "pos": "v", "mean": "发光；发亮"},
+      {"form": "menerangi", "pos": "v", "mean": "照亮（及物）"},
+      {"form": "pencahayaan", "pos": "n", "mean": "照明（系统）"}
+    ],
+    "formsNote": "ber- 状态动词 bercahaya；meN--i 使役 menerangi；peN--an 名词化 pencahayaan。",
+    "note": "物理照明与比喻通用。cahaya matahari 阳光；LAPAN 等官方文件常用。",
+    "synonyms": ["sinar（光线）", "terang（明亮）"],
+    "antonyms": ["gelap（黑暗）", "kegelapan（黑暗状态）"],
+    "examples": [
+      {"scene": "Ruang kontrol memerlukan cahaya yang cukup untuk keselamatan kerja.", "id": "cahaya", "cn": "控制室需要充足光线以保障作业安全。"},
+      {"scene": "Lampu darurat bercahaya selama pemadaman listrik.", "id": "bercahaya", "cn": "停电期间应急灯保持照明。"}
+    ]
+  },
+  {
+    "word": "mekanisme",
+    "ipa": "/məˈka.niz.mə/",
+    "cn": "机制；机理",
+    "en": "mechanism",
+    "root": "mekanisme（荷兰语 mechanisme 借词）",
+    "forms": [
+      {"form": "mekanisme", "pos": "n", "mean": "机制；机理"},
+      {"form": "mekanik", "pos": "n/adj", "mean": "机械工/机械的"},
+      {"form": "mekanisasi", "pos": "n", "mean": "机械化"}
+    ],
+    "formsNote": "外来词族；相关词根 mekanik。",
+    "note": "管理语境核心：mekanisme pengawasan 监督机制、mekanisme pelaporan 报告机制。",
+    "synonyms": ["sistem kerja（工作体系）", "prinsip kerja（工作原理）"],
+    "antonyms": [],
+    "examples": [
+      {"scene": "Kami sedang menyusun mekanisme pelaporan insiden baru.", "id": "mekanisme", "cn": "我们正在制定新的事故报告机制。"},
+      {"scene": "Mekanisme pengunci pintu ganda diperiksa setiap minggu.", "id": "Mekanisme", "cn": "双重门锁机构每周检查。"}
+    ]
+  },
+  {
+    "word": "tindakan",
+    "ipa": "/tɪnˈda.kan/",
+    "cn": "行动；措施；行为",
+    "en": "action; measure",
+    "root": "tindak（行动）+ -an（名词后缀）",
+    "forms": [
+      {"form": "tindak", "pos": "v/n", "mean": "行动（词根）"},
+      {"form": "tindakan", "pos": "n", "mean": "行动；措施"},
+      {"form": "bertindak", "pos": "v", "mean": "采取行动"},
+      {"form": "tindak lanjut", "pos": "短语", "mean": "后续行动/跟进"}
+    ],
+    "formsNote": "-an 名词化；ber- 动词化 bertindak；固定搭配 tindak lanjut。",
+    "note": "行政商务高频：tindakan korektif 纠正措施、tindakan pencegahan 预防措施。",
+    "synonyms": ["langkah（步骤）", "tindak lanjut（跟进）"],
+    "antonyms": ["ketidakaktifan（不作为）", "pengabaian（忽视）"],
+    "examples": [
+      {"scene": "Auditor menuntut tindakan korektif dalam waktu tujuh hari.", "id": "tindakan korektif", "cn": "审计员要求七天内采取纠正措施。"},
+      {"scene": "Setiap tindakan darurat harus dicatat dalam log keselamatan.", "id": "tindakan darurat", "cn": "一切应急行动必须记入安全日志。"}
+    ]
+  },
+  {
+    "word": "transparan",
+    "ipa": "/transˈpa.ran/",
+    "cn": "透明的；公开透明的",
+    "en": "transparent",
+    "root": "transparan（荷兰语 transparant 借词）",
+    "forms": [
+      {"form": "transparan", "pos": "adj", "mean": "透明的"},
+      {"form": "transparansi", "pos": "n", "mean": "透明度"},
+      {"form": "secara transparan", "pos": "adv", "mean": "透明地"}
+    ],
+    "formsNote": "名词化 -si → transparansi（外来名词后缀）。",
+    "note": "企业治理高频：pengadaan transparan 透明采购、transparansi anggaran 预算透明。复习日重收覆盖更新（10/13 已收录）。",
+    "synonyms": ["terbuka（公开）", "jelas（明了）"],
+    "antonyms": ["tidak transparan（不透明）", "rahasia（秘密）"],
+    "examples": [
+      {"scene": "Proses tender harus transparan dan dapat diaudit.", "id": "transparan", "cn": "招标过程必须透明且可审计。"},
+      {"scene": "Perusahaan berkomitmen pada transparansi laporan keuangan.", "id": "transparansi", "cn": "公司致力于财务报告的透明度。"}
+    ]
+  },
+  {
+    "word": "mengusulkan",
+    "ipa": "/məˈŋu.sul.kan/",
+    "cn": "提议；建议；提出（方案）",
+    "en": "to propose; to suggest",
+    "root": "usul（建议）+ meN-（主动前缀）+ -kan（使役后缀）",
+    "forms": [
+      {"form": "usul", "pos": "n", "mean": "建议（词根）"},
+      {"form": "mengusulkan", "pos": "v", "mean": "提议；提出"},
+      {"form": "diusulkan", "pos": "v.pass", "mean": "被提议"},
+      {"form": "usulan", "pos": "n", "mean": "提案"},
+      {"form": "pengusul", "pos": "n", "mean": "提案人"}
+    ],
+    "formsNote": "meN- + usul → mengusulkan（s 在 u 前，不加 meny-）；-an 名词 usulan；peN- 施动者 pengusul。",
+    "note": "会议/项目管理核心动词：mengusulkan anggaran 提出预算、usulan proyek 项目提案。",
+    "synonyms": ["mengajukan（提交）", "menyarankan（建议）"],
+    "antonyms": ["menolak（拒绝）", "menarik kembali（撤回）"],
+    "examples": [
+      {"scene": "Manajer mengusulkan revisi jadwal produksi kepada direksi.", "id": "mengusulkan", "cn": "经理向董事会提议修改生产计划。"},
+      {"scene": "Usulan penghematan biaya disetujui bulan lalu.", "id": "Usulan", "cn": "成本节约提案上月已获批。"}
+    ]
+  },
+  {
+    "word": "armada",
+    "ipa": "/arˈma.da/",
+    "cn": "舰队；车队；机队",
+    "en": "fleet",
+    "root": "armada（西班牙语/葡萄牙语借词）",
+    "forms": [
+      {"form": "armada", "pos": "n", "mean": "舰队；车队"},
+      {"form": "sebuah armada", "pos": "量词短语", "mean": "一个车队"}
+    ],
+    "formsNote": "集合名词，无词缀变形；量词用 sebuah。",
+    "note": "物流管理核心：armada truk 卡车队、armada pengiriman 配送车队、armada tambang 矿队。",
+    "synonyms": ["flotila（小型舰队）", "rombongan kendaraan（车阵）"],
+    "antonyms": [],
+    "examples": [
+      {"scene": "Armada 40 truk mengangkut bahan baku setiap hari.", "id": "Armada", "cn": "40辆卡车组成的车队每天运送原材料。"},
+      {"scene": "Perawatan armada dijadwalkan setiap 5.000 kilometer.", "id": "armada", "cn": "车队保养按每5000公里安排。"}
+    ]
+  },
+  {
+    "word": "diperiksa",
+    "ipa": "/di.pəˈrik.sa/",
+    "cn": "被检查；被审查",
+    "en": "to be inspected; to be examined",
+    "root": "periksa（检查）+ di-（被动前缀）",
+    "forms": [
+      {"form": "periksa", "pos": "v", "mean": "检查（词根）"},
+      {"form": "memeriksa", "pos": "v", "mean": "检查（主动）"},
+      {"form": "diperiksa", "pos": "v.pass", "mean": "被检查"},
+      {"form": "pemeriksaan", "pos": "n", "mean": "检查；审查"},
+      {"form": "pemeriksa", "pos": "n", "mean": "检查员"}
+    ],
+    "formsNote": "di- 被动；peN--an 名词化 pemeriksaan；peN- 施动者 pemeriksa。",
+    "note": "质量/合规高频被动式：mesin diperiksa harian 机器每日受检、dokumen diperiksa auditor 文件受审计。",
+    "synonyms": ["diteliti（被研究）", "diaudit（被审计）"],
+    "antonyms": ["diabaikan（被忽视）", "dilewati（被跳过）"],
+    "examples": [
+      {"scene": "Setiap kontainer diperiksa sebelum meninggalkan pelabuhan.", "id": "diperiksa", "cn": "每个集装箱离港前都要接受检查。"},
+      {"scene": "Laporan keuangan diperiksa oleh auditor eksternal.", "id": "diperiksa", "cn": "财务报表由外部审计师审查。"}
+    ]
+  },
+  {
+    "word": "penghematan",
+    "ipa": "/pəŋ.həˈma.tan/",
+    "cn": "节约；节省（量）",
+    "en": "saving; economizing",
+    "root": "hemat（节约）+ peN- + -an",
+    "forms": [
+      {"form": "hemat", "pos": "adj/v", "mean": "节约的；节省"},
+      {"form": "menghemat", "pos": "v", "mean": "节约（主动）"},
+      {"form": "penghematan", "pos": "n", "mean": "节约；节省量"},
+      {"form": "penghemat", "pos": "n", "mean": "节约者"}
+    ],
+    "formsNote": "peN--an 名词化（hemat → penghematan，h 不变）；meN- 动词 menghemat。",
+    "note": "成本控制核心：penghematan energi 节能、penghematan biaya operasional 运营成本节约。",
+    "synonyms": ["efisiensi（效率）", "penyimpanan（储存节省）"],
+    "antonyms": ["pemborosan（浪费）", "konsumsi（消耗）"],
+    "examples": [
+      {"scene": "Penghematan energi menjadi prioritas utama pabrik tahun ini.", "id": "Penghematan", "cn": "节能成为工厂今年的首要任务。"},
+      {"scene": "Program daur ulang menghasilkan penghematan besar biaya pembuangan.", "id": "penghematan", "cn": "回收计划大幅节省了处理成本。"}
+    ]
+  },
+  {
+    "word": "salinannya",
+    "ipa": "/saˈli.nan.nja/",
+    "cn": "它的副本；其复印件",
+    "en": "its copy",
+    "root": "salin（抄写）+ -an（名词化）+ -nya（第三人称所有格）",
+    "forms": [
+      {"form": "salin", "pos": "v", "mean": "抄写；复制（词根）"},
+      {"form": "menyalin", "pos": "v", "mean": "抄写；复制（主动）"},
+      {"form": "salinan", "pos": "n", "mean": "副本；复印件"},
+      {"form": "salinannya", "pos": "n.poss", "mean": "它的副本"}
+    ],
+    "formsNote": "salin → menyalin（s→ny 音变）；-an 名词 salinan；-nya 附着所有格。",
+    "note": "三层派生示例（salin→salinan→salinannya）。文件管理：salinan kontrak 合同副本、salinan resmi 正式复印件。",
+    "synonyms": ["kopiannya（它的拷贝）", "duplikatnya（它的复制品）"],
+    "antonyms": ["aslinya（原件）", "orijinalnya（原版本）"],
+    "examples": [
+      {"scene": "Silakan simpan salinannya untuk arsip Anda.", "id": "salinannya", "cn": "请保存其复印件作为您的档案。"},
+      {"scene": "Salinan dokumen perizinan harus diserahkan kepada dinas terkait.", "id": "Salinan", "cn": "许可文件的复印件须提交给相关部门。"}
+    ]
+  },
+  {
+    "word": "kredibilitas",
+    "ipa": "/krə.diˈbi.li.tas/",
+    "cn": "可信度；信誉",
+    "en": "credibility",
+    "root": "kredibilitas（拉丁语 credibilitas 借词）",
+    "forms": [
+      {"form": "kredibilitas", "pos": "n", "mean": "可信度；信誉"},
+      {"form": "kredibel", "pos": "adj", "mean": "可信的"}
+    ],
+    "formsNote": "外来名词；形容词 kredibel。",
+    "note": "商务/媒体核心词：membangun kredibilitas 建立信誉、kredibilitas sumber 消息源可信度。",
+    "synonyms": ["kepercayaan（信任）", "reputasi（声誉）", "integritas（正直）"],
+    "antonyms": ["ketidakkredibelan（不可信）"],
+    "examples": [
+      {"scene": "Kredibilitas perusahaan dibangun melalui transparansi dan konsistensi.", "id": "Kredibilitas", "cn": "公司信誉通过透明度和一贯性建立。"},
+      {"scene": "Sumber berita itu kehilangan kredibilitas setelah berita palsu terungkap.", "id": "kredibilitas", "cn": "假新闻曝光后该消息源失去了可信度。"}
+    ]
+  }
+]

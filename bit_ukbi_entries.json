@@ -1,0 +1,759 @@
+{
+  "pendaftaran": {
+    "word": "pendaftaran",
+    "ipa": "/pəndaftarˈan/",
+    "cn": "注册/报名",
+    "en": "registration",
+    "root": "daftar",
+    "forms": [
+      {"form": "daftar", "pos": "v/n", "mean": "登记/名单"},
+      {"form": "mendaftar", "pos": "v", "mean": "注册/报名"},
+      {"form": "terdaftar", "pos": "v.pass", "mean": "已注册"},
+      {"form": "pendaftaran", "pos": "n", "mean": "注册/报名"}
+    ],
+    "formsNote": "daftar + peN--an 名词化；mendaftar = meN- 动词化",
+    "note": "UKBI 网站核心术语；搭配 secara mandiri（独立）或 kolektif（集体）",
+    "synonyms": ["registrasi", "pendaubletan"],
+    "antonyms": ["pembatalan"],
+    "examples": [
+      {"scene": "Pendaftaran dapat dilakukan secara mandiri atau kolektif.", "id": "Pendaftaran", "cn": "注册可以个人或集体方式进行。"},
+      {"scene": "Batas waktu pendaftaran adalah 24 jam sebelum ujian.", "id": "pendaftaran", "cn": "报名截止时间为考试前24小时。"}
+    ]
+  },
+  "calon": {
+    "word": "calon",
+    "ipa": "/tʃaˈlɔn/",
+    "cn": "候选人/报考者",
+    "en": "candidate/prospective",
+    "root": "calon",
+    "forms": [
+      {"form": "calon", "pos": "n", "mean": "候选人"},
+      {"form": "calon peserta", "pos": "n.phrase", "mean": "报考考生"},
+      {"form": "bercalon", "pos": "v", "mean": "参选"}
+    ],
+    "formsNote": "名词，可直接修饰名词：calon peserta（考生）",
+    "note": "正式场合常用，指尚未正式获得资格的人",
+    "synonyms": ["kandidat", "bakal"],
+    "antonyms": ["pemegang"],
+    "examples": [
+      {"scene": "Calon peserta harus memiliki pos-el aktif.", "id": "Calon", "cn": "报考者必须有活跃邮箱。"},
+      {"scene": "Ia calon direktur yang kuat.", "id": "calon", "cn": "他是强有力的董事候选人。"}
+    ]
+  },
+  "peserta": {
+    "word": "peserta",
+    "ipa": "/pəˈsɛrta/",
+    "cn": "考生/参与者",
+    "en": "participant",
+    "root": "serta",
+    "forms": [
+      {"form": "serta", "pos": "prep/v", "mean": "一起/参加"},
+      {"form": "peserta", "pos": "n", "mean": "参与者"},
+      {"form": "berserta", "pos": "v", "mean": "一起/附带"}
+    ],
+    "formsNote": "serta（一起）+ pe- 名词化 → 参与者；pe- 表示'做…的人'",
+    "note": "考试/活动正式用语；UKBI 全文高频",
+    "synonyms": ["partisipan", "pelaku"],
+    "antonyms": ["penonton"],
+    "examples": [
+      {"scene": "Peserta mengklik tautan verifikasi di pos-el.", "id": "Peserta", "cn": "考生点击邮件中的验证链接。"},
+      {"scene": "Setiap peserta mendapatkan jumlah soal yang berbeda.", "id": "peserta", "cn": "每位考生获得不同数量的题目。"}
+    ]
+  },
+  "mandiri": {
+    "word": "mandiri",
+    "ipa": "/mandiˈri/",
+    "cn": "独立/个人",
+    "en": "independent/self-service",
+    "root": "diri",
+    "forms": [
+      {"form": "diri", "pos": "n", "mean": "自己/身体"},
+      {"form": "mandiri", "pos": "adj", "mean": "独立的"},
+      {"form": "kemandirian", "pos": "n", "mean": "独立性"}
+    ],
+    "formsNote": "man-（加强）+ diri（自己）→ 独立",
+    "note": "UKBI 注册方式：pendaftaran mandiri = 个人自主报名",
+    "synonyms": ["swadaya", "otonom"],
+    "antonyms": ["tergantung", "kolektif"],
+    "examples": [
+      {"scene": "Pendaftaran dapat dilakukan secara mandiri oleh calon peserta.", "id": "mandiri", "cn": "报考者可以自主完成注册。"},
+      {"scene": "Bank Mandiri adalah bank terbesar di Indonesia.", "id": "Mandiri", "cn": "曼迪利银行是印尼最大的银行。"}
+    ]
+  },
+  "kolektif": {
+    "word": "kolektif",
+    "ipa": "/kolɛkˈtif/",
+    "cn": "集体/团体",
+    "en": "collective",
+    "root": "kolektif",
+    "forms": [
+      {"form": "kolektif", "pos": "adj", "mean": "集体的"},
+      {"form": "kolektivitas", "pos": "n", "mean": "集体性"}
+    ],
+    "formsNote": "荷兰语借词 kolektief → 印尼语 kolektif",
+    "note": "UKBI 注册方式之一：secara kolektif oleh lembaga（机构集体报名）",
+    "synonyms": ["bersama", "komunal"],
+    "antonyms": ["individu", "mandiri"],
+    "examples": [
+      {"scene": "Pendaftaran secara kolektif dilakukan oleh lembaga.", "id": "kolektif", "cn": "集体报名由机构办理。"},
+      {"scene": "Keputusan ini bersifat kolektif, bukan individu.", "id": "kolektif", "cn": "这个决定是集体性质，非个人。"}
+    ]
+  },
+  "lembaga": {
+    "word": "lembaga",
+    "ipa": "/lɛmbaˈga/",
+    "cn": "机构",
+    "en": "institution/agency",
+    "root": "lembaga",
+    "forms": [
+      {"form": "lembaga", "pos": "n", "mean": "机构/组织"},
+      {"form": "berlembaga", "pos": "v", "mean": "有组织的"}
+    ],
+    "formsNote": "纯名词，无常见派生",
+    "note": "泛指各种组织机构：Badan/lembaga bahasa（语言机构）",
+    "synonyms": ["institusi", "organisasi"],
+    "antonyms": ["individu"],
+    "examples": [
+      {"scene": "Lembaga dapat mendaftarkan peserta secara kolektif.", "id": "Lembaga", "cn": "机构可以集体方式报名考生。"},
+      {"scene": "Badan Pengembangan dan Pembinaan Bahasa adalah lembaga pemerintah.", "id": "lembaga", "cn": "语言发展培育局是政府机构。"}
+    ]
+  },
+  "akun": {
+    "word": "akun",
+    "ipa": "/aˈkun/",
+    "cn": "账户",
+    "en": "account",
+    "root": "akun",
+    "forms": [
+      {"form": "akun", "pos": "n", "mean": "账户/账号"},
+      {"form": "mengakun", "pos": "v", "mean": "记账（少用）"}
+    ],
+    "formsNote": "英语借词 account",
+    "note": "网络/系统语境：akun UKBI = UKBI 账户",
+    "synonyms": ["rekening", "id"],
+    "antonyms": [],
+    "examples": [
+      {"scene": "Sertifikat diunduh pada akun UKBI masing-masing.", "id": "akun", "cn": "证书从各自的 UKBI 账户下载。"},
+      {"scene": "Masuk ke akun Anda menggunakan pos-el dan kata sandi.", "id": "akun", "cn": "使用邮箱和密码登录您的账户。"}
+    ]
+  },
+  "pos-el": {
+    "word": "pos-el",
+    "ipa": "/pɔsˈɛl/",
+    "cn": "电子邮件",
+    "en": "email",
+    "root": "pos",
+    "forms": [
+      {"form": "pos", "pos": "n", "mean": "邮政/邮件"},
+      {"form": "pos-el", "pos": "n", "mean": "电子邮件"},
+      {"form": "mengirim pos-el", "pos": "v.phrase", "mean": "发邮件"}
+    ],
+    "formsNote": "pos（邮政）+ el（elektronik 缩写）→ 电子邮件；印尼语规范拼写",
+    "note": "正式书面用语，口语常用 e-mail/surel；UKBI 官网标准用法",
+    "synonyms": ["surel", "e-mail"],
+    "antonyms": ["surat fisik"],
+    "examples": [
+      {"scene": "Pos-el yang didaftarkan adalah pos-el aktif.", "id": "Pos-el", "cn": "注册的电子邮件必须是活跃邮箱。"},
+      {"scene": "Tautan verifikasi dikirim ke pos-el yang terdaftar.", "id": "pos-el", "cn": "验证链接发送到注册邮箱。"}
+    ]
+  },
+  "tautan": {
+    "word": "tautan",
+    "ipa": "/tautˈan/",
+    "cn": "链接",
+    "en": "link",
+    "root": "taut",
+    "forms": [
+      {"form": "taut", "pos": "v", "mean": "连接/系"},
+      {"form": "tautan", "pos": "n", "mean": "链接"},
+      {"form": "menautkan", "pos": "v", "mean": "链接/关联"}
+    ],
+    "formsNote": "taut（连接）+ -an 名词化",
+    "note": "网络用语；等同 link，更正式",
+    "synonyms": ["link", "sambungan"],
+    "antonyms": ["putus"],
+    "examples": [
+      {"scene": "Tautan verifikasi dikirim ke pos-el yang terdaftar.", "id": "Tautan", "cn": "验证链接发送到注册邮箱。"},
+      {"scene": "Klik tautan untuk mengunduh panduan.", "id": "tautan", "cn": "点击链接下载指南。"}
+    ]
+  },
+  "verifikasi": {
+    "word": "verifikasi",
+    "ipa": "/vɛrifiˈkasi/",
+    "cn": "验证",
+    "en": "verification",
+    "root": "verifikasi",
+    "forms": [
+      {"form": "verifikasi", "pos": "n", "mean": "验证"},
+      {"form": "memverifikasi", "pos": "v", "mean": "验证/核实"},
+      {"form": "terverifikasi", "pos": "v.pass", "mean": "已验证"}
+    ],
+    "formsNote": "拉丁借词 verificatio；meN- 动词化",
+    "note": "正式行政用语；UKBI 流程核心步骤",
+    "synonyms": ["pengesahan", "konfirmasi"],
+    "antonyms": ["pembatalan"],
+    "examples": [
+      {"scene": "Peserta mengklik tautan verifikasi untuk memverifikasi akun.", "id": "verifikasi", "cn": "考生点击验证链接来验证账户。"},
+      {"scene": "Verifikasi pembayaran dilakukan secara otomatis.", "id": "Verifikasi", "cn": "支付验证自动进行。"}
+    ]
+  },
+  "identitas": {
+    "word": "identitas",
+    "ipa": "/idɛnˈtitas/",
+    "cn": "身份",
+    "en": "identity",
+    "root": "identitas",
+    "forms": [
+      {"form": "identitas", "pos": "n", "mean": "身份"},
+      {"form": "identitas diri", "pos": "n.phrase", "mean": "个人身份"}
+    ],
+    "formsNote": "拉丁借词 identitas",
+    "note": "固定搭配：pengisian identitas（填写身份）、kartu identitas（身份证）",
+    "synonyms": ["jati diri", "kenali"],
+    "antonyms": ["anonimitas"],
+    "examples": [
+      {"scene": "Isi data diri dengan benar dan lengkap pada pengisian identitas.", "id": "identitas", "cn": "在填写身份信息时正确完整地填写个人资料。"},
+      {"scene": "Unggah foto kartu identitas yang masih berlaku.", "id": "identitas", "cn": "上传仍在有效期内的身份证照片。"}
+    ]
+  },
+  "data diri": {
+    "word": "data diri",
+    "ipa": "/ˈdata diˈri/",
+    "cn": "个人资料",
+    "en": "personal data",
+    "root": "data",
+    "forms": [
+      {"form": "data", "pos": "n", "mean": "数据"},
+      {"form": "data diri", "pos": "n.phrase", "mean": "个人资料"},
+      {"form": "data pribadi", "pos": "n.phrase", "mean": "私人数据"}
+    ],
+    "formsNote": "data（拉丁借词）+ diri（自己）",
+    "note": "表格/注册场景标准用语",
+    "synonyms": ["informasi pribadi", "biodata"],
+    "antonyms": [],
+    "examples": [
+      {"scene": "Isi data diri dengan benar dan lengkap.", "id": "data diri", "cn": "正确完整填写个人资料。"},
+      {"scene": "Data diri Anda dilindungi oleh undang-undang.", "id": "Data diri", "cn": "您的个人资料受法律保护。"}
+    ]
+  },
+  "pasfoto": {
+    "word": "pasfoto",
+    "ipa": "/pasˈfɔtɔ/",
+    "cn": "证件照",
+    "en": "passport photo",
+    "root": "foto",
+    "forms": [
+      {"form": "foto", "pos": "n", "mean": "照片"},
+      {"form": "pasfoto", "pos": "n", "mean": "证件照"},
+      {"form": "fotografi", "pos": "n", "mean": "摄影"}
+    ],
+    "formsNote": "pas（通过/标准）+ foto（照片）→ 标准证件照",
+    "note": "官方文件要求的照片规格",
+    "synonyms": ["foto resmi"],
+    "antonyms": [],
+    "examples": [
+      {"scene": "Unggah pasfoto digital terbaru dan foto kartu identitas.", "id": "pasfoto", "cn": "上传最新数字证件照和身份证照片。"},
+      {"scene": "Pasfoto harus berlatar belakang polos.", "id": "Pasfoto", "cn": "证件照必须是纯色背景。"}
+    ]
+  },
+  "kartu": {
+    "word": "kartu",
+    "ipa": "/ˈkartu/",
+    "cn": "卡/证件",
+    "en": "card",
+    "root": "kartu",
+    "forms": [
+      {"form": "kartu", "pos": "n", "mean": "卡"},
+      {"form": "kartu identitas", "pos": "n.phrase", "mean": "身份证"},
+      {"form": "kartu kredit", "pos": "n.phrase", "mean": "信用卡"}
+    ],
+    "formsNote": "荷兰语借词 kaart",
+    "note": "组合广泛：kartu identitas/ATM/nama",
+    "synonyms": ["kaart", "karcis"],
+    "antonyms": [],
+    "examples": [
+      {"scene": "Unggah foto kartu identitas sebagai bukti identitas.", "id": "kartu", "cn": "上传身份证照片作为身份证明。"},
+      {"scene": "Pembayaran dapat dilakukan dengan kartu debit.", "id": "kartu", "cn": "可以用借记卡支付。"}
+    ]
+  },
+  "unggah": {
+    "word": "unggah",
+    "ipa": "/ˈuŋga/",
+    "cn": "上传",
+    "en": "to upload",
+    "root": "unggah",
+    "forms": [
+      {"form": "unggah", "pos": "v", "mean": "上传（命令式/词根）"},
+      {"form": "mengunggah", "pos": "v", "mean": "上传"},
+      {"form": "unggahan", "pos": "n", "mean": "上传的内容"}
+    ],
+    "formsNote": "unggah 本身可作命令式；mengunggah = 正式及物动词",
+    "note": "网络操作术语；反义词 unduh（下载）",
+    "synonyms": ["upload", "muat naik"],
+    "antonyms": ["unduh", "turunkan"],
+    "examples": [
+      {"scene": "Unggah pasfoto digital terbaru.", "id": "Unggah", "cn": "上传最新数字证件照。"},
+      {"scene": "Peserta harus mengunggah dokumen sebelum batas waktu.", "id": "mengunggah", "cn": "考生必须在截止日期前上传文件。"}
+    ]
+  },
+  "uji": {
+    "word": "uji",
+    "ipa": "/ˈuʤi/",
+    "cn": "测试",
+    "en": "test/exam",
+    "root": "uji",
+    "forms": [
+      {"form": "uji", "pos": "n/v", "mean": "测试"},
+      {"form": "menguji", "pos": "v", "mean": "测试/考验"},
+      {"form": "pengujian", "pos": "n", "mean": "测试（过程）"},
+      {"form": "teruji", "pos": "v.pass", "mean": "经测试的"}
+    ],
+    "formsNote": "纯词根；meN- 动词化、peN--an 名词化",
+    "note": "UKBI 核心词：Uji Kemahiran Berbahasa Indonesia",
+    "synonyms": ["tes", "percobaan"],
+    "antonyms": [],
+    "examples": [
+      {"scene": "UKBI adalah tes standar untuk mengukur kemahiran berbahasa.", "id": "tes", "cn": "UKBI 是测定语言熟练度的标准测试。"},
+      {"scene": "Teruji lebih terpuji.", "id": "Teruji", "cn": "考过更优秀。（UKBI 标语）"}
+    ]
+  },
+  "kemahiran": {
+    "word": "kemahiran",
+    "ipa": "/kəmahirˈan/",
+    "cn": "熟练程度",
+    "en": "proficiency",
+    "root": "mahir",
+    "forms": [
+      {"form": "mahir", "pos": "adj", "mean": "熟练的"},
+      {"form": "kemahiran", "pos": "n", "mean": "熟练度"},
+      {"form": "memahirkan", "pos": "v", "mean": "使熟练"}
+    ],
+    "formsNote": "mahir（熟练）+ ke--an 名词化 → 技能/熟练",
+    "note": "UKBI 标题核心词；固定搭配 kemahiran berbahasa",
+    "synonyms": ["keahlian", "keterampilan"],
+    "antonyms": ["ketidakmampuan"],
+    "examples": [
+      {"scene": "UKBI mengukur tingkat kemahiran berbahasa peserta.", "id": "kemahiran", "cn": "UKBI 测定考生的语言熟练水平。"},
+      {"scene": "Kemahiran berbahasa Indonesia sangat penting untuk komunikasi.", "id": "Kemahiran", "cn": "印尼语熟练度对沟通非常重要。"}
+    ]
+  },
+  "teslet": {
+    "word": "teslet",
+    "ipa": "/ˈtɛslɛt/",
+    "cn": "题组",
+    "en": "testlet",
+    "root": "teslet",
+    "forms": [
+      {"form": "teslet", "pos": "n", "mean": "题组/测试单元"}
+    ],
+    "formsNote": "英语借词 testlet，UKBI Adaptif 自适应考试专用术语",
+    "note": "UKBI Adaptif 特色：每 teslet 含 5 题，根据答题表现动态调整难度",
+    "synonyms": ["paket soal"],
+    "antonyms": [],
+    "examples": [
+      {"scene": "Jumlah optimal teslet uji yang dikerjakan peserta adalah 9 teslet.", "id": "teslet", "cn": "考生最佳题组完成数量为 9 组。"},
+      {"scene": "Setiap teslet berisi lima butir soal.", "id": "teslet", "cn": "每个题组包含五道试题。"}
+    ]
+  },
+  "butir soal": {
+    "word": "butir soal",
+    "ipa": "/ˈbutir soˈal/",
+    "cn": "试题条目",
+    "en": "test item/question",
+    "root": "butir",
+    "forms": [
+      {"form": "butir", "pos": "n", "mean": "粒/条（量词）"},
+      {"form": "butir soal", "pos": "n.phrase", "mean": "试题条目"},
+      {"form": "butir pertanyaan", "pos": "n.phrase", "mean": "提问条目"}
+    ],
+    "formsNote": "butir（量词：粒/颗/条）+ soal（题目）",
+    "note": "正式考试统计用语：20 butir soal = 20 道题",
+    "synonyms": ["soal", "pertanyaan"],
+    "antonyms": ["jawaban"],
+    "examples": [
+      {"scene": "Contoh soal sebanyak 20 butir untuk memperkenalkan model soal UKBI.", "id": "butir", "cn": "20 道样题用于介绍 UKBI 题型。"},
+      {"scene": "Setiap wacana memiliki 5 butir soal.", "id": "butir soal", "cn": "每篇语篇有 5 道试题。"}
+    ]
+  },
+  "wacana": {
+    "word": "wacana",
+    "ipa": "/waˈtʃana/",
+    "cn": "篇章/语篇",
+    "en": "discourse/text",
+    "root": "wacana",
+    "forms": [
+      {"form": "wacana", "pos": "n", "mean": "语篇/篇章"},
+      {"form": "wacana lisan", "pos": "n.phrase", "mean": "口头语篇"},
+      {"form": "wacana tulis", "pos": "n.phrase", "mean": "书面语篇"}
+    ],
+    "formsNote": "梵语借词 vācana → 爪哇语 wacana",
+    "note": "语言学术语；UKBI 听力/阅读材料的基本单位",
+    "synonyms": ["teks", "narasi"],
+    "antonyms": [],
+    "examples": [
+      {"scene": "Wacana lisan dalam bentuk 4 dialog dan 4 monolog.", "id": "Wacana", "cn": "口头语篇形式为 4 个对话和 4 个独白。"},
+      {"scene": "Soal disajikan dalam bentuk maksimal 8 wacana tulis.", "id": "wacana", "cn": "题目以最多 8 篇书面语篇呈现。"}
+    ]
+  },
+  "dialog": {
+    "word": "dialog",
+    "ipa": "/diˈalɔg/",
+    "cn": "对话",
+    "en": "dialogue",
+    "root": "dialog",
+    "forms": [
+      {"form": "dialog", "pos": "n", "mean": "对话"},
+      {"form": "berdialog", "pos": "v", "mean": "对话"},
+      {"form": "pendialogan", "pos": "n", "mean": "对话编写"}
+    ],
+    "formsNote": "希腊借词 dialogos",
+    "note": "UKBI 听力材料类型之一，与 monolog 相对",
+    "synonyms": ["percakapan", "obrolan"],
+    "antonyms": ["monolog"],
+    "examples": [
+      {"scene": "Wacana lisan dalam bentuk 4 dialog dan 4 monolog.", "id": "dialog", "cn": "口头语篇为 4 个对话和 4 个独白。"},
+      {"scene": "Setiap dialog terdiri atas 5 butir soal.", "id": "dialog", "cn": "每个对话由 5 道试题组成。"}
+    ]
+  },
+  "monolog": {
+    "word": "monolog",
+    "ipa": "/mɔnɔˈlɔg/",
+    "cn": "独白",
+    "en": "monologue",
+    "root": "monolog",
+    "forms": [
+      {"form": "monolog", "pos": "n", "mean": "独白"}
+    ],
+    "formsNote": "希腊借词 monologos；mono（单一）+ log（说）",
+    "note": "UKBI 听力材料类型，单人连续讲话",
+    "synonyms": ["pidato tunggal"],
+    "antonyms": ["dialog"],
+    "examples": [
+      {"scene": "Setiap monolog terdiri atas 5 butir soal.", "id": "monolog", "cn": "每个独白由 5 道试题组成。"},
+      {"scene": "Monolog menguji kemampuan memahami wacana lisan panjang.", "id": "Monolog", "cn": "独白测试理解长篇口头语篇的能力。"}
+    ]
+  },
+  "kalimat": {
+    "word": "kalimat",
+    "ipa": "/kaˈlimat/",
+    "cn": "句子",
+    "en": "sentence",
+    "root": "kalimat",
+    "forms": [
+      {"form": "kalimat", "pos": "n", "mean": "句子"},
+      {"form": "kalimat pemantik", "pos": "n.phrase", "mean": "提示句"},
+      {"form": "berkalimat", "pos": "v", "mean": "造句"}
+    ],
+    "formsNote": "阿拉伯借词 kalimah（话语）",
+    "note": "语法反应部分的基本单位；kalimat pemantik = 写作/口语提示句",
+    "synonyms": ["klausa", "ungkapan"],
+    "antonyms": [],
+    "examples": [
+      {"scene": "Soal berupa kalimat yang mengandung bagian yang salah.", "id": "kalimat", "cn": "题目为含有错误部分的句子。"},
+      {"scene": "Kalimat pemantik disertai gambar atau infografik.", "id": "kalimat pemantik", "cn": "提示句配有图片或信息图。"}
+    ]
+  },
+  "kaidah": {
+    "word": "kaidah",
+    "ipa": "/kaɪˈdah/",
+    "cn": "语法规则",
+    "en": "grammar rule",
+    "root": "kaidah",
+    "forms": [
+      {"form": "kaidah", "pos": "n", "mean": "规则/准则"},
+      {"form": "berkaidah", "pos": "v", "mean": "符合规则"}
+    ],
+    "formsNote": "阿拉伯借词 qāʿidah（规则/底座）",
+    "note": "UKBI Seksi II 核心：Merespons Kaidah（语法反应）",
+    "synonyms": ["aturan", "tata bahasa"],
+    "antonyms": ["pelanggaran"],
+    "examples": [
+      {"scene": "Seksi II Merespons Kaidah menguji pemahaman kaidah bahasa Indonesia.", "id": "Kaidah", "cn": "第二部分语法反应测试印尼语语法规则理解。"},
+      {"scene": "Kalimat yang mengandung bagian yang salah tentang kaidah bahasa.", "id": "kaidah", "cn": "含有语法错误部分的句子。"}
+    ]
+  },
+  "mendengarkan": {
+    "word": "mendengarkan",
+    "ipa": "/mɛndɛŋˈgarkan/",
+    "cn": "听（正式）",
+    "en": "to listen",
+    "root": "dengar",
+    "forms": [
+      {"form": "dengar", "pos": "v", "mean": "听（词根）"},
+      {"form": "mendengar", "pos": "v", "mean": "听到"},
+      {"form": "mendengarkan", "pos": "v", "mean": "聆听（及物）"},
+      {"form": "pendengaran", "pos": "n", "mean": "听力/听觉"}
+    ],
+    "formsNote": "dengar + meN- + -kan 使动 → 及物'聆听'",
+    "note": "UKBI Seksi I 名称；比 mendengar 更正式，强调主动聆听",
+    "synonyms": ["mendengar"],
+    "antonyms": ["membicarakan"],
+    "examples": [
+      {"scene": "Seksi I Mendengarkan menguji pemahaman wacana lisan.", "id": "Mendengarkan", "cn": "第一部分听力测试口头语篇理解。"},
+      {"scene": "Mendengarkan dialog dan monolog dalam bahasa Indonesia.", "id": "Mendengarkan", "cn": "聆听印尼语对话和独白。"}
+    ]
+  },
+  "membaca": {
+    "word": "membaca",
+    "ipa": "/mɛmbaˈtʃa/",
+    "cn": "阅读",
+    "en": "to read",
+    "root": "baca",
+    "forms": [
+      {"form": "baca", "pos": "v", "mean": "读（词根）"},
+      {"form": "membaca", "pos": "v", "mean": "阅读"},
+      {"form": "bacaan", "pos": "n", "mean": "读物"},
+      {"form": "pembaca", "pos": "n", "mean": "读者"},
+      {"form": "terbaca", "pos": "v.pass", "mean": "被读到"}
+    ],
+    "formsNote": "baca + meN-（b→mem-）",
+    "note": "UKBI Seksi III 名称",
+    "synonyms": ["membaca"],
+    "antonyms": ["menulis"],
+    "examples": [
+      {"scene": "Seksi III Membaca menguji pemahaman wacana tulis.", "id": "Membaca", "cn": "第三部分阅读测试书面语篇理解。"},
+      {"scene": "Membaca maksimal 8 wacana tulis dalam 45 menit.", "id": "Membaca", "cn": "45 分钟内阅读最多 8 篇书面语篇。"}
+    ]
+  },
+  "menulis": {
+    "word": "menulis",
+    "ipa": "/məˈnulis/",
+    "cn": "写作",
+    "en": "to write",
+    "root": "tulis",
+    "forms": [
+      {"form": "tulis", "pos": "v", "mean": "写（词根）"},
+      {"form": "menulis", "pos": "v", "mean": "写作"},
+      {"form": "tulisan", "pos": "n", "mean": "作品/文字"},
+      {"form": "penulis", "pos": "n", "mean": "作家/作者"},
+      {"form": "tertulis", "pos": "v.pass", "mean": "书面的"}
+    ],
+    "formsNote": "tulis + meN-（t→men-）",
+    "note": "UKBI Seksi IV 名称",
+    "synonyms": ["mengetik"],
+    "antonyms": ["membaca"],
+    "examples": [
+      {"scene": "Seksi IV Menulis menuntut minimal 100 kata dalam 15 menit.", "id": "Menulis", "cn": "第四部分写作要求 15 分钟内至少 100 词。"},
+      {"scene": "Menulis esai sesuai kalimat pemantik dan infografik.", "id": "Menulis", "cn": "根据提示句和信息图写文章。"}
+    ]
+  },
+  "berbicara": {
+    "word": "berbicara",
+    "ipa": "/bərbiˈtʃara/",
+    "cn": "说话/口语",
+    "en": "to speak",
+    "root": "bicara",
+    "forms": [
+      {"form": "bicara", "pos": "v/n", "mean": "说/谈话"},
+      {"form": "berbicara", "pos": "v", "mean": "说话"},
+      {"form": "pembicaraan", "pos": "n", "mean": "谈话/讨论"},
+      {"form": "pembicara", "pos": "n", "mean": "发言人"}
+    ],
+    "formsNote": "bicara + ber- → 进行/处于说话状态",
+    "note": "UKBI Seksi V 名称",
+    "synonyms": ["berucap", "berkata"],
+    "antonyms": ["mendengarkan"],
+    "examples": [
+      {"scene": "Seksi V Berbicara menuntut presentasi topik dalam 3 menit perekaman.", "id": "Berbicara", "cn": "第五部分口语要求 3 分钟录音内演示话题。"},
+      {"scene": "Berbicara dengan jelas dan lancar sangat penting.", "id": "Berbicara", "cn": "清晰流利地说话非常重要。"}
+    ]
+  },
+  "predikat": {
+    "word": "predikat",
+    "ipa": "/prɛdiˈkat/",
+    "cn": "等级称号",
+    "en": "predicate/rating title",
+    "root": "predikat",
+    "forms": [
+      {"form": "predikat", "pos": "n", "mean": "称号/等级"},
+      {"form": "predikat kelulusan", "pos": "n.phrase", "mean": "毕业称号"}
+    ],
+    "formsNote": "拉丁借词 praedicatum",
+    "note": "UKBI 七个等级称号：Istimewa→Terbatas",
+    "synonyms": ["gelar", "sebutan"],
+    "antonyms": [],
+    "examples": [
+      {"scene": "Predikat Istimewa menunjukkan kemahiran yang sempurna.", "id": "Predikat", "cn": "特优称号表示完美的熟练度。"},
+      {"scene": "Tujuh predikat dari Istimewa hingga Terbatas.", "id": "predikat", "cn": "从特优到受限共七个等级称号。"}
+    ]
+  },
+  "peringkat": {
+    "word": "peringkat",
+    "ipa": "/pəriŋˈkat/",
+    "cn": "排名/级别",
+    "en": "rank/level",
+    "root": "ringkat",
+    "forms": [
+      {"form": "ringkat", "pos": "n", "mean": "等级（词根）"},
+      {"form": "peringkat", "pos": "n", "mean": "排名/级别"},
+      {"form": "peringkat pertama", "pos": "n.phrase", "mean": "第一名"}
+    ],
+    "formsNote": "ringkat + pe- 前缀（自动/相互）→ 排列等级",
+    "note": "UKBI 成绩映射到 tujuh peringkat（七个等级）",
+    "synonyms": ["kedudukan", "level"],
+    "antonyms": [],
+    "examples": [
+      {"scene": "Hasil UKBI dipetakan ke dalam tujuh peringkat.", "id": "peringkat", "cn": "UKBI 成绩映射为七个等级。"},
+      {"scene": "Peringkat I adalah predikat Istimewa.", "id": "Peringkat", "cn": "第一级是特优称号。"}
+    ]
+  },
+  "skor": {
+    "word": "skor",
+    "ipa": "/ˈskɔr/",
+    "cn": "分数",
+    "en": "score",
+    "root": "skor",
+    "forms": [
+      {"form": "skor", "pos": "n", "mean": "分数"},
+      {"form": "menyekor", "pos": "v", "mean": "评分"},
+      {"form": "skor akhir", "pos": "n.phrase", "mean": "最终得分"}
+    ],
+    "formsNote": "英语借词 score",
+    "note": "UKBI 分数范围 251-800",
+    "synonyms": ["nilai", "poin"],
+    "antonyms": [],
+    "examples": [
+      {"scene": "Predikat Istimewa memiliki skor 725 sampai 800.", "id": "skor", "cn": "特优等级的分数为 725 至 800。"},
+      {"scene": "Skor UKBI dapat langsung diketahui setelah uji selesai untuk Paket 1.", "id": "Skor", "cn": "套餐 1 的 UKBI 成绩在考完后立即可知。"}
+    ]
+  },
+  "istimewa": {
+    "word": "istimewa",
+    "ipa": "/istimɛˈwa/",
+    "cn": "特优/非凡",
+    "en": "exceptional/distinguished",
+    "root": "istimewa",
+    "forms": [
+      {"form": "istimewa", "pos": "adj", "mean": "特别的/特优的"},
+      {"form": "keistimewaan", "pos": "n", "mean": "特殊性/特权"}
+    ],
+    "formsNote": "梵语借词 istimewa（特别）",
+    "note": "UKBI 最高等级（725-800），表示完美沟通能力",
+    "synonyms": ["luar biasa", "istimewa"],
+    "antonyms": ["biasa", "terbatas"],
+    "examples": [
+      {"scene": "Predikat Istimewa menunjukkan kemahiran sempurna.", "id": "Istimewa", "cn": "特优称号表示完美熟练度。"},
+      {"scene": "Hari istimewa ini tidak akan terlupakan.", "id": "istimewa", "cn": "这个特别的日子不会被遗忘。"}
+    ]
+  },
+  "unggul": {
+    "word": "unggul",
+    "ipa": "/ˈuŋgul/",
+    "cn": "优秀",
+    "en": "superior/excellent",
+    "root": "unggul",
+    "forms": [
+      {"form": "unggul", "pos": "adj", "mean": "优秀的/占优的"},
+      {"form": "keunggulan", "pos": "n", "mean": "优势/卓越"},
+      {"form": "mengungguli", "pos": "v", "mean": "胜过/超越"}
+    ],
+    "formsNote": "纯词根形容词；ke--an 名词化、meN--i 动词化",
+    "note": "UKBI 第三等级（578-640）；Sangat Unggul 为第二等级（641-724）",
+    "synonyms": ["unggul", "hebat"],
+    "antonyms": ["lemah", "kurang"],
+    "examples": [
+      {"scene": "Predikat Unggul menunjukkan kemahiran sangat memadai.", "id": "Unggul", "cn": "优秀称号表示非常充分的熟练度。"},
+      {"scene": "Produk Indonesia unggul di pasar global.", "id": "unggul", "cn": "印尼产品在全球市场占优。"}
+    ]
+  },
+  "terbatas": {
+    "word": "terbatas",
+    "ipa": "/tɛrbaˈtas/",
+    "cn": "有限/受限",
+    "en": "limited",
+    "root": "batas",
+    "forms": [
+      {"form": "batas", "pos": "n", "mean": "界限"},
+      {"form": "terbatas", "pos": "adj/v.pass", "mean": "有限的"},
+      {"form": "membatasi", "pos": "v", "mean": "限制"},
+      {"form": "pembatasan", "pos": "n", "mean": "限制（措施）"}
+    ],
+    "formsNote": "batas + ter-（被动/状态）→ 被限制的",
+    "note": "UKBI 最低等级（251-325），仅能用生存用语",
+    "synonyms": ["terbatas", "sempit"],
+    "antonyms": ["luas", "bebas"],
+    "examples": [
+      {"scene": "Predikat Terbatas menunjukkan kemahiran sangat tidak memadai.", "id": "Terbatas", "cn": "受限称号表示非常不充分的熟练度。"},
+      {"scene": "Waktu ujian sangat terbatas.", "id": "terbatas", "cn": "考试时间非常有限。"}
+    ]
+  },
+  "sertifikat": {
+    "word": "sertifikat",
+    "ipa": "/sɛrtifiˈkat/",
+    "cn": "证书",
+    "en": "certificate",
+    "root": "sertifikat",
+    "forms": [
+      {"form": "sertifikat", "pos": "n", "mean": "证书"},
+      {"form": "sertifikasi", "pos": "n", "mean": "认证（过程）"},
+      {"form": "tersertifikasi", "pos": "adj", "mean": "已认证的"}
+    ],
+    "formsNote": "拉丁借词 certificatum",
+    "note": "UKBI 颁发数字证书（sertifikat digital）",
+    "synonyms": ["ijazah", "sijil"],
+    "antonyms": [],
+    "examples": [
+      {"scene": "Sertifikat diterbitkan dalam bentuk digital setiap Jumat, Sabtu, atau Minggu.", "id": "Sertifikat", "cn": "证书以数字形式在每周五、六或日颁发。"},
+      {"scene": "Sertifikat berlaku selama dua tahun.", "id": "Sertifikat", "cn": "证书有效期两年。"}
+    ]
+  },
+  "daring": {
+    "word": "daring",
+    "ipa": "/ˈdariŋ/",
+    "cn": "在线",
+    "en": "online",
+    "root": "daring",
+    "forms": [
+      {"form": "daring", "pos": "adj/adv", "mean": "在线的/地"},
+      {"form": "dalam jejaring", "pos": "n.phrase", "mean": "在网络中（全称）"}
+    ],
+    "formsNote": "daring = dalam jejaring 的缩合；反义词 luring = luar jejaring",
+    "note": "UKBI Adaptif dilaksanakan secara daring（在线进行）",
+    "synonyms": ["online", "mayapada"],
+    "antonyms": ["luring", "offline"],
+    "examples": [
+      {"scene": "UKBI Adaptif dilaksanakan secara daring.", "id": "daring", "cn": "UKBI Adaptif 在线进行。"},
+      {"scene": "Ujian daring memerlukan jaringan internet stabil.", "id": "daring", "cn": "在线考试需要稳定的互联网。"}
+    ]
+  },
+  "adaptif": {
+    "word": "adaptif",
+    "ipa": "/adapˈtif/",
+    "cn": "自适应",
+    "en": "adaptive",
+    "root": "adaptasi",
+    "forms": [
+      {"form": "adaptasi", "pos": "n", "mean": "适应"},
+      {"form": "adaptif", "pos": "adj", "mean": "自适应的"},
+      {"form": "menyesuaikan", "pos": "v", "mean": "调整/适应"}
+    ],
+    "formsNote": "拉丁借词 adaptare → adaptasi（名词）→ adaptif（形容词）",
+    "note": "UKBI Adaptif 特色：根据答题表现动态调整题目难度",
+    "synonyms": ["fleksibel", "lentur"],
+    "antonyms": ["kaku", "statis"],
+    "examples": [
+      {"scene": "UKBI Adaptif menyesuaikan jumlah soal dengan kemampuan peserta.", "id": "Adaptif", "cn": "UKBI Adaptif 根据考生能力调整题目数量。"},
+      {"scene": "Sistem adaptif menggunakan algoritma komputer.", "id": "adaptif", "cn": "自适应系统使用计算机算法。"}
+    ]
+  },
+  "jadwal": {
+    "word": "jadwal",
+    "ipa": "/ˈʤadwal/",
+    "cn": "日程表",
+    "en": "schedule",
+    "root": "jadwal",
+    "forms": [
+      {"form": "jadwal", "pos": "n", "mean": "日程/时间表"},
+      {"form": "menjadwalkan", "pos": "v", "mean": "安排日程"},
+      {"form": "terjadwal", "pos": "v.pass", "mean": "已排期的"}
+    ],
+    "formsNote": "阿拉伯借词 jadwal（时间表）",
+    "note": "UKBI 提供 5 个考试时间 zona：08.00/10.00/13.00/16.00/19.00 WIB",
+    "synonyms": ["agenda", "rentang waktu"],
+    "antonyms": [],
+    "examples": [
+      {"scene": "Pilih jadwal uji yang tersedia sesuai kebutuhan.", "id": "jadwal", "cn": "按需选择可用的考试时间。"},
+      {"scene": "Jadwal UKBI Adaptif tersedia Senin sampai Kamis.", "id": "Jadwal", "cn": "UKBI Adaptif 时间表为周一至周四。"}
+    ]
+  }
+}
