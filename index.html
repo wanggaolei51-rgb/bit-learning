@@ -6,7 +6,7 @@
 <meta http-equiv="Expires" content="0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LEO-BIR V4.46.0</title>
+<title>LEO-BIR V4.46.1</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -276,7 +276,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="sidebar-header">
     <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <h1>LEO-BIR</h1>
-    <div class="ver">LEO-BIR V4.46.0 · UKBI实战课+笔记语音播报</div>
+    <div class="ver">LEO-BIR V4.46.1 · 1020每日笔记21词</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -6022,6 +6022,7 @@ function showBITInfo(word){
 
 
 
+
 // ===== 每日笔记模块（BIT V1.0 生产 → BIO 审查定稿） V4.26.0 新增 =====
 function toggleDailyNote(id) {
   var el = document.getElementById(id);
@@ -6085,8 +6086,7 @@ function buildDailyNoteCard(topicKey) {
     return '<div class="card" style="margin-bottom:16px;border-left:3px solid var(--primary);">'
       + '<div class="card-header" style="flex-wrap:wrap;gap:8px;"><h2>📓 当日笔记 / Catatan Harian</h2>'
       + '<span class="badge">' + ds + '</span>'
-      + '<span class="badge">' + note.entries.length + '词条</span>'
-      + '<button class="bc-btn trans-btn btn-small" style="font-size:12px;margin-left:auto;" onclick="broadcastDay(\'' + ds + '\')">🔊 播报</button></div>'
+      + '<span class="badge">' + note.entries.length + '词条</span></div>'
       + '<div style="padding:16px;">'
       + '<div style="font-size:12px;color:var(--text-dim);margin-bottom:12px;padding:10px 12px;background:rgba(0,212,170,.06);border-radius:8px;border-left:3px solid var(--primary);">'
       + '📚 本日学习笔记（' + esc(note.source) + '）· 点击词条展开翻译、词根、变形、同反义词与场景例句</div>'
@@ -16245,8 +16245,20 @@ ukbi_certification: {
 
 ;
 
+// ===== 词缀玫瑰图 (V4.43.1) 30词缀交互可视化 · iframe srcdoc 隔离 =====
+const AFFIX_ROSE_HTML = "<!DOCTYPE html>\n<html lang=\"zh-CN\">\n<head>\n<meta charset=\"UTF-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<title>印尼语词缀 · 交互玫瑰图</title>\n<style>\n:root{\n  --bg:#0a0b10;\n  --surface:#14171f;\n  --surface2:#1a1e28;\n  --line:#232833;\n  --line2:#2c3240;\n  --ink:#eef1f7;\n  --ink2:#a3abbd;\n  --ink3:#68718a;\n  --sans:-apple-system,BlinkMacSystemFont,\"Segoe UI\",\"PingFang SC\",\"Hiragino Sans GB\",\"Microsoft YaHei\",sans-serif;\n  --mono:ui-monospace,SFMono-Regular,\"SF Mono\",Menlo,Consolas,monospace;\n  --serif:Georgia,\"Songti SC\",\"Noto Serif SC\",serif;\n  --ease:cubic-bezier(.22,1,.36,1);\n  --dur:.75s;\n}\n*{box-sizing:border-box;}\nhtml,body{height:100%;margin:0;}\nbody{\n  background:var(--bg);color:var(--ink);\n  font-family:var(--sans);-webkit-font-smoothing:antialiased;\n  overflow:hidden;\n  background-image:\n    radial-gradient(900px 600px at 15% -5%, rgba(52,211,153,.07), transparent 55%),\n    radial-gradient(800px 600px at 90% 10%, rgba(167,139,250,.06), transparent 55%),\n    radial-gradient(700px 500px at 50% 100%, rgba(251,191,36,.04), transparent 55%);\n  background-attachment:fixed;\n}\n::-webkit-scrollbar{width:6px;height:6px;}\n::-webkit-scrollbar-track{background:transparent;}\n::-webkit-scrollbar-thumb{background:#2a3140;border-radius:3px;}\n::-webkit-scrollbar-thumb:hover{background:#3a4255;}\n\n.app{\n  height:100vh;max-width:1660px;margin:0 auto;\n  padding:16px 24px 18px;\n  display:flex;flex-direction:column;gap:14px;\n}\n.topbar{flex:0 0 auto;display:flex;align-items:center;gap:16px;}\n.brand h1{\n  margin:0;font-size:1.16rem;font-weight:700;letter-spacing:-.02em;\n  background:linear-gradient(120deg,#eef1f7 20%,#8be8c8 60%,#c4b5fd 90%);\n  -webkit-background-clip:text;background-clip:text;\n  -webkit-text-fill-color:transparent;\n}\n.brand p{margin:2px 0 0;font-size:.7rem;color:var(--ink3);}\n.topbar-spacer{flex:1;min-width:10px;}\n.search-box{\n  display:flex;align-items:center;gap:8px;\n  background:var(--surface);border:1px solid var(--line);\n  border-radius:10px;padding:0 13px;height:36px;width:250px;\n  transition:border-color .2s,box-shadow .2s;\n}\n.search-box:focus-within{border-color:#3b4457;box-shadow:0 0 0 3px rgba(52,211,153,.08);}\n.search-box svg{color:var(--ink3);flex:0 0 auto;}\n.search-box input{\n  background:transparent;border:0;outline:0;color:var(--ink);\n  font-family:inherit;font-size:.82rem;width:100%;\n}\n.search-box input::placeholder{color:var(--ink3);}\n.btn{\n  display:inline-flex;align-items:center;gap:6px;\n  height:36px;padding:0 15px;border-radius:10px;border:1px solid var(--line2);\n  background:var(--surface);color:var(--ink2);\n  font-family:inherit;font-size:.78rem;font-weight:500;cursor:pointer;\n  transition:all .2s;white-space:nowrap;\n}\n.btn:hover{background:var(--surface2);color:var(--ink);border-color:#3b4457;}\n.btn.accent{\n  background:linear-gradient(135deg,#1f3a35,#1a2e2b);\n  border-color:#2a4a43;color:#8be8c8;\n}\n.btn.accent:hover{background:linear-gradient(135deg,#26463f,#1f3833);border-color:#3a6a5e;}\n\n/* ============ 舞台 ============ */\n.stage{\n  flex:1 1 auto;min-height:0;\n  position:relative;\n  overflow:hidden;\n}\n\n/* ---- 图表侧：绝对定位，宽度和位置随模式过渡 ---- */\n.chart-side{\n  position:absolute;\n  top:0;bottom:0;left:0;\n  width:100%;\n  display:flex;align-items:center;justify-content:center;\n  transition:width var(--dur) var(--ease), left var(--dur) var(--ease);\n  will-change:width,left;\n}\nbody.mode-right .chart-side{\n  width:58%;\n  left:0;\n}\nbody.mode-left .chart-side{\n  width:58%;\n  left:42%;\n}\n\n.chart-square{\n  position:relative;\n  aspect-ratio:1/1;\n  width:min(100%, calc(100vh - 148px));\n  container-type:inline-size;\n  transition:transform .6s var(--ease);\n  will-change:transform;\n}\nbody.has-detail .chart-square{\n  transform:scale(.94);\n}\n.chart-square svg{width:100%;height:100%;display:block;overflow:visible;}\n\n/* ---- 花瓣 ---- */\n.petal-g{\n  cursor:pointer;\n  transform-origin:400px 400px;\n  transform-box:view-box;\n  transition:transform .6s cubic-bezier(.34,1.35,.5,1), opacity .35s;\n  will-change:transform;\n}\n.petal-g.selected{transform:scale(1.42);}\n.petal-g.dimmed{opacity:.07;pointer-events:none;}\n\n.petal{\n  transition:filter .25s,stroke-width .25s,stroke-opacity .25s;\n  stroke-width:0.7;\n  stroke-opacity:.28;\n}\n.petal-g:hover .petal{filter:brightness(1.28) saturate(1.15);}\n.petal-g.selected .petal{\n  filter:brightness(1.4) saturate(1.25);\n  stroke-width:2.2;\n  stroke-opacity:1;\n}\n\n.petal-label{\n  font-family:var(--mono);font-weight:600;letter-spacing:.01em;\n  pointer-events:none;user-select:none;\n  paint-order:stroke;\n  stroke:#0a0b10;stroke-width:3;stroke-linejoin:round;\n  transition:fill .3s,stroke-width .3s;\n}\n.petal-g.selected .petal-label{\n  fill:#ffffff !important;\n  stroke-width:4.5;\n}\n\n/* ---- 中心 ---- */\n.chart-center{\n  position:absolute;left:50%;top:50%;\n  transform:translate(-50%,-50%);\n  width:30%;text-align:center;pointer-events:none;\n  display:flex;flex-direction:column;align-items:center;gap:2px;\n}\n.cc-type{\n  font-size:2.6cqw;font-weight:700;letter-spacing:.09em;\n  text-transform:uppercase;opacity:.92;\n}\n.cc-affix{\n  font-family:var(--mono);font-weight:600;\n  letter-spacing:-.04em;line-height:1.12;\n  word-break:break-word;\n  transition:font-size .4s;\n}\n.cc-hint{font-size:2.4cqw;color:var(--ink3);line-height:1.35;}\n\n/* ---- 详情侧 ---- */\n.detail-side{\n  position:absolute;\n  top:0;bottom:0;\n  width:0;\n  opacity:0;\n  pointer-events:none;\n  overflow:hidden;\n  display:flex;flex-direction:column;\n  transition:width var(--dur) var(--ease), opacity .4s ease;\n  will-change:width;\n}\nbody.mode-right .detail-side{\n  right:0;left:auto;\n  width:42%;\n  opacity:1;\n  pointer-events:auto;\n}\nbody.mode-left .detail-side{\n  left:0;right:auto;\n  width:42%;\n  opacity:1;\n  pointer-events:auto;\n}\n\n.detail-inner{\n  flex:1 1 auto;min-height:0;\n  width:100%;\n  background:var(--surface);\n  border:1px solid var(--line);\n  border-radius:18px;\n  overflow-y:auto;\n  padding:22px 24px 26px;\n  box-shadow:0 20px 50px -24px rgba(0,0,0,.7);\n  position:relative;\n}\n\n.detail-close{\n  position:absolute;top:14px;right:14px;\n  width:30px;height:30px;border-radius:50%;\n  border:1px solid var(--line2);background:var(--surface2);\n  color:var(--ink3);cursor:pointer;\n  display:grid;place-items:center;\n  font-size:.78rem;line-height:1;\n  transition:all .2s;z-index:2;\n}\n.detail-close:hover{background:#232833;color:var(--ink);transform:rotate(90deg);}\n\n@keyframes contentIn{\n  from{opacity:0;transform:translateY(10px);}\n  to{opacity:1;transform:translateY(0);}\n}\n.detail-content{animation:contentIn .42s var(--ease);}\n\n.d-head{display:flex;align-items:center;gap:10px;padding-right:40px;}\n.d-badge{\n  display:inline-flex;align-items:center;gap:6px;\n  padding:3px 12px;border-radius:999px;\n  font-size:.68rem;font-weight:600;\n  background:var(--cb);color:var(--c);\n}\n.d-num{font-family:var(--mono);font-size:.68rem;color:var(--ink3);}\n.d-affix{\n  margin:12px 0 0;font-family:var(--mono);\n  font-size:1.75rem;font-weight:600;letter-spacing:-.04em;\n  line-height:1.15;word-break:break-word;\n}\n.d-affix.long{font-size:1.18rem;letter-spacing:-.01em;}\n.d-brief{margin:7px 0 0;font-size:.84rem;color:var(--ink2);line-height:1.5;}\n.d-divider{height:1px;margin:16px 0;}\n.d-section{margin-bottom:15px;}\n.d-label{\n  font-size:.62rem;font-weight:700;letter-spacing:.1em;\n  text-transform:uppercase;color:var(--ink3);margin-bottom:6px;\n}\n.d-text{margin:0;font-size:.83rem;line-height:1.74;color:var(--ink2);}\n.d-sen{\n  margin:0;font-family:var(--serif);font-size:.9rem;\n  line-height:1.7;color:var(--ink);\n  border-left:2px solid;padding-left:12px;\n}\n.d-sen .zh{color:var(--ink3);font-family:var(--sans);font-size:.85em;}\n.d-src{\n  font-size:.68rem;color:var(--ink3);\n  padding-top:12px;border-top:1px solid var(--line);margin-top:4px;\n}\n.chips{display:flex;flex-direction:column;gap:6px;}\n.chip{\n  background:var(--surface2);border:1px solid var(--line);\n  border-radius:9px;padding:8px 12px;\n  display:flex;flex-direction:column;gap:2px;\n  transition:border-color .2s,transform .2s;\n}\n.chip:hover{border-color:var(--line2);transform:translateX(3px);}\n.chip-id{font-family:var(--mono);font-size:.78rem;line-height:1.4;color:var(--ink2);word-break:break-word;}\n.chip-root{color:var(--ink3);}\n.chip-arw{color:var(--c);opacity:.6;margin:0 5px;font-size:.85em;}\n.chip-der{color:var(--c);font-weight:600;}\n.chip-zh{font-size:.71rem;color:var(--ink3);line-height:1.4;}\n\n/* ---- 提示 ---- */\n.empty-hint{\n  position:absolute;left:50%;bottom:6px;\n  transform:translateX(-50%);\n  font-size:.74rem;color:var(--ink3);\n  letter-spacing:.02em;pointer-events:none;\n  opacity:1;transition:opacity .3s;\n  white-space:nowrap;\n}\nbody.has-detail .empty-hint{opacity:0;}\n\n.tip{\n  position:fixed;z-index:200;pointer-events:none;\n  padding:6px 11px;border-radius:8px;\n  background:rgba(20,23,31,.96);border:1px solid var(--line2);\n  backdrop-filter:blur(8px);\n  font-size:.76rem;color:var(--ink);\n  box-shadow:0 8px 26px -8px rgba(0,0,0,.7);\n  opacity:0;transform:translateY(4px);\n  transition:opacity .16s,transform .16s;\n  white-space:nowrap;\n}\n.tip.show{opacity:1;transform:translateY(0);}\n.tip strong{font-family:var(--mono);font-weight:600;}\n.tip span{\n  display:inline-block;margin-left:7px;font-size:.66rem;\n  padding:1px 7px;border-radius:999px;\n  background:var(--cb);color:var(--c);font-weight:500;\n}\n\n@keyframes petalIn{from{opacity:0;transform:scale(.93);}to{opacity:1;transform:scale(1);}}\n.petal-g.animate{animation:petalIn .55s var(--ease) backwards;}\n\n@media (prefers-reduced-motion:reduce){\n  .petal-g.animate{animation:none !important;}\n  .chart-side,.chart-square,.petal-g,.detail-side{transition-duration:.01ms !important;}\n}\n\n@media (max-width:1180px){\n  .search-box{width:190px;}\n  .brand p{display:none;}\n}\n@media (max-width:900px){\n  html,body{height:auto;overflow:auto;}\n  .app{height:auto;min-height:100vh;padding:14px 14px 30px;}\n  .stage{min-height:auto;overflow:visible;display:flex;flex-direction:column;}\n  .chart-side{\n    position:static;\n    width:100% !important;\n    left:auto !important;\n    transform:none;\n    display:block;\n    padding-bottom:16px;\n  }\n  .chart-square{\n    width:min(100%,520px) !important;\n    margin:0 auto;\n    transform:none !important;\n  }\n  .detail-side{\n    position:fixed;\n    left:0;right:0;bottom:0;top:auto;\n    width:100% !important;\n    height:68vh;\n    transform:translateY(100%);\n    transition:transform .45s var(--ease);\n    opacity:1;\n    pointer-events:auto;\n    z-index:50;\n    overflow:visible;\n  }\n  body.has-detail .detail-side{transform:translateY(0);}\n  .detail-inner{\n    border-radius:22px 22px 0 0;\n    border-bottom:0;\n    padding:22px 18px 30px;\n  }\n  .empty-hint{position:static;transform:none;margin-top:10px;text-align:center;}\n  .topbar{flex-wrap:wrap;}\n  .search-box{flex:1 1 100%;width:auto;order:3;}\n}\n@media (max-width:560px){\n  .brand h1{font-size:1rem;}\n  .d-affix{font-size:1.45rem;}\n}\n</style>\n</head>\n<body>\n\n<div class=\"app\">\n  <header class=\"topbar\">\n    <div class=\"brand\">\n      <h1>印尼语词缀 · 交互玫瑰图</h1>\n      <p>花瓣半径 = 派生词数量 · 颜色 = 词缀类型</p>\n    </div>\n    <div class=\"topbar-spacer\"></div>\n    <label class=\"search-box\">\n      <svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\"><circle cx=\"11\" cy=\"11\" r=\"7\"/><path d=\"M20 20l-3.6-3.6\"/></svg>\n      <input type=\"search\" id=\"search\" placeholder=\"搜索词缀 / 含义 / 例词…\" autocomplete=\"off\">\n    </label>\n    <button class=\"btn accent\" id=\"randomBtn\">\n      <svg width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M16 3h5v5\"/><path d=\"M4 20L21 3\"/><path d=\"M21 16v5h-5\"/><path d=\"M15 15l6 6\"/><path d=\"M4 4l5 5\"/></svg>\n      随机学习\n    </button>\n  </header>\n\n  <main class=\"stage\" id=\"stage\">\n    <div class=\"chart-side\" id=\"chartSide\">\n      <div class=\"chart-square\" id=\"chartSquare\">\n        <svg id=\"chart\" viewBox=\"0 0 800 800\" preserveAspectRatio=\"xMidYMid meet\">\n          <defs id=\"defs\"></defs>\n          <g id=\"petalGroups\"></g>\n        </svg>\n        <div class=\"chart-center\" id=\"chartCenter\"></div>\n      </div>\n      <div class=\"empty-hint\" id=\"emptyHint\">单击任意花瓣查看完整释义</div>\n    </div>\n\n    <aside class=\"detail-side\" id=\"detailSide\">\n      <div class=\"detail-inner\" id=\"detailInner\"></div>\n    </aside>\n  </main>\n</div>\n\n<div class=\"tip\" id=\"tip\"></div>\n\n<script>\n/* ============================================================\n   类型定义\n   ============================================================ */\nconst TYPES = {\n  pref: { name:'前缀',     c:'#34d399', cb:'rgba(52,211,153,.13)' },\n  suf:  { name:'后缀',     c:'#fbbf24', cb:'rgba(251,191,36,.13)' },\n  circ: { name:'词缀环绕', c:'#fb7185', cb:'rgba(251,113,133,.13)' },\n  loan: { name:'外来后缀', c:'#a78bfa', cb:'rgba(167,139,250,.13)' },\n  inf:  { name:'中缀',     c:'#38bdf8', cb:'rgba(56,189,248,.13)' },\n  part: { name:'语助词',   c:'#94a3b8', cb:'rgba(148,163,184,.13)' }\n};\nconst TYPE_ORDER = ['pref','suf','circ','loan','inf','part'];\n\n/* ============================================================\n   数据\n   ============================================================ */\nconst DATA = [\n  { id:1, affix:'ber-', type:'pref', brief:'拥有 · 使用 · 进行活动',\n    func:'构成动词（多为不及物）；代替 ada / punya 表“有、拥有”；代替 pakai 表“用、穿、戴”；表进行某种活动；与数词连用表“一起（几人）”。',\n    rule:'一般直接加在词根前；词根以 r 开头或首音节以 r 结尾时用 be-。',\n    derivs:[\n      {root:'kerja',      der:'bekerja',  zh:'工作 → 上班、工作'},\n      {root:'main',       der:'bermain',  zh:'玩 → 玩耍'},\n      {root:'rumah',      der:'berkamar', zh:'房间 → 有房间'},\n      {root:'lima orang', der:'berlima',  zh:'五个人 → 五人一起'}\n    ],\n    sen:'Dia bekerja di Bali.（他在巴厘岛工作。）', src:'课程·第12—13页' },\n\n  { id:2, affix:'be-', type:'pref', brief:'ber- 的变体（r 音前）',\n    func:'同 ber-：构成动词。',\n    rule:'ber- 在 r 音前使用。',\n    derivs:[\n      {root:'renang', der:'berenang', zh:'游泳 → 游泳'},\n      {root:'kerja',  der:'bekerja',  zh:'工作 → 上班'}\n    ],\n    sen:'Hobi dia berenang.（他的爱好是游泳。）', src:'课程·第12页' },\n\n  { id:3, affix:'meN-', type:'pref', brief:'构成主动及物动词',\n    func:'构成主动动词，一般作及物动词，使表达更主动、正式。',\n    rule:'按词根首字母变形：mem-（b/p/f/v）、men-（d/t/c/j/z）、meny-（s）、meng-（元音及 g/h/k/kh）、menge-（单音节外来词）、me-（其它）。',\n    derivs:[\n      {root:'baca',    der:'membaca',   zh:'读 → 阅读'},\n      {root:'tulis',   der:'menulis',   zh:'写 → 书写'},\n      {root:'sewa',    der:'menyewa',   zh:'租 → 租用'},\n      {root:'panggil', der:'memanggil', zh:'叫 → 呼叫、召唤'},\n      {root:'cuci',    der:'mencuci',   zh:'洗 → 清洗'},\n      {root:'cek',     der:'mengecek',  zh:'检查 → 核对'},\n      {root:'rasa',    der:'merasa',    zh:'感觉 → 感到'}\n    ],\n    sen:'Dia sedang membaca buku.（他正在读书。）', src:'课程·第14—16页' },\n\n  { id:4, affix:'di-', type:'pref', brief:'构成被动语态',\n    func:'构成被动语态，作谓语；施动者为第三人称或普通名词时用 di- + 词根，施动者前加 oleh（可省略）。',\n    rule:'无变形；需接 -kan / -i 时作 di-kan / di-i。',\n    derivs:[\n      {root:'baca',  der:'dibaca',  zh:'读 → 被读'},\n      {root:'tulis', der:'ditulis', zh:'写 → 被写'},\n      {root:'buka',  der:'dibuka',  zh:'开 → 被打开'},\n      {root:'ambil', der:'diambil', zh:'拿 → 被拿'},\n      {root:'beri',  der:'diberi',  zh:'给 → 被给予'}\n    ],\n    sen:'Buku itu sudah dibaca oleh Li Li.（那本书已被李丽读了。）', src:'课程·第18—19页 / 补全' },\n\n  { id:5, affix:'ter-', type:'pref', brief:'无意 · 最 · 完成态',\n    func:'①无意被（termakan）；②表“最”（terkaya、tertinggi）；③表“不小心”；④完成状态（tertulis）；⑤能动语气（tak terlupakan）。',\n    rule:'无变形。',\n    derivs:[\n      {root:'makan', der:'termakan',   zh:'吃 → 误食、被吃'},\n      {root:'kaya',  der:'terkaya',    zh:'富有 → 最富有'},\n      {root:'tinggi',der:'tertinggi',  zh:'高 → 最高'},\n      {root:'tulis', der:'tertulis',   zh:'写 → 已写上、写着'},\n      {root:'lupa',  der:'terlupakan', zh:'忘 → 难忘的'}\n    ],\n    sen:'Nama-nama mereka tertulis di buku itu.（他们的名字写在那本书上。）', src:'课程·第19页 / 补全' },\n\n  { id:6, affix:'peN- / pe-', type:'pref', brief:'施动者 · 工具 · 职业',\n    func:'使单词职业化 / 人化：表施动者、施动工具、具有某性质的人或物、以某职业为生者。',\n    rule:'变形与 meN- 相同：pem-、pen-、peny-、peng-、penge-、pe-（少数运动项目名词保持 pe-，如 petinju）。',\n    derivs:[\n      {root:'beli',  der:'pembeli',  zh:'买 → 买家'},\n      {root:'jual',  der:'penjual',  zh:'卖 → 卖家'},\n      {root:'main',  der:'pemain',   zh:'玩 → 玩家'},\n      {root:'malu',  der:'pemalu',   zh:'羞 → 害羞的人'},\n      {root:'diam',  der:'pendiam',  zh:'安静 → 沉默寡言的人'},\n      {root:'cuci',  der:'pencuci',  zh:'洗 → 洗涤工具、洗衣者'},\n      {root:'besar', der:'pembesar', zh:'大 → 大人物、扩张者'}\n    ],\n    sen:'penjual（卖家）、pembeli（买家）、pencuci（洗涤工具）', src:'课程·第25页 / 补全' },\n\n  { id:7, affix:'per-', type:'pref', brief:'使……、使成为',\n    func:'表“使、使成为”（构成使役动词）。',\n    rule:'加于形容词 / 名词词基之前。',\n    derivs:[\n      {root:'besar', der:'perbesar', zh:'大 → 扩大'},\n      {root:'jelas', der:'perjelas', zh:'清楚 → 澄清、说明白'},\n      {root:'budak', der:'perbudak', zh:'奴隶 → 奴役'}\n    ],\n    sen:'Mereka memperbesar rumah itu.（他们把房子扩建了。）', src:'补全' },\n\n  { id:8, affix:'memper- / diper-', type:'pref', brief:'加强使役（主动 / 被动）',\n    func:'加强使役作用；memper- 为主动，diper- 为被动。',\n    rule:'memper- + 词根 / diper- + 词根。',\n    derivs:[\n      {root:'besar', der:'memperbesar / diperbesar',       zh:'大 → 扩大 / 被扩大'},\n      {root:'kenal', der:'memperkenalkan / diperkenalkan', zh:'认识 → 介绍 / 被介绍'}\n    ],\n    sen:'Dia memperkenalkan temannya.（他介绍他的朋友。）', src:'补全' },\n\n  { id:9, affix:'se-', type:'pref', brief:'一 · 整 · 相同',\n    func:'表“一 / 整（满数量）”；se- + 形容词表“同、一样”。',\n    rule:'无变形，直接加在词前。',\n    derivs:[\n      {root:'ratus',    der:'seratus',    zh:'百 → 一百'},\n      {root:'ribu',     der:'seribu',     zh:'千 → 一千'},\n      {root:'juta',     der:'sejuta',     zh:'百万 → 一百万'},\n      {root:'tengah',   der:'setengah',   zh:'中间 → 一半'},\n      {root:'perempat', der:'seperempat', zh:'四分之一 → 四分之一'},\n      {root:'besar',    der:'sebesar',    zh:'大 → 一样大'},\n      {root:'luruh',    der:'seluruh',    zh:'全部 → 整个'},\n      {root:'hari',     der:'sehari',     zh:'天 → 一天'}\n    ],\n    sen:'seratus（一百）、setengah（一半）、sebesar（一样大）', src:'课程·第6、11、35页 / 补全' },\n\n  { id:10, affix:'ke-', type:'pref', brief:'序数词“第……”',\n    func:'构成序数词“第……”。',\n    rule:'ke- + 数词；可直接连写。',\n    derivs:[\n      {root:'dua',       der:'kedua',       zh:'二 → 第二'},\n      {root:'tiga',      der:'ketiga',      zh:'三 → 第三'},\n      {root:'empat',     der:'keempat',     zh:'四 → 第四'},\n      {root:'dua puluh', der:'kedua puluh', zh:'二十 → 第二十'}\n    ],\n    sen:'Anak saya yang kedua sudah kuliah.（我的第二个孩子已上大学。）', src:'课程·第11页 / 补全' },\n\n  { id:11, affix:'-an', type:'suf', brief:'名词化 · 约数',\n    func:'使动词 / 名词名词化（物品、类别、动作结果）；表约数。',\n    rule:'无变形，加于词根之后。',\n    derivs:[\n      {root:'makan', der:'makanan',     zh:'吃 → 食物'},\n      {root:'minum', der:'minuman',     zh:'喝 → 饮料'},\n      {root:'tulis', der:'tulisan',     zh:'写 → 文字、文章'},\n      {root:'kirim', der:'kiriman',     zh:'寄 → 包裹、寄件'},\n      {root:'buah',  der:'buah-buahan', zh:'水果 → 各种水果'},\n      {root:'puluh', der:'puluhan',     zh:'十 → 几十'}\n    ],\n    sen:'makanan（食物）、minuman（饮料）', src:'课程·第17页' },\n\n  { id:12, affix:'-kan', type:'suf', brief:'命令句使役 / 方向',\n    func:'命令句中接在词根动词之后，表使役 / 给予方向；也是 meN-kan 的组成部分。',\n    rule:'命令句中使用（省略 meN- 后加 -kan）。',\n    derivs:[\n      {root:'buka',  der:'bukakan',  zh:'开 → 打开（给……）'},\n      {root:'tutup', der:'tutupkan', zh:'关 → 关上（给……）'},\n      {root:'kasih', der:'kasihkan', zh:'给 → 给（某人）'},\n      {root:'beli',  der:'belikan',  zh:'买 → 买给（某人）'}\n    ],\n    sen:'Tolong bukakan pintu.（请把门打开。）', src:'课程·第15、21—22、36页' },\n\n  { id:13, affix:'-i', type:'suf', brief:'命令句方向 / 反复',\n    func:'命令句中接在词根之后，表动作方向 / 反复；也是 meN-i 的组成部分。',\n    rule:'命令句中使用。',\n    derivs:[\n      {root:'beli', der:'belikan / beliin', zh:'买 → 买给 / 买给（口语）'},\n      {root:'nama', der:'namai',            zh:'名字 → 命名'}\n    ],\n    sen:'Beli saya hape.（给我买个手机。）', src:'课程·第21—22页' },\n\n  { id:14, affix:'-nya', type:'suf', brief:'第三人称所有格 · 特指',\n    func:'①第三人称所有格（他的 / 她的 / 它的）；②表特指“那”；③作被动施动者（olehnya）。',\n    rule:'无变形，附于名词 / 动词 / 形容词之后。',\n    derivs:[\n      {root:'rumah', der:'rumahnya', zh:'房子 → 他/她的房子'},\n      {root:'motor', der:'motornya', zh:'摩托车 → 他/她的摩托车'},\n      {root:'hape',  der:'hapenya',  zh:'手机 → 他/她的手机'}\n    ],\n    sen:'Rumahnya jauh dari sekolah.（他家离学校远。）', src:'课程·第19页 / 补全' },\n\n  { id:15, affix:'-ku', type:'suf', brief:'第一人称所有格（我的）',\n    func:'第一人称所有格（我的）。',\n    rule:'无变形，不能单独使用，须依附于词后。',\n    derivs:[\n      {root:'mobil', der:'mobilku', zh:'车 → 我的车'},\n      {root:'anak',  der:'anakku',  zh:'孩子 → 我的孩子'}\n    ],\n    sen:'mobilku（我的车）', src:'课程·第8页' },\n\n  { id:16, affix:'-mu', type:'suf', brief:'第二人称所有格（你的）',\n    func:'第二人称所有格（你的）。',\n    rule:'无变形，不能单独使用，须依附于词后。',\n    derivs:[\n      {root:'sepeda', der:'sepedamu', zh:'自行车 → 你的自行车'}\n    ],\n    sen:'Sepedamu（你的自行车）', src:'课程·第8页' },\n\n  { id:17, affix:'-lah / -kah / -pun / -tah', type:'part', brief:'语气 · 疑问 · 强调',\n    func:'-lah 加强语气或构成祈使；-kah 构成疑问；-pun 表“也、连……都”或强调；-tah 为古旧用法。',\n    rule:'附于句首词或谓语词之后（可分写）。',\n    derivs:[\n      {root:'sudah', der:'sudahkah', zh:'已经 → 已经了吗'},\n      {root:'dia',   der:'dialah',   zh:'他 → 正是他'},\n      {root:'buka',  der:'bukalah',  zh:'开 → 请打开'},\n      {root:'aku',   der:'akupun',   zh:'我 → 连我也'}\n    ],\n    sen:'Sudahkah kamu makan?（你吃饭了吗？）Bukalah pintu!（开门！）', src:'课程·第19、29页 / 补全' },\n\n  { id:18, affix:'meN-kan', type:'circ', brief:'使役 · 处置 · 为动',\n    func:'表使役（使……变得……）、处置、为动（为某人做）；可改写 membuat 句、代替 untuk；可带双宾语。',\n    rule:'meN- 的变形规则 + -kan（-kan 不变）。',\n    derivs:[\n      {root:'senang',  der:'menyenangkan', zh:'开心 → 使……开心'},\n      {root:'bersih',  der:'membersihkan', zh:'干净 → 打扫、清理'},\n      {root:'baca',    der:'membacakan',   zh:'读 → 读给……听'},\n      {root:'panggil', der:'memanggilkan', zh:'叫 → 替……叫'}\n    ],\n    sen:'Film ini menyenangkan kita.（这部电影使我们开心。）', src:'课程·第21—22页' },\n\n  { id:19, affix:'meN-i', type:'circ', brief:'反复 · 持续 · 代替介词',\n    func:'表动作反复 / 持续；代替 memberi；代替部分介词（多用于不及物动词）；可带双宾语。',\n    rule:'meN- 的变形规则 + -i（-i 不变）。',\n    derivs:[\n      {root:'nama',  der:'menamai',    zh:'名字 → 命名'},\n      {root:'hadir', der:'menghadiri', zh:'出席 → 参加'},\n      {root:'pukul', der:'memukuli',   zh:'打 → 反复打'},\n      {root:'warna', der:'mewarnai',   zh:'颜色 → 着色'}\n    ],\n    sen:'Jangan memukuli TV-nya.（别一直打电视。）', src:'课程·第22—23页' },\n\n  { id:20, affix:'ke-an', type:'circ', brief:'抽象名词 · 极端 · 遭受',\n    func:'①形容词 / 名词 / 动词 → 抽象名词；②形容词极端化（很、太）；③表遭受 / 负面（不好的事）。',\n    rule:'环绕词缀，无变形。',\n    derivs:[\n      {root:'cantik', der:'kecantikan',  zh:'美 → 美丽'},\n      {root:'sehat',  der:'kesehatan',   zh:'健康 → 健康'},\n      {root:'lapar',  der:'kelaparan',   zh:'饿 → 饥饿'},\n      {root:'panas',  der:'kepanasan',   zh:'热 → 过热、中暑'},\n      {root:'hujan',  der:'kehujanan',   zh:'雨 → 淋雨'},\n      {root:'tinggal',der:'ketinggalan', zh:'留 → 落下、掉队'}\n    ],\n    sen:'Kesehatan sangat penting bagi dia.（健康对他很重要。）', src:'课程·第23—24页' },\n\n  { id:21, affix:'per-an / peN-an', type:'circ', brief:'抽象名词（过程 / 结果）',\n    func:'动词 / 形容词 / 名词 → 抽象名词（表过程、结果）。',\n    rule:'per- + -an；或 peN- + -an。',\n    derivs:[\n      {root:'beda',   der:'perbedaan',   zh:'不同 → 差异'},\n      {root:'ubah',   der:'perubahan',   zh:'变 → 变化'},\n      {root:'temu',   der:'pertemuan',   zh:'见 → 会面、会议'},\n      {root:'jalan',  der:'perjalanan',  zh:'走 → 旅程'},\n      {root:'kerja',  der:'pekerjaan',   zh:'工作 → 职业、工作'},\n      {root:'bangun', der:'pembangunan', zh:'建 → 建设'},\n      {root:'bayar',  der:'pembayaran',  zh:'付 → 付款'}\n    ],\n    sen:'Perubahan ini sangat penting.（这个变化非常重要。）', src:'课程·第25—26页' },\n\n  { id:22, affix:'ber-an', type:'circ', brief:'反复 · 相互',\n    func:'表动作反复 / 相互。',\n    rule:'ber- + -an。',\n    derivs:[\n      {root:'muncul',  der:'bermunculan',    zh:'出现 → 不断涌现'},\n      {root:'jalan',   der:'berjalan-jalan', zh:'走 → 散步'},\n      {root:'sebelah', der:'bersebelahan',   zh:'旁边 → 相邻'}\n    ],\n    sen:'Banyak orang aneh bermunculan.（许多奇怪的人不断出现。）', src:'课程·第39—40页' },\n\n  { id:23, affix:'ber-kan', type:'circ', brief:'以……为基 / 主题',\n    func:'表“以……为（基础 / 主题 / 成员）”。',\n    rule:'ber- + -kan。',\n    derivs:[\n      {root:'dasar',   der:'berdasarkan',   zh:'基础 → 基于'},\n      {root:'tema',    der:'bertemakan',    zh:'主题 → 以……为主题'},\n      {root:'anggota', der:'beranggotakan', zh:'成员 → 拥有成员'}\n    ],\n    sen:'Berdasarkan data itu, kamu sehat sekali.（基于那个数据……）', src:'课程·第40页' },\n\n  { id:24, affix:'berke-an / berpe-an', type:'circ', brief:'状态 · 书面语（低频）',\n    func:'ber- 与 ke-an / peN-an 叠加，多表状态或书面语色彩（低频）。',\n    rule:'ber- + ke- + 词根 + -an。',\n    derivs:[\n      {root:'adil', der:'berkeadilan', zh:'公正 → 秉持公正（书面）'}\n    ],\n    sen:'Mereka ingin hidup berkeadilan.（他们希望生活在公正之中。）', src:'补全' },\n\n  { id:25, affix:'-er- / -el- / -em-', type:'inf', brief:'插入词根构成新词',\n    func:'插入词根首音节后构成新词，词义常与词根相关但已派生（多表细碎、重复或持续）。',\n    rule:'插于词根第一个音节之后。',\n    derivs:[\n      {root:'gigi',   der:'gerigi',   zh:'牙 → 锯齿'},\n      {root:'tunjuk', der:'telunjuk', zh:'指 → 食指'},\n      {root:'getar',  der:'gemétar',  zh:'颤 → 颤抖'},\n      {root:'kuning', der:'kemuning', zh:'黄 → 黄檀（树名）'}\n    ],\n    sen:'telunjuk（食指）、gerigi（锯齿）', src:'补全' },\n\n  { id:26, affix:'-wan / -wati', type:'loan', brief:'职业 / 身份（阴性 -wati）',\n    func:'构成表职业 / 身份的人；-wati 为阴性对应形式。',\n    rule:'直接加于词基之后。',\n    derivs:[\n      {root:'karya',  der:'karyawan / karyawati', zh:'工作 → 职员 / 女职员'},\n      {root:'wisata', der:'wisatawan',            zh:'旅游 → 游客'},\n      {root:'ilmu',   der:'ilmuwan',              zh:'知识 → 科学家'},\n      {root:'warta',  der:'wartawan',             zh:'消息 → 记者'}\n    ],\n    sen:'Dia seorang karyawan.（他是一名职员。）', src:'补全' },\n\n  { id:27, affix:'-man', type:'loan', brief:'具某品质 / 职业的人',\n    func:'表具有某种品质 / 职业的人。',\n    rule:'直接加于词基之后。',\n    derivs:[\n      {root:'seni', der:'seniman', zh:'艺术 → 艺术家'},\n      {root:'budi', der:'budiman', zh:'理智 → 智者'}\n    ],\n    sen:'Ayahnya seorang seniman.（他父亲是艺术家。）', src:'补全' },\n\n  { id:28, affix:'-is / -isme / -isasi / -logi', type:'loan', brief:'……者 · 主义 · 化 · 学',\n    func:'-is 表“……的 / ……者”；-isme 表“……主义”；-isasi 表“……化”；-logi 表“……学”。',\n    rule:'直接加于词基之后。',\n    derivs:[\n      {root:'sosial', der:'sosialis',    zh:'社会 → 社会主义者'},\n      {root:'Islam',  der:'Islamisme',   zh:'伊斯兰 → 伊斯兰主义'},\n      {root:'modern', der:'modernisasi', zh:'现代 → 现代化'},\n      {root:'tekno',  der:'teknologi',   zh:'技术 → 技术学、科技'}\n    ],\n    sen:'modernisasi（现代化）、sosialis（社会主义者）', src:'补全' },\n\n  { id:29, affix:'ku- / kau-', type:'pref', brief:'口语被动（我 / 你）',\n    func:'第一人称单数（ku-）、第二人称单数（kau-）作施动者的被动式，多见于口语与非正式书面语。',\n    rule:'ku- / kau- + 词根（与主语连写）。',\n    derivs:[\n      {root:'baca',  der:'kubaca / kaubaca',   zh:'读 → 我读 / 你读'},\n      {root:'ambil', der:'kuambil / kauambil', zh:'拿 → 我拿 / 你拿'}\n    ],\n    sen:'Buku itu sudah kubaca.（那本书我已经读了。）', src:'补全' },\n\n  { id:30, affix:'-in', type:'suf', brief:'口语代替 -kan / -i',\n    func:'口语中代替 -kan / -i，多用于命令句。',\n    rule:'加于词根之后。',\n    derivs:[\n      {root:'beli',  der:'beliin',  zh:'买 → 买给（口语）'},\n      {root:'buka',  der:'bukain',  zh:'打开 → 打开（口语）'},\n      {root:'kasih', der:'kasihin', zh:'给 → 给（口语）'}\n    ],\n    sen:'Beliin saya hape.（给我买个手机。）', src:'课程·第21—22页 / 补全' }\n];\n\n/* ============================================================\n   几何常量\n   ============================================================ */\nconst CX = 400, CY = 400;\nconst R0 = 105;\nconst R_MIN = 112, R_MAX = 232;\nconst MAX_DERIV = 8;\n\nfunction polar(cx, cy, r, deg){\n  const rad = (deg - 90) * Math.PI / 180;\n  return [cx + r * Math.cos(rad), cy + r * Math.sin(rad)];\n}\nfunction annularSector(cx, cy, r0, r1, a0, a1){\n  const [x1,y1] = polar(cx, cy, r0, a0);\n  const [x2,y2] = polar(cx, cy, r0, a1);\n  const [x3,y3] = polar(cx, cy, r1, a1);\n  const [x4,y4] = polar(cx, cy, r1, a0);\n  const large = (a1 - a0) > 180 ? 1 : 0;\n  return `M ${x1.toFixed(2)} ${y1.toFixed(2)} ` +\n         `A ${r0} ${r0} 0 ${large} 1 ${x2.toFixed(2)} ${y2.toFixed(2)} ` +\n         `L ${x3.toFixed(2)} ${y3.toFixed(2)} ` +\n         `A ${r1} ${r1} 0 ${large} 0 ${x4.toFixed(2)} ${y4.toFixed(2)} Z`;\n}\nfunction petalRadius(item){\n  const n = Math.max(1, Math.min(item.derivs.length, MAX_DERIV));\n  return R_MIN + (n - 1) / (MAX_DERIV - 1) * (R_MAX - R_MIN);\n}\nfunction labelFont(text){\n  const n = text.length;\n  if (n <= 6)  return 17;\n  if (n <= 10) return 15;\n  if (n <= 14) return 12.5;\n  if (n <= 18) return 10.5;\n  return 8.5;\n}\nfunction centerFont(text){\n  const n = text.length;\n  if (n <= 4)  return '6.6cqw';\n  if (n <= 7)  return '5.2cqw';\n  if (n <= 10) return '4.2cqw';\n  if (n <= 14) return '3.4cqw';\n  return '2.8cqw';\n}\n\n/* ============================================================\n   构建花瓣布局\n   ============================================================ */\nfunction buildPetals(){\n  const groups = TYPE_ORDER\n    .map(t => ({ type: t, items: DATA.filter(d => d.type === t) }))\n    .filter(g => g.items.length > 0);\n\n  const total = DATA.length;\n  const GAP = 2.6;\n  const avail = 360 - GAP * groups.length;\n\n  let angle = 0;\n  const petals = [];\n\n  groups.forEach(g => {\n    const groupAngle = avail * g.items.length / total;\n    const itemAngle = groupAngle / g.items.length;\n    g.items.forEach((item, i) => {\n      const a0 = angle + i * itemAngle;\n      const a1 = a0 + itemAngle;\n      petals.push({\n        item, type: g.type, a0, a1,\n        mid: (a0 + a1) / 2,\n        r: petalRadius(item)\n      });\n    });\n    angle += groupAngle + GAP;\n  });\n  return petals;\n}\n\n/* ============================================================\n   状态\n   ============================================================ */\nlet petals = [];\nlet selectedIndex = null;\nlet activeType = null;\nlet query = '';\nlet matchedSet = new Set();\nlet firstRender = true;\n\nconst petalsG   = document.getElementById('petalGroups');\nconst defsEl    = document.getElementById('defs');\nconst detailInner = document.getElementById('detailInner');\nconst centerEl  = document.getElementById('chartCenter');\nconst tipEl     = document.getElementById('tip');\nconst searchEl  = document.getElementById('search');\n\n/* ============================================================\n   渐变\n   ============================================================ */\nfunction buildDefs(){\n  defsEl.innerHTML = TYPE_ORDER.map(t => {\n    const c = TYPES[t].c;\n    return `<radialGradient id=\"g-${t}\" cx=\"${CX}\" cy=\"${CY}\" r=\"320\" gradientUnits=\"userSpaceOnUse\">\n      <stop offset=\"0.16\" stop-color=\"${c}\" stop-opacity=\"0.14\"/>\n      <stop offset=\"0.70\" stop-color=\"${c}\" stop-opacity=\"0.58\"/>\n      <stop offset=\"1\"    stop-color=\"${c}\" stop-opacity=\"0.94\"/>\n    </radialGradient>`;\n  }).join('');\n}\n\n/* ============================================================\n   渲染花瓣\n   ============================================================ */\nfunction renderPetals(){\n  petals = buildPetals();\n\n  petalsG.innerHTML = petals.map((p, i) => {\n    const t = TYPES[p.type];\n    const d = annularSector(CX, CY, R0, p.r, p.a0, p.a1);\n    const label = p.item.affix;\n    const fs = labelFont(label);\n    const [lx, ly] = polar(CX, CY, p.r + 14, p.mid);\n    const flip = p.mid > 180;\n    const rot  = flip ? p.mid + 90 : p.mid - 90;\n    const anchor = flip ? 'end' : 'start';\n    const anim = firstRender ? ` animate\" style=\"animation-delay:${Math.min(i*13,360)}ms` : '';\n    return `<g class=\"petal-g${anim}\" data-index=\"${i}\" data-mid=\"${p.mid.toFixed(2)}\">\n      <path class=\"petal\" d=\"${d}\" fill=\"url(#g-${p.type})\" stroke=\"${t.c}\"/>\n      <text class=\"petal-label\"\n        x=\"${lx.toFixed(1)}\" y=\"${ly.toFixed(1)}\"\n        transform=\"rotate(${rot.toFixed(1)} ${lx.toFixed(1)} ${ly.toFixed(1)})\"\n        text-anchor=\"${anchor}\"\n        dominant-baseline=\"central\"\n        font-size=\"${fs}\"\n        fill=\"${t.c}\">${esc(label)}</text>\n    </g>`;\n  }).join('');\n\n  firstRender = false;\n  renderCenter();\n}\n\n/* ============================================================\n   中心\n   ============================================================ */\nfunction renderCenter(){\n  if (selectedIndex === null || !petals[selectedIndex]){\n    centerEl.innerHTML = `\n      <div class=\"cc-affix\" style=\"font-size:6.4cqw\">${DATA.length}</div>\n      <div class=\"cc-hint\">个词缀</div>`;\n    return;\n  }\n  const d = petals[selectedIndex].item;\n  const t = TYPES[d.type];\n  centerEl.innerHTML = `\n    <div class=\"cc-type\" style=\"color:${t.c}\">${t.name}</div>\n    <div class=\"cc-affix\" style=\"font-size:${centerFont(d.affix)}\">${esc(d.affix)}</div>\n  `;\n}\n\n/* ============================================================\n   选中 / 筛选样式\n   ============================================================ */\nfunction applySelectionClasses(){\n  const groups = petalsG.querySelectorAll('.petal-g');\n  groups.forEach((g, i) => {\n    g.classList.toggle('selected', i === selectedIndex);\n    g.classList.toggle('dimmed', !matchedSet.has(i));\n  });\n}\n\n/* ============================================================\n   详情面板\n   ============================================================ */\nfunction renderDetail(){\n  if (selectedIndex === null || !petals[selectedIndex]){\n    detailInner.innerHTML = '';\n    return;\n  }\n  const d = petals[selectedIndex].item;\n  const t = TYPES[d.type];\n  const long = d.affix.length > 9 ? ' long' : '';\n\n  detailInner.innerHTML = `\n    <button class=\"detail-close\" id=\"detailClose\" aria-label=\"关闭\">✕</button>\n    <div class=\"detail-content\">\n      <div class=\"d-head\">\n        <span class=\"d-badge\" style=\"--c:${t.c};--cb:${t.cb}\">${t.name}</span>\n        <span class=\"d-num\">No. ${String(d.id).padStart(2,'0')}</span>\n      </div>\n      <h2 class=\"d-affix${long}\">${esc(d.affix)}</h2>\n      <p class=\"d-brief\">${esc(d.brief)}</p>\n      <div class=\"d-divider\" style=\"background:linear-gradient(90deg,${t.c}66,transparent)\"></div>\n\n      <div class=\"d-section\">\n        <div class=\"d-label\">主要功能 / 含义</div>\n        <p class=\"d-text\">${esc(d.func)}</p>\n      </div>\n\n      <div class=\"d-section\">\n        <div class=\"d-label\">变形规则</div>\n        <p class=\"d-text\">${esc(d.rule)}</p>\n      </div>\n\n      <div class=\"d-section\">\n        <div class=\"d-label\">词根 → 派生词（${d.derivs.length}）</div>\n        <div class=\"chips\">\n          ${d.derivs.map(x => `\n            <div class=\"chip\">\n              <div class=\"chip-id\">\n                <span class=\"chip-root\">${esc(x.root)}</span>\n                <span class=\"chip-arw\">→</span>\n                <span class=\"chip-der\" style=\"color:${t.c}\">${esc(x.der)}</span>\n              </div>\n              <div class=\"chip-zh\">${esc(x.zh)}</div>\n            </div>`).join('')}\n        </div>\n      </div>\n\n      <div class=\"d-section\">\n        <div class=\"d-label\">例句 / 说明</div>\n        <p class=\"d-sen\" style=\"border-left-color:${t.c}\">${zh(d.sen)}</p>\n      </div>\n\n      <div class=\"d-src\">出处 · ${esc(d.src)}</div>\n    </div>\n  `;\n  detailInner.scrollTop = 0;\n  const closeBtn = document.getElementById('detailClose');\n  if (closeBtn) closeBtn.onclick = (e) => { e.stopPropagation(); clearSelection(); };\n}\n\n/* ============================================================\n   选择 / 取消\n   ============================================================ */\nfunction selectPetal(index){\n  if (index === selectedIndex){ clearSelection(); return; }\n  selectedIndex = index;\n\n  const p = petals[index];\n  /* mid < 180 → 花瓣在右半侧；图表向左移，面板在右\n     mid ≥ 180 → 花瓣在左半侧；图表向右移，面板在左 */\n  const isRight = p.mid < 180;\n\n  document.body.classList.remove('mode-left', 'mode-right');\n  document.body.classList.add(isRight ? 'mode-right' : 'mode-left', 'has-detail');\n\n  applySelectionClasses();\n  renderCenter();\n  renderDetail();\n}\n\nfunction clearSelection(){\n  if (selectedIndex === null) return;\n  selectedIndex = null;\n  document.body.classList.remove('mode-left', 'mode-right', 'has-detail');\n  applySelectionClasses();\n  renderCenter();\n  renderDetail();\n}\n\n/* 点击花瓣 */\npetalsG.addEventListener('click', e => {\n  const g = e.target.closest('.petal-g');\n  if (!g || g.classList.contains('dimmed')) return;\n  e.stopPropagation();\n  selectPetal(+g.dataset.index);\n});\n\n/* 点击图表空白处取消选中 */\ndocument.getElementById('chart').addEventListener('click', e => {\n  if (e.target.tagName === 'svg' || e.target.id === 'chart' ||\n      e.target.id === 'petalGroups' || e.target.tagName === 'defs'){\n    clearSelection();\n  }\n});\ndocument.getElementById('chartSide').addEventListener('click', e => {\n  if (e.target.classList.contains('chart-side') ||\n      e.target.classList.contains('empty-hint')){\n    clearSelection();\n  }\n});\n\n/* ============================================================\n   悬停提示\n   ============================================================ */\npetalsG.addEventListener('mousemove', e => {\n  const g = e.target.closest('.petal-g');\n  if (!g || g.classList.contains('dimmed')){ tipEl.classList.remove('show'); return; }\n  const idx = +g.dataset.index;\n  const d = petals[idx] && petals[idx].item;\n  if (!d){ tipEl.classList.remove('show'); return; }\n  const t = TYPES[d.type];\n  tipEl.innerHTML = `<strong>${esc(d.affix)}</strong><span style=\"--c:${t.c};--cb:${t.cb}\">${t.name}</span>`;\n  tipEl.style.left = Math.min(e.clientX + 16, window.innerWidth - 210) + 'px';\n  tipEl.style.top  = (e.clientY + 18) + 'px';\n  tipEl.classList.add('show');\n});\npetalsG.addEventListener('mouseleave', () => tipEl.classList.remove('show'));\n\n/* ============================================================\n   筛选\n   ============================================================ */\nfunction computeMatches(){\n  const q = query.trim().toLowerCase();\n  matchedSet = new Set();\n  petals.forEach((p, i) => {\n    const d = p.item;\n    if (activeType && d.type !== activeType) return;\n    if (q){\n      const hay = (\n        d.affix + ' ' + d.brief + ' ' + d.func + ' ' + d.rule + ' ' + d.sen + ' ' + d.src + ' ' +\n        d.derivs.map(x => x.root + ' ' + x.der + ' ' + x.zh).join(' ')\n      ).toLowerCase();\n      if (!hay.includes(q)) return;\n    }\n    matchedSet.add(i);\n  });\n}\n\nlet searchTimer = null;\nsearchEl.addEventListener('input', () => {\n  clearTimeout(searchTimer);\n  searchTimer = setTimeout(() => {\n    query = searchEl.value;\n    computeMatches();\n    if (selectedIndex !== null && !matchedSet.has(selectedIndex)) clearSelection();\n    applySelectionClasses();\n  }, 130);\n});\n\n/* ============================================================\n   随机学习\n   ============================================================ */\ndocument.getElementById('randomBtn').addEventListener('click', () => {\n  const pool = [];\n  matchedSet.forEach(i => pool.push(i));\n  const arr = pool.length ? pool : petals.map((_, i) => i);\n  if (!arr.length) return;\n  let idx;\n  do { idx = arr[Math.floor(Math.random() * arr.length)]; }\n  while (arr.length > 1 && idx === selectedIndex);\n\n  selectPetal(idx);\n\n  const g = petalsG.querySelector(`.petal-g[data-index=\"${idx}\"]`);\n  if (g){\n    const path = g.querySelector('.petal');\n    if (path){\n      path.style.transition = 'filter .3s';\n      path.style.filter = 'brightness(2.2) saturate(1.5)';\n      setTimeout(() => { path.style.filter = ''; }, 450);\n    }\n  }\n});\n\n/* ============================================================\n   ESC 关闭\n   ============================================================ */\ndocument.addEventListener('keydown', e => {\n  if (e.key === 'Escape') clearSelection();\n});\n\n/* ============================================================\n   工具\n   ============================================================ */\nfunction esc(s){\n  return String(s).replace(/[&<>\"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;'}[c]));\n}\nfunction zh(s){\n  return esc(s).replace(/（([^）]*[\\u4e00-\\u9fff][^）]*)）/g, '<span class=\"zh\">（$1）</span>');\n}\n\n/* ============================================================\n   启动\n   ============================================================ */\nbuildDefs();\nrenderPetals();\ncomputeMatches();\napplySelectionClasses();\nrenderDetail();\n<\/script>\n</body>\n</html>";
+
+function renderAffixRose(c) {
+  c.innerHTML = `<div class="card"><div class="card-header"><h2>🌹 词缀玫瑰图 · Peta Mawar Afiks</h2><span class="badge">30 词缀 · 6 类</span></div>
+  <div style="padding:0;border-radius:0 0 var(--radius) var(--radius);overflow:hidden;background:var(--bg)">
+    <iframe id="affixRoseFrame" style="width:100%;height:calc(100vh - 180px);border:none;display:block;" sandbox="allow-scripts"></iframe>
+  </div></div>`;
+  const frame = document.getElementById('affixRoseFrame');
+  frame.srcdoc = AFFIX_ROSE_HTML;
+}
+
 const dailyNotesDB = {
-    "2026-10-16": {
+  "2026-10-16": {
     "date": "2026-10-16",
     "topicKey": "dailynote",
     "source": "BIT V1.0 + BIO 审查",
@@ -16920,7 +16932,7 @@ const dailyNotesDB = {
       }
     ]
   },
-"2026-09-16": {
+  "2026-09-16": {
     "date": "2026-09-16",
     "topicKey": "interview",
     "source": "BIT V1.0 + BIO 审查",
@@ -76615,20 +76627,826 @@ const dailyNotesDB = {
         ]
       }
     ]
+  },
+  "2026-10-20": {
+    "date": "2026-10-20",
+    "topicKey": "ukbi_real",
+    "source": "BIT V1.0 + BIO 审查",
+    "entries": [
+      {
+        "word": "riil",
+        "cn": "真实的；实际存在的；实战的",
+        "en": "real; actual",
+        "root": "riil（外来词，源自荷兰语 reel）",
+        "forms": [],
+        "formsNote": "—（形容词，无派生形态；常搭配 ujian riil 实战考试、soal riil 真题）",
+        "note": "外来词，KBBI 收录；UKBI 备考高频「ujian riil」；口语同义可用 asli/nyata",
+        "synonyms": [
+          "nyata",
+          "asli",
+          "sebenarnya"
+        ],
+        "antonyms": [
+          "maya",
+          "palsu",
+          "khayalan"
+        ],
+        "examples": [
+          {
+            "scene": "UKBI备考",
+            "id": "Soal-soal riil dari ujian UKBI sangat membantu persiapan saya.",
+            "cn": "来自 UKBI 考试的真实题目对我的备考帮助很大。"
+          },
+          {
+            "scene": "商务谈判",
+            "id": "Kondisi riil di lapangan harus diverifikasi sebelum kontrak ditandatangani.",
+            "cn": "签合同前必须核实场地的真实状况。"
+          }
+        ]
+      },
+      {
+        "word": "disajikan",
+        "cn": "被呈现；被提供；被出示",
+        "en": "presented; served; shown",
+        "root": "saj（saji）",
+        "forms": [
+          {
+            "form": "menyajikan",
+            "pos": "v",
+            "mean": "呈现；提供"
+          },
+          {
+            "form": "sajian",
+            "pos": "n",
+            "mean": "呈献；节目"
+          },
+          {
+            "form": "penyaji",
+            "pos": "n",
+            "mean": "提供者；主持人"
+          }
+        ],
+        "formsNote": "",
+        "note": "di- + sajikan 被动式；词根 saj（saji 完整词干）",
+        "synonyms": [
+          "ditunjukkan",
+          "diberikan",
+          "ditampilkan"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "scene": "UKBI备考",
+            "id": "Pertanyaan disajikan dalam bentuk pilihan ganda dengan empat opsi.",
+            "cn": "题目以四选一选择题形式呈现。"
+          },
+          {
+            "scene": "园区运维",
+            "id": "Laporan K3 disajikan setiap pagi di rapat koordinasi.",
+            "cn": "安全报告每天早晨在协调会上呈报。"
+          }
+        ]
+      },
+      {
+        "word": "teslet",
+        "cn": "题组（自适应考试中的试题单元）",
+        "en": "testlet",
+        "root": "teslet（英语 testlet 音译借词）",
+        "forms": [],
+        "formsNote": "—（名词，无派生形态）",
+        "note": "计算机自适应考试（CAT）术语；UKBI 写作/阅读部分按 teslet 分组出题",
+        "synonyms": [
+          "paket soal",
+          "kelompok soal"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "scene": "UKBI备考",
+            "id": "Setiap teslet berisi lima soal dengan tingkat kesulitan berjenjang.",
+            "cn": "每个题组含 5 道题，难度递进。"
+          },
+          {
+            "scene": "项目管理",
+            "id": "Modul pelatihan disusun seperti teslet agar mudah diuji coba.",
+            "cn": "培训模块按题组方式编排，便于试测。"
+          }
+        ]
+      },
+      {
+        "word": "perekaman",
+        "cn": "录音；录制",
+        "en": "recording",
+        "root": "rekam",
+        "forms": [
+          {
+            "form": "merekam",
+            "pos": "v",
+            "mean": "录音；录制"
+          },
+          {
+            "form": "rekaman",
+            "pos": "n",
+            "mean": "录音；录像"
+          },
+          {
+            "form": "perekam",
+            "pos": "n",
+            "mean": "录音/录像设备"
+          }
+        ],
+        "formsNote": "",
+        "note": "peN- + rekam + -an 名词化，指\"录制行为/过程\"",
+        "synonyms": [
+          "pencatatan suara",
+          "taping"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "scene": "UKBI备考",
+            "id": "Bagian berbicara UKBI memakai perekaman suara selama lima belas menit.",
+            "cn": "UKBI 口语部分录音 15 分钟。"
+          },
+          {
+            "scene": "商务会议",
+            "id": "Perekaman rapat sensitif harus dirahasiakan sesuai kebijakan perusahaan.",
+            "cn": "敏感会议录制须按公司政策保密。"
+          }
+        ]
+      },
+      {
+        "word": "pemeringkatan",
+        "cn": "排名；排序；分等",
+        "en": "ranking",
+        "root": "peringkat",
+        "forms": [
+          {
+            "form": "peringkat",
+            "pos": "n",
+            "mean": "等级；名次"
+          },
+          {
+            "form": "memeringkatkan",
+            "pos": "v",
+            "mean": "排名"
+          },
+          {
+            "form": "peringkatkan?",
+            "pos": "—",
+            "mean": "（不单独使用）"
+          }
+        ],
+        "formsNote": "",
+        "note": "peN- + peringkat + -kan 名词化，指\"排名行为\"",
+        "synonyms": [
+          "perangkingan",
+          "penyusunan peringkat"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "scene": "UKBI备考",
+            "id": "Pemeringkatan hasil UKBI mengikuti tujuh tingkat kategori.",
+            "cn": "UKBI 成绩排名分七个等级。"
+          },
+          {
+            "scene": "供应链",
+            "id": "Pemeringkatan pemasok dilakukan setiap semester berdasarkan kinerja.",
+            "cn": "供应商排名每学期按绩效进行一次。"
+          }
+        ]
+      },
+      {
+        "word": "hak setara bagi",
+        "cn": "平等享有的权利",
+        "en": "equal right for",
+        "root": "hak",
+        "forms": [],
+        "formsNote": "—（固定短语：hak + setara + bagi）",
+        "note": "KBBI 释义 hak = 应得之物/权利；setara = 相等；bagi = 对于；整体作介词短语",
+        "synonyms": [
+          "kesempatan yang sama",
+          "hak yang sama"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "scene": "合规治理",
+            "id": "Semua pekerja berhak atas hak setara bagi perlindungan K3 di tempat kerja.",
+            "cn": "所有工人平等享有工作场所安全保护的权利。"
+          },
+          {
+            "scene": "UKBI备考",
+            "id": "Warga negara mempunyai hak setara bagi akses pendidikan berkualitas.",
+            "cn": "公民平等享有获得优质教育的权利。"
+          }
+        ]
+      },
+      {
+        "word": "jenjang",
+        "cn": "阶梯；等级；层级",
+        "en": "level; tier; ladder",
+        "root": "jenjang",
+        "forms": [
+          {
+            "form": "berjenjang",
+            "pos": "v/adj",
+            "mean": "分级的；递进的"
+          },
+          {
+            "form": "menjenjang",
+            "pos": "v",
+            "mean": "架设梯子；升级"
+          }
+        ],
+        "formsNote": "",
+        "note": "词根本身为名词；ber- 加前缀表\"有层级的\"",
+        "synonyms": [
+          "tingkatan",
+          "tahap",
+          "level"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "scene": "UKBI备考",
+            "id": "Soal-soal teslet disusun berjenjang dari mudah ke sulit.",
+            "cn": "题组题目由易到难递进排列。"
+          },
+          {
+            "scene": "职业发展",
+            "id": "Jenjang karier di perusahaan smelter mulai dari teknisi hingga manajer.",
+            "cn": "冶炼公司的职业阶梯从技术员到经理。"
+          }
+        ]
+      },
+      {
+        "word": "berturut-turut",
+        "cn": "连续地；依次地；接连",
+        "en": "consecutively; in succession",
+        "root": "turut",
+        "forms": [
+          {
+            "form": "turut",
+            "pos": "v",
+            "mean": "跟随；顺从"
+          },
+          {
+            "form": "menurut",
+            "pos": "prep/v",
+            "mean": "按照；根据"
+          }
+        ],
+        "formsNote": "",
+        "note": "重叠式 turut-turut 加 ber- 构成副词；词根 turut 本义\"跟随\"",
+        "synonyms": [
+          "berurutan",
+          "secara berkesinambungan"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "scene": "UKBI备考",
+            "id": "Tiga bagian ujian diikuti berturut-turut tanpa jeda panjang.",
+            "cn": "三个考试部分连续进行，没有长间隔。"
+          },
+          {
+            "scene": "生产运营",
+            "id": "Unit peleburan beroperasi berturut-turut selama dua puluh empat jam.",
+            "cn": "冶炼单元连续运行 24 小时。"
+          }
+        ]
+      },
+      {
+        "word": "rendah",
+        "cn": "低的；矮的；低下的",
+        "en": "low",
+        "root": "rendah",
+        "forms": [
+          {
+            "form": "kerendahan",
+            "pos": "n",
+            "mean": "低度；卑下"
+          },
+          {
+            "form": "merendahkan",
+            "pos": "v",
+            "mean": "贬低；使低"
+          },
+          {
+            "form": "terendah",
+            "pos": "adj",
+            "mean": "最低的"
+          }
+        ],
+        "formsNote": "",
+        "note": "",
+        "synonyms": [
+          "lemah? | — | （区分：rendah 指高度/水平，lemah 指强度） |"
+        ],
+        "antonyms": [
+          "tinggi"
+        ],
+        "examples": [
+          {
+            "scene": "UKBI备考",
+            "id": "Skor di bawah tiga ratus dua puluh lima termasuk kategori terbatas yang rendah.",
+            "cn": "低于 325 分的成绩属最低档\"受限\"级。"
+          },
+          {
+            "scene": "商务分析",
+            "id": "Permintaan nikel global sedang rendah karena perlambatan ekonomi.",
+            "cn": "因经济放缓，全球镍需求处于低位。"
+          }
+        ]
+      },
+      {
+        "word": "mampun",
+        "cn": "能够；有能力（古体）",
+        "en": "(archaic) able; capable",
+        "root": "mampu",
+        "forms": [
+          {
+            "form": "mampu",
+            "pos": "adj",
+            "mean": "能够；有能力的（标准语）"
+          },
+          {
+            "form": "kemampuan",
+            "pos": "n",
+            "mean": "能力"
+          },
+          {
+            "form": "memampukan",
+            "pos": "v",
+            "mean": "使能够"
+          }
+        ],
+        "formsNote": "",
+        "note": "mampun 为古体（arkais）= mampu；现代标准语一律用 mampu RCO 注：KBBI 收录古体形式；UKBI 阅读经典/历史文本可能遇到，写作与口语不用",
+        "synonyms": [
+          "mampu",
+          "sanggup",
+          "mengakomodasi? | — | （取 sanggup 即可） |"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "scene": "UKBI备考",
+            "id": "Dalam teks lama sering tertulis \"mampun\" yang artinya sama dengan mampu.",
+            "cn": "古文中常见 mampun，与 mampu 同义。"
+          },
+          {
+            "scene": "项目管理",
+            "id": "Tim mampu menyelesaikan commissioning berturut-turut dua unit.",
+            "cn": "团队能连续完成两个单元的调试。"
+          }
+        ]
+      },
+      {
+        "word": "sedang",
+        "cn": "正在；中等的；适度的",
+        "en": "in progress; medium; moderate",
+        "root": "sedang",
+        "forms": [
+          {
+            "form": "kesedang-sedangan",
+            "pos": "adj",
+            "mean": "中不溜的（口语）"
+          }
+        ],
+        "formsNote": "",
+        "note": "两义并存：①进行时助动词（sedang mengerjakan 正在做）②等级形容词（skor sedang 中等成绩）；本日 UKBI 语境取第二义与 rendah/tinggi 对举",
+        "synonyms": [
+          "进行中: | — | （① tengah）中等: | — | （② moderat",
+          "menengah） |"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "scene": "UKBI备考",
+            "id": "Kategori sedang pada UKBI berada di tengah tujuh tingkat penilaian.",
+            "cn": "UKBI 七个等级中，\"中等\"居中。"
+          },
+          {
+            "scene": "园区建设",
+            "id": "Konstruksi smelter fase dua sedang berjalan sesuai jadwal.",
+            "cn": "二期冶炼厂建设正按计划推进。"
+          }
+        ]
+      },
+      {
+        "word": "berjabat",
+        "cn": "握手（惯用 berjabat tangan）",
+        "en": "to shake hands",
+        "root": "jabat",
+        "forms": [
+          {
+            "form": "jabat",
+            "pos": "v",
+            "mean": "握；执掌"
+          },
+          {
+            "form": "berjabat tangan",
+            "pos": "v",
+            "mean": "握手"
+          },
+          {
+            "form": "menjabat",
+            "pos": "v",
+            "mean": "担任（职务）"
+          },
+          {
+            "form": "jabatan",
+            "pos": "n",
+            "mean": "职位"
+          }
+        ],
+        "formsNote": "",
+        "note": "单独 berjabat 罕见，固定搭配 berjabat tangan；词根 jabat 本义\"握\"",
+        "synonyms": [
+          "bersalaman",
+          "bersalam"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "scene": "商务礼仪",
+            "id": "Para direktur berjabat tangan setelah penandatanganan kontrak.",
+            "cn": "签约后各位总监握手致意。"
+          },
+          {
+            "scene": "园区接待",
+            "id": "Dengan berjabat tangan, tamu dari Morowali disambut di pintu masuk.",
+            "cn": "来自 Morowali 的客人在入口受到握手欢迎。"
+          }
+        ]
+      },
+      {
+        "word": "pegang",
+        "cn": "拿；握；抓住；执掌",
+        "en": "to hold; to grip",
+        "root": "pegang",
+        "forms": [
+          {
+            "form": "memegang",
+            "pos": "v",
+            "mean": "握着；掌管"
+          },
+          {
+            "form": "pegangan",
+            "pos": "n",
+            "mean": "把手；依据"
+          },
+          {
+            "form": "terpegang",
+            "pos": "v",
+            "mean": "被握住"
+          }
+        ],
+        "formsNote": "",
+        "note": "",
+        "synonyms": [
+          "menggenggam",
+          "memegang erat"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "scene": "商务谈判",
+            "id": "Dia memegang dokumen kontrak dengan erat saat presentasi.",
+            "cn": "他演示时紧握着合同文件。"
+          },
+          {
+            "scene": "安全操作",
+            "id": "Pegang pegangan tangga saat menuruni menara reaktor.",
+            "cn": "下反应塔楼梯时请扶好扶手。"
+          }
+        ]
+      },
+      {
+        "word": "panco",
+        "cn": "扳手腕；比手劲",
+        "en": "arm wrestling",
+        "root": "panco",
+        "forms": [
+          {
+            "form": "berpanco",
+            "pos": "v",
+            "mean": "扳手腕"
+          },
+          {
+            "form": "main panco",
+            "pos": "v",
+            "mean": "玩扳手腕"
+          }
+        ],
+        "formsNote": "",
+        "note": "KBBI 收录：berpanco = beradu kekuatan tangan（互相推压比手劲）",
+        "synonyms": [],
+        "antonyms": [],
+        "examples": [
+          {
+            "scene": "团队建设",
+            "id": "Tim smelter adu panco di acara santai Jumat sore.",
+            "cn": "冶炼团队在周五下午的轻松活动上比扳手腕。"
+          },
+          {
+            "scene": "日常口语",
+            "id": "Jangan cuma berpanco, nanti lengan pegal.",
+            "cn": "别光扳手腕，待会儿胳膊酸。"
+          }
+        ]
+      },
+      {
+        "word": "cubit",
+        "cn": "掐；捏",
+        "en": "to pinch",
+        "root": "cubit",
+        "forms": [
+          {
+            "form": "mencubit",
+            "pos": "v",
+            "mean": "掐"
+          },
+          {
+            "form": "cubitan",
+            "pos": "n",
+            "mean": "一掐；掐痕"
+          },
+          {
+            "form": "tercubit",
+            "pos": "v",
+            "mean": "被掐"
+          }
+        ],
+        "formsNote": "",
+        "note": "",
+        "synonyms": [
+          "jepit",
+          "picit"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "scene": "日常口语",
+            "id": "Anak kecil itu mencubit lengan ibunya minta dibelikan es krim.",
+            "cn": "那小孩掐着妈妈的胳膊要买冰淇淋。"
+          },
+          {
+            "scene": "项目管理",
+            "id": "Jangan sampai anggaran proyek tercubit oleh biaya tak terduga.",
+            "cn": "别让项目预算被意外开支挤压。"
+          }
+        ]
+      },
+      {
+        "word": "sentil",
+        "cn": "用指尖弹；数落；点名批评",
+        "en": "to flick; to chide",
+        "root": "sentil",
+        "forms": [
+          {
+            "form": "menyentil",
+            "pos": "v",
+            "mean": "弹；批评"
+          },
+          {
+            "form": "sentilan",
+            "pos": "n",
+            "mean": "弹指；讥讽"
+          }
+        ],
+        "formsNote": "",
+        "note": "口语（cakapan）；转义\"点名批评\"常见于政论与职场语境",
+        "synonyms": [],
+        "antonyms": [],
+        "examples": [
+          {
+            "scene": "日常口语",
+            "id": "Dia menyentil pelanggar aturan dengan santai tapi tegas.",
+            "cn": "他以轻松但坚决的方式批评违规者。"
+          },
+          {
+            "scene": "会议沟通",
+            "id": "Manajer menyentil dua kontraktor yang terlambat tanpa menyinggung pihak lain.",
+            "cn": "经理点名批评两家迟到承包商，不影射他人。"
+          }
+        ]
+      },
+      {
+        "word": "toyor",
+        "cn": "（用手指）戳；捅",
+        "en": "to poke; to prod",
+        "root": "toyor",
+        "forms": [
+          {
+            "form": "menoyor",
+            "pos": "v",
+            "mean": "戳；捅"
+          },
+          {
+            "form": "toyoran",
+            "pos": "n",
+            "mean": "戳的动作"
+          }
+        ],
+        "formsNote": "",
+        "note": "口语（cakapan）",
+        "synonyms": [],
+        "antonyms": [],
+        "examples": [
+          {
+            "scene": "日常口语",
+            "id": "Temannya menoyor lengannya saat ia hampir tertidur di rapat.",
+            "cn": "他开会快睡着时，同事戳了戳他的胳膊。"
+          },
+          {
+            "scene": "安全提醒",
+            "id": "Jangan menoyor panel listrik dengan benda logam.",
+            "cn": "别用金属物戳电气面板。"
+          }
+        ]
+      },
+      {
+        "word": "menghancurkan",
+        "cn": "摧毁；粉碎；破坏",
+        "en": "to destroy; to crush",
+        "root": "hancur",
+        "forms": [
+          {
+            "form": "hancur",
+            "pos": "adj",
+            "mean": "破碎的"
+          },
+          {
+            "form": "kehancuran",
+            "pos": "n",
+            "mean": "毁灭"
+          },
+          {
+            "form": "terhancur",
+            "pos": "v",
+            "mean": "被摧毁"
+          }
+        ],
+        "formsNote": "",
+        "note": "",
+        "synonyms": [
+          "merusak",
+          "memusnahkan"
+        ],
+        "antonyms": [
+          "membangun",
+          "memulihkan"
+        ],
+        "examples": [
+          {
+            "scene": "安全应急",
+            "id": "Ledakan kecil dapat menghancurkan gudang jika tidak ada sprinkler.",
+            "cn": "若无喷淋，小爆炸可能摧毁仓库。"
+          },
+          {
+            "scene": "合规治理",
+            "id": "Korupsi dapat menghancurkan reputasi perusahaan dalam semalam.",
+            "cn": "腐败可在一夜之间毁掉公司声誉。"
+          }
+        ]
+      },
+      {
+        "word": "terhadap",
+        "cn": "对；对于；朝向",
+        "en": "toward; regarding",
+        "root": "hadap",
+        "forms": [
+          {
+            "form": "hadap",
+            "pos": "v",
+            "mean": "面对"
+          },
+          {
+            "form": "menghadapi",
+            "pos": "v",
+            "mean": "应对；面对"
+          },
+          {
+            "form": "terhadap",
+            "pos": "prep",
+            "mean": "对；关于"
+          }
+        ],
+        "formsNote": "",
+        "note": "ter- + hadap 已词汇化为介词，前置支配对象（kepentingan terhadap...） RCO 勘误：用户输入 \"terhatap\" 更正为 terhadap（d→t 笔误），KBBI 仅收录 terhadap",
+        "synonyms": [
+          "kepada",
+          "untuk? | — | （辨析：terhadap 更正式，UKBI 写作高频） |"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "scene": "UKBI备考",
+            "id": "Sikap kritis terhadap bacaan diuji pada bagian menulis.",
+            "cn": "写作部分考查对阅读材料的批判态度。"
+          },
+          {
+            "scene": "合规治理",
+            "id": "Perusahaan wajib patuh terhadap regulasi lingkungan KLHK.",
+            "cn": "公司须遵守 KLHK 环保法规。"
+          }
+        ]
+      },
+      {
+        "word": "menangis",
+        "cn": "哭；哭泣；流泪",
+        "en": "to cry",
+        "root": "tangis",
+        "forms": [
+          {
+            "form": "tangis",
+            "pos": "n",
+            "mean": "哭声"
+          },
+          {
+            "form": "menangis",
+            "pos": "v",
+            "mean": "哭泣"
+          },
+          {
+            "form": "tertangis-tangis",
+            "pos": "v",
+            "mean": "哭哭啼啼"
+          }
+        ],
+        "formsNote": "",
+        "note": "",
+        "synonyms": [
+          "berlinang air mata"
+        ],
+        "antonyms": [
+          "tertawa"
+        ],
+        "examples": [
+          {
+            "scene": "日常口语",
+            "id": "Anak itu menangis karena mainannya patah.",
+            "cn": "那孩子因玩具坏了而哭。"
+          },
+          {
+            "scene": "人文关怀",
+            "id": "Karyawan yang kelelahan jangan sampai menangis sendirian di mess.",
+            "cn": "疲惫的员工不该独自在宿舍哭泣。"
+          }
+        ]
+      },
+      {
+        "word": "bertengkar",
+        "cn": "吵架；争执",
+        "en": "to quarrel; to argue",
+        "root": "tengkar",
+        "forms": [
+          {
+            "form": "tengkar",
+            "pos": "n/v",
+            "mean": "争吵"
+          },
+          {
+            "form": "bertengkar",
+            "pos": "v",
+            "mean": "吵架"
+          },
+          {
+            "form": "pertengkaran",
+            "pos": "n",
+            "mean": "争吵（事件）"
+          }
+        ],
+        "formsNote": "",
+        "note": "",
+        "synonyms": [
+          "berkelahi（肢体冲突，较重）",
+          "berdebat"
+        ],
+        "antonyms": [
+          "berdamai",
+          "bermusyawarah"
+        ],
+        "examples": [
+          {
+            "scene": "日常口语",
+            "id": "Mereka bertengkar soal jadwal jaga malam.",
+            "cn": "他们为夜班值班表吵架。"
+          },
+          {
+            "scene": "冲突调解",
+            "id": "Mediaser menghindari agar dua pihak tidak berturut-turut bertengkar.",
+            "cn": "调解人避免两方接连争吵。"
+          }
+        ]
+      }
+    ]
   }
 };
-// ===== 词缀玫瑰图 (V4.43.1) 30词缀交互可视化 · iframe srcdoc 隔离 =====
-const AFFIX_ROSE_HTML = "<!DOCTYPE html>\n<html lang=\"zh-CN\">\n<head>\n<meta charset=\"UTF-8\">\n<meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\n<title>印尼语词缀 · 交互玫瑰图</title>\n<style>\n:root{\n  --bg:#0a0b10;\n  --surface:#14171f;\n  --surface2:#1a1e28;\n  --line:#232833;\n  --line2:#2c3240;\n  --ink:#eef1f7;\n  --ink2:#a3abbd;\n  --ink3:#68718a;\n  --sans:-apple-system,BlinkMacSystemFont,\"Segoe UI\",\"PingFang SC\",\"Hiragino Sans GB\",\"Microsoft YaHei\",sans-serif;\n  --mono:ui-monospace,SFMono-Regular,\"SF Mono\",Menlo,Consolas,monospace;\n  --serif:Georgia,\"Songti SC\",\"Noto Serif SC\",serif;\n  --ease:cubic-bezier(.22,1,.36,1);\n  --dur:.75s;\n}\n*{box-sizing:border-box;}\nhtml,body{height:100%;margin:0;}\nbody{\n  background:var(--bg);color:var(--ink);\n  font-family:var(--sans);-webkit-font-smoothing:antialiased;\n  overflow:hidden;\n  background-image:\n    radial-gradient(900px 600px at 15% -5%, rgba(52,211,153,.07), transparent 55%),\n    radial-gradient(800px 600px at 90% 10%, rgba(167,139,250,.06), transparent 55%),\n    radial-gradient(700px 500px at 50% 100%, rgba(251,191,36,.04), transparent 55%);\n  background-attachment:fixed;\n}\n::-webkit-scrollbar{width:6px;height:6px;}\n::-webkit-scrollbar-track{background:transparent;}\n::-webkit-scrollbar-thumb{background:#2a3140;border-radius:3px;}\n::-webkit-scrollbar-thumb:hover{background:#3a4255;}\n\n.app{\n  height:100vh;max-width:1660px;margin:0 auto;\n  padding:16px 24px 18px;\n  display:flex;flex-direction:column;gap:14px;\n}\n.topbar{flex:0 0 auto;display:flex;align-items:center;gap:16px;}\n.brand h1{\n  margin:0;font-size:1.16rem;font-weight:700;letter-spacing:-.02em;\n  background:linear-gradient(120deg,#eef1f7 20%,#8be8c8 60%,#c4b5fd 90%);\n  -webkit-background-clip:text;background-clip:text;\n  -webkit-text-fill-color:transparent;\n}\n.brand p{margin:2px 0 0;font-size:.7rem;color:var(--ink3);}\n.topbar-spacer{flex:1;min-width:10px;}\n.search-box{\n  display:flex;align-items:center;gap:8px;\n  background:var(--surface);border:1px solid var(--line);\n  border-radius:10px;padding:0 13px;height:36px;width:250px;\n  transition:border-color .2s,box-shadow .2s;\n}\n.search-box:focus-within{border-color:#3b4457;box-shadow:0 0 0 3px rgba(52,211,153,.08);}\n.search-box svg{color:var(--ink3);flex:0 0 auto;}\n.search-box input{\n  background:transparent;border:0;outline:0;color:var(--ink);\n  font-family:inherit;font-size:.82rem;width:100%;\n}\n.search-box input::placeholder{color:var(--ink3);}\n.btn{\n  display:inline-flex;align-items:center;gap:6px;\n  height:36px;padding:0 15px;border-radius:10px;border:1px solid var(--line2);\n  background:var(--surface);color:var(--ink2);\n  font-family:inherit;font-size:.78rem;font-weight:500;cursor:pointer;\n  transition:all .2s;white-space:nowrap;\n}\n.btn:hover{background:var(--surface2);color:var(--ink);border-color:#3b4457;}\n.btn.accent{\n  background:linear-gradient(135deg,#1f3a35,#1a2e2b);\n  border-color:#2a4a43;color:#8be8c8;\n}\n.btn.accent:hover{background:linear-gradient(135deg,#26463f,#1f3833);border-color:#3a6a5e;}\n\n/* ============ 舞台 ============ */\n.stage{\n  flex:1 1 auto;min-height:0;\n  position:relative;\n  overflow:hidden;\n}\n\n/* ---- 图表侧：绝对定位，宽度和位置随模式过渡 ---- */\n.chart-side{\n  position:absolute;\n  top:0;bottom:0;left:0;\n  width:100%;\n  display:flex;align-items:center;justify-content:center;\n  transition:width var(--dur) var(--ease), left var(--dur) var(--ease);\n  will-change:width,left;\n}\nbody.mode-right .chart-side{\n  width:58%;\n  left:0;\n}\nbody.mode-left .chart-side{\n  width:58%;\n  left:42%;\n}\n\n.chart-square{\n  position:relative;\n  aspect-ratio:1/1;\n  width:min(100%, calc(100vh - 148px));\n  container-type:inline-size;\n  transition:transform .6s var(--ease);\n  will-change:transform;\n}\nbody.has-detail .chart-square{\n  transform:scale(.94);\n}\n.chart-square svg{width:100%;height:100%;display:block;overflow:visible;}\n\n/* ---- 花瓣 ---- */\n.petal-g{\n  cursor:pointer;\n  transform-origin:400px 400px;\n  transform-box:view-box;\n  transition:transform .6s cubic-bezier(.34,1.35,.5,1), opacity .35s;\n  will-change:transform;\n}\n.petal-g.selected{transform:scale(1.42);}\n.petal-g.dimmed{opacity:.07;pointer-events:none;}\n\n.petal{\n  transition:filter .25s,stroke-width .25s,stroke-opacity .25s;\n  stroke-width:0.7;\n  stroke-opacity:.28;\n}\n.petal-g:hover .petal{filter:brightness(1.28) saturate(1.15);}\n.petal-g.selected .petal{\n  filter:brightness(1.4) saturate(1.25);\n  stroke-width:2.2;\n  stroke-opacity:1;\n}\n\n.petal-label{\n  font-family:var(--mono);font-weight:600;letter-spacing:.01em;\n  pointer-events:none;user-select:none;\n  paint-order:stroke;\n  stroke:#0a0b10;stroke-width:3;stroke-linejoin:round;\n  transition:fill .3s,stroke-width .3s;\n}\n.petal-g.selected .petal-label{\n  fill:#ffffff !important;\n  stroke-width:4.5;\n}\n\n/* ---- 中心 ---- */\n.chart-center{\n  position:absolute;left:50%;top:50%;\n  transform:translate(-50%,-50%);\n  width:30%;text-align:center;pointer-events:none;\n  display:flex;flex-direction:column;align-items:center;gap:2px;\n}\n.cc-type{\n  font-size:2.6cqw;font-weight:700;letter-spacing:.09em;\n  text-transform:uppercase;opacity:.92;\n}\n.cc-affix{\n  font-family:var(--mono);font-weight:600;\n  letter-spacing:-.04em;line-height:1.12;\n  word-break:break-word;\n  transition:font-size .4s;\n}\n.cc-hint{font-size:2.4cqw;color:var(--ink3);line-height:1.35;}\n\n/* ---- 详情侧 ---- */\n.detail-side{\n  position:absolute;\n  top:0;bottom:0;\n  width:0;\n  opacity:0;\n  pointer-events:none;\n  overflow:hidden;\n  display:flex;flex-direction:column;\n  transition:width var(--dur) var(--ease), opacity .4s ease;\n  will-change:width;\n}\nbody.mode-right .detail-side{\n  right:0;left:auto;\n  width:42%;\n  opacity:1;\n  pointer-events:auto;\n}\nbody.mode-left .detail-side{\n  left:0;right:auto;\n  width:42%;\n  opacity:1;\n  pointer-events:auto;\n}\n\n.detail-inner{\n  flex:1 1 auto;min-height:0;\n  width:100%;\n  background:var(--surface);\n  border:1px solid var(--line);\n  border-radius:18px;\n  overflow-y:auto;\n  padding:22px 24px 26px;\n  box-shadow:0 20px 50px -24px rgba(0,0,0,.7);\n  position:relative;\n}\n\n.detail-close{\n  position:absolute;top:14px;right:14px;\n  width:30px;height:30px;border-radius:50%;\n  border:1px solid var(--line2);background:var(--surface2);\n  color:var(--ink3);cursor:pointer;\n  display:grid;place-items:center;\n  font-size:.78rem;line-height:1;\n  transition:all .2s;z-index:2;\n}\n.detail-close:hover{background:#232833;color:var(--ink);transform:rotate(90deg);}\n\n@keyframes contentIn{\n  from{opacity:0;transform:translateY(10px);}\n  to{opacity:1;transform:translateY(0);}\n}\n.detail-content{animation:contentIn .42s var(--ease);}\n\n.d-head{display:flex;align-items:center;gap:10px;padding-right:40px;}\n.d-badge{\n  display:inline-flex;align-items:center;gap:6px;\n  padding:3px 12px;border-radius:999px;\n  font-size:.68rem;font-weight:600;\n  background:var(--cb);color:var(--c);\n}\n.d-num{font-family:var(--mono);font-size:.68rem;color:var(--ink3);}\n.d-affix{\n  margin:12px 0 0;font-family:var(--mono);\n  font-size:1.75rem;font-weight:600;letter-spacing:-.04em;\n  line-height:1.15;word-break:break-word;\n}\n.d-affix.long{font-size:1.18rem;letter-spacing:-.01em;}\n.d-brief{margin:7px 0 0;font-size:.84rem;color:var(--ink2);line-height:1.5;}\n.d-divider{height:1px;margin:16px 0;}\n.d-section{margin-bottom:15px;}\n.d-label{\n  font-size:.62rem;font-weight:700;letter-spacing:.1em;\n  text-transform:uppercase;color:var(--ink3);margin-bottom:6px;\n}\n.d-text{margin:0;font-size:.83rem;line-height:1.74;color:var(--ink2);}\n.d-sen{\n  margin:0;font-family:var(--serif);font-size:.9rem;\n  line-height:1.7;color:var(--ink);\n  border-left:2px solid;padding-left:12px;\n}\n.d-sen .zh{color:var(--ink3);font-family:var(--sans);font-size:.85em;}\n.d-src{\n  font-size:.68rem;color:var(--ink3);\n  padding-top:12px;border-top:1px solid var(--line);margin-top:4px;\n}\n.chips{display:flex;flex-direction:column;gap:6px;}\n.chip{\n  background:var(--surface2);border:1px solid var(--line);\n  border-radius:9px;padding:8px 12px;\n  display:flex;flex-direction:column;gap:2px;\n  transition:border-color .2s,transform .2s;\n}\n.chip:hover{border-color:var(--line2);transform:translateX(3px);}\n.chip-id{font-family:var(--mono);font-size:.78rem;line-height:1.4;color:var(--ink2);word-break:break-word;}\n.chip-root{color:var(--ink3);}\n.chip-arw{color:var(--c);opacity:.6;margin:0 5px;font-size:.85em;}\n.chip-der{color:var(--c);font-weight:600;}\n.chip-zh{font-size:.71rem;color:var(--ink3);line-height:1.4;}\n\n/* ---- 提示 ---- */\n.empty-hint{\n  position:absolute;left:50%;bottom:6px;\n  transform:translateX(-50%);\n  font-size:.74rem;color:var(--ink3);\n  letter-spacing:.02em;pointer-events:none;\n  opacity:1;transition:opacity .3s;\n  white-space:nowrap;\n}\nbody.has-detail .empty-hint{opacity:0;}\n\n.tip{\n  position:fixed;z-index:200;pointer-events:none;\n  padding:6px 11px;border-radius:8px;\n  background:rgba(20,23,31,.96);border:1px solid var(--line2);\n  backdrop-filter:blur(8px);\n  font-size:.76rem;color:var(--ink);\n  box-shadow:0 8px 26px -8px rgba(0,0,0,.7);\n  opacity:0;transform:translateY(4px);\n  transition:opacity .16s,transform .16s;\n  white-space:nowrap;\n}\n.tip.show{opacity:1;transform:translateY(0);}\n.tip strong{font-family:var(--mono);font-weight:600;}\n.tip span{\n  display:inline-block;margin-left:7px;font-size:.66rem;\n  padding:1px 7px;border-radius:999px;\n  background:var(--cb);color:var(--c);font-weight:500;\n}\n\n@keyframes petalIn{from{opacity:0;transform:scale(.93);}to{opacity:1;transform:scale(1);}}\n.petal-g.animate{animation:petalIn .55s var(--ease) backwards;}\n\n@media (prefers-reduced-motion:reduce){\n  .petal-g.animate{animation:none !important;}\n  .chart-side,.chart-square,.petal-g,.detail-side{transition-duration:.01ms !important;}\n}\n\n@media (max-width:1180px){\n  .search-box{width:190px;}\n  .brand p{display:none;}\n}\n@media (max-width:900px){\n  html,body{height:auto;overflow:auto;}\n  .app{height:auto;min-height:100vh;padding:14px 14px 30px;}\n  .stage{min-height:auto;overflow:visible;display:flex;flex-direction:column;}\n  .chart-side{\n    position:static;\n    width:100% !important;\n    left:auto !important;\n    transform:none;\n    display:block;\n    padding-bottom:16px;\n  }\n  .chart-square{\n    width:min(100%,520px) !important;\n    margin:0 auto;\n    transform:none !important;\n  }\n  .detail-side{\n    position:fixed;\n    left:0;right:0;bottom:0;top:auto;\n    width:100% !important;\n    height:68vh;\n    transform:translateY(100%);\n    transition:transform .45s var(--ease);\n    opacity:1;\n    pointer-events:auto;\n    z-index:50;\n    overflow:visible;\n  }\n  body.has-detail .detail-side{transform:translateY(0);}\n  .detail-inner{\n    border-radius:22px 22px 0 0;\n    border-bottom:0;\n    padding:22px 18px 30px;\n  }\n  .empty-hint{position:static;transform:none;margin-top:10px;text-align:center;}\n  .topbar{flex-wrap:wrap;}\n  .search-box{flex:1 1 100%;width:auto;order:3;}\n}\n@media (max-width:560px){\n  .brand h1{font-size:1rem;}\n  .d-affix{font-size:1.45rem;}\n}\n</style>\n</head>\n<body>\n\n<div class=\"app\">\n  <header class=\"topbar\">\n    <div class=\"brand\">\n      <h1>印尼语词缀 · 交互玫瑰图</h1>\n      <p>花瓣半径 = 派生词数量 · 颜色 = 词缀类型</p>\n    </div>\n    <div class=\"topbar-spacer\"></div>\n    <label class=\"search-box\">\n      <svg width=\"14\" height=\"14\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\"><circle cx=\"11\" cy=\"11\" r=\"7\"/><path d=\"M20 20l-3.6-3.6\"/></svg>\n      <input type=\"search\" id=\"search\" placeholder=\"搜索词缀 / 含义 / 例词…\" autocomplete=\"off\">\n    </label>\n    <button class=\"btn accent\" id=\"randomBtn\">\n      <svg width=\"13\" height=\"13\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M16 3h5v5\"/><path d=\"M4 20L21 3\"/><path d=\"M21 16v5h-5\"/><path d=\"M15 15l6 6\"/><path d=\"M4 4l5 5\"/></svg>\n      随机学习\n    </button>\n  </header>\n\n  <main class=\"stage\" id=\"stage\">\n    <div class=\"chart-side\" id=\"chartSide\">\n      <div class=\"chart-square\" id=\"chartSquare\">\n        <svg id=\"chart\" viewBox=\"0 0 800 800\" preserveAspectRatio=\"xMidYMid meet\">\n          <defs id=\"defs\"></defs>\n          <g id=\"petalGroups\"></g>\n        </svg>\n        <div class=\"chart-center\" id=\"chartCenter\"></div>\n      </div>\n      <div class=\"empty-hint\" id=\"emptyHint\">单击任意花瓣查看完整释义</div>\n    </div>\n\n    <aside class=\"detail-side\" id=\"detailSide\">\n      <div class=\"detail-inner\" id=\"detailInner\"></div>\n    </aside>\n  </main>\n</div>\n\n<div class=\"tip\" id=\"tip\"></div>\n\n<script>\n/* ============================================================\n   类型定义\n   ============================================================ */\nconst TYPES = {\n  pref: { name:'前缀',     c:'#34d399', cb:'rgba(52,211,153,.13)' },\n  suf:  { name:'后缀',     c:'#fbbf24', cb:'rgba(251,191,36,.13)' },\n  circ: { name:'词缀环绕', c:'#fb7185', cb:'rgba(251,113,133,.13)' },\n  loan: { name:'外来后缀', c:'#a78bfa', cb:'rgba(167,139,250,.13)' },\n  inf:  { name:'中缀',     c:'#38bdf8', cb:'rgba(56,189,248,.13)' },\n  part: { name:'语助词',   c:'#94a3b8', cb:'rgba(148,163,184,.13)' }\n};\nconst TYPE_ORDER = ['pref','suf','circ','loan','inf','part'];\n\n/* ============================================================\n   数据\n   ============================================================ */\nconst DATA = [\n  { id:1, affix:'ber-', type:'pref', brief:'拥有 · 使用 · 进行活动',\n    func:'构成动词（多为不及物）；代替 ada / punya 表“有、拥有”；代替 pakai 表“用、穿、戴”；表进行某种活动；与数词连用表“一起（几人）”。',\n    rule:'一般直接加在词根前；词根以 r 开头或首音节以 r 结尾时用 be-。',\n    derivs:[\n      {root:'kerja',      der:'bekerja',  zh:'工作 → 上班、工作'},\n      {root:'main',       der:'bermain',  zh:'玩 → 玩耍'},\n      {root:'rumah',      der:'berkamar', zh:'房间 → 有房间'},\n      {root:'lima orang', der:'berlima',  zh:'五个人 → 五人一起'}\n    ],\n    sen:'Dia bekerja di Bali.（他在巴厘岛工作。）', src:'课程·第12—13页' },\n\n  { id:2, affix:'be-', type:'pref', brief:'ber- 的变体（r 音前）',\n    func:'同 ber-：构成动词。',\n    rule:'ber- 在 r 音前使用。',\n    derivs:[\n      {root:'renang', der:'berenang', zh:'游泳 → 游泳'},\n      {root:'kerja',  der:'bekerja',  zh:'工作 → 上班'}\n    ],\n    sen:'Hobi dia berenang.（他的爱好是游泳。）', src:'课程·第12页' },\n\n  { id:3, affix:'meN-', type:'pref', brief:'构成主动及物动词',\n    func:'构成主动动词，一般作及物动词，使表达更主动、正式。',\n    rule:'按词根首字母变形：mem-（b/p/f/v）、men-（d/t/c/j/z）、meny-（s）、meng-（元音及 g/h/k/kh）、menge-（单音节外来词）、me-（其它）。',\n    derivs:[\n      {root:'baca',    der:'membaca',   zh:'读 → 阅读'},\n      {root:'tulis',   der:'menulis',   zh:'写 → 书写'},\n      {root:'sewa',    der:'menyewa',   zh:'租 → 租用'},\n      {root:'panggil', der:'memanggil', zh:'叫 → 呼叫、召唤'},\n      {root:'cuci',    der:'mencuci',   zh:'洗 → 清洗'},\n      {root:'cek',     der:'mengecek',  zh:'检查 → 核对'},\n      {root:'rasa',    der:'merasa',    zh:'感觉 → 感到'}\n    ],\n    sen:'Dia sedang membaca buku.（他正在读书。）', src:'课程·第14—16页' },\n\n  { id:4, affix:'di-', type:'pref', brief:'构成被动语态',\n    func:'构成被动语态，作谓语；施动者为第三人称或普通名词时用 di- + 词根，施动者前加 oleh（可省略）。',\n    rule:'无变形；需接 -kan / -i 时作 di-kan / di-i。',\n    derivs:[\n      {root:'baca',  der:'dibaca',  zh:'读 → 被读'},\n      {root:'tulis', der:'ditulis', zh:'写 → 被写'},\n      {root:'buka',  der:'dibuka',  zh:'开 → 被打开'},\n      {root:'ambil', der:'diambil', zh:'拿 → 被拿'},\n      {root:'beri',  der:'diberi',  zh:'给 → 被给予'}\n    ],\n    sen:'Buku itu sudah dibaca oleh Li Li.（那本书已被李丽读了。）', src:'课程·第18—19页 / 补全' },\n\n  { id:5, affix:'ter-', type:'pref', brief:'无意 · 最 · 完成态',\n    func:'①无意被（termakan）；②表“最”（terkaya、tertinggi）；③表“不小心”；④完成状态（tertulis）；⑤能动语气（tak terlupakan）。',\n    rule:'无变形。',\n    derivs:[\n      {root:'makan', der:'termakan',   zh:'吃 → 误食、被吃'},\n      {root:'kaya',  der:'terkaya',    zh:'富有 → 最富有'},\n      {root:'tinggi',der:'tertinggi',  zh:'高 → 最高'},\n      {root:'tulis', der:'tertulis',   zh:'写 → 已写上、写着'},\n      {root:'lupa',  der:'terlupakan', zh:'忘 → 难忘的'}\n    ],\n    sen:'Nama-nama mereka tertulis di buku itu.（他们的名字写在那本书上。）', src:'课程·第19页 / 补全' },\n\n  { id:6, affix:'peN- / pe-', type:'pref', brief:'施动者 · 工具 · 职业',\n    func:'使单词职业化 / 人化：表施动者、施动工具、具有某性质的人或物、以某职业为生者。',\n    rule:'变形与 meN- 相同：pem-、pen-、peny-、peng-、penge-、pe-（少数运动项目名词保持 pe-，如 petinju）。',\n    derivs:[\n      {root:'beli',  der:'pembeli',  zh:'买 → 买家'},\n      {root:'jual',  der:'penjual',  zh:'卖 → 卖家'},\n      {root:'main',  der:'pemain',   zh:'玩 → 玩家'},\n      {root:'malu',  der:'pemalu',   zh:'羞 → 害羞的人'},\n      {root:'diam',  der:'pendiam',  zh:'安静 → 沉默寡言的人'},\n      {root:'cuci',  der:'pencuci',  zh:'洗 → 洗涤工具、洗衣者'},\n      {root:'besar', der:'pembesar', zh:'大 → 大人物、扩张者'}\n    ],\n    sen:'penjual（卖家）、pembeli（买家）、pencuci（洗涤工具）', src:'课程·第25页 / 补全' },\n\n  { id:7, affix:'per-', type:'pref', brief:'使……、使成为',\n    func:'表“使、使成为”（构成使役动词）。',\n    rule:'加于形容词 / 名词词基之前。',\n    derivs:[\n      {root:'besar', der:'perbesar', zh:'大 → 扩大'},\n      {root:'jelas', der:'perjelas', zh:'清楚 → 澄清、说明白'},\n      {root:'budak', der:'perbudak', zh:'奴隶 → 奴役'}\n    ],\n    sen:'Mereka memperbesar rumah itu.（他们把房子扩建了。）', src:'补全' },\n\n  { id:8, affix:'memper- / diper-', type:'pref', brief:'加强使役（主动 / 被动）',\n    func:'加强使役作用；memper- 为主动，diper- 为被动。',\n    rule:'memper- + 词根 / diper- + 词根。',\n    derivs:[\n      {root:'besar', der:'memperbesar / diperbesar',       zh:'大 → 扩大 / 被扩大'},\n      {root:'kenal', der:'memperkenalkan / diperkenalkan', zh:'认识 → 介绍 / 被介绍'}\n    ],\n    sen:'Dia memperkenalkan temannya.（他介绍他的朋友。）', src:'补全' },\n\n  { id:9, affix:'se-', type:'pref', brief:'一 · 整 · 相同',\n    func:'表“一 / 整（满数量）”；se- + 形容词表“同、一样”。',\n    rule:'无变形，直接加在词前。',\n    derivs:[\n      {root:'ratus',    der:'seratus',    zh:'百 → 一百'},\n      {root:'ribu',     der:'seribu',     zh:'千 → 一千'},\n      {root:'juta',     der:'sejuta',     zh:'百万 → 一百万'},\n      {root:'tengah',   der:'setengah',   zh:'中间 → 一半'},\n      {root:'perempat', der:'seperempat', zh:'四分之一 → 四分之一'},\n      {root:'besar',    der:'sebesar',    zh:'大 → 一样大'},\n      {root:'luruh',    der:'seluruh',    zh:'全部 → 整个'},\n      {root:'hari',     der:'sehari',     zh:'天 → 一天'}\n    ],\n    sen:'seratus（一百）、setengah（一半）、sebesar（一样大）', src:'课程·第6、11、35页 / 补全' },\n\n  { id:10, affix:'ke-', type:'pref', brief:'序数词“第……”',\n    func:'构成序数词“第……”。',\n    rule:'ke- + 数词；可直接连写。',\n    derivs:[\n      {root:'dua',       der:'kedua',       zh:'二 → 第二'},\n      {root:'tiga',      der:'ketiga',      zh:'三 → 第三'},\n      {root:'empat',     der:'keempat',     zh:'四 → 第四'},\n      {root:'dua puluh', der:'kedua puluh', zh:'二十 → 第二十'}\n    ],\n    sen:'Anak saya yang kedua sudah kuliah.（我的第二个孩子已上大学。）', src:'课程·第11页 / 补全' },\n\n  { id:11, affix:'-an', type:'suf', brief:'名词化 · 约数',\n    func:'使动词 / 名词名词化（物品、类别、动作结果）；表约数。',\n    rule:'无变形，加于词根之后。',\n    derivs:[\n      {root:'makan', der:'makanan',     zh:'吃 → 食物'},\n      {root:'minum', der:'minuman',     zh:'喝 → 饮料'},\n      {root:'tulis', der:'tulisan',     zh:'写 → 文字、文章'},\n      {root:'kirim', der:'kiriman',     zh:'寄 → 包裹、寄件'},\n      {root:'buah',  der:'buah-buahan', zh:'水果 → 各种水果'},\n      {root:'puluh', der:'puluhan',     zh:'十 → 几十'}\n    ],\n    sen:'makanan（食物）、minuman（饮料）', src:'课程·第17页' },\n\n  { id:12, affix:'-kan', type:'suf', brief:'命令句使役 / 方向',\n    func:'命令句中接在词根动词之后，表使役 / 给予方向；也是 meN-kan 的组成部分。',\n    rule:'命令句中使用（省略 meN- 后加 -kan）。',\n    derivs:[\n      {root:'buka',  der:'bukakan',  zh:'开 → 打开（给……）'},\n      {root:'tutup', der:'tutupkan', zh:'关 → 关上（给……）'},\n      {root:'kasih', der:'kasihkan', zh:'给 → 给（某人）'},\n      {root:'beli',  der:'belikan',  zh:'买 → 买给（某人）'}\n    ],\n    sen:'Tolong bukakan pintu.（请把门打开。）', src:'课程·第15、21—22、36页' },\n\n  { id:13, affix:'-i', type:'suf', brief:'命令句方向 / 反复',\n    func:'命令句中接在词根之后，表动作方向 / 反复；也是 meN-i 的组成部分。',\n    rule:'命令句中使用。',\n    derivs:[\n      {root:'beli', der:'belikan / beliin', zh:'买 → 买给 / 买给（口语）'},\n      {root:'nama', der:'namai',            zh:'名字 → 命名'}\n    ],\n    sen:'Beli saya hape.（给我买个手机。）', src:'课程·第21—22页' },\n\n  { id:14, affix:'-nya', type:'suf', brief:'第三人称所有格 · 特指',\n    func:'①第三人称所有格（他的 / 她的 / 它的）；②表特指“那”；③作被动施动者（olehnya）。',\n    rule:'无变形，附于名词 / 动词 / 形容词之后。',\n    derivs:[\n      {root:'rumah', der:'rumahnya', zh:'房子 → 他/她的房子'},\n      {root:'motor', der:'motornya', zh:'摩托车 → 他/她的摩托车'},\n      {root:'hape',  der:'hapenya',  zh:'手机 → 他/她的手机'}\n    ],\n    sen:'Rumahnya jauh dari sekolah.（他家离学校远。）', src:'课程·第19页 / 补全' },\n\n  { id:15, affix:'-ku', type:'suf', brief:'第一人称所有格（我的）',\n    func:'第一人称所有格（我的）。',\n    rule:'无变形，不能单独使用，须依附于词后。',\n    derivs:[\n      {root:'mobil', der:'mobilku', zh:'车 → 我的车'},\n      {root:'anak',  der:'anakku',  zh:'孩子 → 我的孩子'}\n    ],\n    sen:'mobilku（我的车）', src:'课程·第8页' },\n\n  { id:16, affix:'-mu', type:'suf', brief:'第二人称所有格（你的）',\n    func:'第二人称所有格（你的）。',\n    rule:'无变形，不能单独使用，须依附于词后。',\n    derivs:[\n      {root:'sepeda', der:'sepedamu', zh:'自行车 → 你的自行车'}\n    ],\n    sen:'Sepedamu（你的自行车）', src:'课程·第8页' },\n\n  { id:17, affix:'-lah / -kah / -pun / -tah', type:'part', brief:'语气 · 疑问 · 强调',\n    func:'-lah 加强语气或构成祈使；-kah 构成疑问；-pun 表“也、连……都”或强调；-tah 为古旧用法。',\n    rule:'附于句首词或谓语词之后（可分写）。',\n    derivs:[\n      {root:'sudah', der:'sudahkah', zh:'已经 → 已经了吗'},\n      {root:'dia',   der:'dialah',   zh:'他 → 正是他'},\n      {root:'buka',  der:'bukalah',  zh:'开 → 请打开'},\n      {root:'aku',   der:'akupun',   zh:'我 → 连我也'}\n    ],\n    sen:'Sudahkah kamu makan?（你吃饭了吗？）Bukalah pintu!（开门！）', src:'课程·第19、29页 / 补全' },\n\n  { id:18, affix:'meN-kan', type:'circ', brief:'使役 · 处置 · 为动',\n    func:'表使役（使……变得……）、处置、为动（为某人做）；可改写 membuat 句、代替 untuk；可带双宾语。',\n    rule:'meN- 的变形规则 + -kan（-kan 不变）。',\n    derivs:[\n      {root:'senang',  der:'menyenangkan', zh:'开心 → 使……开心'},\n      {root:'bersih',  der:'membersihkan', zh:'干净 → 打扫、清理'},\n      {root:'baca',    der:'membacakan',   zh:'读 → 读给……听'},\n      {root:'panggil', der:'memanggilkan', zh:'叫 → 替……叫'}\n    ],\n    sen:'Film ini menyenangkan kita.（这部电影使我们开心。）', src:'课程·第21—22页' },\n\n  { id:19, affix:'meN-i', type:'circ', brief:'反复 · 持续 · 代替介词',\n    func:'表动作反复 / 持续；代替 memberi；代替部分介词（多用于不及物动词）；可带双宾语。',\n    rule:'meN- 的变形规则 + -i（-i 不变）。',\n    derivs:[\n      {root:'nama',  der:'menamai',    zh:'名字 → 命名'},\n      {root:'hadir', der:'menghadiri', zh:'出席 → 参加'},\n      {root:'pukul', der:'memukuli',   zh:'打 → 反复打'},\n      {root:'warna', der:'mewarnai',   zh:'颜色 → 着色'}\n    ],\n    sen:'Jangan memukuli TV-nya.（别一直打电视。）', src:'课程·第22—23页' },\n\n  { id:20, affix:'ke-an', type:'circ', brief:'抽象名词 · 极端 · 遭受',\n    func:'①形容词 / 名词 / 动词 → 抽象名词；②形容词极端化（很、太）；③表遭受 / 负面（不好的事）。',\n    rule:'环绕词缀，无变形。',\n    derivs:[\n      {root:'cantik', der:'kecantikan',  zh:'美 → 美丽'},\n      {root:'sehat',  der:'kesehatan',   zh:'健康 → 健康'},\n      {root:'lapar',  der:'kelaparan',   zh:'饿 → 饥饿'},\n      {root:'panas',  der:'kepanasan',   zh:'热 → 过热、中暑'},\n      {root:'hujan',  der:'kehujanan',   zh:'雨 → 淋雨'},\n      {root:'tinggal',der:'ketinggalan', zh:'留 → 落下、掉队'}\n    ],\n    sen:'Kesehatan sangat penting bagi dia.（健康对他很重要。）', src:'课程·第23—24页' },\n\n  { id:21, affix:'per-an / peN-an', type:'circ', brief:'抽象名词（过程 / 结果）',\n    func:'动词 / 形容词 / 名词 → 抽象名词（表过程、结果）。',\n    rule:'per- + -an；或 peN- + -an。',\n    derivs:[\n      {root:'beda',   der:'perbedaan',   zh:'不同 → 差异'},\n      {root:'ubah',   der:'perubahan',   zh:'变 → 变化'},\n      {root:'temu',   der:'pertemuan',   zh:'见 → 会面、会议'},\n      {root:'jalan',  der:'perjalanan',  zh:'走 → 旅程'},\n      {root:'kerja',  der:'pekerjaan',   zh:'工作 → 职业、工作'},\n      {root:'bangun', der:'pembangunan', zh:'建 → 建设'},\n      {root:'bayar',  der:'pembayaran',  zh:'付 → 付款'}\n    ],\n    sen:'Perubahan ini sangat penting.（这个变化非常重要。）', src:'课程·第25—26页' },\n\n  { id:22, affix:'ber-an', type:'circ', brief:'反复 · 相互',\n    func:'表动作反复 / 相互。',\n    rule:'ber- + -an。',\n    derivs:[\n      {root:'muncul',  der:'bermunculan',    zh:'出现 → 不断涌现'},\n      {root:'jalan',   der:'berjalan-jalan', zh:'走 → 散步'},\n      {root:'sebelah', der:'bersebelahan',   zh:'旁边 → 相邻'}\n    ],\n    sen:'Banyak orang aneh bermunculan.（许多奇怪的人不断出现。）', src:'课程·第39—40页' },\n\n  { id:23, affix:'ber-kan', type:'circ', brief:'以……为基 / 主题',\n    func:'表“以……为（基础 / 主题 / 成员）”。',\n    rule:'ber- + -kan。',\n    derivs:[\n      {root:'dasar',   der:'berdasarkan',   zh:'基础 → 基于'},\n      {root:'tema',    der:'bertemakan',    zh:'主题 → 以……为主题'},\n      {root:'anggota', der:'beranggotakan', zh:'成员 → 拥有成员'}\n    ],\n    sen:'Berdasarkan data itu, kamu sehat sekali.（基于那个数据……）', src:'课程·第40页' },\n\n  { id:24, affix:'berke-an / berpe-an', type:'circ', brief:'状态 · 书面语（低频）',\n    func:'ber- 与 ke-an / peN-an 叠加，多表状态或书面语色彩（低频）。',\n    rule:'ber- + ke- + 词根 + -an。',\n    derivs:[\n      {root:'adil', der:'berkeadilan', zh:'公正 → 秉持公正（书面）'}\n    ],\n    sen:'Mereka ingin hidup berkeadilan.（他们希望生活在公正之中。）', src:'补全' },\n\n  { id:25, affix:'-er- / -el- / -em-', type:'inf', brief:'插入词根构成新词',\n    func:'插入词根首音节后构成新词，词义常与词根相关但已派生（多表细碎、重复或持续）。',\n    rule:'插于词根第一个音节之后。',\n    derivs:[\n      {root:'gigi',   der:'gerigi',   zh:'牙 → 锯齿'},\n      {root:'tunjuk', der:'telunjuk', zh:'指 → 食指'},\n      {root:'getar',  der:'gemétar',  zh:'颤 → 颤抖'},\n      {root:'kuning', der:'kemuning', zh:'黄 → 黄檀（树名）'}\n    ],\n    sen:'telunjuk（食指）、gerigi（锯齿）', src:'补全' },\n\n  { id:26, affix:'-wan / -wati', type:'loan', brief:'职业 / 身份（阴性 -wati）',\n    func:'构成表职业 / 身份的人；-wati 为阴性对应形式。',\n    rule:'直接加于词基之后。',\n    derivs:[\n      {root:'karya',  der:'karyawan / karyawati', zh:'工作 → 职员 / 女职员'},\n      {root:'wisata', der:'wisatawan',            zh:'旅游 → 游客'},\n      {root:'ilmu',   der:'ilmuwan',              zh:'知识 → 科学家'},\n      {root:'warta',  der:'wartawan',             zh:'消息 → 记者'}\n    ],\n    sen:'Dia seorang karyawan.（他是一名职员。）', src:'补全' },\n\n  { id:27, affix:'-man', type:'loan', brief:'具某品质 / 职业的人',\n    func:'表具有某种品质 / 职业的人。',\n    rule:'直接加于词基之后。',\n    derivs:[\n      {root:'seni', der:'seniman', zh:'艺术 → 艺术家'},\n      {root:'budi', der:'budiman', zh:'理智 → 智者'}\n    ],\n    sen:'Ayahnya seorang seniman.（他父亲是艺术家。）', src:'补全' },\n\n  { id:28, affix:'-is / -isme / -isasi / -logi', type:'loan', brief:'……者 · 主义 · 化 · 学',\n    func:'-is 表“……的 / ……者”；-isme 表“……主义”；-isasi 表“……化”；-logi 表“……学”。',\n    rule:'直接加于词基之后。',\n    derivs:[\n      {root:'sosial', der:'sosialis',    zh:'社会 → 社会主义者'},\n      {root:'Islam',  der:'Islamisme',   zh:'伊斯兰 → 伊斯兰主义'},\n      {root:'modern', der:'modernisasi', zh:'现代 → 现代化'},\n      {root:'tekno',  der:'teknologi',   zh:'技术 → 技术学、科技'}\n    ],\n    sen:'modernisasi（现代化）、sosialis（社会主义者）', src:'补全' },\n\n  { id:29, affix:'ku- / kau-', type:'pref', brief:'口语被动（我 / 你）',\n    func:'第一人称单数（ku-）、第二人称单数（kau-）作施动者的被动式，多见于口语与非正式书面语。',\n    rule:'ku- / kau- + 词根（与主语连写）。',\n    derivs:[\n      {root:'baca',  der:'kubaca / kaubaca',   zh:'读 → 我读 / 你读'},\n      {root:'ambil', der:'kuambil / kauambil', zh:'拿 → 我拿 / 你拿'}\n    ],\n    sen:'Buku itu sudah kubaca.（那本书我已经读了。）', src:'补全' },\n\n  { id:30, affix:'-in', type:'suf', brief:'口语代替 -kan / -i',\n    func:'口语中代替 -kan / -i，多用于命令句。',\n    rule:'加于词根之后。',\n    derivs:[\n      {root:'beli',  der:'beliin',  zh:'买 → 买给（口语）'},\n      {root:'buka',  der:'bukain',  zh:'打开 → 打开（口语）'},\n      {root:'kasih', der:'kasihin', zh:'给 → 给（口语）'}\n    ],\n    sen:'Beliin saya hape.（给我买个手机。）', src:'课程·第21—22页 / 补全' }\n];\n\n/* ============================================================\n   几何常量\n   ============================================================ */\nconst CX = 400, CY = 400;\nconst R0 = 105;\nconst R_MIN = 112, R_MAX = 232;\nconst MAX_DERIV = 8;\n\nfunction polar(cx, cy, r, deg){\n  const rad = (deg - 90) * Math.PI / 180;\n  return [cx + r * Math.cos(rad), cy + r * Math.sin(rad)];\n}\nfunction annularSector(cx, cy, r0, r1, a0, a1){\n  const [x1,y1] = polar(cx, cy, r0, a0);\n  const [x2,y2] = polar(cx, cy, r0, a1);\n  const [x3,y3] = polar(cx, cy, r1, a1);\n  const [x4,y4] = polar(cx, cy, r1, a0);\n  const large = (a1 - a0) > 180 ? 1 : 0;\n  return `M ${x1.toFixed(2)} ${y1.toFixed(2)} ` +\n         `A ${r0} ${r0} 0 ${large} 1 ${x2.toFixed(2)} ${y2.toFixed(2)} ` +\n         `L ${x3.toFixed(2)} ${y3.toFixed(2)} ` +\n         `A ${r1} ${r1} 0 ${large} 0 ${x4.toFixed(2)} ${y4.toFixed(2)} Z`;\n}\nfunction petalRadius(item){\n  const n = Math.max(1, Math.min(item.derivs.length, MAX_DERIV));\n  return R_MIN + (n - 1) / (MAX_DERIV - 1) * (R_MAX - R_MIN);\n}\nfunction labelFont(text){\n  const n = text.length;\n  if (n <= 6)  return 17;\n  if (n <= 10) return 15;\n  if (n <= 14) return 12.5;\n  if (n <= 18) return 10.5;\n  return 8.5;\n}\nfunction centerFont(text){\n  const n = text.length;\n  if (n <= 4)  return '6.6cqw';\n  if (n <= 7)  return '5.2cqw';\n  if (n <= 10) return '4.2cqw';\n  if (n <= 14) return '3.4cqw';\n  return '2.8cqw';\n}\n\n/* ============================================================\n   构建花瓣布局\n   ============================================================ */\nfunction buildPetals(){\n  const groups = TYPE_ORDER\n    .map(t => ({ type: t, items: DATA.filter(d => d.type === t) }))\n    .filter(g => g.items.length > 0);\n\n  const total = DATA.length;\n  const GAP = 2.6;\n  const avail = 360 - GAP * groups.length;\n\n  let angle = 0;\n  const petals = [];\n\n  groups.forEach(g => {\n    const groupAngle = avail * g.items.length / total;\n    const itemAngle = groupAngle / g.items.length;\n    g.items.forEach((item, i) => {\n      const a0 = angle + i * itemAngle;\n      const a1 = a0 + itemAngle;\n      petals.push({\n        item, type: g.type, a0, a1,\n        mid: (a0 + a1) / 2,\n        r: petalRadius(item)\n      });\n    });\n    angle += groupAngle + GAP;\n  });\n  return petals;\n}\n\n/* ============================================================\n   状态\n   ============================================================ */\nlet petals = [];\nlet selectedIndex = null;\nlet activeType = null;\nlet query = '';\nlet matchedSet = new Set();\nlet firstRender = true;\n\nconst petalsG   = document.getElementById('petalGroups');\nconst defsEl    = document.getElementById('defs');\nconst detailInner = document.getElementById('detailInner');\nconst centerEl  = document.getElementById('chartCenter');\nconst tipEl     = document.getElementById('tip');\nconst searchEl  = document.getElementById('search');\n\n/* ============================================================\n   渐变\n   ============================================================ */\nfunction buildDefs(){\n  defsEl.innerHTML = TYPE_ORDER.map(t => {\n    const c = TYPES[t].c;\n    return `<radialGradient id=\"g-${t}\" cx=\"${CX}\" cy=\"${CY}\" r=\"320\" gradientUnits=\"userSpaceOnUse\">\n      <stop offset=\"0.16\" stop-color=\"${c}\" stop-opacity=\"0.14\"/>\n      <stop offset=\"0.70\" stop-color=\"${c}\" stop-opacity=\"0.58\"/>\n      <stop offset=\"1\"    stop-color=\"${c}\" stop-opacity=\"0.94\"/>\n    </radialGradient>`;\n  }).join('');\n}\n\n/* ============================================================\n   渲染花瓣\n   ============================================================ */\nfunction renderPetals(){\n  petals = buildPetals();\n\n  petalsG.innerHTML = petals.map((p, i) => {\n    const t = TYPES[p.type];\n    const d = annularSector(CX, CY, R0, p.r, p.a0, p.a1);\n    const label = p.item.affix;\n    const fs = labelFont(label);\n    const [lx, ly] = polar(CX, CY, p.r + 14, p.mid);\n    const flip = p.mid > 180;\n    const rot  = flip ? p.mid + 90 : p.mid - 90;\n    const anchor = flip ? 'end' : 'start';\n    const anim = firstRender ? ` animate\" style=\"animation-delay:${Math.min(i*13,360)}ms` : '';\n    return `<g class=\"petal-g${anim}\" data-index=\"${i}\" data-mid=\"${p.mid.toFixed(2)}\">\n      <path class=\"petal\" d=\"${d}\" fill=\"url(#g-${p.type})\" stroke=\"${t.c}\"/>\n      <text class=\"petal-label\"\n        x=\"${lx.toFixed(1)}\" y=\"${ly.toFixed(1)}\"\n        transform=\"rotate(${rot.toFixed(1)} ${lx.toFixed(1)} ${ly.toFixed(1)})\"\n        text-anchor=\"${anchor}\"\n        dominant-baseline=\"central\"\n        font-size=\"${fs}\"\n        fill=\"${t.c}\">${esc(label)}</text>\n    </g>`;\n  }).join('');\n\n  firstRender = false;\n  renderCenter();\n}\n\n/* ============================================================\n   中心\n   ============================================================ */\nfunction renderCenter(){\n  if (selectedIndex === null || !petals[selectedIndex]){\n    centerEl.innerHTML = `\n      <div class=\"cc-affix\" style=\"font-size:6.4cqw\">${DATA.length}</div>\n      <div class=\"cc-hint\">个词缀</div>`;\n    return;\n  }\n  const d = petals[selectedIndex].item;\n  const t = TYPES[d.type];\n  centerEl.innerHTML = `\n    <div class=\"cc-type\" style=\"color:${t.c}\">${t.name}</div>\n    <div class=\"cc-affix\" style=\"font-size:${centerFont(d.affix)}\">${esc(d.affix)}</div>\n  `;\n}\n\n/* ============================================================\n   选中 / 筛选样式\n   ============================================================ */\nfunction applySelectionClasses(){\n  const groups = petalsG.querySelectorAll('.petal-g');\n  groups.forEach((g, i) => {\n    g.classList.toggle('selected', i === selectedIndex);\n    g.classList.toggle('dimmed', !matchedSet.has(i));\n  });\n}\n\n/* ============================================================\n   详情面板\n   ============================================================ */\nfunction renderDetail(){\n  if (selectedIndex === null || !petals[selectedIndex]){\n    detailInner.innerHTML = '';\n    return;\n  }\n  const d = petals[selectedIndex].item;\n  const t = TYPES[d.type];\n  const long = d.affix.length > 9 ? ' long' : '';\n\n  detailInner.innerHTML = `\n    <button class=\"detail-close\" id=\"detailClose\" aria-label=\"关闭\">✕</button>\n    <div class=\"detail-content\">\n      <div class=\"d-head\">\n        <span class=\"d-badge\" style=\"--c:${t.c};--cb:${t.cb}\">${t.name}</span>\n        <span class=\"d-num\">No. ${String(d.id).padStart(2,'0')}</span>\n      </div>\n      <h2 class=\"d-affix${long}\">${esc(d.affix)}</h2>\n      <p class=\"d-brief\">${esc(d.brief)}</p>\n      <div class=\"d-divider\" style=\"background:linear-gradient(90deg,${t.c}66,transparent)\"></div>\n\n      <div class=\"d-section\">\n        <div class=\"d-label\">主要功能 / 含义</div>\n        <p class=\"d-text\">${esc(d.func)}</p>\n      </div>\n\n      <div class=\"d-section\">\n        <div class=\"d-label\">变形规则</div>\n        <p class=\"d-text\">${esc(d.rule)}</p>\n      </div>\n\n      <div class=\"d-section\">\n        <div class=\"d-label\">词根 → 派生词（${d.derivs.length}）</div>\n        <div class=\"chips\">\n          ${d.derivs.map(x => `\n            <div class=\"chip\">\n              <div class=\"chip-id\">\n                <span class=\"chip-root\">${esc(x.root)}</span>\n                <span class=\"chip-arw\">→</span>\n                <span class=\"chip-der\" style=\"color:${t.c}\">${esc(x.der)}</span>\n              </div>\n              <div class=\"chip-zh\">${esc(x.zh)}</div>\n            </div>`).join('')}\n        </div>\n      </div>\n\n      <div class=\"d-section\">\n        <div class=\"d-label\">例句 / 说明</div>\n        <p class=\"d-sen\" style=\"border-left-color:${t.c}\">${zh(d.sen)}</p>\n      </div>\n\n      <div class=\"d-src\">出处 · ${esc(d.src)}</div>\n    </div>\n  `;\n  detailInner.scrollTop = 0;\n  const closeBtn = document.getElementById('detailClose');\n  if (closeBtn) closeBtn.onclick = (e) => { e.stopPropagation(); clearSelection(); };\n}\n\n/* ============================================================\n   选择 / 取消\n   ============================================================ */\nfunction selectPetal(index){\n  if (index === selectedIndex){ clearSelection(); return; }\n  selectedIndex = index;\n\n  const p = petals[index];\n  /* mid < 180 → 花瓣在右半侧；图表向左移，面板在右\n     mid ≥ 180 → 花瓣在左半侧；图表向右移，面板在左 */\n  const isRight = p.mid < 180;\n\n  document.body.classList.remove('mode-left', 'mode-right');\n  document.body.classList.add(isRight ? 'mode-right' : 'mode-left', 'has-detail');\n\n  applySelectionClasses();\n  renderCenter();\n  renderDetail();\n}\n\nfunction clearSelection(){\n  if (selectedIndex === null) return;\n  selectedIndex = null;\n  document.body.classList.remove('mode-left', 'mode-right', 'has-detail');\n  applySelectionClasses();\n  renderCenter();\n  renderDetail();\n}\n\n/* 点击花瓣 */\npetalsG.addEventListener('click', e => {\n  const g = e.target.closest('.petal-g');\n  if (!g || g.classList.contains('dimmed')) return;\n  e.stopPropagation();\n  selectPetal(+g.dataset.index);\n});\n\n/* 点击图表空白处取消选中 */\ndocument.getElementById('chart').addEventListener('click', e => {\n  if (e.target.tagName === 'svg' || e.target.id === 'chart' ||\n      e.target.id === 'petalGroups' || e.target.tagName === 'defs'){\n    clearSelection();\n  }\n});\ndocument.getElementById('chartSide').addEventListener('click', e => {\n  if (e.target.classList.contains('chart-side') ||\n      e.target.classList.contains('empty-hint')){\n    clearSelection();\n  }\n});\n\n/* ============================================================\n   悬停提示\n   ============================================================ */\npetalsG.addEventListener('mousemove', e => {\n  const g = e.target.closest('.petal-g');\n  if (!g || g.classList.contains('dimmed')){ tipEl.classList.remove('show'); return; }\n  const idx = +g.dataset.index;\n  const d = petals[idx] && petals[idx].item;\n  if (!d){ tipEl.classList.remove('show'); return; }\n  const t = TYPES[d.type];\n  tipEl.innerHTML = `<strong>${esc(d.affix)}</strong><span style=\"--c:${t.c};--cb:${t.cb}\">${t.name}</span>`;\n  tipEl.style.left = Math.min(e.clientX + 16, window.innerWidth - 210) + 'px';\n  tipEl.style.top  = (e.clientY + 18) + 'px';\n  tipEl.classList.add('show');\n});\npetalsG.addEventListener('mouseleave', () => tipEl.classList.remove('show'));\n\n/* ============================================================\n   筛选\n   ============================================================ */\nfunction computeMatches(){\n  const q = query.trim().toLowerCase();\n  matchedSet = new Set();\n  petals.forEach((p, i) => {\n    const d = p.item;\n    if (activeType && d.type !== activeType) return;\n    if (q){\n      const hay = (\n        d.affix + ' ' + d.brief + ' ' + d.func + ' ' + d.rule + ' ' + d.sen + ' ' + d.src + ' ' +\n        d.derivs.map(x => x.root + ' ' + x.der + ' ' + x.zh).join(' ')\n      ).toLowerCase();\n      if (!hay.includes(q)) return;\n    }\n    matchedSet.add(i);\n  });\n}\n\nlet searchTimer = null;\nsearchEl.addEventListener('input', () => {\n  clearTimeout(searchTimer);\n  searchTimer = setTimeout(() => {\n    query = searchEl.value;\n    computeMatches();\n    if (selectedIndex !== null && !matchedSet.has(selectedIndex)) clearSelection();\n    applySelectionClasses();\n  }, 130);\n});\n\n/* ============================================================\n   随机学习\n   ============================================================ */\ndocument.getElementById('randomBtn').addEventListener('click', () => {\n  const pool = [];\n  matchedSet.forEach(i => pool.push(i));\n  const arr = pool.length ? pool : petals.map((_, i) => i);\n  if (!arr.length) return;\n  let idx;\n  do { idx = arr[Math.floor(Math.random() * arr.length)]; }\n  while (arr.length > 1 && idx === selectedIndex);\n\n  selectPetal(idx);\n\n  const g = petalsG.querySelector(`.petal-g[data-index=\"${idx}\"]`);\n  if (g){\n    const path = g.querySelector('.petal');\n    if (path){\n      path.style.transition = 'filter .3s';\n      path.style.filter = 'brightness(2.2) saturate(1.5)';\n      setTimeout(() => { path.style.filter = ''; }, 450);\n    }\n  }\n});\n\n/* ============================================================\n   ESC 关闭\n   ============================================================ */\ndocument.addEventListener('keydown', e => {\n  if (e.key === 'Escape') clearSelection();\n});\n\n/* ============================================================\n   工具\n   ============================================================ */\nfunction esc(s){\n  return String(s).replace(/[&<>\"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;'}[c]));\n}\nfunction zh(s){\n  return esc(s).replace(/（([^）]*[\\u4e00-\\u9fff][^）]*)）/g, '<span class=\"zh\">（$1）</span>');\n}\n\n/* ============================================================\n   启动\n   ============================================================ */\nbuildDefs();\nrenderPetals();\ncomputeMatches();\napplySelectionClasses();\nrenderDetail();\n<\/script>\n</body>\n</html>";
-
-function renderAffixRose(c) {
-  c.innerHTML = `<div class="card"><div class="card-header"><h2>🌹 词缀玫瑰图 · Peta Mawar Afiks</h2><span class="badge">30 词缀 · 6 类</span></div>
-  <div style="padding:0;border-radius:0 0 var(--radius) var(--radius);overflow:hidden;background:var(--bg)">
-    <iframe id="affixRoseFrame" style="width:100%;height:calc(100vh - 180px);border:none;display:block;" sandbox="allow-scripts"></iframe>
-  </div></div>`;
-  const frame = document.getElementById('affixRoseFrame');
-  frame.srcdoc = AFFIX_ROSE_HTML;
-}
-
 // ===== BIT 详解库 bitVocabDB V4.31.0 新增:按词组织的累积详解库,转换器 scripts/md_to_dailynote.py 在写入每日笔记时自动并入新词条;批量生成由 BIT→BIO 流程灌入 =====
 const bitVocabDB = {
   "mencerna": {
@@ -83776,26 +84594,43 @@ const bitVocabDB = {
   },
   "terhadap": {
     "word": "terhadap",
-    "cn": "对于/针对",
-    "en": "towards, against, regarding",
-    "root": "ter- 前缀 + hadap（面对）→ 已介词化",
-    "forms": [],
-    "formsNote": "hadap（原形）、menghadap（朝见）、menghadapi（面对/应对）",
-    "note": "介词，法律与公文高频，后接名词或代词",
+    "cn": "对；对于；朝向",
+    "en": "toward; regarding",
+    "root": "hadap",
+    "forms": [
+      {
+        "form": "hadap",
+        "pos": "v",
+        "mean": "面对"
+      },
+      {
+        "form": "menghadapi",
+        "pos": "v",
+        "mean": "应对；面对"
+      },
+      {
+        "form": "terhadap",
+        "pos": "prep",
+        "mean": "对；关于"
+      }
+    ],
+    "formsNote": "",
+    "note": "ter- + hadap 已词汇化为介词，前置支配对象（kepentingan terhadap...） RCO 勘误：用户输入 \"terhatap\" 更正为 terhadap（d→t 笔误），KBBI 仅收录 terhadap",
     "synonyms": [
-      "kepada"
+      "kepada",
+      "untuk? | — | （辨析：terhadap 更正式，UKBI 写作高频） |"
     ],
     "antonyms": [],
     "examples": [
       {
-        "scene": "商务谈判",
-        "id": "Perusahaan menunjukkan komitmen kuat terhadap keselamatan kerja.",
-        "cn": "公司表现出对职业安全的强承诺。"
+        "scene": "UKBI备考",
+        "id": "Sikap kritis terhadap bacaan diuji pada bagian menulis.",
+        "cn": "写作部分考查对阅读材料的批判态度。"
       },
       {
-        "scene": "环保合规",
-        "id": "Seluruh kegiatan operasional wajib patuh terhadap regulasi lingkungan.",
-        "cn": "所有运营活动必须遵守环境法规。"
+        "scene": "合规治理",
+        "id": "Perusahaan wajib patuh terhadap regulasi lingkungan KLHK.",
+        "cn": "公司须遵守 KLHK 环保法规。"
       }
     ]
   },
@@ -107422,42 +108257,33 @@ const bitVocabDB = {
   },
   "sedang": {
     "word": "sedang",
-    "ipa": "/səˈdaŋ/",
-    "cn": "正在",
-    "en": "currently, in the middle of (progressive marker); also: medium",
+    "cn": "正在；中等的；适度的",
+    "en": "in progress; medium; moderate",
     "root": "sedang",
     "forms": [
       {
-        "form": "sedang",
-        "pos": "adv",
-        "mean": "正在"
-      },
-      {
-        "form": "sedang",
+        "form": "kesedang-sedangan",
         "pos": "adj",
-        "mean": "中等的"
+        "mean": "中不溜的（口语）"
       }
     ],
-    "formsNote": "进行体标记；也可作形容词「中等」",
-    "note": "sedang + 动词 = 正在做某事；语域中性偏正式，口语常用 lagi（lagi makan = sedang makan）",
+    "formsNote": "",
+    "note": "两义并存：①进行时助动词（sedang mengerjakan 正在做）②等级形容词（skor sedang 中等成绩）；本日 UKBI 语境取第二义与 rendah/tinggi 对举",
     "synonyms": [
-      "lagi",
-      "tengah"
+      "进行中: | — | （① tengah）中等: | — | （② moderat",
+      "menengah） |"
     ],
-    "antonyms": [
-      "sudah",
-      "belum"
-    ],
+    "antonyms": [],
     "examples": [
       {
-        "scene": "Dia sedang mengerjakan laporan.",
-        "id": "sedang",
-        "cn": "他正在写报告。"
+        "scene": "UKBI备考",
+        "id": "Kategori sedang pada UKBI berada di tengah tujuh tingkat penilaian.",
+        "cn": "UKBI 七个等级中，\"中等\"居中。"
       },
       {
-        "scene": "Jalan ini sedang diperbaiki.",
-        "id": "sedang",
-        "cn": "这条路正在维修。"
+        "scene": "园区建设",
+        "id": "Konstruksi smelter fase dua sedang berjalan sesuai jadwal.",
+        "cn": "二期冶炼厂建设正按计划推进。"
       }
     ]
   },
@@ -110381,51 +111207,50 @@ const bitVocabDB = {
   "berbicara": {
     "word": "berbicara",
     "ipa": "/bərbiˈtʃara/",
-    "cn": "说话/交谈",
-    "en": "to speak, to talk",
+    "cn": "说话/口语",
+    "en": "to speak",
     "root": "bicara",
     "forms": [
       {
         "form": "bicara",
+        "pos": "v/n",
+        "mean": "说/谈话"
+      },
+      {
+        "form": "berbicara",
         "pos": "v",
-        "mean": "说（根词，口语）"
+        "mean": "说话"
+      },
+      {
+        "form": "pembicaraan",
+        "pos": "n",
+        "mean": "谈话/讨论"
       },
       {
         "form": "pembicara",
         "pos": "n",
         "mean": "发言人"
-      },
-      {
-        "form": "pembicaraan",
-        "pos": "n",
-        "mean": "会谈"
-      },
-      {
-        "form": "terbicara",
-        "pos": "v",
-        "mean": "被说出"
       }
     ],
-    "formsNote": "ber- 缀表动作，词根 bicara",
-    "note": "berbicara dengan「与…交谈」；perbicangan「对话」",
+    "formsNote": "bicara + ber- → 进行/处于说话状态",
+    "note": "UKBI Seksi V 名称",
     "synonyms": [
-      "berkata",
-      "berdialog"
+      "berucap",
+      "berkata"
     ],
     "antonyms": [
-      "diam",
-      "menyepi"
+      "mendengarkan"
     ],
     "examples": [
       {
-        "scene": "Dia berbicara dengan sopan kepada tamu.",
-        "id": "berbicara",
-        "cn": "他有礼貌地和客人交谈。"
+        "scene": "Seksi V Berbicara menuntut presentasi topik dalam 3 menit perekaman.",
+        "id": "Berbicara",
+        "cn": "第五部分口语要求 3 分钟录音内演示话题。"
       },
       {
-        "scene": "Pembicara utama akan hadir pukul sembilan.",
-        "id": "pembicara",
-        "cn": "主讲人将于九点到场。"
+        "scene": "Berbicara dengan jelas dan lancar sangat penting.",
+        "id": "Berbicara",
+        "cn": "清晰流利地说话非常重要。"
       }
     ]
   },
@@ -116711,27 +117536,44 @@ const bitVocabDB = {
   },
   "sertifikat": {
     "word": "sertifikat",
-    "cn": "证书；证明",
+    "ipa": "/sɛrtifiˈkat/",
+    "cn": "证书",
     "en": "certificate",
     "root": "sertifikat",
-    "forms": [],
-    "formsNote": "",
-    "note": "外来词（荷兰语 certificaat），进出口贸易中常见 sertifikat asal（原产地证书）、sertifikat kualitas（质量证书）",
+    "forms": [
+      {
+        "form": "sertifikat",
+        "pos": "n",
+        "mean": "证书"
+      },
+      {
+        "form": "sertifikasi",
+        "pos": "n",
+        "mean": "认证（过程）"
+      },
+      {
+        "form": "tersertifikasi",
+        "pos": "adj",
+        "mean": "已认证的"
+      }
+    ],
+    "formsNote": "拉丁借词 certificatum",
+    "note": "UKBI 颁发数字证书（sertifikat digital）",
     "synonyms": [
-      "akta",
-      "surat keterangan"
+      "ijazah",
+      "sijil"
     ],
     "antonyms": [],
     "examples": [
       {
-        "scene": "商务",
-        "id": "Sertifikat asal barang harus diserahkan kepada bea-cukai.",
-        "cn": "货物原产地证书必须提交给海关。"
+        "scene": "Sertifikat diterbitkan dalam bentuk digital setiap Jumat, Sabtu, atau Minggu.",
+        "id": "Sertifikat",
+        "cn": "证书以数字形式在每周五、六或日颁发。"
       },
       {
-        "scene": "商务",
-        "id": "Pabrik smelter memerlukan sertifikat kualitas untuk setiap batch produk.",
-        "cn": "冶炼厂要求每批产品都附带质量证书。"
+        "scene": "Sertifikat berlaku selama dua tahun.",
+        "id": "Sertifikat",
+        "cn": "证书有效期两年。"
       }
     ]
   },
@@ -124482,22 +125324,44 @@ const bitVocabDB = {
   },
   "jadwal": {
     "word": "jadwal",
-    "ipa": "/ˈdʒad.wal/",
-    "cn": "时间表",
-    "en": "schedule, timetable",
+    "ipa": "/ˈʤadwal/",
+    "cn": "日程表",
+    "en": "schedule",
     "root": "jadwal",
-    "forms": [],
-    "formsNote": "阿拉伯语借词，无本土派生",
-    "note": "管理高频词：jadwal produksi 生产计划、jadwal penerbangan 航班时刻表；sesuai jadwal 如期",
+    "forms": [
+      {
+        "form": "jadwal",
+        "pos": "n",
+        "mean": "日程/时间表"
+      },
+      {
+        "form": "menjadwalkan",
+        "pos": "v",
+        "mean": "安排日程"
+      },
+      {
+        "form": "terjadwal",
+        "pos": "v.pass",
+        "mean": "已排期的"
+      }
+    ],
+    "formsNote": "阿拉伯借词 jadwal（时间表）",
+    "note": "UKBI 提供 5 个考试时间 zona：08.00/10.00/13.00/16.00/19.00 WIB",
     "synonyms": [
-      "skedul"
+      "agenda",
+      "rentang waktu"
     ],
     "antonyms": [],
     "examples": [
       {
-        "scene": "Jadwal kapal berangkat jam tujuh pagi.",
+        "scene": "Pilih jadwal uji yang tersedia sesuai kebutuhan.",
         "id": "jadwal",
-        "cn": "船班定于早上七点出发。"
+        "cn": "按需选择可用的考试时间。"
+      },
+      {
+        "scene": "Jadwal UKBI Adaptif tersedia Senin sampai Kamis.",
+        "id": "Jadwal",
+        "cn": "UKBI Adaptif 时间表为周一至周四。"
       }
     ]
   },
@@ -125257,51 +126121,55 @@ const bitVocabDB = {
   },
   "menulis": {
     "word": "menulis",
-    "ipa": "/mə.ˈnu.lis/",
-    "cn": "写（动词）",
+    "ipa": "/məˈnulis/",
+    "cn": "写作",
     "en": "to write",
     "root": "tulis",
     "forms": [
       {
         "form": "tulis",
         "pos": "v",
-        "mean": "写"
+        "mean": "写（词根）"
       },
       {
         "form": "menulis",
         "pos": "v",
-        "mean": "写（及物）"
+        "mean": "写作"
       },
       {
         "form": "tulisan",
         "pos": "n",
-        "mean": "文字/作品"
+        "mean": "作品/文字"
       },
       {
         "form": "penulis",
         "pos": "n",
-        "mean": "作者"
+        "mean": "作家/作者"
       },
       {
         "form": "tertulis",
-        "pos": "adj",
+        "pos": "v.pass",
         "mean": "书面的"
       }
     ],
-    "formsNote": "meN- 及物化，peN- 施事名词，ter- 被动/状态",
-    "note": "surat tertulis 书面函件；penulis lepas 自由撰稿人；mesin tulis 打字机",
+    "formsNote": "tulis + meN-（t→men-）",
+    "note": "UKBI Seksi IV 名称",
     "synonyms": [
-      "mencatat",
-      "mengarang"
+      "mengetik"
     ],
     "antonyms": [
       "membaca"
     ],
     "examples": [
       {
-        "scene": "Semua karyawan wajib menulis laporan harian.",
-        "id": "menulis",
-        "cn": "所有员工都必须写日报。"
+        "scene": "Seksi IV Menulis menuntut minimal 100 kata dalam 15 menit.",
+        "id": "Menulis",
+        "cn": "第四部分写作要求 15 分钟内至少 100 词。"
+      },
+      {
+        "scene": "Menulis esai sesuai kalimat pemantik dan infografik.",
+        "id": "Menulis",
+        "cn": "根据提示句和信息图写文章。"
       }
     ]
   },
@@ -126841,43 +127709,51 @@ const bitVocabDB = {
   },
   "pendaftaran": {
     "word": "pendaftaran",
-    "ipa": "/pən.daf.ˈta.ran/",
-    "cn": "注册",
-    "en": "registration, enrollment",
+    "ipa": "/pəndaftarˈan/",
+    "cn": "注册/报名",
+    "en": "registration",
     "root": "daftar",
     "forms": [
       {
         "form": "daftar",
-        "pos": "n/v",
-        "mean": "名单/登记"
+        "pos": "v/n",
+        "mean": "登记/名单"
       },
       {
         "form": "mendaftar",
         "pos": "v",
-        "mean": "报名"
+        "mean": "注册/报名"
+      },
+      {
+        "form": "terdaftar",
+        "pos": "v.pass",
+        "mean": "已注册"
       },
       {
         "form": "pendaftaran",
         "pos": "n",
         "mean": "注册/报名"
-      },
-      {
-        "form": "pendaftar",
-        "pos": "n",
-        "mean": "报名者"
       }
     ],
-    "formsNote": "peN-…-an 名词化，词根 daftar「名单」",
-    "note": "pendaftaran online 在线注册；pendaftaran merek 商标注册；gelombang pendaftaran 报名批次",
+    "formsNote": "daftar + peN--an 名词化；mendaftar = meN- 动词化",
+    "note": "UKBI 网站核心术语；搭配 secara mandiri（独立）或 kolektif（集体）",
     "synonyms": [
-      "registrasi"
+      "registrasi",
+      "pendaubletan"
     ],
-    "antonyms": [],
+    "antonyms": [
+      "pembatalan"
+    ],
     "examples": [
       {
-        "scene": "Pendaftaran pelatihan ditutup besok.",
+        "scene": "Pendaftaran dapat dilakukan secara mandiri atau kolektif.",
+        "id": "Pendaftaran",
+        "cn": "注册可以个人或集体方式进行。"
+      },
+      {
+        "scene": "Batas waktu pendaftaran adalah 24 jam sebelum ujian.",
         "id": "pendaftaran",
-        "cn": "培训报名明天截止。"
+        "cn": "报名截止时间为考试前24小时。"
       }
     ]
   },
@@ -129314,7 +130190,7 @@ const bitVocabDB = {
   },
   "membaca": {
     "word": "membaca",
-    "ipa": "/məmˈba.tʃa/",
+    "ipa": "/mɛmbaˈtʃa/",
     "cn": "阅读",
     "en": "to read",
     "root": "baca",
@@ -129322,7 +130198,12 @@ const bitVocabDB = {
       {
         "form": "baca",
         "pos": "v",
-        "mean": "读"
+        "mean": "读（词根）"
+      },
+      {
+        "form": "membaca",
+        "pos": "v",
+        "mean": "阅读"
       },
       {
         "form": "bacaan",
@@ -129335,29 +130216,29 @@ const bitVocabDB = {
         "mean": "读者"
       },
       {
-        "form": "bacakan",
-        "pos": "v",
-        "mean": "读给…听"
+        "form": "terbaca",
+        "pos": "v.pass",
+        "mean": "被读到"
       }
     ],
-    "formsNote": "meN-（同化 mem-），词根 baca「读」",
-    "note": "membaca koran/buku 读报/读书；membacakan 为他人朗读",
+    "formsNote": "baca + meN-（b→mem-）",
+    "note": "UKBI Seksi III 名称",
     "synonyms": [
-      "menelaah"
+      "membaca"
     ],
     "antonyms": [
       "menulis"
     ],
     "examples": [
       {
-        "scene": "Anak-anak membaca buku di perpustakaan.",
-        "id": "membaca",
-        "cn": "孩子们在图书馆读书。"
+        "scene": "Seksi III Membaca menguji pemahaman wacana tulis.",
+        "id": "Membaca",
+        "cn": "第三部分阅读测试书面语篇理解。"
       },
       {
-        "scene": "Ibu membacakan dongeng sebelum tidur.",
-        "id": "bacakan",
-        "cn": "妈妈睡前读童话故事。"
+        "scene": "Membaca maksimal 8 wacana tulis dalam 45 menit.",
+        "id": "Membaca",
+        "cn": "45 分钟内阅读最多 8 篇书面语篇。"
       }
     ]
   },
@@ -136415,9 +137296,9 @@ const bitVocabDB = {
   },
   "terbatas": {
     "word": "terbatas",
-    "ipa": "/tərˈbatas/",
-    "cn": "有限的",
-    "en": "limited, restricted",
+    "ipa": "/tɛrbaˈtas/",
+    "cn": "有限/受限",
+    "en": "limited",
     "root": "batas",
     "forms": [
       {
@@ -136426,37 +137307,41 @@ const bitVocabDB = {
         "mean": "界限"
       },
       {
+        "form": "terbatas",
+        "pos": "adj/v.pass",
+        "mean": "有限的"
+      },
+      {
         "form": "membatasi",
         "pos": "v",
         "mean": "限制"
       },
       {
-        "form": "keterbatasan",
+        "form": "pembatasan",
         "pos": "n",
-        "mean": "局限性/有限性"
+        "mean": "限制（措施）"
       }
     ],
-    "formsNote": "ter- 状态缀 + batas（边界）；di-batasi 被动",
-    "note": "高频：dana terbatas 资金有限；waktu terbatas 时间有限",
+    "formsNote": "batas + ter-（被动/状态）→ 被限制的",
+    "note": "UKBI 最低等级（251-325），仅能用生存用语",
     "synonyms": [
-      "tertentu",
-      "terkendali"
+      "terbatas",
+      "sempit"
     ],
     "antonyms": [
-      "tidak terbatas",
-      "bebas",
-      "meluas"
+      "luas",
+      "bebas"
     ],
     "examples": [
       {
-        "scene": "Anggaran kita sangat terbatas tahun ini.",
-        "id": "terbatas",
-        "cn": "今年我们的预算非常有限。"
+        "scene": "Predikat Terbatas menunjukkan kemahiran sangat tidak memadai.",
+        "id": "Terbatas",
+        "cn": "受限称号表示非常不充分的熟练度。"
       },
       {
-        "scene": "Aksesnya hanya terbatas untuk staf.",
+        "scene": "Waktu ujian sangat terbatas.",
         "id": "terbatas",
-        "cn": "仅限员工访问。"
+        "cn": "考试时间非常有限。"
       }
     ]
   },
@@ -137645,43 +138530,43 @@ const bitVocabDB = {
   "kartu": {
     "word": "kartu",
     "ipa": "/ˈkartu/",
-    "cn": "卡",
+    "cn": "卡/证件",
     "en": "card",
     "root": "kartu",
     "forms": [
       {
-        "form": "kartu nama",
+        "form": "kartu",
         "pos": "n",
-        "mean": "名片"
+        "mean": "卡"
+      },
+      {
+        "form": "kartu identitas",
+        "pos": "n.phrase",
+        "mean": "身份证"
       },
       {
         "form": "kartu kredit",
-        "pos": "n",
+        "pos": "n.phrase",
         "mean": "信用卡"
-      },
-      {
-        "form": "kartu keluarga",
-        "pos": "n",
-        "mean": "家庭卡（户籍）"
       }
     ],
-    "formsNote": "荷兰语 kaart 借词",
-    "note": "高频复合：kartu ATM 取款卡；kartu member 会员卡；kartu pos 明信片",
+    "formsNote": "荷兰语借词 kaart",
+    "note": "组合广泛：kartu identitas/ATM/nama",
     "synonyms": [
-      "kartu",
-      "karton（纸板）"
+      "kaart",
+      "karcis"
     ],
     "antonyms": [],
     "examples": [
       {
-        "scene": "Tunjukkan kartu anggota Anda di pintu.",
+        "scene": "Unggah foto kartu identitas sebagai bukti identitas.",
         "id": "kartu",
-        "cn": "进门请出示会员卡。"
+        "cn": "上传身份证照片作为身份证明。"
       },
       {
-        "scene": "Tolong tukar kartu nama dengan tamu.",
+        "scene": "Pembayaran dapat dilakukan dengan kartu debit.",
         "id": "kartu",
-        "cn": "请和客人交换名片。"
+        "cn": "可以用借记卡支付。"
       }
     ]
   },
@@ -143106,36 +143991,44 @@ const bitVocabDB = {
   },
   "rendah": {
     "word": "rendah",
-    "ipa": "/rendah/",
-    "cn": "低的",
+    "cn": "低的；矮的；低下的",
     "en": "low",
     "root": "rendah",
     "forms": [
       {
-        "form": "merendahkan",
-        "pos": "v",
-        "mean": "贬低；降低"
+        "form": "kerendahan",
+        "pos": "n",
+        "mean": "低度；卑下"
       },
       {
-        "form": "kerendahan hati",
-        "pos": "n",
-        "mean": "谦逊"
+        "form": "merendahkan",
+        "pos": "v",
+        "mean": "贬低；使低"
+      },
+      {
+        "form": "terendah",
+        "pos": "adj",
+        "mean": "最低的"
       }
     ],
-    "formsNote": "meN-…-kan / ke-…-an 固定搭配",
-    "note": "harga rendah（低价）、suara rendah（低声）；kerendahan hati 是美德",
+    "formsNote": "",
+    "note": "",
     "synonyms": [
-      "cekcok (不相关)",
-      "pendek"
+      "lemah? | — | （区分：rendah 指高度/水平，lemah 指强度） |"
     ],
     "antonyms": [
       "tinggi"
     ],
     "examples": [
       {
-        "scene": "Kandungan gula produk ini rendah.",
-        "id": "rendah",
-        "cn": "这个产品含糖量低。"
+        "scene": "UKBI备考",
+        "id": "Skor di bawah tiga ratus dua puluh lima termasuk kategori terbatas yang rendah.",
+        "cn": "低于 325 分的成绩属最低档\"受限\"级。"
+      },
+      {
+        "scene": "商务分析",
+        "id": "Permintaan nikel global sedang rendah karena perlambatan ekonomi.",
+        "cn": "因经济放缓，全球镍需求处于低位。"
       }
     ]
   },
@@ -147119,34 +148012,39 @@ const bitVocabDB = {
   },
   "jenjang": {
     "word": "jenjang",
-    "ipa": "/ˈʤɛnʤaŋ/",
-    "cn": "阶梯/晋升",
-    "en": "ladder, career stage",
+    "cn": "阶梯；等级；层级",
+    "en": "level; tier; ladder",
     "root": "jenjang",
     "forms": [
       {
-        "form": "jenjang karier",
-        "pos": "n",
-        "mean": "职业阶梯"
+        "form": "berjenjang",
+        "pos": "v/adj",
+        "mean": "分级的；递进的"
       },
       {
-        "form": "jenjang pendidikan",
-        "pos": "n",
-        "mean": "教育阶段"
+        "form": "menjenjang",
+        "pos": "v",
+        "mean": "架设梯子；升级"
       }
     ],
-    "formsNote": "基础名词",
-    "note": "常指等级体系：jenjang SD-SMP-SMA 小学-初中-高中",
+    "formsNote": "",
+    "note": "词根本身为名词；ber- 加前缀表\"有层级的\"",
     "synonyms": [
-      "tangga",
-      "tingkatan"
+      "tingkatan",
+      "tahap",
+      "level"
     ],
     "antonyms": [],
     "examples": [
       {
-        "scene": "Jenjang pendidikan dasar sampai menengah gratis.",
-        "id": "jenjang",
-        "cn": "从小学到中学的教育阶段免费。"
+        "scene": "UKBI备考",
+        "id": "Soal-soal teslet disusun berjenjang dari mudah ke sulit.",
+        "cn": "题组题目由易到难递进排列。"
+      },
+      {
+        "scene": "职业发展",
+        "id": "Jenjang karier di perusahaan smelter mulai dari teknisi hingga manajer.",
+        "cn": "冶炼公司的职业阶梯从技术员到经理。"
       }
     ]
   },
@@ -158304,51 +159202,43 @@ const bitVocabDB = {
   "menangis": {
     "word": "menangis",
     "cn": "哭；哭泣；流泪",
-    "en": "to cry; to weep",
+    "en": "to cry",
     "root": "tangis",
     "forms": [
       {
+        "form": "tangis",
+        "pos": "n",
+        "mean": "哭声"
+      },
+      {
         "form": "menangis",
-        "pos": "v.",
-        "mean": "哭；哭泣（meN- 主动动词）"
+        "pos": "v",
+        "mean": "哭泣"
       },
       {
-        "form": "menangisnya",
-        "pos": "n.",
-        "mean": "他/她的哭泣"
-      },
-      {
-        "form": "tangisan",
-        "pos": "n.",
-        "mean": "哭声（-an 派生名词）"
-      },
-      {
-        "form": "tertangis",
-        "pos": "v.",
-        "mean": "不由得哭起来（ter- 派生）"
+        "form": "tertangis-tangis",
+        "pos": "v",
+        "mean": "哭哭啼啼"
       }
     ],
     "formsNote": "",
-    "note": "meN- 主动语态 + 词根 tangis；派生词 tangisan（哭声）。 meN- 使名词 tangis（哭声）变为动词；情感场景常用，描述家属或工友的悲伤反应。",
+    "note": "",
     "synonyms": [
-      "menangis-terisak",
-      "berlinang-air-mata",
-      "tersedu-sedu"
+      "berlinang air mata"
     ],
     "antonyms": [
-      "tertawa",
-      "tersenyum"
+      "tertawa"
     ],
     "examples": [
       {
-        "scene": "安全应急",
-        "id": "Istri menangis ketika mendengar suaminya selamat dari kecelakaan tambang.",
-        "cn": "听到丈夫从矿难中生还，妻子哭了。"
+        "scene": "日常口语",
+        "id": "Anak itu menangis karena mainannya patah.",
+        "cn": "那孩子因玩具坏了而哭。"
       },
       {
-        "scene": "安全应急",
-        "id": "Keluarga korban menangis di posko darurat sambil menunggu kabar.",
-        "cn": "遇难者家属在应急安置点哭着等待消息。"
+        "scene": "人文关怀",
+        "id": "Karyawan yang kelelahan jangan sampai menangis sendirian di mess.",
+        "cn": "疲惫的员工不该独自在宿舍哭泣。"
       }
     ]
   },
@@ -158991,46 +159881,43 @@ const bitVocabDB = {
   },
   "pegang": {
     "word": "pegang",
-    "cn": "拿、握、抓住；执掌",
-    "en": "hold, grasp; be in charge of",
-    "root": "pegang（整体动词根，不可再拆——勿强析为 pe- + egang；语源不确定）",
+    "cn": "拿；握；抓住；执掌",
+    "en": "to hold; to grip",
+    "root": "pegang",
     "forms": [
       {
         "form": "memegang",
-        "pos": "动词",
-        "mean": "拿着、执掌（me- + pegang，p 前同化为 me-）"
-      },
-      {
-        "form": "dipegang",
-        "pos": "被动动词",
-        "mean": "被握住、被执掌"
+        "pos": "v",
+        "mean": "握着；掌管"
       },
       {
         "form": "pegangan",
-        "pos": "名词",
-        "mean": "抓手；依据；支柱"
+        "pos": "n",
+        "mean": "把手；依据"
       },
       {
-        "form": "pemegang",
-        "pos": "名词",
-        "mean": "持有者（pemegang saham 股东、pemegang kendali 实控人）"
+        "form": "terpegang",
+        "pos": "v",
+        "mean": "被握住"
       }
     ],
     "formsNote": "",
-    "note": "备注: pemegang saham 股东、pemegang saham pengendali 控股股东——集团治理高频词 || 搭配: pegang kendali（掌舵）、pegang proyek（主管项目）、pegang teguh（坚守）、pegangan hidup（精神寄托）",
+    "note": "",
     "synonyms": [
-      "genggam（攥在手心）",
-      "memegang = menggenggam（近义）"
+      "menggenggam",
+      "memegang erat"
     ],
-    "antonyms": [
-      "lepas（松开）",
-      "melepas（放手）"
-    ],
+    "antonyms": [],
     "examples": [
       {
-        "scene": "工作园区",
-        "id": "Dia **pegang** rapat jadwal produksi tiap pagi.",
-        "cn": "他每天早会牢牢抓着生产进度。"
+        "scene": "商务谈判",
+        "id": "Dia memegang dokumen kontrak dengan erat saat presentasi.",
+        "cn": "他演示时紧握着合同文件。"
+      },
+      {
+        "scene": "安全操作",
+        "id": "Pegang pegangan tangga saat menuruni menara reaktor.",
+        "cn": "下反应塔楼梯时请扶好扶手。"
       }
     ]
   },
@@ -182433,51 +183320,47 @@ const bitVocabDB = {
   },
   "mandiri": {
     "word": "mandiri",
-    "cn": "独立的 / 自给的",
-    "en": "independent / self-reliant",
-    "root": "借源待考（与 diri\"自己\"关联紧密）· 无词缀",
+    "ipa": "/mandiˈri/",
+    "cn": "独立/个人",
+    "en": "independent/self-service",
+    "root": "diri",
     "forms": [
       {
+        "form": "diri",
+        "pos": "n",
+        "mean": "自己/身体"
+      },
+      {
         "form": "mandiri",
-        "pos": "形容词",
+        "pos": "adj",
         "mean": "独立的"
       },
       {
         "form": "kemandirian",
-        "pos": "名词",
+        "pos": "n",
         "mean": "独立性"
-      },
-      {
-        "form": "memandirikan",
-        "pos": "动词",
-        "mean": "使独立"
-      },
-      {
-        "form": "swa-mandiri",
-        "pos": "复合",
-        "mean": "自给自足的"
       }
     ],
-    "formsNote": "",
-    "note": "ke-an / meN-…-kan 常规派生；印尼国家银行 Bank Mandiri 即用此词。",
+    "formsNote": "man-（加强）+ diri（自己）→ 独立",
+    "note": "UKBI 注册方式：pendaftaran mandiri = 个人自主报名",
     "synonyms": [
-      "swasembada（自给，农业义）",
+      "swadaya",
       "otonom"
     ],
     "antonyms": [
-      "bergantung",
-      "tergantung"
+      "tergantung",
+      "kolektif"
     ],
     "examples": [
       {
-        "scene": "能源",
-        "id": "Target pasokan listrik mandiri tercapai 2027.",
-        "cn": "2027 年实现电力自给目标。"
+        "scene": "Pendaftaran dapat dilakukan secara mandiri oleh calon peserta.",
+        "id": "mandiri",
+        "cn": "报考者可以自主完成注册。"
       },
       {
-        "scene": "商务",
-        "id": "Divisi harus mandiri secara keuangan.",
-        "cn": "各部门须在财务上独立核算。"
+        "scene": "Bank Mandiri adalah bank terbesar di Indonesia.",
+        "id": "Mandiri",
+        "cn": "曼迪利银行是印尼最大的银行。"
       }
     ]
   },
@@ -183288,51 +184171,42 @@ const bitVocabDB = {
     ]
   },
   "kredibilitas": {
-    "word": "kredibilitas",
+    "ipa": "/krə.diˈbi.li.tas/",
     "cn": "可信度；信誉",
     "en": "credibility",
-    "root": "借词（kredit + -ibilitas）",
+    "root": "kredibilitas（拉丁语 credibilitas 借词）",
     "forms": [
       {
-        "form": "kredibel",
-        "pos": "形容词",
-        "mean": "可信的"
-      },
-      {
         "form": "kredibilitas",
-        "pos": "名词",
-        "mean": "可信度（-itas 名词化）"
+        "pos": "n",
+        "mean": "可信度；信誉"
       },
       {
-        "form": "diskreditkan",
-        "pos": "动词",
-        "mean": "诋毁；使失信（dis--kan）"
+        "form": "kredibel",
+        "pos": "adj",
+        "mean": "可信的"
       }
     ],
-    "formsNote": "",
-    "note": "现代借词；-itas 名词化后缀",
+    "formsNote": "外来名词；形容词 kredibel。",
+    "note": "商务/媒体核心词：membangun kredibilitas 建立信誉、kredibilitas sumber 消息源可信度。",
     "synonyms": [
-      "kepercayaan",
-      "reputasi"
+      "kepercayaan（信任）",
+      "reputasi（声誉）",
+      "integritas（正直）"
     ],
     "antonyms": [
-      "ketidakpercayaan"
+      "ketidakkredibelan（不可信）"
     ],
     "examples": [
       {
-        "scene": "商务",
-        "id": "Kredibilitas kontraktor dipertanyakan.",
-        "cn": "承包商信誉受质疑。"
+        "scene": "Kredibilitas perusahaan dibangun melalui transparansi dan konsistensi.",
+        "id": "Kredibilitas",
+        "cn": "公司信誉通过透明度和一贯性建立。"
       },
       {
-        "scene": "治理",
-        "id": "Transparansi memperkuat kredibilitas manajemen.",
-        "cn": "透明增强管理层公信力。"
-      },
-      {
-        "scene": "月报",
-        "id": "Kami menjaga kredibilitas data pelaporan.",
-        "cn": "我们维护数据报告可信度。"
+        "scene": "Sumber berita itu kehilangan kredibilitas setelah berita palsu terungkap.",
+        "id": "kredibilitas",
+        "cn": "假新闻曝光后该消息源失去了可信度。"
       }
     ]
   },
@@ -183396,922 +184270,482 @@ const bitVocabDB = {
       }
     ]
   },
-  "pendaftaran": {
-  "word": "pendaftaran",
-  "ipa": "/pəndaftarˈan/",
-  "cn": "注册/报名",
-  "en": "registration",
-  "root": "daftar",
-  "forms": [
-    {
-      "form": "daftar",
-      "pos": "v/n",
-      "mean": "登记/名单"
-    },
-    {
-      "form": "mendaftar",
-      "pos": "v",
-      "mean": "注册/报名"
-    },
-    {
-      "form": "terdaftar",
-      "pos": "v.pass",
-      "mean": "已注册"
-    },
-    {
-      "form": "pendaftaran",
-      "pos": "n",
-      "mean": "注册/报名"
-    }
-  ],
-  "formsNote": "daftar + peN--an 名词化；mendaftar = meN- 动词化",
-  "note": "UKBI 网站核心术语；搭配 secara mandiri（独立）或 kolektif（集体）",
-  "synonyms": [
-    "registrasi",
-    "pendaubletan"
-  ],
-  "antonyms": [
-    "pembatalan"
-  ],
-  "examples": [
-    {
-      "scene": "Pendaftaran dapat dilakukan secara mandiri atau kolektif.",
-      "id": "Pendaftaran",
-      "cn": "注册可以个人或集体方式进行。"
-    },
-    {
-      "scene": "Batas waktu pendaftaran adalah 24 jam sebelum ujian.",
-      "id": "pendaftaran",
-      "cn": "报名截止时间为考试前24小时。"
-    }
-  ]
-},
   "calon": {
-  "word": "calon",
-  "ipa": "/tʃaˈlɔn/",
-  "cn": "候选人/报考者",
-  "en": "candidate/prospective",
-  "root": "calon",
-  "forms": [
-    {
-      "form": "calon",
-      "pos": "n",
-      "mean": "候选人"
-    },
-    {
-      "form": "calon peserta",
-      "pos": "n.phrase",
-      "mean": "报考考生"
-    },
-    {
-      "form": "bercalon",
-      "pos": "v",
-      "mean": "参选"
-    }
-  ],
-  "formsNote": "名词，可直接修饰名词：calon peserta（考生）",
-  "note": "正式场合常用，指尚未正式获得资格的人",
-  "synonyms": [
-    "kandidat",
-    "bakal"
-  ],
-  "antonyms": [
-    "pemegang"
-  ],
-  "examples": [
-    {
-      "scene": "Calon peserta harus memiliki pos-el aktif.",
-      "id": "Calon",
-      "cn": "报考者必须有活跃邮箱。"
-    },
-    {
-      "scene": "Ia calon direktur yang kuat.",
-      "id": "calon",
-      "cn": "他是强有力的董事候选人。"
-    }
-  ]
-},
-  "mandiri": {
-  "word": "mandiri",
-  "ipa": "/mandiˈri/",
-  "cn": "独立/个人",
-  "en": "independent/self-service",
-  "root": "diri",
-  "forms": [
-    {
-      "form": "diri",
-      "pos": "n",
-      "mean": "自己/身体"
-    },
-    {
-      "form": "mandiri",
-      "pos": "adj",
-      "mean": "独立的"
-    },
-    {
-      "form": "kemandirian",
-      "pos": "n",
-      "mean": "独立性"
-    }
-  ],
-  "formsNote": "man-（加强）+ diri（自己）→ 独立",
-  "note": "UKBI 注册方式：pendaftaran mandiri = 个人自主报名",
-  "synonyms": [
-    "swadaya",
-    "otonom"
-  ],
-  "antonyms": [
-    "tergantung",
-    "kolektif"
-  ],
-  "examples": [
-    {
-      "scene": "Pendaftaran dapat dilakukan secara mandiri oleh calon peserta.",
-      "id": "mandiri",
-      "cn": "报考者可以自主完成注册。"
-    },
-    {
-      "scene": "Bank Mandiri adalah bank terbesar di Indonesia.",
-      "id": "Mandiri",
-      "cn": "曼迪利银行是印尼最大的银行。"
-    }
-  ]
-},
+    "word": "calon",
+    "ipa": "/tʃaˈlɔn/",
+    "cn": "候选人/报考者",
+    "en": "candidate/prospective",
+    "root": "calon",
+    "forms": [
+      {
+        "form": "calon",
+        "pos": "n",
+        "mean": "候选人"
+      },
+      {
+        "form": "calon peserta",
+        "pos": "n.phrase",
+        "mean": "报考考生"
+      },
+      {
+        "form": "bercalon",
+        "pos": "v",
+        "mean": "参选"
+      }
+    ],
+    "formsNote": "名词，可直接修饰名词：calon peserta（考生）",
+    "note": "正式场合常用，指尚未正式获得资格的人",
+    "synonyms": [
+      "kandidat",
+      "bakal"
+    ],
+    "antonyms": [
+      "pemegang"
+    ],
+    "examples": [
+      {
+        "scene": "Calon peserta harus memiliki pos-el aktif.",
+        "id": "Calon",
+        "cn": "报考者必须有活跃邮箱。"
+      },
+      {
+        "scene": "Ia calon direktur yang kuat.",
+        "id": "calon",
+        "cn": "他是强有力的董事候选人。"
+      }
+    ]
+  },
   "pos-el": {
-  "word": "pos-el",
-  "ipa": "/pɔsˈɛl/",
-  "cn": "电子邮件",
-  "en": "email",
-  "root": "pos",
-  "forms": [
-    {
-      "form": "pos",
-      "pos": "n",
-      "mean": "邮政/邮件"
-    },
-    {
-      "form": "pos-el",
-      "pos": "n",
-      "mean": "电子邮件"
-    },
-    {
-      "form": "mengirim pos-el",
-      "pos": "v.phrase",
-      "mean": "发邮件"
-    }
-  ],
-  "formsNote": "pos（邮政）+ el（elektronik 缩写）→ 电子邮件；印尼语规范拼写",
-  "note": "正式书面用语，口语常用 e-mail/surel；UKBI 官网标准用法",
-  "synonyms": [
-    "surel",
-    "e-mail"
-  ],
-  "antonyms": [
-    "surat fisik"
-  ],
-  "examples": [
-    {
-      "scene": "Pos-el yang didaftarkan adalah pos-el aktif.",
-      "id": "Pos-el",
-      "cn": "注册的电子邮件必须是活跃邮箱。"
-    },
-    {
-      "scene": "Tautan verifikasi dikirim ke pos-el yang terdaftar.",
-      "id": "pos-el",
-      "cn": "验证链接发送到注册邮箱。"
-    }
-  ]
-},
+    "word": "pos-el",
+    "ipa": "/pɔsˈɛl/",
+    "cn": "电子邮件",
+    "en": "email",
+    "root": "pos",
+    "forms": [
+      {
+        "form": "pos",
+        "pos": "n",
+        "mean": "邮政/邮件"
+      },
+      {
+        "form": "pos-el",
+        "pos": "n",
+        "mean": "电子邮件"
+      },
+      {
+        "form": "mengirim pos-el",
+        "pos": "v.phrase",
+        "mean": "发邮件"
+      }
+    ],
+    "formsNote": "pos（邮政）+ el（elektronik 缩写）→ 电子邮件；印尼语规范拼写",
+    "note": "正式书面用语，口语常用 e-mail/surel；UKBI 官网标准用法",
+    "synonyms": [
+      "surel",
+      "e-mail"
+    ],
+    "antonyms": [
+      "surat fisik"
+    ],
+    "examples": [
+      {
+        "scene": "Pos-el yang didaftarkan adalah pos-el aktif.",
+        "id": "Pos-el",
+        "cn": "注册的电子邮件必须是活跃邮箱。"
+      },
+      {
+        "scene": "Tautan verifikasi dikirim ke pos-el yang terdaftar.",
+        "id": "pos-el",
+        "cn": "验证链接发送到注册邮箱。"
+      }
+    ]
+  },
   "tautan": {
-  "word": "tautan",
-  "ipa": "/tautˈan/",
-  "cn": "链接",
-  "en": "link",
-  "root": "taut",
-  "forms": [
-    {
-      "form": "taut",
-      "pos": "v",
-      "mean": "连接/系"
-    },
-    {
-      "form": "tautan",
-      "pos": "n",
-      "mean": "链接"
-    },
-    {
-      "form": "menautkan",
-      "pos": "v",
-      "mean": "链接/关联"
-    }
-  ],
-  "formsNote": "taut（连接）+ -an 名词化",
-  "note": "网络用语；等同 link，更正式",
-  "synonyms": [
-    "link",
-    "sambungan"
-  ],
-  "antonyms": [
-    "putus"
-  ],
-  "examples": [
-    {
-      "scene": "Tautan verifikasi dikirim ke pos-el yang terdaftar.",
-      "id": "Tautan",
-      "cn": "验证链接发送到注册邮箱。"
-    },
-    {
-      "scene": "Klik tautan untuk mengunduh panduan.",
-      "id": "tautan",
-      "cn": "点击链接下载指南。"
-    }
-  ]
-},
+    "word": "tautan",
+    "ipa": "/tautˈan/",
+    "cn": "链接",
+    "en": "link",
+    "root": "taut",
+    "forms": [
+      {
+        "form": "taut",
+        "pos": "v",
+        "mean": "连接/系"
+      },
+      {
+        "form": "tautan",
+        "pos": "n",
+        "mean": "链接"
+      },
+      {
+        "form": "menautkan",
+        "pos": "v",
+        "mean": "链接/关联"
+      }
+    ],
+    "formsNote": "taut（连接）+ -an 名词化",
+    "note": "网络用语；等同 link，更正式",
+    "synonyms": [
+      "link",
+      "sambungan"
+    ],
+    "antonyms": [
+      "putus"
+    ],
+    "examples": [
+      {
+        "scene": "Tautan verifikasi dikirim ke pos-el yang terdaftar.",
+        "id": "Tautan",
+        "cn": "验证链接发送到注册邮箱。"
+      },
+      {
+        "scene": "Klik tautan untuk mengunduh panduan.",
+        "id": "tautan",
+        "cn": "点击链接下载指南。"
+      }
+    ]
+  },
   "data diri": {
-  "word": "data diri",
-  "ipa": "/ˈdata diˈri/",
-  "cn": "个人资料",
-  "en": "personal data",
-  "root": "data",
-  "forms": [
-    {
-      "form": "data",
-      "pos": "n",
-      "mean": "数据"
-    },
-    {
-      "form": "data diri",
-      "pos": "n.phrase",
-      "mean": "个人资料"
-    },
-    {
-      "form": "data pribadi",
-      "pos": "n.phrase",
-      "mean": "私人数据"
-    }
-  ],
-  "formsNote": "data（拉丁借词）+ diri（自己）",
-  "note": "表格/注册场景标准用语",
-  "synonyms": [
-    "informasi pribadi",
-    "biodata"
-  ],
-  "antonyms": [],
-  "examples": [
-    {
-      "scene": "Isi data diri dengan benar dan lengkap.",
-      "id": "data diri",
-      "cn": "正确完整填写个人资料。"
-    },
-    {
-      "scene": "Data diri Anda dilindungi oleh undang-undang.",
-      "id": "Data diri",
-      "cn": "您的个人资料受法律保护。"
-    }
-  ]
-},
-  "kartu": {
-  "word": "kartu",
-  "ipa": "/ˈkartu/",
-  "cn": "卡/证件",
-  "en": "card",
-  "root": "kartu",
-  "forms": [
-    {
-      "form": "kartu",
-      "pos": "n",
-      "mean": "卡"
-    },
-    {
-      "form": "kartu identitas",
-      "pos": "n.phrase",
-      "mean": "身份证"
-    },
-    {
-      "form": "kartu kredit",
-      "pos": "n.phrase",
-      "mean": "信用卡"
-    }
-  ],
-  "formsNote": "荷兰语借词 kaart",
-  "note": "组合广泛：kartu identitas/ATM/nama",
-  "synonyms": [
-    "kaart",
-    "karcis"
-  ],
-  "antonyms": [],
-  "examples": [
-    {
-      "scene": "Unggah foto kartu identitas sebagai bukti identitas.",
-      "id": "kartu",
-      "cn": "上传身份证照片作为身份证明。"
-    },
-    {
-      "scene": "Pembayaran dapat dilakukan dengan kartu debit.",
-      "id": "kartu",
-      "cn": "可以用借记卡支付。"
-    }
-  ]
-},
+    "word": "data diri",
+    "ipa": "/ˈdata diˈri/",
+    "cn": "个人资料",
+    "en": "personal data",
+    "root": "data",
+    "forms": [
+      {
+        "form": "data",
+        "pos": "n",
+        "mean": "数据"
+      },
+      {
+        "form": "data diri",
+        "pos": "n.phrase",
+        "mean": "个人资料"
+      },
+      {
+        "form": "data pribadi",
+        "pos": "n.phrase",
+        "mean": "私人数据"
+      }
+    ],
+    "formsNote": "data（拉丁借词）+ diri（自己）",
+    "note": "表格/注册场景标准用语",
+    "synonyms": [
+      "informasi pribadi",
+      "biodata"
+    ],
+    "antonyms": [],
+    "examples": [
+      {
+        "scene": "Isi data diri dengan benar dan lengkap.",
+        "id": "data diri",
+        "cn": "正确完整填写个人资料。"
+      },
+      {
+        "scene": "Data diri Anda dilindungi oleh undang-undang.",
+        "id": "Data diri",
+        "cn": "您的个人资料受法律保护。"
+      }
+    ]
+  },
   "uji": {
-  "word": "uji",
-  "ipa": "/ˈuʤi/",
-  "cn": "测试",
-  "en": "test/exam",
-  "root": "uji",
-  "forms": [
-    {
-      "form": "uji",
-      "pos": "n/v",
-      "mean": "测试"
-    },
-    {
-      "form": "menguji",
-      "pos": "v",
-      "mean": "测试/考验"
-    },
-    {
-      "form": "pengujian",
-      "pos": "n",
-      "mean": "测试（过程）"
-    },
-    {
-      "form": "teruji",
-      "pos": "v.pass",
-      "mean": "经测试的"
-    }
-  ],
-  "formsNote": "纯词根；meN- 动词化、peN--an 名词化",
-  "note": "UKBI 核心词：Uji Kemahiran Berbahasa Indonesia",
-  "synonyms": [
-    "tes",
-    "percobaan"
-  ],
-  "antonyms": [],
-  "examples": [
-    {
-      "scene": "UKBI adalah tes standar untuk mengukur kemahiran berbahasa.",
-      "id": "tes",
-      "cn": "UKBI 是测定语言熟练度的标准测试。"
-    },
-    {
-      "scene": "Teruji lebih terpuji.",
-      "id": "Teruji",
-      "cn": "考过更优秀。（UKBI 标语）"
-    }
-  ]
-},
+    "word": "uji",
+    "ipa": "/ˈuʤi/",
+    "cn": "测试",
+    "en": "test/exam",
+    "root": "uji",
+    "forms": [
+      {
+        "form": "uji",
+        "pos": "n/v",
+        "mean": "测试"
+      },
+      {
+        "form": "menguji",
+        "pos": "v",
+        "mean": "测试/考验"
+      },
+      {
+        "form": "pengujian",
+        "pos": "n",
+        "mean": "测试（过程）"
+      },
+      {
+        "form": "teruji",
+        "pos": "v.pass",
+        "mean": "经测试的"
+      }
+    ],
+    "formsNote": "纯词根；meN- 动词化、peN--an 名词化",
+    "note": "UKBI 核心词：Uji Kemahiran Berbahasa Indonesia",
+    "synonyms": [
+      "tes",
+      "percobaan"
+    ],
+    "antonyms": [],
+    "examples": [
+      {
+        "scene": "UKBI adalah tes standar untuk mengukur kemahiran berbahasa.",
+        "id": "tes",
+        "cn": "UKBI 是测定语言熟练度的标准测试。"
+      },
+      {
+        "scene": "Teruji lebih terpuji.",
+        "id": "Teruji",
+        "cn": "考过更优秀。（UKBI 标语）"
+      }
+    ]
+  },
   "teslet": {
-  "word": "teslet",
-  "ipa": "/ˈtɛslɛt/",
-  "cn": "题组",
-  "en": "testlet",
-  "root": "teslet",
-  "forms": [
-    {
-      "form": "teslet",
-      "pos": "n",
-      "mean": "题组/测试单元"
-    }
-  ],
-  "formsNote": "英语借词 testlet，UKBI Adaptif 自适应考试专用术语",
-  "note": "UKBI Adaptif 特色：每 teslet 含 5 题，根据答题表现动态调整难度",
-  "synonyms": [
-    "paket soal"
-  ],
-  "antonyms": [],
-  "examples": [
-    {
-      "scene": "Jumlah optimal teslet uji yang dikerjakan peserta adalah 9 teslet.",
-      "id": "teslet",
-      "cn": "考生最佳题组完成数量为 9 组。"
-    },
-    {
-      "scene": "Setiap teslet berisi lima butir soal.",
-      "id": "teslet",
-      "cn": "每个题组包含五道试题。"
-    }
-  ]
-},
+    "word": "teslet",
+    "cn": "题组（自适应考试中的试题单元）",
+    "en": "testlet",
+    "root": "teslet（英语 testlet 音译借词）",
+    "forms": [],
+    "formsNote": "—（名词，无派生形态）",
+    "note": "计算机自适应考试（CAT）术语；UKBI 写作/阅读部分按 teslet 分组出题",
+    "synonyms": [
+      "paket soal",
+      "kelompok soal"
+    ],
+    "antonyms": [],
+    "examples": [
+      {
+        "scene": "UKBI备考",
+        "id": "Setiap teslet berisi lima soal dengan tingkat kesulitan berjenjang.",
+        "cn": "每个题组含 5 道题，难度递进。"
+      },
+      {
+        "scene": "项目管理",
+        "id": "Modul pelatihan disusun seperti teslet agar mudah diuji coba.",
+        "cn": "培训模块按题组方式编排，便于试测。"
+      }
+    ]
+  },
   "wacana": {
-  "word": "wacana",
-  "ipa": "/waˈtʃana/",
-  "cn": "篇章/语篇",
-  "en": "discourse/text",
-  "root": "wacana",
-  "forms": [
-    {
-      "form": "wacana",
-      "pos": "n",
-      "mean": "语篇/篇章"
-    },
-    {
-      "form": "wacana lisan",
-      "pos": "n.phrase",
-      "mean": "口头语篇"
-    },
-    {
-      "form": "wacana tulis",
-      "pos": "n.phrase",
-      "mean": "书面语篇"
-    }
-  ],
-  "formsNote": "梵语借词 vācana → 爪哇语 wacana",
-  "note": "语言学术语；UKBI 听力/阅读材料的基本单位",
-  "synonyms": [
-    "teks",
-    "narasi"
-  ],
-  "antonyms": [],
-  "examples": [
-    {
-      "scene": "Wacana lisan dalam bentuk 4 dialog dan 4 monolog.",
-      "id": "Wacana",
-      "cn": "口头语篇形式为 4 个对话和 4 个独白。"
-    },
-    {
-      "scene": "Soal disajikan dalam bentuk maksimal 8 wacana tulis.",
-      "id": "wacana",
-      "cn": "题目以最多 8 篇书面语篇呈现。"
-    }
-  ]
-},
+    "word": "wacana",
+    "ipa": "/waˈtʃana/",
+    "cn": "篇章/语篇",
+    "en": "discourse/text",
+    "root": "wacana",
+    "forms": [
+      {
+        "form": "wacana",
+        "pos": "n",
+        "mean": "语篇/篇章"
+      },
+      {
+        "form": "wacana lisan",
+        "pos": "n.phrase",
+        "mean": "口头语篇"
+      },
+      {
+        "form": "wacana tulis",
+        "pos": "n.phrase",
+        "mean": "书面语篇"
+      }
+    ],
+    "formsNote": "梵语借词 vācana → 爪哇语 wacana",
+    "note": "语言学术语；UKBI 听力/阅读材料的基本单位",
+    "synonyms": [
+      "teks",
+      "narasi"
+    ],
+    "antonyms": [],
+    "examples": [
+      {
+        "scene": "Wacana lisan dalam bentuk 4 dialog dan 4 monolog.",
+        "id": "Wacana",
+        "cn": "口头语篇形式为 4 个对话和 4 个独白。"
+      },
+      {
+        "scene": "Soal disajikan dalam bentuk maksimal 8 wacana tulis.",
+        "id": "wacana",
+        "cn": "题目以最多 8 篇书面语篇呈现。"
+      }
+    ]
+  },
   "kalimat": {
-  "word": "kalimat",
-  "ipa": "/kaˈlimat/",
-  "cn": "句子",
-  "en": "sentence",
-  "root": "kalimat",
-  "forms": [
-    {
-      "form": "kalimat",
-      "pos": "n",
-      "mean": "句子"
-    },
-    {
-      "form": "kalimat pemantik",
-      "pos": "n.phrase",
-      "mean": "提示句"
-    },
-    {
-      "form": "berkalimat",
-      "pos": "v",
-      "mean": "造句"
-    }
-  ],
-  "formsNote": "阿拉伯借词 kalimah（话语）",
-  "note": "语法反应部分的基本单位；kalimat pemantik = 写作/口语提示句",
-  "synonyms": [
-    "klausa",
-    "ungkapan"
-  ],
-  "antonyms": [],
-  "examples": [
-    {
-      "scene": "Soal berupa kalimat yang mengandung bagian yang salah.",
-      "id": "kalimat",
-      "cn": "题目为含有错误部分的句子。"
-    },
-    {
-      "scene": "Kalimat pemantik disertai gambar atau infografik.",
-      "id": "kalimat pemantik",
-      "cn": "提示句配有图片或信息图。"
-    }
-  ]
-},
+    "word": "kalimat",
+    "ipa": "/kaˈlimat/",
+    "cn": "句子",
+    "en": "sentence",
+    "root": "kalimat",
+    "forms": [
+      {
+        "form": "kalimat",
+        "pos": "n",
+        "mean": "句子"
+      },
+      {
+        "form": "kalimat pemantik",
+        "pos": "n.phrase",
+        "mean": "提示句"
+      },
+      {
+        "form": "berkalimat",
+        "pos": "v",
+        "mean": "造句"
+      }
+    ],
+    "formsNote": "阿拉伯借词 kalimah（话语）",
+    "note": "语法反应部分的基本单位；kalimat pemantik = 写作/口语提示句",
+    "synonyms": [
+      "klausa",
+      "ungkapan"
+    ],
+    "antonyms": [],
+    "examples": [
+      {
+        "scene": "Soal berupa kalimat yang mengandung bagian yang salah.",
+        "id": "kalimat",
+        "cn": "题目为含有错误部分的句子。"
+      },
+      {
+        "scene": "Kalimat pemantik disertai gambar atau infografik.",
+        "id": "kalimat pemantik",
+        "cn": "提示句配有图片或信息图。"
+      }
+    ]
+  },
   "mendengarkan": {
-  "word": "mendengarkan",
-  "ipa": "/mɛndɛŋˈgarkan/",
-  "cn": "听（正式）",
-  "en": "to listen",
-  "root": "dengar",
-  "forms": [
-    {
-      "form": "dengar",
-      "pos": "v",
-      "mean": "听（词根）"
-    },
-    {
-      "form": "mendengar",
-      "pos": "v",
-      "mean": "听到"
-    },
-    {
-      "form": "mendengarkan",
-      "pos": "v",
-      "mean": "聆听（及物）"
-    },
-    {
-      "form": "pendengaran",
-      "pos": "n",
-      "mean": "听力/听觉"
-    }
-  ],
-  "formsNote": "dengar + meN- + -kan 使动 → 及物'聆听'",
-  "note": "UKBI Seksi I 名称；比 mendengar 更正式，强调主动聆听",
-  "synonyms": [
-    "mendengar"
-  ],
-  "antonyms": [
-    "membicarakan"
-  ],
-  "examples": [
-    {
-      "scene": "Seksi I Mendengarkan menguji pemahaman wacana lisan.",
-      "id": "Mendengarkan",
-      "cn": "第一部分听力测试口头语篇理解。"
-    },
-    {
-      "scene": "Mendengarkan dialog dan monolog dalam bahasa Indonesia.",
-      "id": "Mendengarkan",
-      "cn": "聆听印尼语对话和独白。"
-    }
-  ]
-},
-  "membaca": {
-  "word": "membaca",
-  "ipa": "/mɛmbaˈtʃa/",
-  "cn": "阅读",
-  "en": "to read",
-  "root": "baca",
-  "forms": [
-    {
-      "form": "baca",
-      "pos": "v",
-      "mean": "读（词根）"
-    },
-    {
-      "form": "membaca",
-      "pos": "v",
-      "mean": "阅读"
-    },
-    {
-      "form": "bacaan",
-      "pos": "n",
-      "mean": "读物"
-    },
-    {
-      "form": "pembaca",
-      "pos": "n",
-      "mean": "读者"
-    },
-    {
-      "form": "terbaca",
-      "pos": "v.pass",
-      "mean": "被读到"
-    }
-  ],
-  "formsNote": "baca + meN-（b→mem-）",
-  "note": "UKBI Seksi III 名称",
-  "synonyms": [
-    "membaca"
-  ],
-  "antonyms": [
-    "menulis"
-  ],
-  "examples": [
-    {
-      "scene": "Seksi III Membaca menguji pemahaman wacana tulis.",
-      "id": "Membaca",
-      "cn": "第三部分阅读测试书面语篇理解。"
-    },
-    {
-      "scene": "Membaca maksimal 8 wacana tulis dalam 45 menit.",
-      "id": "Membaca",
-      "cn": "45 分钟内阅读最多 8 篇书面语篇。"
-    }
-  ]
-},
-  "menulis": {
-  "word": "menulis",
-  "ipa": "/məˈnulis/",
-  "cn": "写作",
-  "en": "to write",
-  "root": "tulis",
-  "forms": [
-    {
-      "form": "tulis",
-      "pos": "v",
-      "mean": "写（词根）"
-    },
-    {
-      "form": "menulis",
-      "pos": "v",
-      "mean": "写作"
-    },
-    {
-      "form": "tulisan",
-      "pos": "n",
-      "mean": "作品/文字"
-    },
-    {
-      "form": "penulis",
-      "pos": "n",
-      "mean": "作家/作者"
-    },
-    {
-      "form": "tertulis",
-      "pos": "v.pass",
-      "mean": "书面的"
-    }
-  ],
-  "formsNote": "tulis + meN-（t→men-）",
-  "note": "UKBI Seksi IV 名称",
-  "synonyms": [
-    "mengetik"
-  ],
-  "antonyms": [
-    "membaca"
-  ],
-  "examples": [
-    {
-      "scene": "Seksi IV Menulis menuntut minimal 100 kata dalam 15 menit.",
-      "id": "Menulis",
-      "cn": "第四部分写作要求 15 分钟内至少 100 词。"
-    },
-    {
-      "scene": "Menulis esai sesuai kalimat pemantik dan infografik.",
-      "id": "Menulis",
-      "cn": "根据提示句和信息图写文章。"
-    }
-  ]
-},
-  "berbicara": {
-  "word": "berbicara",
-  "ipa": "/bərbiˈtʃara/",
-  "cn": "说话/口语",
-  "en": "to speak",
-  "root": "bicara",
-  "forms": [
-    {
-      "form": "bicara",
-      "pos": "v/n",
-      "mean": "说/谈话"
-    },
-    {
-      "form": "berbicara",
-      "pos": "v",
-      "mean": "说话"
-    },
-    {
-      "form": "pembicaraan",
-      "pos": "n",
-      "mean": "谈话/讨论"
-    },
-    {
-      "form": "pembicara",
-      "pos": "n",
-      "mean": "发言人"
-    }
-  ],
-  "formsNote": "bicara + ber- → 进行/处于说话状态",
-  "note": "UKBI Seksi V 名称",
-  "synonyms": [
-    "berucap",
-    "berkata"
-  ],
-  "antonyms": [
-    "mendengarkan"
-  ],
-  "examples": [
-    {
-      "scene": "Seksi V Berbicara menuntut presentasi topik dalam 3 menit perekaman.",
-      "id": "Berbicara",
-      "cn": "第五部分口语要求 3 分钟录音内演示话题。"
-    },
-    {
-      "scene": "Berbicara dengan jelas dan lancar sangat penting.",
-      "id": "Berbicara",
-      "cn": "清晰流利地说话非常重要。"
-    }
-  ]
-},
+    "word": "mendengarkan",
+    "ipa": "/mɛndɛŋˈgarkan/",
+    "cn": "听（正式）",
+    "en": "to listen",
+    "root": "dengar",
+    "forms": [
+      {
+        "form": "dengar",
+        "pos": "v",
+        "mean": "听（词根）"
+      },
+      {
+        "form": "mendengar",
+        "pos": "v",
+        "mean": "听到"
+      },
+      {
+        "form": "mendengarkan",
+        "pos": "v",
+        "mean": "聆听（及物）"
+      },
+      {
+        "form": "pendengaran",
+        "pos": "n",
+        "mean": "听力/听觉"
+      }
+    ],
+    "formsNote": "dengar + meN- + -kan 使动 → 及物'聆听'",
+    "note": "UKBI Seksi I 名称；比 mendengar 更正式，强调主动聆听",
+    "synonyms": [
+      "mendengar"
+    ],
+    "antonyms": [
+      "membicarakan"
+    ],
+    "examples": [
+      {
+        "scene": "Seksi I Mendengarkan menguji pemahaman wacana lisan.",
+        "id": "Mendengarkan",
+        "cn": "第一部分听力测试口头语篇理解。"
+      },
+      {
+        "scene": "Mendengarkan dialog dan monolog dalam bahasa Indonesia.",
+        "id": "Mendengarkan",
+        "cn": "聆听印尼语对话和独白。"
+      }
+    ]
+  },
   "skor": {
-  "word": "skor",
-  "ipa": "/ˈskɔr/",
-  "cn": "分数",
-  "en": "score",
-  "root": "skor",
-  "forms": [
-    {
-      "form": "skor",
-      "pos": "n",
-      "mean": "分数"
-    },
-    {
-      "form": "menyekor",
-      "pos": "v",
-      "mean": "评分"
-    },
-    {
-      "form": "skor akhir",
-      "pos": "n.phrase",
-      "mean": "最终得分"
-    }
-  ],
-  "formsNote": "英语借词 score",
-  "note": "UKBI 分数范围 251-800",
-  "synonyms": [
-    "nilai",
-    "poin"
-  ],
-  "antonyms": [],
-  "examples": [
-    {
-      "scene": "Predikat Istimewa memiliki skor 725 sampai 800.",
-      "id": "skor",
-      "cn": "特优等级的分数为 725 至 800。"
-    },
-    {
-      "scene": "Skor UKBI dapat langsung diketahui setelah uji selesai untuk Paket 1.",
-      "id": "Skor",
-      "cn": "套餐 1 的 UKBI 成绩在考完后立即可知。"
-    }
-  ]
-},
-  "terbatas": {
-  "word": "terbatas",
-  "ipa": "/tɛrbaˈtas/",
-  "cn": "有限/受限",
-  "en": "limited",
-  "root": "batas",
-  "forms": [
-    {
-      "form": "batas",
-      "pos": "n",
-      "mean": "界限"
-    },
-    {
-      "form": "terbatas",
-      "pos": "adj/v.pass",
-      "mean": "有限的"
-    },
-    {
-      "form": "membatasi",
-      "pos": "v",
-      "mean": "限制"
-    },
-    {
-      "form": "pembatasan",
-      "pos": "n",
-      "mean": "限制（措施）"
-    }
-  ],
-  "formsNote": "batas + ter-（被动/状态）→ 被限制的",
-  "note": "UKBI 最低等级（251-325），仅能用生存用语",
-  "synonyms": [
-    "terbatas",
-    "sempit"
-  ],
-  "antonyms": [
-    "luas",
-    "bebas"
-  ],
-  "examples": [
-    {
-      "scene": "Predikat Terbatas menunjukkan kemahiran sangat tidak memadai.",
-      "id": "Terbatas",
-      "cn": "受限称号表示非常不充分的熟练度。"
-    },
-    {
-      "scene": "Waktu ujian sangat terbatas.",
-      "id": "terbatas",
-      "cn": "考试时间非常有限。"
-    }
-  ]
-},
-  "sertifikat": {
-  "word": "sertifikat",
-  "ipa": "/sɛrtifiˈkat/",
-  "cn": "证书",
-  "en": "certificate",
-  "root": "sertifikat",
-  "forms": [
-    {
-      "form": "sertifikat",
-      "pos": "n",
-      "mean": "证书"
-    },
-    {
-      "form": "sertifikasi",
-      "pos": "n",
-      "mean": "认证（过程）"
-    },
-    {
-      "form": "tersertifikasi",
-      "pos": "adj",
-      "mean": "已认证的"
-    }
-  ],
-  "formsNote": "拉丁借词 certificatum",
-  "note": "UKBI 颁发数字证书（sertifikat digital）",
-  "synonyms": [
-    "ijazah",
-    "sijil"
-  ],
-  "antonyms": [],
-  "examples": [
-    {
-      "scene": "Sertifikat diterbitkan dalam bentuk digital setiap Jumat, Sabtu, atau Minggu.",
-      "id": "Sertifikat",
-      "cn": "证书以数字形式在每周五、六或日颁发。"
-    },
-    {
-      "scene": "Sertifikat berlaku selama dua tahun.",
-      "id": "Sertifikat",
-      "cn": "证书有效期两年。"
-    }
-  ]
-},
+    "word": "skor",
+    "ipa": "/ˈskɔr/",
+    "cn": "分数",
+    "en": "score",
+    "root": "skor",
+    "forms": [
+      {
+        "form": "skor",
+        "pos": "n",
+        "mean": "分数"
+      },
+      {
+        "form": "menyekor",
+        "pos": "v",
+        "mean": "评分"
+      },
+      {
+        "form": "skor akhir",
+        "pos": "n.phrase",
+        "mean": "最终得分"
+      }
+    ],
+    "formsNote": "英语借词 score",
+    "note": "UKBI 分数范围 251-800",
+    "synonyms": [
+      "nilai",
+      "poin"
+    ],
+    "antonyms": [],
+    "examples": [
+      {
+        "scene": "Predikat Istimewa memiliki skor 725 sampai 800.",
+        "id": "skor",
+        "cn": "特优等级的分数为 725 至 800。"
+      },
+      {
+        "scene": "Skor UKBI dapat langsung diketahui setelah uji selesai untuk Paket 1.",
+        "id": "Skor",
+        "cn": "套餐 1 的 UKBI 成绩在考完后立即可知。"
+      }
+    ]
+  },
   "adaptif": {
-  "word": "adaptif",
-  "ipa": "/adapˈtif/",
-  "cn": "自适应",
-  "en": "adaptive",
-  "root": "adaptasi",
-  "forms": [
-    {
-      "form": "adaptasi",
-      "pos": "n",
-      "mean": "适应"
-    },
-    {
-      "form": "adaptif",
-      "pos": "adj",
-      "mean": "自适应的"
-    },
-    {
-      "form": "menyesuaikan",
-      "pos": "v",
-      "mean": "调整/适应"
-    }
-  ],
-  "formsNote": "拉丁借词 adaptare → adaptasi（名词）→ adaptif（形容词）",
-  "note": "UKBI Adaptif 特色：根据答题表现动态调整题目难度",
-  "synonyms": [
-    "fleksibel",
-    "lentur"
-  ],
-  "antonyms": [
-    "kaku",
-    "statis"
-  ],
-  "examples": [
-    {
-      "scene": "UKBI Adaptif menyesuaikan jumlah soal dengan kemampuan peserta.",
-      "id": "Adaptif",
-      "cn": "UKBI Adaptif 根据考生能力调整题目数量。"
-    },
-    {
-      "scene": "Sistem adaptif menggunakan algoritma komputer.",
-      "id": "adaptif",
-      "cn": "自适应系统使用计算机算法。"
-    }
-  ]
-},
-  "jadwal": {
-  "word": "jadwal",
-  "ipa": "/ˈʤadwal/",
-  "cn": "日程表",
-  "en": "schedule",
-  "root": "jadwal",
-  "forms": [
-    {
-      "form": "jadwal",
-      "pos": "n",
-      "mean": "日程/时间表"
-    },
-    {
-      "form": "menjadwalkan",
-      "pos": "v",
-      "mean": "安排日程"
-    },
-    {
-      "form": "terjadwal",
-      "pos": "v.pass",
-      "mean": "已排期的"
-    }
-  ],
-  "formsNote": "阿拉伯借词 jadwal（时间表）",
-  "note": "UKBI 提供 5 个考试时间 zona：08.00/10.00/13.00/16.00/19.00 WIB",
-  "synonyms": [
-    "agenda",
-    "rentang waktu"
-  ],
-  "antonyms": [],
-  "examples": [
-    {
-      "scene": "Pilih jadwal uji yang tersedia sesuai kebutuhan.",
-      "id": "jadwal",
-      "cn": "按需选择可用的考试时间。"
-    },
-    {
-      "scene": "Jadwal UKBI Adaptif tersedia Senin sampai Kamis.",
-      "id": "Jadwal",
-      "cn": "UKBI Adaptif 时间表为周一至周四。"
-    }
-  ]
-},
+    "word": "adaptif",
+    "ipa": "/adapˈtif/",
+    "cn": "自适应",
+    "en": "adaptive",
+    "root": "adaptasi",
+    "forms": [
+      {
+        "form": "adaptasi",
+        "pos": "n",
+        "mean": "适应"
+      },
+      {
+        "form": "adaptif",
+        "pos": "adj",
+        "mean": "自适应的"
+      },
+      {
+        "form": "menyesuaikan",
+        "pos": "v",
+        "mean": "调整/适应"
+      }
+    ],
+    "formsNote": "拉丁借词 adaptare → adaptasi（名词）→ adaptif（形容词）",
+    "note": "UKBI Adaptif 特色：根据答题表现动态调整题目难度",
+    "synonyms": [
+      "fleksibel",
+      "lentur"
+    ],
+    "antonyms": [
+      "kaku",
+      "statis"
+    ],
+    "examples": [
+      {
+        "scene": "UKBI Adaptif menyesuaikan jumlah soal dengan kemampuan peserta.",
+        "id": "Adaptif",
+        "cn": "UKBI Adaptif 根据考生能力调整题目数量。"
+      },
+      {
+        "scene": "Sistem adaptif menggunakan algoritma komputer.",
+        "id": "adaptif",
+        "cn": "自适应系统使用计算机算法。"
+      }
+    ]
+  },
   "sepuluh-detik-pertama": {
     "ipa": "/səˈpu.luh dəˈtik pərˈta.ma/",
     "cn": "前十秒",
@@ -184922,46 +185356,6 @@ const bitVocabDB = {
         "scene": "Salinan dokumen perizinan harus diserahkan kepada dinas terkait.",
         "id": "Salinan",
         "cn": "许可文件的复印件须提交给相关部门。"
-      }
-    ]
-  },
-  "kredibilitas": {
-    "ipa": "/krə.diˈbi.li.tas/",
-    "cn": "可信度；信誉",
-    "en": "credibility",
-    "root": "kredibilitas（拉丁语 credibilitas 借词）",
-    "forms": [
-      {
-        "form": "kredibilitas",
-        "pos": "n",
-        "mean": "可信度；信誉"
-      },
-      {
-        "form": "kredibel",
-        "pos": "adj",
-        "mean": "可信的"
-      }
-    ],
-    "formsNote": "外来名词；形容词 kredibel。",
-    "note": "商务/媒体核心词：membangun kredibilitas 建立信誉、kredibilitas sumber 消息源可信度。",
-    "synonyms": [
-      "kepercayaan（信任）",
-      "reputasi（声誉）",
-      "integritas（正直）"
-    ],
-    "antonyms": [
-      "ketidakkredibelan（不可信）"
-    ],
-    "examples": [
-      {
-        "scene": "Kredibilitas perusahaan dibangun melalui transparansi dan konsistensi.",
-        "id": "Kredibilitas",
-        "cn": "公司信誉通过透明度和一贯性建立。"
-      },
-      {
-        "scene": "Sumber berita itu kehilangan kredibilitas setelah berita palsu terungkap.",
-        "id": "kredibilitas",
-        "cn": "假新闻曝光后该消息源失去了可信度。"
       }
     ]
   },
@@ -187921,51 +188315,45 @@ const bitVocabDB = {
     ]
   },
   "disajikan": {
-    "ipa": "/diˈsa.dʒi.kan/",
-    "cn": "被呈现；被提供",
-    "en": "to be presented; to be served",
-    "root": "saji（呈现）+ di- + -kan",
+    "word": "disajikan",
+    "cn": "被呈现；被提供；被出示",
+    "en": "presented; served; shown",
+    "root": "saj（saji）",
     "forms": [
-      {
-        "form": "saji",
-        "pos": "v",
-        "mean": "呈现；端上（词根）"
-      },
       {
         "form": "menyajikan",
         "pos": "v",
-        "mean": "呈现；提供（主动）"
-      },
-      {
-        "form": "disajikan",
-        "pos": "v.pass",
-        "mean": "被呈现"
+        "mean": "呈现；提供"
       },
       {
         "form": "sajian",
         "pos": "n",
-        "mean": "呈现物；餐食"
-      }
-    ],
-    "formsNote": "meN- 主动 menyajikan（s→ny 音变）；di--kan 被动。",
-    "note": "内容呈现：materi disajikan dalam bentuk dialog 材料以对话形式呈现、data disajikan dalam grafik 数据以图表呈现。",
-    "synonyms": [
-      "ditampilkan（被显示）",
-      "diberikan（被给予）"
-    ],
-    "antonyms": [
-      "disembunyikan（被隐藏）"
-    ],
-    "examples": [
-      {
-        "scene": "Soal disajikan dengan perekaman audio.",
-        "id": "disajikan",
-        "cn": "题目以录音形式呈现。"
+        "mean": "呈献；节目"
       },
       {
-        "scene": "Data disajikan dalam bentuk tabel.",
-        "id": "disajikan",
-        "cn": "数据以表格呈现。"
+        "form": "penyaji",
+        "pos": "n",
+        "mean": "提供者；主持人"
+      }
+    ],
+    "formsNote": "",
+    "note": "di- + sajikan 被动式；词根 saj（saji 完整词干）",
+    "synonyms": [
+      "ditunjukkan",
+      "diberikan",
+      "ditampilkan"
+    ],
+    "antonyms": [],
+    "examples": [
+      {
+        "scene": "UKBI备考",
+        "id": "Pertanyaan disajikan dalam bentuk pilihan ganda dengan empat opsi.",
+        "cn": "题目以四选一选择题形式呈现。"
+      },
+      {
+        "scene": "园区运维",
+        "id": "Laporan K3 disajikan setiap pagi di rapat koordinasi.",
+        "cn": "安全报告每天早晨在协调会上呈报。"
       }
     ]
   },
@@ -188112,51 +188500,44 @@ const bitVocabDB = {
     ]
   },
   "perekaman": {
-    "ipa": "/pə.rəˈka.man/",
+    "word": "perekaman",
     "cn": "录音；录制",
     "en": "recording",
-    "root": "rekam（录）+ peN- + -an",
+    "root": "rekam",
     "forms": [
-      {
-        "form": "rekam",
-        "pos": "v",
-        "mean": "记录；录制（词根）"
-      },
       {
         "form": "merekam",
         "pos": "v",
-        "mean": "录制（主动）"
-      },
-      {
-        "form": "perekaman",
-        "pos": "n",
-        "mean": "录制（过程）"
+        "mean": "录音；录制"
       },
       {
         "form": "rekaman",
         "pos": "n",
-        "mean": "录音；录像（成品）"
-      }
-    ],
-    "formsNote": "peN--an 过程名词；meN- 主动 merekam。",
-    "note": "UKBI 听力材料载体：soal disajikan dengan perekaman audio（题目以音频录音呈现）。",
-    "synonyms": [
-      "rekaman（录音成品）",
-      "penyaringan（录制）"
-    ],
-    "antonyms": [
-      "pemutaran（播放）"
-    ],
-    "examples": [
-      {
-        "scene": "Perekaman audio soal jelas dan lantang.",
-        "id": "Perekaman",
-        "cn": "题目的音频录音清晰洪亮。"
+        "mean": "录音；录像"
       },
       {
-        "scene": "Perekaman teslet dinilai dua penguji.",
-        "id": "Perekaman",
-        "cn": "单元录音由两名考官评分。"
+        "form": "perekam",
+        "pos": "n",
+        "mean": "录音/录像设备"
+      }
+    ],
+    "formsNote": "",
+    "note": "peN- + rekam + -an 名词化，指\"录制行为/过程\"",
+    "synonyms": [
+      "pencatatan suara",
+      "taping"
+    ],
+    "antonyms": [],
+    "examples": [
+      {
+        "scene": "UKBI备考",
+        "id": "Bagian berbicara UKBI memakai perekaman suara selama lima belas menit.",
+        "cn": "UKBI 口语部分录音 15 分钟。"
+      },
+      {
+        "scene": "商务会议",
+        "id": "Perekaman rapat sensitif harus dirahasiakan sesuai kebijakan perusahaan.",
+        "cn": "敏感会议录制须按公司政策保密。"
       }
     ]
   },
@@ -190002,412 +190383,871 @@ const bitVocabDB = {
     ]
   },
   "jawaban": {
-  "word": "jawaban",
-  "cn": "答案",
-  "en": "answer",
-  "root": "jawab（回答）",
-  "forms": [
-    {
-      "form": "jawab",
-      "pos": "v 动词原形",
-      "mean": "回答"
-    },
-    {
-      "form": "menjawab",
-      "pos": "v 主动",
-      "mean": "回答（及物）"
-    },
-    {
-      "form": "jawaban",
-      "pos": "n 名词",
-      "mean": "答案"
-    },
-    {
-      "form": "dijawab",
-      "pos": "v 被动",
-      "mean": "被回答"
-    }
-  ],
-  "formsNote": "jawab → meN-jawab（主动）→ jawab-an（名词化）；di-jawab 被动",
-  "note": "UKBI 四选项提示固定搭配：Pilih jawaban yang benar（选择正确答案）。答错不扣分：Jawaban salah tidak mengurangi skor。",
-  "synonyms": [
-    "respons"
-  ],
-  "antonyms": [
-    "pertanyaan（提问）"
-  ],
-  "examples": [
-    {
-      "scene": "UKBI 考试",
-      "id": "Setiap butir soal memiliki empat opsi jawaban.",
-      "cn": "每道题有四个选项。"
-    },
-    {
-      "scene": "课堂核对",
-      "id": "Jawabanmu sudah benar, lanjutkan ke teslet berikutnya.",
-      "cn": "你的答案正确，请继续下一题组。"
-    }
-  ]
-},
+    "word": "jawaban",
+    "cn": "答案",
+    "en": "answer",
+    "root": "jawab（回答）",
+    "forms": [
+      {
+        "form": "jawab",
+        "pos": "v 动词原形",
+        "mean": "回答"
+      },
+      {
+        "form": "menjawab",
+        "pos": "v 主动",
+        "mean": "回答（及物）"
+      },
+      {
+        "form": "jawaban",
+        "pos": "n 名词",
+        "mean": "答案"
+      },
+      {
+        "form": "dijawab",
+        "pos": "v 被动",
+        "mean": "被回答"
+      }
+    ],
+    "formsNote": "jawab → meN-jawab（主动）→ jawab-an（名词化）；di-jawab 被动",
+    "note": "UKBI 四选项提示固定搭配：Pilih jawaban yang benar（选择正确答案）。答错不扣分：Jawaban salah tidak mengurangi skor。",
+    "synonyms": [
+      "respons"
+    ],
+    "antonyms": [
+      "pertanyaan（提问）"
+    ],
+    "examples": [
+      {
+        "scene": "UKBI 考试",
+        "id": "Setiap butir soal memiliki empat opsi jawaban.",
+        "cn": "每道题有四个选项。"
+      },
+      {
+        "scene": "课堂核对",
+        "id": "Jawabanmu sudah benar, lanjutkan ke teslet berikutnya.",
+        "cn": "你的答案正确，请继续下一题组。"
+      }
+    ]
+  },
   "pemantik": {
-  "word": "pemantik",
-  "cn": "提示句/引导句",
-  "en": "prompt / trigger sentence",
-  "root": "pantik（触发）",
-  "forms": [
-    {
-      "form": "pantik",
-      "pos": "v 词根",
-      "mean": "触发、引燃"
-    },
-    {
-      "form": "memantik",
-      "pos": "v 主动",
-      "mean": "激发、引发"
-    },
-    {
-      "form": "pemantik",
-      "pos": "n 名词",
-      "mean": "提示句、触发器"
-    }
-  ],
-  "formsNote": "pantik → meN-pantik（主动）→ peN-pantik-an（名词：提示物/引导物）",
-  "note": "UKBI 写作与口语题的灵魂：Soal berupa kalimat pemantik yang disertai gambar atau infografik（题目为配图的提示句）。",
-  "synonyms": [
-    "petunjuk（提示）"
-  ],
-  "antonyms": [],
-  "examples": [
-    {
-      "scene": "写作考试",
-      "id": "Buatlah tulisan sesuai kalimat pemantik yang diberikan.",
-      "cn": "请根据所给提示句写文章。"
-    },
-    {
-      "scene": "口语考试",
-      "id": "Kalimat pemantik itu disertai infografik tentang ekonomi digital.",
-      "cn": "那条提示句配有数字经济的信息图。"
-    }
-  ]
-},
+    "word": "pemantik",
+    "cn": "提示句/引导句",
+    "en": "prompt / trigger sentence",
+    "root": "pantik（触发）",
+    "forms": [
+      {
+        "form": "pantik",
+        "pos": "v 词根",
+        "mean": "触发、引燃"
+      },
+      {
+        "form": "memantik",
+        "pos": "v 主动",
+        "mean": "激发、引发"
+      },
+      {
+        "form": "pemantik",
+        "pos": "n 名词",
+        "mean": "提示句、触发器"
+      }
+    ],
+    "formsNote": "pantik → meN-pantik（主动）→ peN-pantik-an（名词：提示物/引导物）",
+    "note": "UKBI 写作与口语题的灵魂：Soal berupa kalimat pemantik yang disertai gambar atau infografik（题目为配图的提示句）。",
+    "synonyms": [
+      "petunjuk（提示）"
+    ],
+    "antonyms": [],
+    "examples": [
+      {
+        "scene": "写作考试",
+        "id": "Buatlah tulisan sesuai kalimat pemantik yang diberikan.",
+        "cn": "请根据所给提示句写文章。"
+      },
+      {
+        "scene": "口语考试",
+        "id": "Kalimat pemantik itu disertai infografik tentang ekonomi digital.",
+        "cn": "那条提示句配有数字经济的信息图。"
+      }
+    ]
+  },
   "infografik": {
-  "word": "infografik",
-  "cn": "信息图",
-  "en": "infographic",
-  "root": "info（信息）+ grafik（图表）",
-  "forms": [
-    {
-      "form": "infografik",
-      "pos": "n",
-      "mean": "信息图（单复同形）"
-    }
-  ],
-  "formsNote": "合成词：info(rmasi) + grafik，印尼语外来词直接借用",
-  "note": "UKBI Menulis/Berbicara 题配图两种形式之一：gambar atau infografik（图片或信息图）。",
-  "synonyms": [
-    "grafik informasi"
-  ],
-  "antonyms": [],
-  "examples": [
-    {
-      "scene": "口语备考",
-      "id": "Baca pemantik dan infografiknya sebelum mulai merekam.",
-      "cn": "录音前先读提示句和信息图。"
-    },
-    {
-      "scene": "写作备考",
-      "id": "Infografik itu menampilkan data pertumbuhan ekonomi.",
-      "cn": "那张信息图展示了经济增长数据。"
-    }
-  ]
-},
+    "word": "infografik",
+    "cn": "信息图",
+    "en": "infographic",
+    "root": "info（信息）+ grafik（图表）",
+    "forms": [
+      {
+        "form": "infografik",
+        "pos": "n",
+        "mean": "信息图（单复同形）"
+      }
+    ],
+    "formsNote": "合成词：info(rmasi) + grafik，印尼语外来词直接借用",
+    "note": "UKBI Menulis/Berbicara 题配图两种形式之一：gambar atau infografik（图片或信息图）。",
+    "synonyms": [
+      "grafik informasi"
+    ],
+    "antonyms": [],
+    "examples": [
+      {
+        "scene": "口语备考",
+        "id": "Baca pemantik dan infografiknya sebelum mulai merekam.",
+        "cn": "录音前先读提示句和信息图。"
+      },
+      {
+        "scene": "写作备考",
+        "id": "Infografik itu menampilkan data pertumbuhan ekonomi.",
+        "cn": "那张信息图展示了经济增长数据。"
+      }
+    ]
+  },
   "tulisan": {
-  "word": "tulisan",
-  "cn": "文章/短文/书面作品",
-  "en": "writing / written text",
-  "root": "tulis（写）",
-  "forms": [
-    {
-      "form": "tulis",
-      "pos": "v 动词原形",
-      "mean": "写"
-    },
-    {
-      "form": "menulis",
-      "pos": "v 主动",
-      "mean": "写（及物）"
-    },
-    {
-      "form": "tulisan",
-      "pos": "n 名词",
-      "mean": "文章、书面文字"
-    },
-    {
-      "form": "ditulis",
-      "pos": "v 被动",
-      "mean": "被写"
-    },
-    {
-      "form": "penulis",
-      "pos": "n 人",
-      "mean": "作者"
-    }
-  ],
-  "formsNote": "tulis → meNulis（主动）→ tulis-an（名词）→ penulis（人）；di-tulis 被动",
-  "note": "UKBI Membaca 材料称 wacana tulis（书面篇章）；Menulis 产出 tulisan。写作题要求：minimal 100 kata（至少100词）。",
-  "synonyms": [
-    "karangan（作文）"
-  ],
-  "antonyms": [],
-  "examples": [
-    {
-      "scene": "写作考试",
-      "id": "Tulisanmu harus memiliki pendahuluan, isi, dan penutup.",
-      "cn": "你的文章必须有开头、主体和结尾。"
-    },
-    {
-      "scene": "阅读考试",
-      "id": "Wacana tulis itu membahas budaya lokal.",
-      "cn": "那篇书面篇章讲的是地方文化。"
-    }
-  ]
-},
+    "word": "tulisan",
+    "cn": "文章/短文/书面作品",
+    "en": "writing / written text",
+    "root": "tulis（写）",
+    "forms": [
+      {
+        "form": "tulis",
+        "pos": "v 动词原形",
+        "mean": "写"
+      },
+      {
+        "form": "menulis",
+        "pos": "v 主动",
+        "mean": "写（及物）"
+      },
+      {
+        "form": "tulisan",
+        "pos": "n 名词",
+        "mean": "文章、书面文字"
+      },
+      {
+        "form": "ditulis",
+        "pos": "v 被动",
+        "mean": "被写"
+      },
+      {
+        "form": "penulis",
+        "pos": "n 人",
+        "mean": "作者"
+      }
+    ],
+    "formsNote": "tulis → meNulis（主动）→ tulis-an（名词）→ penulis（人）；di-tulis 被动",
+    "note": "UKBI Membaca 材料称 wacana tulis（书面篇章）；Menulis 产出 tulisan。写作题要求：minimal 100 kata（至少100词）。",
+    "synonyms": [
+      "karangan（作文）"
+    ],
+    "antonyms": [],
+    "examples": [
+      {
+        "scene": "写作考试",
+        "id": "Tulisanmu harus memiliki pendahuluan, isi, dan penutup.",
+        "cn": "你的文章必须有开头、主体和结尾。"
+      },
+      {
+        "scene": "阅读考试",
+        "id": "Wacana tulis itu membahas budaya lokal.",
+        "cn": "那篇书面篇章讲的是地方文化。"
+      }
+    ]
+  },
   "mikrofon": {
-  "word": "mikrofon",
-  "cn": "麦克风",
-  "en": "microphone",
-  "root": "mikrofon（借词，源自 microphone）",
-  "forms": [
-    {
-      "form": "mikrofon",
-      "pos": "n",
-      "mean": "麦克风"
-    },
-    {
-      "form": "mikrofonnya",
-      "pos": "n 限定",
-      "mean": "该麦克风"
-    }
-  ],
-  "formsNote": "外来借词直接入印尼语；口语简称 mik",
-  "note": "UKBI Berbicara 必查设备：Mikrofon sudah dites（麦克风已测试）。居家网考三件套之一：kamera、mikrofon、penyuara jemala。",
-  "synonyms": [],
-  "antonyms": [],
-  "examples": [
-    {
-      "scene": "口语考前",
-      "id": "Pastikan mikrofon berfungsi sebelum memulai Seksi V.",
-      "cn": "开始第五部分前确认麦克风可用。"
-    },
-    {
-      "scene": "设备调试",
-      "id": "Suaranya tidak jelas, mikrofonnya terlalu jauh.",
-      "cn": "声音不清楚，麦克风太远了。"
-    }
-  ]
-},
+    "word": "mikrofon",
+    "cn": "麦克风",
+    "en": "microphone",
+    "root": "mikrofon（借词，源自 microphone）",
+    "forms": [
+      {
+        "form": "mikrofon",
+        "pos": "n",
+        "mean": "麦克风"
+      },
+      {
+        "form": "mikrofonnya",
+        "pos": "n 限定",
+        "mean": "该麦克风"
+      }
+    ],
+    "formsNote": "外来借词直接入印尼语；口语简称 mik",
+    "note": "UKBI Berbicara 必查设备：Mikrofon sudah dites（麦克风已测试）。居家网考三件套之一：kamera、mikrofon、penyuara jemala。",
+    "synonyms": [],
+    "antonyms": [],
+    "examples": [
+      {
+        "scene": "口语考前",
+        "id": "Pastikan mikrofon berfungsi sebelum memulai Seksi V.",
+        "cn": "开始第五部分前确认麦克风可用。"
+      },
+      {
+        "scene": "设备调试",
+        "id": "Suaranya tidak jelas, mikrofonnya terlalu jauh.",
+        "cn": "声音不清楚，麦克风太远了。"
+      }
+    ]
+  },
   "penyuara jemala": {
-  "word": "penyuara jemala",
-  "cn": "头戴耳机",
-  "en": "headset",
-  "root": "suara（声音）+ jemala（头部）",
-  "forms": [
-    {
-      "form": "penyuara jemala",
-      "pos": "n",
-      "mean": "头戴耳机/耳麦"
-    }
-  ],
-  "formsNote": "合成词：peN-suara（发声器）+ jemala（头）= 头戴式设备；官方考试说明用词，日常口语多说 headset",
-  "note": "UKBI 官方居家网考设备要求用词：PC berkamera, peramban mutakhir, penyuara jemala。戴耳机保证录音清晰。",
-  "synonyms": [
-    "headset"
-  ],
-  "antonyms": [],
-  "examples": [
-    {
-      "scene": "设备清单",
-      "id": "Siapkan penyuara jemala agar suara perekaman jelas.",
-      "cn": "准备头戴耳机让录音声音清晰。"
-    },
-    {
-      "scene": "考前检查",
-      "id": "Tanpa penyuara jemala, hasil perekaman bisa terganggu.",
-      "cn": "没有头戴耳机，录音效果可能受影响。"
-    }
-  ]
-},
+    "word": "penyuara jemala",
+    "cn": "头戴耳机",
+    "en": "headset",
+    "root": "suara（声音）+ jemala（头部）",
+    "forms": [
+      {
+        "form": "penyuara jemala",
+        "pos": "n",
+        "mean": "头戴耳机/耳麦"
+      }
+    ],
+    "formsNote": "合成词：peN-suara（发声器）+ jemala（头）= 头戴式设备；官方考试说明用词，日常口语多说 headset",
+    "note": "UKBI 官方居家网考设备要求用词：PC berkamera, peramban mutakhir, penyuara jemala。戴耳机保证录音清晰。",
+    "synonyms": [
+      "headset"
+    ],
+    "antonyms": [],
+    "examples": [
+      {
+        "scene": "设备清单",
+        "id": "Siapkan penyuara jemala agar suara perekaman jelas.",
+        "cn": "准备头戴耳机让录音声音清晰。"
+      },
+      {
+        "scene": "考前检查",
+        "id": "Tanpa penyuara jemala, hasil perekaman bisa terganggu.",
+        "cn": "没有头戴耳机，录音效果可能受影响。"
+      }
+    ]
+  },
   "mengulang": {
-  "word": "mengulang",
-  "cn": "重考/重复/再来一次",
-  "en": "to repeat / retake",
-  "root": "ulang（再、重复）",
-  "forms": [
-    {
-      "form": "ulang",
-      "pos": "v/adj 词根",
-      "mean": "重复"
-    },
-    {
-      "form": "mengulang",
-      "pos": "v 主动",
-      "mean": "重做、重考"
-    },
-    {
-      "form": "mengulangi",
-      "pos": "v 及物",
-      "mean": "重复某事"
-    },
-    {
-      "form": "diulang",
-      "pos": "v 被动",
-      "mean": "被重复"
-    },
-    {
-      "form": "ulangan",
-      "pos": "n",
-      "mean": "测验、重考"
-    }
-  ],
-  "formsNote": "ulang → meN-ulang（主动）→ di-ulang（被动）→ ulang-an（名词：测验）",
-  "note": "UKBI 重考规则：mengulang lima belas hari setelah ujian sebelumnya（上次考试十五天后可重考），sebanyak yang diinginkan（不限次数）。",
-  "synonyms": [
-    "mengulangi",
-    "mengulang kembali"
-  ],
-  "antonyms": [],
-  "examples": [
-    {
-      "scene": "成绩规划",
-      "id": "Kalau hasilnya marginal, aku akan mengulang bulan depan.",
-      "cn": "如果成绩是边缘级，我下个月会重考。"
-    },
-    {
-      "scene": "考试规则",
-      "id": "Peserta boleh mengulang ujian tanpa batas jumlah.",
-      "cn": "考生可不限次数重考。"
-    }
-  ]
-},
+    "word": "mengulang",
+    "cn": "重考/重复/再来一次",
+    "en": "to repeat / retake",
+    "root": "ulang（再、重复）",
+    "forms": [
+      {
+        "form": "ulang",
+        "pos": "v/adj 词根",
+        "mean": "重复"
+      },
+      {
+        "form": "mengulang",
+        "pos": "v 主动",
+        "mean": "重做、重考"
+      },
+      {
+        "form": "mengulangi",
+        "pos": "v 及物",
+        "mean": "重复某事"
+      },
+      {
+        "form": "diulang",
+        "pos": "v 被动",
+        "mean": "被重复"
+      },
+      {
+        "form": "ulangan",
+        "pos": "n",
+        "mean": "测验、重考"
+      }
+    ],
+    "formsNote": "ulang → meN-ulang（主动）→ di-ulang（被动）→ ulang-an（名词：测验）",
+    "note": "UKBI 重考规则：mengulang lima belas hari setelah ujian sebelumnya（上次考试十五天后可重考），sebanyak yang diinginkan（不限次数）。",
+    "synonyms": [
+      "mengulangi",
+      "mengulang kembali"
+    ],
+    "antonyms": [],
+    "examples": [
+      {
+        "scene": "成绩规划",
+        "id": "Kalau hasilnya marginal, aku akan mengulang bulan depan.",
+        "cn": "如果成绩是边缘级，我下个月会重考。"
+      },
+      {
+        "scene": "考试规则",
+        "id": "Peserta boleh mengulang ujian tanpa batas jumlah.",
+        "cn": "考生可不限次数重考。"
+      }
+    ]
+  },
   "zona waktu": {
-  "word": "zona waktu",
-  "cn": "时区",
-  "en": "time zone",
-  "root": "zona（区域，借词）+ waktu（时间）",
-  "forms": [
-    {
-      "form": "zona waktu",
-      "pos": "n",
-      "mean": "时区"
-    }
-  ],
-  "formsNote": "偏正复合词：zona（区域）+ waktu（时间）；印尼横跨 3 个时区：WIB/WITA/WIT",
-  "note": "UKBI 考试日程按 5 个 zona waktu 分列（雅加达、望加锡、登巴萨、索龙等），报名与开考时间必须对号入座。",
-  "synonyms": [],
-  "antonyms": [],
-  "examples": [
-    {
-      "scene": "报名核对",
-      "id": "Periksa jadwal sesuai zona waktumu sebelum mendaftar.",
-      "cn": "报名前按你的时区核对时间表。"
-    },
-    {
-      "scene": "出差备考",
-      "id": "Di Morowali kita pakai zona waktu WITA.",
-      "cn": "在 Morowali 我们用的是 WITA 时区。"
-    }
-  ]
-},
+    "word": "zona waktu",
+    "cn": "时区",
+    "en": "time zone",
+    "root": "zona（区域，借词）+ waktu（时间）",
+    "forms": [
+      {
+        "form": "zona waktu",
+        "pos": "n",
+        "mean": "时区"
+      }
+    ],
+    "formsNote": "偏正复合词：zona（区域）+ waktu（时间）；印尼横跨 3 个时区：WIB/WITA/WIT",
+    "note": "UKBI 考试日程按 5 个 zona waktu 分列（雅加达、望加锡、登巴萨、索龙等），报名与开考时间必须对号入座。",
+    "synonyms": [],
+    "antonyms": [],
+    "examples": [
+      {
+        "scene": "报名核对",
+        "id": "Periksa jadwal sesuai zona waktumu sebelum mendaftar.",
+        "cn": "报名前按你的时区核对时间表。"
+      },
+      {
+        "scene": "出差备考",
+        "id": "Di Morowali kita pakai zona waktu WITA.",
+        "cn": "在 Morowali 我们用的是 WITA 时区。"
+      }
+    ]
+  },
   "kecepatan": {
-  "word": "kecepatan",
-  "cn": "速度/网速",
-  "en": "speed",
-  "root": "cepat（快）",
-  "forms": [
-    {
-      "form": "cepat",
-      "pos": "adj 形容词",
-      "mean": "快"
-    },
-    {
-      "form": "kecepatan",
-      "pos": "n 名词",
-      "mean": "速度"
-    },
-    {
-      "form": "mencepatkan",
-      "pos": "v 使动",
-      "mean": "使加快"
-    },
-    {
-      "form": "lebih cepat",
-      "pos": "比较级",
-      "mean": "更快"
-    }
-  ],
-  "formsNote": "cepat（形容词）→ ke-cepat-an（名词化：速度）",
-  "note": "UKBI 居家网考硬性指标：kecepatan minimal 15 mbps（最低网速 15 mbps）。jaringan harus stabil（网络必须稳定）。",
-  "synonyms": [
-    "kelajuan"
-  ],
-  "antonyms": [
-    "kelambatan（缓慢）"
-  ],
-  "examples": [
-    {
-      "scene": "考前自检",
-      "id": "Kecepatan internetmu perlu diuji sebelum hari ujian.",
-      "cn": "考试日前需要测一下你的网速。"
-    },
-    {
-      "scene": "园区办公",
-      "id": "Kecepatan jaringan di site cukup stabil untuk video call.",
-      "cn": "园区的网络速度开视频会足够稳定。"
-    }
-  ]
-},
+    "word": "kecepatan",
+    "cn": "速度/网速",
+    "en": "speed",
+    "root": "cepat（快）",
+    "forms": [
+      {
+        "form": "cepat",
+        "pos": "adj 形容词",
+        "mean": "快"
+      },
+      {
+        "form": "kecepatan",
+        "pos": "n 名词",
+        "mean": "速度"
+      },
+      {
+        "form": "mencepatkan",
+        "pos": "v 使动",
+        "mean": "使加快"
+      },
+      {
+        "form": "lebih cepat",
+        "pos": "比较级",
+        "mean": "更快"
+      }
+    ],
+    "formsNote": "cepat（形容词）→ ke-cepat-an（名词化：速度）",
+    "note": "UKBI 居家网考硬性指标：kecepatan minimal 15 mbps（最低网速 15 mbps）。jaringan harus stabil（网络必须稳定）。",
+    "synonyms": [
+      "kelajuan"
+    ],
+    "antonyms": [
+      "kelambatan（缓慢）"
+    ],
+    "examples": [
+      {
+        "scene": "考前自检",
+        "id": "Kecepatan internetmu perlu diuji sebelum hari ujian.",
+        "cn": "考试日前需要测一下你的网速。"
+      },
+      {
+        "scene": "园区办公",
+        "id": "Kecepatan jaringan di site cukup stabil untuk video call.",
+        "cn": "园区的网络速度开视频会足够稳定。"
+      }
+    ]
+  },
   "jaringan": {
-  "word": "jaringan",
-  "cn": "网络/关系网",
-  "en": "network",
-  "root": "jaring（网）",
-  "forms": [
-    {
-      "form": "jaring",
-      "pos": "n 词根",
-      "mean": "网"
-    },
-    {
-      "form": "jaringan",
-      "pos": "n",
-      "mean": "网络"
-    },
-    {
-      "form": "menjaring",
-      "pos": "v 主动",
-      "mean": "撒网、招募"
-    }
-  ],
-  "formsNote": "jaring → jaring-an（名词化：网络/体系）；meN-jaring（撒网→引申招募）",
-  "note": "UKBI 考试指令：Pastikan jaringan stabil（确保网络稳定）。商务高频：jaringan bisnis（商务关系网）、jaringan kerja（工作网络）。",
-  "synonyms": [
-    "network"
-  ],
-  "antonyms": [],
-  "examples": [
-    {
-      "scene": "考前准备",
-      "id": "Pastikan jaringan stabil sebelum login ke aplikasi ujian.",
-      "cn": "登录考试软件前确保网络稳定。"
-    },
-    {
-      "scene": "商务场景",
-      "id": "Jaringan mitra lokal sangat penting untuk proyek baru.",
-      "cn": "当地合作伙伴网络对新项目很重要。"
-    }
-  ]
-}
-
+    "word": "jaringan",
+    "cn": "网络/关系网",
+    "en": "network",
+    "root": "jaring（网）",
+    "forms": [
+      {
+        "form": "jaring",
+        "pos": "n 词根",
+        "mean": "网"
+      },
+      {
+        "form": "jaringan",
+        "pos": "n",
+        "mean": "网络"
+      },
+      {
+        "form": "menjaring",
+        "pos": "v 主动",
+        "mean": "撒网、招募"
+      }
+    ],
+    "formsNote": "jaring → jaring-an（名词化：网络/体系）；meN-jaring（撒网→引申招募）",
+    "note": "UKBI 考试指令：Pastikan jaringan stabil（确保网络稳定）。商务高频：jaringan bisnis（商务关系网）、jaringan kerja（工作网络）。",
+    "synonyms": [
+      "network"
+    ],
+    "antonyms": [],
+    "examples": [
+      {
+        "scene": "考前准备",
+        "id": "Pastikan jaringan stabil sebelum login ke aplikasi ujian.",
+        "cn": "登录考试软件前确保网络稳定。"
+      },
+      {
+        "scene": "商务场景",
+        "id": "Jaringan mitra lokal sangat penting untuk proyek baru.",
+        "cn": "当地合作伙伴网络对新项目很重要。"
+      }
+    ]
+  },
+  "riil": {
+    "word": "riil",
+    "cn": "真实的；实际存在的；实战的",
+    "en": "real; actual",
+    "root": "riil（外来词，源自荷兰语 reel）",
+    "forms": [],
+    "formsNote": "—（形容词，无派生形态；常搭配 ujian riil 实战考试、soal riil 真题）",
+    "note": "外来词，KBBI 收录；UKBI 备考高频「ujian riil」；口语同义可用 asli/nyata",
+    "synonyms": [
+      "nyata",
+      "asli",
+      "sebenarnya"
+    ],
+    "antonyms": [
+      "maya",
+      "palsu",
+      "khayalan"
+    ],
+    "examples": [
+      {
+        "scene": "UKBI备考",
+        "id": "Soal-soal riil dari ujian UKBI sangat membantu persiapan saya.",
+        "cn": "来自 UKBI 考试的真实题目对我的备考帮助很大。"
+      },
+      {
+        "scene": "商务谈判",
+        "id": "Kondisi riil di lapangan harus diverifikasi sebelum kontrak ditandatangani.",
+        "cn": "签合同前必须核实场地的真实状况。"
+      }
+    ]
+  },
+  "pemeringkatan": {
+    "word": "pemeringkatan",
+    "cn": "排名；排序；分等",
+    "en": "ranking",
+    "root": "peringkat",
+    "forms": [
+      {
+        "form": "peringkat",
+        "pos": "n",
+        "mean": "等级；名次"
+      },
+      {
+        "form": "memeringkatkan",
+        "pos": "v",
+        "mean": "排名"
+      },
+      {
+        "form": "peringkatkan?",
+        "pos": "—",
+        "mean": "（不单独使用）"
+      }
+    ],
+    "formsNote": "",
+    "note": "peN- + peringkat + -kan 名词化，指\"排名行为\"",
+    "synonyms": [
+      "perangkingan",
+      "penyusunan peringkat"
+    ],
+    "antonyms": [],
+    "examples": [
+      {
+        "scene": "UKBI备考",
+        "id": "Pemeringkatan hasil UKBI mengikuti tujuh tingkat kategori.",
+        "cn": "UKBI 成绩排名分七个等级。"
+      },
+      {
+        "scene": "供应链",
+        "id": "Pemeringkatan pemasok dilakukan setiap semester berdasarkan kinerja.",
+        "cn": "供应商排名每学期按绩效进行一次。"
+      }
+    ]
+  },
+  "hak setara bagi": {
+    "word": "hak setara bagi",
+    "cn": "平等享有的权利",
+    "en": "equal right for",
+    "root": "hak",
+    "forms": [],
+    "formsNote": "—（固定短语：hak + setara + bagi）",
+    "note": "KBBI 释义 hak = 应得之物/权利；setara = 相等；bagi = 对于；整体作介词短语",
+    "synonyms": [
+      "kesempatan yang sama",
+      "hak yang sama"
+    ],
+    "antonyms": [],
+    "examples": [
+      {
+        "scene": "合规治理",
+        "id": "Semua pekerja berhak atas hak setara bagi perlindungan K3 di tempat kerja.",
+        "cn": "所有工人平等享有工作场所安全保护的权利。"
+      },
+      {
+        "scene": "UKBI备考",
+        "id": "Warga negara mempunyai hak setara bagi akses pendidikan berkualitas.",
+        "cn": "公民平等享有获得优质教育的权利。"
+      }
+    ]
+  },
+  "berturut-turut": {
+    "word": "berturut-turut",
+    "cn": "连续地；依次地；接连",
+    "en": "consecutively; in succession",
+    "root": "turut",
+    "forms": [
+      {
+        "form": "turut",
+        "pos": "v",
+        "mean": "跟随；顺从"
+      },
+      {
+        "form": "menurut",
+        "pos": "prep/v",
+        "mean": "按照；根据"
+      }
+    ],
+    "formsNote": "",
+    "note": "重叠式 turut-turut 加 ber- 构成副词；词根 turut 本义\"跟随\"",
+    "synonyms": [
+      "berurutan",
+      "secara berkesinambungan"
+    ],
+    "antonyms": [],
+    "examples": [
+      {
+        "scene": "UKBI备考",
+        "id": "Tiga bagian ujian diikuti berturut-turut tanpa jeda panjang.",
+        "cn": "三个考试部分连续进行，没有长间隔。"
+      },
+      {
+        "scene": "生产运营",
+        "id": "Unit peleburan beroperasi berturut-turut selama dua puluh empat jam.",
+        "cn": "冶炼单元连续运行 24 小时。"
+      }
+    ]
+  },
+  "mampun": {
+    "word": "mampun",
+    "cn": "能够；有能力（古体）",
+    "en": "(archaic) able; capable",
+    "root": "mampu",
+    "forms": [
+      {
+        "form": "mampu",
+        "pos": "adj",
+        "mean": "能够；有能力的（标准语）"
+      },
+      {
+        "form": "kemampuan",
+        "pos": "n",
+        "mean": "能力"
+      },
+      {
+        "form": "memampukan",
+        "pos": "v",
+        "mean": "使能够"
+      }
+    ],
+    "formsNote": "",
+    "note": "mampun 为古体（arkais）= mampu；现代标准语一律用 mampu RCO 注：KBBI 收录古体形式；UKBI 阅读经典/历史文本可能遇到，写作与口语不用",
+    "synonyms": [
+      "mampu",
+      "sanggup",
+      "mengakomodasi? | — | （取 sanggup 即可） |"
+    ],
+    "antonyms": [],
+    "examples": [
+      {
+        "scene": "UKBI备考",
+        "id": "Dalam teks lama sering tertulis \"mampun\" yang artinya sama dengan mampu.",
+        "cn": "古文中常见 mampun，与 mampu 同义。"
+      },
+      {
+        "scene": "项目管理",
+        "id": "Tim mampu menyelesaikan commissioning berturut-turut dua unit.",
+        "cn": "团队能连续完成两个单元的调试。"
+      }
+    ]
+  },
+  "berjabat": {
+    "word": "berjabat",
+    "cn": "握手（惯用 berjabat tangan）",
+    "en": "to shake hands",
+    "root": "jabat",
+    "forms": [
+      {
+        "form": "jabat",
+        "pos": "v",
+        "mean": "握；执掌"
+      },
+      {
+        "form": "berjabat tangan",
+        "pos": "v",
+        "mean": "握手"
+      },
+      {
+        "form": "menjabat",
+        "pos": "v",
+        "mean": "担任（职务）"
+      },
+      {
+        "form": "jabatan",
+        "pos": "n",
+        "mean": "职位"
+      }
+    ],
+    "formsNote": "",
+    "note": "单独 berjabat 罕见，固定搭配 berjabat tangan；词根 jabat 本义\"握\"",
+    "synonyms": [
+      "bersalaman",
+      "bersalam"
+    ],
+    "antonyms": [],
+    "examples": [
+      {
+        "scene": "商务礼仪",
+        "id": "Para direktur berjabat tangan setelah penandatanganan kontrak.",
+        "cn": "签约后各位总监握手致意。"
+      },
+      {
+        "scene": "园区接待",
+        "id": "Dengan berjabat tangan, tamu dari Morowali disambut di pintu masuk.",
+        "cn": "来自 Morowali 的客人在入口受到握手欢迎。"
+      }
+    ]
+  },
+  "panco": {
+    "word": "panco",
+    "cn": "扳手腕；比手劲",
+    "en": "arm wrestling",
+    "root": "panco",
+    "forms": [
+      {
+        "form": "berpanco",
+        "pos": "v",
+        "mean": "扳手腕"
+      },
+      {
+        "form": "main panco",
+        "pos": "v",
+        "mean": "玩扳手腕"
+      }
+    ],
+    "formsNote": "",
+    "note": "KBBI 收录：berpanco = beradu kekuatan tangan（互相推压比手劲）",
+    "synonyms": [],
+    "antonyms": [],
+    "examples": [
+      {
+        "scene": "团队建设",
+        "id": "Tim smelter adu panco di acara santai Jumat sore.",
+        "cn": "冶炼团队在周五下午的轻松活动上比扳手腕。"
+      },
+      {
+        "scene": "日常口语",
+        "id": "Jangan cuma berpanco, nanti lengan pegal.",
+        "cn": "别光扳手腕，待会儿胳膊酸。"
+      }
+    ]
+  },
+  "cubit": {
+    "word": "cubit",
+    "cn": "掐；捏",
+    "en": "to pinch",
+    "root": "cubit",
+    "forms": [
+      {
+        "form": "mencubit",
+        "pos": "v",
+        "mean": "掐"
+      },
+      {
+        "form": "cubitan",
+        "pos": "n",
+        "mean": "一掐；掐痕"
+      },
+      {
+        "form": "tercubit",
+        "pos": "v",
+        "mean": "被掐"
+      }
+    ],
+    "formsNote": "",
+    "note": "",
+    "synonyms": [
+      "jepit",
+      "picit"
+    ],
+    "antonyms": [],
+    "examples": [
+      {
+        "scene": "日常口语",
+        "id": "Anak kecil itu mencubit lengan ibunya minta dibelikan es krim.",
+        "cn": "那小孩掐着妈妈的胳膊要买冰淇淋。"
+      },
+      {
+        "scene": "项目管理",
+        "id": "Jangan sampai anggaran proyek tercubit oleh biaya tak terduga.",
+        "cn": "别让项目预算被意外开支挤压。"
+      }
+    ]
+  },
+  "sentil": {
+    "word": "sentil",
+    "cn": "用指尖弹；数落；点名批评",
+    "en": "to flick; to chide",
+    "root": "sentil",
+    "forms": [
+      {
+        "form": "menyentil",
+        "pos": "v",
+        "mean": "弹；批评"
+      },
+      {
+        "form": "sentilan",
+        "pos": "n",
+        "mean": "弹指；讥讽"
+      }
+    ],
+    "formsNote": "",
+    "note": "口语（cakapan）；转义\"点名批评\"常见于政论与职场语境",
+    "synonyms": [],
+    "antonyms": [],
+    "examples": [
+      {
+        "scene": "日常口语",
+        "id": "Dia menyentil pelanggar aturan dengan santai tapi tegas.",
+        "cn": "他以轻松但坚决的方式批评违规者。"
+      },
+      {
+        "scene": "会议沟通",
+        "id": "Manajer menyentil dua kontraktor yang terlambat tanpa menyinggung pihak lain.",
+        "cn": "经理点名批评两家迟到承包商，不影射他人。"
+      }
+    ]
+  },
+  "toyor": {
+    "word": "toyor",
+    "cn": "（用手指）戳；捅",
+    "en": "to poke; to prod",
+    "root": "toyor",
+    "forms": [
+      {
+        "form": "menoyor",
+        "pos": "v",
+        "mean": "戳；捅"
+      },
+      {
+        "form": "toyoran",
+        "pos": "n",
+        "mean": "戳的动作"
+      }
+    ],
+    "formsNote": "",
+    "note": "口语（cakapan）",
+    "synonyms": [],
+    "antonyms": [],
+    "examples": [
+      {
+        "scene": "日常口语",
+        "id": "Temannya menoyor lengannya saat ia hampir tertidur di rapat.",
+        "cn": "他开会快睡着时，同事戳了戳他的胳膊。"
+      },
+      {
+        "scene": "安全提醒",
+        "id": "Jangan menoyor panel listrik dengan benda logam.",
+        "cn": "别用金属物戳电气面板。"
+      }
+    ]
+  },
+  "menghancurkan": {
+    "word": "menghancurkan",
+    "cn": "摧毁；粉碎；破坏",
+    "en": "to destroy; to crush",
+    "root": "hancur",
+    "forms": [
+      {
+        "form": "hancur",
+        "pos": "adj",
+        "mean": "破碎的"
+      },
+      {
+        "form": "kehancuran",
+        "pos": "n",
+        "mean": "毁灭"
+      },
+      {
+        "form": "terhancur",
+        "pos": "v",
+        "mean": "被摧毁"
+      }
+    ],
+    "formsNote": "",
+    "note": "",
+    "synonyms": [
+      "merusak",
+      "memusnahkan"
+    ],
+    "antonyms": [
+      "membangun",
+      "memulihkan"
+    ],
+    "examples": [
+      {
+        "scene": "安全应急",
+        "id": "Ledakan kecil dapat menghancurkan gudang jika tidak ada sprinkler.",
+        "cn": "若无喷淋，小爆炸可能摧毁仓库。"
+      },
+      {
+        "scene": "合规治理",
+        "id": "Korupsi dapat menghancurkan reputasi perusahaan dalam semalam.",
+        "cn": "腐败可在一夜之间毁掉公司声誉。"
+      }
+    ]
+  },
+  "bertengkar": {
+    "word": "bertengkar",
+    "cn": "吵架；争执",
+    "en": "to quarrel; to argue",
+    "root": "tengkar",
+    "forms": [
+      {
+        "form": "tengkar",
+        "pos": "n/v",
+        "mean": "争吵"
+      },
+      {
+        "form": "bertengkar",
+        "pos": "v",
+        "mean": "吵架"
+      },
+      {
+        "form": "pertengkaran",
+        "pos": "n",
+        "mean": "争吵（事件）"
+      }
+    ],
+    "formsNote": "",
+    "note": "",
+    "synonyms": [
+      "berkelahi（肢体冲突，较重）",
+      "berdebat"
+    ],
+    "antonyms": [
+      "berdamai",
+      "bermusyawarah"
+    ],
+    "examples": [
+      {
+        "scene": "日常口语",
+        "id": "Mereka bertengkar soal jadwal jaga malam.",
+        "cn": "他们为夜班值班表吵架。"
+      },
+      {
+        "scene": "冲突调解",
+        "id": "Mediaser menghindari agar dua pihak tidak berturut-turut bertengkar.",
+        "cn": "调解人避免两方接连争吵。"
+      }
+    ]
+  }
 };
 
 function getTopicForDate(ds) {
@@ -191197,9 +192037,11 @@ function renderAbout(c){
 }
 
 function renderVersion(c){
-  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.46.0 / Versi</span></div>
+  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.46.1 / Versi</span></div>
     <div style="padding:16px;">
       <div style="margin-bottom:14px;padding:14px;background:rgba(34,197,94,.10);border-radius:10px;border-left:3px solid var(--success)">
+        <div style="font-size:15px;font-weight:700;color:var(--success);margin-bottom:6px">V4.46.1 (2026-10-20)</div>
+        <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">1020每日笔记21词(BIT V1.0定稿+BIO双审): UKBI实战日 —— riil真实/pemeringkatan排名/hak setara bagi平等权利(连字符归并)/berturut-turut连续/mampun古体=mampu/berjabat(berjabat tangan握手)/panco扳手腕(KBBI berpanco)/cubit掐/sentil弹·数落/toyor戳/menghancurkan摧毁/terhadap对·对于(勘误terhatap→d)/bertengkar吵架 · sedang扩充"中等"义(rendah-sedang-tinggi等级语境) · 13新词入库 bitVocabDB 2816→2829 · RCO对账21/21逐词映射相符 · check_syntax PASS</div>
         <div style="font-size:15px;font-weight:700;color:var(--success);margin-bottom:6px">V4.46.0 (2026-10-20)</div>
         <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">双任务: ①UKBI实战课程(topic ukbi_real)10/20-22上线 —— 真实考试五大部分拆三天(Day1 听力4对话4独白40题+语法反应25题 / Day2 阅读8篇章40题+写作100+150词 / Day3 口语录制2题+套餐/七级评定/重考规则) · 38核心词(28沿用+10新词BIT九字段入库 bitVocabDB 2806→2816) · 3场景48句+3演讲452词+语法6规则+15题测试 · C5 v2.1合规核心词双库全可查 ②CA/C5同日共存 —— 日期页不再CA独占, C5课程+CA卡片同屏呈现 ③当日笔记一键语音播报 —— 日期页+📓笔记卡双入口, 日记+BIT词条链式TTS(id/zh交替 onend+150ms衔接 导航自动停止) · check_syntax PASS · E2E冒烟全PASS</div>
         <div style="font-size:15px;font-weight:700;color:var(--success);margin-bottom:6px">V4.45.1 (2026-10-20)</div>
