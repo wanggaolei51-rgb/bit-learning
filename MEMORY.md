@@ -1,7 +1,7 @@
 # MEMORY.md — 长期记忆（任何会话重开必读）
 
 > 本文件是跨会话的核心记忆。每次启动优先读本文件。
-> 最后更新：2026-10-14（V4.42.4 镍地图补全 ASPIRE-Stargate + INDUSTRY-DATA v1.0）
+> 最后更新：2026-10-20（V4.45.0 CA进阶课首期上线）
 
 ---
 
@@ -25,7 +25,7 @@
 ## 二、LEO-BIR 策略体系（核心认知，不得再说不认识）
 
 ### 产品本体
-**LEO-BIR** 印尼语学习平台——单文件 HTML + GitHub Pages，当前 **V4.42.1**，246 个 commit。
+**LEO-BIR** 印尼语学习平台——单文件 HTML + GitHub Pages，当前 **V4.45.0**。
 为印尼 Morowali 冶炼工业园区总经理定制的个人学习工具。词库 120+ 词条，主题课 topic22–29。
 
 ### 策略代号一览
@@ -95,7 +95,12 @@ V4.42.0       任务三合一: 词根释义规范落地 + REP2C月报课monthly_
 V4.42.1       月报课10-14/10-16白屏热修: grammar新格式{name,detail}无examples→渲染崩溃(同类第2次, check_syntax/deploy-check拦不住) · fmtGrammarRule双格式兼容+8渲染点适配 · renderTopicQuiz回退topic.vocab(修REP2C中文tag不匹配) · 线上数据端到端6/6 PASS
 V4.42.2       1012笔记30词(综合事务: 32词元去重2+重收覆盖9, 谚语kepala-di-pijat-kelapa-di-parut+连字符due-date, 105变形+60例句, RCO对账逐词映射)
 V4.42.3       1013笔记39词(园区运维专题: 40词元去重1+大小写归一3+重收覆盖13, 清淤排水pengerukan/saluran/pipa+合规治理transparan/dirahasiakan, 148变形+78例句, RCO对账逐词映射) · 线上MD5验证PASS
-V4.42.4       镍冶炼地图补全: ASPIRE-Stargate工业园(东南苏拉威西省北科纳威Molore) — Astra集团United Tractors项目 · RKEF 2×33MVA在建1.31万镍吨+HPAL 3万吨级规划 · MottMac总体规划WBS5000(4×33MW RKEF+镍冰铜/硫酸镍常压浸出+450MW LNG电厂+Molore/Lameruru双码头) · 复盘: 中文研报信源盲区致本土项目漏检 → INDUSTRY-DATA v1.0监测策略落地 ★当前版本
+V4.42.4       镍冶炼地图补全: ASPIRE-Stargate工业园(东南苏拉威西省北科纳威Molore) — Astra集团United Tractors项目 · RKEF 2×33MVA在建1.31万镍吨+HPAL 3万吨级规划 · MottMac总体规划WBS5000(4×33MW RKEF+镍冰铜/硫酸镍常压浸出+450MW LNG电厂+Molore/Lameruru双码头) · 复盘: 中文研报信源盲区致本土项目漏检 → INDUSTRY-DATA v1.0监测策略落地
+V4.43.0       UKBI考试认证课上线: ukbi_certification话题(10/17-19) · 38核心词+3场景+3演讲+6语法+15测试 · bitVocabDB+38 · 全站13页语料采集
+V4.43.1       UKBI课优化: 核心词bitVocabDB双库渲染修复(38词全展,修Day1词卡空白) + 词缀玫瑰图集成(30词缀iframe隔离, C5复习模块入口10/17起) · 内嵌HTML转义规则: </script>→<\/script>, <!--→<\!--
+V4.43.2-.4    1016二批14词 → 1017笔记20词(UKBI注册实操) → 1018笔记35词(UKBI实操深化·最大单批, iIstimewa归一+butir-soal复合归并) · 三天均 RCO A3 APPROVE
+V4.44.0       1019笔记49词(UKBI七级评定全收录, 历史最大批) + 生词双库同步修复×3(showWordPopup/doTranslate/renderWBList) + 主页源码注释泄露修复 + BIT策略v1.3双库条款 · 线上MD5一致
+V4.45.0       CA进阶课程首期(策略v1.1九项裁定全落实): 话题1见面×3天(10/20-22) · 独立caData+caCalendar+路由#/ca · 每日四块(词汇15/词组10/句型12三级别配比/表达15/词缀10一轮30/一测15) · 22词BIT入库(2784→2806) · 纯增量4编辑零影响C5 · 备份backup-V4.44.0-preCA2-20261020-072942.tar.gz · 线上MD5一致 ★当前版本
 ```
 
 ---

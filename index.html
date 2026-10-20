@@ -6,7 +6,7 @@
 <meta http-equiv="Expires" content="0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LEO-BIR V4.45.1</title>
+<title>LEO-BIR V4.46.0</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -276,7 +276,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="sidebar-header">
     <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <h1>LEO-BIR</h1>
-    <div class="ver">LEO-BIR V4.45.1 · CA路由热修</div>
+    <div class="ver">LEO-BIR V4.46.0 · UKBI实战课+笔记语音播报</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -5116,6 +5116,7 @@ function render(){
   const r=parseRoute();currentRoute=r.route;updateNav();updateStats();
   updateTopbarButtons();
   const c=document.getElementById("appContent"),t=document.getElementById("pageTitle");
+  if(typeof _bcPlaying!=="undefined"&&_bcPlaying&&typeof bcStop==="function")bcStop();
   switch(r.route){
     case "home":t.innerText="🏠 主页";renderHome(c);break;
     case "date":t.innerText="📅 "+r.param;renderDateDetail(c,r.param);break;
@@ -5234,10 +5235,10 @@ window.addEventListener('message',(e)=>{
 try{if(getVideoDB()){const _nv=document.getElementById('navDailyVideo');if(_nv)_nv.style.display='';}}catch(_e){}
 function renderDateDetail(c,ds){
   const data=learningHistory[ds];
-  if(typeof caCalendar!=="undefined"&&caCalendar[ds]){renderCADate(c,ds);return;}
+  const caOn=(typeof caCalendar!=="undefined"&&caCalendar[ds]);
   const tc=getTopicForDate(ds);
   const vd=getVideoDB();
-  // 如果有话题日历, 默认显示话题内容(课程), 可切换学习记录
+  // V4.46.0: CA/C5 同日共存 —— 有 C5 课程时先渲染课程, 底部追加 CA 卡片; 无课程时保持纯 CA 页
   if(tc){
     // nickel话题由renderNickelContent自己添加返回键,避免重复
     const backBtn = (tc.topic === 'nickel') ? '' : `<button class="back-btn" onclick="goBack()">← 返回</button>`;
@@ -5246,11 +5247,15 @@ function renderDateDetail(c,ds){
     if(data && (data.vocabNew.length||data.vocabReview.length||data.translations)){
       html += `<div style="display:flex;gap:8px;margin-bottom:12px;"><button onclick="showDateStudyRecord('${ds}')" class="trans-btn btn-small" style="font-size:12px;">📋 查看学习记录</button></div>`;
     }
-    html += `<div id="dateTopicContent_${ds.replace(/-/g,'')}"></div></div>`;
+    if(typeof dailyNotesDB!=="undefined"&&(dailyNotesDB[ds]||(data&&data.notes)))html+=`<div style="margin-bottom:12px;"><button class="bc-btn trans-btn btn-small" style="font-size:12px;" onclick="broadcastDay('${ds}')">🔊 播报今日笔记 / Dengarkan Catatan</button></div>`;
+    html += `<div id="dateTopicContent_${ds.replace(/-/g,'')}"></div>`;
+    if(caOn)html+=`<div style="margin-top:14px">${renderCACard(ds)}</div>`;
+    html += `</div>`;
     c.innerHTML = html;
     renderTopicDetail(document.getElementById('dateTopicContent_' + ds.replace(/-/g,'')), ds, tc);
     return;
   }
+  if(caOn){renderCADate(c,ds);return;}
   if(!data){
     c.innerHTML=`<div class="date-detail"><button class="back-btn" onclick="goBack()">← 返回</button><div class="card" style="text-align:center;padding:40px;color:var(--text-dim)">📅 ${ds}<br>暂无记录</div></div>`;return;
   }
@@ -6080,7 +6085,8 @@ function buildDailyNoteCard(topicKey) {
     return '<div class="card" style="margin-bottom:16px;border-left:3px solid var(--primary);">'
       + '<div class="card-header" style="flex-wrap:wrap;gap:8px;"><h2>📓 当日笔记 / Catatan Harian</h2>'
       + '<span class="badge">' + ds + '</span>'
-      + '<span class="badge">' + note.entries.length + '词条</span></div>'
+      + '<span class="badge">' + note.entries.length + '词条</span>'
+      + '<button class="bc-btn trans-btn btn-small" style="font-size:12px;margin-left:auto;" onclick="broadcastDay(\'' + ds + '\')">🔊 播报</button></div>'
       + '<div style="padding:16px;">'
       + '<div style="font-size:12px;color:var(--text-dim);margin-bottom:12px;padding:10px 12px;background:rgba(0,212,170,.06);border-radius:8px;border-left:3px solid var(--primary);">'
       + '📚 本日学习笔记（' + esc(note.source) + '）· 点击词条展开翻译、词根、变形、同反义词与场景例句</div>'
@@ -15807,6 +15813,331 @@ ukbi_certification: {
     ]
   }
 },
+  ukbi_real: {
+  title: "UKBI实战 / UKBI Riil",
+  icon: "🎯",
+  days: 3,
+  grammar: {
+    title: "UKBI实战语法 · Tata Bahasa Uji Riil",
+    rules: [
+      {
+        name: "考试指令祈使句式",
+        detail: "UKBI 界面指令全用无主语祈使句：Pilih jawaban yang benar（选择正确答案）、Tentukan bagian yang salah（确定错误部分）、Pastikan jaringan stabil（确保网络稳定）、Isi data diri dengan lengkap（完整填写资料）、Klik tautan verifikasi（点击验证链接）。动词原形开头、省略主语，是考试与公务文本的标配句式。"
+      },
+      {
+        name: "序数与部分标识",
+        detail: "五大考区用罗马数字：Seksi I Mendengarkan、Seksi II Merespons Kaidah……题目顺序：soal pertama（第一题）、soal kedua（第二题）；题组：teslet pertama/teslet selanjutnya。序数词与 ke- 前缀：pertama/kedua/ketiga/keempat。考试说明高频结构：Setiap wacana memiliki lima butir soal（每篇五题）。"
+      },
+      {
+        name: "di- 被动语态与成绩描述",
+        detail: "成绩与证书描述全用被动，隐藏施事者：skor diketahui（分数被公布）、sertifikat diterbitkan（证书被颁发）、jawaban dinilai（答案被评分）、pembayaran diverifikasi secara otomatis（付款被自动验证）、soal disajikan dalam bentuk wacana（题目以篇章形式呈现）。客观化公文语态。"
+      },
+      {
+        name: "peN--an 名词化（考试动作全家族）",
+        detail: "考试动作名词化：pendaftaran（注册←daftar）、pelaksanaan（执行←laksana）、penilaian（评分←nilai）、perekaman（录音←rekam）、persiapan（准备←siap）、pemilihan（选择←pilih）、pertanyaan（提问←tanya）、pemeringkatan（定级←peringkat）。UKBI 官方文本第一构词法。"
+      },
+      {
+        name: "时间与数量标准表达",
+        detail: "waktu maksimal 30 menit（最长30分钟）、dalam waktu 15 menit（在15分钟内）、minimal 100 kata（至少100词）、maksimal 8 wacana（最多8篇）、jumlah soal optimal 40 butir（最佳题量40道）。minimal/maksimal 前置数量是考试说明标准格式；kecepatan minimal 15 mbps（最低网速）。"
+      },
+      {
+        name: "自适应难度比较级",
+        detail: "UKBI Adaptif 用比较级描述题组难度走向：lebih mudah（更容易）、setara（相当）、lebih sulit（更难）。固定句型：dilanjutkan dengan teslet yang lebih sulit（接更难的题组）；Pada jenjang teslet yang setara secara berturut-turut selama dua kali, tes berhenti（连续两次平级题组后考试停止）。berturut-turut（连续）是停止规则关键词。"
+      }
+    ]
+  },
+  vocab: [
+    ["mendengarkan", "听（正式）", "/mɛndɛŋˈgarkan/"],
+    ["merespons", "回应", "/mərəsˈpɔns/"],
+    ["kaidah", "语法规则", "/kaɪˈdah/"],
+    ["wacana", "篇章/语篇", "/waˈtʃana/"],
+    ["dialog", "对话", "/diˈalɔg/"],
+    ["monolog", "独白", "/mɔnɔˈlɔg/"],
+    ["teslet", "题组", "/ˈtɛslɛt/"],
+    ["butir soal", "试题条目", "/ˈbutir soˈal/"],
+    ["opsi", "选项", "/ˈɔpsi/"],
+    ["jawaban", "答案", "/ˈʤawaban/"],
+    ["pemantik", "提示句", "/pəˈmantik/"],
+    ["infografik", "信息图", "/infɔˈgrafik/"],
+    ["tulisan", "文章/短文", "/tuˈlisan/"],
+    ["kalimat", "句子", "/kaˈlimat/"],
+    ["membaca", "阅读", "/mɛmbaˈtʃa/"],
+    ["menulis", "写作", "/məˈnulis/"],
+    ["berbicara", "口语/说话", "/bərbiˈtʃara/"],
+    ["presentasi", "演示/陈述", "/prɛsɛnˈtasi/"],
+    ["perekaman", "录音", "/pərɛˈkaman/"],
+    ["persiapan", "准备", "/pərsiˈapan/"],
+    ["mikrofon", "麦克风", "/mikrɔˈfɔn/"],
+    ["penyuara jemala", "头戴耳机", "/pənjuaˈra ʤəˈmala/"],
+    ["skor", "分数", "/ˈskɔr/"],
+    ["predikat", "等级称号", "/prɛdiˈkat/"],
+    ["peringkat", "排名/级别", "/pəriŋˈkat/"],
+    ["istimewa", "特优", "/istimɛˈwa/"],
+    ["unggul", "优秀", "/ˈuŋgul/"],
+    ["madya", "中级", "/ˈmadja/"],
+    ["semenjana", "一般", "/səmənˈʤana/"],
+    ["marginal", "边缘", "/marʒiˈnal/"],
+    ["terbatas", "受限", "/tɛrbaˈtas/"],
+    ["sertifikat", "证书", "/sɛrtifiˈkat/"],
+    ["paket", "套餐", "/ˈpakɛt/"],
+    ["biaya", "费用", "/biˈaja/"],
+    ["mengulang", "重考/重复", "/məŋˈulaŋ/"],
+    ["penilaian", "评分", "/pənilaiˈan/"],
+    ["kapasitas", "容量", "/kapaˈsitas/"],
+    ["kecepatan", "速度/网速", "/tʃɛtʃəpaˈtan/"]
+  ],
+  scenes: [
+    {
+      title: "听力与语法反应考场实录",
+      icon: "🎧",
+      dialogue: [
+        { speaker: "A", text: "Seksi I Mendengarkan sudah dimulai. Kamu dengar dialog pertamanya jelas?", trans: "第一部分听力已经开始了。第一个对话你听得清楚吗？" },
+        { speaker: "B", text: "Jelas. Wacana lisannya berupa empat dialog dan empat monolog. Setiap dialog dan monolog terdiri atas lima butir soal.", trans: "清楚。口语材料是四个对话和四个独白。每个对话和独白各五道题。" },
+        { speaker: "A", text: "Jadi total empat puluh butir soal untuk Seksi I?", trans: "所以第一部分总共四十道题？" },
+        { speaker: "B", text: "Ya. Waktu optimalnya tiga puluh menit. Jawaban salah tidak mengurangi skor, jadi jangan dikosongkan.", trans: "对。最佳时间三十分钟。答错不扣分，所以别留空。" },
+        { speaker: "A", text: "Aku dengar soalnya beradaptif. Kalau aku menjawab benar, teslet berikutnya lebih sulit?", trans: "我听说题目是自适应的。我答对了，下一题组会更难？" },
+        { speaker: "B", text: "Betul. Jawabanmu menentukan teslet selanjutnya: lebih mudah, setara, atau lebih sulit. Kalau setara berturut-turut dua kali, tes berhenti.", trans: "没错。你的答案决定下一题组：更容易、相当或更难。如果连续两次平级，考试就停止。" },
+        { speaker: "A", text: "Sekarang sudah masuk Seksi II Merespons Kaidah. Soalnya berupa kalimat yang mengandung bagian yang salah.", trans: "现在进入第二部分语法反应了。题目是含有错误部分的句子。" },
+        { speaker: "B", text: "Ya. Kita tentukan bagian yang salah terlebih dahulu, lalu pilih jawaban yang benar dari empat opsi.", trans: "是的。我们先确定错误部分，然后从四个选项里选正确答案。" },
+        { speaker: "A", text: "Kesalahannya biasanya soal kaidah bahasa apa?", trans: "错误 usually 是什么语法点？" },
+        { speaker: "B", text: "Macam-macam: imbuhan, pilihan kata, struktur kalimat, ejaan, dan tanda baca. Batas waktunya dua puluh menit, dua puluh lima soal.", trans: "各种各样：词缀、用词、句子结构、拼写和标点。时限二十分钟，二十五道题。" },
+        { speaker: "A", text: "Dua puluh menit untuk dua puluh lima soal? Satu soalnya kurang dari satu menit!", trans: "二十分钟二十五道题？每题不到一分钟！" },
+        { speaker: "B", text: "Justru itu. Kaidah harus sudah otomatis di kepala. Latihan soal UKBI sangat membantu kecepatannya.", trans: "就是这样。语法规则必须烂熟于心。多做 UKBI 模拟题对速度帮助很大。" },
+        { speaker: "A", text: "Kalau selesai lebih awal, bisa lanjut ke seksi berikutnya?", trans: "如果提前完成，能直接进下一部分吗？" },
+        { speaker: "B", text: "Bisa. Setelah berhenti pada teslet tertentu di Seksi II, kita otomatis beralih ke Seksi III Membaca.", trans: "可以。第二部分题组停止后，会自动切换到第三部分阅读。" }
+      ]
+    },
+    {
+      title: "阅读与写作部分交流",
+      icon: "📖",
+      dialogue: [
+        { speaker: "A", text: "Seksi III Membaca katanya paling panjang?", trans: "听说第三部分阅读最长？" },
+        { speaker: "B", text: "Ya. Soal disajikan dalam bentuk maksimal delapan wacana tulis. Setiap wacana memiliki lima butir soal.", trans: "对。题目以最多八篇书面篇章呈现。每篇五道题。" },
+        { speaker: "A", text: "Waktu optimalnya berapa?", trans: "最佳时间多少？" },
+        { speaker: "B", text: "Empat puluh lima menit, empat puluh butir soal. Wacananya tentang topik umum: sosial, budaya, ekonomi, sains.", trans: "四十五分钟，四十道题。篇章题材广泛：社会、文化、经济、科学。" },
+        { speaker: "A", text: "Strateginya baca soal dulu atau baca wacana dulu?", trans: "策略是先读题还是先读文章？" },
+        { speaker: "B", text: "Aku baca soal pertama dulu, lalu skimming wacana untuk mencari jawaban. Detail kecil biasanya tidak ditanya.", trans: "我先读第一题，然后扫读文章找答案。小细节一般不问。" },
+        { speaker: "A", text: "Sekarang masuk Seksi IV Menulis. Ada dua soal, kan?", trans: "现在进入第四部分写作。有两道题，对吧？" },
+        { speaker: "B", text: "Benar. Soal pertama: lima belas menit, minimal seratus kata. Soal kedua: dua puluh menit, minimal seratus lima puluh kata.", trans: "没错。第一题：十五分钟，至少一百词。第二题：二十分钟，至少一百五十词。" },
+        { speaker: "A", text: "Temanya dari mana?", trans: "题目主题哪来的？" },
+        { speaker: "B", text: "Dari kalimat pemantik yang disertai gambar atau infografik. Kita membuat tulisan sesuai pemantik itu.", trans: "来自配图或信息图的提示句。我们根据提示句写文章。" },
+        { speaker: "A", text: "Kalau tulisanku kurang dari seratus kata bagaimana?", trans: "如果我写的不到一百词会怎样？" },
+        { speaker: "B", text: "Kata yang kurang berarti bagian tugas belum selesai. Lebih baik sederhana tapi lengkat dan runtut daripada panjang tapi kacau.", trans: "词数不够等于任务没完成。宁可简单但通顺连贯，也不要长而混乱。" },
+        { speaker: "A", text: "Total waktu menulis tiga puluh lima menit. Cukup untuk mengetik dua tulisan?", trans: "写作总时长三十五分钟。够打两篇文章吗？" },
+        { speaker: "B", text: "Cukup kalau sudah terbiasa. Latih mengetik dan susun kerangka dulu sebelum menulis kalimat pertama.", trans: "熟练就夠。练习打字，并在写第一句前先搭好提纲。" },
+        { speaker: "A", text: "Setelah menulis selesai, kita berhenti dulu?", trans: "写作结束后我们就停了吗？" },
+        { speaker: "B", text: "Tergantung paket. Kalau Paket 2, uji selesai. Kalau Paket 3, masih ada Seksi V Berbicara.", trans: "看套餐。套餐 2 到此结束。套餐 3 还有第五部分口语。" }
+      ]
+    },
+    {
+      title: "口语录制与成绩评定",
+      icon: "🎤",
+      dialogue: [
+        { speaker: "A", text: "Ini Seksi V Berbicara terakhir. Perangkatnya siap?", trans: "这是最后一部分口语。设备准备好了吗？" },
+        { speaker: "B", text: "Siap. Mikrofon sudah dites, penyuara jemala dipakai supaya suaranya jelas.", trans: "好了。麦克风测过了，戴着耳机让声音更清楚。" },
+        { speaker: "A", text: "Ada berapa soal berbicara?", trans: "口语有几道题？" },
+        { speaker: "B", text: "Dua soal. Soal pertama: tujuh menit persiapan, tiga menit perekaman. Soal kedua: delapan menit persiapan, tujuh menit perekaman.", trans: "两道。第一题：准备七分钟、录音三分钟。第二题：准备八分钟、录音七分钟。" },
+        { speaker: "A", text: "Bentuk soalnya?", trans: "题目形式是什么？" },
+        { speaker: "B", text: "Tugas mempresentasikan topik pada kalimat pemantik yang disertai gambar atau infografik, sama seperti menulis.", trans: "根据配图或信息图的提示句演示话题，跟写作一样。" },
+        { speaker: "A", text: "Jadi aku bicara sendiri ke mikrofon dua kali?", trans: "所以要我对着麦克风自言自语两次？" },
+        { speaker: "B", text: "Bukan sendiri-sendiri, presentasi. Rekamannya dinilai penilai. Maksimal dua puluh lima menit total.", trans: "不算自言自语，是演示。录音由评分员评判。全程最多二十五分钟。" },
+        { speaker: "A", text: "Kapan skor diketahui?", trans: "什么时候出分？" },
+        { speaker: "B", text: "Paket 1 langsung setelah uji. Paket 2 maksimal sepuluh hari kerja, Paket 3 maksimal empat belas hari kerja setelah penilaian.", trans: "套餐 1 考完即出。套餐 2 最多十个工作日，套餐 3 评分后最多十四个工作日。" },
+        { speaker: "A", text: "Hasilnya dipetakan ke tujuh peringkat, ya? Dari Istimewa sampai Terbatas?", trans: "成绩划分为七个等级对吧？从特优到受限？" },
+        { speaker: "B", text: "Betul. Istimewa tujuh ratus dua puluh lima sampai delapan ratus. Terbatas dua ratus lima puluh satu sampai tiga ratus dua puluh lima.", trans: "对。特优 725 到 800。受限 251 到 325。" },
+        { speaker: "A", text: "Kalau hasilnya kurang, kapan bisa mengulang?", trans: "如果成绩不理想，什么时候能重考？" },
+        { speaker: "B", text: "Lima belas hari setelah ujian sebelumnya, dan boleh diulang sebanyak yang diinginkan.", trans: "上次考试十五天后，可以无限次重考。" },
+        { speaker: "A", text: "Sertifikatnya berlaku berapa lama?", trans: "证书有效期多久？" },
+        { speaker: "B", text: "Dua tahun. Diterbitkan setiap Jumat, Sabtu, atau Minggu dalam bentuk digital. Kita mengunduhnya dari akun UKBI masing-masing.", trans: "两年。每周五六日以数字形式颁发。从各自的 UKBI 账户下载。" },
+        { speaker: "A", text: "Teruji lebih terpuji. Ayo semangat!", trans: "考过更优秀。加油！" }
+      ]
+    }
+  ],
+  speeches: [
+    {
+      day: 1,
+      title: "听力与语法反应深度解析",
+      icon: "🎧",
+      words: 151,
+      time: 57,
+      content: "Seksi I Mendengarkan adalah gerbang pertama UKBI. Materinya wacana lisan dalam bentuk empat dialog dan empat monolog. Setiap dialog dan setiap monolog terdiri atas lima butir soal, jadi total empat puluh butir. Waktu optimal tiga puluh menit. Karena UKBI bersifat adaptif, jawaban kita menentukan teslet berikutnya: lebih mudah, setara, atau lebih sulit. Pada jenjang setara berturut-turut dua kali, tes berhenti. Jumlah optimal teslet sembilan. Strateginya: baca opsi soal sebelum audio diputar, fokus pada kata kunci, dan jangan kosongkan jawaban karena tidak ada pengurangan skor. Seksi II Merespons Kaidah berisi kalimat dengan bagian yang salah. Kita menentukan bagian yang salah terlebih dahulu, lalu memilih jawaban yang benar dari empat opsi. Waktu maksimal dua puluh menit untuk dua puluh lima soal. Kesalahan umum meliputi imbuhan, pilihan kata, struktur kalimat, ejaan, dan tanda baca. Kaidah harus otomatis, jadi latihan rutin adalah kuncinya.",
+      trans: "听力是 UKBI 的第一道关。材料为四个对话和四个独白的口语篇章。每个对话和独白各五道题，共四十道。最佳时间三十分钟。由于 UKBI 是自适应考试，我们的答案决定下一题组：更容易、相当或更难。连续两次平级题组后考试停止。最佳题组数为九个。策略是：音频播放前先看选项，抓关键词，别留空因为答错不扣分。第二部分语法反应的句子含有错误部分。我们先确定错误部分，再从四个选项中选正确答案。二十五道题最长二十分钟。常见错误包括词缀、用词、句子结构、拼写和标点。语法必须自动化，所以日常练习是关键。"
+    },
+    {
+      day: 2,
+      title: "阅读与写作深度解析",
+      icon: "📖",
+      words: 153,
+      time: 58,
+      content: "Seksi III Membaca adalah bagian terpanjang UKBI. Soal disajikan dalam bentuk maksimal delapan wacana tulis. Setiap wacana memiliki lima butir soal. Waktu optimal empat puluh lima menit untuk empat puluh soal. Topik wacana luas: sosial, budaya, ekonomi, hingga sains. Pola adaptif yang sama berlaku: teslet berikutnya tergantung jawaban kita, dan tes berhenti setelah dua kali setara berturut-turut. Strateginya: baca soal terlebih dahulu, lalu skimming untuk menemukan jawaban. Jangan terjebak membaca setiap kata. Seksi IV Menulis terdiri atas dua soal. Soal pertama: lima belas menit, minimal seratus kata. Soal kedua: dua puluh menit, minimal seratus lima puluh kata. Kedua soal berupa kalimat pemantik yang disertai gambar atau infografik. Kita membuat tulisan sesuai pemantik. Struktur yang aman: pendahuluan, dua atau tiga paragraf isi, dan penutup. Gunakan kalimat sederhana yang benar daripada kalimat rumit yang keliru. Cek jumlah kata sebelum waktu habis. Total waktu menulis tiga puluh lima menit. Setelah selesai, peserta Paket 2 mengakhiri ujian, sedangkan peserta Paket 3 melanjutkan ke Seksi V.",
+      trans: "阅读是 UKBI 最长的部分。题目以最多八篇书面篇章呈现。每篇五道题。四十题最佳时间四十五分钟。篇章题材广泛：社会、文化、经济乃至科学。同样的自适应规则适用：下一题组取决于我们的答案，连续两次平级后停止。策略是：先读题，再扫读找答案。不要逐词细读陷进去。第四部分写作含两道题。第一题：十五分钟，至少一百词。第二题：二十分钟，至少一百五十词。两题都是配图或信息图的提示句。我们根据提示句写作。稳妥结构：开头、两三段主体、结尾。用正确的简单句，不用错误的长难句。时间到前检查词数。写作总时长三十五分钟。结束后，套餐 2 的考生完成考试，套餐 3 的考生继续第五部分。"
+    },
+    {
+      day: 3,
+      title: "口语录制、套餐与等级评定",
+      icon: "🏅",
+      words: 150,
+      time: 56,
+      content: "Seksi V Berbicara adalah penutup UKBI. Soalnya tugas mempresentasikan topik pada kalimat pemantik yang disertai gambar atau infografik. Soal pertama: tujuh menit persiapan dan tiga menit perekaman. Soal kedua: delapan menit persiapan dan tujuh menit perekaman. Total maksimal dua puluh lima menit. Siapkan mikrofon dan penyuara jemala agar suara jelas. Manfaatkan waktu persiapan untuk menyusun kerangka tiga poin. Paket 1 mencakup Seksi I sampai III dengan skor langsung setelah uji. Paket 2 menambah Seksi IV, skor maksimal sepuluh hari kerja. Paket 3 lengkap, maksimal empat belas hari kerja. Hasil dipetakan ke tujuh peringkat: Istimewa tujuh ratus dua puluh lima sampai delapan ratus, Sangat Unggul, Unggul, Madya, Semenjana, Marginal, dan Terbatas dua ratus lima puluh satu sampai tiga ratus dua puluh lima. Sertifikat digital berlaku dua tahun, diterbitkan tiap Jumat Sabtu Minggu. Kita bisa mengulang lima belas hari setelah ujian sebelumnya. Teruji lebih terpuji!",
+      trans: "口语是 UKBI 的收官部分。题目是根据配图或信息图的提示句演示话题。第一题：准备七分钟、录音三分钟。第二题：准备八分钟、录音七分钟。全程最多二十五分钟。准备好麦克风和耳机让声音清晰。利用准备时间搭好三要点提纲。套餐 1 含第一到第三部分，考完即出分。套餐 2 加第四部分，最多十个工作日出分。套餐 3 最全，最多十四个工作日。成绩映射七个等级：特优 725 到 800，然后是非常优秀、优秀、中级、一般、边缘，最低受限 251 到 325。数字证书有效期两年，每周五六日颁发。上次考试十五天后可重考。考过更优秀！"
+    }
+  ],
+  quiz: {
+    title: "UKBI实战测试 (15题)",
+    questions: [
+      {
+        q: "1. Seksi I Mendengarkan 的口语材料形式是？",
+        options: [
+          "A) 8 个独白，每个 5 题",
+          "B) 4 个对话和 4 个独白，各 5 题",
+          "C) 8 篇书面篇章，各 5 题"
+        ],
+        a: 1,
+        explain: "真实考试：wacana lisan 4 dialog + 4 monolog，每段 5 butir soal，共 40 题，最佳 30 分钟。"
+      },
+      {
+        q: "2. Seksi I 的最佳时长和题量是？",
+        options: [
+          "A) 30 分钟 / 40 题",
+          "B) 45 分钟 / 40 题",
+          "C) 20 分钟 / 25 题"
+        ],
+        a: 0,
+        explain: "Seksi I Mendengarkan：30 menit / 40 butir optimal。45 分钟是 Seksi III Membaca 的数据。"
+      },
+      {
+        q: "3. UKBI Adaptif 的题组（teslet）停止规则是？",
+        options: [
+          "A) 答错 3 次即停",
+          "B) 连续两次处于同级题组即停",
+          "C) 做完固定 9 组才停"
+        ],
+        a: 1,
+        explain: "berada pada jenjang teslet yang setara secara berturut-turut selama dua kali, tes berhenti（连续两次平级停止）。"
+      },
+      {
+        q: "4. Seksi II Merespons Kaidah 的答题方式是？",
+        options: [
+          "A) 听录音选图片",
+          "B) 朗读句子评分",
+          "C) 找出句中错误部分，再从四个选项选正确答案"
+        ],
+        a: 2,
+        explain: "Soal berupa kalimat yang mengandung bagian yang salah; menentukan bagian yang salah lalu memilih jawaban benar dari empat opsi。"
+      },
+      {
+        q: "5. Seksi II 的时长和题量是？",
+        options: [
+          "A) 25 分钟 / 20 题",
+          "B) 20 分钟 / 25 题",
+          "C) 30 分钟 / 40 题"
+        ],
+        a: 1,
+        explain: "Seksi II Merespons Kaidah：waktu maksimal 20 menit, jumlah soal optimal 25。"
+      },
+      {
+        q: "6. Seksi III Membaca 的篇章上限和每篇题量是？",
+        options: [
+          "A) 最多 8 篇，每篇 5 题",
+          "B) 最多 10 篇，每篇 4 题",
+          "C) 最多 6 篇，每篇 6 题"
+        ],
+        a: 0,
+        explain: "Soal disajikan dalam bentuk maksimal 8 wacana tulis, setiap wacana memiliki 5 butir soal。最佳 45 分钟 40 题。"
+      },
+      {
+        q: "7. Seksi IV Menulis 两道题的最低词数分别是？",
+        options: [
+          "A) 50 词和 100 词",
+          "B) 100 词和 150 词",
+          "C) 150 词和 200 词"
+        ],
+        a: 1,
+        explain: "Soal pertama 15 menit minimal 100 kata; soal kedua 20 menit minimal 150 kata。总 35 分钟。"
+      },
+      {
+        q: "8. Menulis 和 Berbicara 的题目都基于什么展开？",
+        options: [
+          "A) 自由命题",
+          "B) kalimat pemantik（提示句）配 gambar/infografik",
+          "C) 听力材料复述"
+        ],
+        a: 1,
+        explain: "Soal berupa tugas sesuai kalimat pemantik yang disertai gambar/infografik（提示句+配图/信息图），写作与口语同构。"
+      },
+      {
+        q: "9. Seksi V Berbicara 第一题的时间分配是？",
+        options: [
+          "A) 准备 7 分钟 + 录音 3 分钟",
+          "B) 准备 3 分钟 + 录音 7 分钟",
+          "C) 准备 8 分钟 + 录音 7 分钟"
+        ],
+        a: 0,
+        explain: "Soal pertama: 7 menit persiapan + 3 menit perekaman；soal kedua: 8 menit persiapan + 7 menit perekaman。C 是第二题的数据。"
+      },
+      {
+        q: "10. Paket 3 比 Paket 1 多出哪些部分？",
+        options: [
+          "A) 只多 Menulis",
+          "B) 多 Menulis 和 Berbicara",
+          "C) 多 Berbicara 和 Membaca"
+        ],
+        a: 1,
+        explain: "Paket 1 = Seksi I-III；Paket 2 = +Menulis；Paket 3 = +Menulis+Berbicara（lengkap）。"
+      },
+      {
+        q: "11. Paket 2 的成绩最晚多久公布？",
+        options: [
+          "A) 考完立刻",
+          "B) 10 个工作日",
+          "C) 14 个工作日"
+        ],
+        a: 1,
+        explain: "Paket 1 即出；Paket 2 maksimal 10 hari kerja；Paket 3 maksimal 14 hari kerja。"
+      },
+      {
+        q: "12. Predikat Istimewa 的分数区间是？",
+        options: [
+          "A) 641–724",
+          "B) 725–800",
+          "C) 578–640"
+        ],
+        a: 1,
+        explain: "Istimewa 725-800；Sangat Unggul 641-724；Unggul 578-640。"
+      },
+      {
+        q: "13. 成绩等级一共几级？最低一级叫什么？",
+        options: [
+          "A) 5 级 / Marginal",
+          "B) 7 级 / Terbatas",
+          "C) 6 级 / Terendah"
+        ],
+        a: 1,
+        explain: "tujuh peringkat: Istimewa → Sangat Unggul → Unggul → Madya → Semenjana → Marginal → Terbatas(251-325)。"
+      },
+      {
+        q: "14. 重考和证书有效期的规定是？",
+        options: [
+          "A) 30 天后可重考，证书永久有效",
+          "B) 15 天后可重考，证书 2 年有效",
+          "C) 1 周后可重考，证书 5 年有效"
+        ],
+        a: 1,
+        explain: "mengulang 15 hari setelah ujian sebelumnya, sebanyak yang diinginkan; sertifikat berlaku 2 tahun。"
+      },
+      {
+        q: "15. 居家网考对网络和设备的要求是？",
+        options: [
+          "A) 手机即可，无网速要求",
+          "B) 摄像头+耳机+麦克风，网速最低 15 mbps",
+          "C) 只需纸笔，线下进行"
+        ],
+        a: 1,
+        explain: "PC/laptop berkamera、peramban mutakhir、penyuara jemala(headset)、mikrofon(Seksi V)、jaringan stabil minimal 15 mbps。"
+      }
+    ]
+  }
+}
 };
 
   const topicCalendar = {
@@ -15906,6 +16237,9 @@ ukbi_certification: {
   "2026-10-17": {topic: "ukbi_certification", day: 1, label: "🎓 UKBI认证 · 第1课 · 词汇+语法"},
   "2026-10-18": {topic: "ukbi_certification", day: 2, label: "🎓 UKBI认证 · 第2课 · 场景对话"},
   "2026-10-19": {topic: "ukbi_certification", day: 3, label: "🎓 UKBI认证 · 第3课 · 演讲+测试", allDays: true},
+  "2026-10-20": {topic: "ukbi_real", day: 1, label: "🎯 UKBI实战 · 第1课 · 听力+语法反应"},
+  "2026-10-21": {topic: "ukbi_real", day: 2, label: "🎯 UKBI实战 · 第2课 · 阅读+写作"},
+  "2026-10-22": {topic: "ukbi_real", day: 3, label: "🎯 UKBI实战 · 第3课 · 口语+套餐+等级", allDays: true},
 };
 
 
@@ -189666,7 +190000,413 @@ const bitVocabDB = {
         "cn": "主人在入口处迎接客人。"
       }
     ]
-  }
+  },
+  "jawaban": {
+  "word": "jawaban",
+  "cn": "答案",
+  "en": "answer",
+  "root": "jawab（回答）",
+  "forms": [
+    {
+      "form": "jawab",
+      "pos": "v 动词原形",
+      "mean": "回答"
+    },
+    {
+      "form": "menjawab",
+      "pos": "v 主动",
+      "mean": "回答（及物）"
+    },
+    {
+      "form": "jawaban",
+      "pos": "n 名词",
+      "mean": "答案"
+    },
+    {
+      "form": "dijawab",
+      "pos": "v 被动",
+      "mean": "被回答"
+    }
+  ],
+  "formsNote": "jawab → meN-jawab（主动）→ jawab-an（名词化）；di-jawab 被动",
+  "note": "UKBI 四选项提示固定搭配：Pilih jawaban yang benar（选择正确答案）。答错不扣分：Jawaban salah tidak mengurangi skor。",
+  "synonyms": [
+    "respons"
+  ],
+  "antonyms": [
+    "pertanyaan（提问）"
+  ],
+  "examples": [
+    {
+      "scene": "UKBI 考试",
+      "id": "Setiap butir soal memiliki empat opsi jawaban.",
+      "cn": "每道题有四个选项。"
+    },
+    {
+      "scene": "课堂核对",
+      "id": "Jawabanmu sudah benar, lanjutkan ke teslet berikutnya.",
+      "cn": "你的答案正确，请继续下一题组。"
+    }
+  ]
+},
+  "pemantik": {
+  "word": "pemantik",
+  "cn": "提示句/引导句",
+  "en": "prompt / trigger sentence",
+  "root": "pantik（触发）",
+  "forms": [
+    {
+      "form": "pantik",
+      "pos": "v 词根",
+      "mean": "触发、引燃"
+    },
+    {
+      "form": "memantik",
+      "pos": "v 主动",
+      "mean": "激发、引发"
+    },
+    {
+      "form": "pemantik",
+      "pos": "n 名词",
+      "mean": "提示句、触发器"
+    }
+  ],
+  "formsNote": "pantik → meN-pantik（主动）→ peN-pantik-an（名词：提示物/引导物）",
+  "note": "UKBI 写作与口语题的灵魂：Soal berupa kalimat pemantik yang disertai gambar atau infografik（题目为配图的提示句）。",
+  "synonyms": [
+    "petunjuk（提示）"
+  ],
+  "antonyms": [],
+  "examples": [
+    {
+      "scene": "写作考试",
+      "id": "Buatlah tulisan sesuai kalimat pemantik yang diberikan.",
+      "cn": "请根据所给提示句写文章。"
+    },
+    {
+      "scene": "口语考试",
+      "id": "Kalimat pemantik itu disertai infografik tentang ekonomi digital.",
+      "cn": "那条提示句配有数字经济的信息图。"
+    }
+  ]
+},
+  "infografik": {
+  "word": "infografik",
+  "cn": "信息图",
+  "en": "infographic",
+  "root": "info（信息）+ grafik（图表）",
+  "forms": [
+    {
+      "form": "infografik",
+      "pos": "n",
+      "mean": "信息图（单复同形）"
+    }
+  ],
+  "formsNote": "合成词：info(rmasi) + grafik，印尼语外来词直接借用",
+  "note": "UKBI Menulis/Berbicara 题配图两种形式之一：gambar atau infografik（图片或信息图）。",
+  "synonyms": [
+    "grafik informasi"
+  ],
+  "antonyms": [],
+  "examples": [
+    {
+      "scene": "口语备考",
+      "id": "Baca pemantik dan infografiknya sebelum mulai merekam.",
+      "cn": "录音前先读提示句和信息图。"
+    },
+    {
+      "scene": "写作备考",
+      "id": "Infografik itu menampilkan data pertumbuhan ekonomi.",
+      "cn": "那张信息图展示了经济增长数据。"
+    }
+  ]
+},
+  "tulisan": {
+  "word": "tulisan",
+  "cn": "文章/短文/书面作品",
+  "en": "writing / written text",
+  "root": "tulis（写）",
+  "forms": [
+    {
+      "form": "tulis",
+      "pos": "v 动词原形",
+      "mean": "写"
+    },
+    {
+      "form": "menulis",
+      "pos": "v 主动",
+      "mean": "写（及物）"
+    },
+    {
+      "form": "tulisan",
+      "pos": "n 名词",
+      "mean": "文章、书面文字"
+    },
+    {
+      "form": "ditulis",
+      "pos": "v 被动",
+      "mean": "被写"
+    },
+    {
+      "form": "penulis",
+      "pos": "n 人",
+      "mean": "作者"
+    }
+  ],
+  "formsNote": "tulis → meNulis（主动）→ tulis-an（名词）→ penulis（人）；di-tulis 被动",
+  "note": "UKBI Membaca 材料称 wacana tulis（书面篇章）；Menulis 产出 tulisan。写作题要求：minimal 100 kata（至少100词）。",
+  "synonyms": [
+    "karangan（作文）"
+  ],
+  "antonyms": [],
+  "examples": [
+    {
+      "scene": "写作考试",
+      "id": "Tulisanmu harus memiliki pendahuluan, isi, dan penutup.",
+      "cn": "你的文章必须有开头、主体和结尾。"
+    },
+    {
+      "scene": "阅读考试",
+      "id": "Wacana tulis itu membahas budaya lokal.",
+      "cn": "那篇书面篇章讲的是地方文化。"
+    }
+  ]
+},
+  "mikrofon": {
+  "word": "mikrofon",
+  "cn": "麦克风",
+  "en": "microphone",
+  "root": "mikrofon（借词，源自 microphone）",
+  "forms": [
+    {
+      "form": "mikrofon",
+      "pos": "n",
+      "mean": "麦克风"
+    },
+    {
+      "form": "mikrofonnya",
+      "pos": "n 限定",
+      "mean": "该麦克风"
+    }
+  ],
+  "formsNote": "外来借词直接入印尼语；口语简称 mik",
+  "note": "UKBI Berbicara 必查设备：Mikrofon sudah dites（麦克风已测试）。居家网考三件套之一：kamera、mikrofon、penyuara jemala。",
+  "synonyms": [],
+  "antonyms": [],
+  "examples": [
+    {
+      "scene": "口语考前",
+      "id": "Pastikan mikrofon berfungsi sebelum memulai Seksi V.",
+      "cn": "开始第五部分前确认麦克风可用。"
+    },
+    {
+      "scene": "设备调试",
+      "id": "Suaranya tidak jelas, mikrofonnya terlalu jauh.",
+      "cn": "声音不清楚，麦克风太远了。"
+    }
+  ]
+},
+  "penyuara jemala": {
+  "word": "penyuara jemala",
+  "cn": "头戴耳机",
+  "en": "headset",
+  "root": "suara（声音）+ jemala（头部）",
+  "forms": [
+    {
+      "form": "penyuara jemala",
+      "pos": "n",
+      "mean": "头戴耳机/耳麦"
+    }
+  ],
+  "formsNote": "合成词：peN-suara（发声器）+ jemala（头）= 头戴式设备；官方考试说明用词，日常口语多说 headset",
+  "note": "UKBI 官方居家网考设备要求用词：PC berkamera, peramban mutakhir, penyuara jemala。戴耳机保证录音清晰。",
+  "synonyms": [
+    "headset"
+  ],
+  "antonyms": [],
+  "examples": [
+    {
+      "scene": "设备清单",
+      "id": "Siapkan penyuara jemala agar suara perekaman jelas.",
+      "cn": "准备头戴耳机让录音声音清晰。"
+    },
+    {
+      "scene": "考前检查",
+      "id": "Tanpa penyuara jemala, hasil perekaman bisa terganggu.",
+      "cn": "没有头戴耳机，录音效果可能受影响。"
+    }
+  ]
+},
+  "mengulang": {
+  "word": "mengulang",
+  "cn": "重考/重复/再来一次",
+  "en": "to repeat / retake",
+  "root": "ulang（再、重复）",
+  "forms": [
+    {
+      "form": "ulang",
+      "pos": "v/adj 词根",
+      "mean": "重复"
+    },
+    {
+      "form": "mengulang",
+      "pos": "v 主动",
+      "mean": "重做、重考"
+    },
+    {
+      "form": "mengulangi",
+      "pos": "v 及物",
+      "mean": "重复某事"
+    },
+    {
+      "form": "diulang",
+      "pos": "v 被动",
+      "mean": "被重复"
+    },
+    {
+      "form": "ulangan",
+      "pos": "n",
+      "mean": "测验、重考"
+    }
+  ],
+  "formsNote": "ulang → meN-ulang（主动）→ di-ulang（被动）→ ulang-an（名词：测验）",
+  "note": "UKBI 重考规则：mengulang lima belas hari setelah ujian sebelumnya（上次考试十五天后可重考），sebanyak yang diinginkan（不限次数）。",
+  "synonyms": [
+    "mengulangi",
+    "mengulang kembali"
+  ],
+  "antonyms": [],
+  "examples": [
+    {
+      "scene": "成绩规划",
+      "id": "Kalau hasilnya marginal, aku akan mengulang bulan depan.",
+      "cn": "如果成绩是边缘级，我下个月会重考。"
+    },
+    {
+      "scene": "考试规则",
+      "id": "Peserta boleh mengulang ujian tanpa batas jumlah.",
+      "cn": "考生可不限次数重考。"
+    }
+  ]
+},
+  "zona waktu": {
+  "word": "zona waktu",
+  "cn": "时区",
+  "en": "time zone",
+  "root": "zona（区域，借词）+ waktu（时间）",
+  "forms": [
+    {
+      "form": "zona waktu",
+      "pos": "n",
+      "mean": "时区"
+    }
+  ],
+  "formsNote": "偏正复合词：zona（区域）+ waktu（时间）；印尼横跨 3 个时区：WIB/WITA/WIT",
+  "note": "UKBI 考试日程按 5 个 zona waktu 分列（雅加达、望加锡、登巴萨、索龙等），报名与开考时间必须对号入座。",
+  "synonyms": [],
+  "antonyms": [],
+  "examples": [
+    {
+      "scene": "报名核对",
+      "id": "Periksa jadwal sesuai zona waktumu sebelum mendaftar.",
+      "cn": "报名前按你的时区核对时间表。"
+    },
+    {
+      "scene": "出差备考",
+      "id": "Di Morowali kita pakai zona waktu WITA.",
+      "cn": "在 Morowali 我们用的是 WITA 时区。"
+    }
+  ]
+},
+  "kecepatan": {
+  "word": "kecepatan",
+  "cn": "速度/网速",
+  "en": "speed",
+  "root": "cepat（快）",
+  "forms": [
+    {
+      "form": "cepat",
+      "pos": "adj 形容词",
+      "mean": "快"
+    },
+    {
+      "form": "kecepatan",
+      "pos": "n 名词",
+      "mean": "速度"
+    },
+    {
+      "form": "mencepatkan",
+      "pos": "v 使动",
+      "mean": "使加快"
+    },
+    {
+      "form": "lebih cepat",
+      "pos": "比较级",
+      "mean": "更快"
+    }
+  ],
+  "formsNote": "cepat（形容词）→ ke-cepat-an（名词化：速度）",
+  "note": "UKBI 居家网考硬性指标：kecepatan minimal 15 mbps（最低网速 15 mbps）。jaringan harus stabil（网络必须稳定）。",
+  "synonyms": [
+    "kelajuan"
+  ],
+  "antonyms": [
+    "kelambatan（缓慢）"
+  ],
+  "examples": [
+    {
+      "scene": "考前自检",
+      "id": "Kecepatan internetmu perlu diuji sebelum hari ujian.",
+      "cn": "考试日前需要测一下你的网速。"
+    },
+    {
+      "scene": "园区办公",
+      "id": "Kecepatan jaringan di site cukup stabil untuk video call.",
+      "cn": "园区的网络速度开视频会足够稳定。"
+    }
+  ]
+},
+  "jaringan": {
+  "word": "jaringan",
+  "cn": "网络/关系网",
+  "en": "network",
+  "root": "jaring（网）",
+  "forms": [
+    {
+      "form": "jaring",
+      "pos": "n 词根",
+      "mean": "网"
+    },
+    {
+      "form": "jaringan",
+      "pos": "n",
+      "mean": "网络"
+    },
+    {
+      "form": "menjaring",
+      "pos": "v 主动",
+      "mean": "撒网、招募"
+    }
+  ],
+  "formsNote": "jaring → jaring-an（名词化：网络/体系）；meN-jaring（撒网→引申招募）",
+  "note": "UKBI 考试指令：Pastikan jaringan stabil（确保网络稳定）。商务高频：jaringan bisnis（商务关系网）、jaringan kerja（工作网络）。",
+  "synonyms": [
+    "network"
+  ],
+  "antonyms": [],
+  "examples": [
+    {
+      "scene": "考前准备",
+      "id": "Pastikan jaringan stabil sebelum login ke aplikasi ujian.",
+      "cn": "登录考试软件前确保网络稳定。"
+    },
+    {
+      "scene": "商务场景",
+      "id": "Jaringan mitra lokal sangat penting untuk proyek baru.",
+      "cn": "当地合作伙伴网络对新项目很重要。"
+    }
+  ]
+}
 
 };
 
@@ -190457,9 +191197,11 @@ function renderAbout(c){
 }
 
 function renderVersion(c){
-  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.45.1 / Versi</span></div>
+  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.46.0 / Versi</span></div>
     <div style="padding:16px;">
       <div style="margin-bottom:14px;padding:14px;background:rgba(34,197,94,.10);border-radius:10px;border-left:3px solid var(--success)">
+        <div style="font-size:15px;font-weight:700;color:var(--success);margin-bottom:6px">V4.46.0 (2026-10-20)</div>
+        <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">双任务: ①UKBI实战课程(topic ukbi_real)10/20-22上线 —— 真实考试五大部分拆三天(Day1 听力4对话4独白40题+语法反应25题 / Day2 阅读8篇章40题+写作100+150词 / Day3 口语录制2题+套餐/七级评定/重考规则) · 38核心词(28沿用+10新词BIT九字段入库 bitVocabDB 2806→2816) · 3场景48句+3演讲452词+语法6规则+15题测试 · C5 v2.1合规核心词双库全可查 ②CA/C5同日共存 —— 日期页不再CA独占, C5课程+CA卡片同屏呈现 ③当日笔记一键语音播报 —— 日期页+📓笔记卡双入口, 日记+BIT词条链式TTS(id/zh交替 onend+150ms衔接 导航自动停止) · check_syntax PASS · E2E冒烟全PASS</div>
         <div style="font-size:15px;font-weight:700;color:var(--success);margin-bottom:6px">V4.45.1 (2026-10-20)</div>
         <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">CA路由热修: parseRoute 兼容井号双写法 — 站内导航约定为#ca/(无斜杠, replace("#","")后h="ca/..."), 我的CA链接写成#/ca/(h="/ca/...")导致startsWith("ca/")永不命中→落入default渲染主页, 表现为"点击没反应"(用户实测上报) · 修复: startsWith同时匹配"ca/"与"/ca/"+去前导斜杠 · node验证8种hash全路由正确 · 同类教训: 改路由前必须实测站内hash约定(现有reviewmindmap/date分支也只认无斜杠写法)</div>
         <div style="font-size:15px;font-weight:700;color:var(--success);margin-bottom:6px">V4.45.0 (2026-10-20)</div>
@@ -198207,20 +198949,29 @@ function caSubmit(){
 }
 
 // 日历日期页 CA 分支
-function renderCADate(c,ds){
-  caInjectStyles();
+function renderCACard(ds){
   const info=caCalendar[ds];const t=caData[info.topic];const d=t["day"+info.day];
-  c.innerHTML=`<div style="max-width:860px;margin:0 auto;padding:0 4px">
-<div class="card"><div class="card-header"><h2>📅 学习记录 / Catatan Belajar</h2><span class="badge">${ds}</span></div>
-<div style="font-size:13px;color:var(--text-dim)">${ds} · 星期一至星期日 · <span style="color:#c4b5fd">🚀 CA 进阶课程日</span></div></div>
-<div class="card" style="border:1px solid rgba(167,139,250,.4);background:linear-gradient(135deg,rgba(167,139,250,.1),rgba(0,212,170,.06))">
+  return `<div class="card" style="border:1px solid rgba(167,139,250,.4);background:linear-gradient(135deg,rgba(167,139,250,.1),rgba(0,212,170,.06))">
 <div class="card-header"><h2>${t.icon} ${caE(t.title)}</h2><span class="badge">CA · Day ${info.day}/${t.days}</span></div>
 <div style="font-size:16px;font-weight:700;margin:6px 0">${caE(d.theme)}</div>
 <div style="font-size:12px;color:var(--text-light);line-height:1.8">词汇 ${d.vocab.length} · 词组 ${d.phrases.length} · 句型 ${d.patterns.length} · 表达 ${d.expressions.length} · 词缀 ${d.affixes.length} · 一测 ${d.quiz.length} 题</div>
 <button class="ca-tab" style="margin-top:10px;padding:10px 20px;font-size:14px" onclick="location.hash='#/ca/${info.topic}/${info.day}'">▶ 进入 CA Day ${info.day} 课程</button>
-</div></div>`;
+</div>`;
+}
+function renderCADate(c,ds){
+  caInjectStyles();
+  if(!caCalendar[ds]){c.innerHTML=`<div class="date-detail"><button class="back-btn" onclick="goBack()">← 返回</button><div class="card" style="text-align:center;padding:40px;color:var(--text-dim)">📅 ${ds}<br>CA 数据缺失</div></div>`;return;}
+  c.innerHTML=`<div class="date-detail"><button class="back-btn" onclick="goBack()">← 返回</button><div style="font-size:13px;color:var(--text-dim);margin:10px 0 12px">${ds} · <span style="color:#c4b5fd">🚀 CA 进阶课程日</span></div>${renderCACard(ds)}</div>`;
 }
 
+</script>
+<script>
+/* V4.46.0 当日笔记一键语音播报: 日记+BIT词条链式TTS(id/zh交替, onend+150ms 衔接) */
+let _bcList=[],_bcIdx=0,_bcPlaying=false;
+function bcSetBtn(on){document.querySelectorAll(".bc-btn").forEach(function(b){if(!b.dataset.orig)b.dataset.orig=b.textContent;b.textContent=on?"\u23F9 停止播报":b.dataset.orig;});}
+function bcStop(){_bcPlaying=false;_bcIdx=0;if(window.speechSynthesis){try{speechSynthesis.cancel()}catch(e){}}bcSetBtn(false);}
+function bcNext(){if(!_bcPlaying)return;if(_bcIdx>=_bcList.length){bcStop();if(typeof showToast==="function")showToast("\\u2705 播报完成");return;}var seg=_bcList[_bcIdx++];var u=new SpeechSynthesisUtterance(seg.t);u.lang=seg.l;u.rate=0.92;u.pitch=1;u.onend=function(){setTimeout(bcNext,150)};u.onerror=function(){setTimeout(bcNext,150)};try{window.speechSynthesis.speak(u)}catch(e){bcNext();}}
+function broadcastDay(ds){if(_bcPlaying){bcStop();return;}var list=[];var d=(typeof learningHistory!=="undefined")?learningHistory[ds]:null;if(d&&d.notes)list.push({t:d.notes,l:"zh-CN"});if(typeof dailyNotesDB!=="undefined"&&dailyNotesDB[ds]&&dailyNotesDB[ds].entries){dailyNotesDB[ds].entries.forEach(function(e){list.push({t:e.word,l:"id-ID"});if(e.cn)list.push({t:e.cn,l:"zh-CN"});if(e.root)list.push({t:String(e.root).replace(/\uff08[^\uff09]*\uff09|\([^)]*\)/g,""),l:"id-ID"});(e.examples||[]).slice(0,2).forEach(function(x){if(x&&x.id)list.push({t:x.id,l:"id-ID"});if(x&&x.cn)list.push({t:x.cn,l:"zh-CN"});});});}if(!list.length){if(typeof showToast==="function")showToast("当日无笔记可播报");return;}if(!window.speechSynthesis){if(typeof showToast==="function")showToast("\\u274C 浏览器不支持语音朗读");return;}window.speechSynthesis.cancel();try{window.speechSynthesis.resume()}catch(e){}_bcList=list;_bcIdx=0;_bcPlaying=true;bcSetBtn(true);bcNext();}
 </script>
 </body>
 </html>
