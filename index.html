@@ -6,7 +6,7 @@
 <meta http-equiv="Expires" content="0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LEO-BIR V4.46.1</title>
+<title>LEO-BIR V4.46.2</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -276,7 +276,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="sidebar-header">
     <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <h1>LEO-BIR</h1>
-    <div class="ver">LEO-BIR V4.46.1 · 1020每日笔记21词</div>
+    <div class="ver">LEO-BIR V4.46.2 · 播报归位日记页+跟随高亮</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -5255,7 +5255,15 @@ function renderDateDetail(c,ds){
     renderTopicDetail(document.getElementById('dateTopicContent_' + ds.replace(/-/g,'')), ds, tc);
     return;
   }
-  if(caOn){renderCADate(c,ds);return;}
+  if(caOn){
+    renderCADate(c,ds);
+    // V4.46.2: CA 日若有日记/BIT笔记 —— 底部补日记区+播报按钮
+    const _hasNote=(data&&data.notes)||(typeof dailyNotesDB!=="undefined"&&dailyNotesDB[ds]);
+    if(_hasNote){
+      c.innerHTML+=`<div style="margin-top:14px;"><div style="margin-bottom:12px;"><button class="bc-btn trans-btn btn-small" style="font-size:12px;" onclick="broadcastDay('${ds}')">🔊 播报今日笔记 / Dengarkan Catatan</button></div>${(data&&data.notes)?`<div class="card" style="margin-bottom:12px;"><div style="padding:14px;font-size:13px;background:rgba(0,212,170,.08);border-left:3px solid var(--primary);border-radius:8px;">${data.notes}</div></div>`:""}${(typeof buildDailyNoteCardForDate==="function")?buildDailyNoteCardForDate(ds):""}</div>`;
+    }
+    return;
+  }
   if(!data){
     c.innerHTML=`<div class="date-detail"><button class="back-btn" onclick="goBack()">← 返回</button><div class="card" style="text-align:center;padding:40px;color:var(--text-dim)">📅 ${ds}<br>暂无记录</div></div>`;return;
   }
@@ -5269,7 +5277,11 @@ function showDateStudyRecord(ds, container){
   let vh="";
   if(data.vocabNew.length){vh+=`<h3 style="color:var(--primary);margin:16px 0 10px;font-size:15px">🆕 新学(${data.vocabNew.length})</h3><div class="word-grid">`;data.vocabNew.forEach(w=>{const v=vocabDB[w.toLowerCase()]||vocabDB[w.charAt(0).toUpperCase()+w.slice(1)]||vocabDB[w];if(v)vh+=`<div class="word-card" onclick="showTip('${w.replace(/'/g,"\'")}')"><div class="w-word">${w} <span class="w-ipa">${v.ipa||""}</span></div><div class="w-mean">🇨🇳 ${v.cn||""}</div></div>`;else vh+=`<div class="word-card"><div class="w-word">${w}</div></div>`;});vh+=`</div>`;}
   if(data.vocabReview.length){vh+=`<h3 style="color:var(--accent);margin:16px 0 10px;font-size:15px">🔄 复习(${data.vocabReview.length})</h3><div class="word-grid">`;data.vocabReview.forEach(w=>{const v=vocabDB[w.toLowerCase()]||vocabDB[w];if(v)vh+=`<div class="word-card" onclick="showTip('${w.replace(/'/g,"\'")}')"><div class="w-word">${w}</div><div class="w-mean">🇨🇳 ${v.cn||""}</div></div>`;else vh+=`<div class="word-card"><div class="w-word">${w}</div></div>`;});vh+=`</div>`;}
-  c.innerHTML=`<div class="date-detail"><button class="back-btn" onclick="goBack()">← 返回 / Kembali</button><div class="card"><div class="card-header"><h2>📅 ${ds}</h2><span class="badge">学习记录 / Riwayat</span></div>${data.notes?`<div style="background:rgba(0,212,170,.08);border-radius:8px;padding:12px;margin-bottom:14px;border-left:3px solid var(--primary);font-size:13px">${data.notes}</div>`:""}<div style="display:flex;gap:20px;margin-bottom:14px;font-size:13px;color:var(--text-dim)"><span>🆕 <strong style="color:var(--primary)">${data.vocabNew.length}</strong> 新词 / baru</span><span>🔄 <strong style="color:var(--accent)">${data.vocabReview.length}</strong> 复习 / ulang</span><span>🌐 <strong style="color:var(--info)">${data.translations}</strong> 翻译 / terjemah</span></div>${vh}</div></div>`;
+  // V4.46.2: 日记页 = 播报入口正位 —— 有日记或BIT笔记即出播报按钮, 并渲染当日BIT词条卡
+  const _hasBc=(data.notes)||(typeof dailyNotesDB!=="undefined"&&dailyNotesDB[ds]);
+  const _bcBtn=_hasBc?`<div style="margin-bottom:12px;"><button class="bc-btn trans-btn btn-small" style="font-size:12px;" onclick="broadcastDay('${ds}')">🔊 播报今日笔记 / Dengarkan Catatan</button></div>`:"";
+  const _noteCard=(typeof buildDailyNoteCardForDate==="function"&&dailyNotesDB[ds])?buildDailyNoteCardForDate(ds):"";
+  c.innerHTML=`<div class="date-detail"><button class="back-btn" onclick="goBack()">← 返回 / Kembali</button>${_bcBtn}<div class="card"><div class="card-header"><h2>📅 ${ds}</h2><span class="badge">学习记录 / Riwayat</span></div>${data.notes?`<div style="background:rgba(0,212,170,.08);border-radius:8px;padding:12px;margin-bottom:14px;border-left:3px solid var(--primary);font-size:13px">${data.notes}</div>`:""}<div style="display:flex;gap:20px;margin-bottom:14px;font-size:13px;color:var(--text-dim)"><span>🆕 <strong style="color:var(--primary)">${data.vocabNew.length}</strong> 新词 / baru</span><span>🔄 <strong style="color:var(--accent)">${data.vocabReview.length}</strong> 复习 / ulang</span><span>🌐 <strong style="color:var(--info)">${data.translations}</strong> 翻译 / terjemah</span></div>${vh}</div>${_noteCard}</div>`;
 }
 
 function renderTranslate(c){
@@ -6030,21 +6042,15 @@ function toggleDailyNote(id) {
   el.style.display = el.style.display === "none" ? "block" : "none";
 }
 
-function buildDailyNoteCard(topicKey) {
-  if (typeof dailyNotesDB === "undefined" || !dailyNotesDB) return "";
-  var dates = Object.keys(topicCalendar).filter(function (d) {
-    return topicCalendar[d] && topicCalendar[d].topic === topicKey && dailyNotesDB[d];
-  }).sort();
-  if (!dates.length) return "";
-  var esc = function (s) {
-    return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-  };
-  var rich = function (s) {
-    return esc(s).replace(/\*\*(.+?)\*\*/g, '<strong style="color:var(--primary)">$1</strong>');
-  };
-  return dates.map(function (ds) {
-    var note = dailyNotesDB[ds];
-    var entriesHtml = note.entries.map(function (e, i) {
+function dnEsc(s) {
+  return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+function dnRich(s) {
+  return dnEsc(s).replace(/\*\*(.+?)\*\*/g, '<strong style="color:var(--primary)">$1</strong>');
+}
+// V4.46.2: 单条词条渲染 —— 外层带锚点 id="dnw-<ds>-<i>" 供播报跟随定位
+function buildNoteEntryHtml(e, i, ds) {
+  var esc = dnEsc, rich = dnRich;
       var detailId = "dn-" + ds + "-" + i;
       var formsHtml = "";
       if (e.forms && e.forms.length) {
@@ -6070,8 +6076,8 @@ function buildDailyNoteCard(topicKey) {
             + '<div style="color:var(--text);margin-top:3px;">' + rich(x.id) + '</div>'
             + '<div style="color:var(--text-dim);">' + esc(x.cn) + '</div></div>';
         }).join("") + '</div>' : "";
-      return '<div style="border:1px solid var(--border);border-radius:8px;margin-bottom:6px;overflow:hidden;">'
-        + '<div onclick="toggleDailyNote(\'' + detailId + '\')" style="padding:10px 12px;cursor:pointer;display:flex;align-items:center;gap:8px;transition:background .15s;" onmouseenter="this.style.background=\'var(--bg-elev)\'" onmouseleave="this.style.background=\'transparent\'">'
+      return '<div class="dn-entry" id="dnw-' + ds + '-' + i + '" style="border:1px solid var(--border);border-radius:8px;margin-bottom:6px;overflow:hidden;">'
+        + '<div class="dn-head" onclick="toggleDailyNote(\'' + detailId + '\')" style="padding:10px 12px;cursor:pointer;display:flex;align-items:center;gap:8px;transition:background .15s;" onmouseenter="this.style.background=\'var(--bg-elev)\'" onmouseleave="this.style.background=\'transparent\'">'
         + '<span style="font-size:11px;color:var(--text-dim);min-width:22px;">' + String(i + 1).padStart(2, "0") + '</span>'
         + '<span style="font-size:14px;font-weight:700;color:var(--primary);">' + esc(e.word) + '</span>'
         + '<span style="font-size:12px;color:var(--text);">' + esc(e.cn) + '</span>'
@@ -6082,16 +6088,29 @@ function buildDailyNoteCard(topicKey) {
         + '<div style="font-size:12px;color:var(--text);background:rgba(0,212,170,.06);border-left:2px solid var(--primary);padding:6px 8px;border-radius:6px;margin:6px 0;line-height:1.6;">🌱 词根：' + rich(e.root) + '</div>'
         + formsHtml + formsNoteHtml + noteHtml + synHtml + antHtml + exHtml
         + '</div></div>';
-    }).join("");
-    return '<div class="card" style="margin-bottom:16px;border-left:3px solid var(--primary);">'
-      + '<div class="card-header" style="flex-wrap:wrap;gap:8px;"><h2>📓 当日笔记 / Catatan Harian</h2>'
-      + '<span class="badge">' + ds + '</span>'
-      + '<span class="badge">' + note.entries.length + '词条</span></div>'
-      + '<div style="padding:16px;">'
-      + '<div style="font-size:12px;color:var(--text-dim);margin-bottom:12px;padding:10px 12px;background:rgba(0,212,170,.06);border-radius:8px;border-left:3px solid var(--primary);">'
-      + '📚 本日学习笔记（' + esc(note.source) + '）· 点击词条展开翻译、词根、变形、同反义词与场景例句</div>'
-      + entriesHtml + '</div></div>';
-  }).join("");
+}
+// V4.46.2: 按日期渲染当日笔记卡（日记页/CA日/课程页三处共用）
+function buildDailyNoteCardForDate(ds) {
+  if (typeof dailyNotesDB === "undefined" || !dailyNotesDB || !dailyNotesDB[ds]) return "";
+  var note = dailyNotesDB[ds];
+  var esc = dnEsc;
+  var entriesHtml = note.entries.map(function (e, i) { return buildNoteEntryHtml(e, i, ds); }).join("");
+  return '<div class="card" style="margin-bottom:16px;border-left:3px solid var(--primary);">'
+    + '<div class="card-header" style="flex-wrap:wrap;gap:8px;"><h2>📓 当日笔记 / Catatan Harian</h2>'
+    + '<span class="badge">' + ds + '</span>'
+    + '<span class="badge">' + note.entries.length + '词条</span></div>'
+    + '<div style="padding:16px;">'
+    + '<div style="font-size:12px;color:var(--text-dim);margin-bottom:12px;padding:10px 12px;background:rgba(0,212,170,.06);border-radius:8px;border-left:3px solid var(--primary);">'
+    + '📚 本日学习笔记（' + esc(note.source) + '）· 点击词条展开翻译、词根、变形、同反义词与场景例句</div>'
+    + entriesHtml + '</div></div>';
+}
+function buildDailyNoteCard(topicKey) {
+  if (typeof dailyNotesDB === "undefined" || !dailyNotesDB) return "";
+  var dates = Object.keys(topicCalendar).filter(function (d) {
+    return topicCalendar[d] && topicCalendar[d].topic === topicKey && dailyNotesDB[d];
+  }).sort();
+  if (!dates.length) return "";
+  return dates.map(function (ds) { return buildDailyNoteCardForDate(ds); }).join("");
 }
 
 function startTopicQuiz(topicKey) {
@@ -192037,9 +192056,11 @@ function renderAbout(c){
 }
 
 function renderVersion(c){
-  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.46.1 / Versi</span></div>
+  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.46.2 / Versi</span></div>
     <div style="padding:16px;">
       <div style="margin-bottom:14px;padding:14px;background:rgba(34,197,94,.10);border-radius:10px;border-left:3px solid var(--success)">
+        <div style="font-size:15px;font-weight:700;color:var(--success);margin-bottom:6px">V4.46.2 (2026-10-21)</div>
+        <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">播报两项修正(用户实测上报): ①入口归位日历日记页 —— 纯日记日(showDateStudyRecord)新增🔊按钮+当日BIT词条卡, CA日共存补日记区+按钮, 每天的日记对应一个播报 ②内容净化 —— 只播日记+BIT字段, 词根仅"干净单词形"才播(括号/中文/空格一律不播, 修"saj"类非词乱播) ③播报跟随 —— 播到哪个词, 词条卡自动滚动居中+高亮描边+自动展开BIT详情(bcFocusWord scrollIntoView) · 词条锚点 id=dnw-date-idx · check_syntax PASS</div>
         <div style="font-size:15px;font-weight:700;color:var(--success);margin-bottom:6px">V4.46.1 (2026-10-20)</div>
         <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">1020每日笔记21词(BIT V1.0定稿+BIO双审): UKBI实战日 —— riil真实/pemeringkatan排名/hak setara bagi平等权利(连字符归并)/berturut-turut连续/mampun古体=mampu/berjabat(berjabat tangan握手)/panco扳手腕(KBBI berpanco)/cubit掐/sentil弹·数落/toyor戳/menghancurkan摧毁/terhadap对·对于(勘误terhatap→d)/bertengkar吵架 · sedang扩充"中等"义(rendah-sedang-tinggi等级语境) · 13新词入库 bitVocabDB 2816→2829 · RCO对账21/21逐词映射相符 · check_syntax PASS</div>
         <div style="font-size:15px;font-weight:700;color:var(--success);margin-bottom:6px">V4.46.0 (2026-10-20)</div>
@@ -199807,13 +199828,25 @@ function renderCADate(c,ds){
 }
 
 </script>
+<style>
+/* V4.46.2 播报跟随高亮 */
+.dn-entry{transition:box-shadow .3s,background .3s;}
+.dn-entry.bc-hl{border-color:var(--primary)!important;box-shadow:0 0 0 2px rgba(0,212,170,.45),0 4px 14px rgba(0,212,170,.15);background:rgba(0,212,170,.05);}
+.dn-entry.bc-hl .dn-head{background:rgba(0,212,170,.10);}
+</style>
 <script>
 /* V4.46.0 当日笔记一键语音播报: 日记+BIT词条链式TTS(id/zh交替, onend+150ms 衔接) */
-let _bcList=[],_bcIdx=0,_bcPlaying=false;
-function bcSetBtn(on){document.querySelectorAll(".bc-btn").forEach(function(b){if(!b.dataset.orig)b.dataset.orig=b.textContent;b.textContent=on?"\u23F9 停止播报":b.dataset.orig;});}
-function bcStop(){_bcPlaying=false;_bcIdx=0;if(window.speechSynthesis){try{speechSynthesis.cancel()}catch(e){}}bcSetBtn(false);}
-function bcNext(){if(!_bcPlaying)return;if(_bcIdx>=_bcList.length){bcStop();if(typeof showToast==="function")showToast("\\u2705 播报完成");return;}var seg=_bcList[_bcIdx++];var u=new SpeechSynthesisUtterance(seg.t);u.lang=seg.l;u.rate=0.92;u.pitch=1;u.onend=function(){setTimeout(bcNext,150)};u.onerror=function(){setTimeout(bcNext,150)};try{window.speechSynthesis.speak(u)}catch(e){bcNext();}}
-function broadcastDay(ds){if(_bcPlaying){bcStop();return;}var list=[];var d=(typeof learningHistory!=="undefined")?learningHistory[ds]:null;if(d&&d.notes)list.push({t:d.notes,l:"zh-CN"});if(typeof dailyNotesDB!=="undefined"&&dailyNotesDB[ds]&&dailyNotesDB[ds].entries){dailyNotesDB[ds].entries.forEach(function(e){list.push({t:e.word,l:"id-ID"});if(e.cn)list.push({t:e.cn,l:"zh-CN"});if(e.root)list.push({t:String(e.root).replace(/\uff08[^\uff09]*\uff09|\([^)]*\)/g,""),l:"id-ID"});(e.examples||[]).slice(0,2).forEach(function(x){if(x&&x.id)list.push({t:x.id,l:"id-ID"});if(x&&x.cn)list.push({t:x.cn,l:"zh-CN"});});});}if(!list.length){if(typeof showToast==="function")showToast("当日无笔记可播报");return;}if(!window.speechSynthesis){if(typeof showToast==="function")showToast("\\u274C 浏览器不支持语音朗读");return;}window.speechSynthesis.cancel();try{window.speechSynthesis.resume()}catch(e){}_bcList=list;_bcIdx=0;_bcPlaying=true;bcSetBtn(true);bcNext();}
+/* V4.46.2 播报升级: 内容=日记+BIT字段(词根仅干净单词才播) · 跟随滚动高亮+自动展开BIT */
+let _bcList=[],_bcIdx=0,_bcPlaying=false,_bcCurW=-1;
+function bcSetBtn(on){document.querySelectorAll(".bc-btn").forEach(function(b){if(!b.dataset.orig)b.dataset.orig=b.textContent;b.textContent=on?"⏹ 停止播报":b.dataset.orig;});}
+function bcClearHl(){document.querySelectorAll(".dn-entry.bc-hl").forEach(function(x){x.classList.remove("bc-hl");});}
+function bcStop(){_bcPlaying=false;_bcIdx=0;_bcCurW=-1;if(window.speechSynthesis){try{speechSynthesis.cancel()}catch(e){}}bcSetBtn(false);bcClearHl();}
+// 跟随定位: 滚动到当前词条 + 高亮 + 自动展开 BIT 详情
+function bcFocusWord(ds,i){var el=document.getElementById("dnw-"+ds+"-"+i);if(!el)return;bcClearHl();el.classList.add("bc-hl");var det=document.getElementById("dn-"+ds+"-"+i);if(det&&det.style.display==="none")det.style.display="block";try{el.scrollIntoView({behavior:"smooth",block:"center"});}catch(e){}}
+function bcNext(){if(!_bcPlaying)return;if(_bcIdx>=_bcList.length){bcStop();if(typeof showToast==="function")showToast("✅ 播报完成");return;}var seg=_bcList[_bcIdx++];if(seg.w!==undefined&&seg.w!==_bcCurW){_bcCurW=seg.w;bcFocusWord(seg.ds,seg.w);}var u=new SpeechSynthesisUtterance(seg.t);u.lang=seg.l;u.rate=0.92;u.pitch=1;u.onend=function(){setTimeout(bcNext,150)};u.onerror=function(){setTimeout(bcNext,150)};try{window.speechSynthesis.speak(u)}catch(e){bcNext();}}
+// 词根是否可播: 仅当为干净单词形(纯字母/连字符≥3字符、无括号中文空格、≠词目)
+function bcRootOk(r,w){if(!r)return false;var s=String(r).trim();if(!/^[A-Za-z][A-Za-z-]{2,}$/.test(s))return false;if(s===w)return false;return true;}
+function broadcastDay(ds){if(_bcPlaying){bcStop();return;}var list=[];var d=(typeof learningHistory!=="undefined")?learningHistory[ds]:null;if(d&&d.notes)list.push({t:d.notes,l:"zh-CN"});if(typeof dailyNotesDB!=="undefined"&&dailyNotesDB[ds]&&dailyNotesDB[ds].entries){dailyNotesDB[ds].entries.forEach(function(e,i){list.push({t:e.word,l:"id-ID",ds:ds,w:i});if(e.cn)list.push({t:e.cn,l:"zh-CN",ds:ds,w:i});if(bcRootOk(e.root,e.word))list.push({t:String(e.root).trim(),l:"id-ID",ds:ds,w:i});(e.examples||[]).slice(0,2).forEach(function(x){if(x&&x.id)list.push({t:x.id,l:"id-ID",ds:ds,w:i});if(x&&x.cn)list.push({t:x.cn,l:"zh-CN",ds:ds,w:i});});});}if(!list.length){if(typeof showToast==="function")showToast("当日无笔记可播报");return;}if(!window.speechSynthesis){if(typeof showToast==="function")showToast("❌ 浏览器不支持语音朗读");return;}window.speechSynthesis.cancel();try{window.speechSynthesis.resume()}catch(e){}_bcList=list;_bcIdx=0;_bcPlaying=true;_bcCurW=-1;bcSetBtn(true);bcNext();}
 </script>
 </body>
 </html>
