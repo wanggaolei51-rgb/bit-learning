@@ -6,7 +6,7 @@
 <meta http-equiv="Expires" content="0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LEO-BIR V4.45.0</title>
+<title>LEO-BIR V4.45.1</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -276,7 +276,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="sidebar-header">
     <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <h1>LEO-BIR</h1>
-    <div class="ver">LEO-BIR V4.45.0 · CA进阶课话题1上线</div>
+    <div class="ver">LEO-BIR V4.45.1 · CA路由热修</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -5082,7 +5082,7 @@ function initHistory(){
 function saveHistory(){localStorage.setItem("bir_h3",JSON.stringify(learningHistory))}
 function saveWB(){localStorage.setItem("bir_wb3",JSON.stringify(wordBank))}
 
-function parseRoute(){const h=location.hash.replace("#","")||"home";if(h.startsWith("date/"))return{route:"date",param:h.replace("date/","")};if(h.startsWith("reviewmindmap/"))return{route:"reviewmindmap",param:h.replace("reviewmindmap/","")};if(h.startsWith("ca/")){const cp=h.split("/");return{route:"ca",param:cp[1]||"meet",param2:cp[2]||"1"}}return{route:h,param:null}}
+function parseRoute(){const h=location.hash.replace("#","")||"home";if(h.startsWith("date/"))return{route:"date",param:h.replace("date/","")};if(h.startsWith("reviewmindmap/"))return{route:"reviewmindmap",param:h.replace("reviewmindmap/","")};if(h.startsWith("ca/")||h.startsWith("/ca/")){const cp=h.replace(/^\//,"").split("/");return{route:"ca",param:cp[1]||"meet",param2:cp[2]||"1"}}return{route:h,param:null}}
 function navigate(r,p){
   const prev=currentRoute||'home';
   const currentPath=r+(p?('/'+p):'');
@@ -190457,9 +190457,11 @@ function renderAbout(c){
 }
 
 function renderVersion(c){
-  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.45.0 / Versi</span></div>
+  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.45.1 / Versi</span></div>
     <div style="padding:16px;">
       <div style="margin-bottom:14px;padding:14px;background:rgba(34,197,94,.10);border-radius:10px;border-left:3px solid var(--success)">
+        <div style="font-size:15px;font-weight:700;color:var(--success);margin-bottom:6px">V4.45.1 (2026-10-20)</div>
+        <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">CA路由热修: parseRoute 兼容井号双写法 — 站内导航约定为#ca/(无斜杠, replace("#","")后h="ca/..."), 我的CA链接写成#/ca/(h="/ca/...")导致startsWith("ca/")永不命中→落入default渲染主页, 表现为"点击没反应"(用户实测上报) · 修复: startsWith同时匹配"ca/"与"/ca/"+去前导斜杠 · node验证8种hash全路由正确 · 同类教训: 改路由前必须实测站内hash约定(现有reviewmindmap/date分支也只认无斜杠写法)</div>
         <div style="font-size:15px;font-weight:700;color:var(--success);margin-bottom:6px">V4.45.0 (2026-10-20)</div>
         <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">CA进阶课程首期上线(CA策略v1.1九项裁定全落实): 话题1见面Bertemu×3天(10/20-22) · 独立caData+caCalendar数据结构+独立路由ca/topic/day · 每日四块: 词汇15(BIT核心词源自C5 topic.vocab+新增入库)/词组10/万能句型12(基础3折1:进阶6:专业3)/常用表达15(基础3折1:进阶8:专业4)/词缀10(30词缀3天一轮·coef1·月度封顶5+月末评判)/每日一测15题按当日内容 · 新增22词BIT九字段入库bitVocabDB(2784→2806) · 主页CA入口+日历CA紫点+日期页CA分支(纯增量4处) · 平行新开零影响C5课程 · 部署前全量备份backup-V4.44.0-preCA2-20261020-072942.tar.gz · check_syntax PASS</div>
         <div style="font-size:15px;font-weight:700;color:var(--success);margin-bottom:6px">V4.44.0 (2026-10-19)</div>
