@@ -6,7 +6,7 @@
 <meta http-equiv="Expires" content="0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LEO-BIR V4.46.3</title>
+<title>LEO-BIR V4.46.4</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -276,7 +276,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="sidebar-header">
     <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <h1>LEO-BIR</h1>
-    <div class="ver">LEO-BIR V4.46.3 · 播报归位笔记卡(课时测试页)</div>
+    <div class="ver">LEO-BIR V4.46.4 · 地图瓦片换源 Esri(全球可达)</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -192059,9 +192059,11 @@ function renderAbout(c){
 }
 
 function renderVersion(c){
-  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.46.3 / Versi</span></div>
+  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.46.4 / Versi</span></div>
     <div style="padding:16px;">
       <div style="margin-bottom:14px;padding:14px;background:rgba(34,197,94,.10);border-radius:10px;border-left:3px solid var(--success)">
+        <div style="font-size:15px;font-weight:700;color:var(--success);margin-bottom:6px">V4.46.4 (2026-10-21)</div>
+        <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">地图瓦片换源(用户实测上报失效): 行业数据页背景图+7月23日全球镍产业地图共用 CARTO dark_all、电力地图用 OSM官方瓦片 —— 用户网络下全部不可达(实测: OSM/CARTO/维基/Wikimedia 均超时, 境内出口封锁) —— 5处tileLayer全换 Esri 全球CDN: 镍/行业数据4处→ Canvas/World_Dark_Gray_Base(暗色, maxZoom16, 视觉验证婆罗洲/文莱轮廓正常) · 电力地图→ World_Street_Map(街道图, maxZoom18) · 注意: Esri路径序为 {z}/{y}/{x} · 备选已测: OSM法国镜像可用 · check_syntax PASS</div>
         <div style="font-size:15px;font-weight:700;color:var(--success);margin-bottom:6px">V4.46.3 (2026-10-21)</div>
         <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">播报入口二次归位(用户实测上报仍错位): ①按钮下沉到「当日笔记卡」内部 buildDailyNoteCardForDate —— 每篇日记一个🔊播报, 卡片渲染到哪按钮跟到哪: 课时测试页(startTopicQuiz 当日笔记区)/日记页(showDateStudyRecord)/CA日 三处共用一处源码 ②主页日历课程分支(renderDateDetail tc)不再挂按钮 —— 该页无词条卡, 播了无可跟随(上版错位的根因) ③跟随联动保持 —— 播到哪个词, 词条卡自动滚动居中+高亮描边+自动展开BIT详情 ④纯日记文本日(无BIT词条)在日记页/CA日兜底补按钮 · check_syntax PASS</div>
         <div style="font-size:15px;font-weight:700;color:var(--success);margin-bottom:6px">V4.46.2 (2026-10-21)</div>
@@ -194880,8 +194882,9 @@ function initPowerMap() {
   if (!container) return;
   container.innerHTML = '';
   const pm = L.map('power-map').setView([-2.5, 118], 5);
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; OpenStreetMap contributors',
+  // V4.46.4: OSM官方瓦片境内不可达 → 换 Esri World Street Map(全球CDN, 中/印尼均可达)
+  L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+    attribution: 'Esri, HERE, Garmin, OSM contributors',
     maxZoom: 18
   }).addTo(pm);
   window.powerMap = pm;
@@ -195076,8 +195079,9 @@ function initNickelMap() {
   if (!mapContainer) return;
   mapContainer.innerHTML = '';
   nickelMap = L.map('leaflet-map').setView([-2.5, 120], 5);
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-    attribution: '&copy; OSM & CARTO', subdomains: 'abcd', maxZoom: 19
+  // V4.46.4: CARTO瓦片失效 → Esri Dark Gray(暗色配主题, 全球可达)
+  L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+    attribution: 'Esri, Garmin, OSM contributors', maxZoom: 16
   }).addTo(nickelMap);
 
   let indoCount = 0, globalCount = 0, totalCap = 0;
@@ -195593,8 +195597,9 @@ function initFullNickelMap() {
   if (!mapContainer) return;
   mapContainer.innerHTML = '';
   nickelMap = L.map('industryMap').setView([-2.5, 120], 5);
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-    attribution: '&copy; OSM & CARTO', subdomains: 'abcd', maxZoom: 19
+  // V4.46.4: CARTO瓦片失效 → Esri Dark Gray
+  L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+    attribution: 'Esri, Garmin, OSM contributors', maxZoom: 16
   }).addTo(nickelMap);
   let indoCount = 0, globalCount = 0, totalCap = 0;
   Object.keys(nickelData.indonesia).forEach(key => {
@@ -195712,8 +195717,9 @@ function switchIndustryTab(tab){
   if(!industryMap){
     container.innerHTML = '';
     industryMap = L.map('industryMapContainer').setView([-2.5, 120], 5);
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-      attribution: '&copy; OSM & CARTO', subdomains: 'abcd', maxZoom: 19
+    // V4.46.4: CARTO瓦片失效 → Esri Dark Gray
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+      attribution: 'Esri, Garmin, OSM contributors', maxZoom: 16
     }).addTo(industryMap);
   }
   
@@ -195894,8 +195900,9 @@ function switchNickelTab(){
   if(industryMap) { industryMap.remove(); industryMap = null; }
   container.innerHTML = '';
   industryMap = L.map('industryMapContainer').setView([-2.5, 120], 5);
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-    attribution: '&copy; OSM & CARTO', subdomains: 'abcd', maxZoom: 19
+  // V4.46.4: CARTO瓦片失效 → Esri Dark Gray
+  L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+    attribution: 'Esri, Garmin, OSM contributors', maxZoom: 16
   }).addTo(industryMap);
   
   let indoCount = 0, globalCount = 0, totalCap = 0;
