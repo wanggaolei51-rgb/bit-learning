@@ -6,7 +6,7 @@
 <meta http-equiv="Expires" content="0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LEO-BIR V4.46.5</title>
+<title>LEO-BIR V4.46.6</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -276,7 +276,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="sidebar-header">
     <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <h1>LEO-BIR</h1>
-    <div class="ver">LEO-BIR V4.46.5 · 光伏专版(100GW国家规划绿图)</div>
+    <div class="ver">LEO-BIR V4.46.6 · 1021笔记19词(UKBI写作)</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -6036,6 +6036,7 @@ function showBITInfo(word){
 
 
 
+
 // ===== 每日笔记模块（BIT V1.0 生产 → BIO 审查定稿） V4.26.0 新增 =====
 function toggleDailyNote(id) {
   var el = document.getElementById(id);
@@ -6043,15 +6044,21 @@ function toggleDailyNote(id) {
   el.style.display = el.style.display === "none" ? "block" : "none";
 }
 
-function dnEsc(s) {
-  return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-}
-function dnRich(s) {
-  return dnEsc(s).replace(/\*\*(.+?)\*\*/g, '<strong style="color:var(--primary)">$1</strong>');
-}
-// V4.46.2: 单条词条渲染 —— 外层带锚点 id="dnw-<ds>-<i>" 供播报跟随定位
-function buildNoteEntryHtml(e, i, ds) {
-  var esc = dnEsc, rich = dnRich;
+function buildDailyNoteCard(topicKey) {
+  if (typeof dailyNotesDB === "undefined" || !dailyNotesDB) return "";
+  var dates = Object.keys(topicCalendar).filter(function (d) {
+    return topicCalendar[d] && topicCalendar[d].topic === topicKey && dailyNotesDB[d];
+  }).sort();
+  if (!dates.length) return "";
+  var esc = function (s) {
+    return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+  };
+  var rich = function (s) {
+    return esc(s).replace(/\*\*(.+?)\*\*/g, '<strong style="color:var(--primary)">$1</strong>');
+  };
+  return dates.map(function (ds) {
+    var note = dailyNotesDB[ds];
+    var entriesHtml = note.entries.map(function (e, i) {
       var detailId = "dn-" + ds + "-" + i;
       var formsHtml = "";
       if (e.forms && e.forms.length) {
@@ -6077,8 +6084,8 @@ function buildNoteEntryHtml(e, i, ds) {
             + '<div style="color:var(--text);margin-top:3px;">' + rich(x.id) + '</div>'
             + '<div style="color:var(--text-dim);">' + esc(x.cn) + '</div></div>';
         }).join("") + '</div>' : "";
-      return '<div class="dn-entry" id="dnw-' + ds + '-' + i + '" style="border:1px solid var(--border);border-radius:8px;margin-bottom:6px;overflow:hidden;">'
-        + '<div class="dn-head" onclick="toggleDailyNote(\'' + detailId + '\')" style="padding:10px 12px;cursor:pointer;display:flex;align-items:center;gap:8px;transition:background .15s;" onmouseenter="this.style.background=\'var(--bg-elev)\'" onmouseleave="this.style.background=\'transparent\'">'
+      return '<div style="border:1px solid var(--border);border-radius:8px;margin-bottom:6px;overflow:hidden;">'
+        + '<div onclick="toggleDailyNote(\'' + detailId + '\')" style="padding:10px 12px;cursor:pointer;display:flex;align-items:center;gap:8px;transition:background .15s;" onmouseenter="this.style.background=\'var(--bg-elev)\'" onmouseleave="this.style.background=\'transparent\'">'
         + '<span style="font-size:11px;color:var(--text-dim);min-width:22px;">' + String(i + 1).padStart(2, "0") + '</span>'
         + '<span style="font-size:14px;font-weight:700;color:var(--primary);">' + esc(e.word) + '</span>'
         + '<span style="font-size:12px;color:var(--text);">' + esc(e.cn) + '</span>'
@@ -6089,31 +6096,16 @@ function buildNoteEntryHtml(e, i, ds) {
         + '<div style="font-size:12px;color:var(--text);background:rgba(0,212,170,.06);border-left:2px solid var(--primary);padding:6px 8px;border-radius:6px;margin:6px 0;line-height:1.6;">🌱 词根：' + rich(e.root) + '</div>'
         + formsHtml + formsNoteHtml + noteHtml + synHtml + antHtml + exHtml
         + '</div></div>';
-}
-// V4.46.2: 按日期渲染当日笔记卡（日记页/CA日/课程页三处共用）
-function buildDailyNoteCardForDate(ds) {
-  if (typeof dailyNotesDB === "undefined" || !dailyNotesDB || !dailyNotesDB[ds]) return "";
-  var note = dailyNotesDB[ds];
-  var esc = dnEsc;
-  var entriesHtml = note.entries.map(function (e, i) { return buildNoteEntryHtml(e, i, ds); }).join("");
-  return '<div class="card" style="margin-bottom:16px;border-left:3px solid var(--primary);">'
-    + '<div class="card-header" style="flex-wrap:wrap;gap:8px;"><h2>📓 当日笔记 / Catatan Harian</h2>'
-    + '<span class="badge">' + ds + '</span>'
-    + '<span class="badge">' + note.entries.length + '词条</span></div>'
-    + '<div style="padding:16px;">'
-    // V4.46.3: 播报按钮归位 —— 每篇日记对应一个播报, 随卡片出现在课时测试页/日记页/CA日
-    + '<div style="margin-bottom:12px;"><button class="bc-btn trans-btn btn-small" style="font-size:12px;" onclick="broadcastDay(\'' + ds + '\')">🔊 播报今日笔记 / Dengarkan Catatan</button></div>'
-    + '<div style="font-size:12px;color:var(--text-dim);margin-bottom:12px;padding:10px 12px;background:rgba(0,212,170,.06);border-radius:8px;border-left:3px solid var(--primary);">'
-    + '📚 本日学习笔记（' + esc(note.source) + '）· 点击词条展开翻译、词根、变形、同反义词与场景例句</div>'
-    + entriesHtml + '</div></div>';
-}
-function buildDailyNoteCard(topicKey) {
-  if (typeof dailyNotesDB === "undefined" || !dailyNotesDB) return "";
-  var dates = Object.keys(topicCalendar).filter(function (d) {
-    return topicCalendar[d] && topicCalendar[d].topic === topicKey && dailyNotesDB[d];
-  }).sort();
-  if (!dates.length) return "";
-  return dates.map(function (ds) { return buildDailyNoteCardForDate(ds); }).join("");
+    }).join("");
+    return '<div class="card" style="margin-bottom:16px;border-left:3px solid var(--primary);">'
+      + '<div class="card-header" style="flex-wrap:wrap;gap:8px;"><h2>📓 当日笔记 / Catatan Harian</h2>'
+      + '<span class="badge">' + ds + '</span>'
+      + '<span class="badge">' + note.entries.length + '词条</span></div>'
+      + '<div style="padding:16px;">'
+      + '<div style="font-size:12px;color:var(--text-dim);margin-bottom:12px;padding:10px 12px;background:rgba(0,212,170,.06);border-radius:8px;border-left:3px solid var(--primary);">'
+      + '📚 本日学习笔记（' + esc(note.source) + '）· 点击词条展开翻译、词根、变形、同反义词与场景例句</div>'
+      + entriesHtml + '</div></div>';
+  }).join("");
 }
 
 function startTopicQuiz(topicKey) {
@@ -77467,6 +77459,837 @@ const dailyNotesDB = {
         ]
       }
     ]
+  },
+  "2026-10-21": {
+    "date": "2026-10-21",
+    "topicKey": "ukbi_real",
+    "source": "BIT V1.0 + BIO 审查",
+    "entries": [
+      {
+        "word": "menyesuaikan",
+        "cn": "调整；使适应；使相符",
+        "en": "to adjust; to adapt; to conform",
+        "root": "sesuai（合适；相符）",
+        "forms": [
+          {
+            "form": "sesuai",
+            "pos": "形",
+            "mean": "合适；符合"
+          },
+          {
+            "form": "menyesuaikan",
+            "pos": "动",
+            "mean": "使适应；调整"
+          },
+          {
+            "form": "disesuaikan",
+            "pos": "被动态",
+            "mean": "被调整"
+          },
+          {
+            "form": "penyesuaian",
+            "pos": "名",
+            "mean": "调整；适应"
+          }
+        ],
+        "formsNote": "",
+        "note": "meN-…-kan 使动动词；常用搭配 menyesuaikan diri dengan…（使自己适应…）",
+        "synonyms": [
+          "mengadaptasikan",
+          "menempatkan"
+        ],
+        "antonyms": [
+          "menyimpang"
+        ],
+        "examples": [
+          {
+            "scene": "写作评分",
+            "id": "Penulis harus menyesuaikan gaya bahasa dengan jenis teks.",
+            "cn": "作者须根据文体调整语言风格。"
+          },
+          {
+            "scene": "园区商务",
+            "id": "Kami menyesuaikan jadwal pengiriman dengan kondisi cuaca di lapangan.",
+            "cn": "我们根据现场天气调整发货日程。"
+          }
+        ]
+      },
+      {
+        "word": "foodcourt",
+        "cn": "美食广场；餐饮区",
+        "en": "food court",
+        "root": "food court（英语外来语）",
+        "forms": [
+          {
+            "form": "food court / foodcourt",
+            "pos": "名",
+            "mean": "美食广场"
+          }
+        ],
+        "formsNote": "—（外来语；无派生形态）",
+        "note": "印尼语日常拼写多分写为 food court；KBBI 未收录。购物/园区综合体里的集中餐饮区。",
+        "synonyms": [
+          "pusat kuliner",
+          "area makan"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "scene": "园区日常",
+            "id": "Food court di kawasan industri buka pukul enam pagi.",
+            "cn": "工业园区的美食广场早上六点开门。"
+          },
+          {
+            "scene": "生活场景",
+            "id": "Kami makan siang di foodcourt mal dekat kantor.",
+            "cn": "我们在办公楼附近商场的美食广场吃午饭。"
+          }
+        ]
+      },
+      {
+        "word": "macam-macam",
+        "cn": "各种各样；种类繁多",
+        "en": "various; all kinds of",
+        "root": "macam（种类；样式）",
+        "forms": [
+          {
+            "form": "macam",
+            "pos": "名",
+            "mean": "种类"
+          },
+          {
+            "form": "macam-macam",
+            "pos": "名/形",
+            "mean": "各种各类"
+          },
+          {
+            "form": "bermacam-macam",
+            "pos": "形",
+            "mean": "形形色色的"
+          }
+        ],
+        "formsNote": "",
+        "note": "完全重叠式（reduplikasi）构词，macam→macam-macam 表复数繁杂。",
+        "synonyms": [
+          "berbagai",
+          "pelbagai",
+          "beraneka"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "scene": "考试语境",
+            "id": "Bagian membaca memuat macam-macam teks: narasi, deskripsi, hingga argumen.",
+            "cn": "阅读部分包含各类文本：叙述、描写乃至议论文。"
+          },
+          {
+            "scene": "园区商务",
+            "id": "Pabrik ini memproduksi macam-macam suku cadang mesin.",
+            "cn": "这家工厂生产各种机器零配件。"
+          }
+        ]
+      },
+      {
+        "word": "ejaan",
+        "cn": "拼写；拼写法；正字法",
+        "en": "spelling; orthography",
+        "root": "eja（拼写）",
+        "forms": [
+          {
+            "form": "eja",
+            "pos": "动",
+            "mean": "拼（写）"
+          },
+          {
+            "form": "ejaan",
+            "pos": "名",
+            "mean": "拼写法"
+          },
+          {
+            "form": "mengeja",
+            "pos": "动",
+            "mean": "拼写"
+          },
+          {
+            "form": "EYD",
+            "pos": "专名",
+            "mean": "印尼语正字法（Ejaan Yang Disempurnakan）"
+          }
+        ],
+        "formsNote": "",
+        "note": "EYD = Ejaan Yang Disempurnakan《完善拼写法》，印尼语官方正字规范。",
+        "synonyms": [
+          "pelafalan（发音，近义）"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "scene": "写作评分",
+            "id": "Kesalahan ejaan akan mengurangi nilai karangan.",
+            "cn": "拼写错误会扣作文分。"
+          },
+          {
+            "scene": "考试提醒",
+            "id": "Periksa ejaan kata sebelum menyerahkan lembar jawaban.",
+            "cn": "交答题卡前检查单词拼写。"
+          }
+        ]
+      },
+      {
+        "word": "tanda-baca",
+        "cn": "标点符号",
+        "en": "punctuation mark",
+        "root": "tanda（记号）+ baca（读）",
+        "forms": [
+          {
+            "form": "tanda baca",
+            "pos": "名",
+            "mean": "标点符号"
+          },
+          {
+            "form": "tanda koma",
+            "pos": "名",
+            "mean": "逗号"
+          },
+          {
+            "form": "tanda titik",
+            "pos": "名",
+            "mean": "句号"
+          }
+        ],
+        "formsNote": "",
+        "note": "KBBI 规范分写 tanda baca；本键保留连字符为学习检索键。",
+        "synonyms": [
+          "—（无严格同义）"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "scene": "写作评分",
+            "id": "Penggunaan tanda baca yang tepat membuat paragraf mudah dipahami.",
+            "cn": "正确的标点使段落易懂。"
+          },
+          {
+            "scene": "易混提示",
+            "id": "Tanda baca bukan sekadar hiasan; ia mengatur irama kalimat.",
+            "cn": "标点不是装饰，它掌控句子节奏。"
+          }
+        ]
+      },
+      {
+        "word": "tenda",
+        "cn": "帐篷",
+        "en": "tent",
+        "root": "tenda（词根不可拆；外来语源 [待核实]）",
+        "forms": [
+          {
+            "form": "tenda",
+            "pos": "名",
+            "mean": "帐篷"
+          },
+          {
+            "form": "tenda perkemahan",
+            "pos": "名组",
+            "mean": "露营帐篷"
+          }
+        ],
+        "formsNote": "—（名词；无派生形态）",
+        "note": "常用搭配 mendirikan tenda（搭帐篷）、bongkar tenda（拆帐篷）。",
+        "synonyms": [
+          "—（无严格同义）"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "scene": "园区施工",
+            "id": "Para pekerja mendirikan tenda di dekat area pembangunan.",
+            "cn": "工人们在施工区附近搭起帐篷。"
+          },
+          {
+            "scene": "户外场景",
+            "id": "Tenda besar itu dipakai untuk rapat lapangan darurat.",
+            "cn": "那顶大帐篷用于野外应急会议。"
+          }
+        ]
+      },
+      {
+        "word": "bahkan",
+        "cn": "甚至；而且；何况",
+        "en": "even; moreover",
+        "root": "bahkan（不可拆副词）",
+        "forms": [
+          {
+            "form": "bahkan",
+            "pos": "副",
+            "mean": "甚至"
+          }
+        ],
+        "formsNote": "—（副词；无派生形态）",
+        "note": "递进连词，用于强调出乎意料的极端情况；区别于 malah（反而）。",
+        "synonyms": [
+          "malahan",
+          "apalagi"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "scene": "阅读语境",
+            "id": "Penulis bahkan memberikan contoh dari pengalamannya sendiri.",
+            "cn": "作者甚至举了自己经历的例子。"
+          },
+          {
+            "scene": "园区商务",
+            "id": "Biayanya turun drastis, bahkan lebih rendah dari perkiraan audit.",
+            "cn": "费用大幅下降，甚至低于审计预估。"
+          }
+        ]
+      },
+      {
+        "word": "justru-itu",
+        "cn": "恰恰是；正是那样；反而是",
+        "en": "precisely; that is exactly; on the contrary",
+        "root": "justru（恰恰；反而）",
+        "forms": [
+          {
+            "form": "justru",
+            "pos": "副",
+            "mean": "反而；偏偏"
+          },
+          {
+            "form": "justru itu",
+            "pos": "短语",
+            "mean": "恰恰因此；正是那样"
+          }
+        ],
+        "formsNote": "",
+        "note": "KBBI 规范分写 justru itu；连字符键为学习检索归并。",
+        "synonyms": [
+          "justru",
+          "tepat itu",
+          "malah"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "scene": "论证写作",
+            "id": "Justru itu, data lapangan membuktikan sebaliknya.",
+            "cn": "恰恰相反，现场数据证明了相反结论。"
+          },
+          {
+            "scene": "课堂对话",
+            "id": "\"Soalnya mudah?\" \"Justru itu, yang mudah sering menipu.\"",
+            "cn": "“题目简单？”“正是如此，简单的题常有陷阱。”"
+          }
+        ]
+      },
+      {
+        "word": "beralih",
+        "cn": "转移；转向；切换",
+        "en": "to shift; to switch; to move on",
+        "root": "alih（转移；换）",
+        "forms": [
+          {
+            "form": "alih",
+            "pos": "名/动",
+            "mean": "转移"
+          },
+          {
+            "form": "beralih",
+            "pos": "动",
+            "mean": "转向；切换"
+          },
+          {
+            "form": "mengalihkan",
+            "pos": "动",
+            "mean": "使转移；转接"
+          },
+          {
+            "form": "alih tugas",
+            "pos": "名组",
+            "mean": "移交任务"
+          }
+        ],
+        "formsNote": "",
+        "note": "ber- + alih 表自发转变；mengalihkan 使动。",
+        "synonyms": [
+          "berpindah",
+          "beralih bentuk"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "scene": "考试流程",
+            "id": "Setelah 45 menit, peserta beralih ke bagian menulis.",
+            "cn": "45 分钟后考生转到写作部分。"
+          },
+          {
+            "scene": "园区商务",
+            "id": "Perusahaan beralih ke pemasok lokal untuk mengurangi biaya.",
+            "cn": "公司转向本地供应商以降低成本。"
+          }
+        ]
+      },
+      {
+        "word": "disajikan",
+        "cn": "被呈现；被提供；被端上（饭菜）",
+        "en": "(to be) presented; served",
+        "root": "saji（端上；呈献）",
+        "forms": [
+          {
+            "form": "saji",
+            "pos": "动",
+            "mean": "端上"
+          },
+          {
+            "form": "sajikan",
+            "pos": "动",
+            "mean": "请用；呈上（祈使/词根）"
+          },
+          {
+            "form": "menyajikan",
+            "pos": "动",
+            "mean": "呈现；上（菜）"
+          },
+          {
+            "form": "disajikan",
+            "pos": "被动态",
+            "mean": "被呈现"
+          },
+          {
+            "form": "sajian",
+            "pos": "名",
+            "mean": "供品；呈献物"
+          }
+        ],
+        "formsNote": "",
+        "note": "di-…-kan 被动式；UKBI 题型描述高频：soal disajikan dalam bentuk…（题目以…形式呈现）。",
+        "synonyms": [
+          "ditampilkan",
+          "diberikan"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "scene": "考试题型",
+            "id": "Soal menulis disajikan dalam bentuk infografik dan kalimat pemantik.",
+            "cn": "写作题以信息图和提示句形式呈现。"
+          },
+          {
+            "scene": "园区日常",
+            "id": "Makan siang disajikan jam sebelas di kantin.",
+            "cn": "午餐十一点在食堂供应。"
+          }
+        ]
+      },
+      {
+        "word": "-dalam-bentuk",
+        "cn": "以…形式；呈…形态",
+        "en": "in the form of",
+        "root": "bentuk（形式；形状）",
+        "forms": [
+          {
+            "form": "dalam bentuk",
+            "pos": "介短",
+            "mean": "以…形式"
+          },
+          {
+            "form": "bentuk",
+            "pos": "名",
+            "mean": "形式；形状"
+          },
+          {
+            "form": "berbentuk",
+            "pos": "形",
+            "mean": "呈…形状的"
+          },
+          {
+            "form": "membentuk",
+            "pos": "动",
+            "mean": "形成；塑造"
+          }
+        ],
+        "formsNote": "",
+        "note": "用户输入键带前导连字符（-dalam-bentuk）为学习检索归并；KBBI 规范分写 dalam bentuk。",
+        "synonyms": [
+          "dalam wujud",
+          "berupa"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "scene": "考试题型",
+            "id": "Jawaban ditulis dalam bentuk paragraf runtut.",
+            "cn": "答案以连贯段落形式书写。"
+          },
+          {
+            "scene": "园区汇报",
+            "id": "Laporan progres dikirim dalam bentuk PDF setiap Jumat.",
+            "cn": "进度报告每周五以 PDF 形式发送。"
+          }
+        ]
+      },
+      {
+        "word": "skimming",
+        "cn": "略读；快速浏览（抓主旨的阅读技巧）",
+        "en": "skimming (rapid reading for gist)",
+        "root": "skim（英语外来语；掠读）",
+        "forms": [
+          {
+            "form": "skimming",
+            "pos": "名/动",
+            "mean": "略读"
+          },
+          {
+            "form": "scanning",
+            "pos": "名",
+            "mean": "扫读（查特定信息）"
+          }
+        ],
+        "formsNote": "—（外来术语；无派生形态）",
+        "note": "skimming 抓主旨大意（baca cepat untuk gagasan utama）；scanning 找特定细节（tanggal/angka/nama）。",
+        "synonyms": [
+          "membaca cepat"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "scene": "阅读技巧",
+            "id": "Gunakan teknik skimming untuk menemukan ide pokok tiap paragraf.",
+            "cn": "用略读技巧抓每段主旨。"
+          },
+          {
+            "scene": "备考建议",
+            "id": "Latihan skimming 10 menit sehari sangat membantu bagian membaca UKBI.",
+            "cn": "每天练 10 分钟略读对 UKBI 阅读部分帮助很大。"
+          }
+        ]
+      },
+      {
+        "word": "temanya",
+        "cn": "它的主题；其主题",
+        "en": "its theme; the theme of it",
+        "root": "tema（主题；题目）",
+        "forms": [
+          {
+            "form": "tema",
+            "pos": "名",
+            "mean": "主题"
+          },
+          {
+            "form": "temanya",
+            "pos": "名",
+            "mean": "该主题；其主题（-nya 属格）"
+          }
+        ],
+        "formsNote": "",
+        "note": "-nya 为第三人称属格/指示后缀：tema+nya = 该主题。",
+        "synonyms": [
+          "topiknya",
+          "judulnya"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "scene": "写作任务",
+            "id": "Pilihlah tema yang familiar agar karangan mengalir lancar.",
+            "cn": "选熟悉的主题让文章行文流畅。"
+          },
+          {
+            "scene": "审题提醒",
+            "id": "Baca pemantik dengan teliti; temanya tersembunyi di sana.",
+            "cn": "仔细读提示句，主题就藏在里面。"
+          }
+        ]
+      },
+      {
+        "word": "kencang",
+        "cn": "快；强劲；响亮",
+        "en": "fast; strong; loud",
+        "root": "kencang（词根不可拆）",
+        "forms": [
+          {
+            "form": "kencang",
+            "pos": "形",
+            "mean": "快；强劲"
+          },
+          {
+            "form": "mengencangkan",
+            "pos": "动",
+            "mean": "加紧；拧紧"
+          },
+          {
+            "form": "kekencangan",
+            "pos": "名",
+            "mean": "强度"
+          }
+        ],
+        "formsNote": "",
+        "note": "形容速度快/风大/心跳急/声音响；口语常用 \"hujan kencang\"（大雨倾盆）。",
+        "synonyms": [
+          "deras（水流/雨大）",
+          "keras（声响）"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "scene": "阅读速度",
+            "id": "Dengan latihan, kecepatan membaca Anda akan semakin kencang.",
+            "cn": "坚持练习，阅读速度会越来越快。"
+          },
+          {
+            "scene": "园区日常",
+            "id": "Angin kencang menggoyangkan crane di pelabuhan.",
+            "cn": "强风撼动着港口的吊车。"
+          }
+        ]
+      },
+      {
+        "word": "sederhana",
+        "cn": "简单的；简朴的；朴实的",
+        "en": "simple; plain; modest",
+        "root": "sederhana（词根不可拆）",
+        "forms": [
+          {
+            "form": "sederhana",
+            "pos": "形",
+            "mean": "简单；简朴"
+          },
+          {
+            "form": "kesederhanaan",
+            "pos": "名",
+            "mean": "简朴"
+          },
+          {
+            "form": "menyederhanakan",
+            "pos": "动",
+            "mean": "简化"
+          },
+          {
+            "form": "disederhanakan",
+            "pos": "被动态",
+            "mean": "被简化"
+          }
+        ],
+        "formsNote": "",
+        "note": "UKBI 写作推崇 gaya bahasa sederhana（朴实文风）——不卖弄辞藻，表意清楚为先。",
+        "synonyms": [
+          "mudah",
+          "ringkas"
+        ],
+        "antonyms": [
+          "rumit",
+          "sulit"
+        ],
+        "examples": [
+          {
+            "scene": "写作建议",
+            "id": "Gunakan kalimat sederhana; kejelasan lebih penting daripada gaya.",
+            "cn": "用简单句；清楚比华丽重要。"
+          },
+          {
+            "scene": "园区生活",
+            "id": "Ia tinggal di rumah sederhana dekat pabrik.",
+            "cn": "他住在工厂附近一栋简朴的房子里。"
+          }
+        ]
+      },
+      {
+        "word": "lengkap-dan-runtut",
+        "cn": "完整且连贯（文章结构评价用语）",
+        "en": "complete and coherent",
+        "root": "lengkap（完整）+ runtut（连贯；有条理）",
+        "forms": [
+          {
+            "form": "lengkap",
+            "pos": "形",
+            "mean": "完整"
+          },
+          {
+            "form": "kelengkapan",
+            "pos": "名",
+            "mean": "完整性"
+          },
+          {
+            "form": "runtut",
+            "pos": "形",
+            "mean": "连贯"
+          },
+          {
+            "form": "keruntutan",
+            "pos": "名",
+            "mean": "连贯性"
+          }
+        ],
+        "formsNote": "",
+        "note": "UKBI 写作评分标准用语：isi lengkap（内容完整）+ urutan runtut（条理连贯）；连字符键为复合学习键，规范书写分写 dan 连接。",
+        "synonyms": [
+          "utuh dan sistematis"
+        ],
+        "antonyms": [
+          "kacau（混乱）"
+        ],
+        "examples": [
+          {
+            "scene": "写作评分",
+            "id": "Karangan yang lengkap dan runtut akan mendapat nilai tinggi.",
+            "cn": "完整连贯的文章得高分。"
+          },
+          {
+            "scene": "汇报场景",
+            "id": "Susun laporan secara lengkap dan runtut: latar belakang, data, lalu rekomendasi.",
+            "cn": "完整连贯地组织报告：背景、数据、然后是建议。"
+          }
+        ]
+      },
+      {
+        "word": "kacau",
+        "cn": "混乱；乱套；慌乱",
+        "en": "chaotic; messy; panicked",
+        "root": "kacau（词根不可拆）",
+        "forms": [
+          {
+            "form": "kacau",
+            "pos": "形",
+            "mean": "混乱"
+          },
+          {
+            "form": "kekacauan",
+            "pos": "名",
+            "mean": "混乱状态"
+          },
+          {
+            "form": "mengacaukan",
+            "pos": "动",
+            "mean": "搅乱"
+          },
+          {
+            "form": "kacau-balau",
+            "pos": "形",
+            "mean": "一团糟"
+          }
+        ],
+        "formsNote": "",
+        "note": "可指场面混乱，也可指心慌 (\"hatinya kacau\")。",
+        "synonyms": [
+          "ruwet",
+          "berantakan"
+        ],
+        "antonyms": [
+          "rapi",
+          "teratur"
+        ],
+        "examples": [
+          {
+            "scene": "写作反面",
+            "id": "Tanpa kerangka, struktur karangan akan kacau.",
+            "cn": "没有提纲，文章结构会混乱。"
+          },
+          {
+            "scene": "园区应急",
+            "id": "Jangan panik; situasi darurat tidak boleh dikelola dengan kacau.",
+            "cn": "别慌；紧急情况不能乱处置。"
+          }
+        ]
+      },
+      {
+        "word": "mengetik",
+        "cn": "打字；键入",
+        "en": "to type (on a keyboard)",
+        "root": "tik（击；键入，口语ketik）",
+        "forms": [
+          {
+            "form": "ketik",
+            "pos": "动",
+            "mean": "打（字）"
+          },
+          {
+            "form": "mengetik",
+            "pos": "动",
+            "mean": "打字"
+          },
+          {
+            "form": "diketik",
+            "pos": "被动态",
+            "mean": "被打出来"
+          },
+          {
+            "form": "papan ketik",
+            "pos": "名组",
+            "mean": "键盘"
+          },
+          {
+            "form": "pengetikan",
+            "pos": "名",
+            "mean": "打字（工作/过程）"
+          }
+        ],
+        "formsNote": "",
+        "note": "印尼语 \"papan ketik\" = 键盘；UKBI 机考写作即 mengetik，练打字速度有实际收益。",
+        "synonyms": [
+          "menulis（手写/泛写）"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "scene": "机考准备",
+            "id": "Bagian menulis UKBI dilakukan dengan mengetik, bukan tulisan tangan.",
+            "cn": "UKBI 写作部分是机打，不是手写。"
+          },
+          {
+            "scene": "办公场景",
+            "id": "Surat kontrak sedang diketik oleh sekretaris.",
+            "cn": "合同正在由秘书录入。"
+          }
+        ]
+      },
+      {
+        "word": "susun-kerangka",
+        "cn": "列提纲；搭框架（menyusun kerangka）",
+        "en": "to outline; to draft a framework",
+        "root": "susun（排列；堆叠）+ kerangka（框架；骨架）",
+        "forms": [
+          {
+            "form": "susun",
+            "pos": "动",
+            "mean": "排列"
+          },
+          {
+            "form": "menyusun",
+            "pos": "动",
+            "mean": "编排；撰写"
+          },
+          {
+            "form": "kerangka",
+            "pos": "名",
+            "mean": "框架"
+          },
+          {
+            "form": "kerangka karangan",
+            "pos": "名组",
+            "mean": "文章提纲"
+          }
+        ],
+        "formsNote": "",
+        "note": "规范短语 menyusun kerangka；连字符键为复合学习键。写作第一步骤：审题→susun kerangka→行文→检查。",
+        "synonyms": [
+          "membuat kerangka",
+          "menyusun garis besar"
+        ],
+        "antonyms": [],
+        "examples": [
+          {
+            "scene": "写作步骤",
+            "id": "Sebelum menulis, susun kerangka karangan terlebih dahulu.",
+            "cn": "动笔前先列文章提纲。"
+          },
+          {
+            "scene": "项目管理",
+            "id": "Tim menyusun kerangka jadwal proyek sebelum tender dibuka.",
+            "cn": "团队在招标前搭建项目进度框架。"
+          }
+        ]
+      }
+    ]
   }
 };
 // ===== BIT 详解库 bitVocabDB V4.31.0 新增:按词组织的累积详解库,转换器 scripts/md_to_dailynote.py 在写入每日笔记时自动并入新词条;批量生成由 BIT→BIO 流程灌入 =====
@@ -113700,42 +114523,51 @@ const bitVocabDB = {
   },
   "sederhana": {
     "word": "sederhana",
-    "ipa": "/sɛˈdɛrhana/",
-    "cn": "简单的",
-    "en": "simple, modest",
-    "root": "sederhana",
+    "cn": "简单的；简朴的；朴实的",
+    "en": "simple; plain; modest",
+    "root": "sederhana（词根不可拆）",
     "forms": [
       {
+        "form": "sederhana",
+        "pos": "形",
+        "mean": "简单；简朴"
+      },
+      {
         "form": "kesederhanaan",
-        "pos": "n",
+        "pos": "名",
         "mean": "简朴"
       },
       {
         "form": "menyederhanakan",
-        "pos": "v",
+        "pos": "动",
         "mean": "简化"
+      },
+      {
+        "form": "disederhanakan",
+        "pos": "被动态",
+        "mean": "被简化"
       }
     ],
-    "formsNote": "meN-…-kan → menyederhanakan",
-    "note": "褒义「简朴的」：hidup sederhana「简朴生活」；程序「简化的」：prosedur sederhana",
+    "formsNote": "",
+    "note": "UKBI 写作推崇 gaya bahasa sederhana（朴实文风）——不卖弄辞藻，表意清楚为先。",
     "synonyms": [
-      "simpel",
+      "mudah",
       "ringkas"
     ],
     "antonyms": [
       "rumit",
-      "kompleks"
+      "sulit"
     ],
     "examples": [
       {
-        "scene": "Masalahnya sebenarnya sederhana.",
-        "id": "sederhana",
-        "cn": "问题其实很简单。"
+        "scene": "写作建议",
+        "id": "Gunakan kalimat sederhana; kejelasan lebih penting daripada gaya.",
+        "cn": "用简单句；清楚比华丽重要。"
       },
       {
-        "scene": "Teknologi menyederhanakan proses produksi.",
-        "id": "menyederhanakan",
-        "cn": "技术简化了生产流程。"
+        "scene": "园区生活",
+        "id": "Ia tinggal di rumah sederhana dekat pabrik.",
+        "cn": "他住在工厂附近一栋简朴的房子里。"
       }
     ]
   },
@@ -136181,31 +137013,33 @@ const bitVocabDB = {
   },
   "bahkan": {
     "word": "bahkan",
-    "ipa": "/ˈbahkan/",
-    "cn": "甚至",
-    "en": "even",
-    "root": "bahkan",
-    "forms": [],
-    "formsNote": "强调副词，无派生缀",
-    "note": "置于被强调成分前：Bahkan dia pun tidak tahu.（连他都不知道。）",
+    "cn": "甚至；而且；何况",
+    "en": "even; moreover",
+    "root": "bahkan（不可拆副词）",
+    "forms": [
+      {
+        "form": "bahkan",
+        "pos": "副",
+        "mean": "甚至"
+      }
+    ],
+    "formsNote": "—（副词；无派生形态）",
+    "note": "递进连词，用于强调出乎意料的极端情况；区别于 malah（反而）。",
     "synonyms": [
       "malahan",
-      "sampai-sampai"
+      "apalagi"
     ],
-    "antonyms": [
-      "hanya",
-      "sekadar"
-    ],
+    "antonyms": [],
     "examples": [
       {
-        "scene": "Bahkan anak kecil pun paham hal itu.",
-        "id": "bahkan",
-        "cn": "连小孩都懂那件事。"
+        "scene": "阅读语境",
+        "id": "Penulis bahkan memberikan contoh dari pengalamannya sendiri.",
+        "cn": "作者甚至举了自己经历的例子。"
       },
       {
-        "scene": "Bahkan presiden datang ke acara itu.",
-        "id": "bahkan",
-        "cn": "甚至总统都出席了活动。"
+        "scene": "园区商务",
+        "id": "Biayanya turun drastis, bahkan lebih rendah dari perkiraan audit.",
+        "cn": "费用大幅下降，甚至低于审计预估。"
       }
     ]
   },
@@ -148929,32 +149763,43 @@ const bitVocabDB = {
   },
   "kencang": {
     "word": "kencang",
-    "ipa": "/ˈkɛn.tʃaŋ/",
-    "cn": "响亮/快速/牢固",
-    "en": "loud, fast, tight",
-    "root": "kencang",
+    "cn": "快；强劲；响亮",
+    "en": "fast; strong; loud",
+    "root": "kencang（词根不可拆）",
     "forms": [
       {
+        "form": "kencang",
+        "pos": "形",
+        "mean": "快；强劲"
+      },
+      {
         "form": "mengencangkan",
-        "pos": "v",
-        "mean": "加紧/加固"
+        "pos": "动",
+        "mean": "加紧；拧紧"
+      },
+      {
+        "form": "kekencangan",
+        "pos": "名",
+        "mean": "强度"
       }
     ],
-    "formsNote": "形容词多义",
-    "note": "三个义项：声音大 suara kencang、速度快 lari kencang、绑得牢 ikat kencang",
+    "formsNote": "",
+    "note": "形容速度快/风大/心跳急/声音响；口语常用 \"hujan kencang\"（大雨倾盆）。",
     "synonyms": [
-      "keras",
-      "cepat"
+      "deras（水流/雨大）",
+      "keras（声响）"
     ],
-    "antonyms": [
-      "pelan",
-      "kendor"
-    ],
+    "antonyms": [],
     "examples": [
       {
-        "scene": "Musiknya kencang sekali.",
-        "id": "kencang",
-        "cn": "音乐声太响了。"
+        "scene": "阅读速度",
+        "id": "Dengan latihan, kecepatan membaca Anda akan semakin kencang.",
+        "cn": "坚持练习，阅读速度会越来越快。"
+      },
+      {
+        "scene": "园区日常",
+        "id": "Angin kencang menggoyangkan crane di pelabuhan.",
+        "cn": "强风撼动着港口的吊车。"
       }
     ]
   },
@@ -183437,55 +184282,50 @@ const bitVocabDB = {
   },
   "menyesuaikan": {
     "word": "menyesuaikan",
-    "cn": "调整 / 使适应 / 配合",
-    "en": "to adjust / to adapt",
-    "root": "sesuai（适合）· meN-…-kan 使动",
+    "cn": "调整；使适应；使相符",
+    "en": "to adjust; to adapt; to conform",
+    "root": "sesuai（合适；相符）",
     "forms": [
       {
         "form": "sesuai",
-        "pos": "形容词",
-        "mean": "合适的"
+        "pos": "形",
+        "mean": "合适；符合"
       },
       {
         "form": "menyesuaikan",
-        "pos": "动词",
-        "mean": "使适应"
+        "pos": "动",
+        "mean": "使适应；调整"
       },
       {
         "form": "disesuaikan",
-        "pos": "动词被动",
+        "pos": "被动态",
         "mean": "被调整"
       },
       {
         "form": "penyesuaian",
-        "pos": "名词",
-        "mean": "调整（行为）"
-      },
-      {
-        "form": "kesesuaian",
-        "pos": "名词",
-        "mean": "相符性"
+        "pos": "名",
+        "mean": "调整；适应"
       }
     ],
     "formsNote": "",
-    "note": "变化式 -s- 属 sesuai 词根内音变；计划/标准调整高频。",
+    "note": "meN-…-kan 使动动词；常用搭配 menyesuaikan diri dengan…（使自己适应…）",
     "synonyms": [
-      "menyesuaikan ≈ menyesuikan（罕）",
-      "menyamakan"
+      "mengadaptasikan",
+      "menempatkan"
     ],
     "antonyms": [
-      "memaksakan"
+      "menyimpang"
     ],
     "examples": [
       {
-        "scene": "项目管理",
-        "id": "Jadwal disesuaikan dengan kondisi cuaca.",
-        "cn": "进度按天气情况调整。"
+        "scene": "写作评分",
+        "id": "Penulis harus menyesuaikan gaya bahasa dengan jenis teks.",
+        "cn": "作者须根据文体调整语言风格。"
       },
       {
-        "scene": "商务",
-        "id": "Harga disesuaikan dengan fluktuasi pasar.",
-        "cn": "价格随市场波动调整。"
+        "scene": "园区商务",
+        "id": "Kami menyesuaikan jadwal pengiriman dengan kondisi cuaca di lapangan.",
+        "cn": "我们根据现场天气调整发货日程。"
       }
     ]
   },
@@ -188338,44 +189178,53 @@ const bitVocabDB = {
   },
   "disajikan": {
     "word": "disajikan",
-    "cn": "被呈现；被提供；被出示",
-    "en": "presented; served; shown",
-    "root": "saj（saji）",
+    "cn": "被呈现；被提供；被端上（饭菜）",
+    "en": "(to be) presented; served",
+    "root": "saji（端上；呈献）",
     "forms": [
       {
+        "form": "saji",
+        "pos": "动",
+        "mean": "端上"
+      },
+      {
+        "form": "sajikan",
+        "pos": "动",
+        "mean": "请用；呈上（祈使/词根）"
+      },
+      {
         "form": "menyajikan",
-        "pos": "v",
-        "mean": "呈现；提供"
+        "pos": "动",
+        "mean": "呈现；上（菜）"
+      },
+      {
+        "form": "disajikan",
+        "pos": "被动态",
+        "mean": "被呈现"
       },
       {
         "form": "sajian",
-        "pos": "n",
-        "mean": "呈献；节目"
-      },
-      {
-        "form": "penyaji",
-        "pos": "n",
-        "mean": "提供者；主持人"
+        "pos": "名",
+        "mean": "供品；呈献物"
       }
     ],
     "formsNote": "",
-    "note": "di- + sajikan 被动式；词根 saj（saji 完整词干）",
+    "note": "di-…-kan 被动式；UKBI 题型描述高频：soal disajikan dalam bentuk…（题目以…形式呈现）。",
     "synonyms": [
-      "ditunjukkan",
-      "diberikan",
-      "ditampilkan"
+      "ditampilkan",
+      "diberikan"
     ],
     "antonyms": [],
     "examples": [
       {
-        "scene": "UKBI备考",
-        "id": "Pertanyaan disajikan dalam bentuk pilihan ganda dengan empat opsi.",
-        "cn": "题目以四选一选择题形式呈现。"
+        "scene": "考试题型",
+        "id": "Soal menulis disajikan dalam bentuk infografik dan kalimat pemantik.",
+        "cn": "写作题以信息图和提示句形式呈现。"
       },
       {
-        "scene": "园区运维",
-        "id": "Laporan K3 disajikan setiap pagi di rapat koordinasi.",
-        "cn": "安全报告每天早晨在协调会上呈报。"
+        "scene": "园区日常",
+        "id": "Makan siang disajikan jam sebelas di kantin.",
+        "cn": "午餐十一点在食堂供应。"
       }
     ]
   },
@@ -191269,6 +192118,605 @@ const bitVocabDB = {
         "cn": "调解人避免两方接连争吵。"
       }
     ]
+  },
+  "foodcourt": {
+    "word": "foodcourt",
+    "cn": "美食广场；餐饮区",
+    "en": "food court",
+    "root": "food court（英语外来语）",
+    "forms": [
+      {
+        "form": "food court / foodcourt",
+        "pos": "名",
+        "mean": "美食广场"
+      }
+    ],
+    "formsNote": "—（外来语；无派生形态）",
+    "note": "印尼语日常拼写多分写为 food court；KBBI 未收录。购物/园区综合体里的集中餐饮区。",
+    "synonyms": [
+      "pusat kuliner",
+      "area makan"
+    ],
+    "antonyms": [],
+    "examples": [
+      {
+        "scene": "园区日常",
+        "id": "Food court di kawasan industri buka pukul enam pagi.",
+        "cn": "工业园区的美食广场早上六点开门。"
+      },
+      {
+        "scene": "生活场景",
+        "id": "Kami makan siang di foodcourt mal dekat kantor.",
+        "cn": "我们在办公楼附近商场的美食广场吃午饭。"
+      }
+    ]
+  },
+  "macam-macam": {
+    "word": "macam-macam",
+    "cn": "各种各样；种类繁多",
+    "en": "various; all kinds of",
+    "root": "macam（种类；样式）",
+    "forms": [
+      {
+        "form": "macam",
+        "pos": "名",
+        "mean": "种类"
+      },
+      {
+        "form": "macam-macam",
+        "pos": "名/形",
+        "mean": "各种各类"
+      },
+      {
+        "form": "bermacam-macam",
+        "pos": "形",
+        "mean": "形形色色的"
+      }
+    ],
+    "formsNote": "",
+    "note": "完全重叠式（reduplikasi）构词，macam→macam-macam 表复数繁杂。",
+    "synonyms": [
+      "berbagai",
+      "pelbagai",
+      "beraneka"
+    ],
+    "antonyms": [],
+    "examples": [
+      {
+        "scene": "考试语境",
+        "id": "Bagian membaca memuat macam-macam teks: narasi, deskripsi, hingga argumen.",
+        "cn": "阅读部分包含各类文本：叙述、描写乃至议论文。"
+      },
+      {
+        "scene": "园区商务",
+        "id": "Pabrik ini memproduksi macam-macam suku cadang mesin.",
+        "cn": "这家工厂生产各种机器零配件。"
+      }
+    ]
+  },
+  "ejaan": {
+    "word": "ejaan",
+    "cn": "拼写；拼写法；正字法",
+    "en": "spelling; orthography",
+    "root": "eja（拼写）",
+    "forms": [
+      {
+        "form": "eja",
+        "pos": "动",
+        "mean": "拼（写）"
+      },
+      {
+        "form": "ejaan",
+        "pos": "名",
+        "mean": "拼写法"
+      },
+      {
+        "form": "mengeja",
+        "pos": "动",
+        "mean": "拼写"
+      },
+      {
+        "form": "EYD",
+        "pos": "专名",
+        "mean": "印尼语正字法（Ejaan Yang Disempurnakan）"
+      }
+    ],
+    "formsNote": "",
+    "note": "EYD = Ejaan Yang Disempurnakan《完善拼写法》，印尼语官方正字规范。",
+    "synonyms": [
+      "pelafalan（发音，近义）"
+    ],
+    "antonyms": [],
+    "examples": [
+      {
+        "scene": "写作评分",
+        "id": "Kesalahan ejaan akan mengurangi nilai karangan.",
+        "cn": "拼写错误会扣作文分。"
+      },
+      {
+        "scene": "考试提醒",
+        "id": "Periksa ejaan kata sebelum menyerahkan lembar jawaban.",
+        "cn": "交答题卡前检查单词拼写。"
+      }
+    ]
+  },
+  "tanda-baca": {
+    "word": "tanda-baca",
+    "cn": "标点符号",
+    "en": "punctuation mark",
+    "root": "tanda（记号）+ baca（读）",
+    "forms": [
+      {
+        "form": "tanda baca",
+        "pos": "名",
+        "mean": "标点符号"
+      },
+      {
+        "form": "tanda koma",
+        "pos": "名",
+        "mean": "逗号"
+      },
+      {
+        "form": "tanda titik",
+        "pos": "名",
+        "mean": "句号"
+      }
+    ],
+    "formsNote": "",
+    "note": "KBBI 规范分写 tanda baca；本键保留连字符为学习检索键。",
+    "synonyms": [
+      "—（无严格同义）"
+    ],
+    "antonyms": [],
+    "examples": [
+      {
+        "scene": "写作评分",
+        "id": "Penggunaan tanda baca yang tepat membuat paragraf mudah dipahami.",
+        "cn": "正确的标点使段落易懂。"
+      },
+      {
+        "scene": "易混提示",
+        "id": "Tanda baca bukan sekadar hiasan; ia mengatur irama kalimat.",
+        "cn": "标点不是装饰，它掌控句子节奏。"
+      }
+    ]
+  },
+  "tenda": {
+    "word": "tenda",
+    "cn": "帐篷",
+    "en": "tent",
+    "root": "tenda（词根不可拆；外来语源 [待核实]）",
+    "forms": [
+      {
+        "form": "tenda",
+        "pos": "名",
+        "mean": "帐篷"
+      },
+      {
+        "form": "tenda perkemahan",
+        "pos": "名组",
+        "mean": "露营帐篷"
+      }
+    ],
+    "formsNote": "—（名词；无派生形态）",
+    "note": "常用搭配 mendirikan tenda（搭帐篷）、bongkar tenda（拆帐篷）。",
+    "synonyms": [
+      "—（无严格同义）"
+    ],
+    "antonyms": [],
+    "examples": [
+      {
+        "scene": "园区施工",
+        "id": "Para pekerja mendirikan tenda di dekat area pembangunan.",
+        "cn": "工人们在施工区附近搭起帐篷。"
+      },
+      {
+        "scene": "户外场景",
+        "id": "Tenda besar itu dipakai untuk rapat lapangan darurat.",
+        "cn": "那顶大帐篷用于野外应急会议。"
+      }
+    ]
+  },
+  "justru-itu": {
+    "word": "justru-itu",
+    "cn": "恰恰是；正是那样；反而是",
+    "en": "precisely; that is exactly; on the contrary",
+    "root": "justru（恰恰；反而）",
+    "forms": [
+      {
+        "form": "justru",
+        "pos": "副",
+        "mean": "反而；偏偏"
+      },
+      {
+        "form": "justru itu",
+        "pos": "短语",
+        "mean": "恰恰因此；正是那样"
+      }
+    ],
+    "formsNote": "",
+    "note": "KBBI 规范分写 justru itu；连字符键为学习检索归并。",
+    "synonyms": [
+      "justru",
+      "tepat itu",
+      "malah"
+    ],
+    "antonyms": [],
+    "examples": [
+      {
+        "scene": "论证写作",
+        "id": "Justru itu, data lapangan membuktikan sebaliknya.",
+        "cn": "恰恰相反，现场数据证明了相反结论。"
+      },
+      {
+        "scene": "课堂对话",
+        "id": "\"Soalnya mudah?\" \"Justru itu, yang mudah sering menipu.\"",
+        "cn": "“题目简单？”“正是如此，简单的题常有陷阱。”"
+      }
+    ]
+  },
+  "beralih": {
+    "word": "beralih",
+    "cn": "转移；转向；切换",
+    "en": "to shift; to switch; to move on",
+    "root": "alih（转移；换）",
+    "forms": [
+      {
+        "form": "alih",
+        "pos": "名/动",
+        "mean": "转移"
+      },
+      {
+        "form": "beralih",
+        "pos": "动",
+        "mean": "转向；切换"
+      },
+      {
+        "form": "mengalihkan",
+        "pos": "动",
+        "mean": "使转移；转接"
+      },
+      {
+        "form": "alih tugas",
+        "pos": "名组",
+        "mean": "移交任务"
+      }
+    ],
+    "formsNote": "",
+    "note": "ber- + alih 表自发转变；mengalihkan 使动。",
+    "synonyms": [
+      "berpindah",
+      "beralih bentuk"
+    ],
+    "antonyms": [],
+    "examples": [
+      {
+        "scene": "考试流程",
+        "id": "Setelah 45 menit, peserta beralih ke bagian menulis.",
+        "cn": "45 分钟后考生转到写作部分。"
+      },
+      {
+        "scene": "园区商务",
+        "id": "Perusahaan beralih ke pemasok lokal untuk mengurangi biaya.",
+        "cn": "公司转向本地供应商以降低成本。"
+      }
+    ]
+  },
+  "-dalam-bentuk": {
+    "word": "-dalam-bentuk",
+    "cn": "以…形式；呈…形态",
+    "en": "in the form of",
+    "root": "bentuk（形式；形状）",
+    "forms": [
+      {
+        "form": "dalam bentuk",
+        "pos": "介短",
+        "mean": "以…形式"
+      },
+      {
+        "form": "bentuk",
+        "pos": "名",
+        "mean": "形式；形状"
+      },
+      {
+        "form": "berbentuk",
+        "pos": "形",
+        "mean": "呈…形状的"
+      },
+      {
+        "form": "membentuk",
+        "pos": "动",
+        "mean": "形成；塑造"
+      }
+    ],
+    "formsNote": "",
+    "note": "用户输入键带前导连字符（-dalam-bentuk）为学习检索归并；KBBI 规范分写 dalam bentuk。",
+    "synonyms": [
+      "dalam wujud",
+      "berupa"
+    ],
+    "antonyms": [],
+    "examples": [
+      {
+        "scene": "考试题型",
+        "id": "Jawaban ditulis dalam bentuk paragraf runtut.",
+        "cn": "答案以连贯段落形式书写。"
+      },
+      {
+        "scene": "园区汇报",
+        "id": "Laporan progres dikirim dalam bentuk PDF setiap Jumat.",
+        "cn": "进度报告每周五以 PDF 形式发送。"
+      }
+    ]
+  },
+  "skimming": {
+    "word": "skimming",
+    "cn": "略读；快速浏览（抓主旨的阅读技巧）",
+    "en": "skimming (rapid reading for gist)",
+    "root": "skim（英语外来语；掠读）",
+    "forms": [
+      {
+        "form": "skimming",
+        "pos": "名/动",
+        "mean": "略读"
+      },
+      {
+        "form": "scanning",
+        "pos": "名",
+        "mean": "扫读（查特定信息）"
+      }
+    ],
+    "formsNote": "—（外来术语；无派生形态）",
+    "note": "skimming 抓主旨大意（baca cepat untuk gagasan utama）；scanning 找特定细节（tanggal/angka/nama）。",
+    "synonyms": [
+      "membaca cepat"
+    ],
+    "antonyms": [],
+    "examples": [
+      {
+        "scene": "阅读技巧",
+        "id": "Gunakan teknik skimming untuk menemukan ide pokok tiap paragraf.",
+        "cn": "用略读技巧抓每段主旨。"
+      },
+      {
+        "scene": "备考建议",
+        "id": "Latihan skimming 10 menit sehari sangat membantu bagian membaca UKBI.",
+        "cn": "每天练 10 分钟略读对 UKBI 阅读部分帮助很大。"
+      }
+    ]
+  },
+  "temanya": {
+    "word": "temanya",
+    "cn": "它的主题；其主题",
+    "en": "its theme; the theme of it",
+    "root": "tema（主题；题目）",
+    "forms": [
+      {
+        "form": "tema",
+        "pos": "名",
+        "mean": "主题"
+      },
+      {
+        "form": "temanya",
+        "pos": "名",
+        "mean": "该主题；其主题（-nya 属格）"
+      }
+    ],
+    "formsNote": "",
+    "note": "-nya 为第三人称属格/指示后缀：tema+nya = 该主题。",
+    "synonyms": [
+      "topiknya",
+      "judulnya"
+    ],
+    "antonyms": [],
+    "examples": [
+      {
+        "scene": "写作任务",
+        "id": "Pilihlah tema yang familiar agar karangan mengalir lancar.",
+        "cn": "选熟悉的主题让文章行文流畅。"
+      },
+      {
+        "scene": "审题提醒",
+        "id": "Baca pemantik dengan teliti; temanya tersembunyi di sana.",
+        "cn": "仔细读提示句，主题就藏在里面。"
+      }
+    ]
+  },
+  "lengkap-dan-runtut": {
+    "word": "lengkap-dan-runtut",
+    "cn": "完整且连贯（文章结构评价用语）",
+    "en": "complete and coherent",
+    "root": "lengkap（完整）+ runtut（连贯；有条理）",
+    "forms": [
+      {
+        "form": "lengkap",
+        "pos": "形",
+        "mean": "完整"
+      },
+      {
+        "form": "kelengkapan",
+        "pos": "名",
+        "mean": "完整性"
+      },
+      {
+        "form": "runtut",
+        "pos": "形",
+        "mean": "连贯"
+      },
+      {
+        "form": "keruntutan",
+        "pos": "名",
+        "mean": "连贯性"
+      }
+    ],
+    "formsNote": "",
+    "note": "UKBI 写作评分标准用语：isi lengkap（内容完整）+ urutan runtut（条理连贯）；连字符键为复合学习键，规范书写分写 dan 连接。",
+    "synonyms": [
+      "utuh dan sistematis"
+    ],
+    "antonyms": [
+      "kacau（混乱）"
+    ],
+    "examples": [
+      {
+        "scene": "写作评分",
+        "id": "Karangan yang lengkap dan runtut akan mendapat nilai tinggi.",
+        "cn": "完整连贯的文章得高分。"
+      },
+      {
+        "scene": "汇报场景",
+        "id": "Susun laporan secara lengkap dan runtut: latar belakang, data, lalu rekomendasi.",
+        "cn": "完整连贯地组织报告：背景、数据、然后是建议。"
+      }
+    ]
+  },
+  "kacau": {
+    "word": "kacau",
+    "cn": "混乱；乱套；慌乱",
+    "en": "chaotic; messy; panicked",
+    "root": "kacau（词根不可拆）",
+    "forms": [
+      {
+        "form": "kacau",
+        "pos": "形",
+        "mean": "混乱"
+      },
+      {
+        "form": "kekacauan",
+        "pos": "名",
+        "mean": "混乱状态"
+      },
+      {
+        "form": "mengacaukan",
+        "pos": "动",
+        "mean": "搅乱"
+      },
+      {
+        "form": "kacau-balau",
+        "pos": "形",
+        "mean": "一团糟"
+      }
+    ],
+    "formsNote": "",
+    "note": "可指场面混乱，也可指心慌 (\"hatinya kacau\")。",
+    "synonyms": [
+      "ruwet",
+      "berantakan"
+    ],
+    "antonyms": [
+      "rapi",
+      "teratur"
+    ],
+    "examples": [
+      {
+        "scene": "写作反面",
+        "id": "Tanpa kerangka, struktur karangan akan kacau.",
+        "cn": "没有提纲，文章结构会混乱。"
+      },
+      {
+        "scene": "园区应急",
+        "id": "Jangan panik; situasi darurat tidak boleh dikelola dengan kacau.",
+        "cn": "别慌；紧急情况不能乱处置。"
+      }
+    ]
+  },
+  "mengetik": {
+    "word": "mengetik",
+    "cn": "打字；键入",
+    "en": "to type (on a keyboard)",
+    "root": "tik（击；键入，口语ketik）",
+    "forms": [
+      {
+        "form": "ketik",
+        "pos": "动",
+        "mean": "打（字）"
+      },
+      {
+        "form": "mengetik",
+        "pos": "动",
+        "mean": "打字"
+      },
+      {
+        "form": "diketik",
+        "pos": "被动态",
+        "mean": "被打出来"
+      },
+      {
+        "form": "papan ketik",
+        "pos": "名组",
+        "mean": "键盘"
+      },
+      {
+        "form": "pengetikan",
+        "pos": "名",
+        "mean": "打字（工作/过程）"
+      }
+    ],
+    "formsNote": "",
+    "note": "印尼语 \"papan ketik\" = 键盘；UKBI 机考写作即 mengetik，练打字速度有实际收益。",
+    "synonyms": [
+      "menulis（手写/泛写）"
+    ],
+    "antonyms": [],
+    "examples": [
+      {
+        "scene": "机考准备",
+        "id": "Bagian menulis UKBI dilakukan dengan mengetik, bukan tulisan tangan.",
+        "cn": "UKBI 写作部分是机打，不是手写。"
+      },
+      {
+        "scene": "办公场景",
+        "id": "Surat kontrak sedang diketik oleh sekretaris.",
+        "cn": "合同正在由秘书录入。"
+      }
+    ]
+  },
+  "susun-kerangka": {
+    "word": "susun-kerangka",
+    "cn": "列提纲；搭框架（menyusun kerangka）",
+    "en": "to outline; to draft a framework",
+    "root": "susun（排列；堆叠）+ kerangka（框架；骨架）",
+    "forms": [
+      {
+        "form": "susun",
+        "pos": "动",
+        "mean": "排列"
+      },
+      {
+        "form": "menyusun",
+        "pos": "动",
+        "mean": "编排；撰写"
+      },
+      {
+        "form": "kerangka",
+        "pos": "名",
+        "mean": "框架"
+      },
+      {
+        "form": "kerangka karangan",
+        "pos": "名组",
+        "mean": "文章提纲"
+      }
+    ],
+    "formsNote": "",
+    "note": "规范短语 menyusun kerangka；连字符键为复合学习键。写作第一步骤：审题→susun kerangka→行文→检查。",
+    "synonyms": [
+      "membuat kerangka",
+      "menyusun garis besar"
+    ],
+    "antonyms": [],
+    "examples": [
+      {
+        "scene": "写作步骤",
+        "id": "Sebelum menulis, susun kerangka karangan terlebih dahulu.",
+        "cn": "动笔前先列文章提纲。"
+      },
+      {
+        "scene": "项目管理",
+        "id": "Tim menyusun kerangka jadwal proyek sebelum tender dibuka.",
+        "cn": "团队在招标前搭建项目进度框架。"
+      }
+    ]
   }
 };
 
@@ -192059,9 +193507,11 @@ function renderAbout(c){
 }
 
 function renderVersion(c){
-  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.46.5 / Versi</span></div>
+  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.46.6 / Versi</span></div>
     <div style="padding:16px;">
       <div style="margin-bottom:14px;padding:14px;background:rgba(34,197,94,.10);border-radius:10px;border-left:3px solid var(--success)">
+        <div style="font-size:15px;font-weight:700;color:var(--success);margin-bottom:6px">V4.46.6 (2026-10-21)</div>
+        <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">1021每日笔记19词(挂ukbi_real Day2阅读+写作, BIT V1.0定稿): 新增14(skimming略读/ejaan拼写/tanda-baca标点[分写注记]/-dalam-bentuk以…形式[分写注记]/justru-itu恰恰[分写注记]/macam-macam各类/beralih转向/temanya其主题[大小写归一]/tenda帐篷/kacau混乱/mengetik打字[词根tik]/lengkap-dan-runtut完整连贯[复合键,写作评分用语]/susun-kerangka列提纲[复合键]/foodcourt美食广场[外来语]) + 复习覆盖5(menyesuaikan/bahkan/disajikan/kencang/sederhana) · 61变形+38例句 · RCO对账19/19逐词映射 · check_syntax PASS</div>
         <div style="font-size:15px;font-weight:700;color:var(--success);margin-bottom:6px">V4.46.5 (2026-10-21)</div>
         <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">行业数据·光伏专版上线(用户指令): 电力行业下新增 ☀️光伏专版 独立版块(tab, 绿色#22c55e) —— 2026-08-25 普拉博沃揭幕首批14个PLTS项目全收录(5.3GWp/总投资135万亿印尼盾≈76.2亿美元): 已投运2(Batam Sembur 0.92+ Pulau Rengit 0.078 MWp)/在建6(Banyuwangi 130.2·Pasuruan 132·Gajah Mungkur 134.2·Karangkates 133·Saguling 92·Tembesi 46 MWp)/待招标6(Jatiluhur 1688·Cirata 1250·Jatigede 636·Madura 605+BESS·Gilimanuk 300·Bank Tanah Purwakarta 69 MWp) · 100GW国家规划独立汇总块: 已投0.001GWp/在建0.667/待招标4.548/规划储备94.784 —— 总投资643亿美元(Rp1.140万亿)·3年目标 · 方式按地图策划方案: Leaflet地图(绿色标记)+状态分组列表+全局搜索命中+flyTo联动 · 水库坐标与powerData已有水电坐标一致 · 信源Setkab/Kemensetneg 2026-08-25 · node冒烟13/13 PASS · check_syntax PASS</div>
         <div style="font-size:15px;font-weight:700;color:var(--success);margin-bottom:6px">V4.46.4 (2026-10-21)</div>
