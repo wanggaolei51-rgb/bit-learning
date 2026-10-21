@@ -6,7 +6,7 @@
 <meta http-equiv="Expires" content="0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LEO-BIR V4.46.4</title>
+<title>LEO-BIR V4.46.5</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -276,7 +276,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="sidebar-header">
     <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <h1>LEO-BIR</h1>
-    <div class="ver">LEO-BIR V4.46.4 · 地图瓦片换源 Esri(全球可达)</div>
+    <div class="ver">LEO-BIR V4.46.5 · 光伏专版(100GW国家规划绿图)</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -192059,9 +192059,11 @@ function renderAbout(c){
 }
 
 function renderVersion(c){
-  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.46.4 / Versi</span></div>
+  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.46.5 / Versi</span></div>
     <div style="padding:16px;">
       <div style="margin-bottom:14px;padding:14px;background:rgba(34,197,94,.10);border-radius:10px;border-left:3px solid var(--success)">
+        <div style="font-size:15px;font-weight:700;color:var(--success);margin-bottom:6px">V4.46.5 (2026-10-21)</div>
+        <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">行业数据·光伏专版上线(用户指令): 电力行业下新增 ☀️光伏专版 独立版块(tab, 绿色#22c55e) —— 2026-08-25 普拉博沃揭幕首批14个PLTS项目全收录(5.3GWp/总投资135万亿印尼盾≈76.2亿美元): 已投运2(Batam Sembur 0.92+ Pulau Rengit 0.078 MWp)/在建6(Banyuwangi 130.2·Pasuruan 132·Gajah Mungkur 134.2·Karangkates 133·Saguling 92·Tembesi 46 MWp)/待招标6(Jatiluhur 1688·Cirata 1250·Jatigede 636·Madura 605+BESS·Gilimanuk 300·Bank Tanah Purwakarta 69 MWp) · 100GW国家规划独立汇总块: 已投0.001GWp/在建0.667/待招标4.548/规划储备94.784 —— 总投资643亿美元(Rp1.140万亿)·3年目标 · 方式按地图策划方案: Leaflet地图(绿色标记)+状态分组列表+全局搜索命中+flyTo联动 · 水库坐标与powerData已有水电坐标一致 · 信源Setkab/Kemensetneg 2026-08-25 · node冒烟13/13 PASS · check_syntax PASS</div>
         <div style="font-size:15px;font-weight:700;color:var(--success);margin-bottom:6px">V4.46.4 (2026-10-21)</div>
         <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">地图瓦片换源(用户实测上报失效): 行业数据页背景图+7月23日全球镍产业地图共用 CARTO dark_all、电力地图用 OSM官方瓦片 —— 用户网络下全部不可达(实测: OSM/CARTO/维基/Wikimedia 均超时, 境内出口封锁) —— 5处tileLayer全换 Esri 全球CDN: 镍/行业数据4处→ Canvas/World_Dark_Gray_Base(暗色, maxZoom16, 视觉验证婆罗洲/文莱轮廓正常) · 电力地图→ World_Street_Map(街道图, maxZoom18) · 注意: Esri路径序为 {z}/{y}/{x} · 备选已测: OSM法国镜像可用 · check_syntax PASS</div>
         <div style="font-size:15px;font-weight:700;color:var(--success);margin-bottom:6px">V4.46.3 (2026-10-21)</div>
@@ -195547,6 +195549,28 @@ const industryData = {
     color: '#3b82f6',
     items: [{"name": "PLTU Morowali", "lat": -2.8014, "lng": 122.1411, "type": "燃煤(2×65MW)", "cap": "130MW", "status": "在产", "desc": "IMIP园区配套电源"}, {"name": "IMIP园区自备电厂", "lat": -2.8014, "lng": 122.1411, "type": "燃煤(3×250MW)", "cap": "750MW", "status": "在产", "desc": "振石华宝园区配套"}, {"name": "PLTU Bahodopi", "lat": -2.0, "lng": 121.5, "type": "燃煤(2×50MW)", "cap": "100MW", "status": "在产", "desc": "Bahodopi地区供电"}, {"name": "PLTA Poso", "lat": -1.5, "lng": 120.5, "type": "水电", "cap": "≈194MW", "status": "在产", "desc": "中苏拉威西最大水电站"}, {"name": "PLTGU Luwuk", "lat": -0.9, "lng": 122.8, "type": "燃气联合循环", "cap": "150MW", "status": "规划", "desc": "Bangai地区规划电源"}, {"name": "PT VDNI余热发电", "lat": -3.97, "lng": 122.62, "type": "余热", "cap": "—", "status": "在产", "desc": "德龙RKEF余热利用"}, {"name": "IWIP园区自备电", "lat": 0.4789, "lng": 127.9842, "type": "燃煤", "cap": "多机组", "status": "在产", "desc": "纬达贝园区配套"}, {"name": "PLTU Palu-3", "lat": -0.9, "lng": 119.8, "type": "燃煤(2×65MW)", "cap": "130MW", "status": "在建", "desc": "PLN RUPTL规划项目"}, {"name": "德龙园区自备电", "lat": -1.5, "lng": 121.4, "type": "燃煤", "cap": "多机组", "status": "部分在产", "desc": "德龙北莫罗瓦利园区"}, {"name": "PLTU Suralaya", "lat": -6.2989, "lng": 105.8723, "type": "燃煤", "cap": "4025MW", "status": "在产", "desc": "爪哇最大燃煤电站"}, {"name": "PLTU Paiton", "lat": -7.7139, "lng": 113.5761, "type": "燃煤", "cap": "4710MW", "status": "在产", "desc": "东爪哇最大电站群"}, {"name": "PLTU Tanjung Jati B", "lat": -6.8625, "lng": 110.3956, "type": "燃煤", "cap": "2640MW", "status": "在产", "desc": "中爪哇最大燃煤电站"}, {"name": "PLTA Cirata", "lat": -6.7014, "lng": 107.3567, "type": "水电", "cap": "1008MW", "status": "在产", "desc": "印尼最大水电站+浮动光伏"}, {"name": "PLTA Saguling", "lat": -6.9122, "lng": 107.3661, "type": "水电", "cap": "701MW", "status": "在产", "desc": "西爪哇重要水电站"}, {"name": "PLTP Wayang Windu", "lat": -7.2167, "lng": 107.6167, "type": "地热", "cap": "227MW", "status": "在产", "desc": "印尼最大地热电站之一"}, {"name": "PLTP Sarulla", "lat": 1.7833, "lng": 98.9833, "type": "地热", "cap": "330MW", "status": "在产", "desc": "世界最大单极地热电站之一"}, {"name": "PLTS Cirata (Floating)", "lat": -6.71, "lng": 107.36, "type": "光伏", "cap": "145MW", "status": "在产", "desc": "东南亚最大浮动光伏电站"}, {"name": "PLTB Sidrap", "lat": -3.7833, "lng": 119.8833, "type": "风电", "cap": "75MW", "status": "在产", "desc": "印尼首个大型风电场"}, {"name": "PLTU Barru", "lat": -4.4167, "lng": 119.6833, "type": "燃煤", "cap": "200MW", "status": "在产", "desc": "南苏拉威西主力电源"}, {"name": "PLTU Asam Asam", "lat": -3.6667, "lng": 115.9167, "type": "燃煤", "cap": "660MW", "status": "在产", "desc": "南加里曼丹煤炭产区供电"}, {"name": "PLTU Tarahan", "lat": -5.3667, "lng": 105.25, "type": "燃煤", "cap": "200MW", "status": "在产", "desc": "楠榜省主力电源"}, {"name": "PLTA Asahan III", "lat": 2.9667, "lng": 99.6167, "type": "水电", "cap": "174MW", "status": "在建", "desc": "日印合作北苏门答腊水电"}, {"name": "PLTA Mentarang", "lat": 2.9333, "lng": 116.0667, "type": "水电", "cap": "49MW", "status": "在建", "desc": "北加里曼丹大型水电规划"}, {"name": "PLTD Ambon", "lat": -3.7, "lng": 128.1667, "type": "柴油", "cap": "50MW", "status": "在产", "desc": "安汶岛应急电源"}]
   },
+  solar: {
+    // V4.46.5 印尼光伏专版: 2026-08-25 普拉博沃揭幕首批14个PLTS项目(信源: Setkab/Kemensetneg 2026-08-25)
+    name: '印尼光伏专版',
+    icon: '☀️',
+    color: '#22c55e',
+    items: [
+      {name: "PLTS Terapung Jatiluhur", lat: -6.5083, lng: 107.4056, type: "浮动光伏", cap: "1688 MWp", status: "待招标", desc: "西爪哇Purwakarta·100GW首批最大单体·水库浮动式"},
+      {name: "PLTS Terapung Cirata", lat: -6.71, lng: 107.36, type: "浮动光伏", cap: "1250 MWp", status: "待招标", desc: "西爪哇Cianjur·现有145MWp已运营(2023), 本次为扩建批次"},
+      {name: "PLTS Terapung Jatigede", lat: -6.8833, lng: 108.1833, type: "浮动光伏", cap: "636 MWp", status: "待招标", desc: "西爪哇Sumedang·水库浮动式"},
+      {name: "PLTS+BESS Klaster Madura", lat: -7.0, lng: 113.3, type: "光伏+储能", cap: "605 MWp", status: "待招标", desc: "东爪哇马都拉岛集群·配套电池储能(BESS)"},
+      {name: "PLTS Gilimanuk (Bali)", lat: -8.1713, lng: 114.4348, type: "地面光伏", cap: "300 MWp", status: "待招标", desc: "巴厘省Gilimanuk·巴厘岛首个大型光伏"},
+      {name: "PLTS Lahan Bank Tanah Purwakarta", lat: -6.556, lng: 107.44, type: "地面光伏", cap: "69 MWp", status: "待招标", desc: "西爪哇Purwakarta·国有土地储备(Bank Tanah)地块"},
+      {name: "PLTS Terapung Gajah Mungkur", lat: -7.9333, lng: 110.6167, type: "浮动光伏", cap: "134.2 MWp", status: "在建", desc: "中爪哇Wonogiri·水库浮动式"},
+      {name: "PLTS Pasuruan", lat: -7.6463, lng: 112.9067, type: "地面光伏", cap: "132 MWp", status: "在建", desc: "东爪哇Pasuruan"},
+      {name: "PLTS Terapung Karangkates", lat: -8.1758, lng: 112.5542, type: "浮动光伏", cap: "133 MWp", status: "在建", desc: "东爪哇Malang·Karangkates水库(前Sutami坝)浮动式"},
+      {name: "PLTS Banyuwangi", lat: -8.2192, lng: 114.3491, type: "地面光伏", cap: "130.2 MWp", status: "在建", desc: "东爪哇Banyuwangi"},
+      {name: "PLTS Terapung Saguling", lat: -6.9333, lng: 107.3667, type: "浮动光伏", cap: "92 MWp", status: "在建", desc: "西爪哇Bandung Barat·Saguling水库浮动式"},
+      {name: "PLTS Tembesi (Batam)", lat: 1.1, lng: 104.05, type: "地面光伏", cap: "46 MWp", status: "在建", desc: "廖内群岛Batam·Tembesi区(坐标近似)"},
+      {name: "PLTS Desa Sembur (Batam)", lat: 1.05, lng: 104.03, type: "地面光伏", cap: "0.92 MWp", status: "在产", desc: "廖内群岛Batam·村级光伏·2026-08-25首批已运营(坐标近似)"},
+      {name: "PLTS Pulau Rengit", lat: 1.0, lng: 104.1, type: "地面光伏", cap: "0.078 MWp", status: "在产", desc: "Batam水域小岛·村级光伏·首批已运营(坐标近似)"}
+    ]
+  },
   aluminum: {
     name: '电解铝/氧化铝',
     icon: '🏭',
@@ -195677,6 +195701,7 @@ function renderIndustryData(c){
       <button class="trans-btn industry-tab active" data-tab="nickel" onclick="switchIndustryTab('nickel')" style="font-size:12px;background:var(--primary);color:#fff">🔥 镍冶炼</button>
       <button class="trans-btn industry-tab" data-tab="acid" onclick="switchIndustryTab('acid')" style="font-size:12px">🧪 制酸项目</button>
       <button class="trans-btn industry-tab" data-tab="power" onclick="switchIndustryTab('power')" style="font-size:12px">⚡ 电力</button>
+      <button class="trans-btn industry-tab" data-tab="solar" onclick="switchIndustryTab('solar')" style="font-size:12px">☀️ 光伏专版</button>
       <button class="trans-btn industry-tab" data-tab="aluminum" onclick="switchIndustryTab('aluminum')" style="font-size:12px">🏭 电解铝/氧化铝</button>
     </div>
     <div id="industryMapContainer" style="width:100%;height:450px;border-radius:12px;border:1px solid var(--border);margin-bottom:12px;position:relative"></div>
@@ -195686,6 +195711,38 @@ function renderIndustryData(c){
     <div id="nickelPopup" class="nickel-detail-popup"><div class="popup-header" id="popupHeader"><h4 id="popupTitle"></h4><button class="popup-close" onclick="closePopup()">×</button></div><div class="popup-body" id="popupBody"></div></div>
   </div>`;
   setTimeout(()=>switchIndustryTab('nickel'), 100);
+}
+
+function renderSolar100GWBlock(){
+  // V4.46.5: 100GW光伏国家规划独立块 — 按 已投运/在建/待招标/规划储备 四态统一汇总(信源 Setkab/Kemensetneg 2026-08-25)
+  const segs=[
+    {k:'已投运',gw:0.001,n:'2个项目',c:'#15803d',d:'PLTS Sembur 0.92 + Pulau Rengit 0.078 MWp'},
+    {k:'在建',gw:0.667,n:'6个项目',c:'#22c55e',d:'Banyuwangi·Pasuruan·Gajah Mungkur·Karangkates·Saguling·Tembesi'},
+    {k:'待招标',gw:4.548,n:'6个项目',c:'#86efac',d:'Jatiluhur·Cirata·Jatigede·Madura·Gilimanuk·Bank Tanah'},
+    {k:'规划储备',gw:94.784,n:'后续批次',c:'#475569',d:'100GW目标剩余盘子·逐年释放'}
+  ];
+  let h='<div style="background:linear-gradient(135deg,rgba(34,197,94,.12),rgba(34,197,94,.03));border:1px solid rgba(34,197,94,.35);border-radius:12px;padding:16px;margin-bottom:14px">';
+  h+='<div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:4px">';
+  h+='<div style="font-size:15px;font-weight:700;color:#22c55e">☀️ 印尼 100 GWp 光伏国家规划 / Program PLTS 100 GWp</div>';
+  h+='<span class="badge" style="background:rgba(34,197,94,.2);color:#22c55e">2026-08-25 普拉博沃启动</span></div>';
+  h+='<div style="font-size:12px;color:var(--text-dim);margin-bottom:12px">3年建成目标 · 总投资 <b style="color:#22c55e">643亿美元</b>(Rp1.140万亿) · 首批14个项目 5.3 GWp · 总投资135万亿印尼盾(≈76.2亿美元)</div>';
+  h+='<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin-bottom:12px">';
+  segs.forEach(s=>{
+    h+='<div style="background:rgba(0,0,0,.25);border-radius:10px;padding:10px;border-left:3px solid '+s.c+'">';
+    h+='<div style="font-size:11px;color:var(--text-dim)">'+s.k+' · '+s.n+'</div>';
+    h+='<div style="font-size:20px;font-weight:800;color:'+s.c+'">'+s.gw+'<span style="font-size:11px;font-weight:400"> GWp</span></div>';
+    h+='<div style="font-size:10px;color:var(--text-dim);margin-top:2px">'+s.d+'</div></div>';
+  });
+  h+='</div>';
+  h+='<div style="display:flex;height:18px;border-radius:9px;overflow:hidden;gap:2px">';
+  segs.forEach(s=>{
+    const w=Math.max(s.gw,1.5);
+    h+='<div style="width:'+w+'%;background:'+s.c+';min-width:6px" title="'+s.k+' '+s.gw+' GWp"></div>';
+  });
+  h+='</div>';
+  h+='<div style="font-size:10px;color:var(--text-dim);margin-top:4px">占比按 100 GWp 目标线性比例 · 规划储备含未释放批次</div>';
+  h+='</div>';
+  return h;
 }
 
 function switchIndustryTab(tab){
@@ -195770,6 +195827,8 @@ function switchIndustryTab(tab){
         });
       });
       statsEl.innerHTML = '🇮🇩 ' + indoParks + '园区/' + Object.values(data.items.indonesia).reduce((s,p)=>s+(p.projects||[]).length,0) + '项目 · 🌍 ' + globalCount + '项目 · 总产能 ' + totalCap.toFixed(1) + '万镍吨/年';
+    } else if(tab === 'solar'){
+      statsEl.innerHTML = '☀️ 首批14个项目 <b style="color:#22c55e">5.3 GWp</b> · 总投资135万亿印尼盾(≈76.2亿美元) · 100GW国家规划见下方专块';
     } else {
       statsEl.innerHTML = data.icon + ' ' + data.name + ' · ' + data.items.length + '个设施 · 点击查看详情';
     }
@@ -195797,13 +195856,19 @@ function switchIndustryTab(tab){
       '燃气': { label: '🔵 燃气发电', color: '#3b82f6' },
       '余热': { label: '🟠 余热发电', color: '#f97316' }
     },
+    solar: {
+      '浮动光伏': { label: '💧 浮动光伏', color: '#38bdf8' },
+      '光伏+储能': { label: '🔋 光伏+储能', color: '#a3e635' },
+      '地面光伏': { label: '☀️ 地面光伏', color: '#22c55e' }
+    },
     aluminum: {
       '电解铝': { label: '⚡ 电解铝', color: '#8b5cf6' },
       '氧化铝': { label: '⬜ 氧化铝', color: '#a8a29e' }
     }
   };
   
-  let html = '<div style="background:var(--bg-elev);border-radius:10px;padding:14px;border:1px solid var(--border)">';
+  let html = (tab === 'solar' && typeof renderSolar100GWBlock === 'function') ? renderSolar100GWBlock() : '';
+  html += '<div style="background:var(--bg-elev);border-radius:10px;padding:14px;border:1px solid var(--border)">';
   html += '<h3 style="color:var(--primary);font-size:15px;margin-bottom:12px">' + data.icon + ' ' + data.name + ' 详情列表</h3>';
   
   const groups = groupConfig[tab];
