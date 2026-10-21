@@ -1,7 +1,7 @@
 # MEMORY.md - 长期记忆(任何会话重开必读)
 
 > 本文件是跨会话的核心记忆。每次启动优先读本文件。
-> 最后更新：2026-10-21（V4.46.4 地图瓦片换源 Esri）
+> 最后更新：2026-10-21（V4.46.5 行业数据·光伏专版）
 
 ---
 
@@ -25,7 +25,7 @@
 ## 二、LEO-BIR 策略体系(核心认知,不得再说不认识)
 
 ### 产品本体
-**LEO-BIR** 印尼语学习平台--单文件 HTML + GitHub Pages,当前 **V4.46.4**。
+**LEO-BIR** 印尼语学习平台--单文件 HTML + GitHub Pages,当前 **V4.46.5**。
 为印尼 Morowali 冶炼工业园区总经理定制的个人学习工具。词库 120+ 词条,主题课 topic22-29。
 
 ### 策略代号一览
@@ -104,7 +104,8 @@ V4.45.0       CA进阶课程首期上线(CA策略v1.1九项裁定): 话题1见�
 V4.45.1       CA路由热修: 站内hash约定无斜杠(#ca/), 我生成链接带斜杠(#/ca/)路由永不命中→“点了没反应” · parseRoute兼容双写法 · 教训: 改路由前先实测站内hash约定, 冒烟必须跑“点击→跳转→渲染”全链路 · E2E(模拟hash→路由→渲染→入口跳转目标)全PASS · commit 633dbc0
 V4.46.0       双任务: 1C5新话题ukbi_real「UKBI实战」10/20-22 -- 真实考试五部分拆三天(Day1 听力4dialog+4monolog各5题/40题30min+语法反应找错25题20min+自适应teslet停止规则 / Day2 阅读8wacana×5题40题45min+写作2题100/150词35min提示句pemantik+infografik / Day3 口语2题录制7+3/8+7min+套餐Paket1-3+七级评定Istimewa725-800→Terbatas251-325+证书2年周末颁发+15天重考) · 38核心词28沿用+10新词BIT入库(2806→2816) · 3场景47句+3演讲452词+6语法规则+15题quiz · C5 v2.1双库合规38/38 2CA/C5同日共存 -- renderDateDetail不再CA独占早退, C5课程内容+CA紫卡同屏(纯CA日保持原样) 3当日笔记一键语音播报 -- 日记+BIT词条链式TTS(onend+150ms衔接自然, id/zh交替, 词根剥中文括号), 日期页+📓笔记卡双入口, render()导航自动停止 · 备份backup-V4.45.1-preUKBIreal-20261020.tar.gz · 坑: bitVocabDB追加必须keyed格式"word":{...}(无键数组元素=语法错误)+条目间逗号+正则双反斜杠三连坑 · commit 84db159 · 线上MD5一致
 V4.46.1       1020每日笔记21词(BIT V1.0定稿, 挂ukbi_real): 13新词入库(riil/pemeringkatan/hak setara bagi连字符归并/berturut-turut/mampun古体=mampu/berjabat惯用berjabat tangan/panco扳手腕KBBI berpanco/cubit/sentil·toyor口语cakapan/menghancurkan/terhadap勘误terhatap→d/bertengkar) bitVocabDB 2816→2829 · sedang扩充"中等"义(rendah-sedang-tinggi等级语境) · RCO对账21/21逐词映射 · deploy-check须在commit后干净树才PASS(顺序调整为commit→check→push) · commit 52c6e62 · 线上MD5一致(4d918421)
-V4.46.4       地图瓦片换源(用户实测失效): 行业数据+7月23全球镍地图共用 CARTO dark_all、电力地图 OSM -- 境内全不可达(实测OSM/CARTO/Wikimedia超时) → 5处tileLayer换 Esri全球CDN(镍4处→World_Dark_Gray_Base暗色maxZoom16, 电力→World_Street_Map) · 坑: Esri路径序{z}/{y}/{x}与OSM惯例相反 · 备选: OSM法国镜像 · commit 2b29be6 · 线上MD5一致(08f1143b) ★当前版本
+V4.46.4       地图瓦片换源(用户实测失效): 行业数据+7月23全球镍地图共用 CARTO dark_all、电力地图 OSM -- 境内全不可达(实测OSM/CARTO/Wikimedia超时) → 5处tileLayer换 Esri全球CDN(镍4处→World_Dark_Gray_Base暗色maxZoom16, 电力→World_Street_Map) · 坑: Esri路径序{z}/{y}/{x}与OSM惯例相反 · 备选: OSM法国镜像 · commit 2b29be6 · 线上MD5一致(08f1143b)
+V4.46.5       行业数据·光伏专版(用户指令): ☀️光伏专版独立tab(电力行业内, 绿色#22c55e) —— 2026-08-25普拉博沃揭幕14个PLTS全收录(5.3GWp/135万亿盾≈76.2亿美元): 已投运2/在建6/待招标6(Batam/Banyuwangi/Pasuruan/GajahMungkur/Karangkates/Saguling/Tembesi/Jatiluhur 1688/Cirata 1250扩建/Jatigede/Madura+BESS/Gilimanuk/BankTanah) · 100GW国家规划独立汇总块(已投0.001/在建0.667/待招标4.548/规划储备94.784 GWp·总投资643亿美元) · 地图+分组+搜索+flyTo全链路自动兼容 · 坑: edit锚点撞switchNickelTab同名段冒烟抓到落错函数→特征行消歧 · node冒烟13/13 · commit 67b9d57 · 线上MD5一致(b05d44d1) ★当前版本
 V4.46.3       播报二次归位(用户实测仍错位): 按钮下沉 buildDailyNoteCardForDate 卡内 -- 课时测试页(startTopicQuiz)/日记页/CA日三处共用一处源码, 每天日记一个🔊 · tc 课程分支移除无主按钮(该页无词条卡无可跟随=上版错位根因) · 纯文本日兜底按钮 · 22项冒烟全PASS · commit b00a316 · 线上MD5一致(ae372314)
 V4.46.2       播报归位日记页+跟随高亮: 1入口修正 -- 日历日记页(showDateStudyRecord)新增🔊按钮+当日BIT词条卡, CA日底部补日记区, 课程日保留按钮, 三入口共用broadcastDay(ds) 2内容净化bcRootOk -- 词根仅干净单词(/^[A-Za-z][A-Za-z-]{2,}$/且≠词目)才播, 括号类词根(saj/saji)不再乱播 3跟随定位 -- 词条卡锚点dnw-<ds>-<i>+dn-entry, bcFocusWord滚动smooth/center+bc-hl呼吸高亮+BIT详情自动展开, bcStop清除 · E2E冒烟7项+真实bcFocusWord单测全PASS · 坑: 覆盖桩须同Function body层/正则锚点比文本锚点稳(V4.46.0遗留\\u2705混合转义连环失配) · commit 890ab12 · 线上MD5一致(7dd041d1)
 ```
