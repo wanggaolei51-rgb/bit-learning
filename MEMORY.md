@@ -1,7 +1,7 @@
 # MEMORY.md - 长期记忆(任何会话重开必读)
 
 > 本文件是跨会话的核心记忆。每次启动优先读本文件。
-> 最后更新：2026-10-21（V4.46.5 行业数据·光伏专版）
+> 最后更新：2026-10-21（V4.46.6 1021笔记19词 UKBI写作）
 
 ---
 
@@ -25,7 +25,7 @@
 ## 二、LEO-BIR 策略体系(核心认知,不得再说不认识)
 
 ### 产品本体
-**LEO-BIR** 印尼语学习平台--单文件 HTML + GitHub Pages,当前 **V4.46.5**。
+**LEO-BIR** 印尼语学习平台--单文件 HTML + GitHub Pages,当前 **V4.46.6**。
 为印尼 Morowali 冶炼工业园区总经理定制的个人学习工具。词库 120+ 词条,主题课 topic22-29。
 
 ### 策略代号一览
@@ -106,6 +106,7 @@ V4.46.0       双任务: 1C5新话题ukbi_real「UKBI实战」10/20-22 -- 真实
 V4.46.1       1020每日笔记21词(BIT V1.0定稿, 挂ukbi_real): 13新词入库(riil/pemeringkatan/hak setara bagi连字符归并/berturut-turut/mampun古体=mampu/berjabat惯用berjabat tangan/panco扳手腕KBBI berpanco/cubit/sentil·toyor口语cakapan/menghancurkan/terhadap勘误terhatap→d/bertengkar) bitVocabDB 2816→2829 · sedang扩充"中等"义(rendah-sedang-tinggi等级语境) · RCO对账21/21逐词映射 · deploy-check须在commit后干净树才PASS(顺序调整为commit→check→push) · commit 52c6e62 · 线上MD5一致(4d918421)
 V4.46.4       地图瓦片换源(用户实测失效): 行业数据+7月23全球镍地图共用 CARTO dark_all、电力地图 OSM -- 境内全不可达(实测OSM/CARTO/Wikimedia超时) → 5处tileLayer换 Esri全球CDN(镍4处→World_Dark_Gray_Base暗色maxZoom16, 电力→World_Street_Map) · 坑: Esri路径序{z}/{y}/{x}与OSM惯例相反 · 备选: OSM法国镜像 · commit 2b29be6 · 线上MD5一致(08f1143b)
 V4.46.5       行业数据·光伏专版(用户指令): ☀️光伏专版独立tab(电力行业内, 绿色#22c55e) —— 2026-08-25普拉博沃揭幕14个PLTS全收录(5.3GWp/135万亿盾≈76.2亿美元): 已投运2/在建6/待招标6(Batam/Banyuwangi/Pasuruan/GajahMungkur/Karangkates/Saguling/Tembesi/Jatiluhur 1688/Cirata 1250扩建/Jatigede/Madura+BESS/Gilimanuk/BankTanah) · 100GW国家规划独立汇总块(已投0.001/在建0.667/待招标4.548/规划储备94.784 GWp·总投资643亿美元) · 地图+分组+搜索+flyTo全链路自动兼容 · 坑: edit锚点撞switchNickelTab同名段冒烟抓到落错函数→特征行消歧 · node冒烟13/13 · commit 67b9d57 · 线上MD5一致(b05d44d1) ★当前版本
+V4.46.6       1021每日笔记19词(挂ukbi_real Day2阅读+写作, BIT V1.0定稿): 新增14(skimming/ejaan/tanda-baca/-dalam-bentuk/justru-itu分写注记/macam-macam/beralih/temanya/lengkap-dan-runtut写作评分用语/susun-kerangka/mengetik词根tik/kacau/tenda/foodcourt外来语) + 复习覆盖5(menyesuaikan/bahkan/disajikan/kencang/sederhana) · 61变形+38例句 · RCO对账19/19 · 坑: Pages构建卡in_progress 15分钟(前三次<40s), 轮询actions/runs等completed · commit eeff1b3+5eefa4d · 线上MD5一致(3b6ae087)
 V4.46.3       播报二次归位(用户实测仍错位): 按钮下沉 buildDailyNoteCardForDate 卡内 -- 课时测试页(startTopicQuiz)/日记页/CA日三处共用一处源码, 每天日记一个🔊 · tc 课程分支移除无主按钮(该页无词条卡无可跟随=上版错位根因) · 纯文本日兜底按钮 · 22项冒烟全PASS · commit b00a316 · 线上MD5一致(ae372314)
 V4.46.2       播报归位日记页+跟随高亮: 1入口修正 -- 日历日记页(showDateStudyRecord)新增🔊按钮+当日BIT词条卡, CA日底部补日记区, 课程日保留按钮, 三入口共用broadcastDay(ds) 2内容净化bcRootOk -- 词根仅干净单词(/^[A-Za-z][A-Za-z-]{2,}$/且≠词目)才播, 括号类词根(saj/saji)不再乱播 3跟随定位 -- 词条卡锚点dnw-<ds>-<i>+dn-entry, bcFocusWord滚动smooth/center+bc-hl呼吸高亮+BIT详情自动展开, bcStop清除 · E2E冒烟7项+真实bcFocusWord单测全PASS · 坑: 覆盖桩须同Function body层/正则锚点比文本锚点稳(V4.46.0遗留\\u2705混合转义连环失配) · commit 890ab12 · 线上MD5一致(7dd041d1)
 ```
