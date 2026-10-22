@@ -25,7 +25,7 @@ bit-deploy-backup/
 bit-deploy-bak/
 memory/
 tools/
-videos/
+# videos/ — BIV daily videos ARE deployed (main branch Pages)
 mir-data/
 
 # Download temp dir
