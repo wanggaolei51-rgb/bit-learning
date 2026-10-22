@@ -1,7 +1,7 @@
 # MEMORY.md - 长期记忆(任何会话重开必读)
 
 > 本文件是跨会话的核心记忆。每次启动优先读本文件。
-> 最后更新：2026-10-22（V4.46.7 播报热修复 + BIT_RIDIAO/BIT_BIV 子策略落盘）
+> 最后更新：2026-10-22（V4.46.8 1022笔记15词 + 播报防复发治本）
 
 ---
 
@@ -107,7 +107,8 @@ V4.46.1       1020每日笔记21词(BIT V1.0定稿, 挂ukbi_real): 13新词入�
 V4.46.4       地图瓦片换源(用户实测失效): 行业数据+7月23全球镍地图共用 CARTO dark_all、电力地图 OSM -- 境内全不可达(实测OSM/CARTO/Wikimedia超时) → 5处tileLayer换 Esri全球CDN(镍4处→World_Dark_Gray_Base暗色maxZoom16, 电力→World_Street_Map) · 坑: Esri路径序{z}/{y}/{x}与OSM惯例相反 · 备选: OSM法国镜像 · commit 2b29be6 · 线上MD5一致(08f1143b)
 V4.46.5       行业数据·光伏专版(用户指令): ☀️光伏专版独立tab(电力行业内, 绿色#22c55e) —— 2026-08-25普拉博沃揭幕14个PLTS全收录(5.3GWp/135万亿盾≈76.2亿美元): 已投运2/在建6/待招标6(Batam/Banyuwangi/Pasuruan/GajahMungkur/Karangkates/Saguling/Tembesi/Jatiluhur 1688/Cirata 1250扩建/Jatigede/Madura+BESS/Gilimanuk/BankTanah) · 100GW国家规划独立汇总块(已投0.001/在建0.667/待招标4.548/规划储备94.784 GWp·总投资643亿美元) · 地图+分组+搜索+flyTo全链路自动兼容 · 坑: edit锚点撞switchNickelTab同名段冒烟抓到落错函数→特征行消歧 · node冒烟13/13 · commit 67b9d57 · 线上MD5一致(b05d44d1) ★当前版本
 V4.46.6       1021每日笔记19词(挂ukbi_real Day2阅读+写作, BIT V1.0定稿): 新增14(skimming/ejaan/tanda-baca/-dalam-bentuk/justru-itu分写注记/macam-macam/beralih/temanya/lengkap-dan-runtut写作评分用语/susun-kerangka/mengetik词根tik/kacau/tenda/foodcourt外来语) + 复习覆盖5(menyesuaikan/bahkan/disajikan/kencang/sederhana) · 61变形+38例句 · RCO对账19/19 · 坑: Pages构建卡in_progress 15分钟(前三次<40s), 轮询actions/runs等completed · commit eeff1b3+5eefa4d · 线上MD5一致(3b6ae087)
-V4.46.7       播报热修复(回归事故): V4.46.6 md_to_dailynote.py 合并 dailynote js 时覆盖 script 块 → dnEsc/dnRich/buildNoteEntryHtml/buildDailyNoteCardForDate 四函数丢失 → typeof buildDailyNoteCardForDate!=="function" → 笔记卡不渲染+播报按钮静默消失(用户实测上报, 三处调用点守卫无报错) · 修复: 从 b00a316 恢复四函数+卡内🔊+dn-entry锚点 · 防复发: 部署后 grep 函数定义必须存在 · commit d123299 · 线上MD5一致(5fb28cf7) ★当前版本
+V4.46.7       播报热修复(回归事故): V4.46.6 md_to_dailynote.py 合并 dailynote js 时覆盖 script 块 → dnEsc/dnRich/buildNoteEntryHtml/buildDailyNoteCardForDate 四函数丢失 → typeof buildDailyNoteCardForDate!=="function" → 笔记卡不渲染+播报按钮静默消失(用户实测上报, 三处调用点守卫无报错) · 修复: 从 b00a316 恢复四函数+卡内🔊+dn-entry锚点 · 防复发: 部署后 grep 函数定义必须存在 · commit d123299 · 线上MD5一致(5fb28cf7)
+V4.46.8       1022每日笔记15词(10新增+5复习覆盖, 挂ukbi_real Day3): 新增10(acara/ferware外来语[待核实拼写,疑为farewell]/minus/lasik缩写/pembedahan/komik/seni-bela-diri复合键/bersifat/menentukan-hal-berikutnya复合学习键/berulang-ulang) + 复习覆盖5(mata/jenjang/berturut-turut/ejaan/tanda) · 28变形+30例句 · RCO对账15/15 · **播报防复发治本**: md_to_dailynote.py RENDER_FUNCS 补齐V4.46.2/3四函数(dnEsc/dnRich/buildNoteEntryHtml/buildDailyNoteCardForDate+新版buildDailyNoteCard复用), 每次合并自动写入, 根除函数丢失(原RENDER_FUNCS只有旧版toggleDailyNote+内联buildDailyNoteCard) · 坑: 第263行删除正则会匹配整个区域含V4.46.2/3函数, RENDER_FUNCS不完整=每次跑管线都丢函数 · check_syntax PASS · deploy-check 8/8 · commit c504ab5 · 线上V4.46.8验证PASS(版本/日记/函数/新词/播报全链路) ★当前版本
 V4.46.3       播报二次归位(用户实测仍错位): 按钮下沉 buildDailyNoteCardForDate 卡内 -- 课时测试页(startTopicQuiz)/日记页/CA日三处共用一处源码, 每天日记一个🔊 · tc 课程分支移除无主按钮(该页无词条卡无可跟随=上版错位根因) · 纯文本日兜底按钮 · 22项冒烟全PASS · commit b00a316 · 线上MD5一致(ae372314)
 V4.46.2       播报归位日记页+跟随高亮: 1入口修正 -- 日历日记页(showDateStudyRecord)新增🔊按钮+当日BIT词条卡, CA日底部补日记区, 课程日保留按钮, 三入口共用broadcastDay(ds) 2内容净化bcRootOk -- 词根仅干净单词(/^[A-Za-z][A-Za-z-]{2,}$/且≠词目)才播, 括号类词根(saj/saji)不再乱播 3跟随定位 -- 词条卡锚点dnw-<ds>-<i>+dn-entry, bcFocusWord滚动smooth/center+bc-hl呼吸高亮+BIT详情自动展开, bcStop清除 · E2E冒烟7项+真实bcFocusWord单测全PASS · 坑: 覆盖桩须同Function body层/正则锚点比文本锚点稳(V4.46.0遗留\\u2705混合转义连环失配) · commit 890ab12 · 线上MD5一致(7dd041d1)
 ```
@@ -210,7 +211,7 @@ word / cn / en / root / forms[] / formsNote / note / synonyms[] / antonyms[] / e
 - [x] ~~10/11-13 周汇报课路由缺失~~ → V4.41.2 修复
 - [x] ~~镍地图本土项目漏检~~ → V4.42.4 补录 ASPIRE-Stargate + INDUSTRY-DATA v1.0 监测策略
 - [ ] REP2C 首期课用户实测反馈待收
-- [ ] 10/22 日记尚未生成（ukbi_real Day3 口语+套餐+等级）
+- [x] ~~10/22 日记~~ → V4.46.8 已上线
 
 ---
 
