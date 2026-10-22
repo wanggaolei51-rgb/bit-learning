@@ -11,7 +11,7 @@
 - **变形**: 无词缀变形
 - **词汇注释**: 高频日常词。可指电视节目（acara TV）、社交活动（acara gathering）、正式仪式（acara peresmian）。园区会议、典礼均可用。
 - **同义词**: kegiatan、upacara、pertunjukan
-- **反义词**: —（无严格反义）
+- **反义词**: —
 - 园区日常: *Acara safety briefing diadakan setiap Senin pagi di aula utama.* 安全简报会每周一上午在主礼堂举行。
 - 生活场景: *Acara ulang tahun anaknya diadakan di foodcourt mal.* 孩子的生日聚会在商场美食广场举办。
 
@@ -44,7 +44,7 @@
 - **变形**: 无词缀变形
 - **词汇注释**: 外来语缩写。印尼口语直呼 "lasik"，正式语境用 "operasi LASIK"。术后恢复期 1-3 天，园区体检常含视力检查项。
 - **同义词**: operasi laser mata、operasi refraktif
-- **反义词**: —（无严格反义）
+- **反义词**: —
 - 医疗场景: *Dokter menyarankan operasi lasik untuk karyawan dengan rabun tinggi.* 医生建议高度近视的员工做 LASIK 手术。
 - 日常对话: *Setelah lasik, dia tidak perlu pakai kacamata lagi.* 做了 LASIK 后，他再也不需要戴眼镜了。
 
@@ -54,8 +54,8 @@
 - **词根**: mata（纯词根，无词缀）
 - **变形**: 无词缀变形
 - **词汇注释**: 多义高频词。本义"眼睛"；派生义：mata acara（活动焦点）/ mata uang（货币单位）/ mata pelajaran（科目）/ mata rantai（链条环节）。
-- **同义词**: 无严格同义
-- **反义词**: —（无严格反义）
+- **同义词**: —
+- **反义词**: —
 - 医疗场景: *Mata kanannya iritasi karena terkena debu tambang.* 他的右眼因矿尘刺激发炎。
 - 商务场景: *Mata uang utama kontrak ini adalah rupiah.* 本合同的主要货币是印尼盾。
 
@@ -83,7 +83,7 @@
 - **变形**: 无词缀变形
 - **词汇注释**: 名词"漫画书/连环画"；印尼本土漫画业发达， komik 也指滑稽喜剧演员（stand-up komik）。
 - **同义词**: cerita bergambar、buku gambar
-- **反义词**: —（无严格反义）
+- **反义词**: —
 - 生活场景: *Anaknya menghabiskan waktu libur membaca komik di kamar.* 孩子假期在房间里看漫画。
 - 日常对话: *Komik ini sudah terbit sejak tahun sembilan puluhan.* 这本漫画从九十年代就开始出版了。
 
@@ -98,7 +98,7 @@
   | membela diri | 动组 | 自卫；辩护 |
 - **词汇注释**: KBBI 标准分写 seni bela diri；连字符键为复合学习键。印尼传统武术 pencak silat 即 seni bela diri 的一种。园区文体活动常用。
 - **同义词**: silat、tarung（格斗）
-- **反义词**: —（无严格反义）
+- **反义词**: —
 - 园区日常: *Perusahaan mengadakan kelas seni bela diri setiap Rabu sore.* 公司每周三下午开设武术课。
 - 生活场景: *Ia mendaftar kursus seni bela diri untuk menjaga kebugaran.* 他报名武术班来保持健康。
 
@@ -115,7 +115,7 @@
   | kesifatan | 名 | 特性 |
 - **词汇注释**: ber- 前缀表"具有"。bersifat + 形容词/名词（bersifat terbuka 开放性质 / bersifat sementara 暂时的）。正式文书高频。
 - **同义词**: berciri、berwatak
-- **反义词**: —（无严格反义）
+- **反义词**: —
 - 商务场景: *Keputusan ini bersifat final dan tidak dapat diganggu gugat.* 本决定是最终决定，不可更改。
 - 园区日常: *Insiden kecil itu bersifat lokal, tidak mempengaruhi produksi.* 那个小事故是局部性的，不影响生产。
 
@@ -133,7 +133,7 @@
   | penentuan | 名 | 决定；判定 |
 - **词汇注释**: 复合学习键：menentukan + hal berikutnya。UKBI 写作与商务会议常用表达——先述现状，再 menentukan hal berikutnya。连字符键仅供学习索引，实际书写分写。
 - **同义词**: memutuskan langkah selanjutnya
-- **反义词**: —（无严格反义）
+- **反义词**: —
 - 会议场景: *Rapat ini bertujuan menentukan hal berikutnya dalam proyek smelter.* 本会议旨在确定冶炼厂项目的下一步事项。
 - 写作语境: *Paragraf terakhir harus menentukan hal berikutnya secara jelas.* 最后一段必须清晰确定接下来要做的事。
 
@@ -144,7 +144,7 @@
 - **变形**: 无词缀变形
 - **词汇注释**: 教育与职场高频。jenjang pendidikan 教育层级（SD-SMP-SMA）/ jenjang karir 职业阶梯 / jenjang jabatan 职位级别。UKBI 七级评定即 jenjang 实例。
 - **同义词**: tingkat、level、strata
-- **反义词**: —（无严格反义）
+- **反义词**: —
 - 教育语境: *Jenjang pendidikan di Indonesia terdiri dari tiga tahap utama.* 印尼教育分三个主要层级。
 - 职场场景: *Dia naik jenjang dari supervisor menjadi manajer dalam dua tahun.* 他两年内从主管晋升到经理层级。
 
@@ -193,7 +193,7 @@
   | pengejaan | 名 | 拼写行为 |
 - **词汇注释**: 10/21 已收录，复习覆盖。UKBI 写作评分关键指标：kesalahan ejaan（拼写错误）扣分。与 pelafalan（发音）互补。
 - **同义词**: pelafalan（发音，近义非同义）、pengejaan
-- **反义词**: —（无严格反义）
+- **反义词**: —
 - 写作评分: *Kesalahan ejaan mengurangi nilai karangan secara signifikan.* 拼写错误显著降低作文得分。
 - 备考建议: *Periksa ejaan kata sebelum menyerahkan lembar jawaban.* 交卷前检查单词拼写。
 
@@ -209,7 +209,7 @@
   | penanda | 名 | 标记物 |
 - **词汇注释**: 10/21 收录 tanda-baca（标点）为本词复合词。tanda 基础义"标记/符号"：tanda tangan 签名 / tanda terima 收据 / tanda bahaya 危险信号 / tanda waktu 时代标志。
 - **同义词**: simbol、lambang、penanda
-- **反义词**: —（无严格反义）
+- **反义词**: —
 - 商务场景: *Dokumen ini perlu tanda tangan direktur sebagai tanda persetujuan.* 本文件需总监签名作为批准标记。
 - 园区安全: *Alarm bunyi adalah tanda bahaya evakuasi segera.* 警报声是立即撤离的危险信号。
 

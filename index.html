@@ -6,7 +6,7 @@
 <meta http-equiv="Expires" content="0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LEO-BIR V4.46.8</title>
+<title>LEO-BIR V4.46.9</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -276,7 +276,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="sidebar-header">
     <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <h1>LEO-BIR</h1>
-    <div class="ver">LEO-BIR V4.46.8 · 1022每日笔记15词(10新增+5复习) + 播报防复发治本</div>
+    <u003cdiv class="ver">LEO-BIR V4.46.9 · 视频列表补全(0929+1021+1022三天) + 1022视频生成</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -194468,8 +194468,12 @@ function renderAbout(c){
 }
 
 function renderVersion(c){
-  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.46.8 / Versi</span></div>
+  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.46.9 / Versi</span></div>
     <div style="padding:16px;">
+      <div style="margin-bottom:14px;padding:14px;background:rgba(34,197,94,.10);border-radius:10px;border-left:3px solid var(--success)">
+        <div style="font-size:15px;font-weight:700;color:var(--success);margin-bottom:6px">V4.46.9 (2026-10-23)</div>
+        <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">视频库列表补全: VIDEO_DB 注册表从1天→3天(0929项目管理39词3集/1021 UKBI Day2 19词2集/1022 UKBI Day3 15词2集) · 1022视频生成: daily-2.0.0引擎 2集(p1:13词≈284s / p2:2词≈56s) lint 10/10 PASS · BIO印章1f2ea1b5 · 注册表hash=0db9c6d4 · 视频主页改为日期列表(今日卡+历史列表) · 日期详情页视频横幅自动联动</div>
+      </div>
       <div style="margin-bottom:14px;padding:14px;background:rgba(34,197,94,.10);border-radius:10px;border-left:3px solid var(--success)">
         <div style="font-size:15px;font-weight:700;color:var(--success);margin-bottom:6px">V4.46.8 (2026-10-22)</div>
         <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">1022每日笔记15词(10新增+5复习覆盖, 挂ukbi_real Day3): acara/ferware外来语[待核实]/minus/lasik/mata/pembedahan/komik/seni-bela-diri/bersifat/menentukan-hal-berikutnya/jenjang/berulang-ulang/berturut-turut/ejaan/tanda · 28变形+30例句 · RCO对账15/15 · 播报防复发治本: md_to_dailynote.py RENDER_FUNCS 补齐V4.46.2/3四函数(dnEsc/dnRich/buildNoteEntryHtml/buildDailyNoteCardForDate), 每次合并自动写入, 根除函数丢失 · check_syntax PASS · deploy-check 8/8</div>
