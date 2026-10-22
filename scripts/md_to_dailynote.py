@@ -116,27 +116,21 @@ def build_js(date, topic_key, source, entries):
 
 RENDER_FUNCS = r'''
 // ===== 每日笔记模块（BIT V1.0 生产 → BIO 审查定稿） V4.26.0 新增 =====
+// V4.46.2+: 含播报跟随锚点（dnw-<ds>-<i>）与卡内播报按钮（bc-btn）
 function toggleDailyNote(id) {
   var el = document.getElementById(id);
   if (!el) return;
   el.style.display = el.style.display === "none" ? "block" : "none";
 }
-
-function buildDailyNoteCard(topicKey) {
-  if (typeof dailyNotesDB === "undefined" || !dailyNotesDB) return "";
-  var dates = Object.keys(topicCalendar).filter(function (d) {
-    return topicCalendar[d] && topicCalendar[d].topic === topicKey && dailyNotesDB[d];
-  }).sort();
-  if (!dates.length) return "";
-  var esc = function (s) {
-    return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-  };
-  var rich = function (s) {
-    return esc(s).replace(/\*\*(.+?)\*\*/g, '<strong style="color:var(--primary)">$1</strong>');
-  };
-  return dates.map(function (ds) {
-    var note = dailyNotesDB[ds];
-    var entriesHtml = note.entries.map(function (e, i) {
+function dnEsc(s) {
+  return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+function dnRich(s) {
+  return dnEsc(s).replace(/\*\*(.+?)\*\*/g, '<strong style="color:var(--primary)">$1</strong>');
+}
+// V4.46.2: 单条词条渲染 —— 外层带锚点 id="dnw-<ds>-<i>" 供播报跟随定位
+function buildNoteEntryHtml(e, i, ds) {
+  var esc = dnEsc, rich = dnRich;
       var detailId = "dn-" + ds + "-" + i;
       var formsHtml = "";
       if (e.forms && e.forms.length) {
@@ -162,8 +156,8 @@ function buildDailyNoteCard(topicKey) {
             + '<div style="color:var(--text);margin-top:3px;">' + rich(x.id) + '</div>'
             + '<div style="color:var(--text-dim);">' + esc(x.cn) + '</div></div>';
         }).join("") + '</div>' : "";
-      return '<div style="border:1px solid var(--border);border-radius:8px;margin-bottom:6px;overflow:hidden;">'
-        + '<div onclick="toggleDailyNote(\'' + detailId + '\')" style="padding:10px 12px;cursor:pointer;display:flex;align-items:center;gap:8px;transition:background .15s;" onmouseenter="this.style.background=\'var(--bg-elev)\'" onmouseleave="this.style.background=\'transparent\'">'
+      return '<div class="dn-entry" id="dnw-' + ds + '-' + i + '" style="border:1px solid var(--border);border-radius:8px;margin-bottom:6px;overflow:hidden;">'
+        + '<div class="dn-head" onclick="toggleDailyNote(\'' + detailId + '\')" style="padding:10px 12px;cursor:pointer;display:flex;align-items:center;gap:8px;transition:background .15s;" onmouseenter="this.style.background=\'var(--bg-elev)\'" onmouseleave="this.style.background=\'transparent\'">'
         + '<span style="font-size:11px;color:var(--text-dim);min-width:22px;">' + String(i + 1).padStart(2, "0") + '</span>'
         + '<span style="font-size:14px;font-weight:700;color:var(--primary);">' + esc(e.word) + '</span>'
         + '<span style="font-size:12px;color:var(--text);">' + esc(e.cn) + '</span>'
@@ -174,16 +168,30 @@ function buildDailyNoteCard(topicKey) {
         + '<div style="font-size:12px;color:var(--text);background:rgba(0,212,170,.06);border-left:2px solid var(--primary);padding:6px 8px;border-radius:6px;margin:6px 0;line-height:1.6;">🌱 词根：' + rich(e.root) + '</div>'
         + formsHtml + formsNoteHtml + noteHtml + synHtml + antHtml + exHtml
         + '</div></div>';
-    }).join("");
-    return '<div class="card" style="margin-bottom:16px;border-left:3px solid var(--primary);">'
-      + '<div class="card-header" style="flex-wrap:wrap;gap:8px;"><h2>📓 当日笔记 / Catatan Harian</h2>'
-      + '<span class="badge">' + ds + '</span>'
-      + '<span class="badge">' + note.entries.length + '词条</span></div>'
-      + '<div style="padding:16px;">'
-      + '<div style="font-size:12px;color:var(--text-dim);margin-bottom:12px;padding:10px 12px;background:rgba(0,212,170,.06);border-radius:8px;border-left:3px solid var(--primary);">'
-      + '📚 本日学习笔记（' + esc(note.source) + '）· 点击词条展开翻译、词根、变形、同反义词与场景例句</div>'
-      + entriesHtml + '</div></div>';
-  }).join("");
+}
+// V4.46.2: 按日期渲染当日笔记卡（日记页/CA日/课程页三处共用）
+function buildDailyNoteCardForDate(ds) {
+  if (typeof dailyNotesDB === "undefined" || !dailyNotesDB || !dailyNotesDB[ds]) return "";
+  var note = dailyNotesDB[ds];
+  var esc = dnEsc;
+  var entriesHtml = note.entries.map(function (e, i) { return buildNoteEntryHtml(e, i, ds); }).join("");
+  return '<div class="card" style="margin-bottom:16px;border-left:3px solid var(--primary);">'
+    + '<div class="card-header" style="flex-wrap:wrap;gap:8px;"><h2>📓 当日笔记 / Catatan Harian</h2>'
+    + '<span class="badge">' + ds + '</span>'
+    + '<span class="badge">' + note.entries.length + '词条</span></div>'
+    + '<div style="padding:16px;">'
+    + '<div style="margin-bottom:12px;"><button class="bc-btn trans-btn btn-small" style="font-size:12px;" onclick="broadcastDay(\'' + ds + '\')">🔊 播报今日笔记 / Dengarkan Catatan</button></div>'
+    + '<div style="font-size:12px;color:var(--text-dim);margin-bottom:12px;padding:10px 12px;background:rgba(0,212,170,.06);border-radius:8px;border-left:3px solid var(--primary);">'
+    + '📚 本日学习笔记（' + esc(note.source) + '）· 点击词条展开翻译、词根、变形、同反义词与场景例句</div>'
+    + entriesHtml + '</div></div>';
+}
+function buildDailyNoteCard(topicKey) {
+  if (typeof dailyNotesDB === "undefined" || !dailyNotesDB) return "";
+  var dates = Object.keys(topicCalendar).filter(function (d) {
+    return topicCalendar[d] && topicCalendar[d].topic === topicKey && dailyNotesDB[d];
+  }).sort();
+  if (!dates.length) return "";
+  return dates.map(function (ds) { return buildDailyNoteCardForDate(ds); }).join("");
 }
 '''
 
