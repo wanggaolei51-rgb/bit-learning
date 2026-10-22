@@ -6,7 +6,7 @@
 <meta http-equiv="Expires" content="0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LEO-BIR V4.46.6</title>
+<title>LEO-BIR V4.46.7</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -276,7 +276,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="sidebar-header">
     <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <h1>LEO-BIR</h1>
-    <div class="ver">LEO-BIR V4.46.6 · 1021笔记19词(UKBI写作)</div>
+    <div class="ver">LEO-BIR V4.46.7 · 播报功能热修复(函数丢失回归)</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -6044,21 +6044,15 @@ function toggleDailyNote(id) {
   el.style.display = el.style.display === "none" ? "block" : "none";
 }
 
-function buildDailyNoteCard(topicKey) {
-  if (typeof dailyNotesDB === "undefined" || !dailyNotesDB) return "";
-  var dates = Object.keys(topicCalendar).filter(function (d) {
-    return topicCalendar[d] && topicCalendar[d].topic === topicKey && dailyNotesDB[d];
-  }).sort();
-  if (!dates.length) return "";
-  var esc = function (s) {
-    return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-  };
-  var rich = function (s) {
-    return esc(s).replace(/\*\*(.+?)\*\*/g, '<strong style="color:var(--primary)">$1</strong>');
-  };
-  return dates.map(function (ds) {
-    var note = dailyNotesDB[ds];
-    var entriesHtml = note.entries.map(function (e, i) {
+function dnEsc(s) {
+  return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+}
+function dnRich(s) {
+  return dnEsc(s).replace(/\*\*(.+?)\*\*/g, '<strong style="color:var(--primary)">$1</strong>');
+}
+// V4.46.2: 单条词条渲染 —— 外层带锚点 id="dnw-<ds>-<i>" 供播报跟随定位
+function buildNoteEntryHtml(e, i, ds) {
+  var esc = dnEsc, rich = dnRich;
       var detailId = "dn-" + ds + "-" + i;
       var formsHtml = "";
       if (e.forms && e.forms.length) {
@@ -6084,8 +6078,8 @@ function buildDailyNoteCard(topicKey) {
             + '<div style="color:var(--text);margin-top:3px;">' + rich(x.id) + '</div>'
             + '<div style="color:var(--text-dim);">' + esc(x.cn) + '</div></div>';
         }).join("") + '</div>' : "";
-      return '<div style="border:1px solid var(--border);border-radius:8px;margin-bottom:6px;overflow:hidden;">'
-        + '<div onclick="toggleDailyNote(\'' + detailId + '\')" style="padding:10px 12px;cursor:pointer;display:flex;align-items:center;gap:8px;transition:background .15s;" onmouseenter="this.style.background=\'var(--bg-elev)\'" onmouseleave="this.style.background=\'transparent\'">'
+      return '<div class="dn-entry" id="dnw-' + ds + '-' + i + '" style="border:1px solid var(--border);border-radius:8px;margin-bottom:6px;overflow:hidden;">'
+        + '<div class="dn-head" onclick="toggleDailyNote(\'' + detailId + '\')" style="padding:10px 12px;cursor:pointer;display:flex;align-items:center;gap:8px;transition:background .15s;" onmouseenter="this.style.background=\'var(--bg-elev)\'" onmouseleave="this.style.background=\'transparent\'">'
         + '<span style="font-size:11px;color:var(--text-dim);min-width:22px;">' + String(i + 1).padStart(2, "0") + '</span>'
         + '<span style="font-size:14px;font-weight:700;color:var(--primary);">' + esc(e.word) + '</span>'
         + '<span style="font-size:12px;color:var(--text);">' + esc(e.cn) + '</span>'
@@ -6096,16 +6090,31 @@ function buildDailyNoteCard(topicKey) {
         + '<div style="font-size:12px;color:var(--text);background:rgba(0,212,170,.06);border-left:2px solid var(--primary);padding:6px 8px;border-radius:6px;margin:6px 0;line-height:1.6;">🌱 词根：' + rich(e.root) + '</div>'
         + formsHtml + formsNoteHtml + noteHtml + synHtml + antHtml + exHtml
         + '</div></div>';
-    }).join("");
-    return '<div class="card" style="margin-bottom:16px;border-left:3px solid var(--primary);">'
-      + '<div class="card-header" style="flex-wrap:wrap;gap:8px;"><h2>📓 当日笔记 / Catatan Harian</h2>'
-      + '<span class="badge">' + ds + '</span>'
-      + '<span class="badge">' + note.entries.length + '词条</span></div>'
-      + '<div style="padding:16px;">'
-      + '<div style="font-size:12px;color:var(--text-dim);margin-bottom:12px;padding:10px 12px;background:rgba(0,212,170,.06);border-radius:8px;border-left:3px solid var(--primary);">'
-      + '📚 本日学习笔记（' + esc(note.source) + '）· 点击词条展开翻译、词根、变形、同反义词与场景例句</div>'
-      + entriesHtml + '</div></div>';
-  }).join("");
+}
+// V4.46.2: 按日期渲染当日笔记卡（日记页/CA日/课程页三处共用）
+function buildDailyNoteCardForDate(ds) {
+  if (typeof dailyNotesDB === "undefined" || !dailyNotesDB || !dailyNotesDB[ds]) return "";
+  var note = dailyNotesDB[ds];
+  var esc = dnEsc;
+  var entriesHtml = note.entries.map(function (e, i) { return buildNoteEntryHtml(e, i, ds); }).join("");
+  return '<div class="card" style="margin-bottom:16px;border-left:3px solid var(--primary);">'
+    + '<div class="card-header" style="flex-wrap:wrap;gap:8px;"><h2>📓 当日笔记 / Catatan Harian</h2>'
+    + '<span class="badge">' + ds + '</span>'
+    + '<span class="badge">' + note.entries.length + '词条</span></div>'
+    + '<div style="padding:16px;">'
+    // V4.46.3: 播报按钮归位 —— 每篇日记对应一个播报, 随卡片出现在课时测试页/日记页/CA日
+    + '<div style="margin-bottom:12px;"><button class="bc-btn trans-btn btn-small" style="font-size:12px;" onclick="broadcastDay(\'' + ds + '\')">🔊 播报今日笔记 / Dengarkan Catatan</button></div>'
+    + '<div style="font-size:12px;color:var(--text-dim);margin-bottom:12px;padding:10px 12px;background:rgba(0,212,170,.06);border-radius:8px;border-left:3px solid var(--primary);">'
+    + '📚 本日学习笔记（' + esc(note.source) + '）· 点击词条展开翻译、词根、变形、同反义词与场景例句</div>'
+    + entriesHtml + '</div></div>';
+}
+function buildDailyNoteCard(topicKey) {
+  if (typeof dailyNotesDB === "undefined" || !dailyNotesDB) return "";
+  var dates = Object.keys(topicCalendar).filter(function (d) {
+    return topicCalendar[d] && topicCalendar[d].topic === topicKey && dailyNotesDB[d];
+  }).sort();
+  if (!dates.length) return "";
+  return dates.map(function (ds) { return buildDailyNoteCardForDate(ds); }).join("");
 }
 
 function startTopicQuiz(topicKey) {
@@ -193507,8 +193516,12 @@ function renderAbout(c){
 }
 
 function renderVersion(c){
-  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.46.6 / Versi</span></div>
+  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.46.7 / Versi</span></div>
     <div style="padding:16px;">
+      <div style="margin-bottom:14px;padding:14px;background:rgba(34,197,94,.10);border-radius:10px;border-left:3px solid var(--success)">
+        <div style="font-size:15px;font-weight:700;color:var(--success);margin-bottom:6px">V4.46.7 (2026-10-22)</div>
+        <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">播报功能热修复(回归事故): V4.46.6 合并 dailynote js 时覆盖 script 块, 把 V4.46.2/3 的 dnEsc/dnRich/buildNoteEntryHtml/buildDailyNoteCardForDate 四函数一并删除 → 笔记卡不渲染+播报按钮消失(用户实测上报). 修复: 从 b00a316 恢复四函数+卡内🔊按钮+dn-entry跟随锚点 · check_syntax PASS</div>
+      </div>
       <div style="margin-bottom:14px;padding:14px;background:rgba(34,197,94,.10);border-radius:10px;border-left:3px solid var(--success)">
         <div style="font-size:15px;font-weight:700;color:var(--success);margin-bottom:6px">V4.46.6 (2026-10-21)</div>
         <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">1021每日笔记19词(挂ukbi_real Day2阅读+写作, BIT V1.0定稿): 新增14(skimming略读/ejaan拼写/tanda-baca标点[分写注记]/-dalam-bentuk以…形式[分写注记]/justru-itu恰恰[分写注记]/macam-macam各类/beralih转向/temanya其主题[大小写归一]/tenda帐篷/kacau混乱/mengetik打字[词根tik]/lengkap-dan-runtut完整连贯[复合键,写作评分用语]/susun-kerangka列提纲[复合键]/foodcourt美食广场[外来语]) + 复习覆盖5(menyesuaikan/bahkan/disajikan/kencang/sederhana) · 61变形+38例句 · RCO对账19/19逐词映射 · check_syntax PASS</div>
