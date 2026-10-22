@@ -11,6 +11,27 @@
 
 将 BIT 每日笔记词条转化为教学动画视频——剪影人物对话 + Guru 讲解 + 词卡，单文件 HTML、零依赖、浏览器直接播放。
 
+## 一·补、每日笔记部署 SOP 集成（V4.46.9 起强制执行）
+
+视频生成是每日笔记部署的**固有步骤**，不得遗漏。完整 SOP：
+
+```
+BIT md 定稿
+  → python3 scripts/md_to_dailynote.py（笔记数据合并）
+  → BIO 印章: printf 'sha8: <hash>' > agents/BIT/notes/.bio_pass/<date>
+       (hash = sha256(note_final.md)[:8], 无尾部换行)
+  → python3 ~/.openclaw/skills/id-dialogue-video/scripts/biv_daily.py --date <date> --force
+       (lint 10项必须全PASS, 任何FAIL禁止部署)
+  → 产物复制: cp -r bit-deploy/videos/daily/<date> videos/daily/
+  → 注册表同步: cp bit-deploy/video_registry.js video_registry.js
+  → check_syntax.py + deploy-check.sh
+  → 版本号三处更新
+  → git commit + push main
+  → 线上验证（版本号 + VIDEO_DB 天数 + 视频 HTTP 200）
+```
+
+⚠️ **BIT md 写法约束**（防 lint#6 FAIL）：同义词/反义词无内容时写 `- **同义词**: —`（单独一个破折号），**不要**写 `—（无严格反义）` 或 `无严格同义`——中文括号/文字会进入 id 通道导致 lint#6 语言隔离 FAIL。
+
 ## 二、引擎规格
 
 | 项目 | 规格 |
