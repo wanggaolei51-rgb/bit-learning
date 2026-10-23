@@ -6,7 +6,7 @@
 <meta http-equiv="Expires" content="0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LEO-BIR V4.47.0</title>
+<title>LEO-BIR V4.47.1</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -276,7 +276,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="sidebar-header">
     <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <h1>LEO-BIR</h1>
-    <div class="ver">LEO-BIR V4.47.0 · 视频列表补全(0929+1021+1022三天) + 1022视频生成</div>
+    <div class="ver">LEO-BIR V4.47.1 · 视频列表补全(0929+1021+1022三天) + 1022视频生成</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -5998,6 +5998,8 @@ function showBITInfo(word){
   }
   overlay.addEventListener("click",function(e){if(e.target===overlay)closeBITInfo();});
 }
+
+
 
 
 
@@ -79542,6 +79544,443 @@ const dailyNotesDB = {
         ]
       }
     ]
+  },
+  "2026-10-23": {
+    "date": "2026-10-23",
+    "topicKey": "ukbi_drill",
+    "source": "BIT V1.0 + BIO 审查",
+    "entries": [
+      {
+        "word": "terjebak",
+        "cn": "卡住；陷入困境",
+        "en": "stuck; trapped",
+        "root": "jebak（陷阱）",
+        "forms": [],
+        "formsNote": "—",
+        "note": "ter- + jebak 派生，指被卡住/陷入困境 口语常用，描述考试中卡在某题；\"terjebak di soal\"= 卡在题目上",
+        "synonyms": [
+          "tersangkut, terperangkap"
+        ],
+        "antonyms": [
+          "terbebas, lepas"
+        ],
+        "examples": [
+          {
+            "scene": "考场实战",
+            "id": "Jangan terlalu lama terjebak di satu soal sulit.",
+            "cn": "不要在一道难题上卡太久。"
+          },
+          {
+            "scene": "阅读策略",
+            "id": "Peserta terjebak dalam wacana panjang tanpa strategi skimming.",
+            "cn": "考生在没有略读策略的情况下陷入长篇文章中。"
+          }
+        ]
+      },
+      {
+        "word": "berupa-kalimat-pemantik-yang-disertai-gambar",
+        "cn": "以提示句形式并附图片",
+        "en": "in the form of a prompt sentence accompanied by an image",
+        "root": "rupa（形式）",
+        "forms": [],
+        "formsNote": "—",
+        "note": "ber- + rupa 派生，berupa + 名词 = 以…形式 UKBI写作部分格式要求，写作题通常以提示句+图片形式给出",
+        "synonyms": [
+          "berbentuk, berformat"
+        ],
+        "antonyms": [
+          "—"
+        ],
+        "examples": [
+          {
+            "scene": "写作考试",
+            "id": "Soal menulis esai berupa kalimat pemantik yang disertai gambar.",
+            "cn": "作文题以提示句形式并附图片。"
+          },
+          {
+            "scene": "听力理解",
+            "id": "Soalnya berupa kalimat pemantik yang disertai gambar.",
+            "cn": "题目以提示句形式并附图片。"
+          }
+        ]
+      },
+      {
+        "word": "pendahuluan",
+        "cn": "引言；开头部分",
+        "en": "introduction; opening section",
+        "root": "dahulu（先，前）",
+        "forms": [],
+        "formsNote": "—",
+        "note": "peN- + dahulu + -an 派生名词 写作三结构第一部分；\"paragraf pendahuluan\"= 引言段",
+        "synonyms": [
+          "pengantar, pembuka"
+        ],
+        "antonyms": [
+          "penutup, kesimpulan"
+        ],
+        "examples": [
+          {
+            "scene": "写作技巧",
+            "id": "Pendahuluan harus menarik perhatian pembaca.",
+            "cn": "引言必须吸引读者的注意。"
+          },
+          {
+            "scene": "文章结构",
+            "id": "Paragraf pendahuluan memuat kalimat pemantik.",
+            "cn": "引言段包含提示句。"
+          }
+        ]
+      },
+      {
+        "word": "paragraf-isi",
+        "cn": "正文段落",
+        "en": "body paragraph",
+        "root": "isi（内容）",
+        "forms": [],
+        "formsNote": "—",
+        "note": "写作术语固定搭配 paragraf + isi 写作三结构中\"引言—正文—结尾\"的正文部分",
+        "synonyms": [
+          "badan teks, inti paragraf"
+        ],
+        "antonyms": [
+          "paragraf pembuka, paragraf penutup"
+        ],
+        "examples": [
+          {
+            "scene": "写作技巧",
+            "id": "Setiap paragraf isi harus dimulai dengan kalimat topik.",
+            "cn": "每个正文段必须以主题句开头。"
+          },
+          {
+            "scene": "作文结构",
+            "id": "Paragraf isi menjelaskan argumen utama esai.",
+            "cn": "正文段阐述文章的主要论点。"
+          }
+        ]
+      },
+      {
+        "word": "sederhana",
+        "cn": "简单的；简易的",
+        "en": "simple; straightforward",
+        "root": "—",
+        "forms": [],
+        "formsNote": "—",
+        "note": "无派生形态；sedang 近义但侧重\"中等\" 常修饰 soal/teks/prosedur；\"soal sederhana\"= 简单的题目",
+        "synonyms": [
+          "mudah, simpel"
+        ],
+        "antonyms": [
+          "rumit, sulit"
+        ],
+        "examples": [
+          {
+            "scene": "考试描述",
+            "id": "Soal pilihan ganda cenderung sederhana.",
+            "cn": "选择题往往比较简单。"
+          },
+          {
+            "scene": "日常对话",
+            "id": "Penjelasannya sederhana dan mudah dipahami.",
+            "cn": "解释简单易懂。"
+          }
+        ]
+      },
+      {
+        "word": "rumit",
+        "cn": "复杂的；难懂的",
+        "en": "complicated; intricate",
+        "root": "—",
+        "forms": [],
+        "formsNote": "—",
+        "note": "名词化 kerumitan（复杂性） 常形容问题/流程/结构复杂",
+        "synonyms": [
+          "kompleks, pelik, sulit"
+        ],
+        "antonyms": [
+          "sederhana, mudah"
+        ],
+        "examples": [
+          {
+            "scene": "考试分析",
+            "id": "Soal ini cukup rumit untuk peserta tingkat menengah.",
+            "cn": "这道题对中级考生来说相当复杂。"
+          },
+          {
+            "scene": "流程描述",
+            "id": "Prosedur pendaftarannya tidak rumit.",
+            "cn": "注册流程不复杂。"
+          }
+        ]
+      },
+      {
+        "word": "keliru",
+        "cn": "错误的；搞错的",
+        "en": "wrong; mistaken",
+        "root": "—",
+        "forms": [],
+        "formsNote": "—",
+        "note": "meN- + keliru → mengeliru；名词化 pengeliruan 可用于人（saya keliru）或事物；口语比 salah 更随意",
+        "synonyms": [
+          "salah"
+        ],
+        "antonyms": [
+          "benar, tepat"
+        ],
+        "examples": [
+          {
+            "scene": "自我纠正",
+            "id": "Saya keliru memahami instruksi soal.",
+            "cn": "我误解了题目要求。"
+          },
+          {
+            "scene": "写作鼓励",
+            "id": "Jangan takut keliru saat menulis esai pertama.",
+            "cn": "写第一篇作文时别怕出错。"
+          }
+        ]
+      },
+      {
+        "word": "penyuara-jemala",
+        "cn": "头戴式耳机",
+        "en": "headset; head-mounted headphones",
+        "root": "suara（声音）",
+        "forms": [],
+        "formsNote": "—",
+        "note": "penyuara 为 peny- + suara 派生，jemala 指头戴 UKBI考试设备清单词汇，官方要求考生自备",
+        "synonyms": [
+          "headset, earphone"
+        ],
+        "antonyms": [
+          "pengeras suara, speaker"
+        ],
+        "examples": [
+          {
+            "scene": "考试要求",
+            "id": "Peserta wajib membawa penyuara jemala sendiri.",
+            "cn": "考生必须自带头戴式耳机。"
+          },
+          {
+            "scene": "设备功能",
+            "id": "Penyuara jemala memastikan audio tes jelas terdengar.",
+            "cn": "耳机确保测试音频清晰可闻。"
+          }
+        ]
+      },
+      {
+        "word": "manfaatkan",
+        "cn": "利用；使用（使…产生效益）",
+        "en": "to utilize; make use of",
+        "root": "manfaat（益处）",
+        "forms": [],
+        "formsNote": "—",
+        "note": "祈使/口语用 manfaatkan；标准 meN- 派生 memanfaatkan 常接 sumber daya/waktu/teknologi；\"manfaatkan waktu\"= 利用时间",
+        "synonyms": [
+          "gunakan, pergunakan"
+        ],
+        "antonyms": [
+          "sia-siakan, buang"
+        ],
+        "examples": [
+          {
+            "scene": "时间管理",
+            "id": "Manfaatkan waktu tersisa untuk memeriksa jawaban.",
+            "cn": "利用剩余时间检查答案。"
+          },
+          {
+            "scene": "考试建议",
+            "id": "Peserta disarankan memanfaatkan fitur markir.",
+            "cn": "建议考生使用标记功能。"
+          }
+        ]
+      },
+      {
+        "word": "kerangka",
+        "cn": "提纲；框架",
+        "en": "outline; framework",
+        "root": "rangka（骨架）",
+        "forms": [],
+        "formsNote": "—",
+        "note": "ber- + rangka → berkerangka 写作前先列 kerangka；\"kerangka karangan\"= 写作提纲",
+        "synonyms": [
+          "rangka, garis besar"
+        ],
+        "antonyms": [
+          "detail, isi lengkap"
+        ],
+        "examples": [
+          {
+            "scene": "写作准备",
+            "id": "Buat kerangka sebelum mulai menulis esai.",
+            "cn": "开始写作文前先列提纲。"
+          },
+          {
+            "scene": "文章结构",
+            "id": "Kerangka karangan terdiri atas pendahuluan, isi, dan kesimpulan.",
+            "cn": "文章提纲由引言、正文和结论组成。"
+          }
+        ]
+      },
+      {
+        "word": "keuntungan",
+        "cn": "好处；优势",
+        "en": "advantage; benefit",
+        "root": "untung（幸运；利润）",
+        "forms": [],
+        "formsNote": "—",
+        "note": "ke-an 派生，将形容词/名词转为抽象名词 常写作对比结构 \"keuntungan dan kerugian\"",
+        "synonyms": [
+          "manfaat, faedah"
+        ],
+        "antonyms": [
+          "kerugian, kelemahan"
+        ],
+        "examples": [
+          {
+            "scene": "议论文写作",
+            "id": "Tuliskan keuntungan dan kerugian pembangunan smelter.",
+            "cn": "写出冶炼厂建设的利与弊。"
+          },
+          {
+            "scene": "决策分析",
+            "id": "Keuntungan strategi ini terlihat pada efisiensi waktu.",
+            "cn": "这一策略的优势体现在时间效率上。"
+          }
+        ]
+      },
+      {
+        "word": "kerugian",
+        "cn": "损失；亏损",
+        "en": "loss; disadvantage",
+        "root": "rugi（亏损）",
+        "forms": [],
+        "formsNote": "—",
+        "note": "ke-an 派生名词 商业/考试语境通用；\"mengalami kerugian\"= 遭受损失",
+        "synonyms": [
+          "kerusakan, kehilangan"
+        ],
+        "antonyms": [
+          "keuntungan"
+        ],
+        "examples": [
+          {
+            "scene": "风险分析",
+            "id": "Setiap keputusan punya kerugian potensial.",
+            "cn": "每个决定都有潜在的损失。"
+          },
+          {
+            "scene": "议论文写作",
+            "id": "Kerugian teknologi harus dipertimbangkan secara objektif.",
+            "cn": "技术的弊端必须被客观考虑。"
+          }
+        ]
+      },
+      {
+        "word": "kelemahan",
+        "cn": "弱点；缺陷",
+        "en": "weakness; shortcoming",
+        "root": "lemah（弱）",
+        "forms": [],
+        "formsNote": "—",
+        "note": "ke-an 派生，lemah + -an 组成 可用于人（kelemahan saya）或事物；\"menganalisis kelemahan\"= 分析弱点",
+        "synonyms": [
+          "kekurangan, titik lemah"
+        ],
+        "antonyms": [
+          "kelebihan, kekuatan"
+        ],
+        "examples": [
+          {
+            "scene": "自我评估",
+            "id": "Kenali kelemahanmu sebelum tes adaptif.",
+            "cn": "在自适应测试前认清你的弱点。"
+          },
+          {
+            "scene": "备考策略",
+            "id": "Fokus 90% latihan pada kelemahan, bukan kekuatan.",
+            "cn": "90%的练习集中在弱点而非强项上。"
+          }
+        ]
+      },
+      {
+        "word": "teruji-lebih-terpuji",
+        "cn": "经过考验的更令人称赞（写作评分标准：内容与语言并重）",
+        "en": "tested-yet-more-praiseworthy; proven and commendable",
+        "root": "uji（测试）+ puji（称赞）",
+        "forms": [],
+        "formsNote": "—",
+        "note": "ter- + uji；ter- + puji 双形容词比较结构 UKBI写作评分理念——内容扎实（teruji）与语言优美（terpuji）并重",
+        "synonyms": [],
+        "antonyms": [
+          "mentah, belum matang"
+        ],
+        "examples": [
+          {
+            "scene": "评分理解",
+            "id": "Esai teruji lebih terpuji daripada yang sekadar panjang.",
+            "cn": "内容扎实的文章比单纯冗长的更值得称赞。"
+          },
+          {
+            "scene": "写作提升",
+            "id": "Latihan menulis membuat gaya bahasamu teruji lebih terpuji.",
+            "cn": "写作练习使你的语言风格经得起检验且更出色。"
+          }
+        ]
+      },
+      {
+        "word": "perangkatnya",
+        "cn": "其设备；该装置",
+        "en": "its device; the equipment",
+        "root": "rangka（骨架→框架→设备）",
+        "forms": [],
+        "formsNote": "—",
+        "note": "perangkat + -nya 第三人称领属后缀 \"perangkat lunak\"= 软件；\"perangkat keras\"= 硬件",
+        "synonyms": [
+          "alatnya, unitnya"
+        ],
+        "antonyms": [
+          "—"
+        ],
+        "examples": [
+          {
+            "scene": "考试要求",
+            "id": "Perangkatnya harus memenuhi spesifikasi minimal.",
+            "cn": "设备必须满足最低规格。"
+          },
+          {
+            "scene": "设备检查",
+            "id": "Pastikan perangkatnya berfungsi sebelum tes dimulai.",
+            "cn": "确保考试开始前设备正常运转。"
+          }
+        ]
+      },
+      {
+        "word": "supaya-agar-untuk",
+        "cn": "为了；以便（目的连词三件套）",
+        "en": "so that; in order to",
+        "root": "—",
+        "forms": [],
+        "formsNote": "—",
+        "note": "三者均可引导目的状语从句；agar 最正式，untuk + 动词原形 UKBI语法常考三者细微差别；agar 后从句主语可与主句不同",
+        "synonyms": [
+          "guna, demi"
+        ],
+        "antonyms": [
+          "sebab, karena"
+        ],
+        "examples": [
+          {
+            "scene": "备考目的",
+            "id": "Latihlah setiap hari supaya menguasai strategi menjawab.",
+            "cn": "每天练习以掌握答题策略。"
+          },
+          {
+            "scene": "写作指导",
+            "id": "Baca instruksi dengan teliti agar tidak keliru.",
+            "cn": "仔细阅读要求以免出错。"
+          }
+        ]
+      }
+    ]
   }
 };
 // ===== BIT 详解库 bitVocabDB V4.31.0 新增:按词组织的累积详解库,转换器 scripts/md_to_dailynote.py 在写入每日笔记时自动并入新词条;批量生成由 BIT→BIO 流程灌入 =====
@@ -115775,51 +116214,28 @@ const bitVocabDB = {
   },
   "sederhana": {
     "word": "sederhana",
-    "cn": "简单的；简朴的；朴实的",
-    "en": "simple; plain; modest",
-    "root": "sederhana（词根不可拆）",
-    "forms": [
-      {
-        "form": "sederhana",
-        "pos": "形",
-        "mean": "简单；简朴"
-      },
-      {
-        "form": "kesederhanaan",
-        "pos": "名",
-        "mean": "简朴"
-      },
-      {
-        "form": "menyederhanakan",
-        "pos": "动",
-        "mean": "简化"
-      },
-      {
-        "form": "disederhanakan",
-        "pos": "被动态",
-        "mean": "被简化"
-      }
-    ],
-    "formsNote": "",
-    "note": "UKBI 写作推崇 gaya bahasa sederhana（朴实文风）——不卖弄辞藻，表意清楚为先。",
+    "cn": "简单的；简易的",
+    "en": "simple; straightforward",
+    "root": "—",
+    "forms": [],
+    "formsNote": "—",
+    "note": "无派生形态；sedang 近义但侧重\"中等\" 常修饰 soal/teks/prosedur；\"soal sederhana\"= 简单的题目",
     "synonyms": [
-      "mudah",
-      "ringkas"
+      "mudah, simpel"
     ],
     "antonyms": [
-      "rumit",
-      "sulit"
+      "rumit, sulit"
     ],
     "examples": [
       {
-        "scene": "写作建议",
-        "id": "Gunakan kalimat sederhana; kejelasan lebih penting daripada gaya.",
-        "cn": "用简单句；清楚比华丽重要。"
+        "scene": "考试描述",
+        "id": "Soal pilihan ganda cenderung sederhana.",
+        "cn": "选择题往往比较简单。"
       },
       {
-        "scene": "园区生活",
-        "id": "Ia tinggal di rumah sederhana dekat pabrik.",
-        "cn": "他住在工厂附近一栋简朴的房子里。"
+        "scene": "日常对话",
+        "id": "Penjelasannya sederhana dan mudah dipahami.",
+        "cn": "解释简单易懂。"
       }
     ]
   },
@@ -122295,46 +122711,28 @@ const bitVocabDB = {
   },
   "kelemahan": {
     "word": "kelemahan",
-    "cn": "弱点、缺陷",
+    "cn": "弱点；缺陷",
     "en": "weakness; shortcoming",
-    "root": "lemah(弱,词根)+ ke- + -an",
-    "forms": [
-      {
-        "form": "lemah",
-        "pos": "形容词",
-        "mean": "弱的"
-      },
-      {
-        "form": "melemahkan",
-        "pos": "动词",
-        "mean": "削弱(me- + lemah + -kan)"
-      }
-    ],
-    "formsNote": "",
-    "note": "",
+    "root": "lemah（弱）",
+    "forms": [],
+    "formsNote": "—",
+    "note": "ke-an 派生，lemah + -an 组成 可用于人（kelemahan saya）或事物；\"menganalisis kelemahan\"= 分析弱点",
     "synonyms": [
-      "kekurangan(不足)",
-      "titik lemah(软肋)"
+      "kekurangan, titik lemah"
     ],
     "antonyms": [
-      "kekuatan(长处)",
-      "kelebihan(优点)"
+      "kelebihan, kekuatan"
     ],
     "examples": [
       {
-        "scene": "商务",
-        "id": "Analisis SWOT memetakan kekuatan dan **kelemahan** proyek.",
-        "cn": "SWOT 分析梳理项目的优势与弱点。"
+        "scene": "自我评估",
+        "id": "Kenali kelemahanmu sebelum tes adaptif.",
+        "cn": "在自适应测试前认清你的弱点。"
       },
       {
-        "scene": "工作园区",
-        "id": "**Kelemahan** utama genset lama: boros solar.",
-        "cn": "老发电机的主要缺点是费柴油。"
-      },
-      {
-        "scene": "日常",
-        "id": "Kelemahannya terlalu mudah percaya orang.",
-        "cn": "他的弱点是太容易相信别人。"
+        "scene": "备考策略",
+        "id": "Fokus 90% latihan pada kelemahan, bukan kekuatan.",
+        "cn": "90%的练习集中在弱点而非强项上。"
       }
     ]
   },
@@ -161186,76 +161584,55 @@ const bitVocabDB = {
   },
   "keuntungan": {
     "word": "keuntungan",
-    "cn": "优势 / 利益 / 好处",
-    "en": "advantage / benefit",
-    "root": "untung（幸运/盈利）",
-    "forms": [
-      {
-        "form": "keuntungan",
-        "pos": "名词",
-        "mean": "好处、利益"
-      },
-      {
-        "form": "untung",
-        "pos": "形容词",
-        "mean": "幸运的、盈利的"
-      },
-      {
-        "form": "menguntungkan",
-        "pos": "动词/形容词",
-        "mean": "有利可图的"
-      }
-    ],
-    "formsNote": "",
-    "note": "ke- + -an 名词化；meN--kan 派生形容词/动词。",
+    "cn": "好处；优势",
+    "en": "advantage; benefit",
+    "root": "untung（幸运；利润）",
+    "forms": [],
+    "formsNote": "—",
+    "note": "ke-an 派生，将形容词/名词转为抽象名词 常写作对比结构 \"keuntungan dan kerugian\"",
     "synonyms": [
-      "manfaat",
-      "faedah"
+      "manfaat, faedah"
     ],
     "antonyms": [
-      "kerugian（损失）"
+      "kerugian, kelemahan"
     ],
     "examples": [
       {
-        "scene": "应急响应",
-        "id": "Keuntungan utama dari simulasi adalah respons yang lebih cepat.",
-        "cn": "演练的主要好处是响应更快。"
+        "scene": "议论文写作",
+        "id": "Tuliskan keuntungan dan kerugian pembangunan smelter.",
+        "cn": "写出冶炼厂建设的利与弊。"
       },
       {
-        "scene": "现场管理",
-        "id": "Investasi K3 memberikan keuntungan jangka panjang.",
-        "cn": "安全投入带来长期收益。"
+        "scene": "决策分析",
+        "id": "Keuntungan strategi ini terlihat pada efisiensi waktu.",
+        "cn": "这一策略的优势体现在时间效率上。"
       }
     ]
   },
   "kerugian": {
     "word": "kerugian",
     "cn": "损失；亏损",
-    "en": "loss; damage; financial deficit",
-    "root": "rugi",
+    "en": "loss; disadvantage",
+    "root": "rugi（亏损）",
     "forms": [],
-    "formsNote": "rugi、merugikan、kerugian、dirugikan",
-    "note": "ke-an 名词化：kerugian 损失；meN- 动词化：merugikan 使受损；di- 被动：dirugikan 常见于财务报告、保险索赔、合同违约等场景",
+    "formsNote": "—",
+    "note": "ke-an 派生名词 商业/考试语境通用；\"mengalami kerugian\"= 遭受损失",
     "synonyms": [
-      "kerusakan",
-      "defisit",
-      "kehilangan"
+      "kerusakan, kehilangan"
     ],
     "antonyms": [
-      "keuntungan",
-      "laba",
-      "profit"
+      "keuntungan"
     ],
     "examples": [
       {
-        "scene": "商务",
-        "id": "Kerugian akibat keterlambatan pengiriman ditanggung oleh pemasok.",
-        "cn": "因发货延误造成的损失由供应商承担。"
+        "scene": "风险分析",
+        "id": "Setiap keputusan punya kerugian potensial.",
+        "cn": "每个决定都有潜在的损失。"
       },
       {
-        "scene": "商务",
-        "id": "Perusahaan mengklaim kerugian material akibat force majeure.",
-        "cn": "该公司因不可抗力遭受重大损失并提出索赔。"
+        "scene": "议论文写作",
+        "id": "Kerugian teknologi harus dipertimbangkan secara objektif.",
+        "cn": "技术的弊端必须被客观考虑。"
       }
     ]
   },
@@ -178112,49 +178489,28 @@ const bitVocabDB = {
   },
   "terjebak": {
     "word": "terjebak",
-    "cn": "被困；受困；陷于",
-    "en": "trapped; stuck",
-    "root": "jebak",
-    "forms": [
-      {
-        "form": "terjebak",
-        "pos": "adj.",
-        "mean": "被困住的（ter- 被动/状态）"
-      },
-      {
-        "form": "terjebaknya",
-        "pos": "n.",
-        "mean": "被困（这件事）"
-      },
-      {
-        "form": "terperangkap",
-        "pos": "adj.",
-        "mean": "被困住的（同义变形）"
-      }
-    ],
-    "formsNote": "",
-    "note": "前缀 ter- + 词根 jebak，表示陷于某种处境的静态。 ter- 前缀表'陷于、处于'，描述被困在电梯、塌方、火灾现场等危险处境；应急通报高频词。",
+    "cn": "卡住；陷入困境",
+    "en": "stuck; trapped",
+    "root": "jebak（陷阱）",
+    "forms": [],
+    "formsNote": "—",
+    "note": "ter- + jebak 派生，指被卡住/陷入困境 口语常用，描述考试中卡在某题；\"terjebak di soal\"= 卡在题目上",
     "synonyms": [
-      "terperangkap",
-      "terkurung",
-      "terkunci",
-      "terseok"
+      "tersangkut, terperangkap"
     ],
     "antonyms": [
-      "bebas",
-      "selamat",
-      "terbebas"
+      "terbebas, lepas"
     ],
     "examples": [
       {
-        "scene": "安全应急",
-        "id": "Dua pekerja terjebak di dalam elevator setelah pemadaman listrik darurat.",
-        "cn": "紧急停电后两名工人被困在电梯里。"
+        "scene": "考场实战",
+        "id": "Jangan terlalu lama terjebak di satu soal sulit.",
+        "cn": "不要在一道难题上卡太久。"
       },
       {
-        "scene": "安全应急",
-        "id": "Tim penyelamat berhasil mengevakuasi korban yang terjebak di bawah reruntuhan.",
-        "cn": "救援队成功疏散了被困在废墟下的受困者。"
+        "scene": "阅读策略",
+        "id": "Peserta terjebak dalam wacana panjang tanpa strategi skimming.",
+        "cn": "考生在没有略读策略的情况下陷入长篇文章中。"
       }
     ]
   },
@@ -191550,45 +191906,27 @@ const bitVocabDB = {
     ]
   },
   "teruji-lebih-terpuji": {
-    "ipa": "/təˈrudʒi ˈlə.bih tərˈputʃi/",
-    "cn": "久经考验且表现优异（规范分写）",
-    "en": "well-tested and even more praiseworthy",
-    "root": "uji（测试）+ ter-；lebih（更）；puji（赞扬）+ ter-",
-    "forms": [
-      {
-        "form": "teruji lebih terpuji",
-        "pos": "短语",
-        "mean": "规范分写形式"
-      },
-      {
-        "form": "teruji terpuji",
-        "pos": "短语",
-        "mean": "久经考验（10/18 已收录 Teruji-terpuji）"
-      },
-      {
-        "form": "terpuji",
-        "pos": "adj",
-        "mean": "值得赞扬的"
-      }
-    ],
-    "formsNote": "用户输入三词连字符连接，规范应分写。lebih 插入表递进：teruji → lebih terpuji。10/18 Teruji-terpuji 组合词条已收录，本次为递进变体。",
-    "note": "印尼语比较级插入强调：teruji terpuji → teruji lebih terpuji（程度更强）。正式表彰/宣传语境。",
-    "synonyms": [
-      "teruji dan terpuji（经考验且优秀）"
-    ],
+    "word": "teruji-lebih-terpuji",
+    "cn": "经过考验的更令人称赞（写作评分标准：内容与语言并重）",
+    "en": "tested-yet-more-praiseworthy; proven and commendable",
+    "root": "uji（测试）+ puji（称赞）",
+    "forms": [],
+    "formsNote": "—",
+    "note": "ter- + uji；ter- + puji 双形容词比较结构 UKBI写作评分理念——内容扎实（teruji）与语言优美（terpuji）并重",
+    "synonyms": [],
     "antonyms": [
-      "terbukti gagal（已证明失败）"
+      "mentah, belum matang"
     ],
     "examples": [
       {
-        "scene": "Sistem kami teruji lebih terpuji dari kompetitor.",
-        "id": "teruji lebih terpuji",
-        "cn": "我们的系统比竞品更久经考验。"
+        "scene": "评分理解",
+        "id": "Esai teruji lebih terpuji daripada yang sekadar panjang.",
+        "cn": "内容扎实的文章比单纯冗长的更值得称赞。"
       },
       {
-        "scene": "Metode teruji lebih terpuji dalam industri ini.",
-        "id": "teruji lebih terpuji",
-        "cn": "该方法在本行业表现优异。"
+        "scene": "写作提升",
+        "id": "Latihan menulis membuat gaya bahasamu teruji lebih terpuji.",
+        "cn": "写作练习使你的语言风格经得起检验且更出色。"
       }
     ]
   },
@@ -194343,684 +194681,941 @@ const bitVocabDB = {
         "cn": "同样的错误不要一再发生。"
       }
     ]
-  }
-,
+  },
   "tryout": {
-  "word": "tryout",
-  "ipa": "/ˈtraɪ aʊt/",
-  "cn": "模拟演练/模考",
-  "en": "",
-  "root": "",
-  "forms": [],
-  "formsNote": "",
-  "note": "",
-  "synonyms": [],
-  "antonyms": [],
-  "examples": []
-},
+    "word": "tryout",
+    "ipa": "/ˈtraɪ aʊt/",
+    "cn": "模拟演练/模考",
+    "en": "",
+    "root": "",
+    "forms": [],
+    "formsNote": "",
+    "note": "",
+    "synonyms": [],
+    "antonyms": [],
+    "examples": []
+  },
   "strategi menjawab": {
-  "word": "strategi menjawab",
-  "ipa": "/straˈteɡi məndʒaˈwah/",
-  "cn": "答题策略",
-  "en": "",
-  "root": "",
-  "forms": [],
-  "formsNote": "",
-  "note": "",
-  "synonyms": [],
-  "antonyms": [],
-  "examples": []
-},
+    "word": "strategi menjawab",
+    "ipa": "/straˈteɡi məndʒaˈwah/",
+    "cn": "答题策略",
+    "en": "",
+    "root": "",
+    "forms": [],
+    "formsNote": "",
+    "note": "",
+    "synonyms": [],
+    "antonyms": [],
+    "examples": []
+  },
   "manajemen waktu": {
-  "word": "manajemen waktu",
-  "ipa": "/manaˈdʒemen ˈwaktu/",
-  "cn": "时间管理",
-  "en": "",
-  "root": "",
-  "forms": [],
-  "formsNote": "",
-  "note": "",
-  "synonyms": [],
-  "antonyms": [],
-  "examples": []
-},
+    "word": "manajemen waktu",
+    "ipa": "/manaˈdʒemen ˈwaktu/",
+    "cn": "时间管理",
+    "en": "",
+    "root": "",
+    "forms": [],
+    "formsNote": "",
+    "note": "",
+    "synonyms": [],
+    "antonyms": [],
+    "examples": []
+  },
   "latihan soal": {
-  "word": "latihan soal",
-  "ipa": "/latiˈhan ˈsoal/",
-  "cn": "习题练习/刷题",
-  "en": "",
-  "root": "",
-  "forms": [],
-  "formsNote": "",
-  "note": "",
-  "synonyms": [],
-  "antonyms": [],
-  "examples": []
-},
+    "word": "latihan soal",
+    "ipa": "/latiˈhan ˈsoal/",
+    "cn": "习题练习/刷题",
+    "en": "",
+    "root": "",
+    "forms": [],
+    "formsNote": "",
+    "note": "",
+    "synonyms": [],
+    "antonyms": [],
+    "examples": []
+  },
   "fokus": {
-  "word": "fokus",
-  "ipa": "/ˈfokus/",
-  "cn": "专注",
-  "en": "",
-  "root": "",
-  "forms": [],
-  "formsNote": "",
-  "note": "",
-  "synonyms": [],
-  "antonyms": [],
-  "examples": []
-},
+    "word": "fokus",
+    "ipa": "/ˈfokus/",
+    "cn": "专注",
+    "en": "",
+    "root": "",
+    "forms": [],
+    "formsNote": "",
+    "note": "",
+    "synonyms": [],
+    "antonyms": [],
+    "examples": []
+  },
   "grogi": {
-  "word": "grogi",
-  "ipa": "/ˈɡroɡi/",
-  "cn": "紧张怯场",
-  "en": "",
-  "root": "",
-  "forms": [],
-  "formsNote": "",
-  "note": "",
-  "synonyms": [],
-  "antonyms": [],
-  "examples": []
-},
+    "word": "grogi",
+    "ipa": "/ˈɡroɡi/",
+    "cn": "紧张怯场",
+    "en": "",
+    "root": "",
+    "forms": [],
+    "formsNote": "",
+    "note": "",
+    "synonyms": [],
+    "antonyms": [],
+    "examples": []
+  },
   "irama menjawab": {
-  "word": "irama menjawab",
-  "ipa": "/iˈrama məndʒaˈwah/",
-  "cn": "答题节奏",
-  "en": "",
-  "root": "",
-  "forms": [],
-  "formsNote": "",
-  "note": "",
-  "synonyms": [],
-  "antonyms": [],
-  "examples": []
-},
+    "word": "irama menjawab",
+    "ipa": "/iˈrama məndʒaˈwah/",
+    "cn": "答题节奏",
+    "en": "",
+    "root": "",
+    "forms": [],
+    "formsNote": "",
+    "note": "",
+    "synonyms": [],
+    "antonyms": [],
+    "examples": []
+  },
   "markir": {
-  "word": "markir",
-  "ipa": "/marˈkir/",
-  "cn": "标记题目",
-  "en": "",
-  "root": "",
-  "forms": [],
-  "formsNote": "",
-  "note": "",
-  "synonyms": [],
-  "antonyms": [],
-  "examples": []
-},
+    "word": "markir",
+    "ipa": "/marˈkir/",
+    "cn": "标记题目",
+    "en": "",
+    "root": "",
+    "forms": [],
+    "formsNote": "",
+    "note": "",
+    "synonyms": [],
+    "antonyms": [],
+    "examples": []
+  },
   "memeriksa kembali": {
-  "word": "memeriksa kembali",
-  "ipa": "/məməˈriksa kəmˈbali/",
-  "cn": "回头检查",
-  "en": "",
-  "root": "",
-  "forms": [],
-  "formsNote": "",
-  "note": "",
-  "synonyms": [],
-  "antonyms": [],
-  "examples": []
-},
+    "word": "memeriksa kembali",
+    "ipa": "/məməˈriksa kəmˈbali/",
+    "cn": "回头检查",
+    "en": "",
+    "root": "",
+    "forms": [],
+    "formsNote": "",
+    "note": "",
+    "synonyms": [],
+    "antonyms": [],
+    "examples": []
+  },
   "menebak dengan cerdas": {
-  "word": "menebak dengan cerdas",
-  "ipa": "/məˈnebaːk dəˈŋan ˈtʃərdaːs/",
-  "cn": "机智猜题",
-  "en": "",
-  "root": "",
-  "forms": [],
-  "formsNote": "",
-  "note": "",
-  "synonyms": [],
-  "antonyms": [],
-  "examples": []
-},
+    "word": "menebak dengan cerdas",
+    "ipa": "/məˈnebaːk dəˈŋan ˈtʃərdaːs/",
+    "cn": "机智猜题",
+    "en": "",
+    "root": "",
+    "forms": [],
+    "formsNote": "",
+    "note": "",
+    "synonyms": [],
+    "antonyms": [],
+    "examples": []
+  },
   "metode eliminasi": {
-  "word": "metode eliminasi",
-  "ipa": "/ˈmetode eliminaˈsi/",
-  "cn": "排除法",
-  "en": "",
-  "root": "",
-  "forms": [],
-  "formsNote": "",
-  "note": "",
-  "synonyms": [],
-  "antonyms": [],
-  "examples": []
-},
+    "word": "metode eliminasi",
+    "ipa": "/ˈmetode eliminaˈsi/",
+    "cn": "排除法",
+    "en": "",
+    "root": "",
+    "forms": [],
+    "formsNote": "",
+    "note": "",
+    "synonyms": [],
+    "antonyms": [],
+    "examples": []
+  },
   "menemukan kata kunci": {
-  "word": "menemukan kata kunci",
-  "ipa": "/mənəˈmuːan ˈkata ˈkuntʃi/",
-  "cn": "关键词定位",
-  "en": "",
-  "root": "",
-  "forms": [],
-  "formsNote": "",
-  "note": "",
-  "synonyms": [],
-  "antonyms": [],
-  "examples": []
-},
+    "word": "menemukan kata kunci",
+    "ipa": "/mənəˈmuːan ˈkata ˈkuntʃi/",
+    "cn": "关键词定位",
+    "en": "",
+    "root": "",
+    "forms": [],
+    "formsNote": "",
+    "note": "",
+    "synonyms": [],
+    "antonyms": [],
+    "examples": []
+  },
   "coretan": {
-  "word": "coretan",
-  "ipa": "/tʃoˈretan/",
-  "cn": "速记笔记/草稿痕迹",
-  "en": "",
-  "root": "",
-  "forms": [],
-  "formsNote": "",
-  "note": "",
-  "synonyms": [],
-  "antonyms": [],
-  "examples": []
-},
+    "word": "coretan",
+    "ipa": "/tʃoˈretan/",
+    "cn": "速记笔记/草稿痕迹",
+    "en": "",
+    "root": "",
+    "forms": [],
+    "formsNote": "",
+    "note": "",
+    "synonyms": [],
+    "antonyms": [],
+    "examples": []
+  },
   "draf jawaban": {
-  "word": "draf jawaban",
-  "ipa": "/ˈdrav dʒaˈwaban/",
-  "cn": "答案草稿",
-  "en": "",
-  "root": "",
-  "forms": [],
-  "formsNote": "",
-  "note": "",
-  "synonyms": [],
-  "antonyms": [],
-  "examples": []
-},
+    "word": "draf jawaban",
+    "ipa": "/ˈdrav dʒaˈwaban/",
+    "cn": "答案草稿",
+    "en": "",
+    "root": "",
+    "forms": [],
+    "formsNote": "",
+    "note": "",
+    "synonyms": [],
+    "antonyms": [],
+    "examples": []
+  },
   "napas dalam": {
-  "word": "napas dalam",
-  "ipa": "/ˈnapas daˈlam/",
-  "cn": "深呼吸",
-  "en": "",
-  "root": "",
-  "forms": [],
-  "formsNote": "",
-  "note": "",
-  "synonyms": [],
-  "antonyms": [],
-  "examples": []
-},
+    "word": "napas dalam",
+    "ipa": "/ˈnapas daˈlam/",
+    "cn": "深呼吸",
+    "en": "",
+    "root": "",
+    "forms": [],
+    "formsNote": "",
+    "note": "",
+    "synonyms": [],
+    "antonyms": [],
+    "examples": []
+  },
   "percaya diri": {
-  "word": "percaya diri",
-  "ipa": "/pərˈtʃaja ˈdiri/",
-  "cn": "自信心",
-  "en": "",
-  "root": "",
-  "forms": [],
-  "formsNote": "",
-  "note": "",
-  "synonyms": [],
-  "antonyms": [],
-  "examples": []
-},
+    "word": "percaya diri",
+    "ipa": "/pər.tʃa.ja di.ri/",
+    "cn": "自信的",
+    "en": "",
+    "root": "",
+    "forms": [],
+    "formsNote": "",
+    "note": "",
+    "synonyms": [],
+    "antonyms": [],
+    "examples": []
+  },
   "jadwal belajar": {
-  "word": "jadwal belajar",
-  "ipa": "/dʒadˈwal bəˈladʒar/",
-  "cn": "备考计划",
-  "en": "",
-  "root": "",
-  "forms": [],
-  "formsNote": "",
-  "note": "",
-  "synonyms": [],
-  "antonyms": [],
-  "examples": []
-},
+    "word": "jadwal belajar",
+    "ipa": "/dʒadˈwal bəˈladʒar/",
+    "cn": "备考计划",
+    "en": "",
+    "root": "",
+    "forms": [],
+    "formsNote": "",
+    "note": "",
+    "synonyms": [],
+    "antonyms": [],
+    "examples": []
+  },
   "menganalisis kelemahan": {
-  "word": "menganalisis kelemahan",
-  "ipa": "/məˈnaːlisis kəleˈmaːhan/",
-  "cn": "弱项分析",
-  "en": "",
-  "root": "",
-  "forms": [],
-  "formsNote": "",
-  "note": "",
-  "synonyms": [],
-  "antonyms": [],
-  "examples": []
-},
+    "word": "menganalisis kelemahan",
+    "ipa": "/məˈnaːlisis kəleˈmaːhan/",
+    "cn": "弱项分析",
+    "en": "",
+    "root": "",
+    "forms": [],
+    "formsNote": "",
+    "note": "",
+    "synonyms": [],
+    "antonyms": [],
+    "examples": []
+  },
   "penguasaan materi": {
-  "word": "penguasaan materi",
-  "ipa": "/pəŋˈgwaːsan maˈtəri/",
-  "cn": "强项掌握",
-  "en": "",
-  "root": "",
-  "forms": [],
-  "formsNote": "",
-  "note": "",
-  "synonyms": [],
-  "antonyms": [],
-  "examples": []
-},
+    "word": "penguasaan materi",
+    "ipa": "/pəŋˈgwaːsan maˈtəri/",
+    "cn": "强项掌握",
+    "en": "",
+    "root": "",
+    "forms": [],
+    "formsNote": "",
+    "note": "",
+    "synonyms": [],
+    "antonyms": [],
+    "examples": []
+  },
   "skor simulasi": {
-  "word": "skor simulasi",
-  "ipa": "/ˈskɔr simuˈlasi/",
-  "cn": "模拟分数",
-  "en": "",
-  "root": "",
-  "forms": [],
-  "formsNote": "",
-  "note": "",
-  "synonyms": [],
-  "antonyms": [],
-  "examples": []
-},
+    "word": "skor simulasi",
+    "ipa": "/ˈskɔr simuˈlasi/",
+    "cn": "模拟分数",
+    "en": "",
+    "root": "",
+    "forms": [],
+    "formsNote": "",
+    "note": "",
+    "synonyms": [],
+    "antonyms": [],
+    "examples": []
+  },
   "tingkat kelulusan": {
-  "word": "tingkat kelulusan",
-  "ipa": "/ˈtiŋkat kəˈlulusan/",
-  "cn": "通过率",
-  "en": "",
-  "root": "",
-  "forms": [],
-  "formsNote": "",
-  "note": "",
-  "synonyms": [],
-  "antonyms": [],
-  "examples": []
-},
+    "word": "tingkat kelulusan",
+    "ipa": "/ˈtiŋkat kəˈlulusan/",
+    "cn": "通过率",
+    "en": "",
+    "root": "",
+    "forms": [],
+    "formsNote": "",
+    "note": "",
+    "synonyms": [],
+    "antonyms": [],
+    "examples": []
+  },
   "strategi ujian ulang": {
-  "word": "strategi ujian ulang",
-  "ipa": "/straˈteɡi ˈudʒian ˈulaŋ/",
-  "cn": "重考策略",
-  "en": "",
-  "root": "",
-  "forms": [],
-  "formsNote": "",
-  "note": "",
-  "synonyms": [],
-  "antonyms": [],
-  "examples": []
-},
+    "word": "strategi ujian ulang",
+    "ipa": "/straˈteɡi ˈudʒian ˈulaŋ/",
+    "cn": "重考策略",
+    "en": "",
+    "root": "",
+    "forms": [],
+    "formsNote": "",
+    "note": "",
+    "synonyms": [],
+    "antonyms": [],
+    "examples": []
+  },
   "bahan persiapan": {
-  "word": "bahan persiapan",
-  "ipa": "/ˈbaːhan pərˈsiaːpan/",
-  "cn": "备考资料",
-  "en": "",
-  "root": "",
-  "forms": [],
-  "formsNote": "",
-  "note": "",
-  "synonyms": [],
-  "antonyms": [],
-  "examples": []
-},
+    "word": "bahan persiapan",
+    "ipa": "/ˈbaːhan pərˈsiaːpan/",
+    "cn": "备考资料",
+    "en": "",
+    "root": "",
+    "forms": [],
+    "formsNote": "",
+    "note": "",
+    "synonyms": [],
+    "antonyms": [],
+    "examples": []
+  },
   "kumpulan soal asli": {
-  "word": "kumpulan soal asli",
-  "ipa": "/kumˈpulan ˈsoal ˈasli/",
-  "cn": "真题集",
-  "en": "",
-  "root": "",
-  "forms": [],
-  "formsNote": "",
-  "note": "",
-  "synonyms": [],
-  "antonyms": [],
-  "examples": []
-},
+    "word": "kumpulan soal asli",
+    "ipa": "/kumˈpulan ˈsoal ˈasli/",
+    "cn": "真题集",
+    "en": "",
+    "root": "",
+    "forms": [],
+    "formsNote": "",
+    "note": "",
+    "synonyms": [],
+    "antonyms": [],
+    "examples": []
+  },
   "rangkuman": {
-  "word": "rangkuman",
-  "ipa": "/raŋˈkuman/",
-  "cn": "笔记整理/摘要",
-  "en": "",
-  "root": "",
-  "forms": [],
-  "formsNote": "",
-  "note": "",
-  "synonyms": [],
-  "antonyms": [],
-  "examples": []
-},
+    "word": "rangkuman",
+    "ipa": "/raŋˈkuman/",
+    "cn": "笔记整理/摘要",
+    "en": "",
+    "root": "",
+    "forms": [],
+    "formsNote": "",
+    "note": "",
+    "synonyms": [],
+    "antonyms": [],
+    "examples": []
+  },
   "siklus ulasan": {
-  "word": "siklus ulasan",
-  "ipa": "/ˈsiklus ˈulasan/",
-  "cn": "复习周期",
-  "en": "",
-  "root": "",
-  "forms": [],
-  "formsNote": "",
-  "note": "",
-  "synonyms": [],
-  "antonyms": [],
-  "examples": []
-},
+    "word": "siklus ulasan",
+    "ipa": "/ˈsiklus ˈulasan/",
+    "cn": "复习周期",
+    "en": "",
+    "root": "",
+    "forms": [],
+    "formsNote": "",
+    "note": "",
+    "synonyms": [],
+    "antonyms": [],
+    "examples": []
+  },
   "malam sebelum ujian": {
-  "word": "malam sebelum ujian",
-  "ipa": "/maˈlam səˈbelum ˈudʒian/",
-  "cn": "考前夜",
-  "en": "",
-  "root": "",
-  "forms": [],
-  "formsNote": "",
-  "note": "",
-  "synonyms": [],
-  "antonyms": [],
-  "examples": []
-},
+    "word": "malam sebelum ujian",
+    "ipa": "/maˈlam səˈbelum ˈudʒian/",
+    "cn": "考前夜",
+    "en": "",
+    "root": "",
+    "forms": [],
+    "formsNote": "",
+    "note": "",
+    "synonyms": [],
+    "antonyms": [],
+    "examples": []
+  },
   "hari ujian": {
-  "word": "hari ujian",
-  "ipa": "/ˈhari ˈudʒian/",
-  "cn": "考试日",
-  "en": "",
-  "root": "",
-  "forms": [],
-  "formsNote": "",
-  "note": "",
-  "synonyms": [],
-  "antonyms": [],
-  "examples": []
-},
+    "word": "hari ujian",
+    "ipa": "/ˈhari ˈudʒian/",
+    "cn": "考试日",
+    "en": "",
+    "root": "",
+    "forms": [],
+    "formsNote": "",
+    "note": "",
+    "synonyms": [],
+    "antonyms": [],
+    "examples": []
+  },
   "sarapan bergizi": {
-  "word": "sarapan bergizi",
-  "ipa": "/ˈsarapan bərˈɡizi/",
-  "cn": "营养早餐",
-  "en": "",
-  "root": "",
-  "forms": [],
-  "formsNote": "",
-  "note": "",
-  "synonyms": [],
-  "antonyms": [],
-  "examples": []
-},
+    "word": "sarapan bergizi",
+    "ipa": "/ˈsarapan bərˈɡizi/",
+    "cn": "营养早餐",
+    "en": "",
+    "root": "",
+    "forms": [],
+    "formsNote": "",
+    "note": "",
+    "synonyms": [],
+    "antonyms": [],
+    "examples": []
+  },
   "kualitas tidur": {
-  "word": "kualitas tidur",
-  "ipa": "/kuaˈlitas ˈtidur/",
-  "cn": "睡眠质量",
-  "en": "",
-  "root": "",
-  "forms": [],
-  "formsNote": "",
-  "note": "",
-  "synonyms": [],
-  "antonyms": [],
-  "examples": []
-},
+    "word": "kualitas tidur",
+    "ipa": "/kuaˈlitas ˈtidur/",
+    "cn": "睡眠质量",
+    "en": "",
+    "root": "",
+    "forms": [],
+    "formsNote": "",
+    "note": "",
+    "synonyms": [],
+    "antonyms": [],
+    "examples": []
+  },
   "persiapan akhir": {
-  "word": "persiapan akhir",
-  "ipa": "/pərˈsiaːpan ˈaxir/",
-  "cn": "最后准备",
-  "en": "",
-  "root": "",
-  "forms": [],
-  "formsNote": "",
-  "note": "",
-  "synonyms": [],
-  "antonyms": [],
-  "examples": []
-},
+    "word": "persiapan akhir",
+    "ipa": "/pərˈsiaːpan ˈaxir/",
+    "cn": "最后准备",
+    "en": "",
+    "root": "",
+    "forms": [],
+    "formsNote": "",
+    "note": "",
+    "synonyms": [],
+    "antonyms": [],
+    "examples": []
+  },
   "rencana cadangan": {
-  "word": "rencana cadangan",
-  "ipa": "/rənˈtʃana tʃaˈdaŋan/",
-  "cn": "应急方案",
-  "en": "",
-  "root": "",
-  "forms": [],
-  "formsNote": "",
-  "note": "",
-  "synonyms": [],
-  "antonyms": [],
-  "examples": []
-},
+    "word": "rencana cadangan",
+    "ipa": "/rənˈtʃana tʃaˈdaŋan/",
+    "cn": "应急方案",
+    "en": "",
+    "root": "",
+    "forms": [],
+    "formsNote": "",
+    "note": "",
+    "synonyms": [],
+    "antonyms": [],
+    "examples": []
+  },
   "gangguan teknis": {
-  "word": "gangguan teknis",
-  "ipa": "/ɡaŋˈɡuran ˈteknis/",
-  "cn": "技术故障",
-  "en": "",
-  "root": "",
-  "forms": [],
-  "formsNote": "",
-  "note": "",
-  "synonyms": [],
-  "antonyms": [],
-  "examples": []
-},
+    "word": "gangguan teknis",
+    "ipa": "/ɡaŋˈɡuran ˈteknis/",
+    "cn": "技术故障",
+    "en": "",
+    "root": "",
+    "forms": [],
+    "formsNote": "",
+    "note": "",
+    "synonyms": [],
+    "antonyms": [],
+    "examples": []
+  },
   "koneksi terputus": {
-  "word": "koneksi terputus",
-  "ipa": "/koˈnekʃi tərˈputus/",
-  "cn": "网络断线",
-  "en": "",
-  "root": "",
-  "forms": [],
-  "formsNote": "",
-  "note": "",
-  "synonyms": [],
-  "antonyms": [],
-  "examples": []
-},
+    "word": "koneksi terputus",
+    "ipa": "/koˈnekʃi tərˈputus/",
+    "cn": "网络断线",
+    "en": "",
+    "root": "",
+    "forms": [],
+    "formsNote": "",
+    "note": "",
+    "synonyms": [],
+    "antonyms": [],
+    "examples": []
+  },
   "masuk kembali": {
-  "word": "masuk kembali",
-  "ipa": "/ˈmasuk kəmˈbali/",
-  "cn": "重新登录",
-  "en": "",
-  "root": "",
-  "forms": [],
-  "formsNote": "",
-  "note": "",
-  "synonyms": [],
-  "antonyms": [],
-  "examples": []
-},
+    "word": "masuk kembali",
+    "ipa": "/ˈmasuk kəmˈbali/",
+    "cn": "重新登录",
+    "en": "",
+    "root": "",
+    "forms": [],
+    "formsNote": "",
+    "note": "",
+    "synonyms": [],
+    "antonyms": [],
+    "examples": []
+  },
   "ujian terhenti": {
-  "word": "ujian terhenti",
-  "ipa": "/ˈudʒian tərˈhɛnti/",
-  "cn": "考试中断",
-  "en": "",
-  "root": "",
-  "forms": [],
-  "formsNote": "",
-  "note": "",
-  "synonyms": [],
-  "antonyms": [],
-  "examples": []
-},
+    "word": "ujian terhenti",
+    "ipa": "/ˈudʒian tərˈhɛnti/",
+    "cn": "考试中断",
+    "en": "",
+    "root": "",
+    "forms": [],
+    "formsNote": "",
+    "note": "",
+    "synonyms": [],
+    "antonyms": [],
+    "examples": []
+  },
   "melihat hasil ujian": {
-  "word": "melihat hasil ujian",
-  "ipa": "/məˈlihat ˈhasil ˈudʒian/",
-  "cn": "成绩查询",
-  "en": "",
-  "root": "",
-  "forms": [],
-  "formsNote": "",
-  "note": "",
-  "synonyms": [],
-  "antonyms": [],
-  "examples": []
-},
+    "word": "melihat hasil ujian",
+    "ipa": "/məˈlihat ˈhasil ˈudʒian/",
+    "cn": "成绩查询",
+    "en": "",
+    "root": "",
+    "forms": [],
+    "formsNote": "",
+    "note": "",
+    "synonyms": [],
+    "antonyms": [],
+    "examples": []
+  },
   "interpretasi skor": {
-  "word": "interpretasi skor",
-  "ipa": "/interpreˈtasi ˈskɔr/",
-  "cn": "分数解读",
-  "en": "",
-  "root": "",
-  "forms": [],
-  "formsNote": "",
-  "note": "",
-  "synonyms": [],
-  "antonyms": [],
-  "examples": []
-},
+    "word": "interpretasi skor",
+    "ipa": "/interpreˈtasi ˈskɔr/",
+    "cn": "分数解读",
+    "en": "",
+    "root": "",
+    "forms": [],
+    "formsNote": "",
+    "note": "",
+    "synonyms": [],
+    "antonyms": [],
+    "examples": []
+  },
   "melamar": {
-  "word": "melamar",
-  "ipa": "/mə.la.mər/",
-  "cn": "申请（职位）",
-  "en": "",
-  "root": "",
-  "forms": [],
-  "formsNote": "",
-  "note": "",
-  "synonyms": [],
-  "antonyms": [],
-  "examples": []
-},
+    "word": "melamar",
+    "ipa": "/mə.la.mər/",
+    "cn": "申请（职位）",
+    "en": "",
+    "root": "",
+    "forms": [],
+    "formsNote": "",
+    "note": "",
+    "synonyms": [],
+    "antonyms": [],
+    "examples": []
+  },
   "kualifikasi": {
-  "word": "kualifikasi",
-  "ipa": "/kwa.li.fi.ka.si/",
-  "cn": "资格；资历",
-  "en": "",
-  "root": "",
-  "forms": [],
-  "formsNote": "",
-  "note": "",
-  "synonyms": [],
-  "antonyms": [],
-  "examples": []
-},
+    "word": "kualifikasi",
+    "ipa": "/kwa.li.fi.ka.si/",
+    "cn": "资格；资历",
+    "en": "",
+    "root": "",
+    "forms": [],
+    "formsNote": "",
+    "note": "",
+    "synonyms": [],
+    "antonyms": [],
+    "examples": []
+  },
   "multinasional": {
-  "word": "multinasional",
-  "ipa": "/mul.ti.na.si.o.nal/",
-  "cn": "跨国的",
-  "en": "",
-  "root": "",
-  "forms": [],
-  "formsNote": "",
-  "note": "",
-  "synonyms": [],
-  "antonyms": [],
-  "examples": []
-},
+    "word": "multinasional",
+    "ipa": "/mul.ti.na.si.o.nal/",
+    "cn": "跨国的",
+    "en": "",
+    "root": "",
+    "forms": [],
+    "formsNote": "",
+    "note": "",
+    "synonyms": [],
+    "antonyms": [],
+    "examples": []
+  },
   "merekrut": {
-  "word": "merekrut",
-  "ipa": "/mə.rə.krut/",
-  "cn": "招聘",
-  "en": "",
-  "root": "",
-  "forms": [],
-  "formsNote": "",
-  "note": "",
-  "synonyms": [],
-  "antonyms": [],
-  "examples": []
-},
+    "word": "merekrut",
+    "ipa": "/mə.rə.krut/",
+    "cn": "招聘",
+    "en": "",
+    "root": "",
+    "forms": [],
+    "formsNote": "",
+    "note": "",
+    "synonyms": [],
+    "antonyms": [],
+    "examples": []
+  },
   "jujur": {
-  "word": "jujur",
-  "ipa": "/dʒu.dʒur/",
-  "cn": "诚实的",
-  "en": "",
-  "root": "",
-  "forms": [],
-  "formsNote": "",
-  "note": "",
-  "synonyms": [],
-  "antonyms": [],
-  "examples": []
-},
-  "percaya diri": {
-  "word": "percaya diri",
-  "ipa": "/pər.tʃa.ja di.ri/",
-  "cn": "自信的",
-  "en": "",
-  "root": "",
-  "forms": [],
-  "formsNote": "",
-  "note": "",
-  "synonyms": [],
-  "antonyms": [],
-  "examples": []
-},
+    "word": "jujur",
+    "ipa": "/dʒu.dʒur/",
+    "cn": "诚实的",
+    "en": "",
+    "root": "",
+    "forms": [],
+    "formsNote": "",
+    "note": "",
+    "synonyms": [],
+    "antonyms": [],
+    "examples": []
+  },
   "situasional": {
-  "word": "situasional",
-  "ipa": "/si.tu.a.si.o.nal/",
-  "cn": "情境的",
-  "en": "",
-  "root": "",
-  "forms": [],
-  "formsNote": "",
-  "note": "",
-  "synonyms": [],
-  "antonyms": [],
-  "examples": []
-},
+    "word": "situasional",
+    "ipa": "/si.tu.a.si.o.nal/",
+    "cn": "情境的",
+    "en": "",
+    "root": "",
+    "forms": [],
+    "formsNote": "",
+    "note": "",
+    "synonyms": [],
+    "antonyms": [],
+    "examples": []
+  },
   "perilaku": {
-  "word": "perilaku",
-  "ipa": "/pə.ri.la.ku/",
-  "cn": "行为",
-  "en": "",
-  "root": "",
-  "forms": [],
-  "formsNote": "",
-  "note": "",
-  "synonyms": [],
-  "antonyms": [],
-  "examples": []
-},
+    "word": "perilaku",
+    "ipa": "/pə.ri.la.ku/",
+    "cn": "行为",
+    "en": "",
+    "root": "",
+    "forms": [],
+    "formsNote": "",
+    "note": "",
+    "synonyms": [],
+    "antonyms": [],
+    "examples": []
+  },
   "ekspektasi": {
-  "word": "ekspektasi",
-  "ipa": "/ək.spək.ta.si/",
-  "cn": "期望",
-  "en": "",
-  "root": "",
-  "forms": [],
-  "formsNote": "",
-  "note": "",
-  "synonyms": [],
-  "antonyms": [],
-  "examples": []
-},
+    "word": "ekspektasi",
+    "ipa": "/ək.spək.ta.si/",
+    "cn": "期望",
+    "en": "",
+    "root": "",
+    "forms": [],
+    "formsNote": "",
+    "note": "",
+    "synonyms": [],
+    "antonyms": [],
+    "examples": []
+  },
   "mengucapkan terima kasih": {
-  "word": "mengucapkan terima kasih",
-  "ipa": "/mə.u.tʃap.kan tə.ri.ma ka.sih/",
-  "cn": "表达感谢",
-  "en": "",
-  "root": "",
-  "forms": [],
-  "formsNote": "",
-  "note": "",
-  "synonyms": [],
-  "antonyms": [],
-  "examples": []
-},
+    "word": "mengucapkan terima kasih",
+    "ipa": "/mə.u.tʃap.kan tə.ri.ma ka.sih/",
+    "cn": "表达感谢",
+    "en": "",
+    "root": "",
+    "forms": [],
+    "formsNote": "",
+    "note": "",
+    "synonyms": [],
+    "antonyms": [],
+    "examples": []
+  },
   "penawaran": {
-  "word": "penawaran",
-  "ipa": "/pə.na.wa.ran/",
-  "cn": "提议；报价",
-  "en": "",
-  "root": "",
-  "forms": [],
-  "formsNote": "",
-  "note": "",
-  "synonyms": [],
-  "antonyms": [],
-  "examples": []
-},
+    "word": "penawaran",
+    "ipa": "/pə.na.wa.ran/",
+    "cn": "提议；报价",
+    "en": "",
+    "root": "",
+    "forms": [],
+    "formsNote": "",
+    "note": "",
+    "synonyms": [],
+    "antonyms": [],
+    "examples": []
+  },
   "onboarding": {
-  "word": "onboarding",
-  "ipa": "/on.bord.iŋ/",
-  "cn": "入职培训",
-  "en": "",
-  "root": "",
-  "forms": [],
-  "formsNote": "",
-  "note": "",
-  "synonyms": [],
-  "antonyms": [],
-  "examples": []
-},
+    "word": "onboarding",
+    "ipa": "/on.bord.iŋ/",
+    "cn": "入职培训",
+    "en": "",
+    "root": "",
+    "forms": [],
+    "formsNote": "",
+    "note": "",
+    "synonyms": [],
+    "antonyms": [],
+    "examples": []
+  },
   "masa percobaan": {
-  "word": "masa percobaan",
-  "ipa": "/ma.sa pər.tʃo.ba.an/",
-  "cn": "试用期",
-  "en": "",
-  "root": "",
-  "forms": [],
-  "formsNote": "",
-  "note": "",
-  "synonyms": [],
-  "antonyms": [],
-  "examples": []
-},
+    "word": "masa percobaan",
+    "ipa": "/ma.sa pər.tʃo.ba.an/",
+    "cn": "试用期",
+    "en": "",
+    "root": "",
+    "forms": [],
+    "formsNote": "",
+    "note": "",
+    "synonyms": [],
+    "antonyms": [],
+    "examples": []
+  },
   "surat pengunduran diri": {
-  "word": "surat pengunduran diri",
-  "ipa": "/su.rat pəŋ.un.du.ran di.ri/",
-  "cn": "辞职信",
-  "en": "",
-  "root": "",
-  "forms": [],
-  "formsNote": "",
-  "note": "",
-  "synonyms": [],
-  "antonyms": [],
-  "examples": []
-}};
+    "word": "surat pengunduran diri",
+    "ipa": "/su.rat pəŋ.un.du.ran di.ri/",
+    "cn": "辞职信",
+    "en": "",
+    "root": "",
+    "forms": [],
+    "formsNote": "",
+    "note": "",
+    "synonyms": [],
+    "antonyms": [],
+    "examples": []
+  },
+  "berupa-kalimat-pemantik-yang-disertai-gambar": {
+    "word": "berupa-kalimat-pemantik-yang-disertai-gambar",
+    "cn": "以提示句形式并附图片",
+    "en": "in the form of a prompt sentence accompanied by an image",
+    "root": "rupa（形式）",
+    "forms": [],
+    "formsNote": "—",
+    "note": "ber- + rupa 派生，berupa + 名词 = 以…形式 UKBI写作部分格式要求，写作题通常以提示句+图片形式给出",
+    "synonyms": [
+      "berbentuk, berformat"
+    ],
+    "antonyms": [
+      "—"
+    ],
+    "examples": [
+      {
+        "scene": "写作考试",
+        "id": "Soal menulis esai berupa kalimat pemantik yang disertai gambar.",
+        "cn": "作文题以提示句形式并附图片。"
+      },
+      {
+        "scene": "听力理解",
+        "id": "Soalnya berupa kalimat pemantik yang disertai gambar.",
+        "cn": "题目以提示句形式并附图片。"
+      }
+    ]
+  },
+  "pendahuluan": {
+    "word": "pendahuluan",
+    "cn": "引言；开头部分",
+    "en": "introduction; opening section",
+    "root": "dahulu（先，前）",
+    "forms": [],
+    "formsNote": "—",
+    "note": "peN- + dahulu + -an 派生名词 写作三结构第一部分；\"paragraf pendahuluan\"= 引言段",
+    "synonyms": [
+      "pengantar, pembuka"
+    ],
+    "antonyms": [
+      "penutup, kesimpulan"
+    ],
+    "examples": [
+      {
+        "scene": "写作技巧",
+        "id": "Pendahuluan harus menarik perhatian pembaca.",
+        "cn": "引言必须吸引读者的注意。"
+      },
+      {
+        "scene": "文章结构",
+        "id": "Paragraf pendahuluan memuat kalimat pemantik.",
+        "cn": "引言段包含提示句。"
+      }
+    ]
+  },
+  "paragraf-isi": {
+    "word": "paragraf-isi",
+    "cn": "正文段落",
+    "en": "body paragraph",
+    "root": "isi（内容）",
+    "forms": [],
+    "formsNote": "—",
+    "note": "写作术语固定搭配 paragraf + isi 写作三结构中\"引言—正文—结尾\"的正文部分",
+    "synonyms": [
+      "badan teks, inti paragraf"
+    ],
+    "antonyms": [
+      "paragraf pembuka, paragraf penutup"
+    ],
+    "examples": [
+      {
+        "scene": "写作技巧",
+        "id": "Setiap paragraf isi harus dimulai dengan kalimat topik.",
+        "cn": "每个正文段必须以主题句开头。"
+      },
+      {
+        "scene": "作文结构",
+        "id": "Paragraf isi menjelaskan argumen utama esai.",
+        "cn": "正文段阐述文章的主要论点。"
+      }
+    ]
+  },
+  "rumit": {
+    "word": "rumit",
+    "cn": "复杂的；难懂的",
+    "en": "complicated; intricate",
+    "root": "—",
+    "forms": [],
+    "formsNote": "—",
+    "note": "名词化 kerumitan（复杂性） 常形容问题/流程/结构复杂",
+    "synonyms": [
+      "kompleks, pelik, sulit"
+    ],
+    "antonyms": [
+      "sederhana, mudah"
+    ],
+    "examples": [
+      {
+        "scene": "考试分析",
+        "id": "Soal ini cukup rumit untuk peserta tingkat menengah.",
+        "cn": "这道题对中级考生来说相当复杂。"
+      },
+      {
+        "scene": "流程描述",
+        "id": "Prosedur pendaftarannya tidak rumit.",
+        "cn": "注册流程不复杂。"
+      }
+    ]
+  },
+  "keliru": {
+    "word": "keliru",
+    "cn": "错误的；搞错的",
+    "en": "wrong; mistaken",
+    "root": "—",
+    "forms": [],
+    "formsNote": "—",
+    "note": "meN- + keliru → mengeliru；名词化 pengeliruan 可用于人（saya keliru）或事物；口语比 salah 更随意",
+    "synonyms": [
+      "salah"
+    ],
+    "antonyms": [
+      "benar, tepat"
+    ],
+    "examples": [
+      {
+        "scene": "自我纠正",
+        "id": "Saya keliru memahami instruksi soal.",
+        "cn": "我误解了题目要求。"
+      },
+      {
+        "scene": "写作鼓励",
+        "id": "Jangan takut keliru saat menulis esai pertama.",
+        "cn": "写第一篇作文时别怕出错。"
+      }
+    ]
+  },
+  "penyuara-jemala": {
+    "word": "penyuara-jemala",
+    "cn": "头戴式耳机",
+    "en": "headset; head-mounted headphones",
+    "root": "suara（声音）",
+    "forms": [],
+    "formsNote": "—",
+    "note": "penyuara 为 peny- + suara 派生，jemala 指头戴 UKBI考试设备清单词汇，官方要求考生自备",
+    "synonyms": [
+      "headset, earphone"
+    ],
+    "antonyms": [
+      "pengeras suara, speaker"
+    ],
+    "examples": [
+      {
+        "scene": "考试要求",
+        "id": "Peserta wajib membawa penyuara jemala sendiri.",
+        "cn": "考生必须自带头戴式耳机。"
+      },
+      {
+        "scene": "设备功能",
+        "id": "Penyuara jemala memastikan audio tes jelas terdengar.",
+        "cn": "耳机确保测试音频清晰可闻。"
+      }
+    ]
+  },
+  "manfaatkan": {
+    "word": "manfaatkan",
+    "cn": "利用；使用（使…产生效益）",
+    "en": "to utilize; make use of",
+    "root": "manfaat（益处）",
+    "forms": [],
+    "formsNote": "—",
+    "note": "祈使/口语用 manfaatkan；标准 meN- 派生 memanfaatkan 常接 sumber daya/waktu/teknologi；\"manfaatkan waktu\"= 利用时间",
+    "synonyms": [
+      "gunakan, pergunakan"
+    ],
+    "antonyms": [
+      "sia-siakan, buang"
+    ],
+    "examples": [
+      {
+        "scene": "时间管理",
+        "id": "Manfaatkan waktu tersisa untuk memeriksa jawaban.",
+        "cn": "利用剩余时间检查答案。"
+      },
+      {
+        "scene": "考试建议",
+        "id": "Peserta disarankan memanfaatkan fitur markir.",
+        "cn": "建议考生使用标记功能。"
+      }
+    ]
+  },
+  "kerangka": {
+    "word": "kerangka",
+    "cn": "提纲；框架",
+    "en": "outline; framework",
+    "root": "rangka（骨架）",
+    "forms": [],
+    "formsNote": "—",
+    "note": "ber- + rangka → berkerangka 写作前先列 kerangka；\"kerangka karangan\"= 写作提纲",
+    "synonyms": [
+      "rangka, garis besar"
+    ],
+    "antonyms": [
+      "detail, isi lengkap"
+    ],
+    "examples": [
+      {
+        "scene": "写作准备",
+        "id": "Buat kerangka sebelum mulai menulis esai.",
+        "cn": "开始写作文前先列提纲。"
+      },
+      {
+        "scene": "文章结构",
+        "id": "Kerangka karangan terdiri atas pendahuluan, isi, dan kesimpulan.",
+        "cn": "文章提纲由引言、正文和结论组成。"
+      }
+    ]
+  },
+  "perangkatnya": {
+    "word": "perangkatnya",
+    "cn": "其设备；该装置",
+    "en": "its device; the equipment",
+    "root": "rangka（骨架→框架→设备）",
+    "forms": [],
+    "formsNote": "—",
+    "note": "perangkat + -nya 第三人称领属后缀 \"perangkat lunak\"= 软件；\"perangkat keras\"= 硬件",
+    "synonyms": [
+      "alatnya, unitnya"
+    ],
+    "antonyms": [
+      "—"
+    ],
+    "examples": [
+      {
+        "scene": "考试要求",
+        "id": "Perangkatnya harus memenuhi spesifikasi minimal.",
+        "cn": "设备必须满足最低规格。"
+      },
+      {
+        "scene": "设备检查",
+        "id": "Pastikan perangkatnya berfungsi sebelum tes dimulai.",
+        "cn": "确保考试开始前设备正常运转。"
+      }
+    ]
+  },
+  "supaya-agar-untuk": {
+    "word": "supaya-agar-untuk",
+    "cn": "为了；以便（目的连词三件套）",
+    "en": "so that; in order to",
+    "root": "—",
+    "forms": [],
+    "formsNote": "—",
+    "note": "三者均可引导目的状语从句；agar 最正式，untuk + 动词原形 UKBI语法常考三者细微差别；agar 后从句主语可与主句不同",
+    "synonyms": [
+      "guna, demi"
+    ],
+    "antonyms": [
+      "sebab, karena"
+    ],
+    "examples": [
+      {
+        "scene": "备考目的",
+        "id": "Latihlah setiap hari supaya menguasai strategi menjawab.",
+        "cn": "每天练习以掌握答题策略。"
+      },
+      {
+        "scene": "写作指导",
+        "id": "Baca instruksi dengan teliti agar tidak keliru.",
+        "cn": "仔细阅读要求以免出错。"
+      }
+    ]
+  }
+};
 
 function getTopicForDate(ds) {
   return topicCalendar[ds] || null;
