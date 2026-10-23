@@ -1,7 +1,7 @@
 # MEMORY.md - 长期记忆(任何会话重开必读)
 
 > 本文件是跨会话的核心记忆。每次启动优先读本文件。
-> 最后更新：2026-10-23（V4.46.10 紧急修复导航栏版面混乱 — <u003cdiv非法实体致flex布局崩溃）
+> 最后更新：2026-10-23（V4.47.0 双课上线 C5 UKBI冲刺 + CA面试 + V4.46.10 导航栏热修复）
 
 ---
 
@@ -25,7 +25,7 @@
 ## 二、LEO-BIR 策略体系(核心认知,不得再说不认识)
 
 ### 产品本体
-**LEO-BIR** 印尼语学习平台--单文件 HTML + GitHub Pages,当前 **V4.46.6**。
+**LEO-BIR** 印尼语学习平台--单文件 HTML + GitHub Pages,当前 **V4.47.0**。
 为印尼 Morowali 冶炼工业园区总经理定制的个人学习工具。词库 120+ 词条,主题课 topic22-29。
 
 ### 策略代号一览
@@ -111,6 +111,8 @@ V4.46.7       播报热修复(回归事故): V4.46.6 md_to_dailynote.py 合并 d
 V4.46.8       1022每日笔记15词(10新增+5复习覆盖, 挂ukbi_real Day3): 新增10(acara/ferware外来语[待核实拼写,疑为farewell]/minus/lasik缩写/pembedahan/komik/seni-bela-diri复合键/bersifat/menentukan-hal-berikutnya复合学习键/berulang-ulang) + 复习覆盖5(mata/jenjang/berturut-turut/ejaan/tanda) · 28变形+30例句 · RCO对账15/15 · **播报防复发治本**: md_to_dailynote.py RENDER_FUNCS 补齐V4.46.2/3四函数(dnEsc/dnRich/buildNoteEntryHtml/buildDailyNoteCardForDate+新版buildDailyNoteCard复用), 每次合并自动写入, 根除函数丢失(原RENDER_FUNCS只有旧版toggleDailyNote+内联buildDailyNoteCard) · 坑: 第263行删除正则会匹配整个区域含V4.46.2/3函数, RENDER_FUNCS不完整=每次跑管线都丢函数 · check_syntax PASS · deploy-check 8/8 · commit c504ab5 · 线上V4.46.8验证PASS
 V4.46.9       视频列表补全+1022视频: VIDEO_DB注册表1天→3天(0929项目管理39词3集/1021 UKBI Day2 19词2集/1022 UKBI Day3 15词2集) · 1022视频 biv_daily.py --force 产出2集(p1:13词≈284s/p2:2词≈56s) lint 10/10 PASS · BIO印章1f2ea1b5 · **BIT md写法坑**: 同/反义词无内容必须写 `—`（单独破折号），写 `—（无严格反义）` 或 `无严格同义` 会致 lint#6 语言隔离FAIL(中文进id通道) · **BIO印章坑**: 文件必须 `sha8: xxx` 格式无尾部换行, printf默认加\n会致bio_gate regex `stamp=?` · **BIT_BIV v1.1**: 视频生成正式写入每日笔记部署SOP(固有步骤不得遗漏) · commit aa9ec4c+b3ef407 · 线上三天注册表+视频200全PASS
 V4.46.10      紧急修复导航栏版面混乱(用户实测上报): V4.46.9更新版本号时`<div`被误写为`<u003cdiv`(非法HTML实体) → 浏览器解析时`</div>`提前闭合div.app → aside.sidebar与main.main被拆出flex容器 → 侧边栏统计区/导航/今日日期跑到页面流错误位置+主内容区margin-left失效 · 症状: "版面乱了,左右导航栏有的适配到右侧,有的找不到了" · 修复: 一行`<u003cdiv`→`<div` · div标签34开35闭→35开35闭 · 坑: **版本号文本替换时必须验证HTML实体合法性**, sed/脚本替换含`<`的字符串时注意转义 · commit 08d3c6a · 线上MD5一致(f6da6a9c) ★当前版本
+
+V4.47.0       双课上线(10/23-25): ⚡C5 UKBI冲刺 ukbi_drill -- 40核心词/3场景15句/3演讲162-170词/6语法/15题quiz · Day1模拟训练+时间管理 Day2心理调适+应急方案 Day3成绩分析+重考规划 · 💼CA进阶话题2面试 interview -- 三天六块完整(vocab15+phrases10+patterns12基础3:进阶6:专业3+expr15+affixes10 编号1-30+quiz15) · Day1面试准备与自我介绍 Day2面试问答与应对技巧(含STAR法则) Day3面试跟进与薪资谈判 · bitVocabDB 2853→2905(+52新词) · 合并坑: JSON.stringify→JS字面量需加键名前缀(topicData用 ukbi_drill: 无引号, caData用 "interview": 引号) · 两sub-agent并行生成(6m45s+19m16s) · commit 7bbd15c · 线上MD5一致(111d2261) ★当前版本
 V4.46.3       播报二次归位(用户实测仍错位): 按钮下沉 buildDailyNoteCardForDate 卡内 -- 课时测试页(startTopicQuiz)/日记页/CA日三处共用一处源码, 每天日记一个🔊 · tc 课程分支移除无主按钮(该页无词条卡无可跟随=上版错位根因) · 纯文本日兜底按钮 · 22项冒烟全PASS · commit b00a316 · 线上MD5一致(ae372314)
 V4.46.2       播报归位日记页+跟随高亮: 1入口修正 -- 日历日记页(showDateStudyRecord)新增🔊按钮+当日BIT词条卡, CA日底部补日记区, 课程日保留按钮, 三入口共用broadcastDay(ds) 2内容净化bcRootOk -- 词根仅干净单词(/^[A-Za-z][A-Za-z-]{2,}$/且≠词目)才播, 括号类词根(saj/saji)不再乱播 3跟随定位 -- 词条卡锚点dnw-<ds>-<i>+dn-entry, bcFocusWord滚动smooth/center+bc-hl呼吸高亮+BIT详情自动展开, bcStop清除 · E2E冒烟7项+真实bcFocusWord单测全PASS · 坑: 覆盖桩须同Function body层/正则锚点比文本锚点稳(V4.46.0遗留\\u2705混合转义连环失配) · commit 890ab12 · 线上MD5一致(7dd041d1)
 ```
