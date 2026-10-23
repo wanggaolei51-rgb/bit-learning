@@ -6,7 +6,7 @@
 <meta http-equiv="Expires" content="0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LEO-BIR V4.46.9</title>
+<title>LEO-BIR V4.47.0</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -276,7 +276,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="sidebar-header">
     <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <h1>LEO-BIR</h1>
-    <div class="ver">LEO-BIR V4.46.9 · 视频列表补全(0929+1021+1022三天) + 1022视频生成</div>
+    <div class="ver">LEO-BIR V4.47.0 · 视频列表补全(0929+1021+1022三天) + 1022视频生成</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -16162,7 +16162,669 @@ ukbi_certification: {
     ]
   }
 }
-};
+,
+  ukbi_drill: {
+  title: "UKBI考前冲刺 / UKBI Drilling",
+  icon: "⚡",
+  days: 3,
+  grammar: {
+    title: "UKBI冲刺语法 · Tata Bahasa Drill",
+    rules: [
+      {
+        name: "高频语法点快速识别：被动语态 vs 主动语态",
+        detail: "UKBI阅读部分常考被动语态识别。被动语态公式：di- + 动词词根 + (oleh + 施事者)。例：Soal itu dijawab oleh peserta.（那道题被考生答了。）快速技巧：看到 di- 前缀立刻判断被动；若动词以 di- 开头但无宾语，往往是地点状语，如 Saya belajar di perpustakaan.（我在图书馆学习）。对比训练：Teman saya menjelaskan materi. vs Materi dijelaskan oleh teman saya. 考试中先找主语和动词，再看主语是'做'还是'被做'。"
+      },
+      {
+        name: "时间表达：考试场景中的精确计时",
+        detail: "UKBI听力与阅读常出现时间表达。核心结构：pukul/sejam/lewat/kurang。整点：pukul sembilan（九点）；过几分：pukul sembilan lewat lima（九点过五分）；差几分：pukul sepuluh kurang lima（十点差五分=九点五十五）。考试常用句：Waktu tersisa tiga puluh menit.（还剩三十分钟。）Kita punya waktu tiga puluh menit untuk menjawab lima puluh soal.（我们有三十分钟答五十题。）注意 dari... sampai... 结构：Ujian dimulai dari pukul delapan sampai pukul sebelas.（考试从八点开始，十一点结束。）"
+      },
+      {
+        name: "条件假设句：jika...maka... 备考规划必备",
+        detail: "描述答题策略与备考计划的核心句式。第一条件句（真实条件）：Jika + 动词现在时, (maka) + 动词现在时。例：Jika kita memiliki waktu cukup, (maka) kita dapat memeriksa jawaban.（如果时间够，我们就能检查答案。）若...的话：Jika hasilnya kurang memuaskan, saya akan mengikuti ujian ulang.（如果成绩不理想，我就重考。）条件可放句尾：Saya tidak akan terlambat jika bangun pukul enam.（如果六点起床，我就不会迟到。）注意：jika 从句不用 akan，主句才可用 akan。"
+      },
+      {
+        name: "祈使句复习：考场指令与备考指令",
+        detail: "祈使句以动词词根开头，省略主语 kamu/Anda。基础式：Baca soal dengan teliti.（仔细读题。）/ Jangan terburu-buru.（别慌。）/ Kerjakan soal mudah dulu.（先做简单的题。）加 -lah 表强调：Periksalah kembali jawaban Anda.（请检查你的答案。）/ Markirlah soal yang sulit.（标记难题。）祈使句否定用 jangan + 动词：Jangan menghabiskan terlalu banyak waktu pada satu soal.（别在一道题上耗太久。）考试指令常出现：Dilarang membuka buku.（禁止翻书。）Ucapkan dengan jelas.（说清楚。）"
+      },
+      {
+        name: "比较级：难度与成绩对比表达",
+        detail: "UKBI口语与写作常用比较级描述难度感受。一般形容词比较级：lebih + 形容词 + daripada。例：Bagian mendengarkan lebih sulit daripada bagian membaca.（听力部分比阅读部分难。）/ Soal terakhir lebih mudah daripada soal pertama.（最后一题比第一题简单。）同等比较：se... + 形容词 +nya + dengan：Bagian ini se-sulitnya dengan bagian itu.（这部分和那部分一样难。）最高级：paling + 形容词 / ter- 前缀：Ini adalah bagian paling menantang dalam UKBI.（这是UKBI中最具挑战的部分。）口语中常见：Saya merasa bagian menulis jauh lebih berat daripada yang saya kira.（我觉得写作部分远比想象中难。）"
+      },
+      {
+        name: "快速定位：代词指代与连接词信号词",
+        detail: "阅读理解的提速技巧：抓住信号词。转折：tetapi/namun/akan tetapi（但是）；因果：karena/oleh karena itu（因为/因此）；递进：selain itu/bahkan/lebih lanjut（此外/甚至/进一步）；举例：seperti contohnya/misalnya（例如）；总结：jadi/singkatnya/kesimpulannya（所以/简言之/结论是）。代词回指：dia/ini/itu/yang 往往回指前文名词。例：Peserta harus datang tepat waktu. Mereka juga harus membawa KTP.（考生必须准时到场。他们还必须带身份证。）— mereka 回指 peserta。看到 oleh karena itu 立即明白后面是结论，前面是原因。"
+      }
+    ]
+  },
+  vocab: [
+    [
+      "simulasi",
+      "模拟考试",
+      "/simuˈlasi/"
+    ],
+    [
+      "tryout",
+      "模拟演练/模考",
+      "/ˈtraɪ aʊt/"
+    ],
+    [
+      "strategi menjawab",
+      "答题策略",
+      "/straˈteɡi məndʒaˈwah/"
+    ],
+    [
+      "manajemen waktu",
+      "时间管理",
+      "/manaˈdʒemen ˈwaktu/"
+    ],
+    [
+      "latihan soal",
+      "习题练习/刷题",
+      "/latiˈhan ˈsoal/"
+    ],
+    [
+      "fokus",
+      "专注",
+      "/ˈfokus/"
+    ],
+    [
+      "cemas",
+      "焦虑",
+      "/tʃəˈmas/"
+    ],
+    [
+      "grogi",
+      "紧张怯场",
+      "/ˈɡroɡi/"
+    ],
+    [
+      "irama menjawab",
+      "答题节奏",
+      "/iˈrama məndʒaˈwah/"
+    ],
+    [
+      "markir",
+      "标记题目",
+      "/marˈkir/"
+    ],
+    [
+      "memeriksa kembali",
+      "回头检查",
+      "/məməˈriksa kəmˈbali/"
+    ],
+    [
+      "menebak dengan cerdas",
+      "机智猜题",
+      "/məˈnebaːk dəˈŋan ˈtʃərdaːs/"
+    ],
+    [
+      "metode eliminasi",
+      "排除法",
+      "/ˈmetode eliminaˈsi/"
+    ],
+    [
+      "menemukan kata kunci",
+      "关键词定位",
+      "/mənəˈmuːan ˈkata ˈkuntʃi/"
+    ],
+    [
+      "coretan",
+      "速记笔记/草稿痕迹",
+      "/tʃoˈretan/"
+    ],
+    [
+      "draf jawaban",
+      "答案草稿",
+      "/ˈdrav dʒaˈwaban/"
+    ],
+    [
+      "napas dalam",
+      "深呼吸",
+      "/ˈnapas daˈlam/"
+    ],
+    [
+      "percaya diri",
+      "自信心",
+      "/pərˈtʃaja ˈdiri/"
+    ],
+    [
+      "jadwal belajar",
+      "备考计划",
+      "/dʒadˈwal bəˈladʒar/"
+    ],
+    [
+      "menganalisis kelemahan",
+      "弱项分析",
+      "/məˈnaːlisis kəleˈmaːhan/"
+    ],
+    [
+      "penguasaan materi",
+      "强项掌握",
+      "/pəŋˈgwaːsan maˈtəri/"
+    ],
+    [
+      "skor simulasi",
+      "模拟分数",
+      "/ˈskɔr simuˈlasi/"
+    ],
+    [
+      "tingkat kelulusan",
+      "通过率",
+      "/ˈtiŋkat kəˈlulusan/"
+    ],
+    [
+      "strategi ujian ulang",
+      "重考策略",
+      "/straˈteɡi ˈudʒian ˈulaŋ/"
+    ],
+    [
+      "bahan persiapan",
+      "备考资料",
+      "/ˈbaːhan pərˈsiaːpan/"
+    ],
+    [
+      "kumpulan soal asli",
+      "真题集",
+      "/kumˈpulan ˈsoal ˈasli/"
+    ],
+    [
+      "rangkuman",
+      "笔记整理/摘要",
+      "/raŋˈkuman/"
+    ],
+    [
+      "siklus ulasan",
+      "复习周期",
+      "/ˈsiklus ˈulasan/"
+    ],
+    [
+      "malam sebelum ujian",
+      "考前夜",
+      "/maˈlam səˈbelum ˈudʒian/"
+    ],
+    [
+      "hari ujian",
+      "考试日",
+      "/ˈhari ˈudʒian/"
+    ],
+    [
+      "sarapan bergizi",
+      "营养早餐",
+      "/ˈsarapan bərˈɡizi/"
+    ],
+    [
+      "kualitas tidur",
+      "睡眠质量",
+      "/kuaˈlitas ˈtidur/"
+    ],
+    [
+      "persiapan akhir",
+      "最后准备",
+      "/pərˈsiaːpan ˈaxir/"
+    ],
+    [
+      "rencana cadangan",
+      "应急方案",
+      "/rənˈtʃana tʃaˈdaŋan/"
+    ],
+    [
+      "gangguan teknis",
+      "技术故障",
+      "/ɡaŋˈɡuran ˈteknis/"
+    ],
+    [
+      "koneksi terputus",
+      "网络断线",
+      "/koˈnekʃi tərˈputus/"
+    ],
+    [
+      "masuk kembali",
+      "重新登录",
+      "/ˈmasuk kəmˈbali/"
+    ],
+    [
+      "ujian terhenti",
+      "考试中断",
+      "/ˈudʒian tərˈhɛnti/"
+    ],
+    [
+      "melihat hasil ujian",
+      "成绩查询",
+      "/məˈlihat ˈhasil ˈudʒian/"
+    ],
+    [
+      "interpretasi skor",
+      "分数解读",
+      "/interpreˈtasi ˈskɔr/"
+    ]
+  ],
+  scenes: [
+    {
+      title: "模拟考试现场 / Ruang Simulasi Tryout",
+      icon: "📝",
+      dialogue: [
+        {
+          speaker: "A",
+          text: "Wah, tryout ini rasanya seperti ujian asli, ya. Saya mulai grogi.",
+          trans: "哇，这场模考感觉像真考试。我开始紧张了。"
+        },
+        {
+          speaker: "B",
+          text: "Tenang saja. Justru itu tujuannya, biar kita terbiasa dengan suasana ujian sebenarnya.",
+          trans: "放轻松。这正是目的所在——让我们熟悉真实考试氛围。"
+        },
+        {
+          speaker: "A",
+          text: "Berapa menit lagi bagian membaca selesai? Saya masih tersisa lima soal.",
+          trans: "阅读部分还剩几分钟结束？我还有五道题没答。"
+        },
+        {
+          speaker: "B",
+          text: "Tersisa sepuluh menit. Saran saya, jangan terpaku pada satu soal yang sulit. Markir dulu, lalu lanjutkan.",
+          trans: "还剩十分钟。我建议你别卡在难题上。先标记，然后继续做。"
+        },
+        {
+          speaker: "A",
+          text: "Bagaimana dengan menebak jawaban? Kalau waktu habis dan masih ada soal kosong?",
+          trans: "猜答案怎么办？如果时间到了还有空题呢？"
+        },
+        {
+          speaker: "B",
+          text: "Pakai metode eliminasi. Buang dulu pilihan yang jelas salah, lalu pilih dari sisa yang paling masuk akal.",
+          trans: "用排除法。先去掉明显错误的选项，再从剩余中选最合理的。"
+        },
+        {
+          speaker: "A",
+          text: "Kata instruktur tadi, di UKBI asli tidak ada pengurangan nilai untuk jawaban salah, kan?",
+          trans: "刚才讲师说，正式UKBI答错不扣分，对吧？"
+        },
+        {
+          speaker: "B",
+          text: "Betul. Jadi jangan biarkan satu soal pun kosong. Isi semua, meskipun harus menebak.",
+          trans: "对。所以别让任何一题空着。全部填上，哪怕要猜。"
+        },
+        {
+          speaker: "A",
+          text: "Berapa target skor simulasi kamu kali ini?",
+          trans: "你这次模考的目标分数是多少？"
+        },
+        {
+          speaker: "B",
+          text: "Saya ingin mencapai 540, karena itu ambang minimal untuk tingkat madya.",
+          trans: "我想达到540分，因为那是中级的最低门槛。"
+        },
+        {
+          speaker: "A",
+          text: "Strategi manajemen waktumu gimana? Lima puluh soal dalam tiga puluh menit itu berat.",
+          trans: "你的时间管理策略是什么？三十分钟五十道题不轻啊。"
+        },
+        {
+          speaker: "B",
+          text: "Saya bagi menjadi tiga gelombang. Soal mudah dulu, lalu sedang, terakhir yang sulit. Cara ini menjaga irama menjawab tetap stabil.",
+          trans: "我分三波。先做简单的，然后中等，最后难的。这样答题节奏能保持稳定。"
+        },
+        {
+          speaker: "A",
+          text: "Ide bagus. Setelah selesai, kamu memeriksa kembali jawaban atau langsung submit?",
+          trans: "好主意。做完之后你回头检查答案还是直接提交？"
+        },
+        {
+          speaker: "B",
+          text: "Kalau masih ada waktu, saya periksa kembali soal yang sudah dimarkir. Tiga menit terakhir saya pakai untuk memastikan tidak ada yang terlewat.",
+          trans: "如果还有时间，我会回看标记过的题。最后三分钟用来确保没有遗漏。"
+        },
+        {
+          speaker: "A",
+          text: "Oke, tiga menit lagi. Ayo kita selesaikan dengan tenang. Semangat!",
+          trans: "好，还剩三分钟。我们平静地完成吧。加油！"
+        }
+      ]
+    },
+    {
+      title: "考前准备对话 / Persiapan Jelang Ujian",
+      icon: "🎯",
+      dialogue: [
+        {
+          speaker: "A",
+          text: "Pak, hasil tryout kemarin menunjukkan kelemahan saya ada di bagian menulis. Bagaimana cara memperbaikinya dalam dua hari?",
+          trans: "老师，昨天的模考结果显示我的弱项在写作部分。两天内怎么补救？"
+        },
+        {
+          speaker: "B",
+          text: "Dua hari memang singkat. Fokus saja pada struktur: paragraf pembuka, isi, dan penutup. Latih menulis satu esai per jam.",
+          trans: "两天确实很短。就专注结构：开头段、正文和结尾。每小时练写一篇作文。"
+        },
+        {
+          speaker: "A",
+          text: "Apakah saya perlu mengulang semua materi atau cukup bagian yang lemah saja?",
+          trans: "我需要重过全部内容，还是只练弱项就行？"
+        },
+        {
+          speaker: "B",
+          text: "Aturan praktisnya: sembilan puluh persen waktu untuk kelemahan, sepuluh persen untuk menjaga penguasaan materi yang sudah kuat.",
+          trans: "实用原则是：百分之九十的时间给弱项，百分之十用于巩固已掌握的强项。"
+        },
+        {
+          speaker: "A",
+          text: "Saya sering cemas kalau memikirkan ujian. Malam ini saya bahkan sulit tidur.",
+          trans: "一想到考试我就焦虑。今晚我甚至睡不着。"
+        },
+        {
+          speaker: "B",
+          text: "Itu wajar. Coba teknik napas dalam: tarik napas empat hitungan, tahan, lalu hembuskan perlahan. Ulangi lima kali sebelum tidur.",
+          trans: "这很正常。试试深呼吸技巧：吸气数四拍，屏住，然后缓缓呼出。睡前重复五次。"
+        },
+        {
+          speaker: "A",
+          text: "Malam sebelum ujian, sebaiknya saya belajar sampai jam berapa, Pak?",
+          trans: "考试前夜，我应该复习到几点，老师？"
+        },
+        {
+          speaker: "B",
+          text: "Maksimal pukul sembilan malam. Setelah itu berhenti belajar. Otak butuh istirahat agar kualitas tidur tercukupi.",
+          trans: "最晚晚上九点。之后停止学习。大脑需要休息以保证睡眠质量。"
+        },
+        {
+          speaker: "A",
+          text: "Apa saja yang harus saya siapkan untuk hari ujian besok?",
+          trans: "明天考试日我需要准备哪些东西？"
+        },
+        {
+          speaker: "B",
+          text: "Cek daftar ini: KTP, laptop dengan kamera berfungsi, koneksi internet cadangan, dan ruangan yang tenang. Siapkan juga rencana cadangan.",
+          trans: "核对这份清单：身份证、摄像头正常运行的笔记本电脑、备用网络连接、安静房间。还要准备应急方案。"
+        },
+        {
+          speaker: "B",
+          text: "Misalnya, jika koneksi terputus, jangan panik. Tutup aplikasi, masuk kembali, dan ujian biasanya bisa dilanjutkan.",
+          trans: "比如，如果网络断线，别慌。关闭应用，重新登录，考试通常可以继续。"
+        },
+        {
+          speaker: "A",
+          text: "Kalau ujian terhenti karena gangguan teknis lebih lama, apa yang harus saya lakukan?",
+          trans: "如果考试因技术故障中断更久，我该怎么办？"
+        },
+        {
+          speaker: "B",
+          text: "Segera hubungi helpdesk lewat fitur chat di aplikasi. Mereka akan mencatat dan memberikan jadwal pengganti.",
+          trans: "立即通过应用内的聊天功能联系客服。他们会记录并给出补考时间安排。"
+        },
+        {
+          speaker: "A",
+          text: "Terima kasih, Pak. Saya sudah merasa lebih percaya diri sekarang.",
+          trans: "谢谢老师。我现在感觉更有信心了。"
+        },
+        {
+          speaker: "B",
+          text: "Bagus. Ingat: sarapan bergizi besok pagi, datang lebih awal, dan percaya pada proses persiapanmu. Selamat berjuang!",
+          trans: "很好。记住：明天早上吃营养早餐，提前到场，相信你的备考过程。祝你好运！"
+        }
+      ]
+    },
+    {
+      title: "考后复盘 / Evaluasi Setelah Ujian",
+      icon: "📊",
+      dialogue: [
+        {
+          speaker: "A",
+          text: "Akhirnya selesai juga! Bagaimana hasilmu? Sudah bisa melihat hasil ujian?",
+          trans: "终于考完了！你考得怎么样？能查成绩了吗？"
+        },
+        {
+          speaker: "B",
+          text: "Belum. Biasanya hasil keluar tujuh hari kerja setelah ujian. Saya sudah tidak sabar ingin tahu interpretasi skornya.",
+          trans: "还不能。一般成绩在考后七个工作日出来。我迫不及待想知道分数解读了。"
+        },
+        {
+          speaker: "A",
+          text: "Kamu tadi dapat estimasi skor dari bagian mana?",
+          trans: "你刚才哪部分能估出分？"
+        },
+        {
+          speaker: "B",
+          text: "Bagian membaca terasa lebih mudah dari simulasi. Tapi bagian mendengarkan, beberapa audio sulit diikuti karena pembicaranya cepat.",
+          trans: "阅读部分感觉比模拟简单。但听力部分，有些音频因为说话人语速快难以跟上。"
+        },
+        {
+          speaker: "A",
+          text: "Sama. Saya pikir saya berada di kisaran 480 sampai 520. Itu tingkat menengah, kan?",
+          trans: "我也是。我估计自己在480到520之间。那是中级水平吧？"
+        },
+        {
+          speaker: "B",
+          text: "Iya. Tapi ingat, penilaian UKBI bersifat adaptif. Soal bagian selanjutnya menyesuaikan performa bagian sebelumnya.",
+          trans: "对。但记住，UKBI评分是自适应的。后面部分的题目难度会根据前面部分的表现调整。"
+        },
+        {
+          speaker: "A",
+          text: "Kalau hasil akhirnya di bawah target, apa rencanamu? Ikut ujian ulang?",
+          trans: "如果最终成绩低于目标，你打算怎么办？重考吗？"
+        },
+        {
+          speaker: "B",
+          text: "Itu strategi cadangan saya. Pertama, saya akan menganalisis kelemahan dari laporan hasil resmi. Kemudian menyusun siklus ulasan selama empat minggu.",
+          trans: "那是我的备选策略。首先，我会分析官方成绩报告中的弱项。然后制定四周的复习周期。"
+        },
+        {
+          speaker: "A",
+          text: "Apakah ada batasan berapa kali kita boleh ikut ujian lagi?",
+          trans: "重考次数有限制吗？"
+        },
+        {
+          speaker: "B",
+          text: "Tidak ada batas, tapi setiap kali harus membayar biaya pendaftaran lagi. Makanya persiapan harus matang sebelum ujian ulang.",
+          trans: "没有限制，但每次都要重新交报名费。所以重考前必须准备充分。"
+        },
+        {
+          speaker: "A",
+          text: "Setelah dapat sertifikat, untuk apa kamu akan menggunakannya?",
+          trans: "拿到证书后，你打算用它做什么？"
+        },
+        {
+          speaker: "B",
+          text: "Saya akan melampirkannya di CV untuk melamar kerja di perusahaan Indonesia. Tingkat madya ke atas diakui untuk banyak posisi.",
+          trans: "我会把它附在简历里，申请印尼公司的工作。中级以上在很多职位都被认可。"
+        },
+        {
+          speaker: "A",
+          text: "Ide bagus. Sertifikat juga bisa bukti kemampuan bahasa kalau saya mendaftar beasiswa.",
+          trans: "好主意。我要是申请奖学金，证书也能作为语言能力证明。"
+        },
+        {
+          speaker: "B",
+          text: "Betul. Intinya, apapun hasilnya hari ini, kita sudah belajar banyak dari proses persiapannya.",
+          trans: "没错。总之，无论今天结果如何，我们都从备考过程中学到了很多。"
+        },
+        {
+          speaker: "A",
+          text: "Setuju. Sekarang waktunya istirahat. Kita tunggu hasilnya seminggu lagi!",
+          trans: "同意。现在该休息了。我们一周后等成绩吧！"
+        }
+      ]
+    }
+  ],
+  speeches: [
+    {
+      day: 1,
+      title: "Strategi Manajemen Waktu dalam Ujian UKBI",
+      icon: "⏱️",
+      words: 162,
+      time: 60,
+      content: "Halo semua. Hari ini saya ingin berbagi strategi manajemen waktu untuk menghadapi UKBI. Ujian ini menuntut kita menjawab banyak soal dalam waktu terbatas, sehingga irama menjawab menjadi sangat penting.\n\nPertama, bagi waktu dengan bijak. Jika suatu bagian berisi lima puluh soal selama tiga puluh menit, artinya kita hanya punya waktu sekitar tiga pulik per soal. Jangan menghabiskan lima menit hanya untuk satu soal yang sulit.\n\nKedua, gunakan teknik tiga gelombang. Gelombang pertama, jawab semua soal yang Anda anggap mudah. Gelombang kedua, kerjakan soal dengan tingkat kesulitan sedang. Gelombang ketiga, baru fokus pada soal tersulit yang sudah Anda markir sebelumnya.\n\nKetiga, manfaatkan fitur markir. Jika menemui soal yang membingungkan, tandai dan lanjutkan. Jangan biarkan satu soal menghentikan seluruh kemajuan Anda.\n\nKeempat, sisakan waktu untuk memeriksa kembali jawaban. Tiga sampai lima menit terakhir gunakan untuk memastikan tidak ada soal kosong dan tidak ada jawaban yang salah klik.\n\nIngat, menebak dengan cerdas lebih baik daripada meninggalkan soal kosong, karena tidak ada pengurangan nilai. Semoga sukses!"
+    },
+    {
+      day: 2,
+      title: "Mengelola Kecemasan dan Menghadapi Kendala Teknis",
+      icon: "🧘",
+      words: 168,
+      time: 60,
+      content: "Selamat pagi, teman-teman. Besok adalah hari ujian. Topik hari ini adalah cara menjaga kesehatan mental dan menangani masalah teknis saat ujian.\n\nPertama, atasi kecemasan dengan napas dalam. Tarik napas pelan selama empat hitungan, tahan sebentar, lalu keluarkan perlahan. Lakukan lima kali setiap kali merasa grogi. Otak kita membutuhkan oksigen untuk berpikir jernih.\n\nKedua, jaga kualitas tidur di malam sebelum ujian. Berhenti belajar maksimal pukul sembilan malam. Jangan begadang mengulang materi. Otak yang lelah akan membaca soal lebih lambat dan membuat lebih banyak kesalahan.\n\nKetiga, persiapkan segalanya malam ini. Isi daya laptop, uji kamera dan mikrofon, siapkan sarapan bergizi, dan susun rencana cadangan. Tanyakan pada diri sendiri: apa yang saya lakukan jika listrik padam? Apa yang saya lakukan jika koneksi internet terputus?\n\nKeempat, jika terjadi gangguan teknis saat ujian, jangan panik. Tutup aplikasi dengan tenang, masuk kembali, dan ujian biasanya bisa dilanjutkan dari titik terakhir. Jika masalah berlanjut, hubungi helpdesk segera.\n\nPercaya pada persiapan Anda. Anda sudah berlatih keras. Yang perlu Anda lakukan besok hanyalah memberikan yang terbaik. Semangat!"
+    },
+    {
+      day: 3,
+      title: "Membaca Hasil Ujian dan Merencanakan Langkah Selanjutnya",
+      icon: "📈",
+      words: 170,
+      time: 60,
+      content: "Halo semua. Hari ini kita membahas cara membaca hasil UKBI dan merencanakan masa depan setelah mendapat skor.\n\nPertama, hasil UKBI dirilis tujuh hari kerja setelah ujian. Anda bisa melihatnya di akun Anda pada portal resmi. Laporan hasil menunjukkan skor total dan rincian tiap bagian: mendengarkan, merespons kebahasaan, membaca, menulis, dan berbicara.\n\nKedua, pahami interpretasi skor. Skor berkisar dari nol sampai enam ratus, dibagi menjadi tujuh tingkat. Jika skor Anda mencapai empat ratus delapan puluh, itu berarti Anda berada di tingkat madya bawah.\n\nKetiga, analisis kelemahan Anda. Jika skor bagian menulis jauh lebih rendah dari bagian lain, fokuslah pada struktur paragraf dan pengembangan ide. Catat kesalahan yang paling sering Anda buat.\n\nKeempat, susun rencana berikutnya. Jika skor memenuhi target, selamat! Gunakan sertifikat ini untuk melamar kerja atau melanjutkan pendidikan. Jika belum memenuhi target, jangan berkecil hati. Tidak ada batasan ujian ulang. Susun siklus belajar baru selama empat hingga enam minggu, lalu daftar lagi.\n\nIngat, skor adalah cermin kemampuan hari ini, bukan batas kemampuan Anda selamanya. Terus berlatih, dan hasil akan mengikuti."
+    }
+  ],
+  quiz: {
+    title: "UKBI冲刺测试 (15题)",
+    questions: [
+      {
+        q: "Dalam tryout UKBI, teman Anda masih tersisa lima soal padahal waktu bagian membaca tinggal sepuluh menit. Saran yang paling tepat adalah...",
+        options: [
+          "A) Mengerjakan soal satu per satu tanpa melihat waktu",
+          "B) Markir soal sulit dulu, lanjutkan soal mudah, dan kelola sisa waktu dengan bijak",
+          "C) Langsung menebak semua jawaban tanpa membaca"
+        ],
+        a: 1,
+        explain: "时间紧迫时应标记难题、先做简单题并合理分配剩余时间（teknik tiga gelombang），避免在单题上耗尽时间。"
+      },
+      {
+        q: "\"Peserta harus datang pukul delapan kurang lima belas.\" Berdasarkan kalimat tersebut, peserta harus tiba pada pukul...",
+        options: [
+          "A) Pukul 07.45",
+          "B) Pukul 08.15",
+          "C) Pukul 07.55"
+        ],
+        a: 0,
+        explain: "kurang lima belas = 差十五分，即7点45分。时间表达中 kurang 表示'差几分到几点'。"
+      },
+      {
+        q: "Ketika menemukan soal yang sangat sulit, strategi terbaik menurut materi tryout adalah...",
+        options: [
+          "A) Tetap fokus pada soal itu sampai selesai",
+          "B) Langsung menyerah dan melompat ke bagian berikutnya",
+          "C) Markir soal tersebut, melanjutkan soal lain, dan kembali jika ada waktu"
+        ],
+        a: 2,
+        explain: "正确策略是标记难题（markir）、继续答其他题、有时间再回头——这是保持答题节奏的关键。"
+      },
+      {
+        q: "\"Jika koneksi terputus saat ujian, jangan panik.\" Makna bagian berhuruf miring dalam konteks ujian online adalah...",
+        options: [
+          "A) Jika peserta mengalami gangguan jaringan, tetap tenang dan lakukan prosedur masuk kembali",
+          "B) Jika peserta panik, koneksi akan terputus",
+          "C) Ujian akan gagal total jika koneksi bermasalah"
+        ],
+        a: 0,
+        explain: "terputus 指网络断线。整句是条件假设句：如果断线不要慌——应保持镇定并按流程重新登录。"
+      },
+      {
+        q: "Untuk mengatasi rasa cemas sebelum tidur di malam sebelum ujian, teknik yang disarankan adalah...",
+        options: [
+          "A) Minum kopi agar tetap fokus belajar",
+          "B) Napas dalam: tarik napas empat hitungan, tahan, dan hembuskan perlahan, ulangi lima kali",
+          "C) Menonton video hingga larut malam"
+        ],
+        a: 1,
+        explain: "深呼吸练习（napas dalam）是应对考前焦虑的建议方法，有助于放松大脑、提升睡眠质量。"
+      },
+      {
+        q: "Pilihan kata yang tepat melengkapi kalimat: \"Bagian menulis terasa ___ daripada bagian membaca, karena struktur esainya kompleks.\"",
+        options: [
+          "A) lebih sulit",
+          "B) paling sulit",
+          "C) sulit"
+        ],
+        a: 0,
+        explain: "与另一部分作比较用比较级 lebih + 形容词 + daripada。'写作比阅读更难'。"
+      },
+      {
+        q: "Sebelum ujian online dimulai, hal yang wajib dipersiapkan sebagai bagian dari rencana cadangan adalah...",
+        options: [
+          "A) Koneksi internet cadangan dan prosedur masuk kembali jika terjadi gangguan teknis",
+          "B) Meminjam laptop teman tanpa kamera",
+          "C) Mengabaikan pengujian perangkat karena waktu terbatas"
+        ],
+        a: 0,
+        explain: "考试前应备好备用网络连接并了解重新登录流程，这是应急方案（rencana cadangan）的核心内容。"
+      },
+      {
+        q: "Perhatikan kalimat pasif berikut: \"Soal-soal latihan ___ oleh peserta setiap hari.\" Kata yang tepat untuk melengkapi adalah...",
+        options: [
+          "A) mengerjakan",
+          "B) dikerjakan",
+          "C) kerjakan"
+        ],
+        a: 1,
+        explain: "被动语态公式 di- + 动词词根。dikerjakan = 被做。句意：练习题每天被考生完成。"
+      },
+      {
+        q: "Setelah ujian selesai, langkah pertama untuk merencanakan ujian ulang adalah...",
+        options: [
+          "A) Segera mendaftar ulang tanpa analisis",
+          "B) Menganalisis kelemahan dari laporan hasil resmi dan menyusun siklus ulasan baru",
+          "C) Menunggu satu tahun tanpa belajar"
+        ],
+        a: 1,
+        explain: "重考前第一步是分析官方成绩报告中的弱项（menganalisis kelemahan），然后制定新的复习周期。"
+      },
+      {
+        q: "Imperatif yang tepat untuk memberi instruksi kepada peserta simulasi adalah...",
+        options: [
+          "A) Memeriksa jawaban kembali",
+          "B) Periksalah kembali jawaban Anda",
+          "C) Kamu diperiksa jawabannya"
+        ],
+        a: 1,
+        explain: "祈使句以动词词根开头，可加 -lah 表强调。Periksalah kembali... 意为'请检查你的答案'。A 缺少主语构成名词化表达，C 是被动语态不符合指令语境。"
+      },
+      {
+        q: "\"Ujian dimulai dari pukul delapan pagi ___ pukul sebelas siang.\" Kata penghubung yang tepat adalah...",
+        options: [
+          "A) sampai",
+          "B) lewat",
+          "C) kurang"
+        ],
+        a: 0,
+        explain: "dari...sampai... 表示'从...到...'。句意：考试从早上八点开始到上午十一点。"
+      },
+      {
+        q: "Menurut materi, aturan praktis membagi waktu belajar dua hari sebelum ujian adalah...",
+        options: [
+          "A) 50% untuk kelemahan dan 50% untuk kekuatan",
+          "B) 90% untuk kelemahan dan 10% untuk mempertahankan penguasaan materi",
+          "C) 100% untuk mengulang semua materi dari awal"
+        ],
+        a: 1,
+        explain: "实用原则是90%时间用于弱项、10%用于巩固强项，这样提分效率最高。"
+      },
+      {
+        q: "\"Skor saya sekitar 520, ___ skor teman saya yang 480.\" Kata yang tepat untuk mengisi titik-titik adalah...",
+        options: [
+          "A) lebih tinggi daripada",
+          "B) setinggi",
+          "C) tertinggi"
+        ],
+        a: 0,
+        explain: "520比480高，用比较级 lebih tinggi daripada（比...更高）。setinggi 表示'一样高'，tertinggi 是最高级，均不合句意。"
+      },
+      {
+        q: "Jika ujian terhenti karena gangguan teknis yang berlangsung lama, tindakan yang benar adalah...",
+        options: [
+          "A) Menutup laptop dan menganggap ujian gagal",
+          "B) Menghubungi helpdesk melalui fitur chat di aplikasi untuk mendapatkan penjadwalan ulang",
+          "C) Mengulang ujian dari awal dengan akun baru"
+        ],
+        a: 1,
+        explain: "长时间技术故障应通过应用内聊天联系客服（helpdesk），他们会记录并安排补考，而不是自行重开或放弃。"
+      },
+      {
+        q: "\"Jika hasil kurang memuaskan, saya akan ikut ujian ulang.\" Struktur kalimat ini menunjukkan...",
+        options: [
+          "A) Kalimat perintah",
+          "B) Kalimat kondisional dengan jika...akan...",
+          "C) Kalimat pasif"
+        ],
+        a: 1,
+        explain: "这是 jika（如果）引导的条件假设句：jika 从句用现在时，主句用 akan + 动词表将来动作。"
+      }
+    ]
+  }
+}};
 
   const topicCalendar = {
   "2026-07-15": {topic: "meet", day: 2, label: "第2课 · 场景对话"},
@@ -16264,7 +16926,10 @@ ukbi_certification: {
   "2026-10-20": {topic: "ukbi_real", day: 1, label: "🎯 UKBI实战 · 第1课 · 听力+语法反应"},
   "2026-10-21": {topic: "ukbi_real", day: 2, label: "🎯 UKBI实战 · 第2课 · 阅读+写作"},
   "2026-10-22": {topic: "ukbi_real", day: 3, label: "🎯 UKBI实战 · 第3课 · 口语+套餐+等级", allDays: true},
-};
+
+  "2026-10-23": {topic: "ukbi_drill", day: 1, label: "⚡ UKBI冲刺 · 第1课 · 模拟训练+时间管理"},
+  "2026-10-24": {topic: "ukbi_drill", day: 2, label: "⚡ UKBI冲刺 · 第2课 · 心理调适+应急方案"},
+  "2026-10-25": {topic: "ukbi_drill", day: 3, label: "⚡ UKBI冲刺 · 第3课 · 成绩分析+重考规划", allDays: true}};
 
 
 ;
@@ -193679,7 +194344,683 @@ const bitVocabDB = {
       }
     ]
   }
-};
+,
+  "tryout": {
+  "word": "tryout",
+  "ipa": "/ˈtraɪ aʊt/",
+  "cn": "模拟演练/模考",
+  "en": "",
+  "root": "",
+  "forms": [],
+  "formsNote": "",
+  "note": "",
+  "synonyms": [],
+  "antonyms": [],
+  "examples": []
+},
+  "strategi menjawab": {
+  "word": "strategi menjawab",
+  "ipa": "/straˈteɡi məndʒaˈwah/",
+  "cn": "答题策略",
+  "en": "",
+  "root": "",
+  "forms": [],
+  "formsNote": "",
+  "note": "",
+  "synonyms": [],
+  "antonyms": [],
+  "examples": []
+},
+  "manajemen waktu": {
+  "word": "manajemen waktu",
+  "ipa": "/manaˈdʒemen ˈwaktu/",
+  "cn": "时间管理",
+  "en": "",
+  "root": "",
+  "forms": [],
+  "formsNote": "",
+  "note": "",
+  "synonyms": [],
+  "antonyms": [],
+  "examples": []
+},
+  "latihan soal": {
+  "word": "latihan soal",
+  "ipa": "/latiˈhan ˈsoal/",
+  "cn": "习题练习/刷题",
+  "en": "",
+  "root": "",
+  "forms": [],
+  "formsNote": "",
+  "note": "",
+  "synonyms": [],
+  "antonyms": [],
+  "examples": []
+},
+  "fokus": {
+  "word": "fokus",
+  "ipa": "/ˈfokus/",
+  "cn": "专注",
+  "en": "",
+  "root": "",
+  "forms": [],
+  "formsNote": "",
+  "note": "",
+  "synonyms": [],
+  "antonyms": [],
+  "examples": []
+},
+  "grogi": {
+  "word": "grogi",
+  "ipa": "/ˈɡroɡi/",
+  "cn": "紧张怯场",
+  "en": "",
+  "root": "",
+  "forms": [],
+  "formsNote": "",
+  "note": "",
+  "synonyms": [],
+  "antonyms": [],
+  "examples": []
+},
+  "irama menjawab": {
+  "word": "irama menjawab",
+  "ipa": "/iˈrama məndʒaˈwah/",
+  "cn": "答题节奏",
+  "en": "",
+  "root": "",
+  "forms": [],
+  "formsNote": "",
+  "note": "",
+  "synonyms": [],
+  "antonyms": [],
+  "examples": []
+},
+  "markir": {
+  "word": "markir",
+  "ipa": "/marˈkir/",
+  "cn": "标记题目",
+  "en": "",
+  "root": "",
+  "forms": [],
+  "formsNote": "",
+  "note": "",
+  "synonyms": [],
+  "antonyms": [],
+  "examples": []
+},
+  "memeriksa kembali": {
+  "word": "memeriksa kembali",
+  "ipa": "/məməˈriksa kəmˈbali/",
+  "cn": "回头检查",
+  "en": "",
+  "root": "",
+  "forms": [],
+  "formsNote": "",
+  "note": "",
+  "synonyms": [],
+  "antonyms": [],
+  "examples": []
+},
+  "menebak dengan cerdas": {
+  "word": "menebak dengan cerdas",
+  "ipa": "/məˈnebaːk dəˈŋan ˈtʃərdaːs/",
+  "cn": "机智猜题",
+  "en": "",
+  "root": "",
+  "forms": [],
+  "formsNote": "",
+  "note": "",
+  "synonyms": [],
+  "antonyms": [],
+  "examples": []
+},
+  "metode eliminasi": {
+  "word": "metode eliminasi",
+  "ipa": "/ˈmetode eliminaˈsi/",
+  "cn": "排除法",
+  "en": "",
+  "root": "",
+  "forms": [],
+  "formsNote": "",
+  "note": "",
+  "synonyms": [],
+  "antonyms": [],
+  "examples": []
+},
+  "menemukan kata kunci": {
+  "word": "menemukan kata kunci",
+  "ipa": "/mənəˈmuːan ˈkata ˈkuntʃi/",
+  "cn": "关键词定位",
+  "en": "",
+  "root": "",
+  "forms": [],
+  "formsNote": "",
+  "note": "",
+  "synonyms": [],
+  "antonyms": [],
+  "examples": []
+},
+  "coretan": {
+  "word": "coretan",
+  "ipa": "/tʃoˈretan/",
+  "cn": "速记笔记/草稿痕迹",
+  "en": "",
+  "root": "",
+  "forms": [],
+  "formsNote": "",
+  "note": "",
+  "synonyms": [],
+  "antonyms": [],
+  "examples": []
+},
+  "draf jawaban": {
+  "word": "draf jawaban",
+  "ipa": "/ˈdrav dʒaˈwaban/",
+  "cn": "答案草稿",
+  "en": "",
+  "root": "",
+  "forms": [],
+  "formsNote": "",
+  "note": "",
+  "synonyms": [],
+  "antonyms": [],
+  "examples": []
+},
+  "napas dalam": {
+  "word": "napas dalam",
+  "ipa": "/ˈnapas daˈlam/",
+  "cn": "深呼吸",
+  "en": "",
+  "root": "",
+  "forms": [],
+  "formsNote": "",
+  "note": "",
+  "synonyms": [],
+  "antonyms": [],
+  "examples": []
+},
+  "percaya diri": {
+  "word": "percaya diri",
+  "ipa": "/pərˈtʃaja ˈdiri/",
+  "cn": "自信心",
+  "en": "",
+  "root": "",
+  "forms": [],
+  "formsNote": "",
+  "note": "",
+  "synonyms": [],
+  "antonyms": [],
+  "examples": []
+},
+  "jadwal belajar": {
+  "word": "jadwal belajar",
+  "ipa": "/dʒadˈwal bəˈladʒar/",
+  "cn": "备考计划",
+  "en": "",
+  "root": "",
+  "forms": [],
+  "formsNote": "",
+  "note": "",
+  "synonyms": [],
+  "antonyms": [],
+  "examples": []
+},
+  "menganalisis kelemahan": {
+  "word": "menganalisis kelemahan",
+  "ipa": "/məˈnaːlisis kəleˈmaːhan/",
+  "cn": "弱项分析",
+  "en": "",
+  "root": "",
+  "forms": [],
+  "formsNote": "",
+  "note": "",
+  "synonyms": [],
+  "antonyms": [],
+  "examples": []
+},
+  "penguasaan materi": {
+  "word": "penguasaan materi",
+  "ipa": "/pəŋˈgwaːsan maˈtəri/",
+  "cn": "强项掌握",
+  "en": "",
+  "root": "",
+  "forms": [],
+  "formsNote": "",
+  "note": "",
+  "synonyms": [],
+  "antonyms": [],
+  "examples": []
+},
+  "skor simulasi": {
+  "word": "skor simulasi",
+  "ipa": "/ˈskɔr simuˈlasi/",
+  "cn": "模拟分数",
+  "en": "",
+  "root": "",
+  "forms": [],
+  "formsNote": "",
+  "note": "",
+  "synonyms": [],
+  "antonyms": [],
+  "examples": []
+},
+  "tingkat kelulusan": {
+  "word": "tingkat kelulusan",
+  "ipa": "/ˈtiŋkat kəˈlulusan/",
+  "cn": "通过率",
+  "en": "",
+  "root": "",
+  "forms": [],
+  "formsNote": "",
+  "note": "",
+  "synonyms": [],
+  "antonyms": [],
+  "examples": []
+},
+  "strategi ujian ulang": {
+  "word": "strategi ujian ulang",
+  "ipa": "/straˈteɡi ˈudʒian ˈulaŋ/",
+  "cn": "重考策略",
+  "en": "",
+  "root": "",
+  "forms": [],
+  "formsNote": "",
+  "note": "",
+  "synonyms": [],
+  "antonyms": [],
+  "examples": []
+},
+  "bahan persiapan": {
+  "word": "bahan persiapan",
+  "ipa": "/ˈbaːhan pərˈsiaːpan/",
+  "cn": "备考资料",
+  "en": "",
+  "root": "",
+  "forms": [],
+  "formsNote": "",
+  "note": "",
+  "synonyms": [],
+  "antonyms": [],
+  "examples": []
+},
+  "kumpulan soal asli": {
+  "word": "kumpulan soal asli",
+  "ipa": "/kumˈpulan ˈsoal ˈasli/",
+  "cn": "真题集",
+  "en": "",
+  "root": "",
+  "forms": [],
+  "formsNote": "",
+  "note": "",
+  "synonyms": [],
+  "antonyms": [],
+  "examples": []
+},
+  "rangkuman": {
+  "word": "rangkuman",
+  "ipa": "/raŋˈkuman/",
+  "cn": "笔记整理/摘要",
+  "en": "",
+  "root": "",
+  "forms": [],
+  "formsNote": "",
+  "note": "",
+  "synonyms": [],
+  "antonyms": [],
+  "examples": []
+},
+  "siklus ulasan": {
+  "word": "siklus ulasan",
+  "ipa": "/ˈsiklus ˈulasan/",
+  "cn": "复习周期",
+  "en": "",
+  "root": "",
+  "forms": [],
+  "formsNote": "",
+  "note": "",
+  "synonyms": [],
+  "antonyms": [],
+  "examples": []
+},
+  "malam sebelum ujian": {
+  "word": "malam sebelum ujian",
+  "ipa": "/maˈlam səˈbelum ˈudʒian/",
+  "cn": "考前夜",
+  "en": "",
+  "root": "",
+  "forms": [],
+  "formsNote": "",
+  "note": "",
+  "synonyms": [],
+  "antonyms": [],
+  "examples": []
+},
+  "hari ujian": {
+  "word": "hari ujian",
+  "ipa": "/ˈhari ˈudʒian/",
+  "cn": "考试日",
+  "en": "",
+  "root": "",
+  "forms": [],
+  "formsNote": "",
+  "note": "",
+  "synonyms": [],
+  "antonyms": [],
+  "examples": []
+},
+  "sarapan bergizi": {
+  "word": "sarapan bergizi",
+  "ipa": "/ˈsarapan bərˈɡizi/",
+  "cn": "营养早餐",
+  "en": "",
+  "root": "",
+  "forms": [],
+  "formsNote": "",
+  "note": "",
+  "synonyms": [],
+  "antonyms": [],
+  "examples": []
+},
+  "kualitas tidur": {
+  "word": "kualitas tidur",
+  "ipa": "/kuaˈlitas ˈtidur/",
+  "cn": "睡眠质量",
+  "en": "",
+  "root": "",
+  "forms": [],
+  "formsNote": "",
+  "note": "",
+  "synonyms": [],
+  "antonyms": [],
+  "examples": []
+},
+  "persiapan akhir": {
+  "word": "persiapan akhir",
+  "ipa": "/pərˈsiaːpan ˈaxir/",
+  "cn": "最后准备",
+  "en": "",
+  "root": "",
+  "forms": [],
+  "formsNote": "",
+  "note": "",
+  "synonyms": [],
+  "antonyms": [],
+  "examples": []
+},
+  "rencana cadangan": {
+  "word": "rencana cadangan",
+  "ipa": "/rənˈtʃana tʃaˈdaŋan/",
+  "cn": "应急方案",
+  "en": "",
+  "root": "",
+  "forms": [],
+  "formsNote": "",
+  "note": "",
+  "synonyms": [],
+  "antonyms": [],
+  "examples": []
+},
+  "gangguan teknis": {
+  "word": "gangguan teknis",
+  "ipa": "/ɡaŋˈɡuran ˈteknis/",
+  "cn": "技术故障",
+  "en": "",
+  "root": "",
+  "forms": [],
+  "formsNote": "",
+  "note": "",
+  "synonyms": [],
+  "antonyms": [],
+  "examples": []
+},
+  "koneksi terputus": {
+  "word": "koneksi terputus",
+  "ipa": "/koˈnekʃi tərˈputus/",
+  "cn": "网络断线",
+  "en": "",
+  "root": "",
+  "forms": [],
+  "formsNote": "",
+  "note": "",
+  "synonyms": [],
+  "antonyms": [],
+  "examples": []
+},
+  "masuk kembali": {
+  "word": "masuk kembali",
+  "ipa": "/ˈmasuk kəmˈbali/",
+  "cn": "重新登录",
+  "en": "",
+  "root": "",
+  "forms": [],
+  "formsNote": "",
+  "note": "",
+  "synonyms": [],
+  "antonyms": [],
+  "examples": []
+},
+  "ujian terhenti": {
+  "word": "ujian terhenti",
+  "ipa": "/ˈudʒian tərˈhɛnti/",
+  "cn": "考试中断",
+  "en": "",
+  "root": "",
+  "forms": [],
+  "formsNote": "",
+  "note": "",
+  "synonyms": [],
+  "antonyms": [],
+  "examples": []
+},
+  "melihat hasil ujian": {
+  "word": "melihat hasil ujian",
+  "ipa": "/məˈlihat ˈhasil ˈudʒian/",
+  "cn": "成绩查询",
+  "en": "",
+  "root": "",
+  "forms": [],
+  "formsNote": "",
+  "note": "",
+  "synonyms": [],
+  "antonyms": [],
+  "examples": []
+},
+  "interpretasi skor": {
+  "word": "interpretasi skor",
+  "ipa": "/interpreˈtasi ˈskɔr/",
+  "cn": "分数解读",
+  "en": "",
+  "root": "",
+  "forms": [],
+  "formsNote": "",
+  "note": "",
+  "synonyms": [],
+  "antonyms": [],
+  "examples": []
+},
+  "melamar": {
+  "word": "melamar",
+  "ipa": "/mə.la.mər/",
+  "cn": "申请（职位）",
+  "en": "",
+  "root": "",
+  "forms": [],
+  "formsNote": "",
+  "note": "",
+  "synonyms": [],
+  "antonyms": [],
+  "examples": []
+},
+  "kualifikasi": {
+  "word": "kualifikasi",
+  "ipa": "/kwa.li.fi.ka.si/",
+  "cn": "资格；资历",
+  "en": "",
+  "root": "",
+  "forms": [],
+  "formsNote": "",
+  "note": "",
+  "synonyms": [],
+  "antonyms": [],
+  "examples": []
+},
+  "multinasional": {
+  "word": "multinasional",
+  "ipa": "/mul.ti.na.si.o.nal/",
+  "cn": "跨国的",
+  "en": "",
+  "root": "",
+  "forms": [],
+  "formsNote": "",
+  "note": "",
+  "synonyms": [],
+  "antonyms": [],
+  "examples": []
+},
+  "merekrut": {
+  "word": "merekrut",
+  "ipa": "/mə.rə.krut/",
+  "cn": "招聘",
+  "en": "",
+  "root": "",
+  "forms": [],
+  "formsNote": "",
+  "note": "",
+  "synonyms": [],
+  "antonyms": [],
+  "examples": []
+},
+  "jujur": {
+  "word": "jujur",
+  "ipa": "/dʒu.dʒur/",
+  "cn": "诚实的",
+  "en": "",
+  "root": "",
+  "forms": [],
+  "formsNote": "",
+  "note": "",
+  "synonyms": [],
+  "antonyms": [],
+  "examples": []
+},
+  "percaya diri": {
+  "word": "percaya diri",
+  "ipa": "/pər.tʃa.ja di.ri/",
+  "cn": "自信的",
+  "en": "",
+  "root": "",
+  "forms": [],
+  "formsNote": "",
+  "note": "",
+  "synonyms": [],
+  "antonyms": [],
+  "examples": []
+},
+  "situasional": {
+  "word": "situasional",
+  "ipa": "/si.tu.a.si.o.nal/",
+  "cn": "情境的",
+  "en": "",
+  "root": "",
+  "forms": [],
+  "formsNote": "",
+  "note": "",
+  "synonyms": [],
+  "antonyms": [],
+  "examples": []
+},
+  "perilaku": {
+  "word": "perilaku",
+  "ipa": "/pə.ri.la.ku/",
+  "cn": "行为",
+  "en": "",
+  "root": "",
+  "forms": [],
+  "formsNote": "",
+  "note": "",
+  "synonyms": [],
+  "antonyms": [],
+  "examples": []
+},
+  "ekspektasi": {
+  "word": "ekspektasi",
+  "ipa": "/ək.spək.ta.si/",
+  "cn": "期望",
+  "en": "",
+  "root": "",
+  "forms": [],
+  "formsNote": "",
+  "note": "",
+  "synonyms": [],
+  "antonyms": [],
+  "examples": []
+},
+  "mengucapkan terima kasih": {
+  "word": "mengucapkan terima kasih",
+  "ipa": "/mə.u.tʃap.kan tə.ri.ma ka.sih/",
+  "cn": "表达感谢",
+  "en": "",
+  "root": "",
+  "forms": [],
+  "formsNote": "",
+  "note": "",
+  "synonyms": [],
+  "antonyms": [],
+  "examples": []
+},
+  "penawaran": {
+  "word": "penawaran",
+  "ipa": "/pə.na.wa.ran/",
+  "cn": "提议；报价",
+  "en": "",
+  "root": "",
+  "forms": [],
+  "formsNote": "",
+  "note": "",
+  "synonyms": [],
+  "antonyms": [],
+  "examples": []
+},
+  "onboarding": {
+  "word": "onboarding",
+  "ipa": "/on.bord.iŋ/",
+  "cn": "入职培训",
+  "en": "",
+  "root": "",
+  "forms": [],
+  "formsNote": "",
+  "note": "",
+  "synonyms": [],
+  "antonyms": [],
+  "examples": []
+},
+  "masa percobaan": {
+  "word": "masa percobaan",
+  "ipa": "/ma.sa pər.tʃo.ba.an/",
+  "cn": "试用期",
+  "en": "",
+  "root": "",
+  "forms": [],
+  "formsNote": "",
+  "note": "",
+  "synonyms": [],
+  "antonyms": [],
+  "examples": []
+},
+  "surat pengunduran diri": {
+  "word": "surat pengunduran diri",
+  "ipa": "/su.rat pəŋ.un.du.ran di.ri/",
+  "cn": "辞职信",
+  "en": "",
+  "root": "",
+  "forms": [],
+  "formsNote": "",
+  "note": "",
+  "synonyms": [],
+  "antonyms": [],
+  "examples": []
+}};
 
 function getTopicForDate(ds) {
   return topicCalendar[ds] || null;
@@ -202146,7 +203487,3180 @@ const caData = {
    ]
   }
  }
-};
+,
+"interview": {
+ "title": "话题2: 面试 / Wawancara",
+ "icon": "💼",
+ "level": "B1-B2",
+ "days": 3,
+ "intro": "CA 进阶课：面试话题二次行军。B1-B2 进阶版深入面试全流程——从准备（研究公司、打磨简历、自我介绍框架），到进行（行为面试 STAR 法则、情景面试、技术面试、薪资讨论），再到跟进（感谢信、薪资谈判、邀约决策、入职准备）。三天节奏：Day1 备弹药，Day2 打硬仗，Day3 收战果。",
+ "day1": {
+  "date": "2026-10-23",
+  "theme": "Persiapan Wawancara 面试准备",
+  "vocab": [
+   {
+    "w": "persiapan",
+    "cn": "准备",
+    "ipa": "/pər.si.a.pan/",
+    "level": "核心",
+    "note": "ber- + siap 同源名词；面试高频词"
+   },
+   {
+    "w": "lowongan",
+    "cn": "职位空缺",
+    "ipa": "/lo.woŋ.an/",
+    "level": "核心",
+    "note": "lowong + -an → 名词；lowongan kerja 职位空缺"
+   },
+   {
+    "w": "melamar",
+    "cn": "申请（职位）",
+    "ipa": "/mə.la.mər/",
+    "level": "核心",
+    "note": "meN- + lamar；melamar pekerjaan/posisi/jabatan"
+   },
+   {
+    "w": "surat lamaran",
+    "cn": "求职信",
+    "ipa": "/su.rat la.ma.ran/",
+    "level": "核心",
+    "note": "lamar + -an = 申请（名词）；surat lamaran kerja 求职信"
+   },
+   {
+    "w": "riwayat hidup",
+    "cn": "简历；履历",
+    "ipa": "/ri.wa.yat hi.dup/",
+    "level": "核心",
+    "note": "印尼语'简历'；也可用 CV (curriculum vitae)"
+   },
+   {
+    "w": "pengalaman",
+    "cn": "经验；经历",
+    "ipa": "/pəŋ.ga.la.man/",
+    "level": "核心",
+    "note": "berpengalaman 有经验的；pengalaman kerja 工作经验"
+   },
+   {
+    "w": "keterampilan",
+    "cn": "技能",
+    "ipa": "/kə.tə.ram.pi.lan/",
+    "level": "核心",
+    "note": "terampil 熟练 + ke-an → 名词"
+   },
+   {
+    "w": "keahlian",
+    "cn": "专业技能",
+    "ipa": "/kə.ah.li.an/",
+    "level": "进阶",
+    "note": "ahli 专家 + ke-an → 名词；ahli dalam/bidang..."
+   },
+   {
+    "w": "kualifikasi",
+    "cn": "资格；资历",
+    "ipa": "/kwa.li.fi.ka.si/",
+    "level": "进阶",
+    "note": "搭配 persyaratan（要求）：memenuhi persyaratan kualifikasi"
+   },
+   {
+    "w": "posisi",
+    "cn": "职位",
+    "ipa": "/po.si.si/",
+    "level": "进阶",
+    "note": "melamar posisi/jabatan 申请职位"
+   },
+   {
+    "w": "jabatan",
+    "cn": "职务；职位",
+    "ipa": "/dʒa.ba.tan/",
+    "level": "进阶",
+    "note": "比 posisi 更正式；naik jabatan 升职"
+   },
+   {
+    "w": "perusahaan",
+    "cn": "公司",
+    "ipa": "/pə.ru.sa.han/",
+    "level": "核心",
+    "note": "PT/CV/Persero 为公司类型缩写"
+   },
+   {
+    "w": "multinasional",
+    "cn": "跨国的",
+    "ipa": "/mul.ti.na.si.o.nal/",
+    "level": "高阶",
+    "note": "perusahaan multinasional 跨国公司"
+   },
+   {
+    "w": "lokal",
+    "cn": "本地的",
+    "ipa": "/lo.kal/",
+    "level": "高阶",
+    "note": "与 multinasional 对举：perusahaan lokal"
+   },
+   {
+    "w": "merekrut",
+    "cn": "招聘",
+    "ipa": "/mə.rə.krut/",
+    "level": "高阶",
+    "note": "rekrutmen 招聘（名词）；HR merekrut karyawan baru"
+   }
+  ],
+  "phrases": [
+   {
+    "id": "ada lowongan untuk posisi manajer",
+    "cn": "有经理职位空缺吗？",
+    "usage": "询问职位空缺",
+    "note": "ada + lowongan + untuk + posisi"
+   },
+   {
+    "id": "saya tertarik dengan posisi ini",
+    "cn": "我对这个职位感兴趣",
+    "usage": "表达求职意向",
+    "note": "tertarik dengan 对…感兴趣"
+   },
+   {
+    "id": "saya ingin melamar pekerjaan ini",
+    "cn": "我想申请这份工作",
+    "usage": "表达求职意向",
+    "note": "ingin + 动词；melamar 申请"
+   },
+   {
+    "id": "di mana saya bisa mencari lowongan?",
+    "cn": "我在哪里可以找到职位空缺？",
+    "usage": "求职咨询",
+    "note": "di mana 哪里；mencari 寻找"
+   },
+   {
+    "id": "perusahaan ini memiliki reputasi yang kuat",
+    "cn": "这家公司声誉良好",
+    "usage": "描述目标公司",
+    "note": "memiliki 拥有；reputasi 声誉"
+   },
+   {
+    "id": "saya berpengalaman lima tahun di industri ini",
+    "cn": "我在这个行业有五年经验",
+    "usage": "简历自我介绍",
+    "note": "berpengalaman + 时间 + di + 领域"
+   },
+   {
+    "id": "keahlian saya adalah manajemen proyek",
+    "cn": "我的专长是项目管理",
+    "usage": "简历技能描述",
+    "note": "keahlian + adalah + 名词"
+   },
+   {
+    "id": "saya lulusan universitas terbaik di Indonesia",
+    "cn": "我毕业于印尼最好的大学",
+    "usage": "教育背景",
+    "note": "lulusan 毕业生；lulus + -an"
+   },
+   {
+    "id": "melamar posisi ini karena sesuai dengan latar belakang saya",
+    "cn": "申请这个职位因为符合我的背景",
+    "usage": "求职动机",
+    "note": "karena 因为；sesuai dengan 符合"
+   },
+   {
+    "id": "mengurangi biaya operasional sebesar 20 persen",
+    "cn": "降低运营成本20%",
+    "usage": "简历成就描述",
+    "note": "数字成就表达，面试有力证据"
+   }
+  ],
+  "patterns": [
+   {
+    "cat": "自我介绍",
+    "level": "basic",
+    "formula": "Saya lulusan + [学校/专业]",
+    "structure": "Saya + lulusan + 名",
+    "grammar": "lulusan（毕业生）由动词 lulus + 名词后缀 -an 构成",
+    "scene": "面试开场自我介绍——教育背景",
+    "ex": [
+     "Saya lulusan Universitas Indonesia, jurusan Teknik Industri.",
+     "Saya lulusan program magister manajemen bisnis."
+    ],
+    "slots": [
+     "学校名",
+     "专业/项目名称"
+    ],
+    "reuse": 5
+   },
+   {
+    "cat": "自我介绍",
+    "level": "basic",
+    "formula": "Saya memiliki pengalaman + [时长] + tahun di + [领域]",
+    "structure": "Saya + 动词 + 名词 + 时长 + di + 领域",
+    "grammar": "memiliki（拥有）；berpengalaman（有经验）为同义替换",
+    "scene": "面试自我介绍——工作经验",
+    "ex": [
+     "Saya memiliki pengalaman delapan tahun di industri nikel.",
+     "Saya memiliki pengalaman tiga tahun sebagai pengawas operasi."
+    ],
+    "slots": [
+     "数字（年数）",
+     "行业/领域",
+     "职位"
+    ],
+    "reuse": 5
+   },
+   {
+    "cat": "自我介绍",
+    "level": "basic",
+    "formula": "Saya ahli dalam + [领域]",
+    "structure": "Saya + ahli + dalam + 名词",
+    "grammar": "ahli dalam 固定搭配；keahlian（专业技能）为派生名词",
+    "scene": "面试自我介绍——专业能力",
+    "ex": [
+     "Saya ahli dalam manajemen rantai pasok.",
+     "Saya ahli dalam negosiasi kontrak."
+    ],
+    "slots": [
+     "领域/技能"
+    ],
+    "reuse": 4
+   },
+   {
+    "cat": "自我介绍",
+    "level": "intermediate",
+    "formula": "Saya berpengalaman + [时长] + tahun sebagai + [职位]",
+    "structure": "Saya + berpengalaman + 时长 + sebagai + 职位",
+    "grammar": "ber- + pengalaman → 形容词；sebagai = 作为",
+    "scene": "强调职位经验",
+    "ex": [
+     "Saya berpengalaman sepuluh tahun sebagai manajer proyek.",
+     "Saya berpengalaman dua tahun sebagai analis data."
+    ],
+    "slots": [
+     "年数",
+     "职位"
+    ],
+    "reuse": 4
+   },
+   {
+    "cat": "自我介绍",
+    "level": "intermediate",
+    "formula": "Pencapaian utama saya adalah + [成果]",
+    "structure": "Pencapaian + 限定词 + adalah + 名词短语",
+    "grammar": "pencapaian（成就）← capai + peN-an；utama 主要的",
+    "scene": "简历亮点/个人成就",
+    "ex": [
+     "Pencapaian utama saya adalah penyelesaian proyek smelter tepat waktu.",
+     "Pencapaian utama saya adalah penghematan biaya sebesar 15 persen."
+    ],
+    "slots": [
+     "成就内容",
+     "量化数据"
+    ],
+    "reuse": 4
+   },
+   {
+    "cat": "求职动机",
+    "level": "intermediate",
+    "formula": "Saya melamar posisi + [职位] + karena + [原因]",
+    "structure": "Saya + melamar + posisi + karena + 从句",
+    "grammar": "karena 引导原因从句；melamar + 职位（直接宾语）",
+    "scene": "说明求职动机",
+    "ex": [
+     "Saya melamar posisi ini karena sesuai dengan keahlian saya.",
+     "Saya melamar posisi supervisor karena ingin berkembang lebih jauh."
+    ],
+    "slots": [
+     "职位",
+     "原因从句"
+    ],
+    "reuse": 5
+   },
+   {
+    "cat": "求职动机",
+    "level": "intermediate",
+    "formula": "Saya ingin berkembang di + [领域/公司]",
+    "structure": "Saya + ingin + ber-动词 + di + 名词",
+    "grammar": "berkembang（发展）← kembang + ber-",
+    "scene": "职业发展规划",
+    "ex": [
+     "Saya ingin berkembang di bidang manajemen operasional.",
+     "Saya ingin berkembang di perusahaan yang berorientasi internasional."
+    ],
+    "slots": [
+     "领域",
+     "公司类型"
+    ],
+    "reuse": 4
+   },
+   {
+    "cat": "教育背景",
+    "level": "intermediate",
+    "formula": "Saya mendapatkan gelar + [学位] + di + [学校]",
+    "structure": "Saya + meN-动词 + 宾语 + di + 名词",
+    "grammar": "mendapatkan ← dapat + meN-kan；gelar 学位",
+    "scene": "介绍教育背景",
+    "ex": [
+     "Saya mendapatkan gelar sarjana teknik di ITB.",
+     "Saya mendapatkan gelar MBA di universitas negeri."
+    ],
+    "slots": [
+     "学位",
+     "学校"
+    ],
+    "reuse": 4
+   },
+   {
+    "cat": "简历描述",
+    "level": "intermediate",
+    "formula": "Bertanggung jawab atas + [职责]",
+    "structure": "ber-形容词 + atas + 名词",
+    "grammar": "bertanggung jawab 负责（固定搭配）；atas 对…",
+    "scene": "简历职责描述",
+    "ex": [
+     "Bertanggung jawab atas pengelolaan tim beranggotakan 50 orang.",
+     "Bertanggung jawab atas anggaran proyek sebesar 10 juta dolar."
+    ],
+    "slots": [
+     "职责内容",
+     "规模/金额"
+    ],
+    "reuse": 4
+   },
+   {
+    "cat": "被动语态",
+    "level": "professional",
+    "formula": "di- + 词根（被动）",
+    "structure": "di-动词 + 施动/方式",
+    "grammar": "di- 被动前缀，与 meN- 主动对应",
+    "scene": "简历/申请中常见被动",
+    "ex": [
+     "Lamaran saya telah diterima oleh bagian SDM.",
+     "Informasi lowongan dipublikasikan di situs resmi perusahaan."
+    ],
+    "slots": [
+     "被动动词",
+     "施动者"
+    ],
+    "reuse": 3
+   },
+   {
+    "cat": "求职意向",
+    "level": "professional",
+    "formula": "tertarik pada + [对象]",
+    "structure": "ter-形容词 + pada + 名词",
+    "grammar": "tertarik（感兴趣）ter- + tarik；pada 对…",
+    "scene": "表达兴趣（高级）",
+    "ex": [
+     "Saya sangat tertarik pada peluang ini.",
+     "Kami tertarik pada kandidat yang memiliki sertifikasi internasional."
+    ],
+    "slots": [
+     "兴趣对象"
+    ],
+    "reuse": 3
+   },
+   {
+    "cat": "程度表达",
+    "level": "professional",
+    "formula": "se- + 程度副词 + mungkin/-nya",
+    "structure": "se-前缀副词 + 动词/形容词",
+    "grammar": "se- 构成程度/方式副词：sebaiknya 最好、sesegera 尽快",
+    "scene": "建议与紧迫性",
+    "ex": [
+     "Sebaiknya Anda memeriksa situs web perusahaan sebelum wawancara.",
+     "Setidaknya tiga hari sebelum wawancara, konfirmasi kehadiran Anda."
+    ],
+    "slots": [
+     "动作",
+     "时间"
+    ],
+    "reuse": 3
+   }
+  ],
+  "expressions": [
+   {
+    "level": "basic",
+    "scene": "求职",
+    "id": "Saya sedang mencari pekerjaan.",
+    "cn": "我正在找工作。",
+    "note": "mencari ← cari + meN-；求职开场"
+   },
+   {
+    "level": "basic",
+    "scene": "求职",
+    "id": "Lowongan ini sangat menarik.",
+    "cn": "这个职位空缺很有吸引力。",
+    "note": "menarik 有吸引力的"
+   },
+   {
+    "level": "basic",
+    "scene": "求职",
+    "id": "Perusahaan Anda terkenal di bidang ini.",
+    "cn": "贵公司在这个领域很有名。",
+    "note": "terkenal 有名的；bidang 领域"
+   },
+   {
+    "level": "intermediate",
+    "scene": "求职",
+    "id": "Kualifikasi saya sesuai dengan persyaratan.",
+    "cn": "我的资历符合要求。",
+    "note": "sesuai dengan 符合"
+   },
+   {
+    "level": "intermediate",
+    "scene": "求职建议",
+    "id": "Sebaiknya Anda memeriksa situs web perusahaan.",
+    "cn": "建议您查看公司网站。",
+    "note": "sebaiknya 最好（建议）"
+   },
+   {
+    "level": "intermediate",
+    "scene": "求职",
+    "id": "Saya telah mengirimkan lamaran saya.",
+    "cn": "我已提交申请。",
+    "note": "telah + meN-kan 完成时"
+   },
+   {
+    "level": "intermediate",
+    "scene": "求职",
+    "id": "Saya menantikan kabar selanjutnya.",
+    "cn": "我期待后续消息。",
+    "note": "menantikan 期待"
+   },
+   {
+    "level": "intermediate",
+    "scene": "正式信件",
+    "id": "Dengan ini saya bermaksud melamar posisi manajer.",
+    "cn": "谨以此信应聘经理职位。",
+    "note": "dengan ini 谨此（正式信函开头）"
+   },
+   {
+    "level": "intermediate",
+    "scene": "面试准备",
+    "id": "Saya yakin saya dapat memberikan kontribusi.",
+    "cn": "我相信我能做出贡献。",
+    "note": "yakin 确信；memberikan ← beri + meN-kan"
+   },
+   {
+    "level": "intermediate",
+    "scene": "简历",
+    "id": "Silakan lihat riwayat hidup saya.",
+    "cn": "请看我的简历。",
+    "note": "silakan 请（礼貌指令）"
+   },
+   {
+    "level": "intermediate",
+    "scene": "信件结尾",
+    "id": "Salam hormat, [Nama Anda]",
+    "cn": "此致敬礼，[您的姓名]",
+    "note": "正式信件结尾敬语"
+   },
+   {
+    "level": "professional",
+    "scene": "求职",
+    "id": "Memiliki sertifikasi PMP merupakan nilai tambah.",
+    "cn": "拥有PMP认证是加分项。",
+    "note": "nilai tambah 附加价值；merupakan = adalah（正式）"
+   },
+   {
+    "level": "professional",
+    "scene": "推荐信",
+    "id": "Referensi dapat disediakan atas permintaan.",
+    "cn": "推荐信可按需提供。",
+    "note": "atas permintaan 一经要求"
+   },
+   {
+    "level": "professional",
+    "scene": "职位描述",
+    "id": "Posisi ini mencakup perjalanan dinas ke luar negeri.",
+    "cn": "该职位包括海外出差。",
+    "note": "mencakup 包括；perjalanan dinas 出差"
+   },
+   {
+    "level": "professional",
+    "scene": "面试准备",
+    "id": "Pengalaman saya meliputi manajemen proyek dan negosiasi kontrak.",
+    "cn": "我的经验涵盖项目管理和合同谈判。",
+    "note": "meliputi 涵盖（列举技能）"
+   }
+  ],
+  "affixes": [
+   {
+    "no": 1,
+    "affix": "ber-",
+    "type": "前缀",
+    "func": "构成动词：拥有/进行/处于",
+    "rule": "ber- + 词根；词根首字母 r 时省一个 r",
+    "derivs": [
+     {
+      "root": "pengalaman",
+      "der": "berpengalaman",
+      "zh": "有经验的"
+     },
+     {
+      "root": "karir",
+      "der": "berkarir",
+      "zh": "从事职业"
+     },
+     {
+      "root": "kasih",
+      "der": "berkasih-kasihan",
+      "zh": "互相怜爱"
+     }
+    ],
+    "examples": [
+     {
+      "id": "Saya berpengalaman sepuluh tahun di industri nikel.",
+      "cn": "我在镍行业有十年经验。"
+     },
+     {
+      "id": "Dia berkarir di perusahaan multinasional.",
+      "cn": "他在跨国公司工作。"
+     }
+    ],
+    "link": "ber-"
+   },
+   {
+    "no": 2,
+    "affix": "be-",
+    "type": "前缀",
+    "func": "构成动词：处于/进行",
+    "rule": "be- + 形容词/名词；应用面较 ber- 窄",
+    "derivs": [
+     {
+      "root": "kerja",
+      "der": "bekerja",
+      "zh": "工作"
+     },
+     {
+      "root": "kerja sama",
+      "der": "bekerja sama",
+      "zh": "合作"
+     },
+     {
+      "root": "basis",
+      "der": "bebasis",
+      "zh": "以…为基础"
+     }
+    ],
+    "examples": [
+     {
+      "id": "Saya bekerja di perusahaan tambang.",
+      "cn": "我在矿业公司工作。"
+     },
+     {
+      "id": "Kami bekerja sama dengan tim lokal.",
+      "cn": "我们与本地团队合作。"
+     }
+    ],
+    "link": "be-"
+   },
+   {
+    "no": 3,
+    "affix": "meN-",
+    "type": "前缀",
+    "func": "构成主动动词",
+    "rule": "词根首字母清辅音同化：p→m, t→n, s→ny, k→ng",
+    "derivs": [
+     {
+      "root": "lamar",
+      "der": "melamar",
+      "zh": "申请"
+     },
+     {
+      "root": "cari",
+      "der": "mencari",
+      "zh": "寻找"
+     },
+     {
+      "root": "kirim",
+      "der": "mengirim",
+      "zh": "发送"
+     },
+     {
+      "root": "tulis",
+      "der": "menulis",
+      "zh": "写作"
+     },
+     {
+      "root": "ulas",
+      "der": "mengulas",
+      "zh": "审阅"
+     }
+    ],
+    "examples": [
+     {
+      "id": "Saya melamar posisi manajer proyek.",
+      "cn": "我申请项目经理职位。"
+     },
+     {
+      "id": "Perusahaan itu merekrut 100 karyawan baru.",
+      "cn": "那家公司招聘100名新员工。"
+     }
+    ],
+    "link": "meN-"
+   },
+   {
+    "no": 4,
+    "affix": "di-",
+    "type": "前缀",
+    "func": "构成被动动词",
+    "rule": "di- + 词根；与 meN- 主动形式对应",
+    "derivs": [
+     {
+      "root": "panggil",
+      "der": "dipanggil",
+      "zh": "被叫/被邀请"
+     },
+     {
+      "root": "terima",
+      "der": "diterima",
+      "zh": "被接受/录取"
+     },
+     {
+      "root": "tolak",
+      "der": "ditolak",
+      "zh": "被拒绝"
+     },
+     {
+      "root": "ulas",
+      "der": "diulas",
+      "zh": "被审阅"
+     }
+    ],
+    "examples": [
+     {
+      "id": "Saya dipanggil untuk wawancara besok.",
+      "cn": "我明天被叫去面试。"
+     },
+     {
+      "id": "Lamaran saya telah diterima.",
+      "cn": "我的申请已被接受。"
+     }
+    ],
+    "link": "di-"
+   },
+   {
+    "no": 5,
+    "affix": "ter-",
+    "type": "前缀",
+    "func": "被动/意外/状态",
+    "rule": "ter- + 动词 → 被动或意外；ter- + 形容词 → 状态",
+    "derivs": [
+     {
+      "root": "tarik",
+      "der": "tertarik",
+      "zh": "感兴趣"
+     },
+     {
+      "root": "ampil",
+      "der": "terampil",
+      "zh": "熟练"
+     },
+     {
+      "root": "kenal",
+      "der": "terkenal",
+      "zh": "著名"
+     },
+     {
+      "root": "panggil",
+      "der": "terpanggil",
+      "zh": "被召唤"
+     }
+    ],
+    "examples": [
+     {
+      "id": "Saya tertarik dengan posisi ini.",
+      "cn": "我对这个职位感兴趣。"
+     },
+     {
+      "id": "Dia terampil dalam negosiasi.",
+      "cn": "他擅长谈判。"
+     }
+    ],
+    "link": "ter-"
+   },
+   {
+    "no": 6,
+    "affix": "peN-/pe-",
+    "type": "前缀",
+    "func": "构成名词：执行者/工具",
+    "rule": "peN- 形式随词根首字母变化（p→pem-, t→pen-, s→peny-, k→peng-）；部分词根用 pe-",
+    "derivs": [
+     {
+      "root": "lamar",
+      "der": "pelamar",
+      "zh": "申请人"
+     },
+     {
+      "root": "wawancara",
+      "der": "pewawancara",
+      "zh": "面试官"
+     },
+     {
+      "root": "terima",
+      "der": "penerima",
+      "zh": "接收人"
+     },
+     {
+      "root": "tolak",
+      "der": "penolak",
+      "zh": "拒绝者"
+     }
+    ],
+    "examples": [
+     {
+      "id": "Pelamar harus mengirimkan CV terbaru.",
+      "cn": "申请人须提交最新简历。"
+     },
+     {
+      "id": "Pewawancara menilai keterampilan komunikasi.",
+      "cn": "面试官评估沟通能力。"
+     }
+    ],
+    "link": "peN-"
+   },
+   {
+    "no": 7,
+    "affix": "per-",
+    "type": "前缀",
+    "func": "反复/加强/使动",
+    "rule": "per- + 词根；部分词汇化需强记",
+    "derivs": [
+     {
+      "root": "caya",
+      "der": "percaya",
+      "zh": "相信"
+     },
+     {
+      "root": "lu",
+      "der": "perlu",
+      "zh": "需要"
+     },
+     {
+      "root": "hatikan",
+      "der": "perhatikan",
+      "zh": "注意"
+     }
+    ],
+    "examples": [
+     {
+      "id": "Saya percaya diri menghadapi wawancara.",
+      "cn": "我自信面对面试。"
+     },
+     {
+      "id": "Anda perlu menyiapkan dokumen ini.",
+      "cn": "您需要准备这些文件。"
+     }
+    ],
+    "link": "per-"
+   },
+   {
+    "no": 8,
+    "affix": "memper-/diper-",
+    "type": "前缀",
+    "func": "使动/加强：使更…",
+    "rule": "memper- + 形容词/动词 → 及物；diper- 为被动",
+    "derivs": [
+     {
+      "root": "kuat",
+      "der": "memperkuat",
+      "zh": "加强"
+     },
+     {
+      "root": "luas",
+      "der": "memperluas",
+      "zh": "扩大"
+     },
+     {
+      "root": "jelas",
+      "der": "memperjelas",
+      "zh": "阐明"
+     },
+     {
+      "root": "luas",
+      "der": "diperluas",
+      "zh": "被扩大"
+     }
+    ],
+    "examples": [
+     {
+      "id": "Pengalaman ini memperkuat kualifikasi saya.",
+      "cn": "这段经历增强了我的资历。"
+     },
+     {
+      "id": "Jaringan perusahaan diperluas ke Asia Timur.",
+      "cn": "公司网络扩展到东亚。"
+     }
+    ],
+    "link": "memper-"
+   },
+   {
+    "no": 9,
+    "affix": "se-",
+    "type": "前缀",
+    "func": "程度/方式副词：尽可能地",
+    "rule": "se- + 形容词/副词 + -nya/-mungkin",
+    "derivs": [
+     {
+      "root": "baik",
+      "der": "sebaiknya",
+      "zh": "最好"
+     },
+     {
+      "root": "segera",
+      "der": "sesegera",
+      "zh": "尽快"
+     },
+     {
+      "root": "tidak",
+      "der": "setidaknya",
+      "zh": "至少"
+     },
+     {
+      "root": "cepat",
+      "der": "secepat",
+      "zh": "尽快"
+     }
+    ],
+    "examples": [
+     {
+      "id": "Sebaiknya kirimkan lamaran sesegera mungkin.",
+      "cn": "最好尽快提交申请。"
+     },
+     {
+      "id": "Setidaknya siapkan tiga pertanyaan untuk pewawancara.",
+      "cn": "至少准备三个问题问面试官。"
+     }
+    ],
+    "link": "se-"
+   },
+   {
+    "no": 10,
+    "affix": "ke-",
+    "type": "前缀",
+    "func": "构成名词：状态/性质",
+    "rule": "ke- + 形容词/数词；常与 -an 组合（ke-...-an）",
+    "derivs": [
+     {
+      "root": "ahli",
+      "der": "keahlian",
+      "zh": "专业技能"
+     },
+     {
+      "root": "terampil",
+      "der": "keterampilan",
+      "zh": "技能"
+     },
+     {
+      "root": "mampu",
+      "der": "kemampuan",
+      "zh": "能力"
+     },
+     {
+      "root": "sempat",
+      "der": "kesempatan",
+      "zh": "机会"
+     }
+    ],
+    "examples": [
+     {
+      "id": "Keahlian teknis sangat dihargai di industri ini.",
+      "cn": "技术能力在该行业很受重视。"
+     },
+     {
+      "id": "Ini kesempatan yang berharga.",
+      "cn": "这是宝贵的机会。"
+     }
+    ],
+    "link": "ke-"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "'Melamar' 的意思是？",
+    "opts": [
+     "申请（职位）",
+     "面试",
+     "拒绝",
+     "招聘"
+    ],
+    "a": 0,
+    "exp": "melamar ← lamar（申请）+ meN-，melamar pekerjaan/posisi 申请工作/职位"
+   },
+   {
+    "q": "'berpengalaman' 的词根是？",
+    "opts": [
+     "alam",
+     "pengalaman",
+     "alami",
+     "pelaman"
+    ],
+    "a": 1,
+    "exp": "ber- + pengalaman（经验）→ 有经验的"
+   },
+   {
+    "q": "'surat lamaran' 中 '-an' 的作用是？",
+    "opts": [
+     "构成名词",
+     "构成动词",
+     "构成形容词",
+     "构成副词"
+    ],
+    "a": 0,
+    "exp": "lamar（动词）+ -an → lamaran（名词）申请"
+   },
+   {
+    "q": "'sesuai dengan' 的意思是？",
+    "opts": [
+     "符合",
+     "超过",
+     "低于",
+     "不同于"
+    ],
+    "a": 0,
+    "exp": "sesuai dengan = 符合/匹配：Kualifikasi sesuai dengan persyaratan"
+   },
+   {
+    "q": "'sebagai' 在 'bekerja sebagai manajer' 中的意思是？",
+    "opts": [
+     "作为",
+     "为了",
+     "和",
+     "在"
+    ],
+    "a": 0,
+    "exp": "sebagai = 作为：bekerja sebagai manajer 担任经理工作"
+   },
+   {
+    "q": "'bekerja di Jakarta' 中的 'di' 表示？",
+    "opts": [
+     "地点",
+     "时间",
+     "方式",
+     "所属"
+    ],
+    "a": 0,
+    "exp": "di + 地点名词 = 在…（地点）"
+   },
+   {
+    "q": "印尼语中'简历'是？",
+    "opts": [
+     "surat lamaran",
+     "riwayat hidup",
+     "lowongan",
+     "jabatan"
+    ],
+    "a": 1,
+    "exp": "riwayat hidup = 简历/履历；surat lamaran = 求职信"
+   },
+   {
+    "q": "'lowongan' 的意思是？",
+    "opts": [
+     "面试",
+     "经验",
+     "职位空缺",
+     "公司"
+    ],
+    "a": 2,
+    "exp": "lowongan ← lowong + -an，lowongan kerja = 职位空缺"
+   },
+   {
+    "q": "'perusahaan multinasional' 指？",
+    "opts": [
+     "本地公司",
+     "跨国公司",
+     "国有企业",
+     "私人企业"
+    ],
+    "a": 1,
+    "exp": "multinasional = 跨国的"
+   },
+   {
+    "q": "'Berkarir di industri nikel' 中 'berkarir' 的意思是？",
+    "opts": [
+     "退休",
+     "从事职业",
+     "学习",
+     "旅行"
+    ],
+    "a": 1,
+    "exp": "ber- + karir → 从事职业"
+   },
+   {
+    "q": "'melamar' 的名词形式是？",
+    "opts": [
+     "lamar",
+     "lamaran",
+     "pelamar",
+     "lamarannya"
+    ],
+    "a": 1,
+    "exp": "lamar + -an = lamaran（申请）；pelamar = 申请人（peN-）"
+   },
+   {
+    "q": "'berpengalaman + 时间 + di + 领域' 的结构是？",
+    "opts": [
+     "错误结构",
+     "正确结构",
+     "仅用于口语",
+     "仅用于书面语"
+    ],
+    "a": 1,
+    "exp": "Saya berpengalaman 5 tahun di industri ini ✓"
+   },
+   {
+    "q": "'keahlian' 的构词是？",
+    "opts": [
+     "ahli + ber-",
+     "ahli + ke-an",
+     "ahli + peN-",
+     "ahli + meN-"
+    ],
+    "a": 1,
+    "exp": "ahli（专家）+ ke-...-an → keahlian（专业技能）"
+   },
+   {
+    "q": "'mengirim lamaran' 是正确的搭配吗？",
+    "opts": [
+     "是",
+     "否"
+    ],
+    "a": 0,
+    "exp": "mengirim + 名词 lamaran = 发送申请 ✓"
+   },
+   {
+    "q": "'pelamar' 中 'peN-' 表示？",
+    "opts": [
+     "动作",
+     "执行者（人）",
+     "状态",
+     "地点"
+    ],
+    "a": 1,
+    "exp": "peN- + lamar → pelamar 申请人（执行动作的人）"
+   }
+  ]
+ },
+ "day2": {
+  "date": "2026-10-24",
+  "theme": "Wawancara Berlangsung 面试进行",
+  "vocab": [
+   {
+    "w": "wawancara",
+    "cn": "面试",
+    "ipa": "/wa.wan.dʒa.ra/",
+    "level": "核心",
+    "note": "wawancara kerja 求职面试"
+   },
+   {
+    "w": "pewawancara",
+    "cn": "面试官",
+    "ipa": "/pə.wa.wan.dʒa.ra/",
+    "level": "核心",
+    "note": "peN- + wawancara → 面试官"
+   },
+   {
+    "w": "kandidat",
+    "cn": "候选人",
+    "ipa": "/kan.di.dat/",
+    "level": "核心",
+    "note": "kandidat terbaik/potensial"
+   },
+   {
+    "w": "pertanyaan",
+    "cn": "问题",
+    "ipa": "/pər.taŋ.ja.an/",
+    "level": "核心",
+    "note": "tanya + per-an → 名词；bertanya 问"
+   },
+   {
+    "w": "jujur",
+    "cn": "诚实的",
+    "ipa": "/dʒu.dʒur/",
+    "level": "核心",
+    "note": "kejujuran 诚实（名词）"
+   },
+   {
+    "w": "percaya diri",
+    "cn": "自信的",
+    "ipa": "/pər.tʃa.ja di.ri/",
+    "level": "核心",
+    "note": "固定搭配；kepercayaan diri 自信心（名词）"
+   },
+   {
+    "w": "situasional",
+    "cn": "情境的",
+    "ipa": "/si.tu.a.si.o.nal/",
+    "level": "进阶",
+    "note": "pertanyaan situasional 情境性问题"
+   },
+   {
+    "w": "perilaku",
+    "cn": "行为",
+    "ipa": "/pə.ri.la.ku/",
+    "level": "进阶",
+    "note": "pertanyaan perilaku 行为面试问题"
+   },
+   {
+    "w": "kompetensi",
+    "cn": "能力；胜任力",
+    "ipa": "/kom.pə.tən.si/",
+    "level": "进阶",
+    "note": "berkompeten 有能力的；核心人力术语"
+   },
+   {
+    "w": "kekuatan",
+    "cn": "优势",
+    "ipa": "/kə.ku.a.tan/",
+    "level": "进阶",
+    "note": "kuat（强）+ ke-an → 名词；面试谈优点"
+   },
+   {
+    "w": "kelemahan",
+    "cn": "弱点",
+    "ipa": "/kə.lə.ma.han/",
+    "level": "进阶",
+    "note": "lemah（弱）+ ke-an → 名词；面试谈缺点"
+   },
+   {
+    "w": "motivasi",
+    "cn": "动机",
+    "ipa": "/mo.ti.va.si/",
+    "level": "进阶",
+    "note": "memotivasi 激励；motivasi kerja 工作动机"
+   },
+   {
+    "w": "gaji",
+    "cn": "工资",
+    "ipa": "/ga.dʒi/",
+    "level": "核心",
+    "note": "gaji pokok 基本工资；gaji bersih 净工资"
+   },
+   {
+    "w": "ekspektasi",
+    "cn": "期望",
+    "ipa": "/ək.spək.ta.si/",
+    "level": "高阶",
+    "note": "ekspektasi gaji 薪资期望"
+   },
+   {
+    "w": "negosiasi",
+    "cn": "谈判",
+    "ipa": "/nə.go.si.a.si/",
+    "level": "高阶",
+    "note": "注意拼写为 s，不是 si/zi"
+   }
+  ],
+  "phrases": [
+   {
+    "id": "pertanyaan situasional",
+    "cn": "情境性问题",
+    "usage": "面试术语",
+    "note": "假设场景测试应变"
+   },
+   {
+    "id": "pertanyaan perilaku",
+    "cn": "行为面试问题",
+    "usage": "面试术语",
+    "note": "'过去行为预测未来表现'"
+   },
+   {
+    "id": "pertanyaan kompetensi",
+    "cn": "能力面试问题",
+    "usage": "面试术语",
+    "note": "针对岗位胜任力"
+   },
+   {
+    "id": "jawab dengan jujur",
+    "cn": "诚实回答",
+    "usage": "面试建议",
+    "note": "jawab + dengan + 形容词"
+   },
+   {
+    "id": "percaya diri",
+    "cn": "自信",
+    "usage": "面试建议",
+    "note": "形容词性搭配"
+   },
+   {
+    "id": "di bawah tekanan",
+    "cn": "在压力下",
+    "usage": "描述抗压能力",
+    "note": "bekerja di bawah tekanan 在压力下工作"
+   },
+   {
+    "id": "memberikan contoh konkret",
+    "cn": "给出具体例子",
+    "usage": "行为面试技巧",
+    "note": "memberikan ← beri + meN-kan"
+   },
+   {
+    "id": "menggambarkan situasi",
+    "cn": "描述情境",
+    "usage": "行为面试回答",
+    "note": "menggambarkan 描述"
+   },
+   {
+    "id": "hasil yang terukur",
+    "cn": "可量化的成果",
+    "usage": "成就描述",
+    "note": "terukur ← ukur + ke-an 可测量的"
+   },
+   {
+    "id": "terima kasih atas waktunya",
+    "cn": "感谢您的时间",
+    "usage": "面试结束",
+    "note": "atas = 因为/对于"
+   }
+  ],
+  "patterns": [
+   {
+    "cat": "行为面试",
+    "level": "basic",
+    "formula": "Suatu ketika saya + [过去经历]",
+    "structure": "Suatu ketika + Saya + 动词短语",
+    "grammar": "suatu ketika = 曾经/有一次（引出故事）",
+    "scene": "回答行为面试问题开头",
+    "ex": [
+     "Suatu ketika saya memimpin proyek dengan tenggat waktu yang ketat.",
+     "Suatu ketika saya harus menyelesaikan konflik dalam tim."
+    ],
+    "slots": [
+     "经历/事件"
+    ],
+    "reuse": 4
+   },
+   {
+    "cat": "面试指令",
+    "level": "basic",
+    "formula": "Silakan + [动词] + [内容]",
+    "structure": "Silakan + 动词 + 宾语",
+    "grammar": "silakan + 动词 = 请…（礼貌指令）",
+    "scene": "理解面试官指令",
+    "ex": [
+     "Silakan jelaskan tentang latar belakang Anda.",
+     "Silakan ceritakan pengalaman kerja Anda."
+    ],
+    "slots": [
+     "动词（jelaskan/ceritakan）",
+     "内容"
+    ],
+    "reuse": 3
+   },
+   {
+    "cat": "行为面试",
+    "level": "basic",
+    "formula": "Boleh Anda berikan contoh + [情境]?",
+    "structure": "Boleh + Anda + 动词 + 名词",
+    "grammar": "boleh 可以（请求许可）；berikan ← beri + -kan",
+    "scene": "面试官要求举例",
+    "ex": [
+     "Boleh Anda berikan contoh ketika Anda bekerja dalam tim?",
+     "Boleh Anda berikan contoh keberhasilan Anda?"
+    ],
+    "slots": [
+     "情境/内容"
+    ],
+    "reuse": 4
+   },
+   {
+    "cat": "行为面试",
+    "level": "intermediate",
+    "formula": "Dalam situasi + [情境], saya + [行动]",
+    "structure": "Dalam + 名词 + 主句",
+    "grammar": "dalam + situasi 在…情况下",
+    "scene": "描述情境",
+    "ex": [
+     "Dalam situasi darurat, saya tetap tenang dan mengambil langkah cepat.",
+     "Dalam situasi ini, komunikasi yang jelas sangat penting."
+    ],
+    "slots": [
+     "情境",
+     "行动"
+    ],
+    "reuse": 4
+   },
+   {
+    "cat": "行为面试",
+    "level": "intermediate",
+    "formula": "Saya mengambil inisiatif dengan + [行动]",
+    "structure": "Saya + meN-动词 + 名词 + dengan + 名词",
+    "grammar": "mengambil inisiatif 采取主动；dengan 通过/以",
+    "scene": "描述主动性",
+    "ex": [
+     "Saya mengambil inisiatif dengan menyusun rencana darurat.",
+     "Dia mengambil inisiatif dengan memimpin rapat koordinasi."
+    ],
+    "slots": [
+     "行动"
+    ],
+    "reuse": 3
+   },
+   {
+    "cat": "行为面试",
+    "level": "intermediate",
+    "formula": "Hasilnya, + [成果]",
+    "structure": "Hasilnya + 主句",
+    "grammar": "hasil + -nya → 结果是…",
+    "scene": "总结行动成果",
+    "ex": [
+     "Hasilnya, proyek selesai tepat waktu dan di bawah anggaran.",
+     "Hasilnya, efisiensi meningkat 25 persen."
+    ],
+    "slots": [
+     "成果"
+    ],
+    "reuse": 5
+   },
+   {
+    "cat": "行为面试",
+    "level": "intermediate",
+    "formula": "Pengalaman itu mengajarkan saya + [教训]",
+    "structure": "Pengalaman + 限定 + meN-动词 + Saya + 名词",
+    "grammar": "mengajarkan ← ajar + meN-kan 教会",
+    "scene": "总结学习经验",
+    "ex": [
+     "Pengalaman itu mengajarkan saya pentingnya persiapan.",
+     "Pengalaman itu mengajarkan saya untuk selalu berkomunikasi terbuka."
+    ],
+    "slots": [
+     "教训/收获"
+    ],
+    "reuse": 4
+   },
+   {
+    "cat": "自我介绍",
+    "level": "intermediate",
+    "formula": "Selama + [时长] + tahun, saya telah + [成就]",
+    "structure": "Selama + 时间 + 主句完成时",
+    "grammar": "selama 长达/在…期间；telah + 动词 完成体",
+    "scene": "总结长期经验",
+    "ex": [
+     "Selama lima tahun, saya telah memimpin tim beragam.",
+     "Selama tiga tahun, saya telah mengelola proyek senilai jutaan dolar."
+    ],
+    "slots": [
+     "时长",
+     "成就"
+    ],
+    "reuse": 4
+   },
+   {
+    "cat": "求职动机",
+    "level": "intermediate",
+    "formula": "Hal yang memotivasi saya adalah + [动机]",
+    "structure": "Hal + yang + 动词 + Saya + adalah + 名词",
+    "grammar": "yang 关系代词；memotivasi 激励",
+    "scene": "回答动机问题",
+    "ex": [
+     "Hal yang memotivasi saya adalah tantangan baru.",
+     "Hal yang memotivasi saya adalah peluang untuk berkontribusi."
+    ],
+    "slots": [
+     "动机"
+    ],
+    "reuse": 4
+   },
+   {
+    "cat": "情景面试",
+    "level": "professional",
+    "formula": "Jika saya menghadapi + [情境], saya akan + [行动]",
+    "structure": "Jika + 主句 + 将来时",
+    "grammar": "jika 如果；akan + 动词 将来时",
+    "scene": "情景面试回答",
+    "ex": [
+     "Jika saya menghadapi tenggat yang tidak realistis, saya akan bernegosiasi untuk revisi.",
+     "Jika saya menghadapi konflik tim, saya akan mendengarkan kedua pihak."
+    ],
+    "slots": [
+     "情境",
+     "行动"
+    ],
+    "reuse": 5
+   },
+   {
+    "cat": "行为面试",
+    "level": "professional",
+    "formula": "Situasinya + [S]. Tugas saya + [T]. Saya + [A]. Hasilnya + [R].",
+    "structure": "四个短句",
+    "grammar": "STAR 法则（Situation-Task-Action-Result）印尼语框架",
+    "scene": "完整行为面试回答",
+    "ex": [
+     "Situasinya: ada krisis pasokan. Tugas saya: mencari pemasok alternatif. Saya menghubungi lima pemasok. Hasilnya: pasokan tersedia dalam seminggu."
+    ],
+    "slots": [
+     "S 情境",
+     "T 任务",
+     "A 行动",
+     "R 结果"
+    ],
+    "reuse": 5
+   },
+   {
+    "cat": "薪资讨论",
+    "level": "professional",
+    "formula": "Apakah ada ruang untuk + [协商内容]?",
+    "structure": "Apakah + ada + ruang + untuk + 名词",
+    "grammar": "ruang 空间/余地；apakah 疑问词",
+    "scene": "探索谈判空间",
+    "ex": [
+     "Apakah ada ruang untuk negosiasi tunjangan?",
+     "Apakah ada ruang untuk revisi gaji pokok?"
+    ],
+    "slots": [
+     "协商内容"
+    ],
+    "reuse": 4
+   }
+  ],
+  "expressions": [
+   {
+    "level": "basic",
+    "scene": "面试指令",
+    "id": "Silakan duduk.",
+    "cn": "请坐。",
+    "note": "silakan 请"
+   },
+   {
+    "level": "basic",
+    "scene": "面试结束",
+    "id": "Terima kasih atas waktunya.",
+    "cn": "感谢您的时间。",
+    "note": "atas = 对于"
+   },
+   {
+    "level": "basic",
+    "scene": "面试结束",
+    "id": "Saya menantikan hasilnya.",
+    "cn": "我期待结果。",
+    "note": "menantikan 期待（及物）"
+   },
+   {
+    "level": "intermediate",
+    "scene": "回答问题",
+    "id": "Boleh saya menjawab dengan contoh?",
+    "cn": "我可以用例子回答吗？",
+    "note": "boleh 可以；menjawab 回答"
+   },
+   {
+    "level": "intermediate",
+    "scene": "行为面试",
+    "id": "Suatu ketika saya menghadapi tantangan besar.",
+    "cn": "有一次我面临巨大挑战。",
+    "note": "suatu ketika 曾经/有一次"
+   },
+   {
+    "level": "intermediate",
+    "scene": "行为面试",
+    "id": "Saya belajar banyak dari pengalaman itu.",
+    "cn": "我从那段经历中学到很多。",
+    "note": "belajar dari 从…学习"
+   },
+   {
+    "level": "intermediate",
+    "scene": "行为面试",
+    "id": "Itu pengalaman yang berharga.",
+    "cn": "那是宝贵的经历。",
+    "note": "berharga 有价值的"
+   },
+   {
+    "level": "intermediate",
+    "scene": "面试礼仪",
+    "id": "Maaf, bisakah Anda mengulang pertanyaannya?",
+    "cn": "抱歉，您能重复一下问题吗？",
+    "note": "bisakah = apakah bisa"
+   },
+   {
+    "level": "intermediate",
+    "scene": "面试礼仪",
+    "id": "Tentu, saya akan jawab sebisanya.",
+    "cn": "当然，我会尽力回答。",
+    "note": "sebisanya 尽力"
+   },
+   {
+    "level": "intermediate",
+    "scene": "表达自信",
+    "id": "Saya yakin mampu menangani pekerjaan ini.",
+    "cn": "我有能力胜任这份工作。",
+    "note": "mampu 能够"
+   },
+   {
+    "level": "intermediate",
+    "scene": "团队协作",
+    "id": "Saya senang bekerja dalam tim.",
+    "cn": "我喜欢团队工作。",
+    "note": "senang 喜欢/愉快"
+   },
+   {
+    "level": "professional",
+    "scene": "经验描述",
+    "id": "Saya terbiasa bekerja di bawah tekanan.",
+    "cn": "我习惯在压力下工作。",
+    "note": "terbiasa 习惯于"
+   },
+   {
+    "level": "professional",
+    "scene": "技术面试",
+    "id": "Saya akan menjelaskan proses teknisnya.",
+    "cn": "我会解释技术流程。",
+    "note": "menjelaskan ← jelas + meN-kan"
+   },
+   {
+    "level": "professional",
+    "scene": "表达热情",
+    "id": "Posisi ini selaras dengan tujuan karir saya.",
+    "cn": "这个职位与我的职业目标一致。",
+    "note": "selaras dengan 与…一致"
+   },
+   {
+    "level": "professional",
+    "scene": "面试结束",
+    "id": "Saya tetap sangat tertarik dengan posisi ini.",
+    "cn": "我仍然对这个职位很感兴趣。",
+    "note": "tetap 仍然；sangat 很"
+   }
+  ],
+  "affixes": [
+   {
+    "no": 11,
+    "affix": "-an",
+    "type": "后缀",
+    "func": "构成名词：结果/事物/场所",
+    "rule": "动词/形容词 + -an → 名词",
+    "derivs": [
+     {
+      "root": "tanya",
+      "der": "pertanyaan",
+      "zh": "问题"
+     },
+     {
+      "root": "jawab",
+      "der": "jawaban",
+      "zh": "答案"
+     },
+     {
+      "root": "terima",
+      "der": "penerimaan",
+      "zh": "接受"
+     },
+     {
+      "root": "tolak",
+      "der": "penolakan",
+      "zh": "拒绝"
+     },
+     {
+      "root": "nilai",
+      "der": "penilaian",
+      "zh": "评估"
+     },
+     {
+      "root": "banding",
+      "der": "perbandingan",
+      "zh": "比较"
+     },
+     {
+      "root": "imbang",
+      "der": "keseimbangan",
+      "zh": "平衡"
+     },
+     {
+      "root": "lanjut",
+      "der": "kelanjutan",
+      "zh": "后续"
+     }
+    ],
+    "examples": [
+     {
+      "id": "Pertanyaan situasional menguji kemampuan berpikir cepat.",
+      "cn": "情境问题测试快速思考能力。"
+     },
+     {
+      "id": "Penilaian dilakukan berdasarkan kompetensi.",
+      "cn": "评估基于胜任力进行。"
+     }
+    ],
+    "link": "-an"
+   },
+   {
+    "no": 12,
+    "affix": "-kan",
+    "type": "后缀",
+    "func": "构成及物/使役动词",
+    "rule": "动词 + -kan → 致使/应用意义",
+    "derivs": [
+     {
+      "root": "kirim",
+      "der": "kirimkan",
+      "zh": "发送（给…）"
+     },
+     {
+      "root": "tingkat",
+      "der": "tingkatkan",
+      "zh": "提高"
+     },
+     {
+      "root": "selesai",
+      "der": "selesaikan",
+      "zh": "完成"
+     },
+     {
+      "root": "jelas",
+      "der": "jelaskan",
+      "zh": "解释"
+     },
+     {
+      "root": "banding",
+      "der": "bandingkan",
+      "zh": "比较"
+     }
+    ],
+    "examples": [
+     {
+      "id": "Kirimkan lamaran Anda sebelum tenggat waktu.",
+      "cn": "请在截止日期前发送您的申请。"
+     },
+     {
+      "id": "Tingkatkan keterampilan Anda terus-menerus.",
+      "cn": "不断提高您的技能。"
+     }
+    ],
+    "link": "-kan"
+   },
+   {
+    "no": 13,
+    "affix": "-i",
+    "type": "后缀",
+    "func": "构成及物动词：给予/重复/朝向",
+    "rule": "名词/形容词 + -i → 及物动词",
+    "derivs": [
+     {
+      "root": "hubung",
+      "der": "hubungi",
+      "zh": "联系"
+     },
+     {
+      "root": "isi",
+      "der": "isi",
+      "zh": "填写/内容"
+     },
+     {
+      "root": "hias",
+      "der": "hiasi",
+      "zh": "装饰"
+     },
+     {
+      "root": "wawancara",
+      "der": "wawancarai",
+      "zh": "面试（某人）"
+     }
+    ],
+    "examples": [
+     {
+      "id": "Hubungi saya jika ada pertanyaan.",
+      "cn": "如果有问题请联系我。"
+     },
+     {
+      "id": "Isi formulir ini dengan lengkap.",
+      "cn": "完整填写此表格。"
+     }
+    ],
+    "link": "-i"
+   },
+   {
+    "no": 14,
+    "affix": "-nya",
+    "type": "后缀",
+    "func": "第三人称/指示代词：他的/那个",
+    "rule": "名词 + -nya → 他的/它的/那个",
+    "derivs": [
+     {
+      "root": "lamaran",
+      "der": "lamarannya",
+      "zh": "他的申请"
+     },
+     {
+      "root": "perusahaan",
+      "der": "perusahaannya",
+      "zh": "那家公司"
+     },
+     {
+      "root": "pertanyaan",
+      "der": "pertanyaannya",
+      "zh": "那个问题"
+     }
+    ],
+    "examples": [
+     {
+      "id": "Lamaran Anda telah kami terima.",
+      "cn": "您的申请我们已收到。"
+     },
+     {
+      "id": "Silakan tunggu kabar selanjutnya.",
+      "cn": "请等待后续消息。"
+     }
+    ],
+    "link": "-nya"
+   },
+   {
+    "no": 15,
+    "affix": "-ku",
+    "type": "后缀",
+    "func": "第一人称所有格：我的",
+    "rule": "名词 + -ku → 我的…",
+    "derivs": [
+     {
+      "root": "lamaran",
+      "der": "lamaranku",
+      "zh": "我的申请"
+     },
+     {
+      "root": "pengalaman",
+      "der": "pengalamanku",
+      "zh": "我的经验"
+     },
+     {
+      "root": "jawaban",
+      "der": "jawabanku",
+      "zh": "我的答案"
+     }
+    ],
+    "examples": [
+     {
+      "id": "Ini pengalamanku di industri ini.",
+      "cn": "这是我在这个行业的经验。"
+     },
+     {
+      "id": "Jawabanku sudah lengkap.",
+      "cn": "我的答案已经完整。"
+     }
+    ],
+    "link": "-ku"
+   },
+   {
+    "no": 16,
+    "affix": "-mu",
+    "type": "后缀",
+    "func": "第二人称所有格：你的",
+    "rule": "名词 + -mu → 你的…",
+    "derivs": [
+     {
+      "root": "lamaran",
+      "der": "lamaranmu",
+      "zh": "你的申请"
+     },
+     {
+      "root": "surat",
+      "der": "suratmu",
+      "zh": "你的信"
+     },
+     {
+      "root": "pengalaman",
+      "der": "pengalamanmu",
+      "zh": "你的经验"
+     }
+    ],
+    "examples": [
+     {
+      "id": "Kirimkan lamaranmu segera.",
+      "cn": "尽快发送你的申请。"
+     },
+     {
+      "id": "Ceritakan pengalamanmu.",
+      "cn": "讲述你的经验。"
+     }
+    ],
+    "link": "-mu"
+   },
+   {
+    "no": 17,
+    "affix": "-lah/-kah/-pun/-tah",
+    "type": "小品词",
+    "func": "强调/疑问/让步",
+    "rule": "-lah 强调；-kah 疑问；-pun 即使/也；-tah 疑问（古体）",
+    "derivs": [
+     {
+      "root": "kirim",
+      "der": "kirimkanlah",
+      "zh": "请发送吧"
+     },
+     {
+      "root": "apa",
+      "der": "apakah",
+      "zh": "是否"
+     },
+     {
+      "root": "siapa",
+      "der": "siapakah",
+      "zh": "是谁"
+     },
+     {
+      "root": "ada",
+      "der": "adapun",
+      "zh": "至于"
+     },
+     {
+      "root": "baru",
+      "der": "barupun",
+      "zh": "即使刚"
+     }
+    ],
+    "examples": [
+     {
+      "id": "Kirimkanlah lamaran Anda sekarang.",
+      "cn": "现在就发送您的申请吧。"
+     },
+     {
+      "id": "Apakah Anda siap untuk wawancara?",
+      "cn": "您准备好面试了吗？"
+     }
+    ],
+    "link": "-lah"
+   },
+   {
+    "no": 18,
+    "affix": "meN-...-kan",
+    "type": "前后缀",
+    "func": "致使动词",
+    "rule": "meN- + 词根 + -kan → 及物/致使动词",
+    "derivs": [
+     {
+      "root": "kirim",
+      "der": "mengirimkan",
+      "zh": "发送给"
+     },
+     {
+      "root": "beri",
+      "der": "memberikan",
+      "zh": "给予"
+     },
+     {
+      "root": "selesai",
+      "der": "menyelesaikan",
+      "zh": "完成"
+     },
+     {
+      "root": "tingkat",
+      "der": "meningkatkan",
+      "zh": "提高"
+     },
+     {
+      "root": "tawar",
+      "der": "menawarkan",
+      "zh": "提供/报价"
+     }
+    ],
+    "examples": [
+     {
+      "id": "Saya mengirimkan lamaran melalui email.",
+      "cn": "我通过电子邮件发送申请。"
+     },
+     {
+      "id": "Dia menawarkan solusi yang kreatif.",
+      "cn": "他提出了有创意的解决方案。"
+     }
+    ],
+    "link": "meN-kan"
+   },
+   {
+    "no": 19,
+    "affix": "meN-...-i",
+    "type": "前后缀",
+    "func": "及物动词：给予/重复",
+    "rule": "meN- + 词根 + -i → 及物动词",
+    "derivs": [
+     {
+      "root": "tanya",
+      "der": "menanyai",
+      "zh": "反复问"
+     },
+     {
+      "root": "hias",
+      "der": "menghiasi",
+      "zh": "装饰"
+     },
+     {
+      "root": "hubung",
+      "der": "menghubungi",
+      "zh": "联系"
+     },
+     {
+      "root": "isi",
+      "der": "mengisi",
+      "zh": "填写"
+     }
+    ],
+    "examples": [
+     {
+      "id": "Pewawancara menanyai saya tentang pengalaman.",
+      "cn": "面试官反复询问我的经验。"
+     },
+     {
+      "id": "Silakan menghubungi saya kapan saja.",
+      "cn": "请随时联系我。"
+     }
+    ],
+    "link": "meN-i"
+   },
+   {
+    "no": 20,
+    "affix": "ke-...-an",
+    "type": "前后缀",
+    "func": "构成名词：状态/性质",
+    "rule": "ke- + 形容词 + -an → 抽象名词",
+    "derivs": [
+     {
+      "root": "percaya",
+      "der": "kepercayaan",
+      "zh": "信任"
+     },
+     {
+      "root": "percaya diri",
+      "der": "kepercayaan diri",
+      "zh": "自信心"
+     },
+     {
+      "root": "mampu",
+      "der": "kemampuan",
+      "zh": "能力"
+     },
+     {
+      "root": "jujur",
+      "der": "kejujuran",
+      "zh": "诚实"
+     },
+     {
+      "root": "kuat",
+      "der": "kekuatan",
+      "zh": "力量/优势"
+     },
+     {
+      "root": "lemah",
+      "der": "kelemahan",
+      "zh": "弱点"
+     }
+    ],
+    "examples": [
+     {
+      "id": "Kepercayaan diri sangat penting dalam wawancara.",
+      "cn": "自信在面试中非常重要。"
+     },
+     {
+      "id": "Kejujuran adalah nilai utama kami.",
+      "cn": "诚实是我们的核心价值观。"
+     }
+    ],
+    "link": "ke-an"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "'Pewawancara' 的意思是？",
+    "opts": [
+     "面试官",
+     "候选人",
+     "问题",
+     "答案"
+    ],
+    "a": 0,
+    "exp": "peN- + wawancara → 面试官"
+   },
+   {
+    "q": "'kandidat' 的同义词是？",
+    "opts": [
+     "pewawancara",
+     "pelamar",
+     "penerima",
+     "penolak"
+    ],
+    "a": 1,
+    "exp": "kandidat = pelamar = 候选人/申请人"
+   },
+   {
+    "q": "'jujur' 的反义词是？",
+    "opts": [
+     "pintar",
+     "bohong/dusta",
+     "rajin",
+     "sopan"
+    ],
+    "a": 1,
+    "exp": "jujur 诚实 ↔ dusta/bohong 撒谎"
+   },
+   {
+    "q": "'percaya diri' 与 'kepercayaan diri' 的区别是？",
+    "opts": [
+     "前者形容词，后者名词",
+     "前者名词，后者形容词",
+     "意思完全不同",
+     "拼写错误"
+    ],
+    "a": 0,
+    "exp": "percaya diri 自信的（形容词）；kepercayaan diri 自信心（名词）"
+   },
+   {
+    "q": "'pertanyaan situasional' 是？",
+    "opts": [
+     "情境性问题",
+     "行为问题",
+     "技术问题",
+     "薪资问题"
+    ],
+    "a": 0,
+    "exp": "situasional = 情境的（假设场景）"
+   },
+   {
+    "q": "'kompetensi' 的词根是？",
+    "opts": [
+     "kompeten",
+     "petensi",
+     "kompet",
+     "tensi"
+    ],
+    "a": 0,
+    "exp": "kompeten（胜任的）+ -si → kompetensi（胜任力）"
+   },
+   {
+    "q": "'gaji pokok' 指？",
+    "opts": [
+     "基本工资",
+     "津贴",
+     "奖金",
+     "福利"
+    ],
+    "a": 0,
+    "exp": "gaji pokok = 基本工资；tunjangan = 津贴"
+   },
+   {
+    "q": "'ekspektasi gaji' 的正确拼写是？",
+    "opts": [
+     "ekpektasi",
+     "ekspektasi",
+     "ekspetasi",
+     "ekspektasi"
+    ],
+    "a": 1,
+    "exp": "ekspektasi 带 s（来自 expectation）"
+   },
+   {
+    "q": "面试时建议提前多久到达？",
+    "opts": [
+     "5分钟",
+     "15分钟",
+     "30分钟",
+     "1小时"
+    ],
+    "a": 1,
+    "exp": "15分钟合适：早到太久也失礼"
+   },
+   {
+    "q": "'memberikan contoh' 的意思是？",
+    "opts": [
+     "给出例子",
+     "删除例子",
+     "记录例子",
+     "评论例子"
+    ],
+    "a": 0,
+    "exp": "memberikan ← beri + meN-kan 给予"
+   },
+   {
+    "q": "'menjawab' 的前缀是？",
+    "opts": [
+     "ber-",
+     "meN-",
+     "di-",
+     "ter-"
+    ],
+    "a": 1,
+    "exp": "menjawab ← jawab + meN-（j→nj同化）"
+   },
+   {
+    "q": "'diterima' 的意思是？",
+    "opts": [
+     "接受（主动）",
+     "被接受/录取",
+     "拒绝",
+     "申请"
+    ],
+    "a": 1,
+    "exp": "di- + terima → 被接受（被动）"
+   },
+   {
+    "q": "'tertarik' 在 'saya tertarik' 中的意思是？",
+    "opts": [
+     "被拉扯",
+     "感兴趣",
+     "远离",
+     "熟练"
+    ],
+    "a": 1,
+    "exp": "ter- + tarik → tertarik 感兴趣"
+   },
+   {
+    "q": "'terampil' 的意思是？",
+    "opts": [
+     "美丽的",
+     "熟练的",
+     "著名的",
+     "快速的"
+    ],
+    "a": 1,
+    "exp": "terampil = 熟练的；keterampilan = 技能"
+   },
+   {
+    "q": "'berpengalaman' 后面接时间 'lima tahun'，需要加介词吗？",
+    "opts": [
+     "需要 di",
+     "需要 pada",
+     "不需要",
+     "需要 ke"
+    ],
+    "a": 2,
+    "exp": "Saya berpengalaman lima tahun.（直接接时间，不需要介词）"
+   }
+  ]
+ },
+ "day3": {
+  "date": "2026-10-25",
+  "theme": "Tindak Lanjut Wawancara 面试跟进",
+  "vocab": [
+   {
+    "w": "tindak lanjut",
+    "cn": "后续行动",
+    "ipa": "/tin.dak lan.dʒup/",
+    "level": "核心",
+    "note": "tindak（行动）+ lanjut（继续）；melakukan tindak lanjut"
+   },
+   {
+    "w": "mengucapkan terima kasih",
+    "cn": "表达感谢",
+    "ipa": "/mə.u.tʃap.kan tə.ri.ma ka.sih/",
+    "level": "核心",
+    "note": "ucap（说）+ meN-kan；固定搭配"
+   },
+   {
+    "w": "penawaran",
+    "cn": "提议；报价",
+    "ipa": "/pə.na.wa.ran/",
+    "level": "核心",
+    "note": "peN- + tawar + -an；penawaran kerja 工作邀约"
+   },
+   {
+    "w": "kontrak",
+    "cn": "合同",
+    "ipa": "/kon.trak/",
+    "level": "核心",
+    "note": "menandatangani kontrak 签合同"
+   },
+   {
+    "w": "negosiasi",
+    "cn": "谈判",
+    "ipa": "/nə.go.si.a.si/",
+    "level": "核心",
+    "note": "bernegosiasi 进行谈判"
+   },
+   {
+    "w": "manfaat",
+    "cn": "利益；好处",
+    "ipa": "/man.fa.at/",
+    "level": "进阶",
+    "note": "bermanfaat 有益的；manfaat karyawan 员工福利"
+   },
+   {
+    "w": "fasilitas",
+    "cn": "设施",
+    "ipa": "/fa.si.li.tas/",
+    "level": "进阶",
+    "note": "fasilitas perusahaan 公司设施"
+   },
+   {
+    "w": "tunjangan",
+    "cn": "津贴",
+    "ipa": "/tun.dʒa.ŋan/",
+    "level": "进阶",
+    "note": "tunjang + -an；tunjangan kesehatan 健康津贴"
+   },
+   {
+    "w": "cuti",
+    "cn": "休假",
+    "ipa": "/tʃu.ti/",
+    "level": "进阶",
+    "note": "cuti tahunan 年假；cuti sakit 病假"
+   },
+   {
+    "w": "persetujuan",
+    "cn": "同意；批准",
+    "ipa": "/pər.sə.tu.dʒu.an/",
+    "level": "进阶",
+    "note": "per- + setuju + -an；menyetujui 同意"
+   },
+   {
+    "w": "menolak",
+    "cn": "拒绝",
+    "ipa": "/mə.no.lak/",
+    "level": "核心",
+    "note": "meN- + tolak"
+   },
+   {
+    "w": "menerima",
+    "cn": "接受",
+    "ipa": "/mə.nə.ri.ma/",
+    "level": "核心",
+    "note": "meN- + terima；penerimaan 接受（名词）"
+   },
+   {
+    "w": "onboarding",
+    "cn": "入职培训",
+    "ipa": "/on.bord.iŋ/",
+    "level": "高阶",
+    "note": "proses orientasi karyawan baru 新员工入职流程"
+   },
+   {
+    "w": "masa percobaan",
+    "cn": "试用期",
+    "ipa": "/ma.sa pər.tʃo.ba.an/",
+    "level": "高阶",
+    "note": "percobaan ← coba + per-an"
+   },
+   {
+    "w": "surat pengunduran diri",
+    "cn": "辞职信",
+    "ipa": "/su.rat pəŋ.un.du.ran di.ri/",
+    "level": "高阶",
+    "note": "undur（退）+ ke-an → pengunduran diri 辞职"
+   }
+  ],
+  "phrases": [
+   {
+    "id": "melakukan tindak lanjut",
+    "cn": "进行后续跟进",
+    "usage": "求职跟进",
+    "note": "tindak lanjut 后续行动"
+   },
+   {
+    "id": "mengirim surat terima kasih",
+    "cn": "发送感谢信",
+    "usage": "面试后跟进",
+    "note": "mengirim ← kirim + meN-"
+   },
+   {
+    "id": "menerima penawaran",
+    "cn": "接受邀约",
+    "usage": "回应 offer",
+    "note": "menerima ← terima + meN-"
+   },
+   {
+    "id": "menolak penawaran",
+    "cn": "拒绝邀约",
+    "usage": "回应 offer",
+    "note": "menolak ← tolak + meN-"
+   },
+   {
+    "id": "menandatangani kontrak",
+    "cn": "签订合同",
+    "usage": "入职流程",
+    "note": "tanda tangan 签名 + meN-kan"
+   },
+   {
+    "id": "bernegosiasi tentang gaji",
+    "cn": "就薪资进行谈判",
+    "usage": "薪资谈判",
+    "note": "ber- + negosiasi → 动词"
+   },
+   {
+    "id": "meminta waktu untuk mempertimbangkan",
+    "cn": "请求时间考虑",
+    "usage": "收到 offer 后",
+    "note": "meminta ← minta + meN-"
+   },
+   {
+    "id": "membahas paket kompensasi",
+    "cn": "讨论薪酬包",
+    "usage": "薪资谈判",
+    "note": "membahas ← bahas + meN-；kompensasi 薪酬"
+   },
+   {
+    "id": "menanyakan tanggal bergabung",
+    "cn": "询问入职日期",
+    "usage": "入职准备",
+    "note": "bergabung ← gabung + ber- 加入"
+   },
+   {
+    "id": "memberikan referensi",
+    "cn": "提供推荐人",
+    "usage": "背景调查",
+    "note": "memberikan ← beri + meN-kan"
+   }
+  ],
+  "patterns": [
+   {
+    "cat": "感谢信",
+    "level": "basic",
+    "formula": "Terima kasih atas + [事物]",
+    "structure": "Terima kasih + atas + 名词",
+    "grammar": "atas = 因为/对于（引出感谢原因）",
+    "scene": "感谢信开头",
+    "ex": [
+     "Terima kasih atas kesempatan wawancara kemarin.",
+     "Terima kasih atas waktu dan perhatian Anda."
+    ],
+    "slots": [
+     "感谢内容"
+    ],
+    "reuse": 5
+   },
+   {
+    "cat": "感谢信",
+    "level": "basic",
+    "formula": "Terima kasih telah + [动词]",
+    "structure": "Terima kasih + telah + 动词",
+    "grammar": "telah + 动词 = 完成体'已经做了…'",
+    "scene": "感谢具体行为",
+    "ex": [
+     "Terima kasih telah meluangkan waktu untuk berdiskusi.",
+     "Terima kasih telah mempertimbangkan lamaran saya."
+    ],
+    "slots": [
+     "动词"
+    ],
+    "reuse": 4
+   },
+   {
+    "cat": "接受邀约",
+    "level": "basic",
+    "formula": "Dengan senang hati, saya + [接受声明]",
+    "structure": "Dengan senang hati + 主句",
+    "grammar": "dengan senang hati = 高兴地（固定表达）",
+    "scene": "邮件接受邀约",
+    "ex": [
+     "Dengan senang hati, saya menerima penawaran ini.",
+     "Dengan senang hati, saya menyatakan kesediaan bergabung."
+    ],
+    "slots": [
+     "接受内容"
+    ],
+    "reuse": 5
+   },
+   {
+    "cat": "持续兴趣",
+    "level": "intermediate",
+    "formula": "Saya tetap sangat tertarik dengan + [对象]",
+    "structure": "Saya + tetap + 副词 + 形容词 + dengan + 名词",
+    "grammar": "tetap 仍然；sangat 非常",
+    "scene": "跟进邮件表达兴趣",
+    "ex": [
+     "Saya tetap sangat tertarik dengan posisi ini.",
+     "Kami tetap sangat tertarik dengan kandidat ini."
+    ],
+    "slots": [
+     "对象"
+    ],
+    "reuse": 4
+   },
+   {
+    "cat": "请求时间",
+    "level": "intermediate",
+    "formula": "Bolehkah saya memiliki + [时长] + untuk mempertimbangkan?",
+    "structure": "Bolehkah + Saya + meN-动词 + 时长 + untuk + 动词",
+    "grammar": "bolehkah 礼貌请求；mempertimbangkan ← timbang + per-kan",
+    "scene": "请求考虑时间",
+    "ex": [
+     "Bolehkah saya memiliki tiga hari untuk mempertimbangkan?",
+     "Bolehkah saya memiliki waktu hingga Jumat?"
+    ],
+    "slots": [
+     "时长"
+    ],
+    "reuse": 4
+   },
+   {
+    "cat": "薪资谈判",
+    "level": "intermediate",
+    "formula": "Bisakah kita mendiskusikan + [条款]?",
+    "structure": "Bisakah + kita + meN-动词 + 名词",
+    "grammar": "bisakah = apakah bisa；mendiskusikan ← diskusi + meN-kan",
+    "scene": "开启谈判",
+    "ex": [
+     "Bisakah kita mendiskusikan paket kompensasi?",
+     "Bisakah kita mendiskusikan tunjangan tambahan?"
+    ],
+    "slots": [
+     "条款"
+    ],
+    "reuse": 5
+   },
+   {
+    "cat": "薪资谈判",
+    "level": "intermediate",
+    "formula": "Saya ingin mendiskusikan + [内容]",
+    "structure": "Saya + ingin + meN-动词 + 名词",
+    "grammar": "ingin 想要（直接动词不定式）",
+    "scene": "正式提出讨论请求",
+    "ex": [
+     "Saya ingin mendiskusikan kisaran gaji.",
+     "Saya ingin mendiskusikan masa percobaan."
+    ],
+    "slots": [
+     "内容"
+    ],
+    "reuse": 5
+   },
+   {
+    "cat": "决策截止",
+    "level": "intermediate",
+    "formula": "Kapan + [事项] + perlu + [动作]?",
+    "structure": "Kapan + 名词 + perlu + 动词",
+    "grammar": "kapan 什么时候；perlu 需要",
+    "scene": "询问决策截止日",
+    "ex": [
+     "Kapan keputusan perlu dibuat?",
+     "Kapan balasan perlu dikirimkan?"
+    ],
+    "slots": [
+     "事项",
+     "动作"
+    ],
+    "reuse": 4
+   },
+   {
+    "cat": "确认入职",
+    "level": "intermediate",
+    "formula": "Apakah + [日期] + cocok untuk + [事项]?",
+    "structure": "Apakah + 名词 + 形容词 + untuk + 名词",
+    "grammar": "cocok 合适；apakah 一般疑问",
+    "scene": "确认入职日期",
+    "ex": [
+     "Apakah tanggal 1 November cocok untuk mulai bekerja?",
+     "Apakah Senin depan cocok untuk orientasi?"
+    ],
+    "slots": [
+     "日期",
+     "事项"
+    ],
+    "reuse": 4
+   },
+   {
+    "cat": "确认入职",
+    "level": "professional",
+    "formula": "Saya dapat mulai bekerja pada + [日期]",
+    "structure": "Saya + dapat + 动词 + pada + 日期",
+    "grammar": "dapat 能够/可以；pada + 具体日期",
+    "scene": "确认入职日期（正式）",
+    "ex": [
+     "Saya dapat mulai bekerja pada tanggal 1 November.",
+     "Saya dapat mulai pada Senin depan."
+    ],
+    "slots": [
+     "日期"
+    ],
+    "reuse": 4
+   },
+   {
+    "cat": "反提议",
+    "level": "professional",
+    "formula": "Bagaimana jika + [建议]?",
+    "structure": "Bagaimana jika + 主句",
+    "grammar": "bagaimana jika = 如果…怎么样（提出建议）",
+    "scene": "提出反提议",
+    "ex": [
+     "Bagaimana jika kita pertimbangkan kisaran 16 hingga 18 juta?",
+     "Bagaimana jika masa percobaan dikurangi menjadi tiga bulan?"
+    ],
+    "slots": [
+     "建议内容"
+    ],
+    "reuse": 5
+   },
+   {
+    "cat": "拒绝邀约",
+    "level": "professional",
+    "formula": "Dengan berat hati, saya + [拒绝声明]",
+    "structure": "Dengan berat hati + 主句",
+    "grammar": "dengan berat hati = 遗憾地/忍痛地（固定表达）",
+    "scene": "礼貌拒绝邀约",
+    "ex": [
+     "Dengan berat hati, saya harus menolak penawaran ini.",
+     "Dengan berat hati, saya tidak dapat menerima posisi ini."
+    ],
+    "slots": [
+     "拒绝内容"
+    ],
+    "reuse": 4
+   }
+  ],
+  "expressions": [
+   {
+    "level": "basic",
+    "scene": "跟进",
+    "id": "Apakah ada perkembangan terbaru?",
+    "cn": "有什么最新进展吗？",
+    "note": "perkembangan 进展"
+   },
+   {
+    "level": "basic",
+    "scene": "跟进",
+    "id": "Saya ingin menanyakan status lamaran saya.",
+    "cn": "我想询问我的申请状态。",
+    "note": "menanyakan 询问"
+   },
+   {
+    "level": "basic",
+    "scene": "感谢",
+    "id": "Terima kasih banyak atas kesempatannya.",
+    "cn": "非常感谢这次机会。",
+    "note": "terima kasih banyak 非常感谢"
+   },
+   {
+    "level": "intermediate",
+    "scene": "跟进",
+    "id": "Saya tetap sangat tertarik dengan posisi ini.",
+    "cn": "我仍然对这个职位很感兴趣。",
+    "note": "tetap 仍然"
+   },
+   {
+    "level": "intermediate",
+    "scene": "跟进",
+    "id": "Saya menantikan kabar dari Anda.",
+    "cn": "我期待您的消息。",
+    "note": "menantikan 期待"
+   },
+   {
+    "level": "intermediate",
+    "scene": "请求",
+    "id": "Bolehkah saya memiliki waktu untuk mempertimbangkan?",
+    "cn": "请给我一些时间考虑好吗？",
+    "note": "bolehkah 礼貌请求"
+   },
+   {
+    "level": "intermediate",
+    "scene": "确认",
+    "id": "Saya ingin mengonfirmasi penerimaan email ini.",
+    "cn": "我想确认收到此邮件。",
+    "note": "mengonfirmasi 确认"
+   },
+   {
+    "level": "intermediate",
+    "scene": "薪资谈判",
+    "id": "Apakah ada ruang untuk negosiasi?",
+    "cn": "还有谈判的余地吗？",
+    "note": "ruang 空间/余地"
+   },
+   {
+    "level": "intermediate",
+    "scene": "确认",
+    "id": "Tanggal 1 November cocok untuk saya.",
+    "cn": "11月1日对我来说合适。",
+    "note": "cocok 合适"
+   },
+   {
+    "level": "intermediate",
+    "scene": "确认",
+    "id": "Saya dapat hadir pada hari Senin.",
+    "cn": "我周一可以到。",
+    "note": "dapat 能够"
+   },
+   {
+    "level": "professional",
+    "scene": "拒绝",
+    "id": "Saya memutuskan untuk tidak melanjutkan proses ini.",
+    "cn": "我决定不继续这个流程了。",
+    "note": "memutuskan 决定"
+   },
+   {
+    "level": "intermediate",
+    "scene": "拒绝",
+    "id": "Semoga sukses dengan pencarian Anda.",
+    "cn": "祝您招聘顺利。",
+    "note": "pencarian 寻找（名词）"
+   },
+   {
+    "level": "professional",
+    "scene": "谈判",
+    "id": "Titik temu yang adil adalah 16 juta per bulan.",
+    "cn": "公平的会合理价位是每月1600万盾。",
+    "note": "titik temu 会面点/折中点"
+   },
+   {
+    "level": "professional",
+    "scene": "谈判",
+    "id": "Apakah ada fleksibilitas dalam tunjangan?",
+    "cn": "津贴方面有灵活性吗？",
+    "note": "fleksibilitas 灵活性"
+   },
+   {
+    "level": "professional",
+    "scene": "离职",
+    "id": "Saya akan menyelesaikan masa transisi dengan baik.",
+    "cn": "我会妥善完成过渡期。",
+    "note": "menyelesaikan ← selesai + meN-kan"
+   }
+  ],
+  "affixes": [
+   {
+    "no": 21,
+    "affix": "per-...-an / peN-...-an",
+    "type": "前后缀",
+    "func": "构成名词：过程/结果",
+    "rule": "per-/peN- + 词根 + -an → 名词",
+    "derivs": [
+     {
+      "root": "tawar",
+      "der": "penawaran",
+      "zh": "报价/提议"
+     },
+     {
+      "root": "terima",
+      "der": "penerimaan",
+      "zh": "接受"
+     },
+     {
+      "root": "tolak",
+      "der": "penolakan",
+      "zh": "拒绝"
+     },
+     {
+      "root": "setuju",
+      "der": "persetujuan",
+      "zh": "同意/批准"
+     },
+     {
+      "root": "coba",
+      "der": "percobaan",
+      "zh": "试验/试用期"
+     },
+     {
+      "root": "tindak",
+      "der": "pertindakan",
+      "zh": "行动（较少用，常用 tindakan）"
+     }
+    ],
+    "examples": [
+     {
+      "id": "Penawaran kerja dikirim melalui email.",
+      "cn": "工作邀约通过电子邮件发送。"
+     },
+     {
+      "id": "Persetujuan tertulis diperlukan sebelum tanda tangan.",
+      "cn": "签字前需要书面批准。"
+     }
+    ],
+    "link": "per-an"
+   },
+   {
+    "no": 22,
+    "affix": "ber-...-an",
+    "type": "前后缀",
+    "func": "相互/重复动作",
+    "rule": "ber- + 词根 + -an → 相互动词",
+    "derivs": [
+     {
+      "root": "tanya",
+      "der": "bertanya-tanya",
+      "zh": "反复考虑/纳闷"
+     },
+     {
+      "root": "ganti",
+      "der": "bergantian",
+      "zh": "轮流"
+     },
+     {
+      "root": "kirim",
+      "der": "berkirim-kiriman",
+      "zh": "互相寄送"
+     },
+     {
+      "root": "terima",
+      "der": "berterima kasih",
+      "zh": "感谢（特殊：ber-terima）"
+     }
+    ],
+    "examples": [
+     {
+      "id": "Kami bertanya-tanya tentang hasil wawancara.",
+      "cn": "我们反复琢磨面试结果。"
+     },
+     {
+      "id": "Mereka bergantian memimpin rapat.",
+      "cn": "他们轮流主持会。"
+     }
+    ],
+    "link": "ber-an"
+   },
+   {
+    "no": 23,
+    "affix": "ber-...-kan",
+    "type": "前后缀",
+    "func": "用…做某事",
+    "rule": "ber- + 名词 + -kan → 使用工具动作",
+    "derivs": [
+     {
+      "root": "bicara",
+      "der": "berbicara",
+      "zh": "说话"
+     },
+     {
+      "root": "tulis",
+      "der": "bertuliskan",
+      "zh": "（某处）写着"
+     },
+     {
+      "root": "kirim",
+      "der": "berkirimkan",
+      "zh": "寄送（较旧用法）"
+     }
+    ],
+    "examples": [
+     {
+      "id": "Silakan berbicara dengan jujur.",
+      "cn": "请坦诚地说。"
+     },
+     {
+      "id": "Di papan itu bertuliskan 'Dilarang Masuk'.",
+      "cn": "牌子上写着'禁止入内'。"
+     }
+    ],
+    "link": "ber-kan"
+   },
+   {
+    "no": 24,
+    "affix": "berke-...-an / berpe-...-an",
+    "type": "前后缀",
+    "func": "处于状态/具有属性",
+    "rule": "ber- + ke-/pe- + 词根 + -an → 状态动词/形容词",
+    "derivs": [
+     {
+      "root": "penting",
+      "der": "berkepentingan",
+      "zh": "有利害关系"
+     },
+     {
+      "root": "cukup",
+      "der": "berkecukupan",
+      "zh": "充裕/生活优裕"
+     },
+     {
+      "root": "ada",
+      "der": "berkeadaan",
+      "zh": "处于（某种状态）"
+     },
+     {
+      "root": "kerja",
+      "der": "berpekerjaan",
+      "zh": "有工作"
+     },
+     {
+      "root": "gaji",
+      "der": "bergaji",
+      "zh": "有薪的"
+     }
+    ],
+    "examples": [
+     {
+      "id": "Semua pihak berkepentingan dalam proses ini.",
+      "cn": "各方在此过程中都有利害关系。"
+     },
+     {
+      "id": "Dia bergaji tinggi di perusahaan itu.",
+      "cn": "他在那家公司薪水很高。"
+     }
+    ],
+    "link": "berke-an"
+   },
+   {
+    "no": 25,
+    "affix": "-er-/-el-/-em-",
+    "type": "中缀",
+    "func": "构成新词（重叠/相关意义）",
+    "rule": "插入词根中：C1V → CerV/CelV/CemV；应用面窄，多为词汇化",
+    "derivs": [
+     {
+      "root": "gigi",
+      "der": "gerigi",
+      "zh": "锯齿状的"
+     },
+     {
+      "root": "getar",
+      "der": "gemetar",
+      "zh": "颤抖"
+     },
+     {
+      "root": "lunglai",
+      "der": "lelunglai",
+      "zh": "瘫软/无力"
+     }
+    ],
+    "examples": [
+     {
+      "id": "Tangan saya gemetar sebelum wawancara besar.",
+      "cn": "重要面试前我手发抖。"
+     },
+     {
+      "id": "Pisau itu gerigi dan tajam.",
+      "cn": "那把刀有锯齿且锋利。"
+     }
+    ],
+    "link": "-er-"
+   },
+   {
+    "no": 26,
+    "affix": "-wan/-wati",
+    "type": "后缀",
+    "func": "表示职业/身份（男/女）",
+    "rule": "名词/动词 + -wan（男）/-wati（女）",
+    "derivs": [
+     {
+      "root": "karya",
+      "der": "karyawan",
+      "zh": "员工（男）"
+     },
+     {
+      "root": "karya",
+      "der": "karyawati",
+      "zh": "员工（女）"
+     },
+     {
+      "root": "niaga",
+      "der": "niagawan",
+      "zh": "商人"
+     },
+     {
+      "root": "usaha",
+      "der": "usahawan",
+      "zh": "企业家"
+     },
+     {
+      "root": "olahraga",
+      "der": "olahragawan",
+      "zh": "运动员"
+     }
+    ],
+    "examples": [
+     {
+      "id": "Perusahaan itu mempekerjakan 500 karyawan.",
+      "cn": "那家公司雇佣500名员工。"
+     },
+     {
+      "id": "Dia usahawan muda yang sukses.",
+      "cn": "他是成功的年轻企业家。"
+     }
+    ],
+    "link": "-wan"
+   },
+   {
+    "no": 27,
+    "affix": "-man",
+    "type": "后缀",
+    "func": "构成抽象名词/集合",
+    "rule": "动词/名词 + -man；应用面窄",
+    "derivs": [
+     {
+      "root": "sewa",
+      "der": "sewaman",
+      "zh": "租赁（物）"
+     },
+     {
+      "root": "coba",
+      "der": "cobaman",
+      "zh": "试验（少用，常用 percobaan）"
+     },
+     {
+      "root": "tahu",
+      "der": "tahuman",
+      "zh": "知识（少用，常用 pengetahuan）"
+     }
+    ],
+    "examples": [
+     {
+      "id": "Bisnis sewaman alat berat cukup menguntungkan.",
+      "cn": "重型设备租赁业务相当有利可图。"
+     },
+     {
+      "id": "Masa cobaman berakhir bulan depan.",
+      "cn": "试验期下个月结束。"
+     }
+    ],
+    "link": "-man"
+   },
+   {
+    "no": 28,
+    "affix": "-is/-isme/-isasi/-logi",
+    "type": "后缀族",
+    "func": "学术/现代词汇",
+    "rule": "-is 形容词后缀；-isme 主义/学说；-isasi 化（过程）；-logi 学科",
+    "derivs": [
+     {
+      "root": "analisis",
+      "der": "analisis",
+      "zh": "分析（名词）"
+     },
+     {
+      "root": "analisa",
+      "der": "menganalisis",
+      "zh": "分析（动词）"
+     },
+     {
+      "root": "organisir",
+      "der": "organisasi",
+      "zh": "组织（名词）"
+     },
+     {
+      "root": "modern",
+      "der": "modernisasi",
+      "zh": "现代化"
+     },
+     {
+      "root": "teknik",
+      "der": "teknologi",
+      "zh": "技术/工艺"
+     }
+    ],
+    "examples": [
+     {
+      "id": "Analisis SWOT membantu persiapan wawancara.",
+      "cn": "SWOT分析有助于面试准备。"
+     },
+     {
+      "id": "Modernisasi pabrik meningkatkan efisiensi.",
+      "cn": "工厂现代化提高了效率。"
+     }
+    ],
+    "link": "-is"
+   },
+   {
+    "no": 29,
+    "affix": "ku-/kau-",
+    "type": "代词",
+    "func": "第一/二人称短形式",
+    "rule": "ku- 我（客体格/宾格短式）；kau- 你（古体/文学）",
+    "derivs": [
+     {
+      "root": "katakan",
+      "der": "katakanlah",
+      "zh": "说吧（kata + ku- + -kan + -lah）"
+     },
+     {
+      "root": "beritahu",
+      "der": "kuberitahu",
+      "zh": "我告诉你"
+     },
+     {
+      "root": "katakan",
+      "der": "kaukatakan",
+      "zh": "你说"
+     }
+    ],
+    "examples": [
+     {
+      "id": "Kuberitahu Anda hasilnya nanti.",
+      "cn": "我稍后告诉您结果。"
+     },
+     {
+      "id": "Apa yang kaukatakan?",
+      "cn": "你说什么？（文学/古体）"
+     }
+    ],
+    "link": "ku-"
+   },
+   {
+    "no": 30,
+    "affix": "-in",
+    "type": "后缀",
+    "func": "雅加达口语动词后缀",
+    "rule": "动词 + -in → 口语化（源自 Betawi 方言）；正式场合避免",
+    "derivs": [
+     {
+      "root": "tawar",
+      "der": "nawarin",
+      "zh": "提供（口语）"
+     },
+     {
+      "root": "terima",
+      "der": "nerimain",
+      "zh": "接受（口语）"
+     },
+     {
+      "root": "kirim",
+      "der": "ngirimin",
+      "zh": "发送（口语）"
+     }
+    ],
+    "examples": [
+     {
+      "id": "Dia nawarin gaji 15 juta.（口语）",
+      "cn": "他开出1500万薪水。（口语）"
+     },
+     {
+      "id": "Saya nerimain tawaran itu.（口语）",
+      "cn": "我接受了那个提议。（口语）"
+     }
+    ],
+    "link": "-in"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "面试后应在多久内发送感谢信？",
+    "opts": [
+     "一周内",
+     "24小时内",
+     "两周后",
+     "无需发送"
+    ],
+    "a": 1,
+    "exp": "24小时内发送最佳，体现职业素养与持续兴趣"
+   },
+   {
+    "q": "提出反提议时，'Bagaimana jika...' 的意思是？",
+    "opts": [
+     "为什么不",
+     "如果…怎么样",
+     "因为",
+     "虽然"
+    ],
+    "a": 1,
+    "exp": "bagaimana jika = 如果…怎么样（提出建议）"
+   },
+   {
+    "q": "'tunjangan' 与 'gaji pokok' 的区别是？",
+    "opts": [
+     "tunjangan 是基本工资",
+     "tunjangan 是津贴/补贴",
+     "两者相同",
+     "tunjangan 是奖金"
+    ],
+    "a": 1,
+    "exp": "tunjangan = 津贴/补贴；gaji pokok = 基本工资"
+   },
+   {
+    "q": "'Dengan senang hati, saya menerima penawaran ini.' 是？",
+    "opts": [
+     "拒绝邀约",
+     "接受邀约",
+     "请求延期",
+     "提出反提议"
+    ],
+    "a": 1,
+    "exp": "dengan senang hati = 高兴地；menerima = 接受"
+   },
+   {
+    "q": "'Apakah ada ruang untuk negosiasi gaji?' 中 'ruang' 的意思是？",
+    "opts": [
+     "房间",
+     "空间/余地",
+     "钱",
+     "时间"
+    ],
+    "a": 1,
+    "exp": "ruang 在谈判语境中 = 空间/余地"
+   },
+   {
+    "q": "需要更多时间考虑邀约时，应说？",
+    "opts": [
+     "Saya langsung setuju",
+     "Saya perlu waktu untuk mempertimbangkan",
+     "Saya menolak",
+     "Tidak ada kabar"
+    ],
+    "a": 1,
+    "exp": "mempertimbangkan 考虑；这是标准且礼貌的说法"
+   },
+   {
+    "q": "'mengundurkan diri' 的意思是？",
+    "opts": [
+     "入职",
+     "辞职",
+     "升职",
+     "调岗"
+    ],
+    "a": 1,
+    "exp": "undur（退）→ pengunduran diri 辞职"
+   },
+   {
+    "q": "'onboarding' 是？",
+    "opts": [
+     "辞职流程",
+     "新员工入职培训",
+     "年度考核",
+     "团队建设"
+    ],
+    "a": 1,
+    "exp": "onboarding = orientasi karyawan baru"
+   },
+   {
+    "q": "'fasilitas' 指的是？",
+    "opts": [
+     "工资",
+     "设施/福利",
+     "合同",
+     "职位"
+    ],
+    "a": 1,
+    "exp": "fasilitas = 设施（如宿舍、班车）"
+   },
+   {
+    "q": "'masa percobaan' 指？",
+    "opts": [
+     "试用期",
+     "假期",
+     "退休期",
+     "学习期"
+    ],
+    "a": 0,
+    "exp": "percobaan ← coba（试）+ per-an；试用期"
+   },
+   {
+    "q": "'Kontrak tersebut sah secara hukum.' 中 'sah' 的意思是？",
+    "opts": [
+     "过期",
+     "有效/合法",
+     "昂贵",
+     "复杂"
+    ],
+    "a": 1,
+    "exp": "sah = 有效的/合法的；secara hukum = 在法律上"
+   },
+   {
+    "q": "'Apakah kita bisa dijadwalkan untuk membahas ini?' 的意思是？",
+    "opts": [
+     "我们能安排时间讨论这个吗？",
+     "我们能拒绝吗？",
+     "我们能签字吗？",
+     "我们能离开吗？"
+    ],
+    "a": 0,
+    "exp": "dijadwalkan 被安排（di- + jadwal + -kan）"
+   },
+   {
+    "q": "'bertukar-menukar dokumen' 中 'ber-...-an' 表示？",
+    "opts": [
+     "被动",
+     "相互动作",
+     "完成",
+     "使动"
+    ],
+    "a": 1,
+    "exp": "ber-...-an = 相互：tukar → bertukar 互相交换"
+   },
+   {
+    "q": "'nawarin' 是 'menawarkan' 的？",
+    "opts": [
+     "正式形式",
+     "雅加达口语形式",
+     "古体形式",
+     "书面形式"
+    ],
+    "a": 1,
+    "exp": "-in 后缀是雅加达口语，面试等正式场合应避免"
+   },
+   {
+    "q": "'penawaran' 的构词是？",
+    "opts": [
+     "tawar + -an",
+     "peN- + tawar + -an",
+     "tawar + ke-",
+     "meN- + tawar"
+    ],
+    "a": 1,
+    "exp": "peN-...-an 构成名词：penawaran 提议/报价"
+   }
+  ]
+ }
+}};
 
 const caCalendar = {
  "2026-10-20": {
@@ -202164,7 +206678,23 @@ const caCalendar = {
   "day": 3,
   "label": "🚀 CA进阶 · 见面 Day3 正式会晤与道别"
  }
-};
+,
+ "2026-10-23": {
+  "topic": "interview",
+  "day": 1,
+  "label": "💼 CA进阶 · 面试 Day1 面试准备与自我介绍"
+ },
+ "2026-10-24": {
+  "topic": "interview",
+  "day": 2,
+  "label": "💼 CA进阶 · 面试 Day2 面试问答与应对技巧"
+ },
+ "2026-10-25": {
+  "topic": "interview",
+  "day": 3,
+  "label": "💼 CA进阶 · 面试 Day3 面试跟进与薪资谈判",
+  "allDays": true
+ }};
 
 // ============================================================
 // CA 进阶课程渲染器（CA v1.1 · 2026-10-20）
