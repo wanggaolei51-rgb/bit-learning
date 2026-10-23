@@ -1,7 +1,7 @@
 # MEMORY.md - 长期记忆(任何会话重开必读)
 
 > 本文件是跨会话的核心记忆。每次启动优先读本文件。
-> 最后更新：2026-10-23（V4.46.9 视频列表补全三天 + 1022视频 + BIT_BIV写入SOP）
+> 最后更新：2026-10-23（V4.46.10 紧急修复导航栏版面混乱 — <u003cdiv非法实体致flex布局崩溃）
 
 ---
 
@@ -109,7 +109,8 @@ V4.46.5       行业数据·光伏专版(用户指令): ☀️光伏专版独立
 V4.46.6       1021每日笔记19词(挂ukbi_real Day2阅读+写作, BIT V1.0定稿): 新增14(skimming/ejaan/tanda-baca/-dalam-bentuk/justru-itu分写注记/macam-macam/beralih/temanya/lengkap-dan-runtut写作评分用语/susun-kerangka/mengetik词根tik/kacau/tenda/foodcourt外来语) + 复习覆盖5(menyesuaikan/bahkan/disajikan/kencang/sederhana) · 61变形+38例句 · RCO对账19/19 · 坑: Pages构建卡in_progress 15分钟(前三次<40s), 轮询actions/runs等completed · commit eeff1b3+5eefa4d · 线上MD5一致(3b6ae087)
 V4.46.7       播报热修复(回归事故): V4.46.6 md_to_dailynote.py 合并 dailynote js 时覆盖 script 块 → dnEsc/dnRich/buildNoteEntryHtml/buildDailyNoteCardForDate 四函数丢失 → typeof buildDailyNoteCardForDate!=="function" → 笔记卡不渲染+播报按钮静默消失(用户实测上报, 三处调用点守卫无报错) · 修复: 从 b00a316 恢复四函数+卡内🔊+dn-entry锚点 · 防复发: 部署后 grep 函数定义必须存在 · commit d123299 · 线上MD5一致(5fb28cf7)
 V4.46.8       1022每日笔记15词(10新增+5复习覆盖, 挂ukbi_real Day3): 新增10(acara/ferware外来语[待核实拼写,疑为farewell]/minus/lasik缩写/pembedahan/komik/seni-bela-diri复合键/bersifat/menentukan-hal-berikutnya复合学习键/berulang-ulang) + 复习覆盖5(mata/jenjang/berturut-turut/ejaan/tanda) · 28变形+30例句 · RCO对账15/15 · **播报防复发治本**: md_to_dailynote.py RENDER_FUNCS 补齐V4.46.2/3四函数(dnEsc/dnRich/buildNoteEntryHtml/buildDailyNoteCardForDate+新版buildDailyNoteCard复用), 每次合并自动写入, 根除函数丢失(原RENDER_FUNCS只有旧版toggleDailyNote+内联buildDailyNoteCard) · 坑: 第263行删除正则会匹配整个区域含V4.46.2/3函数, RENDER_FUNCS不完整=每次跑管线都丢函数 · check_syntax PASS · deploy-check 8/8 · commit c504ab5 · 线上V4.46.8验证PASS
-V4.46.9       视频列表补全+1022视频: VIDEO_DB注册表1天→3天(0929项目管理39词3集/1021 UKBI Day2 19词2集/1022 UKBI Day3 15词2集) · 1022视频 biv_daily.py --force 产出2集(p1:13词≈284s/p2:2词≈56s) lint 10/10 PASS · BIO印章1f2ea1b5 · **BIT md写法坑**: 同/反义词无内容必须写 `—`（单独破折号），写 `—（无严格反义）` 或 `无严格同义` 会致 lint#6 语言隔离FAIL(中文进id通道) · **BIO印章坑**: 文件必须 `sha8: xxx` 格式无尾部换行, printf默认加\n会致bio_gate regex `stamp=?` · **BIT_BIV v1.1**: 视频生成正式写入每日笔记部署SOP(固有步骤不得遗漏) · commit aa9ec4c+b3ef407 · 线上三天注册表+视频200全PASS ★当前版本
+V4.46.9       视频列表补全+1022视频: VIDEO_DB注册表1天→3天(0929项目管理39词3集/1021 UKBI Day2 19词2集/1022 UKBI Day3 15词2集) · 1022视频 biv_daily.py --force 产出2集(p1:13词≈284s/p2:2词≈56s) lint 10/10 PASS · BIO印章1f2ea1b5 · **BIT md写法坑**: 同/反义词无内容必须写 `—`（单独破折号），写 `—（无严格反义）` 或 `无严格同义` 会致 lint#6 语言隔离FAIL(中文进id通道) · **BIO印章坑**: 文件必须 `sha8: xxx` 格式无尾部换行, printf默认加\n会致bio_gate regex `stamp=?` · **BIT_BIV v1.1**: 视频生成正式写入每日笔记部署SOP(固有步骤不得遗漏) · commit aa9ec4c+b3ef407 · 线上三天注册表+视频200全PASS
+V4.46.10      紧急修复导航栏版面混乱(用户实测上报): V4.46.9更新版本号时`<div`被误写为`<u003cdiv`(非法HTML实体) → 浏览器解析时`</div>`提前闭合div.app → aside.sidebar与main.main被拆出flex容器 → 侧边栏统计区/导航/今日日期跑到页面流错误位置+主内容区margin-left失效 · 症状: "版面乱了,左右导航栏有的适配到右侧,有的找不到了" · 修复: 一行`<u003cdiv`→`<div` · div标签34开35闭→35开35闭 · 坑: **版本号文本替换时必须验证HTML实体合法性**, sed/脚本替换含`<`的字符串时注意转义 · commit 08d3c6a · 线上MD5一致(f6da6a9c) ★当前版本
 V4.46.3       播报二次归位(用户实测仍错位): 按钮下沉 buildDailyNoteCardForDate 卡内 -- 课时测试页(startTopicQuiz)/日记页/CA日三处共用一处源码, 每天日记一个🔊 · tc 课程分支移除无主按钮(该页无词条卡无可跟随=上版错位根因) · 纯文本日兜底按钮 · 22项冒烟全PASS · commit b00a316 · 线上MD5一致(ae372314)
 V4.46.2       播报归位日记页+跟随高亮: 1入口修正 -- 日历日记页(showDateStudyRecord)新增🔊按钮+当日BIT词条卡, CA日底部补日记区, 课程日保留按钮, 三入口共用broadcastDay(ds) 2内容净化bcRootOk -- 词根仅干净单词(/^[A-Za-z][A-Za-z-]{2,}$/且≠词目)才播, 括号类词根(saj/saji)不再乱播 3跟随定位 -- 词条卡锚点dnw-<ds>-<i>+dn-entry, bcFocusWord滚动smooth/center+bc-hl呼吸高亮+BIT详情自动展开, bcStop清除 · E2E冒烟7项+真实bcFocusWord单测全PASS · 坑: 覆盖桩须同Function body层/正则锚点比文本锚点稳(V4.46.0遗留\\u2705混合转义连环失配) · commit 890ab12 · 线上MD5一致(7dd041d1)
 ```
