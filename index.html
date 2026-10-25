@@ -6,7 +6,7 @@
 <meta http-equiv="Expires" content="0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LEO-BIR V4.47.1</title>
+<title>LEO-BIR V4.47.2</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -276,7 +276,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="sidebar-header">
     <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <h1>LEO-BIR</h1>
-    <div class="ver">LEO-BIR V4.47.1 · 视频列表补全(0929+1021+1022三天) + 1022视频生成</div>
+    <div class="ver">LEO-BIR V4.47.2 · 骨架词条清零(ukbi_drill 29 + CA interview 13 + mengada-ada补en) · 42词条BIT V1.0补全</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -183333,7 +183333,7 @@ const bitVocabDB = {
   "mengada-ada": {
     "word": "mengada-ada",
     "cn": "编造 / 无中生有 / 装腔作势",
-    "en": "",
+    "en": "to make up; to fabricate; to feign",
     "root": "ada（有/存在）",
     "forms": [
       {
@@ -195899,55 +195899,114 @@ const bitVocabDB = {
   },
   "strategi menjawab": {
     "word": "strategi menjawab",
-    "ipa": "/straˈteɡi məndʒaˈwah/",
     "cn": "答题策略",
-    "en": "",
-    "root": "",
+    "en": "answering strategy; test-taking tactics",
+    "root": "strategi（策略）",
     "forms": [],
-    "formsNote": "",
-    "note": "",
-    "synonyms": [],
+    "formsNote": "复合短语 strategi + menjawab；无派生形态",
+    "note": "UKBI冲刺核心概念；按题型分配时间与取舍的答题方法",
+    "synonyms": [
+      "taktik menjawab"
+    ],
     "antonyms": [],
-    "examples": []
+    "examples": [
+      {
+        "scene": "考场实战",
+        "id": "Strategi menjawab yang matang membantu saya menyelesaikan bagian membaca tepat waktu.",
+        "cn": "周密的答题策略帮我按时完成阅读部分。"
+      },
+      {
+        "scene": "备考训练",
+        "id": "Selama persiapan UKBI, saya menyusun strategi menjawab untuk setiap bagian.",
+        "cn": "备考 UKBI 期间，我为每个部分制定了答题策略。"
+      }
+    ]
   },
   "manajemen waktu": {
     "word": "manajemen waktu",
-    "ipa": "/manaˈdʒemen ˈwaktu/",
     "cn": "时间管理",
-    "en": "",
-    "root": "",
+    "en": "time management",
+    "root": "manajemen（管理）; waktu（时间）",
     "forms": [],
-    "formsNote": "",
-    "note": "",
-    "synonyms": [],
+    "formsNote": "复合短语 manajemen + waktu；无派生形态",
+    "note": "备考核心能力；合理分配各部分答题时间",
+    "synonyms": [
+      "pengelolaan waktu"
+    ],
     "antonyms": [],
-    "examples": []
+    "examples": [
+      {
+        "scene": "考场实战",
+        "id": "Manajemen waktu yang baik mencegah saya terjebak terlalu lama pada satu soal.",
+        "cn": "良好的时间管理防止我在一道题上耗时过久。"
+      },
+      {
+        "scene": "备考训练",
+        "id": "Latihan soal dengan batas waktu melatih manajemen waktu.",
+        "cn": "限时刷题训练时间管理。"
+      }
+    ]
   },
   "latihan soal": {
     "word": "latihan soal",
-    "ipa": "/latiˈhan ˈsoal/",
     "cn": "习题练习/刷题",
-    "en": "",
-    "root": "",
+    "en": "practice questions; question drilling",
+    "root": "latih（训练）",
     "forms": [],
-    "formsNote": "",
-    "note": "",
-    "synonyms": [],
+    "formsNote": "复合短语 latihan + soal；latihan 为 latih 的派生名词",
+    "note": "UKBI备考基本手段；通过反复做题熟悉题型",
+    "synonyms": [
+      "pengerjaan soal"
+    ],
     "antonyms": [],
-    "examples": []
+    "examples": [
+      {
+        "scene": "备考训练",
+        "id": "Saya mengerjakan latihan soal UKBI setiap malam.",
+        "cn": "我每晚做 UKBI 习题练习。"
+      },
+      {
+        "scene": "成绩分析",
+        "id": "Dari latihan soal, saya mengetahui bagian mana yang paling lemah.",
+        "cn": "通过刷题，我了解哪个部分最弱。"
+      }
+    ]
   },
   "fokus": {
     "word": "fokus",
-    "ipa": "/ˈfokus/",
     "cn": "专注",
-    "en": "",
-    "root": "",
-    "forms": [],
-    "formsNote": "",
-    "note": "",
-    "synonyms": [],
+    "en": "focus; concentration",
+    "root": "fokus（焦点）",
+    "forms": [
+      {
+        "form": "memfokuskan",
+        "pos": "",
+        "mean": "动词：使聚焦"
+      },
+      {
+        "form": "terfokus",
+        "pos": "",
+        "mean": "形容词：专注的"
+      }
+    ],
+    "formsNote": "fokus 加 meN-kan 构成 memfokuskan；加 ter- 构成 terfokus",
+    "note": "备考与应试核心状态；注意力的集中",
+    "synonyms": [
+      "konsentrasi"
+    ],
     "antonyms": [],
-    "examples": []
+    "examples": [
+      {
+        "scene": "考场实战",
+        "id": "Fokus penuh diperlukan saat mengerjakan bagian pendengaran.",
+        "cn": "完成听力部分需要全神贯注。"
+      },
+      {
+        "scene": "心理调适",
+        "id": "Rutinitas tidur yang cukup menjaga fokus saat belajar.",
+        "cn": "充足的睡眠规律保证学习时的专注。"
+      }
+    ]
   },
   "grogi": {
     "word": "grogi",
@@ -195991,16 +196050,28 @@ const bitVocabDB = {
   },
   "irama menjawab": {
     "word": "irama menjawab",
-    "ipa": "/iˈrama məndʒaˈwah/",
     "cn": "答题节奏",
-    "en": "",
-    "root": "",
+    "en": "answering pace; answering rhythm",
+    "root": "irama（节奏）",
     "forms": [],
-    "formsNote": "",
-    "note": "",
-    "synonyms": [],
+    "formsNote": "复合短语 irama + menjawab；无派生形态",
+    "note": "答题过程中的稳定速度；避免前松后紧",
+    "synonyms": [
+      "ritme menjawab"
+    ],
     "antonyms": [],
-    "examples": []
+    "examples": [
+      {
+        "scene": "考场实战",
+        "id": "Irama menjawab yang stabil membuat saya tidak panik di tengah ujian.",
+        "cn": "稳定的答题节奏让我考试中不慌乱。"
+      },
+      {
+        "scene": "备考训练",
+        "id": "Simulasi membantu saya menemukan irama menjawab yang nyaman.",
+        "cn": "模拟考帮我找到适合自己的答题节奏。"
+      }
+    ]
   },
   "markir": {
     "word": "markir",
@@ -196048,42 +196119,105 @@ const bitVocabDB = {
   },
   "memeriksa kembali": {
     "word": "memeriksa kembali",
-    "ipa": "/məməˈriksa kəmˈbali/",
     "cn": "回头检查",
-    "en": "",
-    "root": "",
-    "forms": [],
-    "formsNote": "",
-    "note": "",
-    "synonyms": [],
+    "en": "to recheck; to review again",
+    "root": "periksa（检查）",
+    "forms": [
+      {
+        "form": "memeriksa",
+        "pos": "",
+        "mean": "动词：检查"
+      },
+      {
+        "form": "diperiksa",
+        "pos": "",
+        "mean": "被动：被检查"
+      },
+      {
+        "form": "pemeriksaan",
+        "pos": "",
+        "mean": "名词：检查"
+      }
+    ],
+    "formsNote": "periksa 加 meN-/di-/pe-an 派生；kembali 为副词\"再次\"",
+    "note": "交卷前复核答案的习惯",
+    "synonyms": [
+      "mengecek kembali"
+    ],
     "antonyms": [],
-    "examples": []
+    "examples": [
+      {
+        "scene": "考场实战",
+        "id": "Saya selalu memeriksa kembali jawaban sebelum waktu habis.",
+        "cn": "我总在时间结束前回头检查答案。"
+      },
+      {
+        "scene": "备考训练",
+        "id": "Kebiasaan memeriksa kembali mengurangi kesalahan remeh.",
+        "cn": "回头检查的习惯减少低级错误。"
+      }
+    ]
   },
   "menebak dengan cerdas": {
     "word": "menebak dengan cerdas",
-    "ipa": "/məˈnebaːk dəˈŋan ˈtʃərdaːs/",
     "cn": "机智猜题",
-    "en": "",
-    "root": "",
-    "forms": [],
-    "formsNote": "",
-    "note": "",
-    "synonyms": [],
+    "en": "to make an educated guess; smart guessing",
+    "root": "tebak（猜测）; cerdas（聪明）",
+    "forms": [
+      {
+        "form": "menebak",
+        "pos": "",
+        "mean": "动词：猜测"
+      },
+      {
+        "form": "tebakan",
+        "pos": "",
+        "mean": "名词：猜测"
+      }
+    ],
+    "formsNote": "tebak 加 meN- 构成 menebak；加 -an 构成 tebakan",
+    "note": "不确定时的应试技巧；基于上下文与排除的合理猜测",
+    "synonyms": [
+      "menebak secara logis"
+    ],
     "antonyms": [],
-    "examples": []
+    "examples": [
+      {
+        "scene": "考场实战",
+        "id": "Jika ragu, menebak dengan cerdas lebih baik daripada mengosongkan jawaban.",
+        "cn": "没把握时，机智猜题比留空好。"
+      },
+      {
+        "scene": "备考训练",
+        "id": "Guru mengajari kami menebak dengan cerdas berdasarkan konteks kalimat.",
+        "cn": "老师教我们根据上下文机智猜题。"
+      }
+    ]
   },
   "metode eliminasi": {
     "word": "metode eliminasi",
-    "ipa": "/ˈmetode eliminaˈsi/",
     "cn": "排除法",
-    "en": "",
-    "root": "",
+    "en": "elimination method; process of elimination",
+    "root": "metode（方法）; eliminasi（排除）",
     "forms": [],
-    "formsNote": "",
-    "note": "",
-    "synonyms": [],
+    "formsNote": "复合名词短语；无派生形态",
+    "note": "选择题常用技巧；逐项排除错误选项",
+    "synonyms": [
+      "teknik eliminasi"
+    ],
     "antonyms": [],
-    "examples": []
+    "examples": [
+      {
+        "scene": "考场实战",
+        "id": "Metode eliminasi efektif untuk menyaring pilihan jawaban yang keliru.",
+        "cn": "排除法能有效筛除错误选项。"
+      },
+      {
+        "scene": "备考训练",
+        "id": "Kami berlatih menggunakan metode eliminasi saat simulasi.",
+        "cn": "模拟考中我们练习使用排除法。"
+      }
+    ]
   },
   "menemukan kata kunci": {
     "word": "menemukan kata kunci",
@@ -196186,94 +196320,224 @@ const bitVocabDB = {
   },
   "draf jawaban": {
     "word": "draf jawaban",
-    "ipa": "/ˈdrav dʒaˈwaban/",
     "cn": "答案草稿",
-    "en": "",
-    "root": "",
+    "en": "answer draft; draft answer",
+    "root": "draf（草稿）",
     "forms": [],
-    "formsNote": "",
-    "note": "",
-    "synonyms": [],
+    "formsNote": "复合短语 draf + jawaban；draf 亦常拼作 draft",
+    "note": "写作部分的初稿；正式誊写前的底稿",
+    "synonyms": [
+      "konsep jawaban"
+    ],
     "antonyms": [],
-    "examples": []
+    "examples": [
+      {
+        "scene": "考场实战",
+        "id": "Saya menulis draf jawaban sebelum menyalinnya ke lembar final.",
+        "cn": "我先写答案草稿再誊写到正式卷。"
+      },
+      {
+        "scene": "备考训练",
+        "id": "Guru meminta kami mengumpulkan draf jawaban untuk diperiksa.",
+        "cn": "老师要求我们提交答案草稿供批改。"
+      }
+    ]
   },
   "napas dalam": {
     "word": "napas dalam",
-    "ipa": "/ˈnapas daˈlam/",
     "cn": "深呼吸",
-    "en": "",
-    "root": "",
-    "forms": [],
-    "formsNote": "",
-    "note": "",
-    "synonyms": [],
+    "en": "deep breath; deep breathing",
+    "root": "napas（呼吸）",
+    "forms": [
+      {
+        "form": "bernapas",
+        "pos": "",
+        "mean": "动词：呼吸"
+      },
+      {
+        "form": "pernapasan",
+        "pos": "",
+        "mean": "名词：呼吸"
+      }
+    ],
+    "formsNote": "napas 加 ber- 构成 bernapas；加 per-an 构成 pernapasan",
+    "note": "考前与应急时的放松技巧",
+    "synonyms": [
+      "pernapasan dalam"
+    ],
     "antonyms": [],
-    "examples": []
+    "examples": [
+      {
+        "scene": "心理调适",
+        "id": "Tarik napas dalam untuk menenangkan diri sebelum ujian dimulai.",
+        "cn": "考前深呼吸让自己平静下来。"
+      },
+      {
+        "scene": "应急处理",
+        "id": "Saat sistem lambat, saya mengambil napas dalam dan tetap tenang.",
+        "cn": "系统卡顿时，我深呼吸保持镇定。"
+      }
+    ]
   },
   "percaya diri": {
     "word": "percaya diri",
-    "ipa": "/pər.tʃa.ja di.ri/",
     "cn": "自信的",
-    "en": "",
-    "root": "",
-    "forms": [],
-    "formsNote": "",
-    "note": "",
-    "synonyms": [],
-    "antonyms": [],
-    "examples": []
+    "en": "confident; self-confident",
+    "root": "percaya（相信）+ diri（自己）",
+    "forms": [
+      {
+        "form": "kepercayaan diri",
+        "pos": "",
+        "mean": "名词：自信心"
+      },
+      {
+        "form": "mempercayai",
+        "pos": "",
+        "mean": "动词：信任"
+      }
+    ],
+    "formsNote": "percaya 与 diri 组成固定形容词短语；加 ke-an 构成名词 kepercayaan diri",
+    "note": "良好备考带来的心理状态；对自己语言能力的信心",
+    "synonyms": [
+      "yakin"
+    ],
+    "antonyms": [
+      "ragu"
+    ],
+    "examples": [
+      {
+        "scene": "心理调适",
+        "id": "Percaya diri lahir dari persiapan yang matang.",
+        "cn": "自信来自充分的准备。"
+      },
+      {
+        "scene": "考场实战",
+        "id": "Meski soal sulit, saya tetap percaya diri dengan kemampuan saya.",
+        "cn": "即使题目难，我仍对自己的能力有信心。"
+      }
+    ]
   },
   "jadwal belajar": {
     "word": "jadwal belajar",
-    "ipa": "/dʒadˈwal bəˈladʒar/",
     "cn": "备考计划",
-    "en": "",
-    "root": "",
+    "en": "study schedule; study timetable",
+    "root": "jadwal（日程）; belajar（学习；词根 ajar）",
     "forms": [],
-    "formsNote": "",
-    "note": "",
-    "synonyms": [],
+    "formsNote": "复合短语 jadwal + belajar；无派生形态",
+    "note": "系统性备考安排；长期复习的时间表",
+    "synonyms": [
+      "rencana belajar"
+    ],
     "antonyms": [],
-    "examples": []
+    "examples": [
+      {
+        "scene": "备考训练",
+        "id": "Saya menyusun jadwal belajar tiga bulan sebelum UKBI.",
+        "cn": "我在 UKBI 考前三个月制定备考计划。"
+      },
+      {
+        "scene": "心理调适",
+        "id": "Jadwal belajar yang teratur membuat persiapan tidak melelahkan.",
+        "cn": "规律的备考计划让准备过程不那么累。"
+      }
+    ]
   },
   "menganalisis kelemahan": {
     "word": "menganalisis kelemahan",
-    "ipa": "/məˈnaːlisis kəleˈmaːhan/",
     "cn": "弱项分析",
-    "en": "",
-    "root": "",
-    "forms": [],
-    "formsNote": "",
-    "note": "",
-    "synonyms": [],
+    "en": "analyzing weaknesses; weakness analysis",
+    "root": "analisis（分析）; lemah（弱）",
+    "forms": [
+      {
+        "form": "menganalisis",
+        "pos": "",
+        "mean": "动词：分析"
+      },
+      {
+        "form": "kelemahan",
+        "pos": "",
+        "mean": "名词：弱点"
+      }
+    ],
+    "formsNote": "lemah 加 ke-an 构成 kelemahan；analisis 加 meN- 构成 menganalisis",
+    "note": "通过错题与模拟考定位薄弱环节",
+    "synonyms": [
+      "mengidentifikasi kelemahan"
+    ],
     "antonyms": [],
-    "examples": []
+    "examples": [
+      {
+        "scene": "备考训练",
+        "id": "Hasil simulasi berguna untuk menganalisis kelemahan di setiap bagian.",
+        "cn": "模拟考成绩有助于分析各部分的弱项。"
+      },
+      {
+        "scene": "成绩分析",
+        "id": "Menganalisis kelemahan adalah langkah pertama sebelum berlatih intensif.",
+        "cn": "弱项分析是强化训练前的第一步。"
+      }
+    ]
   },
   "penguasaan materi": {
     "word": "penguasaan materi",
-    "ipa": "/pəŋˈgwaːsan maˈtəri/",
     "cn": "强项掌握",
-    "en": "",
-    "root": "",
-    "forms": [],
-    "formsNote": "",
-    "note": "",
-    "synonyms": [],
+    "en": "mastery of material; content mastery",
+    "root": "kuasa（掌控）; materi（材料）",
+    "forms": [
+      {
+        "form": "menguasai",
+        "pos": "",
+        "mean": "动词：掌握"
+      },
+      {
+        "form": "penguasaan",
+        "pos": "",
+        "mean": "名词：掌握"
+      }
+    ],
+    "formsNote": "kuasa 加 meN-i 构成 menguasai；加 peN-an 构成 penguasaan",
+    "note": "对强项内容的熟练掌握",
+    "synonyms": [
+      "pemahaman materi"
+    ],
     "antonyms": [],
-    "examples": []
+    "examples": [
+      {
+        "scene": "备考训练",
+        "id": "Penguasaan materi tata bahasa membutuhkan latihan rutin.",
+        "cn": "语法强项的掌握需要日常练习。"
+      },
+      {
+        "scene": "成绩分析",
+        "id": "Skor tinggi mencerminkan penguasaan materi yang solid.",
+        "cn": "高分反映出扎实的强项掌握。"
+      }
+    ]
   },
   "skor simulasi": {
     "word": "skor simulasi",
-    "ipa": "/ˈskɔr simuˈlasi/",
     "cn": "模拟分数",
-    "en": "",
-    "root": "",
+    "en": "simulation score; mock test score",
+    "root": "skor（分数）; simulasi（模拟）",
     "forms": [],
-    "formsNote": "",
-    "note": "",
-    "synonyms": [],
+    "formsNote": "复合短语 skor + simulasi；无派生形态",
+    "note": "模拟考得分；预估正式考试表现",
+    "synonyms": [
+      "nilai simulasi"
+    ],
     "antonyms": [],
-    "examples": []
+    "examples": [
+      {
+        "scene": "成绩分析",
+        "id": "Skor simulasi terakhir saya naik dua puluh poin.",
+        "cn": "我最近的模拟分数提高了二十分。"
+      },
+      {
+        "scene": "备考训练",
+        "id": "Kami mencatat skor simulasi untuk memantau perkembangan belajar.",
+        "cn": "我们记录模拟分数以追踪学习进步。"
+      }
+    ]
   },
   "tingkat kelulusan": {
     "word": "tingkat kelulusan",
@@ -196326,29 +196590,80 @@ const bitVocabDB = {
   },
   "strategi ujian ulang": {
     "word": "strategi ujian ulang",
-    "ipa": "/straˈteɡi ˈudʒian ˈulaŋ/",
     "cn": "重考策略",
-    "en": "",
-    "root": "",
-    "forms": [],
-    "formsNote": "",
-    "note": "",
-    "synonyms": [],
+    "en": "retake strategy; re-examination strategy",
+    "root": "strategi（策略）; ujian（考试；词根 uji）; ulang（重复）",
+    "forms": [
+      {
+        "form": "mengulang",
+        "pos": "",
+        "mean": "动词：重复"
+      },
+      {
+        "form": "ulangan",
+        "pos": "",
+        "mean": "名词：重复测验"
+      }
+    ],
+    "formsNote": "uji 加 -an 构成 ujian；ulang 加 meN- 构成 mengulang、加 -an 构成 ulangan",
+    "note": "未通过后的再次备考安排",
+    "synonyms": [
+      "strategi mengulang ujian"
+    ],
     "antonyms": [],
-    "examples": []
+    "examples": [
+      {
+        "scene": "成绩分析",
+        "id": "Setelah tidak lulus, saya menyusun strategi ujian ulang yang lebih realistis.",
+        "cn": "未通过后，我制定了更务实的重考策略。"
+      },
+      {
+        "scene": "备考训练",
+        "id": "Strategi ujian ulang harus berbeda dari persiapan pertama.",
+        "cn": "重考策略应与首次备考不同。"
+      }
+    ]
   },
   "bahan persiapan": {
     "word": "bahan persiapan",
-    "ipa": "/ˈbaːhan pərˈsiaːpan/",
     "cn": "备考资料",
-    "en": "",
-    "root": "",
-    "forms": [],
-    "formsNote": "",
-    "note": "",
-    "synonyms": [],
+    "en": "preparation materials; study materials",
+    "root": "bahan（材料）; siap（准备）",
+    "forms": [
+      {
+        "form": "menyiapkan",
+        "pos": "",
+        "mean": "动词：准备"
+      },
+      {
+        "form": "disiapkan",
+        "pos": "",
+        "mean": "被动：被准备"
+      },
+      {
+        "form": "kesiapan",
+        "pos": "",
+        "mean": "名词：准备状态"
+      }
+    ],
+    "formsNote": "siap 加 peR-an 构成 persiapan；加 meN-kan 构成 menyiapkan；加 ke-an 构成 kesiapan",
+    "note": "备考所用教材与资料集合",
+    "synonyms": [
+      "materi persiapan"
+    ],
     "antonyms": [],
-    "examples": []
+    "examples": [
+      {
+        "scene": "备考训练",
+        "id": "Bahan persiapan UKBI meliputi buku resmi dan soal tahun-tahun sebelumnya.",
+        "cn": "UKBI 备考资料包括官方教材和历年真题。"
+      },
+      {
+        "scene": "心理调适",
+        "id": "Mengumpulkan bahan persiapan sejak awal mengurangi kecemasan.",
+        "cn": "提前收集备考资料减轻焦虑。"
+      }
+    ]
   },
   "kumpulan soal asli": {
     "word": "kumpulan soal asli",
@@ -196494,328 +196809,728 @@ const bitVocabDB = {
   },
   "malam sebelum ujian": {
     "word": "malam sebelum ujian",
-    "ipa": "/maˈlam səˈbelum ˈudʒian/",
     "cn": "考前夜",
-    "en": "",
-    "root": "",
+    "en": "the night before the exam; eve of the exam",
+    "root": "malam（夜晚）; sebelum（之前；se- + belum）; ujian（考试）",
     "forms": [],
-    "formsNote": "",
-    "note": "",
-    "synonyms": [],
+    "formsNote": "时间短语 malam + sebelum + ujian；sebelum 由 se- + belum 构成",
+    "note": "考前一晚的作息安排",
+    "synonyms": [
+      "malam pra-ujian"
+    ],
     "antonyms": [],
-    "examples": []
+    "examples": [
+      {
+        "scene": "心理调适",
+        "id": "Malam sebelum ujian, saya berhenti belajar dan tidur lebih awal.",
+        "cn": "考前夜，我停止学习早早休息。"
+      },
+      {
+        "scene": "备考训练",
+        "id": "Malam sebelum ujian sebaiknya dimanfaatkan untuk menenangkan diri.",
+        "cn": "考前夜最好用来放松身心。"
+      }
+    ]
   },
   "hari ujian": {
     "word": "hari ujian",
-    "ipa": "/ˈhari ˈudʒian/",
     "cn": "考试日",
-    "en": "",
-    "root": "",
+    "en": "exam day; test day",
+    "root": "hari（日子）; ujian（考试）",
     "forms": [],
-    "formsNote": "",
-    "note": "",
-    "synonyms": [],
+    "formsNote": "复合名词短语 hari + ujian；无派生形态",
+    "note": "正式考试当天",
+    "synonyms": [
+      "hari pelaksanaan ujian"
+    ],
     "antonyms": [],
-    "examples": []
+    "examples": [
+      {
+        "scene": "考场实战",
+        "id": "Pada hari ujian, saya tiba di lokasi tiga puluh menit lebih awal.",
+        "cn": "考试日，我提前三十分钟到达考点。"
+      },
+      {
+        "scene": "考场实战",
+        "id": "Di hari ujian, saya membawa kartu identitas dan alat tulis cadangan.",
+        "cn": "考试日，我携带身份证件和备用文具。"
+      }
+    ]
   },
   "sarapan bergizi": {
     "word": "sarapan bergizi",
-    "ipa": "/ˈsarapan bərˈɡizi/",
     "cn": "营养早餐",
-    "en": "",
-    "root": "",
-    "forms": [],
-    "formsNote": "",
-    "note": "",
-    "synonyms": [],
+    "en": "nutritious breakfast",
+    "root": "sarapan（早餐）; gizi（营养）",
+    "forms": [
+      {
+        "form": "bergizi",
+        "pos": "",
+        "mean": "形容词：有营养的"
+      }
+    ],
+    "formsNote": "gizi 加 ber- 构成形容词 bergizi",
+    "note": "考试日早餐；保证血糖与精力",
+    "synonyms": [
+      "sarapan sehat; sarapan bernutrisi"
+    ],
     "antonyms": [],
-    "examples": []
+    "examples": [
+      {
+        "scene": "心理调适",
+        "id": "Sarapan bergizi membantu konsentrasi selama ujian berlangsung.",
+        "cn": "营养早餐帮助我在考试期间保持专注。"
+      },
+      {
+        "scene": "备考训练",
+        "id": "Ibu selalu menyiapkan sarapan bergizi di pagi hari ujian.",
+        "cn": "考试日早上母亲总会准备营养早餐。"
+      }
+    ]
   },
   "kualitas tidur": {
     "word": "kualitas tidur",
-    "ipa": "/kuaˈlitas ˈtidur/",
     "cn": "睡眠质量",
-    "en": "",
-    "root": "",
+    "en": "sleep quality; quality of sleep",
+    "root": "kualitas（质量）; tidur（睡觉）",
     "forms": [],
-    "formsNote": "",
-    "note": "",
-    "synonyms": [],
+    "formsNote": "复合短语 kualitas + tidur；无派生形态",
+    "note": "影响临场发挥的重要因素",
+    "synonyms": [
+      "mutu tidur"
+    ],
     "antonyms": [],
-    "examples": []
+    "examples": [
+      {
+        "scene": "心理调适",
+        "id": "Kualitas tidur memengaruhi kemampuan berkonsentrasi keesokan harinya.",
+        "cn": "睡眠质量影响第二天的专注能力。"
+      },
+      {
+        "scene": "备考训练",
+        "id": "Menjaga kualitas tidur sama pentingnya dengan belajar.",
+        "cn": "保证睡眠质量与学习同等重要。"
+      }
+    ]
   },
   "persiapan akhir": {
     "word": "persiapan akhir",
-    "ipa": "/pərˈsiaːpan ˈaxir/",
     "cn": "最后准备",
-    "en": "",
-    "root": "",
-    "forms": [],
-    "formsNote": "",
-    "note": "",
-    "synonyms": [],
+    "en": "final preparation; last-minute preparation",
+    "root": "siap（准备）; akhir（最后）",
+    "forms": [
+      {
+        "form": "menyiapkan",
+        "pos": "",
+        "mean": "动词：准备"
+      },
+      {
+        "form": "akhirnya",
+        "pos": "",
+        "mean": "副词：最终"
+      }
+    ],
+    "formsNote": "siap 加 peR-an 构成 persiapan；akhir 加 -nya 构成 akhirnya",
+    "note": "考前最后阶段的收尾工作",
+    "synonyms": [
+      "langkah akhir"
+    ],
     "antonyms": [],
-    "examples": []
+    "examples": [
+      {
+        "scene": "备考训练",
+        "id": "Persiapan akhir fokus pada penguatan materi yang sudah dikuasai.",
+        "cn": "最后准备侧重于巩固已掌握的内容。"
+      },
+      {
+        "scene": "考场实战",
+        "id": "Sebelum masuk ruangan, saya melakukan persiapan akhir dengan mengecek perlengkapan.",
+        "cn": "进考场前，我检查物品完成最后准备。"
+      }
+    ]
   },
   "rencana cadangan": {
     "word": "rencana cadangan",
-    "ipa": "/rənˈtʃana tʃaˈdaŋan/",
     "cn": "应急方案",
-    "en": "",
-    "root": "",
-    "forms": [],
-    "formsNote": "",
-    "note": "",
-    "synonyms": [],
+    "en": "backup plan; contingency plan",
+    "root": "rencana（计划）; cadangan（备用）",
+    "forms": [
+      {
+        "form": "mencadangkan",
+        "pos": "",
+        "mean": "动词：预留"
+      },
+      {
+        "form": "dicadangkan",
+        "pos": "",
+        "mean": "被动：被预留"
+      }
+    ],
+    "formsNote": "cadang 加 -an 构成 cadangan；加 meN-kan 构成 mencadangkan",
+    "note": "应对突发状况的备用计划",
+    "synonyms": [
+      "rencana alternatif"
+    ],
     "antonyms": [],
-    "examples": []
+    "examples": [
+      {
+        "scene": "应急处理",
+        "id": "Rencana cadangan diperlukan jika koneksi terputus saat ujian berlangsung.",
+        "cn": "考试进行中网络断线时应急方案必不可少。"
+      },
+      {
+        "scene": "备考训练",
+        "id": "Kami menyiapkan rencana cadangan untuk setiap skenario terburuk.",
+        "cn": "我们为每种最坏情况制定应急方案。"
+      }
+    ]
   },
   "gangguan teknis": {
     "word": "gangguan teknis",
-    "ipa": "/ɡaŋˈɡuran ˈteknis/",
     "cn": "技术故障",
-    "en": "",
-    "root": "",
-    "forms": [],
-    "formsNote": "",
-    "note": "",
-    "synonyms": [],
+    "en": "technical difficulties; technical malfunction",
+    "root": "ganggu（干扰）; teknis（技术的）",
+    "forms": [
+      {
+        "form": "mengganggu",
+        "pos": "",
+        "mean": "动词：干扰"
+      },
+      {
+        "form": "terganggu",
+        "pos": "",
+        "mean": "状态：受干扰"
+      },
+      {
+        "form": "gangguan",
+        "pos": "",
+        "mean": "名词：干扰"
+      }
+    ],
+    "formsNote": "ganggu 加 meN-/ter-/-an 派生动词与名词",
+    "note": "机考中可能出现的设备或系统问题",
+    "synonyms": [
+      "kendala teknis"
+    ],
     "antonyms": [],
-    "examples": []
+    "examples": [
+      {
+        "scene": "应急处理",
+        "id": "Gangguan teknis pada komputer memaksa peserta pindah ke unit lain.",
+        "cn": "电脑技术故障迫使考生更换机位。"
+      },
+      {
+        "scene": "考场实战",
+        "id": "Jika terjadi gangguan teknis, segera laporkan kepada pengawas.",
+        "cn": "发生技术故障时，立即向监考报告。"
+      }
+    ]
   },
   "koneksi terputus": {
     "word": "koneksi terputus",
-    "ipa": "/koˈnekʃi tərˈputus/",
     "cn": "网络断线",
-    "en": "",
-    "root": "",
-    "forms": [],
-    "formsNote": "",
-    "note": "",
-    "synonyms": [],
-    "antonyms": [],
-    "examples": []
+    "en": "connection lost; disconnected",
+    "root": "koneksi（连接）; putus（断开）",
+    "forms": [
+      {
+        "form": "terputus",
+        "pos": "",
+        "mean": "状态：断开"
+      },
+      {
+        "form": "memutuskan",
+        "pos": "",
+        "mean": "动词：切断/决定"
+      }
+    ],
+    "formsNote": "putus 加 ter- 构成 terputus；加 meN-kan 构成 memutuskan",
+    "note": "在线考试中网络中断的状态",
+    "synonyms": [
+      "jaringan terputus"
+    ],
+    "antonyms": [
+      "tersambung"
+    ],
+    "examples": [
+      {
+        "scene": "应急处理",
+        "id": "Koneksi terputus tiba-tiba saat saya mengerjakan bagian membaca.",
+        "cn": "网络在我做阅读部分时突然断线。"
+      },
+      {
+        "scene": "考场实战",
+        "id": "Jika koneksi terputus, sistem akan menyimpan jawaban secara otomatis.",
+        "cn": "网络断线时系统会自动保存答案。"
+      }
+    ]
   },
   "masuk kembali": {
     "word": "masuk kembali",
-    "ipa": "/ˈmasuk kəmˈbali/",
     "cn": "重新登录",
-    "en": "",
-    "root": "",
-    "forms": [],
-    "formsNote": "",
-    "note": "",
-    "synonyms": [],
-    "antonyms": [],
-    "examples": []
+    "en": "to log back in; to re-enter",
+    "root": "masuk（进入）; kembali（返回）",
+    "forms": [
+      {
+        "form": "memasukkan",
+        "pos": "",
+        "mean": "及物动词：使进入"
+      },
+      {
+        "form": "dimasukkan",
+        "pos": "",
+        "mean": "被动：被放入"
+      }
+    ],
+    "formsNote": "masuk 加 meN-kan 构成 memasukkan；kembali 为副词",
+    "note": "掉线或退出后重新进入系统",
+    "synonyms": [
+      "login kembali"
+    ],
+    "antonyms": [
+      "keluar"
+    ],
+    "examples": [
+      {
+        "scene": "应急处理",
+        "id": "Setelah koneksi pulih, saya masuk kembali ke sistem ujian.",
+        "cn": "网络恢复后，我重新登录考试系统。"
+      },
+      {
+        "scene": "考场实战",
+        "id": "Ikuti instruksi pengawas untuk masuk kembali dengan kredensial yang sama.",
+        "cn": "按照监考指示用同一凭证重新登录。"
+      }
+    ]
   },
   "ujian terhenti": {
     "word": "ujian terhenti",
-    "ipa": "/ˈudʒian tərˈhɛnti/",
     "cn": "考试中断",
-    "en": "",
-    "root": "",
-    "forms": [],
-    "formsNote": "",
-    "note": "",
-    "synonyms": [],
+    "en": "exam interrupted; test halted",
+    "root": "ujian（考试）; henti（停止）",
+    "forms": [
+      {
+        "form": "berhenti",
+        "pos": "",
+        "mean": "主动：停止"
+      },
+      {
+        "form": "menghentikan",
+        "pos": "",
+        "mean": "及物：使停止"
+      },
+      {
+        "form": "terhenti",
+        "pos": "",
+        "mean": "状态：被中断"
+      }
+    ],
+    "formsNote": "henti 加 ber-/meN-kan/ter- 派生",
+    "note": "因故中断的考试进程",
+    "synonyms": [
+      "ujian terputus"
+    ],
     "antonyms": [],
-    "examples": []
+    "examples": [
+      {
+        "scene": "应急处理",
+        "id": "Ujian terhenti di tengah sesi karena listrik padam.",
+        "cn": "考试因停电在中途中断。"
+      },
+      {
+        "scene": "考场实战",
+        "id": "Jika ujian terhenti, pengawas akan memberikan instruksi selanjutnya.",
+        "cn": "考试中断时，监考会给出后续指引。"
+      }
+    ]
   },
   "melihat hasil ujian": {
     "word": "melihat hasil ujian",
-    "ipa": "/məˈlihat ˈhasil ˈudʒian/",
     "cn": "成绩查询",
-    "en": "",
-    "root": "",
-    "forms": [],
-    "formsNote": "",
-    "note": "",
-    "synonyms": [],
+    "en": "checking exam results; viewing test scores",
+    "root": "lihat（看）; hasil（结果）; ujian（考试）",
+    "forms": [
+      {
+        "form": "melihat",
+        "pos": "",
+        "mean": "主动：看"
+      },
+      {
+        "form": "dilihat",
+        "pos": "",
+        "mean": "被动：被看"
+      },
+      {
+        "form": "terlihat",
+        "pos": "",
+        "mean": "状态：被看见"
+      }
+    ],
+    "formsNote": "lihat 加 meN-/di-/ter- 派生；hasil 为名词\"结果\"",
+    "note": "考后查询成绩的动作",
+    "synonyms": [
+      "mengecek hasil ujian"
+    ],
     "antonyms": [],
-    "examples": []
+    "examples": [
+      {
+        "scene": "成绩分析",
+        "id": "Saya melihat hasil ujian melalui situs resmi UKBI.",
+        "cn": "我通过 UKBI 官网查询成绩。"
+      },
+      {
+        "scene": "成绩分析",
+        "id": "Melihat hasil ujian membuat saya lega setelah seminggu menunggu.",
+        "cn": "查询成绩让等待一周的我松了一口气。"
+      }
+    ]
   },
   "interpretasi skor": {
     "word": "interpretasi skor",
-    "ipa": "/interpreˈtasi ˈskɔr/",
     "cn": "分数解读",
-    "en": "",
-    "root": "",
+    "en": "score interpretation; interpreting scores",
+    "root": "interpretasi（解读）; skor（分数）",
     "forms": [],
-    "formsNote": "",
-    "note": "",
-    "synonyms": [],
+    "formsNote": "复合名词短语 interpretasi + skor；无派生形态",
+    "note": "理解分数含义与等级",
+    "synonyms": [
+      "penafsiran skor"
+    ],
     "antonyms": [],
-    "examples": []
+    "examples": [
+      {
+        "scene": "成绩分析",
+        "id": "Interpretasi skor membantu memahami tingkat kemahiran berbahasa.",
+        "cn": "分数解读有助于了解语言水平等级。"
+      },
+      {
+        "scene": "成绩分析",
+        "id": "Interpretasi skor saya menunjukkan kekuatan pada bagian pendengaran.",
+        "cn": "我的分数解读显示听力部分是强项。"
+      }
+    ]
   },
   "melamar": {
     "word": "melamar",
-    "ipa": "/mə.la.mər/",
     "cn": "申请（职位）",
-    "en": "",
-    "root": "",
+    "en": "to apply for (a job)",
+    "root": "lamar（申请）",
     "forms": [],
-    "formsNote": "",
-    "note": "",
-    "synonyms": [],
+    "formsNote": "me- + lamar → melamar；名词化 lamaran / pelamar",
+    "note": "求职动词；\"melamar posisi/jabatan\" = 申请职位；与 lamaran kerja（求职申请）区分",
+    "synonyms": [
+      "mengajukan permohonan"
+    ],
     "antonyms": [],
-    "examples": []
+    "examples": [
+      {
+        "scene": "求职面试",
+        "id": "Saya ingin melamar posisi manajer operasional.",
+        "cn": "我想申请运营经理职位。"
+      },
+      {
+        "scene": "园区招聘",
+        "id": "Perusahaan smelter itu merekrut pekerja lokal.",
+        "cn": "那家冶炼公司招聘本地员工。"
+      }
+    ]
   },
   "kualifikasi": {
     "word": "kualifikasi",
-    "ipa": "/kwa.li.fi.ka.si/",
     "cn": "资格；资历",
-    "en": "",
-    "root": "",
+    "en": "qualification; credentials",
+    "root": "—（外来语，源自荷兰语 kwalificatie）",
     "forms": [],
-    "formsNote": "",
-    "note": "",
-    "synonyms": [],
+    "formsNote": "ber- + kualifikasi → berkualifikasi（具备资格的）；与 kualitas（质量）同源",
+    "note": "名词；用于描述职位要求或求职者背景，\"memenuhi kualifikasi\" = 符合资格",
+    "synonyms": [
+      "persyaratan; kompetensi"
+    ],
     "antonyms": [],
-    "examples": []
+    "examples": [
+      {
+        "scene": "求职面试",
+        "id": "Kualifikasi saya sesuai dengan persyaratan posisi ini.",
+        "cn": "我的资历符合这个职位的要求。"
+      },
+      {
+        "scene": "商务沟通",
+        "id": "Perusahaan multinasional menetapkan kualifikasi tinggi untuk posisi manajer.",
+        "cn": "跨国企业为经理职位设定了高资历要求。"
+      }
+    ]
   },
   "multinasional": {
     "word": "multinasional",
-    "ipa": "/mul.ti.na.si.o.nal/",
     "cn": "跨国的",
-    "en": "",
-    "root": "",
+    "en": "multinational",
+    "root": "nasional（国家的）",
     "forms": [],
-    "formsNote": "",
-    "note": "",
-    "synonyms": [],
+    "formsNote": "构词 multi-（多）+ nasional → multinasional；名词化可指跨国公司",
+    "note": "形容词；\"perusahaan multinasional\" = 跨国公司；正式拼写亦可 multinasional",
+    "synonyms": [
+      "internasional"
+    ],
     "antonyms": [],
-    "examples": []
+    "examples": [
+      {
+        "scene": "商务沟通",
+        "id": "Saya pernah bekerja di perusahaan multinasional di bidang pertambangan.",
+        "cn": "我曾在矿业跨国公司工作。"
+      },
+      {
+        "scene": "园区招聘",
+        "id": "Perusahaan multinasional itu membuka banyak lowongan di kawasan industri smelter.",
+        "cn": "那家跨国公司在冶炼工业园区提供了许多职位。"
+      }
+    ]
   },
   "merekrut": {
     "word": "merekrut",
-    "ipa": "/mə.rə.krut/",
     "cn": "招聘",
-    "en": "",
-    "root": "",
+    "en": "to recruit",
+    "root": "rekrut（新成员，荷兰语 rekrut）",
     "forms": [],
-    "formsNote": "",
-    "note": "",
-    "synonyms": [],
+    "formsNote": "me- + rekrut → merekrut；名词 rekrutmen / perekrutan；被动 direkrut",
+    "note": "及物动词，\"merekrut karyawan\" = 招聘员工；主语多为公司/HR",
+    "synonyms": [
+      "mempekerjakan"
+    ],
     "antonyms": [],
-    "examples": []
+    "examples": [
+      {
+        "scene": "园区招聘",
+        "id": "Perusahaan smelter itu merekrut pekerja lokal.",
+        "cn": "那家冶炼公司招聘本地员工。"
+      },
+      {
+        "scene": "求职面试",
+        "id": "Tim HR sedang merekrut insinyur untuk proyek ekspansi.",
+        "cn": "HR团队正在为扩建项目招聘工程师。"
+      }
+    ]
   },
   "jujur": {
     "word": "jujur",
-    "ipa": "/dʒu.dʒur/",
     "cn": "诚实的",
-    "en": "",
-    "root": "",
+    "en": "honest; truthful",
+    "root": "jujur（诚实）",
     "forms": [],
-    "formsNote": "",
-    "note": "",
-    "synonyms": [],
-    "antonyms": [],
-    "examples": []
+    "formsNote": "ke- + -an → kejujuran（诚实，名词）；sejujurnya（说实话，插入语）",
+    "note": "形容词；职场高频词，\"jujur pada pekerjaan\" = 对工作诚实",
+    "synonyms": [
+      "tulus; benar"
+    ],
+    "antonyms": [
+      "curang"
+    ],
+    "examples": [
+      {
+        "scene": "求职面试",
+        "id": "Jawablah pertanyaan interviewer dengan jujur.",
+        "cn": "请诚实地回答面试官的问题。"
+      },
+      {
+        "scene": "园区职场",
+        "id": "Karyawan harus jujur dalam melaporkan kecelakaan kerja.",
+        "cn": "员工必须如实上报工伤事故。"
+      }
+    ]
   },
   "situasional": {
     "word": "situasional",
-    "ipa": "/si.tu.a.si.o.nal/",
     "cn": "情境的",
-    "en": "",
-    "root": "",
+    "en": "situational",
+    "root": "situasi（情境，荷兰语 situatie）",
     "forms": [],
-    "formsNote": "",
-    "note": "",
+    "formsNote": "situasi + -al → situasional；名词 situasi",
+    "note": "形容词；HR 术语，\"wawancara situasional\" = 情境式面试",
     "synonyms": [],
     "antonyms": [],
-    "examples": []
+    "examples": [
+      {
+        "scene": "求职面试",
+        "id": "Wawancara situasional menguji cara Anda menangani masalah kerja.",
+        "cn": "情境式面试考察你处理工作问题的方式。"
+      },
+      {
+        "scene": "园区职场",
+        "id": "Manajer memberikan pertanyaan situasional tentang keselamatan kerja.",
+        "cn": "经理提出了有关工作安全的情境问题。"
+      }
+    ]
   },
   "perilaku": {
     "word": "perilaku",
-    "ipa": "/pə.ri.la.ku/",
     "cn": "行为",
-    "en": "",
-    "root": "",
+    "en": "behavior; conduct",
+    "root": "laku（行为）",
     "forms": [],
-    "formsNote": "",
-    "note": "",
-    "synonyms": [],
+    "formsNote": "pe- + r + laku → perilaku（名词）；berperilaku（动词，表现）",
+    "note": "名词；\"perilaku kerja\" = 工作行为；\"perilaku profesional\" = 职业行为",
+    "synonyms": [
+      "tingkah laku; perbuatan"
+    ],
     "antonyms": [],
-    "examples": []
+    "examples": [
+      {
+        "scene": "求职面试",
+        "id": "Perusahaan mencari karyawan dengan perilaku profesional.",
+        "cn": "公司寻找行为职业化的员工。"
+      },
+      {
+        "scene": "园区职场",
+        "id": "Perilaku aman harus dijaga di area smelter.",
+        "cn": "在冶炼厂区必须保持安全行为。"
+      }
+    ]
   },
   "ekspektasi": {
     "word": "ekspektasi",
-    "ipa": "/ək.spək.ta.si/",
     "cn": "期望",
-    "en": "",
-    "root": "",
+    "en": "expectation",
+    "root": "—（外来语，源自拉丁语 expectare）",
     "forms": [],
-    "formsNote": "",
-    "note": "",
-    "synonyms": [],
+    "formsNote": "ekspektasi + ber- → berekspektasi（抱有期望，口语多用 mengharapkan）",
+    "note": "名词；\"ekspektasi gaji\" = 薪资期望；面试高频问句 \"Apa ekspektasi Anda?\"",
+    "synonyms": [
+      "harapan"
+    ],
     "antonyms": [],
-    "examples": []
+    "examples": [
+      {
+        "scene": "薪资谈判",
+        "id": "Berapa gaji yang sesuai dengan ekspektasi Anda?",
+        "cn": "符合您期望的薪资是多少？"
+      },
+      {
+        "scene": "入职流程",
+        "id": "Atasan harus menjelaskan ekspektasi kerja kepada karyawan baru.",
+        "cn": "上级必须向新员工说明工作期望。"
+      }
+    ]
   },
   "mengucapkan terima kasih": {
     "word": "mengucapkan terima kasih",
-    "ipa": "/mə.u.tʃap.kan tə.ri.ma ka.sih/",
     "cn": "表达感谢",
-    "en": "",
-    "root": "",
+    "en": "to express thanks; to say thank you",
+    "root": "ucap（说）; terima（接受）; kasih（爱）",
     "forms": [],
-    "formsNote": "",
-    "note": "",
-    "synonyms": [],
+    "formsNote": "me- + -kan + ucapan → mengucapkan；terima kasih 为固定短语，berterima kasih 为动词形式",
+    "note": "短语动词；面试/邮件结尾礼仪用语，\"mengucapkan terima kasih atas...\" = 因……致谢",
+    "synonyms": [
+      "berterima kasih"
+    ],
     "antonyms": [],
-    "examples": []
+    "examples": [
+      {
+        "scene": "求职面试",
+        "id": "Jangan lupa mengucapkan terima kasih kepada interviewer setelah wawancara.",
+        "cn": "面试后别忘了向面试官表达感谢。"
+      },
+      {
+        "scene": "商务沟通",
+        "id": "Kami mengucapkan terima kasih atas kesempatan yang diberikan.",
+        "cn": "我们感谢给予的机会。"
+      }
+    ]
   },
   "penawaran": {
     "word": "penawaran",
-    "ipa": "/pə.na.wa.ran/",
     "cn": "提议；报价",
-    "en": "",
-    "root": "",
+    "en": "offer; proposal; quotation",
+    "root": "tawar（出价；提出）",
     "forms": [],
-    "formsNote": "",
-    "note": "",
-    "synonyms": [],
+    "formsNote": "peN- + tawar → penawaran；动词 menawarkan（提供）；被动 ditawarkan",
+    "note": "名词；\"penawaran gaji\" = 薪资报价；\"menerima penawaran\" = 接受录用/报价",
+    "synonyms": [
+      "usulan"
+    ],
     "antonyms": [],
-    "examples": []
+    "examples": [
+      {
+        "scene": "薪资谈判",
+        "id": "Perusahaan memberikan penawaran gaji yang menarik.",
+        "cn": "公司给出了有吸引力的薪资报价。"
+      },
+      {
+        "scene": "商务沟通",
+        "id": "Kami sedang mengevaluasi penawaran dari beberapa supplier.",
+        "cn": "我们正在评估几家供应商的报价。"
+      }
+    ]
   },
   "onboarding": {
     "word": "onboarding",
-    "ipa": "/on.bord.iŋ/",
     "cn": "入职培训",
-    "en": "",
-    "root": "",
+    "en": "onboarding",
+    "root": "—（外来语，英语 onboarding 直接借用）",
     "forms": [],
-    "formsNote": "",
-    "note": "",
-    "synonyms": [],
+    "formsNote": "外来语，无印尼语变形；正式场合可用 proses orientasi / pengenalan perusahaan 解释",
+    "note": "名词；HR 术语，\"program onboarding\" = 入职培训项目；印尼职场通用",
+    "synonyms": [
+      "orientasi"
+    ],
     "antonyms": [],
-    "examples": []
+    "examples": [
+      {
+        "scene": "入职流程",
+        "id": "Departemen HR mengadakan program onboarding untuk karyawan baru.",
+        "cn": "HR部门为新员工举办入职培训项目。"
+      },
+      {
+        "scene": "园区职场",
+        "id": "Onboarding di kawasan smelter mencakup pelatihan keselamatan kerja.",
+        "cn": "冶炼园区的入职培训包含安全培训。"
+      }
+    ]
   },
   "masa percobaan": {
     "word": "masa percobaan",
-    "ipa": "/ma.sa pər.tʃo.ba.an/",
     "cn": "试用期",
-    "en": "",
-    "root": "",
+    "en": "probation period",
+    "root": "coba（尝试）",
     "forms": [],
-    "formsNote": "",
-    "note": "",
-    "synonyms": [],
+    "formsNote": "pe- + -an + coba → percobaan（尝试，名词）；masa percobaan 为固定搭配；动词 mencoba",
+    "note": "名词短语；\"selama masa percobaan\" = 试用期内；通常 3–6 个月",
+    "synonyms": [
+      "masa uji coba"
+    ],
     "antonyms": [],
-    "examples": []
+    "examples": [
+      {
+        "scene": "入职流程",
+        "id": "Selama masa percobaan, gaji saya delapan juta rupiah per bulan.",
+        "cn": "试用期内我的月薪是八百万印尼盾。"
+      },
+      {
+        "scene": "求职面试",
+        "id": "Berapa lama masa percobaan untuk posisi ini?",
+        "cn": "这个职位的试用期是多久？"
+      }
+    ]
   },
   "surat pengunduran diri": {
     "word": "surat pengunduran diri",
-    "ipa": "/su.rat pəŋ.un.du.ran di.ri/",
     "cn": "辞职信",
-    "en": "",
-    "root": "",
+    "en": "resignation letter; letter of resignation",
+    "root": "undur（退；后退）",
     "forms": [],
-    "formsNote": "",
-    "note": "",
+    "formsNote": "peN- + undur + -an → pengunduran diri；动词 mengundurkan diri（辞职）",
+    "note": "名词短语；离职流程文件，\"mengajukan surat pengunduran diri\" = 提交辞职信",
     "synonyms": [],
     "antonyms": [],
-    "examples": []
+    "examples": [
+      {
+        "scene": "离职交接",
+        "id": "Karyawan harus menyerahkan surat pengunduran diri satu bulan sebelum berhenti.",
+        "cn": "员工须在离职前一个月提交辞职信。"
+      },
+      {
+        "scene": "商务沟通",
+        "id": "Saya menulis surat pengunduran diri setelah mendapat pekerjaan baru.",
+        "cn": "我在找到新工作后写了辞职信。"
+      }
+    ]
   },
   "berupa-kalimat-pemantik-yang-disertai-gambar": {
     "word": "berupa-kalimat-pemantik-yang-disertai-gambar",
@@ -197720,6 +198435,7 @@ const bitVocabDB = {
   }
 };
 
+
 function getTopicForDate(ds) {
   return topicCalendar[ds] || null;
 }
@@ -198507,8 +199223,12 @@ function renderAbout(c){
 }
 
 function renderVersion(c){
-  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.46.9 / Versi</span></div>
+  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.47.2 / Versi</span></div>
     <div style="padding:16px;">
+      <div style="margin-bottom:14px;padding:14px;background:rgba(34,197,94,.10);border-radius:10px;border-left:3px solid var(--success)">
+        <div style="font-size:15px;font-weight:700;color:var(--success);margin-bottom:6px">V4.47.2 (2026-10-25)</div>
+        <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">骨架词条清零(用户实测上报"还是有漏的"→RCO全库扫描): V4.47.0课程生成遗留42条三字段骨架词条 —— ukbi_drill 29词(strategi menjawab/manajemen waktu/latihan soal/fokus/irama menjawab/memeriksa kembali/menebak dengan cerdas/metode eliminasi/draf jawaban/napas dalam/percaya diri/jadwal belajar/menganalisis kelemahan/penguasaan materi/skor simulasi/strategi ujian ulang/bahan persiapan/malam sebelum ujian/hari ujian/sarapan bergizi/kualitas tidur/persiapan akhir/rencana cadangan/gangguan teknis/koneksi terputus/masuk kembali/ujian terhenti/melihat hasil ujian/interpretasi skor) + CA interview 13词(melamar/kualifikasi/multinasional/merekrut/jujur/situasional/perilaku/ekspektasi/mengucapkan terima kasih/penawaran/onboarding/masa percobaan/surat pengunduran diri) + mengada-ada补en · 全部按BIT V1.0九字段重写(en/root/forms/formsNote/note/synonyms/antonyms/examples×2) · 同反义裸—零中文 · RCO A3复扫: 缺en/ex硬骨架=0 · 仅缺root 23条(专名/外来词合理) · 双写手并行+fix_skeleton_merge.py直写bitVocabDB(绕dailyNotesDB) · check_syntax PASS · deploy-check 8/8</div>
+      </div>
       <div style="margin-bottom:14px;padding:14px;background:rgba(34,197,94,.10);border-radius:10px;border-left:3px solid var(--success)">
         <div style="font-size:15px;font-weight:700;color:var(--success);margin-bottom:6px">V4.46.9 (2026-10-23)</div>
         <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">视频库列表补全: VIDEO_DB 注册表从1天→3天(0929项目管理39词3集/1021 UKBI Day2 19词2集/1022 UKBI Day3 15词2集) · 1022视频生成: daily-2.0.0引擎 2集(p1:13词≈284s / p2:2词≈56s) lint 10/10 PASS · BIO印章1f2ea1b5 · 注册表hash=0db9c6d4 · 视频主页改为日期列表(今日卡+历史列表) · 日期详情页视频横幅自动联动</div>
