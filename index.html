@@ -6,7 +6,7 @@
 <meta http-equiv="Expires" content="0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LEO-BIR V4.47.2</title>
+<title>LEO-BIR V4.47.3</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -276,7 +276,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="sidebar-header">
     <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <h1>LEO-BIR</h1>
-    <div class="ver">LEO-BIR V4.47.2 · 骨架词条清零(ukbi_drill 29 + CA interview 13 + mengada-ada补en) · 42词条BIT V1.0补全</div>
+    <div class="ver">LEO-BIR V4.47.3 · 1025每日笔记26词(挂ukbi_drill Day3: 14新收+12覆盖, 52例句) + 骨架词条清零延续</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -5998,6 +5998,7 @@ function showBITInfo(word){
   }
   overlay.addEventListener("click",function(e){if(e.target===overlay)closeBITInfo();});
 }
+
 
 
 
@@ -81122,6 +81123,715 @@ const dailyNotesDB = {
         ]
       }
     ]
+  },
+  "2026-10-25": {
+    "date": "2026-10-25",
+    "topicKey": "ukbi_drill",
+    "source": "BIT V1.0 + BIO 审查",
+    "entries": [
+      {
+        "word": "supaya-untuk-agar-biar-buat",
+        "cn": "目的连词（为了/以便）：supaya=agar 正式；untuk 通用；biar/buat 口语",
+        "en": "conjunctions of purpose (so that; in order to)",
+        "root": "—",
+        "forms": [],
+        "formsNote": "—",
+        "note": "连词无派生形态；biar/buat 为口语体 目的状语连词家族。supaya/agar 用于正式语体，引出目的从句，从句谓语常带 bisa/dapat；untuk 后接动词原形（untuk + V），通用语体；biar/buat 属口语，biar 后可接从句，buat 在爪哇口语常见（buat + V），UKBI 写作慎用。",
+        "synonyms": [
+          "guna"
+        ],
+        "antonyms": [
+          "—"
+        ],
+        "examples": [
+          {
+            "scene": "阅读实战",
+            "id": "Ia belajar giat supaya lulus UKBI.",
+            "cn": "他努力学习以便通过UKBI。"
+          },
+          {
+            "scene": "写作运用",
+            "id": "Kami berlatih setiap hari untuk memperkuat pemahaman.",
+            "cn": "我们每天练习以加强理解。"
+          }
+        ]
+      },
+      {
+        "word": "mengabaikan",
+        "cn": "忽视/不理会",
+        "en": "to ignore; to neglect",
+        "root": "aba（置之不理）",
+        "forms": [],
+        "formsNote": "—",
+        "note": "meng- + aba + -kan → mengabaikan；名词化 pengabaian 及物动词；\"mengabaikan petunjuk\" = 无视指示",
+        "synonyms": [
+          "membiarkan, menyepelekan"
+        ],
+        "antonyms": [
+          "memperhatikan"
+        ],
+        "examples": [
+          {
+            "scene": "考场提醒",
+            "id": "Jangan mengabaikan instruksi sebelum mengerjakan soal.",
+            "cn": "做题前不要忽视说明。"
+          },
+          {
+            "scene": "阅读实战",
+            "id": "Pemerintah tidak boleh mengabaikan suara rakyat.",
+            "cn": "政府不应忽视民众的声音。"
+          }
+        ]
+      },
+      {
+        "word": "suasana",
+        "cn": "氛围；气氛",
+        "en": "atmosphere; ambiance",
+        "root": "suasana",
+        "forms": [],
+        "formsNote": "suasana 为独立名词，无派生；常见搭配 suasana hati（心情）、suasana kelas（课堂氛围）",
+        "note": "无词缀派生；以固定搭配扩展 指场所、事件或心境营造的整体气氛，叙事文与说明文高频词；UKBI 阅读 passage 描述场景常见。",
+        "synonyms": [
+          "atmosfer; nuansa"
+        ],
+        "antonyms": [
+          "—"
+        ],
+        "examples": [
+          {
+            "scene": "叙事描述",
+            "id": "Suasana kelas sangat tenang saat ujian berlangsung.",
+            "cn": "考试进行时，教室氛围非常安静。"
+          },
+          {
+            "scene": "阅读实战",
+            "id": "Penulis menggambarkan suasana desa pada pagi hari.",
+            "cn": "作者描写了清晨村庄的氛围。"
+          }
+        ]
+      },
+      {
+        "word": "penerima",
+        "cn": "收件人；接受者",
+        "en": "recipient; receiver",
+        "root": "terima（接受）",
+        "forms": [],
+        "formsNote": "—",
+        "note": "terima → menerima（主动动词）；penerima（接受者名词） 名词；常见于信件、包裹、奖学金等语境",
+        "synonyms": [
+          "—"
+        ],
+        "antonyms": [
+          "—"
+        ],
+        "examples": [
+          {
+            "scene": "听力训练",
+            "id": "Surat itu ditujukan kepada penerima yang tinggal di Jakarta.",
+            "cn": "那封信是寄给住在雅加达的收件人的。"
+          },
+          {
+            "scene": "阅读实战",
+            "id": "Penerima beasiswa wajib melapor kepada pengelola setiap semester.",
+            "cn": "奖学金获得者每学期必须向管理方报到。"
+          }
+        ]
+      },
+      {
+        "word": "terpaku-pada",
+        "cn": "专注于；被…粘住（固定搭配 terpaku pada）",
+        "en": "to be glued to; to be fixated on",
+        "root": "paku",
+        "forms": [],
+        "formsNote": "terpaku（动词，状态）、terpaku pada（固定搭配）",
+        "note": "ter- 前缀表处于某种状态；paku 本义\"钉子\"，terpaku 比喻\"钉住、僵住\" 字面义\"被钉子钉住\"，引申为目光/注意力被牢牢吸引（terpaku pada layar/kejadian），叙事文中描写专注或惊愕状态常用。",
+        "synonyms": [
+          "terfokus pada; terpesona oleh"
+        ],
+        "antonyms": [
+          "—"
+        ],
+        "examples": [
+          {
+            "scene": "叙事描述",
+            "id": "Semua mata terpaku pada papan skor.",
+            "cn": "所有目光都聚焦在记分板上。"
+          },
+          {
+            "scene": "阅读实战",
+            "id": "Pembaca terpaku pada detail kecil yang disebutkan penulis.",
+            "cn": "读者被作者提到的小细节吸引住了。"
+          }
+        ]
+      },
+      {
+        "word": "mempengaruhi",
+        "cn": "影响（动词）",
+        "en": "to influence; to affect",
+        "root": "pengaruh（影响）",
+        "forms": [],
+        "formsNote": "—",
+        "note": "pengaruh → mempengaruhi（及物动词）；terpengaruh（被影响）；berpengaruh pada（不及物） 及物动词；\"mempengaruhi hasil ujian\" = 影响考试成绩",
+        "synonyms": [
+          "—"
+        ],
+        "antonyms": [
+          "—"
+        ],
+        "examples": [
+          {
+            "scene": "阅读实战",
+            "id": "Media sosial dapat mempengaruhi gaya hidup remaja.",
+            "cn": "社交媒体能影响青少年的生活方式。"
+          },
+          {
+            "scene": "备考策略",
+            "id": "Jangan biarkan tekanan mempengaruhi konsentrasi saat ujian.",
+            "cn": "别让压力影响考试时的专注力。"
+          }
+        ]
+      },
+      {
+        "word": "nakal",
+        "cn": "淘气的；顽皮的",
+        "en": "naughty; mischievous",
+        "root": "nakal",
+        "forms": [],
+        "formsNote": "kenakalan（名词，顽皮行为）",
+        "note": "ke-an 名词化，表抽象行为属性 形容儿童或行为不守规矩、爱恶作剧；叙事文描写人物性格常用，含轻微责备但无严重贬义。",
+        "synonyms": [
+          "jahil; bandel"
+        ],
+        "antonyms": [
+          "penurut"
+        ],
+        "examples": [
+          {
+            "scene": "叙事描述",
+            "id": "Anak nakal itu menyembunyikan buku temannya.",
+            "cn": "那个淘气的孩子把同学的书藏了起来。"
+          },
+          {
+            "scene": "听力训练",
+            "id": "Cerita pendek itu menceritakan seekor kera yang nakal.",
+            "cn": "那篇短篇小说讲了一只顽皮的猴子。"
+          }
+        ]
+      },
+      {
+        "word": "tingkat",
+        "cn": "水平；等级；层",
+        "en": "level; grade; storey",
+        "root": "tingkat（根词）",
+        "forms": [],
+        "formsNote": "—",
+        "note": "— 名词；多义：水平/程度、楼层",
+        "synonyms": [
+          "jenjang"
+        ],
+        "antonyms": [
+          "—"
+        ],
+        "examples": [
+          {
+            "scene": "成绩分析",
+            "id": "Tingkat pemahamannya sudah melebihi rata-rata kelas.",
+            "cn": "他的理解水平已超出班级平均。"
+          },
+          {
+            "scene": "阅读实战",
+            "id": "Gedung perpustakaan itu memiliki lima belas tingkat.",
+            "cn": "图书馆大楼有十五层。"
+          }
+        ]
+      },
+      {
+        "word": "metode",
+        "cn": "方法",
+        "en": "method",
+        "root": "metode（借自荷兰语 methode）",
+        "forms": [],
+        "formsNote": "metodologi（方法论）、metodis（有方法的）",
+        "note": "派生词多用于学术/正式语体 指系统化的做事方式或研究途径，正式语体，UKBI 说明文与备考策略高频；日常口语多用 cara。",
+        "synonyms": [
+          "cara; pendekatan"
+        ],
+        "antonyms": [
+          "—"
+        ],
+        "examples": [
+          {
+            "scene": "备考策略",
+            "id": "Metode belajar yang tepat sangat membantu persiapan UKBI.",
+            "cn": "合适的学习方法对备考UKBI帮助很大。"
+          },
+          {
+            "scene": "阅读实战",
+            "id": "Metode penelitian penulis dijelaskan pada bagian kedua.",
+            "cn": "作者的研究方法在第二部分说明。"
+          }
+        ]
+      },
+      {
+        "word": "popularitasnya",
+        "cn": "其人气/知名度（popularitas + -nya）",
+        "en": "its/his/her popularity",
+        "root": "popularitas（popularity，popular + -itas）",
+        "forms": [],
+        "formsNote": "—",
+        "note": "popularitas + -nya → popularitasnya（附着代词） 名词 + -nya；\"popularitasnya meningkat\" = 其人气上升",
+        "synonyms": [
+          "—"
+        ],
+        "antonyms": [
+          "—"
+        ],
+        "examples": [
+          {
+            "scene": "阅读实战",
+            "id": "Popularitasnya meningkat pesat sejak film itu dirilis.",
+            "cn": "自从那部电影上映，他的人气迅速攀升。"
+          },
+          {
+            "scene": "听力训练",
+            "id": "Penyanyi itu mempertahankan popularitasnya dengan kerja keras.",
+            "cn": "那位歌手靠努力维持人气。"
+          }
+        ]
+      },
+      {
+        "word": "penekanan",
+        "cn": "强调；重读",
+        "en": "emphasis; stress (in pronunciation)",
+        "root": "tekan",
+        "forms": [],
+        "formsNote": "menekankan（动词，强调）、tekanan（名词，压力/重音）、penekanan（名词，强调行为）",
+        "note": "meN-kan 使动/及物化；peN-an 名词化 双义项：①语义强调（penekanan pada hal penting）；②语音重读。UKBI 听力需注意说话人的重读位置，阅读注意作者强调的逻辑点。",
+        "synonyms": [
+          "penegasan; aksen"
+        ],
+        "antonyms": [
+          "—"
+        ],
+        "examples": [
+          {
+            "scene": "阅读实战",
+            "id": "Ada penekanan khusus pada bagian kesimpulan.",
+            "cn": "结论部分有特别强调之处。"
+          },
+          {
+            "scene": "听力训练",
+            "id": "Dengarkan penekanan suara narator untuk memahami sikapnya.",
+            "cn": "听叙述者的重音以理解其态度。"
+          }
+        ]
+      },
+      {
+        "word": "padam",
+        "cn": "熄灭；（灯）灭",
+        "en": "extinguished; (light) out; off",
+        "root": "padam（根词）",
+        "forms": [],
+        "formsNote": "—",
+        "note": "memadamkan（及物：扑灭）；kepadaman（名词） 状态词；灯灭、火熄，亦可表\"失传\"（bahasa yang padam）",
+        "synonyms": [
+          "—"
+        ],
+        "antonyms": [
+          "menyala"
+        ],
+        "examples": [
+          {
+            "scene": "叙事描述",
+            "id": "Lampu kamar tiba-tiba padam saat badai datang.",
+            "cn": "暴风雨来临时，房间的灯突然灭了。"
+          },
+          {
+            "scene": "听力训练",
+            "id": "Api akhirnya padam setelah petugas berjibaku selama dua jam.",
+            "cn": "消防人员奋战两小时后，大火终于熄灭。"
+          }
+        ]
+      },
+      {
+        "word": "meskipun",
+        "cn": "尽管",
+        "en": "although; even though",
+        "root": "—",
+        "forms": [],
+        "formsNote": "meskipun demikian（尽管如此，句间连接）、meski（简式）",
+        "note": "meski 为口语简写，义同；demikian 加强转折语篇衔接 让步连词，引导让步从句；主句常用 tetapi/namun 呼应。UKBI 阅读逻辑题标志词，信号\"反预期\"信息。",
+        "synonyms": [
+          "walaupun; biarpun; kendati"
+        ],
+        "antonyms": [
+          "—"
+        ],
+        "examples": [
+          {
+            "scene": "阅读实战",
+            "id": "Meskipun cuaca buruk, ia tetap datang ke kelas.",
+            "cn": "尽管天气恶劣，他仍来上课。"
+          },
+          {
+            "scene": "写作运用",
+            "id": "Meskipun gagal sekali, saya tidak akan berhenti berlatih.",
+            "cn": "尽管失败一次，我也不会停止练习。"
+          }
+        ]
+      },
+      {
+        "word": "subuh",
+        "cn": "黎明；清晨",
+        "en": "dawn; early morning",
+        "root": "subuh（根词）",
+        "forms": [],
+        "formsNote": "—",
+        "note": "— 名词；也指晨礼（salat subuh）",
+        "synonyms": [
+          "fajar"
+        ],
+        "antonyms": [
+          "senja"
+        ],
+        "examples": [
+          {
+            "scene": "叙事描述",
+            "id": "Ia berangkat kerja setiap subuh agar terhindar dari kemacetan.",
+            "cn": "他每天清晨出门上班以避开堵车。"
+          },
+          {
+            "scene": "听力训练",
+            "id": "Suara azan subuh terdengar dari masjid di sudut kampung.",
+            "cn": "村角清真寺传来晨礼的唤拜声。"
+          }
+        ]
+      },
+      {
+        "word": "ambang-batas",
+        "cn": "门槛；临界值（固定搭配 ambang batas）",
+        "en": "threshold; cut-off point",
+        "root": "ambang; batas",
+        "forms": [],
+        "formsNote": "ambang batas（固定搭配，分写）、melewati ambang batas（跨越门槛）",
+        "note": "双名词构成的固定搭配，非复合词；batas 可加词缀（terbatas 有限的） 本义门槛，引申为最低标准/及格线/临界值；UKBI 成绩分析场景核心词（ambang batas kelulusan 及格线）。",
+        "synonyms": [
+          "batas minimal; titik kritis"
+        ],
+        "antonyms": [
+          "—"
+        ],
+        "examples": [
+          {
+            "scene": "成绩分析",
+            "id": "Skor saya masih di bawah ambang batas kelulusan.",
+            "cn": "我的分数仍在及格线之下。"
+          },
+          {
+            "scene": "备考策略",
+            "id": "Kita perlu menetapkan ambang batas latihan yang lebih tinggi.",
+            "cn": "我们需要设定更高的练习达标线。"
+          }
+        ]
+      },
+      {
+        "word": "gelap",
+        "cn": "黑暗的；昏暗的；不明朗的",
+        "en": "dark; dim; obscure; unclear",
+        "root": "gelap（根词）",
+        "forms": [],
+        "formsNote": "—",
+        "note": "kegelapan（名词：黑暗）；menggelapkan（及物：侵吞/挪用） 形容词；物理黑暗 + 比喻（前景不明朗、情况不清）",
+        "synonyms": [
+          "pekat, kelam"
+        ],
+        "antonyms": [
+          "terang"
+        ],
+        "examples": [
+          {
+            "scene": "叙事描述",
+            "id": "Jalanan masih gelap ketika ia tiba di terminal.",
+            "cn": "他到车站时天还黑着。"
+          },
+          {
+            "scene": "阅读实战",
+            "id": "Masa depan perusahaan itu masih gelap dan penuh ketidakpastian.",
+            "cn": "那家公司的前景仍不明朗，充满变数。"
+          }
+        ]
+      },
+      {
+        "word": "gelombang",
+        "cn": "波；浪潮",
+        "en": "wave",
+        "root": "gelombang",
+        "forms": [],
+        "formsNote": "bergelombang（形容词，波浪起伏的）、gelombang pasang（涨潮浪）",
+        "note": "ber- 形态化形容词；本词也可比喻\"浪潮\"（gelombang demonstrasi） 本义海浪/波纹，常用比喻义\"一波浪潮\"（情绪、事件、运动）；叙事文描写海景与说明文谈自然现象均高频。",
+        "synonyms": [
+          "ombak; riak"
+        ],
+        "antonyms": [
+          "—"
+        ],
+        "examples": [
+          {
+            "scene": "叙事描述",
+            "id": "Gelombang besar menghantam kapal nelayan.",
+            "cn": "巨浪拍打着渔船。"
+          },
+          {
+            "scene": "阅读实战",
+            "id": "Gelombang panas mempengaruhi kesehatan warga.",
+            "cn": "热浪影响了居民的健康。"
+          }
+        ]
+      },
+      {
+        "word": "terang",
+        "cn": "明亮的；清楚的；明确的",
+        "en": "bright; clear; explicit",
+        "root": "terang（根词）",
+        "forms": [],
+        "formsNote": "—",
+        "note": "keterangan（名词：说明/信息）；menerangkan（解释） 形容词；光线明亮 + 表达清楚明确",
+        "synonyms": [
+          "jelas, cemerlang"
+        ],
+        "antonyms": [
+          "gelap"
+        ],
+        "examples": [
+          {
+            "scene": "叙事描述",
+            "id": "Bulan bersinar terang malam itu, menerangi seluruh halaman.",
+            "cn": "那晚月光明亮，照亮了整个院子。"
+          },
+          {
+            "scene": "阅读实战",
+            "id": "Penulis menjelaskan maksudnya dengan kalimat yang terang.",
+            "cn": "作者用明确的句子说明自己的意图。"
+          }
+        ]
+      },
+      {
+        "word": "sesi",
+        "cn": "环节；场次",
+        "en": "session",
+        "root": "sesi（借自英语 session）",
+        "forms": [],
+        "formsNote": "—",
+        "note": "外来词无派生；常用搭配 sesi latihan（练习环节）、sesi ujian（考试场次） 指有组织的活动单元（会议环节、考试场次、练习时段），正式语体；备考规划与课程描述常用。",
+        "synonyms": [
+          "tahap; babak"
+        ],
+        "antonyms": [
+          "—"
+        ],
+        "examples": [
+          {
+            "scene": "备考策略",
+            "id": "Sesi latihan pagi difokuskan pada soal membaca.",
+            "cn": "上午的练习环节专注阅读题。"
+          },
+          {
+            "scene": "成绩分析",
+            "id": "Pada sesi kedua, nilai listening saya meningkat.",
+            "cn": "在第二场，我的听力分数提高了。"
+          }
+        ]
+      },
+      {
+        "word": "esai",
+        "cn": "散文；短文；论说文",
+        "en": "essay; short prose composition",
+        "root": "esai（← essay，英语借词）",
+        "forms": [],
+        "formsNote": "—",
+        "note": "— 名词；UKBI 写作任务常见文体",
+        "synonyms": [
+          "karangan"
+        ],
+        "antonyms": [
+          "—"
+        ],
+        "examples": [
+          {
+            "scene": "备考策略",
+            "id": "Pada bagian menulis, peserta diminta menulis esai pendek dalam tiga puluh menit.",
+            "cn": "写作部分要求考生在三十分钟内写一篇短文。"
+          },
+          {
+            "scene": "成绩分析",
+            "id": "Esainya menunjukkan penguasaan struktur yang baik meski kosakatanya masih terbatas.",
+            "cn": "他的短文显示出良好的结构掌握，尽管词汇仍然有限。"
+          }
+        ]
+      },
+      {
+        "word": "menjaga",
+        "cn": "守护；维护；保持",
+        "en": "to guard; to maintain; to keep",
+        "root": "jaga",
+        "forms": [],
+        "formsNote": "jaga（动词原形/名词，守夜）、penjaga（守卫者）、jaga-jaga（警惕）、terjaga（被守护/醒着）",
+        "note": "meN- 及物化；peN- 施事名词化；ter- 状态/被动 多义动词：①看守保护（menjaga anak）；②维护保持（menjaga kebersihan, menjaga semangat）；UKBI 阅读中注意宾语判断义项。",
+        "synonyms": [
+          "memelihara; mengawal"
+        ],
+        "antonyms": [
+          "mengabaikan"
+        ],
+        "examples": [
+          {
+            "scene": "写作运用",
+            "id": "Kita harus menjaga semangat belajar meski sibuk.",
+            "cn": "即使忙碌，我们也应保持学习热情。"
+          },
+          {
+            "scene": "阅读实战",
+            "id": "Tugas penjaga mercusuar adalah menjaga lampu tetap menyala.",
+            "cn": "灯塔看守的职责是让灯保持常亮。"
+          }
+        ]
+      },
+      {
+        "word": "praktisnya",
+        "cn": "其实用性（praktis + -nya 名词化）",
+        "en": "its/his/her practicality",
+        "root": "praktis（实用；源自荷兰语 practisch）",
+        "forms": [],
+        "formsNote": "—",
+        "note": "praktis + -nya → praktisnya（名词化用法） 形容词 + -nya 名词化；\"praktisnya metode ini\" = 这方法的实用性",
+        "synonyms": [
+          "—"
+        ],
+        "antonyms": [
+          "—"
+        ],
+        "examples": [
+          {
+            "scene": "阅读实战",
+            "id": "Praktisnya metode belajar ini terbukti dari nilai ujian para siswa.",
+            "cn": "这种学习方法的实用性已从学生的考试成绩中得到证明。"
+          },
+          {
+            "scene": "听力训练",
+            "id": "Buku itu laris karena praktisnya dalam kehidupan sehari-hari.",
+            "cn": "那本书因在日常生活中的实用性而畅销。"
+          }
+        ]
+      },
+      {
+        "word": "irama",
+        "cn": "节奏；韵律",
+        "en": "rhythm; tempo",
+        "root": "irama（借自梵语 via 马来语）[待核实]",
+        "forms": [],
+        "formsNote": "berirama（有节奏的）、mengiramaikan [待核实]",
+        "note": "ber- 形容词化常用；其余派生少用 指音乐/诗歌的节奏，也引申为活动节奏（irama kerja 工作节奏）；说明文谈音乐与文化高频。",
+        "synonyms": [
+          "ritme; tempo"
+        ],
+        "antonyms": [
+          "—"
+        ],
+        "examples": [
+          {
+            "scene": "阅读实战",
+            "id": "Irama puisi itu membuatnya mudah diingat.",
+            "cn": "那首诗的韵律使它易于记忆。"
+          },
+          {
+            "scene": "听力训练",
+            "id": "Dengarkan irama kalimat untuk menangkap intonasi pembicara.",
+            "cn": "听句子的节奏以捕捉说话人的语调。"
+          }
+        ]
+      },
+      {
+        "word": "penguasaan",
+        "cn": "掌握；精通",
+        "en": "mastery; command (of)",
+        "root": "kuasa（能力；权力）",
+        "forms": [],
+        "formsNote": "—",
+        "note": "kuasa → menguasai（掌握，动词）；penguasaan（名词） 名词；\"penguasaan kosakata\" = 词汇掌握",
+        "synonyms": [
+          "—"
+        ],
+        "antonyms": [
+          "—"
+        ],
+        "examples": [
+          {
+            "scene": "成绩分析",
+            "id": "Penguasaan kosakata masih menjadi kelemahan terbesarnya.",
+            "cn": "词汇掌握仍是他最大的短板。"
+          },
+          {
+            "scene": "备考策略",
+            "id": "Penguasaan tata bahasa yang kuat sangat membantu pada bagian isian.",
+            "cn": "扎实的语法掌握对填空题帮助很大。"
+          }
+        ]
+      },
+      {
+        "word": "tandai",
+        "cn": "标记；做记号（动词，词根 tanda）",
+        "en": "to mark; to mark out",
+        "root": "tanda",
+        "forms": [],
+        "formsNote": "tanda（名词，记号）、menandai（动词，标记/标志）、tanda-tanda（复数，迹象）、ditandai（被标记）、petanda（征兆）[待核实]",
+        "note": "meN- 动词化；di- 被动；重叠表复数/泛指 本词根派生族：tanda（名词）→ menandai（动词，及物，\"标志着\"）；阅读技巧中圈划重点即 menandai kata kunci；抽象义\"标志着一个时代\"正式语体常见。",
+        "synonyms": [
+          "menandakan; menandatangani"
+        ],
+        "antonyms": [
+          "—"
+        ],
+        "examples": [
+          {
+            "scene": "备考策略",
+            "id": "Tandai kata kunci sebelum menjawab soal membaca.",
+            "cn": "回答阅读题前先标记关键词。"
+          },
+          {
+            "scene": "阅读实战",
+            "id": "Kedatangan internet menandai era baru komunikasi.",
+            "cn": "互联网的到来标志着一个通信新时代。"
+          }
+        ]
+      },
+      {
+        "word": "justru",
+        "cn": "反而/恰恰",
+        "en": "instead; on the contrary; precisely",
+        "root": "justru（根词，副词）",
+        "forms": [],
+        "formsNote": "—",
+        "note": "— 副词；表转折或强调，引出与预期相反的结果",
+        "synonyms": [
+          "malah"
+        ],
+        "antonyms": [
+          "—"
+        ],
+        "examples": [
+          {
+            "scene": "阅读实战",
+            "id": "Alih-alih gagal, ia justru berhasil dengan nilai tertinggi.",
+            "cn": "他不但没有失败，反而以最高分成功。"
+          },
+          {
+            "scene": "听力训练",
+            "id": "Jangan panik; rasa cemas justru membuatmu sulit berkonsentrasi.",
+            "cn": "别慌；焦虑感反而让你难以集中。"
+          }
+        ]
+      }
+    ]
   }
 };
 // ===== BIT 详解库 bitVocabDB V4.31.0 新增:按词组织的累积详解库,转换器 scripts/md_to_dailynote.py 在写入每日笔记时自动并入新词条;批量生成由 BIT→BIO 流程灌入 =====
@@ -105511,35 +106221,28 @@ const bitVocabDB = {
   },
   "justru": {
     "word": "justru",
-    "ipa": "/ˈdʒustru/",
     "cn": "反而/恰恰",
-    "en": "on the contrary, precisely",
-    "root": "justru",
-    "forms": [
-      {
-        "form": "justru",
-        "pos": "adv",
-        "mean": "反而/恰恰"
-      }
-    ],
-    "formsNote": "无形态变化；语篇副词",
-    "note": "引出与预期相反的结果；口语近义 malah",
+    "en": "instead; on the contrary; precisely",
+    "root": "justru（根词，副词）",
+    "forms": [],
+    "formsNote": "—",
+    "note": "— 副词；表转折或强调，引出与预期相反的结果",
     "synonyms": [
-      "malah",
-      "sebaliknya",
-      "bahkan"
+      "malah"
     ],
-    "antonyms": [],
+    "antonyms": [
+      "—"
+    ],
     "examples": [
       {
-        "scene": "Obat itu justru memperburuk keadaan.",
-        "id": "justru",
-        "cn": "那药反而让情况更糟。"
+        "scene": "阅读实战",
+        "id": "Alih-alih gagal, ia justru berhasil dengan nilai tertinggi.",
+        "cn": "他不但没有失败，反而以最高分成功。"
       },
       {
-        "scene": "Justru dia yang harusnya minta maaf.",
-        "id": "justru",
-        "cn": "恰恰是他才应该道歉。"
+        "scene": "听力训练",
+        "id": "Jangan panik; rasa cemas justru membuatmu sulit berkonsentrasi.",
+        "cn": "别慌；焦虑感反而让你难以集中。"
       }
     ]
   },
@@ -111297,30 +112000,27 @@ const bitVocabDB = {
   "menjaga": {
     "word": "menjaga",
     "cn": "守护；维护；保持",
-    "en": "to guard; to maintain",
+    "en": "to guard; to maintain; to keep",
     "root": "jaga",
     "forms": [],
-    "formsNote": "jaga、menjaga、dijaga、penjagaan、penjaga",
-    "note": "meN- + jaga → menjaga（守护、维护）；di- + jaga → dijaga（被守护）；peN- + -an → penjagaan（监护、警戒）；peN- + jaga → penjaga（守卫者） 使用范围很广：menjaga kualitas（保持质量）、menjaga keamanan（维护安全）、menjaga hubungan（维护关系）",
+    "formsNote": "jaga（动词原形/名词，守夜）、penjaga（守卫者）、jaga-jaga（警惕）、terjaga（被守护/醒着）",
+    "note": "meN- 及物化；peN- 施事名词化；ter- 状态/被动 多义动词：①看守保护（menjaga anak）；②维护保持（menjaga kebersihan, menjaga semangat）；UKBI 阅读中注意宾语判断义项。",
     "synonyms": [
-      "memelihara",
-      "mempertahankan",
-      "mengawal"
+      "memelihara; mengawal"
     ],
     "antonyms": [
-      "mengabaikan",
-      "mengacuhkan"
+      "mengabaikan"
     ],
     "examples": [
       {
-        "scene": "商务",
-        "id": "Setiap karyawan harus menjaga ketertiban di area pabrik.",
-        "cn": "每位员工必须维护厂区秩序。"
+        "scene": "写作运用",
+        "id": "Kita harus menjaga semangat belajar meski sibuk.",
+        "cn": "即使忙碌，我们也应保持学习热情。"
       },
       {
-        "scene": "商务",
-        "id": "Kami berkomitmen menjaga kualitas produk nikel.",
-        "cn": "我们致力于保持镍产品的质量。"
+        "scene": "阅读实战",
+        "id": "Tugas penjaga mercusuar adalah menjaga lampu tetap menyala.",
+        "cn": "灯塔看守的职责是让灯保持常亮。"
       }
     ]
   },
@@ -119801,43 +120501,28 @@ const bitVocabDB = {
   },
   "penerima": {
     "word": "penerima",
-    "ipa": "/pə.nə.ˈri.ma/",
-    "cn": "收件人",
-    "en": "recipient, receiver",
-    "root": "terima",
-    "forms": [
-      {
-        "form": "terima",
-        "pos": "v",
-        "mean": "接受"
-      },
-      {
-        "form": "menerima",
-        "pos": "v",
-        "mean": "接受/接待"
-      },
-      {
-        "form": "penerimaan",
-        "pos": "n",
-        "mean": "接收/录取/（国家）收入"
-      },
-      {
-        "form": "terima kasih",
-        "pos": "phrase",
-        "mean": "谢谢"
-      }
+    "cn": "收件人；接受者",
+    "en": "recipient; receiver",
+    "root": "terima（接受）",
+    "forms": [],
+    "formsNote": "—",
+    "note": "terima → menerima（主动动词）；penerima（接受者名词） 名词；常见于信件、包裹、奖学金等语境",
+    "synonyms": [
+      "—"
     ],
-    "formsNote": "pə-nərima：peN- 施事，terima「接受」",
-    "note": "penerima tamu 前台接待；penerima bantuan 受助人；penerimaan negara 国家收入",
-    "synonyms": [],
     "antonyms": [
-      "pengirim"
+      "—"
     ],
     "examples": [
       {
-        "scene": "Cek nama penerima sebelum mengirim paket.",
-        "id": "penerima",
-        "cn": "寄包裹前核对收件人姓名。"
+        "scene": "听力训练",
+        "id": "Surat itu ditujukan kepada penerima yang tinggal di Jakarta.",
+        "cn": "那封信是寄给住在雅加达的收件人的。"
+      },
+      {
+        "scene": "阅读实战",
+        "id": "Penerima beasiswa wajib melapor kepada pengelola setiap semester.",
+        "cn": "奖学金获得者每学期必须向管理方报到。"
       }
     ]
   },
@@ -131726,24 +132411,28 @@ const bitVocabDB = {
   },
   "meskipun": {
     "word": "meskipun",
-    "ipa": "/məs.ˈki.pun/",
     "cn": "尽管",
-    "en": "although, even though",
-    "root": "meskipun",
+    "en": "although; even though",
+    "root": "—",
     "forms": [],
-    "formsNote": "凝固让步连词，不拆分",
-    "note": "正式书面语；口语用 walaupun/biarpun；meski 为其缩略；Meskipun hujan, dia tetap berangkat 尽管下雨他仍出发",
+    "formsNote": "meskipun demikian（尽管如此，句间连接）、meski（简式）",
+    "note": "meski 为口语简写，义同；demikian 加强转折语篇衔接 让步连词，引导让步从句；主句常用 tetapi/namun 呼应。UKBI 阅读逻辑题标志词，信号\"反预期\"信息。",
     "synonyms": [
-      "walaupun",
-      "kendati",
-      "biarpun"
+      "walaupun; biarpun; kendati"
     ],
-    "antonyms": [],
+    "antonyms": [
+      "—"
+    ],
     "examples": [
       {
-        "scene": "Meskipun lelah, mereka menyelesaikan shift malam.",
-        "id": "meskipun",
-        "cn": "尽管很累，他们还是上完夜班。"
+        "scene": "阅读实战",
+        "id": "Meskipun cuaca buruk, ia tetap datang ke kelas.",
+        "cn": "尽管天气恶劣，他仍来上课。"
+      },
+      {
+        "scene": "写作运用",
+        "id": "Meskipun gagal sekali, saya tidak akan berhenti berlatih.",
+        "cn": "尽管失败一次，我也不会停止练习。"
       }
     ]
   },
@@ -140872,50 +141561,27 @@ const bitVocabDB = {
   "gelap": {
     "word": "gelap",
     "cn": "黑暗的；昏暗的；不明朗的",
-    "en": "dark; dim; obscure",
-    "root": "gelap（本土词）",
-    "forms": [
-      {
-        "form": "gelap",
-        "pos": "形容词",
-        "mean": "黑暗的"
-      },
-      {
-        "form": "kegelapan",
-        "pos": "名词",
-        "mean": "黑暗"
-      },
-      {
-        "form": "menggelapkan",
-        "pos": "动词",
-        "mean": "私吞；涂黑"
-      },
-      {
-        "form": "gelap-gelapan",
-        "pos": "名词",
-        "mean": "暗中交易；摸黑"
-      }
-    ],
-    "formsNote": "",
-    "note": "抽象义高频：`masa depan gelap`（前途暗淡）、`lapangan kerja gelap`（灰色就业）；法律贬义 `menggelapkan dana`（挪用资金）。",
+    "en": "dark; dim; obscure; unclear",
+    "root": "gelap（根词）",
+    "forms": [],
+    "formsNote": "—",
+    "note": "kegelapan（名词：黑暗）；menggelapkan（及物：侵吞/挪用） 形容词；物理黑暗 + 比喻（前景不明朗、情况不清）",
     "synonyms": [
-      "remang-remang（昏暗）",
-      "suram（阴沉）"
+      "pekat, kelam"
     ],
     "antonyms": [
-      "terang（明亮——#11 联记）",
-      "terang benderang（亮堂堂）"
+      "terang"
     ],
     "examples": [
       {
-        "scene": "工作园区",
-        "id": "Area penyimpanan bahan kimia dilarang gelap tanpa penerangan darurat.",
-        "cn": "（化学品储存区禁止黑暗无应急照明。）"
+        "scene": "叙事描述",
+        "id": "Jalanan masih gelap ketika ia tiba di terminal.",
+        "cn": "他到车站时天还黑着。"
       },
       {
-        "scene": "商务",
-        "id": "Investasi tanpa uji tuntas adalah langkah gelap.",
-        "cn": "（未经尽调的投资是盲目之举。）"
+        "scene": "阅读实战",
+        "id": "Masa depan perusahaan itu masih gelap dan penuh ketidakpastian.",
+        "cn": "那家公司的前景仍不明朗，充满变数。"
       }
     ]
   },
@@ -150898,53 +151564,26 @@ const bitVocabDB = {
     "word": "tingkat",
     "cn": "水平；等级；层",
     "en": "level; grade; storey",
-    "root": "tingkat（层级，基础名词）",
-    "forms": [
-      {
-        "form": "tingkat",
-        "pos": "名词",
-        "mean": "水平；等级"
-      },
-      {
-        "form": "meningkat",
-        "pos": "动词",
-        "mean": "上升（meN- 自发）"
-      },
-      {
-        "form": "meningkatkan",
-        "pos": "动词",
-        "mean": "提高（meN--kan 使动）"
-      },
-      {
-        "form": "peningkatan",
-        "pos": "名词",
-        "mean": "提升（peN--an）"
-      }
-    ],
-    "formsNote": "",
-    "note": "基础名词；meN- 自发上升 / meN--kan 使提高 / peN--an 名词化",
+    "root": "tingkat（根词）",
+    "forms": [],
+    "formsNote": "—",
+    "note": "— 名词；多义：水平/程度、楼层",
     "synonyms": [
-      "level",
-      "taraf"
+      "jenjang"
     ],
     "antonyms": [
       "—"
     ],
     "examples": [
       {
-        "scene": "月报",
-        "id": "Tingkat utilisasi pabrik mencapai 92 persen.",
-        "cn": "工厂利用率达92%。"
+        "scene": "成绩分析",
+        "id": "Tingkat pemahamannya sudah melebihi rata-rata kelas.",
+        "cn": "他的理解水平已超出班级平均。"
       },
       {
-        "scene": "安全",
-        "id": "Tingkat kecelakaan turun signifikan.",
-        "cn": "事故率明显下降。"
-      },
-      {
-        "scene": "项目",
-        "id": "Kami targetkan tingkat penyelesaian 95 persen.",
-        "cn": "我们目标完成度95%。"
+        "scene": "阅读实战",
+        "id": "Gedung perpustakaan itu memiliki lima belas tingkat.",
+        "cn": "图书馆大楼有十五层。"
       }
     ]
   },
@@ -153320,58 +153959,26 @@ const bitVocabDB = {
     "word": "mempengaruhi",
     "cn": "影响（动词）",
     "en": "to influence; to affect",
-    "root": "pengaruh（影响，名词——09-29 词条 #38）+ me- → mempengaruhi。pengaruh 内部不再拆解（garuh 不作独立词使用、KBBI 未收录）；语源疑与梵语相关，仅注不考。",
-    "forms": [
-      {
-        "form": "pengaruh",
-        "pos": "名词",
-        "mean": "影响（09-29 词条 #38）"
-      },
-      {
-        "form": "dipengaruhi",
-        "pos": "被动动词",
-        "mean": "被影响"
-      },
-      {
-        "form": "berpengaruh",
-        "pos": "动词",
-        "mean": "有影响；有影响力"
-      },
-      {
-        "form": "berpengaruh pada",
-        "pos": "动词短语",
-        "mean": "对……有影响"
-      },
-      {
-        "form": "terpengaruh",
-        "pos": "形容词/状态",
-        "mean": "受影响的"
-      }
-    ],
-    "formsNote": "",
-    "note": "",
+    "root": "pengaruh（影响）",
+    "forms": [],
+    "formsNote": "—",
+    "note": "pengaruh → mempengaruhi（及物动词）；terpengaruh（被影响）；berpengaruh pada（不及物） 及物动词；\"mempengaruhi hasil ujian\" = 影响考试成绩",
     "synonyms": [
-      "berdampak（产生影响——本日 #3）",
-      "mengimbas（波及，新闻口语）"
+      "—"
     ],
     "antonyms": [
-      "—（动词无常用直接反义）；可对比 tidak mempengaruhi（无影响）"
+      "—"
     ],
     "examples": [
       {
-        "scene": "工作园区",
-        "id": "Hujan deras mempengaruhi produktivitas pekerjaan luar ruang.",
-        "cn": "大雨影响室外作业效率。"
+        "scene": "阅读实战",
+        "id": "Media sosial dapat mempengaruhi gaya hidup remaja.",
+        "cn": "社交媒体能影响青少年的生活方式。"
       },
       {
-        "scene": "商务",
-        "id": "Keputusan ini tidak mempengaruhi kontrak berjalan.",
-        "cn": "该决定不影响正在执行的合同。"
-      },
-      {
-        "scene": "工作园区",
-        "id": "Perubahan desain mempengaruhi biaya pemasangan.",
-        "cn": "设计变更影响安装费用。"
+        "scene": "备考策略",
+        "id": "Jangan biarkan tekanan mempengaruhi konsentrasi saat ujian.",
+        "cn": "别让压力影响考试时的专注力。"
       }
     ]
   },
@@ -161960,37 +162567,28 @@ const bitVocabDB = {
   },
   "mengabaikan": {
     "word": "mengabaikan",
-    "ipa": "/məŋˈabaikan/",
     "cn": "忽视/不理会",
-    "en": "to ignore, to neglect",
-    "root": "aba",
-    "forms": [
-      {
-        "form": "pengabaian",
-        "pos": "n",
-        "mean": "忽视"
-      },
-      {
-        "form": "terabaikan",
-        "pos": "v",
-        "mean": "被忽视"
-      }
-    ],
-    "formsNote": "meN-…-kan；词根 aba（源自aba-aba）",
-    "note": "jangan mengabaikan detail = 别忽视细节；mengabaikan sinyal = 无视信号",
+    "en": "to ignore; to neglect",
+    "root": "aba（置之不理）",
+    "forms": [],
+    "formsNote": "—",
+    "note": "meng- + aba + -kan → mengabaikan；名词化 pengabaian 及物动词；\"mengabaikan petunjuk\" = 无视指示",
     "synonyms": [
-      "membiarkan",
-      "menyampingkan"
+      "membiarkan, menyepelekan"
     ],
     "antonyms": [
-      "memperhatikan",
-      "mementingkan"
+      "memperhatikan"
     ],
     "examples": [
       {
-        "scene": "Jangan mengabaikan peringatan itu.",
-        "id": "mengabaikan",
-        "cn": "不要忽视那个警告。"
+        "scene": "考场提醒",
+        "id": "Jangan mengabaikan instruksi sebelum mengerjakan soal.",
+        "cn": "做题前不要忽视说明。"
+      },
+      {
+        "scene": "阅读实战",
+        "id": "Pemerintah tidak boleh mengabaikan suara rakyat.",
+        "cn": "政府不应忽视民众的声音。"
       }
     ]
   },
@@ -175405,55 +176003,26 @@ const bitVocabDB = {
     "word": "terang",
     "cn": "明亮的；清楚的；明确的",
     "en": "bright; clear; explicit",
-    "root": "terang（本土词）",
-    "forms": [
-      {
-        "form": "terang",
-        "pos": "形容词",
-        "mean": "明亮的；清楚的"
-      },
-      {
-        "form": "menerangi",
-        "pos": "动词",
-        "mean": "照亮"
-      },
-      {
-        "form": "penerangan",
-        "pos": "名词",
-        "mean": "照明；说明"
-      },
-      {
-        "form": "terang-terangan",
-        "pos": "副词",
-        "mean": "公开地；明目张胆地"
-      },
-      {
-        "form": "menerangkan",
-        "pos": "动词",
-        "mean": "解释；阐明"
-      }
-    ],
-    "formsNote": "",
-    "note": "双域高频：①物理照明 `lampu terang`（明灯）；②抽象明确 `petunjuk terang`（明确指示）；副词 `terang-terangan`（公然）新闻贬义高频。",
+    "root": "terang（根词）",
+    "forms": [],
+    "formsNote": "—",
+    "note": "keterangan（名词：说明/信息）；menerangkan（解释） 形容词；光线明亮 + 表达清楚明确",
     "synonyms": [
-      "jelas（清楚）",
-      "cerah（晴朗——天色）"
+      "jelas, cemerlang"
     ],
     "antonyms": [
-      "gelap（黑暗——#10 联记）",
-      "samur（模糊）",
-      "kabur（含糊）"
+      "gelap"
     ],
     "examples": [
       {
-        "scene": "工作园区",
-        "id": "Lampu LED terang dipasang di seluruh area kerja.",
-        "cn": "（作业区全部装上明亮的 LED 灯。）"
+        "scene": "叙事描述",
+        "id": "Bulan bersinar terang malam itu, menerangi seluruh halaman.",
+        "cn": "那晚月光明亮，照亮了整个院子。"
       },
       {
-        "scene": "商务",
-        "id": "Perusahaan terang-terangan melanggar aturan.",
-        "cn": "（该公司公然违规——10-03 #24 联记。）"
+        "scene": "阅读实战",
+        "id": "Penulis menjelaskan maksudnya dengan kalimat yang terang.",
+        "cn": "作者用明确的句子说明自己的意图。"
       }
     ]
   },
@@ -198160,44 +198729,27 @@ const bitVocabDB = {
   "irama": {
     "word": "irama",
     "cn": "节奏；韵律",
-    "en": "rhythm; pace",
-    "root": "irama（梵语借词）",
-    "forms": [
-      {
-        "form": "irama",
-        "pos": "名词",
-        "mean": "节奏"
-      },
-      {
-        "form": "berirama",
-        "pos": "动词",
-        "mean": "有节奏地"
-      },
-      {
-        "form": "mengatur irama",
-        "pos": "短语",
-        "mean": "调整节奏"
-      }
-    ],
-    "formsNote": "",
-    "note": "ber- 表\"具有…\"，构成动词 可指音乐节奏，也可指做事节奏 \"irama kerja\"；menjaga irama = 保持节奏",
+    "en": "rhythm; tempo",
+    "root": "irama（借自梵语 via 马来语）[待核实]",
+    "forms": [],
+    "formsNote": "berirama（有节奏的）、mengiramaikan [待核实]",
+    "note": "ber- 形容词化常用；其余派生少用 指音乐/诗歌的节奏，也引申为活动节奏（irama kerja 工作节奏）；说明文谈音乐与文化高频。",
     "synonyms": [
-      "ritme",
-      "tempo"
+      "ritme; tempo"
     ],
     "antonyms": [
       "—"
     ],
     "examples": [
       {
-        "scene": "答题策略",
-        "id": "Menjaga irama menjawab soal penting agar tidak kehabisan waktu.",
-        "cn": "保持答题节奏很重要以免时间不够。"
+        "scene": "阅读实战",
+        "id": "Irama puisi itu membuatnya mudah diingat.",
+        "cn": "那首诗的韵律使它易于记忆。"
       },
       {
-        "scene": "生产管理",
-        "id": "Setiap lini memiliki irama produksi yang berbeda.",
-        "cn": "每条产线有不同的生产节奏。"
+        "scene": "听力训练",
+        "id": "Dengarkan irama kalimat untuk menangkap intonasi pembicara.",
+        "cn": "听句子的节奏以捕捉说话人的语调。"
       }
     ]
   },
@@ -198255,39 +198807,26 @@ const bitVocabDB = {
     "word": "metode",
     "cn": "方法",
     "en": "method",
-    "root": "metode（荷兰语/英语借词）",
-    "forms": [
-      {
-        "form": "metode",
-        "pos": "名词",
-        "mean": "方法"
-      },
-      {
-        "form": "metodologi",
-        "pos": "名词",
-        "mean": "方法论"
-      }
-    ],
-    "formsNote": "",
-    "note": "外来语名词，印尼语中直接整体使用 与 cara 近义；metode 更正式、系统性更强",
+    "root": "metode（借自荷兰语 methode）",
+    "forms": [],
+    "formsNote": "metodologi（方法论）、metodis（有方法的）",
+    "note": "派生词多用于学术/正式语体 指系统化的做事方式或研究途径，正式语体，UKBI 说明文与备考策略高频；日常口语多用 cara。",
     "synonyms": [
-      "cara",
-      "teknik",
-      "sistem"
+      "cara; pendekatan"
     ],
     "antonyms": [
       "—"
     ],
     "examples": [
       {
-        "scene": "备考方法",
-        "id": "Metode eliminasi efektif untuk soal pilihan ganda.",
-        "cn": "排除法对选择题有效。"
+        "scene": "备考策略",
+        "id": "Metode belajar yang tepat sangat membantu persiapan UKBI.",
+        "cn": "合适的学习方法对备考UKBI帮助很大。"
       },
       {
-        "scene": "项目管理",
-        "id": "Metode waterfall kurang fleksibel untuk proyek dinamis.",
-        "cn": "瀑布法对动态项目不够灵活。"
+        "scene": "阅读实战",
+        "id": "Metode penelitian penulis dijelaskan pada bagian kedua.",
+        "cn": "作者的研究方法在第二部分说明。"
       }
     ]
   },
@@ -198387,54 +198926,409 @@ const bitVocabDB = {
   "penguasaan": {
     "word": "penguasaan",
     "cn": "掌握；精通",
-    "en": "mastery",
-    "root": "kuasa（能力）→ menguasai（掌握）→ penguasaan（掌握这件事）",
-    "forms": [
-      {
-        "form": "penguasaan",
-        "pos": "名词",
-        "mean": "掌握"
-      },
-      {
-        "form": "menguasai",
-        "pos": "动词",
-        "mean": "掌握"
-      },
-      {
-        "form": "kuasa",
-        "pos": "名词",
-        "mean": "能力；权力"
-      },
-      {
-        "form": "dikuasai",
-        "pos": "被动动词",
-        "mean": "被掌握"
-      }
-    ],
-    "formsNote": "",
-    "note": "peN-…-an 名词化：menguasai → penguasaan penguasaan materi = 掌握材料内容；penguasaan bahasa = 语言精通",
+    "en": "mastery; command (of)",
+    "root": "kuasa（能力；权力）",
+    "forms": [],
+    "formsNote": "—",
+    "note": "kuasa → menguasai（掌握，动词）；penguasaan（名词） 名词；\"penguasaan kosakata\" = 词汇掌握",
     "synonyms": [
-      "pemahaman",
-      "kemahiran"
+      "—"
     ],
     "antonyms": [
-      "ketidaktahuan"
+      "—"
     ],
     "examples": [
       {
-        "scene": "备考评估",
-        "id": "Penguasaan materi grammar perlu diuji dengan latihan rutin.",
-        "cn": "语法掌握需要定期练习检验。"
+        "scene": "成绩分析",
+        "id": "Penguasaan kosakata masih menjadi kelemahan terbesarnya.",
+        "cn": "词汇掌握仍是他最大的短板。"
       },
       {
-        "scene": "岗位胜任",
-        "id": "Penguasaan bahasa Indonesia penting untuk negosiasi lokal.",
-        "cn": "精通印尼语对本地谈判很重要。"
+        "scene": "备考策略",
+        "id": "Penguasaan tata bahasa yang kuat sangat membantu pada bagian isian.",
+        "cn": "扎实的语法掌握对填空题帮助很大。"
+      }
+    ]
+  },
+  "supaya-untuk-agar-biar-buat": {
+    "word": "supaya-untuk-agar-biar-buat",
+    "cn": "目的连词（为了/以便）：supaya=agar 正式；untuk 通用；biar/buat 口语",
+    "en": "conjunctions of purpose (so that; in order to)",
+    "root": "—",
+    "forms": [],
+    "formsNote": "—",
+    "note": "连词无派生形态；biar/buat 为口语体 目的状语连词家族。supaya/agar 用于正式语体，引出目的从句，从句谓语常带 bisa/dapat；untuk 后接动词原形（untuk + V），通用语体；biar/buat 属口语，biar 后可接从句，buat 在爪哇口语常见（buat + V），UKBI 写作慎用。",
+    "synonyms": [
+      "guna"
+    ],
+    "antonyms": [
+      "—"
+    ],
+    "examples": [
+      {
+        "scene": "阅读实战",
+        "id": "Ia belajar giat supaya lulus UKBI.",
+        "cn": "他努力学习以便通过UKBI。"
+      },
+      {
+        "scene": "写作运用",
+        "id": "Kami berlatih setiap hari untuk memperkuat pemahaman.",
+        "cn": "我们每天练习以加强理解。"
+      }
+    ]
+  },
+  "suasana": {
+    "word": "suasana",
+    "cn": "氛围；气氛",
+    "en": "atmosphere; ambiance",
+    "root": "suasana",
+    "forms": [],
+    "formsNote": "suasana 为独立名词，无派生；常见搭配 suasana hati（心情）、suasana kelas（课堂氛围）",
+    "note": "无词缀派生；以固定搭配扩展 指场所、事件或心境营造的整体气氛，叙事文与说明文高频词；UKBI 阅读 passage 描述场景常见。",
+    "synonyms": [
+      "atmosfer; nuansa"
+    ],
+    "antonyms": [
+      "—"
+    ],
+    "examples": [
+      {
+        "scene": "叙事描述",
+        "id": "Suasana kelas sangat tenang saat ujian berlangsung.",
+        "cn": "考试进行时，教室氛围非常安静。"
+      },
+      {
+        "scene": "阅读实战",
+        "id": "Penulis menggambarkan suasana desa pada pagi hari.",
+        "cn": "作者描写了清晨村庄的氛围。"
+      }
+    ]
+  },
+  "terpaku-pada": {
+    "word": "terpaku-pada",
+    "cn": "专注于；被…粘住（固定搭配 terpaku pada）",
+    "en": "to be glued to; to be fixated on",
+    "root": "paku",
+    "forms": [],
+    "formsNote": "terpaku（动词，状态）、terpaku pada（固定搭配）",
+    "note": "ter- 前缀表处于某种状态；paku 本义\"钉子\"，terpaku 比喻\"钉住、僵住\" 字面义\"被钉子钉住\"，引申为目光/注意力被牢牢吸引（terpaku pada layar/kejadian），叙事文中描写专注或惊愕状态常用。",
+    "synonyms": [
+      "terfokus pada; terpesona oleh"
+    ],
+    "antonyms": [
+      "—"
+    ],
+    "examples": [
+      {
+        "scene": "叙事描述",
+        "id": "Semua mata terpaku pada papan skor.",
+        "cn": "所有目光都聚焦在记分板上。"
+      },
+      {
+        "scene": "阅读实战",
+        "id": "Pembaca terpaku pada detail kecil yang disebutkan penulis.",
+        "cn": "读者被作者提到的小细节吸引住了。"
+      }
+    ]
+  },
+  "nakal": {
+    "word": "nakal",
+    "cn": "淘气的；顽皮的",
+    "en": "naughty; mischievous",
+    "root": "nakal",
+    "forms": [],
+    "formsNote": "kenakalan（名词，顽皮行为）",
+    "note": "ke-an 名词化，表抽象行为属性 形容儿童或行为不守规矩、爱恶作剧；叙事文描写人物性格常用，含轻微责备但无严重贬义。",
+    "synonyms": [
+      "jahil; bandel"
+    ],
+    "antonyms": [
+      "penurut"
+    ],
+    "examples": [
+      {
+        "scene": "叙事描述",
+        "id": "Anak nakal itu menyembunyikan buku temannya.",
+        "cn": "那个淘气的孩子把同学的书藏了起来。"
+      },
+      {
+        "scene": "听力训练",
+        "id": "Cerita pendek itu menceritakan seekor kera yang nakal.",
+        "cn": "那篇短篇小说讲了一只顽皮的猴子。"
+      }
+    ]
+  },
+  "popularitasnya": {
+    "word": "popularitasnya",
+    "cn": "其人气/知名度（popularitas + -nya）",
+    "en": "its/his/her popularity",
+    "root": "popularitas（popularity，popular + -itas）",
+    "forms": [],
+    "formsNote": "—",
+    "note": "popularitas + -nya → popularitasnya（附着代词） 名词 + -nya；\"popularitasnya meningkat\" = 其人气上升",
+    "synonyms": [
+      "—"
+    ],
+    "antonyms": [
+      "—"
+    ],
+    "examples": [
+      {
+        "scene": "阅读实战",
+        "id": "Popularitasnya meningkat pesat sejak film itu dirilis.",
+        "cn": "自从那部电影上映，他的人气迅速攀升。"
+      },
+      {
+        "scene": "听力训练",
+        "id": "Penyanyi itu mempertahankan popularitasnya dengan kerja keras.",
+        "cn": "那位歌手靠努力维持人气。"
+      }
+    ]
+  },
+  "penekanan": {
+    "word": "penekanan",
+    "cn": "强调；重读",
+    "en": "emphasis; stress (in pronunciation)",
+    "root": "tekan",
+    "forms": [],
+    "formsNote": "menekankan（动词，强调）、tekanan（名词，压力/重音）、penekanan（名词，强调行为）",
+    "note": "meN-kan 使动/及物化；peN-an 名词化 双义项：①语义强调（penekanan pada hal penting）；②语音重读。UKBI 听力需注意说话人的重读位置，阅读注意作者强调的逻辑点。",
+    "synonyms": [
+      "penegasan; aksen"
+    ],
+    "antonyms": [
+      "—"
+    ],
+    "examples": [
+      {
+        "scene": "阅读实战",
+        "id": "Ada penekanan khusus pada bagian kesimpulan.",
+        "cn": "结论部分有特别强调之处。"
+      },
+      {
+        "scene": "听力训练",
+        "id": "Dengarkan penekanan suara narator untuk memahami sikapnya.",
+        "cn": "听叙述者的重音以理解其态度。"
+      }
+    ]
+  },
+  "padam": {
+    "word": "padam",
+    "cn": "熄灭；（灯）灭",
+    "en": "extinguished; (light) out; off",
+    "root": "padam（根词）",
+    "forms": [],
+    "formsNote": "—",
+    "note": "memadamkan（及物：扑灭）；kepadaman（名词） 状态词；灯灭、火熄，亦可表\"失传\"（bahasa yang padam）",
+    "synonyms": [
+      "—"
+    ],
+    "antonyms": [
+      "menyala"
+    ],
+    "examples": [
+      {
+        "scene": "叙事描述",
+        "id": "Lampu kamar tiba-tiba padam saat badai datang.",
+        "cn": "暴风雨来临时，房间的灯突然灭了。"
+      },
+      {
+        "scene": "听力训练",
+        "id": "Api akhirnya padam setelah petugas berjibaku selama dua jam.",
+        "cn": "消防人员奋战两小时后，大火终于熄灭。"
+      }
+    ]
+  },
+  "subuh": {
+    "word": "subuh",
+    "cn": "黎明；清晨",
+    "en": "dawn; early morning",
+    "root": "subuh（根词）",
+    "forms": [],
+    "formsNote": "—",
+    "note": "— 名词；也指晨礼（salat subuh）",
+    "synonyms": [
+      "fajar"
+    ],
+    "antonyms": [
+      "senja"
+    ],
+    "examples": [
+      {
+        "scene": "叙事描述",
+        "id": "Ia berangkat kerja setiap subuh agar terhindar dari kemacetan.",
+        "cn": "他每天清晨出门上班以避开堵车。"
+      },
+      {
+        "scene": "听力训练",
+        "id": "Suara azan subuh terdengar dari masjid di sudut kampung.",
+        "cn": "村角清真寺传来晨礼的唤拜声。"
+      }
+    ]
+  },
+  "ambang-batas": {
+    "word": "ambang-batas",
+    "cn": "门槛；临界值（固定搭配 ambang batas）",
+    "en": "threshold; cut-off point",
+    "root": "ambang; batas",
+    "forms": [],
+    "formsNote": "ambang batas（固定搭配，分写）、melewati ambang batas（跨越门槛）",
+    "note": "双名词构成的固定搭配，非复合词；batas 可加词缀（terbatas 有限的） 本义门槛，引申为最低标准/及格线/临界值；UKBI 成绩分析场景核心词（ambang batas kelulusan 及格线）。",
+    "synonyms": [
+      "batas minimal; titik kritis"
+    ],
+    "antonyms": [
+      "—"
+    ],
+    "examples": [
+      {
+        "scene": "成绩分析",
+        "id": "Skor saya masih di bawah ambang batas kelulusan.",
+        "cn": "我的分数仍在及格线之下。"
+      },
+      {
+        "scene": "备考策略",
+        "id": "Kita perlu menetapkan ambang batas latihan yang lebih tinggi.",
+        "cn": "我们需要设定更高的练习达标线。"
+      }
+    ]
+  },
+  "gelombang": {
+    "word": "gelombang",
+    "cn": "波；浪潮",
+    "en": "wave",
+    "root": "gelombang",
+    "forms": [],
+    "formsNote": "bergelombang（形容词，波浪起伏的）、gelombang pasang（涨潮浪）",
+    "note": "ber- 形态化形容词；本词也可比喻\"浪潮\"（gelombang demonstrasi） 本义海浪/波纹，常用比喻义\"一波浪潮\"（情绪、事件、运动）；叙事文描写海景与说明文谈自然现象均高频。",
+    "synonyms": [
+      "ombak; riak"
+    ],
+    "antonyms": [
+      "—"
+    ],
+    "examples": [
+      {
+        "scene": "叙事描述",
+        "id": "Gelombang besar menghantam kapal nelayan.",
+        "cn": "巨浪拍打着渔船。"
+      },
+      {
+        "scene": "阅读实战",
+        "id": "Gelombang panas mempengaruhi kesehatan warga.",
+        "cn": "热浪影响了居民的健康。"
+      }
+    ]
+  },
+  "sesi": {
+    "word": "sesi",
+    "cn": "环节；场次",
+    "en": "session",
+    "root": "sesi（借自英语 session）",
+    "forms": [],
+    "formsNote": "—",
+    "note": "外来词无派生；常用搭配 sesi latihan（练习环节）、sesi ujian（考试场次） 指有组织的活动单元（会议环节、考试场次、练习时段），正式语体；备考规划与课程描述常用。",
+    "synonyms": [
+      "tahap; babak"
+    ],
+    "antonyms": [
+      "—"
+    ],
+    "examples": [
+      {
+        "scene": "备考策略",
+        "id": "Sesi latihan pagi difokuskan pada soal membaca.",
+        "cn": "上午的练习环节专注阅读题。"
+      },
+      {
+        "scene": "成绩分析",
+        "id": "Pada sesi kedua, nilai listening saya meningkat.",
+        "cn": "在第二场，我的听力分数提高了。"
+      }
+    ]
+  },
+  "esai": {
+    "word": "esai",
+    "cn": "散文；短文；论说文",
+    "en": "essay; short prose composition",
+    "root": "esai（← essay，英语借词）",
+    "forms": [],
+    "formsNote": "—",
+    "note": "— 名词；UKBI 写作任务常见文体",
+    "synonyms": [
+      "karangan"
+    ],
+    "antonyms": [
+      "—"
+    ],
+    "examples": [
+      {
+        "scene": "备考策略",
+        "id": "Pada bagian menulis, peserta diminta menulis esai pendek dalam tiga puluh menit.",
+        "cn": "写作部分要求考生在三十分钟内写一篇短文。"
+      },
+      {
+        "scene": "成绩分析",
+        "id": "Esainya menunjukkan penguasaan struktur yang baik meski kosakatanya masih terbatas.",
+        "cn": "他的短文显示出良好的结构掌握，尽管词汇仍然有限。"
+      }
+    ]
+  },
+  "praktisnya": {
+    "word": "praktisnya",
+    "cn": "其实用性（praktis + -nya 名词化）",
+    "en": "its/his/her practicality",
+    "root": "praktis（实用；源自荷兰语 practisch）",
+    "forms": [],
+    "formsNote": "—",
+    "note": "praktis + -nya → praktisnya（名词化用法） 形容词 + -nya 名词化；\"praktisnya metode ini\" = 这方法的实用性",
+    "synonyms": [
+      "—"
+    ],
+    "antonyms": [
+      "—"
+    ],
+    "examples": [
+      {
+        "scene": "阅读实战",
+        "id": "Praktisnya metode belajar ini terbukti dari nilai ujian para siswa.",
+        "cn": "这种学习方法的实用性已从学生的考试成绩中得到证明。"
+      },
+      {
+        "scene": "听力训练",
+        "id": "Buku itu laris karena praktisnya dalam kehidupan sehari-hari.",
+        "cn": "那本书因在日常生活中的实用性而畅销。"
+      }
+    ]
+  },
+  "tandai": {
+    "word": "tandai",
+    "cn": "标记；做记号（动词，词根 tanda）",
+    "en": "to mark; to mark out",
+    "root": "tanda",
+    "forms": [],
+    "formsNote": "tanda（名词，记号）、menandai（动词，标记/标志）、tanda-tanda（复数，迹象）、ditandai（被标记）、petanda（征兆）[待核实]",
+    "note": "meN- 动词化；di- 被动；重叠表复数/泛指 本词根派生族：tanda（名词）→ menandai（动词，及物，\"标志着\"）；阅读技巧中圈划重点即 menandai kata kunci；抽象义\"标志着一个时代\"正式语体常见。",
+    "synonyms": [
+      "menandakan; menandatangani"
+    ],
+    "antonyms": [
+      "—"
+    ],
+    "examples": [
+      {
+        "scene": "备考策略",
+        "id": "Tandai kata kunci sebelum menjawab soal membaca.",
+        "cn": "回答阅读题前先标记关键词。"
+      },
+      {
+        "scene": "阅读实战",
+        "id": "Kedatangan internet menandai era baru komunikasi.",
+        "cn": "互联网的到来标志着一个通信新时代。"
       }
     ]
   }
 };
-
 
 function getTopicForDate(ds) {
   return topicCalendar[ds] || null;
@@ -199223,8 +200117,12 @@ function renderAbout(c){
 }
 
 function renderVersion(c){
-  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.47.2 / Versi</span></div>
+  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.47.3 / Versi</span></div>
     <div style="padding:16px;">
+      <div style="margin-bottom:14px;padding:14px;background:rgba(34,197,94,.10);border-radius:10px;border-left:3px solid var(--success)">
+        <div style="font-size:15px;font-weight:700;color:var(--success);margin-bottom:6px">V4.47.3 (2026-10-25)</div>
+        <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">1025每日笔记26词(挂ukbi_drill Day3成绩分析+重考规划, BIT V1.0定稿): 新收14(supaya-untuk-agar-biar-buat目的连词家族[口语biar/buat写作慎用]/suasana氛围/terpaku-pada专注于/nakal顽皮/penekanan强调/ambang-batas临界值/gelombang波/sesi场次/tandai标记/popularitasnya其人气/padam熄灭/subuh黎明/esai散文/praktisnya其实用性) + 覆盖更新12(justru/metode/meskipun/menjaga/irama/mengabaikan/penerima/mempengaruhi/tingkat/gelap/terang/penguasaan) · 大小写归一3(Justru/Mempengaruhi/Gelap) · ambang batas连字符归并 · 52例句(UKBI阅读/听力/备考/叙事场景) · RCO对账26/26逐词映射 · 库2943词 · 双写手并行 · check_syntax PASS · deploy-check 8/8</div>
+      </div>
       <div style="margin-bottom:14px;padding:14px;background:rgba(34,197,94,.10);border-radius:10px;border-left:3px solid var(--success)">
         <div style="font-size:15px;font-weight:700;color:var(--success);margin-bottom:6px">V4.47.2 (2026-10-25)</div>
         <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">骨架词条清零(用户实测上报"还是有漏的"→RCO全库扫描): V4.47.0课程生成遗留42条三字段骨架词条 —— ukbi_drill 29词(strategi menjawab/manajemen waktu/latihan soal/fokus/irama menjawab/memeriksa kembali/menebak dengan cerdas/metode eliminasi/draf jawaban/napas dalam/percaya diri/jadwal belajar/menganalisis kelemahan/penguasaan materi/skor simulasi/strategi ujian ulang/bahan persiapan/malam sebelum ujian/hari ujian/sarapan bergizi/kualitas tidur/persiapan akhir/rencana cadangan/gangguan teknis/koneksi terputus/masuk kembali/ujian terhenti/melihat hasil ujian/interpretasi skor) + CA interview 13词(melamar/kualifikasi/multinasional/merekrut/jujur/situasional/perilaku/ekspektasi/mengucapkan terima kasih/penawaran/onboarding/masa percobaan/surat pengunduran diri) + mengada-ada补en · 全部按BIT V1.0九字段重写(en/root/forms/formsNote/note/synonyms/antonyms/examples×2) · 同反义裸—零中文 · RCO A3复扫: 缺en/ex硬骨架=0 · 仅缺root 23条(专名/外来词合理) · 双写手并行+fix_skeleton_merge.py直写bitVocabDB(绕dailyNotesDB) · check_syntax PASS · deploy-check 8/8</div>
