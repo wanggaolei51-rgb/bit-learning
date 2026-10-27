@@ -6,7 +6,7 @@
 <meta http-equiv="Expires" content="0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LEO-BIR V4.47.5</title>
+<title>LEO-BIR V4.48.0</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -276,7 +276,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="sidebar-header">
     <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <h1>LEO-BIR</h1>
-    <div class="ver">LEO-BIR V4.47.5 · 日历纯笔记日可点击修复(dailyNotesDB日历/详情页双通) + 1026每日笔记41词</div>
+    <div class="ver">LEO-BIR V4.48.0 · C5→C6策略升级(核心词20-25/场景10句/昨日日记复习) + 双UKBI复盘话题10/26-31 + 播报2遍id倍速</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -6051,6 +6051,7 @@ function showBITInfo(word){
 
 
 
+
 // ===== 每日笔记模块（BIT V1.0 生产 → BIO 审查定稿） V4.26.0 新增 =====
 // V4.46.2+: 含播报跟随锚点（dnw-<ds>-<i>）与卡内播报按钮（bc-btn）
 function toggleDailyNote(id) {
@@ -6149,6 +6150,16 @@ function startTopicQuiz(topicKey) {
     }
   });
 
+  // V4.48 C6: topic.vocab 词查 bitVocabDB(日记话题核心词多在 bitVocabDB 九字段库)
+  if (topic.vocab && topic.vocab.length) {
+    topic.vocab.forEach(function(vv){
+      const k = vv[0];
+      if (topicWords.find(function(w){return w.word===k;})) return;
+      const bv = (typeof bitVocabDB!=="undefined" && bitVocabDB) ? (bitVocabDB[k] || bitVocabDB[String(k).toLowerCase()]) : null;
+      if (bv && bv.cn) topicWords.push({word: k, data: {ipa: "", cn: bv.cn, en: bv.en||"", root: bv.root||"", tag: topicKey}});
+    });
+  }
+
   // 如果话题词汇不足,添加所有词汇
   if (topicWords.length < 5) {
     Object.keys(vocabDB).forEach(k => {
@@ -6198,11 +6209,14 @@ function renderTopicQuiz(c, topicKey) {
   });
 
   // V4.42.1: tag 未命中时回退用 topic.vocab 取词（REP2C 课程词汇 tag 为中文别名，如 REP2C月报/REP2C周汇报）
+  // V4.48 C6: 同时查 bitVocabDB（日记话题核心词多在九字段库）
   if (topicWords.length === 0 && topic.vocab && topic.vocab.length > 0) {
     topic.vocab.forEach(vv => {
       const k = vv[0];
       const v = vocabDB[k] || vocabDB[k.charAt(0).toLowerCase() + k.slice(1)];
-      if (v) topicWords.push({word: k, data: v});
+      if (v) { topicWords.push({word: k, data: v}); return; }
+      const bv = (typeof bitVocabDB!=="undefined" && bitVocabDB) ? (bitVocabDB[k] || bitVocabDB[String(k).toLowerCase()]) : null;
+      if (bv && bv.cn) topicWords.push({word: k, data: {ipa: "", cn: bv.cn, en: bv.en||"", root: bv.root||"", tag: topicKey}});
     });
   }
 
@@ -16836,7 +16850,7 @@ ukbi_certification: {
       }
     ]
   }
-}};
+},"ukbi_diary_1":{"title":"UKBI复盘·听力阅读 / UKBI Review: Listening & Reading","icon":"🎧","days":3,"vocab":[["disajikan","被呈现",""],["teslet","题组（自适应考试）",""],["perekaman","录音",""],["skimming","略读",""],["ejaan","拼写",""],["tanda-baca","标点符号",""],["lengkap-dan-runtut","完整且连贯",""],["kacau","混乱",""],["susun-kerangka","列提纲",""],["tryout","模拟考试",""],["eliminasi","排除法",""],["menebak","猜测",""],["cerdas","聪明的",""],["markir","标记",""],["periksa","检查",""],["teliti","仔细的",""],["terburu-buru","匆忙的",""],["cemas","焦虑的",""],["grogi","怯场紧张的",""],["irama","节奏",""],["interpretasi","解读",""],["ucapkan","说出（祈使）",""],["draf","草稿",""],["rangkuman","摘要",""],["gangguan","故障",""]],"scenes":[{"title":"UKBI听力考场 / Ruang Ujian UKBI Bagian Mendengarkan","icon":"🎧","dialogue":[{"speaker":"A","text":"Nah, tes bagian mendengarkan mau dimulai. Kamu sudah baca petunjuknya?","trans":"好了，听力部分要开始了。你读过考试说明了吗？"},{"speaker":"B","text":"Sudah. Setiap teslet disajikan dalam bentuk perekaman, dan kita tidak bisa mengulangnya. Sekali dengar, langsung jawab!","trans":"读过了。每个题组以录音形式呈现，不能重播。只听一遍，直接回答！"},{"speaker":"A","text":"Betul, makanya aku biasanya membaca dulu pilihan jawabannya sebelum perekaman diputar. Jadi tahu kira-kira apa yang harus didengar.","trans":"没错，所以我通常在录音播放前先读选项。这样就知道该重点听什么了。"},{"speaker":"B","text":"Strategi yang cerdas! Kalau teksnya tentang suasana di kawasan industri, misalnya rapat proyek atau jadwal pengiriman, kita bisa langsung fokus ke kata kunci.","trans":"聪明的策略！如果材料是工业园区的场景，比如项目会议或发货日程，我们就能立刻锁定关键词。"},{"speaker":"A","text":"Iya, kemarin waktu tryout ada soal tentang instruksi keselamatan kerja. Untung aku sudah menguasai kosakatanya.","trans":"对，昨天模拟考试有一道题是关于工作安全指示的。幸好我掌握了相关词汇。"},{"speaker":"B","text":"Bagaimana kalau ada gangguan teknis? Misalnya suara perekaman kurang jelas?","trans":"如果有技术故障怎么办？比如录音的声音不清楚？"},{"speaker":"A","text":"Langsung angkat tangan dan lapor pengawas. Tapi jangan panik, tetap tenang dan ikuti irama percakapannya.","trans":"马上举手报告监考老师。但不要慌，保持镇定，跟着对话的节奏走。"},{"speaker":"B","text":"Kalau kamu ragu-ragu antara dua jawaban, gimana? Menebak asal saja?","trans":"如果你在两个答案之间犹豫怎么办？随便猜吗？"},{"speaker":"A","text":"Kalau ragu, pakai eliminasi dulu. Coret jawaban yang jelas salah, baru pilih yang tersisa. Dan jangan terburu-buru, sisakan waktu untuk periksa jawaban di akhir.","trans":"如果犹豫，先用排除法。划掉明显错误的，再从剩下的里选。别匆忙，最后留点时间检查答案。"},{"speaker":"B","text":"Siap. Semoga kita tidak grogi ya. Yuk, fokus — perekaman pertama mau dimulai!","trans":"准备好了。希望我们都别怯场。来，集中注意力——第一段录音要开始了！"}]},{"title":"阅读策略讨论 / Diskusi Strategi Membaca","icon":"📖","dialogue":[{"speaker":"A","text":"Bagian membaca UKBI itu teksnya panjang-panjang. Kamu baca semuanya kata per kata?","trans":"UKBI阅读部分的文章都很长。你逐字逐句读完吗？"},{"speaker":"B","text":"Kalau begitu, waktu tidak akan cukup. Aku pakai teknik skimming — baca judul, paragraf pertama, dan kalimat utama tiap paragraf dulu.","trans":"那样时间肯定不够。我用略读技巧——先读标题、第一段和每段的主题句。"},{"speaker":"A","text":"Terus setelah skimming, apa yang kamu lakukan?","trans":"那略读之后呢？"},{"speaker":"B","text":"Aku susun kerangka tulisan di kepala: pokoknya apa, argumennya bagaimana, kesimpulannya apa. Kalau kerangakanya kacau, artinya aku belum paham strukturnya.","trans":"我在脑海里列提纲：主旨是什么、论点怎么展开的、结论是什么。如果提纲混乱，说明我还没理解文章结构。"},{"speaker":"A","text":"Bagus. Terus bagaimana dengan soal yang menanyakan detail? Misalnya ejaan atau tanda-baca?","trans":"不错。那问细节的题怎么办？比如拼写或标点符号的题？"},{"speaker":"B","text":"Baru kembali ke teks dan baca teliti bagian yang relevan. Misalnya ada soal tanda baca: mana kalimat yang lengkap-dan-runtut? Itu harus baca ulang dengan saksama.","trans":"那就回到文章仔细读相关部分。比如有标点题：哪个句子是完整且连贯的？那就得重新认真读。"},{"speaker":"A","text":"Aku sering ketemu soal rangkuman. Kadang dua pilihan terlihat benar sama-sama.","trans":"我经常碰到摘要题。有时候两个选项看起来都对。"},{"speaker":"B","text":"Nah, untuk soal rangkuman, pastikan jawabannya mencakup ide utama semua paragraf, bukan cuma detail kecil. Markir bagian-bagian penting di teks supaya mudah merujuk kembali.","trans":"摘要题的话，要确保答案涵盖所有段落的主旨，而不只是小细节。在文章里标记重要部分，方便回查。"},{"speaker":"A","text":"Teknikmu rapi sekali. Kalau teksnya tentang surat bisnis atau proposal proyek di kawasan industri, apakah strateginya sama?","trans":"你的方法很系统。如果文章是商务信函或工业园区的项目提案，策略一样吗？"},{"speaker":"B","text":"Prinsipnya sama. Skimming dulu untuk gambaran besar, lalu teliti untuk detail. Ingat: bacanya terstruktur, jangan terburu-buru, dan interpretasi teks harus sesuai konteks, bukan tebakan.","trans":"原则一样。先略读抓大意，再细读找细节。记住：阅读要有条理，别匆忙，对文章的解读必须符合上下文，不能靠猜。"}]},{"title":"模考复盘对话 / Diskusi Evaluasi Tryout","icon":"📝","dialogue":[{"speaker":"A","text":"Baru selesai tryout hari ini. Gimana hasilnya menurutmu?","trans":"今天的模拟考试刚结束。你觉得考得怎么样？"},{"speaker":"B","text":"Lumayan, tapi bagian mendengarkan masih kurang. Aku cemas karena perekaman hanya diputar sekali.","trans":"还行，但听力部分还差点。因为只有一遍播放，我很紧张。"},{"speaker":"A","text":"Aku juga merasakan hal yang sama. Tadi aku sempat grogi di teslet pertama, sampai beberapa soal harus menebak.","trans":"我也有同感。刚才第一组题我就怯场了，好几道题只能靠猜。"},{"speaker":"B","text":"Menebak itu boleh, asal cerdas. Pakai eliminasi — buang pilihan yang pasti salah, baru pilih yang paling masuk akal.","trans":"猜也可以，但要聪明地猜。用排除法——去掉肯定错的，再选最合理的。"},{"speaker":"A","text":"Kamu ingat soal tentang interpretasi grafik di bagian membaca? Itu triki. Aku salah pilih karena tidak markir bagian yang relevan.","trans":"你记得阅读部分那道图表解读题吗？很坑。我没标记相关段落，结果选错了。"},{"speaker":"B","text":"Oh iya, soal ini juga aku periksa ulang. Untungnya aku sempat markir beberapa kalimat penting, jadi interpretasinya lebih akurat.","trans":"对对，那题我也复查了。幸好我标了几句话，所以解读更准确。"},{"speaker":"A","text":"Bagian menulis bagaimana? Kamu sempat buat draf sebelum jawab?","trans":"写作部分呢？你先打草稿了吗？"},{"speaker":"B","text":"Sempat. Aku tulis draf singkat dulu, susun kerangka, lalu tulis versi final. Hasilnya jadi lebih lengkap-dan-runtut. Kamu langsung tulis final?","trans":"打了。我先写简短草稿，列提纲，再写终稿。结果更完整连贯。你直接写的终稿？"},{"speaker":"A","text":"Ya, dan hasilnya kacau. Ide-ideku tidak tersusun rapi. Lain kali aku harus belajar darimu — jangan terburu-buru.","trans":"是啊，结果很乱。我的思路没组织好。下次我得跟你学——不能急躁。"},{"speaker":"B","text":"Nanti kita diskusikan lagi strateginya sambil minum kopi. Yang penting sekarang, jangan cemas berlebihan. UKBI itu ujian keterampilan, bukan adu nasib. Siapkan draf strategimu!","trans":"回头咱们边喝咖啡边讨论策略。现在最重要的是别过度焦虑。UKBI考的是能力，不是碰运气。把你的策略草稿准备好！"}]}],"speeches":[{"day":1,"title":"UKBI听力备考策略 / Strategi Mendengarkan untuk UKBI","icon":"🎧","words":178,"time":60,"content":"Selamat pagi, rekan-rekan. Hari ini kita akan membahas strategi menghadapi bagian mendengarkan dalam ujian UKBI.\n\nBagian mendengarkan terdiri dari beberapa teslet yang disajikan dalam bentuk perekaman. Ingatlah: perekaman hanya diputar satu kali. Oleh karena itu, kesiapan mental sangat penting.\n\nPertama, manfaatkan waktu sebelum perekaman dimulai untuk membaca pilihan jawaban. Dengan membaca terlebih dahulu, Anda tahu kira-kira apa yang perlu didengarkan. Ini strategi yang sangat cerdas dan efektif.\n\nKedua, ikuti irama percakapan atau monolog dengan tenang. Jangan panik jika ada satu atau dua kata yang tidak Anda pahami. Fokuslah pada pesan utama. Dalam percakapan bisnis, misalnya tentang rapat proyek atau jadwal produksi, identifikasi siapa pembicaranya, apa topiknya, dan apa kesimpulannya.\n\nKetiga, jika terjadi gangguan teknis seperti suara yang tidak jelas, segera lapor kepada pengawas. Jangan berdiam diri.\n\nTerakhir, jika ragu antara dua jawaban, gunakan eliminasi. Buang pilihan yang jelas salah. Dan jangan terburu-buru — periksa kembali jawaban Anda jika masih ada waktu.\n\nSekarang ucapkan kalimat ini bersama saya: \"Saya siap mendengarkan dengan fokus!\"\n\nSelamat berlatih!"},{"day":2,"title":"UKBI阅读技巧与策略 / Strategi Membaca untuk UKBI","icon":"📖","words":172,"time":60,"content":"Selamat siang, teman-teman. Hari ini kita fokus pada bagian membaca UKBI.\n\nTeknik pertama adalah skimming. Skimming artinya membaca secara cepat untuk mendapatkan gambaran umum. Bacalah judul, paragraf pertama, dan kalimat utama setiap paragraf. Jangan membaca kata per kata di awal.\n\nSetelah skimming, coba susun kerangka tulisan di kepala Anda. Apa pokok bahasannya? Bagaimana argumennya disusun? Apa kesimpulannya? Jika kerangkanya masih kacau, artinya Anda perlu membaca ulang dengan lebih teliti.\n\nDalam bagian membaca, sering ada pertanyaan tentang ejaan dan tanda baca. Mana kalimat yang ejaannya benar? Mana paragraf yang lengkap-dan-runtut? Untuk soal seperti ini, Anda harus kembali ke teks dan membaca bagian yang relevan dengan cermat.\n\nAda juga soal rangkuman. Pastikan pilihan jawaban mencakup ide utama dari seluruh teks, bukan hanya detail kecil. Gunakan pensil untuk markir kalimat-kalimat penting agar mudah dirujuk kembali.\n\nTerakhir, jangan terburu-buru. Artikel dalam UKBI bisa berupa surat bisnis, laporan proyek, atau opini tentang perekonomian Indonesia. Interpretasi jawaban Anda harus sesuai konteks teks.\n\nUcapkan dengan keyakinan: \"Saya membaca dengan strategi!\"\n\nSelamat belajar!"},{"day":3,"title":"模考复盘与心理调适 / Evaluasi Tryout dan Kesiapan Mental","icon":"💪","words":180,"time":60,"content":"Selamat sore, rekan-rekan. Hari ini kita bahas evaluasi tryout dan kesiapan mental sebelum menghadapi UKBI.\n\nSetelah tryout, penting untuk membuat draf catatan evaluasi. Tuliskan bagian mana yang sudah bagus dan mana yang perlu diperbaiki. Jika kerangka jawaban Anda terasa kacau, jangan khawatir — itu berarti ada ruang untuk berkembang.\n\nDalam menjawab soal, gunakan eliminasi sebagai senjata utama. Jangan takut menebak, tetapi lakukan dengan cerdas. Eliminasi pilihan yang pasti salah, lalu pilih jawaban yang paling logis berdasarkan konteks.\n\nUntuk bagian membaca, jangan lupa markir bagian teks yang penting. Ini sangat membantu terutama dalam soal interpretasi dan rangkuman. Anda bisa kembali dengan cepat ke bagian yang relevan.\n\nSekarang, mari kita bicara tentang emosi. Merasa cemas sebelum ujian itu wajar. Tetapi jangan biarkan rasa cemas menguasai Anda. Jika Anda grogi saat teslet pertama dimulai, tarik napas dalam, dan ingatkan diri bahwa Anda sudah berlatih keras.\n\nUntuk bagian menulis, selalu buat draf singkat terlebih dahulu. Susun kerangka idenya, lalu tulis dengan runtut. Jangan terburu-buru menulis langsung versi final.\n\nTerakhir, periksa ulang seluruh jawaban sebelum menyerahkan lembar jawaban. Kedisiplinan dalam memeriksa bisa menyelamatkan poin-poin berharga.\n\nUcapkan bersama: \"Saya tenang, saya siap, saya bisa!\"\n\nSampai jumpa di sesi berikutnya!"}],"grammar":{"title":"UKBI常考语法点 / Tata Bahasa Penting untuk UKBI","rules":[{"name":"被动语态：di- 前缀","detail":"印尼语被动语态由 di- 前缀构成，是 UKBI 阅读和听力的常见考点。例句：Setiap teslet disajikan dalam bentuk perekaman.（每个题组以录音形式呈现。）Soal-soal dibuat oleh tim ahli.（题目由专家团队编写。）注意：di- 前不加 ter-，且 di 与动词之间不加连字符。"},{"name":"祈使句 / Kalimat Perintah","detail":"UKBI 听力常出现指令句。祈使句直接用动词原形开头，主语省略。例句：Ucapkan kalimat ini dengan jelas!（清楚地读出这个句子！）Periksa jawaban Anda sebelum menyerahkan!（交卷前检查答案！）Markir bagian penting!（标记重要部分！）"},{"name":"并列连词 / Konjungsi Koordinatif","detail":"dan（和）、tetapi/tapi（但是）、atau（或者）、lalu/kemudian（然后）是 UKBI 阅读高频连词。例句：Pembahasan itu lengkap-dan-runtut tetapi terlalu panjang.（讨论内容完整连贯但太长了。）Baca judul dulu, lalu baca paragraf pertama.（先读标题，再读第一段。）"},{"name":"派生词缀 ber- 和 me-","detail":"ber- 表示「具有/进行」：berirama（有节奏的）。me- 表示主动及物：menjawab（回答）、menyusun（整理/排列）。例句：Percakapannya berirama natural.（对话节奏自然。）Sebaiknya susun kerangka sebelum menulis.（写作前最好先列提纲。）UKBI 常考同一词根加不同词缀的区别。"},{"name":"形容词语序与搭配","detail":"形容词后置是印尼语核心特征。例句：Dia siswa yang teliti.（他是个仔细的学生。）Hasil tryout-nya kacau sekali.（他的模考结果非常糟糕。）注意 yang 引导定语从句，UKBI 语法题常考 yang 的位置和用法。"},{"name":"常见副词与程度修饰","detail":"常见程度副词：sangat（非常）、kurang（不够）、agak（有点）、terlalu（太）。例句：Jangan terlalu cemas sebelum ujian.（考前别太焦虑。）Suara perekamannya agak kurang jelas.（录音的声音有点不清楚。）掌握副词位置是 UKBI 常考项。"}]},"quiz":{"title":"UKBI复盘·听力阅读测试 (15题)","questions":[{"q":"Dalam UKBI bagian mendengarkan, bagaimana teslet disajikan kepada peserta?","options":["A) Dalam bentuk teks yang dibaca sendiri","B) Dalam bentuk perekaman yang hanya diputar sekali","C) Dalam bentuk video dengan subtitle"],"a":1,"explain":"UKBI 听力部分的题组以录音(perekaman)形式呈现，且只播放一次，不能重听。"},{"q":"Apa arti kata \"skimming\" dalam strategi membaca?","options":["A) Membaca kata per kata dengan saksama","B) Membaca cepat untuk mendapatkan gambaran umum","C) Menghafal seluruh teks"],"a":1,"explain":"Skimming 是略读，指快速阅读以获取大意，而不是逐字细读。"},{"q":"Manakah kalimat yang lengkap-dan-runtut?","options":["A) Karena hujan deras, acara tersebut dibatalkan panitia.","B) Hujan deras, acara, dibatalkan.","C) Karena hujan deras sehingga acara dibatalkan."],"a":0,"explain":"选项 B 结构完整、逻辑连贯（因果明确，主谓齐全）。A 缺少主句主语，C 句子成分残缺。"},{"q":"Jika peserta ragu antara dua jawaban, strategi terbaik adalah...","options":["A) Langsung menebak jawaban pertama yang terpikir","B) Melewati soal dan tidak menjawab","C) Menggunakan eliminasi untuk membuang pilihan yang salah"],"a":2,"explain":"遇到犹豫时应用排除法(eliminasi)，去掉明显错误的选项，提高正确率。"},{"q":"Apa fungsi utama \"susun kerangka\" sebelum menulis esai dalam UKBI?","options":["A) Agar tidak perlu menulis draf","B) Agar tulisan menjadi kacau","C) Agar ide tersusun lengkap-dan-runtut"],"a":2,"explain":"列提纲(susun kerangka)能让写作思路清晰、文章结构完整连贯。"},{"q":"Manakah yang termasuk tanda baca yang benar dalam kalimat Indonesia?","options":["A) Apakah kamu sudah siap, untuk ujian UKBI?","B) Apakah kamu sudah siap untuk ujian UKBI?","C) Apakah kamu, sudah siap untuk ujian UKBI"],"a":1,"explain":"选项 B 标点使用正确。A 逗号位置错误（siap 和 untuk 之间不需要逗号），C 缺少句号且逗号误用。"},{"q":"Kata \"disajikan\" mengandung bentuk...","options":["A) Pasif dengan awalan di-","B) Aktif transitif","C) Kata sifat"],"a":0,"explain":"disajikan 由 saji（呈现）加被动前缀 di- 构成，意为「被呈现」。"},{"q":"Dalam kalimat \"Ucapkan kalimat ini dengan jelas!\", kata \"ucapkan\" menunjukkan bentuk...","options":["A) Permintaan atau perintah","B) Pertanyaan","C) Penjelasan"],"a":0,"explain":"Ucapkan 是祈使句，动词原形加 -kan 表示命令/请求，意为「请说出」。"},{"q":"Apa yang sebaiknya dilakukan jika terjadi gangguan teknis saat perekaman diputar?","options":["A) Tetap diam dan berharap suaranya membaik","B) Langsung keluar ruangan","C) Angkat tangan dan lapor pengawas"],"a":2,"explain":"出现技术故障(gangguan)时应举手报告监考老师(pengawas)，不要沉默或离场。"},{"q":"Perhatikan kalimat: \"Pembahasannya kacau sekali, sulit dipahami.\" Arti kata \"kacau\" adalah...","options":["A) Teratur dan rapi","B) Berantakan / tidak teratur","C) Menarik dan jelas"],"a":1,"explain":"kacau 意为「混乱、乱七八糟」，与 teratur（整齐）相反。"},{"q":"Manakah kalimat dengan ejaan yang benar?","options":["A) Saya harus membuat rangkuman setelah membaca.","B) Saya harus membwat rangkuman setelah membaca.","C) Saya harus membuat rangkuman setlah membaca."],"a":0,"explain":"选项 A 拼写正确。B 中 membwat 应为 membuat，C 中 setlah 应为 setelah。UKBI 常考拼写(ejaan)辨析。"},{"q":"Mengapa penting untuk tidak terburu-buru saat mengerjakan UKBI?","options":["A) Karena terburu-buru membuat kita salah membaca instruksi","B) Karena UKBI tidak mengukur kecepatan","C) Karena terburu-buru itu dilarang panitia"],"a":0,"explain":"匆忙(terburu-buru)会导致读错题、漏看选项，影响正确率。保持节奏很重要。"},{"q":"Kata \"markir\" dalam konteks ujian berarti...","options":["A) Menghapus jawaban","B) Menyalin teks","C) Menandai bagian teks yang penting"],"a":2,"explain":"markir 意为「标记、做记号」，在阅读时标记重要段落方便回查。"},{"q":"Apa beda antara merasa cemas dan grogi dalam konteks ujian?","options":["A) Cemas adalah kekhawatiran umum, grogi adalah rasa gugup saat tampil/bertindak","B) Keduanya sama saja","C) Cemas lebih parah dari grogi"],"a":0,"explain":"cemas 泛指焦虑不安的情绪，grogi 特指临场紧张/怯场（如考试、演讲时的紧张感）。"},{"q":"Dalam soal rangkuman UKBI, jawaban yang tepat harus...","options":["A) Mencakup hanya detail kecil dari satu paragraf","B) Mencakup ide utama dari seluruh teks","C) Se panjang mungkin seperti teks asli"],"a":1,"explain":"摘要(rangkuman)题要求涵盖全文主旨大意，而非只概括某个小节的细节。"}]}},"ukbi_diary_2":{"title":"UKBI复盘·写作口语 / UKBI Review: Writing & Speaking","icon":"✍️","days":3,"vocab":[["esai","散文/短文",""],["karakteristik","特征",""],["sifat","性质",""],["bersifat","具有…性质",""],["nyata","真实的",""],["kisaran","范围/区间",""],["adaptif","适应性的",""],["tetapkan","确定/规定",""],["legal","合法的",""],["testimoni","证言/推荐语",""],["ulasan","评论/评价",""],["evaluasi","评估",""],["keputusan","决定",""],["membedakan","区分",""],["perencanaan","规划",""],["intinya","关键是/总之",""],["apapun","无论什么",""],["bukti","证据",""],["segala","所有的",""],["wajar","合理的",""],["suasana","氛围",""],["terpaku-pada","专注于",""],["penekanan","强调",""],["meskipun","尽管",""],["makanya-sebabnya-oleh-karena-itu","因果连词（所以）",""]],"scenes":[{"title":"UKBI写作课 / Konsultasi Menulis Esai","icon":"📝","dialogue":[{"speaker":"A","text":"Bu, saya bingung menyusun esai untuk ujian UKBI. Apa karakteristik esai yang baik menurut Anda?","trans":"老师，我不太会写UKBI的短文。好文章的特征是什么？"},{"speaker":"B","text":"Karakteristik esai yang baik itu lengkap, runtut, dan logis — inilah sifat tulisan yang dinilai di UKBI.","trans":"好文章的特征是完整、连贯、有逻辑——这就是UKBI评分看重的写作性质。"},{"speaker":"A","text":"Jadi, paragraf pembuka harus berisi apa, Bu?","trans":"那开头段应该写什么内容呢？"},{"speaker":"B","text":"Paragraf pembuka memuat gagasan utama. Setelah itu, kembangkan argumen yang didukung bukti nyata, misalnya data atau testimoni dari ahli.","trans":"开头段要提出中心论点。然后展开论据，用真实证据支撑，比如数据或专家的证言。"},{"speaker":"A","text":"Apakah saya boleh menggunakan kisaran angka sebagai bukti? Dan haruskah sumbernya legal?","trans":"我可以用区间数字作为证据吗？来源必须是合法的吗？"},{"speaker":"B","text":"Tentu boleh, asalkan angkanya wajar dan bisa dipertanggungjawabkan. Sumber legal juga penting untuk testimoni.","trans":"当然可以，只要数字合理且能核实。证言也必须来自合法的来源。"},{"speaker":"A","text":"Bagaimana cara membedakan argumen yang kuat dan yang lemah?","trans":"怎么区分强论点和弱论点呢？"},{"speaker":"B","text":"Argumen kuat bersifat spesifik dan relevan; argumen lemah bersifat umum dan tidak fokus.","trans":"强论点具体且切题；弱论点空泛、没有焦点。"},{"speaker":"A","text":"Kalau draf saya masih berantakan, apa yang harus saya perbaiki dulu, Bu?","trans":"如果我的草稿还很乱，应该先改什么？"},{"speaker":"B","text":"Perbaiki struktur dulu. Intinya, pastikan alur berpikirmu jelas. Kalau perlu, minta ulasan dari teman.","trans":"先改结构。关键是确保你的思路清晰。有必要的话，请朋友帮你评阅。"}]},{"title":"口语模拟考场 / Simulasi Ujian Berbicara","icon":"🎤","dialogue":[{"speaker":"A","text":"Kamu sudah siap untuk bagian berbicara? Suasana di ruang perekaman bisa bikin grogi.","trans":"口语部分准备好了吗？录音室里的氛围容易让人紧张。"},{"speaker":"B","text":"Agak grogi sih, tapi aku sudah latihan. Kamu sudah pilih tema?","trans":"有点紧张，但我练过了。你选好话题了吗？"},{"speaker":"A","text":"Sudah. Aku pilih tema perencanaan karier. Kamu pilih tema apa?","trans":"选好了。我选的是职业规划的话题。你选什么？"},{"speaker":"B","text":"Aku pilih tema lingkungan kerja. Bagiku, yang sulit itu jangan terpaku pada naskah yang sudah disiapkan.","trans":"我选工作环境的话题。对我来说，难点是不要死盯着准备好的稿子念。"},{"speaker":"A","text":"Setuju. Pewawancara bisa mengajukan pertanyaan apapun, jadi kita harus adaptif.","trans":"同意。考官可以问任何问题，所以我们必须随机应变。"},{"speaker":"B","text":"Ya, makanya aku berlatih menjawab pertanyaan yang tidak terduga, dan memberi penekanan pada kata penting supaya jawaban lebih jelas.","trans":"所以我才练习回答意料之外的问题，并且给关键词加重音，让回答更清楚。"},{"speaker":"A","text":"Bagus. Intinya, intonasi yang tepat menunjukkan pemahaman yang baik.","trans":"很好。关键是，恰当的语调能体现你的理解水平。"},{"speaker":"B","text":"Meskipun waktunya terbatas, kita harus tetap tenang dan fokus.","trans":"尽管时间有限，我们也要保持镇定和专注。"},{"speaker":"A","text":"Benar. Kalau ada bagian yang tidak tahu, sebut saja hal yang kita yakini.","trans":"没错。遇到不会的地方，就说自己有把握的内容。"},{"speaker":"B","text":"Setuju. Sebabnya, jawaban yang jujur dan runtut lebih bernilai daripada jawaban panjang tapi kosong. Oke, mulai simulasi?","trans":"同意。因为诚实而连贯的回答，比又长又空洞的回答更有价值。好，开始模拟吧？"}]},{"title":"考后复盘对话 / Diskusi Hasil UKBI","icon":"📊","dialogue":[{"speaker":"A","text":"Hasil UKBI sudah keluar! Aku lulus dengan predikat Madya. Bagaimana denganmu?","trans":"UKBI成绩出来了！我拿了Madya等级通过了。你呢？"},{"speaker":"B","text":"Alhamdulillah, aku juga lulus, Tinggi. Tapi nilai menulisku masih di kisaran cukup.","trans":"感谢真主，我也通过了，Tinggi等级。但我的写作分数还只在中等区间。"},{"speaker":"A","text":"Sudah bagus! Menurutmu, apa faktor yang paling berpengaruh pada nilaimu?","trans":"已经很不错了！你觉得影响分数的主要因素是什么？"},{"speaker":"B","text":"Evaluasi dari lembaga menunjukkan kelemahanku ada di bagian menulis esai. Aku memang kurang latihan.","trans":"机构的评估显示我的弱项是短文写作。我确实练得不够。"},{"speaker":"A","text":"Jadi, apa keputusanmu sekarang? Ikut UKBI lagi atau berhenti di sini?","trans":"那你现在的决定是什么？再考一次UKBI，还是就到这里？"},{"speaker":"B","text":"Aku putuskan mengikuti UKBI lagi tahun depan. Skor lebih tinggi dibutuhkan untuk beasiswa.","trans":"我决定明年再考一次。申请奖学金需要更高的分数。"},{"speaker":"A","text":"Keputusan yang wajar. Apa rencana persiapanmu?","trans":"这是个合理的决定。你的备考计划是什么？"},{"speaker":"B","text":"Aku akan ikut kursus menulis dan mengumpulkan segala bukti kemajuan, seperti draf esai dan rekaman latihan.","trans":"我会参加写作课，并收集所有进步的证据，比如作文草稿和练习录音。"},{"speaker":"A","text":"Ide bagus. Dengan begitu kamu bisa melihat progresmu secara nyata. Meskipun sibuk, tetap konsisten ya.","trans":"好主意。这样你就能看到实实在在的进步。尽管工作忙，也要坚持哦。"},{"speaker":"B","text":"Pasti. Intinya, jangan menyerah dan terus evaluasi diri. Terima kasih sudah menemaniku berlatih!","trans":"一定。关键是别放弃，不断自我评估。谢谢你陪我练习！"}]}],"speeches":[{"day":1,"title":"写好UKBI作文的关键 / Kunci Menulis Esai UKBI","icon":"✍️","words":158,"time":60,"content":"Assalamu'alaikum dan salam sehat untuk kita semua.\n\nHari ini saya ingin berbagi tentang cara menulis esai yang baik untuk ujian UKBI. Esai yang baik memiliki tiga karakteristik utama: lengkap, runtut, dan logis. Lengkap berarti esai memiliki paragraf pembuka, isi, dan kesimpulan. Paragraf pembuka memuat gagasan utama yang jelas. Isi esai berisi argumen-argumen yang saling terhubung. Kesimpulan merangkum seluruh gagasan tanpa menambah hal baru.\n\nKedua, esai harus runtut. Setiap kalimat harus mengalir dengan baik dari satu paragraf ke paragraf berikutnya. Gunakan kata penghubung seperti pertama, kedua, selain itu, dan terakhir untuk menunjukkan alur berpikir.\n\nKetiga, esai harus didukung bukti nyata. Bukti bisa berupa data, contoh, atau testimoni dari sumber terpercaya. Hindari argumen yang bersifat umum dan tidak fokus.\n\nSetelah menulis draf pertama, luangkan waktu untuk merevisi. Periksa struktur terlebih dahulu, kemudian tata bahasa. Minta teman membaca draf Anda dan memberikan ulasan yang jujur. Intinya, latihan menulis secara teratur adalah kunci keberhasilan. Selamat berlatih, dan semoga sukses di ujian UKBI!"},{"day":2,"title":"从容应对口语考试 / Strategi Ujian Berbicara","icon":"🎙️","words":159,"time":60,"content":"Selamat pagi, teman-teman.\n\nHari ini saya akan berbicara tentang strategi menghadapi bagian berbicara dalam ujian UKBI. Bagi banyak peserta, bagian ini adalah yang paling menegangkan karena suasana perekaman yang tegang dan waktu yang terbatas.\n\nPertama, persiapan adalah kunci. Pilihlah tema yang sudah Anda kuasai dan buat kerangka singkat, bukan naskah lengkap. Dengan kerangka, Anda bisa berbicara lebih natural dan tidak terpaku pada teks.\n\nKedua, perhatikan penekanan kata dan intonasi. Kata-kata penting harus diberi tekanan supaya pendengar memahami pesan Anda. Bicaralah dengan tempo yang wajar, tidak terlalu cepat dan tidak terlalu lambat.\n\nKetiga, jangan panik jika pewawancara mengajukan pertanyaan yang tidak terduga. Ingatlah bahwa Anda boleh menjawab dengan hal yang Anda ketahui. Yang penting jawaban Anda runtut dan jelas. Meskipun ada jeda kecil, itu tidak masalah.\n\nTerakhir, berlatihlah secara rutin. Rekam diri Anda berbicara, dengarkan ulang, dan perbaiki kekurangan. Latihan bersama teman juga sangat membantu, karena Anda bisa saling menilai. Intinya, kepercayaan diri dibangun melalui latihan yang konsisten. Semoga sukses!"},{"day":3,"title":"成绩解读与下一步 / Evaluasi Hasil dan Langkah Berikutnya","icon":"📈","words":158,"time":60,"content":"Assalamu'alaikum warahmatullahi wabarakatuh.\n\nAlhamdulillah, saya baru saja menerima hasil ujian UKBI saya. Dalam kesempatan ini, saya ingin berbagi cara membaca evaluasi hasil dan menetapkan langkah selanjutnya.\n\nPertama, pelajari laporan skor dengan seksama. Laporan UKBI menunjukkan empat kemampuan: mendengarkan, membaca, menulis, dan berbicara. Setiap kemampuan memiliki skor dalam kisaran tertentu. Jangan hanya melihat predikat akhir, tetapi identifikasi kemampuan mana yang paling lemah.\n\nKedua, jadikan evaluasi ini sebagai alat perencanaan belajar. Misalnya, jika nilai menulis rendah, saya perlu lebih banyak latihan menyusun esai. Jika nilai berbicara rendah, saya perlu latihan berbicara dengan rekaman.\n\nKetiga, tetapkan keputusan yang realistis. Tidak semua orang harus mengulang ujian. Pertimbangkan tujuan Anda: apakah untuk beasiswa, pekerjaan, atau kebutuhan pribadi. Jika keputusan adalah mengulang, buatlah jadwal belajar yang teratur.\n\nTerakhir, kumpulkan segala bukti kemajuan: draf esai, rekaman latihan, dan hasil kuis. Bandingkan bukti-bukti ini dari waktu ke waktu untuk melihat perkembangan nyata. Intinya, hasil UKBI adalah cermin, bukan penghakim. Mari terus belajar dan berkembang. Terima kasih."}],"grammar":{"title":"UKBI写作口语高频语法 / Tata Bahasa Inti UKBI","rules":[{"name":"因果连词：makanya / sebabnya / oleh karena itu","detail":"三个词都表示“所以”，语域不同：makanya 最口语，适合对话；sebabnya 中性；oleh karena itu 最正式，适合写作。例：Hujan deras, makanya saya terlambat.（口语：雨很大，所以我迟到了。）/ Biaya produksi naik. Oleh karena itu, harga jual dinaikkan.（写作：生产成本上涨，因此提高售价。）"},{"name":"让步状语：meskipun / walaupun","detail":"meskipun 引导让步从句，主句常配 tetap/tetapi：Meskipun hujan deras, dia tetap berangkat kerja.（尽管下大雨，他仍然去上班。）正式写作中 meskipun 与 namun 二选一即可，不要叠加。"},{"name":"性质表达：bersifat + 形容词","detail":"bersifat 表示“具有…性质”，由名词 sifat（性质）加前缀 ber- 构成，后接形容词：Esai yang baik bersifat logis dan runtut.（好文章具有逻辑性和条理性。）Argumen kuat bersifat spesifik.（强论点具有具体性。）"},{"name":"总结强调：intinya / pada intinya","detail":"intinya 意为“关键是/总之”，置于句首总结观点，口语写作皆可：Intinya, persiapan adalah kunci keberhasilan.（总之，准备是成功的关键。）考试口语中用来收束答案非常自然。"},{"name":"不定表达：apapun / segala","detail":"apapun = 无论什么（指事/物），segala = 所有的（后接名词）。Pewawancara boleh bertanya apapun.（考官可以问任何问题。）Segala persiapan sudah selesai.（所有准备都已完成。）"},{"name":"Esai 三段式结构","detail":"UKBI 写作标准结构：pembuka（提出 tesis 论点）→ isi（argumen 论据 + bukti 证据，如数据或 testimoni）→ kesimpulan（rangkuman 总结）。段落间用 kata penghubung（首先、其次、此外、最后）衔接，使文章 runtut。例：Pembuka: “Pendidikan bahasa penting bagi profesional.” → Isi: 论据一+数据，论据二+专家证言 → Kesimpulan: “Oleh karena itu, belajar bahasa harus konsisten.”"}]},"quiz":{"title":"UKBI复盘·写作口语测试 (15题)","questions":[{"q":"Hujan sangat deras, ... saya terlambat tiba di kantor.","options":["A) meskipun","B) makanya","C) selama"],"a":1,"explain":"前后是因果关系：因为雨大，所以迟到。makanya = 所以，最符合语境；meskipun 是“尽管”，selama 是“在…期间”。"},{"q":"Esai yang baik ... lengkap, runtut, dan logis.","options":["A) bersifat","B) bernilai","C) berada"],"a":0,"explain":"bersifat + 形容词表示“具有…性质”。句意：好文章具有完整、连贯、有逻辑的性质。"},{"q":"“Karakteristik esai yang baik antara lain lengkap dan runtut.” Apa arti kata “karakteristik”?","options":["A) ciri khas","B) judul","C) panjang"],"a":0,"explain":"karakteristik = 特征、特点。句意：好文章的特征包括完整和连贯。"},{"q":"... waktu ujian terbatas, peserta harus tetap fokus.","options":["A) Tetapi","B) Oleh karena itu","C) Meskipun"],"a":2,"explain":"让步结构 meskipun...tetap...：尽管考试时间有限，考生仍须保持专注。"},{"q":"Pewawancara boleh mengajukan pertanyaan ... kepada peserta.","options":["A) apapun","B) kemanapun","C) bagaimanapun"],"a":0,"explain":"apapun = 无论什么/任何。句意：考官可以向考生提出任何问题。kemanapun 指地点，bagaimanapun 指方式。"},{"q":"“... , persiapan adalah kunci keberhasilan.” Kata yang tepat untuk mengawali kesimpulan adalah ...","options":["A) Sebabnya","B) Intinya","C) Meskipun"],"a":1,"explain":"intinya = 关键是/总之，用于句首引出总结。句意：总之，准备是成功的关键。"},{"q":"Untuk menegaskan waktu dalam kalimat “Saya akan berangkat besok”, kata yang diberi penekanan adalah ...","options":["A) SAYA","B) berangkat","C) BESOK"],"a":2,"explain":"penekanan（重音/强调）落在要突出的词上。想强调时间就把 BESOK 重读；强调主语则重读 SAYA。"},{"q":"“Nilai menulisku berada di kisaran 600 sampai 650.” Apa arti kata “kisaran”?","options":["A) rentang","B) jumlah total","C) rata-rata"],"a":0,"explain":"kisaran = 范围/区间，近义词 rentang。句意：我的写作分数在600到650区间。"},{"q":"Setiap argumen dalam esai harus didukung bukti yang ...","options":["A) nyata","B) wajar","C) legal"],"a":0,"explain":"bukti nyata = 真实的证据，固定搭配。论据必须由真实可查的证据支撑。"},{"q":"Di bagian pembuka esai, penulis harus menyatakan ...","options":["A) gagasan utama (tesis)","B) ucapan terima kasih","C) daftar pustaka"],"a":0,"explain":"pembuka（开头段）的功能是提出中心论点（gagasan utama / tesis）；致谢是结尾的内容，daftar pustaka（参考文献）也不属于开头段。"},{"q":"... keputusan untuk mengulang UKBI, saya membuat jadwal belajar mingguan.","options":["A) Sebelum","B) Setelah","C) Selama"],"a":1,"explain":"setelah + 名词短语：做出决定之后，我制定了每周学习计划。keputusan = 决定。"},{"q":"... persiapan sudah selesai sebelum hari ujian.","options":["A) Segala","B) Apapun","C) Kadang"],"a":0,"explain":"segala + 名词 = 所有的。句意：考试前一天，所有准备工作都已完成。"},{"q":"Hasil evaluasi menunjukkan nilai berbicaraku rendah. ..., saya akan banyak berlatih berbicara.","options":["A) Oleh karena itu","B) Meskipun","C) Sebelum"],"a":0,"explain":"前后是因果关系：评估显示口语分数低，因此要加强口语练习。oleh karena itu = 因此（正式用语）。"},{"q":"Dalam ujian berbicara, peserta harus ... terhadap pertanyaan yang tidak terduga.","options":["A) adaptif","B) terpaku","C) panik"],"a":0,"explain":"adaptif = 适应性的。对意外问题要灵活应对，而不是僵住（terpaku）或慌张（panik）。"},{"q":"Manakah contoh kalimat pembuka esai yang baik?","options":["A) Terima kasih sudah membaca esai saya.","B) Bahasa Indonesia yang baik penting bagi profesional modern karena komunikasi menentukan keberhasilan kerja.","C) Saya suka sekali makan nasi goreng di kantin."],"a":1,"explain":"好的开头段应提出论点（tesis）并给出理由，B 项符合要求；A 是结尾致谢，C 是无关话题。"}]}}};
 
   const topicCalendar = {
   "2026-07-15": {topic: "meet", day: 2, label: "第2课 · 场景对话"},
@@ -16941,7 +16955,7 @@ ukbi_certification: {
 
   "2026-10-23": {topic: "ukbi_drill", day: 1, label: "⚡ UKBI冲刺 · 第1课 · 模拟训练+时间管理"},
   "2026-10-24": {topic: "ukbi_drill", day: 2, label: "⚡ UKBI冲刺 · 第2课 · 心理调适+应急方案"},
-  "2026-10-25": {topic: "ukbi_drill", day: 3, label: "⚡ UKBI冲刺 · 第3课 · 成绩分析+重考规划", allDays: true}};
+  "2026-10-25": {topic: "ukbi_drill", day: 3, label: "⚡ UKBI冲刺 · 第3课 · 成绩分析+重考规划", allDays: true},"2026-10-26":{"topic":"ukbi_diary_1","day":1,"label":"🎧 UKBI复盘一 · 第1课 · 听力策略+节奏"},"2026-10-27":{"topic":"ukbi_diary_1","day":2,"label":"🎧 UKBI复盘一 · 第2课 · 阅读策略+结构分析"},"2026-10-28":{"topic":"ukbi_diary_1","day":3,"label":"🎧 UKBI复盘一 · 第3课 · 模考复盘+心理调适","allDays":true},"2026-10-29":{"topic":"ukbi_diary_2","day":1,"label":"✍️ UKBI复盘二 · 第1课 · 写作框架+论证"},"2026-10-30":{"topic":"ukbi_diary_2","day":2,"label":"✍️ UKBI复盘二 · 第2课 · 口语模拟+表达"},"2026-10-31":{"topic":"ukbi_diary_2","day":3,"label":"✍️ UKBI复盘二 · 第3课 · 成绩评估+决策","allDays":true}};
 
 
 ;
@@ -83584,6 +83598,508 @@ const dailyNotesDB = {
         ]
       }
     ]
+  },
+  "2026-10-24": {
+    "date": "2026-10-24",
+    "topicKey": "ukbi_drill",
+    "source": "BIT V1.0 + BIO 审查",
+    "entries": [
+      {
+        "word": "napas-dalam",
+        "cn": "深呼吸",
+        "en": "deep breathing",
+        "root": "napas（呼吸，名词）+ dalam（深）",
+        "forms": [],
+        "formsNote": "",
+        "note": "固定搭配 ber-napas dalam（做深呼吸）；napas 的动词形式 bernapas（呼吸） UKBI 考前心理调适核心技法。配合 tarik napas empat hitungan（吸气四拍）→ tahan（屏住）→ hembuskan perlahan（缓呼）完整口诀使用。",
+        "synonyms": [
+          "—"
+        ],
+        "antonyms": [
+          "—"
+        ],
+        "examples": [
+          {
+            "scene": "备考应用",
+            "id": "Sebelum ujian, saya melakukan napas dalam lima kali untuk menenangkan diri.",
+            "cn": "考试前，我做了五次深呼吸让自己平静。"
+          },
+          {
+            "scene": "园区场景",
+            "id": "Ketika rapat memanas, dia berhenti sejenak dan mengambil napas dalam.",
+            "cn": "当会议气氛紧张时，他停顿片刻做了个深呼吸。"
+          }
+        ]
+      },
+      {
+        "word": "percaya-diri",
+        "cn": "自信",
+        "en": "self-confidence",
+        "root": "percaya（相信，词根 percaya）+ diri（自己）",
+        "forms": [],
+        "formsNote": "",
+        "note": "形容词；名词 kepercayaan diri（自信心）；反身结构 percaya pada diri sendiri（相信自己） UKBI 口语考试核心素质词。口语评分中 kelonggaran（从容）与 percaya diri 直接相关。",
+        "synonyms": [
+          "keyakinan diri",
+          "keberanian"
+        ],
+        "antonyms": [
+          "ragu-ragu",
+          "tidak percaya diri"
+        ],
+        "examples": [
+          {
+            "scene": "口语备考",
+            "id": "Percaya diri itu penting, tapi jangan sampai terlihat sombong di depan penguji.",
+            "cn": "自信很重要，但在考官面前别显得傲慢。"
+          },
+          {
+            "scene": "职场场景",
+            "id": "Dengan persiapan matang, dia tampil sangat percaya diri saat presentasi.",
+            "cn": "准备充分，他演讲时表现得非常自信。"
+          }
+        ]
+      },
+      {
+        "word": "kualitas-tidur",
+        "cn": "睡眠质量",
+        "en": "sleep quality",
+        "root": "kualitas（质量，荷兰语 kwaliteit 借词）+ tidur（睡觉）",
+        "forms": [],
+        "formsNote": "",
+        "note": "名词短语；tidur 的动词即本身；相关搭配 tidur cukup（睡够）、tidur nyenyak（熟睡） 考前一周调整项。研究表明 kualitas tidur 与次日 kognitif（认知）表现正相关，UKBI 考前避免 begadang（熬夜）。",
+        "synonyms": [
+          "tidur nyenyak",
+          "istirahat cukup"
+        ],
+        "antonyms": [
+          "insomnia",
+          "kurang tidur"
+        ],
+        "examples": [
+          {
+            "scene": "备考应用",
+            "id": "Seminggu sebelum UKBI, saya menjaga kualitas tidur dengan tidak begadang.",
+            "cn": "考前一周，我通过不熬夜来保证睡眠质量。"
+          },
+          {
+            "scene": "园区场景",
+            "id": "Kualitas tidur pekerja shift malam perlu perhatian khusus dari manajemen.",
+            "cn": "夜班工人的睡眠质量需要管理层特别关注。"
+          }
+        ]
+      },
+      {
+        "word": "sarapan-bergizi",
+        "cn": "营养早餐",
+        "en": "nutritious breakfast",
+        "root": "sarapan（早餐）+ bergizi（有营养的，gizi 营养 + ber-）",
+        "forms": [],
+        "formsNote": "",
+        "note": "名词短语；gizi 为词根（营养）；相关词 mengonsumsi（摄入）、karbohidrat kompleks（复合碳水） 考试日晨间例行。避免 terlalu manis（过甜）导致 kantuk（犯困），推荐 protein + karbohidrat kompleks。",
+        "synonyms": [
+          "makan pagi sehat"
+        ],
+        "antonyms": [
+          "—"
+        ],
+        "examples": [
+          {
+            "scene": "备考应用",
+            "id": "Pada hari ujian, sarapan bergizi membantu menjaga konsentrasi sampai sesi terakhir.",
+            "cn": "考试日，营养早餐帮助保持专注到最后一科。"
+          },
+          {
+            "scene": "园区场景",
+            "id": "Kantin menyediakan paket sarapan bergizi bagi pekerja yang masuk pagi.",
+            "cn": "食堂为早班工人提供营养早餐套餐。"
+          }
+        ]
+      },
+      {
+        "word": "rencana-cadangan",
+        "cn": "备用方案；应急预案",
+        "en": "backup plan; contingency plan",
+        "root": "rencana（计划，词根 rencana）+ cadangan（备用的，词根 cadang）",
+        "forms": [],
+        "formsNote": "",
+        "note": "名词短语；cadang 派生 mencadangkan（预留/备份）；同义 pembagunan 无关联 UKBI 线上考试必读条款：gangguan teknis 时的 rencana cadangan（如 koneksi terputus 后的 masuk kembali 流程）。",
+        "synonyms": [
+          "plan B",
+          "alternatif"
+        ],
+        "antonyms": [
+          "—"
+        ],
+        "examples": [
+          {
+            "scene": "应急应用",
+            "id": "Jika koneksi terputus saat ujian online, ikuti prosedur masuk kembali sesuai rencana cadangan.",
+            "cn": "如果线上考试断线，按备用方案的流程重新进入。"
+          },
+          {
+            "scene": "园区场景",
+            "id": "Setiap proyek wajib memiliki rencana cadangan untuk skenario cuaca buruk.",
+            "cn": "每个项目都必须有应对恶劣天气的应急预案。"
+          }
+        ]
+      },
+      {
+        "word": "gangguan-teknis",
+        "cn": "技术故障",
+        "en": "technical malfunction",
+        "root": "ganggu（干扰，词根）→ gangguan（故障/干扰，-an 名词化）+ teknis（技术的）",
+        "forms": [],
+        "formsNote": "",
+        "note": "名词短语；ganggu 派生 mengganggu（干扰）、terganggu（受干扰）；区别于 10/23 已收 gangguan（泛指故障），本词特指技术类",
+        "synonyms": [
+          "masalah teknis",
+          "kerusakan sistem"
+        ],
+        "antonyms": [
+          "—"
+        ],
+        "examples": [
+          {
+            "scene": "应急应用",
+            "id": "Gangguan teknis selama tes dapat dilaporkan ke pengawas melalui tombol bantuan.",
+            "cn": "考试中的技术故障可通过帮助按钮报告给监考员。"
+          },
+          {
+            "scene": "园区场景",
+            "id": "Gangguan teknis pada sistem kamera CCTV segera diperbaiki tim IT.",
+            "cn": "监控系统技术故障由 IT 团队立即修复。"
+          }
+        ]
+      },
+      {
+        "word": "koneksi-terputus",
+        "cn": "连接中断",
+        "en": "disconnected; connection lost",
+        "root": "koneksi（连接，英语 connection 借词）+ terputus（断开，putus 断 + ter- 被动状态）",
+        "forms": [],
+        "formsNote": "",
+        "note": "被动完成状态；putus 派生 memutuskan（切断/决定）、putusan（裁决/决定，法律常用） UKBI 线上考试应急关键词。考试须知明确要求：koneksi terputus 后在规定时间内 masuk kembali，答案已保存。",
+        "synonyms": [],
+        "antonyms": [
+          "tersambung",
+          "terhubung"
+        ],
+        "examples": [
+          {
+            "scene": "应急应用",
+            "id": "Saat koneksi terputus dua kali, saya tetap tenang dan masuk kembali sesuai instruksi.",
+            "cn": "断线两次时，我保持冷静并按指示重新进入。"
+          },
+          {
+            "scene": "园区场景",
+            "id": "Koneksi terputus di area smelter karena interferensi peralatan berat.",
+            "cn": "冶炼区因重型设备干扰导致连接中断。"
+          }
+        ]
+      },
+      {
+        "word": "masuk-kembali",
+        "cn": "重新进入",
+        "en": "re-enter; log back in",
+        "root": "masuk（进入）+ kembali（再/回，词根）",
+        "forms": [],
+        "formsNote": "",
+        "note": "动词短语；kembali 高频副词，派生 kembalikan（归还/恢复）、pengembalian（返还） UKBI 线上考试断线后的标准操作动词短语：masuk kembali  menggunakan ID ujian  dan kata sandi yang sama。",
+        "synonyms": [
+          "login ulang"
+        ],
+        "antonyms": [
+          "keluar",
+          "logout"
+        ],
+        "examples": [
+          {
+            "scene": "应急应用",
+            "id": "Peserta diperbolehkan masuk kembali maksimal tiga kali tanpa kehilangan jawaban.",
+            "cn": "考生最多可重新进入三次且不丢失答案。"
+          },
+          {
+            "scene": "园区场景",
+            "id": "Setelah istirahat, pekerja scan kartu untuk masuk kembali ke area produksi.",
+            "cn": "休息后，工人刷卡重新进入生产区。"
+          }
+        ]
+      },
+      {
+        "word": "ujian-terhenti",
+        "cn": "考试中断",
+        "en": "exam interrupted/suspended",
+        "root": "ujian（考试）+ terhenti（被停止，henti 停 + ter-）",
+        "forms": [],
+        "formsNote": "",
+        "note": "被动状态；henti 派生 menghentikan（使停止）、penghentian（终止）；主动 berhenti（自行停止） 指因系统或不可抗力导致的考试中止。与 berhenti（主动停下）区分：ujian terhenti 非考生意愿。",
+        "synonyms": [
+          "tes terhenti"
+        ],
+        "antonyms": [
+          "ujian berlanjut",
+          "tes selesai"
+        ],
+        "examples": [
+          {
+            "scene": "应急应用",
+            "id": "Jika ujian terhenti karena gangguan teknis, waktu akan dijeda otomatis oleh sistem.",
+            "cn": "若考试因技术故障中断，时间会被系统自动暂停。"
+          },
+          {
+            "scene": "园区场景",
+            "id": "Ujian sertifikasi K3 terhenti sejenak karena alarm evakuasi berbunyi.",
+            "cn": "K3 认证考试因疏散警报响起而暂停片刻。"
+          }
+        ]
+      },
+      {
+        "word": "menganalisis",
+        "cn": "分析（动词）",
+        "en": "to analyze",
+        "root": "analisis（分析，名词，希腊语借词）→ meng-analisis（动词化前缀）",
+        "forms": [
+          {
+            "form": "analisis",
+            "pos": "n",
+            "mean": "分析（名词）"
+          },
+          {
+            "form": "menganalisis",
+            "pos": "v",
+            "mean": "分析（动词）"
+          },
+          {
+            "form": "dianalisis",
+            "pos": "v pasif",
+            "mean": "被分析"
+          },
+          {
+            "form": "penganalisisan",
+            "pos": "n",
+            "mean": "分析过程"
+          }
+        ],
+        "formsNote": "| 形式 | 词性 | 含义 |",
+        "note": "UKBI 写作与阅读高频动词。成绩复盘关键词：menganalisis kesalahan（分析错误）。名词 analisis 在前缀 meN- 下保持词干不重复（analis→analisis）。",
+        "synonyms": [
+          "mengkaji",
+          "menelaah"
+        ],
+        "antonyms": [
+          "—"
+        ],
+        "examples": [
+          {
+            "scene": "备考应用",
+            "id": "Setelah tryout, saya menganalisis setiap jawaban salah untuk menemukan polanya.",
+            "cn": "模考后，我分析每道错题以找出规律。"
+          },
+          {
+            "scene": "园区场景",
+            "id": "Tim QA menganalisis data produksi untuk mencari akar masalah cacat.",
+            "cn": "QA 团队分析生产数据以寻找缺陷根源。"
+          }
+        ]
+      },
+      {
+        "word": "kelemahan",
+        "cn": "弱点；薄弱环节",
+        "en": "weakness",
+        "root": "lemah（弱）→ ke- -an 名词化（kelemahan）",
+        "forms": [],
+        "formsNote": "",
+        "note": "名词；lemah 派生 melemahkan（削弱）、kelamahan；相关词 kekurangan（不足）、kekuatan（优势，反义） 成绩分析术语：identifikasi kelemahan（识别薄弱环节）是 UKBI 重考规划的第一步。",
+        "synonyms": [
+          "kekurangan",
+          "titik lemah"
+        ],
+        "antonyms": [
+          "kekuatan",
+          "keunggulan"
+        ],
+        "examples": [
+          {
+            "scene": "备考应用",
+            "id": "Hasil simulasi menunjukkan kelemahan saya ada di bagian membaca cepat.",
+            "cn": "模考结果显示我的弱点在阅读部分。"
+          },
+          {
+            "scene": "园区场景",
+            "id": "Audit internal mengungkap kelemahan pengendalian akses di gudang.",
+            "cn": "内审揭露了仓库门禁管理的薄弱环节。"
+          }
+        ]
+      },
+      {
+        "word": "skor-simulasi",
+        "cn": "模拟分数",
+        "en": "simulation score",
+        "root": "skor（分数，英语 score 借词）+ simulasi（模拟）",
+        "forms": [],
+        "formsNote": "",
+        "note": "名词短语；skor 的动词 mencetak skor（得分）；simulasi 派生 mensimulasikan（模拟） tryout 的直接产出。对比 skor asli（正式分数），skor simulasi 用于预测 ambang kelulusan（通过门槛）。",
+        "synonyms": [
+          "nilai tryout"
+        ],
+        "antonyms": [
+          "—"
+        ],
+        "examples": [
+          {
+            "scene": "备考应用",
+            "id": "Skor simulasi naik dari 480 ke 550 setelah dua siklus ulasan terstruktur.",
+            "cn": "经过两轮结构化复习，模拟分从 480 涨到 550。"
+          },
+          {
+            "scene": "园区场景",
+            "id": "Skor simulasi keselamatan divisi kami tertinggi se-kawasan.",
+            "cn": "我们部门的安全模拟分是全园区最高。"
+          }
+        ]
+      },
+      {
+        "word": "cemas",
+        "cn": "焦虑的；担忧的",
+        "en": "anxious",
+        "root": "cemas（词根本身，形容词）",
+        "forms": [],
+        "formsNote": "",
+        "note": "形容词；名词 kecemasan（焦虑）；副词 dengan cemas（焦虑地） 10/23 已收，本日复习覆盖。考前 cemas 属正常反应，适度焦虑提升表现，过度则需 intervensi（干预）。",
+        "synonyms": [
+          "khawatir",
+          "gelisah"
+        ],
+        "antonyms": [
+          "tenang",
+          "percaya diri"
+        ],
+        "examples": [
+          {
+            "scene": "备考应用",
+            "id": "Perasaan cemas menjelang ujian adalah hal wajar, asal tidak berlebihan.",
+            "cn": "考前焦虑是正常的，只要不过分。"
+          },
+          {
+            "scene": "园区场景",
+            "id": "Pekerja baru tampak cemas saat pertama kali masuk area smelter.",
+            "cn": "新工人第一次进冶炼区时显得焦虑。"
+          }
+        ]
+      },
+      {
+        "word": "grogi",
+        "cn": "怯场的；紧张失措的",
+        "en": "nervous; stage fright",
+        "root": "grogi（荷兰语 gróggy 借词，形容词）",
+        "forms": [],
+        "formsNote": "",
+        "note": "形容词；口语亦用 groginya（其紧张状）；正式语 khawatir berlebihan 10/23 已收，本日复习覆盖。UKBI 口语考试典型障碍：grogi 导致 suara bergetar（声音颤抖）影响 perekaman 质量。",
+        "synonyms": [
+          "gugup"
+        ],
+        "antonyms": [
+          "santai",
+          "percaya diri"
+        ],
+        "examples": [
+          {
+            "scene": "口语备考",
+            "id": "Untuk mengatasi grogi, latihlah speaking di depan cermin setiap pagi.",
+            "cn": "为克服怯场，每天早上对着镜子练口语。"
+          },
+          {
+            "scene": "园区场景",
+            "id": "Meski grogi, dia berhasil menjawab semua pertanyaan wawancara dengan baik.",
+            "cn": "尽管紧张，他还是顺利答完了面试的所有问题。"
+          }
+        ]
+      },
+      {
+        "word": "irama",
+        "cn": "节奏",
+        "en": "rhythm; pace",
+        "root": "irama（梵语借词，名词）",
+        "forms": [],
+        "formsNote": "",
+        "note": "名词；相关搭配 mengatur irama（调整节奏）、irama menjawab（答题节奏）、irama napas（呼吸节奏） 10/23 已收，本日复习覆盖。UKBI 听力中 irama pembicara（说话人的语速节奏）影响理解；答题 irama 影响完成率。",
+        "synonyms": [
+          "ritme",
+          "tempo"
+        ],
+        "antonyms": [
+          "—"
+        ],
+        "examples": [
+          {
+            "scene": "听力备考",
+            "id": "Dengarkan dialog dengan irama normal, jangan dipercepat saat latihan.",
+            "cn": "听对话时按正常节奏，练习时不要加速。"
+          },
+          {
+            "scene": "园区场景",
+            "id": "Irama kerja di lini produksi harus stabil untuk menjaga kualitas.",
+            "cn": "生产线的节奏必须稳定以保证质量。"
+          }
+        ]
+      },
+      {
+        "word": "terburu-buru",
+        "cn": "匆忙的；慌忙的",
+        "en": "hurried; rushed",
+        "root": "buru（追逐/赶）→ terburu-buru（急忙状态，重叠强化）",
+        "forms": [],
+        "formsNote": "",
+        "note": "形容词/副词；名词 keterburu-buruan；相关词 jangan terburu-buru（别慌） 10/23 已收，本日复习覆盖。UKBI 大忌：terburu-buru 导致 salah membaca soal（误读题目）。口诀：teliti dulu, jawab kemudian。",
+        "synonyms": [
+          "tergesa-gesa"
+        ],
+        "antonyms": [
+          "tenang",
+          "perlahan"
+        ],
+        "examples": [
+          {
+            "scene": "备考应用",
+            "id": "Jawaban yang terburu-buru sering keliru, meski materinya sudah dikuasai.",
+            "cn": "匆忙作答经常出错，即使内容已掌握。"
+          },
+          {
+            "scene": "园区场景",
+            "id": "Jangan terburu-buru saat mengoperasikan mesin, keselamatan nomor satu.",
+            "cn": "操作机器时不要匆忙，安全第一。"
+          }
+        ]
+      },
+      {
+        "word": "gangguan",
+        "cn": "故障；干扰",
+        "en": "disturbance; malfunction",
+        "root": "ganggu（干扰，词根）→ -an 名词化",
+        "forms": [],
+        "formsNote": "",
+        "note": "名词；ganggu 派生 mengganggu（干扰）、terganggu（受干扰）、gangguan jiwa（精神障碍，医学） 10/23 已收，本日复习覆盖+词义扩展。10/23 聚焦\"故障\"义；本日补充\"干扰\"义：gangguan dalam belajar（学习干扰），与 gangguan-teknis 技术故障形成上下位词关系。",
+        "synonyms": [
+          "hambatan"
+        ],
+        "antonyms": [
+          "kelancaran"
+        ],
+        "examples": [
+          {
+            "scene": "备考应用",
+            "id": "Matikan notifikasi ponsel untuk menghindari gangguan saat belajar.",
+            "cn": "关掉手机通知以避免学习干扰。"
+          },
+          {
+            "scene": "园区场景",
+            "id": "Gangguan listrik sebentar tidak menghentikan produksi berkat genset cadangan.",
+            "cn": "多亏备用发电机，短暂电力故障未让生产停止。"
+          }
+        ]
+      }
+    ]
   }
 };
 // ===== BIT 详解库 bitVocabDB V4.31.0 新增:按词组织的累积详解库,转换器 scripts/md_to_dailynote.py 在写入每日笔记时自动并入新词条;批量生成由 BIT→BIO 流程灌入 =====
@@ -86871,34 +87387,11 @@ const bitVocabDB = {
     "word": "gangguan",
     "cn": "故障；干扰",
     "en": "disturbance; malfunction",
-    "root": "ganggu（打扰）→ ganggu-an（干扰之事）",
-    "forms": [
-      {
-        "form": "gangguan",
-        "pos": "名词",
-        "mean": "故障；干扰"
-      },
-      {
-        "form": "mengganggu",
-        "pos": "动词",
-        "mean": "打扰"
-      },
-      {
-        "form": "diganggu",
-        "pos": "被动动词",
-        "mean": "被打扰"
-      },
-      {
-        "form": "terganggu",
-        "pos": "状态动词",
-        "mean": "受干扰"
-      }
-    ],
+    "root": "ganggu（干扰，词根）→ -an 名词化",
+    "forms": [],
     "formsNote": "",
-    "note": "-an 名词化；ter- 表\"受到…\"：ganggu → terganggu gangguan teknis = 技术故障；gangguan tidur = 睡眠障碍；频繁出现在考试应急预案中",
+    "note": "名词；ganggu 派生 mengganggu（干扰）、terganggu（受干扰）、gangguan jiwa（精神障碍，医学） 10/23 已收，本日复习覆盖+词义扩展。10/23 聚焦\"故障\"义；本日补充\"干扰\"义：gangguan dalam belajar（学习干扰），与 gangguan-teknis 技术故障形成上下位词关系。",
     "synonyms": [
-      "kerusakan",
-      "masalah",
       "hambatan"
     ],
     "antonyms": [
@@ -86906,14 +87399,14 @@ const bitVocabDB = {
     ],
     "examples": [
       {
-        "scene": "应急方案",
-        "id": "Jika terjadi gangguan teknis, hubungi pengawas ruangan.",
-        "cn": "若发生技术故障，请联系监考员。"
+        "scene": "备考应用",
+        "id": "Matikan notifikasi ponsel untuk menghindari gangguan saat belajar.",
+        "cn": "关掉手机通知以避免学习干扰。"
       },
       {
-        "scene": "设备维护",
-        "id": "Gangguan listrik menyebabkan lini produksi berhenti dua jam.",
-        "cn": "电力故障导致产线停工两小时。"
+        "scene": "园区场景",
+        "id": "Gangguan listrik sebentar tidak menghentikan produksi berkat genset cadangan.",
+        "cn": "多亏备用发电机，短暂电力故障未让生产停止。"
       }
     ]
   },
@@ -99764,32 +100257,11 @@ const bitVocabDB = {
   "cemas": {
     "word": "cemas",
     "cn": "焦虑的；担忧的",
-    "en": "anxious; worried",
-    "root": "cemas（基础形）",
-    "forms": [
-      {
-        "form": "cemas",
-        "pos": "形容词",
-        "mean": "焦虑的"
-      },
-      {
-        "form": "kecemasan",
-        "pos": "名词",
-        "mean": "焦虑"
-      },
-      {
-        "form": "mencemaskan",
-        "pos": "动词",
-        "mean": "使担忧"
-      },
-      {
-        "form": "dikhawatirkan",
-        "pos": "被动动词",
-        "mean": "被担心"
-      }
-    ],
+    "en": "anxious",
+    "root": "cemas（词根本身，形容词）",
+    "forms": [],
     "formsNote": "",
-    "note": "ke-…-an 名词化；meN-…-kan 使役 程度强于 khawatir，接近\"不安\"；kecemasan berlebihan = 过度焦虑",
+    "note": "形容词；名词 kecemasan（焦虑）；副词 dengan cemas（焦虑地） 10/23 已收，本日复习覆盖。考前 cemas 属正常反应，适度焦虑提升表现，过度则需 intervensi（干预）。",
     "synonyms": [
       "khawatir",
       "gelisah"
@@ -99800,14 +100272,14 @@ const bitVocabDB = {
     ],
     "examples": [
       {
-        "scene": "考前心理",
-        "id": "Merasa cemas sebelum ujian adalah hal yang wajar.",
-        "cn": "考前感到焦虑是正常的。"
+        "scene": "备考应用",
+        "id": "Perasaan cemas menjelang ujian adalah hal wajar, asal tidak berlebihan.",
+        "cn": "考前焦虑是正常的，只要不过分。"
       },
       {
-        "scene": "项目风险",
-        "id": "Tim cemas tentang keterlambatan pengiriman peralatan.",
-        "cn": "团队担心设备交付延迟。"
+        "scene": "园区场景",
+        "id": "Pekerja baru tampak cemas saat pertama kali masuk area smelter.",
+        "cn": "新工人第一次进冶炼区时显得焦虑。"
       }
     ]
   },
@@ -126393,28 +126865,30 @@ const bitVocabDB = {
   },
   "kelemahan": {
     "word": "kelemahan",
-    "cn": "弱点；缺陷",
-    "en": "weakness; shortcoming",
-    "root": "lemah（弱）",
+    "cn": "弱点；薄弱环节",
+    "en": "weakness",
+    "root": "lemah（弱）→ ke- -an 名词化（kelemahan）",
     "forms": [],
-    "formsNote": "—",
-    "note": "ke-an 派生，lemah + -an 组成 可用于人（kelemahan saya）或事物；\"menganalisis kelemahan\"= 分析弱点",
+    "formsNote": "",
+    "note": "名词；lemah 派生 melemahkan（削弱）、kelamahan；相关词 kekurangan（不足）、kekuatan（优势，反义） 成绩分析术语：identifikasi kelemahan（识别薄弱环节）是 UKBI 重考规划的第一步。",
     "synonyms": [
-      "kekurangan, titik lemah"
+      "kekurangan",
+      "titik lemah"
     ],
     "antonyms": [
-      "kelebihan, kekuatan"
+      "kekuatan",
+      "keunggulan"
     ],
     "examples": [
       {
-        "scene": "自我评估",
-        "id": "Kenali kelemahanmu sebelum tes adaptif.",
-        "cn": "在自适应测试前认清你的弱点。"
+        "scene": "备考应用",
+        "id": "Hasil simulasi menunjukkan kelemahan saya ada di bagian membaca cepat.",
+        "cn": "模考结果显示我的弱点在阅读部分。"
       },
       {
-        "scene": "备考策略",
-        "id": "Fokus 90% latihan pada kelemahan, bukan kekuatan.",
-        "cn": "90%的练习集中在弱点而非强项上。"
+        "scene": "园区场景",
+        "id": "Audit internal mengungkap kelemahan pengendalian akses di gudang.",
+        "cn": "内审揭露了仓库门禁管理的薄弱环节。"
       }
     ]
   },
@@ -166967,65 +167441,29 @@ const bitVocabDB = {
   },
   "rencana-cadangan": {
     "word": "rencana-cadangan",
-    "cn": "备用计划；预案",
+    "cn": "备用方案；应急预案",
     "en": "backup plan; contingency plan",
-    "root": "复合名词。rencana（计划，KBBI 作整体词收录，不进一步拆解；旧辞书可见 racana 形，今已罕用 [语源存疑，仅注]）+ cadangan（储备：cadang + -an → cadangan）",
-    "forms": [
-      {
-        "form": "merencanakan",
-        "pos": "动词",
-        "mean": "计划"
-      },
-      {
-        "form": "direncanakan",
-        "pos": "被动动词",
-        "mean": "被计划（09-29 词条 #6）"
-      },
-      {
-        "form": "perencanaan",
-        "pos": "名词",
-        "mean": "规划"
-      },
-      {
-        "form": "berencana",
-        "pos": "动词",
-        "mean": "打算、筹划"
-      },
-      {
-        "form": "mencadangkan",
-        "pos": "动词",
-        "mean": "储备、留存"
-      },
-      {
-        "form": "cadangan",
-        "pos": "名词",
-        "mean": "储备（可指人、物、计划）"
-      }
-    ],
+    "root": "rencana（计划，词根 rencana）+ cadangan（备用的，词根 cadang）",
+    "forms": [],
     "formsNote": "",
-    "note": "",
+    "note": "名词短语；cadang 派生 mencadangkan（预留/备份）；同义 pembagunan 无关联 UKBI 线上考试必读条款：gangguan teknis 时的 rencana cadangan（如 koneksi terputus 后的 masuk kembali 流程）。",
     "synonyms": [
-      "plan B（外来语）",
-      "opsi kedua（第二选择）"
+      "plan B",
+      "alternatif"
     ],
     "antonyms": [
-      "rencana utama（主计划——非严格反义，对比项）"
+      "—"
     ],
     "examples": [
       {
-        "scene": "工作园区",
-        "id": "Setiap jalur kritis wajib punya rencana cadangan.",
-        "cn": "每条关键路径必须有备用计划。"
+        "scene": "应急应用",
+        "id": "Jika koneksi terputus saat ujian online, ikuti prosedur masuk kembali sesuai rencana cadangan.",
+        "cn": "如果线上考试断线，按备用方案的流程重新进入。"
       },
       {
-        "scene": "商务",
-        "id": "Rencana cadangan pengadaan diaktifkan saat pemasok utama gagal.",
-        "cn": "主供应商掉链子时启动采购预案。"
-      },
-      {
-        "scene": "日常",
-        "id": "Rencana cadangan liburan: kalau hujan, pindah ke museum.",
-        "cn": "假期备用计划：如果下雨就改去博物馆。"
+        "scene": "园区场景",
+        "id": "Setiap proyek wajib memiliki rencana cadangan untuk skenario cuaca buruk.",
+        "cn": "每个项目都必须有应对恶劣天气的应急预案。"
       }
     ]
   },
@@ -187483,46 +187921,50 @@ const bitVocabDB = {
   },
   "menganalisis": {
     "word": "menganalisis",
-    "cn": "分析",
+    "cn": "分析（动词）",
     "en": "to analyze",
-    "root": "analisis（分析，英借词）· meN- 主动缀",
+    "root": "analisis（分析，名词，希腊语借词）→ meng-analisis（动词化前缀）",
     "forms": [
       {
+        "form": "analisis",
+        "pos": "n",
+        "mean": "分析（名词）"
+      },
+      {
         "form": "menganalisis",
-        "pos": "动词",
-        "mean": "分析（meN- 主动）"
+        "pos": "v",
+        "mean": "分析（动词）"
       },
       {
         "form": "dianalisis",
-        "pos": "被动动词",
-        "mean": "被分析（di- 被动）"
+        "pos": "v pasif",
+        "mean": "被分析"
       },
       {
-        "form": "analisis",
-        "pos": "名词",
-        "mean": "分析（词根作名词）"
+        "form": "penganalisisan",
+        "pos": "n",
+        "mean": "分析过程"
       }
     ],
-    "formsNote": "",
-    "note": "meN- 主动 / di- 被动 / 词根作名词 REP2C 原始词",
+    "formsNote": "| 形式 | 词性 | 含义 |",
+    "note": "UKBI 写作与阅读高频动词。成绩复盘关键词：menganalisis kesalahan（分析错误）。名词 analisis 在前缀 meN- 下保持词干不重复（analis→analisis）。",
     "synonyms": [
-      "menelaah",
-      "mengkaji"
+      "mengkaji",
+      "menelaah"
     ],
     "antonyms": [
-      "mengabaikan",
-      "merangkum"
+      "—"
     ],
     "examples": [
       {
-        "scene": "场景",
-        "id": "Tim menganalisis konsumsi energi kawasan.",
-        "cn": "团队分析园区能耗。"
+        "scene": "备考应用",
+        "id": "Setelah tryout, saya menganalisis setiap jawaban salah untuk menemukan polanya.",
+        "cn": "模考后，我分析每道错题以找出规律。"
       },
       {
-        "scene": "场景",
-        "id": "Data biaya dianalisis bersama tim Benny.",
-        "cn": "成本数据与 Benny 团队共同分析。"
+        "scene": "园区场景",
+        "id": "Tim QA menganalisis data produksi untuk mencari akar masalah cacat.",
+        "cn": "QA 团队分析生产数据以寻找缺陷根源。"
       }
     ]
   },
@@ -198402,26 +198844,14 @@ const bitVocabDB = {
   },
   "grogi": {
     "word": "grogi",
-    "cn": "紧张怯场的",
-    "en": "nervous; jittery",
-    "root": "grogi（口语词，源语言 [待核实]）",
-    "forms": [
-      {
-        "form": "grogi",
-        "pos": "形容词",
-        "mean": "紧张的；怯场的"
-      },
-      {
-        "form": "kegrogian",
-        "pos": "名词（少用）",
-        "mean": "怯场状态"
-      }
-    ],
+    "cn": "怯场的；紧张失措的",
+    "en": "nervous; stage fright",
+    "root": "grogi（荷兰语 gróggy 借词，形容词）",
+    "forms": [],
     "formsNote": "",
-    "note": "口语形容词，变形不活跃；名词形式极少使用 特指\"上台/开口前的怯场紧张\"；比 gugup 更口语化",
+    "note": "形容词；口语亦用 groginya（其紧张状）；正式语 khawatir berlebihan 10/23 已收，本日复习覆盖。UKBI 口语考试典型障碍：grogi 导致 suara bergetar（声音颤抖）影响 perekaman 质量。",
     "synonyms": [
-      "gugup",
-      "tegang"
+      "gugup"
     ],
     "antonyms": [
       "santai",
@@ -198429,14 +198859,14 @@ const bitVocabDB = {
     ],
     "examples": [
       {
-        "scene": "口语考试",
-        "id": "Jangan grogi saat sesi speaking; anggap sedang ngobrol.",
-        "cn": "口语环节别怯场，就当在聊天。"
+        "scene": "口语备考",
+        "id": "Untuk mengatasi grogi, latihlah speaking di depan cermin setiap pagi.",
+        "cn": "为克服怯场，每天早上对着镜子练口语。"
       },
       {
-        "scene": "演讲致辞",
-        "id": "Pembicara sempat grogi di menit pertama.",
-        "cn": "演讲者第一分钟有点紧张。"
+        "scene": "园区场景",
+        "id": "Meski grogi, dia berhasil menjawab semua pertanyaan wawancara dengan baik.",
+        "cn": "尽管紧张，他还是顺利答完了面试的所有问题。"
       }
     ]
   },
@@ -200299,46 +200729,29 @@ const bitVocabDB = {
   },
   "terburu-buru": {
     "word": "terburu-buru",
-    "cn": "匆忙的；慌张的",
-    "en": "hurried; in a rush",
-    "root": "buru（追逐）+ ter-…重叠",
-    "forms": [
-      {
-        "form": "terburu-buru",
-        "pos": "副词/形容词",
-        "mean": "匆忙地"
-      },
-      {
-        "form": "buru-buru",
-        "pos": "副词/形容词",
-        "mean": "匆忙（口语）"
-      },
-      {
-        "form": "memburu",
-        "pos": "动词",
-        "mean": "追逐"
-      }
-    ],
+    "cn": "匆忙的；慌忙的",
+    "en": "hurried; rushed",
+    "root": "buru（追逐/赶）→ terburu-buru（急忙状态，重叠强化）",
+    "forms": [],
     "formsNote": "",
-    "note": "ter- + 重叠表\"处于匆忙状态\"；口语常省 ter- 贬义色彩，含\"因急而乱\"；jangan terburu-buru = 别急",
+    "note": "形容词/副词；名词 keterburu-buruan；相关词 jangan terburu-buru（别慌） 10/23 已收，本日复习覆盖。UKBI 大忌：terburu-buru 导致 salah membaca soal（误读题目）。口诀：teliti dulu, jawab kemudian。",
     "synonyms": [
-      "tergesa-gesa",
-      "tergesa"
+      "tergesa-gesa"
     ],
     "antonyms": [
       "tenang",
-      "pelan-pelan"
+      "perlahan"
     ],
     "examples": [
       {
-        "scene": "考场提醒",
-        "id": "Jangan terburu-buru menjawab; baca soal dengan saksama.",
-        "cn": "别急着答题，仔细读题。"
+        "scene": "备考应用",
+        "id": "Jawaban yang terburu-buru sering keliru, meski materinya sudah dikuasai.",
+        "cn": "匆忙作答经常出错，即使内容已掌握。"
       },
       {
-        "scene": "施工现场",
-        "id": "Jangan terburu-buru saat mematikan tungku; ikuti prosedur.",
-        "cn": "停炉时不要慌张，按规程操作。"
+        "scene": "园区场景",
+        "id": "Jangan terburu-buru saat mengoperasikan mesin, keselamatan nomor satu.",
+        "cn": "操作机器时不要匆忙，安全第一。"
       }
     ]
   },
@@ -200576,28 +200989,29 @@ const bitVocabDB = {
   },
   "irama": {
     "word": "irama",
-    "cn": "节奏；韵律",
-    "en": "rhythm; tempo",
-    "root": "irama（借自梵语 via 马来语）[待核实]",
+    "cn": "节奏",
+    "en": "rhythm; pace",
+    "root": "irama（梵语借词，名词）",
     "forms": [],
-    "formsNote": "berirama（有节奏的）、mengiramaikan [待核实]",
-    "note": "ber- 形容词化常用；其余派生少用 指音乐/诗歌的节奏，也引申为活动节奏（irama kerja 工作节奏）；说明文谈音乐与文化高频。",
+    "formsNote": "",
+    "note": "名词；相关搭配 mengatur irama（调整节奏）、irama menjawab（答题节奏）、irama napas（呼吸节奏） 10/23 已收，本日复习覆盖。UKBI 听力中 irama pembicara（说话人的语速节奏）影响理解；答题 irama 影响完成率。",
     "synonyms": [
-      "ritme; tempo"
+      "ritme",
+      "tempo"
     ],
     "antonyms": [
       "—"
     ],
     "examples": [
       {
-        "scene": "阅读实战",
-        "id": "Irama puisi itu membuatnya mudah diingat.",
-        "cn": "那首诗的韵律使它易于记忆。"
+        "scene": "听力备考",
+        "id": "Dengarkan dialog dengan irama normal, jangan dipercepat saat latihan.",
+        "cn": "听对话时按正常节奏，练习时不要加速。"
       },
       {
-        "scene": "听力训练",
-        "id": "Dengarkan irama kalimat untuk menangkap intonasi pembicara.",
-        "cn": "听句子的节奏以捕捉说话人的语调。"
+        "scene": "园区场景",
+        "id": "Irama kerja di lini produksi harus stabil untuk menjaga kualitas.",
+        "cn": "生产线的节奏必须稳定以保证质量。"
       }
     ]
   },
@@ -201996,6 +202410,255 @@ const bitVocabDB = {
         "cn": "下夜班后，慢慢呼气，想象压力随之排出。"
       }
     ]
+  },
+  "napas-dalam": {
+    "word": "napas-dalam",
+    "cn": "深呼吸",
+    "en": "deep breathing",
+    "root": "napas（呼吸，名词）+ dalam（深）",
+    "forms": [],
+    "formsNote": "",
+    "note": "固定搭配 ber-napas dalam（做深呼吸）；napas 的动词形式 bernapas（呼吸） UKBI 考前心理调适核心技法。配合 tarik napas empat hitungan（吸气四拍）→ tahan（屏住）→ hembuskan perlahan（缓呼）完整口诀使用。",
+    "synonyms": [
+      "—"
+    ],
+    "antonyms": [
+      "—"
+    ],
+    "examples": [
+      {
+        "scene": "备考应用",
+        "id": "Sebelum ujian, saya melakukan napas dalam lima kali untuk menenangkan diri.",
+        "cn": "考试前，我做了五次深呼吸让自己平静。"
+      },
+      {
+        "scene": "园区场景",
+        "id": "Ketika rapat memanas, dia berhenti sejenak dan mengambil napas dalam.",
+        "cn": "当会议气氛紧张时，他停顿片刻做了个深呼吸。"
+      }
+    ]
+  },
+  "percaya-diri": {
+    "word": "percaya-diri",
+    "cn": "自信",
+    "en": "self-confidence",
+    "root": "percaya（相信，词根 percaya）+ diri（自己）",
+    "forms": [],
+    "formsNote": "",
+    "note": "形容词；名词 kepercayaan diri（自信心）；反身结构 percaya pada diri sendiri（相信自己） UKBI 口语考试核心素质词。口语评分中 kelonggaran（从容）与 percaya diri 直接相关。",
+    "synonyms": [
+      "keyakinan diri",
+      "keberanian"
+    ],
+    "antonyms": [
+      "ragu-ragu",
+      "tidak percaya diri"
+    ],
+    "examples": [
+      {
+        "scene": "口语备考",
+        "id": "Percaya diri itu penting, tapi jangan sampai terlihat sombong di depan penguji.",
+        "cn": "自信很重要，但在考官面前别显得傲慢。"
+      },
+      {
+        "scene": "职场场景",
+        "id": "Dengan persiapan matang, dia tampil sangat percaya diri saat presentasi.",
+        "cn": "准备充分，他演讲时表现得非常自信。"
+      }
+    ]
+  },
+  "kualitas-tidur": {
+    "word": "kualitas-tidur",
+    "cn": "睡眠质量",
+    "en": "sleep quality",
+    "root": "kualitas（质量，荷兰语 kwaliteit 借词）+ tidur（睡觉）",
+    "forms": [],
+    "formsNote": "",
+    "note": "名词短语；tidur 的动词即本身；相关搭配 tidur cukup（睡够）、tidur nyenyak（熟睡） 考前一周调整项。研究表明 kualitas tidur 与次日 kognitif（认知）表现正相关，UKBI 考前避免 begadang（熬夜）。",
+    "synonyms": [
+      "tidur nyenyak",
+      "istirahat cukup"
+    ],
+    "antonyms": [
+      "insomnia",
+      "kurang tidur"
+    ],
+    "examples": [
+      {
+        "scene": "备考应用",
+        "id": "Seminggu sebelum UKBI, saya menjaga kualitas tidur dengan tidak begadang.",
+        "cn": "考前一周，我通过不熬夜来保证睡眠质量。"
+      },
+      {
+        "scene": "园区场景",
+        "id": "Kualitas tidur pekerja shift malam perlu perhatian khusus dari manajemen.",
+        "cn": "夜班工人的睡眠质量需要管理层特别关注。"
+      }
+    ]
+  },
+  "sarapan-bergizi": {
+    "word": "sarapan-bergizi",
+    "cn": "营养早餐",
+    "en": "nutritious breakfast",
+    "root": "sarapan（早餐）+ bergizi（有营养的，gizi 营养 + ber-）",
+    "forms": [],
+    "formsNote": "",
+    "note": "名词短语；gizi 为词根（营养）；相关词 mengonsumsi（摄入）、karbohidrat kompleks（复合碳水） 考试日晨间例行。避免 terlalu manis（过甜）导致 kantuk（犯困），推荐 protein + karbohidrat kompleks。",
+    "synonyms": [
+      "makan pagi sehat"
+    ],
+    "antonyms": [
+      "—"
+    ],
+    "examples": [
+      {
+        "scene": "备考应用",
+        "id": "Pada hari ujian, sarapan bergizi membantu menjaga konsentrasi sampai sesi terakhir.",
+        "cn": "考试日，营养早餐帮助保持专注到最后一科。"
+      },
+      {
+        "scene": "园区场景",
+        "id": "Kantin menyediakan paket sarapan bergizi bagi pekerja yang masuk pagi.",
+        "cn": "食堂为早班工人提供营养早餐套餐。"
+      }
+    ]
+  },
+  "gangguan-teknis": {
+    "word": "gangguan-teknis",
+    "cn": "技术故障",
+    "en": "technical malfunction",
+    "root": "ganggu（干扰，词根）→ gangguan（故障/干扰，-an 名词化）+ teknis（技术的）",
+    "forms": [],
+    "formsNote": "",
+    "note": "名词短语；ganggu 派生 mengganggu（干扰）、terganggu（受干扰）；区别于 10/23 已收 gangguan（泛指故障），本词特指技术类",
+    "synonyms": [
+      "masalah teknis",
+      "kerusakan sistem"
+    ],
+    "antonyms": [
+      "—"
+    ],
+    "examples": [
+      {
+        "scene": "应急应用",
+        "id": "Gangguan teknis selama tes dapat dilaporkan ke pengawas melalui tombol bantuan.",
+        "cn": "考试中的技术故障可通过帮助按钮报告给监考员。"
+      },
+      {
+        "scene": "园区场景",
+        "id": "Gangguan teknis pada sistem kamera CCTV segera diperbaiki tim IT.",
+        "cn": "监控系统技术故障由 IT 团队立即修复。"
+      }
+    ]
+  },
+  "koneksi-terputus": {
+    "word": "koneksi-terputus",
+    "cn": "连接中断",
+    "en": "disconnected; connection lost",
+    "root": "koneksi（连接，英语 connection 借词）+ terputus（断开，putus 断 + ter- 被动状态）",
+    "forms": [],
+    "formsNote": "",
+    "note": "被动完成状态；putus 派生 memutuskan（切断/决定）、putusan（裁决/决定，法律常用） UKBI 线上考试应急关键词。考试须知明确要求：koneksi terputus 后在规定时间内 masuk kembali，答案已保存。",
+    "synonyms": [],
+    "antonyms": [
+      "tersambung",
+      "terhubung"
+    ],
+    "examples": [
+      {
+        "scene": "应急应用",
+        "id": "Saat koneksi terputus dua kali, saya tetap tenang dan masuk kembali sesuai instruksi.",
+        "cn": "断线两次时，我保持冷静并按指示重新进入。"
+      },
+      {
+        "scene": "园区场景",
+        "id": "Koneksi terputus di area smelter karena interferensi peralatan berat.",
+        "cn": "冶炼区因重型设备干扰导致连接中断。"
+      }
+    ]
+  },
+  "masuk-kembali": {
+    "word": "masuk-kembali",
+    "cn": "重新进入",
+    "en": "re-enter; log back in",
+    "root": "masuk（进入）+ kembali（再/回，词根）",
+    "forms": [],
+    "formsNote": "",
+    "note": "动词短语；kembali 高频副词，派生 kembalikan（归还/恢复）、pengembalian（返还） UKBI 线上考试断线后的标准操作动词短语：masuk kembali  menggunakan ID ujian  dan kata sandi yang sama。",
+    "synonyms": [
+      "login ulang"
+    ],
+    "antonyms": [
+      "keluar",
+      "logout"
+    ],
+    "examples": [
+      {
+        "scene": "应急应用",
+        "id": "Peserta diperbolehkan masuk kembali maksimal tiga kali tanpa kehilangan jawaban.",
+        "cn": "考生最多可重新进入三次且不丢失答案。"
+      },
+      {
+        "scene": "园区场景",
+        "id": "Setelah istirahat, pekerja scan kartu untuk masuk kembali ke area produksi.",
+        "cn": "休息后，工人刷卡重新进入生产区。"
+      }
+    ]
+  },
+  "ujian-terhenti": {
+    "word": "ujian-terhenti",
+    "cn": "考试中断",
+    "en": "exam interrupted/suspended",
+    "root": "ujian（考试）+ terhenti（被停止，henti 停 + ter-）",
+    "forms": [],
+    "formsNote": "",
+    "note": "被动状态；henti 派生 menghentikan（使停止）、penghentian（终止）；主动 berhenti（自行停止） 指因系统或不可抗力导致的考试中止。与 berhenti（主动停下）区分：ujian terhenti 非考生意愿。",
+    "synonyms": [
+      "tes terhenti"
+    ],
+    "antonyms": [
+      "ujian berlanjut",
+      "tes selesai"
+    ],
+    "examples": [
+      {
+        "scene": "应急应用",
+        "id": "Jika ujian terhenti karena gangguan teknis, waktu akan dijeda otomatis oleh sistem.",
+        "cn": "若考试因技术故障中断，时间会被系统自动暂停。"
+      },
+      {
+        "scene": "园区场景",
+        "id": "Ujian sertifikasi K3 terhenti sejenak karena alarm evakuasi berbunyi.",
+        "cn": "K3 认证考试因疏散警报响起而暂停片刻。"
+      }
+    ]
+  },
+  "skor-simulasi": {
+    "word": "skor-simulasi",
+    "cn": "模拟分数",
+    "en": "simulation score",
+    "root": "skor（分数，英语 score 借词）+ simulasi（模拟）",
+    "forms": [],
+    "formsNote": "",
+    "note": "名词短语；skor 的动词 mencetak skor（得分）；simulasi 派生 mensimulasikan（模拟） tryout 的直接产出。对比 skor asli（正式分数），skor simulasi 用于预测 ambang kelulusan（通过门槛）。",
+    "synonyms": [
+      "nilai tryout"
+    ],
+    "antonyms": [
+      "—"
+    ],
+    "examples": [
+      {
+        "scene": "备考应用",
+        "id": "Skor simulasi naik dari 480 ke 550 setelah dua siklus ulasan terstruktur.",
+        "cn": "经过两轮结构化复习，模拟分从 480 涨到 550。"
+      },
+      {
+        "scene": "园区场景",
+        "id": "Skor simulasi keselamatan divisi kami tertinggi se-kawasan.",
+        "cn": "我们部门的安全模拟分是全园区最高。"
+      }
+    ]
   }
 };
 
@@ -202243,17 +202906,19 @@ function renderTopicDetail(c, ds, topicInfo) {
       }
     }
 
-    // 规则A: 每天 -> 前一天 C4_MAP 总结
+    // 规则A(C6): 每天 -> 前一天日记内容复习(2026-10-27 用户指令: 替代原C4_MAP总结)
     if (idx > 0) {
       const prevDs = dates[idx - 1];
-      const prevInfo = topicCalendar[prevDs];
-      if (prevInfo && prevInfo.topic !== 'mindmap' && prevInfo.topic !== topicInfo.topic) {
-        const prevTopicData = topicData[prevInfo.topic];
-        if (prevTopicData) {
-          reviewHtml += `<div style="margin-bottom:16px;border:1px solid var(--border);border-radius:10px;overflow:hidden;"><div onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.querySelector('.c5-toggle').style.transform=this.nextElementSibling.style.display==='none'?'rotate(0deg)':'rotate(90deg)'" style="cursor:pointer;padding:12px 16px;background:var(--bg-elev);display:flex;align-items:center;justify-content:space-between;"><div style="display:flex;align-items:center;gap:8px;"><span style="font-size:16px;">📚</span><span style="font-size:14px;font-weight:600;color:var(--primary);">昨日复习 · ${prevDs} · ${prevTopicData.icon} ${prevTopicData.title}</span></div><span class="c5-toggle" style="transition:transform .2s;font-size:12px;color:var(--text-dim);">▶</span></div><div style="display:none;padding:16px;background:var(--bg-card);">`;
-          reviewHtml += generateTopicMindMap(prevTopicData, prevInfo.topic);
-          reviewHtml += `</div></div>`;
-        }
+      const prevNote = (typeof dailyNotesDB !== "undefined" && dailyNotesDB[prevDs] && dailyNotesDB[prevDs].entries && dailyNotesDB[prevDs].entries.length) ? dailyNotesDB[prevDs] : null;
+      if (prevNote) {
+        reviewHtml += `<div style="margin-bottom:16px;border:1px solid var(--border);border-radius:10px;overflow:hidden;"><div onclick="this.nextElementSibling.style.display=this.nextElementSibling.style.display==='none'?'block':'none';this.querySelector('.c6-toggle').style.transform=this.nextElementSibling.style.display==='none'?'rotate(0deg)':'rotate(90deg)'" style="cursor:pointer;padding:12px 16px;background:var(--bg-elev);display:flex;align-items:center;justify-content:space-between;"><div style="display:flex;align-items:center;gap:8px;"><span style="font-size:16px;">📓</span><span style="font-size:14px;font-weight:600;color:var(--primary);">昨日日记复习 · ${prevDs} · ${prevNote.entries.length}词 / kata</span></div><div style="display:flex;align-items:center;gap:10px;"><span onclick="event.stopPropagation();broadcastDay('${prevDs}')" style="font-size:14px;color:var(--primary);cursor:pointer" title="播报昨日笔记">🔊</span><span class="c6-toggle" style="transition:transform .2s;font-size:12px;color:var(--text-dim);">▶</span></div></div><div style="display:none;padding:16px;background:var(--bg-card);">`;
+        reviewHtml += `<div style="display:flex;flex-wrap:wrap;gap:6px;">`;
+        prevNote.entries.forEach(function(e){
+          const _w = String(e.word||"").replace(/'/g,"\\'");
+          const _cn = String(e.cn||"").split(/[;；]/)[0].slice(0,14);
+          reviewHtml += `<span onclick="showBITInfo('${_w}')" style="cursor:pointer;font-size:12px;padding:3px 8px;background:var(--bg-elev);border-radius:6px;color:var(--text);border:1px solid var(--border);"><strong style="color:var(--primary)">${e.word}</strong> <span style="color:var(--text-dim)">${_cn}</span> <span onclick="event.stopPropagation();speak('${_w}','id')" style="color:var(--primary);cursor:pointer">🔊</span></span>`;
+        });
+        reviewHtml += `</div><div style="font-size:11px;color:var(--text-dim);margin-top:8px;">💡 点击词条查看 BIT 详解 / Klik kata untuk detail BIT</div></div></div>`;
       }
     }
 
@@ -202786,9 +203451,19 @@ function renderAbout(c){
 }
 
 function renderVersion(c){
-  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.47.5 / Versi</span></div>
+  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.48.0 / Versi</span></div>
     <div style="padding:16px;">
       <div style="margin-bottom:14px;padding:14px;background:rgba(34,197,94,.10);border-radius:10px;border-left:3px solid var(--success)">
+        <div style="font-size:15px;font-weight:700;color:var(--success);margin-bottom:6px">V4.48.0 (2026-10-27)</div>
+        <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">C5→C6 策略升级 + 双 UKBI 复盘话题 + 播报倍速 + 课时测试双库回退 + 1024 日记补录</div>
+        <div style="font-size:12px;color:var(--text-dim);line-height:1.8">
+        • <strong>C5→C6 课程生成策略 v1.0</strong>（strategies/C6-课程生成策略.md 落盘）：核心词 38-40 → <strong>20-25/话题</strong>；场景 10-20句 → <strong>固定 10句</strong>；复习模块规则A 由「前一天 C4_MAP 思维导图」改为「<strong>📓 昨日日记复习</strong>」（dailyNotesDB[prevDs] 词条 chips，点击 showBITInfo 弹窗，规则B 前一话题总结保留）——原因：每天 2 小时学习时段无法完成原 C5 全部内容<br>
+        • <strong>双 UKBI 复盘话题上线（10/26-10/31）</strong>：🎧 ukbi_diary_1「UKBI复盘·听力阅读」10/26-28（25词：disajikan/teslet/perekaman/skimming/tryout/eliminasi/cemas/grogi/interpretasi 等）+ ✍️ ukbi_diary_2「UKBI复盘·写作口语」10/29-31（25词：esai/karakteristik/adaptif/tetapkan/legal/testimoni/evaluasi/keputusan/makanya-sebabnya 等）——C6 日记结合条款：100% 核心词选自 10/20-26 日记 bitVocabDB，三天主题=听力策略→阅读技巧→模考复盘 / 写作框架→口语模拟→成绩评估<br>
+        • <strong>播报升级（用户指令）</strong>：日记播报 1遍id+1遍zh → <strong>2遍印尼语（第1遍 0.8倍速慢读 + 第2遍正常）+ 1遍中文</strong>；例句同模式（id 0.8x → id 1.0x → cn）；词根保持 1 遍；seg.r 倍速字段向后兼容（默认 0.92）<br>
+        • <strong>课时测试页双库取词修复</strong>：startTopicQuiz/renderTopicQuiz 的 topic.vocab 回退分支增加 bitVocabDB 查询——ukbi_drill 及日记话题核心词仅在九字段库（vocabDB tag=0 全库随机的既有问题一并根治）<br>
+        • <strong>1024 日记补录</strong>（课时测试当日笔记缺口）：17 词挂 ukbi_drill Day2 心理调适+应急方案（napas-dalam 深呼吸/rencana-cadangan 应急预案/koneksi-terputus 断线重连/ujian-terhenti 考试中断/menganalisis 分析 等 12 新收 + cemas/grogi/irama/terburu-buru/gangguan 5 复习覆盖），bitVocabDB 2963→2972<br>
+        • 双 sub-agent 并行生成话题（各 ~6min）；check_syntax PASS；冒烟 7 项全 PASS；线上 MD5 待验</div>
+        <hr style="border-color:var(--border);margin:14px 0;">
         <div style="font-size:15px;font-weight:700;color:var(--success);margin-bottom:6px">V4.47.5 (2026-10-27)</div>
         <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">日历纯笔记日可点击修复(用户实测上报"26号怎么没有日记"): 根因=日历渲染+点击+详情页三处均只认learningHistory手动录入, 完全不查dailyNotesDB —— 纯笔记日(无手动学习记录)在日历上无高亮不可点击, 点进去也"暂无记录"早退 · 修复三处: ①renderCalHTML has-data并入dailyNotesDB判定+笔记日加--primary圆点 ②attachCalEvents点击条件or dailyNotesDB ③showDateStudyRecord纯笔记日不再早退, 渲染BIT笔记卡 · check_syntax PASS · deploy-check 8/8</div>
       </div>
@@ -213866,10 +214541,10 @@ function bcClearHl(){document.querySelectorAll(".dn-entry.bc-hl").forEach(functi
 function bcStop(){_bcPlaying=false;_bcIdx=0;_bcCurW=-1;if(window.speechSynthesis){try{speechSynthesis.cancel()}catch(e){}}bcSetBtn(false);bcClearHl();}
 // 跟随定位: 滚动到当前词条 + 高亮 + 自动展开 BIT 详情
 function bcFocusWord(ds,i){var el=document.getElementById("dnw-"+ds+"-"+i);if(!el)return;bcClearHl();el.classList.add("bc-hl");var det=document.getElementById("dn-"+ds+"-"+i);if(det&&det.style.display==="none")det.style.display="block";try{el.scrollIntoView({behavior:"smooth",block:"center"});}catch(e){}}
-function bcNext(){if(!_bcPlaying)return;if(_bcIdx>=_bcList.length){bcStop();if(typeof showToast==="function")showToast("✅ 播报完成");return;}var seg=_bcList[_bcIdx++];if(seg.w!==undefined&&seg.w!==_bcCurW){_bcCurW=seg.w;bcFocusWord(seg.ds,seg.w);}var u=new SpeechSynthesisUtterance(seg.t);u.lang=seg.l;u.rate=0.92;u.pitch=1;u.onend=function(){setTimeout(bcNext,150)};u.onerror=function(){setTimeout(bcNext,150)};try{window.speechSynthesis.speak(u)}catch(e){bcNext();}}
+function bcNext(){if(!_bcPlaying)return;if(_bcIdx>=_bcList.length){bcStop();if(typeof showToast==="function")showToast("✅ 播报完成");return;}var seg=_bcList[_bcIdx++];if(seg.w!==undefined&&seg.w!==_bcCurW){_bcCurW=seg.w;bcFocusWord(seg.ds,seg.w);}var u=new SpeechSynthesisUtterance(seg.t);u.lang=seg.l;u.rate=seg.r||0.92;u.pitch=1;u.onend=function(){setTimeout(bcNext,150)};u.onerror=function(){setTimeout(bcNext,150)};try{window.speechSynthesis.speak(u)}catch(e){bcNext();}}
 // 词根是否可播: 仅当为干净单词形(纯字母/连字符≥3字符、无括号中文空格、≠词目)
 function bcRootOk(r,w){if(!r)return false;var s=String(r).trim();if(!/^[A-Za-z][A-Za-z-]{2,}$/.test(s))return false;if(s===w)return false;return true;}
-function broadcastDay(ds){if(_bcPlaying){bcStop();return;}var list=[];var d=(typeof learningHistory!=="undefined")?learningHistory[ds]:null;if(d&&d.notes)list.push({t:d.notes,l:"zh-CN"});if(typeof dailyNotesDB!=="undefined"&&dailyNotesDB[ds]&&dailyNotesDB[ds].entries){dailyNotesDB[ds].entries.forEach(function(e,i){list.push({t:e.word,l:"id-ID",ds:ds,w:i});if(e.cn)list.push({t:e.cn,l:"zh-CN",ds:ds,w:i});if(bcRootOk(e.root,e.word))list.push({t:String(e.root).trim(),l:"id-ID",ds:ds,w:i});(e.examples||[]).slice(0,2).forEach(function(x){if(x&&x.id)list.push({t:x.id,l:"id-ID",ds:ds,w:i});if(x&&x.cn)list.push({t:x.cn,l:"zh-CN",ds:ds,w:i});});});}if(!list.length){if(typeof showToast==="function")showToast("当日无笔记可播报");return;}if(!window.speechSynthesis){if(typeof showToast==="function")showToast("❌ 浏览器不支持语音朗读");return;}window.speechSynthesis.cancel();try{window.speechSynthesis.resume()}catch(e){}_bcList=list;_bcIdx=0;_bcPlaying=true;_bcCurW=-1;bcSetBtn(true);bcNext();}
+function broadcastDay(ds){if(_bcPlaying){bcStop();return;}var list=[];var d=(typeof learningHistory!=="undefined")?learningHistory[ds]:null;if(d&&d.notes)list.push({t:d.notes,l:"zh-CN"});if(typeof dailyNotesDB!=="undefined"&&dailyNotesDB[ds]&&dailyNotesDB[ds].entries){dailyNotesDB[ds].entries.forEach(function(e,i){list.push({t:e.word,l:"id-ID",r:0.8,ds:ds,w:i});list.push({t:e.word,l:"id-ID",r:1.0,ds:ds,w:i});if(e.cn)list.push({t:e.cn,l:"zh-CN",ds:ds,w:i});if(bcRootOk(e.root,e.word))list.push({t:String(e.root).trim(),l:"id-ID",ds:ds,w:i});(e.examples||[]).slice(0,2).forEach(function(x){if(x&&x.id){list.push({t:x.id,l:"id-ID",r:0.8,ds:ds,w:i});list.push({t:x.id,l:"id-ID",r:1.0,ds:ds,w:i});}if(x&&x.cn)list.push({t:x.cn,l:"zh-CN",ds:ds,w:i});});});}if(!list.length){if(typeof showToast==="function")showToast("当日无笔记可播报");return;}if(!window.speechSynthesis){if(typeof showToast==="function")showToast("❌ 浏览器不支持语音朗读");return;}window.speechSynthesis.cancel();try{window.speechSynthesis.resume()}catch(e){}_bcList=list;_bcIdx=0;_bcPlaying=true;_bcCurW=-1;bcSetBtn(true);bcNext();}
 </script>
 </body>
 </html>
