@@ -6,7 +6,7 @@
 <meta http-equiv="Expires" content="0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LEO-BIR V4.47.4</title>
+<title>LEO-BIR V4.47.5</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -276,7 +276,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="sidebar-header">
     <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <h1>LEO-BIR</h1>
-    <div class="ver">LEO-BIR V4.47.4 · 1026每日笔记41词(挂dailynote: 20新收+21覆盖, 82例句) + 库2963词</div>
+    <div class="ver">LEO-BIR V4.47.5 · 日历纯笔记日可点击修复(dailyNotesDB日历/详情页双通) + 1026每日笔记41词</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -5165,14 +5165,15 @@ function renderCalHTML(){
   for(let i=0;i<fd;i++)h+=`<div class="cal-day" style="background:transparent;cursor:default"></div>`;
   for(let d=1;d<=td;d++){
     const ds=`${y}-${String(m+1).padStart(2,"0")}-${String(d).padStart(2,"0")}`;
-    const data=learningHistory[ds],ist=ds===tds,hd=data&&(data.vocabNew.length||data.vocabReview.length||data.translations);
+    const data=learningHistory[ds],ist=ds===tds,hd=data&&(data.vocabNew.length||data.vocabReview.length||data.translations)||(typeof dailyNotesDB!=="undefined"&&!!dailyNotesDB[ds]);
     let dots="";if(data){if(data.vocabNew.length)dots+=`<span class="ddot neww"></span>`;if(data.vocabReview.length)dots+=`<span class="ddot rev"></span>`;if(data.translations)dots+=`<span class="ddot"></span>`;}
+    if(typeof dailyNotesDB!=="undefined"&&dailyNotesDB[ds])dots+=`<span class="ddot" style="background:var(--primary)"></span>`;
     h+=`<div class="cal-day ${ist?"today":""} ${hd?"has-data":""}" data-date="${ds}"><div class="dnum">${d}</div><div class="ddots">${dots}</div></div>`;
   }
   h+=`</div><div class="cal-legend"><span><span class="ddot neww" style="display:inline-block"></span> 新词</span><span><span class="ddot rev" style="display:inline-block"></span> 复习</span><span><span class="ddot" style="display:inline-block"></span> 翻译</span><span>⬤ 今天</span></div></div>`;
   return h;
 }
-function attachCalEvents(){document.querySelectorAll(".cal-day[data-date]").forEach(el=>{el.addEventListener("click",()=>{const ds=el.dataset.date;if(learningHistory[ds])navigate("date",ds)})})}
+function attachCalEvents(){document.querySelectorAll(".cal-day[data-date]").forEach(el=>{el.addEventListener("click",()=>{const ds=el.dataset.date;if(learningHistory[ds]||(typeof dailyNotesDB!=="undefined"&&dailyNotesDB[ds]))navigate("date",ds)})})}
 function changeMonth(delta){currentDate.setMonth(currentDate.getMonth()+delta);renderHome(document.getElementById("appContent"))}
 
 // ===== V4.35.0 每日复习视频 Layer 1（video_registry.js 唯一真相源；VIDEO_DB 未定义时入口整体隐藏） =====
@@ -5275,7 +5276,13 @@ function renderDateDetail(c,ds){
 function showDateStudyRecord(ds, container){
   const c = container || document.getElementById('appContent');
   const data=learningHistory[ds];
-  if(!data){c.innerHTML=`<div class="date-detail"><button class="back-btn" onclick="goBack()">← 返回</button><div class="card" style="text-align:center;padding:40px;color:var(--text-dim)">📅 ${ds}<br>暂无记录</div></div>`;return;}
+  const _hasDBNote=(typeof dailyNotesDB!=="undefined"&&!!dailyNotesDB[ds]);
+  if(!data&&!_hasDBNote){c.innerHTML=`<div class="date-detail"><button class="back-btn" onclick="goBack()">← 返回</button><div class="card" style="text-align:center;padding:40px;color:var(--text-dim)">📅 ${ds}<br>暂无记录</div></div>`;return;}
+  if(!data){
+    const _pureNoteCard=(typeof buildDailyNoteCardForDate==="function")?buildDailyNoteCardForDate(ds):"";
+    c.innerHTML=`<div class="date-detail"><button class="back-btn" onclick="goBack()">← 返回 / Kembali</button><div class="card"><div class="card-header"><h2>📅 ${ds}</h2><span class="badge">学习记录 / Riwayat</span></div><div style="font-size:13px;color:var(--text-dim);">📝 当日无手动录入记录 · 以下为部署的 BIT 每日笔记</div></div>${_pureNoteCard}</div>`;
+    return;
+  }
   let vh="";
   if(data.vocabNew.length){vh+=`<h3 style="color:var(--primary);margin:16px 0 10px;font-size:15px">🆕 新学(${data.vocabNew.length})</h3><div class="word-grid">`;data.vocabNew.forEach(w=>{const v=vocabDB[w.toLowerCase()]||vocabDB[w.charAt(0).toUpperCase()+w.slice(1)]||vocabDB[w];if(v)vh+=`<div class="word-card" onclick="showTip('${w.replace(/'/g,"\'")}')"><div class="w-word">${w} <span class="w-ipa">${v.ipa||""}</span></div><div class="w-mean">🇨🇳 ${v.cn||""}</div></div>`;else vh+=`<div class="word-card"><div class="w-word">${w}</div></div>`;});vh+=`</div>`;}
   if(data.vocabReview.length){vh+=`<h3 style="color:var(--accent);margin:16px 0 10px;font-size:15px">🔄 复习(${data.vocabReview.length})</h3><div class="word-grid">`;data.vocabReview.forEach(w=>{const v=vocabDB[w.toLowerCase()]||vocabDB[w];if(v)vh+=`<div class="word-card" onclick="showTip('${w.replace(/'/g,"\'")}')"><div class="w-word">${w}</div><div class="w-mean">🇨🇳 ${v.cn||""}</div></div>`;else vh+=`<div class="word-card"><div class="w-word">${w}</div></div>`;});vh+=`</div>`;}
@@ -202779,8 +202786,12 @@ function renderAbout(c){
 }
 
 function renderVersion(c){
-  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.47.4 / Versi</span></div>
+  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.47.5 / Versi</span></div>
     <div style="padding:16px;">
+      <div style="margin-bottom:14px;padding:14px;background:rgba(34,197,94,.10);border-radius:10px;border-left:3px solid var(--success)">
+        <div style="font-size:15px;font-weight:700;color:var(--success);margin-bottom:6px">V4.47.5 (2026-10-27)</div>
+        <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">日历纯笔记日可点击修复(用户实测上报"26号怎么没有日记"): 根因=日历渲染+点击+详情页三处均只认learningHistory手动录入, 完全不查dailyNotesDB —— 纯笔记日(无手动学习记录)在日历上无高亮不可点击, 点进去也"暂无记录"早退 · 修复三处: ①renderCalHTML has-data并入dailyNotesDB判定+笔记日加--primary圆点 ②attachCalEvents点击条件or dailyNotesDB ③showDateStudyRecord纯笔记日不再早退, 渲染BIT笔记卡 · check_syntax PASS · deploy-check 8/8</div>
+      </div>
       <div style="margin-bottom:14px;padding:14px;background:rgba(34,197,94,.10);border-radius:10px;border-left:3px solid var(--success)">
         <div style="font-size:15px;font-weight:700;color:var(--success);margin-bottom:6px">V4.47.4 (2026-10-26)</div>
         <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">1026每日笔记41词(挂dailynote, BIT V1.0定稿): 新收20(wedang姜饮/jahe姜/karakteristik特征/sifat性质/kisaran区间/otomatis自动/tetapkan确定/legal合法/testimoni证言/makanya-sebabnya-oleh-karena-itu因果连词四链/keputusan决定/membedakan区分/karier职业/melampirkannya随函附上/mengikut-sertakan纳入/intinya总之/apapun无论何物/segala一切/tarik-napas-empat-hitungan吸气四拍口令/hembuskan-perlahan缓呼口令等) + 覆盖更新21(susu/dan/telur/mentah/evaluasi/gabung/nyata/sekitar/berubah/bersifat/adaptif/ulasan/perencanaan/melamar/diakui/bukti/menjaga/penguasaan/bahkan/wajar/tahan) · 82例句(UKBI复盘/面试准备/呼吸镇定/园区职场场景) · RCO对账41/41逐词映射 · 库2963词 · 双写手并行 · check_syntax PASS · deploy-check 8/8</div>
