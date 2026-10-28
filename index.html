@@ -6,7 +6,7 @@
 <meta http-equiv="Expires" content="0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LEO-BIR V4.48.0</title>
+<title>LEO-BIR V4.48.1</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -276,7 +276,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="sidebar-header">
     <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <h1>LEO-BIR</h1>
-    <div class="ver">LEO-BIR V4.48.0 · C5→C6策略升级(核心词20-25/场景10句/昨日日记复习) + 双UKBI复盘话题10/26-31 + 播报2遍id倍速</div>
+    <div class="ver">LEO-BIR V4.48.1 · 1027日记22词(12新+10覆盖) + 库2984词</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -6005,6 +6005,7 @@ function showBITInfo(word){
   }
   overlay.addEventListener("click",function(e){if(e.target===overlay)closeBITInfo();});
 }
+
 
 
 
@@ -84100,6 +84101,708 @@ const dailyNotesDB = {
         ]
       }
     ]
+  },
+  "2026-10-27": {
+    "date": "2026-10-27",
+    "topicKey": "ukbi_diary_1",
+    "source": "BIT V1.0 + BIO 审查",
+    "entries": [
+      {
+        "word": "melanggar",
+        "cn": "违反；触犯；违背（法规/规则/禁忌）",
+        "en": "to violate; to infringe; to breach",
+        "root": "langgar（触犯、逾越 → me- 前缀动词化：melanggar 违反）",
+        "forms": [],
+        "formsNote": "—（规则 me- 动词，无不规则变形；被动 dilanggar、进行时 sedang melanggar、已发生 telah melanggar）",
+        "note": "",
+        "synonyms": [
+          "melawan",
+          "menyalahi",
+          "tidak mematuhi"
+        ],
+        "antonyms": [
+          "mematuhi",
+          "menaati",
+          "memenuhi"
+        ],
+        "examples": []
+      },
+      {
+        "word": "hati",
+        "cn": "心；心脏；内心",
+        "en": "heart (organ); inner self",
+        "root": "hati（词根本身，梵语 hṛdaya 借词）",
+        "forms": [
+          {
+            "form": "hati",
+            "pos": "名词",
+            "mean": "心、心脏"
+          },
+          {
+            "form": "hati-hati",
+            "pos": "形容词/副词",
+            "mean": "小心的、谨慎地"
+          },
+          {
+            "form": "berhati",
+            "pos": "动词短语",
+            "mean": "怀着…心（berhati-hati 小心）"
+          },
+          {
+            "form": "kehatian",
+            "pos": "名词",
+            "mean": "谨慎（罕用）"
+          }
+        ],
+        "formsNote": "",
+        "note": "固定搭配 hati-hati（小心）必须重复书写；hati nurani（良心）为固定复合词。",
+        "synonyms": [
+          "jiwa",
+          "kalbu（诗）"
+        ],
+        "antonyms": [
+          "—"
+        ],
+        "examples": [
+          {
+            "scene": "日常口语",
+            "id": "Hati-hati",
+            "cn": "saat menyeberang jalan di area tambang. 在矿区过马路时要小心。"
+          }
+        ]
+      },
+      {
+        "word": "nurani",
+        "cn": "良心；良知",
+        "en": "conscience",
+        "root": "nurani（阿拉伯语借词，经 nūr「光」+ 形容词化，经宗教文本进入印尼语）",
+        "forms": [],
+        "formsNote": "—（抽象名词，无派生形态；常见搭配 suara hati nurani 良心的声音）",
+        "note": "",
+        "synonyms": [
+          "suara hati",
+          "akal sehat"
+        ],
+        "antonyms": [
+          "—"
+        ],
+        "examples": []
+      },
+      {
+        "word": "mengetuk",
+        "cn": "敲；叩；敲击",
+        "en": "to knock; to tap; to strike",
+        "root": "ketuk（敲击声/敲 → me- 动词化：mengetuk 敲击）",
+        "forms": [],
+        "formsNote": "—（规则 me- 动词；被动 ditutuk? 不对——被动 diketuk；名词 ketukan 敲击声）",
+        "note": "名词 ketukan（敲击、敲门声）为常见派生。",
+        "synonyms": [
+          "mengetok",
+          "memukul（轻）"
+        ],
+        "antonyms": [
+          "—"
+        ],
+        "examples": [
+          {
+            "scene": "谚语语境",
+            "id": "Mengetuk",
+            "cn": "pintu hati calon mitra butuh kesabaran bisnis. 叩开潜在合作伙伴的心门需要商业耐心。"
+          }
+        ]
+      },
+      {
+        "word": "esai",
+        "cn": "议论文；散文；随笔",
+        "en": "essay",
+        "root": "esai（法语 essai 借词，经英语进入印尼语）",
+        "forms": [],
+        "formsNote": "—（外来名词，无派生；复数直接用 esai-esai 或 beberapa esai）",
+        "note": "",
+        "synonyms": [
+          "karangan",
+          "artikel（论说文）"
+        ],
+        "antonyms": [
+          "—"
+        ],
+        "examples": [
+          {
+            "scene": "学术场景",
+            "id": "Esai",
+            "cn": "argumentasi harus punya tesis yang jelas dan bukti pendukung. 论说性散文必须有明确的论点和论据。"
+          }
+        ]
+      },
+      {
+        "word": "penguasaan",
+        "cn": "掌握；控制；精通",
+        "en": "mastery; control; command (of)",
+        "root": "kuasa（权力、能力 → pe-an 名词化：penguasaan 掌握、控制）",
+        "forms": [
+          {
+            "form": "kuasa",
+            "pos": "名词",
+            "mean": "权力、能力"
+          },
+          {
+            "form": "berkuasa",
+            "pos": "动词",
+            "mean": "掌权、统治"
+          },
+          {
+            "form": "menguasai",
+            "pos": "动词",
+            "mean": "掌握、精通、控制"
+          },
+          {
+            "form": "penguasaan",
+            "pos": "名词",
+            "mean": "掌握、控制"
+          }
+        ],
+        "formsNote": "",
+        "note": "me- 动词 menguasai 与 pe-an 名词 penguasaan 同源同根。",
+        "synonyms": [
+          "kendali",
+          "keahlian",
+          "penguasaan"
+        ],
+        "antonyms": [
+          "ketidaktahuan",
+          "kehilangan kendali"
+        ],
+        "examples": [
+          {
+            "scene": "UKBI 备考",
+            "id": "Penguasaan",
+            "cn": "kosakata menentukan skor bagian membaca. 词汇量掌握程度决定阅读部分得分。"
+          },
+          {
+            "scene": "工作汇报",
+            "id": "Penguasaan",
+            "cn": "teknologi proses smelting perlu ditingkatkan terus. 冶炼工艺技术的掌握需要持续提升。"
+          }
+        ]
+      },
+      {
+        "word": "praktisnya",
+        "cn": "其实用性；实际应用中（praktis + 第三人称附着代词 -nya）",
+        "en": "its practicality; in practice",
+        "root": "praktis（实用的 → 借词 practice/praktisch；-nya 附着代词：他的/它的）",
+        "forms": [
+          {
+            "form": "praktis",
+            "pos": "形容词",
+            "mean": "实用的、实际的"
+          },
+          {
+            "form": "praktisnya",
+            "pos": "短语",
+            "mean": "其实用性、实际中"
+          },
+          {
+            "form": "mempraktikkan",
+            "pos": "动词",
+            "mean": "实践、应用"
+          },
+          {
+            "form": "praktik",
+            "pos": "名词",
+            "mean": "实践、实习"
+          }
+        ],
+        "formsNote": "",
+        "note": "-nya 为附着代词（他/她/它/的），使形容词名词化，在句中常作\"…方面\"。",
+        "synonyms": [
+          "aplikasinya",
+          "pelaksanaannya"
+        ],
+        "antonyms": [
+          "teoritisnya"
+        ],
+        "examples": [
+          {
+            "scene": "学习讨论",
+            "id": "Praktisnya",
+            "cn": ", metode ini sulit diterapkan di lapangan. 实际上，这个方法在现场很难应用。"
+          }
+        ]
+      },
+      {
+        "word": "bahkan",
+        "cn": "甚至；而且…还",
+        "en": "even; indeed",
+        "root": "bahkan（原生连词，非派生）",
+        "forms": [],
+        "formsNote": "—（连词，无变形）",
+        "note": "",
+        "synonyms": [
+          "malah",
+          "malahan",
+          "apalogi"
+        ],
+        "antonyms": [
+          "—"
+        ],
+        "examples": []
+      },
+      {
+        "word": "wajar",
+        "cn": "合理的；正常的；情有可原的",
+        "en": "reasonable; fair; normal",
+        "root": "wajar（阿拉伯语 wajh? 待考——现代印尼语作整体形容词）",
+        "forms": [
+          {
+            "form": "wajar",
+            "pos": "形容词",
+            "mean": "合理的、正常的"
+          },
+          {
+            "form": "kewajaran",
+            "pos": "名词",
+            "mean": "合理性、常态"
+          },
+          {
+            "form": "sewajarnya",
+            "pos": "副词",
+            "mean": "按理、正常地"
+          }
+        ],
+        "formsNote": "",
+        "note": "",
+        "synonyms": [
+          "masuk akal",
+          "lumrah",
+          "wajar saja"
+        ],
+        "antonyms": [
+          "tidak wajar",
+          "ganjil",
+          "aneh"
+        ],
+        "examples": []
+      },
+      {
+        "word": "natural",
+        "cn": "自然的；天然的；不做作的",
+        "en": "natural",
+        "root": "natural（英语/荷兰语 natuurlijk 借词）",
+        "forms": [],
+        "formsNote": "—（外来形容词，无派生；口语常读 [nacural]）",
+        "note": "",
+        "synonyms": [
+          "alami",
+          "naturl（正式）",
+          "sifatnya"
+        ],
+        "antonyms": [
+          "buatan",
+          "artifisial",
+          "palsu"
+        ],
+        "examples": []
+      },
+      {
+        "word": "tarik",
+        "cn": "拉；抽；吸（气）；拽",
+        "en": "to pull; to draw; to inhale",
+        "root": "tarik（词根本身，拟声/古马来语）",
+        "forms": [
+          {
+            "form": "tarik",
+            "pos": "动词/名词",
+            "mean": "拉、吸引（力）"
+          },
+          {
+            "form": "menarik",
+            "pos": "动词",
+            "mean": "拉、吸引、提取"
+          },
+          {
+            "form": "tarikan",
+            "pos": "名词",
+            "mean": "一拉、拉力"
+          },
+          {
+            "form": "tertarik",
+            "pos": "形容词/动词",
+            "mean": "被吸引、感兴趣"
+          }
+        ],
+        "formsNote": "",
+        "note": "menarik 兼有\"吸引\"与\"提取\"义；tertarik pada = 对…感兴趣（固定搭配）。",
+        "synonyms": [
+          "menghela",
+          "menyeret"
+        ],
+        "antonyms": [
+          "mendorong",
+          "menolak"
+        ],
+        "examples": [
+          {
+            "scene": "呼吸练习",
+            "id": "Tarik",
+            "cn": "napas dalam empat hitungan, lalu hembuskan perlahan. 吸气四拍，然后缓缓呼出。"
+          },
+          {
+            "scene": "园区运维",
+            "id": "Tarik",
+            "cn": "tuas darurat jika terjadi kebocoran gas. 若发生气体泄漏，拉下紧急拉杆。"
+          }
+        ]
+      },
+      {
+        "word": "hembuskan",
+        "cn": "呼出；吹出；吐出",
+        "en": "to exhale; to blow out",
+        "root": "hembus（吹气声 → hembuskan 使动/命令式：呼出）",
+        "forms": [],
+        "formsNote": "—（规则 -kan 使动动词；主动 mehembuskan? 实际常用 dihembuskan/terhembus）",
+        "note": "同源词 hembusan（一口气、吹气）；动词 menghembuskan（吹送）为正式体。",
+        "synonyms": [
+          "mengeluarkan napas",
+          "meniup keluar"
+        ],
+        "antonyms": [
+          "menghirup",
+          "menarik napas"
+        ],
+        "examples": [
+          {
+            "scene": "呼吸镇定",
+            "id": "Hembuskan",
+            "cn": "napas perlahan sambil hitung sampai empat. 缓缓呼出气息，同时数到四。"
+          }
+        ]
+      },
+      {
+        "word": "perlahan",
+        "cn": "缓慢地；渐渐地；逐步地",
+        "en": "slowly; gradually",
+        "root": "lahan（迟缓 → per- 强化/使成：perlahan 缓慢地）",
+        "forms": [
+          {
+            "form": "perlahan",
+            "pos": "副词",
+            "mean": "缓慢地"
+          },
+          {
+            "form": "perlahan-lahan",
+            "pos": "副词",
+            "mean": "一步一步地、渐渐地"
+          },
+          {
+            "form": "pelan",
+            "pos": "副词",
+            "mean": "慢（同义口语）"
+          }
+        ],
+        "formsNote": "",
+        "note": "perlahan-lahan 叠词强化语气，语义相同。",
+        "synonyms": [
+          "pelan-pelan",
+          "sedikit demi sedikit",
+          "bertahap"
+        ],
+        "antonyms": [
+          "cepat",
+          "segera",
+          "tiba-tiba"
+        ],
+        "examples": []
+      },
+      {
+        "word": "tiup",
+        "cn": "吹；吹气；刮（风）",
+        "en": "to blow; to puff",
+        "root": "tiup（词根本身，拟声）",
+        "forms": [
+          {
+            "form": "tiup",
+            "pos": "动词/名词",
+            "mean": "吹、一阵风"
+          },
+          {
+            "form": "meniup",
+            "pos": "动词",
+            "mean": "吹（正在）"
+          },
+          {
+            "form": "tiupan",
+            "pos": "名词",
+            "mean": "一吹、吹气"
+          },
+          {
+            "form": "ditiup",
+            "pos": "被动",
+            "mean": "被吹"
+          }
+        ],
+        "formsNote": "",
+        "note": "名词 angin tiupan（吹来的风）较少用；常用固定搭配 meniup peluit（吹哨）。",
+        "synonyms": [
+          "menghembus",
+          "bertiup"
+        ],
+        "antonyms": [
+          "menyedot",
+          "menghirup"
+        ],
+        "examples": []
+      },
+      {
+        "word": "otak",
+        "cn": "大脑；脑筋；头脑",
+        "en": "brain; mind",
+        "root": "otak（词根本身）",
+        "forms": [
+          {
+            "form": "otak",
+            "pos": "名词",
+            "mean": "大脑"
+          },
+          {
+            "form": "mengotak",
+            "pos": "动词",
+            "mean": "动脑筋（口语）"
+          },
+          {
+            "form": "berotak",
+            "pos": "形容词",
+            "mean": "有头脑的"
+          },
+          {
+            "form": "otak-otak",
+            "pos": "名词",
+            "mean": "东南亚鱼糕（同名异义）"
+          }
+        ],
+        "formsNote": "",
+        "note": "berotak encer（头脑聪明）、berotak dingin（头脑冷静）为固定搭配。",
+        "synonyms": [
+          "akal",
+          "pikiran",
+          "inteligen"
+        ],
+        "antonyms": [
+          "—"
+        ],
+        "examples": []
+      },
+      {
+        "word": "panik",
+        "cn": "恐慌；惊慌；手忙脚乱",
+        "en": "panic; to panic",
+        "root": "panik（英语 panic 借词，希腊语 panikos）",
+        "forms": [],
+        "formsNote": "—（外来词；形容词 panik / 动词 memanikkan（使恐慌）较少用；常用 dalam keadaan panik）",
+        "note": "口语中直接用 panik 作动词\"慌了\"：Jangan panik!",
+        "synonyms": [
+          "gelisah",
+          "kalang kabut",
+          "cemas berlebihan"
+        ],
+        "antonyms": [
+          "tenang",
+          "dingin"
+        ],
+        "examples": [
+          {
+            "scene": "UKBI 备考",
+            "id": "Panik",
+            "cn": "saat mengerjakan soal mendengarkan adalah musuh terbesar. 做听力题时恐慌是最大的敌人。"
+          }
+        ]
+      },
+      {
+        "word": "cas-an",
+        "cn": "充电（口语；标准语 mengisi daya）",
+        "en": "charging (colloquial, from \"charge\")",
+        "root": "cas（英语 charge 口语化借词 → -an 名词化：cas-an 充电这件事）",
+        "forms": [],
+        "formsNote": "—（口语名词/动词化；标准书面语用 mengisi daya/pengisian daya）",
+        "note": "口语借词，源自英语 charge；正式场合与考试中应使用 mengisi daya（给…充电）。",
+        "synonyms": [
+          "mengisi daya",
+          "pengisian daya（标准）"
+        ],
+        "antonyms": [
+          "kehabisan daya",
+          "habis baterai"
+        ],
+        "examples": []
+      },
+      {
+        "word": "degdegkan",
+        "cn": "使怦怦跳；使心跳加速（紧张/激动）",
+        "en": "to make (the heart) pound",
+        "root": "deg（拟声，心跳\"怦\"声 → deg-deg → degdegkan 使动）",
+        "forms": [],
+        "formsNote": "—（口语使动动词；名词 deg-deg an / jantung berdeg-deg）",
+        "note": "口语词，标准语常作 berdebar、berdebar-debar（心怦怦跳）；deg-degan（紧张不安的）。",
+        "synonyms": [
+          "berdebar",
+          "berdebar-debar"
+        ],
+        "antonyms": [
+          "tenang",
+          "mantap"
+        ],
+        "examples": []
+      },
+      {
+        "word": "fitur",
+        "cn": "功能；特性；特色",
+        "en": "feature",
+        "root": "fitur（英语 feature 借词）",
+        "forms": [],
+        "formsNote": "—（外来名词，无派生；复数 beberapa fitur）",
+        "note": "",
+        "synonyms": [
+          "fungsi",
+          "fasilitas",
+          "spesifikasi"
+        ],
+        "antonyms": [
+          "kekurangan",
+          "bug（缺陷义）"
+        ],
+        "examples": [
+          {
+            "scene": "产品讨论",
+            "id": "Fitur",
+            "cn": "terbaru aplikasi belajar ini adalah kuis interaktif harian. 这个学习 App 的最新功能是每日互动测验。"
+          },
+          {
+            "scene": "UKBI 备考",
+            "id": "Fitur",
+            "cn": "tryout adaptif di platform ini membantu mengukur level. 这个平台的自适应模考功能有助于测量水平。"
+          }
+        ]
+      },
+      {
+        "word": "bergizi",
+        "cn": "有营养的；滋养的",
+        "en": "nutritious",
+        "root": "gizi（营养 → ber- 前缀：具有…的，bergizi 有营养的）",
+        "forms": [
+          {
+            "form": "gizi",
+            "pos": "名词",
+            "mean": "营养"
+          },
+          {
+            "form": "bergizi",
+            "pos": "形容词",
+            "mean": "有营养的"
+          },
+          {
+            "form": "gizinya",
+            "pos": "名词短语",
+            "mean": "其营养"
+          },
+          {
+            "form": "gizi seimbang",
+            "pos": "名词短语",
+            "mean": "均衡营养"
+          }
+        ],
+        "formsNote": "",
+        "note": "ber- + 名词 = 形容词（具有该性质），同类构词：bermanfaat、berbahaya。",
+        "synonyms": [
+          "bermanfaat? 不——sehat",
+          "berkhasiat",
+          "nutrisi tinggi"
+        ],
+        "antonyms": [
+          "tidak bergizi",
+          "bergizi rendah"
+        ],
+        "examples": []
+      },
+      {
+        "word": "berjuang",
+        "cn": "奋斗；抗争；拼搏",
+        "en": "to struggle; to fight (for); to strive",
+        "root": "juang（战斗、斗争 → ber- 动词化：berjuang 奋斗）",
+        "forms": [
+          {
+            "form": "juang",
+            "pos": "名词",
+            "mean": "斗争、战斗"
+          },
+          {
+            "form": "berjuang",
+            "pos": "动词",
+            "mean": "奋斗、拼搏"
+          },
+          {
+            "form": "perjuangan",
+            "pos": "名词",
+            "mean": "奋斗历程、斗争"
+          },
+          {
+            "form": "pejuang",
+            "pos": "名词",
+            "mean": "战士、奋斗者"
+          }
+        ],
+        "formsNote": "",
+        "note": "perjuangan 与 pejuang 为同源名词，日常与正式场合均高频。",
+        "synonyms": [
+          "berusaha keras",
+          "bertarung",
+          "mengusahakan"
+        ],
+        "antonyms": [
+          "menyerah",
+          "pasrah"
+        ],
+        "examples": []
+      },
+      {
+        "word": "perang",
+        "cn": "战争；战役；作战",
+        "en": "war; warfare",
+        "root": "perang（词根本身，古马来语）",
+        "forms": [
+          {
+            "form": "perang",
+            "pos": "名词",
+            "mean": "战争"
+          },
+          {
+            "form": "berperang",
+            "pos": "动词",
+            "mean": "作战、交战"
+          },
+          {
+            "form": "peperangan",
+            "pos": "名词",
+            "mean": "战争（宏大叙事体）"
+          },
+          {
+            "form": "berperang melawan",
+            "pos": "动词短语",
+            "mean": "与…作战"
+          }
+        ],
+        "formsNote": "",
+        "note": "同源派生 juang→perjuangan 为抽象\"奋斗\"，perang→peperangan 为实体\"战争\"。",
+        "synonyms": [
+          "peperangan",
+          "pertempuran",
+          "pertarungan"
+        ],
+        "antonyms": [
+          "damai",
+          "perdamaian"
+        ],
+        "examples": []
+      }
+    ]
   }
 };
 // ===== BIT 详解库 bitVocabDB V4.31.0 新增:按词组织的累积详解库,转换器 scripts/md_to_dailynote.py 在写入每日笔记时自动并入新词条;批量生成由 BIT→BIO 流程灌入 =====
@@ -88269,45 +88972,25 @@ const bitVocabDB = {
   },
   "hembuskan": {
     "word": "hembuskan",
-    "ipa": "/həmˈbuskan/",
-    "cn": "呼气/吹出",
-    "en": "to exhale, to blow out",
-    "root": "hembus",
-    "forms": [
-      {
-        "form": "menghembus",
-        "pos": "v",
-        "mean": "吹/呼气（不及物）"
-      },
-      {
-        "form": "menghembuskan",
-        "pos": "v",
-        "mean": "吹出/呼出（使动）"
-      },
-      {
-        "form": "hembusan",
-        "pos": "n",
-        "mean": "一口气/一阵风"
-      }
-    ],
-    "formsNote": "meng-…-kan 使动结构，词根 hembus 拟声词根「气息」",
-    "note": "常用于 napas（呼吸）搭配：menghembuskan napas terakhir 意为「咽气/断气」",
+    "cn": "呼出；吹出；吐出",
+    "en": "to exhale; to blow out",
+    "root": "hembus（吹气声 → hembuskan 使动/命令式：呼出）",
+    "forms": [],
+    "formsNote": "—（规则 -kan 使动动词；主动 mehembuskan? 实际常用 dihembuskan/terhembus）",
+    "note": "同源词 hembusan（一口气、吹气）；动词 menghembuskan（吹送）为正式体。",
     "synonyms": [
-      "mengembaskan"
+      "mengeluarkan napas",
+      "meniup keluar"
     ],
     "antonyms": [
-      "menghirup"
+      "menghirup",
+      "menarik napas"
     ],
     "examples": [
       {
-        "scene": "Dia menghembuskan napas panjang lega.",
-        "id": "hembuskan",
-        "cn": "他长长地松了一口气。"
-      },
-      {
-        "scene": "Angin menghembus daun-daun kering.",
-        "id": "menghembus",
-        "cn": "风吹动枯叶。"
+        "scene": "呼吸镇定",
+        "id": "Hembuskan",
+        "cn": "napas perlahan sambil hitung sampai empat. 缓缓呼出气息，同时数到四。"
       }
     ]
   },
@@ -96583,58 +97266,42 @@ const bitVocabDB = {
   },
   "otak": {
     "word": "otak",
-    "ipa": "/ˈotak/",
-    "cn": "大脑",
-    "en": "brain",
-    "root": "otak（基础名词）",
+    "cn": "大脑；脑筋；头脑",
+    "en": "brain; mind",
+    "root": "otak（词根本身）",
     "forms": [
       {
         "form": "otak",
-        "pos": "n",
+        "pos": "名词",
         "mean": "大脑"
       },
       {
-        "form": "otaknya",
-        "pos": "n",
-        "mean": "他的大脑"
+        "form": "mengotak",
+        "pos": "动词",
+        "mean": "动脑筋（口语）"
       },
       {
         "form": "berotak",
-        "pos": "adj",
+        "pos": "形容词",
         "mean": "有头脑的"
       },
       {
-        "form": "berotak encer",
-        "pos": "adj",
-        "mean": "聪明的"
-      },
-      {
         "form": "otak-otak",
-        "pos": "n",
-        "mean": "鱼饼（南苏拉威西名吃）"
+        "pos": "名词",
+        "mean": "东南亚鱼糕（同名异义）"
       }
     ],
-    "formsNote": "berotak encer = 头脑灵活（固定搭配）",
-    "note": "注意 otak-otak 是望加锡鱼饼（完全无关的同音词）；Brain vs Brawn 对译：otak vs otot。",
+    "formsNote": "",
+    "note": "berotak encer（头脑聪明）、berotak dingin（头脑冷静）为固定搭配。",
     "synonyms": [
+      "akal",
       "pikiran",
-      "benak"
+      "inteligen"
     ],
     "antonyms": [
-      "otot"
+      "—"
     ],
-    "examples": [
-      {
-        "scene": "Dia **berotak** encer, cepat paham.",
-        "id": "berotak",
-        "cn": "他头脑灵活，领悟很快。"
-      },
-      {
-        "scene": "Cedera kepala bisa merusak **otak**.",
-        "id": "otak",
-        "cn": "头部受伤可能损伤大脑。"
-      }
-    ]
+    "examples": []
   },
   "lengan atas": {
     "word": "lengan atas",
@@ -114629,48 +115296,45 @@ const bitVocabDB = {
   },
   "hati": {
     "word": "hati",
-    "ipa": "/ˈhati/",
-    "cn": "心/肝脏",
-    "en": "heart, liver (also figurative: feelings)",
-    "root": "hati",
+    "cn": "心；心脏；内心",
+    "en": "heart (organ); inner self",
+    "root": "hati（词根本身，梵语 hṛdaya 借词）",
     "forms": [
       {
         "form": "hati",
-        "pos": "n",
-        "mean": "心/肝脏"
+        "pos": "名词",
+        "mean": "心、心脏"
       },
       {
         "form": "hati-hati",
-        "pos": "adj",
-        "mean": "小心的"
+        "pos": "形容词/副词",
+        "mean": "小心的、谨慎地"
       },
       {
-        "form": "perhatian",
-        "pos": "n",
-        "mean": "注意/关心"
+        "form": "berhati",
+        "pos": "动词短语",
+        "mean": "怀着…心（berhati-hati 小心）"
       },
       {
-        "form": "berhati-hati",
-        "pos": "v",
-        "mean": "小心谨慎"
+        "form": "kehatian",
+        "pos": "名词",
+        "mean": "谨慎（罕用）"
       }
     ],
-    "formsNote": "重叠 hati-hati 表「小心」；per-…-an 派生",
-    "note": "印尼文化中 hati 是情感中心：hati-hati 小心、berat hati 心情沉重、hati nurani 良心",
+    "formsNote": "",
+    "note": "固定搭配 hati-hati（小心）必须重复书写；hati nurani（良心）为固定复合词。",
     "synonyms": [
-      "nurani"
+      "jiwa",
+      "kalbu（诗）"
     ],
-    "antonyms": [],
+    "antonyms": [
+      "—"
+    ],
     "examples": [
       {
-        "scene": "Hati-hati saat menyeberang jalan.",
-        "id": "hati-hati",
-        "cn": "过马路时要小心。"
-      },
-      {
-        "scene": "Perhatianmu sangat berarti bagiku.",
-        "id": "perhatian",
-        "cn": "你的关心对我很重要。"
+        "scene": "日常口语",
+        "id": "Hati-hati",
+        "cn": "saat menyeberang jalan di area tambang. 在矿区过马路时要小心。"
       }
     ]
   },
@@ -116673,54 +117337,39 @@ const bitVocabDB = {
   },
   "perlahan": {
     "word": "perlahan",
-    "ipa": "/pərˈlahan/",
-    "cn": "缓慢",
-    "en": "slowly, gently",
-    "root": "lahan",
+    "cn": "缓慢地；渐渐地；逐步地",
+    "en": "slowly; gradually",
+    "root": "lahan（迟缓 → per- 强化/使成：perlahan 缓慢地）",
     "forms": [
       {
-        "form": "lahan",
-        "pos": "n",
-        "mean": "土地（勿混淆）"
-      },
-      {
-        "form": "pelan",
-        "pos": "adj",
-        "mean": "慢的"
-      },
-      {
         "form": "perlahan",
-        "pos": "adv",
+        "pos": "副词",
         "mean": "缓慢地"
       },
       {
         "form": "perlahan-lahan",
-        "pos": "adv",
-        "mean": "渐渐地"
+        "pos": "副词",
+        "mean": "一步一步地、渐渐地"
+      },
+      {
+        "form": "pelan",
+        "pos": "副词",
+        "mean": "慢（同义口语）"
       }
     ],
-    "formsNote": "pelan「慢」加 per- 副词化；勿与 lahan「土地」混淆",
-    "note": "Bicara perlahan. 说慢一点。Perlahan-lahan dia mulai membaik. 他渐渐好转。",
+    "formsNote": "",
+    "note": "perlahan-lahan 叠词强化语气，语义相同。",
     "synonyms": [
       "pelan-pelan",
-      "pelan"
+      "sedikit demi sedikit",
+      "bertahap"
     ],
     "antonyms": [
       "cepat",
-      "kencang"
+      "segera",
+      "tiba-tiba"
     ],
-    "examples": [
-      {
-        "scene": "Jalan perlahan, jalan licin.",
-        "id": "perlahan",
-        "cn": "慢点走，路滑。"
-      },
-      {
-        "scene": "Perlahan-lahan kabut mulai menghilang.",
-        "id": "perlahan-lahan",
-        "cn": "雾气渐渐散去。"
-      }
-    ]
+    "examples": []
   },
   "tulang panggul": {
     "word": "tulang panggul",
@@ -122947,52 +123596,43 @@ const bitVocabDB = {
   },
   "bergizi": {
     "word": "bergizi",
-    "cn": "有营养的",
+    "cn": "有营养的；滋养的",
     "en": "nutritious",
-    "root": "gizi（营养）+ ber-（具有）",
+    "root": "gizi（营养 → ber- 前缀：具有…的，bergizi 有营养的）",
     "forms": [
-      {
-        "form": "bergizi",
-        "pos": "形容词",
-        "mean": "有营养的"
-      },
       {
         "form": "gizi",
         "pos": "名词",
         "mean": "营养"
       },
       {
-        "form": "zat gizi",
-        "pos": "名词短语",
-        "mean": "营养物质"
+        "form": "bergizi",
+        "pos": "形容词",
+        "mean": "有营养的"
       },
       {
-        "form": "gizi buruk",
+        "form": "gizinya",
         "pos": "名词短语",
-        "mean": "营养不良"
+        "mean": "其营养"
+      },
+      {
+        "form": "gizi seimbang",
+        "pos": "名词短语",
+        "mean": "均衡营养"
       }
     ],
     "formsNote": "",
-    "note": "ber- 前缀表\"具有…\"：gizi → bergizi 常搭配 makanan bergizi（有营养的食物）、sarapan bergizi（营养早餐）",
+    "note": "ber- + 名词 = 形容词（具有该性质），同类构词：bermanfaat、berbahaya。",
     "synonyms": [
+      "bermanfaat? 不——sehat",
       "berkhasiat",
-      "sehat"
+      "nutrisi tinggi"
     ],
     "antonyms": [
-      "bergizi buruk"
+      "tidak bergizi",
+      "bergizi rendah"
     ],
-    "examples": [
-      {
-        "scene": "考前准备",
-        "id": "Sarapan bergizi penting untuk menjaga konsentrasi saat ujian.",
-        "cn": "营养早餐对保持考试专注力很重要。"
-      },
-      {
-        "scene": "营地后勤",
-        "id": "Kantor tambang menyediakan makanan bergizi bagi pekerja.",
-        "cn": "矿区办公室为工人提供营养餐食。"
-      }
-    ]
+    "examples": []
   },
   "curang": {
     "word": "curang",
@@ -142824,31 +143464,21 @@ const bitVocabDB = {
   },
   "bahkan": {
     "word": "bahkan",
-    "cn": "甚至；乃至",
-    "en": "even",
-    "root": "bahkan（甚至，副词小品词）",
+    "cn": "甚至；而且…还",
+    "en": "even; indeed",
+    "root": "bahkan（原生连词，非派生）",
     "forms": [],
-    "formsNote": "无词缀变形",
-    "note": "强调副词，引出比前述更强的例证（dia bahkan tidak tahu 他甚至不知道）。可置句首或所强调成分之前。常与 pun 呼应：Bahkan direktur pun hadir.（连总监都到场了。）语域中性，口语书面通用。",
+    "formsNote": "—（连词，无变形）",
+    "note": "",
     "synonyms": [
       "malah",
-      "malahan"
+      "malahan",
+      "apalogi"
     ],
     "antonyms": [
       "—"
     ],
-    "examples": [
-      {
-        "scene": "项目汇报",
-        "id": "Hujan deras mengganggu logistik, bahkan jalan utama pun terendam.",
-        "cn": "暴雨扰乱物流，甚至连主干道都被淹了。"
-      },
-      {
-        "scene": "考前复盘",
-        "id": "Saya sudah membaca materi tiga kali, bahkan catatan lama pun saya periksa ulang.",
-        "cn": "材料我读了三遍，连旧笔记也重新检查过了。"
-      }
-    ]
+    "examples": []
   },
   "pelajari": {
     "word": "pelajari",
@@ -189658,7 +190288,7 @@ const bitVocabDB = {
     "word": "wajar",
     "cn": "合理的；正常的；情有可原的",
     "en": "reasonable; fair; normal",
-    "root": "wajar（合理、正常，词根本身）",
+    "root": "wajar（阿拉伯语 wajh? 待考——现代印尼语作整体形容词）",
     "forms": [
       {
         "form": "wajar",
@@ -189668,37 +190298,27 @@ const bitVocabDB = {
       {
         "form": "kewajaran",
         "pos": "名词",
-        "mean": "合理性、正常性"
+        "mean": "合理性、常态"
       },
       {
         "form": "sewajarnya",
         "pos": "副词",
-        "mean": "合乎情理地"
+        "mean": "按理、正常地"
       }
     ],
     "formsNote": "",
-    "note": "两层含义：①价格/条件合理公平（harga wajar 公道价）；②情绪反应正常可以理解（gugup sebelum ujian itu wajar 考前紧张很正常）。名词 kewajaran = 合理性。",
+    "note": "",
     "synonyms": [
       "masuk akal",
       "lumrah",
-      "patut"
+      "wajar saja"
     ],
     "antonyms": [
-      "aneh",
-      "berlebihan"
+      "tidak wajar",
+      "ganjil",
+      "aneh"
     ],
-    "examples": [
-      {
-        "scene": "考前镇定",
-        "id": "Gugup sebelum wawancara itu wajar, asal bisa kamu kelola.",
-        "cn": "面试前紧张很正常，只要你能管理它。"
-      },
-      {
-        "scene": "商务谈判",
-        "id": "Permintaan penyesuaian jadwal itu wajar mengingat kondisi cuaca.",
-        "cn": "考虑到天气情况，调整进度的要求是合理的。"
-      }
-    ]
+    "examples": []
   },
   "undang": {
     "word": "undang",
@@ -201187,9 +201807,9 @@ const bitVocabDB = {
   },
   "penguasaan": {
     "word": "penguasaan",
-    "cn": "掌握；精通；控制（权）",
-    "en": "mastery; command; control",
-    "root": "kuasa（权力、能力）→ menguasai（掌握、控制）→ penguasaan（掌握，名词）",
+    "cn": "掌握；控制；精通",
+    "en": "mastery; control; command (of)",
+    "root": "kuasa（权力、能力 → pe-an 名词化：penguasaan 掌握、控制）",
     "forms": [
       {
         "form": "kuasa",
@@ -201197,46 +201817,42 @@ const bitVocabDB = {
         "mean": "权力、能力"
       },
       {
+        "form": "berkuasa",
+        "pos": "动词",
+        "mean": "掌权、统治"
+      },
+      {
         "form": "menguasai",
         "pos": "动词",
-        "mean": "掌握、控制"
+        "mean": "掌握、精通、控制"
       },
       {
         "form": "penguasaan",
         "pos": "名词",
-        "mean": "掌握、控制权"
-      },
-      {
-        "form": "penguasai",
-        "pos": "名词",
-        "mean": "掌握者、统治者"
-      },
-      {
-        "form": "berkuasa",
-        "pos": "形容词",
-        "mean": "有权力的"
+        "mean": "掌握、控制"
       }
     ],
     "formsNote": "",
-    "note": "pe-an 名词化。两层含义：①技能掌握（penguasaan bahasa Indonesia 印尼语掌握程度——UKBI 考察核心）；②控制权（penguasaan pasar 市场控制、penguasaan teknologi 技术掌控）。",
+    "note": "me- 动词 menguasai 与 pe-an 名词 penguasaan 同源同根。",
     "synonyms": [
-      "pemahaman",
-      "kemahiran",
-      "kendali"
+      "kendali",
+      "keahlian",
+      "penguasaan"
     ],
     "antonyms": [
-      "ketidaktahuan"
+      "ketidaktahuan",
+      "kehilangan kendali"
     ],
     "examples": [
       {
-        "scene": "面试亮点",
-        "id": "Penguasaan bahasa Indonesia yang baik menjadi nilai tambah di perusahaan multinasional.",
-        "cn": "良好的印尼语掌握程度是跨国公司的加分项。"
+        "scene": "UKBI 备考",
+        "id": "Penguasaan",
+        "cn": "kosakata menentukan skor bagian membaca. 词汇量掌握程度决定阅读部分得分。"
       },
       {
-        "scene": "进度管理",
-        "id": "Penguasaan jadwal proyek memerlukan pembaruan data setiap hari.",
-        "cn": "掌握项目进度需要每天更新数据。"
+        "scene": "工作汇报",
+        "id": "Penguasaan",
+        "cn": "teknologi proses smelting perlu ditingkatkan terus. 冶炼工艺技术的掌握需要持续提升。"
       }
     ]
   },
@@ -201539,55 +202155,68 @@ const bitVocabDB = {
   },
   "esai": {
     "word": "esai",
-    "cn": "散文；短文；论说文",
-    "en": "essay; short prose composition",
-    "root": "esai（← essay，英语借词）",
+    "cn": "议论文；散文；随笔",
+    "en": "essay",
+    "root": "esai（法语 essai 借词，经英语进入印尼语）",
     "forms": [],
-    "formsNote": "—",
-    "note": "— 名词；UKBI 写作任务常见文体",
+    "formsNote": "—（外来名词，无派生；复数直接用 esai-esai 或 beberapa esai）",
+    "note": "",
     "synonyms": [
-      "karangan"
+      "karangan",
+      "artikel（论说文）"
     ],
     "antonyms": [
       "—"
     ],
     "examples": [
       {
-        "scene": "备考策略",
-        "id": "Pada bagian menulis, peserta diminta menulis esai pendek dalam tiga puluh menit.",
-        "cn": "写作部分要求考生在三十分钟内写一篇短文。"
-      },
-      {
-        "scene": "成绩分析",
-        "id": "Esainya menunjukkan penguasaan struktur yang baik meski kosakatanya masih terbatas.",
-        "cn": "他的短文显示出良好的结构掌握，尽管词汇仍然有限。"
+        "scene": "学术场景",
+        "id": "Esai",
+        "cn": "argumentasi harus punya tesis yang jelas dan bukti pendukung. 论说性散文必须有明确的论点和论据。"
       }
     ]
   },
   "praktisnya": {
     "word": "praktisnya",
-    "cn": "其实用性（praktis + -nya 名词化）",
-    "en": "its/his/her practicality",
-    "root": "praktis（实用；源自荷兰语 practisch）",
-    "forms": [],
-    "formsNote": "—",
-    "note": "praktis + -nya → praktisnya（名词化用法） 形容词 + -nya 名词化；\"praktisnya metode ini\" = 这方法的实用性",
+    "cn": "其实用性；实际应用中（praktis + 第三人称附着代词 -nya）",
+    "en": "its practicality; in practice",
+    "root": "praktis（实用的 → 借词 practice/praktisch；-nya 附着代词：他的/它的）",
+    "forms": [
+      {
+        "form": "praktis",
+        "pos": "形容词",
+        "mean": "实用的、实际的"
+      },
+      {
+        "form": "praktisnya",
+        "pos": "短语",
+        "mean": "其实用性、实际中"
+      },
+      {
+        "form": "mempraktikkan",
+        "pos": "动词",
+        "mean": "实践、应用"
+      },
+      {
+        "form": "praktik",
+        "pos": "名词",
+        "mean": "实践、实习"
+      }
+    ],
+    "formsNote": "",
+    "note": "-nya 为附着代词（他/她/它/的），使形容词名词化，在句中常作\"…方面\"。",
     "synonyms": [
-      "—"
+      "aplikasinya",
+      "pelaksanaannya"
     ],
     "antonyms": [
-      "—"
+      "teoritisnya"
     ],
     "examples": [
       {
-        "scene": "阅读实战",
-        "id": "Praktisnya metode belajar ini terbukti dari nilai ujian para siswa.",
-        "cn": "这种学习方法的实用性已从学生的考试成绩中得到证明。"
-      },
-      {
-        "scene": "听力训练",
-        "id": "Buku itu laris karena praktisnya dalam kehidupan sehari-hari.",
-        "cn": "那本书因在日常生活中的实用性而畅销。"
+        "scene": "学习讨论",
+        "id": "Praktisnya",
+        "cn": ", metode ini sulit diterapkan di lapangan. 实际上，这个方法在现场很难应用。"
       }
     ]
   },
@@ -202659,6 +203288,346 @@ const bitVocabDB = {
         "cn": "我们部门的安全模拟分是全园区最高。"
       }
     ]
+  },
+  "melanggar": {
+    "word": "melanggar",
+    "cn": "违反；触犯；违背（法规/规则/禁忌）",
+    "en": "to violate; to infringe; to breach",
+    "root": "langgar（触犯、逾越 → me- 前缀动词化：melanggar 违反）",
+    "forms": [],
+    "formsNote": "—（规则 me- 动词，无不规则变形；被动 dilanggar、进行时 sedang melanggar、已发生 telah melanggar）",
+    "note": "",
+    "synonyms": [
+      "melawan",
+      "menyalahi",
+      "tidak mematuhi"
+    ],
+    "antonyms": [
+      "mematuhi",
+      "menaati",
+      "memenuhi"
+    ],
+    "examples": []
+  },
+  "nurani": {
+    "word": "nurani",
+    "cn": "良心；良知",
+    "en": "conscience",
+    "root": "nurani（阿拉伯语借词，经 nūr「光」+ 形容词化，经宗教文本进入印尼语）",
+    "forms": [],
+    "formsNote": "—（抽象名词，无派生形态；常见搭配 suara hati nurani 良心的声音）",
+    "note": "",
+    "synonyms": [
+      "suara hati",
+      "akal sehat"
+    ],
+    "antonyms": [
+      "—"
+    ],
+    "examples": []
+  },
+  "mengetuk": {
+    "word": "mengetuk",
+    "cn": "敲；叩；敲击",
+    "en": "to knock; to tap; to strike",
+    "root": "ketuk（敲击声/敲 → me- 动词化：mengetuk 敲击）",
+    "forms": [],
+    "formsNote": "—（规则 me- 动词；被动 ditutuk? 不对——被动 diketuk；名词 ketukan 敲击声）",
+    "note": "名词 ketukan（敲击、敲门声）为常见派生。",
+    "synonyms": [
+      "mengetok",
+      "memukul（轻）"
+    ],
+    "antonyms": [
+      "—"
+    ],
+    "examples": [
+      {
+        "scene": "谚语语境",
+        "id": "Mengetuk",
+        "cn": "pintu hati calon mitra butuh kesabaran bisnis. 叩开潜在合作伙伴的心门需要商业耐心。"
+      }
+    ]
+  },
+  "natural": {
+    "word": "natural",
+    "cn": "自然的；天然的；不做作的",
+    "en": "natural",
+    "root": "natural（英语/荷兰语 natuurlijk 借词）",
+    "forms": [],
+    "formsNote": "—（外来形容词，无派生；口语常读 [nacural]）",
+    "note": "",
+    "synonyms": [
+      "alami",
+      "naturl（正式）",
+      "sifatnya"
+    ],
+    "antonyms": [
+      "buatan",
+      "artifisial",
+      "palsu"
+    ],
+    "examples": []
+  },
+  "tarik": {
+    "word": "tarik",
+    "cn": "拉；抽；吸（气）；拽",
+    "en": "to pull; to draw; to inhale",
+    "root": "tarik（词根本身，拟声/古马来语）",
+    "forms": [
+      {
+        "form": "tarik",
+        "pos": "动词/名词",
+        "mean": "拉、吸引（力）"
+      },
+      {
+        "form": "menarik",
+        "pos": "动词",
+        "mean": "拉、吸引、提取"
+      },
+      {
+        "form": "tarikan",
+        "pos": "名词",
+        "mean": "一拉、拉力"
+      },
+      {
+        "form": "tertarik",
+        "pos": "形容词/动词",
+        "mean": "被吸引、感兴趣"
+      }
+    ],
+    "formsNote": "",
+    "note": "menarik 兼有\"吸引\"与\"提取\"义；tertarik pada = 对…感兴趣（固定搭配）。",
+    "synonyms": [
+      "menghela",
+      "menyeret"
+    ],
+    "antonyms": [
+      "mendorong",
+      "menolak"
+    ],
+    "examples": [
+      {
+        "scene": "呼吸练习",
+        "id": "Tarik",
+        "cn": "napas dalam empat hitungan, lalu hembuskan perlahan. 吸气四拍，然后缓缓呼出。"
+      },
+      {
+        "scene": "园区运维",
+        "id": "Tarik",
+        "cn": "tuas darurat jika terjadi kebocoran gas. 若发生气体泄漏，拉下紧急拉杆。"
+      }
+    ]
+  },
+  "tiup": {
+    "word": "tiup",
+    "cn": "吹；吹气；刮（风）",
+    "en": "to blow; to puff",
+    "root": "tiup（词根本身，拟声）",
+    "forms": [
+      {
+        "form": "tiup",
+        "pos": "动词/名词",
+        "mean": "吹、一阵风"
+      },
+      {
+        "form": "meniup",
+        "pos": "动词",
+        "mean": "吹（正在）"
+      },
+      {
+        "form": "tiupan",
+        "pos": "名词",
+        "mean": "一吹、吹气"
+      },
+      {
+        "form": "ditiup",
+        "pos": "被动",
+        "mean": "被吹"
+      }
+    ],
+    "formsNote": "",
+    "note": "名词 angin tiupan（吹来的风）较少用；常用固定搭配 meniup peluit（吹哨）。",
+    "synonyms": [
+      "menghembus",
+      "bertiup"
+    ],
+    "antonyms": [
+      "menyedot",
+      "menghirup"
+    ],
+    "examples": []
+  },
+  "panik": {
+    "word": "panik",
+    "cn": "恐慌；惊慌；手忙脚乱",
+    "en": "panic; to panic",
+    "root": "panik（英语 panic 借词，希腊语 panikos）",
+    "forms": [],
+    "formsNote": "—（外来词；形容词 panik / 动词 memanikkan（使恐慌）较少用；常用 dalam keadaan panik）",
+    "note": "口语中直接用 panik 作动词\"慌了\"：Jangan panik!",
+    "synonyms": [
+      "gelisah",
+      "kalang kabut",
+      "cemas berlebihan"
+    ],
+    "antonyms": [
+      "tenang",
+      "dingin"
+    ],
+    "examples": [
+      {
+        "scene": "UKBI 备考",
+        "id": "Panik",
+        "cn": "saat mengerjakan soal mendengarkan adalah musuh terbesar. 做听力题时恐慌是最大的敌人。"
+      }
+    ]
+  },
+  "cas-an": {
+    "word": "cas-an",
+    "cn": "充电（口语；标准语 mengisi daya）",
+    "en": "charging (colloquial, from \"charge\")",
+    "root": "cas（英语 charge 口语化借词 → -an 名词化：cas-an 充电这件事）",
+    "forms": [],
+    "formsNote": "—（口语名词/动词化；标准书面语用 mengisi daya/pengisian daya）",
+    "note": "口语借词，源自英语 charge；正式场合与考试中应使用 mengisi daya（给…充电）。",
+    "synonyms": [
+      "mengisi daya",
+      "pengisian daya（标准）"
+    ],
+    "antonyms": [
+      "kehabisan daya",
+      "habis baterai"
+    ],
+    "examples": []
+  },
+  "degdegkan": {
+    "word": "degdegkan",
+    "cn": "使怦怦跳；使心跳加速（紧张/激动）",
+    "en": "to make (the heart) pound",
+    "root": "deg（拟声，心跳\"怦\"声 → deg-deg → degdegkan 使动）",
+    "forms": [],
+    "formsNote": "—（口语使动动词；名词 deg-deg an / jantung berdeg-deg）",
+    "note": "口语词，标准语常作 berdebar、berdebar-debar（心怦怦跳）；deg-degan（紧张不安的）。",
+    "synonyms": [
+      "berdebar",
+      "berdebar-debar"
+    ],
+    "antonyms": [
+      "tenang",
+      "mantap"
+    ],
+    "examples": []
+  },
+  "fitur": {
+    "word": "fitur",
+    "cn": "功能；特性；特色",
+    "en": "feature",
+    "root": "fitur（英语 feature 借词）",
+    "forms": [],
+    "formsNote": "—（外来名词，无派生；复数 beberapa fitur）",
+    "note": "",
+    "synonyms": [
+      "fungsi",
+      "fasilitas",
+      "spesifikasi"
+    ],
+    "antonyms": [
+      "kekurangan",
+      "bug（缺陷义）"
+    ],
+    "examples": [
+      {
+        "scene": "产品讨论",
+        "id": "Fitur",
+        "cn": "terbaru aplikasi belajar ini adalah kuis interaktif harian. 这个学习 App 的最新功能是每日互动测验。"
+      },
+      {
+        "scene": "UKBI 备考",
+        "id": "Fitur",
+        "cn": "tryout adaptif di platform ini membantu mengukur level. 这个平台的自适应模考功能有助于测量水平。"
+      }
+    ]
+  },
+  "berjuang": {
+    "word": "berjuang",
+    "cn": "奋斗；抗争；拼搏",
+    "en": "to struggle; to fight (for); to strive",
+    "root": "juang（战斗、斗争 → ber- 动词化：berjuang 奋斗）",
+    "forms": [
+      {
+        "form": "juang",
+        "pos": "名词",
+        "mean": "斗争、战斗"
+      },
+      {
+        "form": "berjuang",
+        "pos": "动词",
+        "mean": "奋斗、拼搏"
+      },
+      {
+        "form": "perjuangan",
+        "pos": "名词",
+        "mean": "奋斗历程、斗争"
+      },
+      {
+        "form": "pejuang",
+        "pos": "名词",
+        "mean": "战士、奋斗者"
+      }
+    ],
+    "formsNote": "",
+    "note": "perjuangan 与 pejuang 为同源名词，日常与正式场合均高频。",
+    "synonyms": [
+      "berusaha keras",
+      "bertarung",
+      "mengusahakan"
+    ],
+    "antonyms": [
+      "menyerah",
+      "pasrah"
+    ],
+    "examples": []
+  },
+  "perang": {
+    "word": "perang",
+    "cn": "战争；战役；作战",
+    "en": "war; warfare",
+    "root": "perang（词根本身，古马来语）",
+    "forms": [
+      {
+        "form": "perang",
+        "pos": "名词",
+        "mean": "战争"
+      },
+      {
+        "form": "berperang",
+        "pos": "动词",
+        "mean": "作战、交战"
+      },
+      {
+        "form": "peperangan",
+        "pos": "名词",
+        "mean": "战争（宏大叙事体）"
+      },
+      {
+        "form": "berperang melawan",
+        "pos": "动词短语",
+        "mean": "与…作战"
+      }
+    ],
+    "formsNote": "",
+    "note": "同源派生 juang→perjuangan 为抽象\"奋斗\"，perang→peperangan 为实体\"战争\"。",
+    "synonyms": [
+      "peperangan",
+      "pertempuran",
+      "pertarungan"
+    ],
+    "antonyms": [
+      "damai",
+      "perdamaian"
+    ],
+    "examples": []
   }
 };
 
@@ -203451,8 +204420,16 @@ function renderAbout(c){
 }
 
 function renderVersion(c){
-  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.48.0 / Versi</span></div>
+  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.48.1 / Versi</span></div>
     <div style="padding:16px;">
+      <div style="margin-bottom:14px;padding:14px;background:rgba(34,197,94,.10);border-radius:10px;border-left:3px solid var(--success)">
+        <div style="font-size:15px;font-weight:700;color:var(--success);margin-bottom:6px">V4.48.1 (2026-10-28)</div>
+        <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">1027 每日笔记 22 词（12 新收 + 10 覆盖更新）· bitVocabDB 2972→2984</div>
+        <div style="font-size:12px;color:var(--text-dim);line-height:1.8">
+        • <strong>1027 日记 22 词</strong>（挂 ukbi_diary_1 Day2）：新收 12（melanggar/nurani/mengetuk/natural/tarik/tiup/panik/cas-an/degdegkan/fitur/berjuang/perang）+ 复习覆盖 10（hati/esai/penguasaan/praktisnya/bahkan/wajar/hembuskan/perlahan/otak/bergizi）· 42 变形 + 12 例句 · RCO A3 对账 22/22 逐词映射（大小写归一 1：Otak→otak）<br>
+        • <strong>亮点词条</strong>：cas-an（英语 charge 口语借词，标准语 mengisi daya 对照）、degdegkan（拟声口语，标准语 berdebar [待核实]）、hati nurani 良心复合词、perang→peperangan→perjuangan 同源辨析<br>
+        </div>
+      </div>
       <div style="margin-bottom:14px;padding:14px;background:rgba(34,197,94,.10);border-radius:10px;border-left:3px solid var(--success)">
         <div style="font-size:15px;font-weight:700;color:var(--success);margin-bottom:6px">V4.48.0 (2026-10-27)</div>
         <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">C5→C6 策略升级 + 双 UKBI 复盘话题 + 播报倍速 + 课时测试双库回退 + 1024 日记补录</div>
