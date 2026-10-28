@@ -1,7 +1,7 @@
 # MEMORY.md - 长期记忆(任何会话重开必读)
 
 > 本文件是跨会话的核心记忆。每次启动优先读本文件。
-> 最后更新：2026-10-27（V4.48.0 C5→C6策略升级+双UKBI复盘话题+播报倍速 · 库2972词）
+> 最后更新：2026-10-28（V4.48.2 双日记部署+例句格式铁律 · 库3004词）
 
 ---
 
@@ -115,6 +115,8 @@ V4.46.10      紧急修复导航栏版面混乱(用户实测上报): V4.46.9更�
 
 V4.47.0       双课上线(10/23-25): ⚡C5 UKBI冲刺 ukbi_drill -- 40核心词/3场景15句/3演讲162-170词/6语法/15题quiz · Day1模拟训练+时间管理 Day2心理调适+应急方案 Day3成绩分析+重考规划 · 💼CA进阶话题2面试 interview -- 三天六块完整(vocab15+phrases10+patterns12基础3:进阶6:专业3+expr15+affixes10 编号1-30+quiz15) · Day1面试准备与自我介绍 Day2面试问答与应对技巧(含STAR法则) Day3面试跟进与薪资谈判 · bitVocabDB 2853→2905(+52新词) · 合并坑: JSON.stringify→JS字面量需加键名前缀(topicData用 ukbi_drill: 无引号, caData用 "interview": 引号) · 两sub-agent并行生成(6m45s+19m16s) · commit 7bbd15c · 线上MD5一致(111d2261)
 V4.48.0       C5→C6策略升级+双UKBI复盘话题+播报倍速: ①C6策略v1.0落盘(核心词20-25/场景固定10句/规则A改昨日日记复习dailyNotesDB[prevDs] chips) ②双话题ukbi_diary_1🎧听力阅读(10/26-28,25词100%日记来源) + ukbi_diary_2✍️写作口语(10/29-31,25词) · 各3场景×10句+3演讲+6语法+15题quiz · 双sub-agent并行(~6min each) ③播报2遍id(0.8x+1.0x)+1遍zh(seg.r倍速向后兼容) ④课时测试bitVocabDB双库取词(startTopicQuiz+renderTopicQuiz回退根治ukbi_drill tag=0全库随机) ⑤1024日记补录17词(挂ukbi_drill Day2心理调适: napas-dalam/rencana-cadangan/koneksi-terputus等12新+5复习) bitVocabDB 2963→2972 · 冒烟33/33 PASS · commit ceea63e
+V4.48.1       1027笔记22词(12新+10覆盖,挂ukbi_diary_1 Day2): 库2972→2984 · **例句格式事故**: 关键词行内斜体误格式→解析器只收12/66且已匹配行数据错位 · commit ae39f23
+V4.48.2       1028笔记35词(20新+15覆盖,挂ukbi_diary_1 Day3): 114变形+105例句 · 例句格式批量修复1027(66/66)+1028(105/105)全量重灌 · 库3004 · commit 662bc73 · 线上MD5一致(be2fe570)
 V4.47.5       日历纯笔记日可点击修复(用户实测上报26号日记看不到): 根因=日历三处只认learningHistory不认dailyNotesDB → renderCalHTML has-data并入+笔记日青色圆点(--primary) + attachCalEvents点击放行 + showDateStudyRecord纯笔记日分支(无学习记录仍渲染BIT笔记卡) · check_syntax PASS · 冒烟7/7 · commit 3c64ba5 · 线上MD5 fa538b64一致
 V4.47.4       1026每日笔记41词(挂dailynote, BIT V1.0定稿): 20新收(wedang姜饮/jahe姜/因果连词四链makanya-sebabnya-oleh-karena-itu/tarik-napas-empat-hitungan吸气四拍口令/hembuskan-perlahan缓呼口令等) + 覆盖更新21 · 82例句(UKBI复盘/面试准备/呼吸镇定) · RCO对账41/41 · bitVocabDB 2943→2963 · 双写手并行(11m28s+5m17s) · check_syntax PASS · deploy-check 8/8 · 线上MD5一致(fa46fb74)
 V4.47.5       日历纯笔记日可点击修复(用户实测上报"26号怎么没有日记"): 根因=renderCalHTML has-data/attachCalEvents点击/showDateStudyRecord早退三处均只认learningHistory手动录入, 完全不查dailyNotesDB —— 纯笔记日在日历无高亮不可点击, 点进详情页也"暂无记录"早退 · 修复: ①has-data并入dailyNotesDB判定+笔记日加--primary圆点 ②点击条件or dailyNotesDB ③纯笔记日渲染BIT笔记卡(不早退) · node冒烟7/7 · commit a88fb46 · 线上MD5一致(fa538b64)
@@ -163,6 +165,7 @@ word / cn / en / root / forms[] / formsNote / note / synonyms[] / antonyms[] / e
 ### 关键教训(血泪史)
 0. **结构不匹配运行时崩溃查不出**(V4.41.3 speeches白屏 + V4.42.1 grammar白屏 同类2次)--课程上线前必须用 node 模拟渲染该 topic 三天内容冒烟;BIT 体例必须声明字段唯一格式
 0.5 **合并脚本覆盖函数定义**(V4.46.7 播报按钮消失)--md_to_dailynote.py 合并 dailynote 数据时覆盖整个 script 块, 把 V4.46.2/3 的四个函数定义一并删除, typeof 守卫静默失败无报错; 部署后必须 grep 验证函数定义仍在
+0.5.5 **BIT 例句格式铁律**(V4.48.2 事故)：正确格式 `- 场景: *完整印尼句.*（中文句）`——星号紧跟场景冒号包裹**整句**，中文用全角括号；写成关键词行内斜体会被解析器静默跳过(只收12/66)或数据错位(id=单词,cn=残句)。部署后必须抽查 examples 总数==词条数×3
 1. **"页面显示代码"→ 先查 `</html>` 之后是否有残留代码块**(V4.39.4 教训)
 2. **BIT 弹窗路由查 bitVocabDB 而非 vocabDB**--两库字段名不一致:vocabDB 用五字段(ipa/cn/en/root/tag),bitVocabDB 用九字段(transform/example/synonym vs forms/examples/synonyms 命名不一致坑过一次)
 3. **vocabDB 词条间多一个逗号 → 整页白屏**(V4.38.6 教训,孤立逗号行 1906)
