@@ -116,6 +116,7 @@ V4.46.10      紧急修复导航栏版面混乱(用户实测上报): V4.46.9更�
 V4.47.0       双课上线(10/23-25): ⚡C5 UKBI冲刺 ukbi_drill -- 40核心词/3场景15句/3演讲162-170词/6语法/15题quiz · Day1模拟训练+时间管理 Day2心理调适+应急方案 Day3成绩分析+重考规划 · 💼CA进阶话题2面试 interview -- 三天六块完整(vocab15+phrases10+patterns12基础3:进阶6:专业3+expr15+affixes10 编号1-30+quiz15) · Day1面试准备与自我介绍 Day2面试问答与应对技巧(含STAR法则) Day3面试跟进与薪资谈判 · bitVocabDB 2853→2905(+52新词) · 合并坑: JSON.stringify→JS字面量需加键名前缀(topicData用 ukbi_drill: 无引号, caData用 "interview": 引号) · 两sub-agent并行生成(6m45s+19m16s) · commit 7bbd15c · 线上MD5一致(111d2261)
 V4.48.0       C5→C6策略升级+双UKBI复盘话题+播报倍速: ①C6策略v1.0落盘(核心词20-25/场景固定10句/规则A改昨日日记复习dailyNotesDB[prevDs] chips) ②双话题ukbi_diary_1🎧听力阅读(10/26-28,25词100%日记来源) + ukbi_diary_2✍️写作口语(10/29-31,25词) · 各3场景×10句+3演讲+6语法+15题quiz · 双sub-agent并行(~6min each) ③播报2遍id(0.8x+1.0x)+1遍zh(seg.r倍速向后兼容) ④课时测试bitVocabDB双库取词(startTopicQuiz+renderTopicQuiz回退根治ukbi_drill tag=0全库随机) ⑤1024日记补录17词(挂ukbi_drill Day2心理调适: napas-dalam/rencana-cadangan/koneksi-terputus等12新+5复习) bitVocabDB 2963→2972 · 冒烟33/33 PASS · commit ceea63e
 V4.48.1       1027笔记22词(12新+10覆盖,挂ukbi_diary_1 Day2): 库2972→2984 · **例句格式事故**: 关键词行内斜体误格式→解析器只收12/66且已匹配行数据错位 · commit ae39f23
+V4.48.3       1029 三合一修复(用户实测上报):①15篇短文 trans 补全(topic24/25×6+ukbi_drill×3+diary1/2×6,此前恒显「翻译加载中...」) ②词义高亮双库化 bindWordTransHighlight 重写(vocabDB+bitVocabDB 双库+cn 多义项拆分+点击触发,原仅 vocabDB 单库+仅悬停=永不命中) ③印尼语勘误13处——drill 短文**事实性三错**(总分600→800、madya bawah→semenjana 480∈405-481、出分7→14工作日,以站内课程数据为准)+pulik/yaya/engineer/assistant manager/Mongolia dalam 等 · RCO 新增 A6 教学材料语言校对清单 · commit a3071e5 · 线上验证PASS
 V4.48.2       1028笔记35词(20新+15覆盖,挂ukbi_diary_1 Day3): 114变形+105例句 · 例句格式批量修复1027(66/66)+1028(105/105)全量重灌 · 库3004 · commit 662bc73 · 线上MD5一致(be2fe570)
 V4.47.5       日历纯笔记日可点击修复(用户实测上报26号日记看不到): 根因=日历三处只认learningHistory不认dailyNotesDB → renderCalHTML has-data并入+笔记日青色圆点(--primary) + attachCalEvents点击放行 + showDateStudyRecord纯笔记日分支(无学习记录仍渲染BIT笔记卡) · check_syntax PASS · 冒烟7/7 · commit 3c64ba5 · 线上MD5 fa538b64一致
 V4.47.4       1026每日笔记41词(挂dailynote, BIT V1.0定稿): 20新收(wedang姜饮/jahe姜/因果连词四链makanya-sebabnya-oleh-karena-itu/tarik-napas-empat-hitungan吸气四拍口令/hembuskan-perlahan缓呼口令等) + 覆盖更新21 · 82例句(UKBI复盘/面试准备/呼吸镇定) · RCO对账41/41 · bitVocabDB 2943→2963 · 双写手并行(11m28s+5m17s) · check_syntax PASS · deploy-check 8/8 · 线上MD5一致(fa46fb74)
@@ -166,6 +167,8 @@ word / cn / en / root / forms[] / formsNote / note / synonyms[] / antonyms[] / e
 0. **结构不匹配运行时崩溃查不出**(V4.41.3 speeches白屏 + V4.42.1 grammar白屏 同类2次)--课程上线前必须用 node 模拟渲染该 topic 三天内容冒烟;BIT 体例必须声明字段唯一格式
 0.5 **合并脚本覆盖函数定义**(V4.46.7 播报按钮消失)--md_to_dailynote.py 合并 dailynote 数据时覆盖整个 script 块, 把 V4.46.2/3 的四个函数定义一并删除, typeof 守卫静默失败无报错; 部署后必须 grep 验证函数定义仍在
 0.5.5 **BIT 例句格式铁律**(V4.48.2 事故)：正确格式 `- 场景: *完整印尼句.*（中文句）`——星号紧跟场景冒号包裹**整句**，中文用全角括号；写成关键词行内斜体会被解析器静默跳过(只收12/66)或数据错位(id=单词,cn=残句)。部署后必须抽查 examples 总数==词条数×3
+0.6 **课程上线 SOP 补两条**(V4.48.3,RCO A6 清单落盘 strategies/):①短文/对话 trans 完整性——渲染 `${sp.trans||'翻译加载中...'}` 静默占位,上线前必须全量断言「每篇 speech 都有非空 trans」(本次 15 篇缺失,topic24/25 老课也中招)；②范文语言校对——sub-agent 生成的印尼语短文必须人工通读校对拼写/借用词/事实一致性(分数段/等级名/流程数字以站内已上线课程数据为唯一基准,drill 短文总分600、madya bawah、7工作日三处事实错即此因)
+0.7 **JS 字面量注入防呆**(V4.48.3 注入事故)：往 `content: "..."` 后插字段,插入点=闭引号**之后**(j+1)而非引号处；注入串自带闭引号会留 orphan 双引号；逗号落进字符串内。注入后必跑 check_syntax(此类错误它必拦)；修复两步走:逗号移出引号+删 orphan 引号
 1. **"页面显示代码"→ 先查 `</html>` 之后是否有残留代码块**(V4.39.4 教训)
 2. **BIT 弹窗路由查 bitVocabDB 而非 vocabDB**--两库字段名不一致:vocabDB 用五字段(ipa/cn/en/root/tag),bitVocabDB 用九字段(transform/example/synonym vs forms/examples/synonyms 命名不一致坑过一次)
 3. **vocabDB 词条间多一个逗号 → 整页白屏**(V4.38.6 教训,孤立逗号行 1906)
@@ -173,6 +176,16 @@ word / cn / en / root / forms[] / formsNote / note / synonyms[] / antonyms[] / e
 5. **RCO 审计必须词级对齐**--用户输入词元 vs 最终词条逐词对账(V4.34.0 教训:23→26 词对账纠正)
 6. **备份习惯**:合并前 index.html 备份到 /tmp/;bit-deploy-bak 有 60+ 份历史备份
 7. **行业数据信源盲区**(V4.42.4 复盘):镍地图建库依赖中文研报→印尼本土开发商项目漏检(ASPIRE-Stargate 案例)--收录必须三问:信源是什么/为何此前没收录/同类还有谁可能漏;A级信源=公司官网+IR,Petromindo是印尼项目进度最细的行业媒体
+
+### 教学材料语言校对(A6,V4.48.3 起强制执行)
+短文/场景对话/例句随课程上线时,RCO 必须逐句通读印尼语原文,查 6 项:
+1. **拼写**:数字词(puluh/ratus/ribu)、双写、形近误植(pulik/yaya 类)→ 数字读一遍最管用
+2. **借用词**:engineer/manager 类英语借词 → 正文换 insinyur/manajer(markir 词条库可保留作词汇教学,范文用 tandai/penandaan)
+3. **事实一致性**:分数段/等级名/时间流程数字,**以站内已上线课程数据为唯一基准**(ukbi_drill 曾写总分 600 实际 800、480=madya bawah 实为 Semenjana、7 工作日实为 14)
+4. **等级名查表**:UKBI 七级=Istimewa725-800/Sangat Unggul641-724/Unggul578-640/Madya482-577/Semenjana405-481/Marginal326-404/Terbatas251-325,不存在 madya bawah
+5. **语法细节**:antara 原则上只接两项,三项+用 di antara;专名大写(Mongolia Dalam=内蒙古)
+6. **翻译对应**:新写中文翻译必须与勘误后印尼语原文逐段对应(先勘误,后翻译)
+另:**短文 trans 完整性**上线前全量断言(15 篇缺失事故);数据验证用标题锚点动态定位,固定文件偏移会随编辑漂移。
 
 ### 数据检索方法
 - **找策略/历史信息:挖 git log + index.html 版本记录**,不能只看 memory/*.md
