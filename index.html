@@ -6,7 +6,7 @@
 <meta http-equiv="Expires" content="0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LEO-BIR V4.48.5</title>
+<title>LEO-BIR V4.48.6</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -276,7 +276,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="sidebar-header">
     <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <h1>LEO-BIR</h1>
-    <div class="ver">LEO-BIR V4.48.5 · 1030日记39词(20新+19覆盖,挂ukbi_diary_2 Day2口语模拟+表达) + 库3035词</div>
+    <div class="ver">LEO-BIR V4.48.6 · 悬停高亮顺序对齐+点击BIT弹窗修复(用户实测:短文句子悬停错义/点击无弹窗) + 库3035词</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -212297,6 +212297,9 @@ function renderTopicDetail(c, ds, topicInfo) {
 }
 
 // C4: 绑定单词→中文翻译精确高亮
+// V4.48.6 修复(用户实测上报):①点击恢复单词弹窗——V4.48.3 误加 stopPropagation 阻断 #appContent 委托,showWordPopup 永不触发,点击无 BIT 翻译
+//   ②顺序对齐预计算——旧版"全局最长匹配+首次出现"在长译文常命中无关中文段(悬停显示不对);改为第n词匹配须起于前词匹配点之后,重复词顺推下一处
+//   ③无匹配落 tooltip 释义,不再错高亮
 function bindWordTransHighlight(item, transSelector) {
   const trans = item.querySelector(transSelector);
   if (!trans) return;
@@ -212319,35 +212322,48 @@ function bindWordTransHighlight(item, transSelector) {
     if (v && v.cn) push(v.cn);
     if (typeof bitVocabDB !== 'undefined' && bitVocabDB) {
       const key = String(w).toLowerCase();
-      const b = bitVocabDB[w] || bitVocabDB[key];
+      const b = bitVocabDB[w] || bitVocabDB[key] || bitVocabDB[key.charAt(0).toUpperCase() + key.slice(1)];
       if (b && b.cn) push(b.cn);
     }
     return out;
   };
 
-  const hl = (word) => {
+  // V4.48.6 顺序对齐:按词序单调推进匹配游标,杜绝错位高亮;语序颠倒词无匹配→tooltip(诚实降级,不错显)
+  let cursor = 0;
+  const plans = Array.from(item.querySelectorAll('.clickable-word')).map((word) => {
     const w = word.dataset.word;
-    if (!w) return;
-    const meanings = getWordCnMeanings(w);
-    let bestIdx = -1, bestLen = 0;
-    meanings.forEach((m) => {
-      let from = 0, idx;
-      while ((idx = originalText.indexOf(m, from)) !== -1) {
-        if (m.length > bestLen) { bestIdx = idx; bestLen = m.length; }
+    const meanings = w ? getWordCnMeanings(w) : [];
+    let best = null;
+    const tryMatch = (mm) => {
+      let from = cursor, idx;
+      while ((idx = originalText.indexOf(mm, from)) !== -1) {
+        if (!best || idx < best.idx || (idx === best.idx && mm.length > best.len)) best = { idx: idx, len: mm.length };
         from = idx + 1;
       }
-    });
-    if (bestIdx >= 0) {
-      const before = originalText.slice(0, bestIdx);
-      const match = originalText.slice(bestIdx, bestIdx + bestLen);
-      const after = originalText.slice(bestIdx + bestLen);
+    };
+    meanings.forEach(tryMatch);
+    // V4.48.6 容差重试:释义带尾缀「的/了/地」而译文用裸词干时(如「连贯的」vs「连贯」),剥尾缀再匹配
+    if (!best) {
+      const stripped = meanings.map((mm) => mm.replace(/[的了地着]+$/, '')).filter((mm) => mm.length >= 2);
+      stripped.forEach(tryMatch);
+    }
+    if (best) cursor = best.idx + 1;
+    return { word: word, meanings: meanings, match: best };
+  });
+
+  const hl = (plan) => {
+    if (!plan) return;
+    if (plan.match) {
+      const before = originalText.slice(0, plan.match.idx);
+      const match = originalText.slice(plan.match.idx, plan.match.idx + plan.match.len);
+      const after = originalText.slice(plan.match.idx + plan.match.len);
       trans.innerHTML = escapeHtml(before) + '<span style="color:var(--primary);font-weight:600;background:rgba(0,212,170,.15);padding:2px 4px;border-radius:4px;transition:all .15s;">' + escapeHtml(match) + '</span>' + escapeHtml(after);
       hideWordMiniTooltip();
-    } else if (meanings.length) {
-      // 整句翻译中无对应措辞时,显示释义 tooltip
-      showWordMiniTooltip(word, meanings[0]);
+    } else if (plan.meanings.length) {
+      // 整句翻译中无对应措辞(含语序颠倒)时,显示释义 tooltip
+      showWordMiniTooltip(plan.word, plan.meanings[0]);
     } else {
-      showWordMiniTooltip(word, '\u672a\u6536\u5f55');
+      showWordMiniTooltip(plan.word, '\u672a\u6536\u5f55');
     }
   };
   const clearHl = () => {
@@ -212355,10 +212371,15 @@ function bindWordTransHighlight(item, transSelector) {
     hideWordMiniTooltip();
   };
 
-  item.querySelectorAll('.clickable-word').forEach((word) => {
-    word.addEventListener('mouseenter', () => hl(word));
-    word.addEventListener('mouseleave', clearHl);
-    word.addEventListener('click', (e) => { e.stopPropagation(); hl(word); });
+  plans.forEach((plan) => {
+    plan.word.addEventListener('mouseenter', () => hl(plan));
+    plan.word.addEventListener('mouseleave', clearHl);
+    plan.word.addEventListener('click', (e) => {
+      e.stopPropagation();
+      hl(plan);
+      // V4.48.6: 恢复点击弹窗(bitVocabDB 命中走 showBITInfo 完整 BIT 翻译)
+      if (typeof showWordPopup === 'function') showWordPopup(plan.word.dataset.word);
+    });
   });
 }
 
@@ -212654,8 +212675,18 @@ function renderAbout(c){
 }
 
 function renderVersion(c){
-  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.48.5 / Versi</span></div>
+  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.48.6 / Versi</span></div>
     <div style="padding:16px;">
+      <div style="margin-bottom:14px;padding:14px;background:rgba(34,197,94,.10);border-radius:10px;border-left:3px solid var(--success)">
+        <div style="font-size:15px;font-weight:700;color:var(--success);margin-bottom:6px">V4.48.6 (2026-10-31)</div>
+        <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">悬停高亮与点击弹窗双修复(用户实测上报:25号后短文/句子悬停中文不对+点击无BIT翻译)</div>
+        <div style="font-size:12px;color:var(--text-dim);line-height:1.8">
+        • <strong>点击无 BIT 弹窗</strong>(根因):V4.48.3 为移动端点击高亮给词 span 加 stopPropagation,误阻断 #appContent 事件委托(showWordPopup 唯一入口)→全站对话/演讲点词弹窗失效 · 现点击=高亮+showWordPopup 双触发(bitVocabDB 命中走 showBITInfo 完整翻译)<br>
+        • <strong>悬停中文错位</strong>(根因):旧版"全局最长匹配+首次出现"在长译文常高亮无关中文段 · 改为<strong>顺序对齐预计算</strong>——第n词中文匹配须起于前词匹配点之后,重复词顺推下一处,杜绝重复词/公共子串错位;释义尾缀「的/了」容差重试(连贯的→连贯);无匹配诚实落 tooltip(释义/未收录),零错高亮<br>
+        • <strong>复合词整体成词</strong>:wrapClickableWords 正则升级——tetap-tenang/isu-isu 等连字符叠词不再切断(旧版悬停只查前半截致错义,悬停 tetap-tenang 显示 tetap 释义)<br>
+        • 覆盖:全部话题场景对话+演讲短文(10/25+ 的 ukbi_drill/diary_1/diary_2 为重点上报区,全站统一修复)
+        </div>
+      </div>
       <div style="margin-bottom:14px;padding:14px;background:rgba(34,197,94,.10);border-radius:10px;border-left:3px solid var(--success)">
         <div style="font-size:15px;font-weight:700;color:var(--success);margin-bottom:6px">V4.48.5 (2026-10-30)</div>
         <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">1030 每日笔记 39 词 · 挂 ukbi_diary_2 Day2 口语模拟+表达 · bitVocabDB 3015→3035</div>
@@ -213632,7 +213663,8 @@ function renderVersion(c){
 // ===== 单词点击翻译弹窗 =====
 // ===== 单词点击翻译弹窗 =====
 function wrapClickableWords(text){
-  return text.replace(/([a-zA-ZÀ-ɏḀ-ỿ]+)/g,'<span class="clickable-word" data-word="$1">$1</span>');
+  // V4.48.6: 连字符/撇号复合词整体成词(旧正则在连字符处切断,tetap-tenang 只查 tetap→错义)
+  return text.replace(/([a-zA-ZÀ-ɏḀ-ỿ]+(?:['’-][a-zA-ZÀ-ɏḀ-ỿ]+)*)/g,'<span class="clickable-word" data-word="$1">$1</span>');
 }
 
 // C4: 查找单词释义(含前缀去除)
