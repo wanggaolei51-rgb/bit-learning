@@ -37,3 +37,6 @@ backups/
 ca_topic3_meeting.js
 ca_topic4_tour.js
 scripts/integrate_ca_nov*.py
+ca_topic5_listen.js
+ca_topic6_speak.js
+scripts/integrate_ca_biz.py
