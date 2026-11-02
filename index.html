@@ -6,7 +6,7 @@
 <meta http-equiv="Expires" content="0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LEO-BIR V4.48.6</title>
+<title>LEO-BIR V4.49.1</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -276,7 +276,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="sidebar-header">
     <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <h1>LEO-BIR</h1>
-    <div class="ver">LEO-BIR V4.48.6 · 悬停高亮顺序对齐+点击BIT弹窗修复(用户实测:短文句子悬停错义/点击无弹窗) + 库3035词</div>
+    <div class="ver">LEO-BIR V4.49.1 · CA进阶双话题(修正版): 话题5商务聆听与阅读×3天(11/1-3 延续UKBI听力阅读) + 话题6商务写作与演讲×3天(11/4-6 延续UKBI写作口语) 共462条 + 库3035词</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -212675,8 +212675,18 @@ function renderAbout(c){
 }
 
 function renderVersion(c){
-  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.48.6 / Versi</span></div>
+  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.49.1 / Versi</span></div>
     <div style="padding:16px;">
+      <div style="margin-bottom:14px;padding:14px;background:rgba(34,197,94,.10);border-radius:10px;border-left:3px solid var(--success)">
+        <div style="font-size:15px;font-weight:700;color:var(--success);margin-bottom:6px">V4.49.1 (2026-11-02)</div>
+        <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">CA进阶双话题(修正版): 话题5商务聆听与阅读 × 3天(11/1-3) + 话题6商务写作与演讲 × 3天(11/4-6)</div>
+        <div style="font-size:12px;color:var(--text-dim);line-height:1.8">
+        • <strong>话题5 商务聆听与阅读 / Mendengarkan & Membaca Bisnis</strong>(11/1-3, 延续UKBI听力阅读): Day1 会议聆听(抓关键词/记要点/理解口音) · Day2 报告阅读(扫读大意/数据理解/合同条款) · Day3 新闻听力(新闻语速/数字信息/政策公告) · 45词+30词组+36句型+45表达+30词缀+45测验<br>
+        • <strong>话题6 商务写作与演讲 / Menulis & Berbicara Bisnis</strong>(11/4-6, 延续UKBI写作口语): Day1 商务邮件(正式格式/请求回复/投诉协商) · Day2 报告撰写(报告结构/数据呈现/进度汇报) · Day3 演讲汇报(开场致辞/数据展示/说服论证) · 45词+30词组+36句型+45表达+30词缀+45测验<br>
+        • 两话题共462条教学数据, sub-agent 并行生成, 30词缀3天轮换不重复<br>
+        • caCalendar 新增 11/1-6 共6天课程路由, 点击日历即可进入
+        </div>
+      </div>
       <div style="margin-bottom:14px;padding:14px;background:rgba(34,197,94,.10);border-radius:10px;border-left:3px solid var(--success)">
         <div style="font-size:15px;font-weight:700;color:var(--success);margin-bottom:6px">V4.48.6 (2026-10-31)</div>
         <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">悬停高亮与点击弹窗双修复(用户实测上报:25号后短文/句子悬停中文不对+点击无BIT翻译)</div>
@@ -223605,7 +223615,3293 @@ const caData = {
    }
   ]
  }
-}};
+},
+"biz_listen": {
+ "title": "话题5: 商务聆听与阅读 / Mendengarkan & Membaca Bisnis",
+ "icon": "🎧",
+ "level": "B1-B2",
+ "days": 3,
+ "intro": "CA 进阶课：把 UKBI 听力阅读技能落地到商务实战。三天覆盖会议聆听（抓关键词/记要点/理解口音/跟进讨论）、报告阅读（扫读大意/数据理解/合同条款/行业分析）、新闻听力（新闻语速/数字信息/政策公告/行业动态）。专为在莫罗瓦利镍产业园工作的管理者设计，让您在真实会议、真实报告、真实新闻中听得准、读得快、抓得住重点。",
+ "day1": {
+  "date": "2026-11-01",
+  "theme": "Mendengarkan Rapat 会议聆听",
+  "vocab": [
+   {
+    "w": "rapat",
+    "cn": "会议",
+    "ipa": "/ˈrapat/",
+    "level": "核心",
+    "note": "rapat koordinasi 协调会；rapat rutin 例会；pemimpin rapat 会议主持人"
+   },
+   {
+    "w": "peserta",
+    "cn": "参会者；参与者",
+    "ipa": "/pə.sərˈta/",
+    "level": "核心",
+    "note": "peserta rapat 参会人员；peserta diskusi 讨论参与者"
+   },
+   {
+    "w": "menyimak",
+    "cn": "聆听；认真听",
+    "ipa": "/məˈɲimak/",
+    "level": "核心",
+    "note": "meN- + simak；比 mendengar 更专注；menyimak paparan 聆听报告"
+   },
+   {
+    "w": "kesimpulan",
+    "cn": "结论；总结",
+    "ipa": "/kə.simˈpulan/",
+    "level": "核心",
+    "note": "ke- + simpul + -an；menarik kesimpulan 得出结论"
+   },
+   {
+    "w": "pokok",
+    "cn": "要点；主旨",
+    "ipa": "/ˈpokok/",
+    "level": "核心",
+    "note": "pokok pembahasan 讨论要点；pokok pikiran 中心思想"
+   },
+   {
+    "w": "poin",
+    "cn": "要点；论点",
+    "ipa": "/poin/",
+    "level": "进阶",
+    "note": "外来词；poin penting 要点；mencatat poin 记要点"
+   },
+   {
+    "w": "catatan",
+    "cn": "笔记；记录",
+    "ipa": "/tʃaˈtatan/",
+    "level": "进阶",
+    "note": "catat + -an；mencatat 记录（动词）；catatan rapat 会议记录"
+   },
+   {
+    "w": "perhatian",
+    "cn": "注意；关注",
+    "ipa": "/pərhaˈtian/",
+    "level": "进阶",
+    "note": "per- + hati + -an；memperhatikan 注意（动词）；mohon perhatian 请注意"
+   },
+   {
+    "w": "diskusi",
+    "cn": "讨论",
+    "ipa": "/disˈkusi/",
+    "level": "进阶",
+    "note": "外来词；berdiskusi 讨论（动词）；diskusikan 讨论某事"
+   },
+   {
+    "w": "sambutan",
+    "cn": "致辞；讲话",
+    "ipa": "/samˈbutan/",
+    "level": "进阶",
+    "note": "[新] sambut + -an；sambutan pembuka 开幕致辞；menyambut 迎接（同根）"
+   },
+   {
+    "w": "pelafalan",
+    "cn": "发音",
+    "ipa": "/pəlaˈfalan/",
+    "level": "高阶",
+    "note": "lafal + pe-...-an；pelafalan jelas 发音清晰；理解口音关键"
+   },
+   {
+    "w": "konsentrasi",
+    "cn": "专注；集中",
+    "ipa": "/konsɛnˈtrasi/",
+    "level": "高阶",
+    "note": "外来词；berkonsentrasi 专注（动词）；konsentrasi penuh 全神贯注"
+   },
+   {
+    "w": "mikrofon",
+    "cn": "麦克风；话筒",
+    "ipa": "/mikroˈfon/",
+    "level": "高阶",
+    "note": "外来词；bicara ke mikrofon 对着话筒讲话；tes mikrofon 试音"
+   },
+   {
+    "w": "gangguan",
+    "cn": "干扰；故障",
+    "ipa": "/ɡaŋˈɡuan/",
+    "level": "高阶",
+    "note": "ganggu + -an；gangguan teknis 技术故障；gangguan suara 声音干扰"
+   },
+   {
+    "w": "intervensi",
+    "cn": "插话；干预",
+    "ipa": "/interˈvensi/",
+    "level": "高阶",
+    "note": "[新] 外来词；intervensi singkat 简短插话；intervensi politik 政治干预"
+   }
+  ],
+  "phrases": [
+   {
+    "id": "Boleh saya minta diulang?",
+    "cn": "可以请您重复一遍吗？",
+    "usage": "没听清时礼貌请求重复",
+    "note": "minta + di-被动；会议聆听最常用救场句"
+   },
+   {
+    "id": "Maaf, suaranya kurang jelas.",
+    "cn": "抱歉，声音不太清楚。",
+    "usage": "指出听不清的原因",
+    "note": "kurang jelas 不清楚；也可指发音不清"
+   },
+   {
+    "id": "Intinya apa, ya?",
+    "cn": "那要点是什么呢？",
+    "usage": "向发言人确认核心意思",
+    "note": "intinya 其要点；口语中缩小信息范围"
+   },
+   {
+    "id": "Saya catat dulu ya.",
+    "cn": "我先记一下哦。",
+    "usage": "请求短暂停顿以便记录",
+    "note": "catat 记录；dulu 先；缓和节奏的缓冲句"
+   },
+   {
+    "id": "Mohon dibicarakan perlahan-lahan.",
+    "cn": "请讲慢一点。",
+    "usage": "请求发言人放慢语速",
+    "note": "mohon + di-被动；perlahan-lahan ← perlahan 重叠缓速"
+   },
+   {
+    "id": "Silakan dilanjutkan, Pak.",
+    "cn": "请继续，先生。",
+    "usage": "示意发言人继续",
+    "note": "silakan + di-被动；dilanjutkan ← lanjut + di-...-kan"
+   },
+   {
+    "id": "Ada yang mau ditanyakan?",
+    "cn": "有谁想问吗？/有要提问的吗？",
+    "usage": "主持人引导提问环节",
+    "note": "ada 存在句；ditanyakan ← tanya + di-...-kan"
+   },
+   {
+    "id": "Saya setuju dengan pendapat itu.",
+    "cn": "我同意那个观点。",
+    "usage": "跟进讨论表达立场",
+    "note": "setuju dengan 同意…；pendapat 观点、看法"
+   },
+   {
+    "id": "Jadi tindak lanjutnya apa?",
+    "cn": "那后续行动是什么呢？",
+    "usage": "讨论收尾时确认行动项",
+    "note": "tindak lanjut 后续行动；会议跟进核心句"
+   },
+   {
+    "id": "Bisa dijelaskan lebih detail?",
+    "cn": "能解释得更详细一点吗？",
+    "usage": "请求展开说明",
+    "note": "bisa + di-被动-kan；detail 也可换 rinci 详尽"
+   }
+  ],
+  "patterns": [
+   {
+    "cat": "请求重复",
+    "level": "basic",
+    "formula": "Bisa tolong diulang?",
+    "structure": "Bisa + tolong + di-动词",
+    "grammar": "bisa 能；tolong 请；di-被动 突出请求对方动作",
+    "scene": "没听清时请求重复",
+    "ex": [
+     "Bisa tolong diulang, Pak?",
+     "Maaf, bagian tadi bisa diulang?"
+    ],
+    "slots": [
+     "称呼/指向内容"
+    ],
+    "reuse": 5
+   },
+   {
+    "cat": "表示未听懂",
+    "level": "basic",
+    "formula": "Maaf, saya kurang + [动词/形容词]",
+    "structure": "Maaf + 主语 + kurang + 谓语",
+    "grammar": "kurang 不够、不太；委婉表达理解不足",
+    "scene": "坦诚说明理解程度",
+    "ex": [
+     "Maaf, saya kurang paham.",
+     "Maaf, saya kurang menangkap maksudnya."
+    ],
+    "slots": [
+     "paham/mengerti/menangkap"
+    ],
+    "reuse": 5
+   },
+   {
+    "cat": "请求放慢",
+    "level": "basic",
+    "formula": "Mohon + [动词] + lebih pelan",
+    "structure": "Mohon + 动词短语 + 程度补语",
+    "grammar": "mohon 正式请求；lebih pelan 更慢",
+    "scene": "语速过快时礼貌打断",
+    "ex": [
+     "Mohon bicara lebih pelan.",
+     "Mohon jelaskan lebih pelan."
+    ],
+    "slots": [
+     "bicara/jelaskan/ulangi"
+    ],
+    "reuse": 5
+   },
+   {
+    "cat": "转述确认",
+    "level": "intermediate",
+    "formula": "Jadi, yang Anda maksud..., ya?",
+    "structure": "Jadi + 从句 + ya（确认语气词）",
+    "grammar": "jadi 那么、所以；ya 句尾确认标记，寻求对方肯定",
+    "scene": "复述对方意思以确认理解无误",
+    "ex": [
+     "Jadi, yang Anda maksud biayanya naik dua kali lipat, ya?",
+     "Jadi, rencananya dimulai minggu depan, ya?"
+    ],
+    "slots": [
+     "转述内容"
+    ],
+    "reuse": 4
+   },
+   {
+    "cat": "总结要点",
+    "level": "intermediate",
+    "formula": "Intinya, + [主句]",
+    "structure": "Intinya + 完整句",
+    "grammar": "inti 核心 + -nya 指代 → 其要点；句首总括",
+    "scene": "把长段讨论压缩成一句话",
+    "ex": [
+     "Intinya, kita sepakat menunda proyek sampai kuartal depan.",
+     "Intinya, anggaran harus dipangkas sepuluh persen."
+    ],
+    "slots": [
+     "核心结论"
+    ],
+    "reuse": 4
+   },
+   {
+    "cat": "请求解释",
+    "level": "intermediate",
+    "formula": "Bisa dijelaskan lebih + [detail/rinci]?",
+    "structure": "Bisa + di-动词-kan + 程度副词",
+    "grammar": "dijelaskan ← jelas + di-...-kan；lebih 更",
+    "scene": "术语或数据没听懂时请求展开",
+    "ex": [
+     "Bagian anggaran bisa dijelaskan lebih rinci?",
+     "Angka itu bisa dijelaskan lebih detail?"
+    ],
+    "slots": [
+     "对象",
+     "detail/rinci"
+    ],
+    "reuse": 4
+   },
+   {
+    "cat": "礼貌插话",
+    "level": "intermediate",
+    "formula": "Permisi, boleh saya + [动词]?",
+    "structure": "Permisi + 疑问句",
+    "grammar": "permisi 借过/打扰；温和打断正在进行的发言",
+    "scene": "需要补充或纠正时插话",
+    "ex": [
+     "Permisi, boleh saya tambahkan sedikit?",
+     "Permisi, boleh saya klarifikasi dulu?"
+    ],
+    "slots": [
+     "tambahkan/klarifikasi/sampaikan"
+    ],
+    "reuse": 4
+   },
+   {
+    "cat": "表达同意",
+    "level": "intermediate",
+    "formula": "Saya setuju dengan + [名词/从句]",
+    "structure": "主语 + setuju + dengan + 对象",
+    "grammar": "setuju 同意；dengan 引出同意的对象",
+    "scene": "跟进讨论表明立场",
+    "ex": [
+     "Saya setuju dengan usulan manajemen operasional.",
+     "Saya setuju dengan apa yang disampaikan Pak Direktur."
+    ],
+    "slots": [
+     "同意的对象"
+    ],
+    "reuse": 4
+   },
+   {
+    "cat": "请求举例",
+    "level": "intermediate",
+    "formula": "Bisa beri contoh + [名词]?",
+    "structure": "Bisa + beri + contoh + 领域",
+    "grammar": "beri 给；contoh 例子；用具体例子化解抽象表述",
+    "scene": "概念模糊时请求具体化",
+    "ex": [
+     "Bisa beri contoh kasus di lapangan?",
+     "Bisa beri contoh penerapannya di smelter?"
+    ],
+    "slots": [
+     "领域/对象"
+    ],
+    "reuse": 4
+   },
+   {
+    "cat": "确认行动项",
+    "level": "professional",
+    "formula": "Jadi tindak lanjutnya adalah + [动作/事项]",
+    "structure": "Jadi + 主语 + adalah + 表语",
+    "grammar": "tindak lanjut 后续行动；是会议收尾的标准确认句",
+    "scene": "收尾阶段锁定行动项",
+    "ex": [
+     "Jadi tindak lanjutnya adalah audit keselamatan minggu depan.",
+     "Jadi tindak lanjutnya adalah pembaruan kontrak pemasok."
+    ],
+    "slots": [
+     "行动内容"
+    ],
+    "reuse": 3
+   },
+   {
+    "cat": "确认责任人",
+    "level": "professional",
+    "formula": "Siapa yang bertanggung jawab untuk + [事项]?",
+    "structure": "Siapa + yang + 动词短语 + untuk",
+    "grammar": "siapa 谁；yang 关系标记；bertanggung jawab 负责",
+    "scene": "明确任务归属避免推诿",
+    "ex": [
+     "Siapa yang bertanggung jawab untuk koordinasi dengan vendor?",
+     "Siapa yang bertanggung jawab untuk pelaporan bulanan?"
+    ],
+    "slots": [
+     "事项"
+    ],
+    "reuse": 3
+   },
+   {
+    "cat": "拉回议程",
+    "level": "professional",
+    "formula": "Mohon kembali ke + [议题]",
+    "structure": "Mohon + 动词 + ke + 名词",
+    "grammar": "mohon 正式请求；kembali ke 回到",
+    "scene": "讨论跑偏时礼貌收拢",
+    "ex": [
+     "Mohon kembali ke pokok pembahasan.",
+     "Mohon kembali ke agenda rapat hari ini."
+    ],
+    "slots": [
+     "pokok pembahasan/agenda"
+    ],
+    "reuse": 3
+   }
+  ],
+  "expressions": [
+   {
+    "level": "basic",
+    "scene": "会议开场",
+    "id": "Selamat pagi, mari kita mulai.",
+    "cn": "早上好，我们开始吧。",
+    "note": "pagi 可换 siang/sore；mari 提议共同行动"
+   },
+   {
+    "level": "basic",
+    "scene": "确认理解",
+    "id": "Ada yang kurang jelas?",
+    "cn": "有什么不清楚的吗？",
+    "note": "ada 存在句；主持人确认听众理解度"
+   },
+   {
+    "level": "basic",
+    "scene": "邀请发言",
+    "id": "Silakan, Pak Direktur.",
+    "cn": "您请讲，总经理先生。",
+    "note": "silakan + 称呼；direktur 可直接换职务名"
+   },
+   {
+    "level": "intermediate",
+    "scene": "没听清",
+    "id": "Maaf, tadi tidak menangkap kata terakhir Anda.",
+    "cn": "抱歉，没听清您最后一个词。",
+    "note": "menangkap 抓住；terakhir 最后的；精准定位没听清处"
+   },
+   {
+    "level": "intermediate",
+    "scene": "请求重复",
+    "id": "Boleh diulang sekali lagi?",
+    "cn": "可以再重复一遍吗？",
+    "note": "boleh 可以；sekali lagi 再一次"
+   },
+   {
+    "level": "intermediate",
+    "scene": "记录中",
+    "id": "Saya catat dulu poin-poin pentingnya.",
+    "cn": "我先记下这些要点。",
+    "note": "poin-poin 重叠表复数；pentingnya 其重要性"
+   },
+   {
+    "level": "intermediate",
+    "scene": "维持秩序",
+    "id": "Mohon untuk tidak berbicara bersamaan.",
+    "cn": "请不要同时说话。",
+    "note": "bersamaan 同时地；远程会议串音时尤其常用"
+   },
+   {
+    "level": "intermediate",
+    "scene": "音量请求",
+    "id": "Suaranya tolong diperbesar sedikit.",
+    "cn": "请把音量调大一点。",
+    "note": "suara 声音；diperbesar ← besar + diper-...-kan"
+   },
+   {
+    "level": "intermediate",
+    "scene": "听后总结",
+    "id": "Saya mendengar tiga hal penting dari paparan ini.",
+    "cn": "我从这份报告中听到了三个要点。",
+    "note": "mendengar 听到；paparan 报告/阐述；听后复述框架句"
+   },
+   {
+    "level": "intermediate",
+    "scene": "追问核心",
+    "id": "Kalau begitu, yang paling penting apa?",
+    "cn": "那么，最重要的是什么？",
+    "note": "kalau begitu 那样的话；优先级排序追问"
+   },
+   {
+    "level": "intermediate",
+    "scene": "轮流发言",
+    "id": "Mohon bicara satu per satu.",
+    "cn": "请一个一个说。",
+    "note": "satu per satu 逐个；嘈杂讨论中恢复秩序"
+   },
+   {
+    "level": "professional",
+    "scene": "澄清立场",
+    "id": "Izin meluruskan, maksud saya sebenarnya begini.",
+    "cn": "请允许我澄清，我的意思其实是这样的。",
+    "note": "meluruskan ← lurus 直 + meN-...-kan；被误解时纠错"
+   },
+   {
+    "level": "professional",
+    "scene": "聚焦讨论",
+    "id": "Rekan-rekan, mohon fokus ke pokok pembahasan.",
+    "cn": "各位，请聚焦讨论要点。",
+    "note": "rekan-rekan 各位同事；fokus ke 聚焦"
+   },
+   {
+    "level": "professional",
+    "scene": "防止跑题",
+    "id": "Agar tidak melebar, kita kembali ke agenda.",
+    "cn": "为了不跑题，我们回到议程上来。",
+    "note": "melebar ← lebar 宽 + meN-；主持控场金句"
+   },
+   {
+    "level": "professional",
+    "scene": "会议纪要",
+    "id": "Boleh saya rekap dulu yang sudah disampaikan?",
+    "cn": "我可以先汇总一下大家的发言吗？",
+    "note": "rekap 汇总（外来词）；disampaikan ← sampaikan + di-...-kan"
+   }
+  ],
+  "affixes": [
+   {
+    "no": 1,
+    "affix": "ber-",
+    "type": "前缀",
+    "func": "构成动词：处于/进行/拥有",
+    "rule": "ber- + 词根；词根首字母 r 时省一个 r",
+    "derivs": [
+     {
+      "root": "diskusi",
+      "der": "berdiskusi",
+      "zh": "讨论"
+     },
+     {
+      "root": "pendapat",
+      "der": "berpendapat",
+      "zh": "发表意见"
+     },
+     {
+      "root": "suara",
+      "der": "bersuara",
+      "zh": "发出声音"
+     }
+    ],
+    "examples": [
+     {
+      "id": "Para peserta berdiskusi tentang jadwal produksi.",
+      "cn": "参会者们讨论生产排期。"
+     },
+     {
+      "id": "Silakan berpendapat dengan bebas.",
+      "cn": "请自由发表意见。"
+     }
+    ],
+    "link": "ber-"
+   },
+   {
+    "no": 2,
+    "affix": "be-",
+    "type": "前缀",
+    "func": "构成动词：处于/进行",
+    "rule": "be- + 形容词/名词；应用面较 ber- 窄",
+    "derivs": [
+     {
+      "root": "kerja",
+      "der": "bekerja",
+      "zh": "工作"
+     },
+     {
+      "root": "kerja sama",
+      "der": "bekerja sama",
+      "zh": "合作"
+     },
+     {
+      "root": "bas",
+      "der": "bebas",
+      "zh": "自由的；免于"
+     }
+    ],
+    "examples": [
+     {
+      "id": "Semua pihak bekerja sama dalam proyek ini.",
+      "cn": "各方在该项目中合作。"
+     },
+     {
+      "id": "Setiap peserta bebas mengajukan pertanyaan.",
+      "cn": "每位参会者都可以自由提问。"
+     }
+    ],
+    "link": "be-"
+   },
+   {
+    "no": 3,
+    "affix": "meN-",
+    "type": "前缀",
+    "func": "构成及物动词：做/使",
+    "rule": "meN- 随词根首字母同化：s→meny-, t→men-, k→meng-",
+    "derivs": [
+     {
+      "root": "dengar",
+      "der": "mendengarkan",
+      "zh": "聆听（及物）"
+     },
+     {
+      "root": "simak",
+      "der": "menyimak",
+      "zh": "认真听"
+     },
+     {
+      "root": "tanya",
+      "der": "menanyakan",
+      "zh": "询问"
+     }
+    ],
+    "examples": [
+     {
+      "id": "Semua peserta mendengarkan paparan dengan saksama.",
+      "cn": "所有参会者认真聆听报告。"
+     },
+     {
+      "id": "Saya ingin menanyakan satu hal.",
+      "cn": "我想问一件事。"
+     }
+    ],
+    "link": "meN-"
+   },
+   {
+    "no": 4,
+    "affix": "di-",
+    "type": "前缀",
+    "func": "构成被动动词",
+    "rule": "di- + 动词词根；施事用 oleh 引出",
+    "derivs": [
+     {
+      "root": "ulang",
+      "der": "diulang",
+      "zh": "被重复"
+     },
+     {
+      "root": "dengar",
+      "der": "didengar",
+      "zh": "被听到"
+     },
+     {
+      "root": "catat",
+      "der": "dicatat",
+      "zh": "被记录"
+     }
+    ],
+    "examples": [
+     {
+      "id": "Mohon pertanyaannya diulang sekali lagi.",
+      "cn": "请把问题再重复一遍。"
+     },
+     {
+      "id": "Setiap masukan dicatat dalam notulen.",
+      "cn": "每条意见都记入会议纪要。"
+     }
+    ],
+    "link": "di-"
+   },
+   {
+    "no": 5,
+    "affix": "ter-",
+    "type": "前缀",
+    "func": "构成动词：被…/能…（非人主语被动或能力）",
+    "rule": "ter- + 动词/形容词；表无意或状态结果",
+    "derivs": [
+     {
+      "root": "dengar",
+      "der": "terdengar",
+      "zh": "被听到；听起来"
+     },
+     {
+      "root": "catat",
+      "der": "tercatat",
+      "zh": "记录在案"
+     },
+     {
+      "root": "laksana",
+      "der": "terlaksana",
+      "zh": "得以实施"
+     }
+    ],
+    "examples": [
+     {
+      "id": "Suaranya tidak terdengar jelas di ruang belakang.",
+      "cn": "他的声音在后厅听不清楚。"
+     },
+     {
+      "id": "Rapat ini tercatat sebagai rapat koordinasi bulanan.",
+      "cn": "本次会议记为月度协调会。"
+     }
+    ],
+    "link": "ter-"
+   },
+   {
+    "no": 6,
+    "affix": "peN-",
+    "type": "前缀",
+    "func": "构成名词：做…的人/工具",
+    "rule": "peN- 随词根首字母同化；与 meN- 动词对应",
+    "derivs": [
+     {
+      "root": "sampaikan",
+      "der": "penyampaian",
+      "zh": "呈报；提交"
+     },
+     {
+      "root": "bicara",
+      "der": "pembicara",
+      "zh": "发言人"
+     },
+     {
+      "root": "tanya",
+      "der": "penanya",
+      "zh": "提问者"
+     }
+    ],
+    "examples": [
+     {
+      "id": "Pembicara pertama adalah direktur operasional.",
+      "cn": "第一位发言人是运营总监。"
+     },
+     {
+      "id": "Penyampaian laporan memakan waktu dua puluh menit.",
+      "cn": "报告呈报花了二十分钟。"
+     }
+    ],
+    "link": "peN-"
+   },
+   {
+    "no": 7,
+    "affix": "per-",
+    "type": "前缀",
+    "func": "构成名词/动词：与…相关的过程",
+    "rule": "per- + 名词/形容词；常与 -an 连用",
+    "derivs": [
+     {
+      "root": "hati",
+      "der": "perhatian",
+      "zh": "注意；关注"
+     },
+     {
+      "root": "lahan",
+      "der": "perlahan",
+      "zh": "缓慢地"
+     },
+     {
+      "root": "ubah",
+      "der": "perubahan",
+      "zh": "变化"
+     }
+    ],
+    "examples": [
+     {
+      "id": "Mohon perhatian untuk pengumuman penting.",
+      "cn": "请注意重要通知。"
+     },
+     {
+      "id": "Bicaralah perlahan agar semua paham.",
+      "cn": "请说慢一点，让大家都明白。"
+     }
+    ],
+    "link": "per-"
+   },
+   {
+    "no": 8,
+    "affix": "memper-/diper-",
+    "type": "前缀",
+    "func": "加强或使役：使更…/被使更…",
+    "rule": "memper- + 形容词/动词；被动对应 diper-",
+    "derivs": [
+     {
+      "root": "jelas",
+      "der": "memperjelas",
+      "zh": "阐明；使更清楚"
+     },
+     {
+      "root": "jelas",
+      "der": "diperjelas",
+      "zh": "被阐明"
+     },
+     {
+      "root": "cepat",
+      "der": "mempercepat",
+      "zh": "加快"
+     }
+    ],
+    "examples": [
+     {
+      "id": "Boleh memperjelas maksudnya?",
+      "cn": "可以阐明一下您的意思吗？"
+     },
+     {
+      "id": "Prosedurnya dipercepat untuk rapat hari ini.",
+      "cn": "为了今天的会议，流程被加快了。"
+     }
+    ],
+    "link": "memper-"
+   },
+   {
+    "no": 9,
+    "affix": "se-",
+    "type": "前缀",
+    "func": "构成副词/形容词：一/同一/相",
+    "rule": "se- + 词根；表同一、整体或程度",
+    "derivs": [
+     {
+      "root": "sepakat",
+      "der": "sepakat",
+      "zh": "一致同意"
+     },
+     {
+      "root": "gera",
+      "der": "segera",
+      "zh": "立即"
+     },
+     {
+      "root": "suai",
+      "der": "sesuai",
+      "zh": "符合；依照"
+     }
+    ],
+    "examples": [
+     {
+      "id": "Semua pihak sepakat menunda keputusan.",
+      "cn": "各方一致同意推迟决定。"
+     },
+     {
+      "id": "Mohon segera dikonfirmasi sebelum rapat.",
+      "cn": "请在会前立即确认。"
+     }
+    ],
+    "link": "se-"
+   },
+   {
+    "no": 10,
+    "affix": "ke-",
+    "type": "前缀",
+    "func": "构成名词：…状态/结果",
+    "rule": "ke- + 词根（常与 -an 连用构成 ke-...-an 抽象名词）",
+    "derivs": [
+     {
+      "root": "simpul",
+      "der": "kesimpulan",
+      "zh": "结论"
+     },
+     {
+      "root": "jelas",
+      "der": "kejelasan",
+      "zh": "清晰度；明确性"
+     },
+     {
+      "root": "tegas",
+      "der": "ketegasan",
+      "zh": "果断性"
+     }
+    ],
+    "examples": [
+     {
+      "id": "Kesimpulan rapat akan dibagikan besok.",
+      "cn": "会议结论将于明天发出。"
+     },
+     {
+      "id": "Kami butuh kejelasan tentang pembagian tugas.",
+      "cn": "我们需要任务分工的明确说明。"
+     }
+    ],
+    "link": "ke-"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "'rapat koordinasi' 指的是什么会议？",
+    "opts": [
+     "庆祝会",
+     "协调会",
+     "招聘会",
+     "培训会"
+    ],
+    "a": 1,
+    "exp": "koordinasi 协调；rapat koordinasi 是园区各部门对齐进度的例会"
+   },
+   {
+    "q": "'menyimak paparan' 中 menyimak 的意思是？",
+    "opts": [
+     "认真聆听",
+     "随手翻翻",
+     "大声朗读",
+     "记录摘要"
+    ],
+    "a": 0,
+    "exp": "menyimak = meN- + simak，指专注地听，比 mendengar 程度更深"
+   },
+   {
+    "q": "会议中没听清对方讲话，最得体的表达是？",
+    "opts": [
+     "Apa?（什么？）",
+     "Tidak tahu.（不知道。）",
+     "Maaf, bisa tolong diulang?",
+     "Sudah, sudah.（行了，行了。）"
+    ],
+    "a": 2,
+    "exp": "Maaf, bisa tolong diulang? 礼貌请求重复；A 太生硬，B 不回应，D 不耐烦"
+   },
+   {
+    "q": "'notulen rapat' 的意思是？",
+    "opts": [
+     "会议通知",
+     "会议议程",
+     "会议纪要",
+     "会议决议"
+    ],
+    "a": 2,
+    "exp": "notulen 会议纪要；agenda 议程、undangan 通知、keputusan 决议注意区分"
+   },
+   {
+    "q": "'sambutan pembuka' 指的是？",
+    "opts": [
+     "闭幕致辞",
+     "开幕致辞",
+     "中场休息",
+     "分组讨论"
+    ],
+    "a": 1,
+    "exp": "sambutan 致辞/讲话；pembuka 开放的；开幕致辞是会议开场标配"
+   },
+   {
+    "q": "'Silakan dilanjutkan, Pak.' 的意思是？",
+    "opts": [
+     "请稍等，先生。",
+     "请重复一遍，先生。",
+     "请继续，先生。",
+     "请坐下，先生。"
+    ],
+    "a": 2,
+    "exp": "dilanjutkan ← lanjut + di-...-kan 被继续；示意发言人接着讲"
+   },
+   {
+    "q": "berdiskusi 的词根是？",
+    "opts": [
+     "diskusi",
+     "berdisku",
+     "diskus",
+     "kusi"
+    ],
+    "a": 0,
+    "exp": "berdiskusi = ber- + diskusi（讨论）；ber- 在此表'进行某项活动'"
+   },
+   {
+    "q": "'Jadi tindak lanjutnya adalah audit keselamatan.' 这句话用于什么场景？",
+    "opts": [
+     "会议开场自我介绍",
+     "收尾确认行动项",
+     "请求重复内容",
+     "表达不同意"
+    ],
+    "a": 1,
+    "exp": "tindak lanjut 后续行动；此句是会议收尾锁定行动项的标准表达"
+   },
+   {
+    "q": "'pokok pembahasan' 中 pokok 的含义是？",
+    "opts": [
+     "要点；主旨",
+     "树干",
+     "反对",
+     "结论"
+    ],
+    "a": 0,
+    "exp": "pokok 本义树干，引申为中心、要点；pokok pembahasan 讨论要点"
+   },
+   {
+    "q": "印尼会议中各方口音较重，最实用的听力策略是？",
+    "opts": [
+     "逐词翻译",
+     "抓关键词和数字",
+     "闭眼不看人",
+     "要求全讲英语"
+    ],
+    "a": 1,
+    "exp": "口音环境下逐词听不现实；抓关键词（kata kunci）和数字是实战策略"
+   },
+   {
+    "q": "'kesimpulan' 的构词方式是？",
+    "opts": [
+     "ke- + simpul + -an",
+     "peN- + simpul",
+     "ber- + simpul",
+     "se- + simpul"
+    ],
+    "a": 3,
+    "exp": "ke-...-an 构成抽象名词：kesimpulan 结论；同类如 keselamatan、kesepakatan"
+   },
+   {
+    "q": "主持人问 'Ada yang kurang jelas?' 是在做什么？",
+    "opts": [
+     "宣布散会",
+     "介绍新同事",
+     "要求保持安静",
+     "询问是否有疑问"
+    ],
+    "a": 3,
+    "exp": "kurang jelas 不清楚；主持人确认大家是否听懂"
+   },
+   {
+    "q": "'gangguan teknis' 指的是？",
+    "opts": [
+     "技术故障",
+     "技术突破",
+     "技术培训",
+     "技术团队"
+    ],
+    "a": 0,
+    "exp": "gangguan ← ganggu + -an 干扰/故障；远程会议常见术语"
+   },
+   {
+    "q": "'intervensi singkat' 的意思是？",
+    "opts": [
+     "简短休息",
+     "简短总结",
+     "简短插话",
+     "简短介绍"
+    ],
+    "a": 2,
+    "exp": "intervensi 插话/干预；发言中插入评论可用 izin intervensi singkat"
+   },
+   {
+    "q": "讨论跑偏时，主持人最合适的拉回方式是？",
+    "opts": [
+     "Agar tidak melebar, kita kembali ke agenda.",
+     "Sudah, tidak usah bicara lagi.",
+     "Rapat dibubarkan sekarang.",
+     "Semua diam saja."
+    ],
+    "a": 3,
+    "exp": "melebar ← lebar 宽 + meN-；'为了不跑题回到议程'是专业控场表达"
+   }
+  ]
+ },
+ "day2": {
+  "date": "2026-11-02",
+  "theme": "Membaca Laporan 报告阅读",
+  "vocab": [
+   {
+    "w": "laporan",
+    "cn": "报告",
+    "ipa": "/laˈporan/",
+    "level": "核心",
+    "note": "lapor + -an；laporan tahunan 年报；laporan kemajuan 进度报告"
+   },
+   {
+    "w": "data",
+    "cn": "数据",
+    "ipa": "/ˈdata/",
+    "level": "核心",
+    "note": "[新] 外来词；data produksi 生产数据；menganalisis data 分析数据"
+   },
+   {
+    "w": "grafik",
+    "cn": "图表",
+    "ipa": "/ˈɡrafik/",
+    "level": "核心",
+    "note": "外来词；grafik batang 柱状图；grafik garis 折线图"
+   },
+   {
+    "w": "ringkasan",
+    "cn": "摘要；概要",
+    "ipa": "/riŋˈkasan/",
+    "level": "核心",
+    "note": "ringkas + -an；meringkas 概括（动词）；ringkasan eksekutif 执行摘要"
+   },
+   {
+    "w": "rincian",
+    "cn": "明细；细分",
+    "ipa": "/rinˈtʃian/",
+    "level": "核心",
+    "note": "rinci + -an；rincian biaya 费用明细；berincian 有明细的"
+   },
+   {
+    "w": "evaluasi",
+    "cn": "评估；评价",
+    "ipa": "/evaluˈasi/",
+    "level": "进阶",
+    "note": "外来词；mengevaluasi 评估（动词）；evaluasi kinerja 绩效评估"
+   },
+   {
+    "w": "kinerja",
+    "cn": "绩效；业绩",
+    "ipa": "/kiˈnɛrdʒa/",
+    "level": "进阶",
+    "note": "外来词；kinerja produksi 生产绩效；laporan kinerja 业绩报告"
+   },
+   {
+    "w": "produktivitas",
+    "cn": "生产率",
+    "ipa": "/produktiˈvitas/",
+    "level": "进阶",
+    "note": "外来词；produktivitas tenaga kerja 劳动生产率"
+   },
+   {
+    "w": "efisiensi",
+    "cn": "效率",
+    "ipa": "/efisiˈɛnsi/",
+    "level": "进阶",
+    "note": "外来词；efisiensi energi 能源效率；efisien 高效的（形容词）"
+   },
+   {
+    "w": "pertumbuhan",
+    "cn": "增长",
+    "ipa": "/pərtumbuˈhan/",
+    "level": "进阶",
+    "note": "[新] tumbuh 生长 + peN-...-an；pertumbuhan ekonomi 经济增长"
+   },
+   {
+    "w": "klausul",
+    "cn": "条款",
+    "ipa": "/ˈklausul/",
+    "level": "高阶",
+    "note": "外来词；klausul pembayaran 付款条款；klausul penalti 违约条款"
+   },
+   {
+    "w": "pasal",
+    "cn": "条；款（法规/合同）",
+    "ipa": "/ˈpasal/",
+    "level": "高阶",
+    "note": "[新] 阿拉伯语源；pasal tiga 第三条；与 klausul 近义，pasal 更正式"
+   },
+   {
+    "w": "realisasi",
+    "cn": "实现；落实",
+    "ipa": "/realisaˈsi/",
+    "level": "高阶",
+    "note": "[新] 外来词；realisasi anggaran 预算执行；merealisasikan 落实"
+   },
+   {
+    "w": "deviasi",
+    "cn": "偏差",
+    "ipa": "/deviaˈsi/",
+    "level": "高阶",
+    "note": "[新] 外来词；deviasi anggaran 预算偏差；melenceng dari rencana 同义"
+   },
+   {
+    "w": "proyeksi",
+    "cn": "预测；投影",
+    "ipa": "/projekˈsi/",
+    "level": "高阶",
+    "note": "外来词；proyeksi produksi 产量预测；memproyeksikan 预测（动词）"
+   }
+  ],
+  "phrases": [
+   {
+    "id": "Tolong kirim laporan terbarunya.",
+    "cn": "请把最新报告发给我。",
+    "usage": "请求发送报告文件",
+    "note": "terbaru ← baru + ter-... 最新的；-nya 指代词尾"
+   },
+   {
+    "id": "Inti laporannya ada di halaman tiga.",
+    "cn": "报告的核心在第三页。",
+    "usage": "快速定位报告要点",
+    "note": "inti 核心；halaman 页；ada di 存在于"
+   },
+   {
+    "id": "Grafik ini menunjukkan tren kenaikan.",
+    "cn": "这张图表显示上升趋势。",
+    "usage": "解读图表趋势",
+    "note": "menunjukkan ← tunjuk + meN-...-kan；tren 趋势"
+   },
+   {
+    "id": "Angkanya masih di bawah target.",
+    "cn": "数字仍低于目标。",
+    "usage": "指出未达标",
+    "note": "angka 数字；di bawah 低于；target 外来词"
+   },
+   {
+    "id": "Ada bagian yang perlu direvisi.",
+    "cn": "有几处需要修改。",
+    "usage": "反馈报告修改意见",
+    "note": "perlu 需要；direvisi ← revisi + di-... 被修改"
+   },
+   {
+    "id": "Klausul ini mohon dibaca saksama.",
+    "cn": "这一条请仔细阅读。",
+    "usage": "提醒重点阅读条款",
+    "note": "saksama 仔细地；合同审阅高频提醒"
+   },
+   {
+    "id": "Kesimpulannya sesuai dengan data.",
+    "cn": "结论与数据一致。",
+    "usage": "确认结论有数据支撑",
+    "note": "sesuai dengan 符合/依照；数据与结论互证"
+   },
+   {
+    "id": "Bagian mana yang kurang jelas?",
+    "cn": "哪一部分不清楚？",
+    "usage": "询问报告难点",
+    "note": "bagian 部分；kurang jelas 不清楚"
+   },
+   {
+    "id": "Mohon perhatikan catatan kakinya.",
+    "cn": "请注意脚注。",
+    "usage": "提示脚注有重要补充",
+    "note": "catatan kaki 脚注；perhatikan ← perhatian 的动词"
+   },
+   {
+    "id": "Bisa kirim versi digitalnya?",
+    "cn": "能发电子版吗？",
+    "usage": "请求电子版本",
+    "note": "versi 版本；digital 数码的；-nya 指代该报告"
+   }
+  ],
+  "patterns": [
+   {
+    "cat": "请求发送",
+    "level": "basic",
+    "formula": "Tolong kirim + [文件]",
+    "structure": "Tolong + 动词 + 名词",
+    "grammar": "tolong 请；kirim 发送；省略主语更自然",
+    "scene": "邮件/口头请求对方发文件",
+    "ex": [
+     "Tolong kirim laporan bulanan ke email saya.",
+     "Tolong kirim draf kontrak sebelum jam lima."
+    ],
+    "slots": [
+     "文件名称"
+    ],
+    "reuse": 5
+   },
+   {
+    "cat": "定位内容",
+    "level": "basic",
+    "formula": "Intinya ada di + [位置]",
+    "structure": "Intinya + ada di + 地点/页码",
+    "grammar": "ada di 存在于；inti 核心 + -nya",
+    "scene": "快速定位报告核心内容",
+    "ex": [
+     "Intinya ada di halaman terakhir.",
+     "Intinya ada di bagian kesimpulan."
+    ],
+    "slots": [
+     "位置"
+    ],
+    "reuse": 5
+   },
+   {
+    "cat": "描述趋势",
+    "level": "basic",
+    "formula": "Angkanya + [naik/turun]",
+    "structure": "主语 + 动词",
+    "grammar": "angka 数字；-nya 指代；naik 上升 turun 下降",
+    "scene": "快速描述数据走向",
+    "ex": [
+     "Angkanya naik tiga bulan berturut-turut.",
+     "Angkanya turun dibanding bulan lalu."
+    ],
+    "slots": [
+     "naik/turun"
+    ],
+    "reuse": 5
+   },
+   {
+    "cat": "数据引用",
+    "level": "intermediate",
+    "formula": "Menurut + [图表/报告], + [主句]",
+    "structure": "Menurut + 来源, 主句",
+    "grammar": "menurut 根据；引出信息来源，阅读报告转述必备",
+    "scene": "引用报告数据支撑观点",
+    "ex": [
+     "Menurut grafik ini, produksi naik dua belas persen.",
+     "Menurut laporan ESDM, cadangan nikel masih besar."
+    ],
+    "slots": [
+     "来源"
+    ],
+    "reuse": 4
+   },
+   {
+    "cat": "对比",
+    "level": "intermediate",
+    "formula": "[A] lebih + [形容词] daripada [B]",
+    "structure": "主语 + lebih + 形容词 + daripada + 比较对象",
+    "grammar": "lebih 更；daripada 比；比较级标准结构",
+    "scene": "报告数据横向对比",
+    "ex": [
+     "Biaya produksi lebih rendah daripada kuartal lalu.",
+     "Kapasitas lebih tinggi daripada yang direncanakan."
+    ],
+    "slots": [
+     "A",
+     "形容词",
+     "B"
+    ],
+    "reuse": 4
+   },
+   {
+    "cat": "目标达成",
+    "level": "intermediate",
+    "formula": "Sudah/Belum mencapai + [sasaran]",
+    "structure": "副词 + mencapai + 目标名词",
+    "grammar": "mencapai ← capai + meN-；sasaran 目标",
+    "scene": "汇报目标完成情况",
+    "ex": [
+     "Kita sudah mencapai sasaran produksi semester ini.",
+     "Belum mencapai target efisiensi energi."
+    ],
+    "slots": [
+     "sudah/belum",
+     "目标"
+    ],
+    "reuse": 4
+   },
+   {
+    "cat": "归因",
+    "level": "intermediate",
+    "formula": "Penyebabnya adalah + [名词/从句]",
+    "structure": "Penyebabnya + adalah + 表语",
+    "grammar": "sebab 原因 + peN-...-an → penyebab；-nya 指代；adalah 判断系词",
+    "scene": "分析报告数据背后的原因",
+    "ex": [
+     "Penyebabnya adalah kenaikan harga batubara.",
+     "Penyebabnya adalah gangguan pasokan listrik."
+    ],
+    "slots": [
+     "原因"
+    ],
+    "reuse": 4
+   },
+   {
+    "cat": "建议",
+    "level": "intermediate",
+    "formula": "Sebaiknya + [主句]",
+    "structure": "Sebaiknya + 建议内容",
+    "grammar": "sebaiknya ← baik 好 + se-...-nya 应当；委婉建议标记",
+    "scene": "读完报告后提出改进建议",
+    "ex": [
+     "Sebaiknya anggaran ditinjau ulang minggu ini.",
+     "Sebaiknya kita menunggu data kuartal berikutnya."
+    ],
+    "slots": [
+     "建议内容"
+    ],
+    "reuse": 4
+   },
+   {
+    "cat": "预测",
+    "level": "intermediate",
+    "formula": "Diproyeksikan + [主句]",
+    "structure": "Diproyeksikan + 从句",
+    "grammar": "proyeksi + di-...-kan 被预测；报告常用被动",
+    "scene": "转述报告中的预测内容",
+    "ex": [
+     "Produksi diproyeksikan tumbuh delapan persen tahun depan.",
+     "Harga nikel diproyeksikan stabil di semester kedua."
+    ],
+    "slots": [
+     "预测内容"
+    ],
+    "reuse": 4
+   },
+   {
+    "cat": "条款约束",
+    "level": "professional",
+    "formula": "Klausul + [序数] mengikat + [对象]",
+    "structure": "Klausul + 编号 + mengikat + 名词",
+    "grammar": "mengikat ← ikat 绑 + meN-；mengikat 对…有约束力",
+    "scene": "合同条款审读",
+    "ex": [
+     "Klausul ketiga mengikat kedua pihak selama lima tahun.",
+     "Klausul ini mengikat pihak pemasok."
+    ],
+    "slots": [
+     "编号",
+     "约束对象"
+    ],
+    "reuse": 3
+   },
+   {
+    "cat": "假设条件",
+    "level": "professional",
+    "formula": "Apabila + [从句], maka + [主句]",
+    "structure": "Apabila 条件从句, maka 主句",
+    "grammar": "apabila 如果（正式）；maka 那么；合同条件句标配",
+    "scene": "阅读合同条件条款",
+    "ex": [
+     "Apabila terjadi keterlambatan, maka penalti dikenakan.",
+     "Apabila force majeure terjadi, maka kontrak dihentikan."
+    ],
+    "slots": [
+     "条件",
+     "结果"
+    ],
+    "reuse": 3
+   },
+   {
+    "cat": "综合判断",
+    "level": "professional",
+    "formula": "Secara keseluruhan, + [评价]",
+    "structure": "Secara + 名词 + 评价句",
+    "grammar": "secara 从…方面（副词化标记）；keseluruhan 整体",
+    "scene": "报告审读后的总体评价",
+    "ex": [
+     "Secara keseluruhan, laporan ini sudah komprehensif.",
+     "Secara keseluruhan, kinerja semester ini memuaskan."
+    ],
+    "slots": [
+     "评价"
+    ],
+    "reuse": 3
+   }
+  ],
+  "expressions": [
+   {
+    "level": "basic",
+    "scene": "索要报告",
+    "id": "Tolong kirim laporannya ke saya.",
+    "cn": "请把报告发给我。",
+    "note": "kepada 可简化为 ke；saya 我"
+   },
+   {
+    "level": "basic",
+    "scene": "正在阅读",
+    "id": "Saya sedang membaca, sebentar ya.",
+    "cn": "我正在看，稍等一下哦。",
+    "note": "sedang 正在；sebentar 片刻"
+   },
+   {
+    "level": "basic",
+    "scene": "定位困惑",
+    "id": "Maaf, ini bagian mana?",
+    "cn": "不好意思，这是哪一部分？",
+    "note": "bagian 部分；报告结构询问"
+   },
+   {
+    "level": "intermediate",
+    "scene": "摘要位置",
+    "id": "Ringkasannya ada di halaman terakhir.",
+    "cn": "摘要在最后一页。",
+    "note": "terakhir 最后的；扫读技巧：先读 ringkasan 抓大意"
+   },
+   {
+    "level": "intermediate",
+    "scene": "图表解读",
+    "id": "Grafik batang ini menunjukkan produksi per bulan.",
+    "cn": "这张柱状图显示每月产量。",
+    "note": "grafik batang 柱状图；per bulan 每月"
+   },
+   {
+    "level": "intermediate",
+    "scene": "来源说明",
+    "id": "Ada catatan kaki yang menjelaskan sumber datanya.",
+    "cn": "有脚注解释数据来源。",
+    "note": "catatan kaki 脚注；sumber data 数据来源"
+   },
+   {
+    "level": "intermediate",
+    "scene": "口径说明",
+    "id": "Angka ini belum termasuk biaya transportasi.",
+    "cn": "这个数字还不含运输费用。",
+    "note": "belum 尚未；termasuk 包括；统计口径提示"
+   },
+   {
+    "level": "intermediate",
+    "scene": "对比请求",
+    "id": "Mohon bandingkan dengan laporan bulan lalu.",
+    "cn": "请与上个月的报告比较一下。",
+    "note": "bandingkan ← banding + -kan 比较；环比分析"
+   },
+   {
+    "level": "intermediate",
+    "scene": "修改意见",
+    "id": "Bagian kesimpulan perlu diperkuat.",
+    "cn": "结论部分需要加强。",
+    "note": "perlu 需要；diperkuat ← kuat + diper-...-kan"
+   },
+   {
+    "level": "intermediate",
+    "scene": "条款定位",
+    "id": "Klausul ketiga menyebutkan pembayaran termin.",
+    "cn": "第三条条款提到分期付款。",
+    "note": "menyebutkan ← sebut + meN-...-kan；pembayaran termin 分期付款"
+   },
+   {
+    "level": "intermediate",
+    "scene": "数据核验",
+    "id": "Data ini perlu diverifikasi dulu.",
+    "cn": "这份数据需要先核实。",
+    "note": "diverifikasi ← verifikasi + di-...；verifikasi ✓ bitVocabDB"
+   },
+   {
+    "level": "professional",
+    "scene": "总体评价",
+    "id": "Dari sisi keuangan, laporan ini cukup sehat.",
+    "cn": "从财务角度看，这份报告相当健康。",
+    "note": "dari sisi 从…角度；sehat 健康的"
+   },
+   {
+    "level": "professional",
+    "scene": "偏差分析",
+    "id": "Deviasi anggaran perlu dianalisis lebih lanjut.",
+    "cn": "预算偏差需要进一步分析。",
+    "note": "deviasi [新] 偏差；lebih lanjut 进一步"
+   },
+   {
+    "level": "professional",
+    "scene": "假设审视",
+    "id": "Kita perlu menelaah ulang asumsi dasarnya.",
+    "cn": "我们需要重新审视基本假设。",
+    "note": "menelaah ← telaah 审视；asumsi dasar 基本假设"
+   },
+   {
+    "level": "professional",
+    "scene": "预测评价",
+    "id": "Proyeksi tahun depan tampak agresif.",
+    "cn": "明年的预测显得激进。",
+    "note": "tampak 显得；agresif [新] 激进的——对预测保留意见"
+   }
+  ],
+  "affixes": [
+   {
+    "no": 11,
+    "affix": "-kan",
+    "type": "后缀",
+    "func": "构成及物动词：使/做",
+    "rule": "动词 + -kan；与 meN- 前缀连用成及物动词",
+    "derivs": [
+     {
+      "root": "tunjuk",
+      "der": "menunjukkan",
+      "zh": "指出；显示"
+     },
+     {
+      "root": "jelas",
+      "der": "menjelaskan",
+      "zh": "解释；阐明"
+     },
+     {
+      "root": "sampaikan",
+      "der": "menyampaikan",
+      "zh": "呈报；传达"
+     }
+    ],
+    "examples": [
+     {
+      "id": "Grafik ini menunjukkan tren produksi enam bulan terakhir.",
+      "cn": "这张图表显示了最近六个月的生产趋势。"
+     },
+     {
+      "id": "Izinkan saya menjelaskan bagian ini.",
+      "cn": "请允许我解释这一部分。"
+     }
+    ],
+    "link": "-kan"
+   },
+   {
+    "no": 12,
+    "affix": "-an",
+    "type": "后缀",
+    "func": "构成名词：…的结果/事物",
+    "rule": "动词/形容词 + -an → 名词",
+    "derivs": [
+     {
+      "root": "lapor",
+      "der": "laporan",
+      "zh": "报告"
+     },
+     {
+      "root": "ringkas",
+      "der": "ringkasan",
+      "zh": "摘要"
+     },
+     {
+      "root": "ubah",
+      "der": "perubahan",
+      "zh": "变化"
+     }
+    ],
+    "examples": [
+     {
+      "id": "Laporan tahunan sudah diterbitkan.",
+      "cn": "年报已经发布了。"
+     },
+     {
+      "id": "Ringkasan eksekutif hanya satu halaman.",
+      "cn": "执行摘要只有一页。"
+     }
+    ],
+    "link": "-an"
+   },
+   {
+    "no": 13,
+    "affix": "-i",
+    "type": "后缀",
+    "func": "构成及物动词：反复/施加于",
+    "rule": "名词/形容词/动词 + -i",
+    "derivs": [
+     {
+      "root": "cermat",
+      "der": "mencermati",
+      "zh": "细察；研读"
+     },
+     {
+      "root": "amat",
+      "der": "mengamati",
+      "zh": "观察"
+     },
+     {
+      "root": "ikut",
+      "der": "mengikuti",
+      "zh": "跟随；参加"
+     }
+    ],
+    "examples": [
+     {
+      "id": "Klausul ini perlu dicermati dengan teliti.",
+      "cn": "这条款需要仔细研读。"
+     },
+     {
+      "id": "Kami mengikuti perkembangan harga nikel setiap pekan.",
+      "cn": "我们每周关注镍价走势。"
+     }
+    ],
+    "link": "-i"
+   },
+   {
+    "no": 14,
+    "affix": "-nya",
+    "type": "后缀",
+    "func": "第三人称附着代词：他的/它的",
+    "rule": "名词 + -nya；定指且简洁，报告高频",
+    "derivs": [
+     {
+      "root": "laporan",
+      "der": "laporannya",
+      "zh": "该报告"
+     },
+     {
+      "root": "kinerja",
+      "der": "kinerjanya",
+      "zh": "其业绩"
+     },
+     {
+      "root": "data",
+      "der": "datanya",
+      "zh": "其数据"
+     }
+    ],
+    "examples": [
+     {
+      "id": "Saya sudah membaca laporannya.",
+      "cn": "我已经读过那份报告了。"
+     },
+     {
+      "id": "Kinerjanya meningkat pesat tahun ini.",
+      "cn": "其业绩今年大幅提升。"
+     }
+    ],
+    "link": "-nya"
+   },
+   {
+    "no": 15,
+    "affix": "-lah",
+    "type": "后缀",
+    "func": "祈使强调：请…吧",
+    "rule": "动词 + -lah；命令式柔化",
+    "derivs": [
+     {
+      "root": "baca",
+      "der": "bacalah",
+      "zh": "请阅读"
+     },
+     {
+      "root": "perhatikan",
+      "der": "perhatikanlah",
+      "zh": "请注意"
+     },
+     {
+      "root": "lihat",
+      "der": "lihatlah",
+      "zh": "请看"
+     }
+    ],
+    "examples": [
+     {
+      "id": "Bacalah laporan ini sebelum rapat.",
+      "cn": "会前请阅读这份报告。"
+     },
+     {
+      "id": "Perhatikanlah grafik pada halaman lima.",
+      "cn": "请看第五页的图表。"
+     }
+    ],
+    "link": "-lah"
+   },
+   {
+    "no": 16,
+    "affix": "-kah",
+    "type": "后缀",
+    "func": "疑问标记：是否…",
+    "rule": "动词/助动词 + -kah；正式疑问句",
+    "derivs": [
+     {
+      "root": "apa",
+      "der": "apakah",
+      "zh": "是否；是不是"
+     },
+     {
+      "root": "bisa",
+      "der": "bisakah",
+      "zh": "能否"
+     },
+     {
+      "root": "mungkin",
+      "der": "mungkinkah",
+      "zh": "难道可能"
+     }
+    ],
+    "examples": [
+     {
+      "id": "Apakah laporan ini sudah final?",
+      "cn": "这份报告是否已经定稿？"
+     },
+     {
+      "id": "Bisakah data ini dipercaya?",
+      "cn": "这份数据可信吗？"
+     }
+    ],
+    "link": "-kah"
+   },
+   {
+    "no": 17,
+    "affix": "-an（被动）",
+    "type": "后缀",
+    "func": "受限被动：被施加于",
+    "rule": "di- + 词根-an 形式的受限被动，多见于 kena/beban 类词根",
+    "derivs": [
+     {
+      "root": "kena",
+      "der": "dikenakan",
+      "zh": "被课以（税/费）"
+     },
+     {
+      "root": "beban",
+      "der": "dibebankan",
+      "zh": "被摊派"
+     },
+     {
+      "root": "kena",
+      "der": "dikenai",
+      "zh": "被处以"
+     }
+    ],
+    "examples": [
+     {
+      "id": "Keterlambatan dikenakan penalti dua persen.",
+      "cn": "延误被处以百分之二罚金。"
+     },
+     {
+      "id": "Biaya pemeliharaan dibebankan ke masing-masing divisi.",
+      "cn": "维护费用被分摊到各部门。"
+     }
+    ],
+    "link": "-an"
+   },
+   {
+    "no": 18,
+    "affix": "-kan（使役）",
+    "type": "后缀",
+    "func": "使役：使…/让…",
+    "rule": "形容词/名词 + -kan；与 meN- 连用表致使",
+    "derivs": [
+     {
+      "root": "sebab",
+      "der": "menyebabkan",
+      "zh": "导致"
+     },
+     {
+      "root": "akibat",
+      "der": "mengakibatkan",
+      "zh": "造成"
+     },
+     {
+      "root": "buat",
+      "der": "membuatkan",
+      "zh": "为…制作"
+     }
+    ],
+    "examples": [
+     {
+      "id": "Hujan deras menyebabkan banjir di sekitar pabrik.",
+      "cn": "暴雨导致厂区周边积水。"
+     },
+     {
+      "id": "Kenaikan tarif mengakibatkan biaya naik.",
+      "cn": "费率上调造成成本上升。"
+     }
+    ],
+    "link": "-kan"
+   },
+   {
+    "no": 19,
+    "affix": "-in（口语）",
+    "type": "后缀",
+    "func": "口语替代 -kan/-i",
+    "rule": "口语中 -kan/-i 常弱化为 -in；正式写作不用",
+    "derivs": [
+     {
+      "root": "betul",
+      "der": "dibetulin",
+      "zh": "被修好（口语）"
+     },
+     {
+      "root": "siap",
+      "der": "nyiapin",
+      "zh": "准备（口语）"
+     },
+     {
+      "root": "tunggu",
+      "der": "nungguin",
+      "zh": "等待（口语）"
+     }
+    ],
+    "examples": [
+     {
+      "id": "Laporannya lagi dibetulin dulu.",
+      "cn": "报告正在修改呢（口语）。"
+     },
+     {
+      "id": "Dia lagi nyiapin data buat rapat.",
+      "cn": "他在准备会议数据呢（口语）。"
+     }
+    ],
+    "link": "-in"
+   },
+   {
+    "no": 20,
+    "affix": "-nya（指代）",
+    "type": "后缀",
+    "func": "远指/定指：…的那部分",
+    "rule": "时间/数量/名词 + -nya；把成分名词化",
+    "derivs": [
+     {
+      "root": "sisanya",
+      "der": "sisanya",
+      "zh": "其余部分"
+     },
+     {
+      "root": "awalnya",
+      "der": "awalnya",
+      "zh": "起初"
+     },
+     {
+      "root": "akhirnya",
+      "der": "akhirnya",
+      "zh": "最终"
+     }
+    ],
+    "examples": [
+     {
+      "id": "Sisanya bisa dibaca nanti.",
+      "cn": "其余部分可以稍后读。"
+     },
+     {
+      "id": "Awalnya saya ragu, akhirnya paham juga.",
+      "cn": "起初我犹豫，最终也明白了。"
+     }
+    ],
+    "link": "-nya"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "'laporan tahunan' 指的是？",
+    "opts": [
+     "年报",
+     "周报",
+     "月报",
+     "临时报告"
+    ],
+    "a": 0,
+    "exp": "tahunan ← tahun 年 + -an；laporan tahunan 年报，laporan mingguan 周报"
+   },
+   {
+    "q": "'ringkasan eksekutif' 是什么？",
+    "opts": [
+     "执行处罚",
+     "执行摘要",
+     "执行官",
+     "执行合同"
+    ],
+    "a": 3,
+    "exp": "ringkasan ← ringkas 简要 + -an；executive summary 执行摘要，报告开头必看"
+   },
+   {
+    "q": "'rincian biaya' 的意思是？",
+    "opts": [
+     "预算总额",
+     "费用明细",
+     "付款方式",
+     "报销流程"
+    ],
+    "a": 1,
+    "exp": "rinci 详细 + -an；rincian biaya 费用明细，审报告必查"
+   },
+   {
+    "q": "'Grafik ini menunjukkan tren kenaikan.' 的意思是？",
+    "opts": [
+     "这张图表显示上升趋势。",
+     "这张图表被损坏了。",
+     "这张表是伪造的。",
+     "这张图表已经过期。"
+    ],
+    "a": 0,
+    "exp": "menunjukkan ← tunjuk + meN-...-kan 显示；tren kenaikan 上升趋势"
+   },
+   {
+    "q": "'kinerja produksi' 指的是？",
+    "opts": [
+     "生产绩效",
+     "生产计划",
+     "生产设备",
+     "生产事故"
+    ],
+    "a": 0,
+    "exp": "kinerja 绩效；laporan kinerja 业绩报告是管理层高频文件"
+   },
+   {
+    "q": "'pertumbuhan ekonomi' 的构词是？",
+    "opts": [
+     "tumbuh 生长 + peN-...-an",
+     "tumbuh + ber-",
+     "tumbuh + meN-",
+     "tumbuh + se-"
+    ],
+    "a": 0,
+    "exp": "pertumbuhan ← tumbuh + peN-...-an；t→r 同化，经济增长固定说法"
+   },
+   {
+    "q": "'klausul penalti' 是什么条款？",
+    "opts": [
+     "奖励条款",
+     "付款条款",
+     "违约条款",
+     "保密条款"
+    ],
+    "a": 2,
+    "exp": "penalti 处罚；klausul penalti 违约/罚金条款，合同中要重点 cermati"
+   },
+   {
+    "q": "'deviasi anggaran' 指？",
+    "opts": [
+     "预算审批",
+     "预算偏差",
+     "预算编制",
+     "预算结余"
+    ],
+    "a": 1,
+    "exp": "deviasi [新] 偏差；deviasi anggaran 预算偏差=实际花费与预算之差"
+   },
+   {
+    "q": "'realisasi anggaran' 的意思是？",
+    "opts": [
+     "预算执行/落实",
+     "预算被削减",
+     "预算已批准",
+     "预算被冻结"
+    ],
+    "a": 0,
+    "exp": "realisasi [新] 实现、落实；realisasi anggaran 预算执行率"
+   },
+   {
+    "q": "'Apabila terjadi keterlambatan, maka penalti dikenakan.' 是什么句型？",
+    "opts": [
+     "时间状语从句",
+     "条件从句",
+     "让步从句",
+     "比较从句"
+    ],
+    "a": 3,
+    "exp": "apabila 如果（正式）+ maka 那么；合同条件条款标配句型"
+   },
+   {
+    "q": "'Secara keseluruhan, laporan ini komprehensif.' 中 secara 的作用是？",
+    "opts": [
+     "表示时间",
+     "表示对象",
+     "表示方式/方面",
+     "表示原因"
+    ],
+    "a": 2,
+    "exp": "secara + 名词 → 副词化，从…方面；secara keseluruhan 总体上"
+   },
+   {
+    "q": "'Data ini belum termasuk biaya transportasi.' 的意思是？",
+    "opts": [
+     "数据已包含运费。",
+     "数据不含运费。",
+     "数据就是运费。",
+     "数据运费翻倍。"
+    ],
+    "a": 1,
+    "exp": "belum termasuk 尚未包含；审报告时注意统计口径"
+   },
+   {
+    "q": "'Klausul ini mohon dibaca saksama.' 中 saksama 的意思是？",
+    "opts": [
+     "快速地",
+     "粗略地",
+     "仔细地",
+     " aloud大声地"
+    ],
+    "a": 2,
+    "exp": "saksama 仔细、谨慎；固定搭配 membaca dengan saksama 仔细阅读"
+   },
+   {
+    "q": "'Menurut grafik ini, produksi naik dua belas persen.' menurut 引出的是？",
+    "opts": [
+     "观点持有者",
+     "信息来源",
+     "时间地点",
+     "比较对象"
+    ],
+    "a": 1,
+    "exp": "menurut 根据；后接来源（图表/报告/人），阅读转述必备"
+   },
+   {
+    "q": "'nyiapin data' 中的 -in 是什么用法？",
+    "opts": [
+     "正式书面后缀",
+     "古旧用法",
+     "口语替代 -kan",
+     "方言独有"
+    ],
+    "a": 3,
+    "exp": "-in 是口语中 -kan/-i 的弱化形式；正式报告写作仍用 -kan"
+   }
+  ]
+ },
+ "day3": {
+  "date": "2026-11-03",
+  "theme": "Mendengarkan Berita 新闻听力",
+  "vocab": [
+   {
+    "w": "berita",
+    "cn": "新闻",
+    "ipa": "/bəˈrita/",
+    "level": "核心",
+    "note": "berita utama 头条；berita terkini 即时新闻；berita industri 行业新闻"
+   },
+   {
+    "w": "kabar",
+    "cn": "消息；传闻",
+    "ipa": "/kaˈbar/",
+    "level": "核心",
+    "note": "kabar terbaru 最新消息；kabar burung 小道消息（口语）"
+   },
+   {
+    "w": "pengumuman",
+    "cn": "公告；通知",
+    "ipa": "/pəŋˈuman/",
+    "level": "核心",
+    "note": "[新] umum 公共 + peN-...-an；pengumuman resmi 官方公告"
+   },
+   {
+    "w": "siaran",
+    "cn": "广播；播出",
+    "ipa": "/siaˈran/",
+    "level": "核心",
+    "note": "[新] siar + -an；siaran langsung 直播；siaran pers 记者招待会"
+   },
+   {
+    "w": "kebijakan",
+    "cn": "政策",
+    "ipa": "/kəbidʒaˈkan/",
+    "level": "核心",
+    "note": "bijak 明智 + ke-...-an；kebijakan pemerintah 政府政策"
+   },
+   {
+    "w": "tarif",
+    "cn": "费率；关税",
+    "ipa": "/taˈrif/",
+    "level": "进阶",
+    "note": "tarif listrik 电价；tarif impor 进口关税；kenaikan tarif 费率上调"
+   },
+   {
+    "w": "regulasi",
+    "cn": "法规；规章",
+    "ipa": "/rɛɡulaˈsi/",
+    "level": "进阶",
+    "note": "外来词；regulasi baru 新法规；mengatur 的近义名词"
+   },
+   {
+    "w": "insentif",
+    "cn": "激励；补贴",
+    "ipa": "/insenˈtif/",
+    "level": "进阶",
+    "note": "外来词；insentif pajak 税收激励；insentif investasi 投资优惠"
+   },
+   {
+    "w": "artikel",
+    "cn": "文章；报道",
+    "ipa": "/artiˈkɛl/",
+    "level": "进阶",
+    "note": "外来词；artikel berita 新闻报道；artikel opini 评论文章"
+   },
+   {
+    "w": "konferensi",
+    "cn": "会议；发布会",
+    "ipa": "/konfɛˈrɛnsi/",
+    "level": "进阶",
+    "note": "konferensi pers 记者招待会；konferensi internasional 国际会议"
+   },
+   {
+    "w": "editorial",
+    "cn": "社论",
+    "ipa": "/editoˈrial/",
+    "level": "高阶",
+    "note": "外来词；editorial harian Kompas 罗盘报社论；redaksi 编辑部（同根）"
+   },
+   {
+    "w": "pidato",
+    "cn": "演讲；讲话",
+    "ipa": "/piˈdato/",
+    "level": "高阶",
+    "note": "[新] 外来词（阿拉伯语源）；pidato presiden 总统讲话；berpidato 发表演讲"
+   },
+   {
+    "w": "hilirisasi",
+    "cn": "下游化",
+    "ipa": "/hilirisaˈsi/",
+    "level": "高阶",
+    "note": "hilir 下游 + -isasi；印尼镍产业政策关键词：禁止原矿出口促本地加工"
+   },
+   {
+    "w": "perizinan",
+    "cn": "许可；审批",
+    "ipa": "/pəriˈzinan/",
+    "level": "高阶",
+    "note": "izin 许可 + peR-...-an；perizinan lingkungan 环境许可；perizinan usaha 经营许可"
+   },
+   {
+    "w": "kementerian",
+    "cn": "部（政府部门）",
+    "ipa": "/kəministɛˈrian/",
+    "level": "高阶",
+    "note": "menteri 部长 + ke-...-an；Kementerian ESDM 能源与矿产资源部"
+   }
+  ],
+  "phrases": [
+   {
+    "id": "Kabar terbaru dari pemerintah soal tarif listrik.",
+    "cn": "关于电费的政府最新消息。",
+    "usage": "转述新闻导语",
+    "note": "terbaru ← baru + ter-...；soal 关于（口语）"
+   },
+   {
+    "id": "Kita beralih ke siaran langsung dari Jakarta.",
+    "cn": "我们转接到雅加达的直播现场。",
+    "usage": "新闻播报转场",
+    "note": "beralih ← alih + ber-；siaran langsung 直播"
+   },
+   {
+    "id": "Per hari ini, tarif listrik naik dua belas persen.",
+    "cn": "自今日起，电价上调百分之十二。",
+    "usage": "播报政策生效",
+    "note": "per 自…起；naik + 数字 + persen 涨幅表达"
+   },
+   {
+    "id": "Menurut keterangan resmi, tidak ada korban jiwa.",
+    "cn": "据官方声明，没有人员伤亡。",
+    "usage": "引用官方消息源",
+    "note": "keterangan resmi 官方声明；korban jiwa 人员伤亡"
+   },
+   {
+    "id": "Kebijakan ini berlaku mulai tanggal satu November.",
+    "cn": "该政策自11月1日起生效。",
+    "usage": "说明政策生效日期",
+    "note": "berlaku mulai 自…生效；tanggal 日期"
+   },
+   {
+    "id": "Pemerintah mengumumkan bahwa ekspor bijih diperketat.",
+    "cn": "政府宣布矿石出口将进一步收紧。",
+    "usage": "转述官方宣布",
+    "note": "mengumumkan ← umum + meN-...-kan；diperketat ← perketat + diper-"
+   },
+   {
+    "id": "Untuk informasi lebih lanjut, silakan cek laman resmi.",
+    "cn": "欲了解更多信息，请查看官方网站。",
+    "usage": "新闻结尾引导查询",
+    "note": "lebih lanjut 更多；laman 网页（印尼官方用语）"
+   },
+   {
+    "id": "Sumber dari Kementerian ESDM menyebutkan cadangan masih cukup.",
+    "cn": "来自能矿部的消息称储量仍充足。",
+    "usage": "引述匿名消息源",
+    "note": "sumber 来源；menyebutkan ← sebut + meN-...-kan"
+   },
+   {
+    "id": "Pengumuman ini berlaku untuk seluruh kawasan industri.",
+    "cn": "本公告适用于所有工业园区。",
+    "usage": "公告适用范围说明",
+    "note": "seluruh 全部；kawasan industri 工业园区"
+   },
+   {
+    "id": "Berita ini disiarkan oleh televisi nasional.",
+    "cn": "本新闻由国内电视台播出。",
+    "usage": "说明新闻来源渠道",
+    "note": "disiarkan ← siar + di-...-kan；nasional 全国的"
+   }
+  ],
+  "patterns": [
+   {
+    "cat": "消息源引用",
+    "level": "basic",
+    "formula": "Menurut + [sumber], + [主句]",
+    "structure": "Menurut + 来源名词, 主句",
+    "grammar": "menurut 根据；新闻听力中锁定消息源",
+    "scene": "新闻转述与引用",
+    "ex": [
+     "Menurut laporan resmi, insiden sudah teratasi.",
+     "Menurut keterangan polisi, jalan sudah dibuka."
+    ],
+    "slots": [
+     "消息来源"
+    ],
+    "reuse": 5
+   },
+   {
+    "cat": "时间起点",
+    "level": "basic",
+    "formula": "Mulai + [时间], + [主句]",
+    "structure": "Mulai + 时间词, 主句",
+    "grammar": "mulai 从…起；政策公告标准时间状语",
+    "scene": "政策生效时间播报",
+    "ex": [
+     "Mulai Senin depan, jam operasional diubah.",
+     "Mulai bulan depan, tarif transportasi naik."
+    ],
+    "slots": [
+     "时间"
+    ],
+    "reuse": 5
+   },
+   {
+    "cat": "数量播报",
+    "level": "basic",
+    "formula": "Sebesar + [数字/百分比]",
+    "structure": "动词 + sebesar + 数量",
+    "grammar": "se- 一/整体 + besar 大；表数量总额",
+    "scene": "新闻中的数字信息",
+    "ex": [
+     "Investasi ditaksir mencapai sebesar lima miliar dolar.",
+     "Penurunan produksi tercatat sebesar empat persen."
+    ],
+    "slots": [
+     "数字"
+    ],
+    "reuse": 5
+   },
+   {
+    "cat": "政策生效",
+    "level": "intermediate",
+    "formula": "[政策] berlaku mulai + [日期]",
+    "structure": "主语 + berlaku mulai + 时间",
+    "grammar": "berlaku 生效；mulai 从…起",
+    "scene": "公告与政策新闻",
+    "ex": [
+     "Aturan baru berlaku mulai kuartal depan.",
+     "Larangan ekspor berlaku mulai Januari."
+    ],
+    "slots": [
+     "政策名",
+     "日期"
+    ],
+    "reuse": 4
+   },
+   {
+    "cat": "官方宣布",
+    "level": "intermediate",
+    "formula": "[机构] mengumumkan bahwa + [从句]",
+    "structure": "主语 + mengumumkan + bahwa 从句",
+    "grammar": "mengumumkan ← umum + meN-...-kan；bahwa 引导宾语从句",
+    "scene": "转述政府或企业公告",
+    "ex": [
+     "Pemerintah mengumumkan bahwa insentif diperpanjang.",
+     "Perusahaan mengumumkan bahwa pabrik baru dibangun."
+    ],
+    "slots": [
+     "机构",
+     "宣布内容"
+    ],
+    "reuse": 4
+   },
+   {
+    "cat": "事件报道",
+    "level": "intermediate",
+    "formula": "Terjadi + [事件] di + [地点]",
+    "structure": "Terjadi + 名词短语 + di + 地点",
+    "grammar": "terjadi 发生；存在句型，主语后置是新闻语序特点",
+    "scene": "突发新闻导语",
+    "ex": [
+     "Terjadi kebakaran kecil di gudang sparepart tadi malam.",
+     "Terjadi peningkatan kasus flu di kawasan tambang."
+    ],
+    "slots": [
+     "事件",
+     "地点"
+    ],
+    "reuse": 4
+   },
+   {
+    "cat": "影响说明",
+    "level": "intermediate",
+    "formula": "berdampak pada + [领域]",
+    "structure": "主语 + berdampak pada + 名词",
+    "grammar": "dampak 影响 + ber-；pada 引出受影响对象",
+    "scene": "分析政策或事件影响",
+    "ex": [
+     "Kebijakan ini berdampak pada seluruh pelaku industri.",
+     "Kenaikan tarif berdampak pada biaya produksi."
+    ],
+    "slots": [
+     "领域"
+    ],
+    "reuse": 4
+   },
+   {
+    "cat": "涨跌表达",
+    "level": "intermediate",
+    "formula": "[主语] naik/turun sebesar + [百分比]",
+    "structure": "主语 + 动词 + sebesar + 数量",
+    "grammar": "naik 升 turun 降；sebesar 达…之多",
+    "scene": "财经新闻数字播报",
+    "ex": [
+     "Harga nikel naik sebesar enam persen sepekan terakhir.",
+     "Ekspor turun sebesar dua persen dibanding tahun lalu."
+    ],
+    "slots": [
+     "主语",
+     "naik/turun",
+     "百分比"
+    ],
+    "reuse": 4
+   },
+   {
+    "cat": "目的说明",
+    "level": "intermediate",
+    "formula": "Tujuannya untuk + [动词]",
+    "structure": "Tujuannya + untuk + 动词原形",
+    "grammar": "tujuan 目的 + -nya；untuk 为了",
+    "scene": "解释政策出台目的",
+    "ex": [
+     "Tujuannya untuk meningkatkan nilai tambah dalam negeri.",
+     "Tujuannya untuk melindungi industri lokal."
+    ],
+    "slots": [
+     "目的动作"
+    ],
+    "reuse": 4
+   },
+   {
+    "cat": "宏观视角",
+    "level": "professional",
+    "formula": "Dari sisi + [领域], + [主句]",
+    "structure": "Dari sisi + 名词, 主句",
+    "grammar": "sisi 方面；新闻分析常用框架",
+    "scene": "新闻评论多角度分析",
+    "ex": [
+     "Dari sisi ekonomi, kebijakan ini memberi sinyal positif.",
+     "Dari sisi lingkungan, pengawasan perlu diperketat."
+    ],
+    "slots": [
+     "领域"
+    ],
+    "reuse": 3
+   },
+   {
+    "cat": "观察者观点",
+    "level": "professional",
+    "formula": "Menurut pengamat, + [主句]",
+    "structure": "Menurut pengamat + 评价句",
+    "grammar": "pengamat ← amat 观察 + peN-；新闻中引述第三方分析",
+    "scene": "引述分析师评论",
+    "ex": [
+     "Menurut pengamat, langkah ini perlu didukung insentif.",
+     "Menurut pengamat ekonomi, inflasi akan terkendali."
+    ],
+    "slots": [
+     "观点内容"
+    ],
+    "reuse": 3
+   },
+   {
+    "cat": "后续关注",
+    "level": "professional",
+    "formula": "Perlu dipantau apakah + [从句]",
+    "structure": "Perlu + di-动词 + apakah 从句",
+    "grammar": "dipantau ← pantau + di-；apakah 是否；新闻收尾前瞻",
+    "scene": "表示将持续关注",
+    "ex": [
+     "Perlu dipantau apakah regulasi ini efektif di lapangan.",
+     "Perlu dipantau apakah investasi baru terealisasi."
+    ],
+    "slots": [
+     "关注内容"
+    ],
+    "reuse": 3
+   }
+  ],
+  "expressions": [
+   {
+    "level": "basic",
+    "scene": "新闻开场",
+    "id": "Selamat pagi, pemirsa.",
+    "cn": "观众朋友们，早上好。",
+    "note": "pemirsa [新] 观众；电视/广播新闻开场固定问候"
+   },
+   {
+    "level": "basic",
+    "scene": "头条播报",
+    "id": "Ini berita utama hari ini.",
+    "cn": "这是今天的头条新闻。",
+    "note": "utama 主要的；berita utama 头条"
+   },
+   {
+    "level": "basic",
+    "scene": "新闻转场",
+    "id": "Kita beralih ke berita berikutnya.",
+    "cn": "我们转到下一条新闻。",
+    "note": "beralih ← alih 换 + ber-；berikutnya 下一个"
+   },
+   {
+    "level": "intermediate",
+    "scene": "政策新闻",
+    "id": "Pemerintah resmi mengumumkan kenaikan tarif listrik.",
+    "cn": "政府正式宣布上调电价。",
+    "note": "resmi 正式地；kenaikan ← kena 上升 + -an"
+   },
+   {
+    "level": "intermediate",
+    "scene": "生效说明",
+    "id": "Kebijakan berlaku mulai tanggal satu November.",
+    "cn": "政策自11月1日起生效。",
+    "note": "berlaku mulai 自…生效；日期读法 tanggal + 数字 + 月份"
+   },
+   {
+    "level": "intermediate",
+    "scene": "产业新闻",
+    "id": "Produksi nikel nasional tumbuh lima persen.",
+    "cn": "全国镍产量增长百分之五。",
+    "note": "nasional 全国的；tumbuh 增长；印尼新闻高频产业词"
+   },
+   {
+    "level": "intermediate",
+    "scene": "发布会预告",
+    "id": "Konferensi pers dijadwalkan besok pagi.",
+    "cn": "记者招待会定于明早举行。",
+    "note": "dijadwalkan ← jadwal + di-...-kan 被安排"
+   },
+   {
+    "level": "intermediate",
+    "scene": "事故报道",
+    "id": "Menurut laporan resmi, tidak ada korban jiwa.",
+    "cn": "据官方报告，没有人员伤亡。",
+    "note": "korban jiwa [新] 人员伤亡；事故新闻标准表述"
+   },
+   {
+    "level": "intermediate",
+    "scene": "市场动态",
+    "id": "Harga bijih nikel berfluktuasi sepanjang pekan.",
+    "cn": "镍矿价格整周波动。",
+    "note": "berfluktuasi ← fluktuasi + ber-；sepanjang 整个"
+   },
+   {
+    "level": "intermediate",
+    "scene": "信息引导",
+    "id": "Informasi lebih lanjut tersedia di laman resmi.",
+    "cn": "更多信息可在官方网站查询。",
+    "note": "tersedia 可用的；laman resmi 官方网站"
+   },
+   {
+    "level": "intermediate",
+    "scene": "新规出台",
+    "id": "Kementerian ESDM menerbitkan aturan baru.",
+    "cn": "能矿部发布了新规定。",
+    "note": "menerbitkan ← terbit 出版 + meN-...-kan；aturan [新] 规定"
+   },
+   {
+    "level": "professional",
+    "scene": "政策评价",
+    "id": "Langkah ini sejalan dengan program hilirisasi nasional.",
+    "cn": "此举与国家下游化计划方向一致。",
+    "note": "sejalan ← se- + jalan 路；hilirisasi 印尼资源政策核心词"
+   },
+   {
+    "level": "professional",
+    "scene": "专家评论",
+    "id": "Para pengamat menilai kebijakan itu berdampak positif.",
+    "cn": "观察人士认为该政策影响积极。",
+    "note": "pengamat ← amat + peN-；menilai ← nilai + meN-"
+   },
+   {
+    "level": "professional",
+    "scene": "影响前瞻",
+    "id": "Dampaknya terhadap investasi masih perlu dipantau.",
+    "cn": "其对投资的影响仍需观察。",
+    "note": "terhadap 对于；dipantau ← pantau + di-"
+   },
+   {
+    "level": "professional",
+    "scene": "等待回应",
+    "id": "Kita tunggu keterangan resmi dari Kementerian ESDM.",
+    "cn": "我们等待能矿部的官方说明。",
+    "note": "keterangan 说明/声明；新闻跟进报道收尾句"
+   }
+  ],
+  "affixes": [
+   {
+    "no": 21,
+    "affix": "ber-...-an",
+    "type": "混合",
+    "func": "相互/反复动作",
+    "rule": "ber- + 词根 + -an；表相互行为或分布式状态",
+    "derivs": [
+     {
+      "root": "jabat tangan",
+      "der": "berjabat tangan",
+      "zh": "握手"
+     },
+     {
+      "root": "peluk",
+      "der": "berpelukan",
+      "zh": "互相拥抱"
+     },
+     {
+      "root": "dekat",
+      "der": "berdekatan",
+      "zh": "相邻；靠近"
+     }
+    ],
+    "examples": [
+     {
+      "id": "Para menteri berjabat tangan usai konferensi pers.",
+      "cn": "记者会结束后各位部长互相握手。"
+     },
+     {
+      "id": "Smelter baru berdekatan dengan kawasan pelabuhan.",
+      "cn": "新冶炼厂紧邻港区。"
+     }
+    ],
+    "link": "ber-...-an"
+   },
+   {
+    "no": 22,
+    "affix": "me-...-kan",
+    "type": "混合",
+    "func": "及物致使：使…被…",
+    "rule": "meN- + 词根 + -kan；应用最广泛的及物构式",
+    "derivs": [
+     {
+      "root": "sampaikan",
+      "der": "menyampaikan",
+      "zh": "呈报；传达"
+     },
+     {
+      "root": "sebab",
+      "der": "menyebabkan",
+      "zh": "导致"
+     },
+     {
+      "root": "sah",
+      "der": "mengesahkan",
+      "zh": "批准通过"
+     }
+    ],
+    "examples": [
+     {
+      "id": "Pemerintah menyampaikan kebijakan baru kepada publik.",
+      "cn": "政府向公众传达了新政策。"
+     },
+     {
+      "id": "DPR mengesahkan undang-undang tersebut.",
+      "cn": "国会批准了该法律。"
+     }
+    ],
+    "link": "meN-...-kan"
+   },
+   {
+    "no": 23,
+    "affix": "di-...-kan",
+    "type": "混合",
+    "func": "被动致使：被使…",
+    "rule": "di- + 词根 + -kan；被动语态标准构式",
+    "derivs": [
+     {
+      "root": "tetap",
+      "der": "ditetapkan",
+      "zh": "被确定"
+     },
+     {
+      "root": "izin",
+      "der": "diizinkan",
+      "zh": "被允许"
+     },
+     {
+      "root": "prioritas",
+      "der": "diprioritaskan",
+      "zh": "被优先考虑"
+     }
+    ],
+    "examples": [
+     {
+      "id": "Tarif baru ditetapkan mulai bulan depan.",
+      "cn": "新费率自下月起确定执行。"
+     },
+     {
+      "id": "Proyek infrastruktur diprioritaskan tahun ini.",
+      "cn": "基础设施项目今年被优先安排。"
+     }
+    ],
+    "link": "di-...-kan"
+   },
+   {
+    "no": 24,
+    "affix": "peN-...-an",
+    "type": "混合",
+    "func": "构成名词：…过程/事务",
+    "rule": "peN- + 词根 + -an；与 meN-...-kan 动词对应的名词化",
+    "derivs": [
+     {
+      "root": "bangun",
+      "der": "pembangunan",
+      "zh": "建设"
+     },
+     {
+      "root": "susun",
+      "der": "penyusunan",
+      "zh": "编制"
+     },
+     {
+      "root": "capai",
+      "der": "pencapaian",
+      "zh": "达成；成就"
+     }
+    ],
+    "examples": [
+     {
+      "id": "Pembangunan smelter tahap dua dimulai tahun depan.",
+      "cn": "二期冶炼厂建设明年启动。"
+     },
+     {
+      "id": "Penyusunan anggaran butuh waktu dua bulan.",
+      "cn": "预算编制需要两个月。"
+     }
+    ],
+    "link": "peN-...-an"
+   },
+   {
+    "no": 25,
+    "affix": "ke-...-an",
+    "type": "混合",
+    "func": "构成抽象名词：…性/…状态",
+    "rule": "ke- + 词根 + -an；B1-B2 最高产的抽象名词构式",
+    "derivs": [
+     {
+      "root": "selamat",
+      "der": "keselamatan",
+      "zh": "安全"
+     },
+     {
+      "root": "sepakat",
+      "der": "kesepakatan",
+      "zh": "共识；协议"
+     },
+     {
+      "root": "simpul",
+      "der": "kesimpulan",
+      "zh": "结论"
+     }
+    ],
+    "examples": [
+     {
+      "id": "Kesepakatan dagang ditandatangani kemarin.",
+      "cn": "贸易协议于昨天签署。"
+     },
+     {
+      "id": "Keselamatan kerja adalah prioritas utama.",
+      "cn": "工作安全是首要优先事项。"
+     }
+    ],
+    "link": "ke-...-an"
+   },
+   {
+    "no": 26,
+    "affix": "per-...-an",
+    "type": "混合",
+    "func": "构成名词：…过程/关系",
+    "rule": "per- + 词根 + -an；比 peN-...-an 更书面",
+    "derivs": [
+     {
+      "root": "ubah",
+      "der": "perubahan",
+      "zh": "变化"
+     },
+     {
+      "root": "hati",
+      "der": "perhatian",
+      "zh": "关注"
+     },
+     {
+      "root": "laku",
+      "der": "perlakuan",
+      "zh": "对待；处理"
+     }
+    ],
+    "examples": [
+     {
+      "id": "Perubahan iklim memengaruhi operasional tambang.",
+      "cn": "气候变化影响采矿运营。"
+     },
+     {
+      "id": "Perlakuan terhadap tenaga kerja asing diatur undang-undang.",
+      "cn": "对外籍劳工的待遇由法律规定。"
+     }
+    ],
+    "link": "per-...-an"
+   },
+   {
+    "no": 27,
+    "affix": "se-...-nya",
+    "type": "混合",
+    "func": "构成副词：照理应…",
+    "rule": "se- + 词根 + -nya；表按道理应当",
+    "derivs": [
+     {
+      "root": "benar",
+      "der": "sebenarnya",
+      "zh": "其实；实际上"
+     },
+     {
+      "root": "harus",
+      "der": "seharusnya",
+      "zh": "按理应当"
+     },
+     {
+      "root": "baik",
+      "der": "sebaiknya",
+      "zh": "最好"
+     }
+    ],
+    "examples": [
+     {
+      "id": "Sebenarnya kebijakan ini sudah lama dibahas.",
+      "cn": "其实这项政策早已讨论多时。"
+     },
+     {
+      "id": "Sebaiknya kita menunggu hasil resmi.",
+      "cn": "我们最好等官方结果。"
+     }
+    ],
+    "link": "se-...-nya"
+   },
+   {
+    "no": 28,
+    "affix": "ter-...-kan",
+    "type": "混合",
+    "func": "被动可能/无意：被…成",
+    "rule": "ter- + 词根 + -kan；表可能性或意外结果",
+    "derivs": [
+     {
+      "root": "wujud",
+      "der": "terwujudkan",
+      "zh": "得以实现"
+     },
+     {
+      "root": "bayang",
+      "der": "terbayangkan",
+      "zh": "可以想象"
+     },
+     {
+      "root": "lupa",
+      "der": "terlupakan",
+      "zh": "被遗忘"
+     }
+    ],
+    "examples": [
+     {
+      "id": "Target produksi akhirnya terwujudkan tahun ini.",
+      "cn": "产量目标最终在今年得以实现。"
+     },
+     {
+      "id": "Risikonya sulit terbayangkan.",
+      "cn": "其风险难以想象。"
+     }
+    ],
+    "link": "ter-...-kan"
+   },
+   {
+    "no": 29,
+    "affix": "memper-...-kan",
+    "type": "混合",
+    "func": "加强致使：使更加…",
+    "rule": "memper- + 词根 + -kan；针对形容词或动词",
+    "derivs": [
+     {
+      "root": "kenal",
+      "der": "memperkenalkan",
+      "zh": "介绍"
+     },
+     {
+      "root": "siap",
+      "der": "mempersiapkan",
+      "zh": "筹备"
+     },
+     {
+      "root": "lancar",
+      "der": "memperlancar",
+      "zh": "使顺畅"
+     }
+    ],
+    "examples": [
+     {
+      "id": "Izinkan saya memperkenalkan tim baru.",
+      "cn": "请允许我介绍新团队。"
+     },
+     {
+      "id": "Kami mempersiapkan dokumentasi lengkap.",
+      "cn": "我们准备了完整的文件资料。"
+     }
+    ],
+    "link": "memper-...-kan"
+   },
+   {
+    "no": 30,
+    "affix": "ke-...-an（不同词根）",
+    "type": "混合",
+    "func": "构成抽象名词（第二组词根）",
+    "rule": "ke- + 词根 + -an；与 no.25 同构式、不同词根扩展",
+    "derivs": [
+     {
+      "root": "berhasil",
+      "der": "keberhasilan",
+      "zh": "成功"
+     },
+     {
+      "root": "lanjut",
+      "der": "keberlanjutan",
+      "zh": "持续性"
+     },
+     {
+      "root": "bijak",
+      "der": "kebijakan",
+      "zh": "政策"
+     }
+    ],
+    "examples": [
+     {
+      "id": "Keberhasilan hilirisasi menarik banyak investor.",
+      "cn": "下游化的成功吸引了众多投资者。"
+     },
+     {
+      "id": "Keberlanjutan pasokan listrik harus dijaga.",
+      "cn": "电力供应的持续性必须保障。"
+     }
+    ],
+    "link": "ke-...-an"
+   }
+  ],
+  "quiz": [
+   {
+    "q": "'berita utama' 指的是？",
+    "opts": [
+     "次要消息",
+     "历史新闻",
+     "假新闻",
+     "头条新闻"
+    ],
+    "a": 3,
+    "exp": "utama 主要的；berita utama 头条，新闻开场必说"
+   },
+   {
+    "q": "'pengumuman resmi' 是什么？",
+    "opts": [
+     "小道消息",
+     "官方公告",
+     "会议邀请",
+     "天气预报"
+    ],
+    "a": 3,
+    "exp": "pengumuman ← umum + peN-...-an 公告；resmi 官方的"
+   },
+   {
+    "q": "'siaran langsung' 的意思是？",
+    "opts": [
+     "重播",
+     "录播",
+     "直播",
+     "停播"
+    ],
+    "a": 2,
+    "exp": "langsung 直接；siaran langsung 直播，印尼新闻高频词"
+   },
+   {
+    "q": "'tarif listrik naik dua belas persen' 中 tarif listrik 指？",
+    "opts": [
+     "水费",
+     "燃气费",
+     "电费",
+     "网络费"
+    ],
+    "a": 3,
+    "exp": "tarif 费率 + listrik 电；镍产业园用电大户，电价新闻必听"
+   },
+   {
+    "q": "'kebijakan berlaku mulai tanggal satu November' 是什么时态含义？",
+    "opts": [
+     "政策11月1日讨论",
+     "政策11月1日生效",
+     "政策11月1日废止",
+     "政策11月1日泄露"
+    ],
+    "a": 1,
+    "exp": "berlaku mulai 自…起生效；政策公告标准句式"
+   },
+   {
+    "q": "'hilirisasi' 在印尼产业新闻中指？",
+    "opts": [
+     "上游开采",
+     "下游加工",
+     "中游运输",
+     "海外销售"
+    ],
+    "a": 1,
+    "exp": "hilir 下游 + -isasi；印尼禁原矿出口、发展本地冶炼的核心政策词"
+   },
+   {
+    "q": "'Kementerian ESDM' 是什么机构？",
+    "opts": [
+     "财政部",
+     "工业部",
+     "贸易部",
+     "能源与矿产资源部"
+    ],
+    "a": 3,
+    "exp": "kementerian 部；ESDM = Energi dan Sumber Daya Mineral 能源矿产部"
+   },
+   {
+    "q": "'Menurut pengamat, kebijakan itu positif.' 中 pengamat 是？",
+    "opts": [
+     "部长",
+     "观众",
+     "观察家/分析师",
+     "发言人"
+    ],
+    "a": 2,
+    "exp": "pengamat ← amat 观察 + peN-；新闻引述第三方评论的标准主语"
+   },
+   {
+    "q": "'Harga nikel naik sebesar enam persen.' 中 sebesar 引出的是？",
+    "opts": [
+     "时间",
+     "原因",
+     "数量",
+     "地点"
+    ],
+    "a": 2,
+    "exp": "sebesar ← se- + besar；'达…之多'，引出百分比/金额"
+   },
+   {
+    "q": "'Terjadi kebakaran kecil di gudang.' 是什么句型？",
+    "opts": [
+     "存在句，主语后置",
+     "疑问句",
+     "命令句",
+     "比较句"
+    ],
+    "a": 0,
+    "exp": "terjadi 发生；印尼新闻导语常把时间/地点放前面，主语事件后置"
+   },
+   {
+    "q": "'Pemerintah mengumumkan bahwa ekspor diperketat.' 中 bahwa 的作用是？",
+    "opts": [
+     "表示时间",
+     "引导宾语从句",
+     "表示比较",
+     "表示原因"
+    ],
+    "a": 2,
+    "exp": "bahwa 相当于 that，引导宣布内容的宾语从句"
+   },
+   {
+    "q": "'Perlu dipantau apakah regulasi efektif.' 的意思是？",
+    "opts": [
+     "法规已经无效。",
+     "法规立即生效。",
+     "需要关注法规是否有效。",
+     "法规被废除了。"
+    ],
+    "a": 1,
+    "exp": "perlu dipantau 需要被关注；apakah 是否；新闻收尾前瞻句"
+   },
+   {
+    "q": "'editorial' 在新闻中指？",
+    "opts": [
+     "广告",
+     "社论",
+     "讣告",
+     "天气预报"
+    ],
+    "a": 1,
+    "exp": "editorial 社论；同根 redaksi 编辑部，读报时要区分新闻与社论"
+   },
+   {
+    "q": "'Dari sisi ekonomi, langkah ini positif.' 中 dari sisi 表示？",
+    "opts": [
+     "从…角度",
+     "在…旁边",
+     "反对…",
+     "超越…"
+    ],
+    "a": 0,
+    "exp": "dari sisi 从…角度；多角度分析框架：dari sisi ekonomi/lingkungan/sosial"
+   },
+   {
+    "q": "'Produksi nikel nasional tumbuh lima persen.' 数字应该怎么听？",
+    "opts": [
+     "增长 50%",
+     "增长 5%",
+     "下降 5%",
+     "下降 50%"
+    ],
+    "a": 0,
+    "exp": "tumbuh 增长 + lima persen 5%；印尼语新闻数字要连同动词一起抓"
+   }
+  ]
+ }
+}
+,
+"biz_speak": {
+ "title": "话题6: 商务写作与演讲 / Menulis & Berbicara Bisnis",
+ "icon": "✍️",
+ "level": "B1-B2",
+ "days": 3,
+ "intro": "CA 进阶课：商务写作与演讲。承接 UKBI 写作口语复盘，把技能落地到镍产业园实战——Day1 商务邮件（正式格式、请求回复、投诉协商、跟进催办），Day2 报告撰写（结构搭建、数据呈现、进度汇报、问题建议），Day3 演讲汇报（开场致辞、数据展示、说服论证、总结号召）。总经理视角，即学即用。",
+ "day1": {
+  "date": "2026-11-04",
+  "theme": "Menulis Email Bisnis 商务邮件",
+  "vocab": [
+   {"w": "penerima", "cn": "收件人", "ipa": "/pə.nəˈri.ma/", "level": "核心", "note": "terima（收到）+ peN- → 接收者；与 pengirim 相对"},
+   {"w": "pengirim", "cn": "发件人", "ipa": "/pəŋˈɡi.rim/", "level": "核心", "note": "kirim（寄）+ peN-；邮件头 From 一栏"},
+   {"w": "lampiran", "cn": "附件", "ipa": "/lamˈpi.ran/", "level": "核心", "note": "lampir（附上）+ -an；terlampir 已附上的"},
+   {"w": "subjek", "cn": "邮件主题", "ipa": "/ˈsub.dʒek/", "level": "核心", "note": "[新] 外来词；正式公函用 perihal（事由）"},
+   {"w": "salam", "cn": "问候语", "ipa": "/ˈsa.lam/", "level": "核心", "note": "salam pembuka 开头问候；salam penutup 结尾问候"},
+   {"w": "pembuka", "cn": "开场白", "ipa": "/pəmˈbu.ka/", "level": "进阶", "note": "buka（开）+ peN- → 开启物；paragraf pembuka 首段"},
+   {"w": "penutup", "cn": "结束语", "ipa": "/pəˈnu.tup/", "level": "进阶", "note": "tutup（关）+ peN-；kata penutup 收尾语"},
+   {"w": "tenggat", "cn": "期限；截止", "ipa": "/təŋˈɡat/", "level": "进阶", "note": "[新] 常配 waktu：tenggat waktu 截止时间；melewati tenggat 逾期"},
+   {"w": "draf", "cn": "草稿", "ipa": "/draf/", "level": "进阶", "note": "[新] 外来词；draf pertama 初稿；draf final 定稿"},
+   {"w": "tembusan", "cn": "抄送", "ipa": "/təmˈbu.san/", "level": "进阶", "note": "[新] 公文术语；tembus（穿透）+ -an → 送达第三方的副本"},
+   {"w": "kop surat", "cn": "信头", "ipa": "/kop ˈsu.rat/", "level": "高阶", "note": "[新] kop 外来词；kop resmi 含徽标、地址与联系方式"},
+   {"w": "tindak lanjut", "cn": "跟进；后续行动", "ipa": "/ˈtin.dak lənˈdʒut/", "level": "高阶", "note": "tindak（行动）+ lanjut（继续）；menindaklanjuti 为动词"},
+   {"w": "pengarsipan", "cn": "归档", "ipa": "/pəŋ.ɡarˈsi.pan/", "level": "高阶", "note": "arsip（档案）+ peN-...-an；sistem pengarsipan digital 电子归档系统"},
+   {"w": "penomoran", "cn": "编号", "ipa": "/pə.noˈmo.ran/", "level": "高阶", "note": "nomor + peN-...-an；penomoran surat 003/XI/2026 公文编号"},
+   {"w": "redaksi", "cn": "措辞；文字编辑", "ipa": "/rəˈdak.si/", "level": "高阶", "note": "[新] 外来词；meredaksikan 起草/编辑"}
+  ],
+  "phrases": [
+   {"id": "Salam hormat, Bapak/Ibu yang terhormat.", "cn": "尊敬的先生/女士：", "usage": "正式邮件开头", "note": "salam hormat 是印尼正式邮件开头套语，首字母大写"},
+   {"id": "Dengan hormat,", "cn": "此致/谨上（正式结尾）", "usage": "邮件结尾", "note": "与开头 salam hormat 对应的收束套语"},
+   {"id": "Saya menulis email ini untuk mengonfirmasi jadwal inspeksi.", "cn": "我写此邮件是为确认检查日程。", "usage": "说明来意", "note": "untuk + 动词原形表目的；mengonfirmasi 外来词"},
+   {"id": "Terlampir saya sertakan dokumen kontrak yang telah direvisi.", "cn": "随函附上已修订的合同文件。", "usage": "附件说明", "note": "terlampir 已附上；menyertakan ← sertakan + meN-"},
+   {"id": "Mohon kiranya Bapak dapat meninjau kembali usulan kami.", "cn": "恳请贵方再次审阅我们的建议。", "usage": "正式请求", "note": "mohon kiranya 公文请求套语；dapat + 动词原形"},
+   {"id": "Kami menunggu konfirmasi dari Anda paling lambat Jumat.", "cn": "我们最迟周五等您的确认。", "usage": "催确认", "note": "paling lambat 最迟；menunggu 等待"},
+   {"id": "Mohon maaf atas keterlambatan balasan email ini.", "cn": "迟复此函，敬请谅解。", "usage": "致歉", "note": "atas + 名词表原因；keterlambatan ← terlambat + ke-...-an"},
+   {"id": "Email ini kami kirimkan sebagai pengingat tenggat pembayaran.", "cn": "此函作为付款截止提醒发出。", "usage": "催办函", "note": "pengingat ← ingat + peN-...-an → 提醒之物"},
+   {"id": "Apabila ada pertanyaan, silakan hubungi kami kapan saja.", "cn": "如有疑问，请随时联系我们。", "usage": "结尾附言", "note": "apabila 假如；kapan saja 任何时候"},
+   {"id": "Atas perhatian dan kerjasamanya, kami ucapkan terima kasih.", "cn": "感谢贵方的关注与合作。", "usage": "结尾致谢", "note": "atas 引导感谢原因；正式函电收尾"}
+  ],
+  "patterns": [
+   {"cat": "邮件开头", "level": "basic", "formula": "Salam + [称呼], / Perkenalkan, saya [姓名] dari [单位]", "structure": "称呼语 + 自我介绍", "grammar": "正式邮件以 Salam 开头；perkenalkan 引出自我介绍", "scene": "首次/正式邮件开头", "ex": ["Salam hormat, Perkenalkan, saya Leo dari PT BIR Nickel.", "Selamat pagi, Saya menulis email ini untuk menyampaikan progres proyek."], "slots": ["称呼/姓名", "单位/目的"], "reuse": 4},
+   {"cat": "说明目的", "level": "basic", "formula": "Saya menulis email ini untuk + [动词短语]", "structure": "主语 + menulis + email + untuk + 目的动词", "grammar": "untuk 表目的，后接动词原形", "scene": "邮件第一段说明来意", "ex": ["Saya menulis email ini untuk mengonfirmasi jadwal inspeksi.", "Saya menulis email ini untuk menanyakan status pembayaran."], "slots": ["目的动词", "事项"], "reuse": 5},
+   {"cat": "附件说明", "level": "basic", "formula": "Terlampir + [文件] + (yang) + [说明]", "structure": "Terlampir + 文件名词 + 定语从句", "grammar": "terlampir = ter- + lampir 的被动形容词，置于句首", "scene": "说明随附文件", "ex": ["Terlampir dokumen kontrak yang sudah ditandatangani.", "Terlampir daftar hadir peserta rapat koordinasi."], "slots": ["文件名", "说明语"], "reuse": 4},
+   {"cat": "正式请求", "level": "intermediate", "formula": "Mohon kiranya + [称呼] + dapat + [动词原形]", "structure": "礼貌标记 + 主语 + dapat + 动词", "grammar": "mohon kiranya 为公文请求套语；dapat 能够", "scene": "正式请求对方行动", "ex": ["Mohon kiranya Bapak dapat menandatangani dokumen ini hari ini.", "Mohon kiranya Anda dapat mengirimkan data produksi bulan lalu."], "slots": ["称呼", "请求动作"], "reuse": 5},
+   {"cat": "回复来函", "level": "intermediate", "formula": "Menanggapi + [来函事项], + [回应内容]", "structure": "介词性动名词 + 主句", "grammar": "menanggapi（就……作出回应）← tanggapi + meN-", "scene": "回复邮件开头", "ex": ["Menanggapi email Bapak tanggal 3 November, kami menyampaikan hal berikut.", "Menanggapi keluhan tersebut, kami telah melakukan investigasi internal."], "slots": ["来函/事项", "回应内容"], "reuse": 4},
+   {"cat": "提醒催办", "level": "intermediate", "formula": "Kami mengingatkan bahwa + [事项] + belum + [动词]", "structure": "主语 + 提醒动词 + 宾语从句", "grammar": "bahwa 引导宾语从句；belum 表尚未", "scene": "跟进未回复邮件", "ex": ["Kami mengingatkan bahwa konfirmasi pembayaran belum kami terima.", "Kami mengingatkan bahwa tenggat pelaporan tinggal dua hari lagi."], "slots": ["待办事项", "状态"], "reuse": 5},
+   {"cat": "投诉表达", "level": "intermediate", "formula": "Kami keberatan atas + [事项] + karena + [原因]", "structure": "主语 + 反对动词 + 介词宾语 + 原因从句", "grammar": "keberatan（反对）常接 atas；karena 表原因", "scene": "商务投诉", "ex": ["Kami keberatan atas kenaikan biaya tiba-tiba karena tidak ada pemberitahuan sebelumnya.", "Kami keberatan atas kualitas material yang tidak sesuai spesifikasi."], "slots": ["投诉事项", "原因"], "reuse": 4},
+   {"cat": "协商提议", "level": "intermediate", "formula": "Apakah dimungkinkan untuk + [动词原形]?", "structure": "dimungkinkan + untuk + 动词原形", "grammar": "di-...-kan 表被使成为可能，语气委婉", "scene": "提出协商请求", "ex": ["Apakah dimungkinkan untuk menggeser jadwal pengiriman ke minggu depan?", "Apakah dimungkinkan untuk menambah anggaran operasional triwulan ini?"], "slots": ["动作", "时间/条件"], "reuse": 5},
+   {"cat": "确认收讫", "level": "intermediate", "formula": "Kami telah menerima + [文件/物品] + dengan baik", "structure": "主语 + telah menerima + 宾语 + 状态补语", "grammar": "telah 表完成；dengan baik 完好地", "scene": "确认收到文件", "ex": ["Kami telah menerima dokumen kontrak dengan baik.", "Kami telah menerima sampel material dengan baik."], "slots": ["收到物", "（可选时间）"], "reuse": 4},
+   {"cat": "正式致歉", "level": "professional", "formula": "Atas nama + [机构], + 主语 + menyampaikan permohonan maaf atas + [事项]", "structure": "代表机构 + 致歉动词 + 过失事项", "grammar": "atas nama 以……名义；permohonan maaf 道歉", "scene": "正式道歉信", "ex": ["Atas nama manajemen, kami menyampaikan permohonan maaf atas keterlambatan pengiriman.", "Atas nama perusahaan, kami menyampaikan permohonan maaf atas ketidaknyamanan ini."], "slots": ["机构名", "过失事项"], "reuse": 4},
+   {"cat": "解决方案", "level": "professional", "formula": "Sebagai solusi, + 主语 + mengusulkan + [方案] + agar + [目的]", "structure": "方案状语 + 主句 + 目的从句", "grammar": "sebagai 作为；agar 以便", "scene": "投诉回复中提方案", "ex": ["Sebagai solusi, kami mengusulkan penggantian barang agar operasional tidak terganggu.", "Sebagai solusi, kami mengusulkan jadwal ulang agar target tetap tercapai."], "slots": ["方案", "目的"], "reuse": 4},
+   {"cat": "正式结尾", "level": "professional", "formula": "Demikian disampaikan, atas + [名词] + diucapkan terima kasih", "structure": "套语句 + 致谢句", "grammar": "印尼公文固定套语；demikian disampaikan 意为特此函告", "scene": "正式公函结尾", "ex": ["Demikian disampaikan, atas perhatian dan kerjasamanya diucapkan terima kasih.", "Demikian disampaikan, atas tanggapan cepat Bapak diucapkan terima kasih."], "slots": ["感谢对象"], "reuse": 3}
+  ],
+  "expressions": [
+   {"level": "basic", "scene": "打开邮件", "id": "Terima kasih atas email Anda.", "cn": "谢谢您的邮件。", "note": "atas 引出感谢对象"},
+   {"level": "basic", "scene": "确认收到", "id": "Saya sudah menerima lampirannya.", "cn": "我已经收到附件了。", "note": "lampiran + -nya 指代该附件"},
+   {"level": "basic", "scene": "询问查阅", "id": "Apakah Anda sudah membaca email saya kemarin?", "cn": "您看我昨天的邮件了吗？", "note": "apakah 构成是非问；sudah 已经"},
+   {"level": "intermediate", "scene": "重发提醒", "id": "Email ini saya kirimkan lagi sebagai pengingat.", "cn": "此邮件我再发一次作为提醒。", "note": "lagi 再次；pengingat ← ingat + peN-...-an"},
+   {"level": "intermediate", "scene": "婉拒请求", "id": "Kami menyesal tidak dapat memenuhi permintaan tersebut.", "cn": "很遗憾我们无法满足该请求。", "note": "menyesal 遗憾；permintaan ← minta + peN-...-an"},
+   {"level": "intermediate", "scene": "催确认", "id": "Bisa tolong konfirmasi penerimaan dokumen ini?", "cn": "能帮忙确认收到这份文件吗？", "note": "bisa tolong 口语化礼貌请求"},
+   {"level": "intermediate", "scene": "催更新", "id": "Mohon diperbarui daftar hadir sebelum Jumat.", "cn": "请在周五前更新名单。", "note": "diperbarui ← perbarui + di-；sebelum 在……之前"},
+   {"level": "intermediate", "scene": "表示同意", "id": "Kami sepakat dengan usulan yang Anda sampaikan.", "cn": "我们赞同您提出的建议。", "note": "sepakat 意见一致；yang 引导关系从句"},
+   {"level": "intermediate", "scene": "要求澄清", "id": "Ada beberapa hal yang perlu kami klarifikasi.", "cn": "有几点我们需要澄清。", "note": "beberapa hal 几件事；klarifikasi 外来词"},
+   {"level": "intermediate", "scene": "改期协商", "id": "Jadwal pertemuan kita geser ke Senin depan, ya?", "cn": "会面改到下周一行吗？", "note": "geser 挪动（口语）；ya? 句末征求同意"},
+   {"level": "intermediate", "scene": "感谢回复", "id": "Terima kasih atas tanggapan cepat Anda.", "cn": "感谢您及时回复。", "note": "tanggapan ← tanggap + -an 回应"},
+   {"level": "professional", "scene": "正式跟进", "id": "Sehubungan dengan hal tersebut, kami akan menindaklanjuti dalam tiga hari kerja.", "cn": "鉴于此事，我们将在三个工作日内跟进。", "note": "sehubungan dengan 关于/鉴于；menindaklanjuti 跟进处理"},
+   {"level": "professional", "scene": "勘误请求", "id": "Apabila terdapat kekeliruan dalam surat ini, mohon segera memberitahukan kami.", "cn": "如此函有误，请立即告知我们。", "note": "terdapat 存在；kekeliruan ← keliru + ke-...-an"},
+   {"level": "professional", "scene": "合作期望", "id": "Kami berharap kerjasama ini dapat berlanjut dengan baik.", "cn": "我们希望此次合作顺利延续。", "note": "berlanjut ← lanjut + ber-；dapat + 动词"},
+   {"level": "professional", "scene": "公文结尾", "id": "Demikian disampaikan, atas perhatiannya diucapkan terima kasih.", "cn": "特此函告，感谢关注。", "note": "印尼公文固定结尾套语"}
+  ],
+  "affixes": [
+   {"no": 1, "affix": "ber-", "type": "前缀", "func": "构成动词：拥有/处于/进行某活动", "rule": "ber- + 词根；词根首字母为 r 时省一个 r", "derivs": [{"root": "komunikasi", "der": "berkomunikasi", "zh": "沟通交流"}, {"root": "email", "der": "beremail", "zh": "互发邮件"}, {"root": "kerja sama", "der": "bekerja sama", "zh": "合作"}, {"root": "tanggung jawab", "der": "bertanggung jawab", "zh": "负责"}], "examples": [{"id": "Kami berkomunikasi melalui email setiap hari.", "cn": "我们每天通过邮件沟通。"}, {"id": "Mereka bekerja sama dengan kontraktor lokal.", "cn": "他们与本地承包商合作。"}], "link": "ber-"},
+   {"no": 2, "affix": "be-", "type": "前缀（ber- 变体）", "func": "ber- 在特定词根前的缩略形式，构成动词", "rule": "be- + 词根；适用词根无统一规律，需整词记忆", "derivs": [{"root": "kerja", "der": "bekerja", "zh": "工作"}, {"root": "pergi", "der": "bepergian", "zh": "出行/出差"}, {"root": "serta", "der": "beserta", "zh": "连同/陪同"}, {"root": "kenalan", "der": "bekenalan", "zh": "结识"}], "examples": [{"id": "Seluruh tim bekerja dari pukul delapan pagi.", "cn": "全团队从早上八点开始工作。"}, {"id": "Ia bepergian ke Jakarta untuk rapat koordinasi.", "cn": "他去雅加达参加协调会。"}], "link": "be-"},
+   {"no": 3, "affix": "meN-", "type": "前缀", "func": "及物动词标记：把……做了", "rule": "meN- 同化：p/b→mem-，t/d→men-，k/g/h/元音→meng-，s→meny-，l/r/w/y→me-", "derivs": [{"root": "kirim", "der": "mengirim", "zh": "寄送"}, {"root": "sampaikan", "der": "menyampaikan", "zh": "传达"}, {"root": "tulis", "der": "menulis", "zh": "写"}, {"root": "atur", "der": "mengatur", "zh": "安排"}], "examples": [{"id": "Kami mengirim surat resmi kepada pemasok.", "cn": "我们向供应商发送正式函件。"}, {"id": "Dia menyampaikan keluhan melalui email.", "cn": "他通过邮件提出投诉。"}], "link": "meN-"},
+   {"no": 4, "affix": "di-", "type": "前缀", "func": "被动语态标记：被……", "rule": "di- + 及物动词；主语为受事，施事由 oleh 引出", "derivs": [{"root": "kirim", "der": "dikirim", "zh": "被寄出"}, {"root": "terima", "der": "diterima", "zh": "被收到"}, {"root": "setujui", "der": "disetujui", "zh": "被批准"}, {"root": "tandatangani", "der": "ditandatangani", "zh": "被签署"}], "examples": [{"id": "Surat konfirmasi sudah dikirim kemarin.", "cn": "确认函已于昨日发出。"}, {"id": "Laporan ini telah ditandatangani direktur.", "cn": "本报告已由董事签署。"}], "link": "di-"},
+   {"no": 5, "affix": "ter-", "type": "前缀", "func": "表已然状态/完成；或构成最高级", "rule": "ter- + 词根：表动作已完成的状态，无施事", "derivs": [{"root": "kirim", "der": "terkirim", "zh": "已发出"}, {"root": "laksana", "der": "terlaksana", "zh": "已实现"}, {"root": "utang", "der": "terutang", "zh": "欠着"}, {"root": "cepat", "der": "tercepat", "zh": "最快的"}], "examples": [{"id": "Email Anda sudah terkirim dengan baik.", "cn": "您的邮件已成功发出。"}, {"id": "Proyek ini terlaksana berkat kerja sama semua pihak.", "cn": "本项目得以实现有赖于各方合作。"}], "link": "ter-"},
+   {"no": 6, "affix": "peN-", "type": "前缀", "func": "施事/工具名词：做……的人或物", "rule": "peN- + 动词，同化规则同 meN-", "derivs": [{"root": "kirim", "der": "pengirim", "zh": "发件人"}, {"root": "terima", "der": "penerima", "zh": "收件人"}, {"root": "tulis", "der": "penulis", "zh": "作者"}, {"root": "catat", "der": "pencatat", "zh": "记录员"}], "examples": [{"id": "Pengirim wajib mencantumkan alamat lengkap.", "cn": "发件人须注明完整地址。"}, {"id": "Penulis laporan menyertakan data pendukung.", "cn": "报告作者附上了支撑数据。"}], "link": "peN-"},
+   {"no": 7, "affix": "per-", "type": "前缀", "func": "表分配频率：每……；亦见于部分动词", "rule": "per- + 单位名词/数量词；作动词前缀时表使成为", "derivs": [{"root": "hari", "der": "per hari", "zh": "每天"}, {"root": "bulan", "der": "per bulan", "zh": "每月"}, {"root": "orang", "der": "per orang", "zh": "每人"}, {"root": "tahun", "der": "per tahun", "zh": "每年"}], "examples": [{"id": "Produksi rata-rata mencapai 800 ton per hari.", "cn": "平均日产量达 800 吨。"}, {"id": "Biaya transportasi dihitung per orang.", "cn": "交通费用按人计算。"}], "link": "per-"},
+   {"no": 8, "affix": "memper- / diper-", "type": "前缀", "func": "使役/强化：使更……；被动为 diper-", "rule": "memper- + 形容词/动词；被动 diper- + 词根", "derivs": [{"root": "baik", "der": "memperbaiki", "zh": "改善"}, {"root": "panjang", "der": "memperpanjang", "zh": "延长"}, {"root": "mudah", "der": "mempermudah", "zh": "简化"}, {"root": "kuat", "der": "memperkuat", "zh": "加强"}], "examples": [{"id": "Kami memperbaiki sistem pelaporan bulan ini.", "cn": "我们本月改进了报告系统。"}, {"id": "Jadwal rapat diperpanjang satu jam.", "cn": "会议日程延长了一小时。"}], "link": "memper- / diper-"},
+   {"no": 9, "affix": "se-", "type": "前缀", "func": "表数量一/相同/全体一致", "rule": "se- + 名词/形容词：一个、同一、整个", "derivs": [{"root": "hari", "der": "sehari", "zh": "一天"}, {"root": "bulat", "der": "sebulat suara", "zh": "一致（异口同声）"}, {"root": "pendapat", "der": "sependapat", "zh": "意见一致"}, {"root": "instansi", "der": "seinstansi", "zh": "同一机构"}], "examples": [{"id": "Kami sebulat suara menyetujui usulan itu.", "cn": "我们一致同意该建议。"}, {"id": "Semua unit seinstansi wajib mengirim laporan.", "cn": "同机构所有单位均须报送报告。"}], "link": "se-"},
+   {"no": 10, "affix": "ke-", "type": "前缀（方位）", "func": "表方向：向/往；与部分词根合写表来去", "rule": "ke- + 方位词/指示词，书面常分写；合写词需记忆", "derivs": [{"root": "mana", "der": "kemana", "zh": "去哪里"}, {"root": "sana", "der": "kesana", "zh": "去那边"}, {"root": "luar", "der": "keluar", "zh": "向外/出去"}, {"root": "mari", "der": "kemari", "zh": "来这里"}], "examples": [{"id": "Dia menuju kesana untuk rapat koordinasi.", "cn": "他去那边参加协调会。"}, {"id": "Seluruh staf keluar ruangan setelah presentasi selesai.", "cn": "汇报结束后全体职员离开房间。"}], "link": "ke-"}
+  ],
+  "quiz": [
+   {"q": "\"Terlampir\" 在商务邮件中的意思是？", "opts": ["已随附", "已删除", "已转发", "已退回"], "a": 0, "exp": "terlampir = ter- + lampir（附上），意为已附上的，常用于句首说明附件。"},
+   {"q": "邮件开头 \"Dengan hormat,\" 相当于中文的？", "opts": ["你好！", "此致/谨上", "再见", "谢谢"], "a": 1, "exp": "Salam hormat / Dengan hormat 是印尼正式邮件首尾对应套语，相当于此致/谨上。"},
+   {"q": "\"tindak lanjut\" 的含义是？", "opts": ["临时通知", "存档备案", "跟进/后续行动", "抄送副本"], "a": 2, "exp": "tindak（行动）+ lanjut（继续）→ 后续行动；menindaklanjuti 为动词。"},
+   {"q": "公函中 \"tembusan\" 指什么？", "opts": ["主送对象", "邮件主题", "密送方式", "抄送的副本"], "a": 3, "exp": "tembusan 指抄送副本，让第三方知悉，相当于英文 CC。"},
+   {"q": "\"Kami menunggu konfirmasi dari Anda\" 的意思是？", "opts": ["我们等待您的确认", "我们感谢付款", "我们接受道歉", "我们已发货"], "a": 0, "exp": "menunggu 等待；konfirmasi 确认（外来词）。整句：我们等待您的确认。"},
+   {"q": "\"Mohon maaf atas ketidaknyamanan ini\" 用于什么场景？", "opts": ["开场问候", "表达歉意", "邀请参会", "催促进度"], "a": 1, "exp": "mohon maaf 请原谅；ketidaknyamanan 不便/不快。用于致歉。"},
+   {"q": "\"Apakah dimungkinkan untuk menggeser jadwal?\" 中 mungkin 的形态是？", "opts": ["me- + mungkin", "se- + mungkin", "di- + mungkin + -kan（被动可能式）", "ter- + mungkin"], "a": 2, "exp": "dimungkinkan = di- + mungkin + -kan，表被使成为可能，是委婉请求句式。"},
+   {"q": "\"Demikian disampaikan, atas perhatiannya diucapkan terima kasih\" 用在邮件的哪个位置？", "opts": ["邮件开头", "附件说明处", "正文举例处", "结尾致谢"], "a": 3, "exp": "这是印尼公文结尾固定套语：特此函告，感谢关注。置于邮件末尾。"},
+   {"q": "\"pengirim\" 与 \"penerima\" 分别指？", "opts": ["发件人 / 收件人", "主题 / 正文", "抄送 / 密送", "附件 / 签名"], "a": 0, "exp": "kirim（寄）+ peN- → pengirim 发件人；terima（收）+ peN- → penerima 收件人。"},
+   {"q": "\"surat pengingat\" 是哪种信函？", "opts": ["邀请函", "催办/提醒函", "感谢信", "介绍信"], "a": 1, "exp": "pengingat ← ingat（记得）+ peN-...-an → 提醒之物；surat pengingat 即提醒函。"},
+   {"q": "\"atas nama perusahaan\" 的意思是？", "opts": ["在公司楼上", "公司旁边", "代表公司/以公司名义", "公司地址"], "a": 2, "exp": "atas nama 固定介词短语以……名义，正式函电常用。"},
+   {"q": "\"draf\" 指文件的哪个阶段？", "opts": ["终稿", "已签发版", "印刷版", "草稿"], "a": 3, "exp": "draf（外来词）草稿；draf pertama 初稿，draf final 定稿。"},
+   {"q": "\"Kami keberatan atas kenaikan harga tiba-tiba\" 的语气是？", "opts": ["反对/不接受", "完全同意", "祝贺", "好奇询问"], "a": 0, "exp": "keberatan 反对，常接 atas；用于正式投诉与协商。"},
+   {"q": "\"tenggat waktu\" 最接近的意思是？", "opts": ["空闲时间", "截止时间", "休息时间", "工作时间"], "a": 1, "exp": "tenggat 期限；tenggat waktu 截止时间/最后期限。"},
+   {"q": "正式邮件的标准结构顺序是？", "opts": ["附件→主题→称呼→正文", "主题→正文→称呼→署名", "称呼→正文→结尾套语→署名", "署名→正文→称呼→附件"], "a": 2, "exp": "正式邮件：salam pembuka（称呼）→ 正文 → salam penutup（结尾套语）→ 署名。这是印尼公文规范。"}
+  ]
+ },
+ "day2": {
+  "date": "2026-11-05",
+  "theme": "Menyusun Laporan 报告撰写",
+  "vocab": [
+   {"w": "laporan", "cn": "报告", "ipa": "/laˈpo.ran/", "level": "核心", "note": "lapor（报告）+ -an；laporan berkala 定期报告"},
+   {"w": "pendahuluan", "cn": "前言；引言", "ipa": "/pən.da.huˈlu.an/", "level": "核心", "note": "dahulu（先前）+ peN-...-an → 报告开头部分"},
+   {"w": "kesimpulan", "cn": "结论", "ipa": "/kə.simˈpu.lan/", "level": "核心", "note": "simpul（结）+ ke-...-an；menyimpulkan 得出结论"},
+   {"w": "data", "cn": "数据", "ipa": "/ˈda.ta/", "level": "核心", "note": "外来词；data produksi 生产数据；pengolahan data 数据处理"},
+   {"w": "grafik", "cn": "图表", "ipa": "/ˈɡra.fik/", "level": "核心", "note": "[新] 外来词；grafik batang 柱状图"},
+   {"w": "tabel", "cn": "表格", "ipa": "/ˈta.bəl/", "level": "进阶", "note": "[新] 外来词；tabel perbandingan 对比表"},
+   {"w": "analisis", "cn": "分析", "ipa": "/aˈna.li.sis/", "level": "进阶", "note": "外来词；menganalisis 分析（动词）"},
+   {"w": "rekomendasi", "cn": "建议", "ipa": "/rə.ko.mənˈda.si/", "level": "进阶", "note": "外来词；rekomendasi tindak lanjut 后续建议"},
+   {"w": "kemajuan", "cn": "进展", "ipa": "/kə.maˈdʒu.an/", "level": "进阶", "note": "maju（前进）+ ke-...-an；kemajuan proyek 项目进展"},
+   {"w": "hambatan", "cn": "障碍", "ipa": "/hamˈba.tan/", "level": "进阶", "note": "hambat（阻碍）+ -an；hambatan produksi 生产障碍"},
+   {"w": "ringkasan", "cn": "摘要", "ipa": "/riŋˈka.san/", "level": "高阶", "note": "ringkas（精简）+ -an；ringkasan eksekutif 高管摘要"},
+   {"w": "apendiks", "cn": "附录", "ipa": "/aˈpɛn.diks/", "level": "高阶", "note": "[新] 外来词；与 lampiran（附件/附录）同义"},
+   {"w": "tinjauan", "cn": "回顾；审查", "ipa": "/tinˈdʒa.an/", "level": "高阶", "note": "tinjau（审阅）+ -an；tinjauan proyek 项目审查"},
+   {"w": "proyeksi", "cn": "预测", "ipa": "/proˈjɛk.si/", "level": "高阶", "note": "[新] 外来词；proyeksi produksi 产量预测"},
+   {"w": "realisasi", "cn": "实际完成（额）", "ipa": "/rə.aˈli.sa.si/", "level": "高阶", "note": "[新] 外来词；realisasi anggaran 预算执行"}
+  ],
+  "phrases": [
+   {"id": "Laporan ini disusun untuk memberikan gambaran kemajuan proyek.", "cn": "本报告旨在呈现项目进展概况。", "usage": "报告引言", "note": "disusun ← susun + di-...-kan；gambaran 概况"},
+   {"id": "Secara keseluruhan, progres berjalan sesuai rencana.", "cn": "总体而言，进展按计划推进。", "usage": "总体评价", "note": "secara keseluruhan 总体上；sesuai 按照"},
+   {"id": "Terdapat beberapa kendala yang perlu segera ditangani.", "cn": "存在一些需立即处理的障碍。", "usage": "指出问题", "note": "terdapat 存在；ditangani ← tangani + di-"},
+   {"id": "Produksi bulan ini meningkat dibandingkan bulan lalu.", "cn": "本月产量比上月提高。", "usage": "数据对比", "note": "meningkat 上升；dibandingkan 与……相比"},
+   {"id": "Anggaran utilitas melampaui batas sebesar 5 persen.", "cn": "公用事业预算超出 5%。", "usage": "预算说明", "note": "melampaui 超过；sebesar 达（数额）"},
+   {"id": "Berdasarkan analisis, kami merekomendasikan penambahan shift.", "cn": "基于分析，我们建议增加班次。", "usage": "提出建议", "note": "merekomendasikan 外来词动词；penambahan ← tambah + peN-...-an"},
+   {"id": "Masalah utama terletak pada pasokan listrik dari PLN.", "cn": "主要问题在于 PLN 的电力供应。", "usage": "归因说明", "note": "terletak pada 在于；utama 主要"},
+   {"id": "Data ini perlu diverifikasi sebelum dipublikasikan.", "cn": "此数据发布前需核实。", "usage": "数据质控", "note": "diverifikasi ← verifikasi + di-；dipublikasikan ← publikasi + di-...-kan"},
+   {"id": "Demikian laporan ini kami susun, semoga bermanfaat.", "cn": "特此编制本报告，希望有所助益。", "usage": "结束语", "note": "demikian 如此；bermanfaat 有益"},
+   {"id": "Laporan berikutnya akan diterbitkan akhir Desember.", "cn": "下一份报告将于 12 月底发布。", "usage": "后续预告", "note": "diterbitkan ← terbit + di-...-kan；akhir 末尾"}
+  ],
+  "patterns": [
+   {"cat": "报告标题", "level": "basic", "formula": "Laporan + [事项] + (Periode/Triwulan + [时间])", "structure": "报告 + 事项 + 期间", "grammar": "印尼语标题常省略动词，以名词短语并列", "scene": "报告封面标题", "ex": ["Laporan Kemajuan Proyek Smelter Periode Oktober 2026.", "Laporan Kegiatan Komisaris Triwulan III 2026."], "slots": ["事项", "时间范围"], "reuse": 4},
+   {"cat": "引言目的", "level": "basic", "formula": "Laporan ini bertujuan untuk + [动词] + (agar) + [目的]", "structure": "主语 + bertujuan + untuk + 动词", "grammar": "bertujuan 以……为目的", "scene": "报告 pendahuluan 段", "ex": ["Laporan ini bertujuan untuk memberikan gambaran kemajuan proyek.", "Laporan ini bertujuan untuk mengevaluasi efisiensi biaya agar anggaran lebih terkendali."], "slots": ["内容", "目的"], "reuse": 5},
+   {"cat": "数据来源", "level": "basic", "formula": "Data + diperoleh dari + [来源] + pada + [时间]", "structure": "数据 + diperoleh + 来源 + 时间", "grammar": "diperoleh ← peroleh + di-（获得）", "scene": "方法/数据来源说明", "ex": ["Data produksi diperoleh dari sistem monitoring harian pada akhir Oktober.", "Data kehadiran diperoleh dari rekap absensi pada 30 Oktober 2026."], "slots": ["来源", "时间"], "reuse": 4},
+   {"cat": "增减表达", "level": "intermediate", "formula": "[指标] + mengalami + kenaikan/penurunan + sebesar + [百分比]", "structure": "主语 + 经历 + 变化名词 + 幅度", "grammar": "mengalami + 抽象名词；sebesar 达（数额）", "scene": "数据呈现", "ex": ["Produksi ferronikel mengalami kenaikan sebesar 12 persen.", "Tingkat kecelakaan kerja mengalami penurunan sebesar 8 persen."], "slots": ["指标", "百分比"], "reuse": 5},
+   {"cat": "对比结构", "level": "intermediate", "formula": "[对象A] + lebih + 形容词 + dibandingkan (dengan) + [对象B]", "structure": "A + lebih + 形容词 + dibandingkan + B", "grammar": "lebih……dibandingkan 构成比较级", "scene": "数据对比", "ex": ["Output bulan ini lebih tinggi dibandingkan bulan September.", "Biaya transportasi lebih rendah dibandingkan perkiraan awal."], "slots": ["对象A", "对象B"], "reuse": 5},
+   {"cat": "图表引用", "level": "intermediate", "formula": "Seperti terlihat pada + [图表+编号], + [数据描述]", "structure": "引导状语 + 描述句", "grammar": "seperti terlihat 如所见；pada 指位置", "scene": "引用图表说明", "ex": ["Seperti terlihat pada Grafik 2, tren produksi membaik sejak Juli.", "Seperti terlihat pada Tabel 3, biaya utilitas masih di bawah anggaran."], "slots": ["图表类型+编号", "数据描述"], "reuse": 4},
+   {"cat": "归因表达", "level": "intermediate", "formula": "Terjadi + [现象] + yang disebabkan oleh + [原因]", "structure": "存在句 + 关系从句", "grammar": "yang 引导关系从句；disebabkan oleh 由……引起", "scene": "问题归因", "ex": ["Terjadi penundaan pengiriman yang disebabkan oleh cuaca ekstrem.", "Terjadi kenaikan konsumsi listrik yang disebabkan oleh penambahan shift malam."], "slots": ["现象", "原因"], "reuse": 4},
+   {"cat": "提出建议", "level": "intermediate", "formula": "Kami merekomendasikan agar + [主语] + [谓语]", "structure": "主语 + 建议动词 + agar 从句", "grammar": "agar 表目的；从句用陈述式", "scene": "报告建议部分", "ex": ["Kami merekomendasikan agar jadwal maintenance dievaluasi ulang.", "Kami merekomendasikan agar pasokan listrik dibenahi sebelum musim hujan."], "slots": ["动作", "时间/条件"], "reuse": 5},
+   {"cat": "下结论", "level": "intermediate", "formula": "Berdasarkan + [依据], dapat disimpulkan bahwa + [结论]", "structure": "依据状语 + 结论句", "grammar": "dapat disimpulkan 可得出结论（被动式）", "scene": "报告结论", "ex": ["Berdasarkan data tiga bulan terakhir, dapat disimpulkan bahwa proyek berjalan sesuai rencana.", "Berdasarkan hasil audit, dapat disimpulkan bahwa kendali mutu efektif."], "slots": ["依据", "结论"], "reuse": 5},
+   {"cat": "展望结尾", "level": "professional", "formula": "Dengan demikian, [主语] diharapkan dapat + [目标]", "structure": "承上启下 + 期望", "grammar": "dengan demikian 因此；diharapkan 被期望", "scene": "报告结束语", "ex": ["Dengan demikian, proyek diharapkan dapat rampung sesuai tenggat.", "Dengan demikian, efisiensi biaya diharapkan dapat ditingkatkan."], "slots": ["目标", "时间"], "reuse": 4},
+   {"cat": "附录指引", "level": "professional", "formula": "Perincian + (lebih lanjut) + dapat dilihat pada + [附录+编号]", "structure": "细节说明 + 查看指引", "grammar": "perincian 细节；dapat dilihat 可查看", "scene": "指引读者查附录", "ex": ["Perincian teknis dapat dilihat pada Lampiran 2.", "Data historis lengkap dapat dilihat pada Apendiks A."], "slots": ["内容类型", "附录编号"], "reuse": 3},
+   {"cat": "进度汇报", "level": "professional", "formula": "Sampai dengan + [时间], realisasi + [指标] + mencapai + [数值]", "structure": "时间状语 + 实现 + 指标 + 达到", "grammar": "sampai dengan 截至；realisasi 实际完成", "scene": "向董事会/业主汇报进度", "ex": ["Sampai dengan 31 Oktober, realisasi pembangunan mencapai 78 persen.", "Sampai dengan triwulan ini, realisasi anggaran mencapai Rp 42 miliar."], "slots": ["时间", "指标数值"], "reuse": 4}
+  ],
+  "expressions": [
+   {"level": "basic", "scene": "请求看稿", "id": "Boleh saya lihat draf laporannya?", "cn": "我能看一下报告草稿吗？", "note": "boleh 可以；draf 外来词"},
+   {"level": "basic", "scene": "确认数据完整性", "id": "Datanya sudah lengkap belum?", "cn": "数据齐了吗？", "note": "lengkap 齐全；句末 belum 构成疑问"},
+   {"level": "basic", "scene": "要求更新图表", "id": "Grafiknya tolong diperbarui.", "cn": "图表请更新一下。", "note": "tolong 请（口语）；diperbarui ← perbarui + di-"},
+   {"level": "intermediate", "scene": "评价分析", "id": "Bagian analisisnya masih perlu diperkuat.", "cn": "分析部分还需要加强。", "note": "masih 还；diperkuat ← kuat + diper-"},
+   {"level": "intermediate", "scene": "数据核对", "id": "Angka ini konsisten dengan data gudang.", "cn": "这个数字与仓库数据一致。", "note": "konsisten 外来词；angka 数字"},
+   {"level": "intermediate", "scene": "指出偏差", "id": "Ada selisih antara rencana dan realisasi.", "cn": "计划与实际存在差异。", "note": "selisih 差额；antara……dan…… 之间"},
+   {"level": "intermediate", "scene": "归因说明", "id": "Hambatan utamanya adalah cuaca ekstrem.", "cn": "主要障碍是极端天气。", "note": "utamanya 主要地；adalah 判断动词"},
+   {"level": "intermediate", "scene": "要求提速", "id": "Kita perlu mempercepat tahap commissioning.", "cn": "我们需要加快调试阶段。", "note": "mempercepat ← cepat + memper-；commissioning 行业外来词"},
+   {"level": "intermediate", "scene": "确认审阅", "id": "Rekomendasinya sudah ditinjau oleh direksi?", "cn": "建议已经董事会审阅了吗？", "note": "ditinjau ← tinjau + di-；direksi 董事会"},
+   {"level": "intermediate", "scene": "催促截稿", "id": "Kesimpulannya bisa disampaikan hari ini juga.", "cn": "结论今天也能给出。", "note": "bisa……juga 也能；disampaikan ← sampaikan + di-"},
+   {"level": "intermediate", "scene": "提醒交期", "id": "Laporan bulan depan jangan terlambat lagi.", "cn": "下个月的报告别再迟了。", "note": "jangan……lagi 别再"},
+   {"level": "professional", "scene": "现场考察结论", "id": "Sesuai temuan di lapangan, efisiensi energi menunjukkan tren positif.", "cn": "根据现场考察结果，能效呈积极趋势。", "note": "temuan ← temu + -an 发现；sesuai 根据"},
+   {"level": "professional", "scene": "研究范围", "id": "Kajian ini mencakup aspek teknis, finansial, dan lingkungan.", "cn": "本研究涵盖技术、财务和环境层面。", "note": "mencakup ← cakup + meN-；kajian ← kaji + -an"},
+   {"level": "professional", "scene": "持续改进", "id": "Perbaikan berkelanjutan menjadi fokus triwulan berikutnya.", "cn": "持续改进将成为下季度重点。", "note": "berkelanjutan ← lanjut + ber-...-an；fokus 外来词"},
+   {"level": "professional", "scene": "附录指引", "id": "Detail teknis tercantum dalam lampiran.", "cn": "技术细节列于附件中。", "note": "tercantum ← cantum + ter-；lampiran 附件"}
+  ],
+  "affixes": [
+   {"no": 11, "affix": "-kan (及物化)", "type": "后缀", "func": "使动词及物化：把……做给……", "rule": "动词根 + -kan；命令式常省略主语", "derivs": [{"root": "lapor", "der": "laporkan", "zh": "上报"}, {"root": "kirim", "der": "kirimkan", "zh": "寄给"}, {"root": "tunjuk", "der": "tunjukkan", "zh": "指出/展示"}, {"root": "catat", "der": "catatkan", "zh": "记录下来"}], "examples": [{"id": "Mohon laporkan perkembangan ini ke direksi.", "cn": "请把此进展上报董事会。"}, {"id": "Kami kirimkan draf revisi melalui email.", "cn": "我们通过邮件发送修订稿。"}], "link": "-kan (I)"},
+   {"no": 12, "affix": "-an (名词化)", "type": "后缀", "func": "动词名词化：……的行为/结果", "rule": "动词根 + -an → 名词", "derivs": [{"root": "lapor", "der": "laporan", "zh": "报告"}, {"root": "kirim", "der": "kiriman", "zh": "寄送物"}, {"root": "tutup", "der": "tutupan", "zh": "盖子"}, {"root": "bentuk", "der": "bentukan", "zh": "构造/构成"}], "examples": [{"id": "Laporan mingguan sudah masuk ke sistem.", "cn": "周报已进入系统。"}, {"id": "Kiriman sampel besi dari pabrik tiba hari ini.", "cn": "工厂寄来的铁样品今天到了。"}], "link": "-an (I)"},
+   {"no": 13, "affix": "-i", "type": "后缀", "func": "动词化：反复做/覆盖/向……做", "rule": "名词/动词根 + -i；与 -kan 分工：-i 侧重对象，-kan 侧重使成", "derivs": [{"root": "tangan", "der": "tangani", "zh": "处理"}, {"root": "kirim", "der": "kirimi", "zh": "寄给（人）"}, {"root": "catat", "der": "catati", "zh": "记上"}, {"root": "surat", "der": "surati", "zh": "致函"}], "examples": [{"id": "Kami sudah menangani keluhan tersebut sejak Senin.", "cn": "我们从周一起就已处理该投诉。"}, {"id": "Tim HR menyurati seluruh karyawan.", "cn": "人力资源部向全体员工发函。"}], "link": "-i"},
+   {"no": 14, "affix": "-nya (指代 I)", "type": "后缀", "func": "第三人称所有/定指：……的、该……", "rule": "名词 + -nya；也可接动词短语后指代整个事件", "derivs": [{"root": "dokumen", "der": "dokumennya", "zh": "该文件"}, {"root": "kantor", "der": "kantornya", "zh": "其办公室"}, {"root": "laporan", "der": "laporannya", "zh": "那份报告"}, {"root": "manajer", "der": "manajernya", "zh": "那位经理"}], "examples": [{"id": "Dokumennya sudah ditandatangani.", "cn": "该文件已签署。"}, {"id": "Laporannya mencakup tiga bulan terakhir.", "cn": "那份报告涵盖最近三个月。"}], "link": "-nya (I)"},
+   {"no": 15, "affix": "-lah", "type": "后缀（小品词）", "func": "强调/命令/感叹", "rule": "动词 + -lah；置于动词后加强语气", "derivs": [{"root": "lihat", "der": "lihatlah", "zh": "请看"}, {"root": "kerja", "der": "kerjalah", "zh": "干吧"}, {"root": "ingat", "der": "ingatlah", "zh": "请记住"}, {"root": "dengar", "der": "dengarlah", "zh": "听好了"}], "examples": [{"id": "Lihatlah data pada halaman tiga.", "cn": "请看第三页的数据。"}, {"id": "Ingatlah untuk mengirim konfirmasi sebelum Jumat.", "cn": "记得周五前发送确认。"}], "link": "-lah"},
+   {"no": 16, "affix": "-kah", "type": "后缀（小品词）", "func": "构成是非疑问", "rule": "动词/助动词 + -kah，主语随后", "derivs": [{"root": "bisa", "der": "bisakah", "zh": "能否"}, {"root": "boleh", "der": "bolehkah", "zh": "可否"}, {"root": "sudah", "der": "sudahkah", "zh": "是否已经"}, {"root": "mau", "der": "maukah", "zh": "是否愿意"}], "examples": [{"id": "Bisakah Anda mengirim data sebelum sore ini?", "cn": "您能在今天下午前发数据吗？"}, {"id": "Sudahkah laporan bulan Oktober diverifikasi?", "cn": "十月份的报告核实了吗？"}], "link": "-kah"},
+   {"no": 17, "affix": "-an (被动结果)", "type": "后缀", "func": "动作对象/结果名词（具被……的语义）", "rule": "及物动词 + -an → 被……的事物", "derivs": [{"root": "tulis", "der": "tulisan", "zh": "所写的东西/文稿"}, {"root": "baca", "der": "bacaan", "zh": "读物"}, {"root": "pakai", "der": "pakaian", "zh": "衣物"}, {"root": "tonton", "der": "tontonan", "zh": "所看节目"}], "examples": [{"id": "Tulisan ini perlu disunting sebelum diterbitkan.", "cn": "本文稿发表前需润色。"}, {"id": "Bacaan wajib untuk rapat besok sudah dibagikan.", "cn": "明天会议的必读材料已分发。"}], "link": "-an (II)"},
+   {"no": 18, "affix": "-kan (使役/为动)", "type": "后缀", "func": "为……做；使……", "rule": "动词/形容词根 + -kan，后接为动对象", "derivs": [{"root": "kerja", "der": "kerjakan", "zh": "完成（任务）"}, {"root": "baca", "der": "bacakan", "zh": "读给（某人）"}, {"root": "ganti", "der": "gantikan", "zh": "替换给"}, {"root": "hitung", "der": "hitungkan", "zh": "为……计算"}], "examples": [{"id": "Tolong kerjakan tugas ini sebelum akhir pekan.", "cn": "请在周末前完成这项任务。"}, {"id": "Kami hitungkan estimasi biayanya untuk Anda.", "cn": "我们为您计算了费用估算。"}], "link": "-kan (II)"},
+   {"no": 19, "affix": "-in (口语)", "type": "后缀（口语）", "func": "口语中替代 -kan / -i", "rule": "动词根 + -in；属非正式口语，禁用于公文", "derivs": [{"root": "kasih", "der": "kasihin", "zh": "给（口语）"}, {"root": "bawa", "der": "bawain", "zh": "带来（口语）"}, {"root": "suruh", "der": "suruhin", "zh": "吩咐（口语）"}, {"root": "catat", "der": "catetin", "zh": "记下（口语）"}], "examples": [{"id": "Bawain berkasnya ke ruang rapat, ya.", "cn": "把文件带到会议室来哈。"}, {"id": "Tolong kasihin email ini ke Pak Direktur.", "cn": "请把这封邮件给总经理。"}], "link": "-in (口语)"},
+   {"no": 20, "affix": "-nya (指代 II)", "type": "后缀", "func": "接动词/形容词后名词化：……的事/情况", "rule": "形容词/动词 + -nya；常作插入语表意外或补充", "derivs": [{"root": "tepat", "der": "tepatnya", "zh": "确切地说"}, {"root": "bagus", "der": "bagusnya", "zh": "好在"}, {"root": "heran", "der": "herannya", "zh": "奇怪的是"}, {"root": "untung", "der": "untungnya", "zh": "幸好"}], "examples": [{"id": "Tepatnya, pengiriman akan dilakukan pada Senin pagi.", "cn": "确切地说，发货将在周一上午进行。"}, {"id": "Untungnya, tidak ada korban dalam insiden tersebut.", "cn": "幸好事故中没有人员伤亡。"}], "link": "-nya (II)"}
+  ],
+  "quiz": [
+   {"q": "\"pendahuluan\" 在报告中的意思是？", "opts": ["引言/前言", "结论", "摘要", "附录"], "a": 0, "exp": "dahulu（先前）+ peN-...-an → 开头部分；与 kesimpulan（结论）相对。"},
+   {"q": "\"realisasi anggaran\" 指？", "opts": ["预算编制", "预算执行/实际完成额", "预算削减", "预算审批"], "a": 1, "exp": "realisasi（外来词）= 实现/实际完成；realisasi anggaran 即预算执行情况。"},
+   {"q": "\"hambatan\" 与 \"kendala\" 的关系是？", "opts": ["反义词", "程度差异", "近义词（障碍）", "毫无关联"], "a": 2, "exp": "hambatan ← hambat + -an；kendala 也为障碍。报告中常并列使用。"},
+   {"q": "\"mengalami kenaikan sebesar 15 persen\" 中 sebesar 表示？", "opts": ["大约", "将近", "约略估计", "达到（精确数额）"], "a": 3, "exp": "sebesar 意为达……数额，用于精确数字前，对应中文达到。"},
+   {"q": "\"Berdasarkan hasil analisis, kami merekomendasikan...\" 这句话出现在报告的？", "opts": ["建议部分", "封面", "目录", "致谢"], "a": 0, "exp": "rekomendasi 建议。此句是分析报告建议部分的典型句式。"},
+   {"q": "\"Terdapat selisih antara rencana dan realisasi\" 中 selisih 指？", "opts": ["相同点", "差额/偏差", "总和", "比率"], "a": 1, "exp": "selisih = 差数/差额；antara……dan…… 表对比双方。"},
+   {"q": "\"triwulan\" 指多长时间？", "opts": ["三年", "三个星期", "一个季度（三个月）", "半年"], "a": 2, "exp": "tri-（三）+ wulan（月，古语）→ 三个月，即一个季度。"},
+   {"q": "\"ringkasan eksekutif\" 是给谁看的？", "opts": ["全体技术员", "档案管理员", "外部审计员", "高管快速阅览"], "a": 3, "exp": "ringkasan eksekutif（executive summary）供决策者速览全文要点。"},
+   {"q": "\"mengalami\" 的原形（词根）是？", "opts": ["alami", "lami", "alam", "milik"], "a": 0, "exp": "mengalami ← alami（经历）+ meN-（k→ng）。表经历某种变化。"},
+   {"q": "报告的 \"apendiks/lampiran\" 通常位于？", "opts": ["正文开头", "报告末尾", "封面上", "页眉中"], "a": 1, "exp": "附录（lampiran/apendiks）置于报告末尾，存放细节数据与支撑材料。"},
+   {"q": "\"Grafik ini menunjukkan tren penurunan\" 的意思是？", "opts": ["显示上升趋势", "显示持平", "显示下降趋势", "与数据无关"], "a": 2, "exp": "penurunan ← turun + peN-...-an → 下降；tren penurunan 下降趋势。"},
+   {"q": "\"kami mengusulkan penambahan tenaga kerja\" 中 tenaga kerja 指？", "opts": ["电力", "设备", "原材料", "人力/劳动力"], "a": 3, "exp": "tenaga（力）+ kerja（工作）→ 劳动力。penambahan ← tambah + peN-...-an 增加。"},
+   {"q": "\"kesimpulan\" 的同义词是？", "opts": ["simpulan", "ulangan", "awalan", "catatan"], "a": 0, "exp": "kesimpulan = ke- + simpul + -an；simpulan（结/结论）是其同根近义词。"},
+   {"q": "\"Dapat disimpulkan bahwa...\" 的句式功能是？", "opts": ["提出问题", "得出结论", "罗列数据", "感谢听众"], "a": 1, "exp": "dapat disimpulkan 可得出结论，bahwa 引导结论从句。"},
+   {"q": "\"progres\" 与 \"kemajuan\" 的关系？", "opts": ["仅指财务", "仅指人事", "近义词（进展）", "完全无关"], "a": 2, "exp": "progres（外来词）与 kemajuan（maju + ke-...-an）均表进展，可互换。"}
+  ]
+ },
+ "day3": {
+  "date": "2026-11-06",
+  "theme": "Presentasi & Pidato 演讲汇报",
+  "vocab": [
+   {"w": "presentasi", "cn": "演示；汇报", "ipa": "/prə.sənˈta.si/", "level": "核心", "note": "外来词；memaparkan 同义（更正式）"},
+   {"w": "pidato", "cn": "演讲；致辞", "ipa": "/piˈda.to/", "level": "核心", "note": "pidato pembuka 开幕致辞"},
+   {"w": "pendengar", "cn": "听众", "ipa": "/pənˈdəŋ.ɡar/", "level": "核心", "note": "dengar（听）+ peN-；hadirin 同义"},
+   {"w": "tayangan", "cn": "演示内容；投屏", "ipa": "/taˈyaŋ.an/", "level": "核心", "note": "tayang（播放）+ -an；tayangan slide 幻灯片"},
+   {"w": "mikrofon", "cn": "麦克风", "ipa": "/mi.kroˈfon/", "level": "核心", "note": "外来词；periksa mikrofon 检查麦克风"},
+   {"w": "panggung", "cn": "讲台；舞台", "ipa": "/ˈpaŋ.ɡoŋ/", "level": "进阶", "note": "naik ke panggung 上台"},
+   {"w": "gladi resik", "cn": "彩排", "ipa": "/ˈɡla.di ˈrɛ.sik/", "level": "进阶", "note": "[新] 固定搭配；gladi bersih 总彩排"},
+   {"w": "intonasi", "cn": "语调", "ipa": "/in.toˈna.si/", "level": "进阶", "note": "[新] 外来词；intonasi naik-turun 语调起伏"},
+   {"w": "gestur", "cn": "手势", "ipa": "/ˈɡɛs.tur/", "level": "进阶", "note": "[新] 外来词；gestur tangan 手势"},
+   {"w": "kesempatan", "cn": "机会", "ipa": "/kəs.əmˈpa.tan/", "level": "进阶", "note": "sempat（得空）+ ke-...-an；kesempatan berbicara 发言机会"},
+   {"w": "retorika", "cn": "修辞", "ipa": "/rə.toˈri.ka/", "level": "高阶", "note": "[新] 外来词；kemahiran retorika 修辞技巧"},
+   {"w": "penekanan", "cn": "强调", "ipa": "/pə.nəˈka.nan/", "level": "高阶", "note": "tekan（压）+ peN-...-an；penekanan pada keselamatan"},
+   {"w": "interaksi", "cn": "互动", "ipa": "/in.tərˈak.si/", "level": "高阶", "note": "外来词；interaksi dengan pendengar 与听众互动"},
+   {"w": "antusiasme", "cn": "热情", "ipa": "/an.tu.siˈas.mə/", "level": "高阶", "note": "[新] 外来词；antusiasme peserta 参与者的热情"},
+   {"w": "kepercayaan diri", "cn": "自信", "ipa": "/kə.pər.tʃaˈya.an ˈdi.ri/", "level": "高阶", "note": "percaya（相信）+ ke-...-an + diri（自己）"}
+  ],
+  "phrases": [
+   {"id": "Selamat pagi, Bapak dan Ibu yang terhormat.", "cn": "尊敬的各位早上好。", "usage": "开场问候", "note": "yang terhormat 尊敬的（复数敬称）"},
+   {"id": "Terima kasih atas kesempatan yang diberikan kepada saya.", "cn": "感谢给我这个机会。", "usage": "致谢开场", "note": "kesempatan + yang 引导关系从句"},
+   {"id": "Izinkan saya memaparkan progres proyek selama sepuluh menit.", "cn": "请允许我用十分钟汇报项目进展。", "usage": "预告发言", "note": "izinkan 请允许；memaparkan ← papar + meN-...-kan"},
+   {"id": "Mohon perhatian Anda ke layar sebelah kiri.", "cn": "请大家看左侧屏幕。", "usage": "引导视线", "note": "perhatian 注意；sebelah kiri 左边"},
+   {"id": "Seperti terlihat pada grafik ini, produksi terus naik.", "cn": "如图所示，产量持续上升。", "usage": "数据展示", "note": "seperti terlihat 如所见；terus naik 持续上升"},
+   {"id": "Ada tiga poin penting yang ingin saya tekankan.", "cn": "有几点我要强调。", "usage": "强调结构", "note": "poin 外来词；menekankan ← tekan + meN-...-kan"},
+   {"id": "Mohon maaf, waktu saya tinggal lima menit.", "cn": "抱歉，我还剩五分钟。", "usage": "控时提醒", "note": "tinggal 剩余；控场用语"},
+   {"id": "Izinkan saya menjawab pertanyaan itu di akhir sesi.", "cn": "请允许我在环节最后回答该问题。", "usage": "答疑安排", "note": "di akhir sesi 在环节末尾"},
+   {"id": "Demikian paparan saya, terima kasih atas perhatiannya.", "cn": "我的汇报到此，感谢聆听。", "usage": "结束语", "note": "paparan ← papar + peN-...-an 陈述"},
+   {"id": "Apakah ada pertanyaan dari hadirin?", "cn": "各位有什么问题吗？", "usage": "邀请提问", "note": "hadirin 各位在场者；apakah 是非问"}
+  ],
+  "patterns": [
+   {"cat": "开场问候", "level": "basic", "formula": "Selamat + [时段], + [称呼] + yang terhormat", "structure": "问候 + 称呼", "grammar": "selamat + 时段；yang terhormat 尊敬的", "scene": "演讲开场", "ex": ["Selamat pagi, Bapak dan Ibu yang terhormat.", "Selamat siang, hadirin sekalian."], "slots": ["时段", "称呼"], "reuse": 4},
+   {"cat": "自我介绍", "level": "basic", "formula": "Perkenalkan, + [姓名], + [职位] + dari [单位]", "structure": "引语 + 姓名 + 职位", "grammar": "perkenalkan 请允许我介绍（memperkenalkan 的祈使式）", "scene": "演讲者自我介绍", "ex": ["Perkenalkan, saya Leo, manajer proyek dari PT BIR Nickel.", "Perkenalkan, saya Maria, kepala divisi HSE."], "slots": ["姓名", "职位"], "reuse": 4},
+   {"cat": "主题预告", "level": "basic", "formula": "Hari ini + 主语 + akan + membahas/memaparkan + [主题]", "structure": "时间 + 将来 + 主题", "grammar": "memaparkan ← papar + meN-...-kan；membahas ← bahas + meN-", "scene": "预告演讲内容", "ex": ["Hari ini saya akan membahas tantangan produksi tahun depan.", "Hari ini kami akan memaparkan hasil studi kelayakan."], "slots": ["主题", "范围"], "reuse": 5},
+   {"cat": "引出图表", "level": "intermediate", "formula": "Mari kita lihat + [图表] + berikut / Seperti terlihat pada + [图表]", "structure": "引导语 + 图表", "grammar": "mari 祈使让我们；berikut 下面的", "scene": "展示数据", "ex": ["Mari kita lihat grafik berikut tentang tren produksi.", "Seperti terlihat pada slide ini, angka penjualan naik signifikan."], "slots": ["图表类型", "主题"], "reuse": 4},
+   {"cat": "强调要点", "level": "intermediate", "formula": "Perlu + (saya) + tekankan bahwa + [要点]", "structure": "强调动词 + 从句", "grammar": "perlu 需要；menekankan ← tekan + meN-...-kan", "scene": "强调重点", "ex": ["Perlu saya tekankan bahwa keselamatan kerja tidak dapat ditawar.", "Perlu dicatat bahwa data ini belum diaudit eksternal."], "slots": ["要点"], "reuse": 4},
+   {"cat": "转换话题", "level": "intermediate", "formula": "Selanjutnya, + (mari kita) + beralih ke + [方面]", "structure": "承接语 + 新话题", "grammar": "selanjutnya 接下来；beralih 转移", "scene": "章节过渡", "ex": ["Selanjutnya, mari kita beralih ke aspek anggaran.", "Selanjutnya, saya akan menjelaskan rencana mitigasi risiko."], "slots": ["新话题"], "reuse": 4},
+   {"cat": "举例说明", "level": "intermediate", "formula": "Sebagai contoh, + [实例] + (yang menunjukkan bahwa) + [说明]", "structure": "例如 + 实例", "grammar": "sebagai contoh 例如", "scene": "举例论证", "ex": ["Sebagai contoh, pabrik B menunjukkan efisiensi 20 persen lebih baik.", "Sebagai contoh, kenaikan upah tahun lalu tidak membebani anggaran."], "slots": ["实例", "说明"], "reuse": 4},
+   {"cat": "对比论证", "level": "intermediate", "formula": "Di satu sisi + [观点A]; di sisi lain + [观点B]", "structure": "一方面……另一方面……", "grammar": "固定并列连词结构，中间用分号", "scene": "辩证分析", "ex": ["Di satu sisi kita mengejar target produksi; di sisi lain kita wajib menjaga keselamatan.", "Di satu sisi biaya naik; di sisi lain kualitas semakin terjaga."], "slots": ["观点A", "观点B"], "reuse": 5},
+   {"cat": "小结过渡", "level": "intermediate", "formula": "Intinya, + [总结] + (sebelum kita lanjut ke) + [下一部分]", "structure": "总之 + 内容", "grammar": "intinya 概括而言（inti 核心 + -nya）", "scene": "段落小结", "ex": ["Intinya, koordinasi antar-divisi harus diperkuat.", "Intinya, investasi ini layak dari segi teknis dan finansial."], "slots": ["总结内容"], "reuse": 4},
+   {"cat": "正式开场", "level": "professional", "formula": "Dengan memanjatkan puji syukur ke hadirat + [神明称呼], + [致意对象], + 主语 + [致辞]", "structure": "感恩开场 + 致意 + 进入正题", "grammar": "印尼正式致辞固定开场；ke hadirat ……面前", "scene": "政府/仪式场合致辞", "ex": ["Dengan memanjatkan puji syukur ke hadirat Tuhan Yang Maha Esa, Bapak Gubernur yang kami hormati, hadirin sekalian, kami sampaikan terima kasih atas kehadiran Anda.", "Dengan memanjatkan puji syukur, para tamu undangan yang terhormat, kami memulai acara peluncuran tahap kedua."], "slots": ["致意对象", "正题"], "reuse": 3},
+   {"cat": "说服号召", "level": "professional", "formula": "Oleh karena itu, + 主语 + mengajak + [对象] + untuk + [行动]", "structure": "因果 + 号召", "grammar": "oleh karena itu 因此；mengajak 号召", "scene": "号召听众行动", "ex": ["Oleh karena itu, kami mengajak seluruh mitra untuk menandatangani komitmen keselamatan.", "Oleh karena itu, mari kita tingkatkan sinergi untuk mencapai target nasional."], "slots": ["对象", "行动"], "reuse": 4},
+   {"cat": "致谢结尾", "level": "professional", "formula": "Terima kasih atas + [名词] + (dan selamat bertugas)", "structure": "致谢 + 祝愿", "grammar": "atas 后接感谢原因", "scene": "演讲收尾", "ex": ["Terima kasih atas perhatian Anda dan selamat bertugas.", "Terima kasih atas kesempatan berbicara hari ini."], "slots": ["感谢原因"], "reuse": 4}
+  ],
+  "expressions": [
+   {"level": "basic", "scene": "试音", "id": "Suara saya terdengar jelas?", "cn": "我的声音听得清楚吗？", "note": "terdengar 可听见；开场试音用语"},
+   {"level": "basic", "scene": "放片", "id": "Slide berikutnya, tolong.", "cn": "下一张幻灯片，谢谢。", "note": "tolong 放句末表客气"},
+   {"level": "basic", "scene": "请重复", "id": "Maaf, bisa diulangi pertanyaannya?", "cn": "抱歉，能重复一下问题吗？", "note": "diulangi ← ulangi + di-"},
+   {"level": "intermediate", "scene": "请求详述", "id": "Izinkan saya menjelaskan lebih rinci.", "cn": "请允许我更详细地解释。", "note": "lebih rinci 更详细；rinci 明细"},
+   {"level": "intermediate", "scene": "补充说明", "id": "Angka ini belum termasuk biaya pengiriman.", "cn": "这个数字不含运费。", "note": "termasuk 包括；biaya pengiriman 运费"},
+   {"level": "intermediate", "scene": "引导对比", "id": "Grafik ini membandingkan dua periode produksi.", "cn": "这张图对比了两个生产期。", "note": "membandingkan ← banding + meN-...-kan"},
+   {"level": "intermediate", "scene": "总览引导", "id": "Mari kita lihat gambaran besarnya dulu.", "cn": "我们先看整体情况。", "note": "gambaran besar 大局/概貌；dulu 先"},
+   {"level": "intermediate", "scene": "差异说明", "id": "Pendekatan kami berbeda dengan kontraktor sebelumnya.", "cn": "我们的方法与前任承包商不同。", "note": "pendekatan ← dekat + peN-...-an 方法"},
+   {"level": "intermediate", "scene": "请做笔记", "id": "Silakan dicatat poin-poin utama ini.", "cn": "请记下这几个要点。", "note": "poin-poin 要点（叠用）；dicatat ← catat + di-"},
+   {"level": "intermediate", "scene": "控制时间", "id": "Saya akan jawab singkat, kita lanjutkan setelah istirahat.", "cn": "我简要回答，休息后再继续。", "note": "jawab singkat 简答；setelah 在……之后"},
+   {"level": "intermediate", "scene": "结果评价", "id": "Hasilnya melebihi ekspektasi semua pihak.", "cn": "结果超出各方预期。", "note": "melebihi ← lebih + meN-；ekspektasi 外来词"},
+   {"level": "professional", "scene": "代表致谢", "id": "Atas nama manajemen, saya menyampaikan apresiasi kepada seluruh tim.", "cn": "我谨代表管理层向全体团队表示感谢。", "note": "apresiasi 外来词；atas nama 代表"},
+   {"level": "professional", "scene": "归因团队", "id": "Keberhasilan ini adalah hasil kerja keras bersama.", "cn": "这一成功是共同努力的结果。", "note": "keberhasilan ← hasil + ke-...-an；kerja keras 努力"},
+   {"level": "professional", "scene": "历史节点", "id": "Kita berdiri di persimpangan penting sejarah perusahaan.", "cn": "我们正站在公司历史的重要节点。", "note": "persimpangan ← simpang + peN-...-an 十字路口"},
+   {"level": "professional", "scene": "把握机遇", "id": "Momentum ini tidak boleh kita lewatkan begitu saja.", "cn": "这个机遇我们不能白白错过。", "note": "momentum 外来词；begitu saja 就那样/白白地"}
+  ],
+  "affixes": [
+   {"no": 21, "affix": "ber-...-an", "type": "混合词缀（相互动词）", "func": "表相互/共同进行的动作", "rule": "ber- + 词根 + -an；主语通常为复数或双方", "derivs": [{"root": "surat", "der": "bersuratan", "zh": "互通书信"}, {"root": "cakap", "der": "bercakapan", "zh": "交谈"}, {"root": "salam", "der": "bersalaman", "zh": "握手问候"}, {"root": "tukar", "der": "bertukaran", "zh": "互相交换"}], "examples": [{"id": "Kami bersuratan dengan kementerian terkait.", "cn": "我们与相关部委保持通信。"}, {"id": "Semua hadirin bersalaman setelah acara selesai.", "cn": "仪式结束后各位来宾互相握手致意。"}], "link": "ber-...-an"},
+   {"no": 22, "affix": "me-...-kan", "type": "混合词缀（使及物）", "func": "使动词及物：把……做给/为……", "rule": "meN- + 词根 + -kan；施事作主语", "derivs": [{"root": "lihat", "der": "melihatkan", "zh": "展示给"}, {"root": "dengar", "der": "mendengarkan", "zh": "倾听"}, {"root": "tahu", "der": "mengetahui", "zh": "得知"}, {"root": "sampai", "der": "menyampaikan", "zh": "转达"}], "examples": [{"id": "Saya akan menyampaikan hasil rapat kepada staf.", "cn": "我将向员工传达会议结果。"}, {"id": "Kami mendengarkan aspirasi warga lokal.", "cn": "我们倾听当地居民的诉求。"}], "link": "me-...-kan"},
+   {"no": 23, "affix": "di-...-kan", "type": "混合词缀（被动）", "func": "被动：被……", "rule": "di- + 词根 + -kan；主语为受事", "derivs": [{"root": "laksana", "der": "dilaksanakan", "zh": "被执行"}, {"root": "susun", "der": "disusun", "zh": "被编制"}, {"root": "bahas", "der": "dibahas", "zh": "被讨论"}, {"root": "terapkan", "der": "diterapkan", "zh": "被实施"}], "examples": [{"id": "Proyek akan dilaksanakan dalam dua tahap.", "cn": "项目将分两个阶段实施。"}, {"id": "Kebijakan baru diterapkan mulai triwulan depan.", "cn": "新政策自下季度起施行。"}], "link": "di-...-kan"},
+   {"no": 24, "affix": "pe-...-an", "type": "混合词缀（领域名词）", "func": "构成产业/领域名词", "rule": "pe-/per- + 名词根 + -an；外来词根或 r 开头多用 per-", "derivs": [{"root": "ternak", "der": "peternakan", "zh": "畜牧业"}, {"root": "sawah", "der": "pesawahan", "zh": "稻作区"}, {"root": "tambang", "der": "pertambangan", "zh": "矿业"}, {"root": "kebun", "der": "perkebunan", "zh": "种植园（业）"}], "examples": [{"id": "Pertambangan nikel menjadi tulang punggung ekonomi daerah ini.", "cn": "镍矿开采成为该地区经济的支柱。"}, {"id": "Perkebunan kelapa sawit berada di luar kawasan smelter.", "cn": "油棕种植园位于冶炼厂区之外。"}], "link": "pe-...-an"},
+   {"no": 25, "affix": "ke-...-an (I)", "type": "混合词缀（抽象名词）", "func": "构成抽象名词：……性/……状态", "rule": "ke- + 形容词/动词 + -an；重音在 -an 前", "derivs": [{"root": "maju", "der": "kemajuan", "zh": "进展"}, {"root": "sehat", "der": "kesehatan", "zh": "健康"}, {"root": "aman", "der": "keamanan", "zh": "安全"}, {"root": "bersih", "der": "kebersihan", "zh": "清洁"}], "examples": [{"id": "Kemajuan proyek melampaui target triwulan ini.", "cn": "项目进展超出本季度目标。"}, {"id": "Keamanan kawasan kerja menjadi prioritas utama.", "cn": "作业区安全是首要优先事项。"}], "link": "ke-...-an (I)"},
+   {"no": 26, "affix": "per-...-an", "type": "混合词缀（名词化）", "func": "动词名词化：……的行为/过程/结果", "rule": "per- + 动词/形容词 + -an；与 memper- 动词对应", "derivs": [{"root": "baik", "der": "perbaikan", "zh": "改善"}, {"root": "panjang", "der": "perpanjangan", "zh": "延长"}, {"root": "cepat", "der": "percepatan", "zh": "加速"}, {"root": "luas", "der": "perluasan", "zh": "扩展"}], "examples": [{"id": "Perbaikan jalan inspeksi selesai minggu lalu.", "cn": "巡检道路的修缮已于上周完成。"}, {"id": "Percepatan tahap commissioning memerlukan tambahan SDM.", "cn": "调试阶段的加速需要增派人手。"}], "link": "per-...-an"},
+   {"no": 27, "affix": "se-...-nya", "type": "混合词缀（限度）", "func": "表尽……之能/按其……：尽可能……", "rule": "se- + 形容词/副词 + -nya", "derivs": [{"root": "mampu", "der": "semampunya", "zh": "尽其所能"}, {"root": "cepat", "der": "secepatnya", "zh": "尽快"}, {"root": "baik", "der": "sebaiknya", "zh": "最好/妥善"}, {"root": "banyak", "der": "sebanyaknya", "zh": "尽可能多"}], "examples": [{"id": "Harap selesaikan laporan ini secepatnya.", "cn": "请尽快完成本报告。"}, {"id": "Kami akan membantu semampunya dalam proses audit.", "cn": "我们将在审计过程中尽力协助。"}], "link": "se-...-nya"},
+   {"no": 28, "affix": "ter-...-kan", "type": "混合词缀（可被动）", "func": "表可……/已……的状态", "rule": "ter- + 动词根 + -kan；多用于书面确认状态", "derivs": [{"root": "baca", "der": "terbaca", "zh": "可读出"}, {"root": "lihat", "der": "terlihat", "zh": "可见"}, {"root": "kirim", "der": "terkirim", "zh": "已送达"}, {"root": "dengar", "der": "terdengar", "zh": "可听见"}], "examples": [{"id": "Semua lampiran terkirim tanpa kesalahan.", "cn": "所有附件均已无误送达。"}, {"id": "Peningkatan signifikan terlihat pada data bulan lalu.", "cn": "上月数据中可见显著提升。"}], "link": "ter-...-kan"},
+   {"no": 29, "affix": "memper-...-kan", "type": "混合词缀（双重使役）", "func": "强化使役：使……得以……", "rule": "memper- + 词根 + -kan；语气强于 me-...-kan", "derivs": [{"root": "kenal", "der": "memperkenalkan", "zh": "介绍"}, {"root": "jelas", "der": "memperjelas", "zh": "澄清"}, {"root": "banding", "der": "memperbandingkan", "zh": "对比"}, {"root": "guna", "der": "mempergunakan", "zh": "使用/利用"}], "examples": [{"id": "Perkenalkan, ini tim manajemen proyek kami.", "cn": "请允许我介绍，这是我们项目管理团队。"}, {"id": "Izinkan saya memperjelas data pada slide berikutnya.", "cn": "请允许我澄清下一页幻灯片上的数据。"}], "link": "memper-...-kan"},
+   {"no": 30, "affix": "ke-...-an (II)", "type": "混合词缀（属性名词）", "func": "表属性/相关事物：与……有关的", "rule": "ke- + 词根 + -an；常接 pada 引出对象", "derivs": [{"root": "penting", "der": "kepentingan", "zh": "利益"}, {"root": "rugi", "der": "kerugian", "zh": "损失"}, {"root": "untung", "der": "keuntungan", "zh": "收益"}, {"root": "wajib", "der": "kewajiban", "zh": "义务"}], "examples": [{"id": "Kepentingan perusahaan harus selaras dengan masyarakat lokal.", "cn": "公司利益须与当地社区相协调。"}, {"id": "Kerugian akibat keterlambatan ditanggung kontraktor.", "cn": "延误造成的损失由承包商承担。"}], "link": "ke-...-an (II)"}
+  ],
+  "quiz": [
+   {"q": "\"pidato\" 通常指？", "opts": ["正式演讲/致辞", "日常闲聊", "私人信件", "电话沟通"], "a": 0, "exp": "pidato = 正式场合的演讲或致辞；日常说话用 bicara。"},
+   {"q": "\"gladi resik\" 的意思是？", "opts": ["正式演出", "彩排/排练", "谢幕", "即兴演讲"], "a": 1, "exp": "gladi resik（源自荷兰语）= 正式彩排；gladi bersih 为总彩排。"},
+   {"q": "\"Mohon perhatian Anda ke layar\" 用于什么场景？", "opts": ["开场问候", "致谢结尾", "请大家看屏幕", "邀请提问"], "a": 2, "exp": "perhatian 注意；ke layar 朝向屏幕。展示幻灯片时的引导语。"},
+   {"q": "\"intonasi\" 指说话的哪个方面？", "opts": ["速度", "音量", "用词选择", "语调起伏"], "a": 3, "exp": "intonasi（外来词）语调；演讲训练四大要素之一（语速、音量、语调、停顿）。"},
+   {"q": "演讲者说完 \"Apakah ada pertanyaan?\" 后进入？", "opts": ["问答环节", "午餐休息", "直接散场", "重放视频"], "a": 0, "exp": "这是邀请听众提问的标准句式，之后进入 sesi tanya jawab（问答环节）。"},
+   {"q": "\"Saya akan memaparkan progres proyek\" 中 memaparkan 意为？", "opts": ["隐瞒", "陈述/展示", "删除", "庆祝"], "a": 1, "exp": "memaparkan ← papar（展示）+ meN-...-kan，正式汇报用词。"},
+   {"q": "\"Di satu sisi...; di sisi lain...\" 的修辞功能是？", "opts": ["开场问候", "列举数据", "对比论证", "致谢收尾"], "a": 2, "exp": "固定并列结构一方面……另一方面……，用于辩证对比。"},
+   {"q": "\"penekanan\" 由词根 tekan 构成，意思是？", "opts": ["忽视", "补充", "重复", "强调"], "a": 3, "exp": "penekanan ← tekan（压）+ peN-...-an → 强调；menekankan 动词。"},
+   {"q": "\"antusiasme\" 的中文意思是？", "opts": ["热情", "疲惫", "愤怒", "焦虑"], "a": 0, "exp": "antusiasme（enthusiasm）热情；演讲者需展现 antusiasme。"},
+   {"q": "\"Mari kita wujudkan bersama-sama\" 的语气是？", "opts": ["抱怨", "号召", "疑问", "道歉"], "a": 1, "exp": "mari 祈使让我们；wujudkan 实现。这是典型的号召句式。"},
+   {"q": "\"Suara saya terdengar jelas?\" 中 terdengar 的形态是？", "opts": ["me- 被动", "di- 被动", "ter- 被动（可……的）", "ber- 被动"], "a": 2, "exp": "terdengar = ter- + dengar，表可听见的/听起来，ter- 被动表能力或状态。"},
+   {"q": "印尼正式演讲（尤其政府/仪式场合）常以什么开场？", "opts": ["直接谈价格", "讲一个笑话", "感恩祈祷（puji syukur）", "宣布散会"], "a": 3, "exp": "印尼正式致辞惯例以 Dengan memanjatkan puji syukur 开场，属文化惯例。"},
+   {"q": "\"kepercayaan diri\" 指？", "opts": ["自信", "信任他人", "信用缺失", "银行存款"], "a": 0, "exp": "percaya（相信）+ ke-...-an + diri（自己）→ 自信。"},
+   {"q": "\"interaksi dengan pendengar\" 指？", "opts": ["独自朗读", "与听众互动", "关闭麦克风", "播放录音"], "a": 1, "exp": "interaksi（互动）+ pendengar（听众）→ 演讲中要与听众互动。"},
+   {"q": "\"poin penting yang ingin saya tekankan\" 中 poin 是？", "opts": ["分数", "硬币", "要点（外来词）", "错误观点"], "a": 2, "exp": "poin（point）外来词要点；tekankan 强调。"}
+  ]
+ }
+}
+
+};
 
 const caCalendar = {
  "2026-10-20": {
@@ -223638,6 +226934,38 @@ const caCalendar = {
   "topic": "interview",
   "day": 3,
   "label": "💼 CA进阶 · 面试 Day3 面试跟进与薪资谈判",
+  "allDays": true
+  },
+ "2026-11-01": {
+  "topic": "biz_listen",
+  "day": 1,
+  "label": "🎧 CA进阶 · 聆听阅读 Day1 会议聆听"
+ },
+ "2026-11-02": {
+  "topic": "biz_listen",
+  "day": 2,
+  "label": "🎧 CA进阶 · 聆听阅读 Day2 报告阅读"
+ },
+ "2026-11-03": {
+  "topic": "biz_listen",
+  "day": 3,
+  "label": "🎧 CA进阶 · 聆听阅读 Day3 新闻听力",
+  "allDays": true
+ },
+ "2026-11-04": {
+  "topic": "biz_speak",
+  "day": 1,
+  "label": "✍️ CA进阶 · 写作演讲 Day1 商务邮件"
+ },
+ "2026-11-05": {
+  "topic": "biz_speak",
+  "day": 2,
+  "label": "✍️ CA进阶 · 写作演讲 Day2 报告撰写"
+ },
+ "2026-11-06": {
+  "topic": "biz_speak",
+  "day": 3,
+  "label": "✍️ CA进阶 · 写作演讲 Day3 演讲汇报",
   "allDays": true
  }};
 
