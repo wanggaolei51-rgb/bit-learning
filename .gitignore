@@ -34,3 +34,6 @@ __pycache__/
 
 # Local restore points (large, local-only)
 backups/
+ca_topic3_meeting.js
+ca_topic4_tour.js
+scripts/integrate_ca_nov*.py
