@@ -6,7 +6,7 @@
 <meta http-equiv="Expires" content="0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LEO-BIR V4.50.0</title>
+<title>LEO-BIR V4.51.0</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -276,7 +276,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="sidebar-header">
     <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <h1>LEO-BIR</h1>
-    <div class="ver">LEO-BIR V4.50.0 · CA四项修复(点击BIT弹窗/UNDEFINED/玫瑰图联动/生词回填30) + CA话题7商务谈判11/7-9上线 · 库3142词</div>
+    <div class="ver">LEO-BIR V4.51.0 · 日期页C5/CA/CATAT切换卡 + 1108日记6词 · 库3190词</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -5234,38 +5234,44 @@ window.addEventListener('message',(e)=>{
 });
 // V4.35.0 菜单解隐：VIDEO_DB 存在即显示侧边栏「每日视频」入口（script 按序执行时注册表已加载）
 try{if(getVideoDB()){const _nv=document.getElementById('navDailyVideo');if(_nv)_nv.style.display='';}}catch(_e){}
+function ddTab(key,btn){
+  document.querySelectorAll('.ca-tab[data-ddk]').forEach(b=>b.classList.toggle('on',b===btn));
+  document.querySelectorAll('.dd-panel').forEach(p=>{p.style.display=(p.id==='ddp-'+key)?'block':'none';});
+}
 function renderDateDetail(c,ds){
   const data=learningHistory[ds];
   const caOn=(typeof caCalendar!=="undefined"&&caCalendar[ds]);
   const tc=getTopicForDate(ds);
   const vd=getVideoDB();
-  // V4.46.0: CA/C5 同日共存 —— 有 C5 课程时先渲染课程, 底部追加 CA 卡片; 无课程时保持纯 CA 页
-  if(tc){
-    // nickel话题由renderNickelContent自己添加返回键,避免重复
-    const backBtn = (tc.topic === 'nickel') ? '' : `<button class="back-btn" onclick="goBack()">← 返回</button>`;
-    let html = `<div class="date-detail">${backBtn}`;
-    if(vd&&vd[ds])html+=renderVideoBanner(ds,vd[ds]);
-    if(data && (data.vocabNew.length||data.vocabReview.length||data.translations)){
-      html += `<div style="display:flex;gap:8px;margin-bottom:12px;"><button onclick="showDateStudyRecord('${ds}')" class="trans-btn btn-small" style="font-size:12px;">📋 查看学习记录</button></div>`;
+  const _noteAvail=!!((typeof dailyNotesDB!=="undefined"&&dailyNotesDB[ds])||(data&&(data.vocabNew.length||data.vocabReview.length||data.translations||data.notes)));
+  const _notePanel=el=>{showDateStudyRecord(ds,el);const bb=el.querySelector('.back-btn');if(bb)bb.remove();};
+  // V4.51.0: 日期页内容≥2类时启用切换卡（C5课程 / CA进阶 / 日记CATAT）
+  if(tc&&tc.topic==='nickel'){renderTopicDetail(c,ds,tc);return;}
+  if(tc&&tc.topic!=='nickel'){
+    const tabs=[{k:'c5',label:'📚 C5 课程',render:el=>renderTopicDetail(el,ds,tc)}];
+    if(caOn)tabs.push({k:'ca',label:'🚀 CA 进阶',render:el=>renderCAInto(el,caCalendar[ds].topic,caCalendar[ds].day)});
+    if(_noteAvail)tabs.push({k:'catat',label:'📓 日记 CATAT',render:_notePanel});
+    if(tabs.length>1){
+      c.innerHTML=`<div class="date-detail"><button class="back-btn" onclick="goBack()">← 返回</button>${vd&&vd[ds]?renderVideoBanner(ds,vd[ds]):""}<div style="font-size:13px;color:var(--text-dim);margin:8px 0 2px">📅 ${ds} · 本日内容 / Konten hari ini（点标签切换）</div><div class="ca-tabs" style="margin:10px 0 14px">${tabs.map((t,i)=>`<button class="ca-tab ${i===0?"on":""}" data-ddk="${t.k}" onclick="ddTab('${t.k}',this)">${t.label}</button>`).join("")}</div>${tabs.map((t,i)=>`<div class="dd-panel" id="ddp-${t.k}" style="display:${i===0?"block":"none"}"></div>`).join("")}</div>`;
+      tabs.forEach(t=>{const el=document.getElementById('ddp-'+t.k);if(el)t.render(el);});
+      return;
     }
-    // V4.46.3: 播报按钮归位到「当日笔记卡」内部(buildDailyNoteCardForDate), 课程页不再单独挂按钮
-    html += `<div id="dateTopicContent_${ds.replace(/-/g,'')}"></div>`;
-    if(caOn)html+=`<div id="caInlineWrap" style="margin-top:14px"></div>`;
-    html += `</div>`;
+    let html = `<div class="date-detail"><button class="back-btn" onclick="goBack()">← 返回</button>`;
+    if(vd&&vd[ds])html+=renderVideoBanner(ds,vd[ds]);
+    html += `<div id="dateTopicContent_${ds.replace(/-/g,'')}"></div></div>`;
     c.innerHTML = html;
     renderTopicDetail(document.getElementById('dateTopicContent_' + ds.replace(/-/g,'')), ds, tc);
-    if(caOn)renderCAInto(document.getElementById("caInlineWrap"),caCalendar[ds].topic,caCalendar[ds].day);
     return;
   }
   if(caOn){
-    renderCADate(c,ds);
-    // V4.46.2: CA 日若有日记/BIT笔记 —— 底部补日记区+播报按钮
-    const _hasNote=(data&&data.notes)||(typeof dailyNotesDB!=="undefined"&&dailyNotesDB[ds]);
-    // V4.46.3: 按钮在笔记卡内部, 仅「有日记文本但无BIT词条」时兜底补一个
-    const _onlyNotes=(data&&data.notes)&&!(typeof dailyNotesDB!=="undefined"&&dailyNotesDB[ds]);
-    if(_hasNote){
-      c.innerHTML+=`<div style="margin-top:14px;">${_onlyNotes?`<div style="margin-bottom:12px;"><button class="bc-btn trans-btn btn-small" style="font-size:12px;" onclick="broadcastDay('${ds}')">🔊 播报今日笔记 / Dengarkan Catatan</button></div>`:""}${(data&&data.notes)?`<div class="card" style="margin-bottom:12px;"><div style="padding:14px;font-size:13px;background:rgba(0,212,170,.08);border-left:3px solid var(--primary);border-radius:8px;">${data.notes}</div></div>`:""}${(typeof buildDailyNoteCardForDate==="function")?buildDailyNoteCardForDate(ds):""}</div>`;
+    if(_noteAvail){
+      const info=caCalendar[ds];
+      c.innerHTML=`<div class="date-detail"><button class="back-btn" onclick="goBack()">← 返回</button><div style="font-size:13px;color:var(--text-dim);margin:8px 0 2px">📅 ${ds} · <span style="color:#c4b5fd">🚀 CA 进阶课程日</span></div><div class="ca-tabs" style="margin:10px 0 14px"><button class="ca-tab on" data-ddk="ca" onclick="ddTab('ca',this)">🚀 CA 进阶</button><button class="ca-tab" data-ddk="catat" onclick="ddTab('catat',this)">📓 日记 CATAT</button></div><div class="dd-panel" id="ddp-ca"></div><div class="dd-panel" id="ddp-catat" style="display:none"></div></div>`;
+      renderCAInto(document.getElementById("ddp-ca"),info.topic,info.day);
+      _notePanel(document.getElementById("ddp-catat"));
+      return;
     }
+    renderCADate(c,ds);
     return;
   }
   if(!data){
@@ -6006,6 +6012,7 @@ function showBITInfo(word){
   }
   overlay.addEventListener("click",function(e){if(e.target===overlay)closeBITInfo();});
 }
+
 
 
 
@@ -98658,6 +98665,313 @@ const dailyNotesDB = {
         ]
       }
     ]
+  },
+  "2026-11-08": {
+    "date": "2026-11-08",
+    "topicKey": "dailynote",
+    "source": "BIT V1.0 + BIO 审查",
+    "entries": [
+      {
+        "word": "kaget",
+        "cn": "吃惊的；吓一跳的",
+        "en": "startled; shocked",
+        "root": "kaget（根词，拟声来源，无词缀派生）",
+        "forms": [
+          {
+            "form": "kaget",
+            "pos": "形容词",
+            "mean": "吃惊的；吓一跳的"
+          },
+          {
+            "form": "terkejut",
+            "pos": "同义形容词",
+            "mean": "吃惊的（较正式）"
+          },
+          {
+            "form": "kagetan",
+            "pos": "名词",
+            "mean": "动辄受惊的人（口语）"
+          }
+        ],
+        "formsNote": "",
+        "note": "根形容词；口语 -an 派生 kagetan（大惊小怪的人）；同义词 terkejut 为 ter- 被动感形容词。 kaget dengan（对……吃惊）、kaget mendengar/melihat（听到/看到吓一跳）；语体偏口语，正式文本用 terkejut；kaget 与 terkejut 常互换，kaget 更生活化。",
+        "synonyms": [
+          "terkejut（吃惊——较正式）",
+          "terperanjat（受惊——书面）"
+        ],
+        "antonyms": [
+          "tenang（镇定）",
+          "biasa saja（若无其事）"
+        ],
+        "examples": [
+          {
+            "scene": "商务谈判",
+            "id": "Kami kaget dengan kenaikan harga pasar nikel minggu ini.",
+            "cn": "我们对本周镍市场价上涨感到吃惊。"
+          },
+          {
+            "scene": "月报数据",
+            "id": "Semua orang kaget melihat persentase deviasi anggaran di halaman laporan.",
+            "cn": "看到报告页上的预算偏差百分比，所有人大吃一惊。"
+          },
+          {
+            "scene": "日常表达",
+            "id": "Jangan kaget, itu hanya suara kucing di dapur.",
+            "cn": "别吓一跳，那只是厨房里的猫叫声。"
+          }
+        ]
+      },
+      {
+        "word": "mengagetkan",
+        "cn": "使吃惊；令人吃惊",
+        "en": "to startle; startling",
+        "root": "kaget（吃惊）+ meN-…-kan 使动",
+        "forms": [
+          {
+            "form": "mengagetkan",
+            "pos": "及物动词",
+            "mean": "使吃惊"
+          },
+          {
+            "form": "kaget",
+            "pos": "形容词",
+            "mean": "吃惊的"
+          },
+          {
+            "form": "dikagetkan",
+            "pos": "被动",
+            "mean": "被惊吓"
+          }
+        ],
+        "formsNote": "",
+        "note": "meN- + kaget + -kan 使动化（主语令宾语吃惊）；被动 di- → dikagetkan。 berita mengagetkan（惊人消息）、angka mengagetkan（惊人数字）、sangat mengagetkan（非常惊人）；-kan 使动后缀是产词力最强的构词手段之一。",
+        "synonyms": [
+          "mengejutkan（使吃惊）",
+          "mencengangkan（令人震惊）"
+        ],
+        "antonyms": [
+          "menenangkan（使镇定）"
+        ],
+        "examples": [
+          {
+            "scene": "月报数据",
+            "id": "Kenaikan persentase laba tahun ini sungguh mengagetkan para pemegang saham.",
+            "cn": "今年利润增长率让股东们大为吃惊。"
+          },
+          {
+            "scene": "商务沟通",
+            "id": "Keputusan mendadak itu mengagetkan seluruh jajaran manajemen.",
+            "cn": "那个突然的决定让全体管理层吃惊。"
+          },
+          {
+            "scene": "日常表达",
+            "id": "Suara petir tadi mengagetkan anak yang sedang tidur.",
+            "cn": "刚才的雷声吓着了睡着的孩子。"
+          }
+        ]
+      },
+      {
+        "word": "persentase",
+        "cn": "百分比；百分率",
+        "en": "percentage",
+        "root": "persen（百分之，经荷兰语 percent 借入）+ 外来后缀 -tase（=-age）",
+        "forms": [
+          {
+            "form": "persentase",
+            "pos": "名词",
+            "mean": "百分比；百分率"
+          },
+          {
+            "form": "persen",
+            "pos": "名词",
+            "mean": "百分之（口语）"
+          },
+          {
+            "form": "sepersen",
+            "pos": "数词短语",
+            "mean": "百分之一"
+          }
+        ],
+        "formsNote": "",
+        "note": "persen + 外来后缀 -tase 名物化；口语 persen 独立作量词：lima persen（5%）。 persentase pertumbuhan（增长率）、persentase keuntungan（利润率）、persentase penyelesaian（完成率）、naik/turun beberapa persen（升降几个百分点）；月报核心词；旧拼 prosentase 已被 KBBI 废弃，勿用。",
+        "synonyms": [
+          "persen（口语同义）"
+        ],
+        "antonyms": [
+          "—"
+        ],
+        "examples": [
+          {
+            "scene": "月报数据",
+            "id": "Persentase penyelesaian pekerjaan sudah mencapai delapan puluh lima persen.",
+            "cn": "工作完成率已达85%。"
+          },
+          {
+            "scene": "商务谈判",
+            "id": "Kami memberikan potongan persentase kecil untuk pembelian rutin.",
+            "cn": "我们对常规采购给出小幅百分比折扣。"
+          },
+          {
+            "scene": "日常表达",
+            "id": "Persentase kehadiran siswa tahun ini sangat memuaskan.",
+            "cn": "今年的学生出勤率令人满意。"
+          }
+        ]
+      },
+      {
+        "word": "kenyataan",
+        "cn": "事实；现实",
+        "en": "reality; fact",
+        "root": "nyata（明确的；现实的）+ ke-…-an 抽象名物化",
+        "forms": [
+          {
+            "form": "kenyataan",
+            "pos": "名词",
+            "mean": "事实；现实"
+          },
+          {
+            "form": "nyata",
+            "pos": "形容词",
+            "mean": "明确的；现实的"
+          },
+          {
+            "form": "menyatakan",
+            "pos": "及物动词",
+            "mean": "表明；声明"
+          },
+          {
+            "form": "kenyataannya",
+            "pos": "连接副词",
+            "mean": "事实上"
+          }
+        ],
+        "formsNote": "",
+        "note": "ke-…-an 抽象名词；meN- → menyatakan（表明）；-nya 副词化 kenyataannya（事实上——句首连接词）。 dalam kenyataan（在现实中）、kenyataan pahit（残酷现实）、sesuai kenyataan（符合实际）；kenyataannya 放句首=「事实上」，月报与谈判高频连接词。",
+        "synonyms": [
+          "fakta（事实）",
+          "realitas（现实——外来词）"
+        ],
+        "antonyms": [
+          "angan-angan（幻想）",
+          "khayalan（空想）"
+        ],
+        "examples": [
+          {
+            "scene": "商务谈判",
+            "id": "Kenyataannya, harga pasar jauh di bawah asumsi awal kami.",
+            "cn": "事实上，市场价远低于我们的初始假设。"
+          },
+          {
+            "scene": "月报数据",
+            "id": "Laporan harus mencerminkan kenyataan di lapangan, bukan harapan semata.",
+            "cn": "报告必须反映现场事实，而非仅仅是期望。"
+          },
+          {
+            "scene": "日常表达",
+            "id": "Kenyataan pahit itu akhirnya harus diterima semua pihak.",
+            "cn": "那个残酷现实最终必须由各方接受。"
+          }
+        ]
+      },
+      {
+        "word": "halaman",
+        "cn": "页；页面（亦指\"庭院\"，同形同音异义）",
+        "en": "page (also: yard)",
+        "root": "halaman（固有词；与\"庭院\"义项同形异源）",
+        "forms": [
+          {
+            "form": "halaman",
+            "pos": "名词",
+            "mean": "页；页面"
+          },
+          {
+            "form": "halaman",
+            "pos": "名词",
+            "mean": "庭院；院子（同形异义）"
+          },
+          {
+            "form": "berhalaman",
+            "pos": "形容词",
+            "mean": "共……页的"
+          }
+        ],
+        "formsNote": "",
+        "note": "量词性名词：dua puluh halaman（二十页）；ber- 构成 berhalaman（达……页，描述书本：buku berhalaman dua ratus）。 halaman web（网页）、halaman depan（首页/封面）、halaman berikutnya（下一页）、halaman muka（扉页）；第二义项\"庭院\"（rumah berhalaman luas 有大院子的房子），两义按语境区分，勿混。",
+        "synonyms": [
+          "lembar（张；页——计量近义）",
+          "laman（页面——网络用语）"
+        ],
+        "antonyms": [
+          "—"
+        ],
+        "examples": [
+          {
+            "scene": "月报数据",
+            "id": "Laporan bulanan ini terdiri dari tiga puluh halaman dengan tabel lengkap.",
+            "cn": "本月报共30页，附完整表格。"
+          },
+          {
+            "scene": "商务沟通",
+            "id": "Silakan lihat rinciannya di halaman dua belas proposal kami.",
+            "cn": "详情请见我方提案第12页。"
+          },
+          {
+            "scene": "日常表达",
+            "id": "Rumah baru itu punya halaman luas untuk taman kecil.",
+            "cn": "新房有个大院子，可以建个小花园。"
+          }
+        ]
+      },
+      {
+        "word": "tren",
+        "cn": "趋势；潮流",
+        "en": "trend",
+        "root": "tren（英语 trend 借词，KBBI 规范拼写 tren，非 trend）",
+        "forms": [
+          {
+            "form": "tren",
+            "pos": "名词",
+            "mean": "趋势；潮流"
+          },
+          {
+            "form": "kecenderungan",
+            "pos": "名词",
+            "mean": "倾向；趋势（固有同义词）"
+          },
+          {
+            "form": "mengikuti tren",
+            "pos": "短语",
+            "mean": "跟随潮流"
+          }
+        ],
+        "formsNote": "",
+        "note": "外来词无词缀派生；固有同义词 kecenderungan（ke-…-an ← cenderung 倾向）。 tren pasar（市场趋势）、tren global（全球趋势）、tren harga（价格走势）、melawan tren（逆趋势而动）、mengikuti tren（跟风）；数据月报描述 persentase 与 kenyataan 走向的核心词。",
+        "synonyms": [
+          "kecenderungan（倾向——较正式）",
+          "arus（潮流——比喻义）"
+        ],
+        "antonyms": [
+          "—"
+        ],
+        "examples": [
+          {
+            "scene": "月报数据",
+            "id": "Tren harga nikel global menunjukkan kenaikan tiga bulan berturut-turut.",
+            "cn": "全球镍价趋势连续三个月上行。"
+          },
+          {
+            "scene": "商务沟通",
+            "id": "Kami mengikuti tren digitalisasi dalam proses persetujuan kontrak.",
+            "cn": "我们在合同审批流程上跟随数字化趋势。"
+          },
+          {
+            "scene": "日常表达",
+            "id": "Tren fashion berubah lebih cepat dari dugaan kita.",
+            "cn": "时尚趋势的变化比想象中更快。"
+          }
+        ]
+      }
+    ]
   }
 };
 // ===== BIT 详解库 bitVocabDB V4.31.0 新增:按词组织的累积详解库,转换器 scripts/md_to_dailynote.py 在写入每日笔记时自动并入新词条;批量生成由 BIT→BIO 流程灌入 =====
@@ -125443,29 +125757,51 @@ const bitVocabDB = {
   },
   "kaget": {
     "word": "kaget",
-    "cn": "吃惊；惊讶",
-    "en": "startled; surprised; shocked",
-    "root": "本土词（词根 kaget，不可拆分）",
-    "forms": [],
-    "formsNote": "mengagetkan 动词（使吃惊）；dikagetkan 被动（被吓到）；无标准名词派生",
-    "note": "口语高频；书面语常用同义词 terkejut 替代，但 kaget 在汇报对话中更自然。",
+    "cn": "吃惊的；吓一跳的",
+    "en": "startled; shocked",
+    "root": "kaget（根词，拟声来源，无词缀派生）",
+    "forms": [
+      {
+        "form": "kaget",
+        "pos": "形容词",
+        "mean": "吃惊的；吓一跳的"
+      },
+      {
+        "form": "terkejut",
+        "pos": "同义形容词",
+        "mean": "吃惊的（较正式）"
+      },
+      {
+        "form": "kagetan",
+        "pos": "名词",
+        "mean": "动辄受惊的人（口语）"
+      }
+    ],
+    "formsNote": "",
+    "note": "根形容词；口语 -an 派生 kagetan（大惊小怪的人）；同义词 terkejut 为 ter- 被动感形容词。 kaget dengan（对……吃惊）、kaget mendengar/melihat（听到/看到吓一跳）；语体偏口语，正式文本用 terkejut；kaget 与 terkejut 常互换，kaget 更生活化。",
     "synonyms": [
-      "terkejut（受惊）",
-      "terperanjat（愕然）"
+      "terkejut（吃惊——较正式）",
+      "terperanjat（受惊——书面）"
     ],
     "antonyms": [
-      "tenang（镇定）"
+      "tenang（镇定）",
+      "biasa saja（若无其事）"
     ],
     "examples": [
       {
-        "scene": "项目管理",
-        "id": "Kami kaget dengan kenaikan mendadak tarif pelabuhan minggu ini.",
-        "cn": "我们对本周港口费突然上调感到吃惊。"
+        "scene": "商务谈判",
+        "id": "Kami kaget dengan kenaikan harga pasar nikel minggu ini.",
+        "cn": "我们对本周镍市场价上涨感到吃惊。"
       },
       {
-        "scene": "商务谈判",
-        "id": "Jangan kaget jika penawaran pertama jauh di atas perkiraan.",
-        "cn": "若首轮报价远高于预期，不必吃惊。"
+        "scene": "月报数据",
+        "id": "Semua orang kaget melihat persentase deviasi anggaran di halaman laporan.",
+        "cn": "看到报告页上的预算偏差百分比，所有人大吃一惊。"
+      },
+      {
+        "scene": "日常表达",
+        "id": "Jangan kaget, itu hanya suara kucing di dapur.",
+        "cn": "别吓一跳，那只是厨房里的猫叫声。"
       }
     ]
   },
@@ -153954,28 +154290,50 @@ const bitVocabDB = {
   },
   "tren": {
     "word": "tren",
-    "ipa": "/ˈtren/",
-    "cn": "趋势",
-    "en": "trend (English loanword)",
-    "root": "tren",
-    "forms": [],
-    "formsNote": "英语借词，媒体/商业语域",
-    "note": "tren terkini 最新趋势；时尚/商业高频；标准表达 kecenderungan",
-    "synonyms": [
-      "kecenderungan",
-      "arus"
-    ],
-    "antonyms": [],
-    "examples": [
+    "cn": "趋势；潮流",
+    "en": "trend",
+    "root": "tren（英语 trend 借词，KBBI 规范拼写 tren，非 trend）",
+    "forms": [
       {
-        "scene": "Tren pasar berubah setiap tahun.",
-        "id": "tren",
-        "cn": "市场趋势每年都在变。"
+        "form": "tren",
+        "pos": "名词",
+        "mean": "趋势；潮流"
       },
       {
-        "scene": "Itu tren baru di kalangan anak muda.",
-        "id": "tren",
-        "cn": "那是年轻人中的新潮流。"
+        "form": "kecenderungan",
+        "pos": "名词",
+        "mean": "倾向；趋势（固有同义词）"
+      },
+      {
+        "form": "mengikuti tren",
+        "pos": "短语",
+        "mean": "跟随潮流"
+      }
+    ],
+    "formsNote": "",
+    "note": "外来词无词缀派生；固有同义词 kecenderungan（ke-…-an ← cenderung 倾向）。 tren pasar（市场趋势）、tren global（全球趋势）、tren harga（价格走势）、melawan tren（逆趋势而动）、mengikuti tren（跟风）；数据月报描述 persentase 与 kenyataan 走向的核心词。",
+    "synonyms": [
+      "kecenderungan（倾向——较正式）",
+      "arus（潮流——比喻义）"
+    ],
+    "antonyms": [
+      "—"
+    ],
+    "examples": [
+      {
+        "scene": "月报数据",
+        "id": "Tren harga nikel global menunjukkan kenaikan tiga bulan berturut-turut.",
+        "cn": "全球镍价趋势连续三个月上行。"
+      },
+      {
+        "scene": "商务沟通",
+        "id": "Kami mengikuti tren digitalisasi dalam proses persetujuan kontrak.",
+        "cn": "我们在合同审批流程上跟随数字化趋势。"
+      },
+      {
+        "scene": "日常表达",
+        "id": "Tren fashion berubah lebih cepat dari dugaan kita.",
+        "cn": "时尚趋势的变化比想象中更快。"
       }
     ]
   },
@@ -205792,9 +206150,9 @@ const bitVocabDB = {
   },
   "halaman": {
     "word": "halaman",
-    "cn": "页；页面",
-    "en": "page",
-    "root": "halam（范围；围栏）· -an 名词化",
+    "cn": "页；页面（亦指\"庭院\"，同形同音异义）",
+    "en": "page (also: yard)",
+    "root": "halaman（固有词；与\"庭院\"义项同形异源）",
     "forms": [
       {
         "form": "halaman",
@@ -205802,40 +206160,40 @@ const bitVocabDB = {
         "mean": "页；页面"
       },
       {
-        "form": "halaman muka",
-        "pos": "名词短语",
-        "mean": "首页"
+        "form": "halaman",
+        "pos": "名词",
+        "mean": "庭院；院子（同形异义）"
       },
       {
         "form": "berhalaman",
-        "pos": "动词",
-        "mean": "有页的"
+        "pos": "形容词",
+        "mean": "共……页的"
       }
     ],
     "formsNote": "",
-    "note": "-an 名词化；现代义\"页\"由\"范围/区块\"引申；数字文档语境同用",
+    "note": "量词性名词：dua puluh halaman（二十页）；ber- 构成 berhalaman（达……页，描述书本：buku berhalaman dua ratus）。 halaman web（网页）、halaman depan（首页/封面）、halaman berikutnya（下一页）、halaman muka（扉页）；第二义项\"庭院\"（rumah berhalaman luas 有大院子的房子），两义按语境区分，勿混。",
     "synonyms": [
-      "lembar",
-      "laman"
+      "lembar（张；页——计量近义）",
+      "laman（页面——网络用语）"
     ],
     "antonyms": [
       "—"
     ],
     "examples": [
       {
-        "scene": "月报",
-        "id": "Laporan ini terdiri dari dua puluh halaman.",
-        "cn": "本报告共20页。"
+        "scene": "月报数据",
+        "id": "Laporan bulanan ini terdiri dari tiga puluh halaman dengan tabel lengkap.",
+        "cn": "本月报共30页，附完整表格。"
       },
       {
-        "scene": "系统",
-        "id": "Data tampil di halaman utama dashboard.",
-        "cn": "数据显示在仪表盘主页。"
+        "scene": "商务沟通",
+        "id": "Silakan lihat rinciannya di halaman dua belas proposal kami.",
+        "cn": "详情请见我方提案第12页。"
       },
       {
-        "scene": "文档",
-        "id": "Mohon tanda tangani halaman terakhir.",
-        "cn": "请签署末页。"
+        "scene": "日常表达",
+        "id": "Rumah baru itu punya halaman luas untuk taman kecil.",
+        "cn": "新房有个大院子，可以建个小花园。"
       }
     ]
   },
@@ -226055,88 +226413,3914 @@ const bitVocabDB = {
         "cn": "进度报告每季度提交给项目业主。"
       }
     ]
+  },
+  "diskusi": {
+    "word": "diskusi",
+    "cn": "讨论；商议",
+    "en": "discussion",
+    "root": "diskusi（外来词，经荷兰语 discussie）",
+    "forms": [
+      {
+        "form": "diskusi",
+        "pos": "名词",
+        "mean": "讨论"
+      },
+      {
+        "form": "berdiskusi",
+        "pos": "动词",
+        "mean": "进行讨论"
+      },
+      {
+        "form": "mendiskusikan",
+        "pos": "及物动词",
+        "mean": "讨论（某事）"
+      },
+      {
+        "form": "didiskusikan",
+        "pos": "被动",
+        "mean": "被讨论"
+      }
+    ],
+    "formsNote": "ber- → berdiskusi（不及物）；meN-…-kan → mendiskusikan；被动 di-…-kan → didiskusikan。",
+    "note": "正式会议/书面高频，比 obrolan（闲聊）正式。常见搭配：diskusi panel（座谈）、diskusi hangat（热烈讨论）、masuk ke dalam diskusi（进入讨论）、topik diskusi（讨论议题）。",
+    "synonyms": [
+      "perbincangan（交谈）",
+      "pembahasan（商讨）",
+      "musyawarah（协商）"
+    ],
+    "antonyms": [
+      "—"
+    ],
+    "examples": [
+      {
+        "scene": "商务沟通",
+        "id": "Perusahaan mengadakan diskusi panel tentang tata kelola tambang berkelanjutan.",
+        "cn": "公司举办关于可持续矿业治理的专题讨论。"
+      },
+      {
+        "scene": "项目管理",
+        "id": "Jadwal pelaksanaan masih didiskusikan oleh tim proyek.",
+        "cn": "实施日程仍由项目团队讨论中。"
+      },
+      {
+        "scene": "日常表达",
+        "id": "Silakan berdiskusi dengan rekan kerja sebelum memutuskan.",
+        "cn": "决定前请与同事商量。"
+      }
+    ]
+  },
+  "data": {
+    "word": "data",
+    "cn": "数据；资料",
+    "en": "data",
+    "root": "data（外来词，拉丁语 datum 经荷兰语）",
+    "forms": [
+      {
+        "form": "data",
+        "pos": "名词",
+        "mean": "数据"
+      },
+      {
+        "form": "pengolahan data",
+        "pos": "名词短语",
+        "mean": "数据处理"
+      },
+      {
+        "form": "berdata",
+        "pos": "动词",
+        "mean": "具备数据"
+      }
+    ],
+    "formsNote": "复合高频：pengolahan data（数据处理）、sumber data（数据来源）、data pendukung（支撑数据）。",
+    "note": "商务报告/研究基础词。常见搭配：mengumpulkan data（收集数据）、menganalisis data（分析数据）、berdasarkan data（基于数据）、data valid（有效数据）。与 informasi 区分：data 是原始资料，informasi 是经处理的有用信息。",
+    "synonyms": [
+      "informasi（信息）",
+      "statistik（统计）"
+    ],
+    "antonyms": [
+      "—"
+    ],
+    "examples": [
+      {
+        "scene": "项目管理",
+        "id": "Semua keputusan investasi harus berdasarkan data yang valid.",
+        "cn": "一切投资决策必须基于有效数据。"
+      },
+      {
+        "scene": "商务沟通",
+        "id": "Data penjualan kuartal ini menunjukkan peningkatan signifikan.",
+        "cn": "本季度销售数据显示显著增长。"
+      },
+      {
+        "scene": "日常表达",
+        "id": "Mohon lengkapi data diri sebelum mendaftar.",
+        "cn": "报名前请补全个人资料。"
+      }
+    ]
+  },
+  "pertumbuhan": {
+    "word": "pertumbuhan",
+    "cn": "增长；成长",
+    "en": "growth",
+    "root": "tumbuh（生长）+ peN-…-an → pertumbuhan",
+    "forms": [
+      {
+        "form": "pertumbuhan",
+        "pos": "名词",
+        "mean": "增长"
+      },
+      {
+        "form": "tumbuh",
+        "pos": "动词",
+        "mean": "生长；增长"
+      },
+      {
+        "form": "menumbuhkan",
+        "pos": "及物动词",
+        "mean": "培育；助长"
+      },
+      {
+        "form": "tumbuhan",
+        "pos": "名词",
+        "mean": "植物（同族异义词）"
+      }
+    ],
+    "formsNote": "peN-…-an 名物化：tumbuh → pertumbuhan；meN-…-kan 使动：menumbuhkan。注意 tumbuhan（植物）同族但语义独立。",
+    "note": "经济/商业高频：pertumbuhan ekonomi（经济增长）、pertumbuhan penjualan（销售增长）、pertumbuhan industri（产业增长）、angka pertumbuhan（增长率）。",
+    "synonyms": [
+      "perkembangan（发展）",
+      "kenaikan（上升）"
+    ],
+    "antonyms": [
+      "penurunan（下降）",
+      "kemunduran（衰退）"
+    ],
+    "examples": [
+      {
+        "scene": "商务沟通",
+        "id": "Pertumbuhan permintaan nikel mendorong ekspansi smelter baru.",
+        "cn": "镍需求增长推动新冶炼厂扩建。"
+      },
+      {
+        "scene": "项目管理",
+        "id": "Pertumbuhan jumlah karyawan harus diimbangi pelatihan K3.",
+        "cn": "员工数量增长须以安全培训配套。"
+      },
+      {
+        "scene": "日常表达",
+        "id": "Pertumbuhan anak usia sekolah perlu dipantau orang tua.",
+        "cn": "学龄儿童的成长需要家长关注。"
+      }
+    ]
+  },
+  "pasal": {
+    "word": "pasal",
+    "cn": "条款；（法律/合同）条",
+    "en": "article; clause",
+    "root": "pasal（阿拉伯语借词 faṣl 经波斯/爪哇语）",
+    "forms": [
+      {
+        "form": "pasal",
+        "pos": "名词",
+        "mean": "条款"
+      },
+      {
+        "form": "pasalnya",
+        "pos": "名词",
+        "mean": "该条款"
+      },
+      {
+        "form": "pasal-pasal",
+        "pos": "复数",
+        "mean": "各条款"
+      }
+    ],
+    "formsNote": "pasal 用于法律条文编号；合同分款亦可用 ayat/ketentuan。",
+    "note": "合同与合规核心词。常见搭配：pasal 5 ayat 2（第5条第2款）、melanggar pasal（违反条款）、sesuai pasal（依条款）、ketentuan pasal（条款规定）、mencabut pasal（废止条款）。",
+    "synonyms": [
+      "ayat（款；节）",
+      "ketentuan（规定）",
+      "butir（条目）"
+    ],
+    "antonyms": [
+      "—"
+    ],
+    "examples": [
+      {
+        "scene": "商务谈判",
+        "id": "Pihak lawyer meninjau pasal-pasal kontrak sebelum penandatanganan.",
+        "cn": "法务团队在签署前逐条审查合同条款。"
+      },
+      {
+        "scene": "项目管理",
+        "id": "Pasal kerahasiaan berlaku bagi seluruh kontraktor proyek.",
+        "cn": "保密条款适用于项目全体承包商。"
+      },
+      {
+        "scene": "日常表达",
+        "id": "Pelanggaran pasal lalu lintas dapat didenda secara tegas.",
+        "cn": "违反交通法规条款将被明确罚款。"
+      }
+    ]
+  },
+  "realisasi": {
+    "word": "realisasi",
+    "cn": "落实；实现",
+    "en": "realization; implementation",
+    "root": "realisasi（外来词，经荷兰语 realisatie）",
+    "forms": [
+      {
+        "form": "realisasi",
+        "pos": "名词",
+        "mean": "落实；实现"
+      },
+      {
+        "form": "merealisasikan",
+        "pos": "及物动词",
+        "mean": "实现；落实"
+      },
+      {
+        "form": "tererealisasi",
+        "pos": "被动",
+        "mean": "得以实现"
+      },
+      {
+        "form": "direalisasikan",
+        "pos": "被动",
+        "mean": "被落实"
+      }
+    ],
+    "formsNote": "meN- → merealisasikan；被动 ter-/di-；名词 realisasi。",
+    "note": "项目/政策高频，比 terwujud 更正式。常见搭配：realisasi anggaran（预算执行）、realisasi proyek（项目落地）、target realisasi（落实目标）、realisasi 80%（完成率80%）。",
+    "synonyms": [
+      "pelaksanaan（实施）",
+      "pencapaian（达成）",
+      "terwujudnya（实现）"
+    ],
+    "antonyms": [
+      "wacana semata（空谈）",
+      "rencana belum terlaksana（未落实的计划）"
+    ],
+    "examples": [
+      {
+        "scene": "项目管理",
+        "id": "Realisasi proyek pembangunan pabrik mencapai 85 persen tahun ini.",
+        "cn": "工厂建设项目的落地率今年达到85%。"
+      },
+      {
+        "scene": "商务沟通",
+        "id": "Rencana ekspansi belum terealisasi karena keterlambatan izin.",
+        "cn": "扩张计划因许可延迟尚未落实。"
+      },
+      {
+        "scene": "日常表达",
+        "id": "Mimpi itu akhirnya direalisasikan setelah sepuluh tahun.",
+        "cn": "那个梦想十年后终于实现。"
+      }
+    ]
+  },
+  "deviasi": {
+    "word": "deviasi",
+    "cn": "偏差；偏离",
+    "en": "deviation",
+    "root": "deviasi（外来词，经荷兰语 deviatie ← 英语 deviation）",
+    "forms": [
+      {
+        "form": "deviasi",
+        "pos": "名词",
+        "mean": "偏差"
+      },
+      {
+        "form": "deviasi anggaran",
+        "pos": "名词短语",
+        "mean": "预算偏差"
+      },
+      {
+        "form": "menyimpang",
+        "pos": "动词",
+        "mean": "偏离（同义固有词）"
+      }
+    ],
+    "formsNote": "工程/项目管理借词；固有同义：menyimpang、penyimpangan。",
+    "note": "项目管理核心词。常见搭配：deviasi jadwal（进度偏差）、deviasi biaya（成本偏差）、deviasi anggaran（预算偏差）、analisis deviasi（偏差分析）、toleransi deviasi（容差）。",
+    "synonyms": [
+      "penyimpangan（偏离）",
+      "selisih（差额）"
+    ],
+    "antonyms": [
+      "kesesuaian（相符）",
+      "kepatuhan（遵从）"
+    ],
+    "examples": [
+      {
+        "scene": "项目管理",
+        "id": "Deviasi anggaran proyek melebihi lima persen dan memerlukan persetujuan direksi.",
+        "cn": "项目预算偏差超过5%，需总经理批准。"
+      },
+      {
+        "scene": "商务沟通",
+        "id": "Laporan triwulanan menjelaskan deviasi antara rencana dan realisasi.",
+        "cn": "季度报告说明计划与落实之间的偏差。"
+      },
+      {
+        "scene": "日常表达",
+        "id": "Kecil deviasi dari rute perjalanan tidak mengubah tujuan.",
+        "cn": "行程路线的小幅偏离不改变目的地。"
+      }
+    ]
+  },
+  "pengumuman": {
+    "word": "pengumuman",
+    "cn": "公告；通知",
+    "en": "announcement",
+    "root": "umum（公共的）+ peN-…-an → pengumuman",
+    "forms": [
+      {
+        "form": "pengumuman",
+        "pos": "名词",
+        "mean": "公告"
+      },
+      {
+        "form": "umum",
+        "pos": "形容词",
+        "mean": "公共的；一般的"
+      },
+      {
+        "form": "mengumumkan",
+        "pos": "及物动词",
+        "mean": "宣布"
+      },
+      {
+        "form": "diumumkan",
+        "pos": "被动",
+        "mean": "被公布"
+      },
+      {
+        "form": "umumnya",
+        "pos": "副词",
+        "mean": "通常"
+      }
+    ],
+    "formsNote": "peN-…-an 名物化：umum → pengumuman；meN-…-kan → mengumumkan；umumnya 为惯用副词（一般地）。",
+    "note": "行政/HR 高频。常见搭配：pengumuman resmi（正式公告）、memasang pengumuman（张贴公告）、pengumuman melalui email（邮件通知）、sehubungan dengan pengumuman（谨此通知）。",
+    "synonyms": [
+      "pemberitahuan（通知）",
+      "edaran（通告）",
+      "warta（消息）"
+    ],
+    "antonyms": [
+      "—"
+    ],
+    "examples": [
+      {
+        "scene": "项目管理",
+        "id": "Pengumuman tender proyek dipublikasikan di media nasional.",
+        "cn": "项目招标公告在国家媒体发布。"
+      },
+      {
+        "scene": "商务沟通",
+        "id": "Hasil seleksi karyawan baru akan diumumkan minggu depan.",
+        "cn": "新员工选拔结果将于下周公布。"
+      },
+      {
+        "scene": "日常表达",
+        "id": "Dengar pengumuman di bandara sebelum boarding.",
+        "cn": "登机前请留意机场广播通知。"
+      }
+    ]
+  },
+  "siaran": {
+    "word": "siaran",
+    "cn": "广播；播出；节目",
+    "en": "broadcast",
+    "root": "siar（播撒；传播）+ -an → siaran",
+    "forms": [
+      {
+        "form": "siaran",
+        "pos": "名词",
+        "mean": "广播；播出"
+      },
+      {
+        "form": "siar",
+        "pos": "动词",
+        "mean": "播撒；传播"
+      },
+      {
+        "form": "menyiarkan",
+        "pos": "及物动词",
+        "mean": "播出；转播"
+      },
+      {
+        "form": "disiarkan",
+        "pos": "被动",
+        "mean": "被播出"
+      },
+      {
+        "form": "penyiar",
+        "pos": "名词",
+        "mean": "播音员；播报员"
+      }
+    ],
+    "formsNote": "siar → siaran（-an 名物化）；meN-…-kan → menyiarkan；peN- → penyiar。",
+    "note": "媒体高频。常见搭配：siaran langsung（直播）、siaran pers（新闻通稿/发布会）、menyiarkan berita（播报新闻）、stasiun siaran（广播电台）。siaran pers 是发布会通稿的固定说法。",
+    "synonyms": [
+      "penyiaran（广播事业）",
+      "tayangan（播放内容）"
+    ],
+    "antonyms": [
+      "—"
+    ],
+    "examples": [
+      {
+        "scene": "商务沟通",
+        "id": "Konferensi pers disiarkan langsung melalui televisi nasional.",
+        "cn": "新闻发布会通过国家电视台直播。"
+      },
+      {
+        "scene": "项目管理",
+        "id": "Siaran pers proyek diresmikan menteri pekan lalu.",
+        "cn": "项目由部长主持奠基的新闻通稿上周发布。"
+      },
+      {
+        "scene": "日常表达",
+        "id": "Acara siaran pagi ini membahas kesehatan kerja.",
+        "cn": "今早的广播节目讨论职业健康。"
+      }
+    ]
+  },
+  "pidato": {
+    "word": "pidato",
+    "cn": "演讲；致辞",
+    "en": "speech; oration",
+    "root": "pidato（固有词，古爪哇 pitutur 同源）",
+    "forms": [
+      {
+        "form": "pidato",
+        "pos": "名词",
+        "mean": "演讲"
+      },
+      {
+        "form": "berpidato",
+        "pos": "动词",
+        "mean": "发表演讲"
+      },
+      {
+        "form": "pidatonya",
+        "pos": "名词",
+        "mean": "他的演讲"
+      }
+    ],
+    "formsNote": "ber- → berpidato（发表演说）。",
+    "note": "正式场合演讲。常见搭配：pidato pembukaan（开幕致辞）、pidato kunci（主旨演讲）、teks pidato（演讲稿）、berpidato di depan umum（公开发言）、amandemen pidato（修改讲稿）。",
+    "synonyms": [
+      "ceramah（讲演）",
+      "orasi（演说）",
+      "sambutan（致辞）"
+    ],
+    "antonyms": [
+      "—"
+    ],
+    "examples": [
+      {
+        "scene": "项目管理",
+        "id": "Direktur utama memberikan pidato pembukaan pada serah terima proyek.",
+        "cn": "总裁在项目移交仪式上发表开幕致辞。"
+      },
+      {
+        "scene": "商务沟通",
+        "id": "Naskah pidato harus diserahkan ke protokol dua jam sebelum acara.",
+        "cn": "演讲稿须在活动前两小时交礼宾处。"
+      },
+      {
+        "scene": "日常表达",
+        "id": "Ia berlatih pidato di depan cermin setiap malam.",
+        "cn": "他每晚对着镜子练习演讲。"
+      }
+    ]
+  },
+  "kementerian": {
+    "word": "kementerian",
+    "cn": "（政府）部；部委",
+    "en": "ministry",
+    "root": "menteri（部长，外来词 minister）+ ke-…-an → kementerian",
+    "forms": [
+      {
+        "form": "kementerian",
+        "pos": "名词",
+        "mean": "部；部委"
+      },
+      {
+        "form": "menteri",
+        "pos": "名词",
+        "mean": "部长"
+      },
+      {
+        "form": "kementerian negara",
+        "pos": "名词短语",
+        "mean": "国家部委"
+      }
+    ],
+    "formsNote": "ke-…-an 机构名物化：menteri → kementerian。",
+    "note": "印尼政府架构词。常见搭配：Kementerian ESDM（能矿部）、Kementerian Perindustrian（工业部）、surat dari kementerian（部委来文）、koordinasi dengan kementerian（与部委协调）。",
+    "synonyms": [
+      "departemen（部门）"
+    ],
+    "antonyms": [
+      "—"
+    ],
+    "examples": [
+      {
+        "scene": "项目管理",
+        "id": "Izin usaha pertambangan diproses melalui Kementerian ESDM.",
+        "cn": "矿业经营许可证通过能矿部办理。"
+      },
+      {
+        "scene": "商务沟通",
+        "id": "Perusahaan mengundang perwakilan kementerian ke groundbreaking.",
+        "cn": "公司邀请部委代表出席奠基仪式。"
+      },
+      {
+        "scene": "日常表达",
+        "id": "Beasiswa itu dikelola langsung oleh kementerian pendidikan.",
+        "cn": "该奖学金由教育部直接管理。"
+      }
+    ]
+  },
+  "pengirim": {
+    "word": "pengirim",
+    "cn": "寄件人；发送方",
+    "en": "sender",
+    "root": "kirim（寄送）+ peN- → pengirim",
+    "forms": [
+      {
+        "form": "pengirim",
+        "pos": "名词",
+        "mean": "寄件人"
+      },
+      {
+        "form": "kirim",
+        "pos": "动词",
+        "mean": "寄送"
+      },
+      {
+        "form": "mengirim",
+        "pos": "动词",
+        "mean": "寄出"
+      },
+      {
+        "form": "mengirimkan",
+        "pos": "及物动词",
+        "mean": "寄给（某人）"
+      },
+      {
+        "form": "pengiriman",
+        "pos": "名词",
+        "mean": "寄送（行为/过程）"
+      }
+    ],
+    "formsNote": "peN- → pengirim（施事）；peN-…-an → pengiriman（行为）；meN-…-kan → mengirimkan。",
+    "note": "邮件/物流高频，与 penerima（收件人）相对。常见搭配：alamat pengirim（寄件地址）、nama pengirim（寄件人姓名）、pengirim barang（发货方）、biaya pengiriman（运费）。",
+    "synonyms": [
+      "pengirim barang（发货方）"
+    ],
+    "antonyms": [
+      "penerima（收件人）"
+    ],
+    "examples": [
+      {
+        "scene": "商务沟通",
+        "id": "Periksa alamat pengirim sebelum membuka lampiran email.",
+        "cn": "打开邮件附件前先核对寄件地址。"
+      },
+      {
+        "scene": "项目管理",
+        "id": "Pengirim material bertanggung jawab atas keterlambatan kedatangan.",
+        "cn": "材料发货方对到货延迟负责。"
+      },
+      {
+        "scene": "日常表达",
+        "id": "Paket itu dikembalikan karena alamat pengirim tidak lengkap.",
+        "cn": "包裹因寄件人地址不全被退回。"
+      }
+    ]
+  },
+  "lampiran": {
+    "word": "lampiran",
+    "cn": "附件；附录",
+    "en": "attachment; annex",
+    "root": "lampir（附贴）+ -an → lampiran",
+    "forms": [
+      {
+        "form": "lampiran",
+        "pos": "名词",
+        "mean": "附件"
+      },
+      {
+        "form": "terlampir",
+        "pos": "形容词/分词",
+        "mean": "随附的"
+      },
+      {
+        "form": "melampirkan",
+        "pos": "及物动词",
+        "mean": "附上"
+      },
+      {
+        "form": "dilampirkan",
+        "pos": "被动",
+        "mean": "被附上"
+      }
+    ],
+    "formsNote": "meN-…-kan → melampirkan；被动 di-…-kan → dilampirkan；ter- → terlampir（随附，正式公文常用）。",
+    "note": "商务邮件核心词。常见搭配：seperti terlampir（如附件所示）、dokumen terlampir（随附文件）、melampirkan CV（附上简历）、dalam lampiran（见附件）。",
+    "synonyms": [
+      "terlampir（随附）",
+      "apendiks（附录）"
+    ],
+    "antonyms": [
+      "—"
+    ],
+    "examples": [
+      {
+        "scene": "商务沟通",
+        "id": "Dokumen penawaran harga kami lampirkan pada email ini.",
+        "cn": "报价文件随本邮件附上。"
+      },
+      {
+        "scene": "项目管理",
+        "id": "Berita acara pemeriksaan ditandatangani seperti terlampir.",
+        "cn": "验收会议纪要经签署，见附件。"
+      },
+      {
+        "scene": "日常表达",
+        "id": "Melamar pekerjaan dengan melampirkan portofolio terbaru.",
+        "cn": "求职时附上最新作品集。"
+      }
+    ]
+  },
+  "subjek": {
+    "word": "subjek",
+    "cn": "主题；主语",
+    "en": "subject",
+    "root": "subjek（外来词，经荷兰语 subject）",
+    "forms": [
+      {
+        "form": "subjek",
+        "pos": "名词",
+        "mean": "主题；主语"
+      },
+      {
+        "form": "subjeknya",
+        "pos": "名词",
+        "mean": "其主题"
+      },
+      {
+        "form": "subjek email",
+        "pos": "名词短语",
+        "mean": "邮件主题"
+      }
+    ],
+    "formsNote": "语法/邮件双义：语法中=主语；邮件中=主题行。",
+    "note": "邮件写作核心词。常见搭配：subjek email（邮件主题）、tulis subjek dengan jelas（主题写清楚）、subjek yang menarik（吸引人的主题）、subjek kalimat（句子的主语）。",
+    "synonyms": [
+      "topik（话题）",
+      "judul（标题）"
+    ],
+    "antonyms": [
+      "predikat（谓语）",
+      "objek（宾语）"
+    ],
+    "examples": [
+      {
+        "scene": "商务沟通",
+        "id": "Subjek email harus ringkas dan mencerminkan isi pesan.",
+        "cn": "邮件主题应简洁并反映内容。"
+      },
+      {
+        "scene": "项目管理",
+        "id": "Dalam kalimat itu, subjeknya adalah kontraktor pelaksana.",
+        "cn": "那个句子的主语是施工承包商。"
+      },
+      {
+        "scene": "日常表达",
+        "id": "Subjek diskusi hari ini adalah efisiensi energi.",
+        "cn": "今天讨论的主题是能源效率。"
+      }
+    ]
+  },
+  "pembuka": {
+    "word": "pembuka",
+    "cn": "开场；开头；开启者",
+    "en": "opener; opening",
+    "root": "buka（打开）+ peN- → pembuka",
+    "forms": [
+      {
+        "form": "pembuka",
+        "pos": "名词",
+        "mean": "开场；开头"
+      },
+      {
+        "form": "membuka",
+        "pos": "动词",
+        "mean": "打开；开启"
+      },
+      {
+        "form": "pembukaan",
+        "pos": "名词",
+        "mean": "开幕式"
+      },
+      {
+        "form": "dibuka",
+        "pos": "被动",
+        "mean": "被打开"
+      }
+    ],
+    "formsNote": "peN- → pembuka（施事/工具）；peN-…-an → pembukaan（活动/仪式）。",
+    "note": "演讲/会议高频，与 penutup 相对。常见搭配：pidato pembuka（开场致辞）、kata pembuka（开场白）、acara pembukaan（开幕式）、kalimat pembuka（开头句）。",
+    "synonyms": [
+      "pengantar（引言）",
+      "prolog（序幕）"
+    ],
+    "antonyms": [
+      "penutup（结尾）"
+    ],
+    "examples": [
+      {
+        "scene": "商务沟通",
+        "id": "Kalimat pembuka surat resmi harus sopan dan langsung.",
+        "cn": "正式信函的开头句须礼貌且直接。"
+      },
+      {
+        "scene": "项目管理",
+        "id": "Pembukaan proyek ditandai dengan upacara peletakan batu pertama.",
+        "cn": "项目以奠基仪式拉开序幕。"
+      },
+      {
+        "scene": "日常表达",
+        "id": "Pembuka pertandingan menyanyikan lagu kebangsaan.",
+        "cn": "开场主持人领唱国歌。"
+      }
+    ]
+  },
+  "penutup": {
+    "word": "penutup",
+    "cn": "结尾；闭幕；关闭者",
+    "en": "closing; closure",
+    "root": "tutup（关闭）+ peN- → penutup",
+    "forms": [
+      {
+        "form": "penutup",
+        "pos": "名词",
+        "mean": "结尾；闭幕"
+      },
+      {
+        "form": "menutup",
+        "pos": "动词",
+        "mean": "关闭"
+      },
+      {
+        "form": "penutupan",
+        "pos": "名词",
+        "mean": "闭幕式"
+      },
+      {
+        "form": "ditutup",
+        "pos": "被动",
+        "mean": "被关闭"
+      }
+    ],
+    "formsNote": "peN- → penutup；peN-…-an → penutupan。",
+    "note": "与 pembuka 相对。常见搭配：kata penutup（结束语）、pidato penutup（闭幕致辞）、acara penutupan（闭幕式）、pasal penutup（末条）、menutup rapat（结束会议）。",
+    "synonyms": [
+      "epilog（尾声）",
+      "kesimpulan（总结）"
+    ],
+    "antonyms": [
+      "pembuka（开头）"
+    ],
+    "examples": [
+      {
+        "scene": "商务沟通",
+        "id": "Dalam kata penutup, ia mengucapkan terima kasih kepada semua pihak.",
+        "cn": "他在结束语中感谢各方。"
+      },
+      {
+        "scene": "项目管理",
+        "id": "Penutupan proyek direncanakan dengan audit dokumentasi final.",
+        "cn": "项目收尾计划包含最终文件审计。"
+      },
+      {
+        "scene": "日常表达",
+        "id": "Toko itu ditutup tepat pukul sembilan malam.",
+        "cn": "那家商店每晚九点准时打烊。"
+      }
+    ]
+  },
+  "tembusan": {
+    "word": "tembusan",
+    "cn": "抄送；（公文）抄送栏",
+    "en": "copy (cc); circular reference",
+    "root": "tembus（穿透；送达）+ -an → tembusan",
+    "forms": [
+      {
+        "form": "tembusan",
+        "pos": "名词",
+        "mean": "抄送"
+      },
+      {
+        "form": "tembus",
+        "pos": "动词",
+        "mean": "穿透；送达"
+      },
+      {
+        "form": "menembus",
+        "pos": "动词",
+        "mean": "穿过；突破"
+      }
+    ],
+    "formsNote": "公文用语：tembusan = 抄送给相关单位；日常亦指\"穿透\"。",
+    "note": "印尼正式公文固定栏目。常见搭配：tembusan kepada（抄送）、surat tembusan（抄送函）、dengan tembusan kepada menteri（抄送部长）。",
+    "synonyms": [
+      "salinan（副本）",
+      "cc（抄送标记）"
+    ],
+    "antonyms": [
+      "—"
+    ],
+    "examples": [
+      {
+        "scene": "商务沟通",
+        "id": "Surat keputusan dikirim dengan tembusan kepada direksi perusahaan.",
+        "cn": "决定书发出并抄送公司管理层。"
+      },
+      {
+        "scene": "项目管理",
+        "id": "Laporan insiden ditujukan kepada manajer dengan tembusan K3.",
+        "cn": "事故报告呈报经理并抄送安全部门。"
+      },
+      {
+        "scene": "日常表达",
+        "id": "Tembusan listrik menembus isolasi yang rusak.",
+        "cn": "电流击穿了破损的绝缘层。"
+      }
+    ]
+  },
+  "kop surat": {
+    "word": "kop surat",
+    "cn": "信头；公文头",
+    "en": "letterhead",
+    "root": "kop（外来词 kop ← 荷兰语 kop，信头）+ surat（信）",
+    "forms": [
+      {
+        "form": "kop surat",
+        "pos": "名词",
+        "mean": "信头"
+      },
+      {
+        "form": "kop",
+        "pos": "名词",
+        "mean": "信头（简写）"
+      }
+    ],
+    "formsNote": "印尼公文格式术语；kop 亦指头（kopi 咖啡勿混淆）。",
+    "note": "商务信函格式词。常见搭配：menggunakan kop surat resmi（使用正式信头）、kop surat perusahaan（公司信头）、nama tertera di kop surat（信头上的名称）。",
+    "synonyms": [
+      "kepala surat（信头）"
+    ],
+    "antonyms": [
+      "—"
+    ],
+    "examples": [
+      {
+        "scene": "商务沟通",
+        "id": "Surat resmi harus dicetak di atas kop surat perusahaan.",
+        "cn": "正式信函须打印在公司信头上。"
+      },
+      {
+        "scene": "项目管理",
+        "id": "Kop surat konsultan dicantumkan pada laporan bulanan.",
+        "cn": "顾问信头印在月度报告上。"
+      },
+      {
+        "scene": "日常表达",
+        "id": "Desain kop surat baru lebih sederhana dan modern.",
+        "cn": "新信头设计更简洁现代。"
+      }
+    ]
+  },
+  "pengarsipan": {
+    "word": "pengarsipan",
+    "cn": "归档；存档管理",
+    "en": "filing; archiving",
+    "root": "arsip（档案，外来词 archive）+ peN-…-an → pengarsipan",
+    "forms": [
+      {
+        "form": "pengarsipan",
+        "pos": "名词",
+        "mean": "归档"
+      },
+      {
+        "form": "arsip",
+        "pos": "名词",
+        "mean": "档案"
+      },
+      {
+        "form": "mengarsipkan",
+        "pos": "及物动词",
+        "mean": "归档"
+      },
+      {
+        "form": "diarsipkan",
+        "pos": "被动",
+        "mean": "被归档"
+      }
+    ],
+    "formsNote": "peN-…-an 名物化：arsip → pengarsipan；meN-…-kan → mengarsipkan。",
+    "note": "行政/文档管理词。常见搭配：sistem pengarsipan（归档系统）、petugas pengarsipan（档案员）、pengarsipan dokumen kontrak（合同归档）、pengarsipan digital（数字归档）。",
+    "synonyms": [
+      "penataan dokumen（文件整理）",
+      "filing（归档，外来）"
+    ],
+    "antonyms": [
+      "—"
+    ],
+    "examples": [
+      {
+        "scene": "项目管理",
+        "id": "Pengarsipan dokumen kontrak mengikuti standar retensi lima tahun.",
+        "cn": "合同文件归档按五年保存期标准执行。"
+      },
+      {
+        "scene": "商务沟通",
+        "id": "Email lama perlu diarsipkan agar kotak masuk tetap rapi.",
+        "cn": "旧邮件需要归档以保持收件箱整洁。"
+      },
+      {
+        "scene": "日常表达",
+        "id": "Ia bekerja di bagian pengarsipan perpustakaan kota.",
+        "cn": "她在市图书馆档案部门工作。"
+      }
+    ]
+  },
+  "penomoran": {
+    "word": "penomoran",
+    "cn": "编号",
+    "en": "numbering",
+    "root": "nomor（号码，外来词 nomor）+ peN-…-an → penomoran",
+    "forms": [
+      {
+        "form": "penomoran",
+        "pos": "名词",
+        "mean": "编号"
+      },
+      {
+        "form": "nomor",
+        "pos": "名词",
+        "mean": "号码；号"
+      },
+      {
+        "form": "menomori",
+        "pos": "及物动词",
+        "mean": "给……编号"
+      },
+      {
+        "form": "bernomor",
+        "pos": "形容词",
+        "mean": "有编号的"
+      }
+    ],
+    "formsNote": "peN-…-an：nomor → penomoran；meN-…-i → menomori。",
+    "note": "文档管理词。常见搭配：penomoran halaman（页码编号）、penomoran otomatis（自动编号）、sistem penomoran dokumen（文件编号系统）、surat bernomor（有编号的函件）。",
+    "synonyms": [
+      "penomoran halaman（页码）"
+    ],
+    "antonyms": [
+      "—"
+    ],
+    "examples": [
+      {
+        "scene": "项目管理",
+        "id": "Penomoran revisi gambar mengikuti kode proyek dan tanggal.",
+        "cn": "图纸修订编号遵循项目代码加日期规则。"
+      },
+      {
+        "scene": "商务沟通",
+        "id": "Penomoran halaman laporan dimulai dari halaman pendahuluan.",
+        "cn": "报告页码从前言页开始编排。"
+      },
+      {
+        "scene": "日常表达",
+        "id": "Rumah-rumah di kompleks itu bernomor ganjil di sisi kiri.",
+        "cn": "小区左侧门牌号为单数。"
+      }
+    ]
+  },
+  "tabel": {
+    "word": "tabel",
+    "cn": "表格",
+    "en": "table",
+    "root": "tabel（外来词，经荷兰语 tabel）",
+    "forms": [
+      {
+        "form": "tabel",
+        "pos": "名词",
+        "mean": "表格"
+      },
+      {
+        "form": "tabelnya",
+        "pos": "名词",
+        "mean": "该表"
+      },
+      {
+        "form": "dalam tabel",
+        "pos": "介词短语",
+        "mean": "在表中"
+      }
+    ],
+    "formsNote": "报告/数据展示借词；区分 grafik（图表）和 daftar（清单）。",
+    "note": "商务报告高频。常见搭配：lihat tabel di bawah（见下表）、tabel perbandingan（对比表）、mengisi tabel（填表）、ringkasan dalam tabel（表格汇总）。",
+    "synonyms": [
+      "daftar（清单）",
+      "matriks（矩阵）"
+    ],
+    "antonyms": [
+      "—"
+    ],
+    "examples": [
+      {
+        "scene": "项目管理",
+        "id": "Tabel jadwal pelaksanaan memuat tanggal mulai dan selesai setiap paket pekerjaan.",
+        "cn": "实施进度表包含各工作包的开工与完工日期。"
+      },
+      {
+        "scene": "商务沟通",
+        "id": "Data harga kompetitor disajikan dalam tabel perbandingan.",
+        "cn": "竞品价格数据以对比表呈现。"
+      },
+      {
+        "scene": "日常表达",
+        "id": "Ia menghafal tabel perkalian sejak kelas dua.",
+        "cn": "他二年级就背熟乘法表。"
+      }
+    ]
+  },
+  "apendiks": {
+    "word": "apendiks",
+    "cn": "附录",
+    "en": "appendix",
+    "root": "apendiks（外来词，经荷兰语 appendiks ← 拉丁 appendix）",
+    "forms": [
+      {
+        "form": "apendiks",
+        "pos": "名词",
+        "mean": "附录"
+      },
+      {
+        "form": "apendik",
+        "pos": "变体拼写",
+        "mean": "附录（次常用）"
+      }
+    ],
+    "formsNote": "正式报告用语；口语/一般文档多用 lampiran。",
+    "note": "与 lampiran 近义；apendiks 更正式且仅指书末附录，lampiran 可指任何随附文件。常见搭配：apendiks laporan（报告附录）、lampiran A / apendiks B。",
+    "synonyms": [
+      "lampiran（附件/附录）"
+    ],
+    "antonyms": [
+      "—"
+    ],
+    "examples": [
+      {
+        "scene": "项目管理",
+        "id": "Metodologi survei dijelaskan lengkap dalam apendiks laporan.",
+        "cn": "调查方法在报告附录中完整说明。"
+      },
+      {
+        "scene": "商务沟通",
+        "id": "Daftar istilah teknis ditempatkan pada apendiks dokumen tender.",
+        "cn": "技术术语表置于招标文件附录。"
+      },
+      {
+        "scene": "日常表达",
+        "id": "Buku itu memiliki apendiks berisi peta dan glossarium.",
+        "cn": "该书附录含地图和词汇表。"
+      }
+    ]
+  },
+  "pendengar": {
+    "word": "pendengar",
+    "cn": "听众；听者",
+    "en": "listener; audience",
+    "root": "dengar（听）+ peN- → pendengar",
+    "forms": [
+      {
+        "form": "pendengar",
+        "pos": "名词",
+        "mean": "听众"
+      },
+      {
+        "form": "mendengar",
+        "pos": "动词",
+        "mean": "听"
+      },
+      {
+        "form": "mendengarkan",
+        "pos": "及物动词",
+        "mean": "聆听"
+      },
+      {
+        "form": "didengarkan",
+        "pos": "被动",
+        "mean": "被聆听"
+      }
+    ],
+    "formsNote": "peN- → pendengar（施事）；meN- → mendengar；meN-…-kan → mendengarkan（专注听）。",
+    "note": "演讲/媒体词。常见搭配：para pendengar（各位听众）、menarik perhatian pendengar（吸引听众）、pendengar setia（忠实听众）、kesan pendengar（听众印象）。",
+    "synonyms": [
+      "audiens（观众/听众）"
+    ],
+    "antonyms": [
+      "pembicara（发言者）"
+    ],
+    "examples": [
+      {
+        "scene": "商务沟通",
+        "id": "Pembicara menyesuaikan gaya presentasi dengan profil pendengar.",
+        "cn": "演讲者根据听众背景调整呈现方式。"
+      },
+      {
+        "scene": "项目管理",
+        "id": "Sesi tanya jawab memberi ruang bagi pendengar menyampaikan keberatan.",
+        "cn": "问答环节让听众表达异议。"
+      },
+      {
+        "scene": "日常表达",
+        "id": "Podcast itu memiliki pendengar setia di seluruh nusantara.",
+        "cn": "那个播客在全群岛拥有忠实听众。"
+      }
+    ]
+  },
+  "tayangan": {
+    "word": "tayangan",
+    "cn": "（电视/屏幕）播出内容；节目",
+    "en": "screening; broadcast content",
+    "root": "tayang（上映；播出）+ -an → tayangan",
+    "forms": [
+      {
+        "form": "tayangan",
+        "pos": "名词",
+        "mean": "播出内容"
+      },
+      {
+        "form": "tayang",
+        "pos": "动词",
+        "mean": "上映；播出"
+      },
+      {
+        "form": "menayangkan",
+        "pos": "及物动词",
+        "mean": "播出（某节目）"
+      },
+      {
+        "form": "ditayangkan",
+        "pos": "被动",
+        "mean": "被播出"
+      }
+    ],
+    "formsNote": "tayang → tayangan（-an 名物化）；meN-…-kan → menayangkan。",
+    "note": "媒体词。常见搭配：tayangan ulang（重播）、tayangan langsung（直播）、jam tayang（播出时段）、ditayangkan nasional（全国播出）。与 siaran 区分：siaran 偏广播行为/机构，tayangan 偏播出的具体节目内容。",
+    "synonyms": [
+      "program（节目）",
+      "siaran（广播）"
+    ],
+    "antonyms": [
+      "—"
+    ],
+    "examples": [
+      {
+        "scene": "商务沟通",
+        "id": "Profil perusahaan ditayangkan pada program bisnis nasional.",
+        "cn": "公司宣传片在国家商业节目播出。"
+      },
+      {
+        "scene": "项目管理",
+        "id": "Video keselamatan kerja menjadi tayangan wajib setiap rapat awal bulan.",
+        "cn": "安全视频成为每月初会议的必播内容。"
+      },
+      {
+        "scene": "日常表达",
+        "id": "Tayangan ulang pertandingan dimulai pukul delapan malam.",
+        "cn": "比赛重播晚八点开始。"
+      }
+    ]
+  },
+  "panggung": {
+    "word": "panggung",
+    "cn": "舞台；讲台",
+    "en": "stage",
+    "root": "panggung（固有词）",
+    "forms": [
+      {
+        "form": "panggung",
+        "pos": "名词",
+        "mean": "舞台"
+      },
+      {
+        "form": "berpanggung",
+        "pos": "动词",
+        "mean": "设舞台（罕用）"
+      },
+      {
+        "form": "ke panggung",
+        "pos": "介词短语",
+        "mean": "上台"
+      }
+    ],
+    "formsNote": "常见派生：panggung sandiwara（戏剧舞台）、dipentaskan（被搬上舞台）。",
+    "note": "活动/演讲词。常见搭配：naik ke panggung（上台）、di atas panggung（在舞台上）、panggung utama（主舞台）、mengambil alih panggung（掌控全场）。",
+    "synonyms": [
+      "pentas（舞台，马来影响）",
+      "podium（讲台）"
+    ],
+    "antonyms": [
+      "—"
+    ],
+    "examples": [
+      {
+        "scene": "商务沟通",
+        "id": "Direktur naik ke panggung untuk memaparkan visi perusahaan.",
+        "cn": "总经理上台阐述公司愿景。"
+      },
+      {
+        "scene": "项目管理",
+        "id": "Gladi resik dilakukan di panggung utama aula serbaguna.",
+        "cn": "彩排在主会场舞台进行。"
+      },
+      {
+        "scene": "日常表达",
+        "id": "Anak itu berani tampil di panggung sekolah.",
+        "cn": "那孩子敢在学校舞台上表演。"
+      }
+    ]
+  },
+  "gladi resik": {
+    "word": "gladi resik",
+    "cn": "彩排；演练",
+    "en": "rehearsal; dry run",
+    "root": "gladi（演习，军事借词）+ resik（净场，源自 bersih\"干净\"→ gladi bersih 缩略）",
+    "forms": [
+      {
+        "form": "gladi resik",
+        "pos": "名词",
+        "mean": "彩排"
+      },
+      {
+        "form": "gladi",
+        "pos": "名词",
+        "mean": "演习"
+      },
+      {
+        "form": "gladi bersih",
+        "pos": "名词短语",
+        "mean": "正式彩排（全要素）"
+      }
+    ],
+    "formsNote": "印尼语固定复合词；gladi bersih 指带妆全流程彩排。",
+    "note": "活动筹备核心词。常见搭配：gladi resik acara（活动彩排）、jadwal gladi resik（彩排日程）、melakukan gladi resik（进行彩排）。",
+    "synonyms": [
+      "latihan terakhir（最后演练）",
+      "uji coba（试运行）"
+    ],
+    "antonyms": [
+      "—"
+    ],
+    "examples": [
+      {
+        "scene": "项目管理",
+        "id": "Gladi resik serah terima proyek digelar sehari sebelum acara.",
+        "cn": "项目移交仪式彩排在活动前一天举行。"
+      },
+      {
+        "scene": "商务沟通",
+        "id": "Seluruh pembicara wajib hadir pada gladi resik pukul tiga sore.",
+        "cn": "全体演讲者须出席下午三点彩排。"
+      },
+      {
+        "scene": "日常表达",
+        "id": "Tim teater melakukan gladi bersih malam ini.",
+        "cn": "剧组今晚进行带妆彩排。"
+      }
+    ]
+  },
+  "gestur": {
+    "word": "gestur",
+    "cn": "手势；体态",
+    "en": "gesture",
+    "root": "gestur（外来词，经荷兰语 gestuur ← 英语 gesture）",
+    "forms": [
+      {
+        "form": "gestur",
+        "pos": "名词",
+        "mean": "手势"
+      },
+      {
+        "form": "gestur tubuh",
+        "pos": "名词短语",
+        "mean": "肢体语言"
+      },
+      {
+        "form": "bergestur",
+        "pos": "动词",
+        "mean": "打手势"
+      }
+    ],
+    "formsNote": "演讲/沟通学术借词；固有近义 bahasa tubuh。",
+    "note": "演讲技巧词。常见搭配：gestur yang tegas（有力的手势）、menguatkan dengan gestur（用手势加强）、mengontrol gestur（控制手势）。",
+    "synonyms": [
+      "bahasa tubuh（肢体语言）",
+      "gerak isyarat（示意动作）"
+    ],
+    "antonyms": [
+      "—"
+    ],
+    "examples": [
+      {
+        "scene": "商务沟通",
+        "id": "Pembicara melatih gestur agar presentasi lebih meyakinkan.",
+        "cn": "演讲者训练手势让汇报更有说服力。"
+      },
+      {
+        "scene": "项目管理",
+        "id": "Gestur tubuh pewawancara menunjukkan keterbukaan terhadap usulan.",
+        "cn": "谈判方的肢体语言显示对提案的开放态度。"
+      },
+      {
+        "scene": "日常表达",
+        "id": "Ia menjelaskan arah jalan dengan gestur tangan.",
+        "cn": "他用手势比划指路。"
+      }
+    ]
+  },
+  "retorika": {
+    "word": "retorika",
+    "cn": "修辞；雄辩术",
+    "en": "rhetoric",
+    "root": "retorika（外来词，经荷兰语 retoriek ← 拉丁 rhetorica）",
+    "forms": [
+      {
+        "form": "retorika",
+        "pos": "名词",
+        "mean": "修辞"
+      },
+      {
+        "form": "retoris",
+        "pos": "形容词",
+        "mean": "修辞的"
+      },
+      {
+        "form": "beretorika",
+        "pos": "动词",
+        "mean": "运用修辞"
+      }
+    ],
+    "formsNote": "正式/学术借词；日常少用。",
+    "note": "演讲与写作理论词。常见搭配：kemampuan retorika（修辞能力）、retorika persuasif（说服性修辞）、seni retorika（雄辩艺术）、retorika politik（政治 rhetoric）。",
+    "synonyms": [
+      "ilmu pidato（演讲术）",
+      "gaya bahasa（文风）"
+    ],
+    "antonyms": [
+      "—"
+    ],
+    "examples": [
+      {
+        "scene": "商务沟通",
+        "id": "Pidatonya penuh retorika namun tetap berdasarkan data.",
+        "cn": "他的演讲修辞丰富但始终以数据为据。"
+      },
+      {
+        "scene": "项目管理",
+        "id": "Laporan teknis sebaiknya minim retorika dan maksimal fakta.",
+        "cn": "技术报告应最少修辞、最多事实。"
+      },
+      {
+        "scene": "日常表达",
+        "id": "Kelas retorika melatih cara menyusun argumen.",
+        "cn": "修辞课训练构建论点的方法。"
+      }
+    ]
+  },
+  "interaksi": {
+    "word": "interaksi",
+    "cn": "互动；相互作用",
+    "en": "interaction",
+    "root": "interaksi（外来词，经荷兰语 interactie ← 英语 interaction）",
+    "forms": [
+      {
+        "form": "interaksi",
+        "pos": "名词",
+        "mean": "互动"
+      },
+      {
+        "form": "berinteraksi",
+        "pos": "动词",
+        "mean": "进行互动"
+      },
+      {
+        "form": "saling berinteraksi",
+        "pos": "动词短语",
+        "mean": "相互交流"
+      }
+    ],
+    "formsNote": "ber- → berinteraksi dengan（与……互动）。",
+    "note": "培训/会议高频。常见搭配：interaksi dengan audiens（与听众互动）、interaksi sosial（社会交往）、berinteraksi langsung（直接交流）、meningkatkan interaksi（增强互动）。",
+    "synonyms": [
+      "hubungan timbal balik（双向交流）",
+      "ajang silaturahmi（联谊场合）"
+    ],
+    "antonyms": [
+      "monolog（独白）"
+    ],
+    "examples": [
+      {
+        "scene": "商务沟通",
+        "id": "Sesi presentasi dibuat interaktif untuk memancing interaksi peserta.",
+        "cn": "报告环节设计为互动式以带动参与。"
+      },
+      {
+        "scene": "项目管理",
+        "id": "Interaksi harian antara operator dan supervisor mencegah kesalahan proses.",
+        "cn": "操作员与主管的日常互动可防止流程差错。"
+      },
+      {
+        "scene": "日常表达",
+        "id": "Anak belajar bahasa melalui interaksi dengan teman sebaya.",
+        "cn": "孩子通过与同龄人交往学习语言。"
+      }
+    ]
+  },
+  "antusiasme": {
+    "word": "antusiasme",
+    "cn": "热情；热忱",
+    "en": "enthusiasm",
+    "root": "antusiasme（外来词，经荷兰语 enthousiasme ← 希腊）",
+    "forms": [
+      {
+        "form": "antusiasme",
+        "pos": "名词",
+        "mean": "热情"
+      },
+      {
+        "form": "antusias",
+        "pos": "形容词",
+        "mean": "热情的"
+      },
+      {
+        "form": "dengan antusias",
+        "pos": "副词短语",
+        "mean": "热情地"
+      }
+    ],
+    "formsNote": "名词 antusiasme / 形容词 antusias 勿混。",
+    "note": "激励/反馈高频。常见搭配：antusiasme yang tinggi（高涨的热情）、menunjukkan antusiasme（展现热情）、membangkitkan antusiasme（激发热情）、peserta antusias（热情的参与者）。",
+    "synonyms": [
+      "semangat（精神/干劲）",
+      "gairah（激情）"
+    ],
+    "antonyms": [
+      "apatisme（冷漠）",
+      "kepasifan（消极）"
+    ],
+    "examples": [
+      {
+        "scene": "项目管理",
+        "id": "Antusiasme tim muda menjadi modal utama percepatan konstruksi.",
+        "cn": "年轻团队的热情是建设提速的重要资本。"
+      },
+      {
+        "scene": "商务沟通",
+        "id": "Pendengar menyambut usulan merger dengan antusiasme besar.",
+        "cn": "听众以极大热忱欢迎合并提案。"
+      },
+      {
+        "scene": "日常表达",
+        "id": "Ia belajar bahasa Indonesia dengan antusiasme luar biasa.",
+        "cn": "他以非凡的热情学习印尼语。"
+      }
+    ]
+  },
+  "kepercayaan diri": {
+    "word": "kepercayaan diri",
+    "cn": "自信",
+    "en": "self-confidence",
+    "root": "percaya（相信）+ ke-…-an → kepercayaan（信任）+ diri（自己）",
+    "forms": [
+      {
+        "form": "kepercayaan diri",
+        "pos": "名词",
+        "mean": "自信"
+      },
+      {
+        "form": "percaya diri",
+        "pos": "形容词短语",
+        "mean": "自信的"
+      },
+      {
+        "form": "percaya",
+        "pos": "动词",
+        "mean": "相信"
+      },
+      {
+        "form": "kepercayaan",
+        "pos": "名词",
+        "mean": "信任（注意：不单指自信）"
+      }
+    ],
+    "formsNote": "区分：kepercayaan（对他人的信任）≠ kepercayaan diri（对自己的信心=自信）；形容词 percaya diri。",
+    "note": "演讲/面试高频。常见搭配：membangun kepercayaan diri（建立自信）、kepercayaan diri yang tinggi（高度自信）、kurang percaya diri（缺乏自信）、tampil percaya diri（表现自信）。",
+    "synonyms": [
+      "keyakinan diri（自我确信）",
+      "rasa percaya diri（自信心）"
+    ],
+    "antonyms": [
+      "keraguan diri（自我怀疑）",
+      "rendah diri（自卑）"
+    ],
+    "examples": [
+      {
+        "scene": "商务沟通",
+        "id": "Kepercayaan diri tampil dalam cara ia menjawab pertanyaan tajam investor.",
+        "cn": "他回答投资者尖锐问题的方式展现了自信。"
+      },
+      {
+        "scene": "项目管理",
+        "id": "Pelatihan presentasi diberikan untuk membangun kepercayaan diri supervisor.",
+        "cn": "开展汇报培训以建立主管的自信心。"
+      },
+      {
+        "scene": "日常表达",
+        "id": "Berpengalaman di panggung kecil menumbuhkan kepercayaan diri.",
+        "cn": "小舞台的经验能培养自信。"
+      }
+    ]
+  },
+  "permintaan": {
+    "word": "permintaan",
+    "cn": "请求；询盘",
+    "en": "request; inquiry",
+    "root": "minta（请求）+ per-…-an",
+    "forms": [
+      {
+        "form": "permintaan",
+        "pos": "名词",
+        "mean": "请求；询盘"
+      },
+      {
+        "form": "meminta",
+        "pos": "动词",
+        "mean": "请求"
+      },
+      {
+        "form": "diminta",
+        "pos": "被动",
+        "mean": "被要求"
+      }
+    ],
+    "formsNote": "per-…-an 名物化；meN- → meminta；di- → diminta。",
+    "note": "商务固定搭配：permintaan penawaran（询价单）、surat permintaan（请求函）、sesuai permintaan（按要求）。",
+    "synonyms": [
+      "permohonan（申请）"
+    ],
+    "antonyms": [
+      "penawaran（报价/提供）"
+    ],
+    "examples": [
+      {
+        "scene": "商务谈判",
+        "id": "Kami mengajukan permintaan penawaran resmi kepada tiga pemasok.",
+        "cn": "我们向三家供应商提交了正式询价。"
+      },
+      {
+        "scene": "商务沟通",
+        "id": "Produk dikirim sesuai permintaan khusus pelanggan.",
+        "cn": "产品按客户特殊要求发货。"
+      },
+      {
+        "scene": "日常表达",
+        "id": "Permintaan maaf disampaikan secara terbuka.",
+        "cn": "道歉被公开表达。"
+      }
+    ]
+  },
+  "kesiapan": {
+    "word": "kesiapan",
+    "cn": "准备就绪",
+    "en": "readiness",
+    "root": "siap（准备好的）+ ke-…-an",
+    "forms": [
+      {
+        "form": "kesiapan",
+        "pos": "名词",
+        "mean": "准备"
+      },
+      {
+        "form": "siap",
+        "pos": "形容词",
+        "mean": "准备好的"
+      },
+      {
+        "form": "menyiapkan",
+        "pos": "及物动词",
+        "mean": "准备"
+      }
+    ],
+    "formsNote": "ke-…-an 抽象名词；meN-…-kan → menyiapkan。",
+    "note": "kesiapan mental（心理准备）、kesiapan teknis（技术准备）、dalam kesiapan（准备就绪）。",
+    "synonyms": [
+      "persiapan（筹备）"
+    ],
+    "antonyms": [
+      "ketidaksiapan（未准备好）"
+    ],
+    "examples": [
+      {
+        "scene": "项目管理",
+        "id": "Tingkat kesiapan tim menentukan keberhasilan negosiasi.",
+        "cn": "团队的准备程度决定谈判成败。"
+      },
+      {
+        "scene": "商务沟通",
+        "id": "Kami mengumumkan kesiapan untuk memulai proyek bulan depan.",
+        "cn": "我们宣布下月启动项目的准备已就绪。"
+      },
+      {
+        "scene": "日常表达",
+        "id": "Latihan gladi resik menunjukkan kesiapan para pemain.",
+        "cn": "彩排展现了演员们的准备状态。"
+      }
+    ]
+  },
+  "pembicaraan": {
+    "word": "pembicaraan",
+    "cn": "商谈；会谈",
+    "en": "talks; discussion",
+    "root": "bicara（说话）+ peN-…-an",
+    "forms": [
+      {
+        "form": "pembicaraan",
+        "pos": "名词",
+        "mean": "商谈"
+      },
+      {
+        "form": "berbicara",
+        "pos": "动词",
+        "mean": "谈话"
+      },
+      {
+        "form": "pembicara",
+        "pos": "名词",
+        "mean": "发言人"
+      }
+    ],
+    "formsNote": "peN-…-an 名物化；ber- → berbicara；peN- → pembicara。",
+    "note": "meja pembicaraan（谈判桌）、membuka pembicaraan（开启会谈）、menengahi pembicaraan（斡旋会谈）。比 diskusi 正式。",
+    "synonyms": [
+      "perundingan（磋商）",
+      "perbincangan（交谈）"
+    ],
+    "antonyms": [
+      "—"
+    ],
+    "examples": [
+      {
+        "scene": "商务谈判",
+        "id": "Pembicaraan awal berfokus pada harga dan jadwal.",
+        "cn": "初期会谈聚焦价格与日程。"
+      },
+      {
+        "scene": "项目管理",
+        "id": "Meja pembicaraan disiapkan dengan dokumentasi lengkap.",
+        "cn": "谈判桌备好了全套文件。"
+      },
+      {
+        "scene": "日常表达",
+        "id": "Pembicaraan hangat membuat suasana menjadi santai.",
+        "cn": "热烈的谈话让气氛轻松起来。"
+      }
+    ]
+  },
+  "undangan": {
+    "word": "undangan",
+    "cn": "邀请；邀请函",
+    "en": "invitation",
+    "root": "undang（邀请）+ -an",
+    "forms": [
+      {
+        "form": "undangan",
+        "pos": "名词",
+        "mean": "邀请/邀请函"
+      },
+      {
+        "form": "mengundang",
+        "pos": "动词",
+        "mean": "邀请"
+      },
+      {
+        "form": "diundang",
+        "pos": "被动",
+        "mean": "被邀请"
+      }
+    ],
+    "formsNote": "-an 名物化；meN- → mengundang；di- → diundang。",
+    "note": "undangan resmi（正式邀请）、menerima undangan（接受邀请）、menolak undangan（谢绝邀请）、balasan undangan（回函）。",
+    "synonyms": [
+      "ajakan（邀约）"
+    ],
+    "antonyms": [
+      "penolakan（拒绝）"
+    ],
+    "examples": [
+      {
+        "scene": "商务沟通",
+        "id": "Undangan rapat pembukaan dikirim seminggu sebelum acara.",
+        "cn": "开幕会议邀请提前一周发出。"
+      },
+      {
+        "scene": "商务谈判",
+        "id": "Kami mengundang pimpinan supplier untuk bertemu langsung.",
+        "cn": "我们邀请供应商高层直接会面。"
+      },
+      {
+        "scene": "日常表达",
+        "id": "Ia diundang menjadi pembicara tamu di acara sekolah.",
+        "cn": "他受邀在学校活动担任嘉宾演讲。"
+      }
+    ]
+  },
+  "kehadiran": {
+    "word": "kehadiran",
+    "cn": "出席；到场",
+    "en": "attendance; presence",
+    "root": "hadir（出席）+ ke-…-an",
+    "forms": [
+      {
+        "form": "kehadiran",
+        "pos": "名词",
+        "mean": "出席"
+      },
+      {
+        "form": "hadir",
+        "pos": "动词",
+        "mean": "出席"
+      },
+      {
+        "form": "kehadiran",
+        "pos": "名词",
+        "mean": "presence 同形"
+      }
+    ],
+    "formsNote": "ke-…-an 抽象名词。",
+    "note": "konfirmasi kehadiran（确认出席）、mencatat kehadiran（记录出勤）、membuktikan kehadiran（证明在场）、menghargai kehadiran（感谢出席）。",
+    "synonyms": [
+      "ketidakhadiran 反义",
+      "partisipasi（参与）"
+    ],
+    "antonyms": [
+      "ketidakhadiran（缺席）"
+    ],
+    "examples": [
+      {
+        "scene": "商务沟通",
+        "id": "Kehadiran direksi pada penandatanganan sangat penting.",
+        "cn": "管理层出席签约仪式至关重要。"
+      },
+      {
+        "scene": "项目管理",
+        "id": "Absensi mencatat kehadiran semua kontraktor harian.",
+        "cn": "考勤记录每日记录所有承包商出勤。"
+      },
+      {
+        "scene": "日常表达",
+        "id": "Kehadiranmu membuat acara ini istimewa.",
+        "cn": "你的出席让本次活动特别。"
+      }
+    ]
+  },
+  "pembukaan": {
+    "word": "pembukaan",
+    "cn": "开场；开幕",
+    "en": "opening",
+    "root": "buka（打开）+ peN-…-an",
+    "forms": [
+      {
+        "form": "pembukaan",
+        "pos": "名词",
+        "mean": "开幕/开场"
+      },
+      {
+        "form": "membuka",
+        "pos": "动词",
+        "mean": "打开"
+      },
+      {
+        "form": "dibuka",
+        "pos": "被动",
+        "mean": "被打开"
+      }
+    ],
+    "formsNote": "peN-…-an；meN- → membuka；di- → dibuka。",
+    "note": "pidato pembukaan（开幕致辞）、kata pembukaan（开场白）、acara pembukaan（开幕式）、meja pembukaan 无此搭配。",
+    "synonyms": [
+      "awal（开始）"
+    ],
+    "antonyms": [
+      "penutupan（闭幕）"
+    ],
+    "examples": [
+      {
+        "scene": "项目管理",
+        "id": "Upacara pembukaan proyek dihadiri bupati setempat.",
+        "cn": "项目奠基仪式有县长出席。"
+      },
+      {
+        "scene": "商务沟通",
+        "id": "Kalimat pembukaan surat harus sopan dan langsung.",
+        "cn": "信函开场白须礼貌且直接。"
+      },
+      {
+        "scene": "日常表达",
+        "id": "Pembukaan pameran digelar akhir pekan ini.",
+        "cn": "展览开幕式于本周末举行。"
+      }
+    ]
+  },
+  "ruang rapat": {
+    "word": "ruang rapat",
+    "cn": "会议室",
+    "en": "meeting room",
+    "root": "ruang（空间）+ rapat（会议）",
+    "forms": [
+      {
+        "form": "ruang rapat",
+        "pos": "名词",
+        "mean": "会议室"
+      },
+      {
+        "form": "ruang tunggu",
+        "pos": "名词",
+        "mean": "等候室"
+      },
+      {
+        "form": "ruang makan",
+        "pos": "名词",
+        "mean": "餐厅"
+      }
+    ],
+    "formsNote": "ruang + 名词 构成场所词。",
+    "note": "reservasi ruang rapat（预订会议室）、ruang rapat utama（主会议室）、fasilitas ruang rapat（会议室设施）。",
+    "synonyms": [
+      "aula（礼堂）"
+    ],
+    "antonyms": [
+      "—"
+    ],
+    "examples": [
+      {
+        "scene": "商务沟通",
+        "id": "Ruang rapat lantai tiga bisa menampung dua puluh orang.",
+        "cn": "三楼的会议室可容纳二十人。"
+      },
+      {
+        "scene": "项目管理",
+        "id": "Jadwal ruang rapat dikunci untuk sesi negosiasi pagi.",
+        "cn": "上午谈判时段的会议室已锁定。"
+      },
+      {
+        "scene": "日常表达",
+        "id": "Mereka menunggu di ruang rapat sejak pukul delapan.",
+        "cn": "他们从八点就在会议室等候。"
+      }
+    ]
+  },
+  "dokumentasi": {
+    "word": "dokumentasi",
+    "cn": "文件资料；文档工作",
+    "en": "documentation",
+    "root": "dokumen（文件，外来词）+ -asi",
+    "forms": [
+      {
+        "form": "dokumentasi",
+        "pos": "名词",
+        "mean": "成套资料"
+      },
+      {
+        "form": "dokumen",
+        "pos": "名词",
+        "mean": "单份文件"
+      },
+      {
+        "form": "mendokumentasikan",
+        "pos": "动词",
+        "mean": "记录存档"
+      }
+    ],
+    "formsNote": "-asi 外来后缀名物化。",
+    "note": "dokumentasi kontrak（合同文件）、melengkapi dokumentasi（备齐文件）、standar dokumentasi（文档标准）、sistem dokumentasi（文档系统）。",
+    "synonyms": [
+      "arsip（档案）"
+    ],
+    "antonyms": [
+      "—"
+    ],
+    "examples": [
+      {
+        "scene": "项目管理",
+        "id": "Dokumentasi proyek diserahkan kepada pemilik sesuai kontrak.",
+        "cn": "项目文件按合同移交业主。"
+      },
+      {
+        "scene": "商务沟通",
+        "id": "Mohon lengkapi dokumentasi sebelum proses audit.",
+        "cn": "审计前请备齐文件。"
+      },
+      {
+        "scene": "日常表达",
+        "id": "Fotografer itu mendokumentasikan acara secara profesional.",
+        "cn": "那位摄影师专业地记录了活动。"
+      }
+    ]
+  },
+  "wakil": {
+    "word": "wakil",
+    "cn": "代表；副手",
+    "en": "representative; deputy",
+    "root": "wakil（阿拉伯语借词）",
+    "forms": [
+      {
+        "form": "wakil",
+        "pos": "名词",
+        "mean": "代表"
+      },
+      {
+        "form": "mewakili",
+        "pos": "动词",
+        "mean": "代表"
+      },
+      {
+        "form": "wakil ketua",
+        "pos": "名词短语",
+        "mean": "副主席"
+      }
+    ],
+    "formsNote": "meN- → mewakili（代表）。",
+    "note": "wakil pribadi（私人代表）、bertindak sebagai wakil（以代表身份行事）、wakil rakyat（人民代表）、mewakili perusahaan（代表公司）。",
+    "synonyms": [
+      "delegasi（代表团）",
+      "perwakilan（代表处）"
+    ],
+    "antonyms": [
+      "—"
+    ],
+    "examples": [
+      {
+        "scene": "商务谈判",
+        "id": "Wakil kami datang dengan surat kuasa penuh.",
+        "cn": "我方代表持全权授权书到场。"
+      },
+      {
+        "scene": "商务沟通",
+        "id": "Dia mewakili perusahaan pada konferensi industri.",
+        "cn": "他代表公司出席行业大会。"
+      },
+      {
+        "scene": "日常表达",
+        "id": "Wakil kepala sekolah membuka acara olahraga.",
+        "cn": "副校长主持运动会开幕式。"
+      }
+    ]
+  },
+  "kuasa": {
+    "word": "kuasa",
+    "cn": "权力；代理权",
+    "en": "authority; power of attorney",
+    "root": "kuasa（阿拉伯语借词）",
+    "forms": [
+      {
+        "form": "kuasa",
+        "pos": "名词",
+        "mean": "权力/代理"
+      },
+      {
+        "form": "berkuasa",
+        "pos": "动词",
+        "mean": "掌权"
+      },
+      {
+        "form": "diberi kuasa",
+        "pos": "被动短语",
+        "mean": "获授权"
+      }
+    ],
+    "formsNote": "ber- → berkuasa（有权势的）。",
+    "note": "kuasa hukum（法律代理人）、surat kuasa（授权书）、diberi kuasa untuk（获授权做……）、melampaui kuasa（越权）。谈判高频授权词。",
+    "synonyms": [
+      "wewenang（权限）",
+      "otoritas（权威）"
+    ],
+    "antonyms": [
+      "—"
+    ],
+    "examples": [
+      {
+        "scene": "商务谈判",
+        "id": "Saya diberi kuasa oleh direksi untuk menandatangani prakontrak.",
+        "cn": "我获董事会授权签署预合同。"
+      },
+      {
+        "scene": "商务沟通",
+        "id": "Surat kuasa asli harus dibawa saat verifikasi.",
+        "cn": "验证时必须出示授权书原件。"
+      },
+      {
+        "scene": "日常表达",
+        "id": "Pejabat itu dituduh melampaui kuasanya.",
+        "cn": "那名官员被指控越权。"
+      }
+    ]
+  },
+  "otoritas": {
+    "word": "otoritas",
+    "cn": "授权；权威；官方",
+    "en": "authority",
+    "root": "otoritas（外来词 autoriteit）",
+    "forms": [
+      {
+        "form": "otoritas",
+        "pos": "名词",
+        "mean": "权威/官方"
+      },
+      {
+        "form": "otoritatif",
+        "pos": "形容词",
+        "mean": "权威的"
+      }
+    ],
+    "formsNote": "外来词根 +-atif 形容词化。",
+    "note": "otoritas pelabuhan（港务局）、otoritas keuangan（金融管理局）、keputusan otoritas（官方决定）、memiliki otoritas penuh（拥有全权）。",
+    "synonyms": [
+      "wewenang（权限）",
+      "pejabat（官员）"
+    ],
+    "antonyms": [
+      "—"
+    ],
+    "examples": [
+      {
+        "scene": "项目管理",
+        "id": "Izin ekspor harus disetujui otoritas setempat.",
+        "cn": "出口许可须经地方官方批准。"
+      },
+      {
+        "scene": "商务沟通",
+        "id": "Perusahaan mengakui otoritas lembaga pengawas independen.",
+        "cn": "公司承认独立监管机构的权威。"
+      },
+      {
+        "scene": "日常表达",
+        "id": "Sumber otoritas menyebutkan jadwal baru pekan depan.",
+        "cn": "权威消息称新日程下周公布。"
+      }
+    ]
+  },
+  "mandat": {
+    "word": "mandat",
+    "cn": "授权；委任",
+    "en": "mandate",
+    "root": "mandat（外来词）",
+    "forms": [
+      {
+        "form": "mandat",
+        "pos": "名词",
+        "mean": "授权/委任"
+      },
+      {
+        "form": "bermandat",
+        "pos": "动词",
+        "mean": "受委任"
+      },
+      {
+        "form": "mendapat mandat",
+        "pos": "动词短语",
+        "mean": "获得授权"
+      }
+    ],
+    "formsNote": "ber- → bermandat（较少用，多用短语）。",
+    "note": "mandat tertulis（书面授权）、menerima mandat（接受委任）、mandat dari direksi（董事会授权）、melebihi mandat（越权）。比 kuasa 更正式、更书面。",
+    "synonyms": [
+      "kuasa（代理权）",
+      "wewenang（权限）"
+    ],
+    "antonyms": [
+      "—"
+    ],
+    "examples": [
+      {
+        "scene": "商务谈判",
+        "id": "Negosiator datang dengan mandat penuh dari pusat.",
+        "cn": "谈判代表携总部全权授权而来。"
+      },
+      {
+        "scene": "商务沟通",
+        "id": "Mandat untuk renegosiasi harga berlaku enam bulan.",
+        "cn": "重新谈判价格的授权有效期六个月。"
+      },
+      {
+        "scene": "日常表达",
+        "id": "Partai itu memenangkan mandat rakyat dalam pemilu.",
+        "cn": "该党在选举中赢得人民授权。"
+      }
+    ]
+  },
+  "kursi": {
+    "word": "kursi",
+    "cn": "座位；席位",
+    "en": "seat",
+    "root": "kursi（固有词）",
+    "forms": [
+      {
+        "form": "kursi",
+        "pos": "名词",
+        "mean": "座位"
+      },
+      {
+        "form": "kursi tamu",
+        "pos": "名词短语",
+        "mean": "客席"
+      },
+      {
+        "form": "berkursi",
+        "pos": "动词",
+        "mean": "设座（罕）"
+      }
+    ],
+    "formsNote": "场所语：kursi roda（轮椅）、kursi goyang（摇椅）。",
+    "note": "商务意象：kursi kosong（空位=缺席）、jumlah kursi（席位数）、mengambil kursi（入座）、menyediakan kursi（备座）。",
+    "synonyms": [
+      "tempat duduk（座位）"
+    ],
+    "antonyms": [
+      "—"
+    ],
+    "examples": [
+      {
+        "scene": "商务沟通",
+        "id": "Silakan pilih kursi yang paling nyaman, Pak.",
+        "cn": "先生请选最舒适的座位。"
+      },
+      {
+        "scene": "项目管理",
+        "id": "Kursi kosong di rapat kerja mencerminkan absensi tinggi.",
+        "cn": "工作会议上的空位反映了高缺席率。"
+      },
+      {
+        "scene": "日常表达",
+        "id": "Anak-anak berlomba mendapat kursi dekat jendela.",
+        "cn": "孩子们抢着坐靠窗的座位。"
+      }
+    ]
+  },
+  "asumsi": {
+    "word": "asumsi",
+    "cn": "假设；设想",
+    "en": "assumption",
+    "root": "asumsi（外来词）",
+    "forms": [
+      {
+        "form": "asumsi",
+        "pos": "名词",
+        "mean": "假设"
+      },
+      {
+        "form": "mengasumsikan",
+        "pos": "动词",
+        "mean": "假定"
+      },
+      {
+        "form": "berasumsi",
+        "pos": "动词",
+        "mean": "做假设"
+      }
+    ],
+    "formsNote": "meN-…-kan → mengasumsikan。",
+    "note": "berdasarkan asumsi（基于假设）、menguji asumsi（检验假设）、asumsi dasar（基本假设）、jangan mengambil asumsi（勿想当然）。谈判前需显式声明假设。",
+    "synonyms": [
+      "anggapan（推测）",
+      "praduga（预设）"
+    ],
+    "antonyms": [
+      "fakta（事实）"
+    ],
+    "examples": [
+      {
+        "scene": "商务谈判",
+        "id": "Jangan mengambil asumsi tentang volume tahun depan.",
+        "cn": "不要对明年销量想当然。"
+      },
+      {
+        "scene": "项目管理",
+        "id": "Asumsi dasar anggaran diuji ulang setiap kuartal.",
+        "cn": "预算基本假设每季度重新检验。"
+      },
+      {
+        "scene": "日常表达",
+        "id": "Asumsimu ternyata meleset jauh.",
+        "cn": "你的假设结果差得远。"
+      }
+    ]
+  },
+  "penawar": {
+    "word": "penawar",
+    "cn": "报价方；竞标者",
+    "en": "bidder",
+    "root": "tawar（讨价还价）+ peN-",
+    "forms": [
+      {
+        "form": "penawar",
+        "pos": "名词",
+        "mean": "报价方"
+      },
+      {
+        "form": "penawaran",
+        "pos": "名词",
+        "mean": "报价单"
+      },
+      {
+        "form": "menawar",
+        "pos": "动词",
+        "mean": "讨价还价"
+      }
+    ],
+    "formsNote": "peN- 施事；peN-…-an? penawaran 实为 tawar+-an；peN- 施事 penawar。",
+    "note": "penawar terbaik（最优报价方）、daftar penawar（竞标名单）、calon penawar（潜在竞标人）。与 penawaran（报价行为/单）区分：-N- 指人。",
+    "synonyms": [
+      "peserta tender（投标参与者）",
+      "bidder"
+    ],
+    "antonyms": [
+      "pembeli（买方）"
+    ],
+    "examples": [
+      {
+        "scene": "商务谈判",
+        "id": "Setiap penawar wajib menyerahkan jaminan partisipasi.",
+        "cn": "每位竞标者须提交参与保证金。"
+      },
+      {
+        "scene": "项目管理",
+        "id": "Panitia menilai tiga penawar berdasarkan harga dan mutu.",
+        "cn": "委员会按价格与质量评审三家报价方。"
+      },
+      {
+        "scene": "日常表达",
+        "id": "Penawar tertinggi mendapat hak negosiasi pertama.",
+        "cn": "出价最高者获得首轮谈判权。"
+      }
+    ]
+  },
+  "potongan": {
+    "word": "potongan",
+    "cn": "折扣；削减额",
+    "en": "discount; cut",
+    "root": "potong（切割）+ -an",
+    "forms": [
+      {
+        "form": "potongan",
+        "pos": "名词",
+        "mean": "折扣"
+      },
+      {
+        "form": "potong",
+        "pos": "动词",
+        "mean": "切割"
+      },
+      {
+        "form": "memotong",
+        "pos": "动词",
+        "mean": "切"
+      }
+    ],
+    "formsNote": "-an 被动结果名词；meN- → memotong。",
+    "note": "potongan harga（折扣）、mendapat potongan（获得折扣）、potongan lima persen（减5%）、potongan khusus（特别折扣）。",
+    "synonyms": [
+      "diskon（外来）",
+      "rabat（回扣）"
+    ],
+    "antonyms": [
+      "kenaikan（加价）"
+    ],
+    "examples": [
+      {
+        "scene": "商务谈判",
+        "id": "Kami memberikan potongan sepuluh persen untuk pembelian besar.",
+        "cn": "大批量采购我们给九折。"
+      },
+      {
+        "scene": "商务沟通",
+        "id": "Potongan harga tidak berlaku untuk produk promosi.",
+        "cn": "折扣不适用于促销品。"
+      },
+      {
+        "scene": "日常表达",
+        "id": "Ia mendapat potongan tiket karena kartu pelajar.",
+        "cn": "凭学生证他买到了优惠票。"
+      }
+    ]
+  },
+  "bersikeras": {
+    "word": "bersikeras",
+    "cn": "坚持（主张）",
+    "en": "to insist",
+    "root": "keras（硬）+ ber-…",
+    "forms": [
+      {
+        "form": "bersikeras",
+        "pos": "动词",
+        "mean": "坚持"
+      },
+      {
+        "form": "keras",
+        "pos": "形容词",
+        "mean": "硬的/强硬的"
+      },
+      {
+        "form": "sikerasan",
+        "pos": "名词",
+        "mean": "固执（罕）"
+      }
+    ],
+    "formsNote": "ber- + keras（状态动词化）。",
+    "note": "bersikeras pada harga（坚持价格）、bersikeras bahwa（坚持认为）、bersikeras untuk（执意要）；含不松口的固执意味，谈判中既是策略也是风险。",
+    "synonyms": [
+      "bertahan（坚持）",
+      "ngotot（口语：死咬不放）"
+    ],
+    "antonyms": [
+      "mengalah（让步）",
+      "bersedia（愿意让步）"
+    ],
+    "examples": [
+      {
+        "scene": "商务谈判",
+        "id": "Pihak supplier bersikeras pada harga pasar.",
+        "cn": "供应方坚持市场价。"
+      },
+      {
+        "scene": "商务沟通",
+        "id": "Meski dijanjikan bonus, ia bersikeras menyelesaikan tugas dulu.",
+        "cn": "尽管有奖金承诺，他仍坚持先完成任务。"
+      },
+      {
+        "scene": "日常表达",
+        "id": "Jangan bersikeras membeli barang di atas kemampuan.",
+        "cn": "别执意买超出能力的东西。"
+      }
+    ]
+  },
+  "bersedia": {
+    "word": "bersedia",
+    "cn": "愿意；准备（做）",
+    "en": "willing; prepared",
+    "root": "sedia（情愿/备有）+ ber-",
+    "forms": [
+      {
+        "form": "bersedia",
+        "pos": "动词",
+        "mean": "愿意"
+      },
+      {
+        "form": "sedia",
+        "pos": "形容词",
+        "mean": "现有的/情愿的"
+      },
+      {
+        "form": "kesediaan",
+        "pos": "名词",
+        "mean": "意愿"
+      }
+    ],
+    "formsNote": "ber- → bersedia；ke-…-an → kesediaan。",
+    "note": "bersedia untuk menurunkan（愿意下调）、bersedia menjual（愿意出售）、bersedia hadir（愿意出席）；答复 bersedia = 我方接受。",
+    "synonyms": [
+      "berkenan（肯于，更客气）",
+      "mau（要，口语）"
+    ],
+    "antonyms": [
+      "menolak（拒绝）",
+      "enggan（不情愿）"
+    ],
+    "examples": [
+      {
+        "scene": "商务谈判",
+        "id": "Kami bersedia menurunkan harga bila volume naik.",
+        "cn": "若数量增加我们愿意降价。"
+      },
+      {
+        "scene": "商务沟通",
+        "id": "Apakah Anda bersedia menjadi saksi penandatanganan?",
+        "cn": "您是否愿意担任签署见证人？"
+      },
+      {
+        "scene": "日常表达",
+        "id": "Dia bersedia mengorbankan waktu liburnya demi tim.",
+        "cn": "为了团队他甘愿牺牲假期时间。"
+      }
+    ]
+  },
+  "mengalah": {
+    "word": "mengalah",
+    "cn": "让步；退让",
+    "en": "to give in; concede",
+    "root": "kalah（输）+ meng-",
+    "forms": [
+      {
+        "form": "mengalah",
+        "pos": "动词",
+        "mean": "让步"
+      },
+      {
+        "form": "kalah",
+        "pos": "形容词",
+        "mean": "输"
+      },
+      {
+        "form": "pengalah",
+        "pos": "名词",
+        "mean": "常让步的人"
+      }
+    ],
+    "formsNote": "meN- → mengalah（主动认输，与 kalah 状态区分）。",
+    "note": "mengalah sedikit（稍作让步）、tidak mau mengalah（寸步不让）、saling mengalah（互相让步）；谈判核心策略词。",
+    "synonyms": [
+      "menyerah（投降）",
+      "berkompromi（妥协）"
+    ],
+    "antonyms": [
+      "bersikeras（坚持）",
+      "memaksa（强逼）"
+    ],
+    "examples": [
+      {
+        "scene": "商务谈判",
+        "id": "Akhirnya kami mengalah pada jangka waktu, bukan pada harga.",
+        "cn": "最终我们在期限上让步，而非价格。"
+      },
+      {
+        "scene": "商务沟通",
+        "id": "Kedua pihak saling mengalah demi kelancaran proyek.",
+        "cn": "为项目顺利双方互作让步。"
+      },
+      {
+        "scene": "日常表达",
+        "id": "Kakak selalu mengalah pada adiknya.",
+        "cn": "哥哥总是让着弟弟。"
+      }
+    ]
+  },
+  "jangka waktu": {
+    "word": "jangka waktu",
+    "cn": "期限；期间",
+    "en": "period; timeframe",
+    "root": "jangka（范围）+ waktu（时间）",
+    "forms": [
+      {
+        "form": "jangka waktu",
+        "pos": "名词",
+        "mean": "期限"
+      },
+      {
+        "form": "jangka panjang",
+        "pos": "名词",
+        "mean": "长期"
+      },
+      {
+        "form": "jangka pendek",
+        "pos": "名词",
+        "mean": "短期"
+      }
+    ],
+    "formsNote": "jangka + 名词：jangka waktu/jangka panjang。",
+    "note": "jangka waktu pembayaran（付款期限）、memperpanjang jangka waktu（延长期限）、jangka menengah（中期）；谈判三大变量之一。",
+    "synonyms": [
+      "periode（外来）",
+      "masa（时段）"
+    ],
+    "antonyms": [
+      "—"
+    ],
+    "examples": [
+      {
+        "scene": "商务谈判",
+        "id": "Jangka waktu pengiriman bisa dinegosiasikan ulang.",
+        "cn": "交付期限可以重新谈判。"
+      },
+      {
+        "scene": "项目管理",
+        "id": "Proyek rampung dalam jangka waktu delapan belas bulan.",
+        "cn": "项目在十八个月工期内完工。"
+      },
+      {
+        "scene": "日常表达",
+        "id": "Investasi jangka panjang memerlukan kesabaran.",
+        "cn": "长期投资需要耐心。"
+      }
+    ]
+  },
+  "termin": {
+    "word": "termin",
+    "cn": "分期付款（安排）",
+    "en": "installment (plan)",
+    "root": "termin（外来词 termijn）",
+    "forms": [
+      {
+        "form": "termin",
+        "pos": "名词",
+        "mean": "分期"
+      },
+      {
+        "form": "pembayaran termin",
+        "pos": "名词短语",
+        "mean": "分期付款"
+      },
+      {
+        "form": "per termin",
+        "pos": "副词短语",
+        "mean": "按分期"
+      }
+    ],
+    "formsNote": "外来词；动词 mengangsur 表分期支付行为。",
+    "note": "termin pertama（首期款）、termin kedua（第二期）、dibayar per termin（按分期支付）、skema termin（分期方案）。",
+    "synonyms": [
+      "angsuran（分期款）",
+      "cicilan（分期，口语）"
+    ],
+    "antonyms": [
+      "pelunasan tunai（一次结清）"
+    ],
+    "examples": [
+      {
+        "scene": "商务谈判",
+        "id": "Pembayaran dibagi tiga termin: tiga puluh, empat puluh, tiga puluh.",
+        "cn": "付款分三期：30%、40%、30%。"
+      },
+      {
+        "scene": "商务沟通",
+        "id": "Termin kedua jatuh tempo setelah serah terima tahap satu.",
+        "cn": "第二期在第一阶段验收后到期。"
+      },
+      {
+        "scene": "日常表达",
+        "id": "Ia membeli motor dengan sistem termin dua tahun.",
+        "cn": "他分期两年买了摩托车。"
+      }
+    ]
+  },
+  "angsuran": {
+    "word": "angsuran",
+    "cn": "分期摊还款项",
+    "en": "installment payment",
+    "root": "angsur（分期）+ -an",
+    "forms": [
+      {
+        "form": "angsuran",
+        "pos": "名词",
+        "mean": "分期款"
+      },
+      {
+        "form": "mengangsur",
+        "pos": "动词",
+        "mean": "分期支付"
+      },
+      {
+        "form": "diangsur",
+        "pos": "被动",
+        "mean": "被分期"
+      }
+    ],
+    "formsNote": "meN- → mengangsur；口语同义 cicilan。",
+    "note": "angsuran bulanan（月供）、mengangsur rumah（分期供房）、keanggotaan angsuran 无此搭配；tabel angsuran（还款表）。",
+    "synonyms": [
+      "cicilan（口语）",
+      "termin（分期安排）"
+    ],
+    "antonyms": [
+      "tunai（现金一次付）"
+    ],
+    "examples": [
+      {
+        "scene": "商务沟通",
+        "id": "Angsuran bulanan sudah termasuk bunga ringan.",
+        "cn": "月供已含低息。"
+      },
+      {
+        "scene": "项目管理",
+        "id": "Biaya peralatan diangsur selama dua belas bulan.",
+        "cn": "设备费用分十二个月摊付。"
+      },
+      {
+        "scene": "日常表达",
+        "id": "Ia menabung untuk uang angsuran pertama.",
+        "cn": "他在为首期款储蓄。"
+      }
+    ]
+  },
+  "bunga": {
+    "word": "bunga",
+    "cn": "利息",
+    "en": "interest (finance)",
+    "root": "bunga（固有词，双义）",
+    "forms": [
+      {
+        "form": "bunga",
+        "pos": "名词",
+        "mean": "利息/花"
+      },
+      {
+        "form": "berbunga",
+        "pos": "动词",
+        "mean": "生息/开花"
+      },
+      {
+        "form": "suku bunga",
+        "pos": "名词短语",
+        "mean": "利率"
+      }
+    ],
+    "formsNote": "金融语境固定指利息；berbunga 双义。",
+    "note": "bunga pinjaman（贷款利息）、suku bunga bank（银行利率）、bunga tiga persen（3%利息）、berbunga tetap（固定利率生息）。勿与 bunga（花）混淆看语境。",
+    "synonyms": [
+      "interest"
+    ],
+    "antonyms": [
+      "pokok（本金）"
+    ],
+    "examples": [
+      {
+        "scene": "商务谈判",
+        "id": "Kami meminta bunga tetap selama masa kontrak.",
+        "cn": "我们要求合同期内利率固定。"
+      },
+      {
+        "scene": "商务沟通",
+        "id": "Suku bunga naik memengaruhi angsuran per bulan.",
+        "cn": "利率上升影响每月还款额。"
+      },
+      {
+        "scene": "日常表达",
+        "id": "Deposito itu berbunga lebih tinggi dari tabungan.",
+        "cn": "定期存款利率高于活期。"
+      }
+    ]
+  },
+  "subsidi": {
+    "word": "subsidi",
+    "cn": "补贴",
+    "en": "subsidy",
+    "root": "subsidi（外来词）",
+    "forms": [
+      {
+        "form": "subsidi",
+        "pos": "名词",
+        "mean": "补贴"
+      },
+      {
+        "form": "mensubsidi",
+        "pos": "动词",
+        "mean": "补贴（书面）"
+      },
+      {
+        "form": "bersubsidi",
+        "pos": "形容词",
+        "mean": "受补贴的"
+      }
+    ],
+    "formsNote": "形容词 bersubsidi 高频：listrik bersubsidi（补贴电）。",
+    "note": "subsidi bahan bakar（燃油补贴）、subsidi pemerintah（政府补贴）、memotong subsidi（削减补贴）、produk bersubsidi（补贴产品）。",
+    "synonyms": [
+      "bantuan dana（资金援助）"
+    ],
+    "antonyms": [
+      "pungutan（征费）"
+    ],
+    "examples": [
+      {
+        "scene": "商务沟通",
+        "id": "Harga gas bersubsidi naik bertahap tahun ini.",
+        "cn": "补贴气价今年逐步上调。"
+      },
+      {
+        "scene": "项目管理",
+        "id": "Anggaran subsidi peralatan dibahas dalam rapat tahunan.",
+        "cn": "设备补贴预算在年会讨论。"
+      },
+      {
+        "scene": "日常表达",
+        "id": "Petani menerima subsidi pupuk dari pemerintah.",
+        "cn": "农民领取政府化肥补贴。"
+      }
+    ]
+  },
+  "pajak": {
+    "word": "pajak",
+    "cn": "税",
+    "en": "tax",
+    "root": "pajak（梵语借词 pājaka）",
+    "forms": [
+      {
+        "form": "pajak",
+        "pos": "名词",
+        "mean": "税"
+      },
+      {
+        "form": "memajaki",
+        "pos": "动词",
+        "mean": "征税"
+      },
+      {
+        "form": "berpajak",
+        "pos": "动词",
+        "mean": "纳税"
+      }
+    ],
+    "formsNote": "peN-…-an → pemajakan（税制）；kena pajak（应税）。",
+    "note": "pajak pertambahan nilai（增值税 PPN）、pajak penghasilan（所得税 PPh）、bebas pajak（免税）、wajib pajak（纳税人）；pungutan 是收费非税。",
+    "synonyms": [
+      "pungutan 近义（收费）",
+      "retribusi（行政收费）"
+    ],
+    "antonyms": [
+      " subsidi（补贴）",
+      "bebas pajak（免税）"
+    ],
+    "examples": [
+      {
+        "scene": "商务谈判",
+        "id": "Harga final sudah termasuk pajak pertambahan nilai.",
+        "cn": "最终价已含增值税。"
+      },
+      {
+        "scene": "项目管理",
+        "id": "Perusahaan terdaftar sebagai wajib pajak badan.",
+        "cn": "公司登记为企业纳税人。"
+      },
+      {
+        "scene": "日常表达",
+        "id": "Toko itu bebas pajak untuk wisatawan asing.",
+        "cn": "那家店对外国游客免税。"
+      }
+    ]
+  },
+  "laba": {
+    "word": "laba",
+    "cn": "利润",
+    "en": "profit",
+    "root": "laba（梵语借词）",
+    "forms": [
+      {
+        "form": "laba",
+        "pos": "名词",
+        "mean": "利润"
+      },
+      {
+        "form": "laba bersih",
+        "pos": "名词短语",
+        "mean": "净利润"
+      },
+      {
+        "form": "laba kotor",
+        "pos": "名词短语",
+        "mean": "毛利"
+      }
+    ],
+    "formsNote": "财务正式用词；口语 untung。",
+    "note": "laba tahunan（年度利润）、margin laba（利润率）、mencari laba（谋利）、laba ditahan（留存收益）；与 untung 近义，laba 更正式。",
+    "synonyms": [
+      "untung（口语）",
+      "keuntungan（收益）"
+    ],
+    "antonyms": [
+      "rugi（亏损）"
+    ],
+    "examples": [
+      {
+        "scene": "商务谈判",
+        "id": "Harga itu masih memberi laba tipis bagi kami.",
+        "cn": "那个价格对我们来说还有薄利。"
+      },
+      {
+        "scene": "商务沟通",
+        "id": "Laba bersih kuartal ini naik dua belas persen.",
+        "cn": "本季度净利润增长12%。"
+      },
+      {
+        "scene": "日常表达",
+        "id": "Berbisnis tanpa hitungan laba itu berbahaya.",
+        "cn": "做生意不算利润是危险的。"
+      }
+    ]
+  },
+  "rugi": {
+    "word": "rugi",
+    "cn": "亏损",
+    "en": "loss",
+    "root": "rugi（梵语/波斯借词 rugī）",
+    "forms": [
+      {
+        "form": "rugi",
+        "pos": "形容词/名词",
+        "mean": "亏损"
+      },
+      {
+        "form": "kerugian",
+        "pos": "名词",
+        "mean": "亏损额"
+      },
+      {
+        "form": "merugi",
+        "pos": "动词",
+        "mean": "受亏损"
+      }
+    ],
+    "formsNote": "ke-…-an → kerugian（损失额）。",
+    "note": "rugi besar（巨亏）、menutupi rugi（弥补亏损）、rugi ratusan juta（亏损数亿盾）、mencegah kerugian（防止损失）；与 laba 相对。",
+    "synonyms": [
+      "defisit（赤字，外来）",
+      "kerugian（亏损额）"
+    ],
+    "antonyms": [
+      "laba（利润）",
+      "untung（赚）"
+    ],
+    "examples": [
+      {
+        "scene": "商务谈判",
+        "id": "Kami tidak bisa menerima harga itu karena pasti rugi.",
+        "cn": "那个价我们接不了，肯定亏。"
+      },
+      {
+        "scene": "项目管理",
+        "id": "Keterlambatan pasokan menimbulkan kerugian besar.",
+        "cn": "供应中断造成重大损失。"
+      },
+      {
+        "scene": "日常表达",
+        "id": "Jual rugi pun harus dilakukan untuk putar modal.",
+        "cn": "为了资金周转亏本也要卖。"
+      }
+    ]
+  },
+  "modal": {
+    "word": "modal",
+    "cn": "资本；本金",
+    "en": "capital",
+    "root": "modal（外来词 modal）",
+    "forms": [
+      {
+        "form": "modal",
+        "pos": "名词",
+        "mean": "资本"
+      },
+      {
+        "form": "bermodal",
+        "pos": "动词",
+        "mean": "带有资本/怀着（口语）"
+      },
+      {
+        "form": "permodalan",
+        "pos": "名词",
+        "mean": "融资（领域）"
+      }
+    ],
+    "formsNote": "per-…-an → permodalan（融资/资本领域）。",
+    "note": "modal awal（启动资金）、modal kerja（流动资金）、mengeluarkan modal（出资）、modal nekat（孤注一掷的胆量，比喻义）。",
+    "synonyms": [
+      "dana（资金）",
+      "kapital（外来）"
+    ],
+    "antonyms": [
+      "—"
+    ],
+    "examples": [
+      {
+        "scene": "商务谈判",
+        "id": "Pembagian modal ditetapkan empat puluh enam puluh.",
+        "cn": "出资比例定为四六开。"
+      },
+      {
+        "scene": "项目管理",
+        "id": "Modal kerja proyek dijaga dalam rekening terpisah.",
+        "cn": "项目流动资金存放在独立账户。"
+      },
+      {
+        "scene": "日常表达",
+        "id": "Keberanian adalah modal utama wirausahawan.",
+        "cn": "勇气是创业者最重要的本钱。"
+      }
+    ]
+  },
+  "harga satuan": {
+    "word": "harga satuan",
+    "cn": "单价",
+    "en": "unit price",
+    "root": "harga（价格）+ satuan（单位）",
+    "forms": [
+      {
+        "form": "harga satuan",
+        "pos": "名词",
+        "mean": "单价"
+      },
+      {
+        "form": "harga per unit",
+        "pos": "名词短语",
+        "mean": "每单位价"
+      },
+      {
+        "form": "turun harga satuan",
+        "pos": "动词短语",
+        "mean": "单价下调"
+      }
+    ],
+    "formsNote": "satuan 为 satu（一）+ -an。",
+    "note": "daftar harga satuan（单价表）、menaikkan harga satuan（提高单价）、diskon harga satuan（单价折扣）；议价基准单位。",
+    "synonyms": [
+      "harga per unit（同义）"
+    ],
+    "antonyms": [
+      "harga total（总价）"
+    ],
+    "examples": [
+      {
+        "scene": "商务谈判",
+        "id": "Harga satuan bisa turun bila pembelian di atas seribu unit.",
+        "cn": "采购超千台单价可下调。"
+      },
+      {
+        "scene": "商务沟通",
+        "id": "Mohon lampirkan daftar harga satuan terbaru.",
+        "cn": "请附上最新单价表。"
+      },
+      {
+        "scene": "日常表达",
+        "id": "Ia membandingkan harga satuan di dua toko.",
+        "cn": "他比较了两家店的单价。"
+      }
+    ]
+  },
+  "harga pasar": {
+    "word": "harga pasar",
+    "cn": "市场价",
+    "en": "market price",
+    "root": "harga（价格）+ pasar（市场）",
+    "forms": [
+      {
+        "form": "harga pasar",
+        "pos": "名词",
+        "mean": "市场价"
+      },
+      {
+        "form": "di atas harga pasar",
+        "pos": "介词短语",
+        "mean": "高于市价"
+      },
+      {
+        "form": "sesuai harga pasar",
+        "pos": "动词短语",
+        "mean": "符合市价"
+      }
+    ],
+    "formsNote": "pasar 来自梵语 pasāra? 实为固有/借词混合，保守标外来不确定。",
+    "note": "di bawah harga pasar（低于市价）、mengikuti harga pasar（随行就市）、fluktuasi harga pasar（市价波动）；谈判基准线。",
+    "synonyms": [
+      "harga berlaku（通行价）"
+    ],
+    "antonyms": [
+      "harga dasar（底价）"
+    ],
+    "examples": [
+      {
+        "scene": "商务谈判",
+        "id": "Penawaran kami sudah di bawah harga pasar regional.",
+        "cn": "我方报价已低于区域市场价。"
+      },
+      {
+        "scene": "商务沟通",
+        "id": "Harga pasar nikel berfluktuasi setiap minggu.",
+        "cn": "镍市价每周波动。"
+      },
+      {
+        "scene": "日常表达",
+        "id": "Jangan jual di bawah harga pasar seenaknya.",
+        "cn": "别随意低于市价抛售。"
+      }
+    ]
+  },
+  "konfirmasi": {
+    "word": "konfirmasi",
+    "cn": "确认",
+    "en": "confirmation",
+    "root": "konfirmasi（外来词）",
+    "forms": [
+      {
+        "form": "konfirmasi",
+        "pos": "名词/动词",
+        "mean": "确认"
+      },
+      {
+        "form": "mengonfirmasi",
+        "pos": "动词",
+        "mean": "确认"
+      },
+      {
+        "form": "dikonfirmasi",
+        "pos": "被动",
+        "mean": "被确认"
+      }
+    ],
+    "formsNote": "名词动词同形；meN- → mengonfirmasi。",
+    "note": "konfirmasi tertulis（书面确认）、konfirmasi kehadiran（确认出席）、mohon konfirmasi（请确认）、belum dikonfirmasi（尚未确认）；商务闭环第一词。",
+    "synonyms": [
+      "peastujuan（批准）",
+      "verifikasi（核验）"
+    ],
+    "antonyms": [
+      "pembatalan（取消）"
+    ],
+    "examples": [
+      {
+        "scene": "商务谈判",
+        "id": "Mohon konfirmasi tertulis paling lambat besok siang.",
+        "cn": "请于明天中午前书面确认。"
+      },
+      {
+        "scene": "商务沟通",
+        "id": "Kami mengonfirmasi jadwal pengiriman bulan depan.",
+        "cn": "我们确认下月交付日程。"
+      },
+      {
+        "scene": "日常表达",
+        "id": "Pihak maskapai belum mengonfirmasi jadwal ulang.",
+        "cn": "航空公司尚未确认改期时间。"
+      }
+    ]
+  },
+  "pemutusan": {
+    "word": "pemutusan",
+    "cn": "终止；解除",
+    "en": "termination",
+    "root": "putus（断）+ peN-…-an",
+    "forms": [
+      {
+        "form": "pemutusan",
+        "pos": "名词",
+        "mean": "终止"
+      },
+      {
+        "form": "putus",
+        "pos": "动词",
+        "mean": "断开"
+      },
+      {
+        "form": "memutuskan",
+        "pos": "动词",
+        "mean": "决定/切断"
+      }
+    ],
+    "formsNote": "peN-…-an；meN-…-kan → memutuskan（决定）。",
+    "note": "pemutusan kontrak（解约）、pemutusan hubungan kerja（解除劳动关系）、pemutusan sepihak（单方终止）；勿与 penutupan（关闭）混淆。",
+    "synonyms": [
+      "pengakhiran（结束）"
+    ],
+    "antonyms": [
+      "perpanjangan（续约/延长）"
+    ],
+    "examples": [
+      {
+        "scene": "商务谈判",
+        "id": "Klausul pemutusan kontrak dibaca dengan saksama.",
+        "cn": "解约条款被逐字细读。"
+      },
+      {
+        "scene": "项目管理",
+        "id": "Pemutusan paket pekerjaan mengikuti prosedur tender.",
+        "cn": "工作包的终止遵循招标程序。"
+      },
+      {
+        "scene": "日常表达",
+        "id": "Pemutusan hubungan itu mengejutkan semua orang.",
+        "cn": "那段关系的终结令所有人意外。"
+      }
+    ]
+  },
+  "pembagian": {
+    "word": "pembagian",
+    "cn": "分配；分摊",
+    "en": "distribution; allocation",
+    "root": "bagi（分）+ peN-…-an",
+    "forms": [
+      {
+        "form": "pembagian",
+        "pos": "名词",
+        "mean": "分配"
+      },
+      {
+        "form": "bagi",
+        "pos": "动词",
+        "mean": "分"
+      },
+      {
+        "form": "membagi",
+        "pos": "动词",
+        "mean": "分配"
+      },
+      {
+        "form": "pembagian tugas",
+        "pos": "名词短语",
+        "mean": "分工"
+      }
+    ],
+    "formsNote": "peN-…-an；meN- → membagi。",
+    "note": "pembagian keuntungan（利润分配）、pembagian resiko（风险分摊）、pembagian wilayah（区域划分）、sistem pembagian（分配制度）。",
+    "synonyms": [
+      "distribusi（外来）",
+      "alokasi（外来）"
+    ],
+    "antonyms": [
+      "pemusatan（集中）"
+    ],
+    "examples": [
+      {
+        "scene": "商务谈判",
+        "id": "Pembagian keuntungan ditetapkan lima puluh lima puluh.",
+        "cn": "利润分配定为五五开。"
+      },
+      {
+        "scene": "项目管理",
+        "id": "Pembagian tugas diumumkan dalam notulen rapat.",
+        "cn": "分工在会议纪要中公布。"
+      },
+      {
+        "scene": "日常表达",
+        "id": "Pembagian warisan menimbulkan perselisihan.",
+        "cn": "遗产分配引发了争执。"
+      }
+    ]
+  },
+  "volume": {
+    "word": "volume",
+    "cn": "量；数量",
+    "en": "volume",
+    "root": "volume（外来词）",
+    "forms": [
+      {
+        "form": "volume",
+        "pos": "名词",
+        "mean": "量"
+      },
+      {
+        "form": "volume pembelian",
+        "pos": "名词短语",
+        "mean": "采购量"
+      },
+      {
+        "form": "volume produksi",
+        "pos": "名词短语",
+        "mean": "产量"
+      }
+    ],
+    "formsNote": "外来词；重音在第一音节。",
+    "note": "volume besar（大批量）、volume tahunan（年度量）、menaikkan volume（提量）；以量换价（tukar volume dengan harga）的核心变量。",
+    "synonyms": [
+      "jumlah（总量）",
+      "kuantitas（数量，外来）"
+    ],
+    "antonyms": [
+      "—"
+    ],
+    "examples": [
+      {
+        "scene": "商务谈判",
+        "id": "Kalau volume dua kali lipat, harga bisa lebih rendah.",
+        "cn": "如果量翻倍，价格可以更低。"
+      },
+      {
+        "scene": "项目管理",
+        "id": "Volume pekerjaan tahap dua belum ditentukan.",
+        "cn": "第二阶段工作量尚未确定。"
+      },
+      {
+        "scene": "日常表达",
+        "id": "Volume air hujan tahun ini di atas rata-rata.",
+        "cn": "今年雨量高于平均值。"
+      }
+    ]
+  },
+  "kuota": {
+    "word": "kuota",
+    "cn": "配额",
+    "en": "quota",
+    "root": "kuota（外来词）",
+    "forms": [
+      {
+        "form": "kuota",
+        "pos": "名词",
+        "mean": "配额"
+      },
+      {
+        "form": "kuota impor",
+        "pos": "名词短语",
+        "mean": "进口配额"
+      },
+      {
+        "form": "mendapat kuota",
+        "pos": "动词短语",
+        "mean": "获得配额"
+      }
+    ],
+    "formsNote": "外来词。",
+    "note": "kuota tahunan（年度配额）、kuota pendidikan（招生名额）、mengisi kuota（补足配额）、kehabisan kuota（配额用尽）。",
+    "synonyms": [
+      "jatah（份额，口语）"
+    ],
+    "antonyms": [
+      "—"
+    ],
+    "examples": [
+      {
+        "scene": "商务沟通",
+        "id": "Kuota impor baja diturunkan pemerintah tahun ini.",
+        "cn": "政府今年下调了钢材进口配额。"
+      },
+      {
+        "scene": "项目管理",
+        "id": "Perusahaan mengajukan penambahan kuota listrik.",
+        "cn": "公司申请增加用电配额。"
+      },
+      {
+        "scene": "日常表达",
+        "id": "Pendaftaran ditutup karena kuota habis.",
+        "cn": "名额已满，报名截止。"
+      }
+    ]
+  },
+  "pasokan": {
+    "word": "pasokan",
+    "cn": "供应；供给",
+    "en": "supply",
+    "root": "sok（供给）+ -an",
+    "forms": [
+      {
+        "form": "pasokan",
+        "pos": "名词",
+        "mean": "供应"
+      },
+      {
+        "form": "menyokong",
+        "pos": "动词",
+        "mean": "支撑/供应"
+      },
+      {
+        "form": "tersedia",
+        "pos": "形容词",
+        "mean": "可供应的"
+      }
+    ],
+    "formsNote": "-an 名物化；词根 sok 单独少用。",
+    "note": "pasokan listrik（电力供应）、jaringan pasokan（供应网络）、gangguan pasokan（供应中断）、menjamin pasokan（保障供应）；与 permintaan（需求）相对。",
+    "synonyms": [
+      "suplai（外来）",
+      "persediaan（储备）"
+    ],
+    "antonyms": [
+      "kekurangan（短缺）",
+      "permintaan（需求）"
+    ],
+    "examples": [
+      {
+        "scene": "商务谈判",
+        "id": "Kami bisa menjamin pasokan stabil sepanjang kontrak.",
+        "cn": "我们能保证合同期内供应稳定。"
+      },
+      {
+        "scene": "项目管理",
+        "id": "Gangguan pasokan material menunda pengecoran.",
+        "cn": "材料供应中断耽误了浇筑。"
+      },
+      {
+        "scene": "日常表达",
+        "id": "Pasokan air bersih mulai menipis musim kemarau.",
+        "cn": "旱季净水供应开始减少。"
+      }
+    ]
+  },
+  "mata uang": {
+    "word": "mata uang",
+    "cn": "货币",
+    "en": "currency",
+    "root": "mata（眼/单位）+ uang（钱）",
+    "forms": [
+      {
+        "form": "mata uang",
+        "pos": "名词",
+        "mean": "货币"
+      },
+      {
+        "form": "mata uang asing",
+        "pos": "名词短语",
+        "mean": "外币"
+      },
+      {
+        "form": "nilai mata uang",
+        "pos": "名词短语",
+        "mean": "币值"
+      }
+    ],
+    "formsNote": "固定复合词；勿连写为 matauang。",
+    "note": "mata uang lokal（本币）、mata uang utama（主要货币）、devaluasi mata uang（货币贬值）；结算币种是谈判关键条款。",
+    "synonyms": [
+      "valuta（外来）"
+    ],
+    "antonyms": [
+      "—"
+    ],
+    "examples": [
+      {
+        "scene": "商务谈判",
+        "id": "Pembayaran dalam mata uang dolar atau rupiah?",
+        "cn": "以美元还是盾结算？"
+      },
+      {
+        "scene": "商务沟通",
+        "id": "Nilai mata uang lokal menguat terhadap dolar.",
+        "cn": "本币对美元升值。"
+      },
+      {
+        "scene": "日常表达",
+        "id": "Ia menukar mata uang di bank sebelum berangkat.",
+        "cn": "出发前他在银行换了外币。"
+      }
+    ]
+  },
+  "dolar": {
+    "word": "dolar",
+    "cn": "美元",
+    "en": "dollar",
+    "root": "dolar（外来词）",
+    "forms": [
+      {
+        "form": "dolar",
+        "pos": "名词",
+        "mean": "美元/元"
+      },
+      {
+        "form": "kurs dolar",
+        "pos": "名词短语",
+        "mean": "美元汇率"
+      },
+      {
+        "form": "dolar Amerika",
+        "pos": "名词短语",
+        "mean": "美元"
+      }
+    ],
+    "formsNote": "印尼语拼写 dolar（单 l）；勿写 dollar。",
+    "note": "harga dalam dolar（美元计价）、kurs dolar naik（美元汇率升）、pendapatan dolar（美元收入）；大宗商品常用美元结算。",
+    "synonyms": [
+      "greenback（俚）"
+    ],
+    "antonyms": [
+      "—"
+    ],
+    "examples": [
+      {
+        "scene": "商务谈判",
+        "id": "Harga kontrak dikunci dalam dolar Amerika.",
+        "cn": "合同价以美元锁定。"
+      },
+      {
+        "scene": "商务沟通",
+        "id": "Pendapatan ekspor bernilai dolar menstabilkan kas.",
+        "cn": "美元计出口收入稳定了现金流。"
+      },
+      {
+        "scene": "日常表达",
+        "id": "Kurs dolar hari ini tembus lima belas ribu.",
+        "cn": "今天美元汇率突破一万五。"
+      }
+    ]
+  },
+  "kurs": {
+    "word": "kurs",
+    "cn": "汇率",
+    "en": "exchange rate",
+    "root": "kurs（外来词）",
+    "forms": [
+      {
+        "form": "kurs",
+        "pos": "名词",
+        "mean": "汇率"
+      },
+      {
+        "form": "kurs jual",
+        "pos": "名词短语",
+        "mean": "卖出价"
+      },
+      {
+        "form": "kurs beli",
+        "pos": "名词短语",
+        "mean": "买入价"
+      },
+      {
+        "form": "kurs tengah",
+        "pos": "名词短语",
+        "mean": "中间价"
+      }
+    ],
+    "formsNote": "勿与 kursus（课程）混淆。",
+    "note": "menguat/melemah 描述汇率升贬；konversi kurs（汇率折算）、fluktuasi kurs（汇率波动）、risiko kurs（汇率风险）；出口合同常含 klausul penyesuaian kurs。",
+    "synonyms": [
+      "nilai tukar（兑换率）"
+    ],
+    "antonyms": [
+      "—"
+    ],
+    "examples": [
+      {
+        "scene": "商务谈判",
+        "id": "Harga dikonversi dengan kurs pada tanggal faktur.",
+        "cn": "价格按发票日汇率折算。"
+      },
+      {
+        "scene": "商务沟通",
+        "id": "Kurs melemah membuat impor semakin mahal.",
+        "cn": "汇率走弱使进口越来越贵。"
+      },
+      {
+        "scene": "日常表达",
+        "id": "Ia memantau kurs setiap pagi sebelum transfer.",
+        "cn": "转账前他每天早晨查看汇率。"
+      }
+    ]
+  },
+  "pembayaran": {
+    "word": "pembayaran",
+    "cn": "付款；支付",
+    "en": "payment",
+    "root": "bayar（付）+ peN-…-an",
+    "forms": [
+      {
+        "form": "pembayaran",
+        "pos": "名词",
+        "mean": "付款"
+      },
+      {
+        "form": "membayar",
+        "pos": "动词",
+        "mean": "支付"
+      },
+      {
+        "form": "dibayar",
+        "pos": "被动",
+        "mean": "被支付"
+      },
+      {
+        "form": "pembayaran termin",
+        "pos": "名词短语",
+        "mean": "分期付款"
+      }
+    ],
+    "formsNote": "peN-…-an；meN- → membayar。",
+    "note": "metode pembayaran（支付方式）、jadwal pembayaran（付款计划）、bukti pembayaran（付款凭证）、menunda pembayaran（拖延付款）；合同三大核心条款之一。",
+    "synonyms": [
+      "pelunasan（结清）",
+      "setoran（缴款）"
+    ],
+    "antonyms": [
+      "penerimaan（收款）"
+    ],
+    "examples": [
+      {
+        "scene": "商务谈判",
+        "id": "Pembayaran pertama jatuh tempo tiga puluh hari setelah kontrak.",
+        "cn": "首款在合同后三十天到期。"
+      },
+      {
+        "scene": "项目管理",
+        "id": "Bukti pembayaran dilampirkan pada laporan keuangan.",
+        "cn": "付款凭证附在财务报告后。"
+      },
+      {
+        "scene": "日常表达",
+        "id": "Ia lupa membawa kartu pembayaran ke kasir.",
+        "cn": "他忘带付款卡去收银台。"
+      }
+    ]
+  },
+  "uang muka": {
+    "word": "uang muka",
+    "cn": "预付款；定金",
+    "en": "down payment; advance",
+    "root": "uang（钱）+ muka（前面）",
+    "forms": [
+      {
+        "form": "uang muka",
+        "pos": "名词",
+        "mean": "预付款"
+      },
+      {
+        "form": "memberikan uang muka",
+        "pos": "动词短语",
+        "mean": "付定金"
+      },
+      {
+        "form": "persen uang muka",
+        "pos": "名词短语",
+        "mean": "首付比例"
+      }
+    ],
+    "formsNote": "正式文本用 uang muka；DP（down payment）为口语/广告用语。",
+    "note": "uang muka tiga puluh persen（30%首付）、mengembalikan uang muka（退定金）、potongan uang muka（预付抵扣）；与 termin pertama 区别：uang muka 签约时付，termin 按进度付。",
+    "synonyms": [
+      "DP（down payment，口语）",
+      "tanda jadi（定钱，口语）"
+    ],
+    "antonyms": [
+      "pelunasan（尾款结清）"
+    ],
+    "examples": [
+      {
+        "scene": "商务谈判",
+        "id": "Uang muka tiga puluh persen, sisanya per termin.",
+        "cn": "首付30%，余款分期。"
+      },
+      {
+        "scene": "商务沟通",
+        "id": "Uang muka dikembalikan penuh bila kontrak batal.",
+        "cn": "若合同取消定金全额退还。"
+      },
+      {
+        "scene": "日常表达",
+        "id": "Mereka menabung dua tahun untuk uang muka rumah.",
+        "cn": "他们为买房首付攒了两年钱。"
+      }
+    ]
+  },
+  "harga dasar": {
+    "word": "harga dasar",
+    "cn": "底价；成本价",
+    "en": "base price; floor price",
+    "root": "harga（价格）+ dasar（基本的）",
+    "forms": [
+      {
+        "form": "harga dasar",
+        "pos": "名词",
+        "mean": "底价"
+      },
+      {
+        "form": "margin di atas dasar",
+        "pos": "名词短语",
+        "mean": "加价率"
+      },
+      {
+        "form": "turun ke harga dasar",
+        "pos": "动词短语",
+        "mean": "降至底价"
+      }
+    ],
+    "formsNote": "dasar 为 dasar（基础）形容词用法。",
+    "note": "谈判让步空间以 harga dasar 为基准计算；di atas harga dasar（高于底价）、kembali ke harga dasar（回到底价）、mengetahui harga dasar（摸清底价）。",
+    "synonyms": [
+      "biaya pokok（成本价）"
+    ],
+    "antonyms": [
+      "harga jual（售价）"
+    ],
+    "examples": [
+      {
+        "scene": "商务谈判",
+        "id": "Harga itu sudah mendekati harga dasar kami.",
+        "cn": "那个价已接近我们的底价。"
+      },
+      {
+        "scene": "商务沟通",
+        "id": "Penentuan harga dasar mengikuti biaya produksi terkini.",
+        "cn": "底价根据当前生产成本确定。"
+      },
+      {
+        "scene": "日常表达",
+        "id": "Ia menawar hingga mendekati harga dasar penjual.",
+        "cn": "他砍价砍到接近卖家底价。"
+      }
+    ]
+  },
+  "deadline": {
+    "word": "deadline",
+    "cn": "截止期限",
+    "en": "deadline",
+    "root": "deadline（英语借词）",
+    "forms": [
+      {
+        "form": "deadline",
+        "pos": "名词",
+        "mean": "截止期限"
+      },
+      {
+        "form": "melewati deadline",
+        "pos": "动词短语",
+        "mean": "超期"
+      },
+      {
+        "form": "menetapkan deadline",
+        "pos": "动词短语",
+        "mean": "设定截止"
+      }
+    ],
+    "formsNote": "正式同义 batas waktu；deadline 商务通用。",
+    "note": "deadline pembayaran（付款截止）、tetapkan deadline（定死线）、melewati deadline（逾期）、hampir deadline（临期）；项目管理核心词。",
+    "synonyms": [
+      "batas waktu（时限，正式）"
+    ],
+    "antonyms": [
+      "—"
+    ],
+    "examples": [
+      {
+        "scene": "项目管理",
+        "id": "Deadline penawaran tender adalah Jumat depan.",
+        "cn": "招标报价截止是下周五。"
+      },
+      {
+        "scene": "商务沟通",
+        "id": "Mohon kirim konfirmasi sebelum deadline hari ini.",
+        "cn": "请在今日截止前发来确认。"
+      },
+      {
+        "scene": "日常表达",
+        "id": "Ia begadang mengejar deadline skripsi.",
+        "cn": "他为赶论文死线熬了夜。"
+      }
+    ]
+  },
+  "supplier": {
+    "word": "supplier",
+    "cn": "供应商",
+    "en": "supplier",
+    "root": "supplier（英语借词）",
+    "forms": [
+      {
+        "form": "supplier",
+        "pos": "名词",
+        "mean": "供应商"
+      },
+      {
+        "form": "supplier tunggal",
+        "pos": "名词短语",
+        "mean": "独家供应商"
+      },
+      {
+        "form": "evaluasi supplier",
+        "pos": "名词短语",
+        "mean": "供应商评估"
+      }
+    ],
+    "formsNote": "正式文本亦用 pemasok/penyedia。",
+    "note": "daftar supplier（供应商名录）、supplier utama（主供应商）、mengganti supplier（更换供应商）、kinerja supplier（供应商绩效）。",
+    "synonyms": [
+      "pemasok（正式）",
+      "penyedia（提供方）",
+      "vendor（设备/服务方）"
+    ],
+    "antonyms": [
+      "pembeli（买方）"
+    ],
+    "examples": [
+      {
+        "scene": "商务谈判",
+        "id": "Kami membandingkan tiga supplier sebelum memutuskan.",
+        "cn": "决定前我们比较了三家供应商。"
+      },
+      {
+        "scene": "项目管理",
+        "id": "Evaluasi supplier dilakukan setiap akhir tahun.",
+        "cn": "供应商评估每年年底进行。"
+      },
+      {
+        "scene": "日常表达",
+        "id": "Cafe itu berganti supplier kopi demi kualitas.",
+        "cn": "那家咖啡馆为品质更换了咖啡豆供应商。"
+      }
+    ]
+  },
+  "vendor": {
+    "word": "vendor",
+    "cn": "厂商；供货方",
+    "en": "vendor",
+    "root": "vendor（英语借词）",
+    "forms": [
+      {
+        "form": "vendor",
+        "pos": "名词",
+        "mean": "厂商/供货方"
+      },
+      {
+        "form": "vendor perangkat",
+        "pos": "名词短语",
+        "mean": "设备厂商"
+      },
+      {
+        "form": "vendor software",
+        "pos": "名词短语",
+        "mean": "软件厂商"
+      }
+    ],
+    "formsNote": "与 supplier 近义：vendor 偏设备/服务/软件，supplier 偏物料。",
+    "note": "vendor terdaftar（注册厂商）、kontrak vendor（厂商合同）、manajemen vendor（厂商管理）、vendor pihak ketiga（第三方厂商）。",
+    "synonyms": [
+      "pemasok（供应商）",
+      "produsen（生产商）"
+    ],
+    "antonyms": [
+      "pelanggan（客户）"
+    ],
+    "examples": [
+      {
+        "scene": "商务谈判",
+        "id": "Klausul layanan vendor dirinci dalam lampiran.",
+        "cn": "服务厂商条款在附件中详列。"
+      },
+      {
+        "scene": "项目管理",
+        "id": "Instalasi perangkat ditangani vendor pihak ketiga.",
+        "cn": "设备安装由第三方厂商负责。"
+      },
+      {
+        "scene": "日常表达",
+        "id": "Keluhan itu langsung disampaikan ke vendor.",
+        "cn": "投诉直接转给了厂商。"
+      }
+    ]
+  },
+  "mengagetkan": {
+    "word": "mengagetkan",
+    "cn": "使吃惊；令人吃惊",
+    "en": "to startle; startling",
+    "root": "kaget（吃惊）+ meN-…-kan 使动",
+    "forms": [
+      {
+        "form": "mengagetkan",
+        "pos": "及物动词",
+        "mean": "使吃惊"
+      },
+      {
+        "form": "kaget",
+        "pos": "形容词",
+        "mean": "吃惊的"
+      },
+      {
+        "form": "dikagetkan",
+        "pos": "被动",
+        "mean": "被惊吓"
+      }
+    ],
+    "formsNote": "",
+    "note": "meN- + kaget + -kan 使动化（主语令宾语吃惊）；被动 di- → dikagetkan。 berita mengagetkan（惊人消息）、angka mengagetkan（惊人数字）、sangat mengagetkan（非常惊人）；-kan 使动后缀是产词力最强的构词手段之一。",
+    "synonyms": [
+      "mengejutkan（使吃惊）",
+      "mencengangkan（令人震惊）"
+    ],
+    "antonyms": [
+      "menenangkan（使镇定）"
+    ],
+    "examples": [
+      {
+        "scene": "月报数据",
+        "id": "Kenaikan persentase laba tahun ini sungguh mengagetkan para pemegang saham.",
+        "cn": "今年利润增长率让股东们大为吃惊。"
+      },
+      {
+        "scene": "商务沟通",
+        "id": "Keputusan mendadak itu mengagetkan seluruh jajaran manajemen.",
+        "cn": "那个突然的决定让全体管理层吃惊。"
+      },
+      {
+        "scene": "日常表达",
+        "id": "Suara petir tadi mengagetkan anak yang sedang tidur.",
+        "cn": "刚才的雷声吓着了睡着的孩子。"
+      }
+    ]
+  },
+  "persentase": {
+    "word": "persentase",
+    "cn": "百分比；百分率",
+    "en": "percentage",
+    "root": "persen（百分之，经荷兰语 percent 借入）+ 外来后缀 -tase（=-age）",
+    "forms": [
+      {
+        "form": "persentase",
+        "pos": "名词",
+        "mean": "百分比；百分率"
+      },
+      {
+        "form": "persen",
+        "pos": "名词",
+        "mean": "百分之（口语）"
+      },
+      {
+        "form": "sepersen",
+        "pos": "数词短语",
+        "mean": "百分之一"
+      }
+    ],
+    "formsNote": "",
+    "note": "persen + 外来后缀 -tase 名物化；口语 persen 独立作量词：lima persen（5%）。 persentase pertumbuhan（增长率）、persentase keuntungan（利润率）、persentase penyelesaian（完成率）、naik/turun beberapa persen（升降几个百分点）；月报核心词；旧拼 prosentase 已被 KBBI 废弃，勿用。",
+    "synonyms": [
+      "persen（口语同义）"
+    ],
+    "antonyms": [
+      "—"
+    ],
+    "examples": [
+      {
+        "scene": "月报数据",
+        "id": "Persentase penyelesaian pekerjaan sudah mencapai delapan puluh lima persen.",
+        "cn": "工作完成率已达85%。"
+      },
+      {
+        "scene": "商务谈判",
+        "id": "Kami memberikan potongan persentase kecil untuk pembelian rutin.",
+        "cn": "我们对常规采购给出小幅百分比折扣。"
+      },
+      {
+        "scene": "日常表达",
+        "id": "Persentase kehadiran siswa tahun ini sangat memuaskan.",
+        "cn": "今年的学生出勤率令人满意。"
+      }
+    ]
+  },
+  "kenyataan": {
+    "word": "kenyataan",
+    "cn": "事实；现实",
+    "en": "reality; fact",
+    "root": "nyata（明确的；现实的）+ ke-…-an 抽象名物化",
+    "forms": [
+      {
+        "form": "kenyataan",
+        "pos": "名词",
+        "mean": "事实；现实"
+      },
+      {
+        "form": "nyata",
+        "pos": "形容词",
+        "mean": "明确的；现实的"
+      },
+      {
+        "form": "menyatakan",
+        "pos": "及物动词",
+        "mean": "表明；声明"
+      },
+      {
+        "form": "kenyataannya",
+        "pos": "连接副词",
+        "mean": "事实上"
+      }
+    ],
+    "formsNote": "",
+    "note": "ke-…-an 抽象名词；meN- → menyatakan（表明）；-nya 副词化 kenyataannya（事实上——句首连接词）。 dalam kenyataan（在现实中）、kenyataan pahit（残酷现实）、sesuai kenyataan（符合实际）；kenyataannya 放句首=「事实上」，月报与谈判高频连接词。",
+    "synonyms": [
+      "fakta（事实）",
+      "realitas（现实——外来词）"
+    ],
+    "antonyms": [
+      "angan-angan（幻想）",
+      "khayalan（空想）"
+    ],
+    "examples": [
+      {
+        "scene": "商务谈判",
+        "id": "Kenyataannya, harga pasar jauh di bawah asumsi awal kami.",
+        "cn": "事实上，市场价远低于我们的初始假设。"
+      },
+      {
+        "scene": "月报数据",
+        "id": "Laporan harus mencerminkan kenyataan di lapangan, bukan harapan semata.",
+        "cn": "报告必须反映现场事实，而非仅仅是期望。"
+      },
+      {
+        "scene": "日常表达",
+        "id": "Kenyataan pahit itu akhirnya harus diterima semua pihak.",
+        "cn": "那个残酷现实最终必须由各方接受。"
+      }
+    ]
   }
-,
-
- "diskusi": {"word": "diskusi", "cn": "讨论；商议", "en": "discussion", "root": "diskusi（外来词，经荷兰语 discussie）", "forms": [{"form": "diskusi", "pos": "名词", "mean": "讨论"}, {"form": "berdiskusi", "pos": "动词", "mean": "进行讨论"}, {"form": "mendiskusikan", "pos": "及物动词", "mean": "讨论（某事）"}, {"form": "didiskusikan", "pos": "被动", "mean": "被讨论"}], "formsNote": "ber- → berdiskusi（不及物）；meN-…-kan → mendiskusikan；被动 di-…-kan → didiskusikan。", "note": "正式会议/书面高频，比 obrolan（闲聊）正式。常见搭配：diskusi panel（座谈）、diskusi hangat（热烈讨论）、masuk ke dalam diskusi（进入讨论）、topik diskusi（讨论议题）。", "synonyms": ["perbincangan（交谈）", "pembahasan（商讨）", "musyawarah（协商）"], "antonyms": ["—"], "examples": [{"scene": "商务沟通", "id": "Perusahaan mengadakan diskusi panel tentang tata kelola tambang berkelanjutan.", "cn": "公司举办关于可持续矿业治理的专题讨论。"}, {"scene": "项目管理", "id": "Jadwal pelaksanaan masih didiskusikan oleh tim proyek.", "cn": "实施日程仍由项目团队讨论中。"}, {"scene": "日常表达", "id": "Silakan berdiskusi dengan rekan kerja sebelum memutuskan.", "cn": "决定前请与同事商量。"}]},
- "data": {"word": "data", "cn": "数据；资料", "en": "data", "root": "data（外来词，拉丁语 datum 经荷兰语）", "forms": [{"form": "data", "pos": "名词", "mean": "数据"}, {"form": "pengolahan data", "pos": "名词短语", "mean": "数据处理"}, {"form": "berdata", "pos": "动词", "mean": "具备数据"}], "formsNote": "复合高频：pengolahan data（数据处理）、sumber data（数据来源）、data pendukung（支撑数据）。", "note": "商务报告/研究基础词。常见搭配：mengumpulkan data（收集数据）、menganalisis data（分析数据）、berdasarkan data（基于数据）、data valid（有效数据）。与 informasi 区分：data 是原始资料，informasi 是经处理的有用信息。", "synonyms": ["informasi（信息）", "statistik（统计）"], "antonyms": ["—"], "examples": [{"scene": "项目管理", "id": "Semua keputusan investasi harus berdasarkan data yang valid.", "cn": "一切投资决策必须基于有效数据。"}, {"scene": "商务沟通", "id": "Data penjualan kuartal ini menunjukkan peningkatan signifikan.", "cn": "本季度销售数据显示显著增长。"}, {"scene": "日常表达", "id": "Mohon lengkapi data diri sebelum mendaftar.", "cn": "报名前请补全个人资料。"}]},
- "pertumbuhan": {"word": "pertumbuhan", "cn": "增长；成长", "en": "growth", "root": "tumbuh（生长）+ peN-…-an → pertumbuhan", "forms": [{"form": "pertumbuhan", "pos": "名词", "mean": "增长"}, {"form": "tumbuh", "pos": "动词", "mean": "生长；增长"}, {"form": "menumbuhkan", "pos": "及物动词", "mean": "培育；助长"}, {"form": "tumbuhan", "pos": "名词", "mean": "植物（同族异义词）"}], "formsNote": "peN-…-an 名物化：tumbuh → pertumbuhan；meN-…-kan 使动：menumbuhkan。注意 tumbuhan（植物）同族但语义独立。", "note": "经济/商业高频：pertumbuhan ekonomi（经济增长）、pertumbuhan penjualan（销售增长）、pertumbuhan industri（产业增长）、angka pertumbuhan（增长率）。", "synonyms": ["perkembangan（发展）", "kenaikan（上升）"], "antonyms": ["penurunan（下降）", "kemunduran（衰退）"], "examples": [{"scene": "商务沟通", "id": "Pertumbuhan permintaan nikel mendorong ekspansi smelter baru.", "cn": "镍需求增长推动新冶炼厂扩建。"}, {"scene": "项目管理", "id": "Pertumbuhan jumlah karyawan harus diimbangi pelatihan K3.", "cn": "员工数量增长须以安全培训配套。"}, {"scene": "日常表达", "id": "Pertumbuhan anak usia sekolah perlu dipantau orang tua.", "cn": "学龄儿童的成长需要家长关注。"}]},
- "pasal": {"word": "pasal", "cn": "条款；（法律/合同）条", "en": "article; clause", "root": "pasal（阿拉伯语借词 faṣl 经波斯/爪哇语）", "forms": [{"form": "pasal", "pos": "名词", "mean": "条款"}, {"form": "pasalnya", "pos": "名词", "mean": "该条款"}, {"form": "pasal-pasal", "pos": "复数", "mean": "各条款"}], "formsNote": "pasal 用于法律条文编号；合同分款亦可用 ayat/ketentuan。", "note": "合同与合规核心词。常见搭配：pasal 5 ayat 2（第5条第2款）、melanggar pasal（违反条款）、sesuai pasal（依条款）、ketentuan pasal（条款规定）、mencabut pasal（废止条款）。", "synonyms": ["ayat（款；节）", "ketentuan（规定）", "butir（条目）"], "antonyms": ["—"], "examples": [{"scene": "商务谈判", "id": "Pihak lawyer meninjau pasal-pasal kontrak sebelum penandatanganan.", "cn": "法务团队在签署前逐条审查合同条款。"}, {"scene": "项目管理", "id": "Pasal kerahasiaan berlaku bagi seluruh kontraktor proyek.", "cn": "保密条款适用于项目全体承包商。"}, {"scene": "日常表达", "id": "Pelanggaran pasal lalu lintas dapat didenda secara tegas.", "cn": "违反交通法规条款将被明确罚款。"}]},
- "realisasi": {"word": "realisasi", "cn": "落实；实现", "en": "realization; implementation", "root": "realisasi（外来词，经荷兰语 realisatie）", "forms": [{"form": "realisasi", "pos": "名词", "mean": "落实；实现"}, {"form": "merealisasikan", "pos": "及物动词", "mean": "实现；落实"}, {"form": "tererealisasi", "pos": "被动", "mean": "得以实现"}, {"form": "direalisasikan", "pos": "被动", "mean": "被落实"}], "formsNote": "meN- → merealisasikan；被动 ter-/di-；名词 realisasi。", "note": "项目/政策高频，比 terwujud 更正式。常见搭配：realisasi anggaran（预算执行）、realisasi proyek（项目落地）、target realisasi（落实目标）、realisasi 80%（完成率80%）。", "synonyms": ["pelaksanaan（实施）", "pencapaian（达成）", "terwujudnya（实现）"], "antonyms": ["wacana semata（空谈）", "rencana belum terlaksana（未落实的计划）"], "examples": [{"scene": "项目管理", "id": "Realisasi proyek pembangunan pabrik mencapai 85 persen tahun ini.", "cn": "工厂建设项目的落地率今年达到85%。"}, {"scene": "商务沟通", "id": "Rencana ekspansi belum terealisasi karena keterlambatan izin.", "cn": "扩张计划因许可延迟尚未落实。"}, {"scene": "日常表达", "id": "Mimpi itu akhirnya direalisasikan setelah sepuluh tahun.", "cn": "那个梦想十年后终于实现。"}]},
- "deviasi": {"word": "deviasi", "cn": "偏差；偏离", "en": "deviation", "root": "deviasi（外来词，经荷兰语 deviatie ← 英语 deviation）", "forms": [{"form": "deviasi", "pos": "名词", "mean": "偏差"}, {"form": "deviasi anggaran", "pos": "名词短语", "mean": "预算偏差"}, {"form": "menyimpang", "pos": "动词", "mean": "偏离（同义固有词）"}], "formsNote": "工程/项目管理借词；固有同义：menyimpang、penyimpangan。", "note": "项目管理核心词。常见搭配：deviasi jadwal（进度偏差）、deviasi biaya（成本偏差）、deviasi anggaran（预算偏差）、analisis deviasi（偏差分析）、toleransi deviasi（容差）。", "synonyms": ["penyimpangan（偏离）", "selisih（差额）"], "antonyms": ["kesesuaian（相符）", "kepatuhan（遵从）"], "examples": [{"scene": "项目管理", "id": "Deviasi anggaran proyek melebihi lima persen dan memerlukan persetujuan direksi.", "cn": "项目预算偏差超过5%，需总经理批准。"}, {"scene": "商务沟通", "id": "Laporan triwulanan menjelaskan deviasi antara rencana dan realisasi.", "cn": "季度报告说明计划与落实之间的偏差。"}, {"scene": "日常表达", "id": "Kecil deviasi dari rute perjalanan tidak mengubah tujuan.", "cn": "行程路线的小幅偏离不改变目的地。"}]},
- "pengumuman": {"word": "pengumuman", "cn": "公告；通知", "en": "announcement", "root": "umum（公共的）+ peN-…-an → pengumuman", "forms": [{"form": "pengumuman", "pos": "名词", "mean": "公告"}, {"form": "umum", "pos": "形容词", "mean": "公共的；一般的"}, {"form": "mengumumkan", "pos": "及物动词", "mean": "宣布"}, {"form": "diumumkan", "pos": "被动", "mean": "被公布"}, {"form": "umumnya", "pos": "副词", "mean": "通常"}], "formsNote": "peN-…-an 名物化：umum → pengumuman；meN-…-kan → mengumumkan；umumnya 为惯用副词（一般地）。", "note": "行政/HR 高频。常见搭配：pengumuman resmi（正式公告）、memasang pengumuman（张贴公告）、pengumuman melalui email（邮件通知）、sehubungan dengan pengumuman（谨此通知）。", "synonyms": ["pemberitahuan（通知）", "edaran（通告）", "warta（消息）"], "antonyms": ["—"], "examples": [{"scene": "项目管理", "id": "Pengumuman tender proyek dipublikasikan di media nasional.", "cn": "项目招标公告在国家媒体发布。"}, {"scene": "商务沟通", "id": "Hasil seleksi karyawan baru akan diumumkan minggu depan.", "cn": "新员工选拔结果将于下周公布。"}, {"scene": "日常表达", "id": "Dengar pengumuman di bandara sebelum boarding.", "cn": "登机前请留意机场广播通知。"}]},
- "siaran": {"word": "siaran", "cn": "广播；播出；节目", "en": "broadcast", "root": "siar（播撒；传播）+ -an → siaran", "forms": [{"form": "siaran", "pos": "名词", "mean": "广播；播出"}, {"form": "siar", "pos": "动词", "mean": "播撒；传播"}, {"form": "menyiarkan", "pos": "及物动词", "mean": "播出；转播"}, {"form": "disiarkan", "pos": "被动", "mean": "被播出"}, {"form": "penyiar", "pos": "名词", "mean": "播音员；播报员"}], "formsNote": "siar → siaran（-an 名物化）；meN-…-kan → menyiarkan；peN- → penyiar。", "note": "媒体高频。常见搭配：siaran langsung（直播）、siaran pers（新闻通稿/发布会）、menyiarkan berita（播报新闻）、stasiun siaran（广播电台）。siaran pers 是发布会通稿的固定说法。", "synonyms": ["penyiaran（广播事业）", "tayangan（播放内容）"], "antonyms": ["—"], "examples": [{"scene": "商务沟通", "id": "Konferensi pers disiarkan langsung melalui televisi nasional.", "cn": "新闻发布会通过国家电视台直播。"}, {"scene": "项目管理", "id": "Siaran pers proyek diresmikan menteri pekan lalu.", "cn": "项目由部长主持奠基的新闻通稿上周发布。"}, {"scene": "日常表达", "id": "Acara siaran pagi ini membahas kesehatan kerja.", "cn": "今早的广播节目讨论职业健康。"}]},
- "pidato": {"word": "pidato", "cn": "演讲；致辞", "en": "speech; oration", "root": "pidato（固有词，古爪哇 pitutur 同源）", "forms": [{"form": "pidato", "pos": "名词", "mean": "演讲"}, {"form": "berpidato", "pos": "动词", "mean": "发表演讲"}, {"form": "pidatonya", "pos": "名词", "mean": "他的演讲"}], "formsNote": "ber- → berpidato（发表演说）。", "note": "正式场合演讲。常见搭配：pidato pembukaan（开幕致辞）、pidato kunci（主旨演讲）、teks pidato（演讲稿）、berpidato di depan umum（公开发言）、amandemen pidato（修改讲稿）。", "synonyms": ["ceramah（讲演）", "orasi（演说）", "sambutan（致辞）"], "antonyms": ["—"], "examples": [{"scene": "项目管理", "id": "Direktur utama memberikan pidato pembukaan pada serah terima proyek.", "cn": "总裁在项目移交仪式上发表开幕致辞。"}, {"scene": "商务沟通", "id": "Naskah pidato harus diserahkan ke protokol dua jam sebelum acara.", "cn": "演讲稿须在活动前两小时交礼宾处。"}, {"scene": "日常表达", "id": "Ia berlatih pidato di depan cermin setiap malam.", "cn": "他每晚对着镜子练习演讲。"}]},
- "kementerian": {"word": "kementerian", "cn": "（政府）部；部委", "en": "ministry", "root": "menteri（部长，外来词 minister）+ ke-…-an → kementerian", "forms": [{"form": "kementerian", "pos": "名词", "mean": "部；部委"}, {"form": "menteri", "pos": "名词", "mean": "部长"}, {"form": "kementerian negara", "pos": "名词短语", "mean": "国家部委"}], "formsNote": "ke-…-an 机构名物化：menteri → kementerian。", "note": "印尼政府架构词。常见搭配：Kementerian ESDM（能矿部）、Kementerian Perindustrian（工业部）、surat dari kementerian（部委来文）、koordinasi dengan kementerian（与部委协调）。", "synonyms": ["departemen（部门）"], "antonyms": ["—"], "examples": [{"scene": "项目管理", "id": "Izin usaha pertambangan diproses melalui Kementerian ESDM.", "cn": "矿业经营许可证通过能矿部办理。"}, {"scene": "商务沟通", "id": "Perusahaan mengundang perwakilan kementerian ke groundbreaking.", "cn": "公司邀请部委代表出席奠基仪式。"}, {"scene": "日常表达", "id": "Beasiswa itu dikelola langsung oleh kementerian pendidikan.", "cn": "该奖学金由教育部直接管理。"}]},
- "pengirim": {"word": "pengirim", "cn": "寄件人；发送方", "en": "sender", "root": "kirim（寄送）+ peN- → pengirim", "forms": [{"form": "pengirim", "pos": "名词", "mean": "寄件人"}, {"form": "kirim", "pos": "动词", "mean": "寄送"}, {"form": "mengirim", "pos": "动词", "mean": "寄出"}, {"form": "mengirimkan", "pos": "及物动词", "mean": "寄给（某人）"}, {"form": "pengiriman", "pos": "名词", "mean": "寄送（行为/过程）"}], "formsNote": "peN- → pengirim（施事）；peN-…-an → pengiriman（行为）；meN-…-kan → mengirimkan。", "note": "邮件/物流高频，与 penerima（收件人）相对。常见搭配：alamat pengirim（寄件地址）、nama pengirim（寄件人姓名）、pengirim barang（发货方）、biaya pengiriman（运费）。", "synonyms": ["pengirim barang（发货方）"], "antonyms": ["penerima（收件人）"], "examples": [{"scene": "商务沟通", "id": "Periksa alamat pengirim sebelum membuka lampiran email.", "cn": "打开邮件附件前先核对寄件地址。"}, {"scene": "项目管理", "id": "Pengirim material bertanggung jawab atas keterlambatan kedatangan.", "cn": "材料发货方对到货延迟负责。"}, {"scene": "日常表达", "id": "Paket itu dikembalikan karena alamat pengirim tidak lengkap.", "cn": "包裹因寄件人地址不全被退回。"}]},
- "lampiran": {"word": "lampiran", "cn": "附件；附录", "en": "attachment; annex", "root": "lampir（附贴）+ -an → lampiran", "forms": [{"form": "lampiran", "pos": "名词", "mean": "附件"}, {"form": "terlampir", "pos": "形容词/分词", "mean": "随附的"}, {"form": "melampirkan", "pos": "及物动词", "mean": "附上"}, {"form": "dilampirkan", "pos": "被动", "mean": "被附上"}], "formsNote": "meN-…-kan → melampirkan；被动 di-…-kan → dilampirkan；ter- → terlampir（随附，正式公文常用）。", "note": "商务邮件核心词。常见搭配：seperti terlampir（如附件所示）、dokumen terlampir（随附文件）、melampirkan CV（附上简历）、dalam lampiran（见附件）。", "synonyms": ["terlampir（随附）", "apendiks（附录）"], "antonyms": ["—"], "examples": [{"scene": "商务沟通", "id": "Dokumen penawaran harga kami lampirkan pada email ini.", "cn": "报价文件随本邮件附上。"}, {"scene": "项目管理", "id": "Berita acara pemeriksaan ditandatangani seperti terlampir.", "cn": "验收会议纪要经签署，见附件。"}, {"scene": "日常表达", "id": "Melamar pekerjaan dengan melampirkan portofolio terbaru.", "cn": "求职时附上最新作品集。"}]},
- "subjek": {"word": "subjek", "cn": "主题；主语", "en": "subject", "root": "subjek（外来词，经荷兰语 subject）", "forms": [{"form": "subjek", "pos": "名词", "mean": "主题；主语"}, {"form": "subjeknya", "pos": "名词", "mean": "其主题"}, {"form": "subjek email", "pos": "名词短语", "mean": "邮件主题"}], "formsNote": "语法/邮件双义：语法中=主语；邮件中=主题行。", "note": "邮件写作核心词。常见搭配：subjek email（邮件主题）、tulis subjek dengan jelas（主题写清楚）、subjek yang menarik（吸引人的主题）、subjek kalimat（句子的主语）。", "synonyms": ["topik（话题）", "judul（标题）"], "antonyms": ["predikat（谓语）", "objek（宾语）"], "examples": [{"scene": "商务沟通", "id": "Subjek email harus ringkas dan mencerminkan isi pesan.", "cn": "邮件主题应简洁并反映内容。"}, {"scene": "项目管理", "id": "Dalam kalimat itu, subjeknya adalah kontraktor pelaksana.", "cn": "那个句子的主语是施工承包商。"}, {"scene": "日常表达", "id": "Subjek diskusi hari ini adalah efisiensi energi.", "cn": "今天讨论的主题是能源效率。"}]},
- "pembuka": {"word": "pembuka", "cn": "开场；开头；开启者", "en": "opener; opening", "root": "buka（打开）+ peN- → pembuka", "forms": [{"form": "pembuka", "pos": "名词", "mean": "开场；开头"}, {"form": "membuka", "pos": "动词", "mean": "打开；开启"}, {"form": "pembukaan", "pos": "名词", "mean": "开幕式"}, {"form": "dibuka", "pos": "被动", "mean": "被打开"}], "formsNote": "peN- → pembuka（施事/工具）；peN-…-an → pembukaan（活动/仪式）。", "note": "演讲/会议高频，与 penutup 相对。常见搭配：pidato pembuka（开场致辞）、kata pembuka（开场白）、acara pembukaan（开幕式）、kalimat pembuka（开头句）。", "synonyms": ["pengantar（引言）", "prolog（序幕）"], "antonyms": ["penutup（结尾）"], "examples": [{"scene": "商务沟通", "id": "Kalimat pembuka surat resmi harus sopan dan langsung.", "cn": "正式信函的开头句须礼貌且直接。"}, {"scene": "项目管理", "id": "Pembukaan proyek ditandai dengan upacara peletakan batu pertama.", "cn": "项目以奠基仪式拉开序幕。"}, {"scene": "日常表达", "id": "Pembuka pertandingan menyanyikan lagu kebangsaan.", "cn": "开场主持人领唱国歌。"}]},
- "penutup": {"word": "penutup", "cn": "结尾；闭幕；关闭者", "en": "closing; closure", "root": "tutup（关闭）+ peN- → penutup", "forms": [{"form": "penutup", "pos": "名词", "mean": "结尾；闭幕"}, {"form": "menutup", "pos": "动词", "mean": "关闭"}, {"form": "penutupan", "pos": "名词", "mean": "闭幕式"}, {"form": "ditutup", "pos": "被动", "mean": "被关闭"}], "formsNote": "peN- → penutup；peN-…-an → penutupan。", "note": "与 pembuka 相对。常见搭配：kata penutup（结束语）、pidato penutup（闭幕致辞）、acara penutupan（闭幕式）、pasal penutup（末条）、menutup rapat（结束会议）。", "synonyms": ["epilog（尾声）", "kesimpulan（总结）"], "antonyms": ["pembuka（开头）"], "examples": [{"scene": "商务沟通", "id": "Dalam kata penutup, ia mengucapkan terima kasih kepada semua pihak.", "cn": "他在结束语中感谢各方。"}, {"scene": "项目管理", "id": "Penutupan proyek direncanakan dengan audit dokumentasi final.", "cn": "项目收尾计划包含最终文件审计。"}, {"scene": "日常表达", "id": "Toko itu ditutup tepat pukul sembilan malam.", "cn": "那家商店每晚九点准时打烊。"}]},
- "tembusan": {"word": "tembusan", "cn": "抄送；（公文）抄送栏", "en": "copy (cc); circular reference", "root": "tembus（穿透；送达）+ -an → tembusan", "forms": [{"form": "tembusan", "pos": "名词", "mean": "抄送"}, {"form": "tembus", "pos": "动词", "mean": "穿透；送达"}, {"form": "menembus", "pos": "动词", "mean": "穿过；突破"}], "formsNote": "公文用语：tembusan = 抄送给相关单位；日常亦指\"穿透\"。", "note": "印尼正式公文固定栏目。常见搭配：tembusan kepada（抄送）、surat tembusan（抄送函）、dengan tembusan kepada menteri（抄送部长）。", "synonyms": ["salinan（副本）", "cc（抄送标记）"], "antonyms": ["—"], "examples": [{"scene": "商务沟通", "id": "Surat keputusan dikirim dengan tembusan kepada direksi perusahaan.", "cn": "决定书发出并抄送公司管理层。"}, {"scene": "项目管理", "id": "Laporan insiden ditujukan kepada manajer dengan tembusan K3.", "cn": "事故报告呈报经理并抄送安全部门。"}, {"scene": "日常表达", "id": "Tembusan listrik menembus isolasi yang rusak.", "cn": "电流击穿了破损的绝缘层。"}]},
- "kop surat": {"word": "kop surat", "cn": "信头；公文头", "en": "letterhead", "root": "kop（外来词 kop ← 荷兰语 kop，信头）+ surat（信）", "forms": [{"form": "kop surat", "pos": "名词", "mean": "信头"}, {"form": "kop", "pos": "名词", "mean": "信头（简写）"}], "formsNote": "印尼公文格式术语；kop 亦指头（kopi 咖啡勿混淆）。", "note": "商务信函格式词。常见搭配：menggunakan kop surat resmi（使用正式信头）、kop surat perusahaan（公司信头）、nama tertera di kop surat（信头上的名称）。", "synonyms": ["kepala surat（信头）"], "antonyms": ["—"], "examples": [{"scene": "商务沟通", "id": "Surat resmi harus dicetak di atas kop surat perusahaan.", "cn": "正式信函须打印在公司信头上。"}, {"scene": "项目管理", "id": "Kop surat konsultan dicantumkan pada laporan bulanan.", "cn": "顾问信头印在月度报告上。"}, {"scene": "日常表达", "id": "Desain kop surat baru lebih sederhana dan modern.", "cn": "新信头设计更简洁现代。"}]},
- "pengarsipan": {"word": "pengarsipan", "cn": "归档；存档管理", "en": "filing; archiving", "root": "arsip（档案，外来词 archive）+ peN-…-an → pengarsipan", "forms": [{"form": "pengarsipan", "pos": "名词", "mean": "归档"}, {"form": "arsip", "pos": "名词", "mean": "档案"}, {"form": "mengarsipkan", "pos": "及物动词", "mean": "归档"}, {"form": "diarsipkan", "pos": "被动", "mean": "被归档"}], "formsNote": "peN-…-an 名物化：arsip → pengarsipan；meN-…-kan → mengarsipkan。", "note": "行政/文档管理词。常见搭配：sistem pengarsipan（归档系统）、petugas pengarsipan（档案员）、pengarsipan dokumen kontrak（合同归档）、pengarsipan digital（数字归档）。", "synonyms": ["penataan dokumen（文件整理）", "filing（归档，外来）"], "antonyms": ["—"], "examples": [{"scene": "项目管理", "id": "Pengarsipan dokumen kontrak mengikuti standar retensi lima tahun.", "cn": "合同文件归档按五年保存期标准执行。"}, {"scene": "商务沟通", "id": "Email lama perlu diarsipkan agar kotak masuk tetap rapi.", "cn": "旧邮件需要归档以保持收件箱整洁。"}, {"scene": "日常表达", "id": "Ia bekerja di bagian pengarsipan perpustakaan kota.", "cn": "她在市图书馆档案部门工作。"}]},
- "penomoran": {"word": "penomoran", "cn": "编号", "en": "numbering", "root": "nomor（号码，外来词 nomor）+ peN-…-an → penomoran", "forms": [{"form": "penomoran", "pos": "名词", "mean": "编号"}, {"form": "nomor", "pos": "名词", "mean": "号码；号"}, {"form": "menomori", "pos": "及物动词", "mean": "给……编号"}, {"form": "bernomor", "pos": "形容词", "mean": "有编号的"}], "formsNote": "peN-…-an：nomor → penomoran；meN-…-i → menomori。", "note": "文档管理词。常见搭配：penomoran halaman（页码编号）、penomoran otomatis（自动编号）、sistem penomoran dokumen（文件编号系统）、surat bernomor（有编号的函件）。", "synonyms": ["penomoran halaman（页码）"], "antonyms": ["—"], "examples": [{"scene": "项目管理", "id": "Penomoran revisi gambar mengikuti kode proyek dan tanggal.", "cn": "图纸修订编号遵循项目代码加日期规则。"}, {"scene": "商务沟通", "id": "Penomoran halaman laporan dimulai dari halaman pendahuluan.", "cn": "报告页码从前言页开始编排。"}, {"scene": "日常表达", "id": "Rumah-rumah di kompleks itu bernomor ganjil di sisi kiri.", "cn": "小区左侧门牌号为单数。"}]},
- "tabel": {"word": "tabel", "cn": "表格", "en": "table", "root": "tabel（外来词，经荷兰语 tabel）", "forms": [{"form": "tabel", "pos": "名词", "mean": "表格"}, {"form": "tabelnya", "pos": "名词", "mean": "该表"}, {"form": "dalam tabel", "pos": "介词短语", "mean": "在表中"}], "formsNote": "报告/数据展示借词；区分 grafik（图表）和 daftar（清单）。", "note": "商务报告高频。常见搭配：lihat tabel di bawah（见下表）、tabel perbandingan（对比表）、mengisi tabel（填表）、ringkasan dalam tabel（表格汇总）。", "synonyms": ["daftar（清单）", "matriks（矩阵）"], "antonyms": ["—"], "examples": [{"scene": "项目管理", "id": "Tabel jadwal pelaksanaan memuat tanggal mulai dan selesai setiap paket pekerjaan.", "cn": "实施进度表包含各工作包的开工与完工日期。"}, {"scene": "商务沟通", "id": "Data harga kompetitor disajikan dalam tabel perbandingan.", "cn": "竞品价格数据以对比表呈现。"}, {"scene": "日常表达", "id": "Ia menghafal tabel perkalian sejak kelas dua.", "cn": "他二年级就背熟乘法表。"}]},
- "apendiks": {"word": "apendiks", "cn": "附录", "en": "appendix", "root": "apendiks（外来词，经荷兰语 appendiks ← 拉丁 appendix）", "forms": [{"form": "apendiks", "pos": "名词", "mean": "附录"}, {"form": "apendik", "pos": "变体拼写", "mean": "附录（次常用）"}], "formsNote": "正式报告用语；口语/一般文档多用 lampiran。", "note": "与 lampiran 近义；apendiks 更正式且仅指书末附录，lampiran 可指任何随附文件。常见搭配：apendiks laporan（报告附录）、lampiran A / apendiks B。", "synonyms": ["lampiran（附件/附录）"], "antonyms": ["—"], "examples": [{"scene": "项目管理", "id": "Metodologi survei dijelaskan lengkap dalam apendiks laporan.", "cn": "调查方法在报告附录中完整说明。"}, {"scene": "商务沟通", "id": "Daftar istilah teknis ditempatkan pada apendiks dokumen tender.", "cn": "技术术语表置于招标文件附录。"}, {"scene": "日常表达", "id": "Buku itu memiliki apendiks berisi peta dan glossarium.", "cn": "该书附录含地图和词汇表。"}]},
- "pendengar": {"word": "pendengar", "cn": "听众；听者", "en": "listener; audience", "root": "dengar（听）+ peN- → pendengar", "forms": [{"form": "pendengar", "pos": "名词", "mean": "听众"}, {"form": "mendengar", "pos": "动词", "mean": "听"}, {"form": "mendengarkan", "pos": "及物动词", "mean": "聆听"}, {"form": "didengarkan", "pos": "被动", "mean": "被聆听"}], "formsNote": "peN- → pendengar（施事）；meN- → mendengar；meN-…-kan → mendengarkan（专注听）。", "note": "演讲/媒体词。常见搭配：para pendengar（各位听众）、menarik perhatian pendengar（吸引听众）、pendengar setia（忠实听众）、kesan pendengar（听众印象）。", "synonyms": ["audiens（观众/听众）"], "antonyms": ["pembicara（发言者）"], "examples": [{"scene": "商务沟通", "id": "Pembicara menyesuaikan gaya presentasi dengan profil pendengar.", "cn": "演讲者根据听众背景调整呈现方式。"}, {"scene": "项目管理", "id": "Sesi tanya jawab memberi ruang bagi pendengar menyampaikan keberatan.", "cn": "问答环节让听众表达异议。"}, {"scene": "日常表达", "id": "Podcast itu memiliki pendengar setia di seluruh nusantara.", "cn": "那个播客在全群岛拥有忠实听众。"}]},
- "tayangan": {"word": "tayangan", "cn": "（电视/屏幕）播出内容；节目", "en": "screening; broadcast content", "root": "tayang（上映；播出）+ -an → tayangan", "forms": [{"form": "tayangan", "pos": "名词", "mean": "播出内容"}, {"form": "tayang", "pos": "动词", "mean": "上映；播出"}, {"form": "menayangkan", "pos": "及物动词", "mean": "播出（某节目）"}, {"form": "ditayangkan", "pos": "被动", "mean": "被播出"}], "formsNote": "tayang → tayangan（-an 名物化）；meN-…-kan → menayangkan。", "note": "媒体词。常见搭配：tayangan ulang（重播）、tayangan langsung（直播）、jam tayang（播出时段）、ditayangkan nasional（全国播出）。与 siaran 区分：siaran 偏广播行为/机构，tayangan 偏播出的具体节目内容。", "synonyms": ["program（节目）", "siaran（广播）"], "antonyms": ["—"], "examples": [{"scene": "商务沟通", "id": "Profil perusahaan ditayangkan pada program bisnis nasional.", "cn": "公司宣传片在国家商业节目播出。"}, {"scene": "项目管理", "id": "Video keselamatan kerja menjadi tayangan wajib setiap rapat awal bulan.", "cn": "安全视频成为每月初会议的必播内容。"}, {"scene": "日常表达", "id": "Tayangan ulang pertandingan dimulai pukul delapan malam.", "cn": "比赛重播晚八点开始。"}]},
- "panggung": {"word": "panggung", "cn": "舞台；讲台", "en": "stage", "root": "panggung（固有词）", "forms": [{"form": "panggung", "pos": "名词", "mean": "舞台"}, {"form": "berpanggung", "pos": "动词", "mean": "设舞台（罕用）"}, {"form": "ke panggung", "pos": "介词短语", "mean": "上台"}], "formsNote": "常见派生：panggung sandiwara（戏剧舞台）、dipentaskan（被搬上舞台）。", "note": "活动/演讲词。常见搭配：naik ke panggung（上台）、di atas panggung（在舞台上）、panggung utama（主舞台）、mengambil alih panggung（掌控全场）。", "synonyms": ["pentas（舞台，马来影响）", "podium（讲台）"], "antonyms": ["—"], "examples": [{"scene": "商务沟通", "id": "Direktur naik ke panggung untuk memaparkan visi perusahaan.", "cn": "总经理上台阐述公司愿景。"}, {"scene": "项目管理", "id": "Gladi resik dilakukan di panggung utama aula serbaguna.", "cn": "彩排在主会场舞台进行。"}, {"scene": "日常表达", "id": "Anak itu berani tampil di panggung sekolah.", "cn": "那孩子敢在学校舞台上表演。"}]},
- "gladi resik": {"word": "gladi resik", "cn": "彩排；演练", "en": "rehearsal; dry run", "root": "gladi（演习，军事借词）+ resik（净场，源自 bersih\"干净\"→ gladi bersih 缩略）", "forms": [{"form": "gladi resik", "pos": "名词", "mean": "彩排"}, {"form": "gladi", "pos": "名词", "mean": "演习"}, {"form": "gladi bersih", "pos": "名词短语", "mean": "正式彩排（全要素）"}], "formsNote": "印尼语固定复合词；gladi bersih 指带妆全流程彩排。", "note": "活动筹备核心词。常见搭配：gladi resik acara（活动彩排）、jadwal gladi resik（彩排日程）、melakukan gladi resik（进行彩排）。", "synonyms": ["latihan terakhir（最后演练）", "uji coba（试运行）"], "antonyms": ["—"], "examples": [{"scene": "项目管理", "id": "Gladi resik serah terima proyek digelar sehari sebelum acara.", "cn": "项目移交仪式彩排在活动前一天举行。"}, {"scene": "商务沟通", "id": "Seluruh pembicara wajib hadir pada gladi resik pukul tiga sore.", "cn": "全体演讲者须出席下午三点彩排。"}, {"scene": "日常表达", "id": "Tim teater melakukan gladi bersih malam ini.", "cn": "剧组今晚进行带妆彩排。"}]},
- "gestur": {"word": "gestur", "cn": "手势；体态", "en": "gesture", "root": "gestur（外来词，经荷兰语 gestuur ← 英语 gesture）", "forms": [{"form": "gestur", "pos": "名词", "mean": "手势"}, {"form": "gestur tubuh", "pos": "名词短语", "mean": "肢体语言"}, {"form": "bergestur", "pos": "动词", "mean": "打手势"}], "formsNote": "演讲/沟通学术借词；固有近义 bahasa tubuh。", "note": "演讲技巧词。常见搭配：gestur yang tegas（有力的手势）、menguatkan dengan gestur（用手势加强）、mengontrol gestur（控制手势）。", "synonyms": ["bahasa tubuh（肢体语言）", "gerak isyarat（示意动作）"], "antonyms": ["—"], "examples": [{"scene": "商务沟通", "id": "Pembicara melatih gestur agar presentasi lebih meyakinkan.", "cn": "演讲者训练手势让汇报更有说服力。"}, {"scene": "项目管理", "id": "Gestur tubuh pewawancara menunjukkan keterbukaan terhadap usulan.", "cn": "谈判方的肢体语言显示对提案的开放态度。"}, {"scene": "日常表达", "id": "Ia menjelaskan arah jalan dengan gestur tangan.", "cn": "他用手势比划指路。"}]},
- "retorika": {"word": "retorika", "cn": "修辞；雄辩术", "en": "rhetoric", "root": "retorika（外来词，经荷兰语 retoriek ← 拉丁 rhetorica）", "forms": [{"form": "retorika", "pos": "名词", "mean": "修辞"}, {"form": "retoris", "pos": "形容词", "mean": "修辞的"}, {"form": "beretorika", "pos": "动词", "mean": "运用修辞"}], "formsNote": "正式/学术借词；日常少用。", "note": "演讲与写作理论词。常见搭配：kemampuan retorika（修辞能力）、retorika persuasif（说服性修辞）、seni retorika（雄辩艺术）、retorika politik（政治 rhetoric）。", "synonyms": ["ilmu pidato（演讲术）", "gaya bahasa（文风）"], "antonyms": ["—"], "examples": [{"scene": "商务沟通", "id": "Pidatonya penuh retorika namun tetap berdasarkan data.", "cn": "他的演讲修辞丰富但始终以数据为据。"}, {"scene": "项目管理", "id": "Laporan teknis sebaiknya minim retorika dan maksimal fakta.", "cn": "技术报告应最少修辞、最多事实。"}, {"scene": "日常表达", "id": "Kelas retorika melatih cara menyusun argumen.", "cn": "修辞课训练构建论点的方法。"}]},
- "interaksi": {"word": "interaksi", "cn": "互动；相互作用", "en": "interaction", "root": "interaksi（外来词，经荷兰语 interactie ← 英语 interaction）", "forms": [{"form": "interaksi", "pos": "名词", "mean": "互动"}, {"form": "berinteraksi", "pos": "动词", "mean": "进行互动"}, {"form": "saling berinteraksi", "pos": "动词短语", "mean": "相互交流"}], "formsNote": "ber- → berinteraksi dengan（与……互动）。", "note": "培训/会议高频。常见搭配：interaksi dengan audiens（与听众互动）、interaksi sosial（社会交往）、berinteraksi langsung（直接交流）、meningkatkan interaksi（增强互动）。", "synonyms": ["hubungan timbal balik（双向交流）", "ajang silaturahmi（联谊场合）"], "antonyms": ["monolog（独白）"], "examples": [{"scene": "商务沟通", "id": "Sesi presentasi dibuat interaktif untuk memancing interaksi peserta.", "cn": "报告环节设计为互动式以带动参与。"}, {"scene": "项目管理", "id": "Interaksi harian antara operator dan supervisor mencegah kesalahan proses.", "cn": "操作员与主管的日常互动可防止流程差错。"}, {"scene": "日常表达", "id": "Anak belajar bahasa melalui interaksi dengan teman sebaya.", "cn": "孩子通过与同龄人交往学习语言。"}]},
- "antusiasme": {"word": "antusiasme", "cn": "热情；热忱", "en": "enthusiasm", "root": "antusiasme（外来词，经荷兰语 enthousiasme ← 希腊）", "forms": [{"form": "antusiasme", "pos": "名词", "mean": "热情"}, {"form": "antusias", "pos": "形容词", "mean": "热情的"}, {"form": "dengan antusias", "pos": "副词短语", "mean": "热情地"}], "formsNote": "名词 antusiasme / 形容词 antusias 勿混。", "note": "激励/反馈高频。常见搭配：antusiasme yang tinggi（高涨的热情）、menunjukkan antusiasme（展现热情）、membangkitkan antusiasme（激发热情）、peserta antusias（热情的参与者）。", "synonyms": ["semangat（精神/干劲）", "gairah（激情）"], "antonyms": ["apatisme（冷漠）", "kepasifan（消极）"], "examples": [{"scene": "项目管理", "id": "Antusiasme tim muda menjadi modal utama percepatan konstruksi.", "cn": "年轻团队的热情是建设提速的重要资本。"}, {"scene": "商务沟通", "id": "Pendengar menyambut usulan merger dengan antusiasme besar.", "cn": "听众以极大热忱欢迎合并提案。"}, {"scene": "日常表达", "id": "Ia belajar bahasa Indonesia dengan antusiasme luar biasa.", "cn": "他以非凡的热情学习印尼语。"}]},
- "kepercayaan diri": {"word": "kepercayaan diri", "cn": "自信", "en": "self-confidence", "root": "percaya（相信）+ ke-…-an → kepercayaan（信任）+ diri（自己）", "forms": [{"form": "kepercayaan diri", "pos": "名词", "mean": "自信"}, {"form": "percaya diri", "pos": "形容词短语", "mean": "自信的"}, {"form": "percaya", "pos": "动词", "mean": "相信"}, {"form": "kepercayaan", "pos": "名词", "mean": "信任（注意：不单指自信）"}], "formsNote": "区分：kepercayaan（对他人的信任）≠ kepercayaan diri（对自己的信心=自信）；形容词 percaya diri。", "note": "演讲/面试高频。常见搭配：membangun kepercayaan diri（建立自信）、kepercayaan diri yang tinggi（高度自信）、kurang percaya diri（缺乏自信）、tampil percaya diri（表现自信）。", "synonyms": ["keyakinan diri（自我确信）", "rasa percaya diri（自信心）"], "antonyms": ["keraguan diri（自我怀疑）", "rendah diri（自卑）"], "examples": [{"scene": "商务沟通", "id": "Kepercayaan diri tampil dalam cara ia menjawab pertanyaan tajam investor.", "cn": "他回答投资者尖锐问题的方式展现了自信。"}, {"scene": "项目管理", "id": "Pelatihan presentasi diberikan untuk membangun kepercayaan diri supervisor.", "cn": "开展汇报培训以建立主管的自信心。"}, {"scene": "日常表达", "id": "Berpengalaman di panggung kecil menumbuhkan kepercayaan diri.", "cn": "小舞台的经验能培养自信。"}]},
- /* V4.50.0 回填结束 · CA 话题2-6 新词30 */
-
- "permintaan": {"word": "permintaan", "cn": "请求；询盘", "en": "request; inquiry", "root": "minta（请求）+ per-…-an", "forms": [{"form": "permintaan", "pos": "名词", "mean": "请求；询盘"}, {"form": "meminta", "pos": "动词", "mean": "请求"}, {"form": "diminta", "pos": "被动", "mean": "被要求"}], "formsNote": "per-…-an 名物化；meN- → meminta；di- → diminta。", "note": "商务固定搭配：permintaan penawaran（询价单）、surat permintaan（请求函）、sesuai permintaan（按要求）。", "synonyms": ["permohonan（申请）"], "antonyms": ["penawaran（报价/提供）"], "examples": [{"scene": "商务谈判", "id": "Kami mengajukan permintaan penawaran resmi kepada tiga pemasok.", "cn": "我们向三家供应商提交了正式询价。"}, {"scene": "商务沟通", "id": "Produk dikirim sesuai permintaan khusus pelanggan.", "cn": "产品按客户特殊要求发货。"}, {"scene": "日常表达", "id": "Permintaan maaf disampaikan secara terbuka.", "cn": "道歉被公开表达。"}]},
- "kesiapan": {"word": "kesiapan", "cn": "准备就绪", "en": "readiness", "root": "siap（准备好的）+ ke-…-an", "forms": [{"form": "kesiapan", "pos": "名词", "mean": "准备"}, {"form": "siap", "pos": "形容词", "mean": "准备好的"}, {"form": "menyiapkan", "pos": "及物动词", "mean": "准备"}], "formsNote": "ke-…-an 抽象名词；meN-…-kan → menyiapkan。", "note": "kesiapan mental（心理准备）、kesiapan teknis（技术准备）、dalam kesiapan（准备就绪）。", "synonyms": ["persiapan（筹备）"], "antonyms": ["ketidaksiapan（未准备好）"], "examples": [{"scene": "项目管理", "id": "Tingkat kesiapan tim menentukan keberhasilan negosiasi.", "cn": "团队的准备程度决定谈判成败。"}, {"scene": "商务沟通", "id": "Kami mengumumkan kesiapan untuk memulai proyek bulan depan.", "cn": "我们宣布下月启动项目的准备已就绪。"}, {"scene": "日常表达", "id": "Latihan gladi resik menunjukkan kesiapan para pemain.", "cn": "彩排展现了演员们的准备状态。"}]},
- "pembicaraan": {"word": "pembicaraan", "cn": "商谈；会谈", "en": "talks; discussion", "root": "bicara（说话）+ peN-…-an", "forms": [{"form": "pembicaraan", "pos": "名词", "mean": "商谈"}, {"form": "berbicara", "pos": "动词", "mean": "谈话"}, {"form": "pembicara", "pos": "名词", "mean": "发言人"}], "formsNote": "peN-…-an 名物化；ber- → berbicara；peN- → pembicara。", "note": "meja pembicaraan（谈判桌）、membuka pembicaraan（开启会谈）、menengahi pembicaraan（斡旋会谈）。比 diskusi 正式。", "synonyms": ["perundingan（磋商）", "perbincangan（交谈）"], "antonyms": ["—"], "examples": [{"scene": "商务谈判", "id": "Pembicaraan awal berfokus pada harga dan jadwal.", "cn": "初期会谈聚焦价格与日程。"}, {"scene": "项目管理", "id": "Meja pembicaraan disiapkan dengan dokumentasi lengkap.", "cn": "谈判桌备好了全套文件。"}, {"scene": "日常表达", "id": "Pembicaraan hangat membuat suasana menjadi santai.", "cn": "热烈的谈话让气氛轻松起来。"}]},
- "undangan": {"word": "undangan", "cn": "邀请；邀请函", "en": "invitation", "root": "undang（邀请）+ -an", "forms": [{"form": "undangan", "pos": "名词", "mean": "邀请/邀请函"}, {"form": "mengundang", "pos": "动词", "mean": "邀请"}, {"form": "diundang", "pos": "被动", "mean": "被邀请"}], "formsNote": "-an 名物化；meN- → mengundang；di- → diundang。", "note": "undangan resmi（正式邀请）、menerima undangan（接受邀请）、menolak undangan（谢绝邀请）、balasan undangan（回函）。", "synonyms": ["ajakan（邀约）"], "antonyms": ["penolakan（拒绝）"], "examples": [{"scene": "商务沟通", "id": "Undangan rapat pembukaan dikirim seminggu sebelum acara.", "cn": "开幕会议邀请提前一周发出。"}, {"scene": "商务谈判", "id": "Kami mengundang pimpinan supplier untuk bertemu langsung.", "cn": "我们邀请供应商高层直接会面。"}, {"scene": "日常表达", "id": "Ia diundang menjadi pembicara tamu di acara sekolah.", "cn": "他受邀在学校活动担任嘉宾演讲。"}]},
- "kehadiran": {"word": "kehadiran", "cn": "出席；到场", "en": "attendance; presence", "root": "hadir（出席）+ ke-…-an", "forms": [{"form": "kehadiran", "pos": "名词", "mean": "出席"}, {"form": "hadir", "pos": "动词", "mean": "出席"}, {"form": "kehadiran", "pos": "名词", "mean": "presence 同形"}], "formsNote": "ke-…-an 抽象名词。", "note": "konfirmasi kehadiran（确认出席）、mencatat kehadiran（记录出勤）、membuktikan kehadiran（证明在场）、menghargai kehadiran（感谢出席）。", "synonyms": ["ketidakhadiran 反义", "partisipasi（参与）"], "antonyms": ["ketidakhadiran（缺席）"], "examples": [{"scene": "商务沟通", "id": "Kehadiran direksi pada penandatanganan sangat penting.", "cn": "管理层出席签约仪式至关重要。"}, {"scene": "项目管理", "id": "Absensi mencatat kehadiran semua kontraktor harian.", "cn": "考勤记录每日记录所有承包商出勤。"}, {"scene": "日常表达", "id": "Kehadiranmu membuat acara ini istimewa.", "cn": "你的出席让本次活动特别。"}]},
- "pembukaan": {"word": "pembukaan", "cn": "开场；开幕", "en": "opening", "root": "buka（打开）+ peN-…-an", "forms": [{"form": "pembukaan", "pos": "名词", "mean": "开幕/开场"}, {"form": "membuka", "pos": "动词", "mean": "打开"}, {"form": "dibuka", "pos": "被动", "mean": "被打开"}], "formsNote": "peN-…-an；meN- → membuka；di- → dibuka。", "note": "pidato pembukaan（开幕致辞）、kata pembukaan（开场白）、acara pembukaan（开幕式）、meja pembukaan 无此搭配。", "synonyms": ["awal（开始）"], "antonyms": ["penutupan（闭幕）"], "examples": [{"scene": "项目管理", "id": "Upacara pembukaan proyek dihadiri bupati setempat.", "cn": "项目奠基仪式有县长出席。"}, {"scene": "商务沟通", "id": "Kalimat pembukaan surat harus sopan dan langsung.", "cn": "信函开场白须礼貌且直接。"}, {"scene": "日常表达", "id": "Pembukaan pameran digelar akhir pekan ini.", "cn": "展览开幕式于本周末举行。"}]},
- "ruang rapat": {"word": "ruang rapat", "cn": "会议室", "en": "meeting room", "root": "ruang（空间）+ rapat（会议）", "forms": [{"form": "ruang rapat", "pos": "名词", "mean": "会议室"}, {"form": "ruang tunggu", "pos": "名词", "mean": "等候室"}, {"form": "ruang makan", "pos": "名词", "mean": "餐厅"}], "formsNote": "ruang + 名词 构成场所词。", "note": "reservasi ruang rapat（预订会议室）、ruang rapat utama（主会议室）、fasilitas ruang rapat（会议室设施）。", "synonyms": ["aula（礼堂）"], "antonyms": ["—"], "examples": [{"scene": "商务沟通", "id": "Ruang rapat lantai tiga bisa menampung dua puluh orang.", "cn": "三楼的会议室可容纳二十人。"}, {"scene": "项目管理", "id": "Jadwal ruang rapat dikunci untuk sesi negosiasi pagi.", "cn": "上午谈判时段的会议室已锁定。"}, {"scene": "日常表达", "id": "Mereka menunggu di ruang rapat sejak pukul delapan.", "cn": "他们从八点就在会议室等候。"}]},
- "dokumentasi": {"word": "dokumentasi", "cn": "文件资料；文档工作", "en": "documentation", "root": "dokumen（文件，外来词）+ -asi", "forms": [{"form": "dokumentasi", "pos": "名词", "mean": "成套资料"}, {"form": "dokumen", "pos": "名词", "mean": "单份文件"}, {"form": "mendokumentasikan", "pos": "动词", "mean": "记录存档"}], "formsNote": "-asi 外来后缀名物化。", "note": "dokumentasi kontrak（合同文件）、melengkapi dokumentasi（备齐文件）、standar dokumentasi（文档标准）、sistem dokumentasi（文档系统）。", "synonyms": ["arsip（档案）"], "antonyms": ["—"], "examples": [{"scene": "项目管理", "id": "Dokumentasi proyek diserahkan kepada pemilik sesuai kontrak.", "cn": "项目文件按合同移交业主。"}, {"scene": "商务沟通", "id": "Mohon lengkapi dokumentasi sebelum proses audit.", "cn": "审计前请备齐文件。"}, {"scene": "日常表达", "id": "Fotografer itu mendokumentasikan acara secara profesional.", "cn": "那位摄影师专业地记录了活动。"}]},
- "wakil": {"word": "wakil", "cn": "代表；副手", "en": "representative; deputy", "root": "wakil（阿拉伯语借词）", "forms": [{"form": "wakil", "pos": "名词", "mean": "代表"}, {"form": "mewakili", "pos": "动词", "mean": "代表"}, {"form": "wakil ketua", "pos": "名词短语", "mean": "副主席"}], "formsNote": "meN- → mewakili（代表）。", "note": "wakil pribadi（私人代表）、bertindak sebagai wakil（以代表身份行事）、wakil rakyat（人民代表）、mewakili perusahaan（代表公司）。", "synonyms": ["delegasi（代表团）", "perwakilan（代表处）"], "antonyms": ["—"], "examples": [{"scene": "商务谈判", "id": "Wakil kami datang dengan surat kuasa penuh.", "cn": "我方代表持全权授权书到场。"}, {"scene": "商务沟通", "id": "Dia mewakili perusahaan pada konferensi industri.", "cn": "他代表公司出席行业大会。"}, {"scene": "日常表达", "id": "Wakil kepala sekolah membuka acara olahraga.", "cn": "副校长主持运动会开幕式。"}]},
- "kuasa": {"word": "kuasa", "cn": "权力；代理权", "en": "authority; power of attorney", "root": "kuasa（阿拉伯语借词）", "forms": [{"form": "kuasa", "pos": "名词", "mean": "权力/代理"}, {"form": "berkuasa", "pos": "动词", "mean": "掌权"}, {"form": "diberi kuasa", "pos": "被动短语", "mean": "获授权"}], "formsNote": "ber- → berkuasa（有权势的）。", "note": "kuasa hukum（法律代理人）、surat kuasa（授权书）、diberi kuasa untuk（获授权做……）、melampaui kuasa（越权）。谈判高频授权词。", "synonyms": ["wewenang（权限）", "otoritas（权威）"], "antonyms": ["—"], "examples": [{"scene": "商务谈判", "id": "Saya diberi kuasa oleh direksi untuk menandatangani prakontrak.", "cn": "我获董事会授权签署预合同。"}, {"scene": "商务沟通", "id": "Surat kuasa asli harus dibawa saat verifikasi.", "cn": "验证时必须出示授权书原件。"}, {"scene": "日常表达", "id": "Pejabat itu dituduh melampaui kuasanya.", "cn": "那名官员被指控越权。"}]},
- "otoritas": {"word": "otoritas", "cn": "授权；权威；官方", "en": "authority", "root": "otoritas（外来词 autoriteit）", "forms": [{"form": "otoritas", "pos": "名词", "mean": "权威/官方"}, {"form": "otoritatif", "pos": "形容词", "mean": "权威的"}], "formsNote": "外来词根 +-atif 形容词化。", "note": "otoritas pelabuhan（港务局）、otoritas keuangan（金融管理局）、keputusan otoritas（官方决定）、memiliki otoritas penuh（拥有全权）。", "synonyms": ["wewenang（权限）", "pejabat（官员）"], "antonyms": ["—"], "examples": [{"scene": "项目管理", "id": "Izin ekspor harus disetujui otoritas setempat.", "cn": "出口许可须经地方官方批准。"}, {"scene": "商务沟通", "id": "Perusahaan mengakui otoritas lembaga pengawas independen.", "cn": "公司承认独立监管机构的权威。"}, {"scene": "日常表达", "id": "Sumber otoritas menyebutkan jadwal baru pekan depan.", "cn": "权威消息称新日程下周公布。"}]},
- "mandat": {"word": "mandat", "cn": "授权；委任", "en": "mandate", "root": "mandat（外来词）", "forms": [{"form": "mandat", "pos": "名词", "mean": "授权/委任"}, {"form": "bermandat", "pos": "动词", "mean": "受委任"}, {"form": "mendapat mandat", "pos": "动词短语", "mean": "获得授权"}], "formsNote": "ber- → bermandat（较少用，多用短语）。", "note": "mandat tertulis（书面授权）、menerima mandat（接受委任）、mandat dari direksi（董事会授权）、melebihi mandat（越权）。比 kuasa 更正式、更书面。", "synonyms": ["kuasa（代理权）", "wewenang（权限）"], "antonyms": ["—"], "examples": [{"scene": "商务谈判", "id": "Negosiator datang dengan mandat penuh dari pusat.", "cn": "谈判代表携总部全权授权而来。"}, {"scene": "商务沟通", "id": "Mandat untuk renegosiasi harga berlaku enam bulan.", "cn": "重新谈判价格的授权有效期六个月。"}, {"scene": "日常表达", "id": "Partai itu memenangkan mandat rakyat dalam pemilu.", "cn": "该党在选举中赢得人民授权。"}]},
- "kursi": {"word": "kursi", "cn": "座位；席位", "en": "seat", "root": "kursi（固有词）", "forms": [{"form": "kursi", "pos": "名词", "mean": "座位"}, {"form": "kursi tamu", "pos": "名词短语", "mean": "客席"}, {"form": "berkursi", "pos": "动词", "mean": "设座（罕）"}], "formsNote": "场所语：kursi roda（轮椅）、kursi goyang（摇椅）。", "note": "商务意象：kursi kosong（空位=缺席）、jumlah kursi（席位数）、mengambil kursi（入座）、menyediakan kursi（备座）。", "synonyms": ["tempat duduk（座位）"], "antonyms": ["—"], "examples": [{"scene": "商务沟通", "id": "Silakan pilih kursi yang paling nyaman, Pak.", "cn": "先生请选最舒适的座位。"}, {"scene": "项目管理", "id": "Kursi kosong di rapat kerja mencerminkan absensi tinggi.", "cn": "工作会议上的空位反映了高缺席率。"}, {"scene": "日常表达", "id": "Anak-anak berlomba mendapat kursi dekat jendela.", "cn": "孩子们抢着坐靠窗的座位。"}]},
- "asumsi": {"word": "asumsi", "cn": "假设；设想", "en": "assumption", "root": "asumsi（外来词）", "forms": [{"form": "asumsi", "pos": "名词", "mean": "假设"}, {"form": "mengasumsikan", "pos": "动词", "mean": "假定"}, {"form": "berasumsi", "pos": "动词", "mean": "做假设"}], "formsNote": "meN-…-kan → mengasumsikan。", "note": "berdasarkan asumsi（基于假设）、menguji asumsi（检验假设）、asumsi dasar（基本假设）、jangan mengambil asumsi（勿想当然）。谈判前需显式声明假设。", "synonyms": ["anggapan（推测）", "praduga（预设）"], "antonyms": ["fakta（事实）"], "examples": [{"scene": "商务谈判", "id": "Jangan mengambil asumsi tentang volume tahun depan.", "cn": "不要对明年销量想当然。"}, {"scene": "项目管理", "id": "Asumsi dasar anggaran diuji ulang setiap kuartal.", "cn": "预算基本假设每季度重新检验。"}, {"scene": "日常表达", "id": "Asumsimu ternyata meleset jauh.", "cn": "你的假设结果差得远。"}]},
- "penawar": {"word": "penawar", "cn": "报价方；竞标者", "en": "bidder", "root": "tawar（讨价还价）+ peN-", "forms": [{"form": "penawar", "pos": "名词", "mean": "报价方"}, {"form": "penawaran", "pos": "名词", "mean": "报价单"}, {"form": "menawar", "pos": "动词", "mean": "讨价还价"}], "formsNote": "peN- 施事；peN-…-an? penawaran 实为 tawar+-an；peN- 施事 penawar。", "note": "penawar terbaik（最优报价方）、daftar penawar（竞标名单）、calon penawar（潜在竞标人）。与 penawaran（报价行为/单）区分：-N- 指人。", "synonyms": ["peserta tender（投标参与者）", "bidder"], "antonyms": ["pembeli（买方）"], "examples": [{"scene": "商务谈判", "id": "Setiap penawar wajib menyerahkan jaminan partisipasi.", "cn": "每位竞标者须提交参与保证金。"}, {"scene": "项目管理", "id": "Panitia menilai tiga penawar berdasarkan harga dan mutu.", "cn": "委员会按价格与质量评审三家报价方。"}, {"scene": "日常表达", "id": "Penawar tertinggi mendapat hak negosiasi pertama.", "cn": "出价最高者获得首轮谈判权。"}]},
- /* V4.50.0 回填A结束 · 话题7 Day1 */
- "potongan": {"word": "potongan", "cn": "折扣；削减额", "en": "discount; cut", "root": "potong（切割）+ -an", "forms": [{"form": "potongan", "pos": "名词", "mean": "折扣"}, {"form": "potong", "pos": "动词", "mean": "切割"}, {"form": "memotong", "pos": "动词", "mean": "切"}], "formsNote": "-an 被动结果名词；meN- → memotong。", "note": "potongan harga（折扣）、mendapat potongan（获得折扣）、potongan lima persen（减5%）、potongan khusus（特别折扣）。", "synonyms": ["diskon（外来）", "rabat（回扣）"], "antonyms": ["kenaikan（加价）"], "examples": [{"scene": "商务谈判", "id": "Kami memberikan potongan sepuluh persen untuk pembelian besar.", "cn": "大批量采购我们给九折。"}, {"scene": "商务沟通", "id": "Potongan harga tidak berlaku untuk produk promosi.", "cn": "折扣不适用于促销品。"}, {"scene": "日常表达", "id": "Ia mendapat potongan tiket karena kartu pelajar.", "cn": "凭学生证他买到了优惠票。"}]},
- "bersikeras": {"word": "bersikeras", "cn": "坚持（主张）", "en": "to insist", "root": "keras（硬）+ ber-…", "forms": [{"form": "bersikeras", "pos": "动词", "mean": "坚持"}, {"form": "keras", "pos": "形容词", "mean": "硬的/强硬的"}, {"form": "sikerasan", "pos": "名词", "mean": "固执（罕）"}], "formsNote": "ber- + keras（状态动词化）。", "note": "bersikeras pada harga（坚持价格）、bersikeras bahwa（坚持认为）、bersikeras untuk（执意要）；含不松口的固执意味，谈判中既是策略也是风险。", "synonyms": ["bertahan（坚持）", "ngotot（口语：死咬不放）"], "antonyms": ["mengalah（让步）", "bersedia（愿意让步）"], "examples": [{"scene": "商务谈判", "id": "Pihak supplier bersikeras pada harga pasar.", "cn": "供应方坚持市场价。"}, {"scene": "商务沟通", "id": "Meski dijanjikan bonus, ia bersikeras menyelesaikan tugas dulu.", "cn": "尽管有奖金承诺，他仍坚持先完成任务。"}, {"scene": "日常表达", "id": "Jangan bersikeras membeli barang di atas kemampuan.", "cn": "别执意买超出能力的东西。"}]},
- "bersedia": {"word": "bersedia", "cn": "愿意；准备（做）", "en": "willing; prepared", "root": "sedia（情愿/备有）+ ber-", "forms": [{"form": "bersedia", "pos": "动词", "mean": "愿意"}, {"form": "sedia", "pos": "形容词", "mean": "现有的/情愿的"}, {"form": "kesediaan", "pos": "名词", "mean": "意愿"}], "formsNote": "ber- → bersedia；ke-…-an → kesediaan。", "note": "bersedia untuk menurunkan（愿意下调）、bersedia menjual（愿意出售）、bersedia hadir（愿意出席）；答复 bersedia = 我方接受。", "synonyms": ["berkenan（肯于，更客气）", "mau（要，口语）"], "antonyms": ["menolak（拒绝）", "enggan（不情愿）"], "examples": [{"scene": "商务谈判", "id": "Kami bersedia menurunkan harga bila volume naik.", "cn": "若数量增加我们愿意降价。"}, {"scene": "商务沟通", "id": "Apakah Anda bersedia menjadi saksi penandatanganan?", "cn": "您是否愿意担任签署见证人？"}, {"scene": "日常表达", "id": "Dia bersedia mengorbankan waktu liburnya demi tim.", "cn": "为了团队他甘愿牺牲假期时间。"}]},
- "mengalah": {"word": "mengalah", "cn": "让步；退让", "en": "to give in; concede", "root": "kalah（输）+ meng-", "forms": [{"form": "mengalah", "pos": "动词", "mean": "让步"}, {"form": "kalah", "pos": "形容词", "mean": "输"}, {"form": "pengalah", "pos": "名词", "mean": "常让步的人"}], "formsNote": "meN- → mengalah（主动认输，与 kalah 状态区分）。", "note": "mengalah sedikit（稍作让步）、tidak mau mengalah（寸步不让）、saling mengalah（互相让步）；谈判核心策略词。", "synonyms": ["menyerah（投降）", "berkompromi（妥协）"], "antonyms": ["bersikeras（坚持）", "memaksa（强逼）"], "examples": [{"scene": "商务谈判", "id": "Akhirnya kami mengalah pada jangka waktu, bukan pada harga.", "cn": "最终我们在期限上让步，而非价格。"}, {"scene": "商务沟通", "id": "Kedua pihak saling mengalah demi kelancaran proyek.", "cn": "为项目顺利双方互作让步。"}, {"scene": "日常表达", "id": "Kakak selalu mengalah pada adiknya.", "cn": "哥哥总是让着弟弟。"}]},
- "jangka waktu": {"word": "jangka waktu", "cn": "期限；期间", "en": "period; timeframe", "root": "jangka（范围）+ waktu（时间）", "forms": [{"form": "jangka waktu", "pos": "名词", "mean": "期限"}, {"form": "jangka panjang", "pos": "名词", "mean": "长期"}, {"form": "jangka pendek", "pos": "名词", "mean": "短期"}], "formsNote": "jangka + 名词：jangka waktu/jangka panjang。", "note": "jangka waktu pembayaran（付款期限）、memperpanjang jangka waktu（延长期限）、jangka menengah（中期）；谈判三大变量之一。", "synonyms": ["periode（外来）", "masa（时段）"], "antonyms": ["—"], "examples": [{"scene": "商务谈判", "id": "Jangka waktu pengiriman bisa dinegosiasikan ulang.", "cn": "交付期限可以重新谈判。"}, {"scene": "项目管理", "id": "Proyek rampung dalam jangka waktu delapan belas bulan.", "cn": "项目在十八个月工期内完工。"}, {"scene": "日常表达", "id": "Investasi jangka panjang memerlukan kesabaran.", "cn": "长期投资需要耐心。"}]},
- "termin": {"word": "termin", "cn": "分期付款（安排）", "en": "installment (plan)", "root": "termin（外来词 termijn）", "forms": [{"form": "termin", "pos": "名词", "mean": "分期"}, {"form": "pembayaran termin", "pos": "名词短语", "mean": "分期付款"}, {"form": "per termin", "pos": "副词短语", "mean": "按分期"}], "formsNote": "外来词；动词 mengangsur 表分期支付行为。", "note": "termin pertama（首期款）、termin kedua（第二期）、dibayar per termin（按分期支付）、skema termin（分期方案）。", "synonyms": ["angsuran（分期款）", "cicilan（分期，口语）"], "antonyms": ["pelunasan tunai（一次结清）"], "examples": [{"scene": "商务谈判", "id": "Pembayaran dibagi tiga termin: tiga puluh, empat puluh, tiga puluh.", "cn": "付款分三期：30%、40%、30%。"}, {"scene": "商务沟通", "id": "Termin kedua jatuh tempo setelah serah terima tahap satu.", "cn": "第二期在第一阶段验收后到期。"}, {"scene": "日常表达", "id": "Ia membeli motor dengan sistem termin dua tahun.", "cn": "他分期两年买了摩托车。"}]},
- "angsuran": {"word": "angsuran", "cn": "分期摊还款项", "en": "installment payment", "root": "angsur（分期）+ -an", "forms": [{"form": "angsuran", "pos": "名词", "mean": "分期款"}, {"form": "mengangsur", "pos": "动词", "mean": "分期支付"}, {"form": "diangsur", "pos": "被动", "mean": "被分期"}], "formsNote": "meN- → mengangsur；口语同义 cicilan。", "note": "angsuran bulanan（月供）、mengangsur rumah（分期供房）、keanggotaan angsuran 无此搭配；tabel angsuran（还款表）。", "synonyms": ["cicilan（口语）", "termin（分期安排）"], "antonyms": ["tunai（现金一次付）"], "examples": [{"scene": "商务沟通", "id": "Angsuran bulanan sudah termasuk bunga ringan.", "cn": "月供已含低息。"}, {"scene": "项目管理", "id": "Biaya peralatan diangsur selama dua belas bulan.", "cn": "设备费用分十二个月摊付。"}, {"scene": "日常表达", "id": "Ia menabung untuk uang angsuran pertama.", "cn": "他在为首期款储蓄。"}]},
- "bunga": {"word": "bunga", "cn": "利息", "en": "interest (finance)", "root": "bunga（固有词，双义）", "forms": [{"form": "bunga", "pos": "名词", "mean": "利息/花"}, {"form": "berbunga", "pos": "动词", "mean": "生息/开花"}, {"form": "suku bunga", "pos": "名词短语", "mean": "利率"}], "formsNote": "金融语境固定指利息；berbunga 双义。", "note": "bunga pinjaman（贷款利息）、suku bunga bank（银行利率）、bunga tiga persen（3%利息）、berbunga tetap（固定利率生息）。勿与 bunga（花）混淆看语境。", "synonyms": ["interest"], "antonyms": ["pokok（本金）"], "examples": [{"scene": "商务谈判", "id": "Kami meminta bunga tetap selama masa kontrak.", "cn": "我们要求合同期内利率固定。"}, {"scene": "商务沟通", "id": "Suku bunga naik memengaruhi angsuran per bulan.", "cn": "利率上升影响每月还款额。"}, {"scene": "日常表达", "id": "Deposito itu berbunga lebih tinggi dari tabungan.", "cn": "定期存款利率高于活期。"}]},
- "subsidi": {"word": "subsidi", "cn": "补贴", "en": "subsidy", "root": "subsidi（外来词）", "forms": [{"form": "subsidi", "pos": "名词", "mean": "补贴"}, {"form": "mensubsidi", "pos": "动词", "mean": "补贴（书面）"}, {"form": "bersubsidi", "pos": "形容词", "mean": "受补贴的"}], "formsNote": "形容词 bersubsidi 高频：listrik bersubsidi（补贴电）。", "note": "subsidi bahan bakar（燃油补贴）、subsidi pemerintah（政府补贴）、memotong subsidi（削减补贴）、produk bersubsidi（补贴产品）。", "synonyms": ["bantuan dana（资金援助）"], "antonyms": ["pungutan（征费）"], "examples": [{"scene": "商务沟通", "id": "Harga gas bersubsidi naik bertahap tahun ini.", "cn": "补贴气价今年逐步上调。"}, {"scene": "项目管理", "id": "Anggaran subsidi peralatan dibahas dalam rapat tahunan.", "cn": "设备补贴预算在年会讨论。"}, {"scene": "日常表达", "id": "Petani menerima subsidi pupuk dari pemerintah.", "cn": "农民领取政府化肥补贴。"}]},
- "pajak": {"word": "pajak", "cn": "税", "en": "tax", "root": "pajak（梵语借词 pājaka）", "forms": [{"form": "pajak", "pos": "名词", "mean": "税"}, {"form": "memajaki", "pos": "动词", "mean": "征税"}, {"form": "berpajak", "pos": "动词", "mean": "纳税"}], "formsNote": "peN-…-an → pemajakan（税制）；kena pajak（应税）。", "note": "pajak pertambahan nilai（增值税 PPN）、pajak penghasilan（所得税 PPh）、bebas pajak（免税）、wajib pajak（纳税人）；pungutan 是收费非税。", "synonyms": ["pungutan 近义（收费）", "retribusi（行政收费）"], "antonyms": [" subsidi（补贴）", "bebas pajak（免税）"], "examples": [{"scene": "商务谈判", "id": "Harga final sudah termasuk pajak pertambahan nilai.", "cn": "最终价已含增值税。"}, {"scene": "项目管理", "id": "Perusahaan terdaftar sebagai wajib pajak badan.", "cn": "公司登记为企业纳税人。"}, {"scene": "日常表达", "id": "Toko itu bebas pajak untuk wisatawan asing.", "cn": "那家店对外国游客免税。"}]},
- "laba": {"word": "laba", "cn": "利润", "en": "profit", "root": "laba（梵语借词）", "forms": [{"form": "laba", "pos": "名词", "mean": "利润"}, {"form": "laba bersih", "pos": "名词短语", "mean": "净利润"}, {"form": "laba kotor", "pos": "名词短语", "mean": "毛利"}], "formsNote": "财务正式用词；口语 untung。", "note": "laba tahunan（年度利润）、margin laba（利润率）、mencari laba（谋利）、laba ditahan（留存收益）；与 untung 近义，laba 更正式。", "synonyms": ["untung（口语）", "keuntungan（收益）"], "antonyms": ["rugi（亏损）"], "examples": [{"scene": "商务谈判", "id": "Harga itu masih memberi laba tipis bagi kami.", "cn": "那个价格对我们来说还有薄利。"}, {"scene": "商务沟通", "id": "Laba bersih kuartal ini naik dua belas persen.", "cn": "本季度净利润增长12%。"}, {"scene": "日常表达", "id": "Berbisnis tanpa hitungan laba itu berbahaya.", "cn": "做生意不算利润是危险的。"}]},
- "rugi": {"word": "rugi", "cn": "亏损", "en": "loss", "root": "rugi（梵语/波斯借词 rugī）", "forms": [{"form": "rugi", "pos": "形容词/名词", "mean": "亏损"}, {"form": "kerugian", "pos": "名词", "mean": "亏损额"}, {"form": "merugi", "pos": "动词", "mean": "受亏损"}], "formsNote": "ke-…-an → kerugian（损失额）。", "note": "rugi besar（巨亏）、menutupi rugi（弥补亏损）、rugi ratusan juta（亏损数亿盾）、mencegah kerugian（防止损失）；与 laba 相对。", "synonyms": ["defisit（赤字，外来）", "kerugian（亏损额）"], "antonyms": ["laba（利润）", "untung（赚）"], "examples": [{"scene": "商务谈判", "id": "Kami tidak bisa menerima harga itu karena pasti rugi.", "cn": "那个价我们接不了，肯定亏。"}, {"scene": "项目管理", "id": "Keterlambatan pasokan menimbulkan kerugian besar.", "cn": "供应中断造成重大损失。"}, {"scene": "日常表达", "id": "Jual rugi pun harus dilakukan untuk putar modal.", "cn": "为了资金周转亏本也要卖。"}]},
- "modal": {"word": "modal", "cn": "资本；本金", "en": "capital", "root": "modal（外来词 modal）", "forms": [{"form": "modal", "pos": "名词", "mean": "资本"}, {"form": "bermodal", "pos": "动词", "mean": "带有资本/怀着（口语）"}, {"form": "permodalan", "pos": "名词", "mean": "融资（领域）"}], "formsNote": "per-…-an → permodalan（融资/资本领域）。", "note": "modal awal（启动资金）、modal kerja（流动资金）、mengeluarkan modal（出资）、modal nekat（孤注一掷的胆量，比喻义）。", "synonyms": ["dana（资金）", "kapital（外来）"], "antonyms": ["—"], "examples": [{"scene": "商务谈判", "id": "Pembagian modal ditetapkan empat puluh enam puluh.", "cn": "出资比例定为四六开。"}, {"scene": "项目管理", "id": "Modal kerja proyek dijaga dalam rekening terpisah.", "cn": "项目流动资金存放在独立账户。"}, {"scene": "日常表达", "id": "Keberanian adalah modal utama wirausahawan.", "cn": "勇气是创业者最重要的本钱。"}]},
- "harga satuan": {"word": "harga satuan", "cn": "单价", "en": "unit price", "root": "harga（价格）+ satuan（单位）", "forms": [{"form": "harga satuan", "pos": "名词", "mean": "单价"}, {"form": "harga per unit", "pos": "名词短语", "mean": "每单位价"}, {"form": "turun harga satuan", "pos": "动词短语", "mean": "单价下调"}], "formsNote": "satuan 为 satu（一）+ -an。", "note": "daftar harga satuan（单价表）、menaikkan harga satuan（提高单价）、diskon harga satuan（单价折扣）；议价基准单位。", "synonyms": ["harga per unit（同义）"], "antonyms": ["harga total（总价）"], "examples": [{"scene": "商务谈判", "id": "Harga satuan bisa turun bila pembelian di atas seribu unit.", "cn": "采购超千台单价可下调。"}, {"scene": "商务沟通", "id": "Mohon lampirkan daftar harga satuan terbaru.", "cn": "请附上最新单价表。"}, {"scene": "日常表达", "id": "Ia membandingkan harga satuan di dua toko.", "cn": "他比较了两家店的单价。"}]},
- "harga pasar": {"word": "harga pasar", "cn": "市场价", "en": "market price", "root": "harga（价格）+ pasar（市场）", "forms": [{"form": "harga pasar", "pos": "名词", "mean": "市场价"}, {"form": "di atas harga pasar", "pos": "介词短语", "mean": "高于市价"}, {"form": "sesuai harga pasar", "pos": "动词短语", "mean": "符合市价"}], "formsNote": "pasar 来自梵语 pasāra? 实为固有/借词混合，保守标外来不确定。", "note": "di bawah harga pasar（低于市价）、mengikuti harga pasar（随行就市）、fluktuasi harga pasar（市价波动）；谈判基准线。", "synonyms": ["harga berlaku（通行价）"], "antonyms": ["harga dasar（底价）"], "examples": [{"scene": "商务谈判", "id": "Penawaran kami sudah di bawah harga pasar regional.", "cn": "我方报价已低于区域市场价。"}, {"scene": "商务沟通", "id": "Harga pasar nikel berfluktuasi setiap minggu.", "cn": "镍市价每周波动。"}, {"scene": "日常表达", "id": "Jangan jual di bawah harga pasar seenaknya.", "cn": "别随意低于市价抛售。"}]},
- "konfirmasi": {"word": "konfirmasi", "cn": "确认", "en": "confirmation", "root": "konfirmasi（外来词）", "forms": [{"form": "konfirmasi", "pos": "名词/动词", "mean": "确认"}, {"form": "mengonfirmasi", "pos": "动词", "mean": "确认"}, {"form": "dikonfirmasi", "pos": "被动", "mean": "被确认"}], "formsNote": "名词动词同形；meN- → mengonfirmasi。", "note": "konfirmasi tertulis（书面确认）、konfirmasi kehadiran（确认出席）、mohon konfirmasi（请确认）、belum dikonfirmasi（尚未确认）；商务闭环第一词。", "synonyms": ["peastujuan（批准）", "verifikasi（核验）"], "antonyms": ["pembatalan（取消）"], "examples": [{"scene": "商务谈判", "id": "Mohon konfirmasi tertulis paling lambat besok siang.", "cn": "请于明天中午前书面确认。"}, {"scene": "商务沟通", "id": "Kami mengonfirmasi jadwal pengiriman bulan depan.", "cn": "我们确认下月交付日程。"}, {"scene": "日常表达", "id": "Pihak maskapai belum mengonfirmasi jadwal ulang.", "cn": "航空公司尚未确认改期时间。"}]},
- "pemutusan": {"word": "pemutusan", "cn": "终止；解除", "en": "termination", "root": "putus（断）+ peN-…-an", "forms": [{"form": "pemutusan", "pos": "名词", "mean": "终止"}, {"form": "putus", "pos": "动词", "mean": "断开"}, {"form": "memutuskan", "pos": "动词", "mean": "决定/切断"}], "formsNote": "peN-…-an；meN-…-kan → memutuskan（决定）。", "note": "pemutusan kontrak（解约）、pemutusan hubungan kerja（解除劳动关系）、pemutusan sepihak（单方终止）；勿与 penutupan（关闭）混淆。", "synonyms": ["pengakhiran（结束）"], "antonyms": ["perpanjangan（续约/延长）"], "examples": [{"scene": "商务谈判", "id": "Klausul pemutusan kontrak dibaca dengan saksama.", "cn": "解约条款被逐字细读。"}, {"scene": "项目管理", "id": "Pemutusan paket pekerjaan mengikuti prosedur tender.", "cn": "工作包的终止遵循招标程序。"}, {"scene": "日常表达", "id": "Pemutusan hubungan itu mengejutkan semua orang.", "cn": "那段关系的终结令所有人意外。"}]},
- "pembagian": {"word": "pembagian", "cn": "分配；分摊", "en": "distribution; allocation", "root": "bagi（分）+ peN-…-an", "forms": [{"form": "pembagian", "pos": "名词", "mean": "分配"}, {"form": "bagi", "pos": "动词", "mean": "分"}, {"form": "membagi", "pos": "动词", "mean": "分配"}, {"form": "pembagian tugas", "pos": "名词短语", "mean": "分工"}], "formsNote": "peN-…-an；meN- → membagi。", "note": "pembagian keuntungan（利润分配）、pembagian resiko（风险分摊）、pembagian wilayah（区域划分）、sistem pembagian（分配制度）。", "synonyms": ["distribusi（外来）", "alokasi（外来）"], "antonyms": ["pemusatan（集中）"], "examples": [{"scene": "商务谈判", "id": "Pembagian keuntungan ditetapkan lima puluh lima puluh.", "cn": "利润分配定为五五开。"}, {"scene": "项目管理", "id": "Pembagian tugas diumumkan dalam notulen rapat.", "cn": "分工在会议纪要中公布。"}, {"scene": "日常表达", "id": "Pembagian warisan menimbulkan perselisihan.", "cn": "遗产分配引发了争执。"}]},
- "volume": {"word": "volume", "cn": "量；数量", "en": "volume", "root": "volume（外来词）", "forms": [{"form": "volume", "pos": "名词", "mean": "量"}, {"form": "volume pembelian", "pos": "名词短语", "mean": "采购量"}, {"form": "volume produksi", "pos": "名词短语", "mean": "产量"}], "formsNote": "外来词；重音在第一音节。", "note": "volume besar（大批量）、volume tahunan（年度量）、menaikkan volume（提量）；以量换价（tukar volume dengan harga）的核心变量。", "synonyms": ["jumlah（总量）", "kuantitas（数量，外来）"], "antonyms": ["—"], "examples": [{"scene": "商务谈判", "id": "Kalau volume dua kali lipat, harga bisa lebih rendah.", "cn": "如果量翻倍，价格可以更低。"}, {"scene": "项目管理", "id": "Volume pekerjaan tahap dua belum ditentukan.", "cn": "第二阶段工作量尚未确定。"}, {"scene": "日常表达", "id": "Volume air hujan tahun ini di atas rata-rata.", "cn": "今年雨量高于平均值。"}]},
- "kuota": {"word": "kuota", "cn": "配额", "en": "quota", "root": "kuota（外来词）", "forms": [{"form": "kuota", "pos": "名词", "mean": "配额"}, {"form": "kuota impor", "pos": "名词短语", "mean": "进口配额"}, {"form": "mendapat kuota", "pos": "动词短语", "mean": "获得配额"}], "formsNote": "外来词。", "note": "kuota tahunan（年度配额）、kuota pendidikan（招生名额）、mengisi kuota（补足配额）、kehabisan kuota（配额用尽）。", "synonyms": ["jatah（份额，口语）"], "antonyms": ["—"], "examples": [{"scene": "商务沟通", "id": "Kuota impor baja diturunkan pemerintah tahun ini.", "cn": "政府今年下调了钢材进口配额。"}, {"scene": "项目管理", "id": "Perusahaan mengajukan penambahan kuota listrik.", "cn": "公司申请增加用电配额。"}, {"scene": "日常表达", "id": "Pendaftaran ditutup karena kuota habis.", "cn": "名额已满，报名截止。"}]},
- "pasokan": {"word": "pasokan", "cn": "供应；供给", "en": "supply", "root": "sok（供给）+ -an", "forms": [{"form": "pasokan", "pos": "名词", "mean": "供应"}, {"form": "menyokong", "pos": "动词", "mean": "支撑/供应"}, {"form": "tersedia", "pos": "形容词", "mean": "可供应的"}], "formsNote": "-an 名物化；词根 sok 单独少用。", "note": "pasokan listrik（电力供应）、jaringan pasokan（供应网络）、gangguan pasokan（供应中断）、menjamin pasokan（保障供应）；与 permintaan（需求）相对。", "synonyms": ["suplai（外来）", "persediaan（储备）"], "antonyms": ["kekurangan（短缺）", "permintaan（需求）"], "examples": [{"scene": "商务谈判", "id": "Kami bisa menjamin pasokan stabil sepanjang kontrak.", "cn": "我们能保证合同期内供应稳定。"}, {"scene": "项目管理", "id": "Gangguan pasokan material menunda pengecoran.", "cn": "材料供应中断耽误了浇筑。"}, {"scene": "日常表达", "id": "Pasokan air bersih mulai menipis musim kemarau.", "cn": "旱季净水供应开始减少。"}]},
- "mata uang": {"word": "mata uang", "cn": "货币", "en": "currency", "root": "mata（眼/单位）+ uang（钱）", "forms": [{"form": "mata uang", "pos": "名词", "mean": "货币"}, {"form": "mata uang asing", "pos": "名词短语", "mean": "外币"}, {"form": "nilai mata uang", "pos": "名词短语", "mean": "币值"}], "formsNote": "固定复合词；勿连写为 matauang。", "note": "mata uang lokal（本币）、mata uang utama（主要货币）、devaluasi mata uang（货币贬值）；结算币种是谈判关键条款。", "synonyms": ["valuta（外来）"], "antonyms": ["—"], "examples": [{"scene": "商务谈判", "id": "Pembayaran dalam mata uang dolar atau rupiah?", "cn": "以美元还是盾结算？"}, {"scene": "商务沟通", "id": "Nilai mata uang lokal menguat terhadap dolar.", "cn": "本币对美元升值。"}, {"scene": "日常表达", "id": "Ia menukar mata uang di bank sebelum berangkat.", "cn": "出发前他在银行换了外币。"}]},
- "dolar": {"word": "dolar", "cn": "美元", "en": "dollar", "root": "dolar（外来词）", "forms": [{"form": "dolar", "pos": "名词", "mean": "美元/元"}, {"form": "kurs dolar", "pos": "名词短语", "mean": "美元汇率"}, {"form": "dolar Amerika", "pos": "名词短语", "mean": "美元"}], "formsNote": "印尼语拼写 dolar（单 l）；勿写 dollar。", "note": "harga dalam dolar（美元计价）、kurs dolar naik（美元汇率升）、pendapatan dolar（美元收入）；大宗商品常用美元结算。", "synonyms": ["greenback（俚）"], "antonyms": ["—"], "examples": [{"scene": "商务谈判", "id": "Harga kontrak dikunci dalam dolar Amerika.", "cn": "合同价以美元锁定。"}, {"scene": "商务沟通", "id": "Pendapatan ekspor bernilai dolar menstabilkan kas.", "cn": "美元计出口收入稳定了现金流。"}, {"scene": "日常表达", "id": "Kurs dolar hari ini tembus lima belas ribu.", "cn": "今天美元汇率突破一万五。"}]},
- "kurs": {"word": "kurs", "cn": "汇率", "en": "exchange rate", "root": "kurs（外来词）", "forms": [{"form": "kurs", "pos": "名词", "mean": "汇率"}, {"form": "kurs jual", "pos": "名词短语", "mean": "卖出价"}, {"form": "kurs beli", "pos": "名词短语", "mean": "买入价"}, {"form": "kurs tengah", "pos": "名词短语", "mean": "中间价"}], "formsNote": "勿与 kursus（课程）混淆。", "note": "menguat/melemah 描述汇率升贬；konversi kurs（汇率折算）、fluktuasi kurs（汇率波动）、risiko kurs（汇率风险）；出口合同常含 klausul penyesuaian kurs。", "synonyms": ["nilai tukar（兑换率）"], "antonyms": ["—"], "examples": [{"scene": "商务谈判", "id": "Harga dikonversi dengan kurs pada tanggal faktur.", "cn": "价格按发票日汇率折算。"}, {"scene": "商务沟通", "id": "Kurs melemah membuat impor semakin mahal.", "cn": "汇率走弱使进口越来越贵。"}, {"scene": "日常表达", "id": "Ia memantau kurs setiap pagi sebelum transfer.", "cn": "转账前他每天早晨查看汇率。"}]},
- "pembayaran": {"word": "pembayaran", "cn": "付款；支付", "en": "payment", "root": "bayar（付）+ peN-…-an", "forms": [{"form": "pembayaran", "pos": "名词", "mean": "付款"}, {"form": "membayar", "pos": "动词", "mean": "支付"}, {"form": "dibayar", "pos": "被动", "mean": "被支付"}, {"form": "pembayaran termin", "pos": "名词短语", "mean": "分期付款"}], "formsNote": "peN-…-an；meN- → membayar。", "note": "metode pembayaran（支付方式）、jadwal pembayaran（付款计划）、bukti pembayaran（付款凭证）、menunda pembayaran（拖延付款）；合同三大核心条款之一。", "synonyms": ["pelunasan（结清）", "setoran（缴款）"], "antonyms": ["penerimaan（收款）"], "examples": [{"scene": "商务谈判", "id": "Pembayaran pertama jatuh tempo tiga puluh hari setelah kontrak.", "cn": "首款在合同后三十天到期。"}, {"scene": "项目管理", "id": "Bukti pembayaran dilampirkan pada laporan keuangan.", "cn": "付款凭证附在财务报告后。"}, {"scene": "日常表达", "id": "Ia lupa membawa kartu pembayaran ke kasir.", "cn": "他忘带付款卡去收银台。"}]},
- "uang muka": {"word": "uang muka", "cn": "预付款；定金", "en": "down payment; advance", "root": "uang（钱）+ muka（前面）", "forms": [{"form": "uang muka", "pos": "名词", "mean": "预付款"}, {"form": "memberikan uang muka", "pos": "动词短语", "mean": "付定金"}, {"form": "persen uang muka", "pos": "名词短语", "mean": "首付比例"}], "formsNote": "正式文本用 uang muka；DP（down payment）为口语/广告用语。", "note": "uang muka tiga puluh persen（30%首付）、mengembalikan uang muka（退定金）、potongan uang muka（预付抵扣）；与 termin pertama 区别：uang muka 签约时付，termin 按进度付。", "synonyms": ["DP（down payment，口语）", "tanda jadi（定钱，口语）"], "antonyms": ["pelunasan（尾款结清）"], "examples": [{"scene": "商务谈判", "id": "Uang muka tiga puluh persen, sisanya per termin.", "cn": "首付30%，余款分期。"}, {"scene": "商务沟通", "id": "Uang muka dikembalikan penuh bila kontrak batal.", "cn": "若合同取消定金全额退还。"}, {"scene": "日常表达", "id": "Mereka menabung dua tahun untuk uang muka rumah.", "cn": "他们为买房首付攒了两年钱。"}]},
- "harga dasar": {"word": "harga dasar", "cn": "底价；成本价", "en": "base price; floor price", "root": "harga（价格）+ dasar（基本的）", "forms": [{"form": "harga dasar", "pos": "名词", "mean": "底价"}, {"form": "margin di atas dasar", "pos": "名词短语", "mean": "加价率"}, {"form": "turun ke harga dasar", "pos": "动词短语", "mean": "降至底价"}], "formsNote": "dasar 为 dasar（基础）形容词用法。", "note": "谈判让步空间以 harga dasar 为基准计算；di atas harga dasar（高于底价）、kembali ke harga dasar（回到底价）、mengetahui harga dasar（摸清底价）。", "synonyms": ["biaya pokok（成本价）"], "antonyms": ["harga jual（售价）"], "examples": [{"scene": "商务谈判", "id": "Harga itu sudah mendekati harga dasar kami.", "cn": "那个价已接近我们的底价。"}, {"scene": "商务沟通", "id": "Penentuan harga dasar mengikuti biaya produksi terkini.", "cn": "底价根据当前生产成本确定。"}, {"scene": "日常表达", "id": "Ia menawar hingga mendekati harga dasar penjual.", "cn": "他砍价砍到接近卖家底价。"}]},
- "deadline": {"word": "deadline", "cn": "截止期限", "en": "deadline", "root": "deadline（英语借词）", "forms": [{"form": "deadline", "pos": "名词", "mean": "截止期限"}, {"form": "melewati deadline", "pos": "动词短语", "mean": "超期"}, {"form": "menetapkan deadline", "pos": "动词短语", "mean": "设定截止"}], "formsNote": "正式同义 batas waktu；deadline 商务通用。", "note": "deadline pembayaran（付款截止）、tetapkan deadline（定死线）、melewati deadline（逾期）、hampir deadline（临期）；项目管理核心词。", "synonyms": ["batas waktu（时限，正式）"], "antonyms": ["—"], "examples": [{"scene": "项目管理", "id": "Deadline penawaran tender adalah Jumat depan.", "cn": "招标报价截止是下周五。"}, {"scene": "商务沟通", "id": "Mohon kirim konfirmasi sebelum deadline hari ini.", "cn": "请在今日截止前发来确认。"}, {"scene": "日常表达", "id": "Ia begadang mengejar deadline skripsi.", "cn": "他为赶论文死线熬了夜。"}]},
- "supplier": {"word": "supplier", "cn": "供应商", "en": "supplier", "root": "supplier（英语借词）", "forms": [{"form": "supplier", "pos": "名词", "mean": "供应商"}, {"form": "supplier tunggal", "pos": "名词短语", "mean": "独家供应商"}, {"form": "evaluasi supplier", "pos": "名词短语", "mean": "供应商评估"}], "formsNote": "正式文本亦用 pemasok/penyedia。", "note": "daftar supplier（供应商名录）、supplier utama（主供应商）、mengganti supplier（更换供应商）、kinerja supplier（供应商绩效）。", "synonyms": ["pemasok（正式）", "penyedia（提供方）", "vendor（设备/服务方）"], "antonyms": ["pembeli（买方）"], "examples": [{"scene": "商务谈判", "id": "Kami membandingkan tiga supplier sebelum memutuskan.", "cn": "决定前我们比较了三家供应商。"}, {"scene": "项目管理", "id": "Evaluasi supplier dilakukan setiap akhir tahun.", "cn": "供应商评估每年年底进行。"}, {"scene": "日常表达", "id": "Cafe itu berganti supplier kopi demi kualitas.", "cn": "那家咖啡馆为品质更换了咖啡豆供应商。"}]},
- "vendor": {"word": "vendor", "cn": "厂商；供货方", "en": "vendor", "root": "vendor（英语借词）", "forms": [{"form": "vendor", "pos": "名词", "mean": "厂商/供货方"}, {"form": "vendor perangkat", "pos": "名词短语", "mean": "设备厂商"}, {"form": "vendor software", "pos": "名词短语", "mean": "软件厂商"}], "formsNote": "与 supplier 近义：vendor 偏设备/服务/软件，supplier 偏物料。", "note": "vendor terdaftar（注册厂商）、kontrak vendor（厂商合同）、manajemen vendor（厂商管理）、vendor pihak ketiga（第三方厂商）。", "synonyms": ["pemasok（供应商）", "produsen（生产商）"], "antonyms": ["pelanggan（客户）"], "examples": [{"scene": "商务谈判", "id": "Klausul layanan vendor dirinci dalam lampiran.", "cn": "服务厂商条款在附件中详列。"}, {"scene": "项目管理", "id": "Instalasi perangkat ditangani vendor pihak ketiga.", "cn": "设备安装由第三方厂商负责。"}, {"scene": "日常表达", "id": "Keluhan itu langsung disampaikan ke vendor.", "cn": "投诉直接转给了厂商。"}]},
- /* V4.50.0 回填B结束 · 话题7 Day2+Day3 */};
+};
 
 function getTopicForDate(ds) {
   return topicCalendar[ds] || null;
@@ -226977,8 +231161,17 @@ function renderAbout(c){
 }
 
 function renderVersion(c){
-  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.50.0 / Versi</span></div>
+  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.51.0 / Versi</span></div>
     <div style="padding:16px;">
+      <div style="margin-bottom:14px;padding:14px;background:rgba(34,197,94,.10);border-radius:10px;border-left:3px solid var(--success)">
+        <div style="font-size:15px;font-weight:700;color:var(--success);margin-bottom:6px">V4.51.0 (2026-11-08)</div>
+        <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">日期详情页切换卡(C5/CA/CATAT) + 1108日记6词 + bitVocabDB 3187→3190</div>
+        <div style="font-size:12px;color:var(--text-dim);line-height:1.8">
+        • <strong>日期页切换卡</strong>:同一天有多种内容时(C5课程/CA进阶/日记),顶部标签切换(复用CA Day标签样式),默认首个标签;单内容日保持原样;nickel专题不受影响
+        • <strong>1108日记</strong>:kaget/mengagetkan/persentase/kenyataan/halaman/tren 六词,3新增+3覆盖(kaget/halaman/tren旧条覆盖为最新版,tren旧例句字段错位一并修正)
+        • <strong>bitVocabDB规范化</strong>:摘除回填批注/收尾尾逗号,恢复纯JSON可被部署管线幂等解析
+        </div>
+      </div>
       <div style="margin-bottom:14px;padding:14px;background:rgba(34,197,94,.10);border-radius:10px;border-left:3px solid var(--success)">
         <div style="font-size:15px;font-weight:700;color:var(--success);margin-bottom:6px">V4.50.0 (2026-11-08)</div>
         <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">CA 四问修复 + 话题7商务谈判 Day1-3(11/7-9) + bitVocabDB 3112→3142</div>
