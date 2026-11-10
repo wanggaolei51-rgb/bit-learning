@@ -6,7 +6,7 @@
 <meta http-equiv="Expires" content="0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LEO-BIR V4.52.3</title>
+<title>LEO-BIR V4.52.4</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -276,7 +276,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="sidebar-header">
     <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <h1>LEO-BIR</h1>
-    <div class="ver">LEO-BIR V4.52.3 · 1111每日笔记16词(事故报道与综合: tabrakan/kecelakaan/panik/jantung-berdebar · 新5+覆盖11) · 库3220词</div>
+    <div class="ver">LEO-BIR V4.52.4 · CA空白热修: 补回meet顶层字段title/icon/level/days + patterns补slots/reuse(渲染回归V4.52.2) · 渲染冒烟全绿</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -235118,8 +235118,17 @@ function renderAbout(c){
 }
 
 function renderVersion(c){
-  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.52.3 / Versi</span></div>
+  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.52.4 / Versi</span></div>
     <div style="padding:16px;">
+      <div style="margin-bottom:14px;padding:14px;background:rgba(34,197,94,.10);border-radius:10px;border-left:3px solid var(--success)">
+        <div style="font-size:15px;font-weight:700;color:var(--success);margin-bottom:6px">V4.52.4 (2026-11-11)</div>
+        <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">CA 11/10-12 空白热修（用户实测上报）· 渲染冒烟全绿</div>
+        <div style="font-size:12px;color:var(--text-dim);line-height:1.8">
+        • <strong>根因双连</strong>:V4.52.2 重制 caData.meet 时 ①丢掉顶层 title/icon/level/days ②patterns 漏 slots/reuse 字段——renderCA 模板 t.title 插值 / p.slots.map 双双 undefined 抛错 → 整卡空白<br>
+        • <strong>修复</strong>:顶层四字段从 git 220e236 原值恢复;15 条 patterns 补 slots(替换成分)+reuse(复用次数);合规审计表词汇行改双制标签(基础含核心/专业含高阶)<br>
+        • <strong>教训(同类第3次渲染回归)</strong>:结构断言≠可渲染——CA 内容变更后必须跑 scripts/smoke_ca_render.js 真渲染冒烟(meet三天+其余话题回归),check_syntax 拦不住模板字段缺失<br>
+        </div>
+      </div>
       <div style="margin-bottom:14px;padding:14px;background:rgba(34,197,94,.10);border-radius:10px;border-left:3px solid var(--success)">
         <div style="font-size:15px;font-weight:700;color:var(--success);margin-bottom:6px">V4.52.3 (2026-11-11)</div>
         <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">1111每日笔记16词 · 事故报道与综合事务 · 库3220词</div>
@@ -240271,7 +240280,14 @@ const caData = {
         "ex": [
           "Selamat pagi, Pak!（早上好，先生！）",
           "Selamat sore, Bu!（下午好，女士！）"
-        ]
+        ],
+        "slots": [
+          "pagi",
+          "siang",
+          "sore",
+          "malam"
+        ],
+        "reuse": 5
       },
       {
         "cat": "自我介绍",
@@ -240284,7 +240300,13 @@ const caData = {
         "ex": [
           "Perkenalkan, saya Budi.（请容我介绍，我是布迪。）",
           "Perkenalkan, saya Leo dari Tiongkok.（我是来自中国的里奥。）"
-        ]
+        ],
+        "slots": [
+          "Leo",
+          "Andi",
+          "Budi"
+        ],
+        "reuse": 4
       },
       {
         "cat": "表达高兴",
@@ -240297,7 +240319,12 @@ const caData = {
         "ex": [
           "Senang bertemu dengan Anda, Pak.（很高兴见到您，先生。）",
           "Senang bisa berkenalan dengan Ibu.（很荣幸认识您，女士。）"
-        ]
+        ],
+        "slots": [
+          "bertemu",
+          "bisa berkenalan"
+        ],
+        "reuse": 3
       },
       {
         "cat": "敬语初见",
@@ -240310,7 +240337,13 @@ const caData = {
         "ex": [
           "Sudah lama saya ingin berkenalan dengan Anda.（久仰，我一直想认识您。）",
           "Sudah lama kami ingin berkunjung ke pabrik Anda.（我们一直想拜访贵厂。）"
-        ]
+        ],
+        "slots": [
+          "Anda",
+          "pimpinan Anda",
+          "rekan-rekan Anda"
+        ],
+        "reuse": 2
       },
       {
         "cat": "自报家门",
@@ -240323,7 +240356,13 @@ const caData = {
         "ex": [
           "Perkenalkan, saya Andi, manajer proyek dari PT BIR.（我是安迪，BIR 公司项目经理。）",
           "Perkenalkan, saya Leo, konsultan bahasa Indonesia.（我是里奥，印尼语顾问。）"
-        ]
+        ],
+        "slots": [
+          "manajer proyek",
+          "insinyur",
+          "konsultan"
+        ],
+        "reuse": 3
       }
     ],
     "expressions": [
@@ -240761,7 +240800,13 @@ const caData = {
         "ex": [
           "Silakan duduk, Bu.（请坐，女士。）",
           "Silakan bergabung dengan kami.（请加入我们。）"
-        ]
+        ],
+        "slots": [
+          "duduk",
+          "bergabung",
+          "masuk"
+        ],
+        "reuse": 4
       },
       {
         "cat": "介绍第三者",
@@ -240774,7 +240819,13 @@ const caData = {
         "ex": [
           "Ini Pak Budi, insinyur dari Morowali.（这位是布迪先生，来自莫罗瓦利的工程师。）",
           "Ini Ibu Sari, kepala HR dari kantor pusat.（这位是莎莉女士，总部人力资源主管。）"
-        ]
+        ],
+        "slots": [
+          "Pak Budi",
+          "insinyur",
+          "PT BIR"
+        ],
+        "reuse": 4
       },
       {
         "cat": "感谢款待",
@@ -240787,7 +240838,12 @@ const caData = {
         "ex": [
           "Terima kasih telah mengundang kami.（感谢您的邀请。）",
           "Terima kasih telah menyambut kami dengan hangat.（感谢你们的热情接待。）"
-        ]
+        ],
+        "slots": [
+          "mengundang",
+          "menyambut"
+        ],
+        "reuse": 3
       },
       {
         "cat": "礼貌引荐",
@@ -240800,7 +240856,13 @@ const caData = {
         "ex": [
           "Izinkan saya memperkenalkan direktur kami.（请允许我介绍我们的董事。）",
           "Izinkan saya memperkenalkan tim dari Tiongkok.（请允许我介绍来自中国的团队。）"
-        ]
+        ],
+        "slots": [
+          "direktur kami",
+          "tim kami",
+          "Pak Andi"
+        ],
+        "reuse": 2
       },
       {
         "cat": "正式致歉",
@@ -240813,7 +240875,12 @@ const caData = {
         "ex": [
           "Mohon maaf atas keterlambatan saya.（请原谅我的迟到。）",
           "Mohon maaf atas ketidaknyamanan ini.（为带来的不便深感抱歉。）"
-        ]
+        ],
+        "slots": [
+          "atas keterlambatan saya",
+          "atas ketidaknyamanan ini"
+        ],
+        "reuse": 2
       }
     ],
     "expressions": [
@@ -241251,7 +241318,13 @@ const caData = {
         "ex": [
           "Sampai jumpa di Jakarta.（雅加达见。）",
           "Sampai jumpa bulan depan.（下个月见。）"
-        ]
+        ],
+        "slots": [
+          "Jakarta",
+          "bulan depan",
+          "pertemuan berikutnya"
+        ],
+        "reuse": 4
       },
       {
         "cat": "跟进承诺",
@@ -241264,7 +241337,13 @@ const caData = {
         "ex": [
           "Kami akan menghubungi Anda besok.（我们明天联系您。）",
           "Kami akan mengirim naskahnya pekan depan.（我们下周把文件发给您。）"
-        ]
+        ],
+        "slots": [
+          "menghubungi",
+          "mengirim naskahnya",
+          "pekan depan"
+        ],
+        "reuse": 3
       },
       {
         "cat": "感谢收尾",
@@ -241277,7 +241356,13 @@ const caData = {
         "ex": [
           "Terima kasih atas kerjasamanya.（感谢合作。）",
           "Terima kasih atas perhatian Anda.（感谢您的关注。）"
-        ]
+        ],
+        "slots": [
+          "kerjasamanya",
+          "perhatian Anda",
+          "waktunya"
+        ],
+        "reuse": 3
       },
       {
         "cat": "转达问候",
@@ -241290,7 +241375,13 @@ const caData = {
         "ex": [
           "Sampaikan salam saya kepada tim Anda.（请向您的团队转达我的问候。）",
           "Sampaikan salam saya kepada keluarga.（请代我向家人问好。）"
-        ]
+        ],
+        "slots": [
+          "tim Anda",
+          "keluarga",
+          "rekan-rekan"
+        ],
+        "reuse": 2
       },
       {
         "cat": "祝愿合作",
@@ -241303,7 +241394,12 @@ const caData = {
         "ex": [
           "Semoga kita bisa bertemu lagi.（愿我们后会有期。）",
           "Semoga kerja sama ini berjalan lancar.（愿此次合作顺利。）"
-        ]
+        ],
+        "slots": [
+          "kita bisa bertemu lagi",
+          "kerja sama ini berjalan lancar"
+        ],
+        "reuse": 2
       }
     ],
     "expressions": [
@@ -241637,7 +241733,11 @@ const caData = {
         "level": "intermediate"
       }
     ]
-  }
+  },
+  "title": "话题1: 见面 / Bertemu",
+  "icon": "🤝",
+  "level": "B1-B2",
+  "days": 3
 },
   "interview": {
  "title": "CA专题: 面试 / Wawancara",
@@ -248604,7 +248704,7 @@ ${_inline?"":'<div style="margin-bottom:10px"><a href="#/home" style="color:var(
 <div class="card"><div class="card-header"><h2>📋 CA 合规审计表</h2><span class="badge">v1.1 裁定落实</span></div>
 <table class="ca-audit">
 <tr><th>内容块</th><th>数量</th><th>三级别配比（基础折抵后）</th></tr>
-<tr><td>① 词汇（核心词源自 C5 topic.vocab · 新增词 BIT 九字段入库）</td><td>${d.vocab.length}</td><td>核心${d.vocab.filter(v=>v.level==="核心").length} / 进阶${d.vocab.filter(v=>v.level==="进阶").length} / 高阶${d.vocab.filter(v=>v.level==="高阶").length}</td></tr>
+<tr><td>① 词汇（核心词源自 C5 topic.vocab · 新增词 BIT 九字段入库）</td><td>${d.vocab.length}</td><td>基础${d.vocab.filter(v=>["核心","基础"].includes(v.level)).length} / 进阶${d.vocab.filter(v=>v.level==="进阶").length} / 专业${d.vocab.filter(v=>["高阶","专业"].includes(v.level)).length}</td></tr>
 <tr><td>② 高频词组</td><td>${d.phrases.length}</td><td>—</td></tr>
 <tr><td>③ 万能句型</td><td>${d.patterns.length}</td><td>基础${pb}条(折${Math.floor(pb/3)}) : 进阶${pa} : 专业${pp} → 约 ${Math.round(Math.floor(pb/3)/(Math.floor(pb/3)+pa+pp)*100)}% / ${Math.round(pa/(Math.floor(pb/3)+pa+pp)*100)}% / ${Math.round(pp/(Math.floor(pb/3)+pa+pp)*100)}%</td></tr>
 <tr><td>④ 常用表达</td><td>${d.expressions.length}</td><td>基础${eb}条(折${Math.floor(eb/3)}) : 进阶${ea} : 专业${ep} → 约 ${Math.round(Math.floor(eb/3)/(Math.floor(eb/3)+ea+ep)*100)}% / ${Math.round(ea/(Math.floor(eb/3)+ea+ep)*100)}% / ${Math.round(ep/(Math.floor(eb/3)+ea+ep)*100)}%</td></tr>
