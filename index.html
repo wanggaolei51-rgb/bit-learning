@@ -6,7 +6,7 @@
 <meta http-equiv="Expires" content="0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LEO-BIR V4.51.0</title>
+<title>LEO-BIR V4.51.1</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -276,7 +276,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="sidebar-header">
     <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <h1>LEO-BIR</h1>
-    <div class="ver">LEO-BIR V4.51.0 · 日期页C5/CA/CATAT切换卡 + 1108日记6词 · 库3190词</div>
+    <div class="ver">LEO-BIR V4.51.1 · CA万能句型180条中文翻译全量补齐 + 跑题话题改标CA专题 · 库3190词</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -231161,10 +231161,19 @@ function renderAbout(c){
 }
 
 function renderVersion(c){
-  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.51.0 / Versi</span></div>
+  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.51.1 / Versi</span></div>
     <div style="padding:16px;">
       <div style="margin-bottom:14px;padding:14px;background:rgba(34,197,94,.10);border-radius:10px;border-left:3px solid var(--success)">
-        <div style="font-size:15px;font-weight:700;color:var(--success);margin-bottom:6px">V4.51.0 (2026-11-08)</div>
+        <div style="margin-bottom:14px;padding:14px;background:rgba(34,197,94,.10);border-radius:10px;border-left:3px solid var(--success)">
+        <div style="font-size:15px;font-weight:700;color:var(--success);margin-bottom:6px">V4.51.1 (2026-11-10)</div>
+        <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">CA万能句型中文翻译全量补齐(180条) + 跑题话题改标CA专题 + 日历11/7-9暂回谈判</div>
+        <div style="font-size:12px;color:var(--text-dim);line-height:1.8">
+        • <strong>万能句型翻译</strong>:渲染器新增"翻译"行(紫色,位于句型与结构之间),caData全部180条万能句型补齐cn中译——meet/interview/biz_listen/biz_speak/negotiation各36条,按[占位符]逐一直译,语法/结构/场景显示不变
+        • <strong>跑题话题改标</strong>:interview(原误标话题2)/biz_listen(原误标话题5)/biz_speak(原误标话题6)标题改为"CA专题",话题编号让位C课程序列对齐(任务二待重排)
+        • <strong>日历还原</strong>:11/7-9暂回negotiation(昨夜误挂shopping但caData无此话题会白屏),待任务二生成话题7购物CA内容后再挂回
+        </div>
+      </div>
+      <div style="font-size:15px;font-weight:700;color:var(--success);margin-bottom:6px">V4.51.0 (2026-11-08)</div>
         <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">日期详情页切换卡(C5/CA/CATAT) + 1108日记6词 + bitVocabDB 3187→3190</div>
         <div style="font-size:12px;color:var(--text-dim);line-height:1.8">
         • <strong>日期页切换卡</strong>:同一天有多种内容时(C5课程/CA进阶/日记),顶部标签切换(复用CA Day标签样式),默认首个标签;单内容日保持原样;nickel专题不受影响
@@ -236339,7 +236348,7 @@ const caData = {
     {
      "cat": "问候骨架",
      "level": "basic",
-     "formula": "Selamat [pagi/siang/sore/malam]",
+     "formula": "Selamat [pagi/siang/sore/malam]", "cn": "早上好／中午好／下午好／晚上好",
      "structure": "[时段]好",
      "grammar": "selamat+时段名词",
      "scene": "任何见面开场",
@@ -236358,7 +236367,7 @@ const caData = {
     {
      "cat": "问候应答",
      "level": "basic",
-     "formula": "Apa kabar [Anda]? – Kabar [baik/baik sekali]",
+     "formula": "Apa kabar [Anda]? – Kabar [baik/baik sekali]", "cn": "您好吗？——很好／非常好",
      "structure": "—好吗？—很好",
      "grammar": "apa 引导疑问；kabar 近况",
      "scene": "寒暄",
@@ -236377,7 +236386,7 @@ const caData = {
     {
      "cat": "自我介绍",
      "level": "basic",
-     "formula": "Perkenalkan, nama saya [Nama]. Saya dari [Asal].",
+     "formula": "Perkenalkan, nama saya [Nama]. Saya dari [Asal].", "cn": "请允许我介绍，我叫[名字]，来自[地方]。",
      "structure": "请允许我介绍，我叫…，来自…",
      "grammar": "perkenalkan 祈使；saya 我",
      "scene": "初次见面",
@@ -236395,7 +236404,7 @@ const caData = {
     {
      "cat": "欣喜相逢",
      "level": "adv",
-     "formula": "Senang (sekali/akhirnya) bisa [V] dengan [Anda/N]",
+     "formula": "Senang (sekali/akhirnya) bisa [V] dengan [Anda/N]", "cn": "（非常／终于）高兴能与[您／某人][动词]。",
      "structure": "很高兴（终于）能与…[动词]",
      "grammar": "akhirnya 表'终于'；bisa 能",
      "scene": "久别或期待后的会面",
@@ -236414,7 +236423,7 @@ const caData = {
     {
      "cat": "久别重逢",
      "level": "adv",
-     "formula": "Sudah lama tidak [V]. – Iya, terakhir [waktu].",
+     "formula": "Sudah lama tidak [V]. – Iya, terakhir [waktu].", "cn": "好久没[动词]了。——是啊，上次还是[时间]。",
      "structure": "好久没…了。——是啊，上次还是…",
      "grammar": "sudah lama 很久；terakhir 上次",
      "scene": "熟人重逢",
@@ -236432,7 +236441,7 @@ const caData = {
     {
      "cat": "介绍他人",
      "level": "adv",
-     "formula": "[Kenalkan], ini [Nama], [jabatan/dari X].",
+     "formula": "[Kenalkan], ini [Nama], [jabatan/dari X].", "cn": "[介绍一下]，这位是[名字]，[职务／来自X]。",
      "structure": "介绍，这位是…，（职务/来自…）",
      "grammar": "ini 这位；同位语",
      "scene": "介绍第三方",
@@ -236450,7 +236459,7 @@ const caData = {
     {
      "cat": "提议转场",
      "level": "adv",
-     "formula": "Mari kita [V] ke [tempat].",
+     "formula": "Mari kita [V] ke [tempat].", "cn": "我们去[地方][动词]吧。",
      "structure": "我们一起去…吧",
      "grammar": "mari 提议祈使",
      "scene": "会面后转场",
@@ -236469,7 +236478,7 @@ const caData = {
     {
      "cat": "寒暄问经历",
      "level": "adv",
-     "formula": "Apakah sudah pernah [V] ke [tempat]?",
+     "formula": "Apakah sudah pernah [V] ke [tempat]?", "cn": "您曾经去过[地方][动词]吗？",
      "structure": "（您）去过…吗？",
      "grammar": "apakah 正式疑问；pernah 曾经",
      "scene": "破冰寒暄",
@@ -236486,7 +236495,7 @@ const caData = {
     {
      "cat": "表达希望",
      "level": "adv",
-     "formula": "Saya harap [klausa].",
+     "formula": "Saya harap [klausa].", "cn": "我希望[从句]。",
      "structure": "我希望…",
      "grammar": "harap 后接从句",
      "scene": "会面结尾",
@@ -236503,7 +236512,7 @@ const caData = {
     {
      "cat": "正式开场",
      "level": "pro",
-     "formula": "Dengan hormat, perkenalkan kami dari [perusahaan], yang bergerak di bidang [bidang].",
+     "formula": "Dengan hormat, perkenalkan kami dari [perusahaan], yang bergerak di bidang [bidang].", "cn": "谨此郑重介绍，我们来自[公司]，从事[行业]领域。",
      "structure": "谨向贵方介绍，我们来自…，从事…领域",
      "grammar": "dengan hormat 谨；yang 定语从句",
      "scene": "正式商务开场",
@@ -236520,7 +236529,7 @@ const caData = {
     {
      "cat": "礼貌请求许可",
      "level": "pro",
-     "formula": "[Kami] mohon izin untuk [V].",
+     "formula": "[Kami] mohon izin untuk [V].", "cn": "[我们]请求允许[动词]。",
      "structure": "（我们）请求允许…",
      "grammar": "mohon izin 正式请求",
      "scene": "正式场合",
@@ -236538,7 +236547,7 @@ const caData = {
     {
      "cat": "正式致谢",
      "level": "pro",
-     "formula": "Terima kasih atas [N]-nya; senang bisa [V] hari ini.",
+     "formula": "Terima kasih atas [N]-nya; senang bisa [V] hari ini.", "cn": "感谢您的[名词]；很高兴今天能[动词]。",
      "structure": "感谢…；很高兴今天能…",
      "grammar": "atas…-nya 正式致谢结构",
      "scene": "会谈致谢",
@@ -237317,7 +237326,7 @@ const caData = {
     {
      "cat": "询问姓名",
      "level": "basic",
-     "formula": "Siapa nama [Anda/kamu]? – Nama saya [N].",
+     "formula": "Siapa nama [Anda/kamu]? – Nama saya [N].", "cn": "您／你叫什么名字？——我叫[名字]。",
      "structure": "—您叫什么名字？—我叫…",
      "grammar": "siapa 谁；nama 名字",
      "scene": "初次认识",
@@ -237335,7 +237344,7 @@ const caData = {
     {
      "cat": "询问籍贯",
      "level": "basic",
-     "formula": "Anda berasal dari mana? – Saya dari [tempat].",
+     "formula": "Anda berasal dari mana? – Saya dari [tempat].", "cn": "您来自哪里？——我来自[地方]。",
      "structure": "—您是哪里人？—我来自…",
      "grammar": "mana 哪里；dari 从",
      "scene": "认识破冰",
@@ -237353,7 +237362,7 @@ const caData = {
     {
      "cat": "询问职业",
      "level": "basic",
-     "formula": "Apa [pekerjaan/jabatan] Anda? – Saya [jabatan] di [perusahaan].",
+     "formula": "Apa [pekerjaan/jabatan] Anda? – Saya [jabatan] di [perusahaan].", "cn": "您的[职业／职务]是什么？——我是[公司]的[职务]。",
      "structure": "—您做什么工作？—我是…（公司）的…",
      "grammar": "apa 什么；di+地点",
      "scene": "认识破冰",
@@ -237371,7 +237380,7 @@ const caData = {
     {
      "cat": "定语从句",
      "level": "adv",
-     "formula": "Saya [N] yang [keterangan].",
+     "formula": "Saya [N] yang [keterangan].", "cn": "我是那个[描述]的[名词]。",
      "structure": "我是…的（人）",
      "grammar": "yang 关系代词，必考",
      "scene": "介绍自己/他人",
@@ -237389,7 +237398,7 @@ const caData = {
     {
      "cat": "比较级",
      "level": "adv",
-     "formula": "[N1] lebih [Adj] daripada [N2].",
+     "formula": "[N1] lebih [Adj] daripada [N2].", "cn": "[N1]比[N2]更[形容词]。",
      "structure": "…比…更…",
      "grammar": "lebih…daripada 比较",
      "scene": "比较评价",
@@ -237407,7 +237416,7 @@ const caData = {
     {
      "cat": "时长表达",
      "level": "adv",
-     "formula": "Saya sudah [V] selama [durasi].",
+     "formula": "Saya sudah [V] selama [durasi].", "cn": "我已经[动词]了[时长]。",
      "structure": "我已经…了（多长时间）",
      "grammar": "selama+时段；sudah 完成",
      "scene": "谈经历",
@@ -237424,7 +237433,7 @@ const caData = {
     {
      "cat": "礼貌探问",
      "level": "adv",
-     "formula": "Boleh saya tahu, [klausa]?",
+     "formula": "Boleh saya tahu, [klausa]?", "cn": "可以告诉我[从句]吗？",
      "structure": "能告诉我…吗？",
      "grammar": "boleh 许可；逗号后接问句",
      "scene": "礼貌询问",
@@ -237441,7 +237450,7 @@ const caData = {
     {
      "cat": "条件假设",
      "level": "adv",
-     "formula": "Kalau [kondisi], saya akan [aksi].",
+     "formula": "Kalau [kondisi], saya akan [aksi].", "cn": "如果[条件]，我就[行动]。",
      "structure": "如果…，我就…",
      "grammar": "kalau 如果；akan 将",
      "scene": "假设交流",
@@ -237458,7 +237467,7 @@ const caData = {
     {
      "cat": "新近动作",
      "level": "adv",
-     "formula": "Kami baru saja [V]; belum sempat [V2].",
+     "formula": "Kami baru saja [V]; belum sempat [V2].", "cn": "我们刚刚[动词]；还没来得及[动词2]。",
      "structure": "我们刚刚…，还没来得及…",
      "grammar": "baru saja 刚刚；sempat 来得及",
      "scene": "解释近况",
@@ -237476,7 +237485,7 @@ const caData = {
     {
      "cat": "正式引见",
      "level": "pro",
-     "formula": "[Nama], izinkan saya memperkenalkan [Nama2], [jabatan] kami.",
+     "formula": "[Nama], izinkan saya memperkenalkan [Nama2], [jabatan] kami.", "cn": "[名字]，请允许我介绍我们的[职务][名字2]。",
      "structure": "…，请允许我介绍我们的一…",
      "grammar": "izinkan 请允许（izin 名词）",
      "scene": "正式引见",
@@ -237493,7 +237502,7 @@ const caData = {
     {
      "cat": "机构介绍",
      "level": "pro",
-     "formula": "Perkenalkan kami dari [instansi], yang bertugas di bidang [bidang].",
+     "formula": "Perkenalkan kami dari [instansi], yang bertugas di bidang [bidang].", "cn": "请允许我们介绍，我们来自[机构]，负责[领域]的工作。",
      "structure": "请允许介绍我们来自…，负责…领域",
      "grammar": "yang 从句；bertugas 负责",
      "scene": "正式场合",
@@ -237510,7 +237519,7 @@ const caData = {
     {
      "cat": "渐进关系",
      "level": "pro",
-     "formula": "Semakin [Adj1], semakin [Adj2].",
+     "formula": "Semakin [Adj1], semakin [Adj2].", "cn": "越[形容词1]，越[形容词2]。",
      "structure": "越…，越…",
      "grammar": "semakin 越",
      "scene": "正式评价",
@@ -238241,7 +238250,7 @@ const caData = {
     {
      "cat": "正式致谢",
      "level": "basic",
-     "formula": "Terima kasih atas [N]-nya.",
+     "formula": "Terima kasih atas [N]-nya.", "cn": "感谢您的[名词]。",
      "structure": "感谢…",
      "grammar": "atas+N-nya 正式结构",
      "scene": "致谢",
@@ -238259,7 +238268,7 @@ const caData = {
     {
      "cat": "道别",
      "level": "basic",
-     "formula": "Selamat [tinggal/jalan]!",
+     "formula": "Selamat [tinggal/jalan]!", "cn": "再见／一路平安！",
      "structure": "再见（留守方说 tinggal/出行方说 jalan）",
      "grammar": "selamat+动词",
      "scene": "道别",
@@ -238276,7 +238285,7 @@ const caData = {
     {
      "cat": "再会",
      "level": "basic",
-     "formula": "Sampai [jumpa/bertemu] [lagi/nanti/waktu]!",
+     "formula": "Sampai [jumpa/bertemu] [lagi/nanti/waktu]!", "cn": "[回头／到时候]再见！",
      "structure": "回头见/改天见",
      "grammar": "sampai 直到",
      "scene": "道别",
@@ -238294,7 +238303,7 @@ const caData = {
     {
      "cat": "被动正式",
      "level": "adv",
-     "formula": "[Kegiatan] [diadakan/digelar/diselenggarakan] [waktu/tempat].",
+     "formula": "[Kegiatan] [diadakan/digelar/diselenggarakan] [waktu/tempat].", "cn": "[活动]将于[时间／地点]举行。",
      "structure": "（活动）于…举行",
      "grammar": "di- 被动无人称",
      "scene": "公告/报道",
@@ -238311,7 +238320,7 @@ const caData = {
     {
      "cat": "表达希望",
      "level": "adv",
-     "formula": "Kami berharap [klausa].",
+     "formula": "Kami berharap [klausa].", "cn": "我们希望[从句]。",
      "structure": "我们希望…",
      "grammar": "berharap 后接从句",
      "scene": "会谈",
@@ -238327,7 +238336,7 @@ const caData = {
     {
      "cat": "先后动作",
      "level": "adv",
-     "formula": "Setelah [V], kami akan [V2].",
+     "formula": "Setelah [V], kami akan [V2].", "cn": "[动词]之后，我们将[动词2]。",
      "structure": "…之后，我们将…",
      "grammar": "setelah+动词",
      "scene": "日程说明",
@@ -238344,7 +238353,7 @@ const caData = {
     {
      "cat": "事前提醒",
      "level": "adv",
-     "formula": "Sebelum [V], harap [V2/konfirmasi].",
+     "formula": "Sebelum [V], harap [V2/konfirmasi].", "cn": "[动词]之前，请[动词2／确认]。",
      "structure": "在…之前，请…",
      "grammar": "sebelum 在…前；harap 请",
      "scene": "行程安排",
@@ -238361,7 +238370,7 @@ const caData = {
     {
      "cat": "目的从句",
      "level": "adv",
-     "formula": "[Klausa utama] agar/supaya [klausa tujuan].",
+     "formula": "[Klausa utama] agar/supaya [klausa tujuan].", "cn": "[主句]，以便[目的从句]。",
      "structure": "…以便…",
      "grammar": "agar/supaya 目的连词",
      "scene": "说明意图",
@@ -238378,7 +238387,7 @@ const caData = {
     {
      "cat": "让步",
      "level": "adv",
-     "formula": "Walaupun [klausa], [klausa utama].",
+     "formula": "Walaupun [klausa], [klausa utama].", "cn": "虽然[从句]，但[主句]。",
      "structure": "尽管…，还是…",
      "grammar": "walaupun 让步连词",
      "scene": "正式表达",
@@ -238395,7 +238404,7 @@ const caData = {
     {
      "cat": "公文引述",
      "level": "pro",
-     "formula": "Dengan ini kami menyampaikan [N].",
+     "formula": "Dengan ini kami menyampaikan [N].", "cn": "特此告知[事项]。",
      "structure": "谨此致送…",
      "grammar": "dengan ini 公文套语",
      "scene": "公函",
@@ -238412,7 +238421,7 @@ const caData = {
     {
      "cat": "正式请求",
      "level": "pro",
-     "formula": "Mohon kiranya [klausa].",
+     "formula": "Mohon kiranya [klausa].", "cn": "恳请[从句]。",
      "structure": "敬请…",
      "grammar": "mohon kiranya 双重敬语",
      "scene": "正式请求",
@@ -238428,7 +238437,7 @@ const caData = {
     {
      "cat": "会议收尾",
      "level": "pro",
-     "formula": "Atas perhatian dan kerja samanya, kami ucapkan terima kasih.",
+     "formula": "Atas perhatian dan kerja samanya, kami ucapkan terima kasih.", "cn": "感谢您的关注与合作。",
      "structure": "感谢您的关注与合作。",
      "grammar": "公文结尾套语",
      "scene": "闭幕/公函结尾",
@@ -238966,7 +238975,7 @@ const caData = {
  }
 ,
 "interview": {
- "title": "话题2: 面试 / Wawancara",
+ "title": "CA专题: 面试 / Wawancara",
  "icon": "💼",
  "level": "B1-B2",
  "days": 3,
@@ -239147,7 +239156,7 @@ const caData = {
    {
     "cat": "自我介绍",
     "level": "basic",
-    "formula": "Saya lulusan + [学校/专业]",
+    "formula": "Saya lulusan + [学校/专业]", "cn": "我毕业于[学校／专业]。",
     "structure": "Saya + lulusan + 名",
     "grammar": "lulusan（毕业生）由动词 lulus + 名词后缀 -an 构成",
     "scene": "面试开场自我介绍——教育背景",
@@ -239164,7 +239173,7 @@ const caData = {
    {
     "cat": "自我介绍",
     "level": "basic",
-    "formula": "Saya memiliki pengalaman + [时长] + tahun di + [领域]",
+    "formula": "Saya memiliki pengalaman + [时长] + tahun di + [领域]", "cn": "我在[领域]有[时长]年的经验。",
     "structure": "Saya + 动词 + 名词 + 时长 + di + 领域",
     "grammar": "memiliki（拥有）；berpengalaman（有经验）为同义替换",
     "scene": "面试自我介绍——工作经验",
@@ -239182,7 +239191,7 @@ const caData = {
    {
     "cat": "自我介绍",
     "level": "basic",
-    "formula": "Saya ahli dalam + [领域]",
+    "formula": "Saya ahli dalam + [领域]", "cn": "我精通[领域]。",
     "structure": "Saya + ahli + dalam + 名词",
     "grammar": "ahli dalam 固定搭配；keahlian（专业技能）为派生名词",
     "scene": "面试自我介绍——专业能力",
@@ -239198,7 +239207,7 @@ const caData = {
    {
     "cat": "自我介绍",
     "level": "intermediate",
-    "formula": "Saya berpengalaman + [时长] + tahun sebagai + [职位]",
+    "formula": "Saya berpengalaman + [时长] + tahun sebagai + [职位]", "cn": "我有[时长]年担任[职位]的经验。",
     "structure": "Saya + berpengalaman + 时长 + sebagai + 职位",
     "grammar": "ber- + pengalaman → 形容词；sebagai = 作为",
     "scene": "强调职位经验",
@@ -239215,7 +239224,7 @@ const caData = {
    {
     "cat": "自我介绍",
     "level": "intermediate",
-    "formula": "Pencapaian utama saya adalah + [成果]",
+    "formula": "Pencapaian utama saya adalah + [成果]", "cn": "我的主要成就是[成果]。",
     "structure": "Pencapaian + 限定词 + adalah + 名词短语",
     "grammar": "pencapaian（成就）← capai + peN-an；utama 主要的",
     "scene": "简历亮点/个人成就",
@@ -239232,7 +239241,7 @@ const caData = {
    {
     "cat": "求职动机",
     "level": "intermediate",
-    "formula": "Saya melamar posisi + [职位] + karena + [原因]",
+    "formula": "Saya melamar posisi + [职位] + karena + [原因]", "cn": "我应聘[职位]是因为[原因]。",
     "structure": "Saya + melamar + posisi + karena + 从句",
     "grammar": "karena 引导原因从句；melamar + 职位（直接宾语）",
     "scene": "说明求职动机",
@@ -239249,7 +239258,7 @@ const caData = {
    {
     "cat": "求职动机",
     "level": "intermediate",
-    "formula": "Saya ingin berkembang di + [领域/公司]",
+    "formula": "Saya ingin berkembang di + [领域/公司]", "cn": "我希望在[领域／公司]发展。",
     "structure": "Saya + ingin + ber-动词 + di + 名词",
     "grammar": "berkembang（发展）← kembang + ber-",
     "scene": "职业发展规划",
@@ -239266,7 +239275,7 @@ const caData = {
    {
     "cat": "教育背景",
     "level": "intermediate",
-    "formula": "Saya mendapatkan gelar + [学位] + di + [学校]",
+    "formula": "Saya mendapatkan gelar + [学位] + di + [学校]", "cn": "我在[学校]获得了[学位]学位。",
     "structure": "Saya + meN-动词 + 宾语 + di + 名词",
     "grammar": "mendapatkan ← dapat + meN-kan；gelar 学位",
     "scene": "介绍教育背景",
@@ -239283,7 +239292,7 @@ const caData = {
    {
     "cat": "简历描述",
     "level": "intermediate",
-    "formula": "Bertanggung jawab atas + [职责]",
+    "formula": "Bertanggung jawab atas + [职责]", "cn": "负责[职责]。",
     "structure": "ber-形容词 + atas + 名词",
     "grammar": "bertanggung jawab 负责（固定搭配）；atas 对…",
     "scene": "简历职责描述",
@@ -239300,7 +239309,7 @@ const caData = {
    {
     "cat": "被动语态",
     "level": "professional",
-    "formula": "di- + 词根（被动）",
+    "formula": "di- + 词根（被动）", "cn": "di-+词根（被动语态：被…）",
     "structure": "di-动词 + 施动/方式",
     "grammar": "di- 被动前缀，与 meN- 主动对应",
     "scene": "简历/申请中常见被动",
@@ -239317,7 +239326,7 @@ const caData = {
    {
     "cat": "求职意向",
     "level": "professional",
-    "formula": "tertarik pada + [对象]",
+    "formula": "tertarik pada + [对象]", "cn": "对[对象]感兴趣。",
     "structure": "ter-形容词 + pada + 名词",
     "grammar": "tertarik（感兴趣）ter- + tarik；pada 对…",
     "scene": "表达兴趣（高级）",
@@ -239333,7 +239342,7 @@ const caData = {
    {
     "cat": "程度表达",
     "level": "professional",
-    "formula": "se- + 程度副词 + mungkin/-nya",
+    "formula": "se- + 程度副词 + mungkin/-nya", "cn": "尽可能[副词]。（如 secepat mungkin 尽可能快）",
     "structure": "se-前缀副词 + 动词/形容词",
     "grammar": "se- 构成程度/方式副词：sebaiknya 最好、sesegera 尽快",
     "scene": "建议与紧迫性",
@@ -240189,7 +240198,7 @@ const caData = {
    {
     "cat": "行为面试",
     "level": "basic",
-    "formula": "Suatu ketika saya + [过去经历]",
+    "formula": "Suatu ketika saya + [过去经历]", "cn": "有一次，我[过去经历]。",
     "structure": "Suatu ketika + Saya + 动词短语",
     "grammar": "suatu ketika = 曾经/有一次（引出故事）",
     "scene": "回答行为面试问题开头",
@@ -240205,7 +240214,7 @@ const caData = {
    {
     "cat": "面试指令",
     "level": "basic",
-    "formula": "Silakan + [动词] + [内容]",
+    "formula": "Silakan + [动词] + [内容]", "cn": "请[动词][内容]。",
     "structure": "Silakan + 动词 + 宾语",
     "grammar": "silakan + 动词 = 请…（礼貌指令）",
     "scene": "理解面试官指令",
@@ -240222,7 +240231,7 @@ const caData = {
    {
     "cat": "行为面试",
     "level": "basic",
-    "formula": "Boleh Anda berikan contoh + [情境]?",
+    "formula": "Boleh Anda berikan contoh + [情境]?", "cn": "您能举一个[情境]的例子吗？",
     "structure": "Boleh + Anda + 动词 + 名词",
     "grammar": "boleh 可以（请求许可）；berikan ← beri + -kan",
     "scene": "面试官要求举例",
@@ -240238,7 +240247,7 @@ const caData = {
    {
     "cat": "行为面试",
     "level": "intermediate",
-    "formula": "Dalam situasi + [情境], saya + [行动]",
+    "formula": "Dalam situasi + [情境], saya + [行动]", "cn": "在[情境]下，我[行动]。",
     "structure": "Dalam + 名词 + 主句",
     "grammar": "dalam + situasi 在…情况下",
     "scene": "描述情境",
@@ -240255,7 +240264,7 @@ const caData = {
    {
     "cat": "行为面试",
     "level": "intermediate",
-    "formula": "Saya mengambil inisiatif dengan + [行动]",
+    "formula": "Saya mengambil inisiatif dengan + [行动]", "cn": "我主动采取了[行动]。",
     "structure": "Saya + meN-动词 + 名词 + dengan + 名词",
     "grammar": "mengambil inisiatif 采取主动；dengan 通过/以",
     "scene": "描述主动性",
@@ -240271,7 +240280,7 @@ const caData = {
    {
     "cat": "行为面试",
     "level": "intermediate",
-    "formula": "Hasilnya, + [成果]",
+    "formula": "Hasilnya, + [成果]", "cn": "结果是，[成果]。",
     "structure": "Hasilnya + 主句",
     "grammar": "hasil + -nya → 结果是…",
     "scene": "总结行动成果",
@@ -240287,7 +240296,7 @@ const caData = {
    {
     "cat": "行为面试",
     "level": "intermediate",
-    "formula": "Pengalaman itu mengajarkan saya + [教训]",
+    "formula": "Pengalaman itu mengajarkan saya + [教训]", "cn": "那段经历教会了我[教训]。",
     "structure": "Pengalaman + 限定 + meN-动词 + Saya + 名词",
     "grammar": "mengajarkan ← ajar + meN-kan 教会",
     "scene": "总结学习经验",
@@ -240303,7 +240312,7 @@ const caData = {
    {
     "cat": "自我介绍",
     "level": "intermediate",
-    "formula": "Selama + [时长] + tahun, saya telah + [成就]",
+    "formula": "Selama + [时长] + tahun, saya telah + [成就]", "cn": "在[时长]年里，我已经[成就]。",
     "structure": "Selama + 时间 + 主句完成时",
     "grammar": "selama 长达/在…期间；telah + 动词 完成体",
     "scene": "总结长期经验",
@@ -240320,7 +240329,7 @@ const caData = {
    {
     "cat": "求职动机",
     "level": "intermediate",
-    "formula": "Hal yang memotivasi saya adalah + [动机]",
+    "formula": "Hal yang memotivasi saya adalah + [动机]", "cn": "激励我的是[动机]。",
     "structure": "Hal + yang + 动词 + Saya + adalah + 名词",
     "grammar": "yang 关系代词；memotivasi 激励",
     "scene": "回答动机问题",
@@ -240336,7 +240345,7 @@ const caData = {
    {
     "cat": "情景面试",
     "level": "professional",
-    "formula": "Jika saya menghadapi + [情境], saya akan + [行动]",
+    "formula": "Jika saya menghadapi + [情境], saya akan + [行动]", "cn": "如果我面临[情境]，我会[行动]。",
     "structure": "Jika + 主句 + 将来时",
     "grammar": "jika 如果；akan + 动词 将来时",
     "scene": "情景面试回答",
@@ -240353,7 +240362,7 @@ const caData = {
    {
     "cat": "行为面试",
     "level": "professional",
-    "formula": "Situasinya + [S]. Tugas saya + [T]. Saya + [A]. Hasilnya + [R].",
+    "formula": "Situasinya + [S]. Tugas saya + [T]. Saya + [A]. Hasilnya + [R].", "cn": "情境是[S]。我的任务是[T]。我采取了[A]。结果是[R]。（STAR法则四步）",
     "structure": "四个短句",
     "grammar": "STAR 法则（Situation-Task-Action-Result）印尼语框架",
     "scene": "完整行为面试回答",
@@ -240371,7 +240380,7 @@ const caData = {
    {
     "cat": "薪资讨论",
     "level": "professional",
-    "formula": "Apakah ada ruang untuk + [协商内容]?",
+    "formula": "Apakah ada ruang untuk + [协商内容]?", "cn": "[协商内容]还有商量的余地吗？",
     "structure": "Apakah + ada + ruang + untuk + 名词",
     "grammar": "ruang 空间/余地；apakah 疑问词",
     "scene": "探索谈判空间",
@@ -241268,7 +241277,7 @@ const caData = {
    {
     "cat": "感谢信",
     "level": "basic",
-    "formula": "Terima kasih atas + [事物]",
+    "formula": "Terima kasih atas + [事物]", "cn": "感谢[事物]。",
     "structure": "Terima kasih + atas + 名词",
     "grammar": "atas = 因为/对于（引出感谢原因）",
     "scene": "感谢信开头",
@@ -241284,7 +241293,7 @@ const caData = {
    {
     "cat": "感谢信",
     "level": "basic",
-    "formula": "Terima kasih telah + [动词]",
+    "formula": "Terima kasih telah + [动词]", "cn": "感谢您[动词]。",
     "structure": "Terima kasih + telah + 动词",
     "grammar": "telah + 动词 = 完成体'已经做了…'",
     "scene": "感谢具体行为",
@@ -241300,7 +241309,7 @@ const caData = {
    {
     "cat": "接受邀约",
     "level": "basic",
-    "formula": "Dengan senang hati, saya + [接受声明]",
+    "formula": "Dengan senang hati, saya + [接受声明]", "cn": "我很高兴地[接受声明]。",
     "structure": "Dengan senang hati + 主句",
     "grammar": "dengan senang hati = 高兴地（固定表达）",
     "scene": "邮件接受邀约",
@@ -241316,7 +241325,7 @@ const caData = {
    {
     "cat": "持续兴趣",
     "level": "intermediate",
-    "formula": "Saya tetap sangat tertarik dengan + [对象]",
+    "formula": "Saya tetap sangat tertarik dengan + [对象]", "cn": "我仍然对[对象]非常感兴趣。",
     "structure": "Saya + tetap + 副词 + 形容词 + dengan + 名词",
     "grammar": "tetap 仍然；sangat 非常",
     "scene": "跟进邮件表达兴趣",
@@ -241332,7 +241341,7 @@ const caData = {
    {
     "cat": "请求时间",
     "level": "intermediate",
-    "formula": "Bolehkah saya memiliki + [时长] + untuk mempertimbangkan?",
+    "formula": "Bolehkah saya memiliki + [时长] + untuk mempertimbangkan?", "cn": "可以给我[时长]时间考虑吗？",
     "structure": "Bolehkah + Saya + meN-动词 + 时长 + untuk + 动词",
     "grammar": "bolehkah 礼貌请求；mempertimbangkan ← timbang + per-kan",
     "scene": "请求考虑时间",
@@ -241348,7 +241357,7 @@ const caData = {
    {
     "cat": "薪资谈判",
     "level": "intermediate",
-    "formula": "Bisakah kita mendiskusikan + [条款]?",
+    "formula": "Bisakah kita mendiskusikan + [条款]?", "cn": "我们可以讨论一下[条款]吗？",
     "structure": "Bisakah + kita + meN-动词 + 名词",
     "grammar": "bisakah = apakah bisa；mendiskusikan ← diskusi + meN-kan",
     "scene": "开启谈判",
@@ -241364,7 +241373,7 @@ const caData = {
    {
     "cat": "薪资谈判",
     "level": "intermediate",
-    "formula": "Saya ingin mendiskusikan + [内容]",
+    "formula": "Saya ingin mendiskusikan + [内容]", "cn": "我想讨论[内容]。",
     "structure": "Saya + ingin + meN-动词 + 名词",
     "grammar": "ingin 想要（直接动词不定式）",
     "scene": "正式提出讨论请求",
@@ -241380,7 +241389,7 @@ const caData = {
    {
     "cat": "决策截止",
     "level": "intermediate",
-    "formula": "Kapan + [事项] + perlu + [动作]?",
+    "formula": "Kapan + [事项] + perlu + [动作]?", "cn": "[事项]需要在什么时候[动作]？",
     "structure": "Kapan + 名词 + perlu + 动词",
     "grammar": "kapan 什么时候；perlu 需要",
     "scene": "询问决策截止日",
@@ -241397,7 +241406,7 @@ const caData = {
    {
     "cat": "确认入职",
     "level": "intermediate",
-    "formula": "Apakah + [日期] + cocok untuk + [事项]?",
+    "formula": "Apakah + [日期] + cocok untuk + [事项]?", "cn": "[日期]适合[事项]吗？",
     "structure": "Apakah + 名词 + 形容词 + untuk + 名词",
     "grammar": "cocok 合适；apakah 一般疑问",
     "scene": "确认入职日期",
@@ -241414,7 +241423,7 @@ const caData = {
    {
     "cat": "确认入职",
     "level": "professional",
-    "formula": "Saya dapat mulai bekerja pada + [日期]",
+    "formula": "Saya dapat mulai bekerja pada + [日期]", "cn": "我可以在[日期]开始上班。",
     "structure": "Saya + dapat + 动词 + pada + 日期",
     "grammar": "dapat 能够/可以；pada + 具体日期",
     "scene": "确认入职日期（正式）",
@@ -241430,7 +241439,7 @@ const caData = {
    {
     "cat": "反提议",
     "level": "professional",
-    "formula": "Bagaimana jika + [建议]?",
+    "formula": "Bagaimana jika + [建议]?", "cn": "如果[建议]，怎么样？",
     "structure": "Bagaimana jika + 主句",
     "grammar": "bagaimana jika = 如果…怎么样（提出建议）",
     "scene": "提出反提议",
@@ -241446,7 +241455,7 @@ const caData = {
    {
     "cat": "拒绝邀约",
     "level": "professional",
-    "formula": "Dengan berat hati, saya + [拒绝声明]",
+    "formula": "Dengan berat hati, saya + [拒绝声明]", "cn": "很遗憾地，我[拒绝声明]。",
     "structure": "Dengan berat hati + 主句",
     "grammar": "dengan berat hati = 遗憾地/忍痛地（固定表达）",
     "scene": "礼貌拒绝邀约",
@@ -242139,7 +242148,7 @@ const caData = {
  }
 },
 "biz_listen": {
- "title": "话题5: 商务聆听与阅读 / Mendengarkan & Membaca Bisnis",
+ "title": "CA专题: 商务聆听与阅读 / Mendengarkan & Membaca Bisnis",
  "icon": "🎧",
  "level": "B1-B2",
  "days": 3,
@@ -242320,7 +242329,7 @@ const caData = {
    {
     "cat": "请求重复",
     "level": "basic",
-    "formula": "Bisa tolong diulang?",
+    "formula": "Bisa tolong diulang?", "cn": "能请再说一遍吗？",
     "structure": "Bisa + tolong + di-动词",
     "grammar": "bisa 能；tolong 请；di-被动 突出请求对方动作",
     "scene": "没听清时请求重复",
@@ -242336,7 +242345,7 @@ const caData = {
    {
     "cat": "表示未听懂",
     "level": "basic",
-    "formula": "Maaf, saya kurang + [动词/形容词]",
+    "formula": "Maaf, saya kurang + [动词/形容词]", "cn": "抱歉，我不太[动词／形容词]。（没听懂／没看清）",
     "structure": "Maaf + 主语 + kurang + 谓语",
     "grammar": "kurang 不够、不太；委婉表达理解不足",
     "scene": "坦诚说明理解程度",
@@ -242352,7 +242361,7 @@ const caData = {
    {
     "cat": "请求放慢",
     "level": "basic",
-    "formula": "Mohon + [动词] + lebih pelan",
+    "formula": "Mohon + [动词] + lebih pelan", "cn": "请[动词]得慢一点。",
     "structure": "Mohon + 动词短语 + 程度补语",
     "grammar": "mohon 正式请求；lebih pelan 更慢",
     "scene": "语速过快时礼貌打断",
@@ -242368,7 +242377,7 @@ const caData = {
    {
     "cat": "转述确认",
     "level": "intermediate",
-    "formula": "Jadi, yang Anda maksud..., ya?",
+    "formula": "Jadi, yang Anda maksud..., ya?", "cn": "所以，您的意思是…，对吗？",
     "structure": "Jadi + 从句 + ya（确认语气词）",
     "grammar": "jadi 那么、所以；ya 句尾确认标记，寻求对方肯定",
     "scene": "复述对方意思以确认理解无误",
@@ -242384,7 +242393,7 @@ const caData = {
    {
     "cat": "总结要点",
     "level": "intermediate",
-    "formula": "Intinya, + [主句]",
+    "formula": "Intinya, + [主句]", "cn": "总之，[主句]。",
     "structure": "Intinya + 完整句",
     "grammar": "inti 核心 + -nya 指代 → 其要点；句首总括",
     "scene": "把长段讨论压缩成一句话",
@@ -242400,7 +242409,7 @@ const caData = {
    {
     "cat": "请求解释",
     "level": "intermediate",
-    "formula": "Bisa dijelaskan lebih + [detail/rinci]?",
+    "formula": "Bisa dijelaskan lebih + [detail/rinci]?", "cn": "能解释得更[详细／细致]一点吗？",
     "structure": "Bisa + di-动词-kan + 程度副词",
     "grammar": "dijelaskan ← jelas + di-...-kan；lebih 更",
     "scene": "术语或数据没听懂时请求展开",
@@ -242417,7 +242426,7 @@ const caData = {
    {
     "cat": "礼貌插话",
     "level": "intermediate",
-    "formula": "Permisi, boleh saya + [动词]?",
+    "formula": "Permisi, boleh saya + [动词]?", "cn": "打扰一下，我可以[动词]吗？",
     "structure": "Permisi + 疑问句",
     "grammar": "permisi 借过/打扰；温和打断正在进行的发言",
     "scene": "需要补充或纠正时插话",
@@ -242433,7 +242442,7 @@ const caData = {
    {
     "cat": "表达同意",
     "level": "intermediate",
-    "formula": "Saya setuju dengan + [名词/从句]",
+    "formula": "Saya setuju dengan + [名词/从句]", "cn": "我同意[名词／从句]。",
     "structure": "主语 + setuju + dengan + 对象",
     "grammar": "setuju 同意；dengan 引出同意的对象",
     "scene": "跟进讨论表明立场",
@@ -242449,7 +242458,7 @@ const caData = {
    {
     "cat": "请求举例",
     "level": "intermediate",
-    "formula": "Bisa beri contoh + [名词]?",
+    "formula": "Bisa beri contoh + [名词]?", "cn": "能举一个[名词]的例子吗？",
     "structure": "Bisa + beri + contoh + 领域",
     "grammar": "beri 给；contoh 例子；用具体例子化解抽象表述",
     "scene": "概念模糊时请求具体化",
@@ -242465,7 +242474,7 @@ const caData = {
    {
     "cat": "确认行动项",
     "level": "professional",
-    "formula": "Jadi tindak lanjutnya adalah + [动作/事项]",
+    "formula": "Jadi tindak lanjutnya adalah + [动作/事项]", "cn": "所以后续行动是[动作／事项]。",
     "structure": "Jadi + 主语 + adalah + 表语",
     "grammar": "tindak lanjut 后续行动；是会议收尾的标准确认句",
     "scene": "收尾阶段锁定行动项",
@@ -242481,7 +242490,7 @@ const caData = {
    {
     "cat": "确认责任人",
     "level": "professional",
-    "formula": "Siapa yang bertanggung jawab untuk + [事项]?",
+    "formula": "Siapa yang bertanggung jawab untuk + [事项]?", "cn": "谁负责[事项]？",
     "structure": "Siapa + yang + 动词短语 + untuk",
     "grammar": "siapa 谁；yang 关系标记；bertanggung jawab 负责",
     "scene": "明确任务归属避免推诿",
@@ -242497,7 +242506,7 @@ const caData = {
    {
     "cat": "拉回议程",
     "level": "professional",
-    "formula": "Mohon kembali ke + [议题]",
+    "formula": "Mohon kembali ke + [议题]", "cn": "请回到[议题]。",
     "structure": "Mohon + 动词 + ke + 名词",
     "grammar": "mohon 正式请求；kembali ke 回到",
     "scene": "讨论跑偏时礼貌收拢",
@@ -243314,7 +243323,7 @@ const caData = {
    {
     "cat": "请求发送",
     "level": "basic",
-    "formula": "Tolong kirim + [文件]",
+    "formula": "Tolong kirim + [文件]", "cn": "请发送[文件]。",
     "structure": "Tolong + 动词 + 名词",
     "grammar": "tolong 请；kirim 发送；省略主语更自然",
     "scene": "邮件/口头请求对方发文件",
@@ -243330,7 +243339,7 @@ const caData = {
    {
     "cat": "定位内容",
     "level": "basic",
-    "formula": "Intinya ada di + [位置]",
+    "formula": "Intinya ada di + [位置]", "cn": "要点在[位置]。",
     "structure": "Intinya + ada di + 地点/页码",
     "grammar": "ada di 存在于；inti 核心 + -nya",
     "scene": "快速定位报告核心内容",
@@ -243346,7 +243355,7 @@ const caData = {
    {
     "cat": "描述趋势",
     "level": "basic",
-    "formula": "Angkanya + [naik/turun]",
+    "formula": "Angkanya + [naik/turun]", "cn": "数字[上升／下降]了。",
     "structure": "主语 + 动词",
     "grammar": "angka 数字；-nya 指代；naik 上升 turun 下降",
     "scene": "快速描述数据走向",
@@ -243362,7 +243371,7 @@ const caData = {
    {
     "cat": "数据引用",
     "level": "intermediate",
-    "formula": "Menurut + [图表/报告], + [主句]",
+    "formula": "Menurut + [图表/报告], + [主句]", "cn": "根据[图表／报告]，[主句]。",
     "structure": "Menurut + 来源, 主句",
     "grammar": "menurut 根据；引出信息来源，阅读报告转述必备",
     "scene": "引用报告数据支撑观点",
@@ -243378,7 +243387,7 @@ const caData = {
    {
     "cat": "对比",
     "level": "intermediate",
-    "formula": "[A] lebih + [形容词] daripada [B]",
+    "formula": "[A] lebih + [形容词] daripada [B]", "cn": "[A]比[B]更[形容词]。",
     "structure": "主语 + lebih + 形容词 + daripada + 比较对象",
     "grammar": "lebih 更；daripada 比；比较级标准结构",
     "scene": "报告数据横向对比",
@@ -243396,7 +243405,7 @@ const caData = {
    {
     "cat": "目标达成",
     "level": "intermediate",
-    "formula": "Sudah/Belum mencapai + [sasaran]",
+    "formula": "Sudah/Belum mencapai + [sasaran]", "cn": "已经／尚未达到[目标]。",
     "structure": "副词 + mencapai + 目标名词",
     "grammar": "mencapai ← capai + meN-；sasaran 目标",
     "scene": "汇报目标完成情况",
@@ -243413,7 +243422,7 @@ const caData = {
    {
     "cat": "归因",
     "level": "intermediate",
-    "formula": "Penyebabnya adalah + [名词/从句]",
+    "formula": "Penyebabnya adalah + [名词/从句]", "cn": "原因是[名词／从句]。",
     "structure": "Penyebabnya + adalah + 表语",
     "grammar": "sebab 原因 + peN-...-an → penyebab；-nya 指代；adalah 判断系词",
     "scene": "分析报告数据背后的原因",
@@ -243429,7 +243438,7 @@ const caData = {
    {
     "cat": "建议",
     "level": "intermediate",
-    "formula": "Sebaiknya + [主句]",
+    "formula": "Sebaiknya + [主句]", "cn": "最好[主句]。",
     "structure": "Sebaiknya + 建议内容",
     "grammar": "sebaiknya ← baik 好 + se-...-nya 应当；委婉建议标记",
     "scene": "读完报告后提出改进建议",
@@ -243445,7 +243454,7 @@ const caData = {
    {
     "cat": "预测",
     "level": "intermediate",
-    "formula": "Diproyeksikan + [主句]",
+    "formula": "Diproyeksikan + [主句]", "cn": "据预测，[主句]。",
     "structure": "Diproyeksikan + 从句",
     "grammar": "proyeksi + di-...-kan 被预测；报告常用被动",
     "scene": "转述报告中的预测内容",
@@ -243461,7 +243470,7 @@ const caData = {
    {
     "cat": "条款约束",
     "level": "professional",
-    "formula": "Klausul + [序数] mengikat + [对象]",
+    "formula": "Klausul + [序数] mengikat + [对象]", "cn": "第[序数]条款约束[对象]。",
     "structure": "Klausul + 编号 + mengikat + 名词",
     "grammar": "mengikat ← ikat 绑 + meN-；mengikat 对…有约束力",
     "scene": "合同条款审读",
@@ -243478,7 +243487,7 @@ const caData = {
    {
     "cat": "假设条件",
     "level": "professional",
-    "formula": "Apabila + [从句], maka + [主句]",
+    "formula": "Apabila + [从句], maka + [主句]", "cn": "如果[从句]，那么[主句]。",
     "structure": "Apabila 条件从句, maka 主句",
     "grammar": "apabila 如果（正式）；maka 那么；合同条件句标配",
     "scene": "阅读合同条件条款",
@@ -243495,7 +243504,7 @@ const caData = {
    {
     "cat": "综合判断",
     "level": "professional",
-    "formula": "Secara keseluruhan, + [评价]",
+    "formula": "Secara keseluruhan, + [评价]", "cn": "总体而言，[评价]。",
     "structure": "Secara + 名词 + 评价句",
     "grammar": "secara 从…方面（副词化标记）；keseluruhan 整体",
     "scene": "报告审读后的总体评价",
@@ -244312,7 +244321,7 @@ const caData = {
    {
     "cat": "消息源引用",
     "level": "basic",
-    "formula": "Menurut + [sumber], + [主句]",
+    "formula": "Menurut + [sumber], + [主句]", "cn": "据[来源]，[主句]。",
     "structure": "Menurut + 来源名词, 主句",
     "grammar": "menurut 根据；新闻听力中锁定消息源",
     "scene": "新闻转述与引用",
@@ -244328,7 +244337,7 @@ const caData = {
    {
     "cat": "时间起点",
     "level": "basic",
-    "formula": "Mulai + [时间], + [主句]",
+    "formula": "Mulai + [时间], + [主句]", "cn": "从[时间]起，[主句]。",
     "structure": "Mulai + 时间词, 主句",
     "grammar": "mulai 从…起；政策公告标准时间状语",
     "scene": "政策生效时间播报",
@@ -244344,7 +244353,7 @@ const caData = {
    {
     "cat": "数量播报",
     "level": "basic",
-    "formula": "Sebesar + [数字/百分比]",
+    "formula": "Sebesar + [数字/百分比]", "cn": "高达／达[数字／百分比]。",
     "structure": "动词 + sebesar + 数量",
     "grammar": "se- 一/整体 + besar 大；表数量总额",
     "scene": "新闻中的数字信息",
@@ -244360,7 +244369,7 @@ const caData = {
    {
     "cat": "政策生效",
     "level": "intermediate",
-    "formula": "[政策] berlaku mulai + [日期]",
+    "formula": "[政策] berlaku mulai + [日期]", "cn": "[政策]自[日期]起生效。",
     "structure": "主语 + berlaku mulai + 时间",
     "grammar": "berlaku 生效；mulai 从…起",
     "scene": "公告与政策新闻",
@@ -244377,7 +244386,7 @@ const caData = {
    {
     "cat": "官方宣布",
     "level": "intermediate",
-    "formula": "[机构] mengumumkan bahwa + [从句]",
+    "formula": "[机构] mengumumkan bahwa + [从句]", "cn": "[机构]宣布[从句]。",
     "structure": "主语 + mengumumkan + bahwa 从句",
     "grammar": "mengumumkan ← umum + meN-...-kan；bahwa 引导宾语从句",
     "scene": "转述政府或企业公告",
@@ -244394,7 +244403,7 @@ const caData = {
    {
     "cat": "事件报道",
     "level": "intermediate",
-    "formula": "Terjadi + [事件] di + [地点]",
+    "formula": "Terjadi + [事件] di + [地点]", "cn": "[地点]发生了[事件]。",
     "structure": "Terjadi + 名词短语 + di + 地点",
     "grammar": "terjadi 发生；存在句型，主语后置是新闻语序特点",
     "scene": "突发新闻导语",
@@ -244411,7 +244420,7 @@ const caData = {
    {
     "cat": "影响说明",
     "level": "intermediate",
-    "formula": "berdampak pada + [领域]",
+    "formula": "berdampak pada + [领域]", "cn": "对[领域]产生影响。",
     "structure": "主语 + berdampak pada + 名词",
     "grammar": "dampak 影响 + ber-；pada 引出受影响对象",
     "scene": "分析政策或事件影响",
@@ -244427,7 +244436,7 @@ const caData = {
    {
     "cat": "涨跌表达",
     "level": "intermediate",
-    "formula": "[主语] naik/turun sebesar + [百分比]",
+    "formula": "[主语] naik/turun sebesar + [百分比]", "cn": "[主语]上涨了／下跌了[百分比]。",
     "structure": "主语 + 动词 + sebesar + 数量",
     "grammar": "naik 升 turun 降；sebesar 达…之多",
     "scene": "财经新闻数字播报",
@@ -244445,7 +244454,7 @@ const caData = {
    {
     "cat": "目的说明",
     "level": "intermediate",
-    "formula": "Tujuannya untuk + [动词]",
+    "formula": "Tujuannya untuk + [动词]", "cn": "目的是为了[动词]。",
     "structure": "Tujuannya + untuk + 动词原形",
     "grammar": "tujuan 目的 + -nya；untuk 为了",
     "scene": "解释政策出台目的",
@@ -244461,7 +244470,7 @@ const caData = {
    {
     "cat": "宏观视角",
     "level": "professional",
-    "formula": "Dari sisi + [领域], + [主句]",
+    "formula": "Dari sisi + [领域], + [主句]", "cn": "从[领域]来看，[主句]。",
     "structure": "Dari sisi + 名词, 主句",
     "grammar": "sisi 方面；新闻分析常用框架",
     "scene": "新闻评论多角度分析",
@@ -244477,7 +244486,7 @@ const caData = {
    {
     "cat": "观察者观点",
     "level": "professional",
-    "formula": "Menurut pengamat, + [主句]",
+    "formula": "Menurut pengamat, + [主句]", "cn": "据观察人士称，[主句]。",
     "structure": "Menurut pengamat + 评价句",
     "grammar": "pengamat ← amat 观察 + peN-；新闻中引述第三方分析",
     "scene": "引述分析师评论",
@@ -244493,7 +244502,7 @@ const caData = {
    {
     "cat": "后续关注",
     "level": "professional",
-    "formula": "Perlu dipantau apakah + [从句]",
+    "formula": "Perlu dipantau apakah + [从句]", "cn": "需要关注是否[从句]。",
     "structure": "Perlu + di-动词 + apakah 从句",
     "grammar": "dipantau ← pantau + di-；apakah 是否；新闻收尾前瞻",
     "scene": "表示将持续关注",
@@ -245137,7 +245146,7 @@ const caData = {
 }
 ,
 "biz_speak": {
- "title": "话题6: 商务写作与演讲 / Menulis & Berbicara Bisnis",
+ "title": "CA专题: 商务写作与演讲 / Menulis & Berbicara Bisnis",
  "icon": "✍️",
  "level": "B1-B2",
  "days": 3,
@@ -245175,18 +245184,18 @@ const caData = {
    {"id": "Atas perhatian dan kerjasamanya, kami ucapkan terima kasih.", "cn": "感谢贵方的关注与合作。", "usage": "结尾致谢", "note": "atas 引导感谢原因；正式函电收尾"}
   ],
   "patterns": [
-   {"cat": "邮件开头", "level": "basic", "formula": "Salam + [称呼], / Perkenalkan, saya [姓名] dari [单位]", "structure": "称呼语 + 自我介绍", "grammar": "正式邮件以 Salam 开头；perkenalkan 引出自我介绍", "scene": "首次/正式邮件开头", "ex": ["Salam hormat, Perkenalkan, saya Leo dari PT BIR Nickel.", "Selamat pagi, Saya menulis email ini untuk menyampaikan progres proyek."], "slots": ["称呼/姓名", "单位/目的"], "reuse": 4},
-   {"cat": "说明目的", "level": "basic", "formula": "Saya menulis email ini untuk + [动词短语]", "structure": "主语 + menulis + email + untuk + 目的动词", "grammar": "untuk 表目的，后接动词原形", "scene": "邮件第一段说明来意", "ex": ["Saya menulis email ini untuk mengonfirmasi jadwal inspeksi.", "Saya menulis email ini untuk menanyakan status pembayaran."], "slots": ["目的动词", "事项"], "reuse": 5},
-   {"cat": "附件说明", "level": "basic", "formula": "Terlampir + [文件] + (yang) + [说明]", "structure": "Terlampir + 文件名词 + 定语从句", "grammar": "terlampir = ter- + lampir 的被动形容词，置于句首", "scene": "说明随附文件", "ex": ["Terlampir dokumen kontrak yang sudah ditandatangani.", "Terlampir daftar hadir peserta rapat koordinasi."], "slots": ["文件名", "说明语"], "reuse": 4},
-   {"cat": "正式请求", "level": "intermediate", "formula": "Mohon kiranya + [称呼] + dapat + [动词原形]", "structure": "礼貌标记 + 主语 + dapat + 动词", "grammar": "mohon kiranya 为公文请求套语；dapat 能够", "scene": "正式请求对方行动", "ex": ["Mohon kiranya Bapak dapat menandatangani dokumen ini hari ini.", "Mohon kiranya Anda dapat mengirimkan data produksi bulan lalu."], "slots": ["称呼", "请求动作"], "reuse": 5},
-   {"cat": "回复来函", "level": "intermediate", "formula": "Menanggapi + [来函事项], + [回应内容]", "structure": "介词性动名词 + 主句", "grammar": "menanggapi（就……作出回应）← tanggapi + meN-", "scene": "回复邮件开头", "ex": ["Menanggapi email Bapak tanggal 3 November, kami menyampaikan hal berikut.", "Menanggapi keluhan tersebut, kami telah melakukan investigasi internal."], "slots": ["来函/事项", "回应内容"], "reuse": 4},
-   {"cat": "提醒催办", "level": "intermediate", "formula": "Kami mengingatkan bahwa + [事项] + belum + [动词]", "structure": "主语 + 提醒动词 + 宾语从句", "grammar": "bahwa 引导宾语从句；belum 表尚未", "scene": "跟进未回复邮件", "ex": ["Kami mengingatkan bahwa konfirmasi pembayaran belum kami terima.", "Kami mengingatkan bahwa tenggat pelaporan tinggal dua hari lagi."], "slots": ["待办事项", "状态"], "reuse": 5},
-   {"cat": "投诉表达", "level": "intermediate", "formula": "Kami keberatan atas + [事项] + karena + [原因]", "structure": "主语 + 反对动词 + 介词宾语 + 原因从句", "grammar": "keberatan（反对）常接 atas；karena 表原因", "scene": "商务投诉", "ex": ["Kami keberatan atas kenaikan biaya tiba-tiba karena tidak ada pemberitahuan sebelumnya.", "Kami keberatan atas kualitas material yang tidak sesuai spesifikasi."], "slots": ["投诉事项", "原因"], "reuse": 4},
-   {"cat": "协商提议", "level": "intermediate", "formula": "Apakah dimungkinkan untuk + [动词原形]?", "structure": "dimungkinkan + untuk + 动词原形", "grammar": "di-...-kan 表被使成为可能，语气委婉", "scene": "提出协商请求", "ex": ["Apakah dimungkinkan untuk menggeser jadwal pengiriman ke minggu depan?", "Apakah dimungkinkan untuk menambah anggaran operasional triwulan ini?"], "slots": ["动作", "时间/条件"], "reuse": 5},
-   {"cat": "确认收讫", "level": "intermediate", "formula": "Kami telah menerima + [文件/物品] + dengan baik", "structure": "主语 + telah menerima + 宾语 + 状态补语", "grammar": "telah 表完成；dengan baik 完好地", "scene": "确认收到文件", "ex": ["Kami telah menerima dokumen kontrak dengan baik.", "Kami telah menerima sampel material dengan baik."], "slots": ["收到物", "（可选时间）"], "reuse": 4},
-   {"cat": "正式致歉", "level": "professional", "formula": "Atas nama + [机构], + 主语 + menyampaikan permohonan maaf atas + [事项]", "structure": "代表机构 + 致歉动词 + 过失事项", "grammar": "atas nama 以……名义；permohonan maaf 道歉", "scene": "正式道歉信", "ex": ["Atas nama manajemen, kami menyampaikan permohonan maaf atas keterlambatan pengiriman.", "Atas nama perusahaan, kami menyampaikan permohonan maaf atas ketidaknyamanan ini."], "slots": ["机构名", "过失事项"], "reuse": 4},
-   {"cat": "解决方案", "level": "professional", "formula": "Sebagai solusi, + 主语 + mengusulkan + [方案] + agar + [目的]", "structure": "方案状语 + 主句 + 目的从句", "grammar": "sebagai 作为；agar 以便", "scene": "投诉回复中提方案", "ex": ["Sebagai solusi, kami mengusulkan penggantian barang agar operasional tidak terganggu.", "Sebagai solusi, kami mengusulkan jadwal ulang agar target tetap tercapai."], "slots": ["方案", "目的"], "reuse": 4},
-   {"cat": "正式结尾", "level": "professional", "formula": "Demikian disampaikan, atas + [名词] + diucapkan terima kasih", "structure": "套语句 + 致谢句", "grammar": "印尼公文固定套语；demikian disampaikan 意为特此函告", "scene": "正式公函结尾", "ex": ["Demikian disampaikan, atas perhatian dan kerjasamanya diucapkan terima kasih.", "Demikian disampaikan, atas tanggapan cepat Bapak diucapkan terima kasih."], "slots": ["感谢对象"], "reuse": 3}
+   {"cat": "邮件开头", "level": "basic", "formula": "Salam + [称呼], / Perkenalkan, saya [姓名] dari [单位]", "cn": "[称呼]，您好！／请允许我介绍，我是[单位]的[姓名]。", "structure": "称呼语 + 自我介绍", "grammar": "正式邮件以 Salam 开头；perkenalkan 引出自我介绍", "scene": "首次/正式邮件开头", "ex": ["Salam hormat, Perkenalkan, saya Leo dari PT BIR Nickel.", "Selamat pagi, Saya menulis email ini untuk menyampaikan progres proyek."], "slots": ["称呼/姓名", "单位/目的"], "reuse": 4},
+   {"cat": "说明目的", "level": "basic", "formula": "Saya menulis email ini untuk + [动词短语]", "cn": "我写这封邮件是为了[动词短语]。", "structure": "主语 + menulis + email + untuk + 目的动词", "grammar": "untuk 表目的，后接动词原形", "scene": "邮件第一段说明来意", "ex": ["Saya menulis email ini untuk mengonfirmasi jadwal inspeksi.", "Saya menulis email ini untuk menanyakan status pembayaran."], "slots": ["目的动词", "事项"], "reuse": 5},
+   {"cat": "附件说明", "level": "basic", "formula": "Terlampir + [文件] + (yang) + [说明]", "cn": "附件为[文件]，[说明]。", "structure": "Terlampir + 文件名词 + 定语从句", "grammar": "terlampir = ter- + lampir 的被动形容词，置于句首", "scene": "说明随附文件", "ex": ["Terlampir dokumen kontrak yang sudah ditandatangani.", "Terlampir daftar hadir peserta rapat koordinasi."], "slots": ["文件名", "说明语"], "reuse": 4},
+   {"cat": "正式请求", "level": "intermediate", "formula": "Mohon kiranya + [称呼] + dapat + [动词原形]", "cn": "恳请[称呼]能够[动词原形]。", "structure": "礼貌标记 + 主语 + dapat + 动词", "grammar": "mohon kiranya 为公文请求套语；dapat 能够", "scene": "正式请求对方行动", "ex": ["Mohon kiranya Bapak dapat menandatangani dokumen ini hari ini.", "Mohon kiranya Anda dapat mengirimkan data produksi bulan lalu."], "slots": ["称呼", "请求动作"], "reuse": 5},
+   {"cat": "回复来函", "level": "intermediate", "formula": "Menanggapi + [来函事项], + [回应内容]", "cn": "关于[来函事项]，[回应内容]。", "structure": "介词性动名词 + 主句", "grammar": "menanggapi（就……作出回应）← tanggapi + meN-", "scene": "回复邮件开头", "ex": ["Menanggapi email Bapak tanggal 3 November, kami menyampaikan hal berikut.", "Menanggapi keluhan tersebut, kami telah melakukan investigasi internal."], "slots": ["来函/事项", "回应内容"], "reuse": 4},
+   {"cat": "提醒催办", "level": "intermediate", "formula": "Kami mengingatkan bahwa + [事项] + belum + [动词]", "cn": "我们提醒：[事项]尚未[动词]。", "structure": "主语 + 提醒动词 + 宾语从句", "grammar": "bahwa 引导宾语从句；belum 表尚未", "scene": "跟进未回复邮件", "ex": ["Kami mengingatkan bahwa konfirmasi pembayaran belum kami terima.", "Kami mengingatkan bahwa tenggat pelaporan tinggal dua hari lagi."], "slots": ["待办事项", "状态"], "reuse": 5},
+   {"cat": "投诉表达", "level": "intermediate", "formula": "Kami keberatan atas + [事项] + karena + [原因]", "cn": "我们对[事项]有异议，因为[原因]。", "structure": "主语 + 反对动词 + 介词宾语 + 原因从句", "grammar": "keberatan（反对）常接 atas；karena 表原因", "scene": "商务投诉", "ex": ["Kami keberatan atas kenaikan biaya tiba-tiba karena tidak ada pemberitahuan sebelumnya.", "Kami keberatan atas kualitas material yang tidak sesuai spesifikasi."], "slots": ["投诉事项", "原因"], "reuse": 4},
+   {"cat": "协商提议", "level": "intermediate", "formula": "Apakah dimungkinkan untuk + [动词原形]?", "cn": "是否有可能[动词原形]？", "structure": "dimungkinkan + untuk + 动词原形", "grammar": "di-...-kan 表被使成为可能，语气委婉", "scene": "提出协商请求", "ex": ["Apakah dimungkinkan untuk menggeser jadwal pengiriman ke minggu depan?", "Apakah dimungkinkan untuk menambah anggaran operasional triwulan ini?"], "slots": ["动作", "时间/条件"], "reuse": 5},
+   {"cat": "确认收讫", "level": "intermediate", "formula": "Kami telah menerima + [文件/物品] + dengan baik", "cn": "我们已完好收到[文件／物品]。", "structure": "主语 + telah menerima + 宾语 + 状态补语", "grammar": "telah 表完成；dengan baik 完好地", "scene": "确认收到文件", "ex": ["Kami telah menerima dokumen kontrak dengan baik.", "Kami telah menerima sampel material dengan baik."], "slots": ["收到物", "（可选时间）"], "reuse": 4},
+   {"cat": "正式致歉", "level": "professional", "formula": "Atas nama + [机构], + 主语 + menyampaikan permohonan maaf atas + [事项]", "cn": "我谨代表[机构]，就[事项]致以诚挚歉意。", "structure": "代表机构 + 致歉动词 + 过失事项", "grammar": "atas nama 以……名义；permohonan maaf 道歉", "scene": "正式道歉信", "ex": ["Atas nama manajemen, kami menyampaikan permohonan maaf atas keterlambatan pengiriman.", "Atas nama perusahaan, kami menyampaikan permohonan maaf atas ketidaknyamanan ini."], "slots": ["机构名", "过失事项"], "reuse": 4},
+   {"cat": "解决方案", "level": "professional", "formula": "Sebagai solusi, + 主语 + mengusulkan + [方案] + agar + [目的]", "cn": "作为解决方案，[主语]提议[方案]，以便[目的]。", "structure": "方案状语 + 主句 + 目的从句", "grammar": "sebagai 作为；agar 以便", "scene": "投诉回复中提方案", "ex": ["Sebagai solusi, kami mengusulkan penggantian barang agar operasional tidak terganggu.", "Sebagai solusi, kami mengusulkan jadwal ulang agar target tetap tercapai."], "slots": ["方案", "目的"], "reuse": 4},
+   {"cat": "正式结尾", "level": "professional", "formula": "Demikian disampaikan, atas + [名词] + diucapkan terima kasih", "cn": "特此函告，顺致谢意。（公文结尾）", "structure": "套语句 + 致谢句", "grammar": "印尼公文固定套语；demikian disampaikan 意为特此函告", "scene": "正式公函结尾", "ex": ["Demikian disampaikan, atas perhatian dan kerjasamanya diucapkan terima kasih.", "Demikian disampaikan, atas tanggapan cepat Bapak diucapkan terima kasih."], "slots": ["感谢对象"], "reuse": 3}
   ],
   "expressions": [
    {"level": "basic", "scene": "打开邮件", "id": "Terima kasih atas email Anda.", "cn": "谢谢您的邮件。", "note": "atas 引出感谢对象"},
@@ -245268,18 +245277,18 @@ const caData = {
    {"id": "Laporan berikutnya akan diterbitkan akhir Desember.", "cn": "下一份报告将于 12 月底发布。", "usage": "后续预告", "note": "diterbitkan ← terbit + di-...-kan；akhir 末尾"}
   ],
   "patterns": [
-   {"cat": "报告标题", "level": "basic", "formula": "Laporan + [事项] + (Periode/Triwulan + [时间])", "structure": "报告 + 事项 + 期间", "grammar": "印尼语标题常省略动词，以名词短语并列", "scene": "报告封面标题", "ex": ["Laporan Kemajuan Proyek Smelter Periode Oktober 2026.", "Laporan Kegiatan Komisaris Triwulan III 2026."], "slots": ["事项", "时间范围"], "reuse": 4},
-   {"cat": "引言目的", "level": "basic", "formula": "Laporan ini bertujuan untuk + [动词] + (agar) + [目的]", "structure": "主语 + bertujuan + untuk + 动词", "grammar": "bertujuan 以……为目的", "scene": "报告 pendahuluan 段", "ex": ["Laporan ini bertujuan untuk memberikan gambaran kemajuan proyek.", "Laporan ini bertujuan untuk mengevaluasi efisiensi biaya agar anggaran lebih terkendali."], "slots": ["内容", "目的"], "reuse": 5},
-   {"cat": "数据来源", "level": "basic", "formula": "Data + diperoleh dari + [来源] + pada + [时间]", "structure": "数据 + diperoleh + 来源 + 时间", "grammar": "diperoleh ← peroleh + di-（获得）", "scene": "方法/数据来源说明", "ex": ["Data produksi diperoleh dari sistem monitoring harian pada akhir Oktober.", "Data kehadiran diperoleh dari rekap absensi pada 30 Oktober 2026."], "slots": ["来源", "时间"], "reuse": 4},
-   {"cat": "增减表达", "level": "intermediate", "formula": "[指标] + mengalami + kenaikan/penurunan + sebesar + [百分比]", "structure": "主语 + 经历 + 变化名词 + 幅度", "grammar": "mengalami + 抽象名词；sebesar 达（数额）", "scene": "数据呈现", "ex": ["Produksi ferronikel mengalami kenaikan sebesar 12 persen.", "Tingkat kecelakaan kerja mengalami penurunan sebesar 8 persen."], "slots": ["指标", "百分比"], "reuse": 5},
-   {"cat": "对比结构", "level": "intermediate", "formula": "[对象A] + lebih + 形容词 + dibandingkan (dengan) + [对象B]", "structure": "A + lebih + 形容词 + dibandingkan + B", "grammar": "lebih……dibandingkan 构成比较级", "scene": "数据对比", "ex": ["Output bulan ini lebih tinggi dibandingkan bulan September.", "Biaya transportasi lebih rendah dibandingkan perkiraan awal."], "slots": ["对象A", "对象B"], "reuse": 5},
-   {"cat": "图表引用", "level": "intermediate", "formula": "Seperti terlihat pada + [图表+编号], + [数据描述]", "structure": "引导状语 + 描述句", "grammar": "seperti terlihat 如所见；pada 指位置", "scene": "引用图表说明", "ex": ["Seperti terlihat pada Grafik 2, tren produksi membaik sejak Juli.", "Seperti terlihat pada Tabel 3, biaya utilitas masih di bawah anggaran."], "slots": ["图表类型+编号", "数据描述"], "reuse": 4},
-   {"cat": "归因表达", "level": "intermediate", "formula": "Terjadi + [现象] + yang disebabkan oleh + [原因]", "structure": "存在句 + 关系从句", "grammar": "yang 引导关系从句；disebabkan oleh 由……引起", "scene": "问题归因", "ex": ["Terjadi penundaan pengiriman yang disebabkan oleh cuaca ekstrem.", "Terjadi kenaikan konsumsi listrik yang disebabkan oleh penambahan shift malam."], "slots": ["现象", "原因"], "reuse": 4},
-   {"cat": "提出建议", "level": "intermediate", "formula": "Kami merekomendasikan agar + [主语] + [谓语]", "structure": "主语 + 建议动词 + agar 从句", "grammar": "agar 表目的；从句用陈述式", "scene": "报告建议部分", "ex": ["Kami merekomendasikan agar jadwal maintenance dievaluasi ulang.", "Kami merekomendasikan agar pasokan listrik dibenahi sebelum musim hujan."], "slots": ["动作", "时间/条件"], "reuse": 5},
-   {"cat": "下结论", "level": "intermediate", "formula": "Berdasarkan + [依据], dapat disimpulkan bahwa + [结论]", "structure": "依据状语 + 结论句", "grammar": "dapat disimpulkan 可得出结论（被动式）", "scene": "报告结论", "ex": ["Berdasarkan data tiga bulan terakhir, dapat disimpulkan bahwa proyek berjalan sesuai rencana.", "Berdasarkan hasil audit, dapat disimpulkan bahwa kendali mutu efektif."], "slots": ["依据", "结论"], "reuse": 5},
-   {"cat": "展望结尾", "level": "professional", "formula": "Dengan demikian, [主语] diharapkan dapat + [目标]", "structure": "承上启下 + 期望", "grammar": "dengan demikian 因此；diharapkan 被期望", "scene": "报告结束语", "ex": ["Dengan demikian, proyek diharapkan dapat rampung sesuai tenggat.", "Dengan demikian, efisiensi biaya diharapkan dapat ditingkatkan."], "slots": ["目标", "时间"], "reuse": 4},
-   {"cat": "附录指引", "level": "professional", "formula": "Perincian + (lebih lanjut) + dapat dilihat pada + [附录+编号]", "structure": "细节说明 + 查看指引", "grammar": "perincian 细节；dapat dilihat 可查看", "scene": "指引读者查附录", "ex": ["Perincian teknis dapat dilihat pada Lampiran 2.", "Data historis lengkap dapat dilihat pada Apendiks A."], "slots": ["内容类型", "附录编号"], "reuse": 3},
-   {"cat": "进度汇报", "level": "professional", "formula": "Sampai dengan + [时间], realisasi + [指标] + mencapai + [数值]", "structure": "时间状语 + 实现 + 指标 + 达到", "grammar": "sampai dengan 截至；realisasi 实际完成", "scene": "向董事会/业主汇报进度", "ex": ["Sampai dengan 31 Oktober, realisasi pembangunan mencapai 78 persen.", "Sampai dengan triwulan ini, realisasi anggaran mencapai Rp 42 miliar."], "slots": ["时间", "指标数值"], "reuse": 4}
+   {"cat": "报告标题", "level": "basic", "formula": "Laporan + [事项] + (Periode/Triwulan + [时间])", "cn": "[事项]报告（[时间]期间／季度）。", "structure": "报告 + 事项 + 期间", "grammar": "印尼语标题常省略动词，以名词短语并列", "scene": "报告封面标题", "ex": ["Laporan Kemajuan Proyek Smelter Periode Oktober 2026.", "Laporan Kegiatan Komisaris Triwulan III 2026."], "slots": ["事项", "时间范围"], "reuse": 4},
+   {"cat": "引言目的", "level": "basic", "formula": "Laporan ini bertujuan untuk + [动词] + (agar) + [目的]", "cn": "本报告旨在[动词]，以[目的]。", "structure": "主语 + bertujuan + untuk + 动词", "grammar": "bertujuan 以……为目的", "scene": "报告 pendahuluan 段", "ex": ["Laporan ini bertujuan untuk memberikan gambaran kemajuan proyek.", "Laporan ini bertujuan untuk mengevaluasi efisiensi biaya agar anggaran lebih terkendali."], "slots": ["内容", "目的"], "reuse": 5},
+   {"cat": "数据来源", "level": "basic", "formula": "Data + diperoleh dari + [来源] + pada + [时间]", "cn": "数据于[时间]自[来源]获得。", "structure": "数据 + diperoleh + 来源 + 时间", "grammar": "diperoleh ← peroleh + di-（获得）", "scene": "方法/数据来源说明", "ex": ["Data produksi diperoleh dari sistem monitoring harian pada akhir Oktober.", "Data kehadiran diperoleh dari rekap absensi pada 30 Oktober 2026."], "slots": ["来源", "时间"], "reuse": 4},
+   {"cat": "增减表达", "level": "intermediate", "formula": "[指标] + mengalami + kenaikan/penurunan + sebesar + [百分比]", "cn": "[指标]上升了／下降了[百分比]。", "structure": "主语 + 经历 + 变化名词 + 幅度", "grammar": "mengalami + 抽象名词；sebesar 达（数额）", "scene": "数据呈现", "ex": ["Produksi ferronikel mengalami kenaikan sebesar 12 persen.", "Tingkat kecelakaan kerja mengalami penurunan sebesar 8 persen."], "slots": ["指标", "百分比"], "reuse": 5},
+   {"cat": "对比结构", "level": "intermediate", "formula": "[对象A] + lebih + 形容词 + dibandingkan (dengan) + [对象B]", "cn": "[对象A]比[对象B]更[形容词]。", "structure": "A + lebih + 形容词 + dibandingkan + B", "grammar": "lebih……dibandingkan 构成比较级", "scene": "数据对比", "ex": ["Output bulan ini lebih tinggi dibandingkan bulan September.", "Biaya transportasi lebih rendah dibandingkan perkiraan awal."], "slots": ["对象A", "对象B"], "reuse": 5},
+   {"cat": "图表引用", "level": "intermediate", "formula": "Seperti terlihat pada + [图表+编号], + [数据描述]", "cn": "如[图表+编号]所示，[数据描述]。", "structure": "引导状语 + 描述句", "grammar": "seperti terlihat 如所见；pada 指位置", "scene": "引用图表说明", "ex": ["Seperti terlihat pada Grafik 2, tren produksi membaik sejak Juli.", "Seperti terlihat pada Tabel 3, biaya utilitas masih di bawah anggaran."], "slots": ["图表类型+编号", "数据描述"], "reuse": 4},
+   {"cat": "归因表达", "level": "intermediate", "formula": "Terjadi + [现象] + yang disebabkan oleh + [原因]", "cn": "发生了[现象]，其原因在于[原因]。", "structure": "存在句 + 关系从句", "grammar": "yang 引导关系从句；disebabkan oleh 由……引起", "scene": "问题归因", "ex": ["Terjadi penundaan pengiriman yang disebabkan oleh cuaca ekstrem.", "Terjadi kenaikan konsumsi listrik yang disebabkan oleh penambahan shift malam."], "slots": ["现象", "原因"], "reuse": 4},
+   {"cat": "提出建议", "level": "intermediate", "formula": "Kami merekomendasikan agar + [主语] + [谓语]", "cn": "我们建议[主语][谓语]。", "structure": "主语 + 建议动词 + agar 从句", "grammar": "agar 表目的；从句用陈述式", "scene": "报告建议部分", "ex": ["Kami merekomendasikan agar jadwal maintenance dievaluasi ulang.", "Kami merekomendasikan agar pasokan listrik dibenahi sebelum musim hujan."], "slots": ["动作", "时间/条件"], "reuse": 5},
+   {"cat": "下结论", "level": "intermediate", "formula": "Berdasarkan + [依据], dapat disimpulkan bahwa + [结论]", "cn": "根据[依据]，可以得出结论：[结论]。", "structure": "依据状语 + 结论句", "grammar": "dapat disimpulkan 可得出结论（被动式）", "scene": "报告结论", "ex": ["Berdasarkan data tiga bulan terakhir, dapat disimpulkan bahwa proyek berjalan sesuai rencana.", "Berdasarkan hasil audit, dapat disimpulkan bahwa kendali mutu efektif."], "slots": ["依据", "结论"], "reuse": 5},
+   {"cat": "展望结尾", "level": "professional", "formula": "Dengan demikian, [主语] diharapkan dapat + [目标]", "cn": "因此，期望[主语]能够[目标]。", "structure": "承上启下 + 期望", "grammar": "dengan demikian 因此；diharapkan 被期望", "scene": "报告结束语", "ex": ["Dengan demikian, proyek diharapkan dapat rampung sesuai tenggat.", "Dengan demikian, efisiensi biaya diharapkan dapat ditingkatkan."], "slots": ["目标", "时间"], "reuse": 4},
+   {"cat": "附录指引", "level": "professional", "formula": "Perincian + (lebih lanjut) + dapat dilihat pada + [附录+编号]", "cn": "详细内容可参见[附录+编号]。", "structure": "细节说明 + 查看指引", "grammar": "perincian 细节；dapat dilihat 可查看", "scene": "指引读者查附录", "ex": ["Perincian teknis dapat dilihat pada Lampiran 2.", "Data historis lengkap dapat dilihat pada Apendiks A."], "slots": ["内容类型", "附录编号"], "reuse": 3},
+   {"cat": "进度汇报", "level": "professional", "formula": "Sampai dengan + [时间], realisasi + [指标] + mencapai + [数值]", "cn": "截至[时间]，[指标]实际完成[数值]。", "structure": "时间状语 + 实现 + 指标 + 达到", "grammar": "sampai dengan 截至；realisasi 实际完成", "scene": "向董事会/业主汇报进度", "ex": ["Sampai dengan 31 Oktober, realisasi pembangunan mencapai 78 persen.", "Sampai dengan triwulan ini, realisasi anggaran mencapai Rp 42 miliar."], "slots": ["时间", "指标数值"], "reuse": 4}
   ],
   "expressions": [
    {"level": "basic", "scene": "请求看稿", "id": "Boleh saya lihat draf laporannya?", "cn": "我能看一下报告草稿吗？", "note": "boleh 可以；draf 外来词"},
@@ -245361,18 +245370,18 @@ const caData = {
    {"id": "Apakah ada pertanyaan dari hadirin?", "cn": "各位有什么问题吗？", "usage": "邀请提问", "note": "hadirin 各位在场者；apakah 是非问"}
   ],
   "patterns": [
-   {"cat": "开场问候", "level": "basic", "formula": "Selamat + [时段], + [称呼] + yang terhormat", "structure": "问候 + 称呼", "grammar": "selamat + 时段；yang terhormat 尊敬的", "scene": "演讲开场", "ex": ["Selamat pagi, Bapak dan Ibu yang terhormat.", "Selamat siang, hadirin sekalian."], "slots": ["时段", "称呼"], "reuse": 4},
-   {"cat": "自我介绍", "level": "basic", "formula": "Perkenalkan, + [姓名], + [职位] + dari [单位]", "structure": "引语 + 姓名 + 职位", "grammar": "perkenalkan 请允许我介绍（memperkenalkan 的祈使式）", "scene": "演讲者自我介绍", "ex": ["Perkenalkan, saya Leo, manajer proyek dari PT BIR Nickel.", "Perkenalkan, saya Maria, kepala divisi HSE."], "slots": ["姓名", "职位"], "reuse": 4},
-   {"cat": "主题预告", "level": "basic", "formula": "Hari ini + 主语 + akan + membahas/memaparkan + [主题]", "structure": "时间 + 将来 + 主题", "grammar": "memaparkan ← papar + meN-...-kan；membahas ← bahas + meN-", "scene": "预告演讲内容", "ex": ["Hari ini saya akan membahas tantangan produksi tahun depan.", "Hari ini kami akan memaparkan hasil studi kelayakan."], "slots": ["主题", "范围"], "reuse": 5},
-   {"cat": "引出图表", "level": "intermediate", "formula": "Mari kita lihat + [图表] + berikut / Seperti terlihat pada + [图表]", "structure": "引导语 + 图表", "grammar": "mari 祈使让我们；berikut 下面的", "scene": "展示数据", "ex": ["Mari kita lihat grafik berikut tentang tren produksi.", "Seperti terlihat pada slide ini, angka penjualan naik signifikan."], "slots": ["图表类型", "主题"], "reuse": 4},
-   {"cat": "强调要点", "level": "intermediate", "formula": "Perlu + (saya) + tekankan bahwa + [要点]", "structure": "强调动词 + 从句", "grammar": "perlu 需要；menekankan ← tekan + meN-...-kan", "scene": "强调重点", "ex": ["Perlu saya tekankan bahwa keselamatan kerja tidak dapat ditawar.", "Perlu dicatat bahwa data ini belum diaudit eksternal."], "slots": ["要点"], "reuse": 4},
-   {"cat": "转换话题", "level": "intermediate", "formula": "Selanjutnya, + (mari kita) + beralih ke + [方面]", "structure": "承接语 + 新话题", "grammar": "selanjutnya 接下来；beralih 转移", "scene": "章节过渡", "ex": ["Selanjutnya, mari kita beralih ke aspek anggaran.", "Selanjutnya, saya akan menjelaskan rencana mitigasi risiko."], "slots": ["新话题"], "reuse": 4},
-   {"cat": "举例说明", "level": "intermediate", "formula": "Sebagai contoh, + [实例] + (yang menunjukkan bahwa) + [说明]", "structure": "例如 + 实例", "grammar": "sebagai contoh 例如", "scene": "举例论证", "ex": ["Sebagai contoh, pabrik B menunjukkan efisiensi 20 persen lebih baik.", "Sebagai contoh, kenaikan upah tahun lalu tidak membebani anggaran."], "slots": ["实例", "说明"], "reuse": 4},
-   {"cat": "对比论证", "level": "intermediate", "formula": "Di satu sisi + [观点A]; di sisi lain + [观点B]", "structure": "一方面……另一方面……", "grammar": "固定并列连词结构，中间用分号", "scene": "辩证分析", "ex": ["Di satu sisi kita mengejar target produksi; di sisi lain kita wajib menjaga keselamatan.", "Di satu sisi biaya naik; di sisi lain kualitas semakin terjaga."], "slots": ["观点A", "观点B"], "reuse": 5},
-   {"cat": "小结过渡", "level": "intermediate", "formula": "Intinya, + [总结] + (sebelum kita lanjut ke) + [下一部分]", "structure": "总之 + 内容", "grammar": "intinya 概括而言（inti 核心 + -nya）", "scene": "段落小结", "ex": ["Intinya, koordinasi antar-divisi harus diperkuat.", "Intinya, investasi ini layak dari segi teknis dan finansial."], "slots": ["总结内容"], "reuse": 4},
-   {"cat": "正式开场", "level": "professional", "formula": "Dengan memanjatkan puji syukur ke hadirat + [神明称呼], + [致意对象], + 主语 + [致辞]", "structure": "感恩开场 + 致意 + 进入正题", "grammar": "印尼正式致辞固定开场；ke hadirat ……面前", "scene": "政府/仪式场合致辞", "ex": ["Dengan memanjatkan puji syukur ke hadirat Tuhan Yang Maha Esa, Bapak Gubernur yang kami hormati, hadirin sekalian, kami sampaikan terima kasih atas kehadiran Anda.", "Dengan memanjatkan puji syukur, para tamu undangan yang terhormat, kami memulai acara peluncuran tahap kedua."], "slots": ["致意对象", "正题"], "reuse": 3},
-   {"cat": "说服号召", "level": "professional", "formula": "Oleh karena itu, + 主语 + mengajak + [对象] + untuk + [行动]", "structure": "因果 + 号召", "grammar": "oleh karena itu 因此；mengajak 号召", "scene": "号召听众行动", "ex": ["Oleh karena itu, kami mengajak seluruh mitra untuk menandatangani komitmen keselamatan.", "Oleh karena itu, mari kita tingkatkan sinergi untuk mencapai target nasional."], "slots": ["对象", "行动"], "reuse": 4},
-   {"cat": "致谢结尾", "level": "professional", "formula": "Terima kasih atas + [名词] + (dan selamat bertugas)", "structure": "致谢 + 祝愿", "grammar": "atas 后接感谢原因", "scene": "演讲收尾", "ex": ["Terima kasih atas perhatian Anda dan selamat bertugas.", "Terima kasih atas kesempatan berbicara hari ini."], "slots": ["感谢原因"], "reuse": 4}
+   {"cat": "开场问候", "level": "basic", "formula": "Selamat + [时段], + [称呼] + yang terhormat", "cn": "[时段]好，尊敬的[称呼]。", "structure": "问候 + 称呼", "grammar": "selamat + 时段；yang terhormat 尊敬的", "scene": "演讲开场", "ex": ["Selamat pagi, Bapak dan Ibu yang terhormat.", "Selamat siang, hadirin sekalian."], "slots": ["时段", "称呼"], "reuse": 4},
+   {"cat": "自我介绍", "level": "basic", "formula": "Perkenalkan, + [姓名], + [职位] + dari [单位]", "cn": "请允许我介绍，我是[单位]的[职位][姓名]。", "structure": "引语 + 姓名 + 职位", "grammar": "perkenalkan 请允许我介绍（memperkenalkan 的祈使式）", "scene": "演讲者自我介绍", "ex": ["Perkenalkan, saya Leo, manajer proyek dari PT BIR Nickel.", "Perkenalkan, saya Maria, kepala divisi HSE."], "slots": ["姓名", "职位"], "reuse": 4},
+   {"cat": "主题预告", "level": "basic", "formula": "Hari ini + 主语 + akan + membahas/memaparkan + [主题]", "cn": "今天[主语]将讨论／阐述[主题]。", "structure": "时间 + 将来 + 主题", "grammar": "memaparkan ← papar + meN-...-kan；membahas ← bahas + meN-", "scene": "预告演讲内容", "ex": ["Hari ini saya akan membahas tantangan produksi tahun depan.", "Hari ini kami akan memaparkan hasil studi kelayakan."], "slots": ["主题", "范围"], "reuse": 5},
+   {"cat": "引出图表", "level": "intermediate", "formula": "Mari kita lihat + [图表] + berikut / Seperti terlihat pada + [图表]", "cn": "让我们看看下面的[图表]／如[图表]所示。", "structure": "引导语 + 图表", "grammar": "mari 祈使让我们；berikut 下面的", "scene": "展示数据", "ex": ["Mari kita lihat grafik berikut tentang tren produksi.", "Seperti terlihat pada slide ini, angka penjualan naik signifikan."], "slots": ["图表类型", "主题"], "reuse": 4},
+   {"cat": "强调要点", "level": "intermediate", "formula": "Perlu + (saya) + tekankan bahwa + [要点]", "cn": "我需要强调的是[要点]。", "structure": "强调动词 + 从句", "grammar": "perlu 需要；menekankan ← tekan + meN-...-kan", "scene": "强调重点", "ex": ["Perlu saya tekankan bahwa keselamatan kerja tidak dapat ditawar.", "Perlu dicatat bahwa data ini belum diaudit eksternal."], "slots": ["要点"], "reuse": 4},
+   {"cat": "转换话题", "level": "intermediate", "formula": "Selanjutnya, + (mari kita) + beralih ke + [方面]", "cn": "接下来，（让我们）转向[方面]。", "structure": "承接语 + 新话题", "grammar": "selanjutnya 接下来；beralih 转移", "scene": "章节过渡", "ex": ["Selanjutnya, mari kita beralih ke aspek anggaran.", "Selanjutnya, saya akan menjelaskan rencana mitigasi risiko."], "slots": ["新话题"], "reuse": 4},
+   {"cat": "举例说明", "level": "intermediate", "formula": "Sebagai contoh, + [实例] + (yang menunjukkan bahwa) + [说明]", "cn": "例如，[实例]（这表明[说明]）。", "structure": "例如 + 实例", "grammar": "sebagai contoh 例如", "scene": "举例论证", "ex": ["Sebagai contoh, pabrik B menunjukkan efisiensi 20 persen lebih baik.", "Sebagai contoh, kenaikan upah tahun lalu tidak membebani anggaran."], "slots": ["实例", "说明"], "reuse": 4},
+   {"cat": "对比论证", "level": "intermediate", "formula": "Di satu sisi + [观点A]; di sisi lain + [观点B]", "cn": "一方面[观点A]；另一方面[观点B]。", "structure": "一方面……另一方面……", "grammar": "固定并列连词结构，中间用分号", "scene": "辩证分析", "ex": ["Di satu sisi kita mengejar target produksi; di sisi lain kita wajib menjaga keselamatan.", "Di satu sisi biaya naik; di sisi lain kualitas semakin terjaga."], "slots": ["观点A", "观点B"], "reuse": 5},
+   {"cat": "小结过渡", "level": "intermediate", "formula": "Intinya, + [总结] + (sebelum kita lanjut ke) + [下一部分]", "cn": "总之，[总结]。（然后我们继续[下一部分]）", "structure": "总之 + 内容", "grammar": "intinya 概括而言（inti 核心 + -nya）", "scene": "段落小结", "ex": ["Intinya, koordinasi antar-divisi harus diperkuat.", "Intinya, investasi ini layak dari segi teknis dan finansial."], "slots": ["总结内容"], "reuse": 4},
+   {"cat": "正式开场", "level": "professional", "formula": "Dengan memanjatkan puji syukur ke hadirat + [神明称呼], + [致意对象], + 主语 + [致辞]", "cn": "首先向[神明称呼]感恩祷告，[致意对象]，[主语][致辞]。（印尼正式开场套语）", "structure": "感恩开场 + 致意 + 进入正题", "grammar": "印尼正式致辞固定开场；ke hadirat ……面前", "scene": "政府/仪式场合致辞", "ex": ["Dengan memanjatkan puji syukur ke hadirat Tuhan Yang Maha Esa, Bapak Gubernur yang kami hormati, hadirin sekalian, kami sampaikan terima kasih atas kehadiran Anda.", "Dengan memanjatkan puji syukur, para tamu undangan yang terhormat, kami memulai acara peluncuran tahap kedua."], "slots": ["致意对象", "正题"], "reuse": 3},
+   {"cat": "说服号召", "level": "professional", "formula": "Oleh karena itu, + 主语 + mengajak + [对象] + untuk + [行动]", "cn": "因此，[主语]号召[对象][行动]。", "structure": "因果 + 号召", "grammar": "oleh karena itu 因此；mengajak 号召", "scene": "号召听众行动", "ex": ["Oleh karena itu, kami mengajak seluruh mitra untuk menandatangani komitmen keselamatan.", "Oleh karena itu, mari kita tingkatkan sinergi untuk mencapai target nasional."], "slots": ["对象", "行动"], "reuse": 4},
+   {"cat": "致谢结尾", "level": "professional", "formula": "Terima kasih atas + [名词] + (dan selamat bertugas)", "cn": "感谢[名词]（并祝工作顺利）。", "structure": "致谢 + 祝愿", "grammar": "atas 后接感谢原因", "scene": "演讲收尾", "ex": ["Terima kasih atas perhatian Anda dan selamat bertugas.", "Terima kasih atas kesempatan berbicara hari ini."], "slots": ["感谢原因"], "reuse": 4}
   ],
   "expressions": [
    {"level": "basic", "scene": "试音", "id": "Suara saya terdengar jelas?", "cn": "我的声音听得清楚吗？", "note": "terdengar 可听见；开场试音用语"},
@@ -245425,7 +245434,7 @@ const caData = {
 
 
  ,
- "negotiation": {
+"negotiation": {
  title: "话题7: 商务谈判 / Negosiasi Bisnis",
  icon: "🤝",
  level: "B1-B2",
@@ -245464,18 +245473,18 @@ const caData = {
    {"id":"Kami mengharapkan kehadiran pimpinan pada pertemuan berikutnya.","cn":"希望下次会谈贵方领导能出席。","usage":"后续安排","note":"mengharapkan（期待）正式用词，比 berharap 更郑重。"}
   ],
   patterns: [
-   {"cat":"开场寒暄","level":"basic","formula":"Terima kasih atas [名词], Bapak/Ibu [称呼].","structure":"感谢语 + atas + 感谢对象 + 称呼","grammar":"atas 引出感谢原因；开场建立友好气氛。","scene":"迎接对方入场","ex":["Terima kasih atas kesediaannya, Pak Wijaya.","Terima kasih atas waktunya, Bu Sari."],"slots":["kesediaan/kedatangan","称呼"],"reuse":5},
-   {"cat":"自我介绍","level":"basic","formula":"Perkenalkan, saya [姓名], [职务] dari [单位].","structure":"Perkenalkan + 姓名 + 职务 + 单位","grammar":"Perkenalkan 为祈使开场，后接主谓结构。","scene":"开场自我介绍","ex":["Perkenalkan, saya Rina, manajer pembelian dari PT Morowali Nickel.","Perkenalkan, saya Anto, wakil ketua delegasi kami."],"slots":["姓名","职务","单位"],"reuse":4},
-   {"cat":"确认安排","level":"basic","formula":"Apakah [安排] sudah sesuai?","structure":"Apakah 问句 + 安排 + sesuai","grammar":"Apakah 构成是非问句；sesuai（符合）作形容词谓语。","scene":"开场前确认","ex":["Apakah jadwal hari ini sudah sesuai?","Apakah tempat pertemuan sudah sesuai?"],"slots":["jadwal","tempat"],"reuse":4},
-   {"cat":"明确目标","level":"intermediate","formula":"Tujuan kami hari ini adalah [动宾短语], agar [目的从句].","structure":"目标主句 + agar 目的从句","grammar":"agar（以便）引导目的状语从句，动词用原始形。","scene":"开场陈述目标","ex":["Tujuan kami hari ini adalah menyamakan persepsi, agar pembicaraan berjalan efektif.","Tujuan kami hari ini adalah meminta klarifikasi, agar tidak ada kesalahpahaman."],"slots":["核心目标","预期效果"],"reuse":5},
-   {"cat":"提出议程","level":"intermediate","formula":"Sebelum mulai, izinkan saya menyampaikan [数量] hal: [列举].","structure":"时间状语 + 礼貌引导 + 列举","grammar":"izinkan saya + 动名词（请允许我）；列举用逗号分隔。","scene":"介绍议程","ex":["Sebelum mulai, izinkan saya menyampaikan tiga hal: harga, jadwal, garansi.","Sebelum mulai, izinkan saya menyampaikan dua hal: pembukaan dan tujuan."],"slots":["数量","议题列表"],"reuse":4},
-   {"cat":"请求报价","level":"intermediate","formula":"Kami berminat dengan [产品/服务] dan meminta [文件] paling lambat [时限].","structure":"兴趣声明 + 请求 + 时限","grammar":"berminat dengan（对……有兴趣）；paling lambat（最迟）限定时间。","scene":"询价阶段","ex":["Kami berminat dengan nikel kadar tinggi dan meminta penawaran resmi paling lambat Jumat.","Kami berminat dengan jasa pengiriman dan meminta daftar harga paling lambat akhir bulan."],"slots":["产品/服务","文件类型","时限"],"reuse":5},
-   {"cat":"授权声明","level":"intermediate","formula":"Saya diberi kuasa oleh [授权方] untuk [权限范围].","structure":"被动授权 + oleh 施事 + 权限","grammar":"di- + beri + kuasa 被动结构；oleh 引出授权人。","scene":"表明签约权限","ex":["Saya diberi kuasa oleh direksi untuk membahas harga.","Saya diberi kuasa oleh ketua delegasi untuk menjawab pertanyaan teknis."],"slots":["授权方","权限范围"],"reuse":4},
-   {"cat":"资料说明","level":"intermediate","formula":"Dokumentasi terkait [主题] telah kami siapkan untuk [对象].","structure":"主题 + 完成时态 + 对象","grammar":"telah + 动词（已经……）；terkait（相关）后置修饰。","scene":"提交材料","ex":["Dokumentasi terkait kontrak telah kami siapkan untuk semua pihak.","Dokumentasi terkait spesifikasi telah kami siapkan untuk tim teknis."],"slots":["主题","接收对象"],"reuse":4},
-   {"cat":"时间安排","level":"intermediate","formula":"Bila berkenan, kita mulai pukul [时刻] dan selesai sebelum [时刻].","structure":"礼貌引导 + 起止时间","grammar":"bila berkenan（如蒙应允）正式客套；sebelum 引导时间上限。","scene":"商定日程","ex":["Bila berkenan, kita mulai pukul sembilan dan selesai sebelum makan siang.","Bila berkenan, kita mulai pukul dua dan selesai sebelum jam empat."],"slots":["开始时刻","结束上限"],"reuse":4},
-   {"cat":"开场定调","level":"professional","formula":"Dengan semangat [形容词], mari kita buka pembicaraan ini dengan [名词短语].","structure":"方式状语 + mari 祈使 + 开场白","grammar":"dengan 引导方式；mari 构成第一人称复数祈使。","scene":"正式开场致辞","ex":["Dengan semangat keterbukaan, mari kita buka pembicaraan ini dengan saling memperkenalkan diri.","Dengan semangat kemitraan, mari kita buka pembicaraan ini dengan mengucap syukur."],"slots":["精神/原则","开场动作"],"reuse":3},
-   {"cat":"权限边界","level":"professional","formula":"Meskipun saya memiliki mandat untuk [事项], hal [事项] perlu persetujuan [上级].","structure":"让步从句 + 转折主句","grammar":"meskipun（尽管）引导让步；persetujuan（批准）正式名词。","scene":"划定谈判边界","ex":["Meskipun saya memiliki mandat untuk membahas harga, hal diskon perlu persetujuan direksi.","Meskipun saya memiliki mandat untuk menandatangani, hal jaminan perlu persetujuan pusat."],"slots":["已授权事项","需上报事项","上级"],"reuse":4},
-   {"cat":"预期管理","level":"professional","formula":"Agar ekspektasi kita sama, perlu saya tegaskan bahwa [条款/事实].","structure":"目的从句 + 强调主句 + bahwa 宾从","grammar":"agar 引导目的；perlu saya tegaskan（我必须强调）正式表达。","scene":"澄清关键事实","ex":["Agar ekspektasi kita sama, perlu saya tegaskan bahwa harga belum termasuk pajak.","Agar ekspektasi kita sama, perlu saya tegaskan bahwa stok terbatas."],"slots":["关键条款"],"reuse":4}
+   {"cat":"开场寒暄","level":"basic","formula":"Terima kasih atas [名词], Bapak/Ibu [称呼].", "cn": "感谢您的[名词]，[称呼]先生/女士。","structure":"感谢语 + atas + 感谢对象 + 称呼","grammar":"atas 引出感谢原因；开场建立友好气氛。","scene":"迎接对方入场","ex":["Terima kasih atas kesediaannya, Pak Wijaya.","Terima kasih atas waktunya, Bu Sari."],"slots":["kesediaan/kedatangan","称呼"],"reuse":5},
+   {"cat":"自我介绍","level":"basic","formula":"Perkenalkan, saya [姓名], [职务] dari [单位].", "cn": "请允许我介绍，我是[单位]的[职务][姓名]。","structure":"Perkenalkan + 姓名 + 职务 + 单位","grammar":"Perkenalkan 为祈使开场，后接主谓结构。","scene":"开场自我介绍","ex":["Perkenalkan, saya Rina, manajer pembelian dari PT Morowali Nickel.","Perkenalkan, saya Anto, wakil ketua delegasi kami."],"slots":["姓名","职务","单位"],"reuse":4},
+   {"cat":"确认安排","level":"basic","formula":"Apakah [安排] sudah sesuai?", "cn": "[安排]是否已经妥当？","structure":"Apakah 问句 + 安排 + sesuai","grammar":"Apakah 构成是非问句；sesuai（符合）作形容词谓语。","scene":"开场前确认","ex":["Apakah jadwal hari ini sudah sesuai?","Apakah tempat pertemuan sudah sesuai?"],"slots":["jadwal","tempat"],"reuse":4},
+   {"cat":"明确目标","level":"intermediate","formula":"Tujuan kami hari ini adalah [动宾短语], agar [目的从句].", "cn": "我们今天的目标是[动宾短语]，以便[目的从句]。","structure":"目标主句 + agar 目的从句","grammar":"agar（以便）引导目的状语从句，动词用原始形。","scene":"开场陈述目标","ex":["Tujuan kami hari ini adalah menyamakan persepsi, agar pembicaraan berjalan efektif.","Tujuan kami hari ini adalah meminta klarifikasi, agar tidak ada kesalahpahaman."],"slots":["核心目标","预期效果"],"reuse":5},
+   {"cat":"提出议程","level":"intermediate","formula":"Sebelum mulai, izinkan saya menyampaikan [数量] hal: [列举].", "cn": "开始之前，请允许我说明[数量]件事：[列举]。","structure":"时间状语 + 礼貌引导 + 列举","grammar":"izinkan saya + 动名词（请允许我）；列举用逗号分隔。","scene":"介绍议程","ex":["Sebelum mulai, izinkan saya menyampaikan tiga hal: harga, jadwal, garansi.","Sebelum mulai, izinkan saya menyampaikan dua hal: pembukaan dan tujuan."],"slots":["数量","议题列表"],"reuse":4},
+   {"cat":"请求报价","level":"intermediate","formula":"Kami berminat dengan [产品/服务] dan meminta [文件] paling lambat [时限].", "cn": "我们对[产品/服务]有兴趣，请最迟于[时限]提供[文件]。","structure":"兴趣声明 + 请求 + 时限","grammar":"berminat dengan（对……有兴趣）；paling lambat（最迟）限定时间。","scene":"询价阶段","ex":["Kami berminat dengan nikel kadar tinggi dan meminta penawaran resmi paling lambat Jumat.","Kami berminat dengan jasa pengiriman dan meminta daftar harga paling lambat akhir bulan."],"slots":["产品/服务","文件类型","时限"],"reuse":5},
+   {"cat":"授权声明","level":"intermediate","formula":"Saya diberi kuasa oleh [授权方] untuk [权限范围].", "cn": "我受[授权方]授权，可[权限范围]。","structure":"被动授权 + oleh 施事 + 权限","grammar":"di- + beri + kuasa 被动结构；oleh 引出授权人。","scene":"表明签约权限","ex":["Saya diberi kuasa oleh direksi untuk membahas harga.","Saya diberi kuasa oleh ketua delegasi untuk menjawab pertanyaan teknis."],"slots":["授权方","权限范围"],"reuse":4},
+   {"cat":"资料说明","level":"intermediate","formula":"Dokumentasi terkait [主题] telah kami siapkan untuk [对象].", "cn": "与[主题]相关的文件我们已为[对象]准备好。","structure":"主题 + 完成时态 + 对象","grammar":"telah + 动词（已经……）；terkait（相关）后置修饰。","scene":"提交材料","ex":["Dokumentasi terkait kontrak telah kami siapkan untuk semua pihak.","Dokumentasi terkait spesifikasi telah kami siapkan untuk tim teknis."],"slots":["主题","接收对象"],"reuse":4},
+   {"cat":"时间安排","level":"intermediate","formula":"Bila berkenan, kita mulai pukul [时刻] dan selesai sebelum [时刻].", "cn": "如蒙应允，我们[时刻]开始，[时刻]前结束。","structure":"礼貌引导 + 起止时间","grammar":"bila berkenan（如蒙应允）正式客套；sebelum 引导时间上限。","scene":"商定日程","ex":["Bila berkenan, kita mulai pukul sembilan dan selesai sebelum makan siang.","Bila berkenan, kita mulai pukul dua dan selesai sebelum jam empat."],"slots":["开始时刻","结束上限"],"reuse":4},
+   {"cat":"开场定调","level":"professional","formula":"Dengan semangat [形容词], mari kita buka pembicaraan ini dengan [名词短语].", "cn": "以[形容词]的精神，让我们以[名词短语]开启本次会谈。","structure":"方式状语 + mari 祈使 + 开场白","grammar":"dengan 引导方式；mari 构成第一人称复数祈使。","scene":"正式开场致辞","ex":["Dengan semangat keterbukaan, mari kita buka pembicaraan ini dengan saling memperkenalkan diri.","Dengan semangat kemitraan, mari kita buka pembicaraan ini dengan mengucap syukur."],"slots":["精神/原则","开场动作"],"reuse":3},
+   {"cat":"权限边界","level":"professional","formula":"Meskipun saya memiliki mandat untuk [事项], hal [事项] perlu persetujuan [上级].", "cn": "尽管我获授权处理[事项]，但[事项]需经[上级]批准。","structure":"让步从句 + 转折主句","grammar":"meskipun（尽管）引导让步；persetujuan（批准）正式名词。","scene":"划定谈判边界","ex":["Meskipun saya memiliki mandat untuk membahas harga, hal diskon perlu persetujuan direksi.","Meskipun saya memiliki mandat untuk menandatangani, hal jaminan perlu persetujuan pusat."],"slots":["已授权事项","需上报事项","上级"],"reuse":4},
+   {"cat":"预期管理","level":"professional","formula":"Agar ekspektasi kita sama, perlu saya tegaskan bahwa [条款/事实].", "cn": "为使双方预期一致，我必须强调：[条款/事实]。","structure":"目的从句 + 强调主句 + bahwa 宾从","grammar":"agar 引导目的；perlu saya tegaskan（我必须强调）正式表达。","scene":"澄清关键事实","ex":["Agar ekspektasi kita sama, perlu saya tegaskan bahwa harga belum termasuk pajak.","Agar ekspektasi kita sama, perlu saya tegaskan bahwa stok terbatas."],"slots":["关键条款"],"reuse":4}
   ],
   expressions: [
    {"level":"basic","scene":"迎接","id":"Silakan masuk, kami sudah lama menunggu.","cn":"请进，我们恭候多时了。","note":"sudah lama menunggu（等了许久）表重视。"},
@@ -245557,18 +245566,18 @@ const caData = {
    {"id":"Kalau begitu, kami perlu waktu untuk berkonsultasi.","cn":"那样的话，我们需要时间内部商议。","usage":"暂停磋商","note":"perlu waktu untuk…（需要时间来……）休会信号。"}
   ],
   patterns: [
-   {"cat":"报价陈述","level":"basic","formula":"Harga [产品] [金额] per [单位], sudah termasuk [包含项].","structure":"品名 + 价格 + 单位 + 包含项","grammar":"per（每）引出计量单位；sudah termasuk（已包含）。","scene":"首轮报价","ex":["Harga nikel seratus juta rupiah per ton, sudah termasuk pajak.","Harga jasa konsultan dua juta per hari, sudah termasuk transportasi."],"slots":["金额","单位","包含项"],"reuse":5},
-   {"cat":"提出折扣","level":"basic","formula":"Bisakah Anda memberikan potongan [比例] untuk [条件]?","structure":"请求句式 + 比例 + 条件","grammar":"Bisakah Anda…（您能……吗）礼貌等级高于 Boleh。","scene":"讨价","ex":["Bisakah Anda memberikan potongan sepuluh persen untuk pembayaran tunai?","Bisakah Anda memberikan potongan tiga persen untuk pembelian seratus unit?"],"slots":["折扣比例","交换条件"],"reuse":4},
-   {"cat":"接受条件","level":"basic","formula":"Kami bersedia [动词短语], asal [条件].","structure":"让步主句 + asal 条件","grammar":"asal（只要）引导条件；bersedia + 动词原形。","scene":"有条件让步","ex":["Kami bersedia menurunkan harga, asal volume pembelian bertambah.","Kami bersedia memperpanjang garansi, asal kontrak diperbarui."],"slots":["让步内容","前提条件"],"reuse":5},
-   {"cat":"拒绝还价","level":"intermediate","formula":"Mohon maaf, harga [限定语] tidak bisa [动词], karena [理由].","structure":"致歉 + 否定 + 理由","grammar":"tidak bisa（无法）；karena 引导原因从句。","scene":"守住价格","ex":["Mohon maaf, harga satuan tidak bisa turun lagi, karena sudah di atas harga pasar.","Mohon maaf, kami tidak bisa menerima pembayaran bulanan, karena kebijakan kas perusahaan."],"slots":["守住的条款","理由"],"reuse":4},
-   {"cat":"折中提案","level":"intermediate","formula":"Bagaimana kalau kita [折中方案]? Ini [评价语] bagi kedua pihak.","structure":"提议问句 + 评价","grammar":"Bagaimana kalau（……怎么样）提建议；bagi（对……而言）。","scene":"打破僵局","ex":["Bagaimana kalau kita membagi selisih lima puluh lima puluh? Ini adil bagi kedua pihak.","Bagaimana kalau kita memperpanjang jangka waktu? Ini masuk akal bagi kedua pihak."],"slots":["折中内容","评价"],"reuse":4},
-   {"cat":"亮出底线","level":"intermediate","formula":"Itu adalah batas terendah kami; di bawah [数值], kami akan [后果].","structure":"底线声明 + 后果警告","grammar":"batas terendah（最低限度）；di bawah（低于）。","scene":"最终立场","ex":["Itu adalah batas terendah kami; di bawah harga ini, kami akan menarik diri.","Itu adalah batas terakhir kami; di bawah dua juta, kami harus berkonsultasi ulang."],"slots":["底线","后果"],"reuse":3},
-   {"cat":"交换条件","level":"intermediate","formula":"Kami bisa [让步], tetapi sebagai gantinya kami meminta [交换项].","structure":"让步 + 交换请求","grammar":"sebagai gantinya（作为交换）；bisa + 动词（可以……）。","scene":"条件互换","ex":["Kami bisa mempercepat pengiriman, tetapi sebagai gantinya kami meminta uang muka lebih besar.","Kami bisa memberikan potongan, tetapi sebagai gantinya kami meminta kontrak jangka panjang."],"slots":["让步内容","交换项"],"reuse":5},
-   {"cat":"核实条款","level":"intermediate","formula":"Mohon diperjelas: apakah [条款] sudah termasuk [项目]?","structure":"请求澄清 + 是非问","grammar":"diperjelas（被澄清）被动命令式；apakah 是非问。","scene":"核对报价","ex":["Mohon diperjelas: apakah harga sudah termasuk biaya bongkar?","Mohon diperjelas: apakah termin pembayaran sudah termasuk deposit?"],"slots":["条款","待核项目"],"reuse":4},
-   {"cat":"休会请求","level":"intermediate","formula":"Mohon maaf, kami perlu [时间/形式] untuk berkonsultasi dengan [对象].","structure":"致歉 + 需求 + 商议对象","grammar":"perlu（需要）+ 名词；berkonsultasi dengan（与……商议）。","scene":"暂停休会","ex":["Mohon maaf, kami perlu satu jam untuk berkonsultasi dengan direksi.","Mohon maaf, kami perlu jeda singkat untuk berkonsultasi dengan tim hukum."],"slots":["时长","商议对象"],"reuse":4},
-   {"cat":"僵局处理","level":"professional","formula":"Sepertinya kita mencapai titik buntu; barangkali sebaiknya [建议行动], lalu kita lanjutkan [时间].","structure":"判断 + 建议 + 后续","grammar":"titik buntu（僵局点）；barangkali（或许）缓和语气；lanjutkan（继续）。","scene":"宣布休会","ex":["Sepertinya kita mencapai titik buntu; barangkali sebaiknya kita istirahat, lalu kita lanjutkan besok pagi.","Sepertinya kita mencapai titik buntu; barangkali sebaiknya pimpinan kita berbicara langsung, lalu kita lanjutkan pekan depan."],"slots":["建议行动","续谈时间"],"reuse":3},
-   {"cat":"利益重构","level":"professional","formula":"Di balik posisi Bapak, kepentingan utama adalah [利益]; kami bisa penuhi lewat [替代方案].","structure":"识别利益 + 替代满足","grammar":"di balik（在……背后）；kepentingan（利益）；lewat（通过）。","scene":"破解立场之争","ex":["Di balik posisi Bapak, kepentingan utama adalah kepastian pasokan; kami bisa penuhi lewat kontrak jangka panjang.","Di balik posisi Anda, kepentingan utama adalah arus kas; kami bisa penuhi lewat termin lebih cepat."],"slots":["核心利益","替代方案"],"reuse":4},
-   {"cat":"最后通牒","level":"professional","formula":"Ini penawaran terakhir kami; bila tidak diterima [时限], kami akan [后果].","structure":"最终报价 + 时限 + 后果","grammar":"bila（如果）正式假设；diterima（被接受）。","scene":"终局策略","ex":["Ini penawaran terakhir kami; bila tidak diterima hari ini, kami akan menutup negosiasi.","Ini penawaran terakhir kami; bila tidak diterima minggu ini, kami akan mencari penawar lain."],"slots":["时限","后果"],"reuse":3}
+   {"cat":"报价陈述","level":"basic","formula":"Harga [产品] [金额] per [单位], sudah termasuk [包含项].", "cn": "[产品]价格[金额]每[单位]，已含[包含项]。","structure":"品名 + 价格 + 单位 + 包含项","grammar":"per（每）引出计量单位；sudah termasuk（已包含）。","scene":"首轮报价","ex":["Harga nikel seratus juta rupiah per ton, sudah termasuk pajak.","Harga jasa konsultan dua juta per hari, sudah termasuk transportasi."],"slots":["金额","单位","包含项"],"reuse":5},
+   {"cat":"提出折扣","level":"basic","formula":"Bisakah Anda memberikan potongan [比例] untuk [条件]?", "cn": "针对[条件]，贵方能否给予[比例]的折扣？","structure":"请求句式 + 比例 + 条件","grammar":"Bisakah Anda…（您能……吗）礼貌等级高于 Boleh。","scene":"讨价","ex":["Bisakah Anda memberikan potongan sepuluh persen untuk pembayaran tunai?","Bisakah Anda memberikan potongan tiga persen untuk pembelian seratus unit?"],"slots":["折扣比例","交换条件"],"reuse":4},
+   {"cat":"接受条件","level":"basic","formula":"Kami bersedia [动词短语], asal [条件].", "cn": "只要[条件]，我们愿意[动词短语]。","structure":"让步主句 + asal 条件","grammar":"asal（只要）引导条件；bersedia + 动词原形。","scene":"有条件让步","ex":["Kami bersedia menurunkan harga, asal volume pembelian bertambah.","Kami bersedia memperpanjang garansi, asal kontrak diperbarui."],"slots":["让步内容","前提条件"],"reuse":5},
+   {"cat":"拒绝还价","level":"intermediate","formula":"Mohon maaf, harga [限定语] tidak bisa [动词], karena [理由].", "cn": "抱歉，[限定语]价格无法[动词]，因为[理由]。","structure":"致歉 + 否定 + 理由","grammar":"tidak bisa（无法）；karena 引导原因从句。","scene":"守住价格","ex":["Mohon maaf, harga satuan tidak bisa turun lagi, karena sudah di atas harga pasar.","Mohon maaf, kami tidak bisa menerima pembayaran bulanan, karena kebijakan kas perusahaan."],"slots":["守住的条款","理由"],"reuse":4},
+   {"cat":"折中提案","level":"intermediate","formula":"Bagaimana kalau kita [折中方案]? Ini [评价语] bagi kedua pihak.", "cn": "我们[折中方案]如何？这对双方都是[评价语]。","structure":"提议问句 + 评价","grammar":"Bagaimana kalau（……怎么样）提建议；bagi（对……而言）。","scene":"打破僵局","ex":["Bagaimana kalau kita membagi selisih lima puluh lima puluh? Ini adil bagi kedua pihak.","Bagaimana kalau kita memperpanjang jangka waktu? Ini masuk akal bagi kedua pihak."],"slots":["折中内容","评价"],"reuse":4},
+   {"cat":"亮出底线","level":"intermediate","formula":"Itu adalah batas terendah kami; di bawah [数值], kami akan [后果].", "cn": "这是我们的最低底线；低于[数值]，我们将[后果]。","structure":"底线声明 + 后果警告","grammar":"batas terendah（最低限度）；di bawah（低于）。","scene":"最终立场","ex":["Itu adalah batas terendah kami; di bawah harga ini, kami akan menarik diri.","Itu adalah batas terakhir kami; di bawah dua juta, kami harus berkonsultasi ulang."],"slots":["底线","后果"],"reuse":3},
+   {"cat":"交换条件","level":"intermediate","formula":"Kami bisa [让步], tetapi sebagai gantinya kami meminta [交换项].", "cn": "我们可以[让步]，但作为交换，我们要求[交换项]。","structure":"让步 + 交换请求","grammar":"sebagai gantinya（作为交换）；bisa + 动词（可以……）。","scene":"条件互换","ex":["Kami bisa mempercepat pengiriman, tetapi sebagai gantinya kami meminta uang muka lebih besar.","Kami bisa memberikan potongan, tetapi sebagai gantinya kami meminta kontrak jangka panjang."],"slots":["让步内容","交换项"],"reuse":5},
+   {"cat":"核实条款","level":"intermediate","formula":"Mohon diperjelas: apakah [条款] sudah termasuk [项目]?", "cn": "请澄清：[条款]是否已包含[项目]？","structure":"请求澄清 + 是非问","grammar":"diperjelas（被澄清）被动命令式；apakah 是非问。","scene":"核对报价","ex":["Mohon diperjelas: apakah harga sudah termasuk biaya bongkar?","Mohon diperjelas: apakah termin pembayaran sudah termasuk deposit?"],"slots":["条款","待核项目"],"reuse":4},
+   {"cat":"休会请求","level":"intermediate","formula":"Mohon maaf, kami perlu [时间/形式] untuk berkonsultasi dengan [对象].", "cn": "抱歉，我们需要[时间/形式]与[对象]商议。","structure":"致歉 + 需求 + 商议对象","grammar":"perlu（需要）+ 名词；berkonsultasi dengan（与……商议）。","scene":"暂停休会","ex":["Mohon maaf, kami perlu satu jam untuk berkonsultasi dengan direksi.","Mohon maaf, kami perlu jeda singkat untuk berkonsultasi dengan tim hukum."],"slots":["时长","商议对象"],"reuse":4},
+   {"cat":"僵局处理","level":"professional","formula":"Sepertinya kita mencapai titik buntu; barangkali sebaiknya [建议行动], lalu kita lanjutkan [时间].", "cn": "看来我们陷入了僵局；也许最好[建议行动]，然后于[时间]继续。","structure":"判断 + 建议 + 后续","grammar":"titik buntu（僵局点）；barangkali（或许）缓和语气；lanjutkan（继续）。","scene":"宣布休会","ex":["Sepertinya kita mencapai titik buntu; barangkali sebaiknya kita istirahat, lalu kita lanjutkan besok pagi.","Sepertinya kita mencapai titik buntu; barangkali sebaiknya pimpinan kita berbicara langsung, lalu kita lanjutkan pekan depan."],"slots":["建议行动","续谈时间"],"reuse":3},
+   {"cat":"利益重构","level":"professional","formula":"Di balik posisi Bapak, kepentingan utama adalah [利益]; kami bisa penuhi lewat [替代方案].", "cn": "在您立场背后，核心利益是[利益]；我们可通过[替代方案]予以满足。","structure":"识别利益 + 替代满足","grammar":"di balik（在……背后）；kepentingan（利益）；lewat（通过）。","scene":"破解立场之争","ex":["Di balik posisi Bapak, kepentingan utama adalah kepastian pasokan; kami bisa penuhi lewat kontrak jangka panjang.","Di balik posisi Anda, kepentingan utama adalah arus kas; kami bisa penuhi lewat termin lebih cepat."],"slots":["核心利益","替代方案"],"reuse":4},
+   {"cat":"最后通牒","level":"professional","formula":"Ini penawaran terakhir kami; bila tidak diterima [时限], kami akan [后果].", "cn": "这是我方最终报价；如[时限]内不被接受，我们将[后果]。","structure":"最终报价 + 时限 + 后果","grammar":"bila（如果）正式假设；diterima（被接受）。","scene":"终局策略","ex":["Ini penawaran terakhir kami; bila tidak diterima hari ini, kami akan menutup negosiasi.","Ini penawaran terakhir kami; bila tidak diterima minggu ini, kami akan mencari penawar lain."],"slots":["时限","后果"],"reuse":3}
   ],
   expressions: [
    {"level":"basic","scene":"讨价","id":"Bisa kurang sedikit?","cn":"能便宜一点吗？","note":"口语最直接讨价句。"},
@@ -245650,18 +245659,18 @@ const caData = {
    {"id":"Kami tunggu kabar baik dari pihak Anda.","cn":"等候贵方的好消息。","usage":"结束语","note":"tunggu kabar（等消息）礼貌收尾。"}
   ],
   patterns: [
-   {"cat":"总结共识","level":"basic","formula":"Jadi kita sepakat: [条款一], [条款二], dan [条款三].","structure":"Jadi + sepakat + 条款列举","grammar":"jadi（那么）承接总结；列举用逗号 dan 收尾。","scene":"收尾总结","ex":["Jadi kita sepakat: harga seratus juta, termin dua kali, garansi satu tahun.","Jadi kita sepakat: pengiriman bulan depan, pembayaran tunai, kontrak satu tahun."],"slots":["条款一","条款二","条款三"],"reuse":5},
-   {"cat":"复述确认","level":"basic","formula":"Kalau saya paham benar, [复述内容], ya?","structure":"理解声明 + 复述 + 是吗","grammar":"ya?（对吗）寻求确认；复述用第三人称。","scene":"避免误解","ex":["Kalau saya paham benar, uang muka dua puluh persen, ya?","Kalau saya paham benar, jadwalnya mulai minggu depan, ya?"],"slots":["复述条款"],"reuse":4},
-   {"cat":"行动布置","level":"basic","formula":"Langkah berikutnya: [责任方] akan [行动] sebelum [时限].","structure":"下一步 + 责任方 + 行动 + 时限","grammar":"langkah berikutnya（下一步）；sebelum 时限。","scene":"收尾分工","ex":["Langkah berikutnya: tim hukum akan menyiapkan draft sebelum Jumat.","Langkah berikutnya: kami akan mengirim notulen sebelum makan siang."],"slots":["责任方","行动","时限"],"reuse":5},
-   {"cat":"书面确认","level":"intermediate","formula":"Untuk menghindari kesalahpahaman, mohon [文件] dikirimkan dalam bentuk tertulis.","structure":"目的状语 + 请求 + 书面形式","grammar":"untuk + 动名词（为了……）；dikirimkan 被动。","scene":"确认留痕","ex":["Untuk menghindari kesalahpahaman, mohon persetujuan dikirimkan dalam bentuk tertulis.","Untuk menghindari kesalahpahaman, mohon revisi harga dikirimkan dalam bentuk tertulis."],"slots":["需确认的文件"],"reuse":4},
-   {"cat":"异议处理","level":"intermediate","formula":"Kami memahami keberatan Anda; bagaimana kalau [替代方案] sebagai solusinya?","structure":"共情 + 替代方案提议","grammar":"memahami（理解）先接情绪；bagaimana kalau 提方案。","scene":"最后异议","ex":["Kami memahami keberatan Anda; bagaimana kalau garansi diperpanjang sebagai solusinya?","Kami memahami keberatan Anda; bagaimana kalau termin diubah sebagai solusinya?"],"slots":["替代方案"],"reuse":4},
-   {"cat":"约定签署","level":"intermediate","formula":"Bila tidak ada masalah, penandatanganan bisa dilakukan pada [时间] di [地点].","structure":"假设 + 签署安排","grammar":"bila（如果）；dilakukan（被执行）被动。","scene":"约签约","ex":["Bila tidak ada masalah, penandatanganan bisa dilakukan pada Senin depan di kantor kami.","Bila tidak ada masalah, penandatanganan bisa dilakukan pada akhir bulan di ruang rapat."],"slots":["时间","地点"],"reuse":4},
-   {"cat":"跟进机制","level":"intermediate","formula":"Setelah kontrak berjalan, kita evaluasi setiap [周期] untuk [目的].","structure":"时间状语 + 定期评估 + 目的","grammar":"setelah（之后）；setiap（每）+ 时间单位。","scene":"履约跟进","ex":["Setelah kontrak berjalan, kita evaluasi setiap tiga bulan untuk memastikan kualitas.","Setelah kontrak berjalan, kita evaluasi setiap enam bulan untuk meninjau harga."],"slots":["评估周期","目的"],"reuse":4},
-   {"cat":"风险预案","level":"intermediate","formula":"Bila terjadi [风险情形], kita sepakat untuk [应对措施].","structure":"假设风险 + 约定应对","grammar":"terjadi（发生）；sepakat untuk（约定做）。","scene":"合同保障","ex":["Bila terjadi keterlambatan pasokan, kita sepakat untuk pembayaran tertunda.","Bila terjadi perubahan kurs, kita sepakat untuk penyesuaian harga."],"slots":["风险情形","应对措施"],"reuse":4},
-   {"cat":"关系展望","level":"professional","formula":"Kami berharap kesepakatan ini menjadi awal kemitraan yang [形容词] di masa depan.","structure":"期望 + 隐喻 + 未来展望","grammar":"menjadi awal（成为开端）；di masa depan（未来）。","scene":"签约致辞","ex":["Kami berharap kesepakatan ini menjadi awal kemitraan yang saling menguntungkan di masa depan.","Kami berharap kesepakatan ini menjadi awal kerja sama yang berkelanjutan di masa depan."],"slots":["关系形容词"],"reuse":3},
-   {"cat":"未尽事项","level":"professional","formula":"Hal-hal yang belum dibahas hari ini akan kami sampaikan melalui [渠道] paling lambat [时限].","structure":"未决事项 + 通报渠道 + 时限","grammar":"yang belum（尚未）定语从句；melalui（通过）。","scene":"留尾处理","ex":["Hal-hal yang belum dibahas hari ini akan kami sampaikan melalui email paling lambat besok.","Hal-hal teknis yang belum dibahas akan kami sampaikan melalui notulen paling lambat Jumat."],"slots":["渠道","时限"],"reuse":4},
-   {"cat":"正式收尾","level":"professional","formula":"Dengan ini, pembicaraan kita dinyatakan selesai; selanjutnya proses administratif akan ditangani oleh [责任方].","structure":"宣布结束 + 移交行政","grammar":"dengan ini（兹此）公文用语；dinyatakan（被宣布）被动。","scene":"会议闭幕","ex":["Dengan ini, pembicaraan kita dinyatakan selesai; selanjutnya proses administratif akan ditangani oleh sekretaris perusahaan.","Dengan ini, rapat dinyatakan selesai; selanjutnya dokumentasi akan ditangani oleh tim legal."],"slots":["责任方"],"reuse":3},
-   {"cat":"感谢对方","level":"professional","formula":"Atas nama [组织], saya mengucapkan terima kasih atas [贡献] selama proses negosiasi.","structure":"代表 + 感谢 + 贡献","grammar":"atas nama（代表……）；mengucapkan terima kasih（致谢）。","scene":"签约致谢","ex":["Atas nama perusahaan, saya mengucapkan terima kasih atas keterbukaan selama proses negosiasi.","Atas nama delegasi, saya mengucapkan terima kasih atas kesabaran selama proses pembicaraan."],"slots":["组织","贡献"],"reuse":3}
+   {"cat":"总结共识","level":"basic","formula":"Jadi kita sepakat: [条款一], [条款二], dan [条款三].", "cn": "那么我们达成共识：[条款一]、[条款二]及[条款三]。","structure":"Jadi + sepakat + 条款列举","grammar":"jadi（那么）承接总结；列举用逗号 dan 收尾。","scene":"收尾总结","ex":["Jadi kita sepakat: harga seratus juta, termin dua kali, garansi satu tahun.","Jadi kita sepakat: pengiriman bulan depan, pembayaran tunai, kontrak satu tahun."],"slots":["条款一","条款二","条款三"],"reuse":5},
+   {"cat":"复述确认","level":"basic","formula":"Kalau saya paham benar, [复述内容], ya?", "cn": "如果我没理解错的话，[复述内容]，对吗？","structure":"理解声明 + 复述 + 是吗","grammar":"ya?（对吗）寻求确认；复述用第三人称。","scene":"避免误解","ex":["Kalau saya paham benar, uang muka dua puluh persen, ya?","Kalau saya paham benar, jadwalnya mulai minggu depan, ya?"],"slots":["复述条款"],"reuse":4},
+   {"cat":"行动布置","level":"basic","formula":"Langkah berikutnya: [责任方] akan [行动] sebelum [时限].", "cn": "下一步：[责任方]将于[时限]前[行动]。","structure":"下一步 + 责任方 + 行动 + 时限","grammar":"langkah berikutnya（下一步）；sebelum 时限。","scene":"收尾分工","ex":["Langkah berikutnya: tim hukum akan menyiapkan draft sebelum Jumat.","Langkah berikutnya: kami akan mengirim notulen sebelum makan siang."],"slots":["责任方","行动","时限"],"reuse":5},
+   {"cat":"书面确认","level":"intermediate","formula":"Untuk menghindari kesalahpahaman, mohon [文件] dikirimkan dalam bentuk tertulis.", "cn": "为避免误解，请将[文件]以书面形式发送。","structure":"目的状语 + 请求 + 书面形式","grammar":"untuk + 动名词（为了……）；dikirimkan 被动。","scene":"确认留痕","ex":["Untuk menghindari kesalahpahaman, mohon persetujuan dikirimkan dalam bentuk tertulis.","Untuk menghindari kesalahpahaman, mohon revisi harga dikirimkan dalam bentuk tertulis."],"slots":["需确认的文件"],"reuse":4},
+   {"cat":"异议处理","level":"intermediate","formula":"Kami memahami keberatan Anda; bagaimana kalau [替代方案] sebagai solusinya?", "cn": "我们理解您的顾虑；以[替代方案]作为解决方案如何？","structure":"共情 + 替代方案提议","grammar":"memahami（理解）先接情绪；bagaimana kalau 提方案。","scene":"最后异议","ex":["Kami memahami keberatan Anda; bagaimana kalau garansi diperpanjang sebagai solusinya?","Kami memahami keberatan Anda; bagaimana kalau termin diubah sebagai solusinya?"],"slots":["替代方案"],"reuse":4},
+   {"cat":"约定签署","level":"intermediate","formula":"Bila tidak ada masalah, penandatanganan bisa dilakukan pada [时间] di [地点].", "cn": "如果没有问题，签署可于[时间]在[地点]进行。","structure":"假设 + 签署安排","grammar":"bila（如果）；dilakukan（被执行）被动。","scene":"约签约","ex":["Bila tidak ada masalah, penandatanganan bisa dilakukan pada Senin depan di kantor kami.","Bila tidak ada masalah, penandatanganan bisa dilakukan pada akhir bulan di ruang rapat."],"slots":["时间","地点"],"reuse":4},
+   {"cat":"跟进机制","level":"intermediate","formula":"Setelah kontrak berjalan, kita evaluasi setiap [周期] untuk [目的].", "cn": "合同执行后，我们每[周期]评估一次，以[目的]。","structure":"时间状语 + 定期评估 + 目的","grammar":"setelah（之后）；setiap（每）+ 时间单位。","scene":"履约跟进","ex":["Setelah kontrak berjalan, kita evaluasi setiap tiga bulan untuk memastikan kualitas.","Setelah kontrak berjalan, kita evaluasi setiap enam bulan untuk meninjau harga."],"slots":["评估周期","目的"],"reuse":4},
+   {"cat":"风险预案","level":"intermediate","formula":"Bila terjadi [风险情形], kita sepakat untuk [应对措施].", "cn": "如发生[风险情形]，我们约定[应对措施]。","structure":"假设风险 + 约定应对","grammar":"terjadi（发生）；sepakat untuk（约定做）。","scene":"合同保障","ex":["Bila terjadi keterlambatan pasokan, kita sepakat untuk pembayaran tertunda.","Bila terjadi perubahan kurs, kita sepakat untuk penyesuaian harga."],"slots":["风险情形","应对措施"],"reuse":4},
+   {"cat":"关系展望","level":"professional","formula":"Kami berharap kesepakatan ini menjadi awal kemitraan yang [形容词] di masa depan.", "cn": "我们希望本协议成为未来[形容词]合作的起点。","structure":"期望 + 隐喻 + 未来展望","grammar":"menjadi awal（成为开端）；di masa depan（未来）。","scene":"签约致辞","ex":["Kami berharap kesepakatan ini menjadi awal kemitraan yang saling menguntungkan di masa depan.","Kami berharap kesepakatan ini menjadi awal kerja sama yang berkelanjutan di masa depan."],"slots":["关系形容词"],"reuse":3},
+   {"cat":"未尽事项","level":"professional","formula":"Hal-hal yang belum dibahas hari ini akan kami sampaikan melalui [渠道] paling lambat [时限].", "cn": "今天未讨论的事项，我们最迟于[时限]通过[渠道]告知。","structure":"未决事项 + 通报渠道 + 时限","grammar":"yang belum（尚未）定语从句；melalui（通过）。","scene":"留尾处理","ex":["Hal-hal yang belum dibahas hari ini akan kami sampaikan melalui email paling lambat besok.","Hal-hal teknis yang belum dibahas akan kami sampaikan melalui notulen paling lambat Jumat."],"slots":["渠道","时限"],"reuse":4},
+   {"cat":"正式收尾","level":"professional","formula":"Dengan ini, pembicaraan kita dinyatakan selesai; selanjutnya proses administratif akan ditangani oleh [责任方].", "cn": "至此，本次会谈宣布结束；后续行政流程将由[责任方]处理。","structure":"宣布结束 + 移交行政","grammar":"dengan ini（兹此）公文用语；dinyatakan（被宣布）被动。","scene":"会议闭幕","ex":["Dengan ini, pembicaraan kita dinyatakan selesai; selanjutnya proses administratif akan ditangani oleh sekretaris perusahaan.","Dengan ini, rapat dinyatakan selesai; selanjutnya dokumentasi akan ditangani oleh tim legal."],"slots":["责任方"],"reuse":3},
+   {"cat":"感谢对方","level":"professional","formula":"Atas nama [组织], saya mengucapkan terima kasih atas [贡献] selama proses negosiasi.", "cn": "我谨代表[组织]，感谢贵方在谈判过程中的[贡献]。","structure":"代表 + 感谢 + 贡献","grammar":"atas nama（代表……）；mengucapkan terima kasih（致谢）。","scene":"签约致谢","ex":["Atas nama perusahaan, saya mengucapkan terima kasih atas keterbukaan selama proses negosiasi.","Atas nama delegasi, saya mengucapkan terima kasih atas kesabaran selama proses pembicaraan."],"slots":["组织","贡献"],"reuse":3}
   ],
   expressions: [
    {"level":"basic","scene":"总结","id":"Jadi semuanya sudah jelas, kan?","cn":"所以一切都清楚了吧？","note":"kan?（是吧）寻求认同。"},
@@ -245710,7 +245719,8 @@ const caData = {
    {"q":"\"Sisa pembayaran dilunasi setelah serah terima.\" 中 \"serah terima\" 是？","opts":["移交/交付验收","互相致谢","共同签署","中途休息"],"a":0,"exp":"serah（交）+ terima（收）→ 交接验收。"}
   ]
  }
-},};
+}
+,};
 
 const caCalendar = {
  "2026-10-20": {
@@ -245895,7 +245905,7 @@ function renderCA(c, topic, day, _inline){
   const tabs=[1,2,3].map(i=>`<button class="ca-tab ${i===n?"on":""}" onclick="location.hash='#/ca/${topic}/${i}'">Day ${i} · ${caE(caData[topic]["day"+i].theme.split(" ")[0])}</button>`).join("");
   const vocabHtml=d.vocab.map(v=>`<div class="ca-chip" onclick="caWordPopup('${caE(v.w)}')"><div class="w">${caE(v.w)} 🔊</div><div class="i">${caE(v.ipa)}</div><div class="c">${caE(v.cn)} ${caLvTag(v.level)}</div><div class="n">${caE(v.note)}</div></div>`).join("");
   const phraseHtml=d.phrases.map(p=>`<div class="ca-expr"><span class="id">${caClickWords(p.id)} <span onclick="speak('${caE(p.id)}')" title="朗读" style="cursor:pointer;opacity:.7;font-size:12px">🔊</span></span><span class="cn">${caE(p.cn)}</span><span class="nt">[${caE(p.usage)}] ${caE(p.note)}</span></div>`).join("");
-  const patHtml=d.patterns.map((p,i)=>`<div class="ca-pat"><div>${caLvBadge(p.level)} <span style="font-size:11px;color:var(--text-dim)">${caE(p.cat)} · 复用${p.reuse}次</span></div><div class="f">${caClickWords(p.formula)} <span onclick="speak('${caE(p.formula.replace(/\[.*?\]/g,""))}')" title="朗读" style="cursor:pointer;opacity:.7;font-size:12px">🔊</span></div><div class="row">结构：${caE(p.structure)}</div><div class="row">语法：${caE(p.grammar)}</div><div class="row">场景：${caE(p.scene)}</div>${p.ex.map(e=>`<div class="ex">${caClickWords(e)}</div>`).join("")}<div class="row" style="margin-top:5px">替换成分：${p.slots.map(s=>`<span class="ca-slot">${caClickWords(s)}</span>`).join("")}</div></div>`).join("");
+  const patHtml=d.patterns.map((p,i)=>`<div class="ca-pat"><div>${caLvBadge(p.level)} <span style="font-size:11px;color:var(--text-dim)">${caE(p.cat)} · 复用${p.reuse}次</span></div><div class="f">${caClickWords(p.formula)} <span onclick="speak('${caE(p.formula.replace(/\[.*?\]/g,""))}')" title="朗读" style="cursor:pointer;opacity:.7;font-size:12px">🔊</span></div><div class="row" style="color:#c4b5fd">翻译：${caE(p.cn||"—")}</div><div class="row">结构：${caE(p.structure)}</div><div class="row">语法：${caE(p.grammar)}</div><div class="row">场景：${caE(p.scene)}</div>${p.ex.map(e=>`<div class="ex">${caClickWords(e)}</div>`).join("")}<div class="row" style="margin-top:5px">替换成分：${p.slots.map(s=>`<span class="ca-slot">${caClickWords(s)}</span>`).join("")}</div></div>`).join("");
   const exprHtml=d.expressions.map(e=>`<div class="ca-expr">${caLvBadge(e.level)}<span style="font-size:10px;color:var(--text-dim)">${caE(e.scene)}</span><span class="id">${caClickWords(e.id)} <span onclick="speak('${caE(e.id)}')" title="朗读" style="cursor:pointer;opacity:.7;font-size:12px">🔊</span></span><span class="cn">${caE(e.cn)}</span><span class="nt">${caE(e.note)}</span></div>`).join("");
   const affHtml=d.affixes.map(a=>`<div class="ca-aff"><div class="h">${a.no}. ${caE(a.affix)} <span style="font-size:10px;color:var(--text-dim)">[${caE(a.type)}]</span></div><div class="d">功能：${caE(a.func)} ｜ 变形：${caE(a.rule)}</div><div class="der">${a.derivs.map(x=>`${caE(x.root)} → <b>${caE(x.der)}</b>（${caE(x.zh)}）`).join(" ｜ ")}</div>${a.examples.map(x=>`<div class="ex2">▸ ${caE(x.id)}<br><span style="color:var(--text-dim)">　${caE(x.cn)}</span></div>`).join("")}<div class="link" onclick="caAffixGo('${caE(a.affix)}')">↗ 词缀玫瑰图联动 · 定位 ${caE(a.affix)}</div></div>`).join("");
   const quizHtml=d.quiz.map((q,i)=>`<div class="caq" id="caq${i}"><div class="q">${i+1}. ${caE(q.q)}</div>${q.opts.map((o,j)=>`<button class="caq-opt" id="caqo${i}_${j}" onclick="caPick(${i},${j})">${String.fromCharCode(65+j)}. ${caE(o)}</button>`).join("")}<div class="caq-exp" id="caqe${i}">💡 ${caE(q.exp)}</div></div>`).join("");
