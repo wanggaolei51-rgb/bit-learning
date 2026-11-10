@@ -1,7 +1,7 @@
 # MEMORY.md - 长期记忆(任何会话重开必读)
 
 > 本文件是跨会话的核心记忆。每次启动优先读本文件。
-> 最后更新：2026-11-10（V4.52.1 双日记部署+bitVocabDB收尾修复 · 库3215词）
+> 最后更新：2026-11-10（V4.52.2 CA等级配比v1.3落地 · 库3215词）
 
 ---
 
@@ -26,7 +26,7 @@
 ## 二、LEO-BIR 策略体系(核心认知,不得再说不认识)
 
 ### 产品本体
-**LEO-BIR** 印尼语学习平台--单文件 HTML + GitHub Pages,当前 **V4.52.1**。
+**LEO-BIR** 印尼语学习平台--单文件 HTML + GitHub Pages,当前 **V4.52.2**。
 为印尼 Morowali 冶炼工业园区总经理定制的个人学习工具。词库 3215 词条,主题课 topic22-29。
 
 ### 策略代号一览
@@ -123,6 +123,7 @@ V4.48.2       1028笔记35词(20新+15覆盖,挂ukbi_diary_1 Day3): 114变形+10
 V4.48.5       1030笔记39词(20新+19覆盖,挂ukbi_diary_2 Day2口语模拟+表达): 42词元→39(去重3+versi-fina拼写勘误为versi-final) 137变形+117例句(全部对齐站内diary课文原句) RCO对账39/39 IPA保留恢复4条 库3015→3035 · BIV视频4集(--per-part 10: 242/254/274/235s lint10/10) 管线修复三坑(NO_ANTONYM动态化/破折号过滤/--per-part) · commit 83fa88b+719c233 · 线上MD5一致(2400a642)
 V4.48.6       悬停高亮+点击弹窗双修复(用户实测:25号后短文句子悬停中文不对/点击无BIT翻译): ①点击根因=V4.48.3 stopPropagation阻断#appContent委托(showWordPopup唯一入口)→点击双触发(高亮+弹窗) ②悬停根因=全局最长匹配+首次出现常错位→顺序对齐预计算(单调游标/重复词顺推/'的/了'尾缀容差),无匹配落tooltip零错高亮 ③wrapClickableWords正则升级,连字符叠词(tetap-tenang)整体成词不再切断 · 冒烟16项(12PASS+4词汇缺口诚实tooltip非错显) · commit 99051b1
 V4.51.1       CA万能句型翻译：渲染器 patHtml 新增紫色「翻译」行 + caData 180 条句型 cn 全量补齐（meet/interview/biz_listen/biz_speak/negotiation 各36，按[占位符]直译） · 跑题话题改标「CA专题」（interview/biz_listen/biz_speak 去话题编号，CA话题对齐C序列任务二待重排） · 日历 11/7-9 还原 negotiation（昨夜误挂 shopping 无数据会白屏） · commit af25405 线上 MD5 7684e0f1 一致
+V4.52.2       CA等级配比v1.3落地(Leo_kimi 指令:现生成内容大多基础"于我作用不大"): 配比=20%基础/50%进阶/30%专业,离散取整词汇7=1/4/2·词组/句型/表达各5=1/2/2·测验10=2/5/3 · caData.meet三天全量重制——句型/表达升级商务专业级(敬语初见Sudah lama saya ingin berkenalan/自报家门带职务单位/正式致歉Mohon maaf atas…/转达问候/祝愿合作),词组补level字段,测验补level标签 · 词汇21词不变等级重标(核心/进阶/高阶→基础/进阶/专业),渲染器caLvTag双制兼容补丁 · 策略文档C6_CA_CATAT升v1.3(生成时逐块核对分布,不达标重写内容不改标签凑数) · C6/日历/BIT不动 · 断言32/32 PASS · commit bb7f42c · 线上MD5一致(564692d4)
 V4.52.1       1110每日笔记33词(新闻综合:数据报道/事故障碍/报告文书): 37词元→33词条(korban+jiwa连字符归并/Triwulan·Terjadi大小写归一/句型记号「+现象+」拆入terjadi+yang-disebabkan-oleh两词, 新闻因果句型Terjadi[现象]yang disebabkan oleh[原因]正式入库) · 新15(dipantau/sisi/pemirsa/korban-jiwa/rintangan/hambat/ringkas/ikhtisar/penelaahan/semata/rencana-belum-terlaksana/triwulan/diperoleh/yang-disebabkan-oleh/rampung)覆盖18 · 库3200→3215 · 99例句全3条/词 · RCO A3对账37词元逐条映射 · **坑:V4.52.0注入遗留——bitVocabDB库闭合}与末词条kontak同行(缺换行),md_to_dailynote.py的列首};锚点正则越过真尾→Extra data+误吃+锚点丢失三连崩;修复=库收尾}前补换行(教训:注入器追加条目后必须验证const块收尾=闭合}在列首) · 坑2:本机无gh CLI,Pages轮询用curl api.github.com(poll_deploy.sh套路)** · commit 220e236 · 线上MD5一致(728a5bec)
 V4.52.0       C6_CA_CATAT整合策略v1.0落地(用户指令:日学习≤2h减载): ①C6新载量=核心词10/场景对话5句/短文50-60词(语法6/测试10题) ②CA新载量=词汇7+词组5/万能句型5(全带cn)/常用表达5/词缀5每天/测试10题 ③C6新话题ukbi_madya「UKBI 5级」(11/10-12: Madya目标与备考规划/弱项强化与模考/出分解读与证书规划, 10词7复用3新) ④CA话题1见面整体重制(meet对象替换, 21词14复用7新, 词缀编号1-15含be-/ter-/diper-/se-/-kan/-nya/-ku) ⑤日历11/10-12双挂(C6=ukbi_madya, CA=meet话题1) ⑥bitVocabDB+10→3200 ⑦策略文档落盘strategies/C6_CA_CATAT-课程整合策略.md v1.0 ⑧injector三连坑: topicData尾=]}}+对象本体}(插词条只加逗号不加括号)/日历条目前置逗号双写/comma-caCalendar锚点idx与idx+1差一个括号 ⑨CA quiz必须4选项(渲染常态4, interview有2选项历史异常) ⑩node锚点提取+39项断言全PASS · commit edacbf1 · 线上MD5 372e2bae一致
 V4.50.0       CA四问修复(用户实测上报):①万能句型/词组/常用表达/替换成分全链路可点词(caClickWords+.ca-w虚线高亮,speak独立🔊,stopPropagation防双触发) ②UNDEFINED根因=等级两套写法并存(meet=basic/adv/pro vs 话题2-6=basic/intermediate/professional)→caLvNorm归一化+审计表计数修正 ③玫瑰图真实联动(iframe内window.selectAffix前缀token匹配+allow-same-origin+onload消费_affixRoseTarget+caAffixGo) ④bitVocabDB回填75词(30+45,3112→3187) · CA话题7商务谈判11/7-9我手写(两版sub-agent均只吐碎片不落盘→自己动手;45词零撞库,pelunasan撞→harga dasar;渲染冒烟7/7) · 日历内联renderCAInto+caSubmit(topic,n)修硬编码meet判分bug · 渲染冒烟7/7 PASS · 坑:大对象追加条目首插须前置逗号,幂等回滚须清遗留逗号 · commit d77b886 线上MD5 a92003d7一致
