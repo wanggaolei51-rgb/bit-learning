@@ -6,7 +6,7 @@
 <meta http-equiv="Expires" content="0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LEO-BIR V4.52.0</title>
+<title>LEO-BIR V4.52.1</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -276,7 +276,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="sidebar-header">
     <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <h1>LEO-BIR</h1>
-    <div class="ver">LEO-BIR V4.52.0 · C6_CA_CATAT整合策略落地：课时减载(C6:10词/5句/短文50-60词 · CA:7+5/5/5/5/10题) + UKBI Madya新课(11/10-12) + CA话题1见面重制 · 库3200词</div>
+    <div class="ver">LEO-BIR V4.52.1 · 1110每日笔记33词(新闻综合:数据·趋势·事故·报告文书 · 新15+覆盖18 · 因果句型terjadi+yang-disebabkan-oleh) · 库3215词</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -6012,6 +6012,7 @@ function showBITInfo(word){
   }
   overlay.addEventListener("click",function(e){if(e.target===overlay)closeBITInfo();});
 }
+
 
 
 
@@ -99291,6 +99292,1502 @@ const dailyNotesDB = {
         ]
       }
     ]
+  },
+  "2026-11-10": {
+    "date": "2026-11-10",
+    "topicKey": "dailynote",
+    "source": "BIT V1.0 + BIO 审查",
+    "entries": [
+      {
+        "word": "kaget",
+        "cn": "受惊的；吃惊的",
+        "en": "startled; shocked",
+        "root": "kaget（拟声源，无派生词根）",
+        "forms": [],
+        "formsNote": "—",
+        "note": "口语高频；kaget sekali = 大吃一惊；kaget berat = 吓得不轻。",
+        "synonyms": [
+          "terkejut",
+          "terperanjat"
+        ],
+        "antonyms": [
+          "tenang"
+        ],
+        "examples": [
+          {
+            "scene": "新闻",
+            "id": "Warga kaget mendengar kabar ledakan di pabrik.",
+            "cn": "（居民们听到工厂爆炸的消息大吃一惊。）"
+          },
+          {
+            "scene": "园区",
+            "id": "Saya kaget melihat persentase kenaikan harga nikel tahun ini.",
+            "cn": "（看到今年镍价上涨的百分比，我很吃惊。）"
+          },
+          {
+            "scene": "日常",
+            "id": "Jangan kaget, itu hanya mainan.",
+            "cn": "（别害怕，那只是个玩具。）"
+          }
+        ]
+      },
+      {
+        "word": "mengagetkan",
+        "cn": "使吃惊；令人震惊",
+        "en": "to startle; to shock",
+        "root": "kaget",
+        "forms": [
+          {
+            "form": "kaget",
+            "pos": "adj",
+            "mean": "受惊的"
+          },
+          {
+            "form": "mengagetkan",
+            "pos": "v",
+            "mean": "使吃惊"
+          },
+          {
+            "form": "kejutan",
+            "pos": "n",
+            "mean": "惊喜；惊吓"
+          }
+        ],
+        "formsNote": "",
+        "note": "meN- + kaget（k 脱落）：mengagetkan。",
+        "synonyms": [
+          "mengejutkan",
+          "mengherankan"
+        ],
+        "antonyms": [
+          "menenangkan"
+        ],
+        "examples": [
+          {
+            "scene": "新闻",
+            "id": "Angka korban jiwa yang naik tajam mengagetkan publik.",
+            "cn": "（伤亡人数骤升令公众震惊。）"
+          },
+          {
+            "scene": "园区",
+            "id": "Hasil audit itu mengagetkan seluruh jajaran manajemen.",
+            "cn": "（审计结果令整个管理层震惊。）"
+          },
+          {
+            "scene": "日常",
+            "id": "Kehadirannya tiba-tiba mengagetkan saya.",
+            "cn": "（他的突然出现吓了我一跳。）"
+          }
+        ]
+      },
+      {
+        "word": "persentase",
+        "cn": "百分比；百分率",
+        "en": "percentage",
+        "root": "persen",
+        "forms": [
+          {
+            "form": "persen",
+            "pos": "n",
+            "mean": "百分数（%）"
+          },
+          {
+            "form": "persentase",
+            "pos": "n",
+            "mean": "百分比；百分率"
+          }
+        ],
+        "formsNote": "",
+        "note": "借自荷兰语 percent；新闻数据报道高频。",
+        "synonyms": [
+          "persen"
+        ],
+        "antonyms": [
+          "—"
+        ],
+        "examples": [
+          {
+            "scene": "新闻",
+            "id": "Persentase pengangguran turun dua persen tahun ini.",
+            "cn": "（今年失业率百分比下降了两个百分点。）"
+          },
+          {
+            "scene": "园区",
+            "id": "Persentase penyerapan anggaran kami sudah delapan puluh persen.",
+            "cn": "（我们的预算执行率已达百分之八十。）"
+          },
+          {
+            "scene": "日常",
+            "id": "Hitung persentase kehadiran rapat kemarin.",
+            "cn": "（算一下昨天会议的出勤百分比。）"
+          }
+        ]
+      },
+      {
+        "word": "kenyataan",
+        "cn": "现实；事实",
+        "en": "reality; fact",
+        "root": "nyata",
+        "forms": [
+          {
+            "form": "nyata",
+            "pos": "adj",
+            "mean": "真实的"
+          },
+          {
+            "form": "kenyataan",
+            "pos": "n",
+            "mean": "现实"
+          },
+          {
+            "form": "menyatakan",
+            "pos": "v",
+            "mean": "声明；表明"
+          },
+          {
+            "form": "kenyataannya",
+            "pos": "adv",
+            "mean": "事实上"
+          }
+        ],
+        "formsNote": "",
+        "note": "",
+        "synonyms": [
+          "realitas",
+          "fakta"
+        ],
+        "antonyms": [
+          "khayalan"
+        ],
+        "examples": [
+          {
+            "scene": "新闻",
+            "id": "Kenyataan di lapangan berbeda dengan laporan resmi.",
+            "cn": "（现场事实与官方报告不同。）"
+          },
+          {
+            "scene": "园区",
+            "id": "Kenyataannya, proyek itu belum rampung sesuai jadwal.",
+            "cn": "（事实上，那个项目没有如期完工。）"
+          },
+          {
+            "scene": "日常",
+            "id": "Dia tidak bisa menerima kenyataan.",
+            "cn": "（他无法接受现实。）"
+          }
+        ]
+      },
+      {
+        "word": "halaman",
+        "cn": "页；页面；门前庭院",
+        "en": "page; yard",
+        "root": "halam",
+        "forms": [],
+        "formsNote": "—",
+        "note": "双义：书籍/文件的「页」与房屋的「前院」。",
+        "synonyms": [
+          "lembar（张/页）"
+        ],
+        "antonyms": [
+          "—"
+        ],
+        "examples": [
+          {
+            "scene": "新闻",
+            "id": "Berita itu tercetak di halaman pertama koran.",
+            "cn": "（那条新闻刊登在报纸头版。）"
+          },
+          {
+            "scene": "园区",
+            "id": "Buka halaman laporan triwulan kedua.",
+            "cn": "（打开第二季度的报告页面。）"
+          },
+          {
+            "scene": "日常",
+            "id": "Anak-anak bermain di halaman rumah.",
+            "cn": "（孩子们在院子里玩耍。）"
+          }
+        ]
+      },
+      {
+        "word": "tren",
+        "cn": "趋势；潮流",
+        "en": "trend",
+        "root": "tren（英语借词）",
+        "forms": [],
+        "formsNote": "—",
+        "note": "英语 trend 的印尼语拼写；经济新闻高频。",
+        "synonyms": [
+          "kecenderungan",
+          "arus"
+        ],
+        "antonyms": [
+          "—"
+        ],
+        "examples": [
+          {
+            "scene": "新闻",
+            "id": "Tren harga batu bara dunia mulai menurun.",
+            "cn": "（国际煤价趋势开始下行。）"
+          },
+          {
+            "scene": "园区",
+            "id": "Tren permintaan nikel dipantau setiap triwulan.",
+            "cn": "（镍需求趋势每季度都受到监测。）"
+          },
+          {
+            "scene": "日常",
+            "id": "Tren kerja jarak jauh makin populer.",
+            "cn": "（远程办公趋势日益流行。）"
+          }
+        ]
+      },
+      {
+        "word": "dipantau",
+        "cn": "被监测；被密切关注",
+        "en": "(be) monitored",
+        "root": "pantau",
+        "forms": [
+          {
+            "form": "pantau",
+            "pos": "v",
+            "mean": "监测"
+          },
+          {
+            "form": "memantau",
+            "pos": "v",
+            "mean": "监测（主动）"
+          },
+          {
+            "form": "dipantau",
+            "pos": "v",
+            "mean": "被监测"
+          },
+          {
+            "form": "pemantauan",
+            "pos": "n",
+            "mean": "监测"
+          }
+        ],
+        "formsNote": "",
+        "note": "",
+        "synonyms": [
+          "diawasi",
+          "diawasi ketat"
+        ],
+        "antonyms": [
+          "—"
+        ],
+        "examples": [
+          {
+            "scene": "新闻",
+            "id": "Perkembangan situasi keamanan terus dipantau aparat.",
+            "cn": "（安全局势的发展持续受到当局监测。）"
+          },
+          {
+            "scene": "园区",
+            "id": "Kualitas udara di sekitar kawasan dipantau setiap hari.",
+            "cn": "（园区周边的空气质量每天都受监测。）"
+          },
+          {
+            "scene": "日常",
+            "id": "Tekanan darah pasien dipantau oleh perawat.",
+            "cn": "（病人的血压由护士监测。）"
+          }
+        ]
+      },
+      {
+        "word": "sisi",
+        "cn": "方面；一侧；侧面",
+        "en": "side; aspect",
+        "root": "sisi",
+        "forms": [],
+        "formsNote": "—",
+        "note": "与 segi/aspek 近义；dari sisi + 名词 = 从……方面。",
+        "synonyms": [
+          "segi",
+          "aspek",
+          "pihak"
+        ],
+        "antonyms": [
+          "—"
+        ],
+        "examples": [
+          {
+            "scene": "新闻",
+            "id": "Dari sisi ekonomi, kebijakan itu menuai protes.",
+            "cn": "（从经济方面看，那项政策招致抗议。）"
+          },
+          {
+            "scene": "园区",
+            "id": "Insinyur mengecek sisi selatan pipa utama.",
+            "cn": "（工程师检查主管道的南侧。）"
+          },
+          {
+            "scene": "日常",
+            "id": "Setiap masalah punya dua sisi.",
+            "cn": "（每个问题都有两面。）"
+          }
+        ]
+      },
+      {
+        "word": "pemirsa",
+        "cn": "观众；读者（媒体受众）",
+        "en": "viewers; audience",
+        "root": "pirsa（观看，雅语源）",
+        "forms": [
+          {
+            "form": "pirsa",
+            "pos": "v",
+            "mean": "观看（雅）"
+          },
+          {
+            "form": "pemirsa",
+            "pos": "n",
+            "mean": "观众"
+          }
+        ],
+        "formsNote": "",
+        "note": "电视/网络媒体常用；报纸读者用 pembaca。",
+        "synonyms": [
+          "penonton",
+          "pembaca"
+        ],
+        "antonyms": [
+          "—"
+        ],
+        "examples": [
+          {
+            "scene": "新闻",
+            "id": "Siaran berita itu ditonton jutaan pemirsa.",
+            "cn": "（那则新闻播报被数百万观众收看。）"
+          },
+          {
+            "scene": "园区",
+            "id": "Pemirsa webinar keselamatan kerja mencapai seribu orang.",
+            "cn": "（职业安全网课的观众达千人。）"
+          },
+          {
+            "scene": "日常",
+            "id": "Acara itu disukai pemirsa muda.",
+            "cn": "（那档节目深受年轻观众喜爱。）"
+          }
+        ]
+      },
+      {
+        "word": "korban-jiwa",
+        "cn": "人员伤亡",
+        "en": "casualties (fatalities and injuries)",
+        "root": "korban",
+        "forms": [
+          {
+            "form": "korban",
+            "pos": "n",
+            "mean": "受害者；遇难者"
+          },
+          {
+            "form": "korban-jiwa",
+            "pos": "n",
+            "mean": "人员伤亡"
+          },
+          {
+            "form": "korban luka",
+            "pos": "n",
+            "mean": "伤员"
+          }
+        ],
+        "formsNote": "",
+        "note": "连字符归并复合词；korban jiwa 连写亦通。",
+        "synonyms": [
+          "—"
+        ],
+        "antonyms": [
+          "—"
+        ],
+        "examples": [
+          {
+            "scene": "新闻",
+            "id": "Banjir bandang itu menelan puluhan korban jiwa.",
+            "cn": "（山洪造成数十人伤亡。）"
+          },
+          {
+            "scene": "园区",
+            "id": "Insiden tadi pagi tidak menimbulkan korban jiwa.",
+            "cn": "（今天早上的事故没有造成人员伤亡。）"
+          },
+          {
+            "scene": "日常",
+            "id": "Keselamatan kerja untuk mencegah korban jiwa.",
+            "cn": "（安全生产是为了防止人员伤亡。）"
+          }
+        ]
+      },
+      {
+        "word": "rintangan",
+        "cn": "障碍；阻碍物",
+        "en": "obstacle",
+        "root": "rintang",
+        "forms": [
+          {
+            "form": "rintang",
+            "pos": "v",
+            "mean": "阻挡（罕用）"
+          },
+          {
+            "form": "rintangan",
+            "pos": "n",
+            "mean": "障碍"
+          },
+          {
+            "form": "merintangi",
+            "pos": "v",
+            "mean": "阻挡"
+          }
+        ],
+        "formsNote": "",
+        "note": "",
+        "synonyms": [
+          "kendala",
+          "hambatan",
+          "halangan"
+        ],
+        "antonyms": [
+          "kemudahan",
+          "pendorong"
+        ],
+        "examples": [
+          {
+            "scene": "新闻",
+            "id": "Rintangan utama perdagangan adalah birokrasi.",
+            "cn": "（贸易的主要障碍是官僚主义。）"
+          },
+          {
+            "scene": "园区",
+            "id": "Cuaca buruk menjadi rintangan pengiriman peralatan.",
+            "cn": "（恶劣天气成为设备运输的障碍。）"
+          },
+          {
+            "scene": "日常",
+            "id": "Jangan mudah menyerah oleh rintangan kecil.",
+            "cn": "（别因小障碍就轻易放弃。）"
+          }
+        ]
+      },
+      {
+        "word": "kendala",
+        "cn": "障碍；困难",
+        "en": "constraint; obstacle",
+        "root": "kendala（梵语源）",
+        "forms": [],
+        "formsNote": "—",
+        "note": "",
+        "synonyms": [
+          "rintangan",
+          "hambatan",
+          "kesulitan"
+        ],
+        "antonyms": [
+          "kemudahan"
+        ],
+        "examples": [
+          {
+            "scene": "新闻",
+            "id": "Pembangunan jalan tol terkendala pembebasan lahan.",
+            "cn": "（高速公路建设因征地受阻。）"
+          },
+          {
+            "scene": "园区",
+            "id": "Kendala pasokan listrik sudah teratasi.",
+            "cn": "（电力供应障碍已经解决。）"
+          },
+          {
+            "scene": "日常",
+            "id": "Ada kendala apa dengan rencana perjalananmu?",
+            "cn": "（你的出行计划有什么障碍吗？）"
+          }
+        ]
+      },
+      {
+        "word": "hambat",
+        "cn": "阻挡；阻碍（词根形态）",
+        "en": "to block; to hinder (root form)",
+        "root": "hambat",
+        "forms": [
+          {
+            "form": "hambat",
+            "pos": "v",
+            "mean": "阻挡（词根）"
+          },
+          {
+            "form": "menghambat",
+            "pos": "v",
+            "mean": "阻碍"
+          },
+          {
+            "form": "hambatan",
+            "pos": "n",
+            "mean": "障碍"
+          },
+          {
+            "form": "terhambat",
+            "pos": "adj",
+            "mean": "受阻的"
+          }
+        ],
+        "formsNote": "",
+        "note": "常用名词形态为 hambatan；本词收词根形，覆盖变形全族。",
+        "synonyms": [
+          "rintang",
+          "menghalangi"
+        ],
+        "antonyms": [
+          "melancarkan"
+        ],
+        "examples": [
+          {
+            "scene": "新闻",
+            "id": "Pembangunan terhambat karena pendanaan terbatas.",
+            "cn": "（建设因资金受限而受阻。）"
+          },
+          {
+            "scene": "园区",
+            "id": "Produksi tidak terhambat meski ada gangguan listrik.",
+            "cn": "（尽管有电力故障，生产没有受阻。）"
+          },
+          {
+            "scene": "日常",
+            "id": "Jangan menghambat rencana baik mereka.",
+            "cn": "（别阻碍他们的好计划。）"
+          }
+        ]
+      },
+      {
+        "word": "ringkas",
+        "cn": "简明的；简短的",
+        "en": "concise; brief",
+        "root": "ringkas",
+        "forms": [
+          {
+            "form": "ringkas",
+            "pos": "adj",
+            "mean": "简明的"
+          },
+          {
+            "form": "meringkas",
+            "pos": "v",
+            "mean": "概括"
+          },
+          {
+            "form": "ringkasan",
+            "pos": "n",
+            "mean": "摘要"
+          },
+          {
+            "form": "secara ringkas",
+            "pos": "adv",
+            "mean": "简明地"
+          }
+        ],
+        "formsNote": "",
+        "note": "",
+        "synonyms": [
+          "singkat",
+          "padat"
+        ],
+        "antonyms": [
+          "bertele-tele"
+        ],
+        "examples": [
+          {
+            "scene": "新闻",
+            "id": "Berikut ringkasan berita utama hari ini.",
+            "cn": "（以下是今日要闻简报。）"
+          },
+          {
+            "scene": "园区",
+            "id": "Tolong buatkan laporan yang ringkas.",
+            "cn": "（请给我一份简明的报告。）"
+          },
+          {
+            "scene": "日常",
+            "id": "Jawablah secara ringkas dan jelas.",
+            "cn": "（请简明扼要地回答。）"
+          }
+        ]
+      },
+      {
+        "word": "ikhtisar",
+        "cn": "概要；摘要",
+        "en": "synopsis; summary",
+        "root": "ikhtisar（阿拉伯语源）",
+        "forms": [],
+        "formsNote": "—",
+        "note": "正式文体用词，近 ringkasan，多见于学术/官方文书。",
+        "synonyms": [
+          "ringkasan",
+          "sintesis"
+        ],
+        "antonyms": [
+          "—"
+        ],
+        "examples": [
+          {
+            "scene": "新闻",
+            "id": "Ikhtisar kabinet memuat arah kebijakan lima tahun.",
+            "cn": "（内阁施政概要包含五年的政策方向。）"
+          },
+          {
+            "scene": "园区",
+            "id": "Ikhtisar laporan tahunan sudah dibagikan ke direksi.",
+            "cn": "（年度报告概要已分发给董事会。）"
+          },
+          {
+            "scene": "日常",
+            "id": "Baca ikhtisar buku itu sebelum membeli.",
+            "cn": "（买之前先读一下书的概要。）"
+          }
+        ]
+      },
+      {
+        "word": "sintesis",
+        "cn": "综合；合成",
+        "en": "synthesis",
+        "root": "sintesis（希腊语源）",
+        "forms": [
+          {
+            "form": "sintesis",
+            "pos": "n",
+            "mean": "综合"
+          },
+          {
+            "form": "mensintesis",
+            "pos": "v",
+            "mean": "综合；合成"
+          }
+        ],
+        "formsNote": "",
+        "note": "学术用语；与分析（analisis）相对。",
+        "synonyms": [
+          "kombinasi",
+          "paduan"
+        ],
+        "antonyms": [
+          "analisis"
+        ],
+        "examples": [
+          {
+            "scene": "新闻",
+            "id": "Laporan itu merupakan sintesis berbagai studi lapangan.",
+            "cn": "（那份报告是多项实地研究的综合。）"
+          },
+          {
+            "scene": "园区",
+            "id": "Sintesis data produksi dibuat setiap triwulan.",
+            "cn": "（生产数据的综合每季度做一次。）"
+          },
+          {
+            "scene": "日常",
+            "id": "Belajar mensintesis informasi dari banyak sumber.",
+            "cn": "（学习综合多方信息。）"
+          }
+        ]
+      },
+      {
+        "word": "lampiran",
+        "cn": "附件（随附文件）",
+        "en": "attachment; enclosure",
+        "root": "lampir",
+        "forms": [
+          {
+            "form": "lampiran",
+            "pos": "n",
+            "mean": "附件"
+          },
+          {
+            "form": "melampirkan",
+            "pos": "v",
+            "mean": "附上"
+          },
+          {
+            "form": "terlampir",
+            "pos": "adj",
+            "mean": "随附的"
+          }
+        ],
+        "formsNote": "",
+        "note": "",
+        "synonyms": [
+          "berkas pendukung"
+        ],
+        "antonyms": [
+          "—"
+        ],
+        "examples": [
+          {
+            "scene": "新闻",
+            "id": "Dokumen tambahan ada di lampiran surat resmi.",
+            "cn": "（补充文件在正式公文的附件里。）"
+          },
+          {
+            "scene": "园区",
+            "id": "Lampiran berisi daftar peralatan yang dipesan.",
+            "cn": "（附件包含所订购设备的清单。）"
+          },
+          {
+            "scene": "日常",
+            "id": "Saya melampirkan cv dalam email lamaran.",
+            "cn": "（我在求职邮件中附上了简历。）"
+          }
+        ]
+      },
+      {
+        "word": "apendiks",
+        "cn": "附录（书后/报告后）",
+        "en": "appendix",
+        "root": "apendiks（拉丁语源）",
+        "forms": [],
+        "formsNote": "—",
+        "note": "apendiks 指书后/报告后的附录，也指医学「阑尾」；文件附件用 lampiran。",
+        "synonyms": [
+          "lampiran"
+        ],
+        "antonyms": [
+          "—"
+        ],
+        "examples": [
+          {
+            "scene": "新闻",
+            "id": "Tabel data lengkap ada di apendiks laporan.",
+            "cn": "（完整数据表在报告的附录里。）"
+          },
+          {
+            "scene": "园区",
+            "id": "Apendiks memuat peta kawasan industri.",
+            "cn": "（附录包含工业园区的地图。）"
+          },
+          {
+            "scene": "日常",
+            "id": "Lihat apendiks buku untuk daftar istilah.",
+            "cn": "（术语表见书后附录。）"
+          }
+        ]
+      },
+      {
+        "word": "tinjau",
+        "cn": "审阅；评估；视察",
+        "en": "to review; to inspect",
+        "root": "tinjau",
+        "forms": [
+          {
+            "form": "tinjau",
+            "pos": "v",
+            "mean": "审阅"
+          },
+          {
+            "form": "meninjau",
+            "pos": "v",
+            "mean": "视察"
+          },
+          {
+            "form": "tinjauan",
+            "pos": "n",
+            "mean": "评审；概览"
+          },
+          {
+            "form": "tinjauan ulang",
+            "pos": "n",
+            "mean": "复审"
+          }
+        ],
+        "formsNote": "",
+        "note": "",
+        "synonyms": [
+          "menelaah",
+          "mengevaluasi"
+        ],
+        "antonyms": [
+          "—"
+        ],
+        "examples": [
+          {
+            "scene": "新闻",
+            "id": "Komisi meninjau ulang kebijakan subsidi.",
+            "cn": "（委员会复审补贴政策。）"
+          },
+          {
+            "scene": "园区",
+            "id": "Tim asing meninjau fasilitas smelter kami.",
+            "cn": "（外方团队视察了我们的冶炼厂设施。）"
+          },
+          {
+            "scene": "日常",
+            "id": "Silakan tinjau draf kontrak ini.",
+            "cn": "（请审阅这份合同草案。）"
+          }
+        ]
+      },
+      {
+        "word": "penelaahan",
+        "cn": "审查；细察",
+        "en": "examination; scrutiny",
+        "root": "telaah",
+        "forms": [
+          {
+            "form": "telaah",
+            "pos": "v/n",
+            "mean": "细察"
+          },
+          {
+            "form": "menelaah",
+            "pos": "v",
+            "mean": "细察"
+          },
+          {
+            "form": "penelaahan",
+            "pos": "n",
+            "mean": "审查"
+          }
+        ],
+        "formsNote": "",
+        "note": "penelaahan 是 menelaah 的动名词形态。",
+        "synonyms": [
+          "tinjauan",
+          "pemeriksaan"
+        ],
+        "antonyms": [
+          "—"
+        ],
+        "examples": [
+          {
+            "scene": "新闻",
+            "id": "Penelaahan dokumen itu memakan waktu dua bulan.",
+            "cn": "（那份文件的审查花了两个月。）"
+          },
+          {
+            "scene": "园区",
+            "id": "Penelaahan proposal investasi sedang berlangsung.",
+            "cn": "（投资提案的审查正在进行中。）"
+          },
+          {
+            "scene": "日常",
+            "id": "Penelaahan menyeluruh menghindari kesalahan.",
+            "cn": "（仔细审查能避免错误。）"
+          }
+        ]
+      },
+      {
+        "word": "proyeksi",
+        "cn": "预测；规划投影",
+        "en": "projection",
+        "root": "proyek",
+        "forms": [
+          {
+            "form": "proyek",
+            "pos": "n",
+            "mean": "项目"
+          },
+          {
+            "form": "proyeksi",
+            "pos": "n",
+            "mean": "预测；投影"
+          },
+          {
+            "form": "memproyeksikan",
+            "pos": "v",
+            "mean": "预测"
+          },
+          {
+            "form": "terproyeksi",
+            "pos": "adj",
+            "mean": "预计的"
+          }
+        ],
+        "formsNote": "",
+        "note": "",
+        "synonyms": [
+          "perkiraan",
+          "prediksi"
+        ],
+        "antonyms": [
+          "—"
+        ],
+        "examples": [
+          {
+            "scene": "新闻",
+            "id": "Proyeksi pertumbuhan ekonomi direvisi ke atas.",
+            "cn": "（经济增长预测被上调。）"
+          },
+          {
+            "scene": "园区",
+            "id": "Proyeksi produksi nikel triwulan berikut sudah disusun.",
+            "cn": "（下一季度镍产量预测已编制。）"
+          },
+          {
+            "scene": "日常",
+            "id": "Proyeksi anggaran tahun depan realistis.",
+            "cn": "（明年的预算预测很现实。）"
+          }
+        ]
+      },
+      {
+        "word": "prediksi",
+        "cn": "预测",
+        "en": "prediction",
+        "root": "prediksi（拉丁/英语源）",
+        "forms": [
+          {
+            "form": "prediksi",
+            "pos": "n",
+            "mean": "预测"
+          },
+          {
+            "form": "memprediksi",
+            "pos": "v",
+            "mean": "预测"
+          },
+          {
+            "form": "terprediksi",
+            "pos": "adj",
+            "mean": "可预测的"
+          }
+        ],
+        "formsNote": "",
+        "note": "",
+        "synonyms": [
+          "perkiraan",
+          "proyeksi",
+          "ramalan"
+        ],
+        "antonyms": [
+          "—"
+        ],
+        "examples": [
+          {
+            "scene": "新闻",
+            "id": "Prediksi cuaca: hujan lebat di wilayah timur.",
+            "cn": "（天气预报：东部地区有大雨。）"
+          },
+          {
+            "scene": "园区",
+            "id": "Prediksi kenaikan harga bauksit akurat.",
+            "cn": "（铝土矿涨价的预测很准。）"
+          },
+          {
+            "scene": "日常",
+            "id": "Jangan percaya prediksi tanpa data.",
+            "cn": "（别相信没有数据的预测。）"
+          }
+        ]
+      },
+      {
+        "word": "perkiraan",
+        "cn": "估计；预估",
+        "en": "estimate",
+        "root": "kira",
+        "forms": [
+          {
+            "form": "kira",
+            "pos": "v",
+            "mean": "估计"
+          },
+          {
+            "form": "perkiraan",
+            "pos": "n",
+            "mean": "估计"
+          },
+          {
+            "form": "memperkirakan",
+            "pos": "v",
+            "mean": "预估"
+          }
+        ],
+        "formsNote": "",
+        "note": "",
+        "synonyms": [
+          "prediksi",
+          "estimasi",
+          "ramalan"
+        ],
+        "antonyms": [
+          "—"
+        ],
+        "examples": [
+          {
+            "scene": "新闻",
+            "id": "Perkiraan awal jumlah korban tiga puluh orang.",
+            "cn": "（初步估计伤亡人数为三十人。）"
+          },
+          {
+            "scene": "园区",
+            "id": "Perkiraan biaya sudah termasuk pajak.",
+            "cn": "（费用预估已含税。）"
+          },
+          {
+            "scene": "日常",
+            "id": "Menurut perkiraanku, kerja itu rampung besok.",
+            "cn": "（据我估计，那项工作明天完工。）"
+          }
+        ]
+      },
+      {
+        "word": "realisasi",
+        "cn": "实现；落实（执行）",
+        "en": "realization; implementation",
+        "root": "real",
+        "forms": [
+          {
+            "form": "real",
+            "pos": "adj",
+            "mean": "真实的"
+          },
+          {
+            "form": "realisasi",
+            "pos": "n",
+            "mean": "实现"
+          },
+          {
+            "form": "merealisasikan",
+            "pos": "v",
+            "mean": "使实现"
+          },
+          {
+            "form": "terealisasi",
+            "pos": "adj",
+            "mean": "已实现的"
+          }
+        ],
+        "formsNote": "",
+        "note": "管理高频：realisasi anggaran = 预算执行（额）。",
+        "synonyms": [
+          "pelaksanaan",
+          "pencapaian"
+        ],
+        "antonyms": [
+          "rencana"
+        ],
+        "examples": [
+          {
+            "scene": "新闻",
+            "id": "Realisasi pembangunan jalan capai sembilan puluh persen.",
+            "cn": "（道路建设的落实率达百分之九十。）"
+          },
+          {
+            "scene": "园区",
+            "id": "Realisasi produksi triwulan ini melebihi target.",
+            "cn": "（本季度生产落实超过目标。）"
+          },
+          {
+            "scene": "日常",
+            "id": "Mimpi itu akhirnya terealisasi.",
+            "cn": "（那个梦想终于实现了。）"
+          }
+        ]
+      },
+      {
+        "word": "wacana",
+        "cn": "话语；论述；议题",
+        "en": "discourse",
+        "root": "wacana（梵语 vachana）",
+        "forms": [],
+        "formsNote": "—",
+        "note": "学术/媒体高频：wacana publik = 公共话语。",
+        "synonyms": [
+          "diskursus",
+          "pembahasan"
+        ],
+        "antonyms": [
+          "—"
+        ],
+        "examples": [
+          {
+            "scene": "新闻",
+            "id": "Wacana kenaikan harga bahan bakar memanas.",
+            "cn": "（关于燃料涨价的舆论升温。）"
+          },
+          {
+            "scene": "园区",
+            "id": "Wacana hilirisasi industri masih hangat dibahas.",
+            "cn": "（产业下游化的议题讨论热度不减。）"
+          },
+          {
+            "scene": "日常",
+            "id": "Ia terjebak dalam wacana teoretis.",
+            "cn": "（他陷入了理论话语的纠缠。）"
+          }
+        ]
+      },
+      {
+        "word": "semata",
+        "cn": "仅仅；只是",
+        "en": "merely; only",
+        "root": "semata",
+        "forms": [],
+        "formsNote": "—",
+        "note": "常加强为 semata-mata，义同。",
+        "synonyms": [
+          "hanya",
+          "saja",
+          "semata-mata"
+        ],
+        "antonyms": [
+          "—"
+        ],
+        "examples": [
+          {
+            "scene": "新闻",
+            "id": "Itu bukan semata kesalahan teknis.",
+            "cn": "（那不仅仅是技术失误。）"
+          },
+          {
+            "scene": "园区",
+            "id": "Inspeksi bukan semata formalitas.",
+            "cn": "（检查不仅仅是走过场。）"
+          },
+          {
+            "scene": "日常",
+            "id": "Saya datang semata untuk menolongmu.",
+            "cn": "（我来只是为了帮你。）"
+          }
+        ]
+      },
+      {
+        "word": "rencana-belum-terlaksana",
+        "cn": "尚未实施的计划",
+        "en": "unimplemented plan",
+        "root": "rencana",
+        "forms": [
+          {
+            "form": "rencana",
+            "pos": "n",
+            "mean": "计划"
+          },
+          {
+            "form": "terlaksana",
+            "pos": "adj",
+            "mean": "已实施的"
+          },
+          {
+            "form": "pelaksanaan",
+            "pos": "n",
+            "mean": "实施"
+          },
+          {
+            "form": "belum terlaksana",
+            "pos": "短语",
+            "mean": "尚未实施"
+          }
+        ],
+        "formsNote": "",
+        "note": "复合学习键：rencana + belum + terlaksana。",
+        "synonyms": [
+          "rencana mangkrak"
+        ],
+        "antonyms": [
+          "rencana terlaksana"
+        ],
+        "examples": [
+          {
+            "scene": "新闻",
+            "id": "Lima rencana-belum-terlaksana masuk daftar evaluasi.",
+            "cn": "（五项尚未实施的计划列入评估清单。）"
+          },
+          {
+            "scene": "园区",
+            "id": "Rencana-belum-terlaksana itu kini mulai digulirkan.",
+            "cn": "（那项搁置的计划现在开始推进。）"
+          },
+          {
+            "scene": "日常",
+            "id": "Daftar rencana-belum-terlaksana saya makin panjang.",
+            "cn": "（我的未实施计划清单越来越长。）"
+          }
+        ]
+      },
+      {
+        "word": "triwulan",
+        "cn": "季度（三个月）",
+        "en": "quarter (of a year)",
+        "root": "tri（三）+ wulan（月，爪哇语源）",
+        "forms": [
+          {
+            "form": "triwulan",
+            "pos": "n",
+            "mean": "季度"
+          },
+          {
+            "form": "triwulanan",
+            "pos": "adj",
+            "mean": "每季度的"
+          },
+          {
+            "form": "per triwulan",
+            "pos": "短语",
+            "mean": "每季度"
+          }
+        ],
+        "formsNote": "",
+        "note": "财报/统计高频：Triwulan I–IV；口语亦常用 kuartal。",
+        "synonyms": [
+          "kuartal"
+        ],
+        "antonyms": [
+          "—"
+        ],
+        "examples": [
+          {
+            "scene": "新闻",
+            "id": "Ekonomi tumbuh lima persen pada triwulan ketiga.",
+            "cn": "（第三季度经济增长百分之五。）"
+          },
+          {
+            "scene": "园区",
+            "id": "Laporan produksi triwulan dikirim ke pusat.",
+            "cn": "（季度生产报告发往总部。）"
+          },
+          {
+            "scene": "日常",
+            "id": "Evaluasi kinerja dilakukan setiap triwulan.",
+            "cn": "（每季度进行绩效评估。）"
+          }
+        ]
+      },
+      {
+        "word": "diperoleh",
+        "cn": "获得；被获得",
+        "en": "obtained; acquired",
+        "root": "peroleh",
+        "forms": [
+          {
+            "form": "peroleh",
+            "pos": "v",
+            "mean": "获得"
+          },
+          {
+            "form": "memperoleh",
+            "pos": "v",
+            "mean": "获得（主动）"
+          },
+          {
+            "form": "diperoleh",
+            "pos": "v",
+            "mean": "被获得"
+          },
+          {
+            "form": "perolehan",
+            "pos": "n",
+            "mean": "获得；成果"
+          }
+        ],
+        "formsNote": "",
+        "note": "",
+        "synonyms": [
+          "didapat",
+          "diperoleh"
+        ],
+        "antonyms": [
+          "hilang"
+        ],
+        "examples": [
+          {
+            "scene": "新闻",
+            "id": "Data itu diperoleh dari survei nasional.",
+            "cn": "（那些数据来自全国调查。）"
+          },
+          {
+            "scene": "园区",
+            "id": "Hasil pengujian diperoleh setelah dua minggu.",
+            "cn": "（检测结果两周后获得。）"
+          },
+          {
+            "scene": "日常",
+            "id": "Izin kerja diperoleh tanpa kendala.",
+            "cn": "（工作许可顺利获得，没有障碍。）"
+          }
+        ]
+      },
+      {
+        "word": "terjadi",
+        "cn": "发生；出现",
+        "en": "to occur; to happen",
+        "root": "jadi",
+        "forms": [
+          {
+            "form": "jadi",
+            "pos": "v",
+            "mean": "成为；发生"
+          },
+          {
+            "form": "terjadi",
+            "pos": "v",
+            "mean": "发生"
+          },
+          {
+            "form": "kejadian",
+            "pos": "n",
+            "mean": "事件"
+          }
+        ],
+        "formsNote": "",
+        "note": "新闻因果句型：Terjadi + [现象] + yang disebabkan oleh + [原因]。",
+        "synonyms": [
+          "berlangsung",
+          "terjadilah"
+        ],
+        "antonyms": [
+          "—"
+        ],
+        "examples": [
+          {
+            "scene": "新闻",
+            "id": "Terjadi kebakaran yang disebabkan oleh korsleting listrik.",
+            "cn": "（发生了由电路短路引起的火灾。）"
+          },
+          {
+            "scene": "园区",
+            "id": "Kemarin terjadi gangguan pada sistem pendingin.",
+            "cn": "（昨天冷却系统发生了故障。）"
+          },
+          {
+            "scene": "日常",
+            "id": "Apa yang terjadi di sana?",
+            "cn": "（那里发生了什么？）"
+          }
+        ]
+      },
+      {
+        "word": "yang-disebabkan-oleh",
+        "cn": "由……引起的（因果从句标记）",
+        "en": "caused by (relative clause marker)",
+        "root": "sebab",
+        "forms": [
+          {
+            "form": "sebab",
+            "pos": "n",
+            "mean": "原因"
+          },
+          {
+            "form": "disebabkan",
+            "pos": "v",
+            "mean": "被引起"
+          },
+          {
+            "form": "yang disebabkan oleh",
+            "pos": "短语",
+            "mean": "由……引起的"
+          }
+        ],
+        "formsNote": "",
+        "note": "新闻因果句核心：主语 + yang disebabkan oleh + 原因；可与 yang diakibatkan oleh 互换。",
+        "synonyms": [
+          "yang diakibatkan oleh",
+          "yang ditimbulkan oleh"
+        ],
+        "antonyms": [
+          "—"
+        ],
+        "examples": [
+          {
+            "scene": "新闻",
+            "id": "Kerugian besar yang disebabkan oleh kelalaian manajemen.",
+            "cn": "（由管理疏忽造成的巨大损失。）"
+          },
+          {
+            "scene": "园区",
+            "id": "Keterlambatan yang disebabkan oleh cuaca tidak bisa dihindari.",
+            "cn": "（由天气造成的延误无法避免。）"
+          },
+          {
+            "scene": "日常",
+            "id": "Masalah yang disebabkan oleh kesalahpahaman segera diselesaikan.",
+            "cn": "（由误会产生的问题很快解决了。）"
+          }
+        ]
+      },
+      {
+        "word": "demikian",
+        "cn": "如此；这样",
+        "en": "thus; such",
+        "root": "demikian",
+        "forms": [],
+        "formsNote": "—",
+        "note": "变体 demikian juga（同样地）、demikianlah（就这样）；正式文书结尾套语：Demikian laporan ini。",
+        "synonyms": [
+          "begitu",
+          "seperti itu",
+          "demikianlah"
+        ],
+        "antonyms": [
+          "—"
+        ],
+        "examples": [
+          {
+            "scene": "新闻",
+            "id": "Demikian siaran berita sore ini.",
+            "cn": "（以上就是今晚新闻播报。）"
+          },
+          {
+            "scene": "园区",
+            "id": "Demikian hasil rapat koordinasi hari ini.",
+            "cn": "（今天的协调会结果如上。）"
+          },
+          {
+            "scene": "日常",
+            "id": "Jangan perlakukan saya demikian.",
+            "cn": "（别那样对待我。）"
+          }
+        ]
+      },
+      {
+        "word": "rampung",
+        "cn": "完成；竣工",
+        "en": "completed; finished",
+        "root": "rampung",
+        "forms": [
+          {
+            "form": "rampung",
+            "pos": "adj",
+            "mean": "完成的"
+          },
+          {
+            "form": "merampungkan",
+            "pos": "v",
+            "mean": "完成"
+          },
+          {
+            "form": "selesai",
+            "pos": "近义",
+            "mean": "完成"
+          }
+        ],
+        "formsNote": "",
+        "note": "",
+        "synonyms": [
+          "selesai",
+          "tuntas",
+          "beres"
+        ],
+        "antonyms": [
+          "belum rampung"
+        ],
+        "examples": [
+          {
+            "scene": "新闻",
+            "id": "Proyek jembatan itu rampung lebih cepat.",
+            "cn": "（那个桥梁项目提前竣工。）"
+          },
+          {
+            "scene": "园区",
+            "id": "Pembangunan gudang rampung akhir triwulan ini.",
+            "cn": "（仓库建设将于本季度末完工。）"
+          },
+          {
+            "scene": "日常",
+            "id": "Tugasnya rampung tepat waktu.",
+            "cn": "（他的任务按时完成了。）"
+          }
+        ]
+      }
+    ]
   }
 };
 // ===== BIT 详解库 bitVocabDB V4.31.0 新增:按词组织的累积详解库,转换器 scripts/md_to_dailynote.py 在写入每日笔记时自动并入新词条;批量生成由 BIT→BIO 流程灌入 =====
@@ -126076,51 +127573,34 @@ const bitVocabDB = {
   },
   "kaget": {
     "word": "kaget",
-    "cn": "吃惊的；吓一跳的",
+    "cn": "受惊的；吃惊的",
     "en": "startled; shocked",
-    "root": "kaget（根词，拟声来源，无词缀派生）",
-    "forms": [
-      {
-        "form": "kaget",
-        "pos": "形容词",
-        "mean": "吃惊的；吓一跳的"
-      },
-      {
-        "form": "terkejut",
-        "pos": "同义形容词",
-        "mean": "吃惊的（较正式）"
-      },
-      {
-        "form": "kagetan",
-        "pos": "名词",
-        "mean": "动辄受惊的人（口语）"
-      }
-    ],
-    "formsNote": "",
-    "note": "根形容词；口语 -an 派生 kagetan（大惊小怪的人）；同义词 terkejut 为 ter- 被动感形容词。 kaget dengan（对……吃惊）、kaget mendengar/melihat（听到/看到吓一跳）；语体偏口语，正式文本用 terkejut；kaget 与 terkejut 常互换，kaget 更生活化。",
+    "root": "kaget（拟声源，无派生词根）",
+    "forms": [],
+    "formsNote": "—",
+    "note": "口语高频；kaget sekali = 大吃一惊；kaget berat = 吓得不轻。",
     "synonyms": [
-      "terkejut（吃惊——较正式）",
-      "terperanjat（受惊——书面）"
+      "terkejut",
+      "terperanjat"
     ],
     "antonyms": [
-      "tenang（镇定）",
-      "biasa saja（若无其事）"
+      "tenang"
     ],
     "examples": [
       {
-        "scene": "商务谈判",
-        "id": "Kami kaget dengan kenaikan harga pasar nikel minggu ini.",
-        "cn": "我们对本周镍市场价上涨感到吃惊。"
+        "scene": "新闻",
+        "id": "Warga kaget mendengar kabar ledakan di pabrik.",
+        "cn": "（居民们听到工厂爆炸的消息大吃一惊。）"
       },
       {
-        "scene": "月报数据",
-        "id": "Semua orang kaget melihat persentase deviasi anggaran di halaman laporan.",
-        "cn": "看到报告页上的预算偏差百分比，所有人大吃一惊。"
+        "scene": "园区",
+        "id": "Saya kaget melihat persentase kenaikan harga nikel tahun ini.",
+        "cn": "（看到今年镍价上涨的百分比，我很吃惊。）"
       },
       {
-        "scene": "日常表达",
-        "id": "Jangan kaget, itu hanya suara kucing di dapur.",
-        "cn": "别吓一跳，那只是厨房里的猫叫声。"
+        "scene": "日常",
+        "id": "Jangan kaget, itu hanya mainan.",
+        "cn": "（别害怕，那只是个玩具。）"
       }
     ]
   },
@@ -131598,10 +133078,9 @@ const bitVocabDB = {
   },
   "sintesis": {
     "word": "sintesis",
-    "ipa": "/sɪnˈtɛsis/",
-    "cn": "综合",
+    "cn": "综合；合成",
     "en": "synthesis",
-    "root": "sintesis",
+    "root": "sintesis（希腊语源）",
     "forms": [
       {
         "form": "sintesis",
@@ -131611,32 +133090,33 @@ const bitVocabDB = {
       {
         "form": "mensintesis",
         "pos": "v",
-        "mean": "综合（某物）"
-      },
-      {
-        "form": "sintetis",
-        "pos": "adj",
-        "mean": "合成的"
+        "mean": "综合；合成"
       }
     ],
-    "formsNote": "希腊语/拉丁语借词；meN- 动词化",
-    "note": "kimia sintesis 合成化学；sintesis opini 意见综合（写作术语）",
+    "formsNote": "",
+    "note": "学术用语；与分析（analisis）相对。",
     "synonyms": [
-      "perpaduan"
+      "kombinasi",
+      "paduan"
     ],
     "antonyms": [
       "analisis"
     ],
     "examples": [
       {
-        "scene": "Sintesis protein terjadi di ribosom.",
-        "id": "sintesis",
-        "cn": "蛋白质合成在核糖体中进行。"
+        "scene": "新闻",
+        "id": "Laporan itu merupakan sintesis berbagai studi lapangan.",
+        "cn": "（那份报告是多项实地研究的综合。）"
       },
       {
-        "scene": "Penulis mensintesis berbagai sumber.",
-        "id": "mensintesis",
-        "cn": "作者综合了多种资料。"
+        "scene": "园区",
+        "id": "Sintesis data produksi dibuat setiap triwulan.",
+        "cn": "（生产数据的综合每季度做一次。）"
+      },
+      {
+        "scene": "日常",
+        "id": "Belajar mensintesis informasi dari banyak sumber.",
+        "cn": "（学习综合多方信息。）"
       }
     ]
   },
@@ -154314,36 +155794,35 @@ const bitVocabDB = {
   },
   "kendala": {
     "word": "kendala",
-    "cn": "障碍；困难；瓶颈",
-    "en": "obstacle; impediment; constraint",
-    "root": "kendala（词根本身，梵语 kendala? 经爪哇语进入标准语）",
+    "cn": "障碍；困难",
+    "en": "constraint; obstacle",
+    "root": "kendala（梵语源）",
     "forms": [],
-    "formsNote": "—（名词，无派生；常用固定搭配 menghadapi kendala、ada kendala）",
+    "formsNote": "—",
     "note": "",
     "synonyms": [
-      "hambatan",
       "rintangan",
+      "hambatan",
       "kesulitan"
     ],
     "antonyms": [
-      "kelancaran",
       "kemudahan"
     ],
     "examples": [
       {
-        "scene": "项目管理",
-        "id": "Kita menghadapi kendala logistik akibat jalan tambang rusak.",
-        "cn": "（矿区道路损坏造成我们遇到物流障碍。）"
+        "scene": "新闻",
+        "id": "Pembangunan jalan tol terkendala pembebasan lahan.",
+        "cn": "（高速公路建设因征地受阻。）"
       },
       {
-        "scene": "UKBI 备考",
-        "id": "Kendala terbesar belajar mandiri adalah kurangnya disiplin.",
-        "cn": "（自学的最大障碍是缺乏自律。）"
+        "scene": "园区",
+        "id": "Kendala pasokan listrik sudah teratasi.",
+        "cn": "（电力供应障碍已经解决。）"
       },
       {
-        "scene": "商务会议",
-        "id": "Mohon sampaikan kendala teknis sebelum rapat koordinasi.",
-        "cn": "（请在协调会前报告技术障碍。）"
+        "scene": "日常",
+        "id": "Ada kendala apa dengan rencana perjalananmu?",
+        "cn": "（你的出行计划有什么障碍吗？）"
       }
     ]
   },
@@ -154611,48 +156090,32 @@ const bitVocabDB = {
     "word": "tren",
     "cn": "趋势；潮流",
     "en": "trend",
-    "root": "tren（英语 trend 借词，KBBI 规范拼写 tren，非 trend）",
-    "forms": [
-      {
-        "form": "tren",
-        "pos": "名词",
-        "mean": "趋势；潮流"
-      },
-      {
-        "form": "kecenderungan",
-        "pos": "名词",
-        "mean": "倾向；趋势（固有同义词）"
-      },
-      {
-        "form": "mengikuti tren",
-        "pos": "短语",
-        "mean": "跟随潮流"
-      }
-    ],
-    "formsNote": "",
-    "note": "外来词无词缀派生；固有同义词 kecenderungan（ke-…-an ← cenderung 倾向）。 tren pasar（市场趋势）、tren global（全球趋势）、tren harga（价格走势）、melawan tren（逆趋势而动）、mengikuti tren（跟风）；数据月报描述 persentase 与 kenyataan 走向的核心词。",
+    "root": "tren（英语借词）",
+    "forms": [],
+    "formsNote": "—",
+    "note": "英语 trend 的印尼语拼写；经济新闻高频。",
     "synonyms": [
-      "kecenderungan（倾向——较正式）",
-      "arus（潮流——比喻义）"
+      "kecenderungan",
+      "arus"
     ],
     "antonyms": [
       "—"
     ],
     "examples": [
       {
-        "scene": "月报数据",
-        "id": "Tren harga nikel global menunjukkan kenaikan tiga bulan berturut-turut.",
-        "cn": "全球镍价趋势连续三个月上行。"
+        "scene": "新闻",
+        "id": "Tren harga batu bara dunia mulai menurun.",
+        "cn": "（国际煤价趋势开始下行。）"
       },
       {
-        "scene": "商务沟通",
-        "id": "Kami mengikuti tren digitalisasi dalam proses persetujuan kontrak.",
-        "cn": "我们在合同审批流程上跟随数字化趋势。"
+        "scene": "园区",
+        "id": "Tren permintaan nikel dipantau setiap triwulan.",
+        "cn": "（镍需求趋势每季度都受到监测。）"
       },
       {
-        "scene": "日常表达",
-        "id": "Tren fashion berubah lebih cepat dari dugaan kita.",
-        "cn": "时尚趋势的变化比想象中更快。"
+        "scene": "日常",
+        "id": "Tren kerja jarak jauh makin populer.",
+        "cn": "（远程办公趋势日益流行。）"
       }
     ]
   },
@@ -174952,44 +176415,55 @@ const bitVocabDB = {
   },
   "proyeksi": {
     "word": "proyeksi",
-    "ipa": "/proˈjɛksi/",
-    "cn": "预测/规划",
-    "en": "projection, forecast",
-    "root": "proyeksi",
+    "cn": "预测；规划投影",
+    "en": "projection",
+    "root": "proyek",
     "forms": [
-      {
-        "form": "proyeksi",
-        "pos": "n",
-        "mean": "预测"
-      },
-      {
-        "form": "memproyeksikan",
-        "pos": "v",
-        "mean": "投射/预测"
-      },
-      {
-        "form": "proyektor",
-        "pos": "n",
-        "mean": "投影仪"
-      },
       {
         "form": "proyek",
         "pos": "n",
         "mean": "项目"
+      },
+      {
+        "form": "proyeksi",
+        "pos": "n",
+        "mean": "预测；投影"
+      },
+      {
+        "form": "memproyeksikan",
+        "pos": "v",
+        "mean": "预测"
+      },
+      {
+        "form": "terproyeksi",
+        "pos": "adj",
+        "mean": "预计的"
       }
     ],
-    "formsNote": "借词 projection；勿与 proyek（project）混淆",
-    "note": "proyeksi keuangan 财务预测；proyeksi penduduk 人口预测",
+    "formsNote": "",
+    "note": "",
     "synonyms": [
-      "prediksi",
-      "perkiraan"
+      "perkiraan",
+      "prediksi"
     ],
-    "antonyms": [],
+    "antonyms": [
+      "—"
+    ],
     "examples": [
       {
-        "scene": "Proyeksi permintaan nikel terus meningkat.",
-        "id": "proyeksi",
-        "cn": "镍需求预测持续上升。"
+        "scene": "新闻",
+        "id": "Proyeksi pertumbuhan ekonomi direvisi ke atas.",
+        "cn": "（经济增长预测被上调。）"
+      },
+      {
+        "scene": "园区",
+        "id": "Proyeksi produksi nikel triwulan berikut sudah disusun.",
+        "cn": "（下一季度镍产量预测已编制。）"
+      },
+      {
+        "scene": "日常",
+        "id": "Proyeksi anggaran tahun depan realistis.",
+        "cn": "（明年的预算预测很现实。）"
       }
     ]
   },
@@ -176737,52 +178211,51 @@ const bitVocabDB = {
   },
   "prediksi": {
     "word": "prediksi",
-    "cn": "预测；预言",
-    "en": "prediction; forecast",
-    "root": "prediksi（拉丁 praedictio 经荷兰语/英语借词）",
+    "cn": "预测",
+    "en": "prediction",
+    "root": "prediksi（拉丁/英语源）",
     "forms": [
       {
         "form": "prediksi",
-        "pos": "名词",
+        "pos": "n",
         "mean": "预测"
       },
       {
         "form": "memprediksi",
-        "pos": "动词",
+        "pos": "v",
         "mean": "预测"
       },
       {
-        "form": "diprediksi",
-        "pos": "被动动词",
-        "mean": "被预测"
-      },
-      {
-        "form": "prediksi cuaca",
-        "pos": "名词短语",
-        "mean": "天气预报"
+        "form": "terprediksi",
+        "pos": "adj",
+        "mean": "可预测的"
       }
     ],
     "formsNote": "",
-    "note": "近义三角——prediksi 偏模型/数据推断，perkiraan 偏人工估算，estimasi 偏技术测算（#42 联记）。",
+    "note": "",
     "synonyms": [
-      "ramalan（预言——本土）",
-      "perkiraan（预估——10-03 #2 联记）",
-      "proyeksi（投影预测）"
+      "perkiraan",
+      "proyeksi",
+      "ramalan"
     ],
     "antonyms": [
-      "kenyataan（现实）",
-      "fakta（事实）"
+      "—"
     ],
     "examples": [
       {
-        "scene": "商务",
-        "id": "Prediksi permintaan nikel menunjukkan tren naik.",
-        "cn": "（镍需求预测呈上升趋势。）"
+        "scene": "新闻",
+        "id": "Prediksi cuaca: hujan lebat di wilayah timur.",
+        "cn": "（天气预报：东部地区有大雨。）"
       },
       {
-        "scene": "项目管理",
-        "id": "Aktual versus prediksi dibahas dalam review bulanan.",
-        "cn": "（月度复盘讨论实际与预测对比。）"
+        "scene": "园区",
+        "id": "Prediksi kenaikan harga bauksit akurat.",
+        "cn": "（铝土矿涨价的预测很准。）"
+      },
+      {
+        "scene": "日常",
+        "id": "Jangan percaya prediksi tanpa data.",
+        "cn": "（别相信没有数据的预测。）"
       }
     ]
   },
@@ -180272,39 +181745,50 @@ const bitVocabDB = {
   },
   "terjadi": {
     "word": "terjadi",
-    "ipa": "/tərˈdʒadi/",
-    "cn": "发生",
-    "en": "to happen, to occur",
+    "cn": "发生；出现",
+    "en": "to occur; to happen",
     "root": "jadi",
     "forms": [
       {
         "form": "jadi",
         "pos": "v",
-        "mean": "成为/发生"
+        "mean": "成为；发生"
+      },
+      {
+        "form": "terjadi",
+        "pos": "v",
+        "mean": "发生"
       },
       {
         "form": "kejadian",
         "pos": "n",
         "mean": "事件"
-      },
-      {
-        "form": "menjadi",
-        "pos": "v",
-        "mean": "成为"
       }
     ],
-    "formsNote": "ter- 状态/自发；ke-…-an 名词",
-    "note": "yang terjadi = 发生的事；apa yang terjadi? = 发生了什么？",
+    "formsNote": "",
+    "note": "新闻因果句型：Terjadi + [现象] + yang disebabkan oleh + [原因]。",
     "synonyms": [
       "berlangsung",
       "terjadilah"
     ],
-    "antonyms": [],
+    "antonyms": [
+      "—"
+    ],
     "examples": [
       {
-        "scene": "Kecelakaan terjadi tadi pagi.",
-        "id": "terjadi",
-        "cn": "事故发生在今天早上。"
+        "scene": "新闻",
+        "id": "Terjadi kebakaran yang disebabkan oleh korsleting listrik.",
+        "cn": "（发生了由电路短路引起的火灾。）"
+      },
+      {
+        "scene": "园区",
+        "id": "Kemarin terjadi gangguan pada sistem pendingin.",
+        "cn": "（昨天冷却系统发生了故障。）"
+      },
+      {
+        "scene": "日常",
+        "id": "Apa yang terjadi di sana?",
+        "cn": "（那里发生了什么？）"
       }
     ]
   },
@@ -193225,62 +194709,51 @@ const bitVocabDB = {
   },
   "perkiraan": {
     "word": "perkiraan",
-    "cn": "估计；预估；预测",
-    "en": "estimate; estimation; forecast",
-    "root": "kira（计算；考虑——本土词）+ per- + -an → perkiraan",
+    "cn": "估计；预估",
+    "en": "estimate",
+    "root": "kira",
     "forms": [
       {
         "form": "kira",
-        "pos": "动词/词根",
-        "mean": "计算；考虑"
-      },
-      {
-        "form": "mengira",
-        "pos": "动词",
-        "mean": "计算"
-      },
-      {
-        "form": "kira-kira",
-        "pos": "副词",
-        "mean": "大约"
+        "pos": "v",
+        "mean": "估计"
       },
       {
         "form": "perkiraan",
-        "pos": "名词",
-        "mean": "估计；预估"
-      },
-      {
-        "form": "kiranya",
-        "pos": "副词",
-        "mean": "想必；大约"
+        "pos": "n",
+        "mean": "估计"
       },
       {
         "form": "memperkirakan",
-        "pos": "动词",
-        "mean": "预估；估算"
+        "pos": "v",
+        "mean": "预估"
       }
     ],
     "formsNote": "",
-    "note": "`kira-kira`（大约）口语高频；项目管理高频 `memperkirakan biaya`（估算成本）。",
+    "note": "",
     "synonyms": [
-      "estimasi（估计——借词）",
-      "prediksi（预测）",
-      "ramalan（预言）"
+      "prediksi",
+      "estimasi",
+      "ramalan"
     ],
     "antonyms": [
-      "kenyataan（现实）",
-      "fakta（事实）"
+      "—"
     ],
     "examples": [
       {
-        "scene": "商务",
-        "id": "Perkiraan biaya proyek naik 12 persen akibat kenaikan harga bahan bakar.",
-        "cn": "（因燃料价格上涨，项目费用预估上调 12%。）"
+        "scene": "新闻",
+        "id": "Perkiraan awal jumlah korban tiga puluh orang.",
+        "cn": "（初步估计伤亡人数为三十人。）"
       },
       {
-        "scene": "项目管理",
-        "id": "Perkiraan waktu penyelesaian diperbarui setiap minggu.",
-        "cn": "（每周更新完工时间预估。）"
+        "scene": "园区",
+        "id": "Perkiraan biaya sudah termasuk pajak.",
+        "cn": "（费用预估已含税。）"
+      },
+      {
+        "scene": "日常",
+        "id": "Menurut perkiraanku, kerja itu rampung besok.",
+        "cn": "（据我估计，那项工作明天完工。）"
       }
     ]
   },
@@ -202632,45 +204105,55 @@ const bitVocabDB = {
   },
   "tinjau": {
     "word": "tinjau",
-    "cn": "审查 / 考察（词根原形）",
-    "en": "to review（root form）",
-    "root": "tinjau（审查，原始词）· 无词缀",
+    "cn": "审阅；评估；视察",
+    "en": "to review; to inspect",
+    "root": "tinjau",
     "forms": [
       {
         "form": "tinjau",
-        "pos": "动词",
-        "mean": "审查（词根）"
+        "pos": "v",
+        "mean": "审阅"
       },
       {
         "form": "meninjau",
-        "pos": "动词",
-        "mean": "审查（meN- 主动）"
+        "pos": "v",
+        "mean": "视察"
       },
       {
         "form": "tinjauan",
-        "pos": "名词",
-        "mean": "审查报告"
+        "pos": "n",
+        "mean": "评审；概览"
+      },
+      {
+        "form": "tinjauan ulang",
+        "pos": "n",
+        "mean": "复审"
       }
     ],
     "formsNote": "",
-    "note": "词根独立使用较少，常带 meN-；tinjauan（审查报告）为高频名词。",
+    "note": "",
     "synonyms": [
-      "kajian",
-      "ulasan"
+      "menelaah",
+      "mengevaluasi"
     ],
     "antonyms": [
       "—"
     ],
     "examples": [
       {
-        "scene": "周汇报",
-        "id": "Tinjauan mingguan sudah dibagikan ke grup.",
-        "cn": "每周审查报告已分发到群。"
+        "scene": "新闻",
+        "id": "Komisi meninjau ulang kebijakan subsidi.",
+        "cn": "（委员会复审补贴政策。）"
       },
       {
-        "scene": "月报",
-        "id": "Tinjauan triwulanan disiapkan akhir bulan.",
-        "cn": "季度审查报告月底准备。"
+        "scene": "园区",
+        "id": "Tim asing meninjau fasilitas smelter kami.",
+        "cn": "（外方团队视察了我们的冶炼厂设施。）"
+      },
+      {
+        "scene": "日常",
+        "id": "Silakan tinjau draf kontrak ini.",
+        "cn": "（请审阅这份合同草案。）"
       }
     ]
   },
@@ -205388,45 +206871,35 @@ const bitVocabDB = {
   },
   "demikian": {
     "word": "demikian",
-    "cn": "如此 / 这样 / 特此（公文套语）",
-    "en": "thus / such",
-    "root": "原始马来词 · 无词缀",
-    "forms": [
-      {
-        "form": "demikian",
-        "pos": "副词",
-        "mean": "如此"
-      },
-      {
-        "form": "demikian juga",
-        "pos": "连词",
-        "mean": "同样地"
-      },
-      {
-        "form": "demikianlah",
-        "pos": "副词（强调）",
-        "mean": "正是如此"
-      }
-    ],
-    "formsNote": "",
-    "note": "-lah 强调后缀；公文结尾\"特此报告\"= demikian kami sampaikan。",
+    "cn": "如此；这样",
+    "en": "thus; such",
+    "root": "demikian",
+    "forms": [],
+    "formsNote": "—",
+    "note": "变体 demikian juga（同样地）、demikianlah（就这样）；正式文书结尾套语：Demikian laporan ini。",
     "synonyms": [
       "begitu",
-      "seperti itu"
+      "seperti itu",
+      "demikianlah"
     ],
     "antonyms": [
       "—"
     ],
     "examples": [
       {
-        "scene": "公文",
-        "id": "Demikian laporan kami sampaikan.",
-        "cn": "特此报告。"
+        "scene": "新闻",
+        "id": "Demikian siaran berita sore ini.",
+        "cn": "（以上就是今晚新闻播报。）"
       },
       {
-        "scene": "说明",
-        "id": "Demikian prosedur kerja yang berlaku.",
-        "cn": "以上为现行作业规程。"
+        "scene": "园区",
+        "id": "Demikian hasil rapat koordinasi hari ini.",
+        "cn": "（今天的协调会结果如上。）"
+      },
+      {
+        "scene": "日常",
+        "id": "Jangan perlakukan saya demikian.",
+        "cn": "（别那样对待我。）"
       }
     ]
   },
@@ -206469,50 +207942,33 @@ const bitVocabDB = {
   },
   "halaman": {
     "word": "halaman",
-    "cn": "页；页面（亦指\"庭院\"，同形同音异义）",
-    "en": "page (also: yard)",
-    "root": "halaman（固有词；与\"庭院\"义项同形异源）",
-    "forms": [
-      {
-        "form": "halaman",
-        "pos": "名词",
-        "mean": "页；页面"
-      },
-      {
-        "form": "halaman",
-        "pos": "名词",
-        "mean": "庭院；院子（同形异义）"
-      },
-      {
-        "form": "berhalaman",
-        "pos": "形容词",
-        "mean": "共……页的"
-      }
-    ],
-    "formsNote": "",
-    "note": "量词性名词：dua puluh halaman（二十页）；ber- 构成 berhalaman（达……页，描述书本：buku berhalaman dua ratus）。 halaman web（网页）、halaman depan（首页/封面）、halaman berikutnya（下一页）、halaman muka（扉页）；第二义项\"庭院\"（rumah berhalaman luas 有大院子的房子），两义按语境区分，勿混。",
+    "cn": "页；页面；门前庭院",
+    "en": "page; yard",
+    "root": "halam",
+    "forms": [],
+    "formsNote": "—",
+    "note": "双义：书籍/文件的「页」与房屋的「前院」。",
     "synonyms": [
-      "lembar（张；页——计量近义）",
-      "laman（页面——网络用语）"
+      "lembar（张/页）"
     ],
     "antonyms": [
       "—"
     ],
     "examples": [
       {
-        "scene": "月报数据",
-        "id": "Laporan bulanan ini terdiri dari tiga puluh halaman dengan tabel lengkap.",
-        "cn": "本月报共30页，附完整表格。"
+        "scene": "新闻",
+        "id": "Berita itu tercetak di halaman pertama koran.",
+        "cn": "（那条新闻刊登在报纸头版。）"
       },
       {
-        "scene": "商务沟通",
-        "id": "Silakan lihat rinciannya di halaman dua belas proposal kami.",
-        "cn": "详情请见我方提案第12页。"
+        "scene": "园区",
+        "id": "Buka halaman laporan triwulan kedua.",
+        "cn": "（打开第二季度的报告页面。）"
       },
       {
-        "scene": "日常表达",
-        "id": "Rumah baru itu punya halaman luas untuk taman kecil.",
-        "cn": "新房有个大院子，可以建个小花园。"
+        "scene": "日常",
+        "id": "Anak-anak bermain di halaman rumah.",
+        "cn": "（孩子们在院子里玩耍。）"
       }
     ]
   },
@@ -207041,44 +208497,34 @@ const bitVocabDB = {
   },
   "wacana": {
     "word": "wacana",
-    "ipa": "/waˈtʃana/",
-    "cn": "篇章/语篇",
-    "en": "discourse/text",
-    "root": "wacana",
-    "forms": [
-      {
-        "form": "wacana",
-        "pos": "n",
-        "mean": "语篇/篇章"
-      },
-      {
-        "form": "wacana lisan",
-        "pos": "n.phrase",
-        "mean": "口头语篇"
-      },
-      {
-        "form": "wacana tulis",
-        "pos": "n.phrase",
-        "mean": "书面语篇"
-      }
-    ],
-    "formsNote": "梵语借词 vācana → 爪哇语 wacana",
-    "note": "语言学术语；UKBI 听力/阅读材料的基本单位",
+    "cn": "话语；论述；议题",
+    "en": "discourse",
+    "root": "wacana（梵语 vachana）",
+    "forms": [],
+    "formsNote": "—",
+    "note": "学术/媒体高频：wacana publik = 公共话语。",
     "synonyms": [
-      "teks",
-      "narasi"
+      "diskursus",
+      "pembahasan"
     ],
-    "antonyms": [],
+    "antonyms": [
+      "—"
+    ],
     "examples": [
       {
-        "scene": "Wacana lisan dalam bentuk 4 dialog dan 4 monolog.",
-        "id": "Wacana",
-        "cn": "口头语篇形式为 4 个对话和 4 个独白。"
+        "scene": "新闻",
+        "id": "Wacana kenaikan harga bahan bakar memanas.",
+        "cn": "（关于燃料涨价的舆论升温。）"
       },
       {
-        "scene": "Soal disajikan dalam bentuk maksimal 8 wacana tulis.",
-        "id": "wacana",
-        "cn": "题目以最多 8 篇书面语篇呈现。"
+        "scene": "园区",
+        "id": "Wacana hilirisasi industri masih hangat dibahas.",
+        "cn": "（产业下游化的议题讨论热度不减。）"
+      },
+      {
+        "scene": "日常",
+        "id": "Ia terjebak dalam wacana teoretis.",
+        "cn": "（他陷入了理论话语的纠缠。）"
       }
     ]
   },
@@ -226944,57 +228390,55 @@ const bitVocabDB = {
   },
   "realisasi": {
     "word": "realisasi",
-    "cn": "落实；实现",
+    "cn": "实现；落实（执行）",
     "en": "realization; implementation",
-    "root": "realisasi（外来词，经荷兰语 realisatie）",
+    "root": "real",
     "forms": [
       {
+        "form": "real",
+        "pos": "adj",
+        "mean": "真实的"
+      },
+      {
         "form": "realisasi",
-        "pos": "名词",
-        "mean": "落实；实现"
+        "pos": "n",
+        "mean": "实现"
       },
       {
         "form": "merealisasikan",
-        "pos": "及物动词",
-        "mean": "实现；落实"
+        "pos": "v",
+        "mean": "使实现"
       },
       {
-        "form": "tererealisasi",
-        "pos": "被动",
-        "mean": "得以实现"
-      },
-      {
-        "form": "direalisasikan",
-        "pos": "被动",
-        "mean": "被落实"
+        "form": "terealisasi",
+        "pos": "adj",
+        "mean": "已实现的"
       }
     ],
-    "formsNote": "meN- → merealisasikan；被动 ter-/di-；名词 realisasi。",
-    "note": "项目/政策高频，比 terwujud 更正式。常见搭配：realisasi anggaran（预算执行）、realisasi proyek（项目落地）、target realisasi（落实目标）、realisasi 80%（完成率80%）。",
+    "formsNote": "",
+    "note": "管理高频：realisasi anggaran = 预算执行（额）。",
     "synonyms": [
-      "pelaksanaan（实施）",
-      "pencapaian（达成）",
-      "terwujudnya（实现）"
+      "pelaksanaan",
+      "pencapaian"
     ],
     "antonyms": [
-      "wacana semata（空谈）",
-      "rencana belum terlaksana（未落实的计划）"
+      "rencana"
     ],
     "examples": [
       {
-        "scene": "项目管理",
-        "id": "Realisasi proyek pembangunan pabrik mencapai 85 persen tahun ini.",
-        "cn": "工厂建设项目的落地率今年达到85%。"
+        "scene": "新闻",
+        "id": "Realisasi pembangunan jalan capai sembilan puluh persen.",
+        "cn": "（道路建设的落实率达百分之九十。）"
       },
       {
-        "scene": "商务沟通",
-        "id": "Rencana ekspansi belum terealisasi karena keterlambatan izin.",
-        "cn": "扩张计划因许可延迟尚未落实。"
+        "scene": "园区",
+        "id": "Realisasi produksi triwulan ini melebihi target.",
+        "cn": "（本季度生产落实超过目标。）"
       },
       {
-        "scene": "日常表达",
-        "id": "Mimpi itu akhirnya direalisasikan setelah sepuluh tahun.",
-        "cn": "那个梦想十年后终于实现。"
+        "scene": "日常",
+        "id": "Mimpi itu akhirnya terealisasi.",
+        "cn": "（那个梦想终于实现了。）"
       }
     ]
   },
@@ -227325,55 +228769,49 @@ const bitVocabDB = {
   },
   "lampiran": {
     "word": "lampiran",
-    "cn": "附件；附录",
-    "en": "attachment; annex",
-    "root": "lampir（附贴）+ -an → lampiran",
+    "cn": "附件（随附文件）",
+    "en": "attachment; enclosure",
+    "root": "lampir",
     "forms": [
       {
         "form": "lampiran",
-        "pos": "名词",
+        "pos": "n",
         "mean": "附件"
       },
       {
-        "form": "terlampir",
-        "pos": "形容词/分词",
-        "mean": "随附的"
-      },
-      {
         "form": "melampirkan",
-        "pos": "及物动词",
+        "pos": "v",
         "mean": "附上"
       },
       {
-        "form": "dilampirkan",
-        "pos": "被动",
-        "mean": "被附上"
+        "form": "terlampir",
+        "pos": "adj",
+        "mean": "随附的"
       }
     ],
-    "formsNote": "meN-…-kan → melampirkan；被动 di-…-kan → dilampirkan；ter- → terlampir（随附，正式公文常用）。",
-    "note": "商务邮件核心词。常见搭配：seperti terlampir（如附件所示）、dokumen terlampir（随附文件）、melampirkan CV（附上简历）、dalam lampiran（见附件）。",
+    "formsNote": "",
+    "note": "",
     "synonyms": [
-      "terlampir（随附）",
-      "apendiks（附录）"
+      "berkas pendukung"
     ],
     "antonyms": [
       "—"
     ],
     "examples": [
       {
-        "scene": "商务沟通",
-        "id": "Dokumen penawaran harga kami lampirkan pada email ini.",
-        "cn": "报价文件随本邮件附上。"
+        "scene": "新闻",
+        "id": "Dokumen tambahan ada di lampiran surat resmi.",
+        "cn": "（补充文件在正式公文的附件里。）"
       },
       {
-        "scene": "项目管理",
-        "id": "Berita acara pemeriksaan ditandatangani seperti terlampir.",
-        "cn": "验收会议纪要经签署，见附件。"
+        "scene": "园区",
+        "id": "Lampiran berisi daftar peralatan yang dipesan.",
+        "cn": "（附件包含所订购设备的清单。）"
       },
       {
-        "scene": "日常表达",
-        "id": "Melamar pekerjaan dengan melampirkan portofolio terbaru.",
-        "cn": "求职时附上最新作品集。"
+        "scene": "日常",
+        "id": "Saya melampirkan cv dalam email lamaran.",
+        "cn": "（我在求职邮件中附上了简历。）"
       }
     ]
   },
@@ -227785,44 +229223,33 @@ const bitVocabDB = {
   },
   "apendiks": {
     "word": "apendiks",
-    "cn": "附录",
+    "cn": "附录（书后/报告后）",
     "en": "appendix",
-    "root": "apendiks（外来词，经荷兰语 appendiks ← 拉丁 appendix）",
-    "forms": [
-      {
-        "form": "apendiks",
-        "pos": "名词",
-        "mean": "附录"
-      },
-      {
-        "form": "apendik",
-        "pos": "变体拼写",
-        "mean": "附录（次常用）"
-      }
-    ],
-    "formsNote": "正式报告用语；口语/一般文档多用 lampiran。",
-    "note": "与 lampiran 近义；apendiks 更正式且仅指书末附录，lampiran 可指任何随附文件。常见搭配：apendiks laporan（报告附录）、lampiran A / apendiks B。",
+    "root": "apendiks（拉丁语源）",
+    "forms": [],
+    "formsNote": "—",
+    "note": "apendiks 指书后/报告后的附录，也指医学「阑尾」；文件附件用 lampiran。",
     "synonyms": [
-      "lampiran（附件/附录）"
+      "lampiran"
     ],
     "antonyms": [
       "—"
     ],
     "examples": [
       {
-        "scene": "项目管理",
-        "id": "Metodologi survei dijelaskan lengkap dalam apendiks laporan.",
-        "cn": "调查方法在报告附录中完整说明。"
+        "scene": "新闻",
+        "id": "Tabel data lengkap ada di apendiks laporan.",
+        "cn": "（完整数据表在报告的附录里。）"
       },
       {
-        "scene": "商务沟通",
-        "id": "Daftar istilah teknis ditempatkan pada apendiks dokumen tender.",
-        "cn": "技术术语表置于招标文件附录。"
+        "scene": "园区",
+        "id": "Apendiks memuat peta kawasan industri.",
+        "cn": "（附录包含工业园区的地图。）"
       },
       {
-        "scene": "日常表达",
-        "id": "Buku itu memiliki apendiks berisi peta dan glossarium.",
-        "cn": "该书附录含地图和词汇表。"
+        "scene": "日常",
+        "id": "Lihat apendiks buku untuk daftar istilah.",
+        "cn": "（术语表见书后附录。）"
       }
     ]
   },
@@ -230489,50 +231916,50 @@ const bitVocabDB = {
   },
   "mengagetkan": {
     "word": "mengagetkan",
-    "cn": "使吃惊；令人吃惊",
-    "en": "to startle; startling",
-    "root": "kaget（吃惊）+ meN-…-kan 使动",
+    "cn": "使吃惊；令人震惊",
+    "en": "to startle; to shock",
+    "root": "kaget",
     "forms": [
       {
+        "form": "kaget",
+        "pos": "adj",
+        "mean": "受惊的"
+      },
+      {
         "form": "mengagetkan",
-        "pos": "及物动词",
+        "pos": "v",
         "mean": "使吃惊"
       },
       {
-        "form": "kaget",
-        "pos": "形容词",
-        "mean": "吃惊的"
-      },
-      {
-        "form": "dikagetkan",
-        "pos": "被动",
-        "mean": "被惊吓"
+        "form": "kejutan",
+        "pos": "n",
+        "mean": "惊喜；惊吓"
       }
     ],
     "formsNote": "",
-    "note": "meN- + kaget + -kan 使动化（主语令宾语吃惊）；被动 di- → dikagetkan。 berita mengagetkan（惊人消息）、angka mengagetkan（惊人数字）、sangat mengagetkan（非常惊人）；-kan 使动后缀是产词力最强的构词手段之一。",
+    "note": "meN- + kaget（k 脱落）：mengagetkan。",
     "synonyms": [
-      "mengejutkan（使吃惊）",
-      "mencengangkan（令人震惊）"
+      "mengejutkan",
+      "mengherankan"
     ],
     "antonyms": [
-      "menenangkan（使镇定）"
+      "menenangkan"
     ],
     "examples": [
       {
-        "scene": "月报数据",
-        "id": "Kenaikan persentase laba tahun ini sungguh mengagetkan para pemegang saham.",
-        "cn": "今年利润增长率让股东们大为吃惊。"
+        "scene": "新闻",
+        "id": "Angka korban jiwa yang naik tajam mengagetkan publik.",
+        "cn": "（伤亡人数骤升令公众震惊。）"
       },
       {
-        "scene": "商务沟通",
-        "id": "Keputusan mendadak itu mengagetkan seluruh jajaran manajemen.",
-        "cn": "那个突然的决定让全体管理层吃惊。"
+        "scene": "园区",
+        "id": "Hasil audit itu mengagetkan seluruh jajaran manajemen.",
+        "cn": "（审计结果令整个管理层震惊。）"
       },
       {
-        "scene": "日常表达",
-        "id": "Suara petir tadi mengagetkan anak yang sedang tidur.",
-        "cn": "刚才的雷声吓着了睡着的孩子。"
+        "scene": "日常",
+        "id": "Kehadirannya tiba-tiba mengagetkan saya.",
+        "cn": "（他的突然出现吓了我一跳。）"
       }
     ]
   },
@@ -230540,116 +231967,1240 @@ const bitVocabDB = {
     "word": "persentase",
     "cn": "百分比；百分率",
     "en": "percentage",
-    "root": "persen（百分之，经荷兰语 percent 借入）+ 外来后缀 -tase（=-age）",
+    "root": "persen",
     "forms": [
       {
-        "form": "persentase",
-        "pos": "名词",
-        "mean": "百分比；百分率"
-      },
-      {
         "form": "persen",
-        "pos": "名词",
-        "mean": "百分之（口语）"
+        "pos": "n",
+        "mean": "百分数（%）"
       },
       {
-        "form": "sepersen",
-        "pos": "数词短语",
-        "mean": "百分之一"
+        "form": "persentase",
+        "pos": "n",
+        "mean": "百分比；百分率"
       }
     ],
     "formsNote": "",
-    "note": "persen + 外来后缀 -tase 名物化；口语 persen 独立作量词：lima persen（5%）。 persentase pertumbuhan（增长率）、persentase keuntungan（利润率）、persentase penyelesaian（完成率）、naik/turun beberapa persen（升降几个百分点）；月报核心词；旧拼 prosentase 已被 KBBI 废弃，勿用。",
+    "note": "借自荷兰语 percent；新闻数据报道高频。",
     "synonyms": [
-      "persen（口语同义）"
+      "persen"
     ],
     "antonyms": [
       "—"
     ],
     "examples": [
       {
-        "scene": "月报数据",
-        "id": "Persentase penyelesaian pekerjaan sudah mencapai delapan puluh lima persen.",
-        "cn": "工作完成率已达85%。"
+        "scene": "新闻",
+        "id": "Persentase pengangguran turun dua persen tahun ini.",
+        "cn": "（今年失业率百分比下降了两个百分点。）"
       },
       {
-        "scene": "商务谈判",
-        "id": "Kami memberikan potongan persentase kecil untuk pembelian rutin.",
-        "cn": "我们对常规采购给出小幅百分比折扣。"
+        "scene": "园区",
+        "id": "Persentase penyerapan anggaran kami sudah delapan puluh persen.",
+        "cn": "（我们的预算执行率已达百分之八十。）"
       },
       {
-        "scene": "日常表达",
-        "id": "Persentase kehadiran siswa tahun ini sangat memuaskan.",
-        "cn": "今年的学生出勤率令人满意。"
+        "scene": "日常",
+        "id": "Hitung persentase kehadiran rapat kemarin.",
+        "cn": "（算一下昨天会议的出勤百分比。）"
       }
     ]
   },
   "kenyataan": {
     "word": "kenyataan",
-    "cn": "事实；现实",
+    "cn": "现实；事实",
     "en": "reality; fact",
-    "root": "nyata（明确的；现实的）+ ke-…-an 抽象名物化",
+    "root": "nyata",
     "forms": [
       {
-        "form": "kenyataan",
-        "pos": "名词",
-        "mean": "事实；现实"
+        "form": "nyata",
+        "pos": "adj",
+        "mean": "真实的"
       },
       {
-        "form": "nyata",
-        "pos": "形容词",
-        "mean": "明确的；现实的"
+        "form": "kenyataan",
+        "pos": "n",
+        "mean": "现实"
       },
       {
         "form": "menyatakan",
-        "pos": "及物动词",
-        "mean": "表明；声明"
+        "pos": "v",
+        "mean": "声明；表明"
       },
       {
         "form": "kenyataannya",
-        "pos": "连接副词",
+        "pos": "adv",
         "mean": "事实上"
       }
     ],
     "formsNote": "",
-    "note": "ke-…-an 抽象名词；meN- → menyatakan（表明）；-nya 副词化 kenyataannya（事实上——句首连接词）。 dalam kenyataan（在现实中）、kenyataan pahit（残酷现实）、sesuai kenyataan（符合实际）；kenyataannya 放句首=「事实上」，月报与谈判高频连接词。",
+    "note": "",
     "synonyms": [
-      "fakta（事实）",
-      "realitas（现实——外来词）"
+      "realitas",
+      "fakta"
     ],
     "antonyms": [
-      "angan-angan（幻想）",
-      "khayalan（空想）"
+      "khayalan"
     ],
     "examples": [
       {
-        "scene": "商务谈判",
-        "id": "Kenyataannya, harga pasar jauh di bawah asumsi awal kami.",
-        "cn": "事实上，市场价远低于我们的初始假设。"
+        "scene": "新闻",
+        "id": "Kenyataan di lapangan berbeda dengan laporan resmi.",
+        "cn": "（现场事实与官方报告不同。）"
       },
       {
-        "scene": "月报数据",
-        "id": "Laporan harus mencerminkan kenyataan di lapangan, bukan harapan semata.",
-        "cn": "报告必须反映现场事实，而非仅仅是期望。"
+        "scene": "园区",
+        "id": "Kenyataannya, proyek itu belum rampung sesuai jadwal.",
+        "cn": "（事实上，那个项目没有如期完工。）"
       },
       {
-        "scene": "日常表达",
-        "id": "Kenyataan pahit itu akhirnya harus diterima semua pihak.",
-        "cn": "那个残酷现实最终必须由各方接受。"
+        "scene": "日常",
+        "id": "Dia tidak bisa menerima kenyataan.",
+        "cn": "（他无法接受现实。）"
+      }
+    ]
+  },
+  "ambang": {
+    "word": "ambang",
+    "ipa": "/ˈambaŋ/",
+    "cn": "门槛；界限",
+    "en": "threshold; limit",
+    "root": "ambang",
+    "forms": [
+      {
+        "form": "ambang",
+        "pos": "n",
+        "mean": "门槛"
+      },
+      {
+        "form": "ambang batas",
+        "pos": "n",
+        "mean": "界限；分界线"
+      }
+    ],
+    "formsNote": "常与 batas 连用：ambang batas",
+    "note": "ambang Madya = Madya 分数线门槛；melampaui ambang = 跨过门槛",
+    "synonyms": [
+      "batas"
+    ],
+    "antonyms": [
+      "—"
+    ],
+    "examples": [
+      {
+        "scene": "Skornya lima ratus dua puluh, jauh di atas ambang Madya.",
+        "id": "ambang",
+        "cn": "他的分数是 520，远超 Madya 门槛。"
+      },
+      {
+        "scene": "Jangan berdiri di ambang pintu.",
+        "id": "ambang",
+        "cn": "别站在门槛上。"
+      }
+    ]
+  },
+  "ketenangan": {
+    "word": "ketenangan",
+    "ipa": "/kəˈtənaŋan/",
+    "cn": "镇定；从容",
+    "en": "calmness; composure",
+    "root": "tenang",
+    "forms": [
+      {
+        "form": "tenang",
+        "pos": "adj",
+        "mean": "镇定的"
+      },
+      {
+        "form": "ketenangan",
+        "pos": "n",
+        "mean": "镇定"
+      },
+      {
+        "form": "menenangkan",
+        "pos": "v",
+        "mean": "使镇定"
+      }
+    ],
+    "formsNote": "ke- + tenang + -an 抽象名词化",
+    "note": "考场高频词：jaga ketenangan 保持镇定",
+    "synonyms": [
+      "kewaspadaan",
+      "kesabaran"
+    ],
+    "antonyms": [
+      "kegugupan",
+      "kepanikan"
+    ],
+    "examples": [
+      {
+        "scene": "Ketenangan di ruang ujian sangat penting.",
+        "id": "ketenangan",
+        "cn": "考场上的镇定非常重要。"
+      },
+      {
+        "scene": "Dia berbicara dengan ketenangan yang luar biasa.",
+        "id": "ketenangan",
+        "cn": "他以非凡的从容发言。"
+      }
+    ]
+  },
+  "pemahaman": {
+    "word": "pemahaman",
+    "ipa": "/pəˈmahaman/",
+    "cn": "理解（力）",
+    "en": "understanding; comprehension",
+    "root": "paham",
+    "forms": [
+      {
+        "form": "paham",
+        "pos": "v/adj",
+        "mean": "理解；懂的"
+      },
+      {
+        "form": "memahami",
+        "pos": "v",
+        "mean": "理解（及物）"
+      },
+      {
+        "form": "pemahaman",
+        "pos": "n",
+        "mean": "理解力"
+      },
+      {
+        "form": "dipahami",
+        "pos": "v",
+        "mean": "被理解"
+      }
+    ],
+    "formsNote": "peN- → pem- 同化：paham → pemahaman",
+    "note": "pemahaman bacaan 阅读理解；pemahaman mendengarkan 听力理解",
+    "synonyms": [
+      "pengertian"
+    ],
+    "antonyms": [
+      "kesalahpahaman"
+    ],
+    "examples": [
+      {
+        "scene": "Pemahaman bacaan perlu latihan rutin.",
+        "id": "pemahaman",
+        "cn": "阅读理解需要规律练习。"
+      },
+      {
+        "scene": "Makna puisi itu sulit dipahami.",
+        "id": "dipahami",
+        "cn": "那首诗的含义难以理解。"
+      }
+    ]
+  },
+  "berjabat-tangan": {
+    "word": "berjabat-tangan",
+    "ipa": "/bərˈdʒabat ˈtaŋan/",
+    "cn": "握手",
+    "en": "to shake hands",
+    "root": "jabat tangan",
+    "forms": [
+      {
+        "form": "jabat tangan",
+        "pos": "v",
+        "mean": "握（词根）"
+      },
+      {
+        "form": "berjabat tangan",
+        "pos": "v",
+        "mean": "握手"
+      },
+      {
+        "form": "jabat tangan",
+        "pos": "n",
+        "mean": "握手（名词）"
+      }
+    ],
+    "formsNote": "ber- 构成动词：进行…动作",
+    "note": "正式场合见面与道别礼仪；规范分写 berjabat tangan",
+    "synonyms": [
+      "salaman（口语）"
+    ],
+    "antonyms": [
+      "—"
+    ],
+    "examples": [
+      {
+        "scene": "Para tamu berjabat tangan sebelum duduk.",
+        "id": "berjabat tangan",
+        "cn": "宾客们入座前互相握手。"
+      },
+      {
+        "scene": "Jabat tangan yang erat menunjukkan rasa hormat.",
+        "id": "jabat tangan",
+        "cn": "有力的握手表达敬意。"
+      }
+    ]
+  },
+  "kartu-nama": {
+    "word": "kartu-nama",
+    "ipa": "/ˈkartu ˈnama/",
+    "cn": "名片",
+    "en": "business card",
+    "root": "kartu + nama",
+    "forms": [
+      {
+        "form": "kartu nama",
+        "pos": "n",
+        "mean": "名片"
+      },
+      {
+        "form": "kartu nama digital",
+        "pos": "n",
+        "mean": "电子名片"
+      }
+    ],
+    "formsNote": "复合名词：kartu 卡片 + nama 名字",
+    "note": "商务场合必备；双手递接为礼",
+    "synonyms": [
+      "kartu perkenalan"
+    ],
+    "antonyms": [
+      "—"
+    ],
+    "examples": [
+      {
+        "scene": "Ini kartu nama saya, silakan disimpan.",
+        "id": "kartu nama",
+        "cn": "这是我的名片，请收下。"
+      },
+      {
+        "scene": "Mereka bertukar kartu nama di pintu masuk.",
+        "id": "kartu nama",
+        "cn": "他们在入口处交换名片。"
+      }
+    ]
+  },
+  "tuan-rumah": {
+    "word": "tuan-rumah",
+    "ipa": "/tuan ˈrumah/",
+    "cn": "主人；东道主",
+    "en": "host (of an event)",
+    "root": "tuan + rumah",
+    "forms": [
+      {
+        "form": "tuan rumah",
+        "pos": "n",
+        "mean": "主人；东道主"
+      },
+      {
+        "form": "tuan rumah (perempuan)",
+        "pos": "n",
+        "mean": "女主人亦可称 tuan rumah"
+      }
+    ],
+    "formsNote": "复合名词：tuan 主人 + rumah 房子",
+    "note": "接待方称谓；相对 tamu（客人）",
+    "synonyms": [
+      "pemilik rumah",
+      "tuan rumah"
+    ],
+    "antonyms": [
+      "tamu"
+    ],
+    "examples": [
+      {
+        "scene": "Tuan rumah menyambut tamu di depan pintu.",
+        "id": "tuan rumah",
+        "cn": "主人在门口迎接客人。"
+      },
+      {
+        "scene": "Sebagai tuan rumah, dia membuka acara dengan sambutan hangat.",
+        "id": "tuan rumah",
+        "cn": "作为东道主，他以热情的致辞开场。"
+      }
+    ]
+  },
+  "basa-basi": {
+    "word": "basa-basi",
+    "ipa": "/ˈbasa ˈbasi/",
+    "cn": "寒暄；客套（话）",
+    "en": "small talk; pleasantries",
+    "root": "basa-basi",
+    "forms": [
+      {
+        "form": "basa-basi",
+        "pos": "n",
+        "mean": "寒暄；客套话"
+      },
+      {
+        "form": "berbasa-basi",
+        "pos": "v",
+        "mean": "说客套话"
+      }
+    ],
+    "formsNote": "叠音词；ber- 动词化",
+    "note": "正式会面开场常有 basa-basi；过分客套可带贬义",
+    "synonyms": [
+      "sapaan",
+      "omong kosong（贬）"
+    ],
+    "antonyms": [
+      "—"
+    ],
+    "examples": [
+      {
+        "scene": "Setelah basa-basi singkat, rapat pun dimulai.",
+        "id": "basa-basi",
+        "cn": "简短寒暄后，会议开始了。"
+      },
+      {
+        "scene": "Jangan berbasa-basi terlalu lama.",
+        "id": "basa-basi",
+        "cn": "别说太久客套话。"
+      }
+    ]
+  },
+  "tindak-lanjut": {
+    "word": "tindak-lanjut",
+    "ipa": "/ˈtindak ˈlanjut/",
+    "cn": "后续行动；跟进",
+    "en": "follow-up action",
+    "root": "tindak + lanjut",
+    "forms": [
+      {
+        "form": "tindak lanjut",
+        "pos": "n",
+        "mean": "后续行动"
+      },
+      {
+        "form": "menindaklanjuti",
+        "pos": "v",
+        "mean": "跟进处理"
+      },
+      {
+        "form": "ditindaklanjuti",
+        "pos": "v",
+        "mean": "被跟进"
+      }
+    ],
+    "formsNote": "menindaklanjuti 为常用动词形式",
+    "note": "商务高频：tindak lanjut rapat 会议后续跟进",
+    "synonyms": [
+      "lanjutan tindakan"
+    ],
+    "antonyms": [
+      "—"
+    ],
+    "examples": [
+      {
+        "scene": "Kami menunggu tindak lanjut dari pihak Anda.",
+        "id": "tindak lanjut",
+        "cn": "我们等待贵方的后续行动。"
+      },
+      {
+        "scene": "Setiap masalah harus ditindaklanjuti dalam tiga hari.",
+        "id": "ditindaklanjuti",
+        "cn": "每个问题都须在三天内跟进处理。"
+      }
+    ]
+  },
+  "apresiasi": {
+    "word": "apresiasi",
+    "ipa": "/aprəsiˈasi/",
+    "cn": "赞赏；肯定",
+    "en": "appreciation",
+    "root": "apresiasi",
+    "forms": [
+      {
+        "form": "apresiasi",
+        "pos": "n",
+        "mean": "赞赏"
+      },
+      {
+        "form": "mengapresiasi",
+        "pos": "v",
+        "mean": "赞赏；肯定"
+      },
+      {
+        "form": "apresiatif",
+        "pos": "adj",
+        "mean": "善于欣赏的"
+      }
+    ],
+    "formsNote": "借词（appreciation）；mengapresiasi 为及物动词",
+    "note": "正式语域，商务致谢与评价高频",
+    "synonyms": [
+      "penghargaan",
+      "penilaian positif"
+    ],
+    "antonyms": [
+      "kritik"
+    ],
+    "examples": [
+      {
+        "scene": "Kami memberikan apresiasi atas kerja keras tim.",
+        "id": "apresiasi",
+        "cn": "我们对团队的努力表示赞赏。"
+      },
+      {
+        "scene": "Juri mengapresiasi orasi peserta.",
+        "id": "mengapresiasi",
+        "cn": "评委对选手的演说表示肯定。"
+      }
+    ]
+  },
+  "kontak": {
+    "word": "kontak",
+    "ipa": "/ˈkontak/",
+    "cn": "联系；联络",
+    "en": "contact",
+    "root": "kontak",
+    "forms": [
+      {
+        "form": "kontak",
+        "pos": "n",
+        "mean": "联系；接触"
+      },
+      {
+        "form": "mengontak",
+        "pos": "v",
+        "mean": "联络（人）"
+      },
+      {
+        "form": "berkontak",
+        "pos": "v",
+        "mean": "有联系"
+      }
+    ],
+    "formsNote": "借词（contact）；berkontak 表状态",
+    "note": "kontak langsung 直接联系；kontak kerja 工作联系",
+    "synonyms": [
+      "hubungan",
+      "sambungan"
+    ],
+    "antonyms": [
+      "—"
+    ],
+    "examples": [
+      {
+        "scene": "Simpan nomor kontaknya baik-baik.",
+        "id": "kontak",
+        "cn": "把他的联系方式好好存起来。"
+      },
+      {
+        "scene": "Kami berkontak setiap minggu via surel.",
+        "id": "berkontak",
+        "cn": "我们每周通过邮件保持联系。"
+      }
+    ]
+  },
+  "dipantau": {
+    "word": "dipantau",
+    "cn": "被监测；被密切关注",
+    "en": "(be) monitored",
+    "root": "pantau",
+    "forms": [
+      {
+        "form": "pantau",
+        "pos": "v",
+        "mean": "监测"
+      },
+      {
+        "form": "memantau",
+        "pos": "v",
+        "mean": "监测（主动）"
+      },
+      {
+        "form": "dipantau",
+        "pos": "v",
+        "mean": "被监测"
+      },
+      {
+        "form": "pemantauan",
+        "pos": "n",
+        "mean": "监测"
+      }
+    ],
+    "formsNote": "",
+    "note": "",
+    "synonyms": [
+      "diawasi",
+      "diawasi ketat"
+    ],
+    "antonyms": [
+      "—"
+    ],
+    "examples": [
+      {
+        "scene": "新闻",
+        "id": "Perkembangan situasi keamanan terus dipantau aparat.",
+        "cn": "（安全局势的发展持续受到当局监测。）"
+      },
+      {
+        "scene": "园区",
+        "id": "Kualitas udara di sekitar kawasan dipantau setiap hari.",
+        "cn": "（园区周边的空气质量每天都受监测。）"
+      },
+      {
+        "scene": "日常",
+        "id": "Tekanan darah pasien dipantau oleh perawat.",
+        "cn": "（病人的血压由护士监测。）"
+      }
+    ]
+  },
+  "sisi": {
+    "word": "sisi",
+    "cn": "方面；一侧；侧面",
+    "en": "side; aspect",
+    "root": "sisi",
+    "forms": [],
+    "formsNote": "—",
+    "note": "与 segi/aspek 近义；dari sisi + 名词 = 从……方面。",
+    "synonyms": [
+      "segi",
+      "aspek",
+      "pihak"
+    ],
+    "antonyms": [
+      "—"
+    ],
+    "examples": [
+      {
+        "scene": "新闻",
+        "id": "Dari sisi ekonomi, kebijakan itu menuai protes.",
+        "cn": "（从经济方面看，那项政策招致抗议。）"
+      },
+      {
+        "scene": "园区",
+        "id": "Insinyur mengecek sisi selatan pipa utama.",
+        "cn": "（工程师检查主管道的南侧。）"
+      },
+      {
+        "scene": "日常",
+        "id": "Setiap masalah punya dua sisi.",
+        "cn": "（每个问题都有两面。）"
+      }
+    ]
+  },
+  "pemirsa": {
+    "word": "pemirsa",
+    "cn": "观众；读者（媒体受众）",
+    "en": "viewers; audience",
+    "root": "pirsa（观看，雅语源）",
+    "forms": [
+      {
+        "form": "pirsa",
+        "pos": "v",
+        "mean": "观看（雅）"
+      },
+      {
+        "form": "pemirsa",
+        "pos": "n",
+        "mean": "观众"
+      }
+    ],
+    "formsNote": "",
+    "note": "电视/网络媒体常用；报纸读者用 pembaca。",
+    "synonyms": [
+      "penonton",
+      "pembaca"
+    ],
+    "antonyms": [
+      "—"
+    ],
+    "examples": [
+      {
+        "scene": "新闻",
+        "id": "Siaran berita itu ditonton jutaan pemirsa.",
+        "cn": "（那则新闻播报被数百万观众收看。）"
+      },
+      {
+        "scene": "园区",
+        "id": "Pemirsa webinar keselamatan kerja mencapai seribu orang.",
+        "cn": "（职业安全网课的观众达千人。）"
+      },
+      {
+        "scene": "日常",
+        "id": "Acara itu disukai pemirsa muda.",
+        "cn": "（那档节目深受年轻观众喜爱。）"
+      }
+    ]
+  },
+  "korban-jiwa": {
+    "word": "korban-jiwa",
+    "cn": "人员伤亡",
+    "en": "casualties (fatalities and injuries)",
+    "root": "korban",
+    "forms": [
+      {
+        "form": "korban",
+        "pos": "n",
+        "mean": "受害者；遇难者"
+      },
+      {
+        "form": "korban-jiwa",
+        "pos": "n",
+        "mean": "人员伤亡"
+      },
+      {
+        "form": "korban luka",
+        "pos": "n",
+        "mean": "伤员"
+      }
+    ],
+    "formsNote": "",
+    "note": "连字符归并复合词；korban jiwa 连写亦通。",
+    "synonyms": [
+      "—"
+    ],
+    "antonyms": [
+      "—"
+    ],
+    "examples": [
+      {
+        "scene": "新闻",
+        "id": "Banjir bandang itu menelan puluhan korban jiwa.",
+        "cn": "（山洪造成数十人伤亡。）"
+      },
+      {
+        "scene": "园区",
+        "id": "Insiden tadi pagi tidak menimbulkan korban jiwa.",
+        "cn": "（今天早上的事故没有造成人员伤亡。）"
+      },
+      {
+        "scene": "日常",
+        "id": "Keselamatan kerja untuk mencegah korban jiwa.",
+        "cn": "（安全生产是为了防止人员伤亡。）"
+      }
+    ]
+  },
+  "rintangan": {
+    "word": "rintangan",
+    "cn": "障碍；阻碍物",
+    "en": "obstacle",
+    "root": "rintang",
+    "forms": [
+      {
+        "form": "rintang",
+        "pos": "v",
+        "mean": "阻挡（罕用）"
+      },
+      {
+        "form": "rintangan",
+        "pos": "n",
+        "mean": "障碍"
+      },
+      {
+        "form": "merintangi",
+        "pos": "v",
+        "mean": "阻挡"
+      }
+    ],
+    "formsNote": "",
+    "note": "",
+    "synonyms": [
+      "kendala",
+      "hambatan",
+      "halangan"
+    ],
+    "antonyms": [
+      "kemudahan",
+      "pendorong"
+    ],
+    "examples": [
+      {
+        "scene": "新闻",
+        "id": "Rintangan utama perdagangan adalah birokrasi.",
+        "cn": "（贸易的主要障碍是官僚主义。）"
+      },
+      {
+        "scene": "园区",
+        "id": "Cuaca buruk menjadi rintangan pengiriman peralatan.",
+        "cn": "（恶劣天气成为设备运输的障碍。）"
+      },
+      {
+        "scene": "日常",
+        "id": "Jangan mudah menyerah oleh rintangan kecil.",
+        "cn": "（别因小障碍就轻易放弃。）"
+      }
+    ]
+  },
+  "hambat": {
+    "word": "hambat",
+    "cn": "阻挡；阻碍（词根形态）",
+    "en": "to block; to hinder (root form)",
+    "root": "hambat",
+    "forms": [
+      {
+        "form": "hambat",
+        "pos": "v",
+        "mean": "阻挡（词根）"
+      },
+      {
+        "form": "menghambat",
+        "pos": "v",
+        "mean": "阻碍"
+      },
+      {
+        "form": "hambatan",
+        "pos": "n",
+        "mean": "障碍"
+      },
+      {
+        "form": "terhambat",
+        "pos": "adj",
+        "mean": "受阻的"
+      }
+    ],
+    "formsNote": "",
+    "note": "常用名词形态为 hambatan；本词收词根形，覆盖变形全族。",
+    "synonyms": [
+      "rintang",
+      "menghalangi"
+    ],
+    "antonyms": [
+      "melancarkan"
+    ],
+    "examples": [
+      {
+        "scene": "新闻",
+        "id": "Pembangunan terhambat karena pendanaan terbatas.",
+        "cn": "（建设因资金受限而受阻。）"
+      },
+      {
+        "scene": "园区",
+        "id": "Produksi tidak terhambat meski ada gangguan listrik.",
+        "cn": "（尽管有电力故障，生产没有受阻。）"
+      },
+      {
+        "scene": "日常",
+        "id": "Jangan menghambat rencana baik mereka.",
+        "cn": "（别阻碍他们的好计划。）"
+      }
+    ]
+  },
+  "ringkas": {
+    "word": "ringkas",
+    "cn": "简明的；简短的",
+    "en": "concise; brief",
+    "root": "ringkas",
+    "forms": [
+      {
+        "form": "ringkas",
+        "pos": "adj",
+        "mean": "简明的"
+      },
+      {
+        "form": "meringkas",
+        "pos": "v",
+        "mean": "概括"
+      },
+      {
+        "form": "ringkasan",
+        "pos": "n",
+        "mean": "摘要"
+      },
+      {
+        "form": "secara ringkas",
+        "pos": "adv",
+        "mean": "简明地"
+      }
+    ],
+    "formsNote": "",
+    "note": "",
+    "synonyms": [
+      "singkat",
+      "padat"
+    ],
+    "antonyms": [
+      "bertele-tele"
+    ],
+    "examples": [
+      {
+        "scene": "新闻",
+        "id": "Berikut ringkasan berita utama hari ini.",
+        "cn": "（以下是今日要闻简报。）"
+      },
+      {
+        "scene": "园区",
+        "id": "Tolong buatkan laporan yang ringkas.",
+        "cn": "（请给我一份简明的报告。）"
+      },
+      {
+        "scene": "日常",
+        "id": "Jawablah secara ringkas dan jelas.",
+        "cn": "（请简明扼要地回答。）"
+      }
+    ]
+  },
+  "ikhtisar": {
+    "word": "ikhtisar",
+    "cn": "概要；摘要",
+    "en": "synopsis; summary",
+    "root": "ikhtisar（阿拉伯语源）",
+    "forms": [],
+    "formsNote": "—",
+    "note": "正式文体用词，近 ringkasan，多见于学术/官方文书。",
+    "synonyms": [
+      "ringkasan",
+      "sintesis"
+    ],
+    "antonyms": [
+      "—"
+    ],
+    "examples": [
+      {
+        "scene": "新闻",
+        "id": "Ikhtisar kabinet memuat arah kebijakan lima tahun.",
+        "cn": "（内阁施政概要包含五年的政策方向。）"
+      },
+      {
+        "scene": "园区",
+        "id": "Ikhtisar laporan tahunan sudah dibagikan ke direksi.",
+        "cn": "（年度报告概要已分发给董事会。）"
+      },
+      {
+        "scene": "日常",
+        "id": "Baca ikhtisar buku itu sebelum membeli.",
+        "cn": "（买之前先读一下书的概要。）"
+      }
+    ]
+  },
+  "penelaahan": {
+    "word": "penelaahan",
+    "cn": "审查；细察",
+    "en": "examination; scrutiny",
+    "root": "telaah",
+    "forms": [
+      {
+        "form": "telaah",
+        "pos": "v/n",
+        "mean": "细察"
+      },
+      {
+        "form": "menelaah",
+        "pos": "v",
+        "mean": "细察"
+      },
+      {
+        "form": "penelaahan",
+        "pos": "n",
+        "mean": "审查"
+      }
+    ],
+    "formsNote": "",
+    "note": "penelaahan 是 menelaah 的动名词形态。",
+    "synonyms": [
+      "tinjauan",
+      "pemeriksaan"
+    ],
+    "antonyms": [
+      "—"
+    ],
+    "examples": [
+      {
+        "scene": "新闻",
+        "id": "Penelaahan dokumen itu memakan waktu dua bulan.",
+        "cn": "（那份文件的审查花了两个月。）"
+      },
+      {
+        "scene": "园区",
+        "id": "Penelaahan proposal investasi sedang berlangsung.",
+        "cn": "（投资提案的审查正在进行中。）"
+      },
+      {
+        "scene": "日常",
+        "id": "Penelaahan menyeluruh menghindari kesalahan.",
+        "cn": "（仔细审查能避免错误。）"
+      }
+    ]
+  },
+  "semata": {
+    "word": "semata",
+    "cn": "仅仅；只是",
+    "en": "merely; only",
+    "root": "semata",
+    "forms": [],
+    "formsNote": "—",
+    "note": "常加强为 semata-mata，义同。",
+    "synonyms": [
+      "hanya",
+      "saja",
+      "semata-mata"
+    ],
+    "antonyms": [
+      "—"
+    ],
+    "examples": [
+      {
+        "scene": "新闻",
+        "id": "Itu bukan semata kesalahan teknis.",
+        "cn": "（那不仅仅是技术失误。）"
+      },
+      {
+        "scene": "园区",
+        "id": "Inspeksi bukan semata formalitas.",
+        "cn": "（检查不仅仅是走过场。）"
+      },
+      {
+        "scene": "日常",
+        "id": "Saya datang semata untuk menolongmu.",
+        "cn": "（我来只是为了帮你。）"
+      }
+    ]
+  },
+  "rencana-belum-terlaksana": {
+    "word": "rencana-belum-terlaksana",
+    "cn": "尚未实施的计划",
+    "en": "unimplemented plan",
+    "root": "rencana",
+    "forms": [
+      {
+        "form": "rencana",
+        "pos": "n",
+        "mean": "计划"
+      },
+      {
+        "form": "terlaksana",
+        "pos": "adj",
+        "mean": "已实施的"
+      },
+      {
+        "form": "pelaksanaan",
+        "pos": "n",
+        "mean": "实施"
+      },
+      {
+        "form": "belum terlaksana",
+        "pos": "短语",
+        "mean": "尚未实施"
+      }
+    ],
+    "formsNote": "",
+    "note": "复合学习键：rencana + belum + terlaksana。",
+    "synonyms": [
+      "rencana mangkrak"
+    ],
+    "antonyms": [
+      "rencana terlaksana"
+    ],
+    "examples": [
+      {
+        "scene": "新闻",
+        "id": "Lima rencana-belum-terlaksana masuk daftar evaluasi.",
+        "cn": "（五项尚未实施的计划列入评估清单。）"
+      },
+      {
+        "scene": "园区",
+        "id": "Rencana-belum-terlaksana itu kini mulai digulirkan.",
+        "cn": "（那项搁置的计划现在开始推进。）"
+      },
+      {
+        "scene": "日常",
+        "id": "Daftar rencana-belum-terlaksana saya makin panjang.",
+        "cn": "（我的未实施计划清单越来越长。）"
+      }
+    ]
+  },
+  "triwulan": {
+    "word": "triwulan",
+    "cn": "季度（三个月）",
+    "en": "quarter (of a year)",
+    "root": "tri（三）+ wulan（月，爪哇语源）",
+    "forms": [
+      {
+        "form": "triwulan",
+        "pos": "n",
+        "mean": "季度"
+      },
+      {
+        "form": "triwulanan",
+        "pos": "adj",
+        "mean": "每季度的"
+      },
+      {
+        "form": "per triwulan",
+        "pos": "短语",
+        "mean": "每季度"
+      }
+    ],
+    "formsNote": "",
+    "note": "财报/统计高频：Triwulan I–IV；口语亦常用 kuartal。",
+    "synonyms": [
+      "kuartal"
+    ],
+    "antonyms": [
+      "—"
+    ],
+    "examples": [
+      {
+        "scene": "新闻",
+        "id": "Ekonomi tumbuh lima persen pada triwulan ketiga.",
+        "cn": "（第三季度经济增长百分之五。）"
+      },
+      {
+        "scene": "园区",
+        "id": "Laporan produksi triwulan dikirim ke pusat.",
+        "cn": "（季度生产报告发往总部。）"
+      },
+      {
+        "scene": "日常",
+        "id": "Evaluasi kinerja dilakukan setiap triwulan.",
+        "cn": "（每季度进行绩效评估。）"
+      }
+    ]
+  },
+  "diperoleh": {
+    "word": "diperoleh",
+    "cn": "获得；被获得",
+    "en": "obtained; acquired",
+    "root": "peroleh",
+    "forms": [
+      {
+        "form": "peroleh",
+        "pos": "v",
+        "mean": "获得"
+      },
+      {
+        "form": "memperoleh",
+        "pos": "v",
+        "mean": "获得（主动）"
+      },
+      {
+        "form": "diperoleh",
+        "pos": "v",
+        "mean": "被获得"
+      },
+      {
+        "form": "perolehan",
+        "pos": "n",
+        "mean": "获得；成果"
+      }
+    ],
+    "formsNote": "",
+    "note": "",
+    "synonyms": [
+      "didapat",
+      "diperoleh"
+    ],
+    "antonyms": [
+      "hilang"
+    ],
+    "examples": [
+      {
+        "scene": "新闻",
+        "id": "Data itu diperoleh dari survei nasional.",
+        "cn": "（那些数据来自全国调查。）"
+      },
+      {
+        "scene": "园区",
+        "id": "Hasil pengujian diperoleh setelah dua minggu.",
+        "cn": "（检测结果两周后获得。）"
+      },
+      {
+        "scene": "日常",
+        "id": "Izin kerja diperoleh tanpa kendala.",
+        "cn": "（工作许可顺利获得，没有障碍。）"
+      }
+    ]
+  },
+  "yang-disebabkan-oleh": {
+    "word": "yang-disebabkan-oleh",
+    "cn": "由……引起的（因果从句标记）",
+    "en": "caused by (relative clause marker)",
+    "root": "sebab",
+    "forms": [
+      {
+        "form": "sebab",
+        "pos": "n",
+        "mean": "原因"
+      },
+      {
+        "form": "disebabkan",
+        "pos": "v",
+        "mean": "被引起"
+      },
+      {
+        "form": "yang disebabkan oleh",
+        "pos": "短语",
+        "mean": "由……引起的"
+      }
+    ],
+    "formsNote": "",
+    "note": "新闻因果句核心：主语 + yang disebabkan oleh + 原因；可与 yang diakibatkan oleh 互换。",
+    "synonyms": [
+      "yang diakibatkan oleh",
+      "yang ditimbulkan oleh"
+    ],
+    "antonyms": [
+      "—"
+    ],
+    "examples": [
+      {
+        "scene": "新闻",
+        "id": "Kerugian besar yang disebabkan oleh kelalaian manajemen.",
+        "cn": "（由管理疏忽造成的巨大损失。）"
+      },
+      {
+        "scene": "园区",
+        "id": "Keterlambatan yang disebabkan oleh cuaca tidak bisa dihindari.",
+        "cn": "（由天气造成的延误无法避免。）"
+      },
+      {
+        "scene": "日常",
+        "id": "Masalah yang disebabkan oleh kesalahpahaman segera diselesaikan.",
+        "cn": "（由误会产生的问题很快解决了。）"
+      }
+    ]
+  },
+  "rampung": {
+    "word": "rampung",
+    "cn": "完成；竣工",
+    "en": "completed; finished",
+    "root": "rampung",
+    "forms": [
+      {
+        "form": "rampung",
+        "pos": "adj",
+        "mean": "完成的"
+      },
+      {
+        "form": "merampungkan",
+        "pos": "v",
+        "mean": "完成"
+      },
+      {
+        "form": "selesai",
+        "pos": "近义",
+        "mean": "完成"
+      }
+    ],
+    "formsNote": "",
+    "note": "",
+    "synonyms": [
+      "selesai",
+      "tuntas",
+      "beres"
+    ],
+    "antonyms": [
+      "belum rampung"
+    ],
+    "examples": [
+      {
+        "scene": "新闻",
+        "id": "Proyek jembatan itu rampung lebih cepat.",
+        "cn": "（那个桥梁项目提前竣工。）"
+      },
+      {
+        "scene": "园区",
+        "id": "Pembangunan gudang rampung akhir triwulan ini.",
+        "cn": "（仓库建设将于本季度末完工。）"
+      },
+      {
+        "scene": "日常",
+        "id": "Tugasnya rampung tepat waktu.",
+        "cn": "（他的任务按时完成了。）"
       }
     ]
   }
-
-  ,"ambang": {"word": "ambang", "ipa": "/ˈambaŋ/", "cn": "门槛；界限", "en": "threshold; limit", "root": "ambang", "forms": [{"form": "ambang", "pos": "n", "mean": "门槛"}, {"form": "ambang batas", "pos": "n", "mean": "界限；分界线"}], "formsNote": "常与 batas 连用：ambang batas", "note": "ambang Madya = Madya 分数线门槛；melampaui ambang = 跨过门槛", "synonyms": ["batas"], "antonyms": ["—"], "examples": [{"scene": "Skornya lima ratus dua puluh, jauh di atas ambang Madya.", "id": "ambang", "cn": "他的分数是 520，远超 Madya 门槛。"}, {"scene": "Jangan berdiri di ambang pintu.", "id": "ambang", "cn": "别站在门槛上。"}]}
-  ,"ketenangan": {"word": "ketenangan", "ipa": "/kəˈtənaŋan/", "cn": "镇定；从容", "en": "calmness; composure", "root": "tenang", "forms": [{"form": "tenang", "pos": "adj", "mean": "镇定的"}, {"form": "ketenangan", "pos": "n", "mean": "镇定"}, {"form": "menenangkan", "pos": "v", "mean": "使镇定"}], "formsNote": "ke- + tenang + -an 抽象名词化", "note": "考场高频词：jaga ketenangan 保持镇定", "synonyms": ["kewaspadaan", "kesabaran"], "antonyms": ["kegugupan", "kepanikan"], "examples": [{"scene": "Ketenangan di ruang ujian sangat penting.", "id": "ketenangan", "cn": "考场上的镇定非常重要。"}, {"scene": "Dia berbicara dengan ketenangan yang luar biasa.", "id": "ketenangan", "cn": "他以非凡的从容发言。"}]}
-  ,"pemahaman": {"word": "pemahaman", "ipa": "/pəˈmahaman/", "cn": "理解（力）", "en": "understanding; comprehension", "root": "paham", "forms": [{"form": "paham", "pos": "v/adj", "mean": "理解；懂的"}, {"form": "memahami", "pos": "v", "mean": "理解（及物）"}, {"form": "pemahaman", "pos": "n", "mean": "理解力"}, {"form": "dipahami", "pos": "v", "mean": "被理解"}], "formsNote": "peN- → pem- 同化：paham → pemahaman", "note": "pemahaman bacaan 阅读理解；pemahaman mendengarkan 听力理解", "synonyms": ["pengertian"], "antonyms": ["kesalahpahaman"], "examples": [{"scene": "Pemahaman bacaan perlu latihan rutin.", "id": "pemahaman", "cn": "阅读理解需要规律练习。"}, {"scene": "Makna puisi itu sulit dipahami.", "id": "dipahami", "cn": "那首诗的含义难以理解。"}]}
-  ,"berjabat-tangan": {"word": "berjabat-tangan", "ipa": "/bərˈdʒabat ˈtaŋan/", "cn": "握手", "en": "to shake hands", "root": "jabat tangan", "forms": [{"form": "jabat tangan", "pos": "v", "mean": "握（词根）"}, {"form": "berjabat tangan", "pos": "v", "mean": "握手"}, {"form": "jabat tangan", "pos": "n", "mean": "握手（名词）"}], "formsNote": "ber- 构成动词：进行…动作", "note": "正式场合见面与道别礼仪；规范分写 berjabat tangan", "synonyms": ["salaman（口语）"], "antonyms": ["—"], "examples": [{"scene": "Para tamu berjabat tangan sebelum duduk.", "id": "berjabat tangan", "cn": "宾客们入座前互相握手。"}, {"scene": "Jabat tangan yang erat menunjukkan rasa hormat.", "id": "jabat tangan", "cn": "有力的握手表达敬意。"}]}
-  ,"kartu-nama": {"word": "kartu-nama", "ipa": "/ˈkartu ˈnama/", "cn": "名片", "en": "business card", "root": "kartu + nama", "forms": [{"form": "kartu nama", "pos": "n", "mean": "名片"}, {"form": "kartu nama digital", "pos": "n", "mean": "电子名片"}], "formsNote": "复合名词：kartu 卡片 + nama 名字", "note": "商务场合必备；双手递接为礼", "synonyms": ["kartu perkenalan"], "antonyms": ["—"], "examples": [{"scene": "Ini kartu nama saya, silakan disimpan.", "id": "kartu nama", "cn": "这是我的名片，请收下。"}, {"scene": "Mereka bertukar kartu nama di pintu masuk.", "id": "kartu nama", "cn": "他们在入口处交换名片。"}]}
-  ,"tuan-rumah": {"word": "tuan-rumah", "ipa": "/tuan ˈrumah/", "cn": "主人；东道主", "en": "host (of an event)", "root": "tuan + rumah", "forms": [{"form": "tuan rumah", "pos": "n", "mean": "主人；东道主"}, {"form": "tuan rumah (perempuan)", "pos": "n", "mean": "女主人亦可称 tuan rumah"}], "formsNote": "复合名词：tuan 主人 + rumah 房子", "note": "接待方称谓；相对 tamu（客人）", "synonyms": ["pemilik rumah", "tuan rumah"], "antonyms": ["tamu"], "examples": [{"scene": "Tuan rumah menyambut tamu di depan pintu.", "id": "tuan rumah", "cn": "主人在门口迎接客人。"}, {"scene": "Sebagai tuan rumah, dia membuka acara dengan sambutan hangat.", "id": "tuan rumah", "cn": "作为东道主，他以热情的致辞开场。"}]}
-  ,"basa-basi": {"word": "basa-basi", "ipa": "/ˈbasa ˈbasi/", "cn": "寒暄；客套（话）", "en": "small talk; pleasantries", "root": "basa-basi", "forms": [{"form": "basa-basi", "pos": "n", "mean": "寒暄；客套话"}, {"form": "berbasa-basi", "pos": "v", "mean": "说客套话"}], "formsNote": "叠音词；ber- 动词化", "note": "正式会面开场常有 basa-basi；过分客套可带贬义", "synonyms": ["sapaan", "omong kosong（贬）"], "antonyms": ["—"], "examples": [{"scene": "Setelah basa-basi singkat, rapat pun dimulai.", "id": "basa-basi", "cn": "简短寒暄后，会议开始了。"}, {"scene": "Jangan berbasa-basi terlalu lama.", "id": "basa-basi", "cn": "别说太久客套话。"}]}
-  ,"tindak-lanjut": {"word": "tindak-lanjut", "ipa": "/ˈtindak ˈlanjut/", "cn": "后续行动；跟进", "en": "follow-up action", "root": "tindak + lanjut", "forms": [{"form": "tindak lanjut", "pos": "n", "mean": "后续行动"}, {"form": "menindaklanjuti", "pos": "v", "mean": "跟进处理"}, {"form": "ditindaklanjuti", "pos": "v", "mean": "被跟进"}], "formsNote": "menindaklanjuti 为常用动词形式", "note": "商务高频：tindak lanjut rapat 会议后续跟进", "synonyms": ["lanjutan tindakan"], "antonyms": ["—"], "examples": [{"scene": "Kami menunggu tindak lanjut dari pihak Anda.", "id": "tindak lanjut", "cn": "我们等待贵方的后续行动。"}, {"scene": "Setiap masalah harus ditindaklanjuti dalam tiga hari.", "id": "ditindaklanjuti", "cn": "每个问题都须在三天内跟进处理。"}]}
-  ,"apresiasi": {"word": "apresiasi", "ipa": "/aprəsiˈasi/", "cn": "赞赏；肯定", "en": "appreciation", "root": "apresiasi", "forms": [{"form": "apresiasi", "pos": "n", "mean": "赞赏"}, {"form": "mengapresiasi", "pos": "v", "mean": "赞赏；肯定"}, {"form": "apresiatif", "pos": "adj", "mean": "善于欣赏的"}], "formsNote": "借词（appreciation）；mengapresiasi 为及物动词", "note": "正式语域，商务致谢与评价高频", "synonyms": ["penghargaan", "penilaian positif"], "antonyms": ["kritik"], "examples": [{"scene": "Kami memberikan apresiasi atas kerja keras tim.", "id": "apresiasi", "cn": "我们对团队的努力表示赞赏。"}, {"scene": "Juri mengapresiasi orasi peserta.", "id": "mengapresiasi", "cn": "评委对选手的演说表示肯定。"}]}
-  ,"kontak": {"word": "kontak", "ipa": "/ˈkontak/", "cn": "联系；联络", "en": "contact", "root": "kontak", "forms": [{"form": "kontak", "pos": "n", "mean": "联系；接触"}, {"form": "mengontak", "pos": "v", "mean": "联络（人）"}, {"form": "berkontak", "pos": "v", "mean": "有联系"}], "formsNote": "借词（contact）；berkontak 表状态", "note": "kontak langsung 直接联系；kontak kerja 工作联系", "synonyms": ["hubungan", "sambungan"], "antonyms": ["—"], "examples": [{"scene": "Simpan nomor kontaknya baik-baik.", "id": "kontak", "cn": "把他的联系方式好好存起来。"}, {"scene": "Kami berkontak setiap minggu via surel.", "id": "berkontak", "cn": "我们每周通过邮件保持联系。"}]}};
+};
 
 function getTopicForDate(ds) {
   return topicCalendar[ds] || null;
@@ -231490,8 +234041,19 @@ function renderAbout(c){
 }
 
 function renderVersion(c){
-  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.52.0 / Versi</span></div>
+  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.52.1 / Versi</span></div>
     <div style="padding:16px;">
+      <div style="margin-bottom:14px;padding:14px;background:rgba(34,197,94,.10);border-radius:10px;border-left:3px solid var(--success)">
+        <div style="font-size:15px;font-weight:700;color:var(--success);margin-bottom:6px">V4.52.1 (2026-11-10)</div>
+        <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">1110每日笔记33词 · 新闻综合专题 · 库3215词</div>
+        <div style="font-size:12px;color:var(--text-dim);line-height:1.8">
+        • <strong>33词条 BIT V1.0 定稿</strong>:37词元→33（连字符归并korban-jiwa / 大小写归一triwulan·terjadi / 句型记号「+ 现象 +」拆入terjadi与yang-disebabkan-oleh两词）<br>
+        • <strong>新闻综合主题</strong>:数据报道(persentase/tren/dipantau/triwulan/realisasi) + 事故与障碍(korban-jiwa/rintangan/kendala/hambat) + 报告文书(ikhtisar/sintesis/lampiran/apendiks/penelaahan/ringkas)<br>
+        • <strong>因果句型入词</strong>:Terjadi [现象] yang disebabkan oleh [原因] —— terjadi 词条覆盖更新(词汇注释带句型) + yang-disebabkan-oleh 新收词条<br>
+        • <strong>bitVocabDB 3200→3215</strong>:新15(dipantau/sisi/pemirsa/korban-jiwa/rintangan/hambat/ringkas/ikhtisar/penelaahan/semata/rencana-belum-terlaksana/triwulan/diperoleh/yang-disebabkan-oleh/rampung) + 覆盖18 · RCO对账37词元逐条映射<br>
+        • <strong>管线修复</strong>:V4.52.0 注入遗留——bitVocabDB 库闭合 } 与末词条同行,md_to_dailynote.py 的 \n}; 锚点正则不匹配致解析失败 → 收尾换行修复(教训:注入器追加条目后必须验证库收尾格式)<br>
+        </div>
+      </div>
       <div style="margin-bottom:14px;padding:14px;background:rgba(34,197,94,.10);border-radius:10px;border-left:3px solid var(--success)">
         <div style="font-size:15px;font-weight:700;color:var(--success);margin-bottom:6px">V4.52.0 (2026-11-10)</div>
         <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">C6_CA_CATAT整合策略落地：课时减载(C6/CA) + UKBI Madya新课(11/10-12) + CA话题1见面重制 · 库3200词</div>
