@@ -6,7 +6,7 @@
 <meta http-equiv="Expires" content="0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LEO-BIR V4.51.1</title>
+<title>LEO-BIR V4.52.0</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -276,7 +276,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="sidebar-header">
     <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <h1>LEO-BIR</h1>
-    <div class="ver">LEO-BIR V4.51.1 · CA万能句型180条中文翻译全量补齐 + 跑题话题改标CA专题 · 库3190词</div>
+    <div class="ver">LEO-BIR V4.52.0 · C6_CA_CATAT整合策略落地：课时减载(C6:10词/5句/短文50-60词 · CA:7+5/5/5/5/10题) + UKBI Madya新课(11/10-12) + CA话题1见面重制 · 库3200词</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -16880,7 +16880,323 @@ ukbi_certification: {
       }
     ]
   }
-},"ukbi_diary_1":{"title":"UKBI复盘·听力阅读 / UKBI Review: Listening & Reading","icon":"🎧","days":3,"vocab":[["disajikan","被呈现",""],["teslet","题组（自适应考试）",""],["perekaman","录音",""],["skimming","略读",""],["ejaan","拼写",""],["tanda-baca","标点符号",""],["lengkap-dan-runtut","完整且连贯",""],["kacau","混乱",""],["susun-kerangka","列提纲",""],["tryout","模拟考试",""],["eliminasi","排除法",""],["menebak","猜测",""],["cerdas","聪明的",""],["markir","标记",""],["periksa","检查",""],["teliti","仔细的",""],["terburu-buru","匆忙的",""],["cemas","焦虑的",""],["grogi","怯场紧张的",""],["irama","节奏",""],["interpretasi","解读",""],["ucapkan","说出（祈使）",""],["draf","草稿",""],["rangkuman","摘要",""],["gangguan","故障",""]],"scenes":[{"title":"UKBI听力考场 / Ruang Ujian UKBI Bagian Mendengarkan","icon":"🎧","dialogue":[{"speaker":"A","text":"Nah, tes bagian mendengarkan mau dimulai. Kamu sudah baca petunjuknya?","trans":"好了，听力部分要开始了。你读过考试说明了吗？"},{"speaker":"B","text":"Sudah. Setiap teslet disajikan dalam bentuk perekaman, dan kita tidak bisa mengulangnya. Sekali dengar, langsung jawab!","trans":"读过了。每个题组以录音形式呈现，不能重播。只听一遍，直接回答！"},{"speaker":"A","text":"Betul, makanya aku biasanya membaca dulu pilihan jawabannya sebelum perekaman diputar. Jadi tahu kira-kira apa yang harus didengar.","trans":"没错，所以我通常在录音播放前先读选项。这样就知道该重点听什么了。"},{"speaker":"B","text":"Strategi yang cerdas! Kalau teksnya tentang suasana di kawasan industri, misalnya rapat proyek atau jadwal pengiriman, kita bisa langsung fokus ke kata kunci.","trans":"聪明的策略！如果材料是工业园区的场景，比如项目会议或发货日程，我们就能立刻锁定关键词。"},{"speaker":"A","text":"Iya, kemarin waktu tryout ada soal tentang instruksi keselamatan kerja. Untung aku sudah menguasai kosakatanya.","trans":"对，昨天模拟考试有一道题是关于工作安全指示的。幸好我掌握了相关词汇。"},{"speaker":"B","text":"Bagaimana kalau ada gangguan teknis? Misalnya suara perekaman kurang jelas?","trans":"如果有技术故障怎么办？比如录音的声音不清楚？"},{"speaker":"A","text":"Langsung angkat tangan dan lapor pengawas. Tapi jangan panik, tetap tenang dan ikuti irama percakapannya.","trans":"马上举手报告监考老师。但不要慌，保持镇定，跟着对话的节奏走。"},{"speaker":"B","text":"Kalau kamu ragu-ragu antara dua jawaban, gimana? Menebak asal saja?","trans":"如果你在两个答案之间犹豫怎么办？随便猜吗？"},{"speaker":"A","text":"Kalau ragu, pakai eliminasi dulu. Coret jawaban yang jelas salah, baru pilih yang tersisa. Dan jangan terburu-buru, sisakan waktu untuk periksa jawaban di akhir.","trans":"如果犹豫，先用排除法。划掉明显错误的，再从剩下的里选。别匆忙，最后留点时间检查答案。"},{"speaker":"B","text":"Siap. Semoga kita tidak grogi ya. Yuk, fokus — perekaman pertama mau dimulai!","trans":"准备好了。希望我们都别怯场。来，集中注意力——第一段录音要开始了！"}]},{"title":"阅读策略讨论 / Diskusi Strategi Membaca","icon":"📖","dialogue":[{"speaker":"A","text":"Bagian membaca UKBI itu teksnya panjang-panjang. Kamu baca semuanya kata per kata?","trans":"UKBI阅读部分的文章都很长。你逐字逐句读完吗？"},{"speaker":"B","text":"Kalau begitu, waktu tidak akan cukup. Aku pakai teknik skimming — baca judul, paragraf pertama, dan kalimat utama tiap paragraf dulu.","trans":"那样时间肯定不够。我用略读技巧——先读标题、第一段和每段的主题句。"},{"speaker":"A","text":"Terus setelah skimming, apa yang kamu lakukan?","trans":"那略读之后呢？"},{"speaker":"B","text":"Aku susun kerangka tulisan di kepala: pokoknya apa, argumennya bagaimana, kesimpulannya apa. Kalau kerangakanya kacau, artinya aku belum paham strukturnya.","trans":"我在脑海里列提纲：主旨是什么、论点怎么展开的、结论是什么。如果提纲混乱，说明我还没理解文章结构。"},{"speaker":"A","text":"Bagus. Terus bagaimana dengan soal yang menanyakan detail? Misalnya ejaan atau tanda-baca?","trans":"不错。那问细节的题怎么办？比如拼写或标点符号的题？"},{"speaker":"B","text":"Baru kembali ke teks dan baca teliti bagian yang relevan. Misalnya ada soal tanda baca: mana kalimat yang lengkap-dan-runtut? Itu harus baca ulang dengan saksama.","trans":"那就回到文章仔细读相关部分。比如有标点题：哪个句子是完整且连贯的？那就得重新认真读。"},{"speaker":"A","text":"Aku sering ketemu soal rangkuman. Kadang dua pilihan terlihat benar sama-sama.","trans":"我经常碰到摘要题。有时候两个选项看起来都对。"},{"speaker":"B","text":"Nah, untuk soal rangkuman, pastikan jawabannya mencakup ide utama semua paragraf, bukan cuma detail kecil. Markir bagian-bagian penting di teks supaya mudah merujuk kembali.","trans":"摘要题的话，要确保答案涵盖所有段落的主旨，而不只是小细节。在文章里标记重要部分，方便回查。"},{"speaker":"A","text":"Teknikmu rapi sekali. Kalau teksnya tentang surat bisnis atau proposal proyek di kawasan industri, apakah strateginya sama?","trans":"你的方法很系统。如果文章是商务信函或工业园区的项目提案，策略一样吗？"},{"speaker":"B","text":"Prinsipnya sama. Skimming dulu untuk gambaran besar, lalu teliti untuk detail. Ingat: bacanya terstruktur, jangan terburu-buru, dan interpretasi teks harus sesuai konteks, bukan tebakan.","trans":"原则一样。先略读抓大意，再细读找细节。记住：阅读要有条理，别匆忙，对文章的解读必须符合上下文，不能靠猜。"}]},{"title":"模考复盘对话 / Diskusi Evaluasi Tryout","icon":"📝","dialogue":[{"speaker":"A","text":"Baru selesai tryout hari ini. Gimana hasilnya menurutmu?","trans":"今天的模拟考试刚结束。你觉得考得怎么样？"},{"speaker":"B","text":"Lumayan, tapi bagian mendengarkan masih kurang. Aku cemas karena perekaman hanya diputar sekali.","trans":"还行，但听力部分还差点。因为只有一遍播放，我很紧张。"},{"speaker":"A","text":"Aku juga merasakan hal yang sama. Tadi aku sempat grogi di teslet pertama, sampai beberapa soal harus menebak.","trans":"我也有同感。刚才第一组题我就怯场了，好几道题只能靠猜。"},{"speaker":"B","text":"Menebak itu boleh, asal cerdas. Pakai eliminasi — buang pilihan yang pasti salah, baru pilih yang paling masuk akal.","trans":"猜也可以，但要聪明地猜。用排除法——去掉肯定错的，再选最合理的。"},{"speaker":"A","text":"Kamu ingat soal tentang interpretasi grafik di bagian membaca? Itu triki. Aku salah pilih karena tidak markir bagian yang relevan.","trans":"你记得阅读部分那道图表解读题吗？很坑。我没标记相关段落，结果选错了。"},{"speaker":"B","text":"Oh iya, soal ini juga aku periksa ulang. Untungnya aku sempat markir beberapa kalimat penting, jadi interpretasinya lebih akurat.","trans":"对对，那题我也复查了。幸好我标了几句话，所以解读更准确。"},{"speaker":"A","text":"Bagian menulis bagaimana? Kamu sempat buat draf sebelum jawab?","trans":"写作部分呢？你先打草稿了吗？"},{"speaker":"B","text":"Sempat. Aku tulis draf singkat dulu, susun kerangka, lalu tulis versi final. Hasilnya jadi lebih lengkap-dan-runtut. Kamu langsung tulis final?","trans":"打了。我先写简短草稿，列提纲，再写终稿。结果更完整连贯。你直接写的终稿？"},{"speaker":"A","text":"Ya, dan hasilnya kacau. Ide-ideku tidak tersusun rapi. Lain kali aku harus belajar darimu — jangan terburu-buru.","trans":"是啊，结果很乱。我的思路没组织好。下次我得跟你学——不能急躁。"},{"speaker":"B","text":"Nanti kita diskusikan lagi strateginya sambil minum kopi. Yang penting sekarang, jangan cemas berlebihan. UKBI itu ujian keterampilan, bukan adu nasib. Siapkan draf strategimu!","trans":"回头咱们边喝咖啡边讨论策略。现在最重要的是别过度焦虑。UKBI考的是能力，不是碰运气。把你的策略草稿准备好！"}]}],"speeches":[{"day":1,"title":"UKBI听力备考策略 / Strategi Mendengarkan untuk UKBI","icon":"🎧","words":178,"time":60,"content":"Selamat pagi, rekan-rekan. Hari ini kita akan membahas strategi menghadapi bagian mendengarkan dalam ujian UKBI.\n\nBagian mendengarkan terdiri dari beberapa teslet yang disajikan dalam bentuk perekaman. Ingatlah: perekaman hanya diputar satu kali. Oleh karena itu, kesiapan mental sangat penting.\n\nPertama, manfaatkan waktu sebelum perekaman dimulai untuk membaca pilihan jawaban. Dengan membaca terlebih dahulu, Anda tahu kira-kira apa yang perlu didengarkan. Ini strategi yang sangat cerdas dan efektif.\n\nKedua, ikuti irama percakapan atau monolog dengan tenang. Jangan panik jika ada satu atau dua kata yang tidak Anda pahami. Fokuslah pada pesan utama. Dalam percakapan bisnis, misalnya tentang rapat proyek atau jadwal produksi, identifikasi siapa pembicaranya, apa topiknya, dan apa kesimpulannya.\n\nKetiga, jika terjadi gangguan teknis seperti suara yang tidak jelas, segera lapor kepada pengawas. Jangan berdiam diri.\n\nTerakhir, jika ragu antara dua jawaban, gunakan eliminasi. Buang pilihan yang jelas salah. Dan jangan terburu-buru — periksa kembali jawaban Anda jika masih ada waktu.\n\nSekarang ucapkan kalimat ini bersama saya: \"Saya siap mendengarkan dengan fokus!\"\n\nSelamat berlatih!","trans":"早上好,各位。今天我们来讨论应对 UKBI 听力部分的策略。听力部分由若干 teslet(题组)组成,以录音形式播放。请记住:录音只放一遍,因此心理准备非常重要。第一,利用录音播放前的时间先读选项。提前读过,你就知道要重点听什么,这是聪明而高效的策略。第二,平静地跟上对话或独白的节奏。有一两个词没听懂不要慌,抓住主要信息。比如在商务对话中——项目会议或生产排期之类——要听出谁在说话、主题是什么、结论是什么。第三,如果出现声音不清等技术故障,立刻报告监考员,不要坐着不动。最后,如果在两个答案之间犹豫,用排除法:先去掉明显错误的选项。别急着交卷——还有时间就再检查一遍。现在请跟我一起说:「我准备专注地听!」祝各位练习顺利!"},{"day":2,"title":"UKBI阅读技巧与策略 / Strategi Membaca untuk UKBI","icon":"📖","words":172,"time":60,"content":"Selamat siang, teman-teman. Hari ini kita fokus pada bagian membaca UKBI.\n\nTeknik pertama adalah skimming. Skimming artinya membaca secara cepat untuk mendapatkan gambaran umum. Bacalah judul, paragraf pertama, dan kalimat utama setiap paragraf. Jangan membaca kata per kata di awal.\n\nSetelah skimming, coba susun kerangka tulisan di kepala Anda. Apa pokok bahasannya? Bagaimana argumennya disusun? Apa kesimpulannya? Jika kerangkanya masih kacau, artinya Anda perlu membaca ulang dengan lebih teliti.\n\nDalam bagian membaca, sering ada pertanyaan tentang ejaan dan tanda baca. Mana kalimat yang ejaannya benar? Mana paragraf yang lengkap dan runtut? Untuk soal seperti ini, Anda harus kembali ke teks dan membaca bagian yang relevan dengan cermat.\n\nAda juga soal rangkuman. Pastikan pilihan jawaban mencakup ide utama dari seluruh teks, bukan hanya detail kecil. Gunakan pensil untuk menandai kalimat-kalimat penting agar mudah dirujuk kembali.\n\nTerakhir, jangan terburu-buru. Artikel dalam UKBI bisa berupa surat bisnis, laporan proyek, atau opini tentang perekonomian Indonesia. Interpretasi jawaban Anda harus sesuai konteks teks.\n\nUcapkan dengan keyakinan: \"Saya membaca dengan strategi!\"\n\nSelamat belajar!","trans":"中午好,朋友们。今天聚焦 UKBI 的阅读部分。第一个技巧是略读(skimming)。略读就是快速阅读以获取大意:先读标题、第一段和每段的主题句,一开始不要逐词阅读。略读后,试着在脑子里搭出文章框架:主旨是什么?论证如何展开?结论是什么?如果框架还很乱,说明需要更仔细地重读。阅读部分经常有拼写和标点题:哪个句子拼写正确?哪个段落完整连贯、条理清楚?这类题要回到原文,精读相关部分。还有主旨概括题:正确选项应涵盖全文主旨,而不是细枝末节。用铅笔标出重要句子,方便回查。最后,别急着赶时间。UKBI 的文章可能是商务信函、项目报告或关于印尼经济的评论,答案的解读必须符合文章语境。自信地说:「我带着策略阅读!」祝大家学习顺利!"},{"day":3,"title":"模考复盘与心理调适 / Evaluasi Tryout dan Kesiapan Mental","icon":"💪","words":180,"time":60,"content":"Selamat sore, rekan-rekan. Hari ini kita bahas evaluasi tryout dan kesiapan mental sebelum menghadapi UKBI.\n\nSetelah tryout, penting untuk membuat draf catatan evaluasi. Tuliskan bagian mana yang sudah bagus dan mana yang perlu diperbaiki. Jika kerangka jawaban Anda terasa kacau, jangan khawatir — itu berarti ada ruang untuk berkembang.\n\nDalam menjawab soal, gunakan eliminasi sebagai senjata utama. Jangan takut menebak, tetapi lakukan dengan cerdas. Eliminasi pilihan yang pasti salah, lalu pilih jawaban yang paling logis berdasarkan konteks.\n\nUntuk bagian membaca, jangan lupa menandai bagian teks yang penting. Ini sangat membantu terutama dalam soal interpretasi dan rangkuman. Anda bisa kembali dengan cepat ke bagian yang relevan.\n\nSekarang, mari kita bicara tentang emosi. Merasa cemas sebelum ujian itu wajar. Tetapi jangan biarkan rasa cemas menguasai Anda. Jika Anda grogi saat teslet pertama dimulai, tarik napas dalam, dan ingatkan diri bahwa Anda sudah berlatih keras.\n\nUntuk bagian menulis, selalu buat draf singkat terlebih dahulu. Susun kerangka idenya, lalu tulis dengan runtut. Jangan terburu-buru menulis langsung versi final.\n\nTerakhir, periksa ulang seluruh jawaban sebelum menyerahkan lembar jawaban. Kedisiplinan dalam memeriksa bisa menyelamatkan poin-poin berharga.\n\nUcapkan bersama: \"Saya tenang, saya siap, saya bisa!\"\n\nSampai jumpa di sesi berikutnya!","trans":"下午好,各位。今天我们聊模考复盘和考前心理调适。模考之后,重要的是写一份评估笔记:记下哪些部分已经不错、哪些需要改进。如果答题框架还觉得乱,别担心——这说明还有成长空间。答题时把排除法当成主力武器。别怕猜,但要猜得聪明:先排除肯定错的选项,再依据上下文选出最合理的答案。阅读部分别忘了标出文中重点,这在主旨和推断题上特别有帮助,你能快速回到相关段落。现在说说情绪:考前紧张很正常,但别让焦虑控制你。如果第一个 teslet 开始时发慌,深呼吸,告诉自己你已经努力练习过了。写作部分一定要打简短草稿:先列提纲,再连贯成文,别急着直接写终稿。最后,交卷前再全面检查一遍。检查时的自律能救回宝贵的分数。一起说:「我平静,我准备好了,我能行!」下节课见!"}],"grammar":{"title":"UKBI常考语法点 / Tata Bahasa Penting untuk UKBI","rules":[{"name":"被动语态：di- 前缀","detail":"印尼语被动语态由 di- 前缀构成，是 UKBI 阅读和听力的常见考点。例句：Setiap teslet disajikan dalam bentuk perekaman.（每个题组以录音形式呈现。）Soal-soal dibuat oleh tim ahli.（题目由专家团队编写。）注意：di- 前不加 ter-，且 di 与动词之间不加连字符。"},{"name":"祈使句 / Kalimat Perintah","detail":"UKBI 听力常出现指令句。祈使句直接用动词原形开头，主语省略。例句：Ucapkan kalimat ini dengan jelas!（清楚地读出这个句子！）Periksa jawaban Anda sebelum menyerahkan!（交卷前检查答案！）Markir bagian penting!（标记重要部分！）"},{"name":"并列连词 / Konjungsi Koordinatif","detail":"dan（和）、tetapi/tapi（但是）、atau（或者）、lalu/kemudian（然后）是 UKBI 阅读高频连词。例句：Pembahasan itu lengkap-dan-runtut tetapi terlalu panjang.（讨论内容完整连贯但太长了。）Baca judul dulu, lalu baca paragraf pertama.（先读标题，再读第一段。）"},{"name":"派生词缀 ber- 和 me-","detail":"ber- 表示「具有/进行」：berirama（有节奏的）。me- 表示主动及物：menjawab（回答）、menyusun（整理/排列）。例句：Percakapannya berirama natural.（对话节奏自然。）Sebaiknya susun kerangka sebelum menulis.（写作前最好先列提纲。）UKBI 常考同一词根加不同词缀的区别。"},{"name":"形容词语序与搭配","detail":"形容词后置是印尼语核心特征。例句：Dia siswa yang teliti.（他是个仔细的学生。）Hasil tryout-nya kacau sekali.（他的模考结果非常糟糕。）注意 yang 引导定语从句，UKBI 语法题常考 yang 的位置和用法。"},{"name":"常见副词与程度修饰","detail":"常见程度副词：sangat（非常）、kurang（不够）、agak（有点）、terlalu（太）。例句：Jangan terlalu cemas sebelum ujian.（考前别太焦虑。）Suara perekamannya agak kurang jelas.（录音的声音有点不清楚。）掌握副词位置是 UKBI 常考项。"}]},"quiz":{"title":"UKBI复盘·听力阅读测试 (15题)","questions":[{"q":"Dalam UKBI bagian mendengarkan, bagaimana teslet disajikan kepada peserta?","options":["A) Dalam bentuk teks yang dibaca sendiri","B) Dalam bentuk perekaman yang hanya diputar sekali","C) Dalam bentuk video dengan subtitle"],"a":1,"explain":"UKBI 听力部分的题组以录音(perekaman)形式呈现，且只播放一次，不能重听。"},{"q":"Apa arti kata \"skimming\" dalam strategi membaca?","options":["A) Membaca kata per kata dengan saksama","B) Membaca cepat untuk mendapatkan gambaran umum","C) Menghafal seluruh teks"],"a":1,"explain":"Skimming 是略读，指快速阅读以获取大意，而不是逐字细读。"},{"q":"Manakah kalimat yang lengkap-dan-runtut?","options":["A) Karena hujan deras, acara tersebut dibatalkan panitia.","B) Hujan deras, acara, dibatalkan.","C) Karena hujan deras sehingga acara dibatalkan."],"a":0,"explain":"选项 B 结构完整、逻辑连贯（因果明确，主谓齐全）。A 缺少主句主语，C 句子成分残缺。"},{"q":"Jika peserta ragu antara dua jawaban, strategi terbaik adalah...","options":["A) Langsung menebak jawaban pertama yang terpikir","B) Melewati soal dan tidak menjawab","C) Menggunakan eliminasi untuk membuang pilihan yang salah"],"a":2,"explain":"遇到犹豫时应用排除法(eliminasi)，去掉明显错误的选项，提高正确率。"},{"q":"Apa fungsi utama \"susun kerangka\" sebelum menulis esai dalam UKBI?","options":["A) Agar tidak perlu menulis draf","B) Agar tulisan menjadi kacau","C) Agar ide tersusun lengkap-dan-runtut"],"a":2,"explain":"列提纲(susun kerangka)能让写作思路清晰、文章结构完整连贯。"},{"q":"Manakah yang termasuk tanda baca yang benar dalam kalimat Indonesia?","options":["A) Apakah kamu sudah siap, untuk ujian UKBI?","B) Apakah kamu sudah siap untuk ujian UKBI?","C) Apakah kamu, sudah siap untuk ujian UKBI"],"a":1,"explain":"选项 B 标点使用正确。A 逗号位置错误（siap 和 untuk 之间不需要逗号），C 缺少句号且逗号误用。"},{"q":"Kata \"disajikan\" mengandung bentuk...","options":["A) Pasif dengan awalan di-","B) Aktif transitif","C) Kata sifat"],"a":0,"explain":"disajikan 由 saji（呈现）加被动前缀 di- 构成，意为「被呈现」。"},{"q":"Dalam kalimat \"Ucapkan kalimat ini dengan jelas!\", kata \"ucapkan\" menunjukkan bentuk...","options":["A) Permintaan atau perintah","B) Pertanyaan","C) Penjelasan"],"a":0,"explain":"Ucapkan 是祈使句，动词原形加 -kan 表示命令/请求，意为「请说出」。"},{"q":"Apa yang sebaiknya dilakukan jika terjadi gangguan teknis saat perekaman diputar?","options":["A) Tetap diam dan berharap suaranya membaik","B) Langsung keluar ruangan","C) Angkat tangan dan lapor pengawas"],"a":2,"explain":"出现技术故障(gangguan)时应举手报告监考老师(pengawas)，不要沉默或离场。"},{"q":"Perhatikan kalimat: \"Pembahasannya kacau sekali, sulit dipahami.\" Arti kata \"kacau\" adalah...","options":["A) Teratur dan rapi","B) Berantakan / tidak teratur","C) Menarik dan jelas"],"a":1,"explain":"kacau 意为「混乱、乱七八糟」，与 teratur（整齐）相反。"},{"q":"Manakah kalimat dengan ejaan yang benar?","options":["A) Saya harus membuat rangkuman setelah membaca.","B) Saya harus membwat rangkuman setelah membaca.","C) Saya harus membuat rangkuman setlah membaca."],"a":0,"explain":"选项 A 拼写正确。B 中 membwat 应为 membuat，C 中 setlah 应为 setelah。UKBI 常考拼写(ejaan)辨析。"},{"q":"Mengapa penting untuk tidak terburu-buru saat mengerjakan UKBI?","options":["A) Karena terburu-buru membuat kita salah membaca instruksi","B) Karena UKBI tidak mengukur kecepatan","C) Karena terburu-buru itu dilarang panitia"],"a":0,"explain":"匆忙(terburu-buru)会导致读错题、漏看选项，影响正确率。保持节奏很重要。"},{"q":"Kata \"markir\" dalam konteks ujian berarti...","options":["A) Menghapus jawaban","B) Menyalin teks","C) Menandai bagian teks yang penting"],"a":2,"explain":"markir 意为「标记、做记号」，在阅读时标记重要段落方便回查。"},{"q":"Apa beda antara merasa cemas dan grogi dalam konteks ujian?","options":["A) Cemas adalah kekhawatiran umum, grogi adalah rasa gugup saat tampil/bertindak","B) Keduanya sama saja","C) Cemas lebih parah dari grogi"],"a":0,"explain":"cemas 泛指焦虑不安的情绪，grogi 特指临场紧张/怯场（如考试、演讲时的紧张感）。"},{"q":"Dalam soal rangkuman UKBI, jawaban yang tepat harus...","options":["A) Mencakup hanya detail kecil dari satu paragraf","B) Mencakup ide utama dari seluruh teks","C) Se panjang mungkin seperti teks asli"],"a":1,"explain":"摘要(rangkuman)题要求涵盖全文主旨大意，而非只概括某个小节的细节。"}]}},"ukbi_diary_2":{"title":"UKBI复盘·写作口语 / UKBI Review: Writing & Speaking","icon":"✍️","days":3,"vocab":[["esai","散文/短文",""],["karakteristik","特征",""],["sifat","性质",""],["bersifat","具有…性质",""],["nyata","真实的",""],["kisaran","范围/区间",""],["adaptif","适应性的",""],["tetapkan","确定/规定",""],["legal","合法的",""],["testimoni","证言/推荐语",""],["ulasan","评论/评价",""],["evaluasi","评估",""],["keputusan","决定",""],["membedakan","区分",""],["perencanaan","规划",""],["intinya","关键是/总之",""],["apapun","无论什么",""],["bukti","证据",""],["segala","所有的",""],["wajar","合理的",""],["suasana","氛围",""],["terpaku-pada","专注于",""],["penekanan","强调",""],["meskipun","尽管",""],["makanya-sebabnya-oleh-karena-itu","因果连词（所以）",""]],"scenes":[{"title":"UKBI写作课 / Konsultasi Menulis Esai","icon":"📝","dialogue":[{"speaker":"A","text":"Bu, saya bingung menyusun esai untuk ujian UKBI. Apa karakteristik esai yang baik menurut Anda?","trans":"老师，我不太会写UKBI的短文。好文章的特征是什么？"},{"speaker":"B","text":"Karakteristik esai yang baik itu lengkap, runtut, dan logis — inilah sifat tulisan yang dinilai di UKBI.","trans":"好文章的特征是完整、连贯、有逻辑——这就是UKBI评分看重的写作性质。"},{"speaker":"A","text":"Jadi, paragraf pembuka harus berisi apa, Bu?","trans":"那开头段应该写什么内容呢？"},{"speaker":"B","text":"Paragraf pembuka memuat gagasan utama. Setelah itu, kembangkan argumen yang didukung bukti nyata, misalnya data atau testimoni dari ahli.","trans":"开头段要提出中心论点。然后展开论据，用真实证据支撑，比如数据或专家的证言。"},{"speaker":"A","text":"Apakah saya boleh menggunakan kisaran angka sebagai bukti? Dan haruskah sumbernya legal?","trans":"我可以用区间数字作为证据吗？来源必须是合法的吗？"},{"speaker":"B","text":"Tentu boleh, asalkan angkanya wajar dan bisa dipertanggungjawabkan. Sumber legal juga penting untuk testimoni.","trans":"当然可以，只要数字合理且能核实。证言也必须来自合法的来源。"},{"speaker":"A","text":"Bagaimana cara membedakan argumen yang kuat dan yang lemah?","trans":"怎么区分强论点和弱论点呢？"},{"speaker":"B","text":"Argumen kuat bersifat spesifik dan relevan; argumen lemah bersifat umum dan tidak fokus.","trans":"强论点具体且切题；弱论点空泛、没有焦点。"},{"speaker":"A","text":"Kalau draf saya masih berantakan, apa yang harus saya perbaiki dulu, Bu?","trans":"如果我的草稿还很乱，应该先改什么？"},{"speaker":"B","text":"Perbaiki struktur dulu. Intinya, pastikan alur berpikirmu jelas. Kalau perlu, minta ulasan dari teman.","trans":"先改结构。关键是确保你的思路清晰。有必要的话，请朋友帮你评阅。"}]},{"title":"口语模拟考场 / Simulasi Ujian Berbicara","icon":"🎤","dialogue":[{"speaker":"A","text":"Kamu sudah siap untuk bagian berbicara? Suasana di ruang perekaman bisa bikin grogi.","trans":"口语部分准备好了吗？录音室里的氛围容易让人紧张。"},{"speaker":"B","text":"Agak grogi sih, tapi aku sudah latihan. Kamu sudah pilih tema?","trans":"有点紧张，但我练过了。你选好话题了吗？"},{"speaker":"A","text":"Sudah. Aku pilih tema perencanaan karier. Kamu pilih tema apa?","trans":"选好了。我选的是职业规划的话题。你选什么？"},{"speaker":"B","text":"Aku pilih tema lingkungan kerja. Bagiku, yang sulit itu jangan terpaku pada naskah yang sudah disiapkan.","trans":"我选工作环境的话题。对我来说，难点是不要死盯着准备好的稿子念。"},{"speaker":"A","text":"Setuju. Pewawancara bisa mengajukan pertanyaan apapun, jadi kita harus adaptif.","trans":"同意。考官可以问任何问题，所以我们必须随机应变。"},{"speaker":"B","text":"Ya, makanya aku berlatih menjawab pertanyaan yang tidak terduga, dan memberi penekanan pada kata penting supaya jawaban lebih jelas.","trans":"所以我才练习回答意料之外的问题，并且给关键词加重音，让回答更清楚。"},{"speaker":"A","text":"Bagus. Intinya, intonasi yang tepat menunjukkan pemahaman yang baik.","trans":"很好。关键是，恰当的语调能体现你的理解水平。"},{"speaker":"B","text":"Meskipun waktunya terbatas, kita harus tetap tenang dan fokus.","trans":"尽管时间有限，我们也要保持镇定和专注。"},{"speaker":"A","text":"Benar. Kalau ada bagian yang tidak tahu, sebut saja hal yang kita yakini.","trans":"没错。遇到不会的地方，就说自己有把握的内容。"},{"speaker":"B","text":"Setuju. Sebabnya, jawaban yang jujur dan runtut lebih bernilai daripada jawaban panjang tapi kosong. Oke, mulai simulasi?","trans":"同意。因为诚实而连贯的回答，比又长又空洞的回答更有价值。好，开始模拟吧？"}]},{"title":"考后复盘对话 / Diskusi Hasil UKBI","icon":"📊","dialogue":[{"speaker":"A","text":"Hasil UKBI sudah keluar! Aku lulus dengan predikat Madya. Bagaimana denganmu?","trans":"UKBI成绩出来了！我拿了Madya等级通过了。你呢？"},{"speaker":"B","text":"Alhamdulillah, aku juga lulus, Tinggi. Tapi nilai menulisku masih di kisaran cukup.","trans":"感谢真主，我也通过了，Tinggi等级。但我的写作分数还只在中等区间。"},{"speaker":"A","text":"Sudah bagus! Menurutmu, apa faktor yang paling berpengaruh pada nilaimu?","trans":"已经很不错了！你觉得影响分数的主要因素是什么？"},{"speaker":"B","text":"Evaluasi dari lembaga menunjukkan kelemahanku ada di bagian menulis esai. Aku memang kurang latihan.","trans":"机构的评估显示我的弱项是短文写作。我确实练得不够。"},{"speaker":"A","text":"Jadi, apa keputusanmu sekarang? Ikut UKBI lagi atau berhenti di sini?","trans":"那你现在的决定是什么？再考一次UKBI，还是就到这里？"},{"speaker":"B","text":"Aku putuskan mengikuti UKBI lagi tahun depan. Skor lebih tinggi dibutuhkan untuk beasiswa.","trans":"我决定明年再考一次。申请奖学金需要更高的分数。"},{"speaker":"A","text":"Keputusan yang wajar. Apa rencana persiapanmu?","trans":"这是个合理的决定。你的备考计划是什么？"},{"speaker":"B","text":"Aku akan ikut kursus menulis dan mengumpulkan segala bukti kemajuan, seperti draf esai dan rekaman latihan.","trans":"我会参加写作课，并收集所有进步的证据，比如作文草稿和练习录音。"},{"speaker":"A","text":"Ide bagus. Dengan begitu kamu bisa melihat progresmu secara nyata. Meskipun sibuk, tetap konsisten ya.","trans":"好主意。这样你就能看到实实在在的进步。尽管工作忙，也要坚持哦。"},{"speaker":"B","text":"Pasti. Intinya, jangan menyerah dan terus evaluasi diri. Terima kasih sudah menemaniku berlatih!","trans":"一定。关键是别放弃，不断自我评估。谢谢你陪我练习！"}]}],"speeches":[{"day":1,"title":"写好UKBI作文的关键 / Kunci Menulis Esai UKBI","icon":"✍️","words":158,"time":60,"content":"Assalamu'alaikum dan salam sehat untuk kita semua.\n\nHari ini saya ingin berbagi tentang cara menulis esai yang baik untuk ujian UKBI. Esai yang baik memiliki tiga karakteristik utama: lengkap, runtut, dan logis. Lengkap berarti esai memiliki paragraf pembuka, isi, dan kesimpulan. Paragraf pembuka memuat gagasan utama yang jelas. Isi esai berisi argumen-argumen yang saling terhubung. Kesimpulan merangkum seluruh gagasan tanpa menambah hal baru.\n\nKedua, esai harus runtut. Setiap kalimat harus mengalir dengan baik dari satu paragraf ke paragraf berikutnya. Gunakan kata penghubung seperti pertama, kedua, selain itu, dan terakhir untuk menunjukkan alur berpikir.\n\nKetiga, esai harus didukung bukti nyata. Bukti bisa berupa data, contoh, atau testimoni dari sumber terpercaya. Hindari argumen yang bersifat umum dan tidak fokus.\n\nSetelah menulis draf pertama, luangkan waktu untuk merevisi. Periksa struktur terlebih dahulu, kemudian tata bahasa. Minta teman membaca draf Anda dan memberikan ulasan yang jujur. Intinya, latihan menulis secara teratur adalah kunci keberhasilan. Selamat berlatih, dan semoga sukses di ujian UKBI!","trans":"愿真主的平安与祝福归于我们每一个人。今天我想分享 UKBI 考试好作文的写法。好作文有三个主要特征:完整、连贯、合逻辑。完整指文章有开头段、主体段和结论段:开头段要有清晰的主旨句,主体部分由相互衔接的论据组成,结论总结全文观点而不添加新内容。第二,作文要连贯。句子要一段接一段地自然流动。使用连接词,如「首先」「第二」「此外」「最后」,展示思路的脉络。第三,作文要有真实论据支撑:论据可以是数据、例子,或来自可靠来源的证言;避免空泛、不聚焦的论点。写完初稿后要留出修改时间:先检查结构,再检查语法。请朋友读你的草稿并给出诚实点评。总之,经常练习写作是成功的关键。祝各位练习顺利,UKBI 考试成功!"},{"day":2,"title":"从容应对口语考试 / Strategi Ujian Berbicara","icon":"🎙️","words":159,"time":60,"content":"Selamat pagi, teman-teman.\n\nHari ini saya akan berbicara tentang strategi menghadapi bagian berbicara dalam ujian UKBI. Bagi banyak peserta, bagian ini adalah yang paling menegangkan karena suasana perekaman yang tegang dan waktu yang terbatas.\n\nPertama, persiapan adalah kunci. Pilihlah tema yang sudah Anda kuasai dan buat kerangka singkat, bukan naskah lengkap. Dengan kerangka, Anda bisa berbicara lebih natural dan tidak terpaku pada teks.\n\nKedua, perhatikan penekanan kata dan intonasi. Kata-kata penting harus diberi tekanan supaya pendengar memahami pesan Anda. Bicaralah dengan tempo yang wajar, tidak terlalu cepat dan tidak terlalu lambat.\n\nKetiga, jangan panik jika pewawancara mengajukan pertanyaan yang tidak terduga. Ingatlah bahwa Anda boleh menjawab dengan hal yang Anda ketahui. Yang penting jawaban Anda runtut dan jelas. Meskipun ada jeda kecil, itu tidak masalah.\n\nTerakhir, berlatihlah secara rutin. Rekam diri Anda berbicara, dengarkan ulang, dan perbaiki kekurangan. Latihan bersama teman juga sangat membantu, karena Anda bisa saling menilai. Intinya, kepercayaan diri dibangun melalui latihan yang konsisten. Semoga sukses!","trans":"早上好,朋友们。今天我来谈 UKBI 口语部分的应对策略。对很多考生来说,这是最紧张的部分——录音氛围紧张,时间又有限。第一,准备是关键。选自己熟悉的主题,列简短提纲,不要写完整稿子。有提纲就能说得更自然,不被文字绑住。第二,注意重音和语调:关键词要重读,让听者听懂你的意思;语速适中,不要太快也不要太慢。第三,考官问到出乎意料的问题别慌。记住,你可以就自己所知作答,重要的是回答连贯、清楚。即使有小停顿也没关系。最后,坚持练习。录下自己的发言,回听并改进不足;和朋友一起练也很有帮助,可以互相点评。总之,自信来自持续的练习。祝各位成功!"},{"day":3,"title":"成绩解读与下一步 / Evaluasi Hasil dan Langkah Berikutnya","icon":"📈","words":158,"time":60,"content":"Assalamu'alaikum warahmatullahi wabarakatuh.\n\nAlhamdulillah, saya baru saja menerima hasil ujian UKBI saya. Dalam kesempatan ini, saya ingin berbagi cara membaca evaluasi hasil dan menetapkan langkah selanjutnya.\n\nPertama, pelajari laporan skor dengan seksama. Laporan UKBI menunjukkan empat kemampuan: mendengarkan, membaca, menulis, dan berbicara. Setiap kemampuan memiliki skor dalam kisaran tertentu. Jangan hanya melihat predikat akhir, tetapi identifikasi kemampuan mana yang paling lemah.\n\nKedua, jadikan evaluasi ini sebagai alat perencanaan belajar. Misalnya, jika nilai menulis rendah, saya perlu lebih banyak latihan menyusun esai. Jika nilai berbicara rendah, saya perlu latihan berbicara dengan rekaman.\n\nKetiga, tetapkan keputusan yang realistis. Tidak semua orang harus mengulang ujian. Pertimbangkan tujuan Anda: apakah untuk beasiswa, pekerjaan, atau kebutuhan pribadi. Jika keputusan adalah mengulang, buatlah jadwal belajar yang teratur.\n\nTerakhir, kumpulkan segala bukti kemajuan: draf esai, rekaman latihan, dan hasil kuis. Bandingkan bukti-bukti ini dari waktu ke waktu untuk melihat perkembangan nyata. Intinya, hasil UKBI adalah cermin, bukan penghakim. Mari terus belajar dan berkembang. Terima kasih.","trans":"愿真主赐你们平安与慈悯。感谢真主,我刚收到 UKBI 考试成绩。借此机会,我想分享如何解读成绩评估、确定下一步。第一,仔细研究成绩单。UKBI 报告显示四项能力:听力、阅读、写作、口语,每项都有相应分数。别只看最终等级,要找出自己最弱的能力项。第二,把这次评估当作学习规划工具:比如我写作分低,就需要多练写文章;口语分低,就需要多练录音发言。第三,做现实的决定。不是每个人都必须重考。想想你的目标:是奖学金、工作还是个人需要。如果决定重考,就制定规律的学习时间表。最后,收集所有进步的证据:作文草稿、练习录音、测验成绩。不时对比这些材料,看到真实的成长。总之,UKBI 成绩是一面镜子,不是一位审判官。让我们继续学习、继续成长。谢谢。"}],"grammar":{"title":"UKBI写作口语高频语法 / Tata Bahasa Inti UKBI","rules":[{"name":"因果连词：makanya / sebabnya / oleh karena itu","detail":"三个词都表示“所以”，语域不同：makanya 最口语，适合对话；sebabnya 中性；oleh karena itu 最正式，适合写作。例：Hujan deras, makanya saya terlambat.（口语：雨很大，所以我迟到了。）/ Biaya produksi naik. Oleh karena itu, harga jual dinaikkan.（写作：生产成本上涨，因此提高售价。）"},{"name":"让步状语：meskipun / walaupun","detail":"meskipun 引导让步从句，主句常配 tetap/tetapi：Meskipun hujan deras, dia tetap berangkat kerja.（尽管下大雨，他仍然去上班。）正式写作中 meskipun 与 namun 二选一即可，不要叠加。"},{"name":"性质表达：bersifat + 形容词","detail":"bersifat 表示“具有…性质”，由名词 sifat（性质）加前缀 ber- 构成，后接形容词：Esai yang baik bersifat logis dan runtut.（好文章具有逻辑性和条理性。）Argumen kuat bersifat spesifik.（强论点具有具体性。）"},{"name":"总结强调：intinya / pada intinya","detail":"intinya 意为“关键是/总之”，置于句首总结观点，口语写作皆可：Intinya, persiapan adalah kunci keberhasilan.（总之，准备是成功的关键。）考试口语中用来收束答案非常自然。"},{"name":"不定表达：apapun / segala","detail":"apapun = 无论什么（指事/物），segala = 所有的（后接名词）。Pewawancara boleh bertanya apapun.（考官可以问任何问题。）Segala persiapan sudah selesai.（所有准备都已完成。）"},{"name":"Esai 三段式结构","detail":"UKBI 写作标准结构：pembuka（提出 tesis 论点）→ isi（argumen 论据 + bukti 证据，如数据或 testimoni）→ kesimpulan（rangkuman 总结）。段落间用 kata penghubung（首先、其次、此外、最后）衔接，使文章 runtut。例：Pembuka: “Pendidikan bahasa penting bagi profesional.” → Isi: 论据一+数据，论据二+专家证言 → Kesimpulan: “Oleh karena itu, belajar bahasa harus konsisten.”"}]},"quiz":{"title":"UKBI复盘·写作口语测试 (15题)","questions":[{"q":"Hujan sangat deras, ... saya terlambat tiba di kantor.","options":["A) meskipun","B) makanya","C) selama"],"a":1,"explain":"前后是因果关系：因为雨大，所以迟到。makanya = 所以，最符合语境；meskipun 是“尽管”，selama 是“在…期间”。"},{"q":"Esai yang baik ... lengkap, runtut, dan logis.","options":["A) bersifat","B) bernilai","C) berada"],"a":0,"explain":"bersifat + 形容词表示“具有…性质”。句意：好文章具有完整、连贯、有逻辑的性质。"},{"q":"“Karakteristik esai yang baik antara lain lengkap dan runtut.” Apa arti kata “karakteristik”?","options":["A) ciri khas","B) judul","C) panjang"],"a":0,"explain":"karakteristik = 特征、特点。句意：好文章的特征包括完整和连贯。"},{"q":"... waktu ujian terbatas, peserta harus tetap fokus.","options":["A) Tetapi","B) Oleh karena itu","C) Meskipun"],"a":2,"explain":"让步结构 meskipun...tetap...：尽管考试时间有限，考生仍须保持专注。"},{"q":"Pewawancara boleh mengajukan pertanyaan ... kepada peserta.","options":["A) apapun","B) kemanapun","C) bagaimanapun"],"a":0,"explain":"apapun = 无论什么/任何。句意：考官可以向考生提出任何问题。kemanapun 指地点，bagaimanapun 指方式。"},{"q":"“... , persiapan adalah kunci keberhasilan.” Kata yang tepat untuk mengawali kesimpulan adalah ...","options":["A) Sebabnya","B) Intinya","C) Meskipun"],"a":1,"explain":"intinya = 关键是/总之，用于句首引出总结。句意：总之，准备是成功的关键。"},{"q":"Untuk menegaskan waktu dalam kalimat “Saya akan berangkat besok”, kata yang diberi penekanan adalah ...","options":["A) SAYA","B) berangkat","C) BESOK"],"a":2,"explain":"penekanan（重音/强调）落在要突出的词上。想强调时间就把 BESOK 重读；强调主语则重读 SAYA。"},{"q":"“Nilai menulisku berada di kisaran 600 sampai 650.” Apa arti kata “kisaran”?","options":["A) rentang","B) jumlah total","C) rata-rata"],"a":0,"explain":"kisaran = 范围/区间，近义词 rentang。句意：我的写作分数在600到650区间。"},{"q":"Setiap argumen dalam esai harus didukung bukti yang ...","options":["A) nyata","B) wajar","C) legal"],"a":0,"explain":"bukti nyata = 真实的证据，固定搭配。论据必须由真实可查的证据支撑。"},{"q":"Di bagian pembuka esai, penulis harus menyatakan ...","options":["A) gagasan utama (tesis)","B) ucapan terima kasih","C) daftar pustaka"],"a":0,"explain":"pembuka（开头段）的功能是提出中心论点（gagasan utama / tesis）；致谢是结尾的内容，daftar pustaka（参考文献）也不属于开头段。"},{"q":"... keputusan untuk mengulang UKBI, saya membuat jadwal belajar mingguan.","options":["A) Sebelum","B) Setelah","C) Selama"],"a":1,"explain":"setelah + 名词短语：做出决定之后，我制定了每周学习计划。keputusan = 决定。"},{"q":"... persiapan sudah selesai sebelum hari ujian.","options":["A) Segala","B) Apapun","C) Kadang"],"a":0,"explain":"segala + 名词 = 所有的。句意：考试前一天，所有准备工作都已完成。"},{"q":"Hasil evaluasi menunjukkan nilai berbicaraku rendah. ..., saya akan banyak berlatih berbicara.","options":["A) Oleh karena itu","B) Meskipun","C) Sebelum"],"a":0,"explain":"前后是因果关系：评估显示口语分数低，因此要加强口语练习。oleh karena itu = 因此（正式用语）。"},{"q":"Dalam ujian berbicara, peserta harus ... terhadap pertanyaan yang tidak terduga.","options":["A) adaptif","B) terpaku","C) panik"],"a":0,"explain":"adaptif = 适应性的。对意外问题要灵活应对，而不是僵住（terpaku）或慌张（panik）。"},{"q":"Manakah contoh kalimat pembuka esai yang baik?","options":["A) Terima kasih sudah membaca esai saya.","B) Bahasa Indonesia yang baik penting bagi profesional modern karena komunikasi menentukan keberhasilan kerja.","C) Saya suka sekali makan nasi goreng di kantin."],"a":1,"explain":"好的开头段应提出论点（tesis）并给出理由，B 项符合要求；A 是结尾致谢，C 是无关话题。"}]}}};
+},"ukbi_diary_1":{"title":"UKBI复盘·听力阅读 / UKBI Review: Listening & Reading","icon":"🎧","days":3,"vocab":[["disajikan","被呈现",""],["teslet","题组（自适应考试）",""],["perekaman","录音",""],["skimming","略读",""],["ejaan","拼写",""],["tanda-baca","标点符号",""],["lengkap-dan-runtut","完整且连贯",""],["kacau","混乱",""],["susun-kerangka","列提纲",""],["tryout","模拟考试",""],["eliminasi","排除法",""],["menebak","猜测",""],["cerdas","聪明的",""],["markir","标记",""],["periksa","检查",""],["teliti","仔细的",""],["terburu-buru","匆忙的",""],["cemas","焦虑的",""],["grogi","怯场紧张的",""],["irama","节奏",""],["interpretasi","解读",""],["ucapkan","说出（祈使）",""],["draf","草稿",""],["rangkuman","摘要",""],["gangguan","故障",""]],"scenes":[{"title":"UKBI听力考场 / Ruang Ujian UKBI Bagian Mendengarkan","icon":"🎧","dialogue":[{"speaker":"A","text":"Nah, tes bagian mendengarkan mau dimulai. Kamu sudah baca petunjuknya?","trans":"好了，听力部分要开始了。你读过考试说明了吗？"},{"speaker":"B","text":"Sudah. Setiap teslet disajikan dalam bentuk perekaman, dan kita tidak bisa mengulangnya. Sekali dengar, langsung jawab!","trans":"读过了。每个题组以录音形式呈现，不能重播。只听一遍，直接回答！"},{"speaker":"A","text":"Betul, makanya aku biasanya membaca dulu pilihan jawabannya sebelum perekaman diputar. Jadi tahu kira-kira apa yang harus didengar.","trans":"没错，所以我通常在录音播放前先读选项。这样就知道该重点听什么了。"},{"speaker":"B","text":"Strategi yang cerdas! Kalau teksnya tentang suasana di kawasan industri, misalnya rapat proyek atau jadwal pengiriman, kita bisa langsung fokus ke kata kunci.","trans":"聪明的策略！如果材料是工业园区的场景，比如项目会议或发货日程，我们就能立刻锁定关键词。"},{"speaker":"A","text":"Iya, kemarin waktu tryout ada soal tentang instruksi keselamatan kerja. Untung aku sudah menguasai kosakatanya.","trans":"对，昨天模拟考试有一道题是关于工作安全指示的。幸好我掌握了相关词汇。"},{"speaker":"B","text":"Bagaimana kalau ada gangguan teknis? Misalnya suara perekaman kurang jelas?","trans":"如果有技术故障怎么办？比如录音的声音不清楚？"},{"speaker":"A","text":"Langsung angkat tangan dan lapor pengawas. Tapi jangan panik, tetap tenang dan ikuti irama percakapannya.","trans":"马上举手报告监考老师。但不要慌，保持镇定，跟着对话的节奏走。"},{"speaker":"B","text":"Kalau kamu ragu-ragu antara dua jawaban, gimana? Menebak asal saja?","trans":"如果你在两个答案之间犹豫怎么办？随便猜吗？"},{"speaker":"A","text":"Kalau ragu, pakai eliminasi dulu. Coret jawaban yang jelas salah, baru pilih yang tersisa. Dan jangan terburu-buru, sisakan waktu untuk periksa jawaban di akhir.","trans":"如果犹豫，先用排除法。划掉明显错误的，再从剩下的里选。别匆忙，最后留点时间检查答案。"},{"speaker":"B","text":"Siap. Semoga kita tidak grogi ya. Yuk, fokus — perekaman pertama mau dimulai!","trans":"准备好了。希望我们都别怯场。来，集中注意力——第一段录音要开始了！"}]},{"title":"阅读策略讨论 / Diskusi Strategi Membaca","icon":"📖","dialogue":[{"speaker":"A","text":"Bagian membaca UKBI itu teksnya panjang-panjang. Kamu baca semuanya kata per kata?","trans":"UKBI阅读部分的文章都很长。你逐字逐句读完吗？"},{"speaker":"B","text":"Kalau begitu, waktu tidak akan cukup. Aku pakai teknik skimming — baca judul, paragraf pertama, dan kalimat utama tiap paragraf dulu.","trans":"那样时间肯定不够。我用略读技巧——先读标题、第一段和每段的主题句。"},{"speaker":"A","text":"Terus setelah skimming, apa yang kamu lakukan?","trans":"那略读之后呢？"},{"speaker":"B","text":"Aku susun kerangka tulisan di kepala: pokoknya apa, argumennya bagaimana, kesimpulannya apa. Kalau kerangakanya kacau, artinya aku belum paham strukturnya.","trans":"我在脑海里列提纲：主旨是什么、论点怎么展开的、结论是什么。如果提纲混乱，说明我还没理解文章结构。"},{"speaker":"A","text":"Bagus. Terus bagaimana dengan soal yang menanyakan detail? Misalnya ejaan atau tanda-baca?","trans":"不错。那问细节的题怎么办？比如拼写或标点符号的题？"},{"speaker":"B","text":"Baru kembali ke teks dan baca teliti bagian yang relevan. Misalnya ada soal tanda baca: mana kalimat yang lengkap-dan-runtut? Itu harus baca ulang dengan saksama.","trans":"那就回到文章仔细读相关部分。比如有标点题：哪个句子是完整且连贯的？那就得重新认真读。"},{"speaker":"A","text":"Aku sering ketemu soal rangkuman. Kadang dua pilihan terlihat benar sama-sama.","trans":"我经常碰到摘要题。有时候两个选项看起来都对。"},{"speaker":"B","text":"Nah, untuk soal rangkuman, pastikan jawabannya mencakup ide utama semua paragraf, bukan cuma detail kecil. Markir bagian-bagian penting di teks supaya mudah merujuk kembali.","trans":"摘要题的话，要确保答案涵盖所有段落的主旨，而不只是小细节。在文章里标记重要部分，方便回查。"},{"speaker":"A","text":"Teknikmu rapi sekali. Kalau teksnya tentang surat bisnis atau proposal proyek di kawasan industri, apakah strateginya sama?","trans":"你的方法很系统。如果文章是商务信函或工业园区的项目提案，策略一样吗？"},{"speaker":"B","text":"Prinsipnya sama. Skimming dulu untuk gambaran besar, lalu teliti untuk detail. Ingat: bacanya terstruktur, jangan terburu-buru, dan interpretasi teks harus sesuai konteks, bukan tebakan.","trans":"原则一样。先略读抓大意，再细读找细节。记住：阅读要有条理，别匆忙，对文章的解读必须符合上下文，不能靠猜。"}]},{"title":"模考复盘对话 / Diskusi Evaluasi Tryout","icon":"📝","dialogue":[{"speaker":"A","text":"Baru selesai tryout hari ini. Gimana hasilnya menurutmu?","trans":"今天的模拟考试刚结束。你觉得考得怎么样？"},{"speaker":"B","text":"Lumayan, tapi bagian mendengarkan masih kurang. Aku cemas karena perekaman hanya diputar sekali.","trans":"还行，但听力部分还差点。因为只有一遍播放，我很紧张。"},{"speaker":"A","text":"Aku juga merasakan hal yang sama. Tadi aku sempat grogi di teslet pertama, sampai beberapa soal harus menebak.","trans":"我也有同感。刚才第一组题我就怯场了，好几道题只能靠猜。"},{"speaker":"B","text":"Menebak itu boleh, asal cerdas. Pakai eliminasi — buang pilihan yang pasti salah, baru pilih yang paling masuk akal.","trans":"猜也可以，但要聪明地猜。用排除法——去掉肯定错的，再选最合理的。"},{"speaker":"A","text":"Kamu ingat soal tentang interpretasi grafik di bagian membaca? Itu triki. Aku salah pilih karena tidak markir bagian yang relevan.","trans":"你记得阅读部分那道图表解读题吗？很坑。我没标记相关段落，结果选错了。"},{"speaker":"B","text":"Oh iya, soal ini juga aku periksa ulang. Untungnya aku sempat markir beberapa kalimat penting, jadi interpretasinya lebih akurat.","trans":"对对，那题我也复查了。幸好我标了几句话，所以解读更准确。"},{"speaker":"A","text":"Bagian menulis bagaimana? Kamu sempat buat draf sebelum jawab?","trans":"写作部分呢？你先打草稿了吗？"},{"speaker":"B","text":"Sempat. Aku tulis draf singkat dulu, susun kerangka, lalu tulis versi final. Hasilnya jadi lebih lengkap-dan-runtut. Kamu langsung tulis final?","trans":"打了。我先写简短草稿，列提纲，再写终稿。结果更完整连贯。你直接写的终稿？"},{"speaker":"A","text":"Ya, dan hasilnya kacau. Ide-ideku tidak tersusun rapi. Lain kali aku harus belajar darimu — jangan terburu-buru.","trans":"是啊，结果很乱。我的思路没组织好。下次我得跟你学——不能急躁。"},{"speaker":"B","text":"Nanti kita diskusikan lagi strateginya sambil minum kopi. Yang penting sekarang, jangan cemas berlebihan. UKBI itu ujian keterampilan, bukan adu nasib. Siapkan draf strategimu!","trans":"回头咱们边喝咖啡边讨论策略。现在最重要的是别过度焦虑。UKBI考的是能力，不是碰运气。把你的策略草稿准备好！"}]}],"speeches":[{"day":1,"title":"UKBI听力备考策略 / Strategi Mendengarkan untuk UKBI","icon":"🎧","words":178,"time":60,"content":"Selamat pagi, rekan-rekan. Hari ini kita akan membahas strategi menghadapi bagian mendengarkan dalam ujian UKBI.\n\nBagian mendengarkan terdiri dari beberapa teslet yang disajikan dalam bentuk perekaman. Ingatlah: perekaman hanya diputar satu kali. Oleh karena itu, kesiapan mental sangat penting.\n\nPertama, manfaatkan waktu sebelum perekaman dimulai untuk membaca pilihan jawaban. Dengan membaca terlebih dahulu, Anda tahu kira-kira apa yang perlu didengarkan. Ini strategi yang sangat cerdas dan efektif.\n\nKedua, ikuti irama percakapan atau monolog dengan tenang. Jangan panik jika ada satu atau dua kata yang tidak Anda pahami. Fokuslah pada pesan utama. Dalam percakapan bisnis, misalnya tentang rapat proyek atau jadwal produksi, identifikasi siapa pembicaranya, apa topiknya, dan apa kesimpulannya.\n\nKetiga, jika terjadi gangguan teknis seperti suara yang tidak jelas, segera lapor kepada pengawas. Jangan berdiam diri.\n\nTerakhir, jika ragu antara dua jawaban, gunakan eliminasi. Buang pilihan yang jelas salah. Dan jangan terburu-buru — periksa kembali jawaban Anda jika masih ada waktu.\n\nSekarang ucapkan kalimat ini bersama saya: \"Saya siap mendengarkan dengan fokus!\"\n\nSelamat berlatih!","trans":"早上好,各位。今天我们来讨论应对 UKBI 听力部分的策略。听力部分由若干 teslet(题组)组成,以录音形式播放。请记住:录音只放一遍,因此心理准备非常重要。第一,利用录音播放前的时间先读选项。提前读过,你就知道要重点听什么,这是聪明而高效的策略。第二,平静地跟上对话或独白的节奏。有一两个词没听懂不要慌,抓住主要信息。比如在商务对话中——项目会议或生产排期之类——要听出谁在说话、主题是什么、结论是什么。第三,如果出现声音不清等技术故障,立刻报告监考员,不要坐着不动。最后,如果在两个答案之间犹豫,用排除法:先去掉明显错误的选项。别急着交卷——还有时间就再检查一遍。现在请跟我一起说:「我准备专注地听!」祝各位练习顺利!"},{"day":2,"title":"UKBI阅读技巧与策略 / Strategi Membaca untuk UKBI","icon":"📖","words":172,"time":60,"content":"Selamat siang, teman-teman. Hari ini kita fokus pada bagian membaca UKBI.\n\nTeknik pertama adalah skimming. Skimming artinya membaca secara cepat untuk mendapatkan gambaran umum. Bacalah judul, paragraf pertama, dan kalimat utama setiap paragraf. Jangan membaca kata per kata di awal.\n\nSetelah skimming, coba susun kerangka tulisan di kepala Anda. Apa pokok bahasannya? Bagaimana argumennya disusun? Apa kesimpulannya? Jika kerangkanya masih kacau, artinya Anda perlu membaca ulang dengan lebih teliti.\n\nDalam bagian membaca, sering ada pertanyaan tentang ejaan dan tanda baca. Mana kalimat yang ejaannya benar? Mana paragraf yang lengkap dan runtut? Untuk soal seperti ini, Anda harus kembali ke teks dan membaca bagian yang relevan dengan cermat.\n\nAda juga soal rangkuman. Pastikan pilihan jawaban mencakup ide utama dari seluruh teks, bukan hanya detail kecil. Gunakan pensil untuk menandai kalimat-kalimat penting agar mudah dirujuk kembali.\n\nTerakhir, jangan terburu-buru. Artikel dalam UKBI bisa berupa surat bisnis, laporan proyek, atau opini tentang perekonomian Indonesia. Interpretasi jawaban Anda harus sesuai konteks teks.\n\nUcapkan dengan keyakinan: \"Saya membaca dengan strategi!\"\n\nSelamat belajar!","trans":"中午好,朋友们。今天聚焦 UKBI 的阅读部分。第一个技巧是略读(skimming)。略读就是快速阅读以获取大意:先读标题、第一段和每段的主题句,一开始不要逐词阅读。略读后,试着在脑子里搭出文章框架:主旨是什么?论证如何展开?结论是什么?如果框架还很乱,说明需要更仔细地重读。阅读部分经常有拼写和标点题:哪个句子拼写正确?哪个段落完整连贯、条理清楚?这类题要回到原文,精读相关部分。还有主旨概括题:正确选项应涵盖全文主旨,而不是细枝末节。用铅笔标出重要句子,方便回查。最后,别急着赶时间。UKBI 的文章可能是商务信函、项目报告或关于印尼经济的评论,答案的解读必须符合文章语境。自信地说:「我带着策略阅读!」祝大家学习顺利!"},{"day":3,"title":"模考复盘与心理调适 / Evaluasi Tryout dan Kesiapan Mental","icon":"💪","words":180,"time":60,"content":"Selamat sore, rekan-rekan. Hari ini kita bahas evaluasi tryout dan kesiapan mental sebelum menghadapi UKBI.\n\nSetelah tryout, penting untuk membuat draf catatan evaluasi. Tuliskan bagian mana yang sudah bagus dan mana yang perlu diperbaiki. Jika kerangka jawaban Anda terasa kacau, jangan khawatir — itu berarti ada ruang untuk berkembang.\n\nDalam menjawab soal, gunakan eliminasi sebagai senjata utama. Jangan takut menebak, tetapi lakukan dengan cerdas. Eliminasi pilihan yang pasti salah, lalu pilih jawaban yang paling logis berdasarkan konteks.\n\nUntuk bagian membaca, jangan lupa menandai bagian teks yang penting. Ini sangat membantu terutama dalam soal interpretasi dan rangkuman. Anda bisa kembali dengan cepat ke bagian yang relevan.\n\nSekarang, mari kita bicara tentang emosi. Merasa cemas sebelum ujian itu wajar. Tetapi jangan biarkan rasa cemas menguasai Anda. Jika Anda grogi saat teslet pertama dimulai, tarik napas dalam, dan ingatkan diri bahwa Anda sudah berlatih keras.\n\nUntuk bagian menulis, selalu buat draf singkat terlebih dahulu. Susun kerangka idenya, lalu tulis dengan runtut. Jangan terburu-buru menulis langsung versi final.\n\nTerakhir, periksa ulang seluruh jawaban sebelum menyerahkan lembar jawaban. Kedisiplinan dalam memeriksa bisa menyelamatkan poin-poin berharga.\n\nUcapkan bersama: \"Saya tenang, saya siap, saya bisa!\"\n\nSampai jumpa di sesi berikutnya!","trans":"下午好,各位。今天我们聊模考复盘和考前心理调适。模考之后,重要的是写一份评估笔记:记下哪些部分已经不错、哪些需要改进。如果答题框架还觉得乱,别担心——这说明还有成长空间。答题时把排除法当成主力武器。别怕猜,但要猜得聪明:先排除肯定错的选项,再依据上下文选出最合理的答案。阅读部分别忘了标出文中重点,这在主旨和推断题上特别有帮助,你能快速回到相关段落。现在说说情绪:考前紧张很正常,但别让焦虑控制你。如果第一个 teslet 开始时发慌,深呼吸,告诉自己你已经努力练习过了。写作部分一定要打简短草稿:先列提纲,再连贯成文,别急着直接写终稿。最后,交卷前再全面检查一遍。检查时的自律能救回宝贵的分数。一起说:「我平静,我准备好了,我能行!」下节课见!"}],"grammar":{"title":"UKBI常考语法点 / Tata Bahasa Penting untuk UKBI","rules":[{"name":"被动语态：di- 前缀","detail":"印尼语被动语态由 di- 前缀构成，是 UKBI 阅读和听力的常见考点。例句：Setiap teslet disajikan dalam bentuk perekaman.（每个题组以录音形式呈现。）Soal-soal dibuat oleh tim ahli.（题目由专家团队编写。）注意：di- 前不加 ter-，且 di 与动词之间不加连字符。"},{"name":"祈使句 / Kalimat Perintah","detail":"UKBI 听力常出现指令句。祈使句直接用动词原形开头，主语省略。例句：Ucapkan kalimat ini dengan jelas!（清楚地读出这个句子！）Periksa jawaban Anda sebelum menyerahkan!（交卷前检查答案！）Markir bagian penting!（标记重要部分！）"},{"name":"并列连词 / Konjungsi Koordinatif","detail":"dan（和）、tetapi/tapi（但是）、atau（或者）、lalu/kemudian（然后）是 UKBI 阅读高频连词。例句：Pembahasan itu lengkap-dan-runtut tetapi terlalu panjang.（讨论内容完整连贯但太长了。）Baca judul dulu, lalu baca paragraf pertama.（先读标题，再读第一段。）"},{"name":"派生词缀 ber- 和 me-","detail":"ber- 表示「具有/进行」：berirama（有节奏的）。me- 表示主动及物：menjawab（回答）、menyusun（整理/排列）。例句：Percakapannya berirama natural.（对话节奏自然。）Sebaiknya susun kerangka sebelum menulis.（写作前最好先列提纲。）UKBI 常考同一词根加不同词缀的区别。"},{"name":"形容词语序与搭配","detail":"形容词后置是印尼语核心特征。例句：Dia siswa yang teliti.（他是个仔细的学生。）Hasil tryout-nya kacau sekali.（他的模考结果非常糟糕。）注意 yang 引导定语从句，UKBI 语法题常考 yang 的位置和用法。"},{"name":"常见副词与程度修饰","detail":"常见程度副词：sangat（非常）、kurang（不够）、agak（有点）、terlalu（太）。例句：Jangan terlalu cemas sebelum ujian.（考前别太焦虑。）Suara perekamannya agak kurang jelas.（录音的声音有点不清楚。）掌握副词位置是 UKBI 常考项。"}]},"quiz":{"title":"UKBI复盘·听力阅读测试 (15题)","questions":[{"q":"Dalam UKBI bagian mendengarkan, bagaimana teslet disajikan kepada peserta?","options":["A) Dalam bentuk teks yang dibaca sendiri","B) Dalam bentuk perekaman yang hanya diputar sekali","C) Dalam bentuk video dengan subtitle"],"a":1,"explain":"UKBI 听力部分的题组以录音(perekaman)形式呈现，且只播放一次，不能重听。"},{"q":"Apa arti kata \"skimming\" dalam strategi membaca?","options":["A) Membaca kata per kata dengan saksama","B) Membaca cepat untuk mendapatkan gambaran umum","C) Menghafal seluruh teks"],"a":1,"explain":"Skimming 是略读，指快速阅读以获取大意，而不是逐字细读。"},{"q":"Manakah kalimat yang lengkap-dan-runtut?","options":["A) Karena hujan deras, acara tersebut dibatalkan panitia.","B) Hujan deras, acara, dibatalkan.","C) Karena hujan deras sehingga acara dibatalkan."],"a":0,"explain":"选项 B 结构完整、逻辑连贯（因果明确，主谓齐全）。A 缺少主句主语，C 句子成分残缺。"},{"q":"Jika peserta ragu antara dua jawaban, strategi terbaik adalah...","options":["A) Langsung menebak jawaban pertama yang terpikir","B) Melewati soal dan tidak menjawab","C) Menggunakan eliminasi untuk membuang pilihan yang salah"],"a":2,"explain":"遇到犹豫时应用排除法(eliminasi)，去掉明显错误的选项，提高正确率。"},{"q":"Apa fungsi utama \"susun kerangka\" sebelum menulis esai dalam UKBI?","options":["A) Agar tidak perlu menulis draf","B) Agar tulisan menjadi kacau","C) Agar ide tersusun lengkap-dan-runtut"],"a":2,"explain":"列提纲(susun kerangka)能让写作思路清晰、文章结构完整连贯。"},{"q":"Manakah yang termasuk tanda baca yang benar dalam kalimat Indonesia?","options":["A) Apakah kamu sudah siap, untuk ujian UKBI?","B) Apakah kamu sudah siap untuk ujian UKBI?","C) Apakah kamu, sudah siap untuk ujian UKBI"],"a":1,"explain":"选项 B 标点使用正确。A 逗号位置错误（siap 和 untuk 之间不需要逗号），C 缺少句号且逗号误用。"},{"q":"Kata \"disajikan\" mengandung bentuk...","options":["A) Pasif dengan awalan di-","B) Aktif transitif","C) Kata sifat"],"a":0,"explain":"disajikan 由 saji（呈现）加被动前缀 di- 构成，意为「被呈现」。"},{"q":"Dalam kalimat \"Ucapkan kalimat ini dengan jelas!\", kata \"ucapkan\" menunjukkan bentuk...","options":["A) Permintaan atau perintah","B) Pertanyaan","C) Penjelasan"],"a":0,"explain":"Ucapkan 是祈使句，动词原形加 -kan 表示命令/请求，意为「请说出」。"},{"q":"Apa yang sebaiknya dilakukan jika terjadi gangguan teknis saat perekaman diputar?","options":["A) Tetap diam dan berharap suaranya membaik","B) Langsung keluar ruangan","C) Angkat tangan dan lapor pengawas"],"a":2,"explain":"出现技术故障(gangguan)时应举手报告监考老师(pengawas)，不要沉默或离场。"},{"q":"Perhatikan kalimat: \"Pembahasannya kacau sekali, sulit dipahami.\" Arti kata \"kacau\" adalah...","options":["A) Teratur dan rapi","B) Berantakan / tidak teratur","C) Menarik dan jelas"],"a":1,"explain":"kacau 意为「混乱、乱七八糟」，与 teratur（整齐）相反。"},{"q":"Manakah kalimat dengan ejaan yang benar?","options":["A) Saya harus membuat rangkuman setelah membaca.","B) Saya harus membwat rangkuman setelah membaca.","C) Saya harus membuat rangkuman setlah membaca."],"a":0,"explain":"选项 A 拼写正确。B 中 membwat 应为 membuat，C 中 setlah 应为 setelah。UKBI 常考拼写(ejaan)辨析。"},{"q":"Mengapa penting untuk tidak terburu-buru saat mengerjakan UKBI?","options":["A) Karena terburu-buru membuat kita salah membaca instruksi","B) Karena UKBI tidak mengukur kecepatan","C) Karena terburu-buru itu dilarang panitia"],"a":0,"explain":"匆忙(terburu-buru)会导致读错题、漏看选项，影响正确率。保持节奏很重要。"},{"q":"Kata \"markir\" dalam konteks ujian berarti...","options":["A) Menghapus jawaban","B) Menyalin teks","C) Menandai bagian teks yang penting"],"a":2,"explain":"markir 意为「标记、做记号」，在阅读时标记重要段落方便回查。"},{"q":"Apa beda antara merasa cemas dan grogi dalam konteks ujian?","options":["A) Cemas adalah kekhawatiran umum, grogi adalah rasa gugup saat tampil/bertindak","B) Keduanya sama saja","C) Cemas lebih parah dari grogi"],"a":0,"explain":"cemas 泛指焦虑不安的情绪，grogi 特指临场紧张/怯场（如考试、演讲时的紧张感）。"},{"q":"Dalam soal rangkuman UKBI, jawaban yang tepat harus...","options":["A) Mencakup hanya detail kecil dari satu paragraf","B) Mencakup ide utama dari seluruh teks","C) Se panjang mungkin seperti teks asli"],"a":1,"explain":"摘要(rangkuman)题要求涵盖全文主旨大意，而非只概括某个小节的细节。"}]}},"ukbi_diary_2":{"title":"UKBI复盘·写作口语 / UKBI Review: Writing & Speaking","icon":"✍️","days":3,"vocab":[["esai","散文/短文",""],["karakteristik","特征",""],["sifat","性质",""],["bersifat","具有…性质",""],["nyata","真实的",""],["kisaran","范围/区间",""],["adaptif","适应性的",""],["tetapkan","确定/规定",""],["legal","合法的",""],["testimoni","证言/推荐语",""],["ulasan","评论/评价",""],["evaluasi","评估",""],["keputusan","决定",""],["membedakan","区分",""],["perencanaan","规划",""],["intinya","关键是/总之",""],["apapun","无论什么",""],["bukti","证据",""],["segala","所有的",""],["wajar","合理的",""],["suasana","氛围",""],["terpaku-pada","专注于",""],["penekanan","强调",""],["meskipun","尽管",""],["makanya-sebabnya-oleh-karena-itu","因果连词（所以）",""]],"scenes":[{"title":"UKBI写作课 / Konsultasi Menulis Esai","icon":"📝","dialogue":[{"speaker":"A","text":"Bu, saya bingung menyusun esai untuk ujian UKBI. Apa karakteristik esai yang baik menurut Anda?","trans":"老师，我不太会写UKBI的短文。好文章的特征是什么？"},{"speaker":"B","text":"Karakteristik esai yang baik itu lengkap, runtut, dan logis — inilah sifat tulisan yang dinilai di UKBI.","trans":"好文章的特征是完整、连贯、有逻辑——这就是UKBI评分看重的写作性质。"},{"speaker":"A","text":"Jadi, paragraf pembuka harus berisi apa, Bu?","trans":"那开头段应该写什么内容呢？"},{"speaker":"B","text":"Paragraf pembuka memuat gagasan utama. Setelah itu, kembangkan argumen yang didukung bukti nyata, misalnya data atau testimoni dari ahli.","trans":"开头段要提出中心论点。然后展开论据，用真实证据支撑，比如数据或专家的证言。"},{"speaker":"A","text":"Apakah saya boleh menggunakan kisaran angka sebagai bukti? Dan haruskah sumbernya legal?","trans":"我可以用区间数字作为证据吗？来源必须是合法的吗？"},{"speaker":"B","text":"Tentu boleh, asalkan angkanya wajar dan bisa dipertanggungjawabkan. Sumber legal juga penting untuk testimoni.","trans":"当然可以，只要数字合理且能核实。证言也必须来自合法的来源。"},{"speaker":"A","text":"Bagaimana cara membedakan argumen yang kuat dan yang lemah?","trans":"怎么区分强论点和弱论点呢？"},{"speaker":"B","text":"Argumen kuat bersifat spesifik dan relevan; argumen lemah bersifat umum dan tidak fokus.","trans":"强论点具体且切题；弱论点空泛、没有焦点。"},{"speaker":"A","text":"Kalau draf saya masih berantakan, apa yang harus saya perbaiki dulu, Bu?","trans":"如果我的草稿还很乱，应该先改什么？"},{"speaker":"B","text":"Perbaiki struktur dulu. Intinya, pastikan alur berpikirmu jelas. Kalau perlu, minta ulasan dari teman.","trans":"先改结构。关键是确保你的思路清晰。有必要的话，请朋友帮你评阅。"}]},{"title":"口语模拟考场 / Simulasi Ujian Berbicara","icon":"🎤","dialogue":[{"speaker":"A","text":"Kamu sudah siap untuk bagian berbicara? Suasana di ruang perekaman bisa bikin grogi.","trans":"口语部分准备好了吗？录音室里的氛围容易让人紧张。"},{"speaker":"B","text":"Agak grogi sih, tapi aku sudah latihan. Kamu sudah pilih tema?","trans":"有点紧张，但我练过了。你选好话题了吗？"},{"speaker":"A","text":"Sudah. Aku pilih tema perencanaan karier. Kamu pilih tema apa?","trans":"选好了。我选的是职业规划的话题。你选什么？"},{"speaker":"B","text":"Aku pilih tema lingkungan kerja. Bagiku, yang sulit itu jangan terpaku pada naskah yang sudah disiapkan.","trans":"我选工作环境的话题。对我来说，难点是不要死盯着准备好的稿子念。"},{"speaker":"A","text":"Setuju. Pewawancara bisa mengajukan pertanyaan apapun, jadi kita harus adaptif.","trans":"同意。考官可以问任何问题，所以我们必须随机应变。"},{"speaker":"B","text":"Ya, makanya aku berlatih menjawab pertanyaan yang tidak terduga, dan memberi penekanan pada kata penting supaya jawaban lebih jelas.","trans":"所以我才练习回答意料之外的问题，并且给关键词加重音，让回答更清楚。"},{"speaker":"A","text":"Bagus. Intinya, intonasi yang tepat menunjukkan pemahaman yang baik.","trans":"很好。关键是，恰当的语调能体现你的理解水平。"},{"speaker":"B","text":"Meskipun waktunya terbatas, kita harus tetap tenang dan fokus.","trans":"尽管时间有限，我们也要保持镇定和专注。"},{"speaker":"A","text":"Benar. Kalau ada bagian yang tidak tahu, sebut saja hal yang kita yakini.","trans":"没错。遇到不会的地方，就说自己有把握的内容。"},{"speaker":"B","text":"Setuju. Sebabnya, jawaban yang jujur dan runtut lebih bernilai daripada jawaban panjang tapi kosong. Oke, mulai simulasi?","trans":"同意。因为诚实而连贯的回答，比又长又空洞的回答更有价值。好，开始模拟吧？"}]},{"title":"考后复盘对话 / Diskusi Hasil UKBI","icon":"📊","dialogue":[{"speaker":"A","text":"Hasil UKBI sudah keluar! Aku lulus dengan predikat Madya. Bagaimana denganmu?","trans":"UKBI成绩出来了！我拿了Madya等级通过了。你呢？"},{"speaker":"B","text":"Alhamdulillah, aku juga lulus, Tinggi. Tapi nilai menulisku masih di kisaran cukup.","trans":"感谢真主，我也通过了，Tinggi等级。但我的写作分数还只在中等区间。"},{"speaker":"A","text":"Sudah bagus! Menurutmu, apa faktor yang paling berpengaruh pada nilaimu?","trans":"已经很不错了！你觉得影响分数的主要因素是什么？"},{"speaker":"B","text":"Evaluasi dari lembaga menunjukkan kelemahanku ada di bagian menulis esai. Aku memang kurang latihan.","trans":"机构的评估显示我的弱项是短文写作。我确实练得不够。"},{"speaker":"A","text":"Jadi, apa keputusanmu sekarang? Ikut UKBI lagi atau berhenti di sini?","trans":"那你现在的决定是什么？再考一次UKBI，还是就到这里？"},{"speaker":"B","text":"Aku putuskan mengikuti UKBI lagi tahun depan. Skor lebih tinggi dibutuhkan untuk beasiswa.","trans":"我决定明年再考一次。申请奖学金需要更高的分数。"},{"speaker":"A","text":"Keputusan yang wajar. Apa rencana persiapanmu?","trans":"这是个合理的决定。你的备考计划是什么？"},{"speaker":"B","text":"Aku akan ikut kursus menulis dan mengumpulkan segala bukti kemajuan, seperti draf esai dan rekaman latihan.","trans":"我会参加写作课，并收集所有进步的证据，比如作文草稿和练习录音。"},{"speaker":"A","text":"Ide bagus. Dengan begitu kamu bisa melihat progresmu secara nyata. Meskipun sibuk, tetap konsisten ya.","trans":"好主意。这样你就能看到实实在在的进步。尽管工作忙，也要坚持哦。"},{"speaker":"B","text":"Pasti. Intinya, jangan menyerah dan terus evaluasi diri. Terima kasih sudah menemaniku berlatih!","trans":"一定。关键是别放弃，不断自我评估。谢谢你陪我练习！"}]}],"speeches":[{"day":1,"title":"写好UKBI作文的关键 / Kunci Menulis Esai UKBI","icon":"✍️","words":158,"time":60,"content":"Assalamu'alaikum dan salam sehat untuk kita semua.\n\nHari ini saya ingin berbagi tentang cara menulis esai yang baik untuk ujian UKBI. Esai yang baik memiliki tiga karakteristik utama: lengkap, runtut, dan logis. Lengkap berarti esai memiliki paragraf pembuka, isi, dan kesimpulan. Paragraf pembuka memuat gagasan utama yang jelas. Isi esai berisi argumen-argumen yang saling terhubung. Kesimpulan merangkum seluruh gagasan tanpa menambah hal baru.\n\nKedua, esai harus runtut. Setiap kalimat harus mengalir dengan baik dari satu paragraf ke paragraf berikutnya. Gunakan kata penghubung seperti pertama, kedua, selain itu, dan terakhir untuk menunjukkan alur berpikir.\n\nKetiga, esai harus didukung bukti nyata. Bukti bisa berupa data, contoh, atau testimoni dari sumber terpercaya. Hindari argumen yang bersifat umum dan tidak fokus.\n\nSetelah menulis draf pertama, luangkan waktu untuk merevisi. Periksa struktur terlebih dahulu, kemudian tata bahasa. Minta teman membaca draf Anda dan memberikan ulasan yang jujur. Intinya, latihan menulis secara teratur adalah kunci keberhasilan. Selamat berlatih, dan semoga sukses di ujian UKBI!","trans":"愿真主的平安与祝福归于我们每一个人。今天我想分享 UKBI 考试好作文的写法。好作文有三个主要特征:完整、连贯、合逻辑。完整指文章有开头段、主体段和结论段:开头段要有清晰的主旨句,主体部分由相互衔接的论据组成,结论总结全文观点而不添加新内容。第二,作文要连贯。句子要一段接一段地自然流动。使用连接词,如「首先」「第二」「此外」「最后」,展示思路的脉络。第三,作文要有真实论据支撑:论据可以是数据、例子,或来自可靠来源的证言;避免空泛、不聚焦的论点。写完初稿后要留出修改时间:先检查结构,再检查语法。请朋友读你的草稿并给出诚实点评。总之,经常练习写作是成功的关键。祝各位练习顺利,UKBI 考试成功!"},{"day":2,"title":"从容应对口语考试 / Strategi Ujian Berbicara","icon":"🎙️","words":159,"time":60,"content":"Selamat pagi, teman-teman.\n\nHari ini saya akan berbicara tentang strategi menghadapi bagian berbicara dalam ujian UKBI. Bagi banyak peserta, bagian ini adalah yang paling menegangkan karena suasana perekaman yang tegang dan waktu yang terbatas.\n\nPertama, persiapan adalah kunci. Pilihlah tema yang sudah Anda kuasai dan buat kerangka singkat, bukan naskah lengkap. Dengan kerangka, Anda bisa berbicara lebih natural dan tidak terpaku pada teks.\n\nKedua, perhatikan penekanan kata dan intonasi. Kata-kata penting harus diberi tekanan supaya pendengar memahami pesan Anda. Bicaralah dengan tempo yang wajar, tidak terlalu cepat dan tidak terlalu lambat.\n\nKetiga, jangan panik jika pewawancara mengajukan pertanyaan yang tidak terduga. Ingatlah bahwa Anda boleh menjawab dengan hal yang Anda ketahui. Yang penting jawaban Anda runtut dan jelas. Meskipun ada jeda kecil, itu tidak masalah.\n\nTerakhir, berlatihlah secara rutin. Rekam diri Anda berbicara, dengarkan ulang, dan perbaiki kekurangan. Latihan bersama teman juga sangat membantu, karena Anda bisa saling menilai. Intinya, kepercayaan diri dibangun melalui latihan yang konsisten. Semoga sukses!","trans":"早上好,朋友们。今天我来谈 UKBI 口语部分的应对策略。对很多考生来说,这是最紧张的部分——录音氛围紧张,时间又有限。第一,准备是关键。选自己熟悉的主题,列简短提纲,不要写完整稿子。有提纲就能说得更自然,不被文字绑住。第二,注意重音和语调:关键词要重读,让听者听懂你的意思;语速适中,不要太快也不要太慢。第三,考官问到出乎意料的问题别慌。记住,你可以就自己所知作答,重要的是回答连贯、清楚。即使有小停顿也没关系。最后,坚持练习。录下自己的发言,回听并改进不足;和朋友一起练也很有帮助,可以互相点评。总之,自信来自持续的练习。祝各位成功!"},{"day":3,"title":"成绩解读与下一步 / Evaluasi Hasil dan Langkah Berikutnya","icon":"📈","words":158,"time":60,"content":"Assalamu'alaikum warahmatullahi wabarakatuh.\n\nAlhamdulillah, saya baru saja menerima hasil ujian UKBI saya. Dalam kesempatan ini, saya ingin berbagi cara membaca evaluasi hasil dan menetapkan langkah selanjutnya.\n\nPertama, pelajari laporan skor dengan seksama. Laporan UKBI menunjukkan empat kemampuan: mendengarkan, membaca, menulis, dan berbicara. Setiap kemampuan memiliki skor dalam kisaran tertentu. Jangan hanya melihat predikat akhir, tetapi identifikasi kemampuan mana yang paling lemah.\n\nKedua, jadikan evaluasi ini sebagai alat perencanaan belajar. Misalnya, jika nilai menulis rendah, saya perlu lebih banyak latihan menyusun esai. Jika nilai berbicara rendah, saya perlu latihan berbicara dengan rekaman.\n\nKetiga, tetapkan keputusan yang realistis. Tidak semua orang harus mengulang ujian. Pertimbangkan tujuan Anda: apakah untuk beasiswa, pekerjaan, atau kebutuhan pribadi. Jika keputusan adalah mengulang, buatlah jadwal belajar yang teratur.\n\nTerakhir, kumpulkan segala bukti kemajuan: draf esai, rekaman latihan, dan hasil kuis. Bandingkan bukti-bukti ini dari waktu ke waktu untuk melihat perkembangan nyata. Intinya, hasil UKBI adalah cermin, bukan penghakim. Mari terus belajar dan berkembang. Terima kasih.","trans":"愿真主赐你们平安与慈悯。感谢真主,我刚收到 UKBI 考试成绩。借此机会,我想分享如何解读成绩评估、确定下一步。第一,仔细研究成绩单。UKBI 报告显示四项能力:听力、阅读、写作、口语,每项都有相应分数。别只看最终等级,要找出自己最弱的能力项。第二,把这次评估当作学习规划工具:比如我写作分低,就需要多练写文章;口语分低,就需要多练录音发言。第三,做现实的决定。不是每个人都必须重考。想想你的目标:是奖学金、工作还是个人需要。如果决定重考,就制定规律的学习时间表。最后,收集所有进步的证据:作文草稿、练习录音、测验成绩。不时对比这些材料,看到真实的成长。总之,UKBI 成绩是一面镜子,不是一位审判官。让我们继续学习、继续成长。谢谢。"}],"grammar":{"title":"UKBI写作口语高频语法 / Tata Bahasa Inti UKBI","rules":[{"name":"因果连词：makanya / sebabnya / oleh karena itu","detail":"三个词都表示“所以”，语域不同：makanya 最口语，适合对话；sebabnya 中性；oleh karena itu 最正式，适合写作。例：Hujan deras, makanya saya terlambat.（口语：雨很大，所以我迟到了。）/ Biaya produksi naik. Oleh karena itu, harga jual dinaikkan.（写作：生产成本上涨，因此提高售价。）"},{"name":"让步状语：meskipun / walaupun","detail":"meskipun 引导让步从句，主句常配 tetap/tetapi：Meskipun hujan deras, dia tetap berangkat kerja.（尽管下大雨，他仍然去上班。）正式写作中 meskipun 与 namun 二选一即可，不要叠加。"},{"name":"性质表达：bersifat + 形容词","detail":"bersifat 表示“具有…性质”，由名词 sifat（性质）加前缀 ber- 构成，后接形容词：Esai yang baik bersifat logis dan runtut.（好文章具有逻辑性和条理性。）Argumen kuat bersifat spesifik.（强论点具有具体性。）"},{"name":"总结强调：intinya / pada intinya","detail":"intinya 意为“关键是/总之”，置于句首总结观点，口语写作皆可：Intinya, persiapan adalah kunci keberhasilan.（总之，准备是成功的关键。）考试口语中用来收束答案非常自然。"},{"name":"不定表达：apapun / segala","detail":"apapun = 无论什么（指事/物），segala = 所有的（后接名词）。Pewawancara boleh bertanya apapun.（考官可以问任何问题。）Segala persiapan sudah selesai.（所有准备都已完成。）"},{"name":"Esai 三段式结构","detail":"UKBI 写作标准结构：pembuka（提出 tesis 论点）→ isi（argumen 论据 + bukti 证据，如数据或 testimoni）→ kesimpulan（rangkuman 总结）。段落间用 kata penghubung（首先、其次、此外、最后）衔接，使文章 runtut。例：Pembuka: “Pendidikan bahasa penting bagi profesional.” → Isi: 论据一+数据，论据二+专家证言 → Kesimpulan: “Oleh karena itu, belajar bahasa harus konsisten.”"}]},"quiz":{"title":"UKBI复盘·写作口语测试 (15题)","questions":[{"q":"Hujan sangat deras, ... saya terlambat tiba di kantor.","options":["A) meskipun","B) makanya","C) selama"],"a":1,"explain":"前后是因果关系：因为雨大，所以迟到。makanya = 所以，最符合语境；meskipun 是“尽管”，selama 是“在…期间”。"},{"q":"Esai yang baik ... lengkap, runtut, dan logis.","options":["A) bersifat","B) bernilai","C) berada"],"a":0,"explain":"bersifat + 形容词表示“具有…性质”。句意：好文章具有完整、连贯、有逻辑的性质。"},{"q":"“Karakteristik esai yang baik antara lain lengkap dan runtut.” Apa arti kata “karakteristik”?","options":["A) ciri khas","B) judul","C) panjang"],"a":0,"explain":"karakteristik = 特征、特点。句意：好文章的特征包括完整和连贯。"},{"q":"... waktu ujian terbatas, peserta harus tetap fokus.","options":["A) Tetapi","B) Oleh karena itu","C) Meskipun"],"a":2,"explain":"让步结构 meskipun...tetap...：尽管考试时间有限，考生仍须保持专注。"},{"q":"Pewawancara boleh mengajukan pertanyaan ... kepada peserta.","options":["A) apapun","B) kemanapun","C) bagaimanapun"],"a":0,"explain":"apapun = 无论什么/任何。句意：考官可以向考生提出任何问题。kemanapun 指地点，bagaimanapun 指方式。"},{"q":"“... , persiapan adalah kunci keberhasilan.” Kata yang tepat untuk mengawali kesimpulan adalah ...","options":["A) Sebabnya","B) Intinya","C) Meskipun"],"a":1,"explain":"intinya = 关键是/总之，用于句首引出总结。句意：总之，准备是成功的关键。"},{"q":"Untuk menegaskan waktu dalam kalimat “Saya akan berangkat besok”, kata yang diberi penekanan adalah ...","options":["A) SAYA","B) berangkat","C) BESOK"],"a":2,"explain":"penekanan（重音/强调）落在要突出的词上。想强调时间就把 BESOK 重读；强调主语则重读 SAYA。"},{"q":"“Nilai menulisku berada di kisaran 600 sampai 650.” Apa arti kata “kisaran”?","options":["A) rentang","B) jumlah total","C) rata-rata"],"a":0,"explain":"kisaran = 范围/区间，近义词 rentang。句意：我的写作分数在600到650区间。"},{"q":"Setiap argumen dalam esai harus didukung bukti yang ...","options":["A) nyata","B) wajar","C) legal"],"a":0,"explain":"bukti nyata = 真实的证据，固定搭配。论据必须由真实可查的证据支撑。"},{"q":"Di bagian pembuka esai, penulis harus menyatakan ...","options":["A) gagasan utama (tesis)","B) ucapan terima kasih","C) daftar pustaka"],"a":0,"explain":"pembuka（开头段）的功能是提出中心论点（gagasan utama / tesis）；致谢是结尾的内容，daftar pustaka（参考文献）也不属于开头段。"},{"q":"... keputusan untuk mengulang UKBI, saya membuat jadwal belajar mingguan.","options":["A) Sebelum","B) Setelah","C) Selama"],"a":1,"explain":"setelah + 名词短语：做出决定之后，我制定了每周学习计划。keputusan = 决定。"},{"q":"... persiapan sudah selesai sebelum hari ujian.","options":["A) Segala","B) Apapun","C) Kadang"],"a":0,"explain":"segala + 名词 = 所有的。句意：考试前一天，所有准备工作都已完成。"},{"q":"Hasil evaluasi menunjukkan nilai berbicaraku rendah. ..., saya akan banyak berlatih berbicara.","options":["A) Oleh karena itu","B) Meskipun","C) Sebelum"],"a":0,"explain":"前后是因果关系：评估显示口语分数低，因此要加强口语练习。oleh karena itu = 因此（正式用语）。"},{"q":"Dalam ujian berbicara, peserta harus ... terhadap pertanyaan yang tidak terduga.","options":["A) adaptif","B) terpaku","C) panik"],"a":0,"explain":"adaptif = 适应性的。对意外问题要灵活应对，而不是僵住（terpaku）或慌张（panik）。"},{"q":"Manakah contoh kalimat pembuka esai yang baik?","options":["A) Terima kasih sudah membaca esai saya.","B) Bahasa Indonesia yang baik penting bagi profesional modern karena komunikasi menentukan keberhasilan kerja.","C) Saya suka sekali makan nasi goreng di kantin."],"a":1,"explain":"好的开头段应提出论点（tesis）并给出理由，B 项符合要求；A 是结尾致谢，C 是无关话题。"}]}},
+  "ukbi_madya": {
+ "title": "UKBI 5级考试 / Ujian UKBI Madya",
+ "icon": "🎓",
+ "days": 3,
+ "vocab": [
+  [
+   "predikat",
+   "等级称号（UKBI七级评定之一）",
+   "/prəˈdikat/"
+  ],
+  [
+   "ambang",
+   "门槛；界限",
+   "/ˈambaŋ/"
+  ],
+  [
+   "ketenangan",
+   "镇定；从容",
+   "/kəˈtənaŋan/"
+  ],
+  [
+   "pemahaman",
+   "理解（力）",
+   "/pəˈmahaman/"
+  ],
+  [
+   "durasi",
+   "时长",
+   "/duˈrasi/"
+  ],
+  [
+   "intensif",
+   "强化的；密集的",
+   "/ɪnˈtɛnsɪf/"
+  ],
+  [
+   "percaya diri",
+   "自信",
+   "/pərˈtʃaja ˈdiri/"
+  ],
+  [
+   "tenggat",
+   "期限；截止",
+   "/ˈtəŋɡat/"
+  ],
+  [
+   "semakin",
+   "越来越",
+   "/səˈmakɪn/"
+  ],
+  [
+   "cara",
+   "方法；方式",
+   "/ˈtʃara/"
+  ]
+ ],
+ "scenes": [
+  {
+   "title": "冲刺计划 / Rencana Menuju Madya",
+   "icon": "🎯",
+   "dialogue": [
+    {
+     "speaker": "A",
+     "text": "Target saya jelas tahun ini: predikat Madya, minimal lima ratus dua puluh.",
+     "trans": "我的目标很明确：今年拿下 Madya 等级，至少 520 分。"
+    },
+    {
+     "speaker": "B",
+     "text": "Bagus. Skor Madya itu mulai empat ratus delapan puluh dua sampai lima ratus tujuh puluh tujuh.",
+     "trans": "好。Madya 分数段是 482 到 577。"
+    },
+    {
+     "speaker": "A",
+     "text": "Berarti saya perlu strategi, bukan hanya latihan biasa. Apa rencanamu?",
+     "trans": "所以我需要的是策略，不只是普通练习。你有什么计划？"
+    },
+    {
+     "speaker": "B",
+     "text": "Mulai dari tes diagnostik dulu, lalu perkuat bagian terlemah dengan cara intensif.",
+     "trans": "先做一次诊断测试，然后用强化方式补强最弱的部分。"
+    },
+    {
+     "speaker": "A",
+     "text": "Sepakat. Minggu depan kita mulai, dan setiap Jumat kita evaluasi kemajuan.",
+     "trans": "一言为定。下周开始，每周五评估进展。"
+    }
+   ]
+  },
+  {
+   "title": "弱项强化 / Latihan Bagian Lemah",
+   "icon": "📝",
+   "dialogue": [
+    {
+     "speaker": "A",
+     "text": "Bagian mendengarkan masih jadi momok. Durasi perekamannya panjang dan hanya sekali putar.",
+     "trans": "听力还是老大难。录音时长长，而且只放一遍。"
+    },
+    {
+     "speaker": "B",
+     "text": "Coba latihan intensif dua puluh menit tiap pagi. Fokus pada kata kunci, bukan tiap kata.",
+     "trans": "试试每天早上 20 分钟强化训练。抓住关键词，而不是每个词。"
+    },
+    {
+     "speaker": "A",
+     "text": "Kalau bagian membaca? Saya sering kehabisan waktu.",
+     "trans": "阅读呢？我经常时间不够。"
+    },
+    {
+     "speaker": "B",
+     "text": "Baca pertanyaan dulu sebelum teks. Teknik itu menghemat banyak waktu.",
+     "trans": "先看问题再读文章。这个技巧能省很多时间。"
+    },
+    {
+     "speaker": "A",
+     "text": "Baik. Dan yang penting, jaga ketenangan. Gugup bisa merusak semua persiapan.",
+     "trans": "好。还有重要的一点：保持镇定。紧张会毁掉所有准备。"
+    }
+   ]
+  },
+  {
+   "title": "出分与证书 / Hasil dan Sertifikat",
+   "icon": "🎓",
+   "dialogue": [
+    {
+     "speaker": "A",
+     "text": "Nilai UKBI sudah keluar! Aku dapat predikat Madya dengan skor lima ratus empat puluh lima.",
+     "trans": "UKBI 成绩出来了！我拿了 Madya 等级，545 分。"
+    },
+    {
+     "speaker": "B",
+     "text": "Selamat! Itu melewati ambang Madya dengan selisih bagus.",
+     "trans": "恭喜！这个分数稳稳跨过 Madya 门槛。"
+    },
+    {
+     "speaker": "A",
+     "text": "Sertifikatnya berlaku dua tahun. Aku simpan baik-baik untuk berkas kerja.",
+     "trans": "证书有效期两年。我要好好收着，用于求职材料。"
+    },
+    {
+     "speaker": "B",
+     "text": "Tepat. Kalau mau naik ke Unggul, boleh coba lagi setelah lima belas hari.",
+     "trans": "没错。如果想冲 Unggul，15 天后可以再考。"
+    },
+    {
+     "speaker": "A",
+     "text": "Nanti saja. Untuk sekarang, aku mau rayakan dulu bersama keluarga!",
+     "trans": "以后再说。现在我要先和家人庆祝一下！"
+    }
+   ]
+  }
+ ],
+ "speeches": [
+  {
+   "day": 1,
+   "title": "Menuju Predikat Madya / 向着 Madya 等级进发",
+   "icon": "🎯",
+   "words": 57,
+   "time": 30,
+   "content": "Rekan-rekan yang saya hormati, tahun ini saya menetapkan satu target: lulus UKBI dengan predikat Madya.\n\nUntuk mencapai ambang empat ratus delapan puluh dua, saya menyusun rencana belajar tiga bulan. Setiap pagi, saya berlatih mendengarkan dua puluh menit. Setiap malam, saya membaca satu teks dan menulis ringkasan singkat.\n\nStrategi sederhana, tetapi konsisten. Semoga kita semua berhasil. Terima kasih.",
+   "trans": "尊敬的各位同事，今年我定下一个目标：通过 UKBI 并获得 Madya 等级。为了达到 482 分的门槛，我制定了三个月的学习计划。每天早上练习听力二十分钟，每天晚上读一篇文章并写简短摘要。策略简单，但贵在坚持。祝我们大家都能成功。谢谢。"
+  },
+  {
+   "day": 2,
+   "title": "Ketenangan dan Manajemen Waktu / 镇定与时间管理",
+   "icon": "⏱️",
+   "words": 55,
+   "time": 30,
+   "content": "Hari ini kita bicara tentang dua hal: waktu dan ketenangan.\n\nPertama, waktu. Setiap bagian UKBI punya durasi ketat. Biasakan mengerjakan soal dengan teknik tiga gelombang: mudah dulu, sulit kemudian, ragu-ragu terakhir.\n\nKedua, ketenangan. Tarik napas dalam sebelum tes dimulai. Ingat, persiapan yang matang adalah sumber percaya diri.\n\nSelamat berlatih, dan sampai jumpa di kelas berikutnya.",
+   "trans": "今天我们来谈两件事：时间和镇定。第一，时间。UKBI 每个部分都有严格的时长限制。请养成用三波次技巧答题的习惯：先做容易的，再做难的，最后处理拿不准的。第二，镇定。开考前深呼吸。记住，充分的准备是自信的来源。祝练习顺利，下节课见。"
+  },
+  {
+   "day": 3,
+   "title": "Dari Semenjana ke Madya / 从 Semenjana 到 Madya",
+   "icon": "📈",
+   "words": 55,
+   "time": 30,
+   "content": "Beberapa teman bertanya, bagaimana cara naik dari Semenjana ke Madya? Jawabannya sederhana: pemahaman yang lebih dalam.\n\nPerkuat tiga hal. Pertama, kosa kata akademik. Kedua, struktur teks: pembuka, isi, kesimpulan. Ketiga, latihan menulis dengan tenggat waktu.\n\nSetiap minggu, ukur kemajuan dengan simulasi. Catat kesalahan, perbaiki, dan ulangi.\n\nSelangkah demi selangkah, skor Anda akan naik. Terus semangat!",
+   "trans": "有朋友问：从 Semenjana 升到 Madya 要怎么做？答案很简单：更深的理解力。强化三点：第一，学术词汇；第二，文章结构——开头、主体、结论；第三，带着时限练习写作。每周用模拟考测量进步。记录错误、改正、重复。一步一步，你的分数一定会上升。继续加油！"
+  }
+ ],
+ "grammar": {
+  "title": "UKBI Madya 备考语法 / Tata Bahasa untuk Madya",
+  "rules": [
+   {
+    "name": "定语从句：yang",
+    "detail": "yang 是印尼语最核心的关系词，引导定语从句修饰名词，相当于中文「的」。Madya 阅读中每篇必有。例：Teks yang sulit itu harus dibaca dua kali.（那篇难的课文要读两遍。）Soal yang keliru sudah diperbaiki.（出错的题目已经改正了。）注意 yang 紧跟被修饰词，不能前置。"
+   },
+   {
+    "name": "原因连词：karena / sebab",
+    "detail": "karena 与 sebab 都表示「因为」，karena 更常用。注意因果连词不能成对叠加（错误：Karena hujan, makanya saya terlambat.）。例：Karena latihannya intensif, skornya naik pesat.（因为训练强化，他的分数快速提升。）Saya bersemangat sebab targetnya jelas.（我干劲十足，因为目标明确。）"
+   },
+   {
+    "name": "比较结构：semakin…(semakin) / lebih…daripada",
+    "detail": "semakin + 形容词/动词 表示「越来越」，成对使用表递进：Semakin sering latihan, semakin percaya diri.（练得越多，越有自信。）lebih…daripada 表比较：Madya lebih tinggi daripada Semenjana.（Madya 比 Semenjana 高。）"
+   },
+   {
+    "name": "名词化：ke-an（抽象名词）",
+    "detail": "ke- + 形容词/动词 + -an 构成抽象名词，是 Madya 级正式文体标志。tenang → ketenangan（镇定），paham → pemahaman（理解），sabaran → kesabaran（耐心）。例：Ketenangan di ruang ujian sangat penting.（考场上的镇定非常重要。）"
+   },
+   {
+    "name": "完成体：telah / sudah + 动词",
+    "detail": "telah（正式）与 sudah（通用）+ 动词表示已完成，UKBI 听力和阅读高频。例：Saya telah mendaftar bulan lalu.（我上个月已报名。）Dia sudah melampaui ambang Madya.（她已跨过 Madya 门槛。）否定：belum + 动词（还没有）。"
+   },
+   {
+    "name": "让步：walaupun",
+    "detail": "walaupun 引导让步从句，主句常配 tetap（仍然）。例：Walaupun durasinya panjang, peserta tetap fokus.（尽管时长很长，考生仍保持专注。）Walaupun soalnya sulit, dia tidak panik.（尽管题目难，他没有慌。）正式文体可用 meskipun，二者等义。"
+   }
+  ]
+ },
+ "quiz": {
+  "title": "UKBI 5级考试测试 (10题)",
+  "questions": [
+   {
+    "q": "Predikat Madya 的分数区间是？",
+    "options": [
+     "A) 405-481",
+     "B) 482-577",
+     "C) 578-640"
+    ],
+    "a": 1,
+    "explain": "Madya = 482-577。405-481 是 Semenjana，578-640 是 Unggul。以站内七级表为准。"
+   },
+   {
+    "q": "Kata \"tenggat waktu\" dalam konteks persiapan ujian berarti...",
+    "options": [
+     "A) 期限；截止",
+     "B) 分数",
+     "C) 证书"
+    ],
+    "a": 0,
+    "explain": "tenggat = 期限、截止。menulis dengan tenggat waktu = 带着时限写作。"
+   },
+   {
+    "q": "Manakah kalimat sebab-akibat yang benar?",
+    "options": [
+     "A) Karena hujan, makanya saya terlambat.",
+     "B) Karena hujan, saya terlambat.",
+     "C) Sebab hujan, oleh karena itu saya terlambat."
+    ],
+    "a": 1,
+    "explain": "印尼语因果连词不可成对叠加：karena 与 makanya、sebab 与 oleh karena itu 只能二选一。A 和 C 都犯了双重连接词错误。"
+   },
+   {
+    "q": "Dalam kalimat \"mencapai ambang Madya\", kata \"ambang\" berarti...",
+    "options": [
+     "A) 门槛；界限",
+     "B) 顶峰",
+     "C) 捷径"
+    ],
+    "a": 0,
+    "explain": "ambang = 门槛、界限。ambang Madya 即 Madya 分数线门槛。"
+   },
+   {
+    "q": "Manakah kalimat dengan \"yang\" yang benar?",
+    "options": [
+     "A) Teks yang sulit itu harus dibaca dua kali.",
+     "B) Yang teks sulit itu harus dibaca dua kali.",
+     "C) Teks sulit yang itu harus dibaca dua kali."
+    ],
+    "a": 0,
+    "explain": "yang 必须紧跟被修饰的名词：teks yang sulit（难的课文）。B 前置、C 插在指示词后，均错误。"
+   },
+   {
+    "q": "Untuk bagian mendengarkan, strategi yang disarankan adalah...",
+    "options": [
+     "A) 先读选项，再听录音",
+     "B) 边听边逐词默写",
+     "C) 第一遍没听懂就放弃"
+    ],
+    "a": 0,
+    "explain": "录音只放一遍，听前先读选项锁定关键词是站内 UKBI 课程的一贯建议。"
+   },
+   {
+    "q": "\"Ketenangan\" 的构词方式是？",
+    "options": [
+     "A) ke- + tenang + -an",
+     "B) pe- + tenang",
+     "C) tenang + -nya"
+    ],
+    "a": 0,
+    "explain": "ke-an 抽象名词化：tenang（镇定的）→ ketenangan（镇定）。同族：paham→pemahaman。"
+   },
+   {
+    "q": "Sertifikat UKBI 的有效期是？",
+    "options": [
+     "A) 1年",
+     "B) 2年",
+     "C) 永久"
+    ],
+    "a": 1,
+    "explain": "以站内已上线课程数据为准：UKBI 证书 2 年有效。"
+   },
+   {
+    "q": "Manakah kalimat dengan \"semakin\" yang benar?",
+    "options": [
+     "A) Semakin sering latihan, semakin percaya diri.",
+     "B) Latihan semakin, percaya diri semakin.",
+     "C) Semakin latihan sering, semakin diri percaya."
+    ],
+    "a": 0,
+    "explain": "semakin+形容词/动词 置于句首构成递进：「越…越…」。语序不能打乱。"
+   },
+   {
+    "q": "UKBI 未通过重考的最短间隔是？",
+    "options": [
+     "A) 7 天",
+     "B) 10 天",
+     "C) 15 天"
+    ],
+    "a": 2,
+    "explain": "以站内已上线课程数据为准：重考需间隔至少 15 天。"
+   }
+  ]
+ }
+}
+};
 
   const topicCalendar = {
   "2026-07-15": {topic: "meet", day: 2, label: "第2课 · 场景对话"},
@@ -16985,7 +17301,10 @@ ukbi_certification: {
 
   "2026-10-23": {topic: "ukbi_drill", day: 1, label: "⚡ UKBI冲刺 · 第1课 · 模拟训练+时间管理"},
   "2026-10-24": {topic: "ukbi_drill", day: 2, label: "⚡ UKBI冲刺 · 第2课 · 心理调适+应急方案"},
-  "2026-10-25": {topic: "ukbi_drill", day: 3, label: "⚡ UKBI冲刺 · 第3课 · 成绩分析+重考规划", allDays: true},"2026-10-26":{"topic":"ukbi_diary_1","day":1,"label":"🎧 UKBI复盘一 · 第1课 · 听力策略+节奏"},"2026-10-27":{"topic":"ukbi_diary_1","day":2,"label":"🎧 UKBI复盘一 · 第2课 · 阅读策略+结构分析"},"2026-10-28":{"topic":"ukbi_diary_1","day":3,"label":"🎧 UKBI复盘一 · 第3课 · 模考复盘+心理调适","allDays":true},"2026-10-29":{"topic":"ukbi_diary_2","day":1,"label":"✍️ UKBI复盘二 · 第1课 · 写作框架+论证"},"2026-10-30":{"topic":"ukbi_diary_2","day":2,"label":"✍️ UKBI复盘二 · 第2课 · 口语模拟+表达"},"2026-10-31":{"topic":"ukbi_diary_2","day":3,"label":"✍️ UKBI复盘二 · 第3课 · 成绩评估+决策","allDays":true}};
+  "2026-10-25": {topic: "ukbi_drill", day: 3, label: "⚡ UKBI冲刺 · 第3课 · 成绩分析+重考规划", allDays: true},"2026-10-26":{"topic":"ukbi_diary_1","day":1,"label":"🎧 UKBI复盘一 · 第1课 · 听力策略+节奏"},"2026-10-27":{"topic":"ukbi_diary_1","day":2,"label":"🎧 UKBI复盘一 · 第2课 · 阅读策略+结构分析"},"2026-10-28":{"topic":"ukbi_diary_1","day":3,"label":"🎧 UKBI复盘一 · 第3课 · 模考复盘+心理调适","allDays":true},"2026-10-29":{"topic":"ukbi_diary_2","day":1,"label":"✍️ UKBI复盘二 · 第1课 · 写作框架+论证"},"2026-10-30":{"topic":"ukbi_diary_2","day":2,"label":"✍️ UKBI复盘二 · 第2课 · 口语模拟+表达"},"2026-10-31":{"topic":"ukbi_diary_2","day":3,"label":"✍️ UKBI复盘二 · 第3课 · 成绩评估+决策","allDays":true},
+  "2026-11-10": {"topic": "ukbi_madya", "day": 1, "label": "🎓 UKBI 5级 · 第1课 · Madya目标与备考规划"},
+  "2026-11-11": {"topic": "ukbi_madya", "day": 2, "label": "🎓 UKBI 5级 · 第2课 · 弱项强化与模考"},
+  "2026-11-12": {"topic": "ukbi_madya", "day": 3, "label": "🎓 UKBI 5级 · 第3课 · 出分解读与证书规划", "allDays": true}};
 
 
 ;
@@ -230320,7 +230639,17 @@ const bitVocabDB = {
       }
     ]
   }
-};
+
+  ,"ambang": {"word": "ambang", "ipa": "/ˈambaŋ/", "cn": "门槛；界限", "en": "threshold; limit", "root": "ambang", "forms": [{"form": "ambang", "pos": "n", "mean": "门槛"}, {"form": "ambang batas", "pos": "n", "mean": "界限；分界线"}], "formsNote": "常与 batas 连用：ambang batas", "note": "ambang Madya = Madya 分数线门槛；melampaui ambang = 跨过门槛", "synonyms": ["batas"], "antonyms": ["—"], "examples": [{"scene": "Skornya lima ratus dua puluh, jauh di atas ambang Madya.", "id": "ambang", "cn": "他的分数是 520，远超 Madya 门槛。"}, {"scene": "Jangan berdiri di ambang pintu.", "id": "ambang", "cn": "别站在门槛上。"}]}
+  ,"ketenangan": {"word": "ketenangan", "ipa": "/kəˈtənaŋan/", "cn": "镇定；从容", "en": "calmness; composure", "root": "tenang", "forms": [{"form": "tenang", "pos": "adj", "mean": "镇定的"}, {"form": "ketenangan", "pos": "n", "mean": "镇定"}, {"form": "menenangkan", "pos": "v", "mean": "使镇定"}], "formsNote": "ke- + tenang + -an 抽象名词化", "note": "考场高频词：jaga ketenangan 保持镇定", "synonyms": ["kewaspadaan", "kesabaran"], "antonyms": ["kegugupan", "kepanikan"], "examples": [{"scene": "Ketenangan di ruang ujian sangat penting.", "id": "ketenangan", "cn": "考场上的镇定非常重要。"}, {"scene": "Dia berbicara dengan ketenangan yang luar biasa.", "id": "ketenangan", "cn": "他以非凡的从容发言。"}]}
+  ,"pemahaman": {"word": "pemahaman", "ipa": "/pəˈmahaman/", "cn": "理解（力）", "en": "understanding; comprehension", "root": "paham", "forms": [{"form": "paham", "pos": "v/adj", "mean": "理解；懂的"}, {"form": "memahami", "pos": "v", "mean": "理解（及物）"}, {"form": "pemahaman", "pos": "n", "mean": "理解力"}, {"form": "dipahami", "pos": "v", "mean": "被理解"}], "formsNote": "peN- → pem- 同化：paham → pemahaman", "note": "pemahaman bacaan 阅读理解；pemahaman mendengarkan 听力理解", "synonyms": ["pengertian"], "antonyms": ["kesalahpahaman"], "examples": [{"scene": "Pemahaman bacaan perlu latihan rutin.", "id": "pemahaman", "cn": "阅读理解需要规律练习。"}, {"scene": "Makna puisi itu sulit dipahami.", "id": "dipahami", "cn": "那首诗的含义难以理解。"}]}
+  ,"berjabat-tangan": {"word": "berjabat-tangan", "ipa": "/bərˈdʒabat ˈtaŋan/", "cn": "握手", "en": "to shake hands", "root": "jabat tangan", "forms": [{"form": "jabat tangan", "pos": "v", "mean": "握（词根）"}, {"form": "berjabat tangan", "pos": "v", "mean": "握手"}, {"form": "jabat tangan", "pos": "n", "mean": "握手（名词）"}], "formsNote": "ber- 构成动词：进行…动作", "note": "正式场合见面与道别礼仪；规范分写 berjabat tangan", "synonyms": ["salaman（口语）"], "antonyms": ["—"], "examples": [{"scene": "Para tamu berjabat tangan sebelum duduk.", "id": "berjabat tangan", "cn": "宾客们入座前互相握手。"}, {"scene": "Jabat tangan yang erat menunjukkan rasa hormat.", "id": "jabat tangan", "cn": "有力的握手表达敬意。"}]}
+  ,"kartu-nama": {"word": "kartu-nama", "ipa": "/ˈkartu ˈnama/", "cn": "名片", "en": "business card", "root": "kartu + nama", "forms": [{"form": "kartu nama", "pos": "n", "mean": "名片"}, {"form": "kartu nama digital", "pos": "n", "mean": "电子名片"}], "formsNote": "复合名词：kartu 卡片 + nama 名字", "note": "商务场合必备；双手递接为礼", "synonyms": ["kartu perkenalan"], "antonyms": ["—"], "examples": [{"scene": "Ini kartu nama saya, silakan disimpan.", "id": "kartu nama", "cn": "这是我的名片，请收下。"}, {"scene": "Mereka bertukar kartu nama di pintu masuk.", "id": "kartu nama", "cn": "他们在入口处交换名片。"}]}
+  ,"tuan-rumah": {"word": "tuan-rumah", "ipa": "/tuan ˈrumah/", "cn": "主人；东道主", "en": "host (of an event)", "root": "tuan + rumah", "forms": [{"form": "tuan rumah", "pos": "n", "mean": "主人；东道主"}, {"form": "tuan rumah (perempuan)", "pos": "n", "mean": "女主人亦可称 tuan rumah"}], "formsNote": "复合名词：tuan 主人 + rumah 房子", "note": "接待方称谓；相对 tamu（客人）", "synonyms": ["pemilik rumah", "tuan rumah"], "antonyms": ["tamu"], "examples": [{"scene": "Tuan rumah menyambut tamu di depan pintu.", "id": "tuan rumah", "cn": "主人在门口迎接客人。"}, {"scene": "Sebagai tuan rumah, dia membuka acara dengan sambutan hangat.", "id": "tuan rumah", "cn": "作为东道主，他以热情的致辞开场。"}]}
+  ,"basa-basi": {"word": "basa-basi", "ipa": "/ˈbasa ˈbasi/", "cn": "寒暄；客套（话）", "en": "small talk; pleasantries", "root": "basa-basi", "forms": [{"form": "basa-basi", "pos": "n", "mean": "寒暄；客套话"}, {"form": "berbasa-basi", "pos": "v", "mean": "说客套话"}], "formsNote": "叠音词；ber- 动词化", "note": "正式会面开场常有 basa-basi；过分客套可带贬义", "synonyms": ["sapaan", "omong kosong（贬）"], "antonyms": ["—"], "examples": [{"scene": "Setelah basa-basi singkat, rapat pun dimulai.", "id": "basa-basi", "cn": "简短寒暄后，会议开始了。"}, {"scene": "Jangan berbasa-basi terlalu lama.", "id": "basa-basi", "cn": "别说太久客套话。"}]}
+  ,"tindak-lanjut": {"word": "tindak-lanjut", "ipa": "/ˈtindak ˈlanjut/", "cn": "后续行动；跟进", "en": "follow-up action", "root": "tindak + lanjut", "forms": [{"form": "tindak lanjut", "pos": "n", "mean": "后续行动"}, {"form": "menindaklanjuti", "pos": "v", "mean": "跟进处理"}, {"form": "ditindaklanjuti", "pos": "v", "mean": "被跟进"}], "formsNote": "menindaklanjuti 为常用动词形式", "note": "商务高频：tindak lanjut rapat 会议后续跟进", "synonyms": ["lanjutan tindakan"], "antonyms": ["—"], "examples": [{"scene": "Kami menunggu tindak lanjut dari pihak Anda.", "id": "tindak lanjut", "cn": "我们等待贵方的后续行动。"}, {"scene": "Setiap masalah harus ditindaklanjuti dalam tiga hari.", "id": "ditindaklanjuti", "cn": "每个问题都须在三天内跟进处理。"}]}
+  ,"apresiasi": {"word": "apresiasi", "ipa": "/aprəsiˈasi/", "cn": "赞赏；肯定", "en": "appreciation", "root": "apresiasi", "forms": [{"form": "apresiasi", "pos": "n", "mean": "赞赏"}, {"form": "mengapresiasi", "pos": "v", "mean": "赞赏；肯定"}, {"form": "apresiatif", "pos": "adj", "mean": "善于欣赏的"}], "formsNote": "借词（appreciation）；mengapresiasi 为及物动词", "note": "正式语域，商务致谢与评价高频", "synonyms": ["penghargaan", "penilaian positif"], "antonyms": ["kritik"], "examples": [{"scene": "Kami memberikan apresiasi atas kerja keras tim.", "id": "apresiasi", "cn": "我们对团队的努力表示赞赏。"}, {"scene": "Juri mengapresiasi orasi peserta.", "id": "mengapresiasi", "cn": "评委对选手的演说表示肯定。"}]}
+  ,"kontak": {"word": "kontak", "ipa": "/ˈkontak/", "cn": "联系；联络", "en": "contact", "root": "kontak", "forms": [{"form": "kontak", "pos": "n", "mean": "联系；接触"}, {"form": "mengontak", "pos": "v", "mean": "联络（人）"}, {"form": "berkontak", "pos": "v", "mean": "有联系"}], "formsNote": "借词（contact）；berkontak 表状态", "note": "kontak langsung 直接联系；kontak kerja 工作联系", "synonyms": ["hubungan", "sambungan"], "antonyms": ["—"], "examples": [{"scene": "Simpan nomor kontaknya baik-baik.", "id": "kontak", "cn": "把他的联系方式好好存起来。"}, {"scene": "Kami berkontak setiap minggu via surel.", "id": "berkontak", "cn": "我们每周通过邮件保持联系。"}]}};
 
 function getTopicForDate(ds) {
   return topicCalendar[ds] || null;
@@ -231161,10 +231490,22 @@ function renderAbout(c){
 }
 
 function renderVersion(c){
-  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.51.1 / Versi</span></div>
+  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.52.0 / Versi</span></div>
     <div style="padding:16px;">
       <div style="margin-bottom:14px;padding:14px;background:rgba(34,197,94,.10);border-radius:10px;border-left:3px solid var(--success)">
-        <div style="margin-bottom:14px;padding:14px;background:rgba(34,197,94,.10);border-radius:10px;border-left:3px solid var(--success)">
+        <div style="font-size:15px;font-weight:700;color:var(--success);margin-bottom:6px">V4.52.0 (2026-11-10)</div>
+        <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">C6_CA_CATAT整合策略落地：课时减载(C6/CA) + UKBI Madya新课(11/10-12) + CA话题1见面重制 · 库3200词</div>
+        <div style="font-size:12px;color:var(--text-dim);line-height:1.8">
+        • <strong>C6 减载 v1.1</strong>:核心词20-25→10 / 场景10→5句 / 短文150-180→50-60词（语法6条、测试15题不变）<br>
+        • <strong>CA 减载 v1.2</strong>:词汇7+5 / 万能句型5（全带cn中译） / 常用表达5 / 词缀5个·天(30词缀6天一轮) / 测试10题<br>
+        • <strong>话题序列重置</strong>:CA话题编号严格=C课程话题编号，从话题1见面重启（旧内容入git历史）<br>
+        • <strong>C6 新话题 ukbi_madya</strong>:UKBI 5级考试(11/10-12)——10核心词+3场景×5句+3短文(55-57词)+6语法+10题quiz，事实以站内已上线UKBI课为准（Madya 482-577/证书2年/14工作日出分/15天重考）<br>
+        • <strong>caData.meet 重制</strong>:三天全量手写——7词(三层)+5词组+5句型(全带cn)+5表达+5词缀+10题/天<br>
+        • <strong>bitVocabDB +10 新词</strong>:ambang/ketenangan/pemahaman/berjabat-tangan/kartu-nama/tuan-rumah/basa-basi/tindak-lanjut/apresiasi/kontak，3190→3200<br>
+        • <strong>策略文档</strong>:strategies/C6_CA_CATAT-课程整合策略.md v1.0 落盘；日历 11/10-12 双轨齐发（C6 ukbi_madya + CA 话题1见面 + 日记三卡并存）<br>
+        </div>
+      </div>
+      <div style="margin-bottom:14px;padding:14px;background:rgba(34,197,94,.10);border-radius:10px;border-left:3px solid var(--success)">
         <div style="font-size:15px;font-weight:700;color:var(--success);margin-bottom:6px">V4.51.1 (2026-11-10)</div>
         <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">CA万能句型中文翻译全量补齐(180条) + 跑题话题改标CA专题 + 日历11/7-9暂回谈判</div>
         <div style="font-size:12px;color:var(--text-dim);line-height:1.8">
@@ -236167,2814 +236508,1532 @@ function queryMIR(){
 // ============================================================
 const caData = {
  "meet": {
-  "title": "话题1: 见面 / Bertemu",
-  "icon": "🤝",
-  "level": "B1-B2",
-  "days": 3,
-  "intro": "CA 进阶课沿用 C5 话题序列全面升级：同一话题二次行军。每日四块：词汇10-20 · 万能句型10-20(三级别配比) · 常用表达10-20(三级别配比) · 词缀10个/天(30词缀3天一轮, coef 1)",
-  "day1": {
-   "date": "2026-10-20",
-   "theme": "Salam & Pertemuan Pertama 问候与初见",
-   "vocab": [
-    {
-     "w": "berjabat tangan",
-     "cn": "握手",
-     "ipa": "/bərdʒabat ˈtaŋan/",
-     "level": "核心",
-     "note": "正式场合见面礼仪核心动作；规范分写，连字符形式亦通行"
-    },
-    {
-     "w": "pertemuan",
-     "cn": "会面；会议",
-     "ipa": "/pərtəˈmuːan/",
-     "level": "进阶",
-     "note": "per- + -an 环绕派生；rapat 偏工作会议"
-    },
-    {
-     "w": "saling",
-     "cn": "互相；彼此",
-     "ipa": "/ˈsaːliŋ/",
-     "level": "进阶",
-     "note": "置于动词前：saling mengenal 互相认识"
-    },
-    {
-     "w": "memperkenalkan",
-     "cn": "介绍（他人）",
-     "ipa": "/məmpərkəˈnalkan/",
-     "level": "进阶",
-     "note": "memper- 加强使役 + kenal"
-    },
-    {
-     "w": "perkenalan",
-     "cn": "介绍；相识",
-     "ipa": "/pərkəˈnalan/",
-     "level": "进阶",
-     "note": "名词形式；salam perkenalan 问候+介绍"
-    },
-    {
-     "w": "kesan",
-     "cn": "印象",
-     "ipa": "/kəˈsan/",
-     "level": "进阶",
-     "note": "kesan pertama 第一印象；词根标[待核实]"
-    },
-    {
-     "w": "tamu",
-     "cn": "客人；来宾",
-     "ipa": "/ˈtamu/",
-     "level": "核心",
-     "note": "tamu undangan 受邀宾客"
-    },
-    {
-     "w": "pendatang",
-     "cn": "来客；新来的人",
-     "ipa": "/pənˈdataŋ/",
-     "level": "高阶",
-     "note": "peN- 施事者 + datang 来"
-    },
-    {
-     "w": "jadwal",
-     "cn": "日程；时间表",
-     "ipa": "/ˈdʒadwal/",
-     "level": "进阶",
-     "note": "阿拉伯语借词；jadwal pertemuan 会议日程"
-    },
-    {
-     "w": "resmi",
-     "cn": "正式的",
-     "ipa": "/ˈrəsmi/",
-     "level": "进阶",
-     "note": "反义 santai/nonresmi；pertemuan resmi 正式会晤"
-    },
-    {
-     "w": "santai",
-     "cn": "轻松的；不拘礼的",
-     "ipa": "/ˈsantai/",
-     "level": "高阶",
-     "note": "口语高频；suasana santai 轻松的氛围"
-    },
-    {
-     "w": "menghadap",
-     "cn": "谒见；正式会见",
-     "ipa": "/məŋˈhadap/",
-     "level": "高阶",
-     "note": "正式用语：menghadap bupati 谒见县长"
-    },
-    {
-     "w": "berpamitan",
-     "cn": "告辞；道别",
-     "ipa": "/bərˈpamitan/",
-     "level": "进阶",
-     "note": "ber- + pamit + -an；离开前礼节"
-    },
-    {
-     "w": "menyambut",
-     "cn": "迎接；接待",
-     "ipa": "/məˈnyambut/",
-     "level": "进阶",
-     "note": "meN- + sambut；menyambut tamu 迎接客人"
-    },
-    {
-     "w": "bertemu",
-     "cn": "见面",
-     "ipa": "/bərˈtɛmu/",
-     "level": "核心",
-     "note": "C5 核心词回顾；ber- + temu"
-    }
-   ],
-   "phrases": [
-    {
-     "id": "bertemu dengan",
-     "cn": "与…见面",
-     "usage": "通用",
-     "note": "介词 dengan 引出对象"
-    },
-    {
-     "id": "berjabat tangan",
-     "cn": "握手",
-     "usage": "正式",
-     "note": "见面时或道别时均可"
-    },
-    {
-     "id": "saling mengenal",
-     "cn": "互相认识",
-     "usage": "通用",
-     "note": "saling + 动词"
-    },
-    {
-     "id": "salam perkenalan",
-     "cn": "问候兼介绍（开场套语）",
-     "usage": "正式",
-     "note": "商务开场固定套"
-    },
-    {
-     "id": "senang bertemu dengan Anda",
-     "cn": "很高兴见到您",
-     "usage": "正式/通用",
-     "note": "Anda 敬称"
-    },
-    {
-     "id": "apa kabar",
-     "cn": "你好吗",
-     "usage": "口语",
-     "note": "回应：kabar baik"
-    },
-    {
-     "id": "kabar baik",
-     "cn": "（我）很好",
-     "usage": "口语",
-     "note": "kabar=消息/近况"
-    },
-    {
-     "id": "terima kasih banyak",
-     "cn": "非常感谢",
-     "usage": "通用",
-     "note": "banyak 加强"
-    },
-    {
-     "id": "sampai jumpa",
-     "cn": "再见",
-     "usage": "通用",
-     "note": "字面：直到再见"
-    },
-    {
-     "id": "perkenalkan, nama saya",
-     "cn": "请允许我介绍，我叫…",
-     "usage": "开场",
-     "note": "perkenalkan 为祈使式"
-    }
-   ],
-   "patterns": [
-    {
-     "cat": "问候骨架",
-     "level": "basic",
-     "formula": "Selamat [pagi/siang/sore/malam]", "cn": "早上好／中午好／下午好／晚上好",
-     "structure": "[时段]好",
-     "grammar": "selamat+时段名词",
-     "scene": "任何见面开场",
-     "ex": [
-      "Selamat pagi, Pak!（早上好，先生！）",
-      "Selamat malam, Bu Direktur.（晚上好，总监女士。）"
-     ],
-     "slots": [
-      "pagi",
-      "siang",
-      "sore",
-      "malam"
-     ],
-     "reuse": 5
-    },
-    {
-     "cat": "问候应答",
-     "level": "basic",
-     "formula": "Apa kabar [Anda]? – Kabar [baik/baik sekali]", "cn": "您好吗？——很好／非常好",
-     "structure": "—好吗？—很好",
-     "grammar": "apa 引导疑问；kabar 近况",
-     "scene": "寒暄",
-     "ex": [
-      "Apa kabar, Bapak? – Kabar baik.（您好吗？——很好。）",
-      "Apa kabar Anda hari ini? – Kabar baik sekali.（您今天好吗？——非常好。）"
-     ],
-     "slots": [
-      "Anda",
-      "kamu",
-      "baik",
-      "lumayan"
-     ],
-     "reuse": 4
-    },
-    {
-     "cat": "自我介绍",
-     "level": "basic",
-     "formula": "Perkenalkan, nama saya [Nama]. Saya dari [Asal].", "cn": "请允许我介绍，我叫[名字]，来自[地方]。",
-     "structure": "请允许我介绍，我叫…，来自…",
-     "grammar": "perkenalkan 祈使；saya 我",
-     "scene": "初次见面",
-     "ex": [
-      "Perkenalkan, nama saya Li Ming. Saya dari Tiongkok.（请允许我介绍，我叫李明，来自中国。）",
-      "Perkenalkan, nama saya Sari. Saya dari Jakarta.（我叫萨丽，来自雅加达。）"
-     ],
-     "slots": [
-      "Li Ming",
-      "Tiongkok",
-      "Sari"
-     ],
-     "reuse": 6
-    },
-    {
-     "cat": "欣喜相逢",
-     "level": "adv",
-     "formula": "Senang (sekali/akhirnya) bisa [V] dengan [Anda/N]", "cn": "（非常／终于）高兴能与[您／某人][动词]。",
-     "structure": "很高兴（终于）能与…[动词]",
-     "grammar": "akhirnya 表'终于'；bisa 能",
-     "scene": "久别或期待后的会面",
-     "ex": [
-      "Senang akhirnya bisa bertemu dengan Anda.（很高兴终于能与您见面。）",
-      "Senang sekali bisa berjumpa dengan rekan-rekan baru.（非常高兴能见到新同事。）"
-     ],
-     "slots": [
-      "bertemu",
-      "berjumpa",
-      "Anda",
-      "rekan baru"
-     ],
-     "reuse": 7
-    },
-    {
-     "cat": "久别重逢",
-     "level": "adv",
-     "formula": "Sudah lama tidak [V]. – Iya, terakhir [waktu].", "cn": "好久没[动词]了。——是啊，上次还是[时间]。",
-     "structure": "好久没…了。——是啊，上次还是…",
-     "grammar": "sudah lama 很久；terakhir 上次",
-     "scene": "熟人重逢",
-     "ex": [
-      "Sudah lama tidak jumpa! – Iya, terakhir di Jakarta.（好久没见了！——是啊，上次还是在雅加达。）",
-      "Sudah lama tidak bertemu. – Iya, terakhir dua tahun lalu.（好久没见了。——是啊，上次还是两年前。）"
-     ],
-     "slots": [
-      "jumpa",
-      "ketemu",
-      "dua tahun lalu"
-     ],
-     "reuse": 4
-    },
-    {
-     "cat": "介绍他人",
-     "level": "adv",
-     "formula": "[Kenalkan], ini [Nama], [jabatan/dari X].", "cn": "[介绍一下]，这位是[名字]，[职务／来自X]。",
-     "structure": "介绍，这位是…，（职务/来自…）",
-     "grammar": "ini 这位；同位语",
-     "scene": "介绍第三方",
-     "ex": [
-      "Kenalkan, ini Bapak Anton, manajer pabrik kami.（介绍一下，这位是安东先生，我们工厂经理。）",
-      "Kenalkan, ini Ibu Ratna, dari kantor pusat.（介绍一下，这位是拉特娜女士，来自总部。）"
-     ],
-     "slots": [
-      "Bapak Anton",
-      "manajer",
-      "direktur"
-     ],
-     "reuse": 6
-    },
-    {
-     "cat": "提议转场",
-     "level": "adv",
-     "formula": "Mari kita [V] ke [tempat].", "cn": "我们去[地方][动词]吧。",
-     "structure": "我们一起去…吧",
-     "grammar": "mari 提议祈使",
-     "scene": "会面后转场",
-     "ex": [
-      "Mari kita masuk ke ruang rapat.（我们进会议室吧。）",
-      "Mari kita duduk di ruang tamu.（我们去客厅坐吧。）"
-     ],
-     "slots": [
-      "masuk",
-      "duduk",
-      "ruang rapat",
-      "ruang tamu"
-     ],
-     "reuse": 8
-    },
-    {
-     "cat": "寒暄问经历",
-     "level": "adv",
-     "formula": "Apakah sudah pernah [V] ke [tempat]?", "cn": "您曾经去过[地方][动词]吗？",
-     "structure": "（您）去过…吗？",
-     "grammar": "apakah 正式疑问；pernah 曾经",
-     "scene": "破冰寒暄",
-     "ex": [
-      "Apakah Bapak sudah pernah ke Morowali?（先生去过莫罗瓦利吗？）",
-      "Apakah Bapak sudah pernah ke kawasan industri ini?（先生来过这个工业园区吗？）"
-     ],
-     "slots": [
-      "ke Morowali",
-      "ke pabrik kami"
-     ],
-     "reuse": 5
-    },
-    {
-     "cat": "表达希望",
-     "level": "adv",
-     "formula": "Saya harap [klausa].", "cn": "我希望[从句]。",
-     "structure": "我希望…",
-     "grammar": "harap 后接从句",
-     "scene": "会面结尾",
-     "ex": [
-      "Saya harap kita bisa bekerja sama dengan baik.（希望我们能好好合作。）",
-      "Saya harap pertemuan ini berjalan lancar.（我希望本次会面顺利进行。）"
-     ],
-     "slots": [
-      "kita bisa bekerja sama",
-      "pertemuan ini lancar"
-     ],
-     "reuse": 7
-    },
-    {
-     "cat": "正式开场",
-     "level": "pro",
-     "formula": "Dengan hormat, perkenalkan kami dari [perusahaan], yang bergerak di bidang [bidang].", "cn": "谨此郑重介绍，我们来自[公司]，从事[行业]领域。",
-     "structure": "谨向贵方介绍，我们来自…，从事…领域",
-     "grammar": "dengan hormat 谨；yang 定语从句",
-     "scene": "正式商务开场",
-     "ex": [
-      "Dengan hormat, perkenalkan kami dari PT BIR Nickel, yang bergerak di bidang pengolahan nikel.（谨介绍，我们来自BIR镍业，从事镍加工领域。）",
-      "Dengan hormat, perkenalkan kami dari universitas mitra, yang bergerak di bidang riset nikel.（谨介绍，我们来自合作大学，从事镍研究领域。）"
-     ],
-     "slots": [
-      "PT BIR Nickel",
-      "pengolahan nikel"
-     ],
-     "reuse": 8
-    },
-    {
-     "cat": "礼貌请求许可",
-     "level": "pro",
-     "formula": "[Kami] mohon izin untuk [V].", "cn": "[我们]请求允许[动词]。",
-     "structure": "（我们）请求允许…",
-     "grammar": "mohon izin 正式请求",
-     "scene": "正式场合",
-     "ex": [
-      "Kami mohon izin untuk memperkenalkan tim kami.（请允许我们介绍团队。）",
-      "Saya mohon izin bertanya.（请允许我提问。）"
-     ],
-     "slots": [
-      "memperkenalkan tim",
-      "bertanya",
-      "foto bersama"
-     ],
-     "reuse": 9
-    },
-    {
-     "cat": "正式致谢",
-     "level": "pro",
-     "formula": "Terima kasih atas [N]-nya; senang bisa [V] hari ini.", "cn": "感谢您的[名词]；很高兴今天能[动词]。",
-     "structure": "感谢…；很高兴今天能…",
-     "grammar": "atas…-nya 正式致谢结构",
-     "scene": "会谈致谢",
-     "ex": [
-      "Terima kasih atas kesediaannya; senang bisa bertemu hari ini.（谢谢您的赏光，很高兴今天能见面。）",
-      "Terima kasih atas perhatiannya; senang bisa berdiskusi hari ini.（感谢您的关注，很高兴今天能讨论。）"
-     ],
-     "slots": [
-      "kesediaan",
-      "waktunya",
-      "bertemu",
-      "berdiskusi"
-     ],
-     "reuse": 8
-    }
-   ],
-   "expressions": [
-    {
-     "level": "basic",
-     "scene": "问候",
-     "id": "Selamat pagi!",
-     "cn": "早上好！",
-     "note": "通用"
-    },
-    {
-     "level": "basic",
-     "scene": "问候",
-     "id": "Halo!",
-     "cn": "你好！",
-     "note": "非正式"
-    },
-    {
-     "level": "basic",
-     "scene": "寒暄",
-     "id": "Apa kabar?",
-     "cn": "你好吗？",
-     "note": "回应 kabar baik"
-    },
-    {
-     "level": "adv",
-     "scene": "职场问候",
-     "id": "Selamat pagi, Bapak/Ibu.",
-     "cn": "先生/女士，早上好。",
-     "note": "正式敬称"
-    },
-    {
-     "level": "adv",
-     "scene": "见面",
-     "id": "Senang bertemu Anda.",
-     "cn": "很高兴见到您。",
-     "note": "正式/通用"
-    },
-    {
-     "level": "adv",
-     "scene": "重逢",
-     "id": "Lama tidak jumpa!",
-     "cn": "好久不见！",
-     "note": "熟人"
-    },
-    {
-     "level": "adv",
-     "scene": "寒暄",
-     "id": "Bagaimana kabar keluarga?",
-     "cn": "家人好吗？",
-     "note": "关心式寒暄"
-    },
-    {
-     "level": "adv",
-     "scene": "接待",
-     "id": "Silakan masuk.",
-     "cn": "请进。",
-     "note": "接待宾客"
-    },
-    {
-     "level": "adv",
-     "scene": "接待",
-     "id": "Silakan duduk.",
-     "cn": "请坐。",
-     "note": "接待宾客"
-    },
-    {
-     "level": "adv",
-     "scene": "服务",
-     "id": "Ada yang bisa saya bantu?",
-     "cn": "有什么可以帮您？",
-     "note": "服务场景"
-    },
-    {
-     "level": "adv",
-     "scene": "寒暄",
-     "id": "Silakan, jangan sungkan.",
-     "cn": "请随意，别客气。",
-     "note": "sungkan=拘谨/见外"
-    },
-    {
-     "level": "pro",
-     "scene": "商务接待",
-     "id": "Selamat datang di kawasan industri kami. Kami sangat terhormat menyambut Anda.",
-     "cn": "欢迎来到我们园区。我们非常荣幸迎接您。",
-     "note": "高规格接待"
-    },
-    {
-     "level": "pro",
-     "scene": "致歉",
-     "id": "Mohon maaf atas keterlambatannya.",
-     "cn": "对迟到深表歉意。",
-     "note": "正式致歉"
-    },
-    {
-     "level": "pro",
-     "scene": "致谢",
-     "id": "Terima kasih telah meluangkan waktu.",
-     "cn": "感谢您拨冗。",
-     "note": "正式致谢"
-    },
-    {
-     "level": "pro",
-     "scene": "祝颂",
-     "id": "Semoga pertemuan ini bermanfaat.",
-     "cn": "愿本次会面富有成效。",
-     "note": "正式会面结尾"
-    }
-   ],
-   "affixes": [
-    {
-     "no": 1,
-     "affix": "ber-",
-     "type": "前缀",
-     "func": "构成动词：拥有/使用/进行活动",
-     "rule": "直接加词根；r音前用 be-",
-     "derivs": [
-      {
-       "root": "temu",
-       "der": "bertemu",
-       "zh": "见面"
-      },
-      {
-       "root": "kerja",
-       "der": "bekerja",
-       "zh": "工作"
-      },
-      {
-       "root": "jabat tangan",
-       "der": "berjabat tangan",
-       "zh": "握手"
-      }
-     ],
-     "examples": [
-      {
-       "id": "Kita bertemu di kantor pagi ini.",
-       "cn": "我们今天早上在办公室见面。"
-      },
-      {
-       "id": "Mereka berjabat tangan di depan ruang rapat.",
-       "cn": "他们在会议室前握手。"
-      }
-     ],
-     "link": "玫瑰图 No.01"
-    },
-    {
-     "no": 2,
-     "affix": "be-",
-     "type": "前缀",
-     "func": "ber- 在 r 音前的变体",
-     "rule": "词根以 r 开头时用 be-",
-     "derivs": [
-      {
-       "root": "renang",
-       "der": "berenang",
-       "zh": "游泳"
-      },
-      {
-       "root": "kerja",
-       "der": "bekerja",
-       "zh": "工作（r音前亦作 be-）"
-      }
-     ],
-     "examples": [
-      {
-       "id": "Hobi saya berenang setiap pagi.",
-       "cn": "我的爱好是每天早游泳。"
-      },
-      {
-       "id": "Dia bekerja di sektor pertambangan.",
-       "cn": "他在矿业部门工作。"
-      }
-     ],
-     "link": "玫瑰图 No.02"
-    },
-    {
-     "no": 3,
-     "affix": "meN-",
-     "type": "前缀",
-     "func": "构成主动及物动词",
-     "rule": "mem-(b/p/f/v) men-(d/t/c/j/z) meny-(s) meng-(元音/g/h/k) menge-(单音节) me-(其它)",
-     "derivs": [
-      {
-       "root": "sambut",
-       "der": "menyambut",
-       "zh": "迎接"
-      },
-      {
-       "root": "kenal",
-       "der": "mengenal",
-       "zh": "认识"
-      },
-      {
-       "root": "panggil",
-       "der": "memanggil",
-       "zh": "叫唤"
-      }
-     ],
-     "examples": [
-      {
-       "id": "Kami menyambut tamu di pintu utama.",
-       "cn": "我们在正门迎接客人。"
-      },
-      {
-       "id": "Dia memanggil nama saya dengan ramah.",
-       "cn": "他亲切地叫我的名字。"
-      }
-     ],
-     "link": "玫瑰图 No.03"
-    },
-    {
-     "no": 4,
-     "affix": "di-",
-     "type": "前缀",
-     "func": "构成被动语态",
-     "rule": "无变形；可接 -kan/-i",
-     "derivs": [
-      {
-       "root": "sambut",
-       "der": "disambut",
-       "zh": "被迎接"
-      },
-      {
-       "root": "terima",
-       "der": "diterima",
-       "zh": "被接收/接见"
-      },
-      {
-       "root": "jadwalkan",
-       "der": "dijadwalkan",
-       "zh": "被安排日程"
-      }
-     ],
-     "examples": [
-      {
-       "id": "Tamu disambut dengan hangat.",
-       "cn": "客人受到热烈欢迎。"
-      },
-      {
-       "id": "Pertemuan dijadwalkan pukul sembilan.",
-       "cn": "会议安排在九点。"
-      }
-     ],
-     "link": "玫瑰图 No.04"
-    },
-    {
-     "no": 5,
-     "affix": "ter-",
-     "type": "前缀",
-     "func": "无意被/最/完成态",
-     "rule": "无变形",
-     "derivs": [
-      {
-       "root": "tulis",
-       "der": "tertulis",
-       "zh": "写着/已写上"
-      },
-      {
-       "root": "kenal",
-       "der": "terkenal",
-       "zh": "著名的"
-      },
-      {
-       "root": "lupa",
-       "der": "terlupakan",
-       "zh": "被遗忘的"
-      }
-     ],
-     "examples": [
-      {
-       "id": "Namanya tertulis di daftar tamu.",
-       "cn": "他的名字写在来宾名单上。"
-      },
-      {
-       "id": "Dia terkenal ramah di perusahaan.",
-       "cn": "他在公司以友善著称。"
-      }
-     ],
-     "link": "玫瑰图 No.05"
-    },
-    {
-     "no": 6,
-     "affix": "peN-",
-     "type": "前缀",
-     "func": "施动者/工具/职业",
-     "rule": "变形同 meN-：pem- pen- peny- peng- penge- pe-",
-     "derivs": [
-      {
-       "root": "datang",
-       "der": "pendatang",
-       "zh": "来客/新来者"
-      },
-      {
-       "root": "sambut",
-       "der": "penyambut",
-       "zh": "迎接者"
-      },
-      {
-       "root": "temu",
-       "der": "penemu",
-       "zh": "发现者/发明人"
-      }
-     ],
-     "examples": [
-      {
-       "id": "Pendatang baru disambut dengan antusias.",
-       "cn": "新来者受到热烈欢迎。"
-      }
-     ],
-     "link": "玫瑰图 No.06"
-    },
-    {
-     "no": 7,
-     "affix": "per-",
-     "type": "前缀",
-     "func": "使…/使成为（使役）",
-     "rule": "加于形容词/名词前",
-     "derivs": [
-      {
-       "root": "kenal",
-       "der": "perkenalkan(→memperkenalkan)",
-       "zh": "介绍"
-      },
-      {
-       "root": "besar",
-       "der": "perbesar(→memperbesar)",
-       "zh": "扩大"
-      }
-     ],
-     "examples": [
-      {
-       "id": "Izinkan saya memperkenalkan rekan saya.",
-       "cn": "请允许我介绍我的同事。"
-      }
-     ],
-     "link": "玫瑰图 No.07"
-    },
-    {
-     "no": 8,
-     "affix": "memper-/diper-",
-     "type": "前缀",
-     "func": "加强使役（主动/被动）",
-     "rule": "memper-+词根 / diper-+词根",
-     "derivs": [
-      {
-       "root": "kenal",
-       "der": "memperkenalkan / diperkenalkan",
-       "zh": "介绍/被介绍"
-      },
-      {
-       "root": "kenalan",
-       "der": "memperkenalkan diri",
-       "zh": "自我介绍"
-      }
-     ],
-     "examples": [
-      {
-       "id": "Dia memperkenalkan diri dengan percaya diri.",
-       "cn": "他自信地作了自我介绍。"
-      }
-     ],
-     "link": "玫瑰图 No.08"
-    },
-    {
-     "no": 9,
-     "affix": "se-",
-     "type": "前缀",
-     "func": "一/整/相同",
-     "rule": "无变形直接加",
-     "derivs": [
-      {
-       "root": "hari",
-       "der": "sehari",
-       "zh": "一天/一整天"
-      },
-      {
-       "root": "sama",
-       "der": "sesama",
-       "zh": "彼此/同为"
-      }
-     ],
-     "examples": [
-      {
-       "id": "Kami bekerja seharian kemarin.",
-       "cn": "昨天我们工作了一整天。"
-      },
-      {
-       "id": "Kita sesama rekan kerja.",
-       "cn": "我们彼此是同事。"
-      }
-     ],
-     "link": "玫瑰图 No.09"
-    },
-    {
-     "no": 10,
-     "affix": "ke-",
-     "type": "前缀",
-     "func": "序数词'第…'",
-     "rule": "ke-+数词",
-     "derivs": [
-      {
-       "root": "satu",
-       "der": "kesatu",
-       "zh": "第一/首先"
-      },
-      {
-       "root": "dua",
-       "der": "kedua",
-       "zh": "第二"
-      }
-     ],
-     "examples": [
-      {
-       "id": "Pertemuan kesatu berjalan lancar.",
-       "cn": "第一次会面进行顺利。"
-      }
-     ],
-     "link": "玫瑰图 No.10"
-    }
-   ],
-   "quiz": [
-    {
-     "q": "berjabat tangan 的意思是？",
-     "opts": [
-      "拥抱",
-      "握手",
-      "鞠躬",
-      "挥手"
-     ],
-     "a": 1,
-     "exp": "berjabat tangan = 握手，正式场合见面/道别礼仪。"
-    },
-    {
-     "q": "pertemuan 的构词是？",
-     "opts": [
-      "peN-+temu",
-      "per-+temu+-an",
-      "meN-+temu",
-      "ke-+temu"
-     ],
-     "a": 1,
-     "exp": "per-+-an 环绕派生：temu(见)→pertemuan(会面/会议)。"
-    },
-    {
-     "q": "saling 在句中的位置？",
-     "opts": [
-      "动词前",
-      "动词后",
-      "句尾",
-      "名词后"
-     ],
-     "a": 0,
-     "exp": "saling 置于动词前：saling mengenal 互相认识。"
-    },
-    {
-     "q": "正式开场 'Dengan hormat, perkenalkan kami dari…' 中 dengan hormat 意为？",
-     "opts": [
-      "顺便",
-      "谨/郑重地",
-      "随意地",
-      "很遗憾"
-     ],
-     "a": 1,
-     "exp": "dengan hormat = 谨/郑重，正式开场套语。"
-    },
-    {
-     "q": "Terima kasih atas kesediaannya 中 atas…-nya 结构表示？",
-     "opts": [
-      "所属",
-      "正式致谢对象",
-      "否定",
-      "将来时"
-     ],
-     "a": 1,
-     "exp": "atas+N-nya 是正式致谢结构：感谢……。"
-    },
-    {
-     "q": "memperkenalkan 的词根是？",
-     "opts": [
-      "perkenal",
-      "kenal",
-      "kenalan",
-      "perkenalan"
-     ],
-     "a": 1,
-     "exp": "memper-+kenal(认识)+-kan → memperkenalkan 介绍。"
-    },
-    {
-     "q": "'好久不见'对应哪个句型骨架？",
-     "opts": [
-      "Sudah lama tidak [V]",
-      "Mari kita [V]",
-      "Saya harap [klausa]",
-      "Apakah pernah [V]"
-     ],
-     "a": 0,
-     "exp": "Sudah lama tidak jumpa! 久别重逢寒暄。"
-    },
-    {
-     "q": "tamu undangan 中 undangan 的意思是？",
-     "opts": [
-      "邀请函/受邀的",
-      "护照",
-      "行李",
-      "司机"
-     ],
-     "a": 0,
-     "exp": "undangan=邀请；tamu undangan=受邀宾客。"
-    },
-    {
-     "q": "menghadap 的语体是？",
-     "opts": [
-      "口语随意",
-      "正式/官方",
-      "仅方言",
-      "古旧不用"
-     ],
-     "a": 1,
-     "exp": "menghadap=谒见，正式用语，如 menghadap bupati。"
-    },
-    {
-     "q": "berpamitan 的构成是？",
-     "opts": [
-      "ber-+pamit+-an",
-      "meN-+pamit",
-      "di-+pamit",
-      "ke-+pamit"
-     ],
-     "a": 0,
-     "exp": "ber-pamit-an：告辞（含礼节性 -an）。"
-    },
-    {
-     "q": "例句 'Tamu disambut dengan hangat.' 的语态？",
-     "opts": [
-      "主动",
-      "被动 di-",
-      "完成 ter-",
-      "命令"
-     ],
-     "a": 1,
-     "exp": "di- 被动：客人被热烈欢迎。"
-    },
-    {
-     "q": "peN- 缀 pendatang 中词根是？",
-     "opts": [
-      "pendar",
-      "datang",
-      "tangi",
-      "penda"
-     ],
-     "a": 1,
-     "exp": "peN-+datang(来)→pendatang 来客/新来者。"
-    },
-    {
-     "q": "选择正确表达：'我们进会议室吧'",
-     "opts": [
-      "Mari kita masuk ke ruang rapat",
-      "Kita masuk ruang rapat sudah",
-      "Masuklah ruang rapat mari",
-      "Ruang rapat mari kita"
-     ],
-     "a": 0,
-     "exp": "Mari kita [V] ke [tempat] 提议转场句型。"
-    },
-    {
-     "q": "kesan pertama 意为？",
-     "opts": [
-      "第一印象",
-      "最后通牒",
-      "常见问题",
-      "会议记录"
-     ],
-     "a": 0,
-     "exp": "kesan=印象；pertama=第一。"
-    },
-    {
-     "q": "以下哪个是正式敬称的正确使用？",
-     "opts": [
-      "Apa kabar, kamu?（对官员）",
-      "Selamat pagi, Bapak Menteri.",
-      "Halo, lo!",
-      "Eh, dengar!"
-     ],
-     "a": 1,
-     "exp": "对官员用 Bapak/Ibu+职衔；kamu 偏随意。"
-    }
-   ]
-  },
-  "day2": {
-   "date": "2026-10-21",
-   "theme": "Saling Mengenal 相互认识与深入交流",
-   "vocab": [
-    {
-     "w": "menyapa",
-     "cn": "招呼；称呼",
-     "ipa": "/məˈnyapa/",
-     "level": "进阶",
-     "note": "meN-+sapa；menyapa dengan ramah 亲切打招呼"
-    },
-    {
-     "w": "sapaan",
-     "cn": "称呼；问候语",
-     "ipa": "/saˈpaːan/",
-     "level": "进阶",
-     "note": "sapa+-an 名词化"
-    },
-    {
-     "w": "panggilan",
-     "cn": "称呼；呼叫",
-     "ipa": "/paŋˈgilan/",
-     "level": "进阶",
-     "note": "panggil+-an；panggilan saya 'Bli' 对我的称呼"
-    },
-    {
-     "w": "akrab",
-     "cn": "亲密的；熟络的",
-     "ipa": "/ˈakrab/",
-     "level": "进阶",
-     "note": "反义 asing/dingin"
-    },
-    {
-     "w": "keakraban",
-     "cn": "亲密；熟络",
-     "ipa": "/kəakˈraban/",
-     "level": "高阶",
-     "note": "ke-akrab-an 环绕派生"
-    },
-    {
-     "w": "rekan",
-     "cn": "同事；伙伴",
-     "ipa": "/rəˈkan/",
-     "level": "核心",
-     "note": "rekan kerja 同事；rekan bisnis 商业伙伴"
-    },
-    {
-     "w": "kolega",
-     "cn": "同事（正式）",
-     "ipa": "/koˈlɛga/",
-     "level": "高阶",
-     "note": "荷兰语借词；正式场合"
-    },
-    {
-     "w": "mitra",
-     "cn": "合作伙伴",
-     "ipa": "/ˈmitra/",
-     "level": "进阶",
-     "note": "mitra bisnis 商业伙伴；mitra kerja sama"
-    },
-    {
-     "w": "asal",
-     "cn": "来历；籍贯",
-     "ipa": "/ˈasal/",
-     "level": "核心",
-     "note": "berasal dari 来自（正式）"
-    },
-    {
-     "w": "pekerjaan",
-     "cn": "职业；工作",
-     "ipa": "/pəkərˈdʒaan/",
-     "level": "核心",
-     "note": "kerja→peN-an；Apa pekerjaan Anda? 您做什么工作"
-    },
-    {
-     "w": "jabatan",
-     "cn": "职位；职务",
-     "ipa": "/dʒaˈbatan/",
-     "level": "进阶",
-     "note": "jabatan tinggi 高职"
-    },
-    {
-     "w": "bidang",
-     "cn": "领域；方面",
-     "ipa": "/ˈbidaŋ/",
-     "level": "进阶",
-     "note": "di bidang tambang 在矿业领域"
-    },
-    {
-     "w": "pengalaman",
-     "cn": "经验；经历",
-     "ipa": "/pəŋˈalaman/",
-     "level": "进阶",
-     "note": "alam→peN-an；pengalaman kerja 工作经验"
-    },
-    {
-     "w": "keahlian",
-     "cn": "专长；技能",
-     "ipa": "/kəahˈlian/",
-     "level": "高阶",
-     "note": "ahli(专家)→ke-an"
-    },
-    {
-     "w": "berbincang",
-     "cn": "交谈；叙谈",
-     "ipa": "/bərˈbintʃaŋ/",
-     "level": "进阶",
-     "note": "ber-+bincang；berbincang-bincang 闲聊"
-    }
-   ],
-   "phrases": [
-    {
-     "id": "saling mengenal",
-     "cn": "互相认识",
-     "usage": "通用",
-     "note": "saling+动词"
-    },
-    {
-     "id": "rekan kerja",
-     "cn": "同事",
-     "usage": "通用",
-     "note": "= kolega（正式）"
-    },
-    {
-     "id": "bertukar kartu nama",
-     "cn": "交换名片",
-     "usage": "商务",
-     "note": "bertukar 交换（ber-）"
-    },
-    {
-     "id": "berasal dari",
-     "cn": "来自（正式）",
-     "usage": "通用",
-     "note": "ber-asal 源自动词化"
-    },
-    {
-     "id": "bekerja di bidang",
-     "cn": "从事…领域工作",
-     "usage": "通用",
-     "note": "bidang+领域名词"
-    },
-    {
-     "id": "berbincang-bincang",
-     "cn": "闲聊；交谈",
-     "usage": "口语",
-     "note": "重叠式表随意"
-    },
-    {
-     "id": "merasa akrab",
-     "cn": "感到亲切",
-     "usage": "通用",
-     "note": "merasa 感到"
-    },
-    {
-     "id": "menyapa dengan ramah",
-     "cn": "亲切地打招呼",
-     "usage": "通用",
-     "note": "ramah 亲切"
-    },
-    {
-     "id": "memperkenalkan diri",
-     "cn": "自我介绍",
-     "usage": "正式",
-     "note": "diri 自己"
-    },
-    {
-     "id": "menjalin hubungan",
-     "cn": "建立关系",
-     "usage": "正式",
-     "note": "menjalin 编织/建立"
-    }
-   ],
-   "patterns": [
-    {
-     "cat": "询问姓名",
-     "level": "basic",
-     "formula": "Siapa nama [Anda/kamu]? – Nama saya [N].", "cn": "您／你叫什么名字？——我叫[名字]。",
-     "structure": "—您叫什么名字？—我叫…",
-     "grammar": "siapa 谁；nama 名字",
-     "scene": "初次认识",
-     "ex": [
-      "Siapa nama Anda? – Nama saya Budi.（您叫什么名字？——我叫布迪。）",
-      "Siapa nama kamu? – Nama saya Ani.（你叫什么名字？——我叫阿妮。）"
-     ],
-     "slots": [
-      "Budi",
-      "Ani",
-      "Anda"
-     ],
-     "reuse": 6
-    },
-    {
-     "cat": "询问籍贯",
-     "level": "basic",
-     "formula": "Anda berasal dari mana? – Saya dari [tempat].", "cn": "您来自哪里？——我来自[地方]。",
-     "structure": "—您是哪里人？—我来自…",
-     "grammar": "mana 哪里；dari 从",
-     "scene": "认识破冰",
-     "ex": [
-      "Anda berasal dari mana? – Saya dari Tiongkok.（您是哪里人？——我来自中国。）",
-      "Anda berasal dari mana? – Saya dari Shanghai.（您是哪里人？——我来自上海。）"
-     ],
-     "slots": [
-      "Tiongkok",
-      "Jakarta",
-      "Sulawesi"
-     ],
-     "reuse": 5
-    },
-    {
-     "cat": "询问职业",
-     "level": "basic",
-     "formula": "Apa [pekerjaan/jabatan] Anda? – Saya [jabatan] di [perusahaan].", "cn": "您的[职业／职务]是什么？——我是[公司]的[职务]。",
-     "structure": "—您做什么工作？—我是…（公司）的…",
-     "grammar": "apa 什么；di+地点",
-     "scene": "认识破冰",
-     "ex": [
-      "Apa pekerjaan Anda? – Saya insinyur di PT BIR.（您做什么工作？——我是BIR公司的工程师。）",
-      "Apa jabatan Anda? – Saya direktur operasional di PT BIR.（您的职务是什么？——我是BIR公司的运营总监。）"
-     ],
-     "slots": [
-      "insinyur",
-      "manajer",
-      "PT BIR"
-     ],
-     "reuse": 6
-    },
-    {
-     "cat": "定语从句",
-     "level": "adv",
-     "formula": "Saya [N] yang [keterangan].", "cn": "我是那个[描述]的[名词]。",
-     "structure": "我是…的（人）",
-     "grammar": "yang 关系代词，必考",
-     "scene": "介绍自己/他人",
-     "ex": [
-      "Saya orang yang bekerja di bidang tambang.（我是从事矿业的人。）",
-      "Ini rekan yang akan mendampingi Anda.（这是将陪同您的同事。）"
-     ],
-     "slots": [
-      "orang",
-      "rekan",
-      "bekerja di bidang tambang"
-     ],
-     "reuse": 9
-    },
-    {
-     "cat": "比较级",
-     "level": "adv",
-     "formula": "[N1] lebih [Adj] daripada [N2].", "cn": "[N1]比[N2]更[形容词]。",
-     "structure": "…比…更…",
-     "grammar": "lebih…daripada 比较",
-     "scene": "比较评价",
-     "ex": [
-      "Rekan baru lebih ramah daripada yang lama.（新同事比以前的更友善。）",
-      "Pengalaman dia lebih banyak daripada saya.（他的经验比我多。）"
-     ],
-     "slots": [
-      "ramah",
-      "pengalaman",
-      "profesional"
-     ],
-     "reuse": 7
-    },
-    {
-     "cat": "时长表达",
-     "level": "adv",
-     "formula": "Saya sudah [V] selama [durasi].", "cn": "我已经[动词]了[时长]。",
-     "structure": "我已经…了（多长时间）",
-     "grammar": "selama+时段；sudah 完成",
-     "scene": "谈经历",
-     "ex": [
-      "Saya sudah bekerja di sini selama tiga tahun.（我已经在这儿工作三年了。）",
-      "Saya sudah tinggal di Morowali selama dua tahun.（我在莫罗瓦利住了两年。）"
-     ],
-     "slots": [
-      "tiga tahun",
-      "lima bulan"
-     ],
-     "reuse": 7
-    },
-    {
-     "cat": "礼貌探问",
-     "level": "adv",
-     "formula": "Boleh saya tahu, [klausa]?", "cn": "可以告诉我[从句]吗？",
-     "structure": "能告诉我…吗？",
-     "grammar": "boleh 许可；逗号后接问句",
-     "scene": "礼貌询问",
-     "ex": [
-      "Boleh saya tahu, di mana Anda bekerja?（能告诉我您在哪里工作吗？）",
-      "Boleh saya tahu, apa jabatan Anda?（能告诉我您的职位吗？）"
-     ],
-     "slots": [
-      "di mana Anda bekerja",
-      "apa jabatan Anda"
-     ],
-     "reuse": 8
-    },
-    {
-     "cat": "条件假设",
-     "level": "adv",
-     "formula": "Kalau [kondisi], saya akan [aksi].", "cn": "如果[条件]，我就[行动]。",
-     "structure": "如果…，我就…",
-     "grammar": "kalau 如果；akan 将",
-     "scene": "假设交流",
-     "ex": [
-      "Kalau ada waktu, saya akan berkunjung ke pabrik Anda.（如果有时间，我会去参观你们的工厂。）",
-      "Kalau cuaca baik, kami akan mengunjungi tambang.（如果天气好，我们就去矿区看看。）"
-     ],
-     "slots": [
-      "ada waktu",
-      "berkunjung ke pabrik Anda"
-     ],
-     "reuse": 7
-    },
-    {
-     "cat": "新近动作",
-     "level": "adv",
-     "formula": "Kami baru saja [V]; belum sempat [V2].", "cn": "我们刚刚[动词]；还没来得及[动词2]。",
-     "structure": "我们刚刚…，还没来得及…",
-     "grammar": "baru saja 刚刚；sempat 来得及",
-     "scene": "解释近况",
-     "ex": [
-      "Kami baru saja tiba; belum sempat istirahat.（我们刚到，还没来得及休息。）",
-      "Kami baru saja selesai rapat; belum sempat makan siang.（我们刚开完会，还没来得及吃午饭。）"
-     ],
-     "slots": [
-      "tiba",
-      "istirahat",
-      "makan siang"
-     ],
-     "reuse": 5
-    },
-    {
-     "cat": "正式引见",
-     "level": "pro",
-     "formula": "[Nama], izinkan saya memperkenalkan [Nama2], [jabatan] kami.", "cn": "[名字]，请允许我介绍我们的[职务][名字2]。",
-     "structure": "…，请允许我介绍我们的一…",
-     "grammar": "izinkan 请允许（izin 名词）",
-     "scene": "正式引见",
-     "ex": [
-      "Pak Direktur, izinkan saya memperkenalkan Ibu Sari, manajer HR kami.（总监先生，请允许我介绍我们的人力经理萨丽女士。）",
-      "Bu Sari, izinkan saya memperkenalkan Pak Budi, kolega saya dari Jakarta.（萨丽女士，请允许我介绍布迪先生，我雅加达的同事。）"
-     ],
-     "slots": [
-      "Ibu Sari",
-      "manajer HR"
-     ],
-     "reuse": 9
-    },
-    {
-     "cat": "机构介绍",
-     "level": "pro",
-     "formula": "Perkenalkan kami dari [instansi], yang bertugas di bidang [bidang].", "cn": "请允许我们介绍，我们来自[机构]，负责[领域]的工作。",
-     "structure": "请允许介绍我们来自…，负责…领域",
-     "grammar": "yang 从句；bertugas 负责",
-     "scene": "正式场合",
-     "ex": [
-      "Perkenalkan kami dari PT BIR, yang bertugas di bidang pengolahan nikel.（我们来自BIR公司，负责镍加工领域。）",
-      "Perkenalkan kami dari dinas pariwisata, yang bertugas di bidang promosi.（请允许介绍，我们来自旅游局，负责推广领域。）"
-     ],
-     "slots": [
-      "PT BIR",
-      "pengolahan nikel"
-     ],
-     "reuse": 8
-    },
-    {
-     "cat": "渐进关系",
-     "level": "pro",
-     "formula": "Semakin [Adj1], semakin [Adj2].", "cn": "越[形容词1]，越[形容词2]。",
-     "structure": "越…，越…",
-     "grammar": "semakin 越",
-     "scene": "正式评价",
-     "ex": [
-      "Semakin akrab, semakin nyaman bekerja sama.（越熟络，合作越愉快。）",
-      "Semakin sering berlatih, semakin lancar bahasanya.（越常练习，语言越流利。）"
-     ],
-     "slots": [
-      "akrab",
-      "nyaman"
-     ],
-     "reuse": 6
-    }
-   ],
-   "expressions": [
-    {
-     "level": "basic",
-     "scene": "询问",
-     "id": "Siapa nama Anda?",
-     "cn": "您叫什么名字？",
-     "note": "亦可用 Boleh saya tahu…更礼貌"
-    },
-    {
-     "level": "basic",
-     "scene": "询问",
-     "id": "Anda dari mana?",
-     "cn": "您是哪里人？",
-     "note": "口语简洁式"
-    },
-    {
-     "level": "basic",
-     "scene": "相识",
-     "id": "Senang berkenalan dengan Anda.",
-     "cn": "很高兴认识您。",
-     "note": "berkenalan=相识"
-    },
-    {
-     "level": "adv",
-     "scene": "礼貌询问",
-     "id": "Boleh saya tahu nama Anda?",
-     "cn": "能告诉我您的名字吗？",
-     "note": "比 siapa nama 更礼貌"
-    },
-    {
-     "level": "adv",
-     "scene": "寒暄",
-     "id": "Di mana Anda bekerja?",
-     "cn": "您在哪里工作？",
-     "note": "破冰常用"
-    },
-    {
-     "level": "adv",
-     "scene": "寒暄",
-     "id": "Sudah berapa lama di Indonesia?",
-     "cn": "来印尼多久了？",
-     "note": "对访客常用"
-    },
-    {
-     "level": "adv",
-     "scene": "询问",
-     "id": "Apa pekerjaan Anda?",
-     "cn": "您做什么工作？",
-     "note": "正式可用 Apa jabatan Anda?"
-    },
-    {
-     "level": "adv",
-     "scene": "自述",
-     "id": "Saya baru tiga bulan di sini.",
-     "cn": "我刚来三个月。",
-     "note": "baru+时长"
-    },
-    {
-     "level": "adv",
-     "scene": "道别",
-     "id": "Kita bertemu lagi nanti.",
-     "cn": "我们回头见。",
-     "note": "nanti 稍后/以后"
-    },
-    {
-     "level": "adv",
-     "scene": "寒暄",
-     "id": "Ada keluarga di sini?",
-     "cn": "家人在这儿吗？",
-     "note": "关心式寒暄"
-    },
-    {
-     "level": "pro",
-     "scene": "引见",
-     "id": "Silakan berkenalan dengan rekan-rekan kami.",
-     "cn": "请与我们的同事认识一下。",
-     "note": "rekan-rekan 复数"
-    },
-    {
-     "level": "pro",
-     "scene": "自述",
-     "id": "Izinkan saya memperkenalkan diri lebih lanjut.",
-     "cn": "请允许我进一步自我介绍。",
-     "note": "正式场合"
-    },
-    {
-     "level": "pro",
-     "scene": "祝愿",
-     "id": "Semoga kita bisa bekerja sama dengan baik.",
-     "cn": "希望我们合作愉快。",
-     "note": "semoga+从句"
-    },
-    {
-     "level": "pro",
-     "scene": "致谢",
-     "id": "Terima kasih atas perkenalannya.",
-     "cn": "感谢您的介绍。",
-     "note": "atas 正式致谢"
-    }
-   ],
-   "affixes": [
-    {
-     "no": 11,
-     "affix": "-an",
-     "type": "后缀",
-     "func": "名词化/约数",
-     "rule": "加于词根后，无变形",
-     "derivs": [
-      {
-       "root": "sapa",
-       "der": "sapaan",
-       "zh": "称呼/问候语"
-      },
-      {
-       "root": "panggil",
-       "der": "panggilan",
-       "zh": "称呼"
-      },
-      {
-       "root": "temu",
-       "der": "pertemuan(经per-+-an)",
-       "zh": "会面"
-      }
-     ],
-     "examples": [
-      {
-       "id": "Sapaannya membuat tamu merasa dihargai.",
-       "cn": "他的问候让客人感到受重视。"
-      }
-     ],
-     "link": "玫瑰图 No.11"
-    },
-    {
-     "no": 12,
-     "affix": "-kan",
-     "type": "后缀",
-     "func": "使役/方向",
-     "rule": "命令句或 meN-kan 中",
-     "derivs": [
-      {
-       "root": "kenal",
-       "der": "(memper)kenalkan",
-       "zh": "介绍"
-      },
-      {
-       "root": "tukar",
-       "der": "bertukar",
-       "zh": "互相交换"
-      }
-     ],
-     "examples": [
-      {
-       "id": "Perkenalkan nama Anda, silakan.",
-       "cn": "请介绍您的名字。"
-      }
-     ],
-     "link": "玫瑰图 No.12"
-    },
-    {
-     "no": 13,
-     "affix": "-i",
-     "type": "后缀",
-     "func": "方向/反复",
-     "rule": "命令句或 meN-i",
-     "derivs": [
-      {
-       "root": "nama",
-       "der": "namai",
-       "zh": "命名"
-      },
-      {
-       "root": "sapa",
-       "der": "(menyapai→少用)",
-       "zh": "—"
-      }
-     ],
-     "examples": [
-      {
-       "id": "Jalan itu dinamai Jalan Merdeka.",
-       "cn": "那条街被命名为独立路。"
-      }
-     ],
-     "link": "玫瑰图 No.13"
-    },
-    {
-     "no": 14,
-     "affix": "-nya",
-     "type": "后缀",
-     "func": "第三人称所有格/特指",
-     "rule": "附于词后",
-     "derivs": [
-      {
-       "root": "nama",
-       "der": "namanya",
-       "zh": "他/她的名字"
-      },
-      {
-       "root": "perusahaan",
-       "der": "perusahaannya",
-       "zh": "他的公司"
-      }
-     ],
-     "examples": [
-      {
-       "id": "Namanya terkenal di bidang ini.",
-       "cn": "他在这个领域很有名。"
-      }
-     ],
-     "link": "玫瑰图 No.14"
-    },
-    {
-     "no": 15,
-     "affix": "-ku",
-     "type": "后缀",
-     "func": "我的（第一人称）",
-     "rule": "附于词后，不单独用",
-     "derivs": [
-      {
-       "root": "nama",
-       "der": "namaku",
-       "zh": "我的名字"
-      },
-      {
-       "root": "rekan",
-       "der": "rekanku",
-       "zh": "我的同事"
-      }
-     ],
-     "examples": [
-      {
-       "id": "Namaku Li Ming, senang bertemu Anda.",
-       "cn": "我叫李明，很高兴见到您。"
-      }
-     ],
-     "link": "玫瑰图 No.15"
-    },
-    {
-     "no": 16,
-     "affix": "-mu",
-     "type": "后缀",
-     "func": "你的（第二人称）",
-     "rule": "附于词后",
-     "derivs": [
-      {
-       "root": "nama",
-       "der": "namamu",
-       "zh": "你的名字"
-      },
-      {
-       "root": "pekerjaan",
-       "der": "pekerjaanmu",
-       "zh": "你的工作"
-      }
-     ],
-     "examples": [
-      {
-       "id": "Apa pekerjaanmu sekarang?",
-       "cn": "你现在做什么工作？"
-      }
-     ],
-     "link": "玫瑰图 No.16"
-    },
-    {
-     "no": 17,
-     "affix": "-lah/-kah/-pun/-tah",
-     "type": "语助词",
-     "func": "语气/疑问/强调",
-     "rule": "附于句首词或谓语",
-     "derivs": [
-      {
-       "root": "sudah",
-       "der": "sudahkah",
-       "zh": "已经…了吗"
-      },
-      {
-       "root": "dia",
-       "der": "dialah",
-       "zh": "正是他"
-      },
-      {
-       "root": "aku",
-       "der": "akupun",
-       "zh": "连我也"
-      }
-     ],
-     "examples": [
-      {
-       "id": "Sudahkah Anda saling mengenal?",
-       "cn": "你们已经互相认识了吗？"
-      }
-     ],
-     "link": "玫瑰图 No.17"
-    },
-    {
-     "no": 18,
-     "affix": "meN-kan",
-     "type": "环绕",
-     "func": "使役/处置/为动",
-     "rule": "meN-变形 + -kan",
-     "derivs": [
-      {
-       "root": "kenal",
-       "der": "memperkenalkan(经memper-)",
-       "zh": "介绍"
-      },
-      {
-       "root": "senang",
-       "der": "menyenangkan",
-       "zh": "使愉快"
-      }
-     ],
-     "examples": [
-      {
-       "id": "Perkenalan itu menyenangkan semua orang.",
-       "cn": "那次介绍让所有人都很愉快。"
-      }
-     ],
-     "link": "玫瑰图 No.18"
-    },
-    {
-     "no": 19,
-     "affix": "meN-i",
-     "type": "环绕",
-     "func": "反复/持续/代替介词",
-     "rule": "meN-变形 + -i",
-     "derivs": [
-      {
-       "root": "hadir",
-       "der": "menghadiri",
-       "zh": "出席/参加"
-      },
-      {
-       "root": "warna",
-       "der": "mewarnai",
-       "zh": "着色"
-      }
-     ],
-     "examples": [
-      {
-       "id": "Dia menghadiri pertemuan setiap Senin.",
-       "cn": "他每周一都出席会议。"
-      }
-     ],
-     "link": "玫瑰图 No.19"
-    },
-    {
-     "no": 20,
-     "affix": "ke-an",
-     "type": "环绕",
-     "func": "抽象名词/极端/遭受",
-     "rule": "ke-+词根+-an",
-     "derivs": [
-      {
-       "root": "akrab",
-       "der": "keakraban",
-       "zh": "亲密/熟络"
-      },
-      {
-       "root": "sehat",
-       "der": "kesehatan",
-       "zh": "健康"
-      }
-     ],
-     "examples": [
-      {
-       "id": "Keakraban tim sangat terasa.",
-       "cn": "团队的亲密氛围非常明显。"
-      }
-     ],
-     "link": "玫瑰图 No.20"
-    }
-   ],
-   "quiz": [
-    {
-     "q": "akrab 的反义是？",
-     "opts": [
-      "asing/dingin",
-      "ramah",
-      "santai",
-      "resmi"
-     ],
-     "a": 0,
-     "exp": "akrab=亲密；反义 asing(陌生)/dingin(冷淡)。"
-    },
-    {
-     "q": "keakraban 的构词？",
-     "opts": [
-      "peN-+akrab",
-      "ke-+akrab+-an",
-      "ber-+akrab",
-      "meN-+akrab"
-     ],
-     "a": 1,
-     "exp": "ke-an 环绕：akrab→keakraban 亲密。"
-    },
-    {
-     "q": "pekerjaan 词根是？",
-     "opts": [
-      "kerja",
-      "pekerja",
-      "kerj",
-      "peker"
-     ],
-     "a": 0,
-     "exp": "peN-+kerja+-an：pekerjaan 职业/工作。"
-    },
-    {
-     "q": "正式场合'同事'更常用？",
-     "opts": [
-      "teman",
-      "kolega",
-      "sahabat",
-      "kawan"
-     ],
-     "a": 1,
-     "exp": "kolega 正式；teman/kawan 朋友；sahabat 挚友。"
-    },
-    {
-     "q": "'来自'的正式表达？",
-     "opts": [
-      "dari saja",
-      "berasal dari",
-      "datang aja",
-      "pergi dari"
-     ],
-     "a": 1,
-     "exp": "berasal dari 来自（正式）；Asal Anda dari mana? 籍贯。"
-    },
-    {
-     "q": "yang 在 'Saya orang yang bekerja di bidang tambang.' 中的功能是？",
-     "opts": [
-      "疑问代词",
-      "关系代词（定语从句）",
-      "指示代词",
-      "人称代词"
-     ],
-     "a": 1,
-     "exp": "yang 连接定语从句：在矿业工作的人。"
-    },
-    {
-     "q": "比较级正确结构？",
-     "opts": [
-      "[N1] lebih [Adj] dari [N2]",
-      "[N1] lebih [Adj] daripada [N2]",
-      "[N1] paling [Adj] daripada [N2]",
-      "[N1] sangat [Adj] daripada [N2]"
-     ],
-     "a": 1,
-     "exp": "lebih…daripada 比较；paling… 最高级不接 daripada。"
-    },
-    {
-     "q": "'Boleh saya tahu, …' 的语用功能是？",
-     "opts": [
-      "命令",
-      "礼貌探问",
-      "感叹",
-      "告别"
-     ],
-     "a": 1,
-     "exp": "boleh saya tahu 礼貌询问缓冲语。"
-    },
-    {
-     "q": "pengalaman 的派生路径？",
-     "opts": [
-      "alam→pengalaman(peN-)",
-      "alami→pengalaman",
-      "alaman→pengalaman",
-      "pengal→pengalaman"
-     ],
-     "a": 0,
-     "exp": "peN-+alam→pengalaman 经验/经历。"
-    },
-    {
-     "q": "'我们刚刚到'正确表达？",
-     "opts": [
-      "Kami sudah lama tiba",
-      "Kami baru saja tiba",
-      "Kami akan tiba",
-      "Kami belum tiba"
-     ],
-     "a": 1,
-     "exp": "baru saja 刚刚。"
-    },
-    {
-     "q": "bertukar kartu nama 中 bertukar 表示？",
-     "opts": [
-      "单方面给予",
-      "互相交换",
-      "接受",
-      "丢失"
-     ],
-     "a": 1,
-     "exp": "ber- 相互：bertukar 互相交换。"
-    },
-    {
-     "q": "'越熟络，合作越愉快'对应句型？",
-     "opts": [
-      "Kalau akrab, nyaman",
-      "Semakin akrab, semakin nyaman",
-      "Lebih akrab lebih nyaman",
-      "Sudah akrab jadi nyaman"
-     ],
-     "a": 1,
-     "exp": "semakin…semakin… 越…越…。"
-    },
-    {
-     "q": "jabatan 意思是？",
-     "opts": [
-      "工资",
-      "职位/职务",
-      "部门",
-      "简历"
-     ],
-     "a": 1,
-     "exp": "jabatan=职位；gaji 工资；departemen 部门。"
-    },
-    {
-     "q": "keahlian 词根 ahli 意为？",
-     "opts": [
-      "工人",
-      "专家",
-      "老板",
-      "客户"
-     ],
-     "a": 1,
-     "exp": "ahli 专家；ke-ahli-an 专长。"
-    },
-    {
-     "q": "menyapa dengan ramah 中 ramah 是？",
-     "opts": [
-      "副词'亲切'修饰 menyapa",
-      "名词'亲切的人'",
-      "动词'变得亲切'",
-      "连词"
-     ],
-     "a": 0,
-     "exp": "dengan ramah 介词短语作状语，修饰动词 menyapa。"
-    }
-   ]
-  },
-  "day3": {
-   "date": "2026-10-22",
-   "theme": "Pertemuan Resmi & Perpisahan 正式会晤与道别",
-   "vocab": [
-    {
-     "w": "audiensi",
-     "cn": "正式会见；谒见",
-     "ipa": "/auˈdiensi/",
-     "level": "高阶",
-     "note": "高规格正式会见（如对元首/部长）"
-    },
-    {
-     "w": "kunjungan",
-     "cn": "访问；拜访",
-     "ipa": "/kunˈdʒuŋan/",
-     "level": "进阶",
-     "note": "kunjung→peN-an；kunjungan kerja 工作访问"
-    },
-    {
-     "w": "menerima",
-     "cn": "接见；接收",
-     "ipa": "/mənərima/",
-     "level": "进阶",
-     "note": "meN-+terima；tamu diterima 客人被接见"
-    },
-    {
-     "w": "kesepakatan",
-     "cn": "共识；协议",
-     "ipa": "/kəsepˈakatan/",
-     "level": "进阶",
-     "note": "sepakat(一致)→ke-an；mencapai kesepakatan 达成共识"
-    },
-    {
-     "w": "kerja sama",
-     "cn": "合作",
-     "ipa": "/ˈkərʤa ˈsama/",
-     "level": "核心",
-     "note": "规范分写；kerja sama erat 紧密合作"
-    },
-    {
-     "w": "penandatanganan",
-     "cn": "签署",
-     "ipa": "/pənaŋdatˈŋanan/",
-     "level": "高阶",
-     "note": "tanda tangan→peN-an-an 三缀叠加长词"
-    },
-    {
-     "w": "notulen",
-     "cn": "会议纪要",
-     "ipa": "/noˈtulen/",
-     "level": "高阶",
-     "note": "荷兰语借词；menulis notulen 做纪要"
-    },
-    {
-     "w": "kesimpulan",
-     "cn": "结论",
-     "ipa": "/kəsimˈpulLan/",
-     "level": "进阶",
-     "note": "simpul(结)→ke-an；mengambil kesimpulan 得出结论"
-    },
-    {
-     "w": "tindak lanjut",
-     "cn": "后续行动",
-     "ipa": "/ˈtindak ˈlanjut/",
-     "level": "进阶",
-     "note": "规范分写；公文高频"
-    },
-    {
-     "w": "perpisahan",
-     "cn": "离别；告别",
-     "ipa": "/pərpisˈahan/",
-     "level": "进阶",
-     "note": "pisah→per-an；perpisahan resmi 正式告别"
-    },
-    {
-     "w": "pamit",
-     "cn": "告辞（动词/名词）",
-     "ipa": "/ˈpamit/",
-     "level": "核心",
-     "note": "pamit dulu 先告辞了"
-    },
-    {
-     "w": "mengantar",
-     "cn": "送行；陪同前往",
-     "ipa": "/məŋˈantar/",
-     "level": "进阶",
-     "note": "meN-+antar；mengantar ke bandara 送机"
-    },
-    {
-     "w": "ucapan",
-     "cn": "话语；致辞",
-     "ipa": "/uˈtʃapan/",
-     "level": "进阶",
-     "note": "ucap+-an；ucapan terima kasih 致谢辞"
-    },
-    {
-     "w": "terhormat",
-     "cn": "荣幸的；受尊敬的",
-     "ipa": "/tərˈhormat/",
-     "level": "进阶",
-     "note": "ter-最/受 + hormat 尊敬"
-    },
-    {
-     "w": "tuan rumah",
-     "cn": "东道主",
-     "ipa": "/ˈtuan ˈrumah/",
-     "level": "高阶",
-     "note": "规范分写；= tuan rumah (host)"
-    }
-   ],
-   "phrases": [
-    {
-     "id": "jadwal pertemuan",
-     "cn": "会议日程",
-     "usage": "正式",
-     "note": "jadwal=日程表"
-    },
-    {
-     "id": "kunjungan kerja",
-     "cn": "工作访问",
-     "usage": "正式",
-     "note": "官方往来常用"
-    },
-    {
-     "id": "menjalin kerja sama",
-     "cn": "建立合作",
-     "usage": "正式",
-     "note": "menjalin 编织/建立"
-    },
-    {
-     "id": "mencapai kesepakatan",
-     "cn": "达成共识",
-     "usage": "正式",
-     "note": "mencapai 达到"
-    },
-    {
-     "id": "tanda tangan bersama",
-     "cn": "共同签署",
-     "usage": "正式",
-     "note": "规范分写 tanda tangan"
-    },
-    {
-     "id": "tindak lanjut pertemuan",
-     "cn": "会议后续行动",
-     "usage": "公文",
-     "note": "印尼公文高频词"
-    },
-    {
-     "id": "mengantar ke bandara",
-     "cn": "送机",
-     "usage": "通用",
-     "note": "mengantar+地点"
-    },
-    {
-     "id": "ucapan terima kasih",
-     "cn": "致谢辞",
-     "usage": "正式",
-     "note": "ucapan=致辞"
-    },
-    {
-     "id": "pertemuan resmi",
-     "cn": "正式会晤",
-     "usage": "正式",
-     "note": "resmi 正式的"
-    },
-    {
-     "id": "saling mengantar salam",
-     "cn": "互致问候",
-     "usage": "正式",
-     "note": "salam 问候"
-    }
-   ],
-   "patterns": [
-    {
-     "cat": "正式致谢",
-     "level": "basic",
-     "formula": "Terima kasih atas [N]-nya.", "cn": "感谢您的[名词]。",
-     "structure": "感谢…",
-     "grammar": "atas+N-nya 正式结构",
-     "scene": "致谢",
-     "ex": [
-      "Terima kasih atas kesediaannya.（感谢您的赏光。）",
-      "Terima kasih atas kunjungannya.（感谢您的来访。）"
-     ],
-     "slots": [
-      "kesediaan",
-      "kunjungan",
-      "perhatian"
-     ],
-     "reuse": 8
-    },
-    {
-     "cat": "道别",
-     "level": "basic",
-     "formula": "Selamat [tinggal/jalan]!", "cn": "再见／一路平安！",
-     "structure": "再见（留守方说 tinggal/出行方说 jalan）",
-     "grammar": "selamat+动词",
-     "scene": "道别",
-     "ex": [
-      "Selamat jalan!（一路平安！对离开的人说）",
-      "Selamat tinggal!（再见！对留下的人说）"
-     ],
-     "slots": [
-      "tinggal",
-      "jalan"
-     ],
-     "reuse": 5
-    },
-    {
-     "cat": "再会",
-     "level": "basic",
-     "formula": "Sampai [jumpa/bertemu] [lagi/nanti/waktu]!", "cn": "[回头／到时候]再见！",
-     "structure": "回头见/改天见",
-     "grammar": "sampai 直到",
-     "scene": "道别",
-     "ex": [
-      "Sampai jumpa lagi minggu depan!（下周再见！）",
-      "Sampai bertemu di Jakarta!（雅加达见！）"
-     ],
-     "slots": [
-      "lagi",
-      "minggu depan",
-      "di Jakarta"
-     ],
-     "reuse": 5
-    },
-    {
-     "cat": "被动正式",
-     "level": "adv",
-     "formula": "[Kegiatan] [diadakan/digelar/diselenggarakan] [waktu/tempat].", "cn": "[活动]将于[时间／地点]举行。",
-     "structure": "（活动）于…举行",
-     "grammar": "di- 被动无人称",
-     "scene": "公告/报道",
-     "ex": [
-      "Pertemuan diadakan di aula utama.（会议在主礼堂举行。）",
-      "Acara perpisahan diselenggarakan di aula utama.（告别会在主礼堂举行。）"
-     ],
-     "slots": [
-      "diadakan",
-      "di gelar"
-     ],
-     "reuse": 7
-    },
-    {
-     "cat": "表达希望",
-     "level": "adv",
-     "formula": "Kami berharap [klausa].", "cn": "我们希望[从句]。",
-     "structure": "我们希望…",
-     "grammar": "berharap 后接从句",
-     "scene": "会谈",
-     "ex": [
-      "Kami berharap kunjungan ini mempererat hubungan.（我们希望此次访问巩固关系。）",
-      "Kami berharap kerja sama ini berlanjut lama.（我们希望此次合作长久延续。）"
-     ],
-     "slots": [
-      "kunjungan ini mempererat hubungan"
-     ],
-     "reuse": 8
-    },
-    {
-     "cat": "先后动作",
-     "level": "adv",
-     "formula": "Setelah [V], kami akan [V2].", "cn": "[动词]之后，我们将[动词2]。",
-     "structure": "…之后，我们将…",
-     "grammar": "setelah+动词",
-     "scene": "日程说明",
-     "ex": [
-      "Setelah pertemuan, kami akan mengunjungi pabrik.（会后我们将参观工厂。）",
-      "Setelah penandatanganan, kami akan makan malam bersama.（签署之后我们将共进晚餐。）"
-     ],
-     "slots": [
-      "pertemuan",
-      "mengunjungi pabrik"
-     ],
-     "reuse": 7
-    },
-    {
-     "cat": "事前提醒",
-     "level": "adv",
-     "formula": "Sebelum [V], harap [V2/konfirmasi].", "cn": "[动词]之前，请[动词2／确认]。",
-     "structure": "在…之前，请…",
-     "grammar": "sebelum 在…前；harap 请",
-     "scene": "行程安排",
-     "ex": [
-      "Sebelum berangkat, harap konfirmasi jadwal.（出发前请确认日程。）",
-      "Sebelum memulai, harap semua menandatangani daftar hadir.（开始之前请大家签签到表。）"
-     ],
-     "slots": [
-      "berangkat",
-      "konfirmasi jadwal"
-     ],
-     "reuse": 6
-    },
-    {
-     "cat": "目的从句",
-     "level": "adv",
-     "formula": "[Klausa utama] agar/supaya [klausa tujuan].", "cn": "[主句]，以便[目的从句]。",
-     "structure": "…以便…",
-     "grammar": "agar/supaya 目的连词",
-     "scene": "说明意图",
-     "ex": [
-      "Kami mengadakan rapat agar semua paham.（我们开会以便大家都明白。）",
-      "Kami mengirim notulen agar semua ingat tindak lanjutnya.（我们发送纪要以便大家记住后续行动。）"
-     ],
-     "slots": [
-      "semua paham",
-      "tidak ada kesalahpahaman"
-     ],
-     "reuse": 8
-    },
-    {
-     "cat": "让步",
-     "level": "adv",
-     "formula": "Walaupun [klausa], [klausa utama].", "cn": "虽然[从句]，但[主句]。",
-     "structure": "尽管…，还是…",
-     "grammar": "walaupun 让步连词",
-     "scene": "正式表达",
-     "ex": [
-      "Walaupun sibuk, beliau tetap menerima kami.（尽管很忙，他还是接见了我 们。）",
-      "Walaupun hujan, acara tetap berjalan lancar.（尽管下雨，活动照常顺利举行。）"
-     ],
-     "slots": [
-      "sibuk",
-      "tetap menerima kami"
-     ],
-     "reuse": 7
-    },
-    {
-     "cat": "公文引述",
-     "level": "pro",
-     "formula": "Dengan ini kami menyampaikan [N].", "cn": "特此告知[事项]。",
-     "structure": "谨此致送…",
-     "grammar": "dengan ini 公文套语",
-     "scene": "公函",
-     "ex": [
-      "Dengan ini kami menyampaikan ucapan terima kasih.（谨此致以谢意。）",
-      "Dengan ini kami menyampaikan salam hormat dari direksi.（谨此转达董事会的敬意。）"
-     ],
-     "slots": [
-      "ucapan terima kasih",
-      "salam hormat"
-     ],
-     "reuse": 9
-    },
-    {
-     "cat": "正式请求",
-     "level": "pro",
-     "formula": "Mohon kiranya [klausa].", "cn": "恳请[从句]。",
-     "structure": "敬请…",
-     "grammar": "mohon kiranya 双重敬语",
-     "scene": "正式请求",
-     "ex": [
-      "Mohon kiranya Bapak berkenan hadir.（敬请先生拨冗出席。）",
-      "Mohon kiranya jadwal kunjungan dapat dikonfirmasi.（敬请确认访问日程。）"
-     ],
-     "slots": [
-      "Bapak berkenan hadir"
-     ],
-     "reuse": 9
-    },
-    {
-     "cat": "会议收尾",
-     "level": "pro",
-     "formula": "Atas perhatian dan kerja samanya, kami ucapkan terima kasih.", "cn": "感谢您的关注与合作。",
-     "structure": "感谢您的关注与合作。",
-     "grammar": "公文结尾套语",
-     "scene": "闭幕/公函结尾",
-     "ex": [
-      "Demikian, atas perhatian dan kerja samanya, kami ucapkan terima kasih.（谨此，感谢您的关注与合作。）",
-      "Atas perhatian Bapak, kami ucapkan terima kasih.（感谢您的关注。）"
-     ],
-     "slots": [
-      "perhatian",
-      "kerja sama"
-     ],
-     "reuse": 10
-    }
-   ],
-   "expressions": [
-    {
-     "level": "basic",
-     "scene": "道别",
-     "id": "Sampai jumpa lagi!",
-     "cn": "回头见！",
-     "note": "最通用道别"
-    },
-    {
-     "level": "basic",
-     "scene": "送别",
-     "id": "Hati-hati di jalan!",
-     "cn": "路上小心！",
-     "note": "送行人说"
-    },
-    {
-     "level": "basic",
-     "scene": "道别",
-     "id": "Sampai besok!",
-     "cn": "明天见！",
-     "note": "约定次日"
-    },
-    {
-     "level": "adv",
-     "scene": "致谢",
-     "id": "Terima kasih atas kesediaan Anda.",
-     "cn": "谢谢您的赏光。",
-     "note": "kesediaan=赏光/应允"
-    },
-    {
-     "level": "adv",
-     "scene": "致歉",
-     "id": "Maaf mengganggu waktunya.",
-     "cn": "抱歉打扰您的时间。",
-     "note": "mengganggu 打扰"
-    },
-    {
-     "level": "adv",
-     "scene": "祝愿",
-     "id": "Semoga sukses selalu!",
-     "cn": "祝您一切顺利！",
-     "note": "semoga+愿望"
-    },
-    {
-     "level": "adv",
-     "scene": "再约",
-     "id": "Kapan kita bisa bertemu lagi?",
-     "cn": "我们什么时候能再见面？",
-     "note": "约下次"
-    },
-    {
-     "level": "adv",
-     "scene": "邀请",
-     "id": "Silakan berkunjung lagi ke Morowali.",
-     "cn": "欢迎再来莫罗瓦利。",
-     "note": "berkunjung 来访"
-    },
-    {
-     "level": "adv",
-     "scene": "致意",
-     "id": "Tolong sampaikan salam untuk keluarga.",
-     "cn": "请代我向家人问好。",
-     "note": "sampaikan salam 转达问候"
-    },
-    {
-     "level": "adv",
-     "scene": "惜别",
-     "id": "Kami akan sangat merindukan Anda.",
-     "cn": "我们会非常想念您。",
-     "note": "merindukan 想念"
-    },
-    {
-     "level": "pro",
-     "scene": "代表致谢",
-     "id": "Atas nama perusahaan, kami mengucapkan terima kasih.",
-     "cn": "我谨代表公司表示感谢。",
-     "note": "atas nama 代表…"
-    },
-    {
-     "level": "pro",
-     "scene": "期待",
-     "id": "Kami menantikan kunjungan balasan Anda.",
-     "cn": "我们期待您的回访。",
-     "note": "menantikan 期待；balasan 回访"
-    },
-    {
-     "level": "pro",
-     "scene": "祝愿",
-     "id": "Semoga hubungan kita semakin erat.",
-     "cn": "愿我们的关系日益紧密。",
-     "note": "semakin 越来越"
-    },
-    {
-     "level": "pro",
-     "scene": "闭幕",
-     "id": "Dengan mengucapkan terima kasih, kami akhiri pertemuan ini.",
-     "cn": "谨致谢意，本次会议到此结束。",
-     "note": "akhiri 结束（meN-）"
-    }
-   ],
-   "affixes": [
-    {
-     "no": 21,
-     "affix": "per-an / peN-an",
-     "type": "环绕",
-     "func": "抽象名词（过程/结果）",
-     "rule": "per-+-an 或 peN-+-an",
-     "derivs": [
-      {
-       "root": "sepakat",
-       "der": "kesepakatan(经ke-)",
-       "zh": "共识/协议"
-      },
-      {
-       "root": "temu",
-       "der": "pertemuan",
-       "zh": "会面/会议"
-      },
-      {
-       "root": "kerja",
-       "der": "pekerjaan",
-       "zh": "职业/工作"
-      }
-     ],
-     "examples": [
-      {
-       "id": "Kedua pihak mencapai kesepakatan.",
-       "cn": "双方达成了共识。"
-      }
-     ],
-     "link": "玫瑰图 No.21"
-    },
-    {
-     "no": 22,
-     "affix": "ber-an",
-     "type": "环绕",
-     "func": "反复/相互",
-     "rule": "ber-+-an",
-     "derivs": [
-      {
-       "root": "pisah",
-       "der": "berpisah",
-       "zh": "分别/离别(相互)"
-      },
-      {
-       "root": "sebelah",
-       "der": "bersebelahan",
-       "zh": "相邻"
-      }
-     ],
-     "examples": [
-      {
-       "id": "Kita berpisah di bandara.",
-       "cn": "我们在机场分别。"
-      }
-     ],
-     "link": "玫瑰图 No.22"
-    },
-    {
-     "no": 23,
-     "affix": "ber-kan",
-     "type": "环绕",
-     "func": "以…为基础/主题",
-     "rule": "ber-+-kan",
-     "derivs": [
-      {
-       "root": "dasar",
-       "der": "berdasarkan",
-       "zh": "基于"
-      },
-      {
-       "root": "tema",
-       "der": "bertemakan",
-       "zh": "以…为主题"
-      }
-     ],
-     "examples": [
-      {
-       "id": "Berdasarkan jadwal, rapat dimulai pukul sembilan.",
-       "cn": "根据日程，会议九点开始。"
-      }
-     ],
-     "link": "玫瑰图 No.23"
-    },
-    {
-     "no": 24,
-     "affix": "berke-an / berpe-an",
-     "type": "环绕",
-     "func": "状态/书面语（低频）",
-     "rule": "ber-+ke-an/pe-an",
-     "derivs": [
-      {
-       "root": "adil",
-       "der": "berkeadilan",
-       "zh": "秉持公正（书面）"
-      }
-     ],
-     "examples": [
-      {
-       "id": "Mereka ingin hidup berkeadilan.",
-       "cn": "他们希望生活在公正之中。"
-      }
-     ],
-     "link": "玫瑰图 No.24"
-    },
-    {
-     "no": 25,
-     "affix": "-er-/-el-/-em-",
-     "type": "中缀",
-     "func": "插入词根构成新词",
-     "rule": "插于词根第一音节后",
-     "derivs": [
-      {
-       "root": "tunjuk",
-       "der": "telunjuk",
-       "zh": "食指"
-      },
-      {
-       "root": "getar",
-       "der": "gemétar",
-       "zh": "颤抖"
-      }
-     ],
-     "examples": [
-      {
-       "id": "Dia menunjuk dengan jari telunjuk.",
-       "cn": "他用食指指着。"
-      }
-     ],
-     "link": "玫瑰图 No.25"
-    },
-    {
-     "no": 26,
-     "affix": "-wan/-wati",
-     "type": "外来后缀",
-     "func": "职业/身份人（阴性-wati）",
-     "rule": "直接加于词基",
-     "derivs": [
-      {
-       "root": "karya",
-       "der": "karyawan/karyawati",
-       "zh": "职员/女职员"
-      },
-      {
-       "root": "warta",
-       "der": "wartawan",
-       "zh": "记者"
-      }
-     ],
-     "examples": [
-      {
-       "id": "Karyawan baru disambut hangat.",
-       "cn": "新员工受到热烈欢迎。"
-      }
-     ],
-     "link": "玫瑰图 No.26"
-    },
-    {
-     "no": 27,
-     "affix": "-man",
-     "type": "外来后缀",
-     "func": "具某品质/职业的人",
-     "rule": "直接加于词基",
-     "derivs": [
-      {
-       "root": "seni",
-       "der": "seniman",
-       "zh": "艺术家"
-      }
-     ],
-     "examples": [
-      {
-       "id": "Seniman itu menghadiri perpisahan.",
-       "cn": "那位艺术家出席了告别会。"
-      }
-     ],
-     "link": "玫瑰图 No.27"
-    },
-    {
-     "no": 28,
-     "affix": "-is/-isme/-isasi/-logi",
-     "type": "外来后缀",
-     "func": "…者/主义/化/学",
-     "rule": "直接加于词基",
-     "derivs": [
-      {
-       "root": "modern",
-       "der": "modernisasi",
-       "zh": "现代化"
-      },
-      {
-       "root": "teknologi",
-       "der": "teknologi",
-       "zh": "科技"
-      }
-     ],
-     "examples": [
-      {
-       "id": "Modernisasi kawasan industri berlanjut.",
-       "cn": "园区的现代化建设在继续。"
-      }
-     ],
-     "link": "玫瑰图 No.28"
-    },
-    {
-     "no": 29,
-     "affix": "ku-/kau-",
-     "type": "前缀",
-     "func": "口语被动（我/你施动）",
-     "rule": "ku-/kau-+词根，与主语连写",
-     "derivs": [
-      {
-       "root": "terima",
-       "der": "kuterima/kauterima",
-       "zh": "我被接待/你被接待"
-      }
-     ],
-     "examples": [
-      {
-       "id": "Tamu-tamu kami terima dengan baik.",
-       "cn": "客人们我们都接待好了。（口语）"
-      }
-     ],
-     "link": "玫瑰图 No.29"
-    },
-    {
-     "no": 30,
-     "affix": "-in",
-     "type": "后缀",
-     "func": "口语代替-kan/-i",
-     "rule": "口语命令句",
-     "derivs": [
-      {
-       "root": "antar",
-       "der": "antarin(口语)",
-       "zh": "送去（给我）"
-      },
-      {
-       "root": "sapa",
-       "der": "sapain(口语)",
-       "zh": "招呼一下"
-      }
-     ],
-     "examples": [
-      {
-       "id": "Antarin tamu ke lobby, ya.",
-       "cn": "（口语）把客人送到大堂吧。"
-      }
-     ],
-     "link": "玫瑰图 No.30"
-    }
-   ],
-   "quiz": [
-    {
-     "q": "tindak lanjut 的意思是？",
-     "opts": [
-      "立即行动",
-      "后续行动",
-      "临时动议",
-      "行动计划"
-     ],
-     "a": 1,
-     "exp": "tindak lanjut=后续行动，印尼公文高频。"
-    },
-    {
-     "q": "kesepakatan 构词路径？",
-     "opts": [
-      "sepakat→ke-an",
-      "sepakat→per-an",
-      "sepakat→peN-an",
-      "sepakat→ber-an"
-     ],
-     "a": 0,
-     "exp": "sepakat(一致)→ke-an：kesepakatan 共识/协议。"
-    },
-    {
-     "q": "penandatanganan 含几个词缀？",
-     "opts": [
-      "1",
-      "2",
-      "3",
-      "4"
-     ],
-     "a": 2,
-     "exp": "peN-+tanda tangan+-an：三缀叠加长词，签署。"
-    },
-    {
-     "q": "正式会见（如见部长）称？",
-     "opts": [
-      "jumpa",
-      "audiensi",
-      "bincang",
-      "sapa"
-     ],
-     "a": 1,
-     "exp": "audiensi=正式谒见/会见，高规格。"
-    },
-    {
-     "q": "'（会议）在主礼堂举行'正确表达？",
-     "opts": [
-      "Pertemuan mengadakan di aula",
-      "Pertemuan diadakan di aula utama",
-      "Pertemuan mengadakan aula utama",
-      "Aula mengadakan pertemuan"
-     ],
-     "a": 1,
-     "exp": "di- 无人称被动：diadakan 被举行。"
-    },
-    {
-     "q": "Selamat tinggal 对谁说？",
-     "opts": [
-      "对离开的人",
-      "对留下的人",
-      "对上级",
-      "对客人"
-     ],
-     "a": 1,
-     "exp": "tinggal=留下；对留下的人说 selamat tinggal，对离开的人说 selamat jalan。"
-    },
-    {
-     "q": "'敬请出席'最正式的表达？",
-     "opts": [
-      "Tolong datang",
-      "Harap hadir",
-      "Mohon kiranya Bapak berkenan hadir",
-      "Datanglah"
-     ],
-     "a": 2,
-     "exp": "mohon kiranya+berkenan 双重敬语，最正式。"
-    },
-    {
-     "q": "agar 引导什么从句？",
-     "opts": [
-      "原因",
-      "目的",
-      "条件",
-      "让步"
-     ],
-     "a": 1,
-     "exp": "agar/supaya 引导目的从句：以便…。"
-    },
-    {
-     "q": "notulen 对应中文？",
-     "opts": [
-      "邀请函",
-      "会议纪要",
-      "合同",
-      "日程表"
-     ],
-     "a": 1,
-     "exp": "notulen=会议纪要（荷兰语借词）。"
-    },
-    {
-     "q": "ucapan terima kasih 中 ucapan 构词？",
-     "opts": [
-      "ucap+-an",
-      "meN-+ucap",
-      "peN-+ucap",
-      "ke-+ucap"
-     ],
-     "a": 0,
-     "exp": "ucap(说)+-an 名词化：话语/致辞。"
-    },
-    {
-     "q": "'我谨代表公司'对应？",
-     "opts": [
-      "Dari perusahaan saya",
-      "Atas nama perusahaan",
-      "Nama perusahaan",
-      "Perusahaan saya"
-     ],
-     "a": 1,
-     "exp": "atas nama+机构=代表…（正式）。"
-    },
-    {
-     "q": "kunjungan balasan 中 balasan 意为？",
-     "opts": [
-      "初次",
-      "回访/回敬",
-      "告别",
-      "顺道"
-     ],
-     "a": 1,
-     "exp": "balas(回)+-an：回访。"
-    },
-    {
-     "q": "mengantar ke bandara 中 mengantar 是？",
-     "opts": [
-      "meN-+antar",
-      "ber-+antar",
-      "di-+antar",
-      "peN-+antar"
-     ],
-     "a": 0,
-     "exp": "meN- 主动：antar→mengantar 送行。"
-    },
-    {
-     "q": "公文结尾套语 'Atas perhatian dan kerja samanya, …' 中 -nya 的功能？",
-     "opts": [
-      "所属格",
-      "特指敬语化",
-      "复数",
-      "将来时"
-     ],
-     "a": 1,
-     "exp": "-nya 将名词敬语化：您的关注与合作（atas perhatiannya）。"
-    },
-    {
-     "q": "'尽管很忙，他还是接见了我们'对应句型？",
-     "opts": [
-      "Karena sibuk, beliau menerima kami",
-      "Walaupun sibuk, beliau tetap menerima kami",
-      "Kalau sibuk, beliau menerima kami",
-      "Sebelum sibuk, beliau menerima kami"
-     ],
-     "a": 1,
-     "exp": "walaupun 尽管，让步从句。"
-    }
-   ]
-  }
+ "title": "话题1: 见面 / Bertemu",
+ "icon": "🤝",
+ "level": "B1-B2",
+ "days": 3,
+ "intro": "CA 进阶课 V1.2 减载版：每日四块——词汇7+词组5 · 万能句型5（全带中译） · 常用表达5 · 词缀5个/天（30词缀6天一轮, coef 1）。话题编号对齐 C 课程序列，本话题=话题1 见面。",
+ "day1": {
+  "date": "2026-11-10",
+  "theme": "Salam & Sapaan 问候与初见",
+  "vocab": [
+   {
+    "w": "berjabat tangan",
+    "cn": "握手",
+    "ipa": "/bərˈdʒabat ˈtaŋan/",
+    "level": "核心",
+    "note": "正式场合见面/道别礼仪动作；规范分写"
+   },
+   {
+    "w": "pertemuan",
+    "cn": "会面；会议",
+    "ipa": "/pərtəˈmuːan/",
+    "level": "进阶",
+    "note": "per-+-an 环绕派生；工作会议更常用 rapat"
+   },
+   {
+    "w": "saling",
+    "cn": "互相；彼此",
+    "ipa": "/ˈsaːliŋ/",
+    "level": "进阶",
+    "note": "置于动词前：saling mengenal 互相认识"
+   },
+   {
+    "w": "perkenalan",
+    "cn": "介绍；相识",
+    "ipa": "/pərkəˈnalan/",
+    "level": "进阶",
+    "note": "salam perkenalan 问候兼介绍的套语"
+   },
+   {
+    "w": "kesan",
+    "cn": "印象",
+    "ipa": "/kəˈsan/",
+    "level": "进阶",
+    "note": "kesan pertama 第一印象"
+   },
+   {
+    "w": "tamu",
+    "cn": "客人；来宾",
+    "ipa": "/ˈtamu/",
+    "level": "核心",
+    "note": "tamu undangan 受邀宾客"
+   },
+   {
+    "w": "resmi",
+    "cn": "正式的",
+    "ipa": "/ˈrəsmi/",
+    "level": "进阶",
+    "note": "反义 santai/nonresmi；pertemuan resmi 正式会晤"
+   }
+  ],
+  "phrases": [
+   {
+    "id": "bertemu dengan",
+    "cn": "与…见面",
+    "usage": "通用",
+    "note": "介词 dengan 引出对象"
+   },
+   {
+    "id": "berjabat tangan",
+    "cn": "握手",
+    "usage": "正式",
+    "note": "见面与道别时均可"
+   },
+   {
+    "id": "saling mengenal",
+    "cn": "互相认识",
+    "usage": "通用",
+    "note": "saling + 动词"
+   },
+   {
+    "id": "salam perkenalan",
+    "cn": "问候兼介绍的开场套语",
+    "usage": "正式",
+    "note": "商务开场固定搭配"
+   },
+   {
+    "id": "senang bertemu dengan Anda",
+    "cn": "很高兴见到您",
+    "usage": "通用",
+    "note": "senang + 动词 + dengan"
+   }
+  ],
+  "patterns": [
+   {
+    "cat": "问候骨架",
+    "level": "basic",
+    "formula": "Selamat [pagi/siang/sore/malam]",
+    "cn": "早上好／中午好／下午好／晚上好",
+    "structure": "[时段]好",
+    "grammar": "selamat + 时段名词",
+    "scene": "任何见面开场",
+    "ex": [
+     "Selamat pagi, Pak!（早上好，先生！）",
+     "Selamat malam, Bu Direktur.（晚上好，总监女士。）"
+    ],
+    "slots": [
+     "pagi",
+     "siang",
+     "sore",
+     "malam"
+    ],
+    "reuse": 5
+   },
+   {
+    "cat": "自我介绍",
+    "level": "basic",
+    "formula": "Perkenalkan, saya [Nama].",
+    "cn": "请允许我介绍，我是[姓名]。",
+    "structure": "Perkenalkan + 主语 + 名字",
+    "grammar": "perkenalkan 为祈使式开场动词",
+    "scene": "初次见面自我介绍",
+    "ex": [
+     "Perkenalkan, saya Leo.（请允许我介绍，我是 Leo。）",
+     "Perkenalkan, saya Wati dari Jakarta.（我是从雅加达来的 Wati。）"
+    ],
+    "slots": [
+     "Leo",
+     "Wati",
+     "Budi"
+    ],
+    "reuse": 4
+   },
+   {
+    "cat": "寒暄问答",
+    "level": "basic",
+    "formula": "Apa kabar? — [Kabar baik / Baik sekali], terima kasih.",
+    "cn": "你好吗？——很好，谢谢。",
+    "structure": "疑问词 apa + 名词 kabar",
+    "grammar": "apa 疑问词；kabar=状况、消息",
+    "scene": "熟人见面寒暄",
+    "ex": [
+     "Apa kabar? — Kabar baik!（你好吗？——很好！）",
+     "Apa kabar, Pak Andi?（Andi 先生，您好吗？）"
+    ],
+    "slots": [
+     "Kabar baik",
+     "Baik sekali",
+     "Lumayan"
+    ],
+    "reuse": 5
+   },
+   {
+    "cat": "初识致意",
+    "level": "intermediate",
+    "formula": "Senang [bertemu / bisa berkenalan] dengan [Anda / Anda sekalian].",
+    "cn": "很高兴[见到／认识][您／各位]。",
+    "structure": "senang + 动词短语 + dengan + 对象",
+    "grammar": "dengan 引出对象；sekalian=各位（复数敬称）",
+    "scene": "初识正式致意",
+    "ex": [
+     "Senang bertemu dengan Anda.（很高兴见到您。）",
+     "Senang bisa berkenalan dengan Anda sekalian.（很高兴认识各位。）"
+    ],
+    "slots": [
+     "bertemu",
+     "bisa berkenalan",
+     "Anda",
+     "Anda sekalian"
+    ],
+    "reuse": 4
+   },
+   {
+    "cat": "道别",
+    "level": "basic",
+    "formula": "Sampai [jumpa / bertemu] [lagi / nanti]!",
+    "cn": "回头见／待会儿见！",
+    "structure": "sampai + 见面动词 + 时间副词",
+    "grammar": "sampai 在此表「直到…再见」",
+    "scene": "分别场合",
+    "ex": [
+     "Sampai jumpa lagi!（回头见！）",
+     "Sampai bertemu nanti!（待会儿见！）"
+    ],
+    "slots": [
+     "jumpa",
+     "bertemu",
+     "lagi",
+     "nanti"
+    ],
+    "reuse": 4
+   }
+  ],
+  "expressions": [
+   {
+    "level": "basic",
+    "scene": "问候",
+    "id": "Selamat pagi, Bapak/Ibu.",
+    "cn": "先生／女士，早上好。",
+    "note": "正式，职场通用"
+   },
+   {
+    "level": "basic",
+    "scene": "寒暄",
+    "id": "Apa kabar? — Kabar baik, terima kasih.",
+    "cn": "你好吗？——很好，谢谢。",
+    "note": "最常用寒暄对答"
+   },
+   {
+    "level": "basic",
+    "scene": "自我介绍",
+    "id": "Perkenalkan, saya [Nama].",
+    "cn": "请允许我介绍，我是…。",
+    "note": "开场白"
+   },
+   {
+    "level": "intermediate",
+    "scene": "初识致意",
+    "id": "Senang bertemu dengan Anda.",
+    "cn": "很高兴见到您。",
+    "note": "正式场合"
+   },
+   {
+    "level": "basic",
+    "scene": "道别送别",
+    "id": "Selamat jalan! Hati-hati di jalan!",
+    "cn": "慢走！路上小心！",
+    "note": "送别对方离开时"
+   }
+  ],
+  "affixes": [
+   {
+    "no": 1,
+    "affix": "ber-",
+    "type": "前缀",
+    "func": "构成动词：拥有/进行/处于某状态",
+    "rule": "直接加词根；r 音开头的词根用 be-",
+    "derivs": [
+     {
+      "root": "temu",
+      "der": "bertemu",
+      "zh": "见面"
+     },
+     {
+      "root": "kerja",
+      "der": "bekerja",
+      "zh": "工作"
+     },
+     {
+      "root": "jabat tangan",
+      "der": "berjabat tangan",
+      "zh": "握手（本课话题词）"
+     }
+    ],
+    "examples": [
+     {
+      "id": "Kita bertemu di kantor pagi ini.",
+      "cn": "我们今天早上在办公室见面。"
+     },
+     {
+      "id": "Para tamu berjabat tangan sebelum duduk.",
+      "cn": "宾客们入座前互相握手。"
+     }
+    ]
+   },
+   {
+    "no": 2,
+    "affix": "be-",
+    "type": "前缀",
+    "func": "ber- 的变体：用于部分固定词",
+    "rule": "部分 l/r 开头词根及已词汇化词：belajar, beberes",
+    "derivs": [
+     {
+      "root": "lajar（已词汇化）",
+      "der": "belajar",
+      "zh": "学习"
+     },
+     {
+      "root": "beres",
+      "der": "beberes",
+      "zh": "收拾整理"
+     },
+     {
+      "root": "keringat",
+      "der": "bekeringat",
+      "zh": "出汗"
+     }
+    ],
+    "examples": [
+     {
+      "id": "Saya belajar bahasa Indonesia setiap malam.",
+      "cn": "我每晚学习印尼语。"
+     },
+     {
+      "id": "Ibu beberes ruang tamu sebelum tamu datang.",
+      "cn": "客人在来之前，母亲收拾客厅。"
+     }
+    ]
+   },
+   {
+    "no": 3,
+    "affix": "meN-",
+    "type": "前缀",
+    "func": "构成主动及物动词",
+    "rule": "词首辅音依同化规则脱落或变化：tulis→menulis, baca→membaca",
+    "derivs": [
+     {
+      "root": "tulis",
+      "der": "menulis",
+      "zh": "写"
+     },
+     {
+      "root": "baca",
+      "der": "membaca",
+      "zh": "读"
+     },
+     {
+      "root": "lihat",
+      "der": "melihat",
+      "zh": "看见"
+     }
+    ],
+    "examples": [
+     {
+      "id": "Dia menulis kartu nama baru.",
+      "cn": "他在写新名片。"
+     },
+     {
+      "id": "Silakan membaca jadwal pertemuan.",
+      "cn": "请阅读会议日程。"
+     }
+    ]
+   },
+   {
+    "no": 4,
+    "affix": "di-",
+    "type": "前缀",
+    "func": "构成被动语态",
+    "rule": "di- + 动词词根 + (oleh + 施事者)",
+    "derivs": [
+     {
+      "root": "tulis",
+      "der": "ditulis",
+      "zh": "被写"
+     },
+     {
+      "root": "baca",
+      "der": "dibaca",
+      "zh": "被读"
+     },
+     {
+      "root": "sambut",
+      "der": "disambut",
+      "zh": "被迎接"
+     }
+    ],
+    "examples": [
+     {
+      "id": "Kartu nama itu ditulis tangan.",
+      "cn": "那张名片是手写的。"
+     },
+     {
+      "id": "Tamu disambut di depan pintu.",
+      "cn": "客人在门口被迎接。"
+     }
+    ]
+   },
+   {
+    "no": 5,
+    "affix": "ter-",
+    "type": "前缀",
+    "func": "被动/状态：被…着；无意中；最…",
+    "rule": "ter- + 动词：表被动状态或意外发生",
+    "derivs": [
+     {
+      "root": "lihat",
+      "der": "terlihat",
+      "zh": "被看见"
+     },
+     {
+      "root": "tulis",
+      "der": "tertulis",
+      "zh": "上面写着"
+     },
+     {
+      "root": "lambat",
+      "der": "terlambat",
+      "zh": "迟到"
+     }
+    ],
+    "examples": [
+     {
+      "id": "Namanya tertulis di kartu nama.",
+      "cn": "他的名字写在名片上。"
+     },
+     {
+      "id": "Kami tidak ingin terlambat hari ini.",
+      "cn": "我们今天不想迟到。"
+     }
+    ]
+   }
+  ],
+  "quiz": [
+   {
+    "q": "berjabat tangan 的意思是？",
+    "opts": [
+     "拥抱",
+     "握手",
+     "鞠躬",
+     "挥手"
+    ],
+    "a": 1,
+    "exp": "berjabat tangan = 握手，正式场合见面／道别礼仪。"
+   },
+   {
+    "q": "perkenalan 的构词方式是？",
+    "opts": [
+     "peN- + kenal",
+     "per- + kenal + -an",
+     "meN- + kenal",
+     "表示祝贺"
+    ],
+    "a": 1,
+    "exp": "per- + -an 环绕派生：kenal（认识）→ perkenalan（介绍；相识）。"
+   },
+   {
+    "q": "Selamat [pagi] 中 pagi 的意思是？",
+    "opts": [
+     "早上",
+     "下午",
+     "晚上",
+     "晚安！"
+    ],
+    "a": 0,
+    "exp": "pagi=早上；siang 中午／下午；malam 晚上。"
+   },
+   {
+    "q": "听到 Apa kabar? 最恰当的回应是？",
+    "opts": [
+     "Kabar baik, terima kasih.",
+     "Selamat pagi.",
+     "Sampai jumpa.",
+     "再见！"
+    ],
+    "a": 0,
+    "exp": "Apa kabar?（你好吗？）回应 Kabar baik（很好）+ 致谢。"
+   },
+   {
+    "q": "saling mengenal 中 saling 的位置？",
+    "opts": [
+     "动词前",
+     "动词后",
+     "句尾",
+     "立刻"
+    ],
+    "a": 0,
+    "exp": "saling 置于动词前：saling + 动词，表示互相。"
+   },
+   {
+    "q": "ber- 前缀的主要功能是？",
+    "opts": [
+     "构成动词：拥有／进行",
+     "构成名词",
+     "构成被动",
+     "制造"
+    ],
+    "a": 0,
+    "exp": "ber- 构成动词表拥有、进行或处于某状态：bertemu, bekerja。"
+   },
+   {
+    "q": "Senang bertemu dengan Anda. 中 dengan 引出的是？",
+    "opts": [
+     "对象",
+     "时间",
+     "原因",
+     "Bapak 父亲，Anda 母亲"
+    ],
+    "a": 0,
+    "exp": "dengan 在此引出见面／认识的对象=您。"
+   },
+   {
+    "q": "tamu undangan 的意思是？",
+    "opts": [
+     "受邀宾客",
+     "店主",
+     "向导",
+     "出租车司机"
+    ],
+    "a": 0,
+    "exp": "undangan=邀请；tamu undangan=受邀客人。"
+   },
+   {
+    "q": "Sampai jumpa lagi! 的使用场景是？",
+    "opts": [
+     "告别",
+     "开场自我介绍",
+     "致谢",
+     "生日快乐！"
+    ],
+    "a": 0,
+    "exp": "Sampai jumpa lagi=回头见，道别用语。"
+   },
+   {
+    "q": "kesan pertama 的意思是？",
+    "opts": [
+     "第一印象",
+     "最后决定",
+     "共同目标",
+     "合同"
+    ],
+    "a": 0,
+    "exp": "kesan=印象；kesan pertama=第一印象。"
+   }
+  ]
+ },
+ "day2": {
+  "date": "2026-11-11",
+  "theme": "Perkenalan Formal 正式会面与介绍",
+  "vocab": [
+   {
+    "w": "memperkenalkan",
+    "cn": "介绍（他人）",
+    "ipa": "/məmpərkəˈnalkan/",
+    "level": "进阶",
+    "note": "memper- 加强使役 + kenal"
+   },
+   {
+    "w": "kartu nama",
+    "cn": "名片",
+    "ipa": "/ˈkartu ˈnama/",
+    "level": "核心",
+    "note": "kartu 卡片 + nama 名字；商务必备"
+   },
+   {
+    "w": "tuan rumah",
+    "cn": "主人；东道主",
+    "ipa": "/tuan ˈrumah/",
+    "level": "进阶",
+    "note": "接待方称谓；女主人也可称 tuan rumah"
+   },
+   {
+    "w": "jadwal",
+    "cn": "日程；时间表",
+    "ipa": "/ˈdʒadwal/",
+    "level": "进阶",
+    "note": "阿拉伯语借词；jadwal pertemuan 会议日程"
+   },
+   {
+    "w": "santai",
+    "cn": "轻松的；不拘礼的",
+    "ipa": "/ˈsantai/",
+    "level": "进阶",
+    "note": "反义 resmi；Santai saja! 放轻松！"
+   },
+   {
+    "w": "pendatang",
+    "cn": "来客；新来的人",
+    "ipa": "/pənˈdataŋ/",
+    "level": "高阶",
+    "note": "peN- 施事者 + datang 来"
+   },
+   {
+    "w": "basa-basi",
+    "cn": "寒暄；客套",
+    "ipa": "/ˈbasa ˈbasi/",
+    "level": "进阶",
+    "note": "也可作动词 berbasa-basi；正式会面开场常有的环节"
+   }
+  ],
+  "phrases": [
+   {
+    "id": "memperkenalkan [A] kepada [B]",
+    "cn": "把[A]介绍给[B]",
+    "usage": "正式",
+    "note": "kepada 引出接受者"
+   },
+   {
+    "id": "silakan masuk / silakan duduk",
+    "cn": "请进／请坐",
+    "usage": "通用",
+    "note": "silakan + 动词原形"
+   },
+   {
+    "id": "terima kasih atas waktunya",
+    "cn": "感谢您抽出时间",
+    "usage": "正式",
+    "note": "atas + 名词，表感谢事由"
+   },
+   {
+    "id": "maaf telah membuat Anda menunggu",
+    "cn": "抱歉让您久等了",
+    "usage": "正式",
+    "note": "telah + 动名词"
+   },
+   {
+    "id": "mari kita mulai",
+    "cn": "我们开始吧",
+    "usage": "通用",
+    "note": "mari + 动词：提议一起做"
+   }
+  ],
+  "patterns": [
+   {
+    "cat": "引荐他人",
+    "level": "intermediate",
+    "formula": "Izinkan saya memperkenalkan [Nama / jabatan].",
+    "cn": "请允许我介绍[姓名／职务]。",
+    "structure": "Izinkan + 主语 + 动词",
+    "grammar": "izinkan 礼貌祈使：请允许",
+    "scene": "正式引荐",
+    "ex": [
+     "Izinkan saya memperkenalkan Bu Wati.（请允许我介绍 Wati 女士。）",
+     "Izinkan saya memperkenalkan manajer kami.（请允许我介绍我们的经理。）"
+    ],
+    "slots": [
+     "Bu Wati",
+     "manajer kami",
+     "insinyur kami"
+    ],
+    "reuse": 4
+   },
+   {
+    "cat": "身份说明",
+    "level": "basic",
+    "formula": "Ini [Nama], [jabatan] dari [perusahaan].",
+    "cn": "这位是[姓名]，[公司]的[职务]。",
+    "structure": "ini + 名词短语",
+    "grammar": "dari 引出所属机构",
+    "scene": "引荐时说明身份",
+    "ex": [
+     "Ini Pak Budi, insinyur dari Morowali.（这位是 Budi 先生，来自 Morowali 的工程师。）",
+     "Ini Ibu Sari, direktur dari perusahaan kami.（这位是 Sari 女士，我们公司的董事。）"
+    ],
+    "slots": [
+     "Nama",
+     "jabatan",
+     "perusahaan"
+    ],
+    "reuse": 4
+   },
+   {
+    "cat": "礼貌邀请",
+    "level": "basic",
+    "formula": "Silakan [duduk / bergabung / masuk].",
+    "cn": "请[坐／加入／进]。",
+    "structure": "silakan + 动词原形",
+    "grammar": "silakan 礼貌祈使用语",
+    "scene": "接待来宾",
+    "ex": [
+     "Silakan duduk, Pak.（先生，请坐。）",
+     "Silakan bergabung dengan kami.（请加入我们。）"
+    ],
+    "slots": [
+     "duduk",
+     "bergabung",
+     "masuk"
+    ],
+    "reuse": 4
+   },
+   {
+    "cat": "感谢接待",
+    "level": "intermediate",
+    "formula": "Terima kasih telah [mengundang / menyambut] kami.",
+    "cn": "感谢您[邀请／接待]我们。",
+    "structure": "terima kasih + telah + 动名词",
+    "grammar": "telah + 动词 = 完成体敬语",
+    "scene": "正式会面开场致谢",
+    "ex": [
+     "Terima kasih telah mengundang kami.（感谢您的邀请。）",
+     "Terima kasih telah menyambut kami dengan hangat.（感谢你们的热情接待。）"
+    ],
+    "slots": [
+     "mengundang",
+     "menyambut",
+     "menerima"
+    ],
+    "reuse": 3
+   },
+   {
+    "cat": "正式致歉",
+    "level": "professional",
+    "formula": "Mohon maaf [atas keterlambatan saya / telah membuat Anda menunggu].",
+    "cn": "请原谅[我的迟到／让您久等]。",
+    "structure": "mohon maaf + atas + 名词 / telah + 动名词",
+    "grammar": "atas 引出致歉事由；mohon 比 maaf 更正式",
+    "scene": "迟到或打扰时的正式致歉",
+    "ex": [
+     "Mohon maaf atas keterlambatan saya.（请原谅我的迟到。）",
+     "Mohon maaf telah membuat Anda menunggu.（抱歉让您久等了。）"
+    ],
+    "slots": [
+     "atas keterlambatan saya",
+     "telah membuat Anda menunggu",
+     "ketidaknyamanannya"
+    ],
+    "reuse": 3
+   }
+  ],
+  "expressions": [
+   {
+    "level": "basic",
+    "scene": "接待",
+    "id": "Silakan masuk, silakan duduk.",
+    "cn": "请进，请坐。",
+    "note": "主人迎接宾客"
+   },
+   {
+    "level": "intermediate",
+    "scene": "致谢",
+    "id": "Terima kasih atas waktunya.",
+    "cn": "感谢您抽出时间。",
+    "note": "会面开场或结束"
+   },
+   {
+    "level": "basic",
+    "scene": "交换名片",
+    "id": "Ini kartu nama saya.",
+    "cn": "这是我的名片。",
+    "note": "双手递接更礼貌"
+   },
+   {
+    "level": "intermediate",
+    "scene": "致歉",
+    "id": "Maaf telah membuat Anda menunggu.",
+    "cn": "抱歉让您久等了。",
+    "note": "迟到时"
+   },
+   {
+    "level": "basic",
+    "scene": "开场",
+    "id": "Mari kita mulai.",
+    "cn": "我们开始吧。",
+    "note": "转入正题"
+   }
+  ],
+  "affixes": [
+   {
+    "no": 6,
+    "affix": "peN-",
+    "type": "前缀",
+    "func": "构成施事者名词（…的人）",
+    "rule": "词根首辅音同化：tulis→penulis, kerja→pekerja",
+    "derivs": [
+     {
+      "root": "tulis",
+      "der": "penulis",
+      "zh": "作者"
+     },
+     {
+      "root": "kerja",
+      "der": "pekerja",
+      "zh": "工人／职员"
+     },
+     {
+      "root": "datang",
+      "der": "pendatang",
+      "zh": "来客（本课话题词）"
+     }
+    ],
+    "examples": [
+     {
+      "id": "Penulis itu sedang memperkenalkan bukunya.",
+      "cn": "那位作者正在介绍他的书。"
+     },
+     {
+      "id": "Pendatang baru disambut oleh tuan rumah.",
+      "cn": "新客人受到主人的迎接。"
+     }
+    ]
+   },
+   {
+    "no": 7,
+    "affix": "per-",
+    "type": "前缀",
+    "func": "常与 -an 联动构成名词；或构成动词表使动",
+    "rule": "per- 多联动 -an：kenal→perkenalan",
+    "derivs": [
+     {
+      "root": "kenal",
+      "der": "perkenalan",
+      "zh": "相识；介绍"
+     },
+     {
+      "root": "temu",
+      "der": "pertemuan",
+      "zh": "会面"
+     },
+     {
+      "root": "sahabat",
+      "der": "persahabatan",
+      "zh": "友谊"
+     }
+    ],
+    "examples": [
+     {
+      "id": "Salam perkenalan dibuka oleh tuan rumah.",
+      "cn": "介绍性寒暄由主人开启。"
+     },
+     {
+      "id": "Pertemuan resmi itu dihadiri banyak tamu.",
+      "cn": "那场正式会议有许多宾客出席。"
+     }
+    ]
+   },
+   {
+    "no": 8,
+    "affix": "memper-/diper-",
+    "type": "前缀",
+    "func": "加强使役：使…变得／使…受到",
+    "rule": "memper- + 形容词/动词；被动 diper-",
+    "derivs": [
+     {
+      "root": "kenal",
+      "der": "memperkenalkan",
+      "zh": "介绍（使认识）"
+     },
+     {
+      "root": "baik",
+      "der": "memperbaiki",
+      "zh": "修理（使变好）"
+     },
+     {
+      "root": "kuat",
+      "der": "memperkuat",
+      "zh": "加强"
+     }
+    ],
+    "examples": [
+     {
+      "id": "Izinkan saya memperkenalkan tim kami.",
+      "cn": "请允许我介绍我们的团队。"
+     },
+     {
+      "id": "Jadwal rapat diperbaiki oleh sekretaris.",
+      "cn": "会议日程由秘书修改好了。"
+     }
+    ]
+   },
+   {
+    "no": 9,
+    "affix": "se-",
+    "type": "前缀",
+    "func": "表数量一体／全体：一…；整…",
+    "rule": "se- + 数词/名词：seorang 一位, sehari 一天",
+    "derivs": [
+     {
+      "root": "orang",
+      "der": "seorang",
+      "zh": "一位（人）"
+     },
+     {
+      "root": "hari",
+      "der": "sehari",
+      "zh": "一天"
+     },
+     {
+      "root": "minggu",
+      "der": "seminggu",
+      "zh": "一周"
+     }
+    ],
+    "examples": [
+     {
+      "id": "Seorang tamu baru memasuki ruangan.",
+      "cn": "一位新客人走进房间。"
+     },
+     {
+      "id": "Kita berlatih sehari dua puluh menit.",
+      "cn": "我们每天练习二十分钟。"
+     }
+    ]
+   },
+   {
+    "no": 10,
+    "affix": "ke-",
+    "type": "前缀",
+    "func": "构成序数或方向／状态名词",
+    "rule": "ke- + 数词 = 第…；ke + 方位词",
+    "derivs": [
+     {
+      "root": "dua",
+      "der": "kedua",
+      "zh": "第二"
+     },
+     {
+      "root": "tiga",
+      "der": "ketiga",
+      "zh": "第三"
+     },
+     {
+      "root": "depan",
+      "der": "ke depan",
+      "zh": "向前；今后"
+     }
+    ],
+    "examples": [
+     {
+      "id": "Tamu kedua datang tepat waktu.",
+      "cn": "第二位客人准时到了。"
+     },
+     {
+      "id": "Kami harap kerja sama ke depan.",
+      "cn": "我们期待今后的合作。"
+     }
+    ]
+   }
+  ],
+  "quiz": [
+   {
+    "q": "memperkenalkan 的前缀是？",
+    "opts": [
+     "memper-",
+     "peN-",
+     "ter-",
+     "华侨离开了印度尼西亚。"
+    ],
+    "a": 0,
+    "exp": "memper- 加强使役：使…认识 → 介绍。"
+   },
+   {
+    "q": "Izinkan saya memperkenalkan… 中 izinkan 的语气是？",
+    "opts": [
+     "命令",
+     "礼貌请求",
+     "抱怨",
+     "老师"
+    ],
+    "a": 1,
+    "exp": "izinkan = 请允许，礼貌祈使。"
+   },
+   {
+    "q": "kartu nama 的中文是？",
+    "opts": [
+     "身份证",
+     "名片",
+     "信用卡",
+     "我们想请您吃饭。"
+    ],
+    "a": 1,
+    "exp": "kartu 卡片 + nama 名字 = 名片。"
+   },
+   {
+    "q": "Silakan duduk. 中 silakan 后接？",
+    "opts": [
+     "动词原形",
+     "动名词",
+     "名词",
+     "安可·瓦尤雇用了这家公司。"
+    ],
+    "a": 0,
+    "exp": "silakan + 动词原形构成礼貌邀请。"
+   },
+   {
+    "q": "Ini Pak Budi, insinyur dari Morowali. 中 dari 引出的是？",
+    "opts": [
+     "来源／所属",
+     "时间",
+     "原因",
+     "道歉"
+    ],
+    "a": 0,
+    "exp": "dari 在此引出所属地／机构：来自 Morowali 的工程师。"
+   },
+   {
+    "q": "pendatang 的构词是？",
+    "opts": [
+     "peN- + datang（施事者）",
+     "per- + datang",
+     "se- + datang",
+     "欢迎光临！"
+    ],
+    "a": 0,
+    "exp": "peN- 施事者：datang（来）→ pendatang（来的人／来客）。"
+   },
+   {
+    "q": "Terima kasih telah mengundang kami. 中 telah 后接？",
+    "opts": [
+     "动名词",
+     "形容词",
+     "副词",
+     "请坐。"
+    ],
+    "a": 0,
+    "exp": "telah + 动词 = 完成体；在此为动名词用法。"
+   },
+   {
+    "q": "Mohon maaf atas keterlambatan. 中 atas 引出的是？",
+    "opts": [
+     "事由",
+     "时间",
+     "对象人",
+     "命令"
+    ],
+    "a": 0,
+    "exp": "mohon maaf atas + 名词 = 就…致歉。"
+   },
+   {
+    "q": "basa-basi 指？",
+    "opts": [
+     "寒暄客套",
+     "正式合同",
+     "会议决议",
+     "我们拒绝了。"
+    ],
+    "a": 0,
+    "exp": "basa-basi = 寒暄、客套话；berbasa-basi = 说客套话。"
+   },
+   {
+    "q": "seorang 的构词与意义是？",
+    "opts": [
+     "se- + orang 一位（人）",
+     "se- + orang 所有人",
+     "peN- + orang 人群",
+     "离开会谈"
+    ],
+    "a": 0,
+    "exp": "se- 表数量一体：seorang 一位（人）；sehari 一天。"
+   }
+  ]
+ },
+ "day3": {
+  "date": "2026-11-12",
+  "theme": "Perpisahan & Tindak Lanjut 告别与跟进",
+  "vocab": [
+   {
+    "w": "perpisahan",
+    "cn": "告别；分别",
+    "ipa": "/pərpisahan/",
+    "level": "进阶",
+    "note": "pisah（分开）+ per- + -an"
+   },
+   {
+    "w": "tindak lanjut",
+    "cn": "后续行动；跟进",
+    "ipa": "/ˈtindak ˈlanjut/",
+    "level": "进阶",
+    "note": "动词 menindaklanjuti = 跟进处理"
+   },
+   {
+    "w": "menyampaikan",
+    "cn": "转达；表达；递交",
+    "ipa": "/məˈjaŋpaʲkan/",
+    "level": "进阶",
+    "note": "menyampaikan salam 转达问候"
+   },
+   {
+    "w": "apresiasi",
+    "cn": "赞赏；肯定",
+    "ipa": "/aprəsiˈasi/",
+    "level": "高阶",
+    "note": "正式语域；商务致谢高频"
+   },
+   {
+    "w": "kesepakatan",
+    "cn": "共识；约定",
+    "ipa": "/kəˈsəpakat/",
+    "level": "进阶",
+    "note": "sepakat（一致）→ 名词化 ke-an"
+   },
+   {
+    "w": "kontak",
+    "cn": "联系；联络",
+    "ipa": "/ˈkontak/",
+    "level": "核心",
+    "note": "mengontak / berkontak 均有联系义"
+   },
+   {
+    "w": "harap",
+    "cn": "希望",
+    "ipa": "/ˈharap/",
+    "level": "进阶",
+    "note": "semoga 近义；harapan = 希望（名词）"
+   }
+  ],
+  "phrases": [
+   {
+    "id": "sampai jumpa lagi",
+    "cn": "回头见",
+    "usage": "通用",
+    "note": "道别套语"
+   },
+   {
+    "id": "senang bisa bekerja sama",
+    "cn": "很高兴能与您合作",
+    "usage": "正式",
+    "note": "商务结束语"
+   },
+   {
+    "id": "kami akan segera menghubungi Anda",
+    "cn": "我们会尽快联系您",
+    "usage": "正式",
+    "note": "后续跟进承诺"
+   },
+   {
+    "id": "terima kasih atas kerjasamanya",
+    "cn": "感谢您的合作",
+    "usage": "正式",
+    "note": "kerjasama + -nya 敬语化"
+   },
+   {
+    "id": "selamat jalan, hati-hati di jalan",
+    "cn": "慢走，路上小心",
+    "usage": "通用",
+    "note": "送别语"
+   }
+  ],
+  "patterns": [
+   {
+    "cat": "约定再会",
+    "level": "basic",
+    "formula": "Sampai jumpa di [tempat / waktu].",
+    "cn": "在[地点／时间]再见。",
+    "structure": "sampai jumpa + di + 时空",
+    "grammar": "di 引出约定的时空",
+    "scene": "分别时约定下次",
+    "ex": [
+     "Sampai jumpa di Jakarta!（雅加达见！）",
+     "Sampai jumpa di pertemuan berikutnya.（下次会议见。）"
+    ],
+    "slots": [
+     "Jakarta",
+     "pertemuan berikutnya",
+     "konferensi"
+    ],
+    "reuse": 4
+   },
+   {
+    "cat": "跟进承诺",
+    "level": "intermediate",
+    "formula": "Kami akan [menghubungi / mengirim / memberi tahu] [Anda] [segera / minggu depan].",
+    "cn": "我们会[尽快／下周][联系／发送／通知][您]。",
+    "structure": "主语 + akan + 动词 + 对象 + 时间",
+    "grammar": "akan 表将来",
+    "scene": "商务跟进",
+    "ex": [
+     "Kami akan menghubungi Anda minggu depan.（我们下周联系您。）",
+     "Kami akan mengirim penawaran segera.（我们会尽快发送报价。）"
+    ],
+    "slots": [
+     "menghubungi",
+     "mengirim",
+     "memberi tahu",
+     "segera"
+    ],
+    "reuse": 4
+   },
+   {
+    "cat": "结束致谢",
+    "level": "intermediate",
+    "formula": "Terima kasih atas [kerjasama / perhatian / dukungan]-nya.",
+    "cn": "感谢您的[合作／关注／支持]。",
+    "structure": "terima kasih + atas + 名词 + -nya",
+    "grammar": "-nya 敬语化：您的…",
+    "scene": "会议或拜访结束",
+    "ex": [
+     "Terima kasih atas kerjasamanya.（感谢您的合作。）",
+     "Terima kasih atas perhatian Bapak.（感谢您的关注。）"
+    ],
+    "slots": [
+     "kerjasama",
+     "perhatian",
+     "dukungan"
+    ],
+    "reuse": 4
+   },
+   {
+    "cat": "转达问候",
+    "level": "professional",
+    "formula": "Sampaikan salam saya kepada [keluarga / tim Anda].",
+    "cn": "请向[您的家人／团队]转达我的问候。",
+    "structure": "sampaikan + 名词 + kepada + 接收者",
+    "grammar": "kepada 引出接收者（人）",
+    "scene": "口头道别时",
+    "ex": [
+     "Sampaikan salam saya kepada keluarga Anda.（请向您的家人转达我的问候。）",
+     "Sampaikan salam saya kepada tim di Morowali.（请向 Morowali 的团队问好。）"
+    ],
+    "slots": [
+     "keluarga",
+     "tim Anda",
+     "rekan-rekan"
+    ],
+    "reuse": 3
+   },
+   {
+    "cat": "结束祝愿",
+    "level": "professional",
+    "formula": "Semoga [kita bisa bertemu lagi / kerja sama ini berjalan lancar].",
+    "cn": "愿[我们再见／合作顺利]。",
+    "structure": "semoga + 从句",
+    "grammar": "semoga 祈愿连词，后接完整从句",
+    "scene": "正式告别祝愿",
+    "ex": [
+     "Semoga kita bisa bertemu lagi.（愿我们能再见面。）",
+     "Semoga kerja sama ini berjalan lancar.（愿本次合作顺利。）"
+    ],
+    "slots": [
+     "bertemu lagi",
+     "berjalan lancar",
+     "sukses"
+    ],
+    "reuse": 3
+   }
+  ],
+  "expressions": [
+   {
+    "level": "intermediate",
+    "scene": "结束致谢",
+    "id": "Terima kasih atas waktunya.",
+    "cn": "感谢您抽出时间。",
+    "note": "会面结束"
+   },
+   {
+    "level": "intermediate",
+    "scene": "合作收束",
+    "id": "Senang bisa bekerja sama dengan Anda.",
+    "cn": "很高兴能与您合作。",
+    "note": "商务道别"
+   },
+   {
+    "level": "basic",
+    "scene": "跟进预告",
+    "id": "Kami akan segera menghubungi Anda.",
+    "cn": "我们会尽快联系您。",
+    "note": "留下后续"
+   },
+   {
+    "level": "basic",
+    "scene": "道别",
+    "id": "Sampai jumpa di pertemuan berikutnya.",
+    "cn": "下次会议见。",
+    "note": "约定再会"
+   },
+   {
+    "level": "basic",
+    "scene": "日常祝愿",
+    "id": "Semoga harinya menyenangkan!",
+    "cn": "祝您今天愉快！",
+    "note": "分别时"
+   }
+  ],
+  "affixes": [
+   {
+    "no": 11,
+    "affix": "-an",
+    "type": "后缀",
+    "func": "构成名词：…物／…行为／…集合",
+    "rule": "动词/形容词 + -an",
+    "derivs": [
+     {
+      "root": "makan",
+      "der": "makanan",
+      "zh": "食物"
+     },
+     {
+      "root": "baca",
+      "der": "bacaan",
+      "zh": "读物"
+     },
+     {
+      "root": "pisah",
+      "der": "pisahan",
+      "zh": "分开的东西"
+     }
+    ],
+    "examples": [
+     {
+      "id": "Makanan disajikan untuk para tamu.",
+      "cn": "为宾客们准备了食物。"
+     },
+     {
+      "id": "Bacaan itu menarik sekali.",
+      "cn": "那本读物非常有趣。"
+     }
+    ]
+   },
+   {
+    "no": 12,
+    "affix": "-kan",
+    "type": "后缀",
+    "func": "使动／为动：使…；为…而做",
+    "rule": "动词 + -kan；部分词兼表工具义",
+    "derivs": [
+     {
+      "root": "kenal",
+      "der": "kenalkan",
+      "zh": "使认识→介绍"
+     },
+     {
+      "root": "jalan",
+      "der": "jalankan",
+      "zh": "使运行"
+     },
+     {
+      "root": "tinggal",
+      "der": "tinggalkan",
+      "zh": "留下／离开"
+     }
+    ],
+    "examples": [
+     {
+      "id": "Izinkan saya mengenalkan rekan saya.",
+      "cn": "请允许我介绍我的同事。"
+     },
+     {
+      "id": "Mereka menjalankan proyek baru.",
+      "cn": "他们在推进一个新项目。"
+     }
+    ]
+   },
+   {
+    "no": 13,
+    "affix": "-i",
+    "type": "后缀",
+    "func": "给予／施加：给…装上；以…对待",
+    "rule": "动词 + -i，宾语为接受者",
+    "derivs": [
+     {
+      "root": "hadiah",
+      "der": "hadiahi",
+      "zh": "赠予"
+     },
+     {
+      "root": "nama",
+      "der": "namai",
+      "zh": "命名"
+     },
+     {
+      "root": "duduk",
+      "der": "duduki",
+      "zh": "占据（座位）"
+     }
+    ],
+    "examples": [
+     {
+      "id": "Kami menghadiahi tamu dengan cinderamata.",
+      "cn": "我们赠给客人纪念品。"
+     },
+     {
+      "id": "Dia menduduki kursi di barisan depan.",
+      "cn": "他坐在前排座位上。"
+     }
+    ]
+   },
+   {
+    "no": 14,
+    "affix": "-nya",
+    "type": "后缀",
+    "func": "回指／敬语：他的·她的·它的·那",
+    "rule": "名词/动词 + -nya，指回上文或表第三人称领属",
+    "derivs": [
+     {
+      "root": "buku",
+      "der": "bukunya",
+      "zh": "他的书／那本书"
+     },
+     {
+      "root": "rumah",
+      "der": "rumahnya",
+      "zh": "他的家"
+     },
+     {
+      "root": "kesepakatan",
+      "der": "kesepakatannya",
+      "zh": "该约定（敬语）"
+     }
+    ],
+    "examples": [
+     {
+      "id": "Saya menyukai jadwalnya.",
+      "cn": "我喜欢那个日程安排。"
+     },
+     {
+      "id": "Terima kasih atas kerjasamanya.",
+      "cn": "感谢您的合作。"
+     }
+    ]
+   },
+   {
+    "no": 15,
+    "affix": "-ku / -mu",
+    "type": "后缀",
+    "func": "人称领属：-ku 我的 · -mu 你的",
+    "rule": "名词 + -ku/-mu；口语也用于 -kau 你",
+    "derivs": [
+     {
+      "root": "buku",
+      "der": "bukuku",
+      "zh": "我的书"
+     },
+     {
+      "root": "kontak",
+      "der": "kontakmu",
+      "zh": "你的联系方式"
+     },
+     {
+      "root": "nama",
+      "der": "namamu",
+      "zh": "你的名字"
+     }
+    ],
+    "examples": [
+     {
+      "id": "Ini kartu namaku.",
+      "cn": "这是我的名片。"
+     },
+     {
+      "id": "Boleh saya tahu nomor kontakmu?",
+      "cn": "可以告诉我你的联系方式吗？"
+     }
+    ]
+   }
+  ],
+  "quiz": [
+   {
+    "q": "tindak lanjut 的意思是？",
+    "opts": [
+     "后续行动；跟进",
+     "立即行动",
+     "取消",
+     "请原谅我的迟到。"
+    ],
+    "a": 0,
+    "exp": "tindak lanjut = 后续措施、跟进；动词 menindaklanjuti。"
+   },
+   {
+    "q": "Kami akan menghubungi Anda. 中 akan 表示？",
+    "opts": [
+     "将来",
+     "正在",
+     "完成",
+     "合同"
+    ],
+    "a": 0,
+    "exp": "akan + 动词 = 将要做。"
+   },
+   {
+    "q": "Terima kasih atas kerjasamanya. 中 -nya 的作用是？",
+    "opts": [
+     "敬语化：您的…",
+     "复数",
+     "否定",
+     "我不知道。"
+    ],
+    "a": 0,
+    "exp": "名词 + -nya 表敬语回指：您的合作。"
+   },
+   {
+    "q": "Sampaikan salam saya kepada tim Anda. 中 kepada 引出的是？",
+    "opts": [
+     "接收者",
+     "时间",
+     "地点",
+     "ke-…-an + 努力"
+    ],
+    "a": 0,
+    "exp": "kepada + 人，引出问候的接收对象。"
+   },
+   {
+    "q": "Semoga kita bertemu lagi. 中 semoga 表示？",
+    "opts": [
+     "祝愿",
+     "条件",
+     "因果",
+     "下周见！"
+    ],
+    "a": 0,
+    "exp": "semoga + 从句 = 愿…，表祝愿。"
+   },
+   {
+    "q": "kenal → kenalkan 是哪种派生？",
+    "opts": [
+     "-kan 使动",
+     "-an 名词化",
+     "-i 给予",
+     "经理"
+    ],
+    "a": 0,
+    "exp": "使认识 → 介绍，是 -kan 使动用法。"
+   },
+   {
+    "q": "makan → makanan 是哪种派生？",
+    "opts": [
+     "-an 名词化",
+     "-kan 使动",
+     "peN- 施事",
+     "再见！"
+    ],
+    "a": 0,
+    "exp": "动词 + -an 构成名词：吃 → 食物。"
+   },
+   {
+    "q": "perpisahan 的构词是？",
+    "opts": [
+     "pisah + per- + -an",
+     "peN- + pisah",
+     "se- + pisah",
+     "不用回复我。"
+    ],
+    "a": 0,
+    "exp": "per- 与 -an 联动：分开 → 离别（名词）。"
+   },
+   {
+    "q": "apresiasi 的语域是？",
+    "opts": [
+     "正式／商务",
+     "儿童用语",
+     "方言",
+     "在哪里"
+    ],
+    "a": 0,
+    "exp": "apresiasi 为正式借词（appreciation），商务致谢高频。"
+   },
+   {
+    "q": "Sampai jumpa di pertemuan berikutnya. 中 di 引出的是？",
+    "opts": [
+     "地点",
+     "时间",
+     "人",
+     "正式道歉"
+    ],
+    "a": 0,
+    "exp": "di + 地点名词：在下次会议（见）。"
+   }
+  ]
  }
-,
-"interview": {
+},
+  "interview": {
  "title": "CA专题: 面试 / Wawancara",
  "icon": "💼",
  "level": "B1-B2",
@@ -245804,7 +244863,25 @@ const caCalendar = {
   "day": 3,
   "label": "🤝 CA进阶 · 商务谈判 Day3 达成共识与签约",
   "allDays": true
- }};
+ },
+  "2026-11-10": {
+    "topic": "meet",
+    "day": 1,
+    "label": "🤝 CA进阶 · 话题1 见面 Day1 问候与初见",
+    "allDays": true
+  },
+  "2026-11-11": {
+    "topic": "meet",
+    "day": 2,
+    "label": "🤝 CA进阶 · 话题1 见面 Day2 正式会面与介绍",
+    "allDays": true
+  },
+  "2026-11-12": {
+    "topic": "meet",
+    "day": 3,
+    "label": "🤝 CA进阶 · 话题1 见面 Day3 告别与跟进",
+    "allDays": true
+  }};
 
 // ============================================================
 // CA 进阶课程渲染器（CA v1.1 · 2026-10-20）

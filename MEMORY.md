@@ -1,7 +1,7 @@
 # MEMORY.md - 长期记忆(任何会话重开必读)
 
 > 本文件是跨会话的核心记忆。每次启动优先读本文件。
-> 最后更新：2026-10-28（V4.48.2 双日记部署+例句格式铁律 · 库3004词）
+> 最后更新：2026-11-10（V4.51.1 CA万能句型翻译全量补齐 · 库3190词）
 
 ---
 
@@ -25,7 +25,7 @@
 ## 二、LEO-BIR 策略体系(核心认知,不得再说不认识)
 
 ### 产品本体
-**LEO-BIR** 印尼语学习平台--单文件 HTML + GitHub Pages,当前 **V4.47.4**。
+**LEO-BIR** 印尼语学习平台--单文件 HTML + GitHub Pages,当前 **V4.51.1**。
 为印尼 Morowali 冶炼工业园区总经理定制的个人学习工具。词库 120+ 词条,主题课 topic22-29。
 
 ### 策略代号一览
@@ -120,6 +120,7 @@ V4.48.3       1029 三合一修复(用户实测上报):①15篇短文 trans 补�
 V4.48.2       1028笔记35词(20新+15覆盖,挂ukbi_diary_1 Day3): 114变形+105例句 · 例句格式批量修复1027(66/66)+1028(105/105)全量重灌 · 库3004 · commit 662bc73 · 线上MD5一致(be2fe570)
 V4.48.5       1030笔记39词(20新+19覆盖,挂ukbi_diary_2 Day2口语模拟+表达): 42词元→39(去重3+versi-fina拼写勘误为versi-final) 137变形+117例句(全部对齐站内diary课文原句) RCO对账39/39 IPA保留恢复4条 库3015→3035 · BIV视频4集(--per-part 10: 242/254/274/235s lint10/10) 管线修复三坑(NO_ANTONYM动态化/破折号过滤/--per-part) · commit 83fa88b+719c233 · 线上MD5一致(2400a642)
 V4.48.6       悬停高亮+点击弹窗双修复(用户实测:25号后短文句子悬停中文不对/点击无BIT翻译): ①点击根因=V4.48.3 stopPropagation阻断#appContent委托(showWordPopup唯一入口)→点击双触发(高亮+弹窗) ②悬停根因=全局最长匹配+首次出现常错位→顺序对齐预计算(单调游标/重复词顺推/'的/了'尾缀容差),无匹配落tooltip零错高亮 ③wrapClickableWords正则升级,连字符叠词(tetap-tenang)整体成词不再切断 · 冒烟16项(12PASS+4词汇缺口诚实tooltip非错显) · commit 99051b1
+V4.51.1       CA万能句型翻译：渲染器 patHtml 新增紫色「翻译」行 + caData 180 条句型 cn 全量补齐（meet/interview/biz_listen/biz_speak/negotiation 各36，按[占位符]直译） · 跑题话题改标「CA专题」（interview/biz_listen/biz_speak 去话题编号，CA话题对齐C序列任务二待重排） · 日历 11/7-9 还原 negotiation（昨夜误挂 shopping 无数据会白屏） · commit af25405 线上 MD5 7684e0f1 一致
 V4.50.0       CA四问修复(用户实测上报):①万能句型/词组/常用表达/替换成分全链路可点词(caClickWords+.ca-w虚线高亮,speak独立🔊,stopPropagation防双触发) ②UNDEFINED根因=等级两套写法并存(meet=basic/adv/pro vs 话题2-6=basic/intermediate/professional)→caLvNorm归一化+审计表计数修正 ③玫瑰图真实联动(iframe内window.selectAffix前缀token匹配+allow-same-origin+onload消费_affixRoseTarget+caAffixGo) ④bitVocabDB回填75词(30+45,3112→3187) · CA话题7商务谈判11/7-9我手写(两版sub-agent均只吐碎片不落盘→自己动手;45词零撞库,pelunasan撞→harga dasar;渲染冒烟7/7) · 日历内联renderCAInto+caSubmit(topic,n)修硬编码meet判分bug · 渲染冒烟7/7 PASS · 坑:大对象追加条目首插须前置逗号,幂等回滚须清遗留逗号 · commit d77b886 线上MD5 a92003d7一致
 V4.47.5       日历纯笔记日可点击修复(用户实测上报26号日记看不到): 根因=日历三处只认learningHistory不认dailyNotesDB → renderCalHTML has-data并入+笔记日青色圆点(--primary) + attachCalEvents点击放行 + showDateStudyRecord纯笔记日分支(无学习记录仍渲染BIT笔记卡) · check_syntax PASS · 冒烟7/7 · commit 3c64ba5 · 线上MD5 fa538b64一致
 V4.47.4       1026每日笔记41词(挂dailynote, BIT V1.0定稿): 20新收(wedang姜饮/jahe姜/因果连词四链makanya-sebabnya-oleh-karena-itu/tarik-napas-empat-hitungan吸气四拍口令/hembuskan-perlahan缓呼口令等) + 覆盖更新21 · 82例句(UKBI复盘/面试准备/呼吸镇定) · RCO对账41/41 · bitVocabDB 2943→2963 · 双写手并行(11m28s+5m17s) · check_syntax PASS · deploy-check 8/8 · 线上MD5一致(fa46fb74)
