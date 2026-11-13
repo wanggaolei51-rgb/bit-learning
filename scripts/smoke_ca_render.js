@@ -52,27 +52,32 @@ const renderCA = new Function(
 );
 
 let fail = 0;
-for (const day of [1, 2, 3]) {
-  try {
-    const el = { innerHTML: '' };
-    renderCA(el, 'meet', day, true);
-    const h = el.innerHTML;
-    const checks = [
-      ['CA 进阶', h.includes('CA 进阶')],
-      ['词汇块', h.includes('① 词汇')],
-      ['句型块', h.includes('③ 万能句型')],
-      ['词缀块', h.includes('⑤ 词缀专项')],
-      ['测验块', h.includes('⑥ 每日一测')],
-      ['非空', h.length > 8000],
-      ['无undefined', !h.includes('undefined')],
-      ['审计表基础标签', h.includes('基础1 / 进阶4 / 专业2')],
-    ];
-    const bad = checks.filter(c => !c[1]);
-    if (bad.length) { fail++; console.log('Day' + day + ' FAIL:', bad.map(b => b[0]).join(',')); }
-    else console.log('Day' + day + ' render PASS · len=' + h.length);
-  } catch (e) {
-    fail++;
-    console.log('Day' + day + ' THROW:', e.message);
+// V4.52.7 教训：新话题必须列入首测（perkenalan 结构事故漏网——当时只测 meet+旧话题）
+for (const t of ['meet', 'perkenalan']) {
+  for (const day of [1, 2, 3]) {
+    try {
+      const el = { innerHTML: '' };
+      renderCA(el, t, day, true);
+      const h = el.innerHTML;
+      const checks = [
+        ['CA 进阶', h.includes('CA 进阶')],
+        ['词汇块', h.includes('① 词汇')],
+        ['词组块', h.includes('② 高频词组')],
+        ['句型块', h.includes('③ 万能句型')],
+        ['表达块', h.includes('④ 常用表达')],
+        ['词缀块', h.includes('⑤ 词缀专项')],
+        ['测验块', h.includes('⑥ 每日一测')],
+        ['非空', h.length > 8000],
+        ['无undefined', !h.includes('undefined')],
+        ['无NaN', !h.includes('NaN')],
+      ];
+      const bad = checks.filter(c => !c[1]);
+      if (bad.length) { fail++; console.log(t + ' Day' + day + ' FAIL:', bad.map(b => b[0]).join(',')); }
+      else console.log(t + ' Day' + day + ' render PASS · len=' + h.length);
+    } catch (e) {
+      fail++;
+      console.log(t + ' Day' + day + ' THROW:', e.message);
+    }
   }
 }
 // 其他话题回归

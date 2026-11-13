@@ -6,7 +6,7 @@
 <meta http-equiv="Expires" content="0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LEO-BIR V4.52.6</title>
+<title>LEO-BIR V4.52.7</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -276,7 +276,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="sidebar-header">
     <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <h1>LEO-BIR</h1>
-    <div class="ver">LEO-BIR V4.52.6 · 1113-15双课上线 · UKBI B套模拟 + CA话题2介绍</div>
+    <div class="ver">LEO-BIR V4.52.7 · 热修: CA话题2结构扁平化(白屏修复) · UKBI B套 + 介绍 正常</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -237791,9 +237791,17 @@ function renderAbout(c){
 }
 
 function renderVersion(c){
-  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.52.6 / Versi</span></div>
+  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.52.7 / Versi</span></div>
     <div style="padding:16px;">
       <div style="margin-bottom:14px;padding:14px;background:rgba(34,197,94,.10);border-radius:10px;border-left:3px solid var(--success)">
+        <div style="font-size:15px;font-weight:700;color:var(--success);margin-bottom:6px">V4.52.7 (2026-11-13)</div>
+        <div style="font-size:13px;color:var(--text-light);margin-bottom:8px">CA话题2「介绍」白屏热修（用户实测上报"CA和CATAT都没正确生成部署"）· 渲染冒烟全绿</div>
+        <div style="font-size:12px;color:var(--text-dim);line-height:1.8">
+        • <strong>根因</strong>:生成 caData.perkenalan 时误用嵌套结构 days:{day1,day2,day3}——renderCA 取数走 t["day"+n] 平铺路径拿到 undefined → d.patterns 抛 TypeError → CA课程页白屏;日期页三tab模式下 CA tab 抛错中断 forEach → CATAT 日记tab 连带永不渲染(用户看到"CA和CATAT都没生成")<br>
+        • <strong>修复</strong>:days:{day1..3} 扁平化为顶层 day1/2/3 + days:3(与 meet/interview 结构对齐) · 三天内容零改动<br>
+        • <strong>冒烟盲区教训(同类第4次渲染回归)</strong>:smoke_ca_render.js 只测 meet+旧话题回归,从未测新话题本身——CA新话题上线SOP:冒烟必须把新话题三天列入首测,再跑旧话题回归<br>
+        </div>
+      </div>
       <div style="margin-bottom:14px;padding:14px;background:rgba(34,197,94,.10);border-radius:10px;border-left:3px solid var(--success)">
         <div style="font-size:15px;font-weight:700;color:var(--success);margin-bottom:6px">V4.52.6 (2026-11-13)</div>
         • <strong>双课上线 2026-11-13~15</strong>: 🎓 C6「UKBI B套模拟」ukbi_madya_b — 全真模拟三天(Day1听力专项40题30min/Day2阅读8篇wacana+写作2题pemantik/Day3口语2题录制+临场checklist) · 10核心词(tryout/monolog/wacana/skimming/esai/reaksi/grogi/strategi/dugaan/paragraf) · 3场景×5句+3演讲59-60词+6语法(tidak-bukan/礼貌祈使/di-ter被动/语篇衔接/apakah/数词分数)+10题 · 🤝 CA话题2「介绍」perkenalan 承接meet顺延 — Day1自我介绍/Day2介绍他人/Day3正式场合与名片礼仪 · 每天7词(1基础4进阶2专业)+5词组+5句型(全含cn)+5表达+5词缀(编号16-30)+10题(2/5/3) · bitVocabDB 3236→3243(+7: reaksi/asal-usul/menghubungkan/perantara/kehormatan/pertukaran/etika) · topicCalendar+caCalendar 各+3天 · BIT双审+RCO对账 PASS<br>
@@ -244419,1304 +244427,1528 @@ const caData = {
   "days": 3
 },
   "perkenalan": {
- "title": "介绍 / Perkenalan",
- "icon": "🤝",
- "level": "进阶",
- "days": {
+  "title": "介绍 / Perkenalan",
+  "icon": "🤝",
+  "level": "adv",
+  "days": 3,
   "day1": {
-   "date": "2026-11-13",
-   "theme": "自我介绍 / Perkenalan Diri",
-   "vocab": [
-    {
-     "w": "nama",
-     "cn": "名字、姓名",
-     "ipa": "/ˈna.ma/",
-     "level": "基础",
-     "note": "自我介绍第一句必用：Nama saya..."
-    },
-    {
-     "w": "perkenalan",
-     "cn": "介绍、相识",
-     "ipa": "/pər.kə.na.lan/",
-     "level": "进阶",
-     "note": "动词 perkenalkan 的名词形式，本话题核心词"
-    },
-    {
-     "w": "berasal",
-     "cn": "来自、源自",
-     "ipa": "/bə.ra.sal/",
-     "level": "进阶",
-     "note": "固定搭配 berasal dari + 地名，表示籍贯"
-    },
-    {
-     "w": "jabatan",
-     "cn": "职位、职务",
-     "ipa": "/dʒa.ba.tan/",
-     "level": "进阶",
-     "note": "商务场合说明职务：sebagai + jabatan"
-    },
-    {
-     "w": "keahlian",
-     "cn": "专长、技能",
-     "ipa": "/kə.ah.li.an/",
-     "level": "进阶",
-     "note": "ahli（专家）+ ke-...-an 名词化"
-    },
-    {
-     "w": "asal-usul",
-     "cn": "出身、来历",
-     "ipa": "/ˈa.sal ˈu.sul/",
-     "level": "专业",
-     "note": "近义叠韵复合词，正式场合询问背景用"
-    },
-    {
-     "w": "gelar",
-     "cn": "头衔、学位",
-     "ipa": "/gə.lar/",
-     "level": "专业",
-     "note": "学术或职业头衔，如 Doktor、Ir."
-    }
-   ],
-   "phrases": [
-    {
-     "id": "P1",
-     "cn": "Perkenalkan, nama saya Budi.",
-     "usage": "自我介绍·开场报名字",
-     "note": "perkenalkan 置于句首，意为'容我介绍'",
-     "level": "basic"
-    },
-    {
-     "id": "P2",
-     "cn": "Saya berasal dari Jakarta, tapi sekarang tinggal di Morowali.",
-     "usage": "说明籍贯与现居地",
-     "note": "berasal dari 籍贯；tinggal di 现居",
-     "level": "intermediate"
-    },
-    {
-     "id": "P3",
-     "cn": "Saat ini saya bekerja di perusahaan tambang sebagai manajer proyek.",
-     "usage": "说明公司与职务",
-     "note": "bekerja di + 公司；sebagai + 职务",
-     "level": "intermediate"
-    },
-    {
-     "id": "P4",
-     "cn": "Latar belakang pendidikan saya adalah teknik metalurgi.",
-     "usage": "正式说明教育背景",
-     "note": "latar belakang = 背景，简历式表达",
-     "level": "advanced"
-    },
-    {
-     "id": "P5",
-     "cn": "Salam kenal, saya sangat senang bisa bergabung dengan tim ini.",
-     "usage": "新员工入职表达期待",
-     "note": "bergabung dengan = 加入（团队/组织）",
-     "level": "advanced"
-    }
-   ],
-   "patterns": [
-    {
-     "cat": "自我介绍",
-     "formula": "Perkenalkan, nama saya [Nama].",
-     "structure": "Perkenalkan + nama saya + 名字",
-     "grammar": "perkenalkan 为祈使式动词置于句首，意为'请允许我介绍'",
-     "scene": "新员工入职、商务酒会开场",
-     "ex": "Perkenalkan, nama saya Sari.",
-     "slots": [
-      "Nama"
-     ],
-     "reuse": "替换名字即可，适用于任何首次见面场合",
-     "cn": "容我介绍一下，我叫萨丽。"
-    },
-    {
-     "cat": "籍贯说明",
-     "formula": "Saya berasal dari [kota].",
-     "structure": "Saya berasal dari + 地名",
-     "grammar": "berasal dari 固定搭配，表示来源地",
-     "scene": "寒暄时说明老家/籍贯",
-     "ex": "Saya berasal dari Makassar.",
-     "slots": [
-      "kota"
-     ],
-     "reuse": "可扩展：Saya berasal dari [kota], tapi besar di [kota lain].",
-     "cn": "我来自望加锡。"
-    },
-    {
-     "cat": "职务说明",
-     "formula": "Saat ini saya bekerja di [perusahaan] sebagai [jabatan].",
-     "structure": "bekerja di + 公司 + sebagai + 职务",
-     "grammar": "sebagai 相当于'担任/作为'",
-     "scene": "正式商务自我介绍",
-     "ex": "Saat ini saya bekerja di PT BIR sebagai supervisor produksi.",
-     "slots": [
-      "perusahaan",
-      "jabatan"
-     ],
-     "reuse": "可省略 saat ini；可加入时间：sejak 2020",
-     "cn": "目前我在 BIR 公司担任生产主管。"
-    },
-    {
-     "cat": "寒暄收尾",
-     "formula": "Salam kenal.",
-     "structure": "Salam + kenal",
-     "grammar": "省略式寒暄，完整说法为 Senang berkenalan",
-     "scene": "自我介绍结束时礼貌收尾",
-     "ex": "Salam kenal, semoga kita bisa bekerja sama dengan baik.",
-     "slots": [],
-     "reuse": "可接 semoga... 表达祝愿",
-     "cn": "很高兴认识你。"
-    },
-    {
-     "cat": "专长说明",
-     "formula": "Keahlian saya adalah [bidang].",
-     "structure": "Keahlian saya + adalah + 领域",
-     "grammar": "ke-...-an 名词化后缀；bidang = 领域",
-     "scene": "面试或项目分工时说明专业方向",
-     "ex": "Keahlian saya adalah manajemen konstruksi.",
-     "slots": [
-      "bidang"
-     ],
-     "reuse": "可改为 Saya mahir di bidang [bidang].",
-     "cn": "我的专长是建筑管理。"
-    }
-   ],
-   "expressions": [
-    {
-     "id": "E1",
-     "cn": "Salam kenal!（很高兴认识你！）",
-     "note": "任何场合都适用的万能寒暄",
-     "level": "basic"
-    },
-    {
-     "id": "E2",
-     "cn": "Dari mana asalnya?（您从哪里来？）",
-     "note": "asal 籍贯；比 Dari mana? 更礼貌",
-     "level": "intermediate"
-    },
-    {
-     "id": "E3",
-     "cn": "Sudah berapa lama bekerja di sini?（在这里工作多久了？）",
-     "note": "sudah + berapa lama 询问时长",
-     "level": "intermediate"
-    },
-    {
-     "id": "E4",
-     "cn": "Boleh tahu, latar belakang pendidikannya di bidang apa?（能问一下您的教育背景是什么专业吗？）",
-     "note": "boleh tahu 缓和提问语气，正式场合常用",
-     "level": "advanced"
-    },
-    {
-     "id": "E5",
-     "cn": "Keahlian Anda sangat dibutuhkan di proyek ini.（您的专长正是这个项目所需要的。）",
-     "note": "被动语态 dibutuhkan = di-...-kan",
-     "level": "advanced"
-    }
-   ],
-   "affixes": [
-    {
-     "no": 16,
-     "affix": "-lah",
-     "type": "语助词（partikel）",
-     "func": "强调语气，软化祈使",
-     "rule": "附于动词或形容词后，使命令更委婉或表强调",
-     "derivs": [
+    "date": "2026-11-13",
+    "theme": "自我介绍 / Perkenalan Diri",
+    "vocab": [
       {
-       "root": "duduk",
-       "der": "duduklah",
-       "zh": "请坐"
+        "w": "nama",
+        "cn": "名字、姓名",
+        "ipa": "/ˈna.ma/",
+        "level": "基础",
+        "note": "自我介绍第一句必用：Nama saya..."
       },
       {
-       "root": "datang",
-       "der": "datanglah",
-       "zh": "来吧"
+        "w": "perkenalan",
+        "cn": "介绍、相识",
+        "ipa": "/pər.kə.na.lan/",
+        "level": "进阶",
+        "note": "动词 perkenalkan 的名词形式，本话题核心词"
       },
       {
-       "root": "pergi",
-       "der": "pergilah",
-       "zh": "去吧"
+        "w": "berasal",
+        "cn": "来自、源自",
+        "ipa": "/bə.ra.sal/",
+        "level": "进阶",
+        "note": "固定搭配 berasal dari + 地名，表示籍贯"
+      },
+      {
+        "w": "jabatan",
+        "cn": "职位、职务",
+        "ipa": "/dʒa.ba.tan/",
+        "level": "进阶",
+        "note": "商务场合说明职务：sebagai + jabatan"
+      },
+      {
+        "w": "keahlian",
+        "cn": "专长、技能",
+        "ipa": "/kə.ah.li.an/",
+        "level": "进阶",
+        "note": "ahli（专家）+ ke-...-an 名词化"
+      },
+      {
+        "w": "asal-usul",
+        "cn": "出身、来历",
+        "ipa": "/ˈa.sal ˈu.sul/",
+        "level": "专业",
+        "note": "近义叠韵复合词，正式场合询问背景用"
+      },
+      {
+        "w": "gelar",
+        "cn": "头衔、学位",
+        "ipa": "/gə.lar/",
+        "level": "专业",
+        "note": "学术或职业头衔，如 Doktor、Ir."
       }
-     ]
-    },
-    {
-     "no": 17,
-     "affix": "-kah",
-     "type": "疑问小品词",
-     "func": "构成是非疑问句",
-     "rule": "附于谓语首词后，将陈述句变为 yes-no 疑问句",
-     "derivs": [
+    ],
+    "phrases": [
       {
-       "root": "bisa",
-       "der": "bisakah",
-       "zh": "能吗"
+        "id": "Perkenalkan, nama saya Budi.",
+        "cn": "容我介绍一下，我叫布迪。",
+        "usage": "自我介绍·开场报名字",
+        "note": "perkenalkan 置于句首，意为'容我介绍'",
+        "level": "basic"
       },
       {
-       "root": "sudah",
-       "der": "sudahkah",
-       "zh": "已经…了吗"
+        "id": "Saya berasal dari Jakarta, tapi sekarang tinggal di Morowali.",
+        "cn": "我来自雅加达，但现在住在莫罗瓦利。",
+        "usage": "说明籍贯与现居地",
+        "note": "berasal dari 籍贯；tinggal di 现居",
+        "level": "adv"
       },
       {
-       "root": "mau",
-       "der": "maukah",
-       "zh": "愿意吗"
+        "id": "Saat ini saya bekerja di perusahaan tambang sebagai manajer proyek.",
+        "cn": "目前我在一家矿业公司担任项目经理。",
+        "usage": "说明公司与职务",
+        "note": "bekerja di + 公司；sebagai + 职务",
+        "level": "adv"
+      },
+      {
+        "id": "Latar belakang pendidikan saya adalah teknik metalurgi.",
+        "cn": "我的教育背景是冶金工程。",
+        "usage": "正式说明教育背景",
+        "note": "latar belakang = 背景，简历式表达",
+        "level": "pro"
+      },
+      {
+        "id": "Salam kenal, saya sangat senang bisa bergabung dengan tim ini.",
+        "cn": "很高兴认识您，我非常开心能加入这个团队。",
+        "usage": "新员工入职表达期待",
+        "note": "bergabung dengan = 加入（团队/组织）",
+        "level": "pro"
       }
-     ]
-    },
-    {
-     "no": 18,
-     "affix": "-pun",
-     "type": "让步小品词",
-     "func": "表示'即使…也''无论…'",
-     "rule": "附于疑问词或名词后表让步或任指",
-     "derivs": [
+    ],
+    "patterns": [
       {
-       "root": "siapa",
-       "der": "siapapun",
-       "zh": "无论谁"
+        "cat": "自我介绍",
+        "formula": "Perkenalkan, nama saya [Nama].",
+        "structure": "Perkenalkan + nama saya + 名字",
+        "grammar": "perkenalkan 为祈使式动词置于句首，意为'请允许我介绍'",
+        "scene": "新员工入职、商务酒会开场",
+        "ex": [
+          "Perkenalkan, nama saya Sari.",
+          "Halo, nama saya Sari."
+        ],
+        "slots": [
+          "Nama"
+        ],
+        "reuse": "替换名字即可，适用于任何首次见面场合",
+        "cn": "容我介绍一下，我叫萨丽。",
+        "level": "basic"
       },
       {
-       "root": "apa",
-       "der": "apapun",
-       "zh": "无论什么"
+        "cat": "籍贯说明",
+        "formula": "Saya berasal dari [kota].",
+        "structure": "Saya berasal dari + 地名",
+        "grammar": "berasal dari 固定搭配，表示来源地",
+        "scene": "寒暄时说明老家/籍贯",
+        "ex": [
+          "Saya berasal dari Makassar.",
+          "Dia berasal dari Surabaya."
+        ],
+        "slots": [
+          "kota"
+        ],
+        "reuse": "可扩展：Saya berasal dari [kota], tapi besar di [kota lain].",
+        "cn": "我来自望加锡。",
+        "level": "adv"
       },
       {
-       "root": "kapan",
-       "der": "kapanpun",
-       "zh": "无论何时"
+        "cat": "职务说明",
+        "formula": "Saat ini saya bekerja di [perusahaan] sebagai [jabatan].",
+        "structure": "bekerja di + 公司 + sebagai + 职务",
+        "grammar": "sebagai 相当于'担任/作为'",
+        "scene": "正式商务自我介绍",
+        "ex": [
+          "Saat ini saya bekerja di PT BIR sebagai supervisor produksi.",
+          "Dia bekerja sebagai insinyur di perusahaan itu."
+        ],
+        "slots": [
+          "perusahaan",
+          "jabatan"
+        ],
+        "reuse": "可省略 saat ini；可加入时间：sejak 2020",
+        "cn": "目前我在 BIR 公司担任生产主管。",
+        "level": "adv"
+      },
+      {
+        "cat": "寒暄收尾",
+        "formula": "Salam kenal.",
+        "structure": "Salam + kenal",
+        "grammar": "省略式寒暄，完整说法为 Senang berkenalan",
+        "scene": "自我介绍结束时礼貌收尾",
+        "ex": [
+          "Salam kenal, semoga kita bisa bekerja sama dengan baik.",
+          "Senang bisa bertemu dengan Anda."
+        ],
+        "slots": [],
+        "reuse": "可接 semoga... 表达祝愿",
+        "cn": "很高兴认识你。",
+        "level": "pro"
+      },
+      {
+        "cat": "专长说明",
+        "formula": "Keahlian saya adalah [bidang].",
+        "structure": "Keahlian saya + adalah + 领域",
+        "grammar": "ke-...-an 名词化后缀；bidang = 领域",
+        "scene": "面试或项目分工时说明专业方向",
+        "ex": [
+          "Keahlian saya adalah manajemen konstruksi.",
+          "Dia mahir di bidang pengelasan."
+        ],
+        "slots": [
+          "bidang"
+        ],
+        "reuse": "可改为 Saya mahir di bidang [bidang].",
+        "cn": "我的专长是建筑管理。",
+        "level": "pro"
       }
-     ]
-    },
-    {
-     "no": 19,
-     "affix": "-an（重叠名词化）",
-     "type": "名词化后缀",
-     "func": "词根重叠后加 -an，表集合或类别",
-     "rule": "词根重叠 + an 构成集合名词，表'各类…'",
-     "derivs": [
+    ],
+    "expressions": [
       {
-       "root": "buah",
-       "der": "buah-buahan",
-       "zh": "各类水果"
+        "id": "Salam kenal!",
+        "cn": "很高兴认识你！",
+        "note": "任何场合都适用的万能寒暄",
+        "level": "basic",
+        "scene": "万能寒暄"
       },
       {
-       "root": "sayur",
-       "der": "sayur-sayuran",
-       "zh": "各类蔬菜"
+        "id": "Dari mana asalnya?",
+        "cn": "您从哪里来？",
+        "note": "asal 籍贯；比 Dari mana? 更礼貌",
+        "level": "adv",
+        "scene": "询问籍贯"
       },
       {
-       "root": "tumbuh",
-       "der": "tumbuh-tumbuhan",
-       "zh": "各类植物"
+        "id": "Sudah berapa lama bekerja di sini?",
+        "cn": "在这里工作多久了？",
+        "note": "sudah + berapa lama 询问时长",
+        "level": "adv",
+        "scene": "询问资历"
+      },
+      {
+        "id": "Boleh tahu, latar belakang pendidikannya di bidang apa?",
+        "cn": "能问一下您的教育背景是什么专业吗？",
+        "note": "boleh tahu 缓和提问语气，正式场合常用",
+        "level": "pro",
+        "scene": "正式提问"
+      },
+      {
+        "id": "Keahlian Anda sangat dibutuhkan di proyek ini.",
+        "cn": "您的专长正是这个项目所需要的。",
+        "note": "被动语态 dibutuhkan = di-...-kan",
+        "level": "pro",
+        "scene": "赞扬对方"
       }
-     ]
-    },
-    {
-     "no": 20,
-     "affix": "di-...-kan",
-     "type": "被动使动环缀",
-     "func": "被动语态 + 使役，'被…了'",
-     "rule": "及物动词被动化：宾语提前作主语，动词加 di-...-kan",
-     "derivs": [
+    ],
+    "affixes": [
       {
-       "root": "kenalkan",
-       "der": "dikenalkan",
-       "zh": "被介绍"
+        "no": 16,
+        "affix": "-lah",
+        "type": "语助词（partikel）",
+        "func": "强调语气，软化祈使",
+        "rule": "附于动词或形容词后，使命令更委婉或表强调",
+        "derivs": [
+          {
+            "root": "duduk",
+            "der": "duduklah",
+            "zh": "请坐"
+          },
+          {
+            "root": "datang",
+            "der": "datanglah",
+            "zh": "来吧"
+          },
+          {
+            "root": "pergi",
+            "der": "pergilah",
+            "zh": "去吧"
+          }
+        ],
+        "examples": [
+          {
+            "id": "Duduklah, kita mulai rapatnya.",
+            "cn": "请坐，我们开始开会吧。"
+          },
+          {
+            "id": "Datanglah lebih awal besok pagi.",
+            "cn": "明天早上请早点来。"
+          }
+        ]
       },
       {
-       "root": "gunakan",
-       "der": "digunakan",
-       "zh": "被使用"
+        "no": 17,
+        "affix": "-kah",
+        "type": "疑问小品词",
+        "func": "构成是非疑问句",
+        "rule": "附于谓语首词后，将陈述句变为 yes-no 疑问句",
+        "derivs": [
+          {
+            "root": "bisa",
+            "der": "bisakah",
+            "zh": "能吗"
+          },
+          {
+            "root": "sudah",
+            "der": "sudahkah",
+            "zh": "已经…了吗"
+          },
+          {
+            "root": "mau",
+            "der": "maukah",
+            "zh": "愿意吗"
+          }
+        ],
+        "examples": [
+          {
+            "id": "Bisakah Anda berbicara sedikit lebih pelan?",
+            "cn": "您能说得慢一点吗？"
+          },
+          {
+            "id": "Sudahkah Anda mengirim laporannya?",
+            "cn": "您的报告已经发了吗？"
+          }
+        ]
       },
       {
-       "root": "selesaikan",
-       "der": "diselesaikan",
-       "zh": "被完成"
+        "no": 18,
+        "affix": "-pun",
+        "type": "让步小品词",
+        "func": "表示'即使…也''无论…'",
+        "rule": "附于疑问词或名词后表让步或任指",
+        "derivs": [
+          {
+            "root": "siapa",
+            "der": "siapapun",
+            "zh": "无论谁"
+          },
+          {
+            "root": "apa",
+            "der": "apapun",
+            "zh": "无论什么"
+          },
+          {
+            "root": "kapan",
+            "der": "kapanpun",
+            "zh": "无论何时"
+          }
+        ],
+        "examples": [
+          {
+            "id": "Siapapun bisa menghadiri rapat ini.",
+            "cn": "任何人都可以参加这个会议。"
+          },
+          {
+            "id": "Kapanpun Anda siap, kita bisa mulai.",
+            "cn": "无论您什么时候准备好，我们都可以开始。"
+          }
+        ]
+      },
+      {
+        "no": 19,
+        "affix": "-an（重叠名词化）",
+        "type": "名词化后缀",
+        "func": "词根重叠后加 -an，表集合或类别",
+        "rule": "词根重叠 + an 构成集合名词，表'各类…'",
+        "derivs": [
+          {
+            "root": "buah",
+            "der": "buah-buahan",
+            "zh": "各类水果"
+          },
+          {
+            "root": "sayur",
+            "der": "sayur-sayuran",
+            "zh": "各类蔬菜"
+          },
+          {
+            "root": "tumbuh",
+            "der": "tumbuh-tumbuhan",
+            "zh": "各类植物"
+          }
+        ],
+        "examples": [
+          {
+            "id": "Kantin menyediakan buah-buahan segar setiap hari.",
+            "cn": "食堂每天提供新鲜水果。"
+          },
+          {
+            "id": "Kami menanam berbagai tumbuh-tumbuhan di sekitar kantor.",
+            "cn": "我们在办公室周围种了各种植物。"
+          }
+        ]
+      },
+      {
+        "no": 20,
+        "affix": "di-...-kan",
+        "type": "被动使动环缀",
+        "func": "被动语态 + 使役，'被…了'",
+        "rule": "及物动词被动化：宾语提前作主语，动词加 di-...-kan",
+        "derivs": [
+          {
+            "root": "kenalkan",
+            "der": "dikenalkan",
+            "zh": "被介绍"
+          },
+          {
+            "root": "gunakan",
+            "der": "digunakan",
+            "zh": "被使用"
+          },
+          {
+            "root": "selesaikan",
+            "der": "diselesaikan",
+            "zh": "被完成"
+          }
+        ],
+        "examples": [
+          {
+            "id": "Semua karyawan baru akan dikenalkan kepada manajer.",
+            "cn": "所有新员工都会被介绍给经理。"
+          },
+          {
+            "id": "Sistem ini digunakan untuk memantau produksi harian.",
+            "cn": "这个系统被用于监控每日产量。"
+          }
+        ]
       }
-     ]
-    }
-   ],
-   "quiz": [
-    {
-     "q": "'Perkenalkan, nama saya ___.' 横线上应填什么？",
-     "opts": [
-      "saya",
-      "Budi",
-      "dari",
-      "kerja"
-     ],
-     "a": 1,
-     "exp": "nama saya + 名字，应填具体姓名 Budi。",
-     "level": "basic"
-    },
-    {
-     "q": "'Saya berasal ___ Jakarta.' 缺少的介词是？",
-     "opts": [
-      "ke",
-      "di",
-      "dari",
-      "untuk"
-     ],
-     "a": 2,
-     "exp": "berasal dari 固定搭配表示'来自'。",
-     "level": "basic"
-    },
-    {
-     "q": "'Saat ini saya bekerja ___ perusahaan tambang ___ manajer proyek.' 两个空依次填？",
-     "opts": [
-      "di; sebagai",
-      "di; untuk",
-      "ke; menjadi",
-      "dari; adalah"
-     ],
-     "a": 0,
-     "exp": "bekerja di + 地点；sebagai + 职务。",
-     "level": "intermediate"
-    },
-    {
-     "q": "'Keahlian saya ___ manajemen konstruksi.' 正确的系词是？",
-     "opts": [
-      "di",
-      "adalah",
-      "dari",
-      "oleh"
-     ],
-     "a": 1,
-     "exp": "说明'是…'用 adalah，更正式可用 ialah。",
-     "level": "intermediate"
-    },
-    {
-     "q": "'Salam kenal' 最贴切的含义是？",
-     "opts": [
-      "再见",
-      "谢谢",
-      "很高兴认识你",
-      "欢迎光临"
-     ],
-     "a": 2,
-     "exp": "Salam kenal = 很高兴认识你，用于初次见面收尾。",
-     "level": "intermediate"
-    },
-    {
-     "q": "'Latar belakang pendidikan saya adalah teknik metalurgi.' 句中 latar belakang 意为？",
-     "opts": [
-      "幕后",
-      "背景",
-      "后来",
-      "前面"
-     ],
-     "a": 1,
-     "exp": "latar belakang = 背景，此处指教育背景。",
-     "level": "intermediate"
-    },
-    {
-     "q": "以下哪个句子的自我介绍最完整正式？",
-     "opts": [
-      "Nama saya Budi.",
-      "Perkenalkan, nama saya Budi. Saya berasal dari Jakarta. Saat ini bekerja di PT BIR sebagai manajer.",
-      "Saya Budi.",
-      "Halo!"
-     ],
-     "a": 1,
-     "exp": "完整正式自我介绍应包含姓名、籍贯、公司与职务。",
-     "level": "intermediate"
-    },
-    {
-     "q": "'Keahlian Anda sangat dibutuhkan di proyek ini.' 句中 dibutuhkan 的构成是？",
-     "opts": [
-      "di- + butuh + -kan",
-      "me- + butuh",
-      "ber- + butuh",
-      "ter- + butuh"
-     ],
-     "a": 0,
-     "exp": "di-...-kan 被动使动环缀：butuh → dibutuhkan（被需要）。",
-     "level": "advanced"
-    },
-    {
-     "q": "'Asal-usul' 一词的构词特点是？",
-     "opts": [
-      "前缀复合",
-      "近义叠韵复合词",
-      "派生自阿拉伯语",
-      "拟声词"
-     ],
-     "a": 1,
-     "exp": "asal（来源）+ usul（起源）近义词连用，属叠韵复合。",
-     "level": "advanced"
-    },
-    {
-     "q": "在商务酒会上自我介绍时，以下哪个收尾最得体？",
-     "opts": [
-      "Terima kasih, sampai jumpa.",
-      "Salam kenal, semoga kita bisa bekerja sama dengan baik.",
-      "Dadah!",
-      "Permisi, saya pergi dulu."
-     ],
-     "a": 1,
-     "exp": "正式场合以 salam kenal + 合作祝愿收尾最得体。",
-     "level": "advanced"
-    }
-   ]
+    ],
+    "quiz": [
+      {
+        "q": "'Perkenalkan, nama saya ___.' 横线上应填什么？",
+        "opts": [
+          "saya",
+          "Budi",
+          "dari",
+          "kerja"
+        ],
+        "a": 1,
+        "exp": "nama saya + 名字，应填具体姓名 Budi。",
+        "level": "basic"
+      },
+      {
+        "q": "'Saya berasal ___ Jakarta.' 缺少的介词是？",
+        "opts": [
+          "ke",
+          "di",
+          "dari",
+          "untuk"
+        ],
+        "a": 2,
+        "exp": "berasal dari 固定搭配表示'来自'。",
+        "level": "basic"
+      },
+      {
+        "q": "'Saat ini saya bekerja ___ perusahaan tambang ___ manajer proyek.' 两个空依次填？",
+        "opts": [
+          "di; sebagai",
+          "di; untuk",
+          "ke; menjadi",
+          "dari; adalah"
+        ],
+        "a": 0,
+        "exp": "bekerja di + 地点；sebagai + 职务。",
+        "level": "adv"
+      },
+      {
+        "q": "'Keahlian saya ___ manajemen konstruksi.' 正确的系词是？",
+        "opts": [
+          "di",
+          "adalah",
+          "dari",
+          "oleh"
+        ],
+        "a": 1,
+        "exp": "说明'是…'用 adalah，更正式可用 ialah。",
+        "level": "adv"
+      },
+      {
+        "q": "'Salam kenal' 最贴切的含义是？",
+        "opts": [
+          "再见",
+          "谢谢",
+          "很高兴认识你",
+          "欢迎光临"
+        ],
+        "a": 2,
+        "exp": "Salam kenal = 很高兴认识你，用于初次见面收尾。",
+        "level": "adv"
+      },
+      {
+        "q": "'Latar belakang pendidikan saya adalah teknik metalurgi.' 句中 latar belakang 意为？",
+        "opts": [
+          "幕后",
+          "背景",
+          "后来",
+          "前面"
+        ],
+        "a": 1,
+        "exp": "latar belakang = 背景，此处指教育背景。",
+        "level": "adv"
+      },
+      {
+        "q": "以下哪个句子的自我介绍最完整正式？",
+        "opts": [
+          "Nama saya Budi.",
+          "Perkenalkan, nama saya Budi. Saya berasal dari Jakarta. Saat ini bekerja di PT BIR sebagai manajer.",
+          "Saya Budi.",
+          "Halo!"
+        ],
+        "a": 1,
+        "exp": "完整正式自我介绍应包含姓名、籍贯、公司与职务。",
+        "level": "adv"
+      },
+      {
+        "q": "'Keahlian Anda sangat dibutuhkan di proyek ini.' 句中 dibutuhkan 的构成是？",
+        "opts": [
+          "di- + butuh + -kan",
+          "me- + butuh",
+          "ber- + butuh",
+          "ter- + butuh"
+        ],
+        "a": 0,
+        "exp": "di-...-kan 被动使动环缀：butuh → dibutuhkan（被需要）。",
+        "level": "pro"
+      },
+      {
+        "q": "'Asal-usul' 一词的构词特点是？",
+        "opts": [
+          "前缀复合",
+          "近义叠韵复合词",
+          "派生自阿拉伯语",
+          "拟声词"
+        ],
+        "a": 1,
+        "exp": "asal（来源）+ usul（起源）近义词连用，属叠韵复合。",
+        "level": "pro"
+      },
+      {
+        "q": "在商务酒会上自我介绍时，以下哪个收尾最得体？",
+        "opts": [
+          "Terima kasih, sampai jumpa.",
+          "Salam kenal, semoga kita bisa bekerja sama dengan baik.",
+          "Dadah!",
+          "Permisi, saya pergi dulu."
+        ],
+        "a": 1,
+        "exp": "正式场合以 salam kenal + 合作祝愿收尾最得体。",
+        "level": "pro"
+      }
+    ]
   },
   "day2": {
-   "date": "2026-11-14",
-   "theme": "介绍他人 / Memperkenalkan Orang Lain",
-   "vocab": [
-    {
-     "w": "rekan",
-     "cn": "同事、伙伴",
-     "ipa": "/rə.kan/",
-     "level": "基础",
-     "note": "rekan kerja = 同事，比 kolega 更口语"
-    },
-    {
-     "w": "memperkenalkan",
-     "cn": "介绍（他人）",
-     "ipa": "/məm.pər.kə.na.lan/",
-     "level": "进阶",
-     "note": "memper-...-kan 强使役，本话题核心动词"
-    },
-    {
-     "w": "saling",
-     "cn": "互相、彼此",
-     "ipa": "/sa.liŋ/",
-     "level": "进阶",
-     "note": "saling + 动词 = 互相做…"
-    },
-    {
-     "w": "mengenal",
-     "cn": "认识、了解",
-     "ipa": "/mə.ŋə.nal/",
-     "level": "进阶",
-     "note": "me- + kenal 及物化，'认识某人'"
-    },
-    {
-     "w": "menghubungkan",
-     "cn": "连接、牵线",
-     "ipa": "/məŋ.hu.buŋ.kan/",
-     "level": "进阶",
-     "note": "hubung（联系）+ me-...-kan，商务牵线常用"
-    },
-    {
-     "w": "perantara",
-     "cn": "中间人、媒介",
-     "ipa": "/pə.ran.ta.ra/",
-     "level": "专业",
-     "note": "正式场合'牵线人'，商务中介常用"
-    },
-    {
-     "w": "kolega",
-     "cn": "同行、同事（正式）",
-     "ipa": "/ko.le.ga/",
-     "level": "专业",
-     "note": "借自荷兰语，正式商务场合指职业伙伴"
-    }
-   ],
-   "phrases": [
-    {
-     "id": "P1",
-     "cn": "Ini rekan saya, Rina.",
-     "usage": "最简单的介绍他人",
-     "note": "ini + 身份 + 名字，口语最常用",
-     "level": "basic"
-    },
-    {
-     "id": "P2",
-     "cn": "Izinkan saya memperkenalkan Bapak Ahmad kepada Anda.",
-     "usage": "正式地把A介绍给B",
-     "note": "izinkan saya... 请允许我；kepada 引出接受方",
-     "level": "intermediate"
-    },
-    {
-     "id": "P3",
-     "cn": "Beliau adalah kepala divisi pemasaran di perusahaan kami.",
-     "usage": "介绍第三方职务（需尊敬）",
-     "note": "beliau = 他/她（敬语），用于提及受尊敬者",
-     "level": "intermediate"
-    },
-    {
-     "id": "P4",
-     "cn": "Saya ingin memperkenalkan Anda dengan tim teknis kami.",
-     "usage": "把对方介绍给团队",
-     "note": "memperkenalkan A dengan B 双向介绍",
-     "level": "advanced"
-    },
-    {
-     "id": "P5",
-     "cn": "Mudah-mudahan kerja sama kita bisa berjalan lancar.",
-     "usage": "介绍后表达合作祝愿",
-     "note": "mudah-mudahan = 希望；berjalan lancar = 顺利进行",
-     "level": "advanced"
-    }
-   ],
-   "patterns": [
-    {
-     "cat": "正式介绍",
-     "formula": "Izinkan saya memperkenalkan [Nama].",
-     "structure": "Izinkan saya + memperkenalkan + 名字",
-     "grammar": "izinkan 为 izin 的祈使式，表'请允许'",
-     "scene": "正式场合把某人介绍给第三方",
-     "ex": "Izinkan saya memperkenalkan Ibu Sari.",
-     "slots": [
-      "Nama"
-     ],
-     "reuse": "可扩展：...kepada Bapak/Ibu [Nama]",
-     "cn": "请允许我介绍一下萨丽女士。"
-    },
-    {
-     "cat": "身份说明",
-     "formula": "Beliau adalah [jabatan] di [perusahaan].",
-     "structure": "Beliau + adalah + 职务 + di + 公司",
-     "grammar": "beliau 为第三人称敬语，仅用于提及不在场或受尊敬者",
-     "scene": "向客户介绍领导或资深同事",
-     "ex": "Beliau adalah direktur operasi di perusahaan kami.",
-     "slots": [
-      "jabatan",
-      "perusahaan"
-     ],
-     "reuse": "口语中可换为 Dia adalah...",
-     "cn": "他是我们公司的运营总监。"
-    },
-    {
-     "cat": "询问认识",
-     "formula": "Kalian saling kenal?",
-     "structure": "Kalian + saling + 动词（kenal）",
-     "grammar": "saling + 动词构成相互态；疑问用升调",
-     "scene": "介绍前确认双方是否已认识",
-     "ex": "Kalian sudah saling kenal?",
-     "slots": [],
-     "reuse": "可换主语：Anda berdua / Mereka",
-     "cn": "你们互相认识吗？"
-    },
-    {
-     "cat": "非正式介绍",
-     "formula": "Ini rekan saya, [Nama].",
-     "structure": "Ini + 身份 + 名字",
-     "grammar": "指示代词 ini 引出被介绍者",
-     "scene": "同事间随意介绍",
-     "ex": "Ini rekan saya, Dimas.",
-     "slots": [
-      "Nama"
-     ],
-     "reuse": "rekan 可换 teman（朋友）/ atasan（上级）",
-     "cn": "这是我的同事迪马斯。"
-    },
-    {
-     "cat": "促成认识",
-     "formula": "Silakan berkenalan.",
-     "structure": "Silakan + ber-...-an 动词",
-     "grammar": "berkenalan = ber-...-an 相互态，'互相认识'",
-     "scene": "介绍双方后促成互动",
-     "ex": "Silakan berkenalan, saya tinggal sebentar ya.",
-     "slots": [],
-     "reuse": "可加 dulu：Silakan berkenalan dulu.",
-     "cn": "请互相认识一下。"
-    }
-   ],
-   "expressions": [
-    {
-     "id": "E1",
-     "cn": "Silakan berkenalan.（请互相认识吧。）",
-     "note": "介绍后最常用的促成语",
-     "level": "basic"
-    },
-    {
-     "id": "E2",
-     "cn": "Kalian saling kenal?（你们互相认识吗？）",
-     "note": "saling + 动词 = 相互",
-     "level": "intermediate"
-    },
-    {
-     "id": "E3",
-     "cn": "Sudah pernah bertemu sebelumnya?（以前见过面吗？）",
-     "note": "sebelumnya = 之前，来自 sebelum",
-     "level": "intermediate"
-    },
-    {
-     "id": "E4",
-     "cn": "Saya yakin Anda berdua akan sangat cocok bekerja sama.（我相信你们俩合作会很愉快。）",
-     "note": "cocok = 合得来；berdua = 俩",
-     "level": "advanced"
-    },
-    {
-     "id": "E5",
-     "cn": "Perkenalkan, ini mitra bisnis kami dari Jakarta.（介绍一下，这是我们来自雅加达的合作伙伴。）",
-     "note": "mitra bisnis = 商业伙伴，正式用语",
-     "level": "advanced"
-    }
-   ],
-   "affixes": [
-    {
-     "no": 21,
-     "affix": "me-...-kan",
-     "type": "及物使动环缀",
-     "func": "及物化、使役，'使/让/把…'",
-     "rule": "动词词根加 me-...-kan 变及物使役动词",
-     "derivs": [
+    "date": "2026-11-14",
+    "theme": "介绍他人 / Memperkenalkan Orang Lain",
+    "vocab": [
       {
-       "root": "kenal",
-       "der": "mengenalkan",
-       "zh": "把…介绍给"
+        "w": "rekan",
+        "cn": "同事、伙伴",
+        "ipa": "/rə.kan/",
+        "level": "基础",
+        "note": "rekan kerja = 同事，比 kolega 更口语"
       },
       {
-       "root": "ajar",
-       "der": "mengajarkan",
-       "zh": "教给"
+        "w": "memperkenalkan",
+        "cn": "介绍（他人）",
+        "ipa": "/məm.pər.kə.na.lan/",
+        "level": "进阶",
+        "note": "memper-...-kan 强使役，本话题核心动词"
       },
       {
-       "root": "beri",
-       "der": "memberikan",
-       "zh": "给予"
+        "w": "saling",
+        "cn": "互相、彼此",
+        "ipa": "/sa.liŋ/",
+        "level": "进阶",
+        "note": "saling + 动词 = 互相做…"
+      },
+      {
+        "w": "mengenal",
+        "cn": "认识、了解",
+        "ipa": "/mə.ŋə.nal/",
+        "level": "进阶",
+        "note": "me- + kenal 及物化，'认识某人'"
+      },
+      {
+        "w": "menghubungkan",
+        "cn": "连接、牵线",
+        "ipa": "/məŋ.hu.buŋ.kan/",
+        "level": "进阶",
+        "note": "hubung（联系）+ me-...-kan，商务牵线常用"
+      },
+      {
+        "w": "perantara",
+        "cn": "中间人、媒介",
+        "ipa": "/pə.ran.ta.ra/",
+        "level": "专业",
+        "note": "正式场合'牵线人'，商务中介常用"
+      },
+      {
+        "w": "kolega",
+        "cn": "同行、同事（正式）",
+        "ipa": "/ko.le.ga/",
+        "level": "专业",
+        "note": "借自荷兰语，正式商务场合指职业伙伴"
       }
-     ]
-    },
-    {
-     "no": 22,
-     "affix": "ber-...-an",
-     "type": "相互环缀",
-     "func": "表互相进行动作",
-     "rule": "词根加 ber-...-an 构成相互动词",
-     "derivs": [
+    ],
+    "phrases": [
       {
-       "root": "desak",
-       "der": "berdesakan",
-       "zh": "互相推挤"
+        "id": "Ini rekan saya, Rina.",
+        "cn": "这是我的同事丽娜。",
+        "usage": "最简单的介绍他人",
+        "note": "ini + 身份 + 名字，口语最常用",
+        "level": "basic"
       },
       {
-       "root": "rebut",
-       "der": "berebutan",
-       "zh": "争抢"
+        "id": "Izinkan saya memperkenalkan Bapak Ahmad kepada Anda.",
+        "cn": "请允许我向您介绍阿赫玛德先生。",
+        "usage": "正式地把A介绍给B",
+        "note": "izinkan saya... 请允许我；kepada 引出接受方",
+        "level": "adv"
       },
       {
-       "root": "tengkar",
-       "der": "bertengkaran",
-       "zh": "争吵"
+        "id": "Beliau adalah kepala divisi pemasaran di perusahaan kami.",
+        "cn": "他是我们公司市场部的负责人。",
+        "usage": "介绍第三方职务（需尊敬）",
+        "note": "beliau = 他/她（敬语），用于提及受尊敬者",
+        "level": "adv"
+      },
+      {
+        "id": "Saya ingin memperkenalkan Anda dengan tim teknis kami.",
+        "cn": "我想把您介绍给我们的技术团队。",
+        "usage": "把对方介绍给团队",
+        "note": "memperkenalkan A dengan B 双向介绍",
+        "level": "pro"
+      },
+      {
+        "id": "Mudah-mudahan kerja sama kita bisa berjalan lancar.",
+        "cn": "希望我们的合作能够顺利进行。",
+        "usage": "介绍后表达合作祝愿",
+        "note": "mudah-mudahan = 希望；berjalan lancar = 顺利进行",
+        "level": "pro"
       }
-     ]
-    },
-    {
-     "no": 23,
-     "affix": "per-...-an",
-     "type": "名词化环缀",
-     "func": "构成名词，表过程、结果、场所",
-     "rule": "动词/形容词加 per-...-an 转为名词",
-     "derivs": [
+    ],
+    "patterns": [
       {
-       "root": "kenal",
-       "der": "perkenalan",
-       "zh": "介绍、相识"
+        "cat": "正式介绍",
+        "formula": "Izinkan saya memperkenalkan [Nama].",
+        "structure": "Izinkan saya + memperkenalkan + 名字",
+        "grammar": "izinkan 为 izin 的祈使式，表'请允许'",
+        "scene": "正式场合把某人介绍给第三方",
+        "ex": [
+          "Izinkan saya memperkenalkan Ibu Sari.",
+          "Perkenalkan, ini Bapak Ahmad, manajer kami."
+        ],
+        "slots": [
+          "Nama"
+        ],
+        "reuse": "可扩展：...kepada Bapak/Ibu [Nama]",
+        "cn": "请允许我介绍一下萨丽女士。",
+        "level": "pro"
       },
       {
-       "root": "ubah",
-       "der": "perubahan",
-       "zh": "变化"
+        "cat": "身份说明",
+        "formula": "Beliau adalah [jabatan] di [perusahaan].",
+        "structure": "Beliau + adalah + 职务 + di + 公司",
+        "grammar": "beliau 为第三人称敬语，仅用于提及不在场或受尊敬者",
+        "scene": "向客户介绍领导或资深同事",
+        "ex": [
+          "Beliau adalah direktur operasi di perusahaan kami.",
+          "Ini Ibu Rina, kepala bagian keuangan."
+        ],
+        "slots": [
+          "jabatan",
+          "perusahaan"
+        ],
+        "reuse": "口语中可换为 Dia adalah...",
+        "cn": "他是我们公司的运营总监。",
+        "level": "adv"
       },
       {
-       "root": "coba",
-       "der": "percobaan",
-       "zh": "试验"
+        "cat": "询问认识",
+        "formula": "Kalian saling kenal?",
+        "structure": "Kalian + saling + 动词（kenal）",
+        "grammar": "saling + 动词构成相互态；疑问用升调",
+        "scene": "介绍前确认双方是否已认识",
+        "ex": [
+          "Kalian sudah saling kenal?",
+          "Anda berdua sudah saling kenal?"
+        ],
+        "slots": [],
+        "reuse": "可换主语：Anda berdua / Mereka",
+        "cn": "你们互相认识吗？",
+        "level": "basic"
+      },
+      {
+        "cat": "非正式介绍",
+        "formula": "Ini rekan saya, [Nama].",
+        "structure": "Ini + 身份 + 名字",
+        "grammar": "指示代词 ini 引出被介绍者",
+        "scene": "同事间随意介绍",
+        "ex": [
+          "Ini rekan saya, Dimas.",
+          "Ini teman saya, Budi."
+        ],
+        "slots": [
+          "Nama"
+        ],
+        "reuse": "rekan 可换 teman（朋友）/ atasan（上级）",
+        "cn": "这是我的同事迪马斯。",
+        "level": "adv"
+      },
+      {
+        "cat": "促成认识",
+        "formula": "Silakan berkenalan.",
+        "structure": "Silakan + ber-...-an 动词",
+        "grammar": "berkenalan = ber-...-an 相互态，'互相认识'",
+        "scene": "介绍双方后促成互动",
+        "ex": [
+          "Silakan berkenalan, saya tinggal sebentar ya.",
+          "Silakan berkenalan, ini rekan kerja saya."
+        ],
+        "slots": [],
+        "reuse": "可加 dulu：Silakan berkenalan dulu.",
+        "cn": "请互相认识一下。",
+        "level": "pro"
       }
-     ]
-    },
-    {
-     "no": 24,
-     "affix": "ke-...-an",
-     "type": "名词化环缀",
-     "func": "表状态、性质；也可表'过于…'",
-     "rule": "形容词/动词加 ke-...-an 构成抽象名词",
-     "derivs": [
+    ],
+    "expressions": [
       {
-       "root": "sama",
-       "der": "kesamaan",
-       "zh": "相同之处"
+        "id": "Silakan berkenalan.",
+        "cn": "请互相认识吧。",
+        "note": "介绍后最常用的促成语",
+        "level": "basic",
+        "scene": "促成认识"
       },
       {
-       "root": "hilang",
-       "der": "kehilangan",
-       "zh": "丢失"
+        "id": "Kalian saling kenal?",
+        "cn": "你们互相认识吗？",
+        "note": "saling + 动词 = 相互",
+        "level": "adv",
+        "scene": "询问相识"
       },
       {
-       "root": "lelah",
-       "der": "kelelahan",
-       "zh": "疲劳"
+        "id": "Sudah pernah bertemu sebelumnya?",
+        "cn": "以前见过面吗？",
+        "note": "sebelumnya = 之前，来自 sebelum",
+        "level": "adv",
+        "scene": "破冰提问"
+      },
+      {
+        "id": "Saya yakin Anda berdua akan sangat cocok bekerja sama.",
+        "cn": "我相信你们俩合作会很愉快。",
+        "note": "cocok = 合得来；berdua = 俩",
+        "level": "pro",
+        "scene": "合作祝愿"
+      },
+      {
+        "id": "Perkenalkan, ini mitra bisnis kami dari Jakarta.",
+        "cn": "介绍一下，这是我们来自雅加达的合作伙伴。",
+        "note": "mitra bisnis = 商业伙伴，正式用语",
+        "level": "pro",
+        "scene": "正式引荐"
       }
-     ]
-    },
-    {
-     "no": 25,
-     "affix": "se-...-nya",
-     "type": "强调环缀",
-     "func": "表'尽量、最好、尽可能'",
-     "rule": "形容词/动词加 se-...-nya 表最高限度或建议",
-     "derivs": [
+    ],
+    "affixes": [
       {
-       "root": "baik",
-       "der": "sebaiknya",
-       "zh": "最好"
+        "no": 21,
+        "affix": "me-...-kan",
+        "type": "及物使动环缀",
+        "func": "及物化、使役，'使/让/把…'",
+        "rule": "动词词根加 me-...-kan 变及物使役动词",
+        "derivs": [
+          {
+            "root": "kenal",
+            "der": "mengenalkan",
+            "zh": "把…介绍给"
+          },
+          {
+            "root": "ajar",
+            "der": "mengajarkan",
+            "zh": "教给"
+          },
+          {
+            "root": "beri",
+            "der": "memberikan",
+            "zh": "给予"
+          }
+        ],
+        "examples": [
+          {
+            "id": "Izinkan saya mengenalkan Anda kepada tim kami.",
+            "cn": "请允许我把您介绍给我们的团队。"
+          },
+          {
+            "id": "Saya ingin memberikan masukan tentang proyek ini.",
+            "cn": "我想就这个项目提出一些意见。"
+          }
+        ]
       },
       {
-       "root": "cepat",
-       "der": "secepatnya",
-       "zh": "尽快"
+        "no": 22,
+        "affix": "ber-...-an",
+        "type": "相互环缀",
+        "func": "表互相进行动作",
+        "rule": "词根加 ber-...-an 构成相互动词",
+        "derivs": [
+          {
+            "root": "desak",
+            "der": "berdesakan",
+            "zh": "互相推挤"
+          },
+          {
+            "root": "rebut",
+            "der": "berebutan",
+            "zh": "争抢"
+          },
+          {
+            "root": "tengkar",
+            "der": "bertengkaran",
+            "zh": "争吵"
+          }
+        ],
+        "examples": [
+          {
+            "id": "Karyawan berdesakan di depan pintu saat istirahat.",
+            "cn": "休息时员工们挤在门口。"
+          },
+          {
+            "id": "Jangan berebutan antrean, semua dapat giliran.",
+            "cn": "别争抢排队，人人都有份。"
+          }
+        ]
       },
       {
-       "root": "bisa",
-       "der": "sebisanya",
-       "zh": "尽量"
+        "no": 23,
+        "affix": "per-...-an",
+        "type": "名词化环缀",
+        "func": "构成名词，表过程、结果、场所",
+        "rule": "动词/形容词加 per-...-an 转为名词",
+        "derivs": [
+          {
+            "root": "kenal",
+            "der": "perkenalan",
+            "zh": "介绍、相识"
+          },
+          {
+            "root": "ubah",
+            "der": "perubahan",
+            "zh": "变化"
+          },
+          {
+            "root": "coba",
+            "der": "percobaan",
+            "zh": "试验"
+          }
+        ],
+        "examples": [
+          {
+            "id": "Perkenalan singkat cukup untuk rapat pagi ini.",
+            "cn": "简短的介绍对这个晨会来说足够了。"
+          },
+          {
+            "id": "Perubahan jadwal akan diumumkan besok.",
+            "cn": "日程变更将在明天公布。"
+          }
+        ]
+      },
+      {
+        "no": 24,
+        "affix": "ke-...-an",
+        "type": "名词化环缀",
+        "func": "表状态、性质；也可表'过于…'",
+        "rule": "形容词/动词加 ke-...-an 构成抽象名词",
+        "derivs": [
+          {
+            "root": "sama",
+            "der": "kesamaan",
+            "zh": "相同之处"
+          },
+          {
+            "root": "hilang",
+            "der": "kehilangan",
+            "zh": "丢失"
+          },
+          {
+            "root": "lelah",
+            "der": "kelelahan",
+            "zh": "疲劳"
+          }
+        ],
+        "examples": [
+          {
+            "id": "Kesamaan visi membuat kerja sama lebih mudah.",
+            "cn": "愿景相同让合作更顺畅。"
+          },
+          {
+            "id": "Kehilangan data bisa dicegah dengan pencadangan rutin.",
+            "cn": "数据丢失可以通过定期备份来预防。"
+          }
+        ]
+      },
+      {
+        "no": 25,
+        "affix": "se-...-nya",
+        "type": "强调环缀",
+        "func": "表'尽量、最好、尽可能'",
+        "rule": "形容词/动词加 se-...-nya 表最高限度或建议",
+        "derivs": [
+          {
+            "root": "baik",
+            "der": "sebaiknya",
+            "zh": "最好"
+          },
+          {
+            "root": "cepat",
+            "der": "secepatnya",
+            "zh": "尽快"
+          },
+          {
+            "root": "bisa",
+            "der": "sebisanya",
+            "zh": "尽量"
+          }
+        ],
+        "examples": [
+          {
+            "id": "Sebaiknya Anda tiba 15 menit lebih awal.",
+            "cn": "您最好提前15分钟到。"
+          },
+          {
+            "id": "Laporan harus diselesaikan secepatnya.",
+            "cn": "报告必须尽快完成。"
+          }
+        ]
       }
-     ]
-    }
-   ],
-   "quiz": [
-    {
-     "q": "'Ini rekan saya, Rina.' 句中 rekan 意为？",
-     "opts": [
-      "朋友",
-      "同事/伙伴",
-      "领导",
-      "客户"
-     ],
-     "a": 1,
-     "exp": "rekan = 同事、伙伴，rekan kerja 即同事。",
-     "level": "basic"
-    },
-    {
-     "q": "'Silakan berkenalan.' 的意思是？",
-     "opts": [
-      "请坐",
-      "请互相认识",
-      "请慢走",
-      "请稍等"
-     ],
-     "a": 1,
-     "exp": "berkenalan = ber-...-an 相互态，'互相认识'。",
-     "level": "basic"
-    },
-    {
-     "q": "'Izinkan saya memperkenalkan Bapak Ahmad ___ Anda.' 横线上填？",
-     "opts": [
-      "kepada",
-      "dengan",
-      "untuk",
-      "dari"
-     ],
-     "a": 0,
-     "exp": "memperkenalkan A kepada B = 把 A 介绍给 B。",
-     "level": "intermediate"
-    },
-    {
-     "q": "'Beliau adalah kepala divisi pemasaran.' 句中 beliau 用于？",
-     "opts": [
-      "比自己地位低的人",
-      "受尊敬者/不在场者",
-      "任何朋友",
-      "动物"
-     ],
-     "a": 1,
-     "exp": "beliau 为第三人称敬语，用于受尊敬者，不用于平辈朋友。",
-     "level": "intermediate"
-    },
-    {
-     "q": "'Kalian saling kenal?' 句中 saling 表示？",
-     "opts": [
-      "曾经",
-      "互相",
-      "刚刚",
-      "非常"
-     ],
-     "a": 1,
-     "exp": "saling + 动词 = 互相做某事。",
-     "level": "intermediate"
-    },
-    {
-     "q": "'Memperkenalkan' 的构词分析正确的是？",
-     "opts": [
-      "mem- + perkenal + -kan",
-      "me- + per- + kenal + -kan",
-      "di- + kenal + -an",
-      "ber- + kenal + -an"
-     ],
-     "a": 1,
-     "exp": "memper-...-kan 强使役环缀：per- 加强使役意义，me-...-kan 及物使役。",
-     "level": "intermediate"
-    },
-    {
-     "q": "以下哪种场合最需要用 'Izinkan saya memperkenalkan...' 而不是 'Ini...'？",
-     "opts": [
-      "朋友聚会",
-      "项目会议上向客户介绍新同事",
-      "给家人介绍宠物",
-      "下课闲聊时"
-     ],
-     "a": 1,
-     "exp": "正式商务场合用 izinkan saya... 更得体；ini... 偏口语。",
-     "level": "intermediate"
-    },
-    {
-     "q": "'Perantara' 在商务介绍语境中指？",
-     "opts": [
-      "翻译",
-      "中间人/牵线者",
-      "主持人",
-      "秘书"
-     ],
-     "a": 1,
-     "exp": "perantara = 中间人、媒介，来自 antara（之间）。",
-     "level": "advanced"
-    },
-    {
-     "q": "'Saya ingin memperkenalkan Anda dengan tim teknis kami.' 与 'Izinkan saya memperkenalkan tim teknis kepada Anda.' 的区别是？",
-     "opts": [
-      "前者更正式",
-      "前者把'您'介绍给团队，后者把团队介绍给'您'",
-      "意思完全一样",
-      "后者更礼貌"
-     ],
-     "a": 1,
-     "exp": "memperkenalkan A dengan B 中 A 是被引见给 B 的一方；语序决定方向。",
-     "level": "advanced"
-    },
-    {
-     "q": "'Kolega' 与 'rekan' 的主要区别是？",
-     "opts": [
-      "kolega 更口语",
-      "kolega 更正式，常指职业同行",
-      "rekan 只用于上级",
-      "没有区别"
-     ],
-     "a": 1,
-     "exp": "kolega 借自荷兰语，正式场合指同行/职业伙伴；rekan 更通用。",
-     "level": "advanced"
-    }
-   ]
+    ],
+    "quiz": [
+      {
+        "q": "'Ini rekan saya, Rina.' 句中 rekan 意为？",
+        "opts": [
+          "朋友",
+          "同事/伙伴",
+          "领导",
+          "客户"
+        ],
+        "a": 1,
+        "exp": "rekan = 同事、伙伴，rekan kerja 即同事。",
+        "level": "basic"
+      },
+      {
+        "q": "'Silakan berkenalan.' 的意思是？",
+        "opts": [
+          "请坐",
+          "请互相认识",
+          "请慢走",
+          "请稍等"
+        ],
+        "a": 1,
+        "exp": "berkenalan = ber-...-an 相互态，'互相认识'。",
+        "level": "basic"
+      },
+      {
+        "q": "'Izinkan saya memperkenalkan Bapak Ahmad ___ Anda.' 横线上填？",
+        "opts": [
+          "kepada",
+          "dengan",
+          "untuk",
+          "dari"
+        ],
+        "a": 0,
+        "exp": "memperkenalkan A kepada B = 把 A 介绍给 B。",
+        "level": "adv"
+      },
+      {
+        "q": "'Beliau adalah kepala divisi pemasaran.' 句中 beliau 用于？",
+        "opts": [
+          "比自己地位低的人",
+          "受尊敬者/不在场者",
+          "任何朋友",
+          "动物"
+        ],
+        "a": 1,
+        "exp": "beliau 为第三人称敬语，用于受尊敬者，不用于平辈朋友。",
+        "level": "adv"
+      },
+      {
+        "q": "'Kalian saling kenal?' 句中 saling 表示？",
+        "opts": [
+          "曾经",
+          "互相",
+          "刚刚",
+          "非常"
+        ],
+        "a": 1,
+        "exp": "saling + 动词 = 互相做某事。",
+        "level": "adv"
+      },
+      {
+        "q": "'Memperkenalkan' 的构词分析正确的是？",
+        "opts": [
+          "mem- + perkenal + -kan",
+          "me- + per- + kenal + -kan",
+          "di- + kenal + -an",
+          "ber- + kenal + -an"
+        ],
+        "a": 1,
+        "exp": "memper-...-kan 强使役环缀：per- 加强使役意义，me-...-kan 及物使役。",
+        "level": "adv"
+      },
+      {
+        "q": "以下哪种场合最需要用 'Izinkan saya memperkenalkan...' 而不是 'Ini...'？",
+        "opts": [
+          "朋友聚会",
+          "项目会议上向客户介绍新同事",
+          "给家人介绍宠物",
+          "下课闲聊时"
+        ],
+        "a": 1,
+        "exp": "正式商务场合用 izinkan saya... 更得体；ini... 偏口语。",
+        "level": "adv"
+      },
+      {
+        "q": "'Perantara' 在商务介绍语境中指？",
+        "opts": [
+          "翻译",
+          "中间人/牵线者",
+          "主持人",
+          "秘书"
+        ],
+        "a": 1,
+        "exp": "perantara = 中间人、媒介，来自 antara（之间）。",
+        "level": "pro"
+      },
+      {
+        "q": "'Saya ingin memperkenalkan Anda dengan tim teknis kami.' 与 'Izinkan saya memperkenalkan tim teknis kepada Anda.' 的区别是？",
+        "opts": [
+          "前者更正式",
+          "前者把'您'介绍给团队，后者把团队介绍给'您'",
+          "意思完全一样",
+          "后者更礼貌"
+        ],
+        "a": 1,
+        "exp": "memperkenalkan A dengan B 中 A 是被引见给 B 的一方；语序决定方向。",
+        "level": "pro"
+      },
+      {
+        "q": "'Kolega' 与 'rekan' 的主要区别是？",
+        "opts": [
+          "kolega 更口语",
+          "kolega 更正式，常指职业同行",
+          "rekan 只用于上级",
+          "没有区别"
+        ],
+        "a": 1,
+        "exp": "kolega 借自荷兰语，正式场合指同行/职业伙伴；rekan 更通用。",
+        "level": "pro"
+      }
+    ]
   },
   "day3": {
-   "date": "2026-11-15",
-   "theme": "正式场合介绍 / Perkenalan Formal",
-   "vocab": [
-    {
-     "w": "panggilan",
-     "cn": "称呼、叫法",
-     "ipa": "/paŋ.gi.lan/",
-     "level": "基础",
-     "note": "nama panggilan = 昵称/常用名"
-    },
-    {
-     "w": "sopan",
-     "cn": "礼貌的、得体的",
-     "ipa": "/so.pan/",
-     "level": "进阶",
-     "note": "tutur kata sopan = 得体的言谈"
-    },
-    {
-     "w": "kehormatan",
-     "cn": "荣幸、荣誉",
-     "ipa": "/kə.hor.ma.tan/",
-     "level": "进阶",
-     "note": "ke-...-an 名词化，来自 hormat（尊敬）"
-    },
-    {
-     "w": "pertukaran",
-     "cn": "交换、互换",
-     "ipa": "/pər.tu.ka.ran/",
-     "level": "进阶",
-     "note": "tukar（换）+ per-...-an；pertukaran kartu nama = 交换名片"
-    },
-    {
-     "w": "etika",
-     "cn": "礼仪、道德规范",
-     "ipa": "/e.ti.ka/",
-     "level": "进阶",
-     "note": "etika bisnis = 商业伦理/商务礼仪"
-    },
-    {
-     "w": "protokol",
-     "cn": "礼节、礼仪规程",
-     "ipa": "/pro.to.kol/",
-     "level": "专业",
-     "note": "正式场合座次、介绍顺序等规则"
-    },
-    {
-     "w": "apresiasi",
-     "cn": "赞赏、赏识",
-     "ipa": "/a.prə.si.a.si/",
-     "level": "专业",
-     "note": "mengapresiasi = 赞赏（动词化），正式商务用语"
-    }
-   ],
-   "phrases": [
-    {
-     "id": "P1",
-     "cn": "Boleh saya minta kartu nama Anda?",
-     "usage": "请求交换名片",
-     "note": "boleh saya... = 礼貌请求句式",
-     "level": "basic"
-    },
-    {
-     "id": "P2",
-     "cn": "Berkenalan dengan Anda adalah kehormatan bagi saya.",
-     "usage": "表达认识对方很荣幸",
-     "note": "bagi saya = 对我来说",
-     "level": "intermediate"
-    },
-    {
-     "id": "P3",
-     "cn": "Panggil saya Budi saja.",
-     "usage": "请对方用昵称称呼自己",
-     "note": "saja 缓和语气'就行'",
-     "level": "intermediate"
-    },
-    {
-     "id": "P4",
-     "cn": "Mohon maaf, bagaimana sebenarnya pengucapan nama Anda?",
-     "usage": "礼貌询问名字发音",
-     "note": "mohon maaf 先行致歉；sebenarnya = 确切地",
-     "level": "advanced"
-    },
-    {
-     "id": "P5",
-     "cn": "Izinkan saya memperkenalkan anggota tim kami satu per satu.",
-     "usage": "正式会议开场逐一介绍团队",
-     "note": "satu per satu = 逐一",
-     "level": "advanced"
-    }
-   ],
-   "patterns": [
-    {
-     "cat": "荣幸表达",
-     "formula": "Berkenalan dengan Anda adalah kehormatan saya.",
-     "structure": "Berkenalan dengan + 人 + adalah + kehormatan + saya",
-     "grammar": "动名词短语作主语；也可用 kehormatan bagi saya",
-     "scene": "正式会面开场或结束",
-     "ex": "Berkenalan dengan Anda adalah kehormatan bagi kami semua.",
-     "slots": [],
-     "reuse": "可替换为 Suatu kehormatan bisa bertemu dengan Anda.",
-     "cn": "认识您是我的荣幸。"
-    },
-    {
-     "cat": "确认发音",
-     "formula": "Mohon maaf, bagaimana pengucapan namanya?",
-     "structure": "Mohon maaf + bagaimana + 名词",
-     "grammar": "bagaimana + 名词 询问方式；mohon maaf 软化语气",
-     "scene": "不确定对方名字读音时",
-     "ex": "Mohon maaf, bagaimana pengucapan nama belakangnya?",
-     "slots": [],
-     "reuse": "也可说 Boleh diulang cara bacanya?",
-     "cn": "不好意思，请问这个名字怎么发音？"
-    },
-    {
-     "cat": "索取名片",
-     "formula": "Boleh saya minta kartu nama Anda?",
-     "structure": "Boleh saya + minta + 物品",
-     "grammar": "boleh + 主语 + 动词 表礼貌请求",
-     "scene": "会议或酒会交换名片",
-     "ex": "Boleh saya minta nomor telepon Anda?",
-     "slots": [],
-     "reuse": "物品可换：nomor telepon / email / brosur",
-     "cn": "能给我一张您的名片吗？"
-    },
-    {
-     "cat": "昵称请求",
-     "formula": "Panggil saya [nama panggilan] saja.",
-     "structure": "Panggil saya + 昵称 + saja",
-     "grammar": "saja 表'就…好了'，缓和语气",
-     "scene": "对方称呼太正式时主动提供昵称",
-     "ex": "Panggil saya Dimas saja.",
-     "slots": [
-      "nama panggilan"
-     ],
-     "reuse": "更正式：Silakan panggil saya [nama].",
-     "cn": "就叫我迪马斯吧。"
-    },
-    {
-     "cat": "团队介绍",
-     "formula": "Izinkan saya memperkenalkan tim kami.",
-     "structure": "Izinkan saya + memperkenalkan + 团队",
-     "grammar": "izinkan 祈使式 + 使役动词",
-     "scene": "正式会议开场",
-     "ex": "Izinkan saya memperkenalkan tim kami dari divisi teknik.",
-     "slots": [],
-     "reuse": "可扩展：...satu per satu / secara singkat（简短地）",
-     "cn": "请允许我介绍一下我们的团队。"
-    }
-   ],
-   "expressions": [
-    {
-     "id": "E1",
-     "cn": "Terima kasih atas waktunya.（感谢您的时间。）",
-     "note": "会议结束万能致谢",
-     "level": "basic"
-    },
-    {
-     "id": "E2",
-     "cn": "Mohon maaf, saya kurang mendengar namanya tadi.（抱歉，我刚才没听清名字。）",
-     "note": "kurang + 动词 = 没太…",
-     "level": "intermediate"
-    },
-    {
-     "id": "E3",
-     "cn": "Silakan duduk, kita mulai rapatnya.（请坐，我们开始开会吧。）",
-     "note": "rapatnya 加 -nya 表特指",
-     "level": "intermediate"
-    },
-    {
-     "id": "E4",
-     "cn": "Kami sangat mengapresiasi kesediaan Anda untuk bertemu hari ini.（我们非常感激您今天愿意会面。）",
-     "note": "kesediaan = 意愿（sedia 名词化）",
-     "level": "advanced"
-    },
-    {
-     "id": "E5",
-     "cn": "Dengan hormat, izinkan saya memperkenalkan diri secara singkat.（谨允许我简短地自我介绍一下。）",
-     "note": "dengan hormat = 最正式的开场敬语",
-     "level": "advanced"
-    }
-   ],
-   "affixes": [
-    {
-     "no": 26,
-     "affix": "-isasi",
-     "type": "外来名词后缀",
-     "func": "表'…化'",
-     "rule": "加在名词/形容词词根后，源自 -ization",
-     "derivs": [
+    "date": "2026-11-15",
+    "theme": "正式场合介绍 / Perkenalan Formal",
+    "vocab": [
       {
-       "root": "modern",
-       "der": "modernisasi",
-       "zh": "现代化"
+        "w": "panggilan",
+        "cn": "称呼、叫法",
+        "ipa": "/paŋ.gi.lan/",
+        "level": "基础",
+        "note": "nama panggilan = 昵称/常用名"
       },
       {
-       "root": "global",
-       "der": "globalisasi",
-       "zh": "全球化"
+        "w": "sopan",
+        "cn": "礼貌的、得体的",
+        "ipa": "/so.pan/",
+        "level": "进阶",
+        "note": "tutur kata sopan = 得体的言谈"
       },
       {
-       "root": "standar",
-       "der": "standardisasi",
-       "zh": "标准化"
+        "w": "kehormatan",
+        "cn": "荣幸、荣誉",
+        "ipa": "/kə.hor.ma.tan/",
+        "level": "进阶",
+        "note": "ke-...-an 名词化，来自 hormat（尊敬）"
+      },
+      {
+        "w": "pertukaran",
+        "cn": "交换、互换",
+        "ipa": "/pər.tu.ka.ran/",
+        "level": "进阶",
+        "note": "tukar（换）+ per-...-an；pertukaran kartu nama = 交换名片"
+      },
+      {
+        "w": "etika",
+        "cn": "礼仪、道德规范",
+        "ipa": "/e.ti.ka/",
+        "level": "进阶",
+        "note": "etika bisnis = 商业伦理/商务礼仪"
+      },
+      {
+        "w": "protokol",
+        "cn": "礼节、礼仪规程",
+        "ipa": "/pro.to.kol/",
+        "level": "专业",
+        "note": "正式场合座次、介绍顺序等规则"
+      },
+      {
+        "w": "apresiasi",
+        "cn": "赞赏、赏识",
+        "ipa": "/a.prə.si.a.si/",
+        "level": "专业",
+        "note": "mengapresiasi = 赞赏（动词化），正式商务用语"
       }
-     ]
-    },
-    {
-     "no": 27,
-     "affix": "non-",
-     "type": "否定前缀",
-     "func": "表'非、不、无'",
-     "rule": "加在名词/形容词前构成反义或否定",
-     "derivs": [
+    ],
+    "phrases": [
       {
-       "root": "aktif",
-       "der": "nonaktif",
-       "zh": "非活跃的"
+        "id": "Boleh saya minta kartu nama Anda?",
+        "cn": "可以给我一张您的名片吗？",
+        "usage": "请求交换名片",
+        "note": "boleh saya... = 礼貌请求句式",
+        "level": "basic"
       },
       {
-       "root": "pemerintah",
-       "der": "nonpemerintah",
-       "zh": "非政府的"
+        "id": "Berkenalan dengan Anda adalah kehormatan bagi saya.",
+        "cn": "认识您是我的荣幸。",
+        "usage": "表达认识对方很荣幸",
+        "note": "bagi saya = 对我来说",
+        "level": "adv"
       },
       {
-       "root": "profit",
-       "der": "nonprofit",
-       "zh": "非营利的"
+        "id": "Panggil saya Budi saja.",
+        "cn": "叫我布迪就好。",
+        "usage": "请对方用昵称称呼自己",
+        "note": "saja 缓和语气'就行'",
+        "level": "adv"
+      },
+      {
+        "id": "Mohon maaf, bagaimana sebenarnya pengucapan nama Anda?",
+        "cn": "不好意思，您的名字确切怎么发音？",
+        "usage": "礼貌询问名字发音",
+        "note": "mohon maaf 先行致歉；sebenarnya = 确切地",
+        "level": "pro"
+      },
+      {
+        "id": "Izinkan saya memperkenalkan anggota tim kami satu per satu.",
+        "cn": "请允许我逐一介绍我们团队的成员。",
+        "usage": "正式会议开场逐一介绍团队",
+        "note": "satu per satu = 逐一",
+        "level": "pro"
       }
-     ]
-    },
-    {
-     "no": 28,
-     "affix": "-wan/-wati",
-     "type": "人称名词后缀",
-     "func": "表从事…的人；-wan 男性、-wati 女性",
-     "rule": "加在名词/动词词根后表从业者或爱好者",
-     "derivs": [
+    ],
+    "patterns": [
       {
-       "root": "karya",
-       "der": "karyawan/karyawati",
-       "zh": "男职员/女职员"
+        "cat": "荣幸表达",
+        "formula": "Berkenalan dengan Anda adalah kehormatan saya.",
+        "structure": "Berkenalan dengan + 人 + adalah + kehormatan + saya",
+        "grammar": "动名词短语作主语；也可用 kehormatan bagi saya",
+        "scene": "正式会面开场或结束",
+        "ex": [
+          "Berkenalan dengan Anda adalah kehormatan bagi kami semua.",
+          "Bisa bertemu dengan Anda adalah kehormatan bagi saya."
+        ],
+        "slots": [],
+        "reuse": "可替换为 Suatu kehormatan bisa bertemu dengan Anda.",
+        "cn": "认识您是我的荣幸。",
+        "level": "pro"
       },
       {
-       "root": "olahraga",
-       "der": "olahragawan/olahragawati",
-       "zh": "男运动员/女运动员"
+        "cat": "确认发音",
+        "formula": "Mohon maaf, bagaimana pengucapan namanya?",
+        "structure": "Mohon maaf + bagaimana + 名词",
+        "grammar": "bagaimana + 名词 询问方式；mohon maaf 软化语气",
+        "scene": "不确定对方名字读音时",
+        "ex": [
+          "Mohon maaf, bagaimana pengucapan nama belakangnya?",
+          "Boleh diulang cara bacanya?"
+        ],
+        "slots": [],
+        "reuse": "也可说 Boleh diulang cara bacanya?",
+        "cn": "不好意思，请问这个名字怎么发音？",
+        "level": "adv"
       },
       {
-       "root": "sastra",
-       "der": "sastrawan/sastrawati",
-       "zh": "男文学家/女文学家"
+        "cat": "索取名片",
+        "formula": "Boleh saya minta kartu nama Anda?",
+        "structure": "Boleh saya + minta + 物品",
+        "grammar": "boleh + 主语 + 动词 表礼貌请求",
+        "scene": "会议或酒会交换名片",
+        "ex": [
+          "Boleh saya minta nomor telepon Anda?",
+          "Boleh saya minta email Anda?"
+        ],
+        "slots": [],
+        "reuse": "物品可换：nomor telepon / email / brosur",
+        "cn": "能给我一张您的名片吗？",
+        "level": "basic"
+      },
+      {
+        "cat": "昵称请求",
+        "formula": "Panggil saya [nama panggilan] saja.",
+        "structure": "Panggil saya + 昵称 + saja",
+        "grammar": "saja 表'就…好了'，缓和语气",
+        "scene": "对方称呼太正式时主动提供昵称",
+        "ex": [
+          "Panggil saya Dimas saja.",
+          "Silakan panggil saya Budi."
+        ],
+        "slots": [
+          "nama panggilan"
+        ],
+        "reuse": "更正式：Silakan panggil saya [nama].",
+        "cn": "就叫我迪马斯吧。",
+        "level": "adv"
+      },
+      {
+        "cat": "团队介绍",
+        "formula": "Izinkan saya memperkenalkan tim kami.",
+        "structure": "Izinkan saya + memperkenalkan + 团队",
+        "grammar": "izinkan 祈使式 + 使役动词",
+        "scene": "正式会议开场",
+        "ex": [
+          "Izinkan saya memperkenalkan tim kami dari divisi teknik.",
+          "Izinkan saya memperkenalkan tim kami satu per satu."
+        ],
+        "slots": [],
+        "reuse": "可扩展：...satu per satu / secara singkat（简短地）",
+        "cn": "请允许我介绍一下我们的团队。",
+        "level": "pro"
       }
-     ]
-    },
-    {
-     "no": 29,
-     "affix": "-isme",
-     "type": "外来名词后缀",
-     "func": "表'主义、学说、倾向'",
-     "rule": "源自希腊语 -ismos，构成抽象名词",
-     "derivs": [
+    ],
+    "expressions": [
       {
-       "root": "sosial",
-       "der": "sosialisme",
-       "zh": "社会主义"
+        "id": "Terima kasih atas waktunya.",
+        "cn": "感谢您的时间。",
+        "note": "会议结束万能致谢",
+        "level": "basic",
+        "scene": "会议致谢"
       },
       {
-       "root": "kapital",
-       "der": "kapitalisme",
-       "zh": "资本主义"
+        "id": "Mohon maaf, saya kurang mendengar namanya tadi.",
+        "cn": "抱歉，我刚才没听清名字。",
+        "note": "kurang + 动词 = 没太…",
+        "level": "adv",
+        "scene": "请求重复"
       },
       {
-       "root": "plural",
-       "der": "pluralisme",
-       "zh": "多元主义"
+        "id": "Silakan duduk, kita mulai rapatnya.",
+        "cn": "请坐，我们开始开会吧。",
+        "note": "rapatnya 加 -nya 表特指",
+        "level": "adv",
+        "scene": "会议开场"
+      },
+      {
+        "id": "Kami sangat mengapresiasi kesediaan Anda untuk bertemu hari ini.",
+        "cn": "我们非常感激您今天愿意会面。",
+        "note": "kesediaan = 意愿（sedia 名词化）",
+        "level": "pro",
+        "scene": "正式致谢"
+      },
+      {
+        "id": "Dengan hormat, izinkan saya memperkenalkan diri secara singkat.",
+        "cn": "谨允许我简短地自我介绍一下。",
+        "note": "dengan hormat = 最正式的开场敬语",
+        "level": "pro",
+        "scene": "正式开场"
       }
-     ]
-    },
-    {
-     "no": 30,
-     "affix": "memper-...-kan",
-     "type": "强使役环缀",
-     "func": "使他人做某事，比 me-...-kan 更正式",
-     "rule": "词根加 memper-...-kan，表正式使役",
-     "derivs": [
+    ],
+    "affixes": [
       {
-       "root": "kenal",
-       "der": "memperkenalkan",
-       "zh": "介绍（给）"
+        "no": 26,
+        "affix": "-isasi",
+        "type": "外来名词后缀",
+        "func": "表'…化'",
+        "rule": "加在名词/形容词词根后，源自 -ization",
+        "derivs": [
+          {
+            "root": "modern",
+            "der": "modernisasi",
+            "zh": "现代化"
+          },
+          {
+            "root": "global",
+            "der": "globalisasi",
+            "zh": "全球化"
+          },
+          {
+            "root": "standar",
+            "der": "standardisasi",
+            "zh": "标准化"
+          }
+        ],
+        "examples": [
+          {
+            "id": "Modernisasi pabrik meningkatkan efisiensi produksi.",
+            "cn": "工厂现代化提高了生产效率。"
+          },
+          {
+            "id": "Standardisasi prosedur keselamatan sangat penting.",
+            "cn": "安全程序的标准化非常重要。"
+          }
+        ]
       },
       {
-       "root": "guna",
-       "der": "mempergunakan",
-       "zh": "利用"
+        "no": 27,
+        "affix": "non-",
+        "type": "否定前缀",
+        "func": "表'非、不、无'",
+        "rule": "加在名词/形容词前构成反义或否定",
+        "derivs": [
+          {
+            "root": "aktif",
+            "der": "nonaktif",
+            "zh": "非活跃的"
+          },
+          {
+            "root": "pemerintah",
+            "der": "nonpemerintah",
+            "zh": "非政府的"
+          },
+          {
+            "root": "profit",
+            "der": "nonprofit",
+            "zh": "非营利的"
+          }
+        ],
+        "examples": [
+          {
+            "id": "Mesin nonaktif selama perawatan rutin.",
+            "cn": "机器在例行维护期间停用。"
+          },
+          {
+            "id": "Organisasi nonprofit aktif di wilayah ini.",
+            "cn": "非营利组织在该地区很活跃。"
+          }
+        ]
       },
       {
-       "root": "luas",
-       "der": "memperluaskan",
-       "zh": "扩大"
+        "no": 28,
+        "affix": "-wan/-wati",
+        "type": "人称名词后缀",
+        "func": "表从事…的人；-wan 男性、-wati 女性",
+        "rule": "加在名词/动词词根后表从业者或爱好者",
+        "derivs": [
+          {
+            "root": "karya",
+            "der": "karyawan/karyawati",
+            "zh": "男职员/女职员"
+          },
+          {
+            "root": "olahraga",
+            "der": "olahragawan/olahragawati",
+            "zh": "男运动员/女运动员"
+          },
+          {
+            "root": "sastra",
+            "der": "sastrawan/sastrawati",
+            "zh": "男文学家/女文学家"
+          }
+        ],
+        "examples": [
+          {
+            "id": "Semua karyawan dan karyawati wajib mengikuti pelatihan ini.",
+            "cn": "所有男女员工都必须参加此次培训。"
+          },
+          {
+            "id": "Dia adalah olahragawan yang pernah memenangkan kompetisi nasional.",
+            "cn": "他曾是一名赢得全国比赛的运动员。"
+          }
+        ]
+      },
+      {
+        "no": 29,
+        "affix": "-isme",
+        "type": "外来名词后缀",
+        "func": "表'主义、学说、倾向'",
+        "rule": "源自希腊语 -ismos，构成抽象名词",
+        "derivs": [
+          {
+            "root": "sosial",
+            "der": "sosialisme",
+            "zh": "社会主义"
+          },
+          {
+            "root": "kapital",
+            "der": "kapitalisme",
+            "zh": "资本主义"
+          },
+          {
+            "root": "plural",
+            "der": "pluralisme",
+            "zh": "多元主义"
+          }
+        ],
+        "examples": [
+          {
+            "id": "Pluralisme menjadi dasar kehidupan bermasyarakat di Indonesia.",
+            "cn": "多元主义是印尼社会生活的基础。"
+          },
+          {
+            "id": "Kapitalisme dan sosialisme sering dibahas dalam kuliah ekonomi.",
+            "cn": "资本主义和社会主义经常在经济学课上被讨论。"
+          }
+        ]
+      },
+      {
+        "no": 30,
+        "affix": "memper-...-kan",
+        "type": "强使役环缀",
+        "func": "使他人做某事，比 me-...-kan 更正式",
+        "rule": "词根加 memper-...-kan，表正式使役",
+        "derivs": [
+          {
+            "root": "kenal",
+            "der": "memperkenalkan",
+            "zh": "介绍（给）"
+          },
+          {
+            "root": "guna",
+            "der": "mempergunakan",
+            "zh": "利用"
+          },
+          {
+            "root": "luas",
+            "der": "memperluaskan",
+            "zh": "扩大"
+          }
+        ],
+        "examples": [
+          {
+            "id": "Dengan hormat, izinkan saya memperkenalkan direktur kami.",
+            "cn": "请允许我介绍我们的总经理。"
+          },
+          {
+            "id": "Perusahaan berencana memperluaskan pabrik tahun depan.",
+            "cn": "公司计划明年扩建工厂。"
+          }
+        ]
       }
-     ]
-    }
-   ],
-   "quiz": [
-    {
-     "q": "'Boleh saya minta kartu nama Anda?' 的意思是？",
-     "opts": [
-      "能给我您的名片吗？",
-      "您叫什么名字？",
-      "您的公司在哪里？",
-      "我可以走了吗？"
-     ],
-     "a": 0,
-     "exp": "minta kartu nama = 要名片；boleh saya... 为礼貌请求句式。",
-     "level": "basic"
-    },
-    {
-     "q": "'Panggil saya Budi saja.' 中 saja 的作用是？",
-     "opts": [
-      "表示否定",
-      "缓和语气'就…好了'",
-      "表示惊讶",
-      "加强命令"
-     ],
-     "a": 1,
-     "exp": "saja 附在句尾表'仅仅、就好'，使语气更随和。",
-     "level": "basic"
-    },
-    {
-     "q": "'Berkenalan dengan Anda adalah kehormatan bagi saya.' 中 bagi 相当于？",
-     "opts": [
-      "为了",
-      "对于",
-      "来自",
-      "经过"
-     ],
-     "a": 1,
-     "exp": "bagi + 人 = 对…来说。",
-     "level": "intermediate"
-    },
-    {
-     "q": "'Mohon maaf, bagaimana pengucapan namanya?' 这句话的用途是？",
-     "opts": [
-      "询问名字的含义",
-      "询问名字的发音",
-      "请对方重复公司名",
-      "纠正对方错误"
-     ],
-     "a": 1,
-     "exp": "pengucapan = 发音，礼貌地请对方告知名字读法。",
-     "level": "intermediate"
-    },
-    {
-     "q": "'Izinkan saya memperkenalkan tim kami satu per satu.' 中 satu per satu 意为？",
-     "opts": [
-      "第一次",
-      "一起",
-      "逐一",
-      "再一次"
-     ],
-     "a": 2,
-     "exp": "satu per satu = 一个一个地、逐一。",
-     "level": "intermediate"
-    },
-    {
-     "q": "在印尼商务礼仪中，递名片时正确做法是？",
-     "opts": [
-      "单手递出即可",
-      "双手或右手递出，文字朝向对方",
-      "折叠后递出",
-      "随意放在桌上"
-     ],
-     "a": 1,
-     "exp": "印尼商务礼仪：双手或右手递名片，文字面向对方，以示尊重。",
-     "level": "intermediate"
-    },
-    {
-     "q": "'Etika bisnis' 指的是？",
-     "opts": [
-      "商业计划",
-      "商务礼仪/商业伦理",
-      "商业间谍",
-      "商业广告"
-     ],
-     "a": 1,
-     "exp": "etika = 伦理/礼仪；etika bisnis 即商务礼仪与职业操守。",
-     "level": "intermediate"
-    },
-    {
-     "q": "'Modernisasi' 的构词是？",
-     "opts": [
-      "modern + -isasi",
-      "mo- + dernisasi",
-      "modern + -isme",
-      "modern + -is"
-     ],
-     "a": 0,
-     "exp": "-isasi 外来后缀表'…化'：modern → modernisasi。",
-     "level": "advanced"
-    },
-    {
-     "q": "'Karyawan' 与 'karyawati' 的区别在于？",
-     "opts": [
-      "行业不同",
-      "性别：男性/女性",
-      "职级高低",
-      "公司大小"
-     ],
-     "a": 1,
-     "exp": "-wan 男性后缀、-wati 女性后缀：karya（工作）→ 男职员/女职员。",
-     "level": "advanced"
-    },
-    {
-     "q": "正式会议开场介绍团队，最得体的表达是？",
-     "opts": [
-      "Ini teman-teman saya.",
-      "Izinkan saya memperkenalkan tim kami satu per satu.",
-      "Mereka tim saya.",
-      "Kenalan dulu ya."
-     ],
-     "a": 1,
-     "exp": "正式场合用 izinkan saya...，satu per satu 体现条理与尊重。",
-     "level": "advanced"
-    }
-   ]
+    ],
+    "quiz": [
+      {
+        "q": "'Boleh saya minta kartu nama Anda?' 的意思是？",
+        "opts": [
+          "能给我您的名片吗？",
+          "您叫什么名字？",
+          "您的公司在哪里？",
+          "我可以走了吗？"
+        ],
+        "a": 0,
+        "exp": "minta kartu nama = 要名片；boleh saya... 为礼貌请求句式。",
+        "level": "basic"
+      },
+      {
+        "q": "'Panggil saya Budi saja.' 中 saja 的作用是？",
+        "opts": [
+          "表示否定",
+          "缓和语气'就…好了'",
+          "表示惊讶",
+          "加强命令"
+        ],
+        "a": 1,
+        "exp": "saja 附在句尾表'仅仅、就好'，使语气更随和。",
+        "level": "basic"
+      },
+      {
+        "q": "'Berkenalan dengan Anda adalah kehormatan bagi saya.' 中 bagi 相当于？",
+        "opts": [
+          "为了",
+          "对于",
+          "来自",
+          "经过"
+        ],
+        "a": 1,
+        "exp": "bagi + 人 = 对…来说。",
+        "level": "adv"
+      },
+      {
+        "q": "'Mohon maaf, bagaimana pengucapan namanya?' 这句话的用途是？",
+        "opts": [
+          "询问名字的含义",
+          "询问名字的发音",
+          "请对方重复公司名",
+          "纠正对方错误"
+        ],
+        "a": 1,
+        "exp": "pengucapan = 发音，礼貌地请对方告知名字读法。",
+        "level": "adv"
+      },
+      {
+        "q": "'Izinkan saya memperkenalkan tim kami satu per satu.' 中 satu per satu 意为？",
+        "opts": [
+          "第一次",
+          "一起",
+          "逐一",
+          "再一次"
+        ],
+        "a": 2,
+        "exp": "satu per satu = 一个一个地、逐一。",
+        "level": "adv"
+      },
+      {
+        "q": "在印尼商务礼仪中，递名片时正确做法是？",
+        "opts": [
+          "单手递出即可",
+          "双手或右手递出，文字朝向对方",
+          "折叠后递出",
+          "随意放在桌上"
+        ],
+        "a": 1,
+        "exp": "印尼商务礼仪：双手或右手递名片，文字面向对方，以示尊重。",
+        "level": "adv"
+      },
+      {
+        "q": "'Etika bisnis' 指的是？",
+        "opts": [
+          "商业计划",
+          "商务礼仪/商业伦理",
+          "商业间谍",
+          "商业广告"
+        ],
+        "a": 1,
+        "exp": "etika = 伦理/礼仪；etika bisnis 即商务礼仪与职业操守。",
+        "level": "adv"
+      },
+      {
+        "q": "'Modernisasi' 的构词是？",
+        "opts": [
+          "modern + -isasi",
+          "mo- + dernisasi",
+          "modern + -isme",
+          "modern + -is"
+        ],
+        "a": 0,
+        "exp": "-isasi 外来后缀表'…化'：modern → modernisasi。",
+        "level": "pro"
+      },
+      {
+        "q": "'Karyawan' 与 'karyawati' 的区别在于？",
+        "opts": [
+          "行业不同",
+          "性别：男性/女性",
+          "职级高低",
+          "公司大小"
+        ],
+        "a": 1,
+        "exp": "-wan 男性后缀、-wati 女性后缀：karya（工作）→ 男职员/女职员。",
+        "level": "pro"
+      },
+      {
+        "q": "正式会议开场介绍团队，最得体的表达是？",
+        "opts": [
+          "Ini teman-teman saya.",
+          "Izinkan saya memperkenalkan tim kami satu per satu.",
+          "Mereka tim saya.",
+          "Kenalan dulu ya."
+        ],
+        "a": 1,
+        "exp": "正式场合用 izinkan saya...，satu per satu 体现条理与尊重。",
+        "level": "pro"
+      }
+    ]
   }
- }
 },
   "interview": {
  "title": "CA专题: 面试 / Wawancara",
