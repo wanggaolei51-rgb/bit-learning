@@ -6,7 +6,7 @@
 <meta http-equiv="Expires" content="0">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LEO-BIR V4.55.1</title>
+<title>LEO-BIR V4.55.2</title>
 <style>
 :root{--primary:#00d4aa;--primary-dim:#00a884;--bg:#0a0e17;--bg-elev:#121929;--bg-card:#1a2236;--border:#2a3550;--text:#e8ecf1;--text-dim:#8b95a8;--accent:#f59e0b;--danger:#ef4444;--success:#22c55e;--info:#3b82f6;--radius:14px;--shadow:0 4px 24px rgba(0,0,0,.35)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -276,7 +276,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','Microsoft YaHei',s
   <div class="sidebar-header">
     <div style="width:64px;height:64px;border-radius:50%;background:var(--bg-card);border:2px solid var(--primary);margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden;"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"></div>
     <h1>LEO-BIR</h1>
-    <div class="ver">LEO-BIR V4.55.1 · 1118笔记32条 · 词16+词组11+句型5</div>
+    <div class="ver">LEO-BIR V4.55.2 · 1118笔记32条 · 词16+词组11+句型5</div>
   </div>
   <div class="sidebar-section">
     <h3>📊 学习统计</h3>
@@ -109897,7 +109897,7 @@ const dailyNotesDB = {
     ]
   },
   "2026-11-18": {
-    "source": "BIT V1.0 + BIO 审查（V4.55.1 1118笔记 · 挂 ukbi_madya_c Day3 报名放榜与证书规划 + CA directions Day3 看地图认地标）",
+    "source": "BIT V1.0 + BIO 审查（V4.55.2 1118笔记 · 挂 ukbi_madya_c Day3 报名放榜与证书规划 + CA directions Day3 看地图认地标）",
     "entries": [
       {
         "word": "menangkap",
@@ -111677,7 +111677,7 @@ const dailyNotesDB = {
   "2026-11-19": {
     "date": "2026-11-19",
     "topicKey": "ukbi_madya_d",
-    "source": "BIT V1.0 + BIO 审查（V4.55.1 1119笔记 · 挂 ukbi_madya_d Day1 全真模考与时间管理 + CA restaurant Day1 餐厅点餐）",
+    "source": "BIT V1.0 + BIO 审查（V4.55.2 1119笔记 · 挂 ukbi_madya_d Day1 全真模考与时间管理 + CA restaurant Day1 餐厅点餐）",
     "entries": [
       {
         "word": "bimbang",
@@ -255929,10 +255929,10 @@ function renderAbout(c){
 }
 
 function renderVersion(c){
-  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.55.1 / Versi</span></div>
+  c.innerHTML=`<div class="card"><div class="card-header"><h2>📜 版本迭代记录 / Riwayat Versi</h2><span class="badge">V4.55.2 / Versi</span></div>
     <div style="padding:16px;">
       <div style="margin-bottom:14px;padding:14px;background:rgba(34,197,94,.10);border-radius:10px;border-left:3px solid var(--success)">
-        <div style="font-size:15px;font-weight:700;color:var(--success);margin-bottom:6px">V4.55.1 (2026-11-17)</div>
+        <div style="font-size:15px;font-weight:700;color:var(--success);margin-bottom:6px">V4.55.2 (2026-11-17)</div>
         <div style="font-size:12px;color:var(--text-light);margin-bottom:12px">
         • <strong>1118每日笔记32条</strong>(16词+11词组+5句型,挂ukbi_madya_c Day3报名放榜与证书规划+CA directions Day3看地图认地标): 新词7(bedah剖析·手术/keterangan说明·备注栏/pisah分开/bersentuhan相互接触·涉及/rumpang有缺口的·teks-rumpang填空文本/ menyisihkan留出·拨款·淘汰赛/situs网站·遗址) 复习覆盖9全量BIT升级(menangkap/mencapai/panik/penuh/bergabung/eksplisit/saksama/kerangka/kendaraan) 词组11(menuntut-ketelitian要求精确/tergesa-gesa急忙/teks-fungsional功能文本·UKBI术语/pas-foto证件照/melamar-kerja求职/cukup-isi-formulir只需填表/pengambilan-keputusan决策/ambil-bagian参与/ambil-jalur走路线; terburu-buru与setara词组内顺带覆盖) 句型5(directions Day2句型复习: 问路三式+走近路+客套邀请) · 词元对账16+11+5=32全PASS · 例句96条 · bitVocabDB 3321→3337<br>
         </div>
@@ -265658,229 +265658,274 @@ const caData = {
   }
 },
   "restaurant": {
-    "title": "话题4: 餐饮点餐 / Makanan dan Restoran",
+    "title": "话题4: 餐饮点餐",
     "icon": "🍽️",
     "level": "adv",
     "days": 3,
     "day1": {
       "date": "2026-11-19",
-      "theme": "餐厅点餐 / Memesan Makanan",
+      "theme": "餐厅点餐",
       "vocab": [
         {
           "w": "pesanan",
           "cn": "订单；所点的菜",
           "ipa": "/pə.ˈsa.nan/",
           "level": "基础",
-          "note": "memesan 的名词形式；pesanan saya = 我点的菜"
+          "note": "餐厅最高频词：pesanan saya = 我点的菜"
         },
         {
           "w": "pelayan",
           "cn": "服务员",
           "ipa": "/pə.ˈla.jan/",
-          "level": "进阶",
-          "note": "layan（服务）+ pe-...-an 表从业者"
-        },
-        {
-          "w": "memesan",
-          "cn": "点餐；订购",
-          "ipa": "/mə.ˈmə.san/",
-          "level": "进阶",
-          "note": "me- 及物化 + pesan（订）；及物动词必须带宾语"
+          "level": "基础",
+          "note": "无性别区分；pelayanan = 服务质量"
         },
         {
           "w": "hidangan",
           "cn": "菜肴；席面",
           "ipa": "/hi.ˈda.ŋan/",
           "level": "进阶",
-          "note": "hidang（端上）+ -an；hidangan khas = 特色菜"
+          "note": "比 masakan 正式；hidangan khas = 特色菜"
         },
         {
-          "w": "goreng",
-          "cn": "油炸的",
-          "ipa": "/ˈgo.reŋ/",
+          "w": "memesan",
+          "cn": "点餐；订购",
+          "ipa": "/mə.ˈmə.san/",
           "level": "进阶",
-          "note": "nasi goreng 炒饭；ayam goreng 炸鸡；menggoreng 炸"
+          "note": "及物必带宾语；也可订座订票"
         },
         {
           "w": "resep",
           "cn": "食谱；秘方",
           "ipa": "/ˈrə.sɛp/",
-          "level": "专业",
-          "note": "resep rahasia = 秘方；医生开处方也用 resep"
+          "level": "进阶",
+          "note": "resep rahasia = 祖传秘方；医生处方同词"
         },
         {
           "w": "gurih",
           "cn": "鲜美的；咸香的",
           "ipa": "/ˈgu.rih/",
           "level": "专业",
-          "note": "印尼菜五味之一：manis/pedas/asin/asam/gurih"
+          "note": "五味之一：manis甜/pedas辣/asin咸/asam酸/gurih鲜；形容椰浆高汤类"
+        },
+        {
+          "w": "alergi",
+          "cn": "过敏",
+          "ipa": "/ˈa.lər.gi/",
+          "level": "专业",
+          "note": "alergi terhadap + 食物；餐饮禁忌严肃用语"
         }
       ],
       "phrases": [
         {
-          "id": "Boleh lihat menunya?",
-          "cn": "能给我看一下菜单吗？",
-          "usage": "入座后要菜单",
-          "note": "boleh + 动词原形 表礼貌请求",
+          "id": "makan di tempat",
+          "cn": "堂食",
+          "usage": "点餐后选择",
+          "note": "vs bawa pulang（打包带走）",
           "level": "basic"
         },
         {
-          "id": "Saya mau pesan nasi goreng.",
-          "cn": "我想点炒饭。",
-          "usage": "开始点菜",
-          "note": "mau = 想要；pesan 后直接接菜名",
-          "level": "adv"
+          "id": "bawa pulang / bungkus",
+          "cn": "打包带走",
+          "usage": "结账时说",
+          "note": "bungkus 更口语；restoran 用 dibungkus 更礼貌",
+          "level": "basic"
         },
         {
-          "id": "Apa hidangan khas di sini?",
-          "cn": "这里有什么特色菜？",
-          "usage": "询问招牌菜",
-          "note": "khas = 特有的；di sini = 这里",
-          "level": "adv"
+          "id": "makanan halal",
+          "cn": "清真食品",
+          "usage": "点餐前确认",
+          "note": "印尼穆斯林占全国 87%，商务宴请先确认",
+          "level": "intermediate"
         },
         {
-          "id": "Untuk saya satu, untuk dia dua.",
-          "cn": "我一份，他两份。",
-          "usage": "替同伴分别点餐",
-          "note": "untuk + 人 + 数量",
-          "level": "adv"
+          "id": "porsi untuk berdua",
+          "cn": "两人份",
+          "usage": "点餐量词",
+          "note": "berdua=两人/bertiga=三人；也可说 porsi keluarga",
+          "level": "intermediate"
         },
         {
-          "id": "Tolong dibuatkan yang tidak terlalu pedas.",
-          "cn": "请做成不太辣的。",
-          "usage": "向厨房提口味要求",
-          "note": "di-...-kan 被动式请求，正式礼貌",
-          "level": "pro"
+          "id": "sesuai selera",
+          "cn": "合口味；随喜好",
+          "usage": "推荐回应",
+          "note": "Memo-nya sudah sesuai selera tamu.（菜单已合客人口味）",
+          "level": "professional"
         }
       ],
       "patterns": [
         {
-          "cat": "点餐句式",
-          "formula": "Saya mau pesan [菜名].",
-          "structure": "Saya mau pesan + 菜名",
-          "grammar": "mau（想要）+ 动词 pesan；也可说 Saya pesan...",
-          "scene": "餐厅点菜",
+          "cat": "点餐请求骨架",
+          "level": "basic",
+          "formula": "Saya mau pesan [菜名]. / Mau [菜名].",
+          "cn": "我要点…",
+          "structure": "Saya mau pesan / Mau + 菜名名词",
+          "grammar": "mau 是情态动词「想要」，后接动词原形 pesan 或直接接名词；Mau 开头省略主语是口语常态",
+          "scene": "快餐店/小摊（warung）直接点单",
           "ex": [
-            {
-              "slots": [
-                "菜名"
-              ],
-              "reuse": "菜名可换任意菜品；加 satu 表一份",
-              "cn": "我想点一份炒饭。",
-              "level": "basic"
-            }
-          ]
+            "Saya mau pesan nasi goreng.（我要点炒饭。）",
+            "Mau es teh manis.（要一杯甜冰茶。）",
+            "Saya mau pesan ayam goreng.（我要点炸鸡。）"
+          ],
+          "slots": [
+            "菜名"
+          ],
+          "reuse": "替换[菜名]即可；warung 场景可省略 Saya"
         },
         {
-          "cat": "询问特色菜",
-          "formula": "Apa hidangan khas di sini?",
-          "structure": "Apa + 名词 + khas + di sini",
-          "grammar": "apa 引导特殊疑问；khas = 特色",
-          "scene": "第一次光临某餐厅",
+          "cat": "点餐意愿进阶",
+          "level": "intermediate",
+          "formula": "Saya pesan [菜名] satu, sama [配菜].",
+          "cn": "我点一份…，加…",
+          "structure": "Saya pesan + 菜名 + 数量(satu/dua) + , sama + 配菜",
+          "grammar": "sama 此处是连词「和/加」非正式用法；正式场合用 dan；数量 satu 常后置",
+          "scene": "中档餐厅点主菜+配菜",
           "ex": [
-            {
-              "slots": [],
-              "reuse": "也可问 Apa yang paling terkenal di sini?",
-              "cn": "这里什么菜最有名？",
-              "level": "adv"
-            }
-          ]
+            "Saya pesan rendang satu, sama nasi putih.（我点一份仁当牛肉，配白米饭。）",
+            "Saya pesan gado-gado satu, sama lontong.（我点一份加多加多，配米糕。）",
+            "Saya pesan sate ayam sepuluh tusuk, sama lontong.（我点十串鸡肉沙爹，配米糕。）"
+          ],
+          "slots": [
+            "菜名",
+            "数量",
+            "配菜"
+          ],
+          "reuse": "satu 可换 dua/tiga；sepuluh tusuk 是串类食物数量单位"
         },
         {
-          "cat": "数量份数表达",
-          "formula": "[数量] porsi [菜名]",
-          "structure": "数词 + porsi + 菜名",
-          "grammar": "porsi 是量词「份」，外来词",
-          "scene": "点多人份",
+          "cat": "商务点餐招待",
+          "level": "professional",
+          "formula": "Untuk tamu kami, tolong siapkan [菜名] spesial Chef.",
+          "cn": "为客人请备主厨特色…",
+          "structure": "Untuk tamu kami + tolong siapkan + 菜名 + spesial Chef",
+          "grammar": "tolong siapkan 是礼貌命令式「请备」；spesial Chef 借词组指主厨推荐；kami 是谦逊的「我们」",
+          "scene": "商务宴请代客人点单；宴请规格体现",
           "ex": [
-            {
-              "slots": [
-                "数量",
-                "菜名"
-              ],
-              "reuse": "satu/dua/tiga porsi；口语可省略 porsi",
-              "cn": "两份炒饭。",
-              "level": "adv"
-            }
-          ]
+            "Untuk tamu kami, tolong siapkan hidangan spesial Chef.（为客人请备主厨特色菜。）",
+            "Untuk Bapak Direktur, tolong siapkan ikan bakar paling segar.（为董事长请备最新鲜的烤鱼。）",
+            "Untuk rombongan, tolong siapkan hidangan khas daerah.（为团队请备地方特色菜。）"
+          ],
+          "slots": [
+            "宾客身份",
+            "菜名"
+          ],
+          "reuse": "tamu kami 可换 Bapak/Ibu+职称；加 paling segar/khas daerah 提升规格"
         },
         {
-          "cat": "同伴分别点餐",
-          "formula": "Untuk [人], [数量].",
-          "structure": "Untuk + 人 + 数量",
-          "grammar": "untuk 表对象归属",
-          "scene": "帮同事一起点",
+          "cat": "询问菜品做法",
+          "level": "intermediate",
+          "formula": "[菜名] itu diolah dengan cara apa?",
+          "cn": "那道菜是怎么做的？",
+          "structure": "菜名 + itu + diolah dengan cara + apa",
+          "grammar": "diolah 是 di- 被动「被烹饪」；dengan cara apa = 用什么方式；itu 指示词「那」",
+          "scene": "不熟悉菜品时询问做法；素食者/忌口排查",
           "ex": [
-            {
-              "slots": [
-                "人",
-                "数量"
-              ],
-              "reuse": "人可换 saya/dia/kami",
-              "cn": "给他来一份。",
-              "level": "adv"
-            }
-          ]
+            "Gulai itu diolah dengan cara apa?（那道咖喱是怎么做的？）",
+            "Tahu itu digoreng atau dikukus?（那豆腐是炸的还是蒸的？）",
+            "Kuahnya pakai santan atau kaldu ayam?（汤汁用椰浆还是鸡汤？）"
+          ],
+          "slots": [
+            "菜名"
+          ],
+          "reuse": "diolah 可换 dimasak/dibuat；素食者加 tanpa daging/seafood"
         },
         {
-          "cat": "礼貌催单",
-          "formula": "Permisi, pesanan kami belum datang.",
-          "structure": "Permisi + 主语 + belum + 动词",
-          "grammar": "permisi 先行引起注意；belum 表还没",
-          "scene": "等太久时礼貌催促",
+          "cat": "份量与人数确认",
+          "level": "professional",
+          "formula": "Porsi ini cukup untuk berapa orang?",
+          "cn": "这个份量够几个人吃？",
+          "structure": "Porsi + ini + cukup untuk + berapa orang",
+          "grammar": "cukup untuk = 足够给…；berapa orang 问人数；porsi 借词 portion",
+          "scene": "宴请前估算菜量；避免浪费或不足",
           "ex": [
-            {
-              "slots": [],
-              "reuse": "可加 sudah setengah jam（已经半小时了）",
-              "cn": "打扰一下，我们点的菜还没上。",
-              "level": "pro"
-            }
-          ]
+            "Porsi ini cukup untuk berapa orang?（这个份量够几个人吃？）",
+            "Kalau lima belas orang, perlu pesan berbagai porsi?（如果十五个人，需要点几种份量的？）",
+            "Hidangan utama cukup untuk delapan orang.（主菜够八个人吃。）"
+          ],
+          "slots": [
+            "份量/人数"
+          ],
+          "reuse": "berapa orang 可换 berapa porsi；宴请加 perlu pesan tambah?"
         }
       ],
       "expressions": [
         {
-          "id": "Selamat makan!",
-          "cn": "请慢用！",
-          "note": "开饭万能语，对谁说都合适",
           "level": "basic",
-          "scene": "开饭招呼"
+          "scene": "进餐厅找座",
+          "id": "Permisi, meja untuk dua orang?",
+          "cn": "打扰一下，有两人桌吗？",
+          "note": "进门店员迎接时说；也可说 Meja untuk berdua?"
         },
         {
-          "id": "Rasanya enak sekali.",
-          "cn": "味道非常好。",
-          "note": "rasa（味道）+ -nya；夸奖菜品",
-          "level": "adv",
-          "scene": "夸奖食物"
+          "level": "basic",
+          "scene": "要菜单",
+          "id": "Boleh lihat menunya?",
+          "cn": "可以看一下菜单吗？",
+          "note": "boleh = 可以（征求许可）；店员递菜单时说 terima kasih"
         },
         {
-          "id": "Makan dulu, urusan belakangan.",
-          "cn": "先吃饭，正事稍后。",
-          "note": "印尼餐桌口头禅",
-          "level": "adv",
-          "scene": "轻松饭局"
+          "level": "intermediate",
+          "scene": "催菜",
+          "id": "Permisi, pesanan kami sudah lama belum datang.",
+          "cn": "打扰一下，我们点的菜很久没上了。",
+          "note": "先 Permisi 再说明；避免 langsung mengeluh（直接抱怨）显得粗鲁"
         },
         {
-          "id": "Silakan dinikmati, jangan sungkan.",
-          "cn": "请尽情享用，别客气。",
-          "note": "sungkan = 拘谨；宴请主人常用",
-          "level": "pro",
-          "scene": "宴请宾客"
+          "level": "intermediate",
+          "scene": "询问招牌",
+          "id": "Apa hidangan khas di sini? Yang paling terkenal apa?",
+          "cn": "这里有什么特色菜？最出名的是什么？",
+          "note": "khas = 特色；paling terkenal 最出名；也可问 Yang paling laris?（最畅销）"
         },
         {
-          "id": "Hidangannya tersaji dengan baik.",
-          "cn": "菜肴上得很好。",
-          "note": "di-...-kan 被动；tersaji 被端上",
-          "level": "pro",
-          "scene": "正式宴请赞美"
+          "level": "professional",
+          "scene": "宴请规格",
+          "id": "Untuk makan malam bisnis, kami butuh ruang terpisah.",
+          "cn": "商务晚宴我们需要独立包间。",
+          "note": "ruang terpisah/ruang VIP = 包间；商务宴请提前订并确认隔音与私密性"
         }
       ],
       "affixes": [
         {
-          "affix": "me- 及物化前缀",
-          "type": "动词前缀",
-          "func": "词根动词及物化",
-          "rule": "元音结尾词根加 me-；s 开头变 meny-；p 开头变 mem-",
+          "no": 1,
+          "affix": "pe-...-an 名物化环缀",
+          "type": "环缀",
+          "func": "动词→名词：动作或其结果",
+          "rule": "动词词根+pe-...-an；如 pesan→pemesanan（订购单）",
+          "derivs": [
+            {
+              "root": "pesan",
+              "der": "pemesanan",
+              "zh": "订购（名词）"
+            },
+            {
+              "root": "layan",
+              "der": "pelayanan",
+              "zh": "服务（名词）"
+            },
+            {
+              "root": "hidang",
+              "der": "penghidangan",
+              "zh": "上菜仪式"
+            }
+          ],
+          "examples": [
+            {
+              "id": "Pemesanan bisa dilakukan tiga hari sebelumnya.",
+              "cn": "预订可提前三天办理。"
+            },
+            {
+              "id": "Pelayanan di sini sangat profesional.",
+              "cn": "这里的服务非常专业。"
+            }
+          ]
+        },
+        {
+          "no": 2,
+          "affix": "me- 及物前缀",
+          "type": "前缀",
+          "func": "不及物/名词→及物动词",
+          "rule": "词首 p/t/s 常同化：pesan→memesan；元音开头加 mang-",
           "derivs": [
             {
               "root": "pesan",
@@ -265888,1177 +265933,1280 @@ const caData = {
               "zh": "点餐"
             },
             {
-              "root": "goreng",
-              "der": "menggoreng",
-              "zh": "油炸"
+              "root": "rebus",
+              "der": "merebus",
+              "zh": "煮"
             },
             {
-              "root": "saji",
-              "der": "menyajikan",
-              "zh": "端上（使役）"
+              "root": "goreng",
+              "der": "menggoreng",
+              "zh": "炸"
             }
           ],
           "examples": [
             {
-              "id": "Saya memesan nasi goreng.",
-              "cn": "我点了一份炒饭。"
+              "id": "Saya memesan kamar dua malam.",
+              "cn": "我订了两晚的房间。"
             },
             {
-              "id": "Koki menggoreng ayam dengan minyak kelapa.",
-              "cn": "厨师用椰子油炸鸡。"
+              "id": "Ibu sedang merebus sayuran.",
+              "cn": "妈妈在煮蔬菜。"
             }
           ]
         },
         {
-          "affix": "-an 名词后缀",
-          "type": "名词化",
-          "func": "动作/事物名词化，表结果",
-          "rule": "动词词根加 -an 表结果或事物",
+          "no": 3,
+          "affix": "di-...-kan 被动使役环缀",
+          "type": "环缀",
+          "func": "及物动词的正式被动式",
+          "rule": "比 di- 更强调「被使做」；餐饮公告常见",
           "derivs": [
             {
-              "root": "makan",
-              "der": "makanan",
-              "zh": "食物"
+              "root": "saji",
+              "der": "disajikan",
+              "zh": "被呈上"
+            },
+            {
+              "root": "olah",
+              "der": "diolah",
+              "zh": "被烹制"
             },
             {
               "root": "hidang",
-              "der": "hidangan",
-              "zh": "菜肴"
-            },
-            {
-              "root": "tutup",
-              "der": "tutupan",
-              "zh": "盖子"
+              "der": "dihidangkan",
+              "zh": "被端上"
             }
           ],
           "examples": [
             {
-              "id": "Makanan di sini sangat enak.",
-              "cn": "这里的食物很好吃。"
+              "id": "Hidangan disajikan hangat.",
+              "cn": "菜肴以热食呈上。"
             },
             {
-              "id": "Tutupan panci ini terbuat dari kaca.",
-              "cn": "这个锅盖是玻璃做的。"
+              "id": "Ikan segar diolah langsung setelah ditangkap.",
+              "cn": "鲜鱼捕获后直接加工。"
             }
           ]
         },
         {
-          "affix": "pe-...-an 职业环缀",
-          "type": "名词化",
-          "func": "表从事该动作的人",
-          "rule": "动词加 pe-...-an 构成职业名词",
+          "no": 4,
+          "affix": "-nya 指小/定指后缀",
+          "type": "后缀",
+          "func": "指代前面提到的名词",
+          "rule": "附着于名词/动词后；餐饮语境指「那个/它的」",
           "derivs": [
             {
-              "root": "layan",
-              "der": "pelayan",
-              "zh": "服务员"
+              "root": "pesan + nya",
+              "der": "pesanannya",
+              "zh": "他点的那份"
             },
             {
-              "root": "tani",
-              "der": "petani",
-              "zh": "农民"
+              "root": "kuah + nya",
+              "der": "kuahnya",
+              "zh": "那个汤汁"
+            },
+            {
+              "root": "porsi + nya",
+              "der": "porsinya",
+              "zh": "那个份量"
             }
           ],
           "examples": [
             {
-              "id": "Pelayan ramah membawa hidangan.",
-              "cn": "友善的服务员端来菜肴。"
+              "id": "Pesanannya sudah datang?",
+              "cn": "他点的菜来了吗？"
+            },
+            {
+              "id": "Kuahnya terlalu pedas untuk saya.",
+              "cn": "那个汤对我来说太辣了。"
             }
           ]
         },
         {
-          "affix": "-nya 特指后缀",
-          "type": "冠词化",
-          "func": "将名词特指化「这个/那个」",
-          "rule": "名词加 -nya 表特指，语气更体贴",
+          "no": 5,
+          "affix": "ber- 状态前缀",
+          "type": "前缀",
+          "func": "名词→动词：处于/具有该状态",
+          "rule": "直接加词根；餐饮描述性状",
           "derivs": [
             {
-              "root": "menu",
-              "der": "menunya",
-              "zh": "那份菜单"
+              "root": "rasa",
+              "der": "berasa",
+              "zh": "有味道（口感）"
             },
             {
               "root": "kuah",
-              "der": "kuahnya",
-              "zh": "那个汤汁"
+              "der": "berkuah",
+              "zh": "带汤汁"
+            },
+            {
+              "root": "bumbu",
+              "der": "berbumbu",
+              "zh": "有调料的"
             }
           ],
           "examples": [
             {
-              "id": "Menunya sudah saya baca.",
-              "cn": "菜单我已经看过了。"
+              "id": "Makanan ini berasa rempahnya kuat.",
+              "cn": "这道菜香料味浓。"
             },
             {
-              "id": "Kuahnya agak asin.",
-              "cn": "那个汤有点咸。"
-            }
-          ]
-        },
-        {
-          "affix": "ter- 状态/最高级前缀",
-          "type": "前缀",
-          "func": "表「最」或「处于…状态」",
-          "rule": "形容词加 ter- 表最高级；部分动词表完成状态",
-          "derivs": [
-            {
-              "root": "kenal",
-              "der": "terkenal",
-              "zh": "著名的"
-            },
-            {
-              "root": "enak",
-              "der": "terenak",
-              "zh": "最好吃的"
-            }
-          ],
-          "examples": [
-            {
-              "id": "Restoran ini terkenal dengan sate kambingnya.",
-              "cn": "这家餐厅以烤羊肉串闻名。"
-            },
-            {
-              "id": "Ini masakan terenak yang pernah saya cicipi.",
-              "cn": "这是我吃过最好吃的菜。"
+              "id": "Ayam berkuah kuning khas Jawa.",
+              "cn": "黄汤鸡是爪哇特色。"
             }
           ]
         }
       ],
       "quiz": [
         {
-          "q": "「Boleh lihat menunya?」中 boleh 的作用是？",
+          "q": "pesanan 的动词原形是？",
           "opts": [
-            "表示请求许可",
-            "表示过去时",
-            "表示否定",
-            "表示完成"
+            "pesanan",
+            "memesan",
+            "pelayan",
+            "pemesanan"
           ],
-          "a": 0,
-          "exp": "boleh 表「可以」，boleh + 动词原形构成礼貌请求句式。",
+          "a": 1,
+          "exp": "memesan = 点餐（动词）；pemesanan = 点餐（名词）",
           "level": "basic"
         },
         {
-          "q": "pesanan 的意思是？",
+          "q": "「打包带走」印尼语常用？",
           "opts": [
-            "所点的菜",
+            "makan di tempat",
+            "bawa pulang",
+            "makan pagi",
+            "sudah habis"
+          ],
+          "a": 1,
+          "exp": "bawa pulang/bungkus = 打包；makan di tempat = 堂食",
+          "level": "basic"
+        },
+        {
+          "q": "gurih 最接近的中文意思是？",
+          "opts": [
+            "辣的",
+            "甜的",
+            "鲜美咸香",
+            "酸的"
+          ],
+          "a": 2,
+          "exp": "gurih = 鲜咸（五味之一：manis/pedas/asin/asam/gurih）",
+          "level": "intermediate"
+        },
+        {
+          "q": "「这道菜够几个人吃？」正确表达是？",
+          "opts": [
+            "Porsi ini siapa?",
+            "Porsi ini cukup untuk berapa orang?",
+            "Porsi ini di mana?",
+            "Porsi ini sudah?"
+          ],
+          "a": 1,
+          "exp": "cukup untuk berapa orang = 够几个人",
+          "level": "intermediate"
+        },
+        {
+          "q": "alergi 后面接食物用什么介词？",
+          "opts": [
+            "dengan",
+            "untuk",
+            "terhadap",
+            "dari"
+          ],
+          "a": 2,
+          "exp": "alergi terhadap + 食物 固定搭配",
+          "level": "professional"
+        },
+        {
+          "q": "resep 在餐厅语境指？",
+          "opts": [
+            "收据",
+            "食谱/秘方",
             "菜单",
-            "服务员",
             "账单"
           ],
-          "a": 0,
-          "exp": "pesan（点）+ -an 名词化 = 所点的菜/订单。",
+          "a": 1,
+          "exp": "resep = 食谱；也可指医生处方",
+          "level": "intermediate"
+        },
+        {
+          "q": "「请给我菜单」礼貌说法是？",
+          "opts": [
+            "Minta menunya!",
+            "Boleh lihat menunya?",
+            "Menu cepat!",
+            "Kasih menu!"
+          ],
+          "a": 1,
+          "exp": "Boleh lihat...? = 可以…吗（征求许可）；其余是命令式不礼貌",
           "level": "basic"
         },
         {
-          "q": "「gurih」对应的味道是？",
+          "q": "hidangan 与 masakan 的区别？",
           "opts": [
-            "咸香鲜",
-            "甜",
-            "酸",
-            "苦"
+            "hidangan 更正式，强调呈上的菜",
+            "masakan 更正式",
+            "完全相同",
+            "hidangan 指餐具"
           ],
           "a": 0,
-          "exp": "gurih = 鲜味/咸香，印尼菜五味之一。",
-          "level": "adv"
+          "exp": "hidangan 指呈上的菜肴（正式）；masakan 指烹饪/家常菜",
+          "level": "professional"
         },
         {
-          "q": "「pe-...-an」在 pelayan 中的作用是？",
+          "q": "「为客人请备主厨特色菜」适合场景？",
           "opts": [
-            "表职业/从事者",
-            "表被动",
-            "表完成",
-            "表否定"
+            "快餐店点汉堡",
+            "商务宴请代客点单",
+            "便利店买水",
+            "食堂打饭"
           ],
-          "a": 0,
-          "exp": "layan（服务）→ pelayan（服务员），pe-...-an 表从事者。",
-          "level": "adv"
+          "a": 1,
+          "exp": "Untuk tamu kami...spesial Chef 是商务宴请正式表达",
+          "level": "professional"
         },
         {
-          "q": "点餐说「两份炒饭」正确的是？",
+          "q": "「带汤汁的」用 ber- 构词是？",
           "opts": [
-            "dua porsi nasi goreng",
-            "dua nasi goreng porsi",
-            "nasi goreng dua porsi saja",
-            "porsi dua nasi goreng"
+            "berkuah",
+            "berbumbu",
+            "berasa",
+            "berhidang"
           ],
           "a": 0,
-          "exp": "数词 + porsi + 菜名 是标准语序。",
-          "level": "adv"
-        },
-        {
-          "q": "untuk 在「Untuk saya satu」中的意思是？",
-          "opts": [
-            "给/为",
-            "和",
-            "在",
-            "比"
-          ],
-          "a": 0,
-          "exp": "untuk + 人 表「给某人/为某人」。",
-          "level": "adv"
-        },
-        {
-          "q": "menyajikan 的构词分析正确的是？",
-          "opts": [
-            "me-...-kan 使役，saji 以 s 开头 me- 变 meny-",
-            "me- 直接加 saji",
-            "ber- 相互态",
-            "di- 被动"
-          ],
-          "a": 0,
-          "exp": "saji 以 s 开头，me- 变 meny-；me-...-kan 使役 = 端上/奉上。",
-          "level": "adv"
-        },
-        {
-          "q": "对服务员说「请做成不辣的」最礼貌的表达是？",
-          "opts": [
-            "Tolong dibuatkan yang tidak pedas.",
-            "Jangan pedas!",
-            "Pedas tidak boleh.",
-            "Buat tidak pedas."
-          ],
-          "a": 0,
-          "exp": "被动式 di-...-kan + tolong 是最礼貌的请求方式。",
-          "level": "pro"
-        },
-        {
-          "q": "terkenal 与 terenak 中 ter- 的作用是？",
-          "opts": [
-            "表「最/处于…状态」",
-            "表否定",
-            "表被动",
-            "表进行"
-          ],
-          "a": 0,
-          "exp": "ter- 加形容词表最高级：terkenal 最有名；terenak 最好吃。",
-          "level": "pro"
-        },
-        {
-          "q": "宴请时说「请尽情享用，别客气」应该用？",
-          "opts": [
-            "Silakan dinikmati, jangan sungkan.",
-            "Makan cepat!",
-            "Makan sendiri saja.",
-            "Sudah makan?"
-          ],
-          "a": 0,
-          "exp": "silakan + 动词 + jangan sungkan 是宴请标准敬语。",
-          "level": "pro"
+          "exp": "kuah（汁）+ ber- = berkuah 带汤汁的；berbumbu 有调料的",
+          "level": "intermediate"
         }
       ]
     },
     "day2": {
       "date": "2026-11-20",
-      "theme": "口味与结账 / Rasa dan Pembayaran",
+      "theme": "口味与结账",
       "vocab": [
         {
           "w": "tanpa",
           "cn": "没有；不带",
           "ipa": "/ˈtam.pa/",
           "level": "基础",
-          "note": "tanpa gula 无糖；tanpa daging 不放肉"
+          "note": "饮食禁忌高频：tanpa gula/daging；介词直接加名词"
         },
         {
           "w": "pedas",
           "cn": "辣的",
           "ipa": "/ˈpə.das/",
-          "level": "进阶",
-          "note": "kepedasan = 太辣受不了；sambal 很辣"
+          "level": "基础",
+          "note": "kepedasan = 辣得受不了；印尼菜核心口味"
         },
         {
           "w": "asin",
           "cn": "咸的",
           "ipa": "/ˈa.sin/",
+          "level": "基础",
+          "note": "keasinan = 太咸；反义 tawar（淡）"
+        },
+        {
+          "w": "goreng",
+          "cn": "油炸的",
+          "ipa": "/ˈgo.reŋ/",
           "level": "进阶",
-          "note": "asin sekali = 太咸；keasinan"
+          "note": "nasi goreng/ayam goreng；gorengan = 炸物"
         },
         {
           "w": "kuah",
           "cn": "汤汁",
           "ipa": "/ˈku.ah/",
           "level": "进阶",
-          "note": "kuah santan = 椰浆汤汁；kuah kuning 黄汤"
+          "note": "常搭配 santan（椰浆）/kuning（黄汤）"
         },
         {
           "w": "tagihan",
           "cn": "账单",
           "ipa": "/ta.ˈgi.han/",
           "level": "进阶",
-          "note": "tagih（催收）+ -an；minta tagihan = 要账单"
+          "note": "minta tagihan = 要账单；也可指水电账单"
         },
         {
           "w": "struk",
           "cn": "小票；收据",
           "ipa": "/ˈstruk/",
           "level": "专业",
-          "note": "来自荷兰语 strook；付款后索要用"
-        },
-        {
-          "w": "kembalian",
-          "cn": "找零；找回的钱",
-          "ipa": "/kəm.ˈba.li.an/",
-          "level": "专业",
-          "note": "kembali（回来）+ -an；找零常作小费"
+          "note": "报销凭证；正式发票 faktur/ nota pajak"
         }
       ],
       "phrases": [
         {
-          "id": "Tolong jangan terlalu pedas.",
-          "cn": "请不要太辣。",
-          "usage": "口味要求",
-          "note": "jangan 否定祈使；terlalu 太",
+          "id": "kurang garam",
+          "cn": "盐不够；偏淡",
+          "usage": "反馈口味",
+          "note": "kurang + 名词 = 缺…；也可说 hambar",
           "level": "basic"
         },
         {
-          "id": "Bisa dibuat tanpa gula?",
-          "cn": "能做成无糖的吗？",
-          "usage": "饮食限制",
-          "note": "di-...-kan 被动请求句式",
-          "level": "adv"
+          "id": "terlalu pedas",
+          "cn": "太辣了",
+          "usage": "反馈口味",
+          "note": "terlalu + 形容词 = 太…；加 untuk saya（对我来说）更礼貌",
+          "level": "basic"
         },
         {
-          "id": "Yang ini dibungkus, ya.",
-          "cn": "这份打包。",
-          "usage": "要求打包带走",
-          "note": "yang ini 这个；dibungkus 被包装",
-          "level": "adv"
+          "id": "tanpa gula",
+          "cn": "无糖",
+          "usage": "点饮料",
+          "note": "糖尿病患者/控糖高频；也可 tanpa pemanis（无甜味剂）",
+          "level": "intermediate"
         },
         {
-          "id": "Minta tagihannya, tolong.",
-          "cn": "麻烦结账。",
-          "usage": "餐后请服务员结账",
-          "note": "minta + 名词 = 要…",
-          "level": "adv"
+          "id": "porsi kecil/besar",
+          "cn": "小份/大份",
+          "usage": "调整份量",
+          "note": "也可说 setengah porsi（半份）；besar 比 besar-besaran 自然",
+          "level": "intermediate"
         },
         {
-          "id": "Kembaliannya untuk pelayannya saja.",
-          "cn": "找零就给服务员吧。",
-          "usage": "把小费留给服务员",
-          "note": "saja 表「就…好了」",
-          "level": "pro"
+          "id": "kasih diskon",
+          "cn": "给个折扣",
+          "usage": "商务结账",
+          "note": "kasih 口语=beri；正式 minta potongan harga；常客/批量可谈",
+          "level": "professional"
         }
       ],
       "patterns": [
         {
-          "cat": "否定请求",
-          "formula": "Tolong jangan [形容词/动词].",
-          "structure": "Tolong + jangan + 形容词",
-          "grammar": "jangan 否定祈使；tolong 软化语气",
-          "scene": "提出否定性要求",
+          "cat": "口味偏好陈述",
+          "level": "basic",
+          "formula": "[菜名] jangan terlalu [口味词].",
+          "cn": "…不要太…",
+          "structure": "菜名 + jangan terlalu + 口味形容词",
+          "grammar": "jangan = 祈使否定「别」；terlalu = 太；点单时预防性说明",
+          "scene": "warung/快餐店点单提要求",
           "ex": [
-            {
-              "slots": [
-                "形容词"
-              ],
-              "reuse": "常见：terlalu asin/terlalu manis",
-              "cn": "请不要太咸。",
-              "level": "basic"
-            }
-          ]
+            "Nasi goreng jangan terlalu pedas.（炒饭不要太辣。）",
+            "Kopinya jangan terlalu manis.（咖啡不要太甜。）",
+            "Kuahnya jangan terlalu asin.（汤不要太咸。）"
+          ],
+          "slots": [
+            "菜名",
+            "口味词"
+          ],
+          "reuse": "pedas 可换 manis/asin/pahit；jangan 可换 tolong jangan 更礼貌"
         },
         {
-          "cat": "忌口表达",
-          "formula": "Bisa dibuat tanpa [名词]?",
-          "structure": "Bisa + di-...-kan + tanpa + 名词",
-          "grammar": "tanpa 表「没有」；疑问加 bisa",
-          "scene": "忌口/饮食限制",
+          "cat": "禁忌与过敏声明",
+          "level": "intermediate",
+          "formula": "Saya tidak bisa makan [食材]. Bisa dibuat tanpa [食材]?",
+          "cn": "我不能吃…。能做成不含…的吗？",
+          "structure": "Saya tidak bisa makan + 食材 + . Bisa dibuat tanpa + 食材 + ?",
+          "grammar": "tidak bisa = 不能（能力/健康限制）；tanpa = 不含；dibuat 是 di- 被动「被做」",
+          "scene": "有过敏/宗教忌口时与服务员协商",
           "ex": [
-            {
-              "slots": [
-                "名词"
-              ],
-              "reuse": "常见：gula/daging/santan",
-              "cn": "可以不放椰浆吗？",
-              "level": "adv"
-            }
-          ]
+            "Saya tidak bisa makan seafood. Bisa dibuat tanpa terasi?（我不能吃海鲜。能做成不含虾酱的吗？）",
+            "Saya alergi kacang. Ada hidangan tanpa kacang?（我花生过敏。有不含花生的菜吗？）",
+            "Saya tidak makan daging babi. Menu ini aman?（我不吃猪肉。这个菜单安全吗？）"
+          ],
+          "slots": [
+            "食材"
+          ],
+          "reuse": "alergi 比 tidak bisa 更严肃；宗教忌口加 karena alasan agama"
         },
         {
-          "cat": "打包请求",
-          "formula": "[Yang ini] dibungkus.",
-          "structure": "指示代词 + di-...-kan",
-          "grammar": "被动式打包请求",
-          "scene": "吃不完带走",
+          "cat": "结账基础",
+          "level": "basic",
+          "formula": "Permisi, minta tagihannya. / Berapa totalnya?",
+          "cn": "麻烦结账。/一共多少钱？",
+          "structure": "Permisi + minta tagihan + nya / Berapa total + nya",
+          "grammar": "minta = 要；tagihan + -nya 定指「那个账单」；berapa = 多少；total 借词",
+          "scene": "餐厅举手示意结账",
           "ex": [
-            {
-              "slots": [],
-              "reuse": "也可说 Tolong bungkus ini.",
-              "cn": "这份打包。",
-              "level": "adv"
-            }
-          ]
+            "Permisi, minta tagihannya.（麻烦结账。）",
+            "Berapa totalnya?（一共多少钱？）",
+            "Bisa bayar tunai?（能付现金吗？）"
+          ],
+          "slots": [],
+          "reuse": "tagihan 可换 bon/nota；加 untuk meja lima（五号桌）说明位置"
         },
         {
-          "cat": "结账询问",
-          "formula": "Berapa totalnya?",
-          "structure": "Berapa + totalnya",
-          "grammar": "berapa 询问数量/金额；-nya 特指",
-          "scene": "看账单前询问",
+          "cat": "支付方式与发票",
+          "level": "professional",
+          "formula": "Bisa bayar dengan [kartu/QRIS]? Tolong buatkan [faktur/nota].",
+          "cn": "可以刷[卡/QR码]吗？请开[发票/收据]。",
+          "structure": "Bisa bayar dengan + 支付方式 + ? Tolong buatkan + 票据类型",
+          "grammar": "dengan = 用（工具）；buatkan = buat + -kan 使役「给…做」；faktur 是税务发票，nota 是普通收据",
+          "scene": "公司报销需要正式票据；大额支付确认",
           "ex": [
-            {
-              "slots": [],
-              "reuse": "也可说 Berapa semuanya?",
-              "cn": "一共多少钱？",
-              "level": "adv"
-            }
-          ]
+            "Bisa bayar dengan kartu kredit? Tolong buatkan faktur.（可以刷信用卡吗？请开发票。）",
+            "Bisa bayar QRIS? Saya butuh nota untuk laporan.（可以扫 QRIS 吗？我需要收据做报表。）",
+            "Bisa split bill? Dua kartu terpisah.（可以分账吗？两张卡分开刷。）"
+          ],
+          "slots": [
+            "支付方式",
+            "票据类型"
+          ],
+          "reuse": "QRIS 是印尼国标扫码支付；split bill 借词通用"
         },
         {
-          "cat": "支付方式",
-          "formula": "Boleh bayar dengan [方式]?",
-          "structure": "Boleh + bayar + dengan + 方式",
-          "grammar": "dengan 表「用/以」",
-          "scene": "刷卡/现金确认",
+          "cat": "议价与优惠",
+          "level": "professional",
+          "formula": "Kalau pesan [数量], ada potongan harga?",
+          "cn": "如果点[数量],有优惠吗？",
+          "structure": "Kalau + 动词短语 + , ada potongan harga + ?",
+          "grammar": "kalau = 如果（条件从句）；ada = 有；potongan harga = 折扣（字面「价格削减」）；比 diskon 更本土",
+          "scene": "团体订餐/长期合作议价；宴预算控制",
           "ex": [
-            {
-              "slots": [
-                "方式"
-              ],
-              "reuse": "方式可换：tunai/QRIS/transfer",
-              "cn": "可以刷卡吗？",
-              "level": "pro"
-            }
-          ]
+            "Kalau pesan lima porsi, ada potongan harga?（如果点五份，有优惠吗？）",
+            "Kalau langganan tiap minggu, bisa kurang?（如果每周固定订，能便宜吗？）",
+            "Kalau bayar tunai, ada diskon tambahan?（如果付现金，有额外折扣吗？）"
+          ],
+          "slots": [
+            "数量/条件"
+          ],
+          "reuse": "potongan harga 可换 diskon；加 buat pelanggan tetap（老客户）更好谈"
         }
       ],
       "expressions": [
         {
-          "id": "Enak sekali!",
-          "cn": "非常好吃！",
-          "note": "万能夸奖",
           "level": "basic",
-          "scene": "夸奖"
+          "scene": "催菜",
+          "id": "Permisi, pesanan kami sudah hampir satu jam.",
+          "cn": "打扰一下，我们点的菜快一个小时了。",
+          "note": "陈述事实而非指责；hampir satu jam 比 lama 更具体有效"
         },
         {
-          "id": "Kenyang sekali.",
-          "cn": "吃得好饱。",
-          "note": "kenyang = 饱（吃）",
-          "level": "adv",
-          "scene": "餐后"
+          "level": "basic",
+          "scene": "退换",
+          "id": "Maaf, ini tidak saya pesan. / Ada rambut di makanan.",
+          "cn": "抱歉，这不是我点的。/食物里有头发。",
+          "note": "保持冷静陈述事实；印尼服务文化重视面子，避免 raising voice"
         },
         {
-          "id": "Harganya cukup terjangkau.",
-          "cn": "价格挺实惠。",
-          "note": "terjangkau = 负担得起（ter- 表状态）",
-          "level": "adv",
-          "scene": "评价"
+          "level": "intermediate",
+          "scene": "口味协商",
+          "id": "Bisa kurangi pedasnya sedikit?",
+          "cn": "能少放一点辣吗？",
+          "note": "kurangi = 减少（祈使）；-nya 指「辣度」"
         },
         {
-          "id": "Silakan ambil kembaliannya.",
-          "cn": "找零您拿着吧。",
-          "note": "给小费的标准说法",
-          "level": "pro",
-          "scene": "给小费"
+          "level": "intermediate",
+          "scene": "开发票",
+          "id": "Bisa buatkan faktur atas nama perusahaan?",
+          "cn": "能以公司名义开发票吗？",
+          "note": "atas nama = 以…名义；报销必须 faktur pajak（税票）非 struk"
         },
         {
-          "id": "Pelayanannya cepat dan ramah.",
-          "cn": "服务又快又周到。",
-          "note": "layanan + -nya 名词化：服务",
-          "level": "pro",
-          "scene": "整体评价"
+          "level": "professional",
+          "scene": "投诉升级",
+          "id": "Saya ingin bicara dengan manajernya, kalau bisa.",
+          "cn": "如果可以，我想和经理谈。",
+          "note": "bicara dengan = 与…谈；manajernya 用 -nya 特指；kalau bisa 软化语气但明确诉求"
         }
       ],
       "affixes": [
         {
-          "affix": "ke-...-an 状态名词环缀",
-          "type": "名词化",
-          "func": "表「过…的状态」",
-          "rule": "形容词加 ke-...-an 表状态名词",
+          "no": 1,
+          "affix": "terlalu 过度副词",
+          "type": "副词",
+          "func": "形容词前表「太…」",
+          "rule": "直接置于形容词前；不用于比较级",
+          "derivs": [
+            {
+              "root": "pedas",
+              "der": "terlalu pedas",
+              "zh": "太辣"
+            },
+            {
+              "root": "manis",
+              "der": "terlalu manis",
+              "zh": "太甜"
+            },
+            {
+              "root": "mahal",
+              "der": "terlalu mahal",
+              "zh": "太贵"
+            }
+          ],
+          "examples": [
+            {
+              "id": "Makanan ini terlalu pedas untuk saya.",
+              "cn": "这菜对我来说太辣了。"
+            },
+            {
+              "id": "Harganya terlalu mahal.",
+              "cn": "价格太贵了。"
+            }
+          ]
+        },
+        {
+          "no": 2,
+          "affix": "ke-...-an 状态环缀",
+          "type": "环缀",
+          "func": "形容词→「感到太…」",
+          "rule": "形容词+ke-...-an；主观感受",
           "derivs": [
             {
               "root": "pedas",
               "der": "kepedasan",
-              "zh": "辣得受不了"
+              "zh": "辣得难受"
             },
             {
               "root": "asin",
               "der": "keasinan",
-              "zh": "太咸"
+              "zh": "咸得难受"
             },
             {
-              "root": "manis",
-              "der": "kemanisan",
-              "zh": "太甜"
+              "root": "kenyang",
+              "der": "kekenyangan",
+              "zh": "撑得难受"
             }
           ],
           "examples": [
             {
-              "id": "Saya kepedasan setelah makan sambal itu.",
-              "cn": "吃了那个辣椒酱我辣得受不了。"
+              "id": "Saya kepedasan, tolong air putih.",
+              "cn": "我辣得难受，请给白水。"
+            },
+            {
+              "id": "Jangan makan sampai kekenyangan.",
+              "cn": "别吃到撑。"
             }
           ]
         },
         {
-          "affix": "di-...-kan 被动使役环缀",
-          "type": "被动",
-          "func": "被/让…",
-          "rule": "及物动词被动化：di- 前缀 + -kan 后缀",
+          "no": 3,
+          "affix": "-kan 使役后缀",
+          "type": "后缀",
+          "func": "动词→使役「使/为…做」",
+          "rule": "及物动词+kan；餐饮请求高频",
           "derivs": [
-            {
-              "root": "bungkus",
-              "der": "dibungkuskan",
-              "zh": "被打包好"
-            },
             {
               "root": "buat",
-              "der": "dibuatkan",
-              "zh": "被做（给）"
+              "der": "buatkan",
+              "zh": "给…做"
+            },
+            {
+              "root": "kurang",
+              "der": "kurangkan",
+              "zh": "给…减少"
+            },
+            {
+              "root": "tambah",
+              "der": "tambahkan",
+              "zh": "给…加"
             }
           ],
           "examples": [
             {
-              "id": "Makanan sisa dibungkuskan oleh pelayan.",
-              "cn": "剩饭被服务员打包好了。"
+              "id": "Tolong buatkan faktur.",
+              "cn": "请给开发票。"
+            },
+            {
+              "id": "Bisa kurangkan pedasnya?",
+              "cn": "能给少放点辣吗？"
             }
           ]
         },
         {
-          "affix": "-nya 名词化后缀",
-          "type": "特指/名词化",
-          "func": "动词转名词或表特指",
-          "rule": "动词/形容词加 -nya",
-          "derivs": [
-            {
-              "root": "kembali",
-              "der": "kembalian",
-              "zh": "找零"
-            }
-          ],
-          "examples": [
-            {
-              "id": "Kembaliannya lima ribu rupiah.",
-              "cn": "找零是五千盾。"
-            }
-          ]
-        },
-        {
-          "affix": "ter- 状态前缀",
+          "no": 4,
+          "affix": "di- 被动前缀",
           "type": "前缀",
-          "func": "表「可…的/最…」",
-          "rule": "形容词/动词加 ter-",
+          "func": "及物动词被动式",
+          "rule": "词根+di-；印尼语最常用被动",
           "derivs": [
             {
-              "root": "jangkau",
-              "der": "terjangkau",
-              "zh": "负担得起的"
+              "root": "buat",
+              "der": "dibuat",
+              "zh": "被制作"
             },
             {
-              "root": "kenal",
-              "der": "terkenal",
-              "zh": "著名的"
+              "root": "goreng",
+              "der": "digoreng",
+              "zh": "被炸"
+            },
+            {
+              "root": "bayar",
+              "der": "dibayar",
+              "zh": "被支付"
             }
           ],
           "examples": [
             {
-              "id": "Harga makanan di sini terjangkau.",
-              "cn": "这里餐价很实惠。"
+              "id": "Hidangan ini dibuat segar setiap pagi.",
+              "cn": "这道菜每天早晨现做。"
+            },
+            {
+              "id": "Biaya layanan sudah termasuk.",
+              "cn": "服务费已包含。"
             }
           ]
         },
         {
-          "affix": "memper-...-kan 强使役环缀",
-          "type": "使役",
-          "func": "使…成为/变得",
-          "rule": "词根加 memper-...-kan 表正式使役",
+          "no": 5,
+          "affix": "se- 同级比较前缀",
+          "type": "前缀",
+          "func": "「和…一样…」",
+          "rule": "se+形容词；餐饮比较份量/口味",
           "derivs": [
             {
-              "root": "hangat",
-              "der": "memperhangatkan",
-              "zh": "使变温热"
+              "root": "porsi",
+              "der": "seporsi",
+              "zh": "一份"
             },
             {
-              "root": "mudah",
-              "der": "mempermudah",
-              "zh": "使简化"
+              "root": "harga",
+              "der": "seharga",
+              "zh": "同价"
+            },
+            {
+              "root": "rasa",
+              "der": "serasa",
+              "zh": "同味"
             }
           ],
           "examples": [
             {
-              "id": "Tolong dihangatkan dulu supnya.",
-              "cn": "请先把汤热一下。"
+              "id": "Seporsi nasi goreng berapa?",
+              "cn": "一份炒饭多少钱？"
+            },
+            {
+              "id": "Ukurannya sebesar piring ini.",
+              "cn": "大小和这个盘子一样。"
             }
           ]
         }
       ],
       "quiz": [
         {
-          "q": "「tanpa gula」的意思是？",
+          "q": "「太辣了」正确表达？",
           "opts": [
-            "无糖",
-            "加冰",
-            "热的",
-            "辣的"
+            "Sangat pedas",
+            "Terlalu pedas",
+            "Pedas sekali",
+            "Paling pedas"
           ],
-          "a": 0,
-          "exp": "tanpa = 没有；gula = 糖。",
+          "a": 1,
+          "exp": "terlalu = 过度「太」；sangat/sekali/paling 是程度/最高级",
           "level": "basic"
         },
         {
-          "q": "「Enak sekali」中 sekali 表示？",
+          "q": "kepedasan 的结构是？",
           "opts": [
-            "非常",
-            "一次",
-            "曾经",
-            "永远"
-          ],
-          "a": 0,
-          "exp": "sekali 附在形容词后表「非常」。",
-          "level": "basic"
-        },
-        {
-          "q": "tagihan 来自哪个词根？",
-          "opts": [
-            "tagih（催收）",
-            "tahi",
-            "tiga",
-            "tahan"
-          ],
-          "a": 0,
-          "exp": "tagih（催收）+ -an = 账单。",
-          "level": "adv"
-        },
-        {
-          "q": "kembalian 的意思是？",
-          "opts": [
-            "找零",
-            "价格",
-            "菜单",
-            "发票"
-          ],
-          "a": 0,
-          "exp": "kembali（回来）+ -an；找回的钱。",
-          "level": "adv"
-        },
-        {
-          "q": "kepedasan 的构词是？",
-          "opts": [
-            "ke-...-an 状态名词化",
-            "me- 及物",
+            "ke-...-an 状态环缀",
+            "me- 前缀",
             "di- 被动",
-            "ber- 相互"
+            "pe- 施事"
           ],
           "a": 0,
-          "exp": "pedas（辣）→ kepedasan（辣得受不了的状态）。",
-          "level": "adv"
+          "exp": "ke-...-an + 形容词 = 感到太…（主观状态）",
+          "level": "intermediate"
         },
         {
-          "q": "terjangkau 中 ter- 的作用是？",
+          "q": "「无糖」印尼语？",
           "opts": [
-            "表可承担状态",
-            "表被动",
-            "表完成",
-            "表否定"
+            "tanpa gula",
+            "kurang gula",
+            "tidak manis",
+            "pahit"
           ],
           "a": 0,
-          "exp": "jangkau（够到）→ terjangkau（可承担的）。",
-          "level": "adv"
+          "exp": "tanpa = 不含；kurang = 不够；tidak manis 是不甜但可能含糖",
+          "level": "basic"
         },
         {
-          "q": "对服务员说「这份打包」最自然的表达是？",
+          "q": "「能少放辣吗？」礼貌说法是？",
           "opts": [
-            "Yang ini dibungkus.",
-            "Bungkus ini!",
-            "Ini bungkus.",
-            "Bungkus cepat!"
+            "Jangan pedas!",
+            "Kurangi pedasnya!",
+            "Bisa kurangi pedasnya sedikit?",
+            "Pedas jangan!"
           ],
-          "a": 0,
-          "exp": "指示代词 + di-...-kan 被动式是标准礼貌说法。",
-          "level": "adv"
+          "a": 2,
+          "exp": "Bisa + 动词…? = 商量语气；sedikit 软化；感叹号命令式不礼貌",
+          "level": "intermediate"
         },
         {
-          "q": "在印尼餐厅给小费，得体做法是？",
+          "q": "QRIS 是什么？",
           "opts": [
-            "说「Kembaliannya untuk Anda.」",
-            "大声喊小费",
-            "留下账单走人",
-            "刷卡多刷一倍"
+            "银行卡",
+            "印尼国标扫码支付系统",
+            "信用卡积分",
+            "外卖平台"
           ],
-          "a": 0,
-          "exp": "把找零留给服务员是印尼常见小费方式，用 Kembaliannya untuk Anda 表达。",
-          "level": "pro"
+          "a": 1,
+          "exp": "QRIS = Quick Response Code Indonesian Standard，2020 起强制统一",
+          "level": "professional"
         },
         {
-          "q": "对食物过敏应该怎么说？",
+          "q": "「以公司名义开发票」关键短语？",
           "opts": [
-            "Saya alergi terhadap seafood.",
-            "Saya tidak suka seafood.",
-            "Seafood tidak enak.",
-            "Makan seafood saja."
+            "atas nama perusahaan",
+            "dengan nama saya",
+            "tanpa nama",
+            "nama pelayan"
           ],
           "a": 0,
-          "exp": "alergi terhadap = 对…过敏；比 tidak suka（不喜欢）严肃，服务员会特别对待。",
-          "level": "pro"
+          "exp": "atas nama = 以…名义（法律/正式文件）",
+          "level": "professional"
         },
         {
-          "q": "要求「再加热一下」最礼貌的说法是？",
+          "q": "potongan harga 与 diskon 的关系？",
           "opts": [
-            "Tolong dihangatkan lagi.",
-            "Panaskan!",
-            "Makanan dingin!",
-            "Ulangi masak."
+            "同义，前者更本土",
+            "完全不同",
+            "potongan 是涨价",
+            "diskon 是税"
           ],
           "a": 0,
-          "exp": "被动 di-...-kan + tolong + lagi（再）是礼貌句式。",
-          "level": "pro"
+          "exp": "potongan harga = 价格削减（本土词）；diskon 借词；同义",
+          "level": "intermediate"
+        },
+        {
+          "q": "「请给开发票」buatkan 的结构？",
+          "opts": [
+            "buat + kan = 使役「给…做",
+            "buat + an = 名词",
+            "berbuat + kan",
+            "di- 被动"
+          ],
+          "a": 0,
+          "exp": "buat（做）+ -kan（使役）= 给某人做；Tolong buatkan faktur.",
+          "level": "intermediate"
+        },
+        {
+          "q": "faktur 与 struk 的区别？",
+          "opts": [
+            "faktur 是税务发票可报销，struk 是普通收据",
+            "完全相同",
+            "struk 更正式",
+            "faktur 是小费"
+          ],
+          "a": 0,
+          "exp": "faktur pajak = 增值税发票（公司报销）；struk = 消费小票",
+          "level": "professional"
+        },
+        {
+          "q": "「如果点五份有优惠吗？」条件词用？",
+          "opts": [
+            "kalau",
+            "tetapi",
+            "karena",
+            "sebelum"
+          ],
+          "a": 0,
+          "exp": "kalau = 如果（条件从句引导词）",
+          "level": "intermediate"
         }
       ]
     },
     "day3": {
       "date": "2026-11-21",
-      "theme": "商务宴请 / Jamuan Bisnis",
+      "theme": "商务宴请",
       "vocab": [
         {
           "w": "warung",
           "cn": "小餐馆；食摊",
           "ipa": "/ˈwa.ruŋ/",
           "level": "基础",
-          "note": "warung nasi = 小饭摊；比 restoran 更市井"
+          "note": "比 restoran 更市井；印尼街头饮食灵魂"
         },
         {
           "w": "reservasi",
           "cn": "预订",
           "ipa": "/rə.sər.ˈva.si/",
           "level": "进阶",
-          "note": "reservasi meja = 订位；借自荷兰语 reservering"
+          "note": "reservasi meja/tempat；口语也说 booking"
         },
         {
-          "w": "halal",
-          "cn": "清真的；符合教规的",
-          "ipa": "/ˈha.lal/",
-          "level": "进阶",
-          "note": "印尼穆斯林饮食核心词；non-halal = 非清真"
-        },
-        {
-          "w": "alergi",
-          "cn": "过敏",
-          "ipa": "/ˈa.lər.gi/",
-          "level": "进阶",
-          "note": "alergi terhadap + 食物；餐饮禁忌必用"
+          "w": "kembalian",
+          "cn": "找零；找回的钱",
+          "ipa": "/kəm.ˈba.li.an/",
+          "level": "基础",
+          "note": "Kembaliannya untuk Anda = 找零给你（小费话术）"
         },
         {
           "w": "sajian",
           "cn": "席上菜肴；供品",
           "ipa": "/ˈsa.dʒi.an/",
-          "level": "进阶",
-          "note": "saji（端上/供奉）+ -an；sajian utama = 主菜"
+          "level": "专业",
+          "note": "比 hidangan 更正式，强调「奉上」"
         },
         {
-          "w": "dapur",
-          "cn": "厨房",
-          "ipa": "/ˈda.pur/",
+          "w": "halal",
+          "cn": "清真的；符合教规的",
+          "ipa": "/ˈha.lal/",
           "level": "专业",
-          "note": "dapur umum = 公共厨房；masuk dapur 俗语指深入基层"
+          "note": "商务宴请第一确认项；反义 non-halal/haram"
         },
         {
           "w": "pajak",
           "cn": "税",
           "ipa": "/ˈpa.dʒak/",
           "level": "专业",
-          "note": "pajak restoran = 餐厅税，账单通常加 10%"
+          "note": "pajak restoran 通常 10%；pajak penghasilan 所得税"
+        },
+        {
+          "w": "dapur",
+          "cn": "厨房",
+          "ipa": "/ˈda.pur/",
+          "level": "进阶",
+          "note": "masuk dapur 俗语=深入基层/亲自动手"
         }
       ],
       "phrases": [
         {
-          "id": "Kami sudah reservasi atas nama Wang.",
-          "cn": "我们以王的名字订了位。",
-          "usage": "到店报预订",
-          "note": "atas nama + 名字 = 以…名义",
+          "id": "ruang terpisah",
+          "cn": "独立包间",
+          "usage": "订座要求",
+          "note": "ruang VIP/private room；商务宴请私密性必备",
+          "level": "intermediate"
+        },
+        {
+          "id": "atas nama",
+          "cn": "以…名义（预订）",
+          "usage": "预订确认",
+          "note": "reservasi atas nama + 姓名/公司",
+          "level": "intermediate"
+        },
+        {
+          "id": "jam makan siang",
+          "cn": "午餐时段",
+          "usage": "预订时间",
+          "note": "印尼午餐 11:30-13:00；避开 sholat Jumat（周五礼拜）",
           "level": "basic"
         },
         {
-          "id": "Meja untuk empat orang, dekat jendela kalau ada.",
-          "cn": "四人桌，靠窗如果有的话。",
-          "usage": "指定座位偏好",
-          "note": "kalau ada 表条件「如果有」",
-          "level": "adv"
+          "id": "traktir",
+          "cn": "请客；做东",
+          "usage": "商务场合",
+          "note": "Saya traktir = 我请客；同事间常用，商务正式用 Saya undang",
+          "level": "intermediate"
         },
         {
-          "id": "Salah satu rekan kami alergi terhadap kacang.",
-          "cn": "我们有一位同事对花生过敏。",
-          "usage": "餐前告知饮食禁忌",
-          "note": "salah satu + 名词 = 其中之一",
-          "level": "adv"
-        },
-        {
-          "id": "Ini jamuan sederhana, mohon maaf bila kurang berkenan.",
-          "cn": "这是简宴，如有不周请多包涵。",
-          "usage": "宴请开场谦辞",
-          "note": "kurang berkenan = 不合意",
-          "level": "pro"
-        },
-        {
-          "id": "Semoga kerja sama kita sehangat hidangan ini.",
-          "cn": "愿我们的合作如这道菜一样热络。",
-          "usage": "敬酒/收尾祝愿",
-          "note": "se- + 形容词 = 像…一样",
-          "level": "pro"
+          "id": "jamu tamu",
+          "cn": "款待宾客",
+          "usage": "正式宴请",
+          "note": "jamu 是爪哇文化核心概念（比 layani 更深情）；kepala tamu = 主宾",
+          "level": "professional"
         }
       ],
       "patterns": [
         {
-          "cat": "预订报名",
-          "formula": "Sudah reservasi atas nama [姓].",
-          "structure": "Sudah + reservasi + atas nama + 名字",
-          "grammar": "atas nama 固定搭配表「以…名义」",
-          "scene": "到店确认订位",
+          "cat": "预订基础",
+          "level": "basic",
+          "formula": "Saya mau reservasi meja untuk [人数] orang, [日期/时间].",
+          "cn": "我想订一张[人数]人的桌子，[时间]。",
+          "structure": "Saya mau reservasi meja untuk + 人数 + orang + , + 时间",
+          "grammar": "reservasi 是名词兼动词；untuk = 为了；日期格式 tanggal+日+bulan+月+jam+点",
+          "scene": "电话或现场订座",
           "ex": [
-            {
-              "slots": [
-                "名字"
-              ],
-              "reuse": "也可说 Saya booking atas nama...",
-              "cn": "我订了位，姓李。",
-              "level": "basic"
-            }
-          ]
+            "Saya mau reservasi meja untuk empat orang, besok jam tujuh malam.（我想订四人桌，明晚七点。）",
+            "Reservasi untuk dua orang, Sabtu jam dua belas siang.（订两人桌，周六中午十二点。）",
+            "Ada meja dekat jendela?（有靠窗的桌子吗？）"
+          ],
+          "slots": [
+            "人数",
+            "时间"
+          ],
+          "reuse": "besok 可换 lusa/tanggal 19；加 dekat jendela/ruang merokok 选位置"
         },
         {
-          "cat": "订位请求",
-          "formula": "Boleh pesan meja untuk [数量] orang?",
-          "structure": "Boleh pesan meja untuk + 数量 + orang",
-          "grammar": "untuk 表对象；orang 人（量词）",
-          "scene": "电话订位",
+          "cat": "商务宴请正式邀请",
+          "level": "professional",
+          "formula": "Kami ingin mengundang Bapak/Ibu untuk jamuan makan malam.",
+          "cn": "我们想邀请先生/女士参加晚宴。",
+          "structure": "Kami ingin mengundang + 称谓 + untuk + jamuan + 活动",
+          "grammar": "mengundang = 邀请（正式）；jamuan = 宴请（名词）；Bapak/Ibu + 职称是印尼商务礼仪标配",
+          "scene": "正式邀请函/当面邀请客户或政府人员",
           "ex": [
-            {
-              "slots": [
-                "数量"
-              ],
-              "reuse": "可加时间：jam tujuh malam",
-              "cn": "可以订一张六人桌吗？",
-              "level": "adv"
-            }
-          ]
+            "Kami ingin mengundang Bapak Direktur untuk jamuan makan malam.（我们想邀请董事长参加晚宴。）",
+            "Kami mengundang Ibu Kepala Dinas untuk makan siang bersama.（我们邀请局长女士共进午餐。）",
+            "Mohon kehadiran Bapak/Ibu pada jamuan perayaan proyek.（恭请先生/女士出席项目庆祝宴。）"
+          ],
+          "slots": [
+            "宾客称谓",
+            "宴请类型"
+          ],
+          "reuse": "jamuan 可换 makan malam/syukuran；加 mohon kehadiran 更正式"
         },
         {
-          "cat": "过敏告知",
-          "formula": "[人] alergi terhadap [食物].",
-          "structure": "主语 + alergi terhadap + 食物",
-          "grammar": "terhadap = 对（介词）",
-          "scene": "告知饮食禁忌",
+          "cat": "敬酒与开场白",
+          "level": "intermediate",
+          "formula": "Mari kita minum untuk kesuksesan [项目/合作]!",
+          "cn": "让我们为[项目/合作]的成功干杯！",
+          "structure": "Mari kita minum untuk + 名词 + !",
+          "grammar": "mari = 祈使「让我们」（包含说话人）；untuk = 为了；印尼敬酒常用 air putih/teh 代替酒",
+          "scene": "宴会开场主人致辞后",
           "ex": [
-            {
-              "slots": [
-                "人",
-                "食物"
-              ],
-              "reuse": "人可换 saya/rekan kami；食物可换 seafood/susu",
-              "cn": "我对海鲜过敏。",
-              "level": "adv"
-            }
-          ]
+            "Mari kita minum untuk kesuksesan proyek baru!（为新项目成功干杯！）",
+            "Untuk kerjasama yang erat dan langgeng!（为紧密持久的合作干杯！）",
+            "Selamat atas pencapaian tim!（祝贺团队成就！）"
+          ],
+          "slots": [
+            "祝酒对象"
+          ],
+          "reuse": "minum 可换 angkat gelas（举杯）；商务场合避免劝酒，尊重不饮酒者"
         },
         {
-          "cat": "敬邀入座",
-          "formula": "Silakan duduk, jangan sungkan-sungkan.",
-          "structure": "Silakan + 动词 + jangan sungkan",
-          "grammar": "silakan 敬邀；sungkan 拘谨，重叠加强语气",
-          "scene": "宴请开场",
+          "cat": "结账礼仪（抢着买单）",
+          "level": "intermediate",
+          "formula": "Biar saya yang bayar. / Kali ini saya traktir.",
+          "cn": "让我来付。/这次我请客。",
+          "structure": "Biar saya yang bayar / Kali ini saya traktir",
+          "grammar": "biar = 让；yang 强调「是我来」；traktir 借词（荷兰语 trakteren）= 请客；kali ini = 这次",
+          "scene": "商务宴请结账礼节性争抢",
           "ex": [
-            {
-              "slots": [],
-              "reuse": "也可加 silakan disantap（请用菜）",
-              "cn": "请坐，千万别客气。",
-              "level": "pro"
-            }
-          ]
+            "Biar saya yang bayar.（让我来付。）",
+            "Kali ini saya traktir, lain kali giliran Anda.（这次我请，下次轮到您。）",
+            "Sudah, sudah, ini urusan saya.（行了行了，这是我的事。）"
+          ],
+          "slots": [],
+          "reuse": "争抢时语气要热络但短暂；最终让职位最高者或主人付；AA 制说 patungan"
         },
         {
-          "cat": "谦辞收尾",
-          "formula": "[Jamuan sederhana], mohon maaf bila [kurang berkenan].",
-          "structure": "名词 + mohon maaf + bila 从句",
-          "grammar": "mohon maaf = 谨致歉意；bila = 如果",
-          "scene": "主人致辞收尾",
+          "cat": "宴会结束致谢",
+          "level": "professional",
+          "formula": "Terima kasih atas jamuannya. Semoga [祝愿].",
+          "cn": "感谢款待。祝…",
+          "structure": "Terima kasih atas + 名词 + . Semoga + 祝愿句",
+          "grammar": "atas = 对于（正式感谢）；jamuan + -nya 指「您的款待」；semoga = 祝愿（虚拟）",
+          "scene": "宴会结束告别主人",
           "ex": [
-            {
-              "slots": [
-                "名词",
-                "从句"
-              ],
-              "reuse": "可换：hidangan sederhana / kurang pas",
-              "cn": "菜很简单，不合口味还请见谅。",
-              "level": "pro"
-            }
-          ]
+            "Terima kasih atas jamuannya. Semoga kerjasama kita langgeng.（感谢款待。祝我们合作长久。）",
+            "Terima kasih atas hidangannya. Semoga proyek berjalan lancar.（感谢佳肴。祝项目顺利。）",
+            "Terima kasih banyak. Sampai jumpa di kantor.（非常感谢。办公室见。）"
+          ],
+          "slots": [
+            "祝愿内容"
+          ],
+          "reuse": "jamuan 可换 hidangan/kesempatan；semoga 后接动词短语"
         }
       ],
       "expressions": [
         {
-          "id": "Silakan makan, jangan sungkan.",
-          "cn": "请吃，别客气。",
-          "note": "宴请第一招呼",
           "level": "basic",
-          "scene": "宴请开场"
+          "scene": "推荐菜品",
+          "id": "Menu ini favorit saya. Rasanya tidak terlalu pedas.",
+          "cn": "这道菜是我的最爱。味道不太辣。",
+          "note": "favorit 借词；rasanya = 口感（berasa 的 -nya 形式）；推荐给不敢吃辣的同事"
         },
         {
-          "id": "Makanan di sini halal, jadi aman.",
-          "cn": "这里是清真的，放心吃。",
-          "note": "halal 安抚",
-          "level": "adv",
-          "scene": "介绍餐厅"
+          "level": "intermediate",
+          "scene": "商务劝菜",
+          "id": "Coba ini, khas daerah. Jangan sungkan.",
+          "cn": "尝尝这个，地方特色。别客气。",
+          "note": "sungkan = 客气（爪哇文化核心）；劝菜是主人责任"
         },
         {
-          "id": "Saya tidak makan pedas, maaf.",
-          "cn": "我不吃辣，抱歉。",
-          "note": "温和拒绝",
-          "level": "adv",
-          "scene": "说明忌口"
+          "level": "intermediate",
+          "scene": "打包",
+          "id": "Sisa ini bisa dibungkus?",
+          "cn": "这些剩菜能打包吗？",
+          "note": "dibungkus = di- 被动；印尼打包文化普遍（sayang kalau dibuang 扔掉可惜）"
         },
         {
-          "id": "Terima kasih atas jamuannya.",
-          "cn": "感谢您的款待。",
-          "note": "jamuan = 宴请（名词）",
-          "level": "pro",
-          "scene": "宴后致谢"
+          "level": "professional",
+          "scene": "宴会规格确认",
+          "id": "Untuk jamuan malam ini, apakah sudah termasuk pajak dan service charge?",
+          "cn": "今晚宴请是否已含税和服务费？",
+          "note": "service charge 通常 5-10%；budget 审批需明确 total all-in"
         },
         {
-          "id": "Semoga bisnis kita makin lancar.",
-          "cn": "祝我们生意越来越顺。",
-          "note": "宴请收尾祝愿",
-          "level": "pro",
-          "scene": "商务收尾"
+          "level": "professional",
+          "scene": "饮食禁忌尊重",
+          "id": "Mohon dipisahkan peralatan makan untuk tamu yang halal.",
+          "cn": "请为清真客人分开餐具。",
+          "note": "dipisahkan = di-...-kan 被动使役；印尼跨宗教宴请的基本礼仪"
         }
       ],
       "affixes": [
         {
-          "affix": "ber-...-an 集体/相互态环缀",
-          "type": "相互环缀",
-          "func": "表集体进行",
-          "rule": "名词/动词加 ber-...-an",
+          "no": 1,
+          "affix": "me-...-kan 使役环缀",
+          "type": "环缀",
+          "func": "动词→使役「使/让…做」",
+          "rule": "及物动词+me-...-kan；正式餐饮请求",
           "derivs": [
             {
-              "root": "jamu",
-              "der": "berjamuan",
-              "zh": "聚餐/互相宴请"
+              "root": "undang",
+              "der": "mengundang",
+              "zh": "邀请"
             },
             {
-              "root": "temu",
-              "der": "bertemuan",
-              "zh": "会面"
+              "root": "jamu",
+              "der": "menjamu",
+              "zh": "款待"
+            },
+            {
+              "root": "pisah",
+              "der": "memisahkan",
+              "zh": "分开"
             }
           ],
           "examples": [
             {
-              "id": "Malam ini kita berjamuan bersama mitra.",
-              "cn": "今晚我们与合作伙伴聚餐。"
+              "id": "Kami mengundang Bapak untuk jamuan.",
+              "cn": "我们邀请先生参加宴会。"
+            },
+            {
+              "id": "Mohon dipisahkan alat makannya.",
+              "cn": "请把餐具分开。"
             }
           ]
         },
         {
+          "no": 2,
+          "affix": "ber-...-an 相互/集体环缀",
+          "type": "环缀",
+          "func": "动词/名词→相互动作或集体状态",
+          "rule": "词根+ber-...-an；餐饮场景表共享",
+          "derivs": [
+            {
+              "root": "makan",
+              "der": "bermakanan",
+              "zh": "共餐（少用）"
+            },
+            {
+              "root": "tetangga",
+              "der": "bertetangga",
+              "zh": "做邻居"
+            },
+            {
+              "root": "bagi",
+              "der": "berbagi",
+              "zh": "分享"
+            }
+          ],
+          "examples": [
+            {
+              "id": "Mari berbagi hidangan ini.",
+              "cn": "一起分享这道菜吧。"
+            },
+            {
+              "id": "Makan bersama lebih hangat.",
+              "cn": "一起吃更热闹。"
+            }
+          ]
+        },
+        {
+          "no": 3,
           "affix": "per-...-an 名词化环缀",
-          "type": "名词化",
-          "func": "过程/结果名词化",
-          "rule": "动词加 per-...-an",
+          "type": "环缀",
+          "func": "动词→抽象名词",
+          "rule": "及物动词+per-...-an；比 pe-...-an 更抽象",
           "derivs": [
             {
               "root": "jamu",
               "der": "perjamuan",
-              "zh": "宴会"
+              "zh": "宴会（正式）"
             },
             {
-              "root": "temu",
-              "der": "pertemuan",
-              "zh": "会议/会面"
+              "root": "dapat",
+              "der": "perolehan",
+              "zh": "获得"
+            },
+            {
+              "root": "kenal",
+              "der": "perkenalan",
+              "zh": "介绍"
             }
           ],
           "examples": [
             {
-              "id": "Perjamuan malam ini diadakan di restoran tertua.",
-              "cn": "今晚的宴会在最古老的餐厅举行。"
+              "id": "Perjamuan diadakan di hotel bintang lima.",
+              "cn": "宴会在五星级酒店举行。"
+            },
+            {
+              "id": "Perkenalan singkat sebelum makan.",
+              "cn": "用餐前简短介绍。"
             }
           ]
         },
         {
-          "affix": "me-...-kan 使役环缀",
-          "type": "及物使役",
-          "func": "为/替…做",
-          "rule": "动词加 me-...-kan",
+          "no": 4,
+          "affix": "se-...-nya 同级/确指构式",
+          "type": "环缀",
+          "func": "「正如…的那样」或确指",
+          "rule": "se+词根+nya；餐饮评价常用",
+          "derivs": [
+            {
+              "root": "harus",
+              "der": "seharusnya",
+              "zh": "应该（那样）"
+            },
+            {
+              "root": "biasa",
+              "der": "sebiasanya",
+              "zh": "如常"
+            },
+            {
+              "root": "benar",
+              "der": "sebenarnya",
+              "zh": "其实"
+            }
+          ],
+          "examples": [
+            {
+              "id": "Makanan seharusnya disajikan panas.",
+              "cn": "食物应该热着上。"
+            },
+            {
+              "id": "Sebenarnya saya sudah kenyang.",
+              "cn": "其实我已经饱了。"
+            }
+          ]
+        },
+        {
+          "no": 5,
+          "affix": "di-...-kan 被动使役",
+          "type": "环缀",
+          "func": "及物动词正式被动+使役",
+          "rule": "di-+词根+-kan；公告/菜单常见",
           "derivs": [
             {
               "root": "saji",
-              "der": "menyajikan",
-              "zh": "端上（菜）"
+              "der": "disajikan",
+              "zh": "被呈上"
             },
             {
-              "root": "hidang",
-              "der": "menghidangkan",
-              "zh": "摆上/款待"
+              "root": "olah",
+              "der": "diolah",
+              "zh": "被加工"
+            },
+            {
+              "root": "pesan",
+              "der": "dipesan",
+              "zh": "被预订"
             }
           ],
           "examples": [
             {
-              "id": "Tuan rumah menghidangkan hidangan terbaik.",
-              "cn": "主人端上最好的菜。"
-            }
-          ]
-        },
-        {
-          "affix": "memper-...-kan 强使役环缀",
-          "type": "强使役",
-          "func": "使…成为/精心准备",
-          "rule": "词根加 memper-...-kan",
-          "derivs": [
-            {
-              "root": "siap",
-              "der": "mempersiapkan",
-              "zh": "精心准备"
+              "id": "Hidangan disajikan dalam tiga tahap.",
+              "cn": "菜肴分三道呈上。"
             },
             {
-              "root": "hangat",
-              "der": "memperhangatkan",
-              "zh": "使温热"
-            }
-          ],
-          "examples": [
-            {
-              "id": "Koki mempersiapkan sajian istimewa.",
-              "cn": "厨师精心准备特别菜肴。"
-            }
-          ]
-        },
-        {
-          "affix": "se- 等同比较前缀",
-          "type": "等同比较",
-          "func": "表「像…一样」",
-          "rule": "se + 形容词 = 与…同等程度",
-          "derivs": [
-            {
-              "root": "hangat",
-              "der": "sehangat",
-              "zh": "一样热络"
-            },
-            {
-              "root": "enak",
-              "der": "seenak",
-              "zh": "一样好吃"
-            }
-          ],
-          "examples": [
-            {
-              "id": "Semoga kerja sama kita sehangat sup ini.",
-              "cn": "愿我们的合作像这汤一样热乎。"
+              "id": "Meja sudah dipesan seminggu lalu.",
+              "cn": "桌子一周前已订好。"
             }
           ]
         }
       ],
       "quiz": [
         {
-          "q": "「atas nama Wang」的意思是？",
+          "q": "「我想订四人桌明晚七点」正确语序？",
           "opts": [
-            "以王的名字/名义",
-            "来自王",
-            "给王",
-            "王旁边"
+            "Reservasi empat orang meja besok jam tujuh",
+            "Saya mau reservasi meja untuk empat orang, besok jam tujuh malam",
+            "Besok tujuh jam meja empat reservasi",
+            "Meja reservasi malam tujuh empat"
           ],
-          "a": 0,
-          "exp": "atas nama 固定搭配表「以…名义」，预订登记常用。",
+          "a": 1,
+          "exp": "Saya mau reservasi meja untuk + 人数 + , + 时间",
           "level": "basic"
         },
         {
-          "q": "jamuan 的意思是？",
+          "q": "「让我来付」的印尼语？",
           "opts": [
-            "宴请/款待",
-            "账单",
-            "菜单",
-            "桌子"
+            "Biar saya yang bayar",
+            "Saya bayar saja",
+            "Bayar saya",
+            "Uang saya"
           ],
           "a": 0,
-          "exp": "jamu（款待）→ jamuan（名词，宴请）。",
-          "level": "basic"
+          "exp": "Biar saya yang bayar = 让我来付（礼节性争抢标准句）",
+          "level": "intermediate"
         },
         {
-          "q": "reservasi 来自哪种语言？",
+          "q": "「别客气」在劝菜语境？",
           "opts": [
-            "荷兰语 reservering",
-            "英语 reserve 直接借用",
-            "法语 réserver",
+            "Jangan malu",
+            "Jangan sungkan",
+            "Tidak usah",
+            "Sudah cukup"
+          ],
+          "a": 1,
+          "exp": "sungkan = 客气/不好意思；劝菜说 Jangan sungkan",
+          "level": "intermediate"
+        },
+        {
+          "q": "「感谢款待」正式说法？",
+          "opts": [
+            "Terima kasih makanannya",
+            "Terima kasih atas jamuannya",
+            "Makasih ya",
+            "Enak sekali"
+          ],
+          "a": 1,
+          "exp": "atas jamuan + nya = 对您的款待（正式）；lainnya 口语",
+          "level": "professional"
+        },
+        {
+          "q": "jamuan 与 makan malam 的区别？",
+          "opts": [
+            "jamuan 更正式指宴请活动，makan malam 只是晚餐",
+            "完全相同",
+            "jamuan 是早餐",
+            "makan malam 更正式"
+          ],
+          "a": 0,
+          "exp": "jamuan = 宴请（正式活动）；makan malam = 晚餐（日常）",
+          "level": "professional"
+        },
+        {
+          "q": "「为合作成功干杯」？",
+          "opts": [
+            "Mari minum kerjasama",
+            "Mari kita minum untuk kesuksesan kerjasama!",
+            "Minum kerjasama sukses!",
+            "Air putih kerjasama!"
+          ],
+          "a": 1,
+          "exp": "Mari kita minum untuk + 名词 = 为…干杯",
+          "level": "intermediate"
+        },
+        {
+          "q": "service charge 在印尼餐厅通常？",
+          "opts": [
+            "5-10%",
+            "免费",
+            "20%",
+            "50%"
+          ],
+          "a": 0,
+          "exp": "service charge 5-10% + pajak restoran 10%；宴请预算问 total all-in",
+          "level": "professional"
+        },
+        {
+          "q": "traktir 的词源？",
+          "opts": [
+            "荷兰语 trakteren",
+            "英语 treat",
+            "本地词",
             "阿拉伯语"
           ],
           "a": 0,
-          "exp": "印尼语大量餐饮词借自荷兰语：reservasi、struk。",
-          "level": "adv"
+          "exp": "借自荷兰语 trakteren = 请客；商务正式场合用 saya undang",
+          "level": "intermediate"
         },
         {
-          "q": "halal 的日常反义表达是？",
+          "q": "「清真客人分开餐具」用被动使役？",
           "opts": [
-            "non-halal",
-            "haram（宗教语境）",
-            "tidak enak",
-            "mahal"
+            "Pisahkan alat makan tamu halal",
+            "Mohon dipisahkan peralatan makannya",
+            "Tamu halal pisah sendiri",
+            "Alat makan untuk halal"
           ],
-          "a": 0,
-          "exp": "日常印尼用 non-halal；haram 更宗教严肃。",
-          "level": "adv"
+          "a": 1,
+          "exp": "di-...-kan 被动使役：dipisahkan = 被分开（礼貌请求）",
+          "level": "professional"
         },
         {
-          "q": "berjamuan 的构词是？",
+          "q": "「这次我请，下次轮你」？",
           "opts": [
-            "ber-...-an 相互/集体态",
-            "me- 及物",
-            "di- 被动",
-            "ter- 最高级"
+            "Saya bayar semua",
+            "Kali ini saya traktir, lain kali giliran Anda",
+            "Anda bayar besok",
+            "Patungan saja"
           ],
-          "a": 0,
-          "exp": "jamu → ber-...-an = 互相宴请/聚餐。",
-          "level": "adv"
-        },
-        {
-          "q": "「Sehangat sup ini」中 se- 的作用是？",
-          "opts": [
-            "等同比较「像…一样」",
-            "否定",
-            "被动",
-            "完成"
-          ],
-          "a": 0,
-          "exp": "se + 形容词表「与…同样程度」。",
-          "level": "adv"
-        },
-        {
-          "q": "sajian 与 hidangan 的区别是？",
-          "opts": [
-            "sajian 更正式，强调奉上；hidangan 通用菜肴",
-            "完全相同",
-            "sajian 是饮料",
-            "hidangan 是甜品"
-          ],
-          "a": 0,
-          "exp": "sajian 来自 saji（供奉/端上），更正式；hidangan 通用。",
-          "level": "adv"
-        },
-        {
-          "q": "宴会上主人致辞开场谦辞，得体的是？",
-          "opts": [
-            "Ini jamuan sederhana, mohon maaf bila kurang berkenan.",
-            "Makanan mahal, silakan bayar.",
-            "Jangan banyak tanya.",
-            "Cepat makan, cepat pulang."
-          ],
-          "a": 0,
-          "exp": "印尼主人常以谦逊开场：简单招待，请多包涵。",
-          "level": "pro"
-        },
-        {
-          "q": "「pajak restoran」指？",
-          "opts": [
-            "餐厅税（一般 10%）",
-            "厨师工资",
-            "菜单押金",
-            "预订费"
-          ],
-          "a": 0,
-          "exp": "印尼餐厅账单通常加 10% pajak。",
-          "level": "pro"
-        },
-        {
-          "q": "「dapur」相关惯用语「masuk dapur」比喻义是？",
-          "opts": [
-            "深入基层/参与实际工作",
-            "真的进厨房",
-            "开始做饭",
-            "管理餐厅"
-          ],
-          "a": 0,
-          "exp": "印尼俗语：masuk dapur 指深入基层、亲自动手（政治也常用）。",
-          "level": "pro"
+          "a": 1,
+          "exp": "kali ini = 这次；lain kali = 下次；giliran = 轮流",
+          "level": "intermediate"
         }
       ]
     }
